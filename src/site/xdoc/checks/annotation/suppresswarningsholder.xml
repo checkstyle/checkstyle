@@ -105,7 +105,7 @@ class Example1 {
 </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example2 {
+public class Example2 {
   // violation below, 'More than 7 parameters (found 8)'
   public void needsLotsOfParameters (int a,
     int b, int c, int d, int e, int f, int g, int h) {

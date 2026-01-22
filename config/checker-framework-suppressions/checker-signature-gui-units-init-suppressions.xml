@@ -3,7 +3,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Control.toBundleName.</message>
+    <message>incompatible argument for parameter baseName of Control.toBundleName.</message>
     <lineContent>final String bundleName = toBundleName(baseName, locale);</lineContent>
     <details>
       found   : @SignatureUnknown String
@@ -14,7 +14,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of ResourceBundle.getBundle.</message>
+    <message>incompatible argument for parameter baseName of ResourceBundle.getBundle.</message>
     <lineContent>return ResourceBundle.getBundle(bundle, sLocale, sourceClass.getClassLoader(),</lineContent>
     <details>
       found   : @SignatureUnknown String
@@ -25,7 +25,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Class.forName.</message>
+    <message>incompatible argument for parameter name of Class.forName.</message>
     <lineContent>clazz = Class.forName(className, true, moduleClassLoader);</lineContent>
     <details>
       found   : @SignatureUnknown String
@@ -36,22 +36,22 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Class.forName.</message>
-    <lineContent>final Class&lt;?&gt; moduleClass = Class.forName(fullQualifiedName);</lineContent>
+    <message>incompatible argument for parameter baseName of ResourceBundle.getBundle.</message>
+    <lineContent>bundleName,</lineContent>
     <details>
       found   : @SignatureUnknown String
-      required: @ClassGetName String
+      required: @BinaryName String
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of ResourceBundle.getBundle.</message>
-    <lineContent>bundleName,</lineContent>
+    <message>incompatible argument for parameter className of Class.forName.</message>
+    <lineContent>final Class&lt;?&gt; moduleClass = Class.forName(fullQualifiedName);</lineContent>
     <details>
       found   : @SignatureUnknown String
-      required: @BinaryName String
+      required: @ClassGetName String
     </details>
   </checkerFrameworkError>
 

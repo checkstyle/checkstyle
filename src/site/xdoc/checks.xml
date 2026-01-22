@@ -407,8 +407,8 @@
               </a>
             </td>
             <td>
-              Checks for empty line separators before package, all import declarations, fields,
-              constructors, methods, nested classes, static initializers and instance initializers.
+              Checks for empty line separators after, fields, constructors, methods, nested classes,
+              static initializers and instance initializers.
             </td>
           </tr>
           <tr>
@@ -1113,6 +1113,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/annotation/missingoverrideonrecordaccessor.html#MissingOverrideOnRecordAccessor">
+                MissingOverrideOnRecordAccessor
+              </a>
+            </td>
+            <td>
+              Verifies that explicitly declared record accessor methods include the
+              <code>@Override</code> annotation.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/missingswitchdefault.html#MissingSwitchDefault">
                 MissingSwitchDefault
               </a>
@@ -1790,6 +1801,18 @@
             <td>
               Allows to specify what warnings that <code>@SuppressWarnings</code> is not allowed to
               suppress.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/textblockgooglestyleformatting.html#TextBlockGoogleStyleFormatting">
+                TextBlockGoogleStyleFormatting
+              </a>
+            </td>
+            <td>
+              Checks correct format of <a href="https://docs.oracle.com/en/java/javase/17/text-blocks/index.html">
+              Java Text Blocks</a> as specified in <a href="https://google.github.io/styleguide/javaguide.html#s4.8.9-text-blocks">
+              Google Java Style Guide</a>.
             </td>
           </tr>
           <tr>

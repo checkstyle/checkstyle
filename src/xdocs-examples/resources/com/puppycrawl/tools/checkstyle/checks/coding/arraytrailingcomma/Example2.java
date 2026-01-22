@@ -17,7 +17,7 @@ public class Example2 {
     true,
     true,
     false // violation 'Array should contain trailing comma.'
-  };
+    };
 
   String[][] text = {{},{},};
 
@@ -42,7 +42,7 @@ public class Example2 {
   int[] a2 = new int[]{
     1,
     2
-    ,};
+  ,};
 }
 // xdoc section -- end
 

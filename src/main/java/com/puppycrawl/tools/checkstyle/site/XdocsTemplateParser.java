@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.site;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -183,7 +183,7 @@ public class XdocsTemplateParser extends XdocParser {
     private void processMacroEnd(Sink sink) throws MacroExecutionException {
         final MacroRequest request = new MacroRequest(sourceContent,
                 new XdocsTemplateParser(), macroParameters,
-                new File(TEMP_DIR));
+                Path.of(TEMP_DIR).toFile());
 
         try {
             executeMacro(macroName, request, sink);

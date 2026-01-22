@@ -168,7 +168,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg1 of JLabel constructor.</message>
+    <message>incompatible argument for parameter horizontalAlignment of JLabel constructor.</message>
     <lineContent>final JLabel modesLabel = new JLabel(&quot;Modes:&quot;, SwingConstants.RIGHT);</lineContent>
     <details>
       found   : @SwingHorizontalOrientation int
@@ -186,11 +186,11 @@
       Reason for going out of scope: possible exceptional exit due to throw new IllegalStateException(&quot;Problem to read all modules including third party if any. Problem detected at file: &quot; + fileName, exc); with exception type java.lang.IllegalStateException
     </details>
   </checkerFrameworkError>
-  
+
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>methodref.param</specifier>
-    <message>Incompatible parameter type for arg0</message>
+    <message>Incompatible parameter type for obj</message>
     <lineContent>.mapToInt(int.class::cast);</lineContent>
     <details>
       found   : @FenumUnqualified Object

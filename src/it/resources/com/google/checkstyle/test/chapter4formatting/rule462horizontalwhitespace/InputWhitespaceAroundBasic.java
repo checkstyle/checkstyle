@@ -15,20 +15,20 @@ class InputWhitespaceAroundBasic {
   /** Should be ok. */
   private final int var3 = 1;
 
-  /** skip blank lines between comment and code, should be ok. */
+  /** Skip blank lines between comment and code, should be ok. */
   private final int var4 = 1;
 
   int xyz;       // multiple space between content and double slash.
   int abc; //       multiple space between double slash and comment's text.
   int pqr;       //     testing both.
 
-  /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class). */
+  /** Bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class). */
   private int test;
 
   private int i4, i5, i6;
   // violation above 'Each variable declaration must be in its own statement.'
 
-  /** method. */
+  /** Method. */
   void method1() {
     final int a = 1;
     int b= 1; // violation ''=' is not preceded with whitespace.'
@@ -39,29 +39,23 @@ class InputWhitespaceAroundBasic {
     b = ++ b - -- b;
   }
 
-  /** method. */
+  /** Method. */
   void method2() {
-    synchronized(this) {
-      // 2 violations above:
-      //  ''synchronized' is not followed by whitespace.'
-      //  ''synchronized' is not followed by whitespace.'
+    synchronized(this) { // violation ''synchronized' is not followed by whitespace.'
     }
     try{
-      // 3 violations above:
-      //  ''try' is not followed by whitespace.'
+      // 2 violations above:
       //  ''try' is not followed by whitespace.'
       //  ''{' is not preceded with whitespace.'
     } catch (RuntimeException e) {// violation ''{' is not followed by whitespace.'
     }
   }
 
-  /** test WS after void return. */
+  /** Test WS after void return. */
   private void fastExit() {
     boolean complicatedStuffNeeded = true;
-    // 2 violations 3 lines below:
-    //  ''if' is not followed by whitespace.'
-    //  ''if' is not followed by whitespace.'
-    if(!complicatedStuffNeeded) {
+
+    if(!complicatedStuffNeeded) { // violation ''if' is not followed by whitespace.'
       // should not complain about missing WS after return
     } else {
       // do complicated stuff
@@ -69,22 +63,19 @@ class InputWhitespaceAroundBasic {
   }
 
   /**
-   * test WS after non void return.
+   * Test WS after non void return.
    *
    * @return 2
    */
   private int nonVoid() {
     if (true) {
-      return(2);
-      // 2 violations above:
-      //  ''return' is not followed by whitespace.'
-      //  ''return' is not followed by whitespace.'
+      return(2); // violation ''return' is not followed by whitespace.'
     } else {
       return 2; // this is ok
     }
   }
 
-  /** test casts. */
+  /** Test casts. */
   private void testCasts() {
     Object o = (Object) new Object();
     o = (Object) o;
@@ -93,25 +84,25 @@ class InputWhitespaceAroundBasic {
             o;
   }
 
-  /** test questions. */
+  /** Test questions. */
   private void testQuestions() {
 
     boolean b = (1 ==2) ? false : true; // violation ''==' is not followed by whitespace.'
   }
 
-  /** star test. */
+  /** Star test. */
   private void starTest() {
     int x = 2 * 3* 4; // violation ''*' is not preceded with whitespace.'
   }
 
-  /** boolean test. */
+  /** Boolean test. */
   private void boolTest() {
     boolean a = true;
     boolean x = !a;
     int z = ~1 + ~2;
   }
 
-  /** division test. */
+  /** Division test. */
   private void divTest() {
     int a = 4 % 2;
     int b = 4% 2; // violation ''%' is not preceded with whitespace.'
@@ -123,7 +114,7 @@ class InputWhitespaceAroundBasic {
   }
 
   /**
-   * summary.
+   * Summary.
    *
    * @return dot test *
    */
@@ -135,7 +126,7 @@ class InputWhitespaceAroundBasic {
     return o.toString();
   }
 
-  /** assert statement test. */
+  /** Assert statement test. */
   public void assertTest() {
 
     assert true;
@@ -153,7 +144,7 @@ class InputWhitespaceAroundBasic {
     assert true: "Whups"; // violation '':' is not preceded with whitespace.'
   }
 
-  /** another check. */
+  /** Another check. */
   void donBradman(Runnable run) {
     donBradman(
         new Runnable() {
@@ -166,13 +157,13 @@ class InputWhitespaceAroundBasic {
         };
   }
 
-  /** rfe 521323, detect whitespace before ';'. */
+  /** Rfe 521323, detect whitespace before ';'. */
   void rfe521323() {
     doStuff();
     for (int i = 0; i < 5; i++) {}
   }
 
-  /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class). */
+  /** Bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class). */
   void bug806243() {
     Object o =
         new InputWhitespaceAroundBasic() {
@@ -233,10 +224,7 @@ class InputWhitespaceAroundBasic {
       Runnable l;
 
       l = ()-> {}; // violation ''->' is not preceded with whitespace.'
-      l = () ->{};
-      // 2 violations above:
-      //  ''->' is not followed by whitespace.'
-      //  ''->' is not followed by whitespace.'
+      l = () ->{}; // violation ''->' is not followed by whitespace.'
       l = () -> {};
       l = () -> {};
 

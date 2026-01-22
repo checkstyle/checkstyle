@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -444,13 +444,20 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         DetailAST currentAst = literalNewAst;
         DetailAST result = null;
         DetailAST topMostLambdaAst = null;
-        while (currentAst != null && !TokenUtil.isOfType(currentAst,
-                ANONYMOUS_CLASS_PARENT_TOKENS)) {
-            if (currentAst.getType() == TokenTypes.LAMBDA) {
-                topMostLambdaAst = currentAst;
+        boolean continueSearch = true;
+        while (continueSearch) {
+            continueSearch = false;
+            while (currentAst != null
+                    && !TokenUtil.isOfType(currentAst, ANONYMOUS_CLASS_PARENT_TOKENS)) {
+                if (currentAst.getType() == TokenTypes.LAMBDA) {
+                    topMostLambdaAst = currentAst;
+                    currentAst = currentAst.getParent();
+                    continueSearch = true;
+                    break;
+                }
+                currentAst = currentAst.getParent();
+                result = currentAst;
             }
-            currentAst = currentAst.getParent();
-            result = currentAst;
         }
 
         if (currentAst == null) {
@@ -727,18 +734,23 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private void customVisitToken(DetailAST ast, Deque<VariableDesc> variablesStack) {
         final int type = ast.getType();
-        if (type == TokenTypes.DOT) {
-            visitDotToken(ast, variablesStack);
-        }
-        else if (type == TokenTypes.VARIABLE_DEF) {
-            addLocalVariables(ast, variablesStack);
-        }
-        else if (type == TokenTypes.IDENT) {
-            visitIdentToken(ast, variablesStack);
-        }
-        else if (isInsideLocalAnonInnerClass(ast)) {
-            final TypeDeclDesc obtainedClass = getSuperClassOfAnonInnerClass(ast);
-            modifyVariablesStack(obtainedClass, variablesStack, ast);
+        switch (type) {
+            case TokenTypes.DOT -> visitDotToken(ast, variablesStack);
+
+            case TokenTypes.VARIABLE_DEF -> addLocalVariables(ast, variablesStack);
+
+            case TokenTypes.IDENT -> visitIdentToken(ast, variablesStack);
+
+            case TokenTypes.LITERAL_NEW -> {
+                if (ast.findFirstToken(TokenTypes.OBJBLOCK) != null) {
+                    final TypeDeclDesc obtainedClass = getSuperClassOfAnonInnerClass(ast);
+                    modifyVariablesStack(obtainedClass, variablesStack, ast);
+                }
+            }
+
+            default -> {
+                // No action needed for other token types
+            }
         }
     }
 
@@ -921,7 +933,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *
          * @return name of variable
          */
-        public String getName() {
+        /* package */ String getName() {
             return name;
         }
 
@@ -930,7 +942,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *
          * @return the associated ast node of type {@link TokenTypes#TYPE}
          */
-        public DetailAST getTypeAst() {
+        /* package */ DetailAST getTypeAst() {
             return typeAst;
         }
 
@@ -941,14 +953,14 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *
          * @return the scope associated with the variable
          */
-        public DetailAST getScope() {
+        /* package */ DetailAST getScope() {
             return scope;
         }
 
         /**
          * Register the variable as used.
          */
-        public void registerAsUsed() {
+        /* package */ void registerAsUsed() {
             used = true;
         }
 
@@ -956,7 +968,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          * Register the variable as an instance variable or
          * class variable.
          */
-        public void registerAsInstOrClassVar() {
+        /* package */ void registerAsInstOrClassVar() {
             instVarOrClassVar = true;
         }
 
@@ -965,7 +977,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *
          * @return true if variable is used
          */
-        public boolean isUsed() {
+        /* package */ boolean isUsed() {
             return used;
         }
 
@@ -974,7 +986,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *
          * @return true if is an instance variable or a class variable
          */
-        public boolean isInstVarOrClassVar() {
+        /* package */ boolean isInstVarOrClassVar() {
             return instVarOrClassVar;
         }
     }
@@ -1028,7 +1040,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *
          * @return qualified class name
          */
-        public String getQualifiedName() {
+        /* package */ String getQualifiedName() {
             return qualifiedName;
         }
 
@@ -1037,7 +1049,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *
          * @return the depth of nesting of type declaration
          */
-        public int getDepth() {
+        /* package */ int getDepth() {
             return depth;
         }
 
@@ -1046,7 +1058,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *
          * @return ast node of the type declaration
          */
-        public DetailAST getTypeDeclAst() {
+        /* package */ DetailAST getTypeDeclAst() {
             return typeDeclAst;
         }
 
@@ -1056,7 +1068,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
          * @return copy of variables in instanceAndClassVar stack with updated scope.
          */
-        public Deque<VariableDesc> getUpdatedCopyOfVarStack(DetailAST literalNewAst) {
+        /* package */ Deque<VariableDesc> getUpdatedCopyOfVarStack(DetailAST literalNewAst) {
             final DetailAST updatedScope = literalNewAst;
             final Deque<VariableDesc> instAndClassVarDeque = new ArrayDeque<>();
             instanceAndClassVarStack.forEach(instVar -> {
@@ -1073,7 +1085,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *
          * @param variableDesc variable to be added
          */
-        public void addInstOrClassVar(VariableDesc variableDesc) {
+        /* package */ void addInstOrClassVar(VariableDesc variableDesc) {
             instanceAndClassVarStack.push(variableDesc);
         }
     }

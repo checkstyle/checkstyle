@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -37,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.WeakReferenceHolder;
 
 /**
  * <div>
@@ -111,6 +111,16 @@ public class SuppressionCommentFilter
     /** Tagged comments. */
     private final List<Tag> tags = new ArrayList<>();
 
+    /**
+     * References the current FileContents for this filter.
+     * Since this is a weak reference to the FileContents, the FileContents
+     * can be reclaimed as soon as the strong references in TreeWalker
+     * are reassigned to the next FileContents, at which time filtering for
+     * the current FileContents is finished.
+     */
+    private final WeakReferenceHolder<FileContents> fileContentsHolder =
+            new WeakReferenceHolder<>();
+
     /** Control whether to check C style comments ({@code &#47;* ... *&#47;}). */
     private boolean checkC = true;
 
@@ -138,15 +148,6 @@ public class SuppressionCommentFilter
     private String idFormat;
 
     /**
-     * References the current FileContents for this filter.
-     * Since this is a weak reference to the FileContents, the FileContents
-     * can be reclaimed as soon as the strong references in TreeWalker
-     * are reassigned to the next FileContents, at which time filtering for
-     * the current FileContents is finished.
-     */
-    private WeakReference<FileContents> fileContentsReference = new WeakReference<>(null);
-
-    /**
      * Setter to specify comment pattern to trigger filter to begin suppression.
      *
      * @param pattern a pattern.
@@ -164,24 +165,6 @@ public class SuppressionCommentFilter
      */
     public final void setOnCommentFormat(Pattern pattern) {
         onCommentFormat = pattern;
-    }
-
-    /**
-     * Returns FileContents for this filter.
-     *
-     * @return the FileContents for this filter.
-     */
-    private FileContents getFileContents() {
-        return fileContentsReference.get();
-    }
-
-    /**
-     * Set the FileContents for this filter.
-     *
-     * @param fileContents the FileContents for this filter.
-     */
-    private void setFileContents(FileContents fileContents) {
-        fileContentsReference = new WeakReference<>(fileContents);
     }
 
     /**
@@ -217,13 +200,13 @@ public class SuppressionCommentFilter
     /**
      * Setter to control whether to check C++ style comments ({@code //}).
      *
-     * @param checkCpp {@code true} if C++ comments are checked.
+     * @param checkCppComments {@code true} if C++ comments are checked.
      * @since 3.5
      */
     // -@cs[AbbreviationAsWordInName] We can not change it as,
     // check's property is a part of API (used in configurations).
-    public void setCheckCPP(boolean checkCpp) {
-        checkCPP = checkCpp;
+    public void setCheckCPP(boolean checkCppComments) {
+        checkCPP = checkCppComments;
     }
 
     /**
@@ -245,15 +228,11 @@ public class SuppressionCommentFilter
     public boolean accept(TreeWalkerAuditEvent event) {
         boolean accepted = true;
 
-        if (event.getViolation() != null) {
+        if (event.violation() != null) {
             // Lazy update. If the first event for the current file, update file
             // contents and tag suppressions
-            final FileContents currentContents = event.getFileContents();
-
-            if (getFileContents() != currentContents) {
-                setFileContents(currentContents);
-                tagSuppressions();
-            }
+            final FileContents currentContents = event.fileContents();
+            fileContentsHolder.lazyUpdate(currentContents, this::tagSuppressions);
             final Tag matchTag = findNearestMatch(event);
             accepted = matchTag == null || matchTag.getTagType() == TagType.ON;
         }
@@ -289,7 +268,7 @@ public class SuppressionCommentFilter
      */
     private void tagSuppressions() {
         tags.clear();
-        final FileContents contents = getFileContents();
+        final FileContents contents = fileContentsHolder.get();
         if (checkCPP) {
             tagSuppressions(contents.getSingleLineComments().values());
         }
@@ -442,7 +421,7 @@ public class SuppressionCommentFilter
          *
          * @return the line number of the tag in the source file.
          */
-        public int getLine() {
+        /* package */ int getLine() {
             return line;
         }
 
@@ -453,7 +432,7 @@ public class SuppressionCommentFilter
          *
          * @return the column number of the tag in the source file.
          */
-        public int getColumn() {
+        /* package */ int getColumn() {
             return column;
         }
 
@@ -463,7 +442,7 @@ public class SuppressionCommentFilter
          *
          * @return {@code ON} if the suppression turns reporting on.
          */
-        public TagType getTagType() {
+        /* package */ TagType getTagType() {
             return tagType;
         }
 
@@ -527,7 +506,7 @@ public class SuppressionCommentFilter
          * @param event the {@code TreeWalkerAuditEvent} to check.
          * @return true if the source of event matches the text of this tag.
          */
-        public boolean isMatch(TreeWalkerAuditEvent event) {
+        /* package */ boolean isMatch(TreeWalkerAuditEvent event) {
             return isCheckMatch(event) && isIdMatch(event) && isMessageMatch(event);
         }
 

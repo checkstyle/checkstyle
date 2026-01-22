@@ -2,7 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
 import java.io.IOException;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputEmptyCatchEmptyComment {
   private void foo() {
     try {

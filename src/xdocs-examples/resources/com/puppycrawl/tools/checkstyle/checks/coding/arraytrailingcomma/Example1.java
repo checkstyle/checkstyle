@@ -22,7 +22,7 @@ public class Example1 {
   double[][] decimals = {
     {0.5, 2.3, 1.1,},
     {1.7, 1.9, 0.6},
-    {0.8, 7.4, 6.5}  // violation 'Array should contain trailing comma.'
+    {0.8, 7.4, 6.5,}  // violation 'Array should contain trailing comma.'
   };
 
   char[] chars = {'a', 'b', 'c'

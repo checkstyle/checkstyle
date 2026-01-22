@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputNoWhitespaceBeforeColonOfLabel {
 
   {
@@ -9,7 +9,7 @@ public class InputNoWhitespaceBeforeColonOfLabel {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo() {
     label2:
     while (true) {

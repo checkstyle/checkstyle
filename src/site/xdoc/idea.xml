@@ -133,5 +133,28 @@
       </p>
     </section>
 
+    <section name="Changing encoding of properties files">
+      <p>
+        By default, IntelliJ IDEA uses <code>ISO-8859-1</code> encoding for
+        <code>.properties</code> files. This encoding does not support many
+        non-Latin characters and may result in incorrect or unreadable text.
+        <br/>
+        <br/>
+        To change this setting go to <code>File | Settings</code> in menu.
+        <br/>
+        Then in the tree go to: <code>Settings | Editor | File Encoding</code>.
+        <br/>
+        <br/>
+        Set <b>Default encoding for properties files</b> to <code>UTF-8</code>
+        and make sure <b>Transparent native-to-ascii conversion</b> is unchecked.
+        <br/>
+        <br/>
+        <span class="wrapper block">
+          <img alt="Properties file encoding settings in IntelliJ IDEA"
+               src="images/gui_screenshot_properties_encoding_idea.png"/>
+        </span>
+      </p>
+    </section>
+
   </body>
 </document>

@@ -12,10 +12,12 @@ fi
 JAVA_RELEASE=${2:-$DEFAULT_JAVA_RELEASE}
 
 ECLIPSE_URL="http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/eclipse/downloads/drops4"
-ECJ_MAVEN_VERSION=$(wget --quiet -O- "$ECLIPSE_URL/?C=M;O=D" | grep -o "R-[^/]*" | head -n1)
-echo "Latest eclipse release is $ECJ_MAVEN_VERSION"
 
-ECJ_MAVEN_VERSION=$(wget --quiet -O- "$ECLIPSE_URL/?C=M;O=D" | grep -o "R-[^/]*" | head -n1)
+# hard coded versions until #18251
+ECJ_MAVEN_VERSION="R-4.37-202509050730" 
+
+echo "Using pinned eclipse release: $ECJ_MAVEN_VERSION"
+
 ECJ_JAR=$(wget --quiet -O- "$ECLIPSE_URL/$ECJ_MAVEN_VERSION/" | grep -o "ecj-[^\"]*" | head -n1)
 ECJ_PATH=~/.m2/repository/$ECJ_MAVEN_VERSION/$ECJ_JAR
 

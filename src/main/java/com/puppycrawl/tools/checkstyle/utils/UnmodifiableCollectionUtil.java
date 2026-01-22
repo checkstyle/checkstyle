@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -51,6 +51,26 @@ public final class UnmodifiableCollectionUtil {
      */
     public static <T> List<T> unmodifiableList(List<T> collection) {
         return Collections.unmodifiableList(collection);
+    }
+
+    /**
+     * Creates an unmodifiable list from the provided collection.
+     * If the collection is null, returns an empty unmodifiable list.
+     *
+     * @param collection the collection to create an unmodifiable list from
+     * @param <T> the type of elements in the list
+     * @return an unmodifiable list containing the elements from the provided collection,
+     *         or an empty list if the collection is null
+     */
+    public static <T> List<T> unmodifiableList(Collection<? extends T> collection) {
+        final List<T> result;
+        if (collection == null) {
+            result = Collections.emptyList();
+        }
+        else {
+            result = List.copyOf(collection);
+        }
+        return result;
     }
 
     /**

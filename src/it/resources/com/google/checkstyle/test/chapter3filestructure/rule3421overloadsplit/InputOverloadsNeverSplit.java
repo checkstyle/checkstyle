@@ -132,26 +132,26 @@ public class InputOverloadsNeverSplit {
 
   private class Inner5 {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void overloadMethod(int i) {
     // some foo code
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void overloadMethod(String s) {
     // some foo code
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void overloadMethod(boolean b) {
     // some foo code
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void fooMethod() {}
 
   // violation 2 lines below 'All overloaded methods should be placed next to each other. .* '146'.'
-  /** some javadoc. */
+  /** Some javadoc. */
   public void overloadMethod(String s, Boolean b, int i) {
     // some foo code
   }
@@ -178,18 +178,18 @@ public class InputOverloadsNeverSplit {
         }
       };
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void testing() {}
 
   private void testing(int a) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void testing(int a, int b) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void testing(String a) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void testing(String a, String b) {}
 
   interface Fooable {

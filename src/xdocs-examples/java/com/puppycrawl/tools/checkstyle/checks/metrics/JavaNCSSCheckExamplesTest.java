@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_CLASS;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_FILE;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_METHOD;
+import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_RECORD;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 // -@cs[AbbreviationAsWordInName] Test should be named as its main class.
 public class JavaNCSSCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/javancss";
     }
 
@@ -66,5 +67,14 @@ public class JavaNCSSCheckExamplesTest extends AbstractExamplesModuleTestSupport
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "24:3: " + getCheckMessage(MSG_RECORD, 6, 5),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 }

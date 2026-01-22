@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule487modifiers;
 
-/** some javadoc. */
+/** Some javadoc. */
 public sealed class InputFormattedModifierOrderNonSealed
     permits InputFormattedModifierOrderNonSealed.CircleOne,
         InputFormattedModifierOrderNonSealed.RectangleOne,

@@ -1,9 +1,9 @@
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedNoWhitespaceBeforeEmptyForLoop {
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void foo() {
     for (; ; ) { // ok
       break;

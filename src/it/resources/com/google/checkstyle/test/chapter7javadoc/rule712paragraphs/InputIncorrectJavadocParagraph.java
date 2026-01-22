@@ -40,6 +40,7 @@ class InputIncorrectJavadocParagraph {
     return false;
   }
 
+  // violation 5 lines below "Javadoc content should start from the next line."
   // violation 4 lines below 'Redundant <p> tag.'
   // 2 violations 4 lines below:
   //  '<p> tag should be placed immediately before the first word'
@@ -70,7 +71,8 @@ class InputIncorrectJavadocParagraph {
      */
     public static final byte NUL = 0;
 
-    // 2 violations 5 lines below:
+    // 3 violations 6 lines below:
+    //  'Javadoc content should start from the next line.'
     //  '<p> tag should be placed immediately before the first word'
     //  'Redundant <p> tag.'
     // violation 5 lines below '<p> tag should be placed immediately before the first word'

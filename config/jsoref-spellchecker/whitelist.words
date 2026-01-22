@@ -22,6 +22,7 @@ aggregators
 allchecks
 allclasses
 allowlegacy
+allprojects
 alot
 alundblad
 amazonaws
@@ -182,6 +183,7 @@ circleci
 cirrusci
 classannotations
 classdataabstractioncoupling
+classdeclarations
 classfanoutcomplexity
 classloader
 classmemberimpliedmodifier
@@ -272,6 +274,7 @@ Dconfig
 Dconnection
 ddd
 DDDL
+Ddisable
 Ddry
 DEADBEEF
 DECCHARS
@@ -442,6 +445,7 @@ filebasic
 filechooser
 filefilter
 filelength
+fileorganization
 filepath
 fileset
 filesetcheck
@@ -470,6 +474,7 @@ Fmetrics
 Fmodifier
 FModule
 Fnaming
+Fopenjdk
 forbiddenapis
 Foreach
 Fpuppycrawl
@@ -741,6 +746,7 @@ jsni
 json
 jsoref
 jsp
+jspecify
 JSplit
 jsr
 JTable
@@ -850,6 +856,7 @@ missingjavadocpackage
 missingjavadoctype
 missingnullcaseinswitch
 missingoverride
+missingoverrideonrecordaccessor
 missingperiod
 missingswitchdefault
 missingtag
@@ -1242,12 +1249,12 @@ SERIALVERSIONUID
 servlet
 severitymatchfilter
 sevntu
-shanegenschaw
 shasum
 shellcheck
 shengchen
 Shiell
 sickboy
+simplestatements
 Simplifiable
 simplifybooleanexpression
 simplifybooleanreturn
@@ -1309,6 +1316,7 @@ stemp
 stext
 sthref
 stmt
+stoyan
 streamapi
 strictfp
 stringliteralequality
@@ -1347,6 +1355,7 @@ suppresswithnearbytextfilter
 suppresswithplaintextcommentfilter
 suse
 svg
+switchstatements
 sxpath
 syntastic
 Sys
@@ -1365,7 +1374,8 @@ technotes
 temurin
 Testik
 testmodules
-textblocks
+textblock
+textblockgooglestyleformatting
 tfij
 Tfo
 tfoot
@@ -1439,6 +1449,7 @@ unnecessarysemicolonafteroutertypedeclaration
 unnecessarysemicolonaftertypememberdeclaration
 unnecessarysemicoloninenumeration
 unnecessarysemicolonintrywithresources
+unparseable
 Unproxyable
 unregister
 unstale
@@ -1520,6 +1531,7 @@ wontfix
 workaround
 workflow
 wq
+wrappinglines
 writetag
 writingchecks
 writingfilefilters
@@ -1533,6 +1545,7 @@ xa
 xabc
 xar
 xargs
+XDadd
 XDcompile
 xdeadbeef
 xdoc

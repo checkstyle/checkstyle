@@ -12,12 +12,9 @@
 //HEADER
 ///////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
-import java.io.Serializable;
-// violation 2 lines above ''package' should be separated from previous line'
-// violation 2 lines above ''import' should be separated from previous line'
-
-class Example1 {
-
+import java.io.Serializable; // violation above ''package' should be separated from previous line'
+class Example1 { // violation above ''import' should be separated from previous line'
+  // violation above ''CLASS_DEF' should be separated from previous line'
   int var1 = 1;
   int var2 = 2; // violation ''VARIABLE_DEF' should be separated from previous line'
 

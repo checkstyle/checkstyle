@@ -102,6 +102,21 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example4.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          An example of how to configure unnamed variables with parameter_def
+          and validate unnamed variables.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example5.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 

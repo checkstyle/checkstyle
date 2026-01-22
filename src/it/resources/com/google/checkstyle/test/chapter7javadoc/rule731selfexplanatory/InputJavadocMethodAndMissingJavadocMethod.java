@@ -57,12 +57,12 @@ public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClasss {
     return "Fooooooooooooooo" + "ooooo" + "ooo" + x;
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void smallMethod1() {
     foo2();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   protected void smallMethod2() {
     foo2();
   }
@@ -101,7 +101,7 @@ public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClasss {
     foo3();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public InputJavadocMethodAndMissingJavadocMethod(int a, int b) {
     foo2();
   }

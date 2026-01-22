@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.gui;
 
-import java.io.File;
+import java.nio.file.Path;
 
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
@@ -54,8 +54,8 @@ public final class Main {
     private static void createMainFrame(String... args) {
         final MainFrame mainFrame = new MainFrame();
         if (args.length > 0) {
-            final File sourceFile = new File(args[0]);
-            mainFrame.openFile(sourceFile);
+            final Path sourcePath = Path.of(args[0]);
+            mainFrame.openFile(sourcePath.toFile());
         }
         mainFrame.setTitle("Checkstyle GUI");
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

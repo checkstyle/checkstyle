@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter5naming.rule525nonconstantfieldnames;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputNonConstantNamesBasic {
   public int mPublic; // violation 'Member name 'mPublic' must match pattern'
   protected int mProtected; // violation 'Member name 'mProtected' must match pattern'

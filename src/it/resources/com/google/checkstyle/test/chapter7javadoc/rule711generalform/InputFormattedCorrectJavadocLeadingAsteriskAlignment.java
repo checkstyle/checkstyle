@@ -7,7 +7,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule711generalform;
  */
 public class InputFormattedCorrectJavadocLeadingAsteriskAlignment {
 
-  /** javadoc for instance variable. */
+  /** Javadoc for instance variable. */
   private int int1;
 
   /** */
@@ -22,11 +22,12 @@ public class InputFormattedCorrectJavadocLeadingAsteriskAlignment {
   // violation above "Summary javadoc is missing."
   private String str1;
 
-  /** No leading asterisk present. False negative until #17778, Subproblem 2. */
+  /** No leading asterisk present. */
   public InputFormattedCorrectJavadocLeadingAsteriskAlignment() {}
 
-  // violation 2 lines below "Summary javadoc is missing."
-  // violation 2 lines below "Javadoc tag '@param' should be preceded with an empty line."
+  // violation 3 lines below "Summary javadoc is missing."
+  // violation 3 lines below "Javadoc tag '@param' should be preceded with an empty line."
+  // False negative for below javadoc, until #18271
   /***
    * @param a testing....
    */
@@ -35,7 +36,7 @@ public class InputFormattedCorrectJavadocLeadingAsteriskAlignment {
   /*************************************************
    *** @param str testing.....
    **********************************/
-  // False negative for above javadoc, until #17778, Subproblem 1 & 3.
+  // False negative for above javadoc, until #18271, #18273
   public InputFormattedCorrectJavadocLeadingAsteriskAlignment(String str) {}
 
   /** * */
@@ -49,35 +50,26 @@ public class InputFormattedCorrectJavadocLeadingAsteriskAlignment {
   /** This method does nothing. */
   private void foo() {}
 
-  /**
-   * Opening tag should be alone on line. // False negative until #17778, Subproblem 1. This method
-   * does nothing.
-   */
+  /** Opening tag should be alone on line. This method does nothing. */
   private void foo2() {}
 
   /** Javadoc for foo3. Closing tag should be alone on line. */
-  // False negative until #17778, Subproblem 3.
   private void foo3() {
     // foo2 code goes here
   }
 
   /** Javadoc for enum. */
-  // False negative until #17778, Subproblem 3.
   private enum CorrectJavadocEnum {
-    // violation 2 lines below "Summary javadoc is missing."
-    // False negative until #17778, Subproblem 2.
+    // violation below "Summary javadoc is missing."
     /** */
     ONE,
 
-    // False negative until #17778, Subproblem 2.
     /** Not allowed. No leading asterisk present. */
     TWO,
 
-    // False negative until #17778, Subproblem 1 & 2.
     /** Not allowed. Opening javadoc tag should be alone on line. */
     THREE,
 
-    // False negative until #17778, Subproblem 3.
     /** Not allowed. Closing javadoc tag should be alone on line. */
     FOUR,
 

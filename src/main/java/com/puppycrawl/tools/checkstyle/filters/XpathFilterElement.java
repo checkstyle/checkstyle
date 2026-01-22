@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -41,7 +41,7 @@ import net.sf.saxon.trans.XPathException;
  * objects based on the criteria of file, check, module id, xpathQuery.
  *
  */
-public class XpathFilterElement implements TreeWalkerFilter {
+public final class XpathFilterElement implements TreeWalkerFilter {
 
     /** The regexp to match file names against. */
     private final Pattern fileRegexp;
@@ -135,9 +135,9 @@ public class XpathFilterElement implements TreeWalkerFilter {
      * @return true if it is matching
      */
     private boolean isFileNameAndModuleAndModuleNameMatching(TreeWalkerAuditEvent event) {
-        return event.getFileName() != null
-                && (fileRegexp == null || fileRegexp.matcher(event.getFileName()).find())
-                && event.getViolation() != null
+        return event.fileName() != null
+                && (fileRegexp == null || fileRegexp.matcher(event.fileName()).find())
+                && event.violation() != null
                 && (moduleId == null || moduleId.equals(event.getModuleId()))
                 && (checkRegexp == null || checkRegexp.matcher(event.getSourceName()).find());
     }
@@ -165,10 +165,11 @@ public class XpathFilterElement implements TreeWalkerFilter {
         }
         else {
             isMatching = false;
-            final List<AbstractNode> nodes = getItems(event)
-                .stream().map(AbstractNode.class::cast)
+            final List<Item> nodes = getItems(event)
+                .stream()
                 .toList();
-            for (AbstractNode abstractNode : nodes) {
+            for (Item item : nodes) {
+                final AbstractNode abstractNode = (AbstractNode) item;
                 isMatching = abstractNode.getTokenType() == event.getTokenType()
                         && abstractNode.getLineNumber() == event.getLine()
                         && abstractNode.getColumnNumber() == event.getColumnCharIndex();
@@ -189,11 +190,11 @@ public class XpathFilterElement implements TreeWalkerFilter {
      */
     private List<Item> getItems(TreeWalkerAuditEvent event) {
         final RootNode rootNode;
-        if (event.getRootAst() == null) {
+        if (event.rootAst() == null) {
             rootNode = null;
         }
         else {
-            rootNode = new RootNode(event.getRootAst());
+            rootNode = new RootNode(event.rootAst());
         }
         final List<Item> items;
         try {

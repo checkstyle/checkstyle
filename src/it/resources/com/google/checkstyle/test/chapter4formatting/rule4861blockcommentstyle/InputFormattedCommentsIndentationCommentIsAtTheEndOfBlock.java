@@ -3,37 +3,37 @@ package com.google.checkstyle.test.chapter4formatting.rule4861blockcommentstyle;
 /** Contains examples of using comments at the end of the block. */
 public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo1() {
     foo2();
     // OOOO: missing functionality
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo2() {
 
     foo3();
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo3() {
     foo2();
     // refreshDisplay();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo4() {
     foooooooooooooooooooooooooooooooooooooooooo();
     // ^-- some hint
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foooooooooooooooooooooooooooooooooooooooooo() {}
 
   /////////////////////////////// odd indentation comment
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo7() {
 
     int a = 0;
@@ -42,12 +42,12 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
 
   /////////////////////////////// (a single-line border to separate a group of methods)
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo8() {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public class TestClass {
-    /** some javadoc. */
+    /** Some javadoc. */
     public void test() {
 
       int a = 0;
@@ -56,7 +56,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo9() {
 
     this.foo1();
@@ -67,46 +67,46 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
   //
   //    }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo11() {
     String.valueOf(new Integer(0)).trim().length();
     // comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo12() {
 
     String.valueOf(new Integer(0)).trim().length();
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo13() {
     String.valueOf(new Integer(0)).trim().length();
     // comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo14() {
 
     String.valueOf(new Integer(0)).trim().length();
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo15() {
     String.valueOf(new Integer(0));
     // comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo16() {
 
     String.valueOf(new Integer(0));
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo17() {
     String.valueOf(new Integer(0))
         .trim()
@@ -114,7 +114,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
         .length();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo18() {
 
     String.valueOf(new Integer(0))
@@ -123,7 +123,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
         .length();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo19() {
     (new Thread(
             new Runnable() {
@@ -134,7 +134,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo20() {
 
     (new Thread(
@@ -146,7 +146,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo21() {
     int[] array = new int[5];
 
@@ -163,7 +163,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // the above example was taken from hibernate-orm and was modified a bit
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo22() {
     int[] array = new int[5];
 
@@ -181,33 +181,33 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo23() {
     new Object();
     // comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo24() {
 
     new Object();
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public String foo25() {
     return String.format(java.util.Locale.ENGLISH, "%d", 1);
     // comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public String foo26() {
 
     return String.format(java.util.Locale.ENGLISH, "%d", 1);
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo27() {
     // comment
     // block
@@ -216,14 +216,14 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // OOOO
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public String foo28() {
     int a = 5;
     return String.format(java.util.Locale.ENGLISH, "%d", 1);
     // comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public String foo29() {
     int a = 5;
 
@@ -231,7 +231,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo30() {
     // comment
 
@@ -239,20 +239,20 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo31() {
     String s = new String("A" + "B" + "C");
     // comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo32() {
 
     String s = new String("A" + "B" + "C");
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo33() {
     // comment
 
@@ -260,47 +260,47 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo34() throws Exception {
     throw new Exception("", new Exception());
     // comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo35() throws Exception {
 
     throw new Exception("", new Exception());
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo36() throws Exception {
 
     throw new Exception("", new Exception());
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo37() throws Exception {
     throw new Exception("", new Exception());
     // comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo38() throws Exception {
 
     throw new Exception("", new Exception());
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo39() throws Exception {
 
     throw new Exception("", new Exception());
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo40() throws Exception {
     int a = 88;
 
@@ -308,14 +308,14 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo41() throws Exception {
     int a = 88;
     throw new Exception("", new Exception());
     // comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo42() {
     int a = 5;
     if (a == 5) {
@@ -326,7 +326,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo43() {
     try {
       int a;
@@ -336,7 +336,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo44() {
     int ar = 5;
     // comment
@@ -344,7 +344,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo45() {
     int ar = 5;
     // comment
@@ -353,7 +353,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo46() {
 
     // comment
@@ -361,7 +361,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo47() {
     int a = 5;
     // comment
@@ -369,7 +369,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo48() {
 
     int a = 5;
@@ -378,28 +378,28 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo49() {
     // comment
     // block
     // ok
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo50() {
     return;
 
     // No NPE here!
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public String foo51() {
 
     return String.valueOf("11");
     // odd indentation comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public String foo52() {
     return String.valueOf("11");
     // comment

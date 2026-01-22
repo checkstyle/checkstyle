@@ -2,7 +2,7 @@
 
 package com.google.checkstyle.test.chapter5naming.rule526parameternames;
 
-/** some javadoc. Config: format = "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$" */
+/** Some javadoc. Config: format = "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$" */
 public record InputFormattedRecordComponentNameTwo<E>(int _componentName, String componentName2) {}
 
 // violation 2 lines above 'Record component name '_componentName' must match pattern'

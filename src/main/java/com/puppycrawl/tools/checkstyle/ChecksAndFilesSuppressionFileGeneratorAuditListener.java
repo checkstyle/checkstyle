@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditListener;
  * Generates <b>suppressions.xml</b> file, based on violations occurred.
  * See issue <a href="https://github.com/checkstyle/checkstyle/issues/5983">#5983</a>
  */
-public class ChecksAndFilesSuppressionFileGeneratorAuditListener
+public final class ChecksAndFilesSuppressionFileGeneratorAuditListener
         extends AbstractAutomaticBean
         implements AuditListener {
 

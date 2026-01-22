@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -402,7 +402,7 @@ public class JavadocTypeCheck
                     }
                     else {
                         final String actualParamName =
-                            TYPE_NAME_IN_JAVADOC_TAG_SPLITTER.split(tag.getFirstArg())[0];
+                            TYPE_NAME_IN_JAVADOC_TAG_SPLITTER.split(tag.getFirstArg(), -1)[0];
                         log(tag.getLineNo(), tag.getColumnNo(),
                             MSG_UNUSED_TAG,
                             JavadocTagInfo.PARAM.getText(), actualParamName);
@@ -427,7 +427,7 @@ public class JavadocTypeCheck
             typeParamName = matchInAngleBrackets.group(1).trim();
         }
         else {
-            typeParamName = TYPE_NAME_IN_JAVADOC_TAG_SPLITTER.split(tag.getFirstArg())[0];
+            typeParamName = TYPE_NAME_IN_JAVADOC_TAG_SPLITTER.split(tag.getFirstArg(), -1)[0];
         }
         return typeParamName;
     }

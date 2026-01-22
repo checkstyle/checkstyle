@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.xpath.iterators;
 
-import java.util.LinkedList;
+import java.util.ArrayDeque;
 import java.util.Queue;
 
 import net.sf.saxon.om.AxisInfo;
@@ -45,7 +45,7 @@ public class DescendantIterator implements AxisIterator {
     /**
      * Queue for sibling nodes.
      */
-    private final Queue<NodeInfo> queue = new LinkedList<>();
+    private final Queue<NodeInfo> queue = new ArrayDeque<>();
     /**
      * Descendant axis iterator.
      */

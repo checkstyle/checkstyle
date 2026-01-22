@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -27,8 +27,38 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 class OverrideAlwaysUsedTest extends AbstractGoogleModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/google/checkstyle/test/chapter6programpractice/rule61overridealwaysused";
+    }
+
+    @Test
+    public void testOverrideAlwaysUsedForRecordViolation() throws Exception {
+        verifyWithWholeConfig(getPath("InputOverrideAlwaysUsedForRecordViolation.java"));
+    }
+
+    @Test
+    public void testOverrideAlwaysUsedForRecordValid() throws Exception {
+        verifyWithWholeConfig(getPath("InputOverrideAlwaysUsedForRecordValid.java"));
+    }
+
+    @Test
+    public void testOverrideAlwaysUsedForRecordNested() throws Exception {
+        verifyWithWholeConfig(getPath("InputOverrideAlwaysUsedForRecordNested.java"));
+    }
+
+    @Test
+    public void testOverrideAlwaysUsedForRecordGeneric() throws Exception {
+        verifyWithWholeConfig(getPath("InputOverrideAlwaysUsedForRecordGeneric.java"));
+    }
+
+    @Test
+    public void testOverrideAlwaysUsedForRecordMixed() throws Exception {
+        verifyWithWholeConfig(getPath("InputOverrideAlwaysUsedForRecordMixed.java"));
+    }
+
+    @Test
+    public void testOverrideAlwaysUsedForRecordInClass() throws Exception {
+        verifyWithWholeConfig(getPath("InputOverrideAlwaysUsedForRecordInClass.java"));
     }
 
     @Test

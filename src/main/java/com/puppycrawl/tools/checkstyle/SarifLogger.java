@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -50,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * SARIF stands for the static analysis results interchange format.
  * See <a href="https://sarifweb.azurewebsites.net/">reference</a>
  */
-public class SarifLogger extends AbstractAutomaticBean implements AuditListener {
+public final class SarifLogger extends AbstractAutomaticBean implements AuditListener {
 
     /** The length of unicode placeholder. */
     private static final int UNICODE_LENGTH = 4;
@@ -329,7 +330,7 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
      */
     private static String replaceVersionString(String report) {
         final String version = SarifLogger.class.getPackage().getImplementationVersion();
-        return report.replace(VERSION_PLACEHOLDER, String.valueOf(version));
+        return report.replace(VERSION_PLACEHOLDER, Objects.toString(version, "null"));
     }
 
     @Override

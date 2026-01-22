@@ -21,7 +21,6 @@ jobs:
           nullness-optional-interning,
           methods-resource-fenum,
           lock-tainting,
-          index,
           formatter,
           signature-gui-units-init,
           regex-property-key-compiler-message,
@@ -36,14 +35,19 @@ jobs:
           java-version: 21
           distribution: 'temurin'
 
-      - name: Install groovy
-        run: sudo apt install groovy
+      - name: Install Groovy
+        run: |
+          curl --fail-with-body -s "https://get.sdkman.io" | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install groovy
+          echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
+          groovy --version
 
       - name: Checkout
         uses: actions/checkout@v6
 
       - name: Setup local maven cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
@@ -59,7 +63,7 @@ jobs:
 
       - name: Share patch as artifact to apply on local
         if: failure()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: checker-${{ matrix.profile }}-patch
           path: target/checker-${{ matrix.profile }}.patch

@@ -17,20 +17,20 @@ public class InputFieldAnnotations {
     int x();
   }
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1
   @SomeAnnotation2
   String name = "Zops";
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1 @SomeAnnotation2
   int age = 19;
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1
   @SomeAnnotation2 String favLanguage = "Java";
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1
   @SomeAnnotation3(x = 90) String favPet = "Dog";
 
@@ -39,15 +39,15 @@ public class InputFieldAnnotations {
   @SuppressWarnings("bla") @SomeAnnotation3(x = 0) float pi = 3.14f;
 
   @SomeAnnotation1 @SomeAnnotation3(x = 14)
-  /** testing. */ // violation 'Javadoc comment is placed in the wrong location.'
+  /** Testing. */ // violation 'Javadoc comment is placed in the wrong location.'
   List<String> list = new ArrayList<>();
 
   @SuppressWarnings("bla")
   @SomeAnnotation1
-  /** testing. */ // violation 'Javadoc comment is placed in the wrong location.'
+  /** Testing. */ // violation 'Javadoc comment is placed in the wrong location.'
   InputFieldAnnotations obj = new InputFieldAnnotations();
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1 @SomeAnnotation2
   // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
   void test1() {}

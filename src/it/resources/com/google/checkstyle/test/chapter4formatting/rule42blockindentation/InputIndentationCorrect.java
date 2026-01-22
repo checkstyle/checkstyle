@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule42blockindentation;
 
-/** some javadoc. */
+/** Some javadoc. */
 public abstract class InputIndentationCorrect {
 
   static int i;
@@ -19,12 +19,12 @@ public abstract class InputIndentationCorrect {
     abc = 2;
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public boolean matches(char c) {
     return false;
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo() {
     int i = 0;
     for (; i < 9; i++) {
@@ -43,26 +43,26 @@ public abstract class InputIndentationCorrect {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public boolean veryLongLongLongCondition() {
     return veryLongLongLongCondition2();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public boolean veryLongLongLongCondition2() {
     return false;
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void someFooMethod(
       String longString, String superLongString, String exraSuperLongString) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void fooThrowMethod() throws Exception {
     /* Some code*/
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void doSmth() {
     for (int h : pqr) {
       someFooMethod("longString", "veryLongString", "superVeryExtraLongString");

@@ -254,9 +254,10 @@ class Example5 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="LineLength"&gt;
-    &lt;property name="max" value="70"/&gt;
+    &lt;property name="max" value="84"/&gt;
   &lt;/module&gt;
-  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+  &lt;module name=
+      "com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter"&gt;
     &lt;property name="checkFormat" value="LineLength"/&gt;
     &lt;property name="offCommentFormat" value='^.*"""$'/&gt;
     &lt;property name="onCommentFormat" value='^\s*"""\s*(?:[,;]|.+)$'/&gt;
@@ -271,13 +272,16 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 
 public class Example6 {
   void testMethod() {
+    // filtered violation below 'Line length is 90, expected 84'
     String str1 = """
-        This is a very really long string that exceeds the limit but no error....
-        """;
+        This is a very really long string that exceeds the limit but no error............
+        """; // SUPPRESS CHECKSTYLE LineLength
+
+    // filtered violation below 'Line length is 90, expected 84'
     String str2 =
         """
-        This is a very really long string that exceeds the limit but no error.....
-        """;
+        This is a very really long string that exceeds the limit but no error............
+        """;// SUPPRESS CHECKSTYLE LineLength
   }
 }
 </code></pre></div>

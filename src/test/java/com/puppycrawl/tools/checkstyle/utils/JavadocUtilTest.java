@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -95,7 +95,7 @@ public class JavadocUtilTest {
         final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
             comment, JavadocUtil.JavadocTagType.ALL).getValidTags();
         assertWithMessage("Invalid first arg")
-            .that(tags.get(0).getFirstArg())
+            .that(tags.getFirst().getFirstArg())
             .isEqualTo("List link text");
     }
 
@@ -108,7 +108,7 @@ public class JavadocUtilTest {
         final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
             comment, JavadocUtil.JavadocTagType.ALL).getValidTags();
         assertWithMessage("Invalid first arg")
-            .that(tags.get(0).getFirstArg())
+            .that(tags.getFirst().getFirstArg())
             .isEqualTo("List#add(Object)");
     }
 
@@ -127,7 +127,7 @@ public class JavadocUtilTest {
             .that(tags)
             .hasSize(2);
 
-        final JavadocTag seeTag = tags.get(0);
+        final JavadocTag seeTag = tags.getFirst();
         assertWithMessage("Invalid tag name")
             .that(seeTag.getTagName())
             .isEqualTo(JavadocTagInfo.SEE.getName());
@@ -161,11 +161,11 @@ public class JavadocUtilTest {
         assertWithMessage("Invalid tags size")
             .that(tags)
             .hasSize(1);
-        final int lineNo = tags.get(0).getLineNo();
+        final int lineNo = tags.getFirst().getLineNo();
         assertWithMessage("Unexpected line number")
             .that(lineNo)
             .isEqualTo(0);
-        final int columnNo = tags.get(0).getColumnNo();
+        final int columnNo = tags.getFirst().getColumnNo();
         assertWithMessage("Unexpected column number")
             .that(columnNo)
             .isEqualTo(10);
@@ -185,14 +185,14 @@ public class JavadocUtilTest {
             .that(allTags.getInvalidTags())
             .hasSize(2);
         assertTag("Unexpected invalid tag", new InvalidJavadocTag(1, 4, "fake"),
-                allTags.getInvalidTags().get(0));
+                allTags.getInvalidTags().getFirst());
         assertTag("Unexpected invalid tag", new InvalidJavadocTag(2, 4, "bogus"),
                 allTags.getInvalidTags().get(1));
         assertWithMessage("Unexpected valid tags size")
             .that(allTags.getValidTags())
             .hasSize(1);
         assertTag("Unexpected valid tag", new JavadocTag(3, 4, "link", "List valid"),
-                allTags.getValidTags().get(0));
+                allTags.getValidTags().getFirst());
     }
 
     @Test
@@ -370,29 +370,29 @@ public class JavadocUtilTest {
 
     private static void assertTag(String message, InvalidJavadocTag expected,
             InvalidJavadocTag actual) {
-        assertWithMessage(message + " line")
+        assertWithMessage("%s line", message)
             .that(actual.getLine())
             .isEqualTo(expected.getLine());
-        assertWithMessage(message + " column")
+        assertWithMessage("%s column", message)
             .that(actual.getCol())
             .isEqualTo(expected.getCol());
-        assertWithMessage(message + " name")
+        assertWithMessage("%s name", message)
             .that(actual.getName())
             .isEqualTo(expected.getName());
     }
 
     private static void assertTag(String message, JavadocTag expected,
             JavadocTag actual) {
-        assertWithMessage(message + " line")
+        assertWithMessage("%s line", message)
             .that(actual.getLineNo())
             .isEqualTo(expected.getLineNo());
-        assertWithMessage(message + " column")
+        assertWithMessage("%s column", message)
             .that(actual.getColumnNo())
             .isEqualTo(expected.getColumnNo());
-        assertWithMessage(message + " first arg")
+        assertWithMessage("%s first arg", message)
             .that(actual.getFirstArg())
             .isEqualTo(expected.getFirstArg());
-        assertWithMessage(message + " tag name")
+        assertWithMessage("%s tag name", message)
             .that(actual.getTagName())
             .isEqualTo(expected.getTagName());
     }

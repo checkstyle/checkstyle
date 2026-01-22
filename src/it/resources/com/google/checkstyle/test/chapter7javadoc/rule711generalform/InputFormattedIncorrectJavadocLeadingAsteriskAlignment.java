@@ -29,7 +29,7 @@ public class InputFormattedIncorrectJavadocLeadingAsteriskAlignment {
 
   /** Misaligned leading asterisk. Inner Class. */
   private static class Inner {
-    // No leading asterisk present. False-negative until #17778, Subproblem 2
+
     // violation below "Summary javadoc is missing."
     /** */
     private Object obj;
@@ -47,7 +47,6 @@ public class InputFormattedIncorrectJavadocLeadingAsteriskAlignment {
     /** */
     ONE,
 
-    // Closing tag should be alone on line. False negative until #17778, subproblem 3
     /** Wrong Alignment. */
     TWO
   }

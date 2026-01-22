@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -63,8 +63,8 @@ public class CliOptionsXdocsSyncTest {
             }
             final String descXdoc = cmdOptions.get(option);
             final String descMain = opt.description()[0];
-            assertWithMessage("CLI Option: " + option + " present in "
-                    + "Main.java but not documented in cmdline.xml.vm")
+            assertWithMessage(
+                "CLI Option: %s present in Main.java but not documented in cmdline.xml.vm", option)
                     .that(descXdoc)
                     .isNotNull();
             assertWithMessage("CLI options descriptions in xdoc: "

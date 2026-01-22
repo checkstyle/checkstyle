@@ -70,7 +70,49 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check to use separate maximums for private methods:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check to use separate maximums for package-private methods:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example6-config">
+          To configure the check to use separate maximums for protected methods:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example6.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
       </subsection>
 
       <subsection name="Example of Usage" id="MethodCount_Example_of_Usage">

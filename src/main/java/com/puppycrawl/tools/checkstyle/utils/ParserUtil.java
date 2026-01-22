@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -125,7 +125,8 @@ public final class ParserUtil {
         int lines = initialLinesCnt;
         int columns = initialColumnsCnt;
         boolean foundCr = false;
-        for (char c : text.toCharArray()) {
+        for (int index = 0; index < text.length(); index++) {
+            final char c = text.charAt(index);
             if (c == '\n') {
                 foundCr = false;
                 lines++;

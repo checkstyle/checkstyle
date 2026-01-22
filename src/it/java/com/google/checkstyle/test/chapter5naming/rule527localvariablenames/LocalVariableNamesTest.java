@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -26,7 +26,7 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 public class LocalVariableNamesTest extends AbstractGoogleModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/google/checkstyle/test/chapter5naming/rule527localvariablenames";
     }
 
@@ -50,6 +50,16 @@ public class LocalVariableNamesTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testOneChar() throws Exception {
         verifyWithWholeConfig(getPath("InputLocalVariableNameOneCharVarName.java"));
+    }
+
+    @Test
+    public void testUnnamedVariables() throws Exception {
+        verifyWithWholeConfig(getPath("InputUnnamedVariables.java"));
+    }
+
+    @Test
+    public void testPatternVariableNameUnnamed() throws Exception {
+        verifyWithWholeConfig(getPath("InputPatternVariableNameUnnamed.java"));
     }
 
 }

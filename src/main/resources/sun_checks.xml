@@ -142,7 +142,12 @@
     <module name="OperatorWrap"/>
     <module name="ParenPad"/>
     <module name="TypecastParenPad"/>
-    <module name="WhitespaceAfter"/>
+    <module name="WhitespaceAfter">
+      <!-- Explicit token list to avoid duplication with WhitespaceAround.
+       All other default tokens are covered by WhitespaceAround. -->
+      <property name="tokens"
+                value="COMMA, SEMI, TYPECAST, LITERAL_YIELD, ELLIPSIS, LITERAL_CASE"/>
+    </module>
     <module name="WhitespaceAround"/>
 
     <!-- Modifier Checks                                    -->
@@ -162,18 +167,21 @@
     <!-- See https://checkstyle.org/checks/coding/index.html -->
     <module name="EmptyStatement"/>
     <module name="EqualsHashCode"/>
+    <module name="FallThrough"/>
     <module name="HiddenField"/>
     <module name="IllegalInstantiation"/>
     <module name="InnerAssignment"/>
     <module name="MagicNumber"/>
     <module name="MissingSwitchDefault"/>
     <module name="MultipleVariableDeclarations"/>
+    <module name="OneStatementPerLine"/>
     <module name="SimplifyBooleanExpression"/>
     <module name="SimplifyBooleanReturn"/>
 
     <!-- Checks for class design                         -->
     <!-- See https://checkstyle.org/checks/design/index.html -->
     <module name="DesignForExtension"/>
+    <module name="DeclarationOrder"/>
     <module name="FinalClass"/>
     <module name="HideUtilityClassConstructor"/>
     <module name="InterfaceIsType"/>

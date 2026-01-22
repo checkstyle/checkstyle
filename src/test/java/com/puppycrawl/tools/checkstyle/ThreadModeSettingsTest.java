@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -85,7 +85,7 @@ public class ThreadModeSettingsTest {
         final ThreadModeSettings singleThreadMode = ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
         final String actual =
                 singleThreadMode.resolveName(ThreadModeSettings.TREE_WALKER_MODULE_NAME);
-        assertWithMessage("Invalid name resolved: " + actual)
+        assertWithMessage("Invalid name resolved: %s", actual)
                 .that(actual)
                 .isEqualTo(ThreadModeSettings.TREE_WALKER_MODULE_NAME);
     }

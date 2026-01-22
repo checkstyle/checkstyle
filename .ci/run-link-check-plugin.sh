@@ -27,7 +27,8 @@ if [[ $OPTION == "--skip-external" ]]; then
 else
   echo "Checking internal (checkstyle website) and external links."
   echo "$LINKCHECK_ERRORS" | sort > .ci-temp/linkcheck-errors-sorted.txt
-  sort config/linkcheck-suppressions.txt > .ci-temp/linkcheck-suppressions-sorted.txt
+  sort config/linkcheck-suppressions.txt | grep -v 'apidocs/constant-values.html' \
+      > .ci-temp/linkcheck-suppressions-sorted.txt
 fi
 
 # Suppressions exist until https://github.com/checkstyle/checkstyle/issues/11572

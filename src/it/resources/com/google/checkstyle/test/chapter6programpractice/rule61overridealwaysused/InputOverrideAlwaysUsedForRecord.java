@@ -2,11 +2,12 @@ package com.google.checkstyle.test.chapter6programpractice.rule61overridealwaysu
 
 import java.util.Locale;
 
-/** some javadoc. */
+/** Some javadoc. */
 public record InputOverrideAlwaysUsedForRecord(String name, int age) {
 
-  /** some javadoc. */
-  public String name() { // false-negative, ok until #17561
+  /** Some javadoc. */
+  // violation below, 'method must include @java.lang.Override annotation.'
+  public String name() {
     return name.toUpperCase(Locale.ROOT);
   }
 }
@@ -14,7 +15,8 @@ public record InputOverrideAlwaysUsedForRecord(String name, int age) {
 // violation below 'Top-level class Container has to reside in its own source file'
 record Container(String fileName, int port) {
 
-  public int port() { // false-negative, ok until #17561
+  // violation below, 'method must include @java.lang.Override annotation.'
+  public int port() {
     return port;
   }
 }

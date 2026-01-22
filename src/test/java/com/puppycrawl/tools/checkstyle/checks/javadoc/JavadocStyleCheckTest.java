@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -38,7 +38,7 @@ public class JavadocStyleCheckTest
     extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle";
     }
 
@@ -832,6 +832,21 @@ public class JavadocStyleCheckTest
 
         verifyWithInlineConfigParser(
                 getPath("InputJavadocStyleAboveComments.java"),
+                expected);
+    }
+
+    @Test
+    public void testJavadocStyleUnclosedTags() throws Exception {
+        // Test covers mutations in JavadocCommentsLexerUtil through realistic Javadoc inputs.
+        // This test verifies violations are reported on the correct lines.
+        final String[] expected = {
+            "25:10: " + getCheckMessage(MSG_UNCLOSED_HTML, "<span>Text in span."),
+            "35:8: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code>Code text</pre>"),
+            "35:23: " + getCheckMessage(MSG_EXTRA_HTML, "</pre>"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleUnclosedTags.java"),
                 expected);
     }
 }

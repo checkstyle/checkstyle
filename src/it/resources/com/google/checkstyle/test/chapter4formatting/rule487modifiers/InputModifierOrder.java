@@ -64,7 +64,7 @@ strictfp abstract class InputModifierOrder {
   // violation below ''@MyAnnotation2' .* does not precede non-annotation modifiers.'
   abstract @MyAnnotation2 public void fooMet1();
 
-  /** holder for redundant 'public' modifier check. */
+  /** Holder for redundant 'public' modifier check. */
   public static interface InputRedundantPublicModifier {
     public void abc1();
 
@@ -76,7 +76,7 @@ strictfp abstract class InputModifierOrder {
 
     final float PI_FINAL = (float) 3.14;
 
-    /** all OK. */
+    /** All OK. */
     float PI_OK = (float) 3.14;
   }
 
@@ -119,7 +119,7 @@ final class RedundantFinalClass {
 interface InnerImplementation {
   InnerImplementation inner =
           new InnerImplementation() {
-            /** compiler requires 'public' modifier. */
+            /** Compiler requires 'public' modifier. */
             public void method() {}
           };
 

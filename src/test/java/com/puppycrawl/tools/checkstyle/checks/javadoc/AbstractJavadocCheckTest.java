@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -51,7 +51,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public File temporaryFolder;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/abstractjavadoc";
     }
 
@@ -339,7 +339,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                     + "\"RETURN_BLOCK_TAG\" was not found in "
                     + "Acceptable javadoc tokens list in check "
                     + TokenIsNotInAcceptablesCheck.class.getName();
-            assertWithMessage("Invalid exception, should start with: " + expected)
+            assertWithMessage("Invalid exception, should start with: %s", expected)
                     .that(exc.getMessage())
                     .startsWith(expected);
         }
@@ -367,7 +367,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                     + JavadocCommentsTokenTypes.RETURN_BLOCK_TAG + "\" from required"
                     + " javadoc tokens was not found in default javadoc tokens list in check "
                     + RequiredTokenIsNotInDefaultsJavadocCheck.class.getName();
-            assertWithMessage("Invalid exception, should start with: " + expected)
+            assertWithMessage("Invalid exception, should start with: %s", expected)
                     .that(exc.getMessage())
                     .startsWith(expected);
         }
@@ -600,7 +600,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                 .that(ast.getText())
                 .isEqualTo("JAVADOC_CONTENT");
             final DetailNode text = JavadocUtil.findFirstToken(ast, JavadocCommentsTokenTypes.TEXT);
-            assertWithMessage("Empty javadoc text at " + ast)
+            assertWithMessage("Empty javadoc text at %s", ast)
                 .that(text)
                 .isNotNull();
             assertWithMessage(ast.toString())

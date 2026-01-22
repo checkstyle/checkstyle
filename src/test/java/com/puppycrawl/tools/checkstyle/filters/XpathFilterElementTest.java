@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -54,7 +54,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/xpathfilterelement";
     }
 
@@ -135,7 +135,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         try {
             final Object test = new XpathFilterElement(
                     ".*", "e[l", ".*", "moduleId", "query");
-            assertWithMessage("Exception is expected but got " + test).fail();
+            assertWithMessage("Exception is expected but got %s", test).fail();
         }
         catch (IllegalArgumentException exc) {
             assertWithMessage("Message should be: Failed to initialise regular expression")
@@ -150,7 +150,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         try {
             final Object test = new XpathFilterElement("InputXpathFilterElementSuppressByXpath",
                     "Test", null, null, xpath);
-            assertWithMessage("Exception is expected but got " + test).fail();
+            assertWithMessage("Exception is expected but got %s", test).fail();
         }
         catch (IllegalArgumentException exc) {
             assertWithMessage("Message should be: Incorrect xpath query")
@@ -353,7 +353,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                 .usingGetClass()
                 .withIgnoredFields("xpathExpression", "isEmptyConfig")
                 .report();
-        assertWithMessage("Error: " + ev.getMessage())
+        assertWithMessage("Error: %s", ev.getMessage())
                 .that(ev.isSuccessful())
                 .isTrue();
     }

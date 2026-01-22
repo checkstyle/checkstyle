@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -123,7 +123,7 @@ public final class InlineTagUtil {
      */
     private static LineColumn getLineColumnOfIndex(String source, int index) {
         final String precedingText = source.subSequence(0, index).toString();
-        final String[] precedingLines = NEWLINE_PATTERN.split(precedingText);
+        final String[] precedingLines = NEWLINE_PATTERN.split(precedingText, -1);
         final String lastLine = precedingLines[precedingLines.length - 1];
         return new LineColumn(precedingLines.length, lastLine.length());
     }

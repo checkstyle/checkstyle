@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -551,7 +551,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
          *
          * @param endToken token.
          */
-        public void setToken(DetailAST endToken) {
+        /* package */ void setToken(DetailAST endToken) {
             if (!isAfter(endToken)) {
                 endLineNo = endToken.getLineNo();
                 endColumnNo = endToken.getColumnNo();
@@ -559,7 +559,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
         }
 
         /** Sets end token coordinates to the start of the file. */
-        public void reset() {
+        /* package */ void reset() {
             endLineNo = 0;
             endColumnNo = 0;
         }
@@ -570,7 +570,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
          * @param ast given token.
          * @return true, if saved coordinates located after given token.
          */
-        public boolean isAfter(DetailAST ast) {
+        /* package */ boolean isAfter(DetailAST ast) {
             final int lineNo = ast.getLineNo();
             final int columnNo = ast.getColumnNo();
             return lineNo <= endLineNo
@@ -607,7 +607,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
          *
          * @return NP value for range
          */
-        public BigInteger getRangeValue() {
+        /* package */ BigInteger getRangeValue() {
             return rangeValue;
         }
 
@@ -616,7 +616,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
          *
          * @return NP value for expression
          */
-        public BigInteger getExpressionValue() {
+        /* package */ BigInteger getExpressionValue() {
             return expressionValue;
         }
 

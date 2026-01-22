@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -43,7 +43,7 @@ public abstract class AbstractPathTestSupport {
      *
      * @return path for the package name for the file.
      */
-    protected abstract String getPackageLocation();
+    public abstract String getPackageLocation();
 
     /**
      * Sets the English locale for all tests.

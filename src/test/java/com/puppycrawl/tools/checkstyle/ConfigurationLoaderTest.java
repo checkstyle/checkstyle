@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/configurationloader";
     }
 
@@ -98,7 +98,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
         for (String testValue : testValues) {
             final String value = invokeReplacePropertiesMethod(internalLoader, testValue, null);
-            assertWithMessage("\"" + testValue + "\"")
+            assertWithMessage("\"%s\"", testValue)
                 .that(testValue)
                 .isEqualTo(value);
         }
@@ -111,7 +111,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
         try {
             final String value = invokeReplacePropertiesMethod(internalLoader, "${a", null);
-            assertWithMessage("expected to fail, instead got: " + value).fail();
+            assertWithMessage("expected to fail, instead got: %s", value).fail();
         }
         catch (ReflectiveOperationException exc) {
             assertWithMessage("Invalid exception cause message")
@@ -130,7 +130,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
         try {
             final String value = invokeReplacePropertiesMethod(internalLoader, "${c}", null);
-            assertWithMessage("expected to fail, instead got: " + value).fail();
+            assertWithMessage("expected to fail, instead got: %s", value).fail();
         }
         catch (ReflectiveOperationException exc) {
             assertWithMessage("Invalid exception cause message")
@@ -163,7 +163,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
         for (String[] testValue : testValues) {
             final String value = invokeReplacePropertiesMethod(internalLoader, testValue[0], null);
-            assertWithMessage("\"" + testValue[0] + "\"")
+            assertWithMessage("\"%s\"", testValue[0])
                 .that(value)
                 .isEqualTo(testValue[1]);
         }
@@ -286,13 +286,13 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             assertWithMessage("missing property name").fail();
         }
         catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message: " + exc.getMessage())
+            assertWithMessage("Invalid exception message: %s", exc.getMessage())
                     .that(exc.getMessage())
                     .contains("\"name\"");
-            assertWithMessage("Invalid exception message: " + exc.getMessage())
+            assertWithMessage("Invalid exception message: %s", exc.getMessage())
                     .that(exc.getMessage())
                     .contains("\"property\"");
-            assertWithMessage("Invalid exception message: " + exc.getMessage())
+            assertWithMessage("Invalid exception message: %s", exc.getMessage())
                     .that(exc.getMessage())
                     .endsWith(":8:41");
         }
@@ -308,13 +308,13 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             assertWithMessage("missing property name").fail();
         }
         catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message: " + exc.getMessage())
+            assertWithMessage("Invalid exception message: %s", exc.getMessage())
                     .that(exc.getMessage())
                     .contains("\"name\"");
-            assertWithMessage("Invalid exception message: " + exc.getMessage())
+            assertWithMessage("Invalid exception message: %s", exc.getMessage())
                     .that(exc.getMessage())
                     .contains("\"property\"");
-            assertWithMessage("Invalid exception message: " + exc.getMessage())
+            assertWithMessage("Invalid exception message: %s", exc.getMessage())
                     .that(exc.getMessage())
                     .endsWith(":8:41");
         }
@@ -327,13 +327,13 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             assertWithMessage("missing property value").fail();
         }
         catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message: " + exc.getMessage())
+            assertWithMessage("Invalid exception message: %s", exc.getMessage())
                     .that(exc.getMessage())
                     .contains("\"value\"");
-            assertWithMessage("Invalid exception message: " + exc.getMessage())
+            assertWithMessage("Invalid exception message: %s", exc.getMessage())
                     .that(exc.getMessage())
                     .contains("\"property\"");
-            assertWithMessage("Invalid exception message: " + exc.getMessage())
+            assertWithMessage("Invalid exception message: %s", exc.getMessage())
                     .that(exc.getMessage())
                     .endsWith(":8:43");
         }
@@ -346,13 +346,13 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             assertWithMessage("missing module name").fail();
         }
         catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message: " + exc.getMessage())
+            assertWithMessage("Invalid exception message: %s", exc.getMessage())
                     .that(exc.getMessage())
                     .contains("\"name\"");
-            assertWithMessage("Invalid exception message: " + exc.getMessage())
+            assertWithMessage("Invalid exception message: %s", exc.getMessage())
                     .that(exc.getMessage())
                     .contains("\"module\"");
-            assertWithMessage("Invalid exception message: " + exc.getMessage())
+            assertWithMessage("Invalid exception message: %s", exc.getMessage())
                     .that(exc.getMessage())
                     .endsWith(":7:23");
         }
@@ -365,13 +365,13 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             assertWithMessage("missing module parent").fail();
         }
         catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message: " + exc.getMessage())
+            assertWithMessage("Invalid exception message: %s", exc.getMessage())
                     .that(exc.getMessage())
                     .contains("\"property\"");
-            assertWithMessage("Invalid exception message: " + exc.getMessage())
+            assertWithMessage("Invalid exception message: %s", exc.getMessage())
                     .that(exc.getMessage())
                     .contains("\"module\"");
-            assertWithMessage("Invalid exception message: " + exc.getMessage())
+            assertWithMessage("Invalid exception message: %s", exc.getMessage())
                     .that(exc.getMessage())
                     .endsWith(":8:38");
         }
@@ -445,7 +445,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final String expectedKey = "name.invalidPattern";
         final List<String> expectedMessages = Collections
                 .singletonList("Member ''{0}'' must start with ''m'' (checked pattern ''{1}'').");
-        assertWithMessage("Messages should contain key: " + expectedKey)
+        assertWithMessage("Messages should contain key: %s", expectedKey)
                 .that(grandchildren[0].getMessages())
                 .containsKey(expectedKey);
         assertWithMessage("Message is not expected")
@@ -470,7 +470,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
         for (String attName : attNames) {
             final String attribute = config.getProperty(attName);
-            assertWithMessage("attribute[" + attName + "]")
+            assertWithMessage("attribute[%s]", attName)
                 .that(attribute)
                 .isEqualTo(atts.getProperty(attName));
         }

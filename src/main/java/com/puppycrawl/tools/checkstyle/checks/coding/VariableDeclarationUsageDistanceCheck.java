@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -334,7 +334,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             // If variable usage exists in a single scope, then look into
             // this scope and count distance until variable usage.
             if (variableUsageExpressions.size() == 1) {
-                final DetailAST blockWithVariableUsage = variableUsageExpressions.get(0);
+                final DetailAST blockWithVariableUsage = variableUsageExpressions.getFirst();
                 currentScopeAst = switch (blockWithVariableUsage.getType()) {
                     case TokenTypes.VARIABLE_DEF, TokenTypes.EXPR -> {
                         dist++;
@@ -361,7 +361,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             // distance until variable first usage.
             else {
                 dist++;
-                variableUsageAst = variableUsageExpressions.get(0);
+                variableUsageAst = variableUsageExpressions.getFirst();
             }
         }
         return new SimpleEntry<>(variableUsageAst, dist);
@@ -480,7 +480,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             // only inside one block, then get node from
             // variableUsageExpressions.
             if (variableUsageExpressions.size() == 1) {
-                firstNodeInsideBlock = variableUsageExpressions.get(0);
+                firstNodeInsideBlock = variableUsageExpressions.getFirst();
             }
         }
 
@@ -510,7 +510,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         // variableUsageExpressions.
         DetailAST firstNodeInsideBlock = null;
         if (variableUsageExpressions.size() == 1) {
-            firstNodeInsideBlock = variableUsageExpressions.get(0);
+            firstNodeInsideBlock = variableUsageExpressions.getFirst();
         }
 
         return firstNodeInsideBlock;
@@ -598,7 +598,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         // only inside one block, then get node from
         // variableUsageExpressions.
         if (variableUsageExpressions.size() == 1) {
-            variableUsageNode = variableUsageExpressions.get(0).getFirstChild();
+            variableUsageNode = variableUsageExpressions.getFirst().getFirstChild();
         }
 
         return variableUsageNode;

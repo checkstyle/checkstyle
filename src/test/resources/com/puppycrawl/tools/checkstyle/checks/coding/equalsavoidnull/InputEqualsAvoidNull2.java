@@ -1,5 +1,6 @@
 /*
 EqualsAvoidNull
+ignoreEqualsIgnoreCase = (default)false
 
 
 */

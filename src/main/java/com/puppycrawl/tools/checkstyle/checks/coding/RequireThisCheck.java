@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -24,7 +24,6 @@ import java.util.BitSet;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
@@ -204,7 +203,7 @@ public class RequireThisCheck extends AbstractCheck {
         frames = new HashMap<>();
         current.clear();
 
-        final Deque<AbstractFrame> frameStack = new LinkedList<>();
+        final Deque<AbstractFrame> frameStack = new ArrayDeque<>();
         DetailAST curNode = rootAST;
         while (curNode != null) {
             collectDeclarations(frameStack, curNode);
@@ -1090,7 +1089,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param parent parent frame.
          * @param ident frame name ident.
          */
-        protected AbstractFrame(AbstractFrame parent, DetailAST ident) {
+        /* package */ AbstractFrame(AbstractFrame parent, DetailAST ident) {
             this.parent = parent;
             frameNameIdent = ident;
             varIdents = new HashSet<>();
@@ -1101,7 +1100,7 @@ public class RequireThisCheck extends AbstractCheck {
          *
          * @return a FrameType.
          */
-        protected abstract FrameType getType();
+        /* package */ abstract FrameType getType();
 
         /**
          * Add a name to the frame.
@@ -1117,7 +1116,7 @@ public class RequireThisCheck extends AbstractCheck {
          *
          * @return the parent frame
          */
-        protected AbstractFrame getParent() {
+        /* package */ AbstractFrame getParent() {
             return parent;
         }
 
@@ -1126,7 +1125,7 @@ public class RequireThisCheck extends AbstractCheck {
          *
          * @return the name identifier text
          */
-        protected String getFrameName() {
+        /* package */ String getFrameName() {
             return frameNameIdent.getText();
         }
 
@@ -1135,7 +1134,7 @@ public class RequireThisCheck extends AbstractCheck {
          *
          * @return the name identifier token
          */
-        public DetailAST getFrameNameIdent() {
+        /* package */ DetailAST getFrameNameIdent() {
             return frameNameIdent;
         }
 
@@ -1145,7 +1144,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param identToFind the IDENT ast of the name we're looking for.
          * @return whether it was found.
          */
-        protected boolean containsFieldOrVariable(DetailAST identToFind) {
+        /* package */ boolean containsFieldOrVariable(DetailAST identToFind) {
             return containsFieldOrVariableDef(varIdents, identToFind);
         }
 
@@ -1156,7 +1155,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param lookForMethod whether we are looking for a method name.
          * @return whether it was found.
          */
-        protected AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
+        /* package */ AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
             final AbstractFrame frame;
 
             if (!lookForMethod
@@ -1178,7 +1177,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @return true if the set contains a declaration with the text of the specified
          *         IDENT ast and it is declared in a proper position.
          */
-        protected boolean containsFieldOrVariableDef(Set<DetailAST> set, DetailAST ident) {
+        /* package */ boolean containsFieldOrVariableDef(Set<DetailAST> set, DetailAST ident) {
             boolean result = false;
             for (DetailAST ast: set) {
                 if (isProperDefinition(ident, ast)) {
@@ -1196,7 +1195,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param ast the IDENT ast of the definition to check.
          * @return true if ast is correspondent to ident.
          */
-        protected boolean isProperDefinition(DetailAST ident, DetailAST ast) {
+        /* package */ boolean isProperDefinition(DetailAST ident, DetailAST ast) {
             final String identToFind = ident.getText();
             return identToFind.equals(ast.getText())
                 && CheckUtil.isBeforeInSource(ast, ident);
@@ -1214,7 +1213,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param parent parent frame.
          * @param ident method name identifier token.
          */
-        protected MethodFrame(AbstractFrame parent, DetailAST ident) {
+        /* package */ MethodFrame(AbstractFrame parent, DetailAST ident) {
             super(parent, ident);
         }
 
@@ -1236,7 +1235,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param parent parent frame.
          * @param ident frame name ident.
          */
-        protected ConstructorFrame(AbstractFrame parent, DetailAST ident) {
+        /* package */ ConstructorFrame(AbstractFrame parent, DetailAST ident) {
             super(parent, ident);
         }
 
@@ -1285,7 +1284,7 @@ public class RequireThisCheck extends AbstractCheck {
          *
          * @param ident an ident of static member of the class.
          */
-        public void addStaticMember(final DetailAST ident) {
+        /* package */ void addStaticMember(final DetailAST ident) {
             staticMembers.add(ident);
         }
 
@@ -1294,7 +1293,7 @@ public class RequireThisCheck extends AbstractCheck {
          *
          * @param ident an ident of static method of the class.
          */
-        public void addStaticMethod(final DetailAST ident) {
+        /* package */ void addStaticMethod(final DetailAST ident) {
             staticMethods.add(ident);
         }
 
@@ -1303,7 +1302,7 @@ public class RequireThisCheck extends AbstractCheck {
          *
          * @param ident an ident of instance member of the class.
          */
-        public void addInstanceMember(final DetailAST ident) {
+        /* package */ void addInstanceMember(final DetailAST ident) {
             instanceMembers.add(ident);
         }
 
@@ -1312,7 +1311,7 @@ public class RequireThisCheck extends AbstractCheck {
          *
          * @param ident an ident of instance method of the class.
          */
-        public void addInstanceMethod(final DetailAST ident) {
+        /* package */ void addInstanceMethod(final DetailAST ident) {
             instanceMethods.add(ident);
         }
 
@@ -1323,7 +1322,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @return true is the given name is a name of a known
          *         instance member of the class.
          */
-        public boolean hasInstanceMember(final DetailAST ident) {
+        /* package */ boolean hasInstanceMember(final DetailAST ident) {
             return containsFieldOrVariableDef(instanceMembers, ident);
         }
 
@@ -1334,7 +1333,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @return true if the given ast is correspondent to a known
          *         instance method of the class.
          */
-        public boolean hasInstanceMethod(final DetailAST ident) {
+        /* package */ boolean hasInstanceMethod(final DetailAST ident) {
             return containsMethodDef(instanceMethods, ident);
         }
 
@@ -1345,7 +1344,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @return true is the given ast is correspondent to a known
          *         instance method of the class.
          */
-        public boolean hasStaticMethod(final DetailAST ident) {
+        /* package */ boolean hasStaticMethod(final DetailAST ident) {
             return containsMethodDef(staticMethods, ident);
         }
 
@@ -1355,7 +1354,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param instanceMember an instance member of a class.
          * @return true if given instance member has final modifier.
          */
-        public boolean hasFinalField(final DetailAST instanceMember) {
+        /* package */ boolean hasFinalField(final DetailAST instanceMember) {
             boolean result = false;
             for (DetailAST member : instanceMembers) {
                 final DetailAST parent = member.getParent();
@@ -1466,7 +1465,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param parent parent frame.
          * @param frameName name of the frame.
          */
-        protected AnonymousClassFrame(AbstractFrame parent, String frameName) {
+        /* package */ AnonymousClassFrame(AbstractFrame parent, String frameName) {
             super(parent, null);
             this.frameName = frameName;
         }
@@ -1489,7 +1488,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param parent parent frame.
          * @param ident ident frame name ident.
          */
-        protected BlockFrame(AbstractFrame parent, DetailAST ident) {
+        /* package */ BlockFrame(AbstractFrame parent, DetailAST ident) {
             super(parent, ident);
         }
 
@@ -1511,7 +1510,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param parent parent frame.
          * @param ident ident frame name ident.
          */
-        protected CatchFrame(AbstractFrame parent, DetailAST ident) {
+        /* package */ CatchFrame(AbstractFrame parent, DetailAST ident) {
             super(parent, ident);
         }
 
@@ -1551,7 +1550,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param parent parent frame.
          * @param ident ident frame name ident.
          */
-        protected ForFrame(AbstractFrame parent, DetailAST ident) {
+        /* package */ ForFrame(AbstractFrame parent, DetailAST ident) {
             super(parent, ident);
         }
 
@@ -1574,7 +1573,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param parent parent frame.
          * @param ident ident frame name ident.
          */
-        protected TryWithResourcesFrame(AbstractFrame parent, DetailAST ident) {
+        /* package */ TryWithResourcesFrame(AbstractFrame parent, DetailAST ident) {
             super(parent, ident);
         }
 

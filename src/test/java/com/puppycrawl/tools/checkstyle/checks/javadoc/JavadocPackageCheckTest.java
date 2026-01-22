@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -37,7 +37,7 @@ public class JavadocPackageCheckTest
     extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocpackage";
     }
 
@@ -123,7 +123,7 @@ public class JavadocPackageCheckTest
             assertWithMessage("CheckstyleException expected to be thrown").fail();
         }
         catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message. Expected: " + expectedExceptionMessage)
+            assertWithMessage("Invalid exception message. Expected: %s", expectedExceptionMessage)
                 .that(exc.getMessage())
                 .isEqualTo(expectedExceptionMessage);
         }

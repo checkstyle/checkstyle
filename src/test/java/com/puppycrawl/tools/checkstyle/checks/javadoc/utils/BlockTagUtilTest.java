@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -52,7 +52,7 @@ public class BlockTagUtilTest {
             .that(tags)
             .hasSize(5);
 
-        final TagInfo tag1 = tags.get(0);
+        final TagInfo tag1 = tags.getFirst();
         assertTagEquals(tag1, "foo", "abc", 1, 4);
 
         final TagInfo tag2 = tags.get(1);
@@ -80,7 +80,7 @@ public class BlockTagUtilTest {
             .that(tags)
             .hasSize(1);
 
-        final TagInfo tag1 = tags.get(0);
+        final TagInfo tag1 = tags.getFirst();
         assertTagEquals(tag1, "foo", "", 1, 4);
     }
 
@@ -96,10 +96,10 @@ public class BlockTagUtilTest {
             .that(tags)
             .hasSize(1);
         assertWithMessage("Invalid tag name")
-            .that(tags.get(0).getName())
+            .that(tags.getFirst().getName())
             .isEqualTo("version");
         assertWithMessage("Invalid tag value")
-            .that(tags.get(0).getValue())
+            .that(tags.getFirst().getValue())
             .isEqualTo("1.0");
     }
 
@@ -115,10 +115,10 @@ public class BlockTagUtilTest {
             .that(tags)
             .hasSize(1);
         assertWithMessage("Invalid tag name")
-            .that(tags.get(0).getName())
+            .that(tags.getFirst().getName())
             .isEqualTo("version");
         assertWithMessage("Invalid tag value")
-            .that(tags.get(0).getValue())
+            .that(tags.getFirst().getValue())
             .isEqualTo("1.0");
     }
 

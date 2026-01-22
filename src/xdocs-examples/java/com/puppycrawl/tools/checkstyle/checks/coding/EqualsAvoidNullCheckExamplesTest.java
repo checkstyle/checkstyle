@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -28,15 +28,15 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class EqualsAvoidNullCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/equalsavoidnull";
     }
 
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "17:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "20:32: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            "19:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "22:32: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);

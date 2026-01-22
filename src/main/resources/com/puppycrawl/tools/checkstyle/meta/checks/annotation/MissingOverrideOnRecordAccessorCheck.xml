@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideOnRecordAccessorCheck"
+             name="MissingOverrideOnRecordAccessor"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Verifies that explicitly declared record accessor methods include
+ the &lt;code&gt;@Override&lt;/code&gt; annotation.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Per &lt;a href="https://openjdk.org/jeps/395"&gt;JEP 395&lt;/a&gt;, the meaning of the
+ &lt;code&gt;@Override&lt;/code&gt; annotation was extended to include explicitly declared
+ accessor methods for record components.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ This check focuses only on record component accessor methods. It does not
+ attempt to detect general method overrides from interfaces or superclasses,
+ due to Checkstyle's single-file analysis limitations.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="annotation.missing.override.record.accessor"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

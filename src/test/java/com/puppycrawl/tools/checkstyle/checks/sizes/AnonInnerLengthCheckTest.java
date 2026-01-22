@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/anoninnerlength";
     }
 
@@ -59,22 +59,40 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefault() throws Exception {
+    public void testDefaultOne() throws Exception {
         final String[] expected = {
-            "53:35: " + getCheckMessage(MSG_KEY, 21, 20),
+            "52:35: " + getCheckMessage(MSG_KEY, 21, 20),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAnonInnerLength.java"), expected);
+                getPath("InputAnonInnerLengthPartOne.java"), expected);
     }
 
     @Test
-    public void testNonDefault() throws Exception {
+    public void testDefaultTwo() throws Exception {
         final String[] expected = {
-            "54:35: " + getCheckMessage(MSG_KEY, 21, 6),
-            "79:35: " + getCheckMessage(MSG_KEY, 20, 6),
+            "21:35: " + getCheckMessage(MSG_KEY, 21, 20),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputAnonInnerLengthPartTwo.java"), expected);
+    }
+
+    @Test
+    public void testNonDefaultOne() throws Exception {
+        final String[] expected = {
+            "52:35: " + getCheckMessage(MSG_KEY, 21, 6),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAnonInnerLength2.java"), expected);
+                getPath("InputAnonInnerLength2PartOne.java"), expected);
+    }
+
+    @Test
+    public void testNonDefaultTwo() throws Exception {
+        final String[] expected = {
+            "22:35: " + getCheckMessage(MSG_KEY, 20, 6),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAnonInnerLength2PartTwo.java"), expected);
     }
 
 }

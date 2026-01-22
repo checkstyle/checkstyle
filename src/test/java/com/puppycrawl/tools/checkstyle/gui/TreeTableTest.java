@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -45,7 +45,7 @@ public class TreeTableTest extends AbstractGuiTestSupport {
     private TreeTable treeTable;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/gui/treetable";
     }
 
@@ -121,7 +121,8 @@ public class TreeTableTest extends AbstractGuiTestSupport {
         xpathTextArea.setText("//CLASS_DEF");
         findNodeButton.doClick();
 
-        final String expected = """
+        final String expected =
+                """
                 /COMPILATION_UNIT/CLASS_DEF[./IDENT\
                 [@text='InputTreeTableXpathAreaPanel']]
                 /COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputTreeTableXpathAreaPanel']]\
@@ -145,7 +146,8 @@ public class TreeTableTest extends AbstractGuiTestSupport {
         xpathTextArea.setText("//IDENT");
         findNodeButton.doClick();
 
-        final String expected = """
+        final String expected =
+                """
                 /COMPILATION_UNIT/CLASS_DEF/IDENT\
                 [@text='InputTreeTableXpathAreaPanel']
                 /COMPILATION_UNIT/PACKAGE_DEF/DOT/IDENT[@text='treetable']

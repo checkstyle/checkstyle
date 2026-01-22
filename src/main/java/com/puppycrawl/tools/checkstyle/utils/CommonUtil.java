@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -28,6 +28,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.BitSet;
 import java.util.Objects;
@@ -367,16 +368,14 @@ public final class CommonUtil {
      *
      * @param filename name of the file
      * @return resolved file URI or null if URL is malformed or non-existent
-     * @noinspection deprecation
-     * @noinspectionreason Disabled until #17646
      */
     public static URI getWebOrFileProtocolUri(String filename) {
         URI uri;
         try {
-            final URL url = new URL(filename);
-            uri = url.toURI();
+            uri = URI.create(filename);
+            uri = uri.toURL().toURI();
         }
-        catch (URISyntaxException | MalformedURLException ignored) {
+        catch (IllegalArgumentException | MalformedURLException | URISyntaxException ignored) {
             uri = null;
         }
         return uri;
@@ -391,23 +390,22 @@ public final class CommonUtil {
      * @return resolved file URI
      * @throws CheckstyleException on failure
      */
-    private static URI getFilepathOrClasspathUri(String filename) throws CheckstyleException {
+    private static URI getFilepathOrClasspathUri(String filename)
+            throws CheckstyleException {
         final URI uri;
-        final File file = new File(filename);
-
-        if (file.exists()) {
-            uri = file.toURI();
+        if (filename.startsWith(CLASSPATH_URL_PROTOCOL)) {
+            uri = getResourceFromClassPath(
+                filename.substring(CLASSPATH_URL_PROTOCOL.length()));
         }
         else {
-            final int lastIndexOfClasspathProtocol;
-            if (filename.lastIndexOf(CLASSPATH_URL_PROTOCOL) == 0) {
-                lastIndexOfClasspathProtocol = CLASSPATH_URL_PROTOCOL.length();
+            final Path path = Path.of(filename);
+
+            if (Files.exists(path)) {
+                uri = path.toFile().toURI();
             }
             else {
-                lastIndexOfClasspathProtocol = 0;
+                uri = getResourceFromClassPath(filename);
             }
-            uri = getResourceFromClassPath(filename
-                .substring(lastIndexOfClasspathProtocol));
         }
         return uri;
     }
@@ -486,7 +484,7 @@ public final class CommonUtil {
      * @return file name without extension.
      */
     public static String getFileNameWithoutExtension(String fullFilename) {
-        final String fileName = new File(fullFilename).getName();
+        final String fileName = Path.of(fullFilename).toFile().getName();
         final int dotIndex = fileName.lastIndexOf('.');
         final String fileNameWithoutExtension;
         if (dotIndex == -1) {

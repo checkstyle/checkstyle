@@ -5,10 +5,10 @@ public class InputNoCstyleArrays {
   private int[] javastyle = new int[0];
   private int cstyle[] = new int[0]; // violation 'Array brackets at illegal position.'
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void mainJava(String[] javastyle) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void mainC(String cstyle[]) { // violation 'Array brackets at illegal position.'
     final int[] blah = new int[0];
     final boolean isok1 = cstyle instanceof String[];
@@ -22,7 +22,7 @@ public class InputNoCstyleArrays {
     //                    'Array brackets at illegal position.'
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public class Test {
     public Test[] variable;
 

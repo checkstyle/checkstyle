@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -31,7 +31,7 @@ import java.util.StringTokenizer;
  * each value is an integer or a range of integers.
  * </div>
  */
-class CsvFilterElement implements IntFilterElement {
+final class CsvFilterElement implements IntFilterElement {
 
     /** Filter set. */
     private final Set<IntFilterElement> filters = new HashSet<>();
@@ -79,7 +79,7 @@ class CsvFilterElement implements IntFilterElement {
      *
      * @return the IntFilters of the filter set.
      */
-    protected Set<IntFilterElement> getFilters() {
+    private Set<IntFilterElement> getFilters() {
         return Collections.unmodifiableSet(filters);
     }
 

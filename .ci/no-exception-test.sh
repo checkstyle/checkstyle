@@ -249,8 +249,6 @@ no-exception-samples-gradle)
 
   sed -i "s/\(project\.ext\.checkstyleVersion = \)'[0-9.]\+'/\\1'${CS_POM_VERSION}'/" \
     build.gradle
-  sed -i "s/JavaLanguageVersion.of(21)/JavaLanguageVersion.of(17)/" \
-    build.gradle
 
    echo "Checking gradle properties..."
   ./gradlew properties

@@ -50,8 +50,8 @@ Input files are files that are being tested by the test.
 All input files are located in same `src/test`
 directory, but in `resources` or`resources-noncompilable` folders.
 
-- At this moment, Checkstyle uses jdk 17 as its operating version, and all input files that can
-  be compiled at jdk 17 or older go to `resources`, while those input files that require newer
+- At this moment, Checkstyle uses jdk 21 as its operating version, and all input files that can
+  be compiled at jdk 21 or older go to `resources`, while those input files that require newer
   versions of jdk to compile go to `resources-noncompilable`.
 
 Input files are named in the following format: `Input[ModuleName][FileNickname].java`

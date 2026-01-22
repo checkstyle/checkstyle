@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 public class Java21AstRegressionTest extends AbstractTreeTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/grammar/java21";
     }
 
@@ -83,17 +83,11 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
                         "Exception should be thrown due to parsing failure."
                 );
 
-        final String incorrectThrowableCauseMessage =
-                "Cause of CheckstyleException should be IllegalStateException.";
+        assertWithMessage("Cause of CheckstyleException should be IllegalStateException.")
+            .that(throwable.getCause())
+            .isInstanceOf(IllegalStateException.class);
 
-        assertWithMessage(incorrectThrowableCauseMessage)
-                .that(throwable.getCause())
-                .isInstanceOf(IllegalStateException.class);
-
-        final String incorrectParsingFailureMessage =
-                "Message of IllegalStateException should contain the parsing failure.";
-
-        assertWithMessage(incorrectParsingFailureMessage)
+        assertWithMessage("Message of IllegalStateException should contain the parsing failure.")
                 .that(throwable.getCause().getMessage())
                 .contains("13:14: mismatched input '}\\n"
                         + "            ' expecting TEXT_BLOCK_LITERAL_END");

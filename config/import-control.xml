@@ -130,6 +130,15 @@
     <file name="ModuleReflectionUtil">
       <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean"/>
     </file>
+
+    <file name="NullUtil">
+      <allow class="org.jspecify.annotations.NonNull"/>
+      <allow class="org.jspecify.annotations.Nullable"/>
+    </file>
+
+    <file name="WeakReferenceHolder">
+      <allow class="java.lang.ref.WeakReference" local-only="true"/>
+    </file>
   </subpackage>
 
   <subpackage name="ant">
@@ -195,7 +204,6 @@
     </file>
     <subpackage name="imports">
       <allow class="com.puppycrawl.tools.checkstyle.XmlLoader" local-only="true"/>
-      <allow class="org.checkerframework.checker.index.qual.IndexOrLow"/>
     </subpackage>
     <subpackage name="indentation">
       <allow pkg="java.lang.reflect"/>
@@ -323,6 +331,9 @@
     <subpackage name="iterators">
       <!-- These are more saxon utilities, and should not have anything checkstyle specific -->
       <disallow pkg="com\.puppycrawl.*" regex="true"/>
+      <file name="ReverseListIterator">
+        <allow class="com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil"/>
+      </file>
     </subpackage>
   </subpackage>
 

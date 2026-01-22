@@ -4,23 +4,23 @@ import java.util.Vector;
 
 /** Test input for MethodDefPadCheck. */
 public class InputMethodParamPad2 {
-  /** some javadoc. */
+  /** Some javadoc. */
   public InputMethodParamPad2() {
     super();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public InputMethodParamPad2 (int param) { // violation ''(' is preceded with whitespace.'
     super (); // violation ''(' is preceded with whitespace.'
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void method() {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void method (int param) {} // violation ''(' is preceded with whitespace.'
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void method(double param) {
     // invoke constructor
     InputMethodParamPad2 pad = new InputMethodParamPad2();
@@ -33,7 +33,7 @@ public class InputMethodParamPad2 {
     method (); // violation ''(' is preceded with whitespace.'
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void dottedCalls() {
     this.method();
     this.method (); // violation ''(' is preceded with whitespace.'
@@ -52,7 +52,7 @@ public class InputMethodParamPad2 {
        .parseInt("0");
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void newArray() {
     int[] a = new int[]{0, 1};
     java.util.Vector<String> v = new java.util.Vector<String>();

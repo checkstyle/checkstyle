@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="EmptyLineSeparator">
-      <property name="tokens" value="VARIABLE_DEF, METHOD_DEF"/>
+      <property name="tokens" value="PACKAGE_DEF"/>
     </module>
   </module>
 </module>
@@ -14,19 +14,18 @@
 //HEADER
 ///////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
-import java.io.Serializable;
-
-class Example2 {
+import java.io.Serializable; // violation above ''package' should be separated from previous line'
+class Example2 { // violation above ''import' should be separated from previous line'
 
   int var1 = 1;
-  int var2 = 2; // violation ''VARIABLE_DEF' should be separated from previous line'
+  int var2 = 2;
 
 
   int var3 = 3;
 
 
   void method1() {}
-  void method2() { // violation ''METHOD_DEF' should be separated from previous line'
+  void method2() {
     int var4 = 4;
 
 

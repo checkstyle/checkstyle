@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputWhitespaceBeforeLeftCurlyOfEmptyBlock {
 
   InputWhitespaceBeforeLeftCurlyOfEmptyBlock instance =
@@ -21,7 +21,7 @@ public class InputWhitespaceBeforeLeftCurlyOfEmptyBlock {
 
   record Record(){} // ok until #17715
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void main(String... args) {
 
     boolean b = System.currentTimeMillis() < 0;
@@ -30,15 +30,9 @@ public class InputWhitespaceBeforeLeftCurlyOfEmptyBlock {
 
     for (int i = 1; i > 1; i++){} // ok until #17715
 
-    do{} while (b);
-    // 2 violations above:
-    //   ''do' is not followed by whitespace.'
-    //   'WhitespaceAround: 'do' is not followed by whitespace. *'
+    do{} while (b); // violation 'WhitespaceAround: 'do' is not followed by whitespace. *'
 
-    Runnable noop = () ->{};
-    // 2 violations above:
-    //   ''->' is not followed by whitespace.'
-    //   'WhitespaceAround: '->' is not followed by whitespace. *'
+    Runnable noop = () ->{}; // violation 'WhitespaceAround: '->' is not followed by whitespace. *'
   }
 
   static{} // ok until #17715

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -24,6 +24,7 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
@@ -43,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 public class SuppressionsLoaderTest extends AbstractPathTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppressionsloader";
     }
 
@@ -52,7 +53,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(getPath("InputSuppressionsLoaderNone.xml"));
         final FilterSet fc2 = new FilterSet();
-        assertWithMessage("No suppressions should be loaded, but found: " + fc.getFilters().size())
+        assertWithMessage("No suppressions should be loaded, but found: %s", fc.getFilters().size())
             .that(fc.getFilters())
             .isEqualTo(fc2.getFilters());
     }
@@ -97,13 +98,13 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
     @Test
     public void testLoadFromNonExistentUrl() {
         try {
-            SuppressionsLoader.loadSuppressions("http://^%$^* %&% %^&");
+            SuppressionsLoader.loadSuppressions("/non/existent/file.xml");
             assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException exc) {
             assertWithMessage("Invalid error message")
                 .that(exc.getMessage())
-                .isEqualTo("Unable to find: http://^%$^* %&% %^&");
+                .isEqualTo("Unable to find: /non/existent/file.xml");
         }
     }
 
@@ -142,7 +143,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException exc) {
             final String messageStart = "Unable to parse " + fn;
-            assertWithMessage("Exception message should start with: " + messageStart)
+            assertWithMessage("Exception message should start with: %s", messageStart)
                     .that(exc.getMessage())
                     .startsWith("Unable to parse " + fn);
             assertWithMessage("Exception message should contain \"files\"")
@@ -163,7 +164,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException exc) {
             final String messageStart = "Unable to parse " + fn;
-            assertWithMessage("Exception message should start with: " + messageStart)
+            assertWithMessage("Exception message should start with: %s", messageStart)
                     .that(exc.getMessage())
                     .startsWith(messageStart);
             assertWithMessage("Exception message should contain \"checks\"")
@@ -220,10 +221,11 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
     private static boolean isUrlReachable(String url) {
         boolean result = true;
         try {
-            final URL verifiableUrl = new URL(url);
+            final URL verifiableUrl = URI.create(url).toURL();
             final HttpURLConnection urlConnect = (HttpURLConnection) verifiableUrl.openConnection();
             urlConnect.getContent();
         }
+
         catch (IOException ignored) {
             result = false;
         }

@@ -3,7 +3,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/** some annotation. */
+/** Some annotation. */
 @InputAnnotationArrayInitMultiline.AnnotList({
   @InputAnnotationArrayInitMultiline.Annot(
       "hello-Goodbye world in one very long and lengthy string in annoation array"),

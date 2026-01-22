@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputPatternVariableNameEnhancedInstanceofTestDefault {
   private Object obj;
 
@@ -37,7 +37,7 @@ public class InputPatternVariableNameEnhancedInstanceofTestDefault {
     public boolean get();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void testing(Object o1, Object o2) {
     Object b;
     Object c;

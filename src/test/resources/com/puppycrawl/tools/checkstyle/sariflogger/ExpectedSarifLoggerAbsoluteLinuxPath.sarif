@@ -13,15 +13,17 @@
           "organization": "Checkstyle",
           "rules": [
             {
-              "id": "com.puppycrawl.tools.checkstyle.SarifLoggerTest",
+              "id": "com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck",
               "messageStrings": {
-
+                "import.unused": {
+                  "text": "Unused import - {0}."
+                }
               },
               "shortDescription": {
-                "text": "SarifLoggerTest"
+                "text": "UnusedImports"
               },
               "fullDescription": {
-                "text": "No description available"
+                "text": "<div>\n Checks for unused import statements. An import statement\n is considered unused if:\n <\/div>\n\n <ul>\n <li>\n It is not referenced in the file. The algorithm does not support wild-card\n imports like <code>import java.io.*;<\/code>. Most IDE's provide very sophisticated\n checks for imports that handle wild-card imports.\n <\/li>\n <li>\n The class imported is from the <code>java.lang<\/code> package. For example\n importing <code>java.lang.String<\/code>.\n <\/li>\n <li>\n The class imported is from the same package.\n <\/li>\n <li>\n A static method is imported when used as method reference. In that case,\n only the type needs to be imported and that's enough to resolve the method.\n <\/li>\n <li>\n <b>Optionally:<\/b> it is referenced in Javadoc comments. This check is on by\n default, but it is considered bad practice to introduce a compile-time\n dependency for documentation purposes only. As an example, the import\n <code>java.util.List<\/code> would be considered referenced with the Javadoc\n comment <code>{@link List}<\/code>. The alternative to avoid introducing a compile-time\n dependency would be to write the Javadoc comment as <code>{&#64;link java.util.List}<\/code>.\n <\/li>\n <\/ul>\n\n <p>\n The main limitation of this check is handling the cases where:\n <\/p>\n <ul>\n <li>\n An imported type has the same name as a declaration, such as a member variable.\n <\/li>\n <li>\n There are two or more static imports with the same method name\n (javac can distinguish imports with same name but different parameters, but checkstyle can not\n due to <a href=\"https:\/\/checkstyle.org\/writingchecks.html#Limitations\">limitation.<\/a>)\n <\/li>\n <li>\n Module import declarations are used. Checkstyle does not resolve modules and therefore cannot\n determine which packages or types are brought into scope by an <code>import module<\/code> declaration.\n See <a href=\"https:\/\/checkstyle.org\/writingchecks.html#Limitations\">limitations.<\/a>\n <\/li>\n <\/ul>"
               }
             }
           ],
@@ -36,19 +38,20 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file:/home/someuser/Code/Test.java"
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerAbsoluteLinuxPath.java"
                 },
                 "region": {
-                  "startColumn": 1,
-                  "startLine": 1
+                  "startColumn": 8,
+                  "startLine": 11
                 }
               }
             }
           ],
           "message": {
-            "text": "found an error"
+            "id": "import.unused",
+            "text": "Unused import - java.util.List."
           },
-          "ruleId": "com.puppycrawl.tools.checkstyle.SarifLoggerTest"
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"
         }
       ]
     }

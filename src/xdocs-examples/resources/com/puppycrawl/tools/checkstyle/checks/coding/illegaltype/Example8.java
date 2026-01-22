@@ -57,10 +57,10 @@ public class Example8 extends TreeSet {
 
   class B extends Gitter {}
   class C extends Github {}
-  // violation below 'Usage of type 'Optional' is not allowed'
+
   public Optional<String> field2;
   protected String field3;
-  Optional<String> field4; // violation, 'Usage of type 'Optional' is not allowed'
+  Optional<String> field4;
 
   private void method(List<Foo> list, Boolean value) {}
 
@@ -73,7 +73,7 @@ public class Example8 extends TreeSet {
   public void var() {
     var message = "Hello, World!";
   } // violation above 'Usage of type 'var' is not allowed'
-  // violation below 'Usage of type 'AbstractSet' is not allowed'
+
   public AbstractSet<String> function4() {
     return null;
   }

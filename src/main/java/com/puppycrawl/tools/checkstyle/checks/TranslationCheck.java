@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -93,7 +93,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 3.0
  */
 @GlobalStatefulCheck
-public class TranslationCheck extends AbstractFileSetCheck {
+public final class TranslationCheck extends AbstractFileSetCheck {
 
     /**
      * A key is pointing to the warning message text for missing key
@@ -180,18 +180,6 @@ public class TranslationCheck extends AbstractFileSetCheck {
         setFileExtensions("properties");
         baseName = CommonUtil.createPattern("^messages.*$");
         log = LogFactory.getLog(TranslationCheck.class);
-    }
-
-    /**
-     * Setter to specify the file extensions of the files to process.
-     *
-     * @param extensions the set of file extensions. A missing
-     *         initial '.' character of an extension is automatically added.
-     * @throws IllegalArgumentException is argument is null
-     */
-    @Override
-    public final void setFileExtensions(String... extensions) {
-        super.setFileExtensions(extensions);
     }
 
     /**
@@ -579,7 +567,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
          *
          * @return the bundle base name
          */
-        public String getBaseName() {
+        /* package */ String getBaseName() {
             return baseName;
         }
 
@@ -588,7 +576,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
          *
          * @return the common path of files
          */
-        public String getPath() {
+        /* package */ String getPath() {
             return path;
         }
 
@@ -597,7 +585,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
          *
          * @return the common extension of files
          */
-        public String getExtension() {
+        /* package */ String getExtension() {
             return extension;
         }
 
@@ -606,7 +594,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
          *
          * @return the set of files
          */
-        public Set<File> getFiles() {
+        /* package */ Set<File> getFiles() {
             return Collections.unmodifiableSet(files);
         }
 
@@ -615,7 +603,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
          *
          * @param file file which should be added into resource bundle.
          */
-        public void addFile(File file) {
+        /* package */ void addFile(File file) {
             files.add(file);
         }
 
@@ -625,7 +613,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
          * @param fileNameRegexp file name regexp.
          * @return true if a resource bundle contains a file which name matches file name regexp.
          */
-        public boolean containsFile(String fileNameRegexp) {
+        /* package */ boolean containsFile(String fileNameRegexp) {
             boolean containsFile = false;
             for (File currentFile : files) {
                 if (Pattern.matches(fileNameRegexp, currentFile.getName())) {

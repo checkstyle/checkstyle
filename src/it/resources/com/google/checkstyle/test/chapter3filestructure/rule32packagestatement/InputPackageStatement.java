@@ -1,7 +1,7 @@
 package com.google.checkstyle.test. // violation 'package statement should not be line-wrapped.'
     chapter3filestructure.rule32packagestatement;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputPackageStatement {
   // Long line
   // -----------------------------------------------------------------------------------------------------

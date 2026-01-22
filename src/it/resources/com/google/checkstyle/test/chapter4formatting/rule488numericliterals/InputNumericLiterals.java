@@ -1,7 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule488numericliterals;
 
 class InputNumericLiterals {
-  /** test. * */
+  /** Test. * */
   private final long ignore = 666l + 666L; // violation 'Should use uppercase 'L'.'
 
   private String notWarn = "666l"; // ok
@@ -29,7 +29,7 @@ class InputNumericLiterals {
   private void processUpperEll(String s, long l) {}
 
   class Inner {
-    /** test. * */
+    /** Test. * */
     private static final long IGNORE = 666l + 666L; // violation 'Should use uppercase 'L'.'
 
     private static final String notWarn = "666l"; // ok
@@ -60,7 +60,7 @@ class InputNumericLiterals {
     void fooMethod() {
       Foo foo =
           new Foo() {
-            /** test. * */
+            /** Test. * */
             private final long ignore = 666l + 666L; // violation 'Should use uppercase 'L'.'
 
             private String notWarn = "666l"; // ok

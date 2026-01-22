@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -460,7 +460,8 @@ public abstract class AbstractExpressionHandler {
         while (curNode != null) {
             if (curNode.getLineNo() < realStart.getLineNo()
                     || curNode.getLineNo() == realStart.getLineNo()
-                    && curNode.getColumnNo() < realStart.getColumnNo()) {
+                    && Math.min(curNode.getColumnNo(), realStart.getColumnNo())
+                    == curNode.getColumnNo()) {
                 realStart = curNode;
             }
             DetailAST toVisit = curNode.getFirstChild();

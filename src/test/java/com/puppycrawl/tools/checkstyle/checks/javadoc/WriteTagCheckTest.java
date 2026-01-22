@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -57,7 +57,7 @@ import de.thetaphi.forbiddenapis.SuppressForbidden;
 public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/writetag";
     }
 
@@ -322,12 +322,12 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
             for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = messageFileName + ":" + expected[i];
                 final String actual = lnr.readLine();
-                assertWithMessage("error message " + i)
+                assertWithMessage("error message %s", i)
                         .that(actual)
                         .isEqualTo(expectedResult);
             }
 
-            assertWithMessage("unexpected output: " + lnr.readLine())
+            assertWithMessage("unexpected output: %s", lnr.readLine())
                     .that(errs)
                     .isAtMost(expected.length);
         }

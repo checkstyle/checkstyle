@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -197,7 +197,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     public DetailAstImpl visitTypeDeclaration(JavaLanguageParser.TypeDeclarationContext ctx) {
         final DetailAstImpl typeDeclaration;
         if (ctx.type == null) {
-            typeDeclaration = create(ctx.semi.get(0));
+            typeDeclaration = create(ctx.semi.getFirst());
             ctx.semi.subList(1, ctx.semi.size())
                     .forEach(semi -> addLastSibling(typeDeclaration, create(semi)));
         }
@@ -1586,7 +1586,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         }
 
         if (binOpList.isEmpty()) {
-            final DetailAstImpl leftChild = visit(ctx.children.get(0));
+            final DetailAstImpl leftChild = visit(ctx.children.getFirst());
             bop.addChild(leftChild);
         }
         else {

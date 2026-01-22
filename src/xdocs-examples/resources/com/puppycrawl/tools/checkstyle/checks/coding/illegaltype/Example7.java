@@ -17,7 +17,15 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Optional;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.List;
+import java.util.Set;
+import java.util.AbstractSet;
+import java.util.AbstractList;
 import java.util.function.Consumer;
 
 // xdoc section -- start

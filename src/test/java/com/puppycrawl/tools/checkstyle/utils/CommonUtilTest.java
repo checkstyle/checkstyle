@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -56,7 +56,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     private static final String PATH_DENORMALIZER = "/levelDown/.././";
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/utils/commonutil";
     }
 
@@ -526,17 +526,17 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final String filename =
                 getPackageLocation() + "/InputCommonUtilTest_resource.txt";
         final URI uri = CommonUtil.getUriByFilename(filename);
-        assertWithMessage("URI is null for: " + filename)
+        assertWithMessage("URI is null for: %s", filename)
             .that(uri)
             .isNotNull();
         final String uriRelativeToPackage =
                 "com/puppycrawl/tools/checkstyle/utils/"
                         + getPackageLocation() + "/InputCommonUtilTest_resource.txt";
-        assertWithMessage("URI is relative to package " + uriRelativeToPackage)
+        assertWithMessage("URI is relative to package %s", uriRelativeToPackage)
             .that(uri.toASCIIString())
             .doesNotContain(uriRelativeToPackage);
         final String content = IOUtils.toString(uri.toURL(), StandardCharsets.UTF_8);
-        assertWithMessage("Content mismatches for: " + uri.toASCIIString())
+        assertWithMessage("Content mismatches for: %s", uri.toASCIIString())
             .that(content)
             .startsWith("good");
     }

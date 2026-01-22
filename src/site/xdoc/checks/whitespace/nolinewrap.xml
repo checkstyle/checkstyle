@@ -182,13 +182,6 @@ class // violation 'should not be line-wrapped'
   }
 }
 </code></pre></div>
-        <p>
-          Examples of not line-wrapped statements (good case):
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
-import static java.math.BigInteger.ZERO;
-        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="NoLineWrap_Example_of_Usage">

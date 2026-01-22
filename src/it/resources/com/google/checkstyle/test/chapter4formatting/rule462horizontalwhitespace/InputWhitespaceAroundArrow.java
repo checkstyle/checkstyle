@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.JCheckBox;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputWhitespaceAroundArrow {
   static {
     // violation below ''->' is not preceded with whitespace.'
@@ -28,7 +28,7 @@ public class InputWhitespaceAroundArrow {
     }
   }
 
-  /** method. */
+  /** Method. */
   void test(Object o, Object o2, int y) {
     switch (o) {
       case String s when (
@@ -57,17 +57,14 @@ public class InputWhitespaceAroundArrow {
   }
 
   int test2(int k, Object o1) {
+    // violation below, 'WhitespaceAround: '->' is not followed by whitespace. .*'
     Predicate predicate = value ->(value != null);
-    // 2 violations above:
-    //     ''->' is not followed by whitespace.'
-    //     'WhitespaceAround: '->' is not followed by whitespace. .*'
+
     Object b = ((VoidPredicate) ()->o1 instanceof String s).get();
-    // 3 violations above:
-    //     ''->' is not followed by whitespace.'
+    // 2 violations above:
     //     'WhitespaceAround: '->' is not followed by whitespace. .*'
     //     'WhitespaceAround: '->' is not preceded with whitespace.'
-    // 3 violations 5 lines below:
-    //     ''->' is not followed by whitespace.'
+    // 2 violations 4 lines below:
     //     ''->' is not followed by whitespace. .*'
     //     ''{' is not preceded with whitespace.'
     new LinkedList<Integer>().stream()
@@ -96,24 +93,22 @@ public class InputWhitespaceAroundArrow {
     Object result = boolList.stream().filter(
         // violation below 'WhitespaceAround: '->' is not preceded with whitespace.'
         statement-> false).findFirst()
+        // violation below, 'WhitespaceAround: '->' is not followed by whitespace. .*'
         .orElseThrow(() ->new IllegalStateException("big problem"));
-    // 2 violations above:
-    //     ''->' is not followed by whitespace.'
-    //     'WhitespaceAround: '->' is not followed by whitespace. .*'
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   record Point(int x, int y) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public interface Predicate {
-    /** some javadoc. */
+    /** Some javadoc. */
     boolean test(Object value);
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public interface VoidPredicate {
-    /** some javadoc. */
+    /** Some javadoc. */
     public boolean get();
   }
 }

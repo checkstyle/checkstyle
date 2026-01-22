@@ -4,23 +4,23 @@ import java.util.Vector;
 
 /** Test input for MethodDefPadCheck. */
 public class InputFormattedMethodParamPad2 {
-  /** some javadoc. */
+  /** Some javadoc. */
   public InputFormattedMethodParamPad2() {
     super();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public InputFormattedMethodParamPad2(int param) {
     super();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void method() {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void method(int param) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void method(double param) {
     // invoke constructor
     InputFormattedMethodParamPad2 pad = new InputFormattedMethodParamPad2();
@@ -32,7 +32,7 @@ public class InputFormattedMethodParamPad2 {
     method();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void dottedCalls() {
     this.method();
     this.method();
@@ -48,7 +48,7 @@ public class InputFormattedMethodParamPad2 {
     Integer.parseInt("0");
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void newArray() {
     int[] a = new int[] {0, 1};
     Vector<String> v = new Vector<String>();

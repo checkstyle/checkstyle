@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -161,7 +161,8 @@ public class CommitValidationTest {
     @Test
     public void testRevertCommitMessage() {
         assertWithMessage("should accept proper revert commit message")
-                .that(validateCommitMessage("""
+                .that(validateCommitMessage(
+                        """
                         Revert "doc: release notes for 10.8.0"\
 
                         This reverts commit ff873c3c22161656794c969bb28a8cb09595f.

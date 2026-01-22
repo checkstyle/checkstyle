@@ -93,13 +93,6 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
-        <p>
-          Examples of not line-wrapped statements (good case):
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
-import static java.math.BigInteger.ZERO;
-        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="NoLineWrap_Example_of_Usage">

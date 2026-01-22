@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -38,13 +38,13 @@ public class ParentModuleMacro extends AbstractMacro {
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
         // until https://github.com/checkstyle/checkstyle/issues/13426
-        if (!(sink instanceof XdocSink)) {
+        if (!(sink instanceof XdocSink xdocSink)) {
             throw new MacroExecutionException("Expected Sink to be an XdocSink.");
         }
         final String moduleName = (String) request.getParameter("moduleName");
         final Object instance = SiteUtil.getModuleInstance(moduleName);
         final Class<?> clss = instance.getClass();
-        createParentModuleParagraph((XdocSink) sink, clss, moduleName);
+        createParentModuleParagraph(xdocSink, clss, moduleName);
     }
 
     /**

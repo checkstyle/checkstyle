@@ -47,16 +47,17 @@ jobs:
       commit_sha: ${{ steps.branch.outputs.commit_sha }}
 
     steps:
-      - uses: shanegenschaw/pull-request-comment-trigger@v3.0.0
-        name: React with rocket on run
+      - name: React to comment
+        uses: actions/github-script@v8
         with:
-          trigger: ','
-          reaction: rocket
-        env:
-          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-
-      - run: 'echo We print it here for this action to work'
-        if: 'true'
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'rocket'
+            })
 
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -132,10 +133,16 @@ jobs:
           git fetch forked
 
       - name: Setup local maven cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          java-version: '21'
+          distribution: 'temurin'
 
       - name: Download contribution
         uses: actions/checkout@v6

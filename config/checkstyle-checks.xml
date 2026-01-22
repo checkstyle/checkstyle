@@ -296,9 +296,10 @@
     <module name="AnnotationUseStyle"/>
     <module name="MissingDeprecated"/>
     <module name="MissingOverride"/>
+    <module name="MissingOverrideOnRecordAccessor"/>
     <module name="PackageAnnotation"/>
     <module name="SuppressWarnings">
-      <property name="format" value="^((?!unchecked|deprecation|rawtypes|resource).)*$"/>
+      <property name="format" value="^((?!unchecked|deprecation|rawtypes|resource|InvalidInlineTag).)*$"/>
       <message key="suppressed.warning.not.allowed"
            value="The warning ''{0}'' cannot be suppressed at this location.
            Only few javac warnings are allowed to suppress.
@@ -546,14 +547,7 @@
       -->
       <property name="severity" value="ignore"/>
     </module>
-    <module name="MissingNullCaseInSwitch">
-      <!--
-        We will not use this check because case null
-        is only supported by newer versions of Java (21).
-        Using a 'case null' will not compile in older Java code.
-      -->
-      <property name="severity" value="ignore"/>
-    </module>
+    <module name="MissingNullCaseInSwitch"/>
     <module name="MissingSwitchDefault"/>
     <module name="ModifiedControlVariable"/>
     <module name="MultipleStringLiterals"/>
@@ -592,6 +586,7 @@
     <module name="StringLiteralEquality"/>
     <module name="SuperClone"/>
     <module name="SuperFinalize"/>
+    <module name="TextBlockGoogleStyleFormatting"/>
     <module name="UnnecessaryNullCheckWithInstanceOf"/>
     <module name="UnnecessaryParentheses">
       <property name="tokens"
@@ -624,14 +619,7 @@
     </module>
     <module name="UnusedLocalVariable"/>
     <module name="VariableDeclarationUsageDistance"/>
-    <module name="WhenShouldBeUsed">
-      <!--
-        We will not use this check because guarded case label
-        is only supported by newer versions of Java (21).
-        Using 'when' will not compile in older Java code.
-        -->
-      <property name="severity" value="ignore"/>
-    </module>
+    <module name="WhenShouldBeUsed"/>
 
     <!-- Filters -->
     <module name="SuppressionCommentFilter">
