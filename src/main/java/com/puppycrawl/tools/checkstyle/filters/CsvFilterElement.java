@@ -31,7 +31,7 @@ import java.util.StringTokenizer;
  * each value is an integer or a range of integers.
  * </div>
  */
-class CsvFilterElement implements IntFilterElement {
+final class CsvFilterElement implements IntFilterElement {
 
     /** Filter set. */
     private final Set<IntFilterElement> filters = new HashSet<>();
@@ -79,7 +79,7 @@ class CsvFilterElement implements IntFilterElement {
      *
      * @return the IntFilters of the filter set.
      */
-    protected Set<IntFilterElement> getFilters() {
+    private Set<IntFilterElement> getFilters() {
         return Collections.unmodifiableSet(filters);
     }
 

@@ -153,13 +153,12 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(OneStatementPerLineCheck.class);
 
         final String[] expected = {
-            "1:102: " + getCheckMessage(MSG_KEY),
-            "1:131: " + getCheckMessage(MSG_KEY),
-            "1:165: " + getCheckMessage(MSG_KEY),
-            "1:231: " + getCheckMessage(MSG_KEY),
-            "1:406: " + getCheckMessage(MSG_KEY),
-            "1:443: " + getCheckMessage(MSG_KEY),
-            "1:455: " + getCheckMessage(MSG_KEY),
+            "5:102: " + getCheckMessage(MSG_KEY),
+            "5:131: " + getCheckMessage(MSG_KEY),
+            "5:165: " + getCheckMessage(MSG_KEY),
+            "5:230: " + getCheckMessage(MSG_KEY),
+            "5:402: " + getCheckMessage(MSG_KEY),
+            "5:414: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig, getPath("InputOneStatementPerLine.java"),
@@ -171,7 +170,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
         final String inputWithWarnings = getPath("InputOneStatementPerLineBeginTree1.java");
         final String inputWithoutWarnings = getPath("InputOneStatementPerLineBeginTree2.java");
         final List<String> expectedFirstInput = List.of(
-                "6:96: " + getCheckMessage(MSG_KEY)
+            "7:96: " + getCheckMessage(MSG_KEY)
         );
         final List<String> expectedSecondInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
         verifyWithInlineConfigParser(inputWithWarnings,
@@ -185,7 +184,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
         final String file2 = getPath(
                 "InputOneStatementPerLineBeginTreeLastVariableResourcesStatementEnd2.java");
         final List<String> expectedFirstInput = List.of(
-                "15:59: " + getCheckMessage(MSG_KEY)
+            "15:59: " + getCheckMessage(MSG_KEY)
         );
         final List<String> expectedSecondInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
         verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);

@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.meta;
 
-import java.io.File;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
@@ -185,7 +185,7 @@ public final class XmlMetaWriter {
         transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 
         final DOMSource source = new DOMSource(document);
-        final StreamResult result = new StreamResult(new File(modifiedPath));
+        final StreamResult result = new StreamResult(Path.of(modifiedPath).toFile());
         transformer.transform(source, result);
 
     }

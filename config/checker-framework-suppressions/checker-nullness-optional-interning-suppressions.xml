@@ -7534,28 +7534,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/CsvFilterElement.java</fileName>
-    <specifier>method.invocation</specifier>
-    <message>call to addFilter(com.puppycrawl.tools.checkstyle.filters.IntFilterElement) not allowed on the given receiver.</message>
-    <lineContent>addFilter(new IntMatchFilterElement(matchValue));</lineContent>
-    <details>
-      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.filters.CsvFilterElement.class) @NonNull CsvFilterElement
-      required: @Initialized @NonNull CsvFilterElement
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/CsvFilterElement.java</fileName>
-    <specifier>method.invocation</specifier>
-    <message>call to addFilter(com.puppycrawl.tools.checkstyle.filters.IntFilterElement) not allowed on the given receiver.</message>
-    <lineContent>addFilter(new IntRangeFilterElement(lowerBound, upperBound));</lineContent>
-    <details>
-      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.filters.CsvFilterElement.class) @NonNull CsvFilterElement
-      required: @Initialized @NonNull CsvFilterElement
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/CsvFilterElement.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for object.</message>
     <lineContent>public boolean equals(Object object) {</lineContent>
@@ -7699,20 +7677,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
-    <specifier>not.interned</specifier>
-    <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>if (getFileContents() != currentContents) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
-    <specifier>not.interned</specifier>
-    <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>if (getFileContents() != currentContents) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for other.</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
@@ -7723,17 +7687,6 @@
       @Initialized @NonNull boolean equals(@Initialized @NonNull Tag this, @Initialized @NonNull Object p0)
       cannot override method in @Initialized @NonNull Object
       @Initialized @NonNull boolean equals(@Initialized @NonNull Object this, @Initialized @Nullable Object p0)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return fileContentsReference.get();</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable FileContents
-      method return type: @Initialized @NonNull FileContents
     </details>
   </checkerFrameworkError>
 
@@ -7946,20 +7899,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
-    <specifier>not.interned</specifier>
-    <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>if (getFileContents() != currentContents) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
-    <specifier>not.interned</specifier>
-    <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>if (getFileContents() != currentContents) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for other.</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
@@ -7970,17 +7909,6 @@
       @Initialized @NonNull boolean equals(@Initialized @NonNull Tag this, @Initialized @NonNull Object p0)
       cannot override method in @Initialized @NonNull Object
       @Initialized @NonNull boolean equals(@Initialized @NonNull Object this, @Initialized @Nullable Object p0)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return fileContentsReference.get();</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable FileContents
-      method return type: @Initialized @NonNull FileContents
     </details>
   </checkerFrameworkError>
 
@@ -9476,6 +9404,31 @@
       unsatisfiable constraint: S extends @Initialized @Nullable Object &lt;: @Initialized @PolyNull Object
       elementType::cast -&gt; inference type: java.util.function.Function&lt;? super S,? extends R&gt;
       From: Argument constraint
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/WeakReferenceHolder.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>if (previous != newObject) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/WeakReferenceHolder.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>if (previous != newObject) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/WeakReferenceHolder.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return reference.get();</lineContent>
+    <details>
+      type of expression: T[ extends @Initialized @Nullable Object super @Initialized @Nullable Void]
+      method return type: T[ extends @Initialized @Nullable Object super @Initialized @NonNull Void]
     </details>
   </checkerFrameworkError>
 
