@@ -1,0 +1,34 @@
+/*
+WhitespaceBeforeEmptyBody
+tokens = (default)METHOD_DEF, CTOR_DEF, COMPACT_CTOR_DEF, \
+         CLASS_DEF, INTERFACE_DEF, ENUM_DEF, RECORD_DEF, ANNOTATION_DEF, \
+         LITERAL_WHILE, LITERAL_FOR, LITERAL_DO, \
+         STATIC_INIT, \
+         LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_SYNCHRONIZED, LITERAL_SWITCH, \
+         LAMBDA, LITERAL_NEW
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacebeforeemptybody;
+
+class InputWhitespaceBeforeEmptyBodySwitch {
+
+    void test(int x) {
+
+        // violation below 'Whitespace is not present before the empty body of 'switch''
+        switch (x){}
+
+        switch (x) {}
+
+        switch (x) {
+            case 1:
+                break;
+        }
+
+        switch (x){
+            case 1:
+                break;
+        }
+    }
+}
