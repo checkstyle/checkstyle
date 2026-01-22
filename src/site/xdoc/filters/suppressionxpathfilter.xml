@@ -140,7 +140,7 @@
         <p>
           Checkstyle supports XPath 3.1 or higher, for exact version please find
           &quot;Saxon-HE&quot; version in our <a href="../project-info.html#Dependencies">dependency report</a>
-          and find related documentation at <a href="https://www.saxonica.com/">saxonica.com</a>.
+          and find related documentation at <a href="https://www.saxonica.com/welcome/welcome.xml">saxonica.com</a>.
         </p>
       </subsection>
       <subsection name="Notes" id="SuppressionXpathFilter_Notes">
