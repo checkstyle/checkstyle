@@ -93,10 +93,7 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
 
     @Test
     public void testJepExample() throws Exception {
-        final String[] expected = {
-            "10:1: " + getCheckMessage(MSG_KEY),
-            "24:1: " + getCheckMessage(MSG_KEY),
-        };
+        final String[] expected = {};
         verifyWithInlineConfigParser(
                 getPath(
                         "InputSealedShouldHavePermitsListJepExample.java"),

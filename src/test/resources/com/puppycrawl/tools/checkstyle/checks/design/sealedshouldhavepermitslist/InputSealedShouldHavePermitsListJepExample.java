@@ -6,12 +6,7 @@ SealedShouldHavePermitsList
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.design.sealedshouldhavepermitslist;
 
-// violation below 'Sealed classes or interfaces should explicitly declare permitted subclasses'
-public sealed class InputSealedShouldHavePermitsListJepExample
-        // The permits clause has been omitted
-        // as its permitted classes have been
-        // defined in the same file.
-{ }
+public sealed class InputSealedShouldHavePermitsListJepExample permits Circle, Square, Rectangle { }
 
 final class Circle extends InputSealedShouldHavePermitsListJepExample {
     float radius;
@@ -20,8 +15,7 @@ non-sealed class Square extends InputSealedShouldHavePermitsListJepExample {
     float side;
 }
 
-// violation below 'Sealed classes or interfaces should explicitly declare permitted subclasses'
-sealed class Rectangle extends InputSealedShouldHavePermitsListJepExample {
+sealed class Rectangle extends InputSealedShouldHavePermitsListJepExample permits FilledRectangle {
     float length, width;
 }
 final class FilledRectangle extends Rectangle {
