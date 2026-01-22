@@ -955,19 +955,32 @@ public final class JavadocCommentsTokenTypes {
     /**
      * {@code {@literal}} inline tag.
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * {@literal @Override}}</pre>
+     * <p>
+     * The {@code @literal} tag is used to display text in code font without interpreting
+     * special HTML characters or nested Javadoc tags. Text within this tag is displayed
+     * literally as written.
+     * </p>
      *
-     * <b>Tree:</b>
+     * <p><b>Example:</b></p>
+     * <pre>{@code * This is a {@literal <example>} tag.}</pre>
+     *
+     * <p><b>Tree:</b></p>
      * <pre>{@code
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
-     *     `--LITERAL_INLINE_TAG -> LITERAL_INLINE_TAG
-     *         |--JAVADOC_INLINE_TAG_START -> { @
-     *         |--TAG_NAME -> literal
-     *         |--TEXT ->  @Override
-     *         `--JAVADOC_INLINE_TAG_END -> }
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--TEXT -> /**
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->  This is a
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |   `--LITERAL_INLINE_TAG -> LITERAL_INLINE_TAG
+     * |       |--JAVADOC_INLINE_TAG_START -> { @
+     * |       |--TAG_NAME -> literal
+     * |       |--TEXT ->  <example>
+     * |       `--JAVADOC_INLINE_TAG_END -> }
+     * |--TEXT ->  tag.
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT -> /
      * }</pre>
      *
      * @see #JAVADOC_INLINE_TAG
