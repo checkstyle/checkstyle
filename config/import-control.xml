@@ -135,6 +135,10 @@
       <allow class="org.jspecify.annotations.NonNull"/>
       <allow class="org.jspecify.annotations.Nullable"/>
     </file>
+
+    <file name="WeakReferenceHolder">
+      <allow class="java.lang.ref.WeakReference" local-only="true"/>
+    </file>
   </subpackage>
 
   <subpackage name="ant">
