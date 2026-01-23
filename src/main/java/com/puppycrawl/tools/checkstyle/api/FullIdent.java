@@ -101,14 +101,37 @@ public final class FullIdent {
                 pushToIdentStack(identStack, firstChild);
             }
             else if (typeOfAst == TokenTypes.DOT) {
-                pushToIdentStack(identStack, firstChild.getNextSibling());
-                pushToIdentStack(identStack, firstChild);
+                processDot(identStack, currentAst);
                 dotCounter++;
             }
             else {
                 dotCounter = appendToFull(full, currentAst, dotCounter,
                         bracketsExist, isArrayTypeDeclarationStart);
             }
+        }
+    }
+
+    /**
+     * Processes a DOT node.
+     *
+     * @param identStack the Deque to add to
+     * @param dotAst the node
+     */
+    public static void processDot(Deque<DetailAST> identStack, DetailAST dotAst) {
+
+        final DetailAST firstChild = dotAst.getFirstChild();
+        final DetailAST next = firstChild.getNextSibling();
+        if (next != null) {
+            final int astType = next.getType();
+
+            if (astType == TokenTypes.SINGLE_LINE_COMMENT
+                    || astType == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                pushToIdentStack(identStack, next.getNextSibling());
+            }
+            else {
+                pushToIdentStack(identStack, next);
+            }
+            pushToIdentStack(identStack, firstChild);
         }
     }
 

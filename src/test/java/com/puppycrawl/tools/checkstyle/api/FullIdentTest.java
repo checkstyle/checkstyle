@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MS
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,6 +33,8 @@ import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 public class FullIdentTest extends AbstractModuleTestSupport {
 
@@ -265,5 +268,59 @@ public class FullIdentTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(getPath("InputFullIdentLiteralNewCondition.java"),
                 expected);
+    }
+
+    @Test
+    public void testUnusedImport() throws Exception {
+        final String[] expected = {
+            "9:8: " + getCheckMessage(UnusedImportsCheck.class,
+                    UnusedImportsCheck.MSG_KEY, "java.util.List"),
+            "11:8: " + getCheckMessage(UnusedImportsCheck.class,
+                    UnusedImportsCheck.MSG_KEY, "java.util.Map"),
+        };
+
+        verifyWithInlineConfigParser(getPath("InputFullIdentUnusedImport.java"),
+                expected);
+    }
+
+    @Test
+    public void testContainsAnnotationListWithNoMatchingAnnotation() {
+        final DetailAstImpl ast = new DetailAstImpl();
+        final DetailAstImpl modifiersAst = create(
+                TokenTypes.MODIFIERS,
+                create(
+                        TokenTypes.ANNOTATION,
+                        create(
+                                TokenTypes.DOT,
+                                create(
+                                        TokenTypes.IDENT,
+                                        "Override")
+                        )
+                )
+        );
+        ast.addChild(modifiersAst);
+        final Set<String> annotations = Set.of("Deprecated");
+        final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
+        assertWithMessage("No matching annotation found")
+            .that(result)
+            .isFalse();
+    }
+
+    private static DetailAstImpl create(int tokenType) {
+        final DetailAstImpl ast = new DetailAstImpl();
+        ast.setType(tokenType);
+        return ast;
+    }
+
+    private static DetailAstImpl create(int tokenType, String text) {
+        final DetailAstImpl ast = create(tokenType);
+        ast.setText(text);
+        return ast;
+    }
+
+    private static DetailAstImpl create(int tokenType, DetailAstImpl child) {
+        final DetailAstImpl ast = create(tokenType);
+        ast.addChild(child);
+        return ast;
     }
 }
