@@ -19,9 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
-import com.puppycrawl.tools.checkstyle.Checker;
-
-public class CheckerStub extends Checker {
+public class CheckerStub {
 
     // dummy class
 
