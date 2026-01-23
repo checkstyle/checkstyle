@@ -8,19 +8,22 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationindentation;
 
 // xdoc section -- start
-
 class Example4 {
 
-   /**
-   * Writes the object using a
-   * <a href="{@docRoot}/serialized-form.html#java.time.Ser">dedicated form</a>.
-   * @serialData
-   * <pre>
-   * out.writeByte(1);
-   * out.writeInt(nanos);
-   * </pre>
+  /**
+   * @param input comment with
+   *    indentation spacing for the tag
    */
-  public void testMethod1(String input) {}
+  public void testIndentation(String input) {}
+   // violation 3 lines above 'Line continuation have incorrect indentation level'
+
+  /**
+   * <pre>
+   * this content, and not any error:
+   *   "JavadocTagContinuation do not validate lines contained in Pre tag,
+   *   No violation is expected here."</pre>
+   */
+  public void testMethodPre(String input) {}
 
   /**
    * Writes the object using a
@@ -31,20 +34,14 @@ class Example4 {
    * out.writeInt(nanos); // violation
    * </code> // violation
    */
-  public void testMethod2(String input) {}
+  public void testMethodCode(String input) {}
 
   /**
    * Test class.
    *
-   * @apiNote
+   * @param input comment with
    *          This is the predefined indentation applied by Eclipse formatter.
-   *          <pre>
-   * this content, and not any error:
-   *   "JavadocTagContinuation do not validate lines contained in Pre tag,
-   *   No violation is expected here."</pre>
    */
-  public void testMethod3(String input) {}
-
+  public void testIndentationEclipse(String input) {}
 }
-
 // xdoc section -- end
