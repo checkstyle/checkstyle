@@ -1611,7 +1611,7 @@ public class XdocsPagesTest {
                 result.trySetAccessible();
                 break;
             }
-            catch (NoSuchFieldException ignored) {
+            catch (NoSuchFieldException _) {
                 currentClass = currentClass.getSuperclass();
             }
         }
@@ -2104,7 +2104,7 @@ public class XdocsPagesTest {
                 try {
                     config = itrConfigs.next();
                 }
-                catch (NoSuchElementException ignore) {
+                catch (NoSuchElementException _) {
                     assertWithMessage(
                         "%s_style.xml rule '%s' module '%s' is missing the config link: %s",
                         styleName, ruleName, moduleName, configName).fail();

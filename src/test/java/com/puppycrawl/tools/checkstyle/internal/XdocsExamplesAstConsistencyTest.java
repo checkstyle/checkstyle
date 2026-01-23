@@ -608,7 +608,7 @@ public class XdocsExamplesAstConsistencyTest {
                 }
             }
         }
-        catch (CheckstyleException exception) {
+        catch (CheckstyleException _) {
             // Skip examples that can't be parsed as Java
         }
 
@@ -823,7 +823,7 @@ public class XdocsExamplesAstConsistencyTest {
             try {
                 sb.append(TokenUtil.getTokenName(type));
             }
-            catch (IllegalArgumentException exception) {
+            catch (IllegalArgumentException _) {
                 sb.append(type);
             }
             if (text != null) {

@@ -311,7 +311,7 @@ public class PackageObjectFactory implements ModuleFactory {
                         Class::getCanonicalName,
                         Collectors.toCollection(HashSet::new))));
         }
-        catch (IOException ignore) {
+        catch (IOException _) {
             returnValue = Collections.emptyMap();
         }
         return returnValue;
@@ -359,7 +359,7 @@ public class PackageObjectFactory implements ModuleFactory {
         try {
             clazz = Class.forName(className, true, moduleClassLoader);
         }
-        catch (final ReflectiveOperationException | NoClassDefFoundError ignored) {
+        catch (final ReflectiveOperationException | NoClassDefFoundError _) {
             // ignore the exception
         }
 
