@@ -275,6 +275,7 @@
       -Xep:TimeZoneUsage:ERROR
       -Xep:TruthAssertExpected:ERROR
       -Xep:TypeParameterUnusedInFormals:ERROR
+      -Xep:UnsynchronizedOverridesSynchronized:ERROR
       -Xep:UnusedMethod:ERROR
       -Xep:VoidUsed:ERROR
       -Xep:FormatStringShouldUsePlaceholders:ERROR
