@@ -1517,7 +1517,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java</fileName>
     <specifier>override.return</specifier>
     <message>Incompatible return type.</message>
-    <lineContent>public Enumeration&lt;Object&gt; keys() {</lineContent>
+    <lineContent>public synchronized Enumeration&lt;Object&gt; keys() {</lineContent>
     <details>
       found   : Enumeration&lt;Object&gt;
       required: Enumeration&lt;@KeyFor(&quot;this&quot;) Object&gt;
