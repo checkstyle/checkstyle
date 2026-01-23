@@ -300,12 +300,23 @@
   <Match>
     <!-- until https://github.com/checkstyle/checkstyle/issues/14122 -->
     <Or>
-      <Class name="com.puppycrawl.tools.checkstyle.DefaultLogger"/>
       <Class name="com.puppycrawl.tools.checkstyle.PackageObjectFactory"/>
       <Class name="com.puppycrawl.tools.checkstyle.XmlLoader"/>
       <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
     </Or>
     <Bug pattern="CT_CONSTRUCTOR_THROW"/>
+  </Match>
+  <Match>
+    <!-- external projects inherits from it so it should not be changed  -->
+    <Class name="com.puppycrawl.tools.checkstyle.DefaultLogger"/>
+    <Bug pattern="CT_CONSTRUCTOR_THROW"/>
+  </Match>
+  <Match>
+    <!-- variable is just being saved for further analysis and isn't the main decider
+         of the loop if it is done or not -->
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck"/>
+    <Method name="getBlockContainingLocalAnonInnerClass"/>
+    <Bug pattern="SLS_SUSPICIOUS_LOOP_SEARCH"/>
   </Match>
   <Match>
     <!-- conflicts with PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS -->
