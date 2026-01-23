@@ -116,7 +116,7 @@ public class LocalizedMessage {
             final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
             result = formatter.format(args);
         }
-        catch (final MissingResourceException ignored) {
+        catch (final MissingResourceException _) {
             // If the Check author didn't provide i18n resource bundles
             // and logs audit event messages directly, this will return
             // the author's original message
