@@ -315,7 +315,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
                 result.put(key, bundle.getString(key));
             }
         }
-        catch (ClassNotFoundException | MissingResourceException ignored) {
+        catch (ClassNotFoundException | MissingResourceException _) {
             // Return empty map when module class or resource bundle is not on classpath.
             // Occurs with third-party modules that have XML metadata but missing implementation.
         }

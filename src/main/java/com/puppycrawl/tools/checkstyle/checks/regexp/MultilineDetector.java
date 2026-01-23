@@ -112,7 +112,7 @@ class MultilineDetector {
             }
         }
         // see http://bugs.java.com/bugdatabase/view_bug.do?bug_id=6337993 et al.
-        catch (StackOverflowError ignored) {
+        catch (StackOverflowError _) {
             // ok http://blog.igorminar.com/2008/05/catching-stackoverflowerror-and-bug-in.html
             // http://programmers.stackexchange.com/questions/
             //        209099/is-it-ever-okay-to-catch-stackoverflowerror-in-java

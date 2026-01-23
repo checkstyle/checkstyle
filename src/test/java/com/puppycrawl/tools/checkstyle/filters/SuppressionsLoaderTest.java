@@ -226,7 +226,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             urlConnect.getContent();
         }
 
-        catch (IOException ignored) {
+        catch (IOException _) {
             result = false;
         }
         return result;

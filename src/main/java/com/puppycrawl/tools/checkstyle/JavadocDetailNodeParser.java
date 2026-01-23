@@ -129,7 +129,7 @@ public class JavadocDetailNodeParser {
 
             result.setParseErrorMessage(errorListener.getErrorMessage());
         }
-        catch (ParseCancellationException | IllegalArgumentException exc) {
+        catch (ParseCancellationException | IllegalArgumentException _) {
             result.setParseErrorMessage(errorListener.getErrorMessage());
         }
 
