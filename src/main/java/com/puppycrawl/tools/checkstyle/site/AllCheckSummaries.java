@@ -330,7 +330,7 @@ public class AllCheckSummaries extends AbstractMacro {
                     }
                 }
             }
-            catch (IllegalStateException exception) {
+            catch (IllegalStateException _) {
                 result = null;
             }
         }
@@ -501,7 +501,7 @@ public class AllCheckSummaries extends AbstractMacro {
 
                 xmlFiles.forEach(path -> addXmlHtmlMapping(path, map));
             }
-            catch (IOException ignored) {
+            catch (IOException _) {
                 // ignore
             }
         }

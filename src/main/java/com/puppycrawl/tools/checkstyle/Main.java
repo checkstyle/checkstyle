@@ -874,7 +874,7 @@ public final class Main {
                     // test location only
                     CommonUtil.getUriByFilename(configurationFile);
                 }
-                catch (CheckstyleException ignored) {
+                catch (CheckstyleException _) {
                     final String msg = "Could not find config XML file '%s'.";
                     result.add(String.format(Locale.ROOT, msg, configurationFile));
                 }

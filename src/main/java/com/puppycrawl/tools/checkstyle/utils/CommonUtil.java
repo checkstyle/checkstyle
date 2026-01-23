@@ -229,7 +229,7 @@ public final class CommonUtil {
         try {
             Pattern.compile(pattern);
         }
-        catch (final PatternSyntaxException ignored) {
+        catch (final PatternSyntaxException _) {
             isValid = false;
         }
         return isValid;
@@ -375,7 +375,7 @@ public final class CommonUtil {
             uri = URI.create(filename);
             uri = uri.toURL().toURI();
         }
-        catch (IllegalArgumentException | MalformedURLException | URISyntaxException ignored) {
+        catch (IllegalArgumentException | MalformedURLException | URISyntaxException _) {
             uri = null;
         }
         return uri;

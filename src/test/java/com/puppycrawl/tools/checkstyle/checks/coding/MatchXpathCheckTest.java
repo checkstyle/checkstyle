@@ -185,7 +185,7 @@ public class MatchXpathCheckTest
             matchXpathCheck.setQuery("!@#%^");
             assertWithMessage("Exception was expected").fail();
         }
-        catch (IllegalStateException ignored) {
+        catch (IllegalStateException _) {
             // it is OK
         }
     }
@@ -205,7 +205,7 @@ public class MatchXpathCheckTest
             matchXpathCheck.beginTree(detailAST);
             assertWithMessage("Exception was expected").fail();
         }
-        catch (IllegalStateException ignored) {
+        catch (IllegalStateException _) {
             // it is OK
         }
     }

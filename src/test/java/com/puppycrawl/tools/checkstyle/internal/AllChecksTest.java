@@ -453,7 +453,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 configTokens.addAll(Arrays.asList(checkConfig.getProperty("tokens").trim()
                         .split(",\\s*")));
             }
-            catch (CheckstyleException exc) {
+            catch (CheckstyleException _) {
                 // no tokens defined, so it is using default
                 if (defaultTokensMustBeExplicit) {
                     validateDefaultTokens(checkConfig, check, configTokens);
