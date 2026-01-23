@@ -261,7 +261,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
             final HttpURLConnection urlConnect = (HttpURLConnection) verifiableUrl.openConnection();
             urlConnect.getContent();
         }
-        catch (IOException ignored) {
+        catch (IOException _) {
             result = false;
         }
         return result;
