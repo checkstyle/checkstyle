@@ -21,7 +21,7 @@ jobs:
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: 25
+          java-version: 21
 
       - name: Run Checkstyle on Apache Kafka
         run: ./.ci/validation.sh no-error-kafka
@@ -35,7 +35,7 @@ jobs:
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: 23
+          java-version: 21
 
       - name: Run Checkstyle on Trino
         run: ./.ci/validation.sh no-error-trino

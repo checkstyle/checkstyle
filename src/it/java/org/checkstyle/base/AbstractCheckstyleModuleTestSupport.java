@@ -35,7 +35,7 @@ public abstract class AbstractCheckstyleModuleTestSupport extends AbstractItModu
                     moduleCreationOption = ModuleCreationOption.IN_TREEWALKER;
                 }
             }
-            catch (ClassNotFoundException ignore) {
+            catch (ClassNotFoundException _) {
                 // ignore exception, assume it is not part of TreeWalker
             }
         }

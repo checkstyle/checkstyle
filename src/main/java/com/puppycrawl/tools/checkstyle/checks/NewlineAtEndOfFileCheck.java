@@ -118,7 +118,7 @@ public class NewlineAtEndOfFileCheck
         try {
             readAndCheckFile(file);
         }
-        catch (final IOException ignored) {
+        catch (final IOException _) {
             log(1, MSG_KEY_UNABLE_OPEN, file.getPath());
         }
     }

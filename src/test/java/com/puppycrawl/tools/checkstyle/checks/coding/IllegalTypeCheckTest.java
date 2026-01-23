@@ -423,7 +423,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             check.visitToken(classDefAst);
             assertWithMessage("IllegalStateException is expected").fail();
         }
-        catch (IllegalStateException exc) {
+        catch (IllegalStateException _) {
             // it is OK
         }
     }

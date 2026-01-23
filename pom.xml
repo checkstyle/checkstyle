@@ -595,6 +595,9 @@
             <failOnWarnings>true</failOnWarnings>
             <doclint>-missing</doclint>
             <linksource>true</linksource>
+            <additionalJOption>
+              --enable-preview
+            </additionalJOption>
             <tags>
               <tag>
                 <name>noinspection</name>
@@ -971,6 +974,7 @@
         <configuration>
           <compilerArgs>
             <arg>-Xpkginfo:always</arg>
+            <arg>--enable-preview</arg>
           </compilerArgs>
         </configuration>
       </plugin>
@@ -988,12 +992,15 @@
           <execution>
             <phase>process-classes</phase>
             <goals>
-              <goal>java</goal>
+              <goal>exec</goal>
             </goals>
             <configuration>
-              <classpathScope>compile</classpathScope>
-              <mainClass>com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator</mainClass>
+              <executable>java</executable>
               <arguments>
+                <argument>--enable-preview</argument>
+                <argument>-classpath</argument>
+                <classpath/>
+                <argument>com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator</argument>
                 <argument>
                   ${project.build.sourceDirectory}/com/puppycrawl/tools/checkstyle/api/TokenTypes.java
                 </argument>
@@ -1768,6 +1775,7 @@
         <artifactId>maven-failsafe-plugin</artifactId>
         <version>3.5.4</version>
         <configuration>
+          <argLine>--enable-preview</argLine>
           <includes>
             <include>com/google/**/*.java</include>
             <include>org/checkstyle/**/*.java</include>
@@ -1806,6 +1814,7 @@
             </java.awt.graphicsenv>
           </systemPropertyVariables>
           <argLine>
+            --enable-preview
             --add-exports=java.desktop/java.awt=ALL-UNNAMED
             --add-exports=java.desktop/java.awt.peer=ALL-UNNAMED
             --add-exports=java.desktop/sun.awt.image=ALL-UNNAMED
@@ -2208,6 +2217,9 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <additionalOptions>--enable-preview</additionalOptions>
+        </configuration>
         <reportSets>
           <reportSet>
             <id>default</id>

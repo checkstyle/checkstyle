@@ -8,6 +8,12 @@ jobs:
 
     steps:
       - checkout
+
+      - run:
+          name: Enable Java preview
+          command: |
+            echo 'export JAVA_TOOL_OPTIONS="--enable-preview"' >> $BASH_ENV
+
       - run:
           name: Print versions
           command: |
@@ -49,6 +55,12 @@ jobs:
           name: Restore Maven repo and wrapper cache
           keys:
             - mvn-cache-{{ checksum "pom.xml" }}
+
+      - run:
+          name: Enable Java preview
+          command: |
+            echo 'export JAVA_TOOL_OPTIONS="--enable-preview"' >> $BASH_ENV
+
       - run:
           command: << parameters.command >>
           no_output_timeout: << parameters.no_output_timeout >>
@@ -70,6 +82,12 @@ jobs:
       - image: << parameters.image-name >>
     steps:
       - checkout
+
+      - run:
+          name: Enable Java preview
+          command: |
+            echo 'export JAVA_TOOL_OPTIONS="--enable-preview"' >> $BASH_ENV
+
       - run:
           name: run << parameters.command >>
           command: |
