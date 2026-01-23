@@ -303,7 +303,6 @@
       <Class name="com.puppycrawl.tools.checkstyle.PackageObjectFactory"/>
       <Class name="com.puppycrawl.tools.checkstyle.XmlLoader"/>
       <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
-      <Class name="com.puppycrawl.tools.checkstyle.filters.CsvFilterElement"/>
     </Or>
     <Bug pattern="CT_CONSTRUCTOR_THROW"/>
   </Match>
