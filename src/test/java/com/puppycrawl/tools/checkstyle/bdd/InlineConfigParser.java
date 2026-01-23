@@ -1385,7 +1385,7 @@ public final class InlineConfigParser {
         try {
             retVal = TestUtil.getInternalState(checkInstance, propertyName, Object.class);
         }
-        catch (IllegalStateException exc) {
+        catch (IllegalStateException _) {
             retVal = null;
         }
         return retVal;

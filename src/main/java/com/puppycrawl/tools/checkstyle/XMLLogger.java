@@ -317,7 +317,7 @@ public final class XMLLogger
                         ent.substring(prefixLength, ent.length() - 1), radix);
                     reference = true;
                 }
-                catch (final NumberFormatException ignored) {
+                catch (final NumberFormatException _) {
                     reference = false;
                 }
             }

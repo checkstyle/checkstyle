@@ -1226,7 +1226,7 @@ public final class SiteUtil {
                 result.trySetAccessible();
                 break;
             }
-            catch (NoSuchFieldException ignored) {
+            catch (NoSuchFieldException _) {
                 currentClass = currentClass.getSuperclass();
             }
         }
