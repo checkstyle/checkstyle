@@ -48,16 +48,16 @@ public class JavadocVariableCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-
     public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
+
     /**
      * Specify the set of access modifiers used to determine which fields should be checked.
-     *  This includes both explicitly declared modifiers and implicit ones, such as package-private
-     *  for fields without an explicit modifier. It also accounts for special cases where fields
-     *  have implicit modifiers, such as {@code public static final} for interface fields and
-     *  {@code public static} for enum constants, or where the nesting types accessibility is more
-     *  restrictive and hides the nested field.
-     *  Only fields matching the specified modifiers will be analyzed.
+     * This includes both explicitly declared modifiers and implicit ones, such as package-private
+     * for fields without an explicit modifier. It also accounts for special cases where fields
+     * have implicit modifiers, such as {@code public static final} for interface fields and
+     * {@code public static} for enum constants, or where the nesting types accessibility is more
+     * restrictive and hides the nested field.
+     * Only fields matching the specified modifiers will be analyzed.
      */
     private AccessModifierOption[] accessModifiers = {
         AccessModifierOption.PUBLIC,
@@ -177,29 +177,94 @@ public class JavadocVariableCheck
     /**
      * A derivative of {@link CheckUtil#getAccessModifierFromModifiersToken(DetailAST)} that
      * considers enum definitions' visibility when evaluating the accessibility of an enum
-     * constant.
+     * constant, and also considers class/interface visibility when evaluating the accessibility
+     * of a field.
      * <br>
      * <a href="https://github.com/checkstyle/checkstyle/pull/16787/files#r2073671898">Implemented
      * separately</a> to reduce scope of fix for
      * <a href="https://github.com/checkstyle/checkstyle/issues/16786">issue #16786</a> until a
      * wider solution can be developed.
      *
-     * @param ast the token of the method/constructor.
-     * @return the access modifier of the method/constructor.
+     * @param ast the token of the method/constructor/field.
+     * @return the access modifier of the method/constructor/field.
      */
     public static AccessModifierOption getAccessModifierFromModifiersTokenWithPrivateEnumSupport(
             DetailAST ast) {
-        // In some scenarios we want to investigate a parent AST instead
-        DetailAST selectedAst = ast;
+        final AccessModifierOption declaredModifier =
+                CheckUtil.getAccessModifierFromModifiersToken(ast);
+        final AccessModifierOption result;
 
-        if (selectedAst.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
-            // Enum constants don't have modifiers
-            // implicitly public but validate against parent(s)
-            while (selectedAst.getType() != TokenTypes.ENUM_DEF) {
-                selectedAst = selectedAst.getParent();
-            }
+        if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
+            result = declaredModifier;
+        }
+        else {
+            final AccessModifierOption parentModifier = getParentClassModifier(ast);
+            result = getMoreRestrictive(declaredModifier, parentModifier);
         }
 
-        return CheckUtil.getAccessModifierFromModifiersToken(selectedAst);
+        return result;
+    }
+
+    /**
+     * Gets the access modifier of the parent class/interface/enum containing the given field.
+     * For nested classes, finds the most restrictive access modifier among all ancestor
+     * class-like definitions, excluding the top-level class.
+     *
+     * @param ast the field AST node.
+     * @return the access modifier of the parent class/interface/enum.
+     */
+    private static AccessModifierOption getParentClassModifier(DetailAST ast) {
+        AccessModifierOption mostRestrictive = AccessModifierOption.PUBLIC;
+        DetailAST parent = ast;
+
+        while (parent != null) {
+            final int type = parent.getType();
+            if ((type == TokenTypes.CLASS_DEF
+                    || type == TokenTypes.INTERFACE_DEF
+                    || type == TokenTypes.ENUM_DEF
+                    || type == TokenTypes.RECORD_DEF)
+                    && parent.getParent().getType() == TokenTypes.OBJBLOCK) {
+                final AccessModifierOption parentModifier =
+                    CheckUtil.getAccessModifierFromModifiersToken(parent);
+                mostRestrictive = getMoreRestrictive(mostRestrictive, parentModifier);
+            }
+
+            parent = parent.getParent();
+        }
+
+        return mostRestrictive;
+    }
+
+    /**
+     * Returns the more restrictive of two access modifiers.
+     * Order from least to most restrictive: PUBLIC, PROTECTED, PACKAGE, PRIVATE.
+     *
+     * @param modifier1 the first access modifier.
+     * @param modifier2 the second access modifier.
+     * @return the more restrictive access modifier.
+     */
+    private static AccessModifierOption getMoreRestrictive(
+            AccessModifierOption modifier1,
+            AccessModifierOption modifier2) {
+
+        final AccessModifierOption result;
+
+        if (modifier1 == AccessModifierOption.PRIVATE
+                || modifier2 == AccessModifierOption.PRIVATE) {
+            result = AccessModifierOption.PRIVATE;
+        }
+        else if (modifier1 == AccessModifierOption.PACKAGE
+                || modifier2 == AccessModifierOption.PACKAGE) {
+            result = AccessModifierOption.PACKAGE;
+        }
+        else if (modifier1 == AccessModifierOption.PROTECTED
+                || modifier2 == AccessModifierOption.PROTECTED) {
+            result = AccessModifierOption.PROTECTED;
+        }
+        else {
+            result = AccessModifierOption.PUBLIC;
+        }
+
+        return result;
     }
 }
