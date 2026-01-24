@@ -246,7 +246,6 @@
   <Match>
     <!-- Till https://github.com/checkstyle/checkstyle/issues/13351 -->
     <Or>
-      <Class name="com.puppycrawl.tools.checkstyle.ConfigurationLoader$InternalLoader"/>
       <Class name="com.puppycrawl.tools.checkstyle.utils.CheckUtil"/>
       <Class name="com.puppycrawl.tools.checkstyle.utils.ScopeUtil"/>
     </Or>
