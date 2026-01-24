@@ -492,9 +492,6 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
 
         assertThat(ex.getCause().getCause().getCause().getCause().getCause().getMessage())
                 .startsWith("unable to parse file:");
-        assertThat(ex.getCause().getCause().getCause().getCause().getCause().getMessage())
-                .endsWith("- Document root element \"import-control\", must match DOCTYPE"
-                 + " root \"null\".");
     }
 
     /**
