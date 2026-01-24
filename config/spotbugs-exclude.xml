@@ -248,9 +248,9 @@
     <Bug pattern="CNC_COLLECTION_NAMING_CONFUSION"/>
   </Match>
   <Match>
-    <!-- Till https://github.com/checkstyle/checkstyle/issues/13351 -->
     <Or>
-      <Class name="com.puppycrawl.tools.checkstyle.ConfigurationLoader$InternalLoader"/>
+      <!-- These are api that we can not change it to use optional
+       as it will affect external users -->
       <Class name="com.puppycrawl.tools.checkstyle.utils.CheckUtil"/>
       <Class name="com.puppycrawl.tools.checkstyle.utils.ScopeUtil"/>
     </Or>
