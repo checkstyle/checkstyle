@@ -308,18 +308,3 @@ workflows:
           name: "jdk21-package-site"
           image-name: *cs_img
           command: "./.ci/validation.sh package-site"
-
-  openrewrite:
-    jobs:
-      - validate-with-maven-script:
-          name: "openrewrite-recipes"
-          image-name: "cimg/openjdk:21.0"
-          command: "./.ci/validation.sh openrewrite-recipes"
-          no_output_timeout: 15m
-
-  spotless:
-    jobs:
-      - validate-with-maven-script:
-          name: spotless
-          image-name: "cimg/openjdk:21.0"
-          command: "./.ci/validation.sh spotless"

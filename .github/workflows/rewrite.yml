@@ -1,0 +1,59 @@
+name: Rewrite
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: '*'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rewrite:
+    if: github.repository == 'checkstyle/checkstyle'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        with:
+          java-version: 21
+          distribution: 'temurin'
+
+      - name: Install Groovy using SDKMAN
+        run: |
+          curl --fail-with-body -s "https://get.sdkman.io" | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install groovy 5.0.0
+          echo "GROOVY_HOME=$HOME/.sdkman/candidates/groovy/current" >> "$GITHUB_ENV"
+          echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
+
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup local maven cache
+        uses: actions/cache@v5
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+
+      - name: Rewrite
+        run: |
+          echo "Cloning and building OpenRewrite recipes..."
+          PROJECT_ROOT="$(pwd)"
+          export MAVEN_OPTS="-Xmx4g -Xms2g"
+          cd /tmp
+          git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
+          cd checkstyle-openrewrite-recipes
+          ./mvnw -e --no-transfer-progress clean install -DskipTests
+          cd "$PROJECT_ROOT"
+          echo "Cleanup unused."
+          rm -rf /tmp/checkstyle-openrewrite-recipes
+          echo "Running Checkstyle validation to get report for openrewrite..."
+          set +e
+          ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
+          set -e
+          echo "Running OpenRewrite recipes..."
+          ./mvnw -e --no-transfer-progress rewrite:dryRun -Drewrite.recipeChangeLogLevel=INFO
