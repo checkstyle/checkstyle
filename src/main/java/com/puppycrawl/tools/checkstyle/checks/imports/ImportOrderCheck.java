@@ -481,9 +481,9 @@ public class ImportOrderCheck
                     // or
                     // previous static but current is non-static (under)
                     previous
-                        ||
                         // current and previous static or current and
                         // previous non-static
+                        ||
                         lastImportStatic == isStatic
                     && isWrongOrder(name, isStatic);
 
