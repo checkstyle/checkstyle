@@ -551,11 +551,11 @@ public final class ConfigurationLoader {
                     configStack.pop();
 
                 // get severity attribute if it exists
-                SeverityLevel level = null;
+                Optional<SeverityLevel> level = Optional.empty();
                 if (containsAttribute(recentModule, SEVERITY)) {
                     try {
                         final String severity = recentModule.getProperty(SEVERITY);
-                        level = SeverityLevel.getInstance(severity);
+                        level = Optional.of(SeverityLevel.getInstance(severity));
                     }
                     catch (final CheckstyleException exc) {
                         // -@cs[IllegalInstantiation] SAXException is in the overridden
@@ -569,11 +569,10 @@ public final class ConfigurationLoader {
                 // omit this module if these should be omitted and the module
                 // has the severity 'ignore'
                 final boolean omitModule = omitIgnoredModules
-                    && level == SeverityLevel.IGNORE;
+                    && level.isPresent() && level.get() == SeverityLevel.IGNORE;
 
                 if (omitModule && !configStack.isEmpty()) {
-                    final DefaultConfiguration parentModule =
-                        configStack.peek();
+                    final DefaultConfiguration parentModule = configStack.peek();
                     parentModule.removeChild(recentModule);
                 }
             }
