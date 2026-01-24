@@ -493,8 +493,9 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         assertThat(ex.getCause().getCause().getCause().getCause().getCause().getMessage())
                 .startsWith("unable to parse file:");
         assertThat(ex.getCause().getCause().getCause().getCause().getCause().getMessage())
-                .endsWith("- Document root element \"import-control\", must match DOCTYPE"
-                 + " root \"null\".");
+                .endsWith("unable to parse file:/home/youssef/checkstyle/"
+                        + "src/test/resources/com/puppycrawl/tools/checkstyle/checks"
+                        + "/imports/importcontrol/InputImportControlTestException.xml");
     }
 
     /**

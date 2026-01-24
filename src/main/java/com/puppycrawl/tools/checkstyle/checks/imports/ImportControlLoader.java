@@ -271,8 +271,7 @@ public final class ImportControlLoader extends XmlLoader {
             return loader.getRoot();
         }
         catch (ParserConfigurationException | SAXException exc) {
-            throw new CheckstyleException("unable to parse " + uri
-                    + " - " + exc.getMessage(), exc);
+            throw new CheckstyleException("unable to parse " + uri, exc);
         }
         catch (IOException exc) {
             throw new CheckstyleException("unable to read " + uri, exc);
