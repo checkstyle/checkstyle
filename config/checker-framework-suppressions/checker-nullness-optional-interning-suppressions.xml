@@ -8591,17 +8591,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/MetadataGeneratorUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter message of CheckstyleException constructor.</message>
-    <lineContent>throw new CheckstyleException(macroException.getMessage(), macroException);</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/MetadataGeneratorUtil.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter propertyJavadoc of MetadataGeneratorUtil.getPropertyDescription.</message>
     <lineContent>javadocs.get(property));</lineContent>
     <details>
