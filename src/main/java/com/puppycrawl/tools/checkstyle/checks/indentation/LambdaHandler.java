@@ -31,6 +31,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  */
 public class LambdaHandler extends AbstractExpressionHandler {
     /**
+     * Indentation error message key for lambda arguments.
+     */
+    private static final String ARGUMENTS_KEY = "arguments";
+
+    /**
      * Checks whether the lambda is correctly indented, this variable get its value from checking
      * the lambda handler's indentation, and it is being used in aligning the lambda's children.
      * A true value depicts lambda is correctly aligned without giving any errors.
@@ -59,7 +64,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
             // avoid false positives. When "forceStrictCondition" is off, we allow indents
             // larger than expected (e.g., 12 instead of 6 or 8). These larger indents are
             // accepted but not recorded, so child indent suggestions may be inaccurate.
-            // Adding the actual line start ensures the tool recognizes the lambda’s real indent
+            // Adding the actual line start ensures the tool recognizes the lambda's real indent
             // context.
             childIndent = IndentLevel.addAcceptable(childIndent, getLineStart(getMainAst()));
 
@@ -128,28 +133,165 @@ public class LambdaHandler extends AbstractExpressionHandler {
         // rule lambda (i.e. 'case ONE -> 1;')
         final boolean isSwitchRuleLambda = firstChild == null;
 
-        if (!isSwitchRuleLambda
-            && getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {
+        checkFirstChildIndentation(firstChild, isSwitchRuleLambda);
+
+        // If the "->" is the first element on the line, assume line wrapping.
+        final int mainAstColumnNo = expandedTabsColumnNo(mainAst);
+        final boolean isLineWrappedLambda = mainAstColumnNo == getLineStart(mainAst);
+
+        if (isLineWrappedLambda) {
+            checkLineWrappedLambda(isSwitchRuleLambda, mainAstColumnNo);
+        }
+
+        checkLambdaBody(mainAst, isSwitchRuleLambda, isLineWrappedLambda);
+
+        checkSwitchRuleLambdaNextSibling(mainAst, isSwitchRuleLambda, isLineWrappedLambda);
+    }
+
+    /**
+     * Checks the indentation of the first child of the lambda expression.
+     *
+     * @param firstChild the first child of the lambda
+     * @param isSwitchRuleLambda whether this is a switch rule lambda
+     */
+    private void checkFirstChildIndentation(DetailAST firstChild, boolean isSwitchRuleLambda) {
+        if (isSwitchRuleLambda) {
+            return;
+        }
+
+        if (getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {
             final int firstChildColumnNo = expandedTabsColumnNo(firstChild);
             final IndentLevel level = getIndent();
 
             if (isNonAcceptableIndent(firstChildColumnNo, level)) {
                 isLambdaCorrectlyIndented = false;
-                logError(firstChild, "arguments", firstChildColumnNo, level);
+                logError(firstChild, ARGUMENTS_KEY, firstChildColumnNo, level);
             }
         }
+    }
 
-        // If the "->" is the first element on the line, assume line wrapping.
-        final int mainAstColumnNo = expandedTabsColumnNo(mainAst);
-        final boolean isLineWrappedLambda = mainAstColumnNo == getLineStart(mainAst);
+    /**
+     * Checks the indentation of the lambda body.
+     *
+     * @param mainAst the main lambda AST node
+     * @param isSwitchRuleLambda whether this is a switch rule lambda
+     * @param isLineWrappedLambda whether the lambda is line-wrapped
+     */
+    private void checkLambdaBody(DetailAST mainAst, boolean isSwitchRuleLambda,
+                                  boolean isLineWrappedLambda) {
+        if (isSwitchRuleLambda) {
+            return;
+        }
+
+        final DetailAST lambdaBody = mainAst.getLastChild();
+        if (lambdaBody.getType() == TokenTypes.SLIST) {
+            return;
+        }
+
+        final int bodyType = lambdaBody.getType();
+        final int actualBodyType = getActualBodyType(lambdaBody, bodyType);
+
+        if (shouldCheckBodyIndentation(actualBodyType)) {
+            checkNonBlockLambdaBodyIndentation(mainAst, lambdaBody, isLineWrappedLambda);
+        }
+    }
+
+    /**
+     * Gets the actual body type, unwrapping EXPR nodes if necessary.
+     *
+     * @param lambdaBody the lambda body AST node
+     * @param bodyType the initial body type
+     * @return the actual body type
+     */
+    private int getActualBodyType(DetailAST lambdaBody, int bodyType) {
+        if (bodyType == TokenTypes.EXPR) {
+            return lambdaBody.getFirstChild().getType();
+        }
+        return bodyType;
+    }
+
+    /**
+     * Determines whether the body indentation should be checked based on its type.
+     *
+     * @param actualBodyType the actual type of the lambda body
+     * @return true if indentation should be checked
+     */
+    private boolean shouldCheckBodyIndentation(int actualBodyType) {
+        return actualBodyType != TokenTypes.LITERAL_NEW;
+    }
+
+    /**
+     * Checks the indentation of non-block lambda bodies.
+     *
+     * @param mainAst the main lambda AST node
+     * @param lambdaBody the lambda body AST node
+     * @param isLineWrappedLambda whether the lambda is line-wrapped
+     */
+    private void checkNonBlockLambdaBodyIndentation(DetailAST mainAst, DetailAST lambdaBody,
+                                                     boolean isLineWrappedLambda) {
+        final DetailAST firstBodyToken = getFirstAstNode(lambdaBody);
+        IndentLevel bodyIndent = getIndent();
+
+        if (isLambdaCorrectlyIndented) {
+            bodyIndent = calculateBodyIndent(mainAst, bodyIndent, isLineWrappedLambda);
+        }
+
+        validateBodyIndentation(firstBodyToken, bodyIndent);
+    }
+
+    /**
+     * Calculates the expected indentation level for the lambda body.
+     *
+     * @param mainAst the main lambda AST node
+     * @param bodyIndent the base body indentation
+     * @param isLineWrappedLambda whether the lambda is line-wrapped
+     * @return the calculated indentation level
+     */
+    private IndentLevel calculateBodyIndent(DetailAST mainAst, IndentLevel bodyIndent,
+                                            boolean isLineWrappedLambda) {
+        IndentLevel result = IndentLevel.addAcceptable(bodyIndent, getLineStart(mainAst));
+        result = new IndentLevel(result, getIndentCheck().getLineWrappingIndentation());
+
         if (isLineWrappedLambda) {
-            checkLineWrappedLambda(isSwitchRuleLambda, mainAstColumnNo);
+            final int additionalIndent = getIndent().getFirstIndentLevel()
+                + getIndentCheck().getBasicOffset();
+            result = IndentLevel.addAcceptable(result, additionalIndent);
+        }
+
+        return result;
+    }
+
+    /**
+     * Validates the indentation of the first token in the lambda body.
+     *
+     * @param firstBodyToken the first token in the lambda body
+     * @param bodyIndent the expected indentation level
+     */
+    private void validateBodyIndentation(DetailAST firstBodyToken, IndentLevel bodyIndent) {
+        final int firstBodyLine = firstBodyToken.getLineNo();
+        final int firstBodyCol = expandedTabsColumnNo(firstBodyToken);
+        final int firstBodyLineStart = getLineStart(firstBodyLine);
+
+        if (firstBodyCol == firstBodyLineStart && !bodyIndent.isAcceptable(firstBodyLineStart)) {
+            logError(firstBodyToken, ARGUMENTS_KEY, firstBodyLineStart, bodyIndent);
+        }
+    }
+
+    /**
+     * Checks the next sibling for switch rule lambda expressions.
+     *
+     * @param mainAst the main lambda AST node
+     * @param isSwitchRuleLambda whether this is a switch rule lambda
+     * @param isLineWrappedLambda whether the lambda is line-wrapped
+     */
+    private void checkSwitchRuleLambdaNextSibling(DetailAST mainAst, boolean isSwitchRuleLambda,
+                                                   boolean isLineWrappedLambda) {
+        if (!isSwitchRuleLambda) {
+            return;
         }
 
         final DetailAST nextSibling = mainAst.getNextSibling();
-
-        if (isSwitchRuleLambda
-                && nextSibling.getType() == TokenTypes.EXPR
+        if (nextSibling.getType() == TokenTypes.EXPR
                 && !TokenUtil.areOnSameLine(mainAst, nextSibling)) {
             // Likely a single-statement switch rule lambda without curly braces, e.g.:
             // case ONE ->
@@ -184,9 +326,6 @@ public class LambdaHandler extends AbstractExpressionHandler {
         final DetailAST mainAst = getMainAst();
 
         if (isSwitchRuleLambda) {
-            // We check the indentation of the case literal or default literal
-            // on the previous line and use that to determine the correct
-            // indentation for the line wrapped "->"
             final DetailAST previousSibling = mainAst.getPreviousSibling();
             final int previousLineStart = getLineStart(previousSibling);
 
