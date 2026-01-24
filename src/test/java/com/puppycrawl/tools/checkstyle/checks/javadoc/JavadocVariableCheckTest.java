@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocVariableCheckTest
     extends AbstractModuleTestSupport {
@@ -187,20 +188,12 @@ public class JavadocVariableCheckTest
             "14:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "24:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "25:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "36:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "37:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "48:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "49:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "61:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "62:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "72:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "73:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "84:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "85:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "96:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "97:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "108:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "109:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "130:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
@@ -215,8 +208,12 @@ public class JavadocVariableCheckTest
             "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "26:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "36:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "37:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "38:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "39:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "48:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "49:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "50:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "51:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "63:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -225,8 +222,12 @@ public class JavadocVariableCheckTest
             "75:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "86:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "87:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "96:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "97:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "98:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "99:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "108:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "109:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "110:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "111:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "121:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -382,5 +383,94 @@ public class JavadocVariableCheckTest
         verifyWithInlineConfigParser(
             getPath("InputJavadocVariableAboveComment.java"),
             expected);
+    }
+
+    @Test
+    public void testPackagePrivateClassPublicFields() throws Exception {
+        final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "22:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "38:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocVariablePackagePrivateClass.java"),
+            expected);
+    }
+
+    @Test
+    public void testPublicFieldInPrivateClass() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocVariableParentTraversal.java"),
+                expected);
+    }
+
+    @Test
+    public void testNestedClassFieldTraversal() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocVariableNestedTraversal.java"),
+                expected);
+    }
+
+    @Test
+    public void testEnumConstantAccessModifier() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocVariableEnumConstantAccessModifier.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordParentRestriction() throws Exception {
+        final String[] expected = {
+            "20:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocVariableRecordParent.java"),
+                expected);
+    }
+
+    @Test
+    public void testEnumFieldParentRestriction() throws Exception {
+        final String[] expected = {
+            "21:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "26:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocVariableEnumFieldParent.java"),
+                expected);
+    }
+
+    @Test
+    public void testClassFieldParentRestriction() throws Exception {
+        final String[] expected = {
+            "21:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocVariableClassFieldParent.java"),
+                expected);
+    }
+
+    @Test
+    public void testInterfaceNestingParentRestriction() throws Exception {
+        final String[] expected = {
+            "23:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocVariableInterfaceNesting.java"),
+                expected);
+    }
+
+    @Test
+    public void testPrivateFieldVisibilityRestriction() throws Exception {
+        final String[] expected = {
+            "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "19:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocVariablePrivate.java"),
+                expected);
     }
 }
