@@ -96,9 +96,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 .that(exc.getMessage())
                 .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                    + "metrics.ClassFanOutComplexityCheck - "
-                    + "Cannot set property 'excludedPackages' to "
-                    + "'com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.'");
+                    + "metrics.ClassFanOutComplexityCheck");
             assertWithMessage("Invalid exception message,")
                 .that(exc.getCause().getCause().getCause().getCause().getMessage())
                 .isEqualTo("the following values are not valid identifiers: ["
