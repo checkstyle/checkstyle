@@ -244,10 +244,6 @@
     <Bug pattern="ITC_INHERITANCE_TYPE_CHECKING"/>
   </Match>
   <Match>
-    <!-- Till https://github.com/checkstyle/checkstyle/issues/17293 -->
-    <Bug pattern="CNC_COLLECTION_NAMING_CONFUSION"/>
-  </Match>
-  <Match>
     <!-- Till https://github.com/checkstyle/checkstyle/issues/13351 -->
     <Or>
       <Class name="com.puppycrawl.tools.checkstyle.ConfigurationLoader$InternalLoader"/>
