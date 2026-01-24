@@ -94,7 +94,7 @@ public class AbstractViolationReporterTest {
                 .that(messages)
                 .hasSize(1);
         assertWithMessage("violation differs from expected")
-                .that(messages.first().getViolation())
+                .that(messages.getFirst().getViolation())
                 .isEqualTo("This is a custom violation.");
     }
 
@@ -112,7 +112,7 @@ public class AbstractViolationReporterTest {
                 .hasSize(1);
 
         assertWithMessage("violation differs from expected")
-                .that(messages.first().getViolation())
+                .that(messages.getFirst().getViolation())
                 .isEqualTo("This is a custom violation with TestParam.");
     }
 
