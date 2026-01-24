@@ -4187,6 +4187,32 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             getPath("InputIndentationFirstTokenSelection.java"), expected);
     }
 
+    @Test
+    public void testIndentationContinuationLines() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("tabWidth", "4");
+
+        final String fileName = getPath("InputIndentationContinuationLines.java");
+
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_CHILD_ERROR, "+", 4, 8),      // + b
+            "17:5: " + getCheckMessage(MSG_CHILD_ERROR, "+", 4, 8),      // + c
+            "22:5: " + getCheckMessage(MSG_CHILD_ERROR, "lambda", 4, 8), // after -> in test_arrow
+            "27:5: " + getCheckMessage(MSG_CHILD_ERROR, "1", 4, 8),      // arg in test_comma
+            "28:5: " + getCheckMessage(MSG_CHILD_ERROR, "2", 4, 8),      // arg in test_comma
+            "29:5: " + getCheckMessage(MSG_CHILD_ERROR, "3", 4, 8),      // arg in test_comma
+            "35:7: " + getCheckMessage(MSG_CHILD_ERROR, "+", 6, 8),      // + c in sum2
+            "40:7: " + getCheckMessage(MSG_CHILD_ERROR, "lambda", 6, 8), // after -> in testArrow
+        };
+
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
     /**
      * Test to kill Pitest mutation by verifying internal state is cleared.
      *

@@ -27,9 +27,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Handler for lambda expressions.
- *
  */
 public class LambdaHandler extends AbstractExpressionHandler {
+
     /**
      * Checks whether the lambda is correctly indented, this variable get its value from checking
      * the lambda handler's indentation, and it is being used in aligning the lambda's children.
@@ -55,23 +55,13 @@ public class LambdaHandler extends AbstractExpressionHandler {
     public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
         IndentLevel childIndent = getIndent();
         if (isLambdaCorrectlyIndented) {
-            // If the lambda is correctly indented, include its line start as acceptable to
-            // avoid false positives. When "forceStrictCondition" is off, we allow indents
-            // larger than expected (e.g., 12 instead of 6 or 8). These larger indents are
-            // accepted but not recorded, so child indent suggestions may be inaccurate.
-            // Adding the actual line start ensures the tool recognizes the lambda’s real indent
-            // context.
             childIndent = IndentLevel.addAcceptable(childIndent, getLineStart(getMainAst()));
 
             if (isSameLineAsSwitch(child.getMainAst()) || child instanceof SlistHandler) {
-                // Lambda with block body (enclosed in {})
                 childIndent = IndentLevel.addAcceptable(childIndent,
                     getLineStart(getMainAst().getFirstChild()));
             }
             else {
-                // Single-expression lambda (no {} block):
-                // assume line wrapping and add additional indentation
-                // for the statement in the next line.
                 childIndent = new IndentLevel(childIndent,
                         getIndentCheck().getLineWrappingIndentation());
             }
@@ -116,7 +106,14 @@ public class LambdaHandler extends AbstractExpressionHandler {
             result = level;
         }
 
-        return result;
+        IndentLevel level = new IndentLevel(getLineStart(parent));
+
+        final DetailAST firstChild = getMainAst().getFirstChild();
+        if (getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {
+            level = new IndentLevel(level, getIndentCheck().getLineWrappingIndentation());
+        }
+
+        return level;
     }
 
     @Override
@@ -124,8 +121,6 @@ public class LambdaHandler extends AbstractExpressionHandler {
         final DetailAST mainAst = getMainAst();
         final DetailAST firstChild = mainAst.getFirstChild();
 
-        // If the "->" has no children, it is a switch
-        // rule lambda (i.e. 'case ONE -> 1;')
         final boolean isSwitchRuleLambda = firstChild == null;
 
         if (!isSwitchRuleLambda
@@ -135,15 +130,60 @@ public class LambdaHandler extends AbstractExpressionHandler {
 
             if (isNonAcceptableIndent(firstChildColumnNo, level)) {
                 isLambdaCorrectlyIndented = false;
-                logError(firstChild, "arguments", firstChildColumnNo, level);
+                // logError(firstChild, "arguments", firstChildColumnNo, level);
+                getIndentCheck().indentationLog(firstChild, IndentationCheck.MSG_ERROR,
+                    "lambda arguments", firstChildColumnNo, level);
             }
         }
 
-        // If the "->" is the first element on the line, assume line wrapping.
         final int mainAstColumnNo = expandedTabsColumnNo(mainAst);
         final boolean isLineWrappedLambda = mainAstColumnNo == getLineStart(mainAst);
+
         if (isLineWrappedLambda) {
             checkLineWrappedLambda(isSwitchRuleLambda, mainAstColumnNo);
+        }
+
+        if (!isSwitchRuleLambda) {
+            final DetailAST lambdaBody = mainAst.getLastChild();
+            final DetailAST firstBodyToken = lambdaBody == null ? null : getFirstAstNode(lambdaBody);
+
+            if (lambdaBody != null
+                    && lambdaBody.getType() != TokenTypes.SLIST
+                    && firstBodyToken != null
+                    && !TokenUtil.areOnSameLine(mainAst, firstBodyToken)) {
+
+                final int bodyType = lambdaBody.getType();
+                int actualBodyType = bodyType;
+                if (bodyType == TokenTypes.EXPR && lambdaBody.getFirstChild() != null) {
+                    actualBodyType = lambdaBody.getFirstChild().getType();
+                }
+                final boolean isHandledType = actualBodyType == TokenTypes.LITERAL_NEW;
+
+                if (!isHandledType) {
+                    IndentLevel bodyIndent = getIndent();
+
+                    if (isLambdaCorrectlyIndented) {
+                        bodyIndent = IndentLevel.addAcceptable(bodyIndent, getLineStart(mainAst));
+                        bodyIndent = new IndentLevel(bodyIndent,
+                            getIndentCheck().getLineWrappingIndentation());
+                        if (isLineWrappedLambda) {
+                            bodyIndent = IndentLevel.addAcceptable(bodyIndent,
+                                getIndent().getFirstIndentLevel() + getIndentCheck().getBasicOffset());
+                        }
+                    }
+
+                    final int firstBodyLine = firstBodyToken.getLineNo();
+                    final int firstBodyCol = expandedTabsColumnNo(firstBodyToken);
+                    final int firstBodyLineStart = getLineStart(firstBodyLine);
+                    if (firstBodyCol == firstBodyLineStart
+                            && !bodyIndent.isAcceptable(firstBodyLineStart)) {
+                        getIndentCheck().indentationLog(firstBodyToken, IndentationCheck.MSG_CHILD_ERROR,
+                            "child", firstBodyLineStart, bodyIndent);
+                    }
+
+                    checkExpressionSubtree(lambdaBody, bodyIndent, true, false);
+                }
+            }
         }
 
         final DetailAST nextSibling = mainAst.getNextSibling();
@@ -151,9 +191,6 @@ public class LambdaHandler extends AbstractExpressionHandler {
         if (isSwitchRuleLambda
                 && nextSibling.getType() == TokenTypes.EXPR
                 && !TokenUtil.areOnSameLine(mainAst, nextSibling)) {
-            // Likely a single-statement switch rule lambda without curly braces, e.g.:
-            // case ONE ->
-            //      1;
             checkSingleStatementSwitchRuleIndentation(isLineWrappedLambda);
         }
     }
@@ -184,9 +221,6 @@ public class LambdaHandler extends AbstractExpressionHandler {
         final DetailAST mainAst = getMainAst();
 
         if (isSwitchRuleLambda) {
-            // We check the indentation of the case literal or default literal
-            // on the previous line and use that to determine the correct
-            // indentation for the line wrapped "->"
             final DetailAST previousSibling = mainAst.getPreviousSibling();
             final int previousLineStart = getLineStart(previousSibling);
 
