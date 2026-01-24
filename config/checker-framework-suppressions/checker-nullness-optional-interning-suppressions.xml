@@ -6514,6 +6514,8 @@
     <lineContent>private Pattern ignoreNamePattern;</lineContent>
   </checkerFrameworkError>
 
+
+
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
