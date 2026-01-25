@@ -22,8 +22,7 @@ public class InputVariableDeclarationUsageDistanceGeneral4 {
         <T> void xx(List<T> m){}
     }
     public void method9() {
-        // until https://github.com/checkstyle/checkstyle/issues/13011
-        Integer z = 5; // violation 'Distance .* is 3.'
+        Integer z = 5; // violation 'Distance .* is 2.'
         Iterator<Integer> mn = new HashSet<Integer>().iterator();
         class BClass extends Parent {
             Boolean h = false;

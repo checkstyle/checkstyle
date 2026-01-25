@@ -182,7 +182,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/javadoc/javadocleadingasteriskalign/Example3",
             "checks/javadoc/javadocmethod/Example7",
             "checks/javadoc/javadocmethod/Example8",
-            "checks/javadoc/javadoctagcontinuationindentation/Example4",
             "checks/javadoc/javadocvariable/Example5",
             "checks/metrics/classdataabstractioncoupling/Example11",
             "checks/metrics/classdataabstractioncoupling/Example2",
@@ -207,12 +206,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/naming/localvariablename/Example5",
             "checks/naming/membername/Example2",
             "checks/naming/membername/Example3",
-            "checks/naming/methodname/Example2",
-            "checks/naming/methodname/Example3",
-            "checks/naming/methodname/Example4",
-            "checks/naming/methodname/Example5",
-            "checks/naming/methodname/Example6",
-            "checks/naming/methodname/Example7",
             "checks/naming/parametername/Example2",
             "checks/naming/parametername/Example3",
             "checks/naming/parametername/Example4",
@@ -319,8 +312,11 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithplaintextcommentfilter/Example5",
             "filters/suppresswithplaintextcommentfilter/Example9",
             // No properties in module, multiple very different examples to ease reading
-            "checks/annotation/missingoverrideonrecordaccessor/Example2"
-    );
+            "checks/annotation/missingoverrideonrecordaccessor/Example2",
+            // contains ExampleX constructors
+            "checks/naming/methodname/Example3",
+            "checks/naming/methodname/Example4"
+            );
 
     /**
      * Tests that examples with the same code structure maintain consistency.
