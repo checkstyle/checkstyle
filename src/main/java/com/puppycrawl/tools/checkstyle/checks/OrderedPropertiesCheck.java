@@ -207,9 +207,14 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
 
         /**
          * Returns a copy of the keys.
+         *
+         * @noinspection SynchronizedMethod
+         * @noinspectionreason SynchronizedMethod - synchronized keyword is required
+         *      to override the synchronized keys() method from Hashtable parent class,
+         *      maintaining thread-safety contract
          */
         @Override
-        public Enumeration<Object> keys() {
+        public synchronized Enumeration<Object> keys() {
             return Collections.enumeration(keyList);
         }
 

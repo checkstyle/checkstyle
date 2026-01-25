@@ -79,7 +79,7 @@ public final class MetadataGeneratorUtil {
             }
         }
         catch (MacroExecutionException macroException) {
-            throw new CheckstyleException(macroException.getMessage(), macroException);
+            throw new CheckstyleException("Failed to execute macro", macroException);
         }
     }
 

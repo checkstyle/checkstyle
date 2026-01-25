@@ -262,6 +262,7 @@
       -Xep:MockitoMockClassReference:ERROR
       -Xep:MockitoStubbing:ERROR
       -Xep:NestedOptionals:ERROR
+      -Xep:NullableOptional:ERROR
       -Xep:OptionalOrElseGet:ERROR
       -Xep:PrimitiveComparison:ERROR
       -Xep:RedundantStringConversion:ERROR
@@ -274,13 +275,16 @@
       -Xep:TimeZoneUsage:ERROR
       -Xep:TruthAssertExpected:ERROR
       -Xep:TypeParameterUnusedInFormals:ERROR
+      -Xep:UnsynchronizedOverridesSynchronized:ERROR
       -Xep:UnusedMethod:ERROR
+      -Xep:NullArgumentForNonNullParameter:ERROR
       -Xep:VoidUsed:ERROR
       -Xep:FormatStringShouldUsePlaceholders:ERROR
       -Xep:StatementSwitchToExpressionSwitch:ERROR
       -Xep:StringSplitter:ERROR
       -Xep:JdkObsolete:ERROR
       -Xep:PatternMatchingInstanceof:ERROR
+      -Xep:InconsistentCapitalization:ERROR
       -Xep:UnnecessaryLambda:WARN
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:InlineFormatString:OFF
@@ -613,7 +617,7 @@
         <plugin>
           <groupId>com.diffplug.spotless</groupId>
           <artifactId>spotless-maven-plugin</artifactId>
-          <version>3.1.0</version>
+          <version>3.2.0</version>
           <configuration>
             <java>
               <includes>
@@ -644,7 +648,7 @@
         <plugin>
           <groupId>org.openrewrite.maven</groupId>
           <artifactId>rewrite-maven-plugin</artifactId>
-          <version>6.27.1</version>
+          <version>6.28.0</version>
           <configuration>
             <configLocation>config/rewrite.yml</configLocation>
             <exportDatatables>true</exportDatatables>
@@ -676,17 +680,17 @@
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-migrate-java</artifactId>
-              <version>3.25.0</version>
+              <version>3.26.0</version>
             </dependency>
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-static-analysis</artifactId>
-              <version>2.25.0</version>
+              <version>2.26.0</version>
             </dependency>
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-rewrite</artifactId>
-              <version>0.18.0</version>
+              <version>0.19.0</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -876,8 +880,6 @@
           <exclusionPatterns>
             <!-- until https://github.com/gaul/modernizer-maven-plugin/issues/300 -->
             <exclusionPattern>java/util/Optional.get:.*</exclusionPattern>
-            <!-- until https://github.com/gaul/modernizer-maven-plugin/issues/318 -->
-            <exclusionPattern>java/io/File.*</exclusionPattern>
           </exclusionPatterns>
         </configuration>
         <executions>
@@ -3346,7 +3348,7 @@
                 <param>destroy</param>
               </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>98</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -3592,7 +3594,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>98</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -3718,7 +3720,7 @@
                 <feature>+funmodifiablecollection</feature>
               </features>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>98</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -3901,7 +3903,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>97</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -3964,7 +3966,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>98</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4086,7 +4088,7 @@
                 <param>destroy</param>
               </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>96</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4330,7 +4332,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>98</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4518,7 +4520,7 @@
                 <param>getVersionString</param>
               </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>92</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4576,7 +4578,7 @@
                 <param>com.puppycrawl.tools.checkstyle.PackageNamesLoaderTest</param>
               </targetTests>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>90</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4722,8 +4724,8 @@
               <features>
                 <feature>+funmodifiablecollection</feature>
               </features>
-              <coverageThreshold>99</coverageThreshold>
-              <mutationThreshold>96</mutationThreshold>
+              <coverageThreshold>100</coverageThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4808,7 +4810,7 @@
                 </avoidCallsTo>
               </avoidCallsTo>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>96</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4871,7 +4873,7 @@
                 <param>printVersionToSystemOutput</param>
               </excludedMethods>
               <coverageThreshold>99</coverageThreshold>
-              <mutationThreshold>99</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4989,7 +4991,7 @@
                 </avoidCallsTo>
               </avoidCallsTo>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>98</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -5078,7 +5080,7 @@
                 <param>destroy</param>
               </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>97</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -5148,7 +5150,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>94</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -5211,6 +5213,7 @@
               <excludedClasses>
                 <class>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</class>
                 <class>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</class>
+                <class>com.puppycrawl.tools.checkstyle.utils.WeakReferenceHolder</class>
               </excludedClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.utils.*</param>
@@ -5319,7 +5322,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>96</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -5462,7 +5465,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>98</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>

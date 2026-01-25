@@ -211,8 +211,7 @@ public class MethodParamPadCheckTest
                 .that(exc.getMessage())
                 .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                    + "whitespace.MethodParamPadCheck - "
-                    + "Cannot set property 'option' to 'invalid_option'");
+                    + "whitespace.MethodParamPadCheck");
         }
     }
 
