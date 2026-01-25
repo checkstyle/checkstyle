@@ -244,27 +244,14 @@
     <Bug pattern="ITC_INHERITANCE_TYPE_CHECKING"/>
   </Match>
   <Match>
-    <!-- Till https://github.com/checkstyle/checkstyle/issues/17293 -->
-    <Bug pattern="CNC_COLLECTION_NAMING_CONFUSION"/>
-  </Match>
-  <Match>
-    <!-- Till https://github.com/checkstyle/checkstyle/issues/13351 -->
     <Or>
-      <Class name="com.puppycrawl.tools.checkstyle.ConfigurationLoader$InternalLoader"/>
       <Class name="com.puppycrawl.tools.checkstyle.utils.CheckUtil"/>
       <Class name="com.puppycrawl.tools.checkstyle.utils.ScopeUtil"/>
     </Or>
     <Bug pattern="ENMI_NULL_ENUM_VALUE"/>
   </Match>
   <Match>
-    <!-- Till https://github.com/checkstyle/checkstyle/issues/13351 -->
-    <Or>
-      <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo"/>
-    </Or>
-    <Bug pattern="ENMI_ONE_ENUM_VALUE"/>
-  </Match>
-  <Match>
-    <!-- Till https://github.com/checkstyle/checkstyle/issues/13351 -->
+    <!-- Swing TreeModel API requires passing 'this' as event source -->
     <Or>
       <Class name="com.puppycrawl.tools.checkstyle.gui.ParseTreeTableModel"/>
     </Or>
@@ -298,13 +285,12 @@
     <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR"/>
   </Match>
   <Match>
-    <!-- until https://github.com/checkstyle/checkstyle/issues/14122 -->
+    <!-- external projects inherits from it so it should not be changed  -->
     <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
       <Class name="com.puppycrawl.tools.checkstyle.DefaultLogger"/>
       <Class name="com.puppycrawl.tools.checkstyle.PackageObjectFactory"/>
       <Class name="com.puppycrawl.tools.checkstyle.XmlLoader"/>
-      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
-      <Class name="com.puppycrawl.tools.checkstyle.filters.CsvFilterElement"/>
     </Or>
     <Bug pattern="CT_CONSTRUCTOR_THROW"/>
   </Match>
@@ -316,7 +302,6 @@
   </Match>
 
   <!-- Suppress PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS -->
-  <!-- until https://github.com/checkstyle/checkstyle/issues/16979 -->
   <Match>
     <Class name="com.puppycrawl.tools.checkstyle.utils.JavadocUtil" />
     <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />

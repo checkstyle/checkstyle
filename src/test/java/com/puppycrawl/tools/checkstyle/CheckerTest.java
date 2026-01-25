@@ -561,9 +561,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             assertWithMessage("Error message is not expected")
                 .that(exc.getMessage())
                 .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker"
-                        + " - cannot initialize module " + checkConfig.getName()
-                        + " - Property '$$No such property'"
-                        + " does not exist, please check the documentation");
+                        + " - cannot initialize module " + checkConfig.getName());
         }
     }
 

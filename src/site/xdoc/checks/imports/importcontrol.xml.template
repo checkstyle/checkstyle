@@ -404,6 +404,57 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
+        <p id="Example13-config">
+          To configure the check using an import control file called
+          "${config.folder}/import-control13.xml" for module imports (Java 25+):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example13.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control13-raw">
+          Import control configuration:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control13.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example13-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example13.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example14-config">
+          To configure the check using an import control file with regex for module imports:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example14.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control14-raw">
+          Import control configuration:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control14.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example14-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example14.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
         <h4 id="regex-notes">Notes on regular expressions</h4>
         <p>
           Regular expressions in import rules have to match either Java packages or
