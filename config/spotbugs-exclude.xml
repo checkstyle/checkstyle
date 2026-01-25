@@ -232,7 +232,6 @@
       " />
   </Match>
   <Match>
-    <!-- Till https://github.com/spotbugs/spotbugs/issues/1601 -->
     <Bug pattern="EI_EXPOSE_REP,EI_EXPOSE_REP2"/>
   </Match>
   <Match>
@@ -244,7 +243,6 @@
     <Bug pattern="ITC_INHERITANCE_TYPE_CHECKING"/>
   </Match>
   <Match>
-    <!-- Till https://github.com/checkstyle/checkstyle/issues/13351 -->
     <Or>
       <Class name="com.puppycrawl.tools.checkstyle.utils.CheckUtil"/>
       <Class name="com.puppycrawl.tools.checkstyle.utils.ScopeUtil"/>
