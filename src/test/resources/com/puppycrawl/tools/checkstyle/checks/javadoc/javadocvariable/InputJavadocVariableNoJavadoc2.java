@@ -8,7 +8,7 @@ tokens = (default)ENUM_CONSTANT_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
-public class InputJavadocVariableNoJavadoc2 //comment test
+public class InputJavadocVariableNoJavadoc2
 {
     public int i1; // violation, 'Missing a Javadoc comment'
     protected int i2; // violation, 'Missing a Javadoc comment'
@@ -33,8 +33,8 @@ public class InputJavadocVariableNoJavadoc2 //comment test
     }
 
     class PackageInner {
-        public int i1; // violation, 'Missing a Javadoc comment'
-        protected int i2; // violation, 'Missing a Javadoc comment'
+        public int i1;
+        protected int i2;
         int i3;
         private int i4;
 
@@ -45,8 +45,8 @@ public class InputJavadocVariableNoJavadoc2 //comment test
     }
 
     private class PrivateInner {
-        public int i1; // violation, 'Missing a Javadoc comment'
-        protected int i2; // violation, 'Missing a Javadoc comment'
+        public int i1;
+        protected int i2;
         int i3;
         private int i4;
 
@@ -93,8 +93,8 @@ class  PackageClass2 {
     }
 
     class PackageInner {
-        public int i1; // violation, 'Missing a Javadoc comment'
-        protected int i2; // violation, 'Missing a Javadoc comment'
+        public int i1;
+        protected int i2;
         int i3;
         private int i4;
 
@@ -105,8 +105,8 @@ class  PackageClass2 {
     }
 
     private class PrivateInner {
-        public int i1; // violation, 'Missing a Javadoc comment'
-        protected int i2; // violation, 'Missing a Javadoc comment'
+        public int i1;
+        protected int i2;
         int i3;
         private int i4;
 
