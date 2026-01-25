@@ -1367,16 +1367,13 @@ spotless)
   ;;
 
 openrewrite-recipes)
-  # Save current directory
   export MAVEN_OPTS="-Xmx6g"
   echo "Install OpenRewrite recipes..."
-  cd /tmp
-  git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
-  cd checkstyle-openrewrite-recipes
+  git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git /tmp
+  cd /tmp/checkstyle-openrewrite-recipes
   ./mvnw -e --no-transfer-progress clean install -DskipTests
   cd .. && cd .. # Return to original directory
-  # Cleanup
-  rm -rf /tmp/checkstyle-openrewrite-recipes
+  rm -rf /tmp/checkstyle-openrewrite-recipes # Cleanup
   echo "Run Checkstyle validation to get report for openrewrite..."
   set +e
   ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
