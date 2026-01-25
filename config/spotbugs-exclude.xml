@@ -266,12 +266,6 @@
     <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR"/>
   </Match>
   <Match>
-    <!-- until https://github.com/checkstyle/checkstyle/issues/14121 -->
-    <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
-    <Method name="indentationLog"/>
-    <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR"/>
-  </Match>
-  <Match>
     <!-- there is strict order of method executions, call in misorder will result in failure -->
     <Class name="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean"/>
     <Method name="setupChild"/>

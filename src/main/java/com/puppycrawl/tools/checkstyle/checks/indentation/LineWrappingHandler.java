@@ -457,5 +457,4 @@ public class LineWrappingHandler {
             }
         }
     }
-
 }
