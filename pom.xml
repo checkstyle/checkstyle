@@ -248,60 +248,60 @@
       -Xep:EffectivelyPrivate:ERROR
       -Xep:EmptyMethod:ERROR
       -Xep:EnumOrdinal:ERROR
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
+      -Xep:EqualsGetClass:OFF
       -Xep:ExplicitArgumentEnumeration:ERROR
       -Xep:ExplicitEnumOrdering:ERROR
       -Xep:FormatStringConcatenation:ERROR
+      -Xep:FormatStringShouldUsePlaceholders:ERROR
       -Xep:IdentityConversion:ERROR
       -Xep:ImmutablesSortedSetComparator:ERROR
-      -Xep:InvalidInlineTag:ERROR
-      -Xep:InvalidParam:ERROR
-      -Xep:IsInstanceLambdaUsage:ERROR
-      -Xep:LexicographicalAnnotationAttributeListing:ERROR
-      -Xep:LexicographicalAnnotationListing:ERROR
-      -Xep:LoopOverCharArray:ERROR
-      -Xep:MockitoMockClassReference:ERROR
-      -Xep:MockitoStubbing:ERROR
-      -Xep:NestedOptionals:ERROR
-      -Xep:NullableOptional:ERROR
-      -Xep:OptionalOrElseGet:ERROR
-      -Xep:PrimitiveComparison:ERROR
-      -Xep:RedundantStringConversion:ERROR
-      -Xep:RedundantStringEscape:ERROR
-      -Xep:ReferenceEquality:ERROR
-      -Xep:Slf4jLogStatement:ERROR
-      -Xep:StreamResourceLeak:ERROR
-      -Xep:StringJoin:ERROR
-      -Xep:StringJoining:ERROR
-      -Xep:TimeZoneUsage:ERROR
-      -Xep:TruthAssertExpected:ERROR
-      -Xep:TypeParameterUnusedInFormals:ERROR
-      -Xep:UnsynchronizedOverridesSynchronized:ERROR
-      -Xep:UnusedMethod:ERROR
-      -Xep:NullArgumentForNonNullParameter:ERROR
-      -Xep:VoidUsed:ERROR
-      -Xep:FormatStringShouldUsePlaceholders:ERROR
-      -Xep:StatementSwitchToExpressionSwitch:ERROR
-      -Xep:StringSplitter:ERROR
-      -Xep:JdkObsolete:ERROR
-      -Xep:PatternMatchingInstanceof:ERROR
       -Xep:InconsistentCapitalization:ERROR
-      -Xep:UnnecessaryLambda:WARN
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:InlineFormatString:OFF
-      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
-      -Xep:EqualsGetClass:OFF
+      -Xep:InvalidInlineTag:ERROR
+      -Xep:InvalidParam:ERROR
+      <!-- No ability to declare noinspection tags as valid tags. -->
+      -Xep:InvalidBlockTag:OFF
+      -Xep:IsInstanceLambdaUsage:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitMethodDeclaration:OFF
       <!-- We prefer different style of writing tests. -->
       -Xep:JUnitValueSource:OFF
+      -Xep:JdkObsolete:ERROR
+      -Xep:LexicographicalAnnotationAttributeListing:ERROR
+      -Xep:LexicographicalAnnotationListing:ERROR
+      -Xep:LoopOverCharArray:ERROR
+      -Xep:MockitoMockClassReference:ERROR
+      -Xep:MockitoStubbing:ERROR
+      -Xep:NestedOptionals:ERROR
+      -Xep:NullArgumentForNonNullParameter:ERROR
+      -Xep:NullableOptional:ERROR
+      <!-- We prefer UnnecessaryParenthesesCheck over error-prone's OperatorPrecedence. -->
+      -Xep:OperatorPrecedence:OFF
+      -Xep:OptionalOrElseGet:ERROR
+      -Xep:PatternMatchingInstanceof:ERROR
+      -Xep:PrimitiveComparison:ERROR
+      -Xep:RedundantStringConversion:ERROR
+      -Xep:RedundantStringEscape:ERROR
+      -Xep:ReferenceEquality:ERROR
+      -Xep:Slf4jLogStatement:ERROR
       <!-- We prefer to qualify all static method calls with class name. -->
       -Xep:StaticImport:OFF
-      <!-- no ability to declare noinspection tags as valid tags -->
-      -Xep:InvalidBlockTag:OFF
-      <!-- We prefer UnnecessaryParenthesesCheck over error-prone's OperatorPrecedence -->
-      -Xep:OperatorPrecedence:OFF
+      -Xep:StatementSwitchToExpressionSwitch:ERROR
+      -Xep:StreamResourceLeak:ERROR
+      -Xep:StringJoin:ERROR
+      -Xep:StringJoining:ERROR
+      -Xep:StringSplitter:ERROR
+      -Xep:TimeZoneUsage:ERROR
+      -Xep:TruthAssertExpected:ERROR
+      -Xep:TypeParameterUnusedInFormals:ERROR
+      -Xep:UnnecessaryLambda:ERROR
+      -Xep:UnsynchronizedOverridesSynchronized:ERROR
+      -Xep:UnusedMethod:ERROR
+      -Xep:VoidUsed:ERROR
     </error-prone.configuration-args>
   </properties>
 
@@ -3348,7 +3348,7 @@
                 <param>destroy</param>
               </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>98</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -3594,7 +3594,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>98</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -3720,7 +3720,7 @@
                 <feature>+funmodifiablecollection</feature>
               </features>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>98</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -3903,7 +3903,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>97</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -3966,7 +3966,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>98</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4088,7 +4088,7 @@
                 <param>destroy</param>
               </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>96</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4332,7 +4332,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>98</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4520,7 +4520,7 @@
                 <param>getVersionString</param>
               </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>92</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4578,7 +4578,7 @@
                 <param>com.puppycrawl.tools.checkstyle.PackageNamesLoaderTest</param>
               </targetTests>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>90</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4724,8 +4724,8 @@
               <features>
                 <feature>+funmodifiablecollection</feature>
               </features>
-              <coverageThreshold>99</coverageThreshold>
-              <mutationThreshold>96</mutationThreshold>
+              <coverageThreshold>100</coverageThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4810,7 +4810,7 @@
                 </avoidCallsTo>
               </avoidCallsTo>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>96</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4873,7 +4873,7 @@
                 <param>printVersionToSystemOutput</param>
               </excludedMethods>
               <coverageThreshold>99</coverageThreshold>
-              <mutationThreshold>99</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4991,7 +4991,7 @@
                 </avoidCallsTo>
               </avoidCallsTo>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>98</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -5080,7 +5080,7 @@
                 <param>destroy</param>
               </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>97</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -5150,7 +5150,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>94</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -5322,7 +5322,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>96</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -5465,7 +5465,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>98</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
