@@ -52,17 +52,17 @@
                     <param name="type" value="config"/>
                 </macro>
                 <p id="java-raw">content of "java.header" file:</p>
-                <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-^// Checkstyle - Java code style checker\. Copyright \(C\) 20\d\d-20\d\d the authors\.$
-^// Licensed under the LGPL v2\.1 or later\. See LICENSE for details\.$
-^// Distributed without warranty; see the GNU LGPL for more info\.$
-</code></pre></div>
+                <macro name="example">
+                    <param name="path"
+                           value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/java.header"/>
+                    <param name="type" value="raw"/>
+                </macro>
                 <p id="apache-raw">content of "apache.header" file:</p>
-                <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-^/\* Licensed to the ASF under the Apache License, Version 2\.0 \(see NOTICE\)\.$
-^\* You may not use this file except in compliance:$
-^\* http://www\.apache\.org/licenses/LICENSE-2\.0 \(AS IS, no warranties/conditions\)\. \*/$
-</code></pre></div>
+                <macro name="example">
+                    <param name="path"
+                           value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/apache.header"/>
+                    <param name="type" value="raw"/>
+                </macro>
                 <p id="Example2-code">Example2:</p>
                 <macro name="example">
                     <param name="path"
@@ -93,13 +93,12 @@
                     <param name="type" value="config"/>
                 </macro>
                 <p id="universal-header">content of "universal.header" file:</p>
-                <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-^.*$
-</code></pre></div>
-                <p id="Example4-code">
-                  <code>"^.*$"</code> will match all lines and
-                  expect no violation. For example -
-                </p>
+                <macro name="example">
+                    <param name="path"
+                           value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/universal.header"/>
+                    <param name="type" value="raw"/>
+                </macro>
+                <p id="Example4-code">Example4:</p>
                 <macro name="example">
                     <param name="path"
                            value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example4.java"/>
