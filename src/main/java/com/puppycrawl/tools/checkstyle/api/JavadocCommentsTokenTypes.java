@@ -1149,7 +1149,7 @@ public final class JavadocCommentsTokenTypes {
      * |               |   `--IDENTIFIER -> String
      * |               `--GT -> >
      * |--NEWLINE -> \n
-     * `--Text ->
+     * `--TEXT ->
      * }</pre>
      */
     public static final int LT = JavadocCommentsLexer.LT;
