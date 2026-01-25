@@ -1367,28 +1367,17 @@ spotless)
   ;;
 
 openrewrite-recipes)
-  echo "Cloning and building OpenRewrite recipes..."
-  PROJECT_ROOT="$(pwd)"
-  export MAVEN_OPTS="-Xmx4g -Xms2g"
-
-  cd /tmp
-  git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
-  cd checkstyle-openrewrite-recipes
-  ./mvnw -e --no-transfer-progress clean install -DskipTests
-
-  cd "$PROJECT_ROOT"
-
-  echo "Running Checkstyle validation to get report for openrewrite..."
-  set +e
-  ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
-  set -e
-  echo "Running OpenRewrite recipes..."
-  ./mvnw -e --no-transfer-progress rewrite:run -Drewrite.recipeChangeLogLevel=INFO
-
-  echo "Checking for uncommitted changes..."
-  ./.ci/print-diff-as-patch.sh target/rewrite.patch
-
-  rm -rf /tmp/checkstyle-openrewrite-recipes
+  export MAVEN_OPTS="-Xmx6g"
+  echo Install OpenRewrite recipes...
+  git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git /tmp/checkstyle-openrewrite-recipes
+  cd /tmp/checkstyle-openrewrite-recipes
+  ./mvnw -e --no-transfer-progress install -DskipTests
+  cd /home/circleci/project # Return to original directory
+  rm -rf /tmp/checkstyle-openrewrite-recipes # Cleanup
+  echo Run Checkstyle validation to get report for OpenRewrite...
+  echo DryRun OpenRewrite recipes...
+  ./mvnw -e --no-transfer-progress compile antrun:run@ant-phase-verify \
+    rewrite:dryRun -Drewrite.recipeChangeLogLevel=INFO
   ;;
 
 *)
