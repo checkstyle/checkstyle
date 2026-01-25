@@ -4013,6 +4013,7 @@
               <excludedMethods>
                 <param>clearCreatedHandlers</param>
                 <param>clearState</param>
+                <param>logOncePerLine</param>
               </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>

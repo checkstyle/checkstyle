@@ -147,7 +147,7 @@ public abstract class AbstractExpressionHandler {
         if (expectedIndent.isMultiLevel()) {
             messageKey = IndentationCheck.MSG_ERROR_MULTI;
         }
-        indentCheck.indentationLog(ast, messageKey,
+        indentCheck.logOncePerLine(ast, messageKey,
             typeName + typeStr, actualIndent, expectedIndent);
     }
 
@@ -165,7 +165,7 @@ public abstract class AbstractExpressionHandler {
         if (expectedIndent.isMultiLevel()) {
             messageKey = IndentationCheck.MSG_CHILD_ERROR_MULTI;
         }
-        indentCheck.indentationLog(ast, messageKey,
+        indentCheck.logOncePerLine(ast, messageKey,
             typeName, actualIndent, expectedIndent);
     }
 
