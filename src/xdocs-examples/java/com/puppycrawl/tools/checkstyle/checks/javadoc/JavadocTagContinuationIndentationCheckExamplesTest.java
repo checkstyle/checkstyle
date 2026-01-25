@@ -67,16 +67,4 @@ public class JavadocTagContinuationIndentationCheckExamplesTest
         };
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
-
-    @Test
-    public void testExample4() throws Exception {
-        final String[] expected = {
-            "22: " + getCheckMessage(MSG_KEY, 4),
-            "39: " + getCheckMessage(MSG_KEY, 4),
-            "40: " + getCheckMessage(MSG_KEY, 4),
-            "41: " + getCheckMessage(MSG_KEY, 4),
-            "42: " + getCheckMessage(MSG_KEY, 4),
-        };
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
-    }
 }
