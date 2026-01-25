@@ -23,7 +23,6 @@ jobs:
             mkdir .idea
             cp config/intellij-idea-inspections-misc.xml .idea/misc.xml
             ./.ci/idea-inspection.sh
-          no_output_timeout: 25m
           working_directory: ~/project
       - store_artifacts:
           path: /home/circleci/project/target/inspection-results
@@ -315,7 +314,7 @@ workflows:
           name: "openrewrite-recipes"
           image-name: "cimg/openjdk:21.0"
           command: "./.ci/validation.sh openrewrite-recipes"
-          no_output_timeout: 15m
+          no_output_timeout: 16m
 
   spotless:
     jobs:
