@@ -145,7 +145,7 @@ public class IndentationCheck extends AbstractCheck {
     private final HandlerFactory handlerFactory = new HandlerFactory();
 
     /** Lines logged as having incorrect indentation. */
-    private Set<Integer> incorrectIndentationLines;
+    private final Set<Integer> incorrectIndentationLines = new HashSet<>();
 
     /** Specify how far new indentation level should be indented when on the next line. */
     private int basicOffset = DEFAULT_INDENTATION;
@@ -310,17 +310,16 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Log a violation message.
+     * Logs an indentation violation only once per line.
      *
-     * @param  ast the ast for which error to be logged
-     * @param key the message that describes the violation
-     * @param args the details of the message
+     * <p>For use by indentation handlers in this package.</p>
      *
-     * @see java.text.MessageFormat
+     * @param ast the AST node for which the error is logged
+     * @param key the message key describing the violation
+     * @param args optional arguments for the message
      */
-    public void indentationLog(DetailAST ast, String key, Object... args) {
-        if (!incorrectIndentationLines.contains(ast.getLineNo())) {
-            incorrectIndentationLines.add(ast.getLineNo());
+    /* package */ void logOncePerLine(DetailAST ast, String key, Object... args) {
+        if (incorrectIndentationLines.add(ast.getLineNo())) {
             log(ast, key, args);
         }
     }
@@ -352,9 +351,9 @@ public class IndentationCheck extends AbstractCheck {
     @Override
     public void beginTree(DetailAST ast) {
         clearState();
+        incorrectIndentationLines.clear();
         final PrimordialHandler primordialHandler = new PrimordialHandler(this);
         handlers.push(primordialHandler);
-        incorrectIndentationLines = new HashSet<>();
     }
 
     @Override
