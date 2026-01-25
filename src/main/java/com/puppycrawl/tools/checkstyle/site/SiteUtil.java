@@ -383,10 +383,8 @@ public final class SiteUtil {
     public static Set<Path> getXdocsTemplatesFilePaths() throws MacroExecutionException {
         final Path directory = Path.of("src/site/xdoc");
         try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
-                (path, attr) -> {
-                    return attr.isRegularFile()
-                            && path.toString().endsWith(TEMPLATE_FILE_EXTENSION);
-                })) {
+                (path, attr) -> attr.isRegularFile()
+                            && path.toString().endsWith(TEMPLATE_FILE_EXTENSION))) {
             return stream.collect(Collectors.toUnmodifiableSet());
         }
         catch (IOException ioException) {
@@ -445,9 +443,7 @@ public final class SiteUtil {
     public static Set<String> getPropertiesForDocumentation(Class<?> clss, Object instance) {
         final Set<String> properties =
                 getProperties(clss).stream()
-                    .filter(prop -> {
-                        return !isGlobalProperty(clss, prop) && !isUndocumentedProperty(clss, prop);
-                    })
+                    .filter(prop -> !isGlobalProperty(clss, prop) && !isUndocumentedProperty(clss, prop))
                     .collect(Collectors.toCollection(HashSet::new));
         properties.addAll(getNonExplicitProperties(instance, clss));
         return new TreeSet<>(properties);
@@ -776,9 +772,7 @@ public final class SiteUtil {
 
         return propertyJavadocTag
             .map(tag -> JavadocUtil.findFirstToken(tag, JavadocCommentsTokenTypes.DESCRIPTION))
-            .map(description -> {
-                return JavadocUtil.findFirstToken(description, JavadocCommentsTokenTypes.TEXT);
-            })
+            .map(description -> JavadocUtil.findFirstToken(description, JavadocCommentsTokenTypes.TEXT))
             .map(DetailNode::getText)
             .map(String::trim);
     }
@@ -835,10 +829,8 @@ public final class SiteUtil {
         final DetailNode sinceJavadocTag = getSinceJavadocTag(javadoc);
         return Optional.ofNullable(sinceJavadocTag)
             .map(tag -> JavadocUtil.findFirstToken(tag, JavadocCommentsTokenTypes.DESCRIPTION))
-            .map(description -> {
-                return JavadocUtil.findFirstToken(
-                        description, JavadocCommentsTokenTypes.TEXT);
-            })
+            .map(description -> JavadocUtil.findFirstToken(
+                        description, JavadocCommentsTokenTypes.TEXT))
             .map(DetailNode::getText)
             .map(String::trim)
             .orElse(null);

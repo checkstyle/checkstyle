@@ -732,12 +732,11 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                     when(mock.getProperty("severity")).thenThrow(CheckstyleException.class);
                 })) {
             final CheckstyleException ex =
-                    TestUtil.getExpectedThrowable(CheckstyleException.class, () -> {
+                    TestUtil.getExpectedThrowable(CheckstyleException.class, () ->
                         ConfigurationLoader.loadConfiguration(
                                 getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"),
                                 new PropertiesExpander(
-                                        new Properties()), IgnoredModulesOptions.OMIT);
-                    });
+                                        new Properties()), IgnoredModulesOptions.OMIT));
             final String expectedMessage =
                 "Problem during accessing 'severity' attribute for MemberName";
             assertWithMessage("Invalid exception cause message")
