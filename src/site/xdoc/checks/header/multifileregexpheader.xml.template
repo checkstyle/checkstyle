@@ -92,7 +92,7 @@
                            value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example4.java"/>
                     <param name="type" value="config"/>
                 </macro>
-                <p id="universal-header">content of "universal.header" file:</p>
+                <p id="universal-raw">content of "universal.header" file:</p>
                 <macro name="example">
                     <param name="path"
                            value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/universal.header"/>
