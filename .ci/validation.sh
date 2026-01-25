@@ -1368,7 +1368,9 @@ spotless)
 
 openrewrite-recipes)
   export MAVEN_OPTS="-Xmx6g"
-  echo "Install OpenRewrite recipes..."
+  pwd
+  echo "Install OpenRewrite recipes into..."
+  pwd
   git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git /tmp
   cd /tmp/checkstyle-openrewrite-recipes
   ./mvnw -e --no-transfer-progress clean install -DskipTests
