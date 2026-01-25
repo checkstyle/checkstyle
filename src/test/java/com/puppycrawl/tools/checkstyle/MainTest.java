@@ -803,8 +803,7 @@ public class MainTest {
                     getPath("InputMain.java"));
         final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
                 + "CheckstyleException: cannot initialize module TreeWalker - "
-                + "cannot initialize module JavadocMethod - "
-                + "JavadocVariable is not allowed as a child in JavadocMethod";
+                + "cannot initialize module JavadocMethod";
         assertWithMessage("Unexpected system error log")
                 .that(systemErr.getCapturedData())
                 .startsWith(errorOutput);
