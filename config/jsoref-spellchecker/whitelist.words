@@ -79,6 +79,7 @@ autoboxing
 autobuild
 autocomplete
 autocrlf
+autofix
 Autoproxy
 Autowire
 Autowired
@@ -1167,6 +1168,7 @@ redundantimport
 redundantmodifier
 refactor
 refactoring
+refasterrules
 refid
 refreshenv
 regex
@@ -1305,6 +1307,7 @@ stackoverflow
 stackoverflowerror
 stacktrace
 standalone
+staticanalysis
 staticvariablename
 stdin
 Stdlib

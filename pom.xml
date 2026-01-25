@@ -653,7 +653,7 @@
             <exportDatatables>true</exportDatatables>
             <skipMavenParsing>true</skipMavenParsing>
             <activeRecipes>
-              <recipe>org.checkstyle.openrewrite.AllAutoFixes</recipe>
+              <recipe>org.checkstyle.AllAutoFixes</recipe>
             </activeRecipes>
             <exclusions>
               <exclusion>**.ci-temp**</exclusion>
