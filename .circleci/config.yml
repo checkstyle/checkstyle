@@ -310,12 +310,17 @@ workflows:
           command: "./.ci/validation.sh package-site"
 
   openrewrite:
-    jobs:
-      - validate-with-maven-script:
-          name: "openrewrite-recipes"
-          image-name: "cimg/openjdk:21.0"
-          command: "./.ci/validation.sh openrewrite-recipes"
-          no_output_timeout: 15m
+    jobs:
+      - validate-with-maven-script:
+          name: "openrewrite-recipes-1"
+          image-name: "cimg/openjdk:21.0"
+          command: "./.ci/validation.sh openrewrite-recipes-1"
+          no_output_timeout: 15m
+      - validate-with-maven-script:
+          name: "openrewrite-recipes-2"
+          image-name: "cimg/openjdk:21.0"
+          command: "./.ci/validation.sh openrewrite-recipes-2"
+          no_output_timeout: 15m
 
   spotless:
     jobs:
