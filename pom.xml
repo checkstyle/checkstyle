@@ -251,41 +251,41 @@
       -Xep:ExplicitArgumentEnumeration:ERROR
       -Xep:ExplicitEnumOrdering:ERROR
       -Xep:FormatStringConcatenation:ERROR
+      -Xep:FormatStringShouldUsePlaceholders:ERROR
       -Xep:IdentityConversion:ERROR
       -Xep:ImmutablesSortedSetComparator:ERROR
+      -Xep:InconsistentCapitalization:ERROR
       -Xep:InvalidInlineTag:ERROR
       -Xep:InvalidParam:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
+      -Xep:JdkObsolete:ERROR
       -Xep:LexicographicalAnnotationAttributeListing:ERROR
       -Xep:LexicographicalAnnotationListing:ERROR
       -Xep:LoopOverCharArray:ERROR
       -Xep:MockitoMockClassReference:ERROR
       -Xep:MockitoStubbing:ERROR
       -Xep:NestedOptionals:ERROR
+      -Xep:NullArgumentForNonNullParameter:ERROR
       -Xep:NullableOptional:ERROR
       -Xep:OptionalOrElseGet:ERROR
+      -Xep:PatternMatchingInstanceof:ERROR
       -Xep:PrimitiveComparison:ERROR
       -Xep:RedundantStringConversion:ERROR
       -Xep:RedundantStringEscape:ERROR
       -Xep:ReferenceEquality:ERROR
       -Xep:Slf4jLogStatement:ERROR
+      -Xep:StatementSwitchToExpressionSwitch:ERROR
       -Xep:StreamResourceLeak:ERROR
       -Xep:StringJoin:ERROR
       -Xep:StringJoining:ERROR
+      -Xep:StringSplitter:ERROR
       -Xep:TimeZoneUsage:ERROR
       -Xep:TruthAssertExpected:ERROR
       -Xep:TypeParameterUnusedInFormals:ERROR
+      -Xep:UnnecessaryLambda:WARN
       -Xep:UnsynchronizedOverridesSynchronized:ERROR
       -Xep:UnusedMethod:ERROR
-      -Xep:NullArgumentForNonNullParameter:ERROR
       -Xep:VoidUsed:ERROR
-      -Xep:FormatStringShouldUsePlaceholders:ERROR
-      -Xep:StatementSwitchToExpressionSwitch:ERROR
-      -Xep:StringSplitter:ERROR
-      -Xep:JdkObsolete:ERROR
-      -Xep:PatternMatchingInstanceof:ERROR
-      -Xep:InconsistentCapitalization:ERROR
-      -Xep:UnnecessaryLambda:WARN
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:InlineFormatString:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
