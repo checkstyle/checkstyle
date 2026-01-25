@@ -137,11 +137,9 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
      * @return true if switch block contains a pattern case label element
      */
     private static boolean containsPatternCaseLabelElement(DetailAST detailAst) {
-        return TokenUtil.findFirstTokenByPredicate(detailAst, ast -> {
-            return ast.getFirstChild() != null
+        return TokenUtil.findFirstTokenByPredicate(detailAst, ast -> ast.getFirstChild() != null
                     && (ast.getFirstChild().findFirstToken(TokenTypes.PATTERN_VARIABLE_DEF) != null
-                    || ast.getFirstChild().findFirstToken(TokenTypes.RECORD_PATTERN_DEF) != null);
-        }).isPresent();
+                    || ast.getFirstChild().findFirstToken(TokenTypes.RECORD_PATTERN_DEF) != null)).isPresent();
     }
 
     /**
@@ -151,10 +149,8 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
      * @return true if switch block contains null case label
      */
     private static boolean containsNullCaseLabelElement(DetailAST detailAst) {
-        return TokenUtil.findFirstTokenByPredicate(detailAst, ast -> {
-            return ast.getFirstChild() != null
-                     && hasNullCaseLabel(ast.getFirstChild());
-        }).isPresent();
+        return TokenUtil.findFirstTokenByPredicate(detailAst, ast -> ast.getFirstChild() != null
+                     && hasNullCaseLabel(ast.getFirstChild())).isPresent();
     }
 
     /**
