@@ -32,5 +32,12 @@ class Example3 {
    */
   public void testUnclosedTag(String input) {}
    // violation 2 lines above 'Line continuation have incorrect indentation level'
+
+  /**
+   * @return <a> tag is not closed
+   *   incorrect indentation spacing
+   */
+  public String testReturnTag(String input) { return ""; }
+   // violation 2 lines above 'Line continuation have incorrect indentation level'
 }
 // xdoc section -- end

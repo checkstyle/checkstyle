@@ -157,6 +157,13 @@ class Example2 {
    *     indentation spacing for the tag
    */
   public void testUnclosedTag(String input) {}
+
+  /**
+   * @param input comment with
+   *  insufficient indentation spacing
+   */
+  public void testIndentation1(String input) {}
+   // violation 3 lines above 'Line continuation have incorrect indentation level'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -196,6 +203,13 @@ class Example3 {
    *     indentation spacing for the tag
    */
   public void testUnclosedTag(String input) {}
+   // violation 2 lines above 'Line continuation have incorrect indentation level'
+
+  /**
+   * @return &lt;a&gt; tag is not closed
+   *   incorrect indentation spacing
+   */
+  public String testReturnTag(String input) { return ""; }
    // violation 2 lines above 'Line continuation have incorrect indentation level'
 }
 </code></pre></div>

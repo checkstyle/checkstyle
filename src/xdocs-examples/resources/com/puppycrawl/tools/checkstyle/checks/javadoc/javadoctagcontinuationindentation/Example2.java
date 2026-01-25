@@ -31,5 +31,12 @@ class Example2 {
    *     indentation spacing for the tag
    */
   public void testUnclosedTag(String input) {}
+
+  /**
+   * @param input comment with
+   *  insufficient indentation spacing
+   */
+  public void testIndentation1(String input) {}
+   // violation 3 lines above 'Line continuation have incorrect indentation level'
 }
 // xdoc section -- end
