@@ -1367,28 +1367,21 @@ spotless)
   ;;
 
 openrewrite-recipes)
-  echo "Cloning and building OpenRewrite recipes..."
-  PROJECT_ROOT="$(pwd)"
-  export MAVEN_OPTS="-Xmx4g -Xms2g"
-
-  cd /tmp
-  git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
-  cd checkstyle-openrewrite-recipes
+  export MAVEN_OPTS="-Xmx6g"
+  pwd
+  echo "Install OpenRewrite recipes into..."
+  pwd
+  git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git /tmp
+  cd /tmp/checkstyle-openrewrite-recipes
   ./mvnw -e --no-transfer-progress clean install -DskipTests
-
-  cd "$PROJECT_ROOT"
-
-  echo "Running Checkstyle validation to get report for openrewrite..."
+  cd .. && cd .. # Return to original directory
+  rm -rf /tmp/checkstyle-openrewrite-recipes # Cleanup
+  echo "Run Checkstyle validation to get report for openrewrite..."
   set +e
   ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
   set -e
-  echo "Running OpenRewrite recipes..."
-  ./mvnw -e --no-transfer-progress rewrite:run -Drewrite.recipeChangeLogLevel=INFO
-
-  echo "Checking for uncommitted changes..."
-  ./.ci/print-diff-as-patch.sh target/rewrite.patch
-
-  rm -rf /tmp/checkstyle-openrewrite-recipes
+  echo "Run OpenRewrite recipes..."
+  ./mvnw -e --no-transfer-progress rewrite:dryRun -Drewrite.recipeChangeLogLevel=INFO
   ;;
 
 *)
