@@ -10,6 +10,9 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationindentation;
 
 // xdoc section -- start
+  /**
+   * <a> 'a' tag is not closed
+   */
 class Example2 {
 
   /**
