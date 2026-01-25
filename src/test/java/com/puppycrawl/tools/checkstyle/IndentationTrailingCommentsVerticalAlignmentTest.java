@@ -41,17 +41,13 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
 
     private static final int TAB_WIDTH = 4;
 
-    private static final Set<String> ALLOWED_VIOLATION_FILES = Set.of(
-    // No files allowed violations
-    );
-
     @MethodSource("indentationTestFiles")
     @ParameterizedTest
     public void testTrailingCommentsAlignment(Path testFile) throws IOException {
         final String fileName = testFile.getFileName().toString();
-        if (ALLOWED_VIOLATION_FILES.contains(fileName)) {
-            Assumptions.assumeTrue(false, "Skipping file: " + fileName);
-        }
+        // if (ALLOWED_VIOLATION_FILES.contains(fileName)) {
+        //     Assumptions.assumeTrue(false, "Skipping file: " + fileName);
+        // }
         final List<String> lines = Files.readAllLines(testFile);
         int expectedStartIndex = -1;
 
