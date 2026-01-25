@@ -27,30 +27,16 @@ class Example2 {
    // ok, Indentation above 1 is fine as offset value is 2
 
   /**
-   * <pre>
-   * this content, and not any error:
-   *   "JavadocTagContinuation do not validate lines contained in Pre tag,
-   *   No violation is expected here."</pre>
+   * @param input <a> tag is not closed
+   *     indentation spacing for the tag
    */
-  public void testMethodPre(String input) {}
+  public void testUnclosedTag(String input) {}
 
   /**
-   * Writes the object using a
-   * <a href="{@docRoot}/serialized-form.html#java.time.Ser">dedicated form</a>.
-   * @serialData
-   * <code> // violation
-   * out.writeByte(1); // violation
-   * out.writeInt(nanos); // violation
-   * </code> // violation
-   */
-  public void testMethodCode(String input) {}
-
-  /**
-   * Test class.
-   *
    * @param input comment with
-   *          This is the predefined indentation applied by Eclipse formatter.
+   *  insufficient indentation spacing
    */
-  public void testIndentationEclipse(String input) {}
+  public void testIndentation1(String input) {}
+   // violation 3 lines above 'Line continuation have incorrect indentation level'
 }
 // xdoc section -- end
