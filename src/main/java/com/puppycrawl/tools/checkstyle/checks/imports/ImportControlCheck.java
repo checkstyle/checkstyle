@@ -94,8 +94,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <p>
  * The DTD for an import control XML document is at
- * <a href="https://checkstyle.org/dtds/import_control_1_4.dtd">
- * https://checkstyle.org/dtds/import_control_1_4.dtd</a>.
+ * <a href="https://checkstyle.org/dtds/import_control_1_5.dtd">
+ * https://checkstyle.org/dtds/import_control_1_5.dtd</a>.
  * It contains documentation on each of the elements and attributes.
  * </p>
  *
@@ -105,8 +105,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
  * &lt;!DOCTYPE import-control PUBLIC
- *     "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
- *     "https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
+ *     "-//Checkstyle//DTD ImportControl Configuration 1.5//EN"
+ *     "https://checkstyle.org/dtds/import_control_1_5.dtd"&gt;
  * </code></pre></div>
  *
  * @since 4.0
@@ -178,7 +178,8 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT, };
+        return new int[] {TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT,
+            TokenTypes.MODULE_IMPORT, };
     }
 
     @Override
@@ -243,7 +244,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
             imp = FullIdent.createFullIdentBelow(ast);
         }
         else {
-            // know it is a static import
+            // static import or module import
             imp = FullIdent.createFullIdent(ast
                     .getFirstChild().getNextSibling());
         }
