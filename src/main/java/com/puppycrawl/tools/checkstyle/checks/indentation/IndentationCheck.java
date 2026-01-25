@@ -145,7 +145,7 @@ public class IndentationCheck extends AbstractCheck {
     private final HandlerFactory handlerFactory = new HandlerFactory();
 
     /** Lines logged as having incorrect indentation. */
-    private Set<Integer> incorrectIndentationLines;
+    private final Set<Integer> incorrectIndentationLines = new HashSet<>();
 
     /** Specify how far new indentation level should be indented when on the next line. */
     private int basicOffset = DEFAULT_INDENTATION;
@@ -354,7 +354,6 @@ public class IndentationCheck extends AbstractCheck {
         clearState();
         final PrimordialHandler primordialHandler = new PrimordialHandler(this);
         handlers.push(primordialHandler);
-        incorrectIndentationLines = new HashSet<>();
     }
 
     @Override
@@ -376,6 +375,7 @@ public class IndentationCheck extends AbstractCheck {
     private void clearState() {
         handlerFactory.clearCreatedHandlers();
         handlers.clear();
+        incorrectIndentationLines.clear();
     }
 
     /**
