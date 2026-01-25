@@ -50,5 +50,11 @@ class Example1 {
    *          This is the predefined indentation applied by Eclipse formatter.
    */
   public void testIndentationEclipse(String input) {}
+
+  /**
+   * @param input <a> tag is not closed
+   *     indentation spacing for the tag
+   */
+  public void testUnclosedTag(String input) {}
 }
 // xdoc section -- end
