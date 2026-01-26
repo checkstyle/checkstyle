@@ -2,7 +2,15 @@
 type: specs.openrewrite.org/v1beta/recipe
 name: org.checkstyle.AllAutoFixes
 displayName: Auto Fixes
-description: List of auto fixes from different providers.
+description: Master list of all auto fixes for local development.
+recipeList:
+  - org.checkstyle.AutoFixesPart1
+  - org.checkstyle.AutoFixesPart2
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.checkstyle.AutoFixesPart1
+displayName: Auto Fixes Part 1
+description: OpenRewrite and Checkstyle standard fixes.
 recipeList:
   - org.checkstyle.autofix.CheckstyleAutoFix:
       violationReportPath: target/cs_errors.xml
@@ -16,7 +24,8 @@ recipeList:
   - org.openrewrite.java.format.NormalizeLineBreaks
   - org.openrewrite.java.format.PadEmptyForLoopComponents
   - org.openrewrite.java.format.RemoveTrailingWhitespace
-  - org.openrewrite.java.migrate.UpgradeToJava21
+  # until https://github.com/checkstyle/checkstyle/issues/18789
+  # - org.openrewrite.java.migrate.UpgradeToJava21
   - org.openrewrite.java.migrate.lang.StringRulesRecipes
   - org.openrewrite.java.migrate.util.MigrateInflaterDeflaterToClose
   - org.openrewrite.java.migrate.util.ReplaceStreamCollectWithToList
@@ -44,6 +53,12 @@ recipeList:
   - org.openrewrite.staticanalysis.UnnecessaryParentheses
   - org.openrewrite.staticanalysis.UnnecessaryReturnAsLastStatement
   - org.openrewrite.staticanalysis.UseLambdaForFunctionalInterface
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.checkstyle.AutoFixesPart2
+displayName: Auto Fixes Part 2
+description: ErrorProne Refaster rules.
+recipeList:
   - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
   - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
   - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
@@ -60,4 +75,3 @@ recipeList:
   - tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes
   - tech.picnic.errorprone.refasterrules.StreamRulesRecipes
   - tech.picnic.errorprone.refasterrules.TimeRulesRecipes
----
