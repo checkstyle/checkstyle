@@ -1619,7 +1619,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
         final String path = tempFile.getPath();
         final String violationMessage =
-                getCheckMessage(NewlineAtEndOfFileCheck.class, MSG_KEY_NO_NEWLINE_EOF);
+                getCheckMessage(NewlineAtEndOfFileCheck.class, MSG_KEY_NO_NEWLINE_EOF, "lf_cr_crlf");
         final String[] expected = {
             "1: " + violationMessage + " [NewlineAtEndOfFile]",
             "1: " + violationMessage + " [ModuleId]",
@@ -1747,7 +1747,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 temporaryFolder.getPath());
 
         final String violationMessage =
-                getCheckMessage(NewlineAtEndOfFileCheck.class, MSG_KEY_NO_NEWLINE_EOF);
+                getCheckMessage(NewlineAtEndOfFileCheck.class, MSG_KEY_NO_NEWLINE_EOF, "lf_cr_crlf");
 
         final String[] expected = {
             "1: " + violationMessage,
