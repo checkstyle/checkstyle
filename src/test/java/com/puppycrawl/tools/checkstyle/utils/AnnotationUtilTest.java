@@ -248,6 +248,8 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
                         )
                 )
         );
+        final DetailAstImpl ident = modifiersAst.getFirstChild().getFirstChild().getFirstChild();
+        ident.setNextSibling(create(TokenTypes.STAR));
         ast.addChild(modifiersAst);
         final Set<String> annotations = Set.of("Deprecated");
         final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);

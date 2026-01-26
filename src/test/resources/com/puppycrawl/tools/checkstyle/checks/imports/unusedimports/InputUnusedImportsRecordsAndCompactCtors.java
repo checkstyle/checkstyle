@@ -1,10 +1,10 @@
 /*
 UnusedImports
 processJavadoc = (default)true
-
+violateExecutionOnNonTightHtml = (default)false
+javadocTokens = (default)REFERENCE, PARAMETER_TYPE, THROWS_BLOCK_TAG
 
 */
-
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
