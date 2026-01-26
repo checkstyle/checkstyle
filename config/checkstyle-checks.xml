@@ -1010,6 +1010,7 @@
                     LITERAL_YIELD, LITERAL_CASE, LITERAL_WHEN, ANNOTATIONS"/>
     </module>
     <module name="WhitespaceAround"/>
+    <module name="WhitespaceBeforeEmptyBody"/>
 
   </module>
 
