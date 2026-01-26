@@ -108,7 +108,7 @@ public class IllegalTokenTextCheckTest
             "21:36: " + getCheckMessage(MSG_KEY, "\""),
             "31:37: " + getCheckMessage(MSG_KEY, "\""),
             "36:37: " + getCheckMessage(MSG_KEY, "\""),
-            "42:42: " + getCheckMessage(MSG_KEY, "\""),
+            "43:42: " + getCheckMessage(MSG_KEY, "\""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextTextBlocksQuotes.java"), expected);
