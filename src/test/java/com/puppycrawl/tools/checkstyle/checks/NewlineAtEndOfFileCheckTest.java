@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_UNABLE_OPEN;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_WRONG_ENDING;
+import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_WRONG_ENDING_CR;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -65,6 +66,16 @@ public class NewlineAtEndOfFileCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputNewlineAtEndOfFileCrlf.java"),
+            expected);
+    }
+
+    @Test
+    public void testNewlineLfAtEndOfFileDetectsCr() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING_CR),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileCrExpectLf.java"),
             expected);
     }
 

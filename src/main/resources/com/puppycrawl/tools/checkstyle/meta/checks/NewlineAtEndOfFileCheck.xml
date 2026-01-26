@@ -73,6 +73,7 @@
             <message-key key="noNewlineAtEOF"/>
             <message-key key="unable.open"/>
             <message-key key="wrong.line.end"/>
+            <message-key key="wrong.line.end.cr"/>
          </message-keys>
       </check>
    </module>
