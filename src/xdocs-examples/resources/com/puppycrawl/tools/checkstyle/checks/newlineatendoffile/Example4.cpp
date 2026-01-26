@@ -5,7 +5,7 @@
   </module>
 </module>
 */
-// violation 7 lines above 'File does not end with a newline.'
+// violation 7 lines above 'File does not end with a newline 'lf_cr_crlf'.'
 // xdoc section -- start
 int main() { // ⤶
     return 0;// ⤶

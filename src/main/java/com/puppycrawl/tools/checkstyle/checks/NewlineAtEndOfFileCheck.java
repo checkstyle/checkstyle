@@ -152,7 +152,8 @@ public class NewlineAtEndOfFileCheck
                 log(1, MSG_KEY_WRONG_ENDING);
             }
             else if (!endsWithNewline(randomAccessFile, lineSeparator)) {
-                log(1, MSG_KEY_NO_NEWLINE_EOF);
+                log(1, MSG_KEY_NO_NEWLINE_EOF,
+                        lineSeparator.name().toLowerCase(Locale.ENGLISH));
             }
         }
     }
