@@ -31,7 +31,7 @@ public class InputIllegalTokenTextCheckCustomMessageInStringLiteral
 
     public void methodWithLiterals()
     {
-        final String ref = "<a href=\""; // violation
+        final String ref = "<a href=\""; // violation 'My custom message'
         final String refCase = "<A hReF=\"";
     }
 
