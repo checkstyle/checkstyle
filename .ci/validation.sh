@@ -32,6 +32,7 @@ all-sevntu-checks)
     | grep -vE "Checker|TreeWalker|Filter|Holder" | grep -v "^$" \
     | sed "s/com\.github\.sevntu\.checkstyle\.checks\..*\.//" \
     | sort | uniq | sed "s/Check$//" > $working_dir/file.txt
+
   wget -q http://sevntu-checkstyle.github.io/sevntu.checkstyle/apidocs/allclasses-frame.html -O - \
     | grep "<li>" | cut -d '>' -f 3 | sed "s/<\/a//" \
     | grep -E "Check$" \
@@ -1378,8 +1379,8 @@ spotless)
   ./mvnw -e --no-transfer-progress spotless:check
   ;;
 
-openrewrite-recipes)
-  echo "Cloning and building OpenRewrite recipes..."
+openrewrite-recipes-1)
+  echo "Cloning and building OpenRewrite recipes (Part 1)..."
   PROJECT_ROOT="$(pwd)"
   export MAVEN_OPTS="-Xmx4g -Xms2g"
 
@@ -1394,8 +1395,37 @@ openrewrite-recipes)
   set +e
   ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
   set -e
-  echo "Running OpenRewrite recipes..."
-  ./mvnw -e --no-transfer-progress rewrite:run -Drewrite.recipeChangeLogLevel=INFO
+  echo "Running OpenRewrite recipes Part 1..."
+  ./mvnw -e --no-transfer-progress rewrite:run \
+    -Drewrite.recipeChangeLogLevel=INFO \
+    -Drewrite.activeRecipes=org.checkstyle.AutoFixesPart1
+
+  echo "Checking for uncommitted changes..."
+  ./.ci/print-diff-as-patch.sh target/rewrite.patch
+
+  rm -rf /tmp/checkstyle-openrewrite-recipes
+  ;;
+
+openrewrite-recipes-2)
+  echo "Cloning and building OpenRewrite recipes (Part 2)..."
+  PROJECT_ROOT="$(pwd)"
+  export MAVEN_OPTS="-Xmx4g -Xms2g"
+
+  cd /tmp
+  git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
+  cd checkstyle-openrewrite-recipes
+  ./mvnw -e --no-transfer-progress clean install -DskipTests
+
+  cd "$PROJECT_ROOT"
+
+  echo "Running Checkstyle validation to get report for openrewrite..."
+  set +e
+  ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
+  set -e
+  echo "Running OpenRewrite recipes Part 2..."
+  ./mvnw -e --no-transfer-progress rewrite:run \
+    -Drewrite.recipeChangeLogLevel=INFO \
+    -Drewrite.activeRecipes=org.checkstyle.AutoFixesPart2
 
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
