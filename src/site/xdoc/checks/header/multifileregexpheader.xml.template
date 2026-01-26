@@ -119,6 +119,11 @@
                 <macro name="violation-messages">
                     <param name="checkName" value="MultiFileRegexpHeader"/>
                 </macro>
+                <p>
+                    All messages can be customized if the default message doesn't suit you.
+                    Please <a href="../../config.html#Custom_messages">see the documentation</a>
+                    to learn how to.
+                </p>
             </subsection>
             <subsection name="Package" id="MultiFileRegexpHeader_Package">
                 <p>
