@@ -9,5 +9,8 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
 
 
 */
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.test3; // violation ''package' should be separated from previous line.'
 
+/*
+ * Block comment is not a javadoc
+ */
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.test5; // violation ''package' should be separated from previous line.'
