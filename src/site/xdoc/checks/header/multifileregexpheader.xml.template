@@ -7,7 +7,10 @@
     </head>
     <body>
         <section name="MultiFileRegexpHeader">
-            <p>Since Checkstyle 10.24.0</p>
+            <macro name="since">
+                <param name="modulePath"
+                       value="src/main/java/com/puppycrawl/tools/checkstyle/checks/header/MultiFileRegexpHeaderCheck.java"/>
+            </macro>
             <subsection name="Description" id="MultiFileRegexpHeader_Description">
                 <macro name="description">
                     <param name="modulePath"
