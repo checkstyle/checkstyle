@@ -1093,6 +1093,15 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Identifier token.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @see SomeClass}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * REFERENCE -> REFERENCE
+     * `--IDENTIFIER -> SomeClass
+     * }</pre>
      */
     public static final int IDENTIFIER = JavadocCommentsLexer.IDENTIFIER;
 
