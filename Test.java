@@ -1,3 +1,0 @@
-/**
- * @see SomeClass
- */
