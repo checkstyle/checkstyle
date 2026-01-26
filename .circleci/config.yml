@@ -312,10 +312,15 @@ workflows:
   openrewrite:
     jobs:
       - validate-with-maven-script:
-          name: "openrewrite-recipes"
+          name: "openrewrite-recipes-1"
           image-name: "cimg/openjdk:21.0"
           command: "./.ci/validation.sh openrewrite-recipes"
           no_output_timeout: 15m
+          command: "./.ci/validation.sh openrewrite-recipes-1"
+      - validate-with-maven-script:
+          name: "openrewrite-recipes-2"
+          image-name: "cimg/openjdk:21.0"
+          command: "./.ci/validation.sh openrewrite-recipes-2"
 
   spotless:
     jobs:
