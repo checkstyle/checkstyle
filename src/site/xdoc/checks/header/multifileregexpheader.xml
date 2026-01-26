@@ -9,9 +9,10 @@
         <section name="MultiFileRegexpHeader">
             <p>Since Checkstyle 10.24.0</p>
             <subsection name="Description" id="MultiFileRegexpHeader_Description">
-                <div>Checks the header of a source file against multiple header files that contain a
-                    <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html">pattern</a>
-                    for each line of the source header.
+                <div>
+          Checks the header of a source file against multiple header files that contain a
+          <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html">
+          pattern</a> for each line of the source header.
         </div>
             </subsection>
 
@@ -140,18 +141,7 @@ public class Example4 { }
             </subsection>
 
             <subsection name="Violation Messages" id="MultiFileRegexpHeader_Violation_Messages">
-                <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multi.file.regexp.header.mismatch%22">
-              multi.file.regexp.header.mismatch
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multi.file.regexp.header.missing%22">
-              multi.file.regexp.header.missing
-            </a>
-          </li>
-        </ul>
+multi.file.regexp.header.mismatch multi.file.regexp.header.missing All messages can be customized if the default message doesn't suit you. Please see the documentation to learn how to.
             </subsection>
             <subsection name="Package" id="MultiFileRegexpHeader_Package">
                 <p>
