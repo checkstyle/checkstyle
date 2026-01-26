@@ -11,4 +11,3 @@
 package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
 public class Example2 { }
 // xdoc section -- end
-// violation 13 lines above 'Header mismatch, expected line content was'

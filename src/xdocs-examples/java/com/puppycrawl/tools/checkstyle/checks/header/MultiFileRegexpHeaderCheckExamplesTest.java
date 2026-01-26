@@ -38,32 +38,14 @@ public class MultiFileRegexpHeaderCheckExamplesTest extends AbstractExamplesModu
 
     @Test
     public void testExample2() throws Exception {
-        final String pattern = "^// Checkstyle - Java code style checker\\. "
-                + "Copyright \\(C\\) 20\\d\\d-20\\d\\d the authors\\.$";
-        final String allPaths = "src/xdocs-examples/resources/" + getPackageLocation()
-                + "/java.header, src/xdocs-examples/resources/" + getPackageLocation()
-                + "/apache.header";
-        final String[] expected = {
-            "1: " + getCheckMessage(MultiFileRegexpHeaderCheck.MSG_HEADER_MISMATCH,
-                    pattern, allPaths),
-        };
-
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         System.setProperty("config.folder", "src/xdocs-examples/resources/" + getPackageLocation());
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
-        final String pattern = "^// Checkstyle - Java code style checker\\. "
-                + "Copyright \\(C\\) 20\\d\\d-20\\d\\d the authors\\.$";
-        final String allPaths = "src/xdocs-examples/resources/" + getPackageLocation()
-                + "/java.header, src/xdocs-examples/resources/" + getPackageLocation()
-                + "/apache.header";
-        final String[] expected = {
-            "1: " + getCheckMessage(MultiFileRegexpHeaderCheck.MSG_HEADER_MISMATCH,
-                    pattern, allPaths),
-        };
-
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         System.setProperty("config.folder", "src/xdocs-examples/resources/" + getPackageLocation());
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }

@@ -7,40 +7,23 @@
     </head>
     <body>
         <section name="MultiFileRegexpHeader">
-            <p>Since Checkstyle 10.24.0</p>
+            <macro name="since">
+                <param name="modulePath"
+                       value="src/main/java/com/puppycrawl/tools/checkstyle/checks/header/MultiFileRegexpHeaderCheck.java"/>
+            </macro>
             <subsection name="Description" id="MultiFileRegexpHeader_Description">
-                <div>
-          Checks the header of a source file against multiple header files that contain a
-          <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html">
-          pattern</a> for each line of the source header.
-        </div>
+                <macro name="description">
+                    <param name="modulePath"
+                           value="src/main/java/com/puppycrawl/tools/checkstyle/checks/header/MultiFileRegexpHeaderCheck.java"/>
+                </macro>
             </subsection>
 
             <subsection name="Properties" id="MultiFileRegexpHeader_Properties">
                 <div class="wrapper">
-                    <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td><a id="fileExtensions"/><a href="#fileExtensions">fileExtensions</a></td>
-              <td>Specify the file extensions of the files to process.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>all files</code></td>
-              <td>10.24.0</td>
-            </tr>
-            <tr>
-              <td><a id="headerFiles"/><a href="#headerFiles">headerFiles</a></td>
-              <td>Specify a comma-separated list of files containing the required headers. If a file's header matches none, the violation references the first file in this list. Users can order files to set a preferred header for such reporting.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
-              <td><code>null</code></td>
-              <td>10.24.0</td>
-            </tr>
-          </table>
+                    <macro name="properties">
+                        <param name="modulePath"
+                               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/header/MultiFileRegexpHeaderCheck.java"/>
+                    </macro>
                 </div>
             </subsection>
 
@@ -49,86 +32,78 @@
                     To configure the check such that no violations arise.
                     Default values of properties are used.
                 </p>
-                <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="MultiFileRegexpHeader"/&gt;
-&lt;/module&gt;
-</code></pre></div>
+                <macro name="example">
+                    <param name="path"
+                           value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example1.java"/>
+                    <param name="type" value="config"/>
+                </macro>
                 <p id="Example1-code">Example1:</p>
-                <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
-// ok, as by default there is not specific header defined to validate it presence
-public class Example1 { }
-</code></pre></div><hr class="example-separator"/>
+                <macro name="example">
+                    <param name="path"
+                           value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example1.java"/>
+                    <param name="type" value="code"/>
+                </macro><hr class="example-separator"/>
                 <p id="Example2-config">
                     To configure the check to use multiple header files:
                 </p>
-                <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="MultiFileRegexpHeader"&gt;
-    &lt;property name="fileExtensions" value="java"/&gt;
-    &lt;property name="headerFiles"
-              value="${config.folder}/java.header, ${config.folder}/apache.header"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-                <p id="java-raw">content of &quot;java.header&quot; file:</p>
-                <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-^// Checkstyle - Java code style checker\. Copyright \(C\) 20\d\d-20\d\d the authors\.$
-^// Licensed under the LGPL v2\.1 or later\. See LICENSE for details\.$
-^// Distributed without warranty; see the GNU LGPL for more info\.$
-</code></pre></div>
-                <p id="apache-raw">content of &quot;apache.header&quot; file:</p>
-                <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-^/\* Licensed to the ASF under the Apache License, Version 2\.0 \(see NOTICE\)\.$
-^\* You may not use this file except in compliance:$
-^\* http://www\.apache\.org/licenses/LICENSE-2\.0 \(AS IS, no warranties/conditions\)\. \*/$
-</code></pre></div>
+                <macro name="example">
+                    <param name="path"
+                           value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example2.java"/>
+                    <param name="type" value="config"/>
+                </macro>
+                <p id="java-raw">content of "java.header" file:</p>
+                <macro name="example">
+                    <param name="path"
+                           value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/java.header"/>
+                    <param name="type" value="raw"/>
+                </macro>
+                <p id="apache-raw">content of "apache.header" file:</p>
+                <macro name="example">
+                    <param name="path"
+                           value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/apache.header"/>
+                    <param name="type" value="raw"/>
+                </macro>
                 <p id="Example2-code">Example2:</p>
-                <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
-public class Example2 { }
-</code></pre></div><hr class="example-separator"/>
+                <macro name="example">
+                    <param name="path"
+                           value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example2.java"/>
+                    <param name="type" value="code"/>
+                </macro><hr class="example-separator"/>
                 <p id="Example3-config">
                     To configure the check to verify that each file starts with one of
                     multiple headers:
                 </p>
-                <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="MultiFileRegexpHeader"&gt;
-    &lt;property
-      name="headerFiles"
-      value="${config.folder}/java.header, ${config.folder}/apache.header"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
+                <macro name="example">
+                    <param name="path"
+                           value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example3.java"/>
+                    <param name="type" value="config"/>
+                </macro>
                 <p id="Example3-code">Example3:</p>
-                <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
-public class Example3 { }
-</code></pre></div><hr class="example-separator"/>
+                <macro name="example">
+                    <param name="path"
+                           value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example3.java"/>
+                    <param name="type" value="code"/>
+                </macro><hr class="example-separator"/>
                 <p id="Example4-config">
                     For a configuration where any header is accepted:
                 </p>
-                <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="MultiFileRegexpHeader"&gt;
-    &lt;property
-      name="headerFiles"
-      value="${config.folder}/universal.header"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-                <p id="universal-raw">content of &quot;universal.header&quot; file:</p>
-                <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-^.*$
-</code></pre></div>
+                <macro name="example">
+                    <param name="path"
+                           value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example4.java"/>
+                    <param name="type" value="config"/>
+                </macro>
+                <p id="universal-raw">content of "universal.header" file:</p>
+                <macro name="example">
+                    <param name="path"
+                           value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/universal.header"/>
+                    <param name="type" value="raw"/>
+                </macro>
                 <p id="Example4-code">Example4:</p>
-                <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
-// ok, as regex value matches all lines
-public class Example4 { }
-</code></pre></div>
+                <macro name="example">
+                    <param name="path"
+                           value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example4.java"/>
+                    <param name="type" value="code"/>
+                </macro>
             </subsection>
 
             <subsection name="Example of Usage" id="MultiFileRegexpHeader_Example_of_Usage">
@@ -141,7 +116,9 @@ public class Example4 { }
             </subsection>
 
             <subsection name="Violation Messages" id="MultiFileRegexpHeader_Violation_Messages">
-multi.file.regexp.header.mismatch multi.file.regexp.header.missing All messages can be customized if the default message doesn't suit you. Please see the documentation to learn how to.
+                <macro name="violation-messages">
+                    <param name="checkName" value="MultiFileRegexpHeader"/>
+                </macro>
             </subsection>
             <subsection name="Package" id="MultiFileRegexpHeader_Package">
                 <p>
@@ -150,9 +127,9 @@ multi.file.regexp.header.mismatch multi.file.regexp.header.missing All messages 
             </subsection>
 
             <subsection name="Parent Module" id="MultiFileRegexpHeader_Parent_Module">
-                <p>
-          <a href="../../config.html#Checker">Checker</a>
-        </p>
+                <macro name="parent-module">
+                    <param name="moduleName" value="MultiFileRegexpHeader"/>
+                </macro>
             </subsection>
         </section>
     </body>
