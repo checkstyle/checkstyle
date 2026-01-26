@@ -1,0 +1,1 @@
+/* // violation 'Expected line ending for file is LF(\\n), but CR(\\r) is detected.'NewlineAtEndOfFilelineSeparator = LFfileExtensions = (default)""*/package com.puppycrawl.tools.checkstyle.checks.newlineatendoffile;/** * Test case for detection of CR line ending when LF is expected. **/public interface InputNewlineAtEndOfFileCrExpectLf{}
