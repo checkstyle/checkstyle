@@ -25,6 +25,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Optional;
 import java.util.Set;
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
@@ -338,13 +339,19 @@ public class JavadocMethodCheck extends AbstractCheck {
      * @return whether we should check a given node.
      */
     private boolean shouldCheck(final DetailAST ast) {
-        final AccessModifierOption surroundingAccessModifier = CheckUtil
+        final Optional<AccessModifierOption> surroundingAccessModifier = CheckUtil
                 .getSurroundingAccessModifier(ast);
         final AccessModifierOption accessModifier = CheckUtil
                 .getAccessModifierFromModifiersToken(ast);
-        return Arrays.stream(accessModifiers)
-                        .anyMatch(modifier -> modifier == surroundingAccessModifier)
-                && Arrays.stream(accessModifiers).anyMatch(modifier -> modifier == accessModifier);
+        final boolean surroundingMatches = surroundingAccessModifier
+                .isPresent()
+            && Arrays.stream(accessModifiers)
+                     .anyMatch(modifier -> modifier == surroundingAccessModifier.get());
+
+        final boolean accessModifierMatches =
+                Arrays.stream(accessModifiers)
+                      .anyMatch(modifier -> modifier == accessModifier);
+        return surroundingMatches && accessModifierMatches;
     }
 
     /**
