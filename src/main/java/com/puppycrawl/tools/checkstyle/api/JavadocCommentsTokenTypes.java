@@ -1494,33 +1494,32 @@ public final class JavadocCommentsTokenTypes {
      */
     public static final int FIELD_TYPE = JavadocCommentsLexer.FIELD_TYPE;
 
-
-        /**
-         * Parameter name reference in a Javadoc {@code @param} block tag.
-         *
-         * <p><b>Example:</b></p>
-         * <pre>{@code
-         * * @param value The parameter of method.
-         * }</pre>
-         *
-         * <b>Tree:</b>
-         * <pre>{@code
-         * JAVADOC_CONTENT -> JAVADOC_CONTENT
-         * |--LEADING_ASTERISK -> *
-         * |--TEXT ->
-         * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-         *     `--PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
-         *         |--AT_SIGN -> @
-         *         |--TAG_NAME -> param
-         *         |--TEXT ->
-         *         |--PARAMETER_NAME -> value
-         *         `--DESCRIPTION -> DESCRIPTION
-         *             `--TEXT ->  The parameter of method.
-         * }</pre>
-         *
-         * @see #PARAM_BLOCK_TAG
-         */
-        public static final int PARAMETER_NAME = JavadocCommentsLexer.PARAMETER_NAME;
+    /**
+     * Parameter name reference in a Javadoc {@code @param} block tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * * @param value The parameter of method.
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> param
+     *         |--TEXT ->
+     *         |--PARAMETER_NAME -> value
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  The parameter of method.
+     * }</pre>
+     *
+     * @see #PARAM_BLOCK_TAG
+     */
+    public static final int PARAMETER_NAME = JavadocCommentsLexer.PARAMETER_NAME;
 
     /**
      * String literal inside Javadoc.
