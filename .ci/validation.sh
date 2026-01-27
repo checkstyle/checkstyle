@@ -795,6 +795,7 @@ no-error-orekit)
   git fetch --depth 1 origin "9b121e504771f3ddd303ab""cc""c74ac9db64541ea1"
   git checkout "9b121e504771f3ddd303ab""cc""c74ac9db64541ea1"
   echo "checkstyle.header.file=license-header.txt" > checkstyle.properties
+  sed -i '' '18a\'$'\n''import java.util.HashMap;' src/main/java/org/orekit/time/TimeScale.java
   readarray -t files < <(find src/main/java -name "*.java")
   java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
     -c checkstyle.xml \
