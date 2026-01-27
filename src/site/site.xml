@@ -161,6 +161,7 @@
           <item name="NoClone" href="checks/coding/noclone.html"/>
           <item name="NoEnumTrailingComma" href="checks/coding/noenumtrailingcomma.html"/>
           <item name="NoFinalizer" href="checks/coding/nofinalizer.html"/>
+          <item name="NoGetMessageInCatchThrow" href="checks/coding/nogetmessageincatchthrow.html"/>
           <item name="OneStatementPerLine" href="checks/coding/onestatementperline.html"/>
           <item name="OverloadMethodsDeclarationOrder"
                 href="checks/coding/overloadmethodsdeclarationorder.html"/>
