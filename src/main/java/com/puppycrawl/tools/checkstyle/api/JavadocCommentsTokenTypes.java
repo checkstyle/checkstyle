@@ -1498,7 +1498,30 @@ public final class JavadocCommentsTokenTypes {
     public static final int FORMAT_SPECIFIER = JavadocCommentsLexer.FORMAT_SPECIFIER;
 
     /**
-     * Attribute name in a {@code @snippet}.
+     * Attribute name in a {@code @snippet} tag.
+     *
+     * <p>This node represents the name of an attribute in a Javadoc {@code @snippet} tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @snippet lang=java}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * |   `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
+     * |       |--AT_SIGN -> @
+     * |       |--TAG_NAME -> snippet
+     * |       |--SNIPPET_ATTRIBUTE -> SNIPPET_ATTRIBUTE
+     * |       |   |--SNIPPET_ATTR_NAME -> lang
+     * |       |   |--EQUALS -> =
+     * |       |   `--ATTRIBUTE_VALUE -> "java"
+     * |       `--DESCRIPTION -> DESCRIPTION
+     * }</pre>
+     *
+     * @see #SNIPPET_ATTRIBUTE
      */
     public static final int SNIPPET_ATTR_NAME = JavadocCommentsLexer.SNIPPET_ATTR_NAME;
 
