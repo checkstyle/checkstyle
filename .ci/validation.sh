@@ -777,7 +777,7 @@ no-error-pgjdbc)
 no-error-orekit)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
-  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/Hipparchus-Math/hipparchus.git
   cd .ci-temp/hipparchus
@@ -794,8 +794,16 @@ no-error-orekit)
   # git checkout $(git describe --abbrev=0 --tags)
   git fetch --depth 1 origin "9b121e504771f3ddd303ab""cc""c74ac9db64541ea1"
   git checkout "9b121e504771f3ddd303ab""cc""c74ac9db64541ea1"
-  mvn -e --no-transfer-progress compile checkstyle:check \
-    -Dorekit.checkstyle.version="${CS_POM_VERSION}"
+  echo "checkstyle.header.file=license-header.txt" > checkstyle.properties
+  { head -18 src/main/java/org/orekit/time/TimeScale.java; \
+  echo "import java.util.HashMap;"; \
+  tail -n +19 src/main/java/org/orekit/time/TimeScale.java; \
+  } > temp.java && mv temp.java src/main/java/org/orekit/time/TimeScale.java
+  readarray -t files < <(find src/main/java -name "*.java")
+  java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
+    -c checkstyle.xml \
+    -p checkstyle.properties \
+    "${files[@]}"
   cd ..
   removeFolderWithProtectedFiles Orekit
   removeFolderWithProtectedFiles hipparchus
