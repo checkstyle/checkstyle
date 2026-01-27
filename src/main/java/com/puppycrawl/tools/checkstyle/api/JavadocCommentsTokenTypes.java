@@ -1541,9 +1541,7 @@ public final class JavadocCommentsTokenTypes {
      * Parameter name reference in a Javadoc {@code @param} block tag.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code
-     * * @param value The parameter of method.
-     * }</pre>
+     * <pre>{@code * @param value The parameter of method.}</pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
