@@ -882,12 +882,15 @@ no-error-methods-distance)
 no-error-equalsverifier)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
-  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/jqno/equalsverifier.git
   cd .ci-temp/equalsverifier
-  mvn -e --no-transfer-progress -Pstatic-analysis-checkstyle -DdisableStaticAnalysis compile \
-    checkstyle:check -Dversion.checkstyle="${CS_POM_VERSION}"
+  readarray -t files < <(find . \( -path '*/src/main/java/*.java' \
+    -o -path '*/src/test/java/*.java' \))
+  java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
+    -c build/checkstyle-config.xml \
+    "${files[@]}"
   cd ../
   removeFolderWithProtectedFiles equalsverifier
   ;;
