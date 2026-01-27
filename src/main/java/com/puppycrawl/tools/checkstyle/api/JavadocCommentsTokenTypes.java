@@ -1103,12 +1103,12 @@ public final class JavadocCommentsTokenTypes {
          * <pre>{@code
          * JAVADOC_CONTENT -> JAVADOC_CONTENT
          * |--LEADING_ASTERISK -> *
-         * |--TEXT ->  
+         * |--TEXT ->
          * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
          *     `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
          *         |--AT_SIGN -> @
          *         |--TAG_NAME -> see
-         *         |--TEXT ->  
+         *         |--TEXT ->
          *         `--REFERENCE -> REFERENCE
          *             `--IDENTIFIER -> java.util.List
          * }</pre>
