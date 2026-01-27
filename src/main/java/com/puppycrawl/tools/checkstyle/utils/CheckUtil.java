@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
@@ -367,17 +368,17 @@ public final class CheckUtil {
      * @param node the node to return the access modifier for
      * @return the access modifier of the surrounding block
      */
-    public static AccessModifierOption getSurroundingAccessModifier(DetailAST node) {
-        AccessModifierOption returnValue = null;
+    public static Optional<AccessModifierOption> getSurroundingAccessModifier(DetailAST node) {
+        Optional<AccessModifierOption> returnValue = Optional.empty();
         for (DetailAST token = node;
-             returnValue == null && !TokenUtil.isRootNode(token);
+             returnValue.isEmpty() && !TokenUtil.isRootNode(token);
              token = token.getParent()) {
             final int type = token.getType();
             if (type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.INTERFACE_DEF
                 || type == TokenTypes.ANNOTATION_DEF
                 || type == TokenTypes.ENUM_DEF) {
-                returnValue = getAccessModifierFromModifiersToken(token);
+                returnValue = Optional.ofNullable(getAccessModifierFromModifiersToken(token));
             }
             else if (type == TokenTypes.LITERAL_NEW) {
                 break;
