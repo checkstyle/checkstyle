@@ -13,22 +13,21 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 public class InputWhitespaceAroundReservedWords {
 
     void testIf(int x) {
-        if (x > 0) {
+        if    (x > 0) {
             x++;
-        }
-        else {
+        }       else       {
             x--;
         }
     }
 
     void testFor() {
-        for (int i = 0; i < 1; i++) {
+        for    (int i = 0; i < 1; i++) {
             System.out.println(i);
         }
     }
 
     void testWhile() {
-        while (true) {
+        while    (true) {
             break;
         }
     }
