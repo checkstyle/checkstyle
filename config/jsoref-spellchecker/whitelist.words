@@ -274,7 +274,6 @@ Dconfig
 Dconnection
 ddd
 DDDL
-Ddisable
 Ddry
 DEADBEEF
 DECCHARS
@@ -1129,7 +1128,6 @@ protonpack
 Psevntu
 PSHOME
 PSMODULEP
-Pstatic
 pubconstr
 pubifc
 PUBLI
