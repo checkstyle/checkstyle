@@ -1309,6 +1309,18 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/nogetmessageincatchthrow.html#NoGetMessageInCatchThrow">
+                NoGetMessageInCatchThrow
+              </a>
+            </td>
+            <td>
+              Checks that exception messages in throw statements within catch blocks do not include
+              the caught exception's getMessage() call, as the exception cause already contains this
+              information.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/whitespace/nolinewrap.html#NoLineWrap">
                 NoLineWrap
               </a>
