@@ -327,7 +327,6 @@ doclint
 doctype
 documentationcomments
 donotignoreexceptions
-Dorekit
 Dorg
 DOTALL
 doubletag
@@ -1158,6 +1157,7 @@ rcurly
 rdiachenko
 RDz
 reactivex
+readarray
 README
 Readonly
 rebased
