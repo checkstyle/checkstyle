@@ -55,8 +55,8 @@ public class IllegalTokenTextCheckTest
     public void testIllegalTokenTextCheckCaseInSensitive()
             throws Exception {
         final String[] expected = {
-            "34:28: " + getCheckMessage(MSG_KEY, "a href"),
-            "35:32: " + getCheckMessage(MSG_KEY, "a href"),
+            "35:28: " + getCheckMessage(MSG_KEY, "a href"),
+            "37:32: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextCheckCaseInSensitive.java"), expected);
@@ -92,7 +92,7 @@ public class IllegalTokenTextCheckTest
             "19:32: " + getCheckMessage(MSG_KEY, "a href"),
             "31:37: " + getCheckMessage(MSG_KEY, "a href"),
             "36:37: " + getCheckMessage(MSG_KEY, "a href"),
-            "42:54: " + getCheckMessage(MSG_KEY, "a href"),
+            "43:54: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextTextBlocks.java"), expected);
@@ -108,7 +108,7 @@ public class IllegalTokenTextCheckTest
             "21:36: " + getCheckMessage(MSG_KEY, "\""),
             "31:37: " + getCheckMessage(MSG_KEY, "\""),
             "36:37: " + getCheckMessage(MSG_KEY, "\""),
-            "42:42: " + getCheckMessage(MSG_KEY, "\""),
+            "43:42: " + getCheckMessage(MSG_KEY, "\""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextTextBlocksQuotes.java"), expected);
