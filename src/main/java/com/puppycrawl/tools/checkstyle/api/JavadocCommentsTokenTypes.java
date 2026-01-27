@@ -1514,6 +1514,29 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Term used in {@code {@index}} tag.
+     *
+     * <p>This node represents the term inside an inline {@code {@index ...}} tag in Javadoc.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * Example showing {@index keyword description of the index term}.}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->  Example showing
+     * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     `--INDEX_INLINE_TAG -> INDEX_INLINE_TAG
+     *         |--JAVADOC_INLINE_TAG_START -> { @
+     *         |--TAG_NAME -> index
+     *         |--TEXT ->
+     *         |--INDEX_TERM -> keyword
+     *         |--DESCRIPTION -> DESCRIPTION
+     *         |   `--TEXT ->  description of the index term
+     *         `--JAVADOC_INLINE_TAG_END -> }
+     * |--TEXT -> .
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int INDEX_TERM = JavadocCommentsLexer.INDEX_TERM;
 
