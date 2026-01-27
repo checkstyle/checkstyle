@@ -613,6 +613,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.UnusedLambdaParameterShouldBeUnnamedCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnnecessaryNullCheckWithInstanceOfCheck",
                 BASE_PACKAGE + ".checks.coding.UnnecessaryNullCheckWithInstanceOfCheck");
+        NAME_TO_FULL_MODULE_NAME.put("NoGetMessageInCatchThrowCheck",
+                BASE_PACKAGE + ".checks.coding.NoGetMessageInCatchThrowCheck");
     }
 
     /**
