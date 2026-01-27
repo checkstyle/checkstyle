@@ -100,7 +100,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/blocks/rightcurly/Example5",
             "checks/coding/constructorsdeclarationgrouping/Example2",
             "checks/coding/covariantequals/Example2",
-            "checks/coding/hiddenfield/Example7",
             "checks/coding/illegaltoken/Example2",
             "checks/coding/illegaltokentext/Example3",
             "checks/coding/illegaltokentext/Example4",
