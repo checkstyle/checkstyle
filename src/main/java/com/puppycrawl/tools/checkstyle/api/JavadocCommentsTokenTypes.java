@@ -1089,20 +1089,32 @@ public final class JavadocCommentsTokenTypes {
      */
     public static final int CUSTOM_INLINE_TAG = JavadocCommentsLexer.CUSTOM_INLINE_TAG;
 
-    // Components
-
-    /**
-     * Identifier token.
-     *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @see SomeClass}</pre>
-     *
-     * <b>Tree:</b>
-     * <pre>{@code
-     * REFERENCE -> REFERENCE
-     * `--IDENTIFIER -> SomeClass
-     * }</pre>
-     */
+        /**
+         * Identifier token in Javadoc references.
+         *
+         * <p>This token represents a class, method, or field name referenced in Javadoc tags such as {@code @see}, {@code @link}, or {@code @throws}.</p>
+         *
+         * <p><b>Example:</b></p>
+         * <pre>{@code
+         *  * @see java.util.List
+         * }</pre>
+         *
+         * <b>Tree:</b>
+         * <pre>{@code
+         * JAVADOC_CONTENT -> JAVADOC_CONTENT
+         * |--LEADING_ASTERISK -> *
+         * |--TEXT ->  
+         * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+         *     `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
+         *         |--AT_SIGN -> @
+         *         |--TAG_NAME -> see
+         *         |--TEXT ->  
+         *         `--REFERENCE -> REFERENCE
+         *             `--IDENTIFIER -> java.util.List
+         * }</pre>
+         *
+         * <p>Child of: {@link #REFERENCE}</p>
+         */
     public static final int IDENTIFIER = JavadocCommentsLexer.IDENTIFIER;
 
     /**
