@@ -3672,6 +3672,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoEnumTrailingCommaCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.NoGetMessageInThrowCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck*</param>
@@ -3706,6 +3707,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoEnumTrailingCommaCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.NoGetMessageInThrowCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheckTest</param>
