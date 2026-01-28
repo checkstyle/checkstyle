@@ -110,6 +110,12 @@ public class NewlineAtEndOfFileCheck
      */
     public static final String MSG_KEY_WRONG_ENDING = "wrong.line.end";
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_WRONG_ENDING_CR = "wrong.line.end.cr";
+
     /** Specify the type of line separator. */
     private LineSeparatorOption lineSeparator = LineSeparatorOption.LF_CR_CRLF;
 
@@ -150,6 +156,10 @@ public class NewlineAtEndOfFileCheck
             if (lineSeparator == LineSeparatorOption.LF
                     && endsWithNewline(randomAccessFile, LineSeparatorOption.CRLF)) {
                 log(1, MSG_KEY_WRONG_ENDING);
+            }
+            else if (lineSeparator == LineSeparatorOption.LF
+                    && endsWithNewline(randomAccessFile, LineSeparatorOption.CR)) {
+                log(1, MSG_KEY_WRONG_ENDING_CR);
             }
             else if (!endsWithNewline(randomAccessFile, lineSeparator)) {
                 log(1, MSG_KEY_NO_NEWLINE_EOF);
