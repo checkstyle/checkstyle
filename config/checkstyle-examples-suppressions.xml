@@ -168,4 +168,8 @@
   <suppress checks="PackageDeclaration"
     files="packagedeclaration[\\/]Example\d+.*"/>
 
+  <!-- File length suppressed to keep JavadocStyle examples consistent -->
+  <suppress checks="FileLength"
+    files=".*[\\/]javadocstyle[\\/]Example7\.java$"/>
+
 </suppressions>

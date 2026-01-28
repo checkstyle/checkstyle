@@ -2,13 +2,12 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="JavadocStyle">
-    <property name="tokens" value="CLASS_DEF"/>
+      <property name="tokens" value="CLASS_DEF"/>
     </module>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
-
 // xdoc section -- start
 /**
  * Some description here
@@ -33,27 +32,27 @@ public class Example6 {
    * Some description here
    */
   private void testMethod3() {
-
   }
   /**
    * Some description here
    */
   public void testMethod4() {
-
   }
   /**
    * Some description here
    * Second line of description
    */
   private void testMethod5() {
-
   }
   /**
    * Some description here
    * <p
    */
   private void testMethod6() {
-
   }
+  /**
+   *
+   */
+  private void testEmptyMethod() {}
 }
 // xdoc section -- end

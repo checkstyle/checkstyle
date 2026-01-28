@@ -4227,6 +4227,37 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, getPath("InputIndentationTryBlockNewIssue.java"), expected);
+    public void testLambdaInEnumConstant() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("tabWidth", "8");
+
+        final String fileName = getPath("InputIndentationLambdaInEnum.java");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testLambdaInEnumConstantWithMultipleArgs() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("tabWidth", "8");
+
+        final String fileName = getPath("InputIndentationLambdaInEnumMultipleArgs.java");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     private static final class IndentAudit implements AuditListener {

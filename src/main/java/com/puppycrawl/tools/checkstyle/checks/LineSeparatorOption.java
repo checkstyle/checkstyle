@@ -48,7 +48,7 @@ public enum LineSeparatorOption {
     SYSTEM(System.lineSeparator());
 
     /** The line separator representation. */
-    private final byte[] lineSeparator;
+    private final String lineSeparator;
 
     /**
      * Creates a new {@code LineSeparatorOption} instance.
@@ -56,7 +56,7 @@ public enum LineSeparatorOption {
      * @param sep the line separator, e.g. "\r\n"
      */
     LineSeparatorOption(String sep) {
-        lineSeparator = sep.getBytes(StandardCharsets.US_ASCII);
+        lineSeparator = sep;
     }
 
     /**
@@ -74,7 +74,10 @@ public enum LineSeparatorOption {
             result = LF.matches(bytes) || CR.matches(bytes);
         }
         else {
-            result = Arrays.equals(bytes, lineSeparator);
+            result = Arrays.equals(
+                    bytes,
+                    lineSeparator.getBytes(StandardCharsets.US_ASCII)
+            );
         }
         return result;
     }
@@ -86,7 +89,7 @@ public enum LineSeparatorOption {
      *     e.g. 1 for CR, 2 for CRLF, ...
      */
     public int length() {
-        return lineSeparator.length;
+        return lineSeparator.length();
     }
 
 }
