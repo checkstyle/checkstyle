@@ -8869,17 +8869,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter message of MacroExecutionException constructor.</message>
-    <lineContent>throw new MacroExecutionException(exc.getMessage(), exc);</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter moduleClassLoader of Checker.setModuleClassLoader.</message>
     <lineContent>checker.setModuleClassLoader(Checker.class.getClassLoader());</lineContent>
     <details>
