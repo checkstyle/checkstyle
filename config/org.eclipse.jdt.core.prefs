@@ -80,7 +80,8 @@ org.eclipse.jdt.core.compiler.problem.unavoidableGenericTypeProblems=enabled
 org.eclipse.jdt.core.compiler.problem.uncheckedTypeOperation=warning
 org.eclipse.jdt.core.compiler.problem.unclosedCloseable=error
 org.eclipse.jdt.core.compiler.problem.undocumentedEmptyBlock=error
-org.eclipse.jdt.core.compiler.problem.unhandledWarningToken=error
+# The option is set to warning to allow Error Prone specific suppressions like InvalidInlineTag
+org.eclipse.jdt.core.compiler.problem.unhandledWarningToken=warning
 org.eclipse.jdt.core.compiler.problem.uninternedIdentityComparison=enabled
 org.eclipse.jdt.core.compiler.problem.unlikelyCollectionMethodArgumentType=error
 org.eclipse.jdt.core.compiler.problem.unlikelyCollectionMethodArgumentTypeStrict=enabled

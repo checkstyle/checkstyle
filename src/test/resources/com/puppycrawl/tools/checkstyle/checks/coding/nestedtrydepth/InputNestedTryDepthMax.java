@@ -38,7 +38,7 @@ public class InputNestedTryDepthMax
         try {
             try {
                 try {
-                    try { // violation
+                    try { // violation, 'Nested try depth is 3 (max allowed is 2).'
                     } catch (Exception e) {
                     }
                 } catch (Exception e) {

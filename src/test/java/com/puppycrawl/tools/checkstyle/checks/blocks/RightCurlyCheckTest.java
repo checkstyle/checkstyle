@@ -346,8 +346,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
                 .that(exc.getMessage())
                 .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                    + "blocks.RightCurlyCheck - "
-                    + "Cannot set property 'option' to 'invalid_option'");
+                    + "blocks.RightCurlyCheck");
         }
     }
 

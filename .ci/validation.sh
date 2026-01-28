@@ -473,7 +473,8 @@ spotbugs-and-pmd)
   mkdir -p .ci-temp/spotbugs-and-pmd
   CHECKSTYLE_DIR=$(pwd)
   export MAVEN_OPTS='-Xmx2g'
-  ./mvnw -e --no-transfer-progress clean test-compile pmd:check spotbugs:check
+  ./mvnw -e --no-transfer-progress clean pmd:check
+  ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
   cd .ci-temp/spotbugs-and-pmd
   grep "Processing_Errors" "$CHECKSTYLE_DIR/target/site/pmd.html" | cat > errors.log
   RESULT=$(cat errors.log | wc -l)
@@ -776,7 +777,7 @@ no-error-pgjdbc)
 no-error-orekit)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
-  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/Hipparchus-Math/hipparchus.git
   cd .ci-temp/hipparchus
@@ -793,8 +794,12 @@ no-error-orekit)
   # git checkout $(git describe --abbrev=0 --tags)
   git fetch --depth 1 origin "9b121e504771f3ddd303ab""cc""c74ac9db64541ea1"
   git checkout "9b121e504771f3ddd303ab""cc""c74ac9db64541ea1"
-  mvn -e --no-transfer-progress compile checkstyle:check \
-    -Dorekit.checkstyle.version="${CS_POM_VERSION}"
+  echo "checkstyle.header.file=license-header.txt" > checkstyle.properties
+  readarray -t files < <(find src/main/java -name "*.java")
+  java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
+    -c checkstyle.xml \
+    -p checkstyle.properties \
+    "${files[@]}"
   cd ..
   removeFolderWithProtectedFiles Orekit
   removeFolderWithProtectedFiles hipparchus
@@ -881,12 +886,15 @@ no-error-methods-distance)
 no-error-equalsverifier)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
-  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/jqno/equalsverifier.git
   cd .ci-temp/equalsverifier
-  mvn -e --no-transfer-progress -Pstatic-analysis-checkstyle -DdisableStaticAnalysis compile \
-    checkstyle:check -Dversion.checkstyle="${CS_POM_VERSION}"
+  readarray -t files < <(find . \( -path '*/src/main/java/*.java' \
+    -o -path '*/src/test/java/*.java' \))
+  java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
+    -c build/checkstyle-config.xml \
+    "${files[@]}"
   cd ../
   removeFolderWithProtectedFiles equalsverifier
   ;;
@@ -929,11 +937,16 @@ no-error-spring-integration)
 no-error-htmlunit)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
-  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/HtmlUnit/htmlunit
   cd .ci-temp/htmlunit
-  mvn -e --no-transfer-progress compile checkstyle:check -Dcheckstyle.version="${CS_POM_VERSION}"
+  echo "checkstyle.suppressions.file=checkstyle_suppressions.xml" > checkstyle.properties
+  readarray -t files < <(find src/main/java src/test/java -name "*.java")
+  java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
+    -c checkstyle.xml \
+    -p checkstyle.properties \
+    "${files[@]}"
   cd ../
   removeFolderWithProtectedFiles htmlunit
   ;;

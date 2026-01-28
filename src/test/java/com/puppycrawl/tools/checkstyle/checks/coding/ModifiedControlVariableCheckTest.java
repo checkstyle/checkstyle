@@ -48,15 +48,15 @@ public class ModifiedControlVariableCheckTest
     @Test
     public void testModifiedControlVariable() throws Exception {
         final String[] expected = {
-            "17:14: " + getCheckMessage(MSG_KEY, "i"),
-            "20:15: " + getCheckMessage(MSG_KEY, "i"),
-            "23:37: " + getCheckMessage(MSG_KEY, "i"),
-            "24:17: " + getCheckMessage(MSG_KEY, "i"),
-            "52:15: " + getCheckMessage(MSG_KEY, "s"),
-            "59:14: " + getCheckMessage(MSG_KEY, "m"),
-            "70:15: " + getCheckMessage(MSG_KEY, "i"),
-            "71:15: " + getCheckMessage(MSG_KEY, "k"),
-            "81:15: " + getCheckMessage(MSG_KEY, "v"),
+            "21:14: " + getCheckMessage(MSG_KEY, "i"),
+            "24:15: " + getCheckMessage(MSG_KEY, "i"),
+            "27:37: " + getCheckMessage(MSG_KEY, "i"),
+            "28:17: " + getCheckMessage(MSG_KEY, "i"),
+            "56:15: " + getCheckMessage(MSG_KEY, "s"),
+            "63:14: " + getCheckMessage(MSG_KEY, "m"),
+            "74:15: " + getCheckMessage(MSG_KEY, "i"),
+            "75:15: " + getCheckMessage(MSG_KEY, "k"),
+            "85:15: " + getCheckMessage(MSG_KEY, "v"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputModifiedControlVariableBothForLoops.java"), expected);
@@ -75,7 +75,7 @@ public class ModifiedControlVariableCheckTest
     public void testEnhancedForLoopVariableFalse() throws Exception {
 
         final String[] expected = {
-            "16:18: " + getCheckMessage(MSG_KEY, "line"),
+            "20:18: " + getCheckMessage(MSG_KEY, "line"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputModifiedControlVariableEnhancedForLoopVariable3.java"),
@@ -86,7 +86,7 @@ public class ModifiedControlVariableCheckTest
     public void testEnhancedForLoopVariable2() throws Exception {
 
         final String[] expected = {
-            "21:18: " + getCheckMessage(MSG_KEY, "i"),
+            "25:18: " + getCheckMessage(MSG_KEY, "i"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputModifiedControlVariableEnhancedForLoopVariable2.java"),
@@ -141,28 +141,28 @@ public class ModifiedControlVariableCheckTest
     @Test
     public void testVariousAssignments() throws Exception {
         final String[] expected = {
-            "14:15: " + getCheckMessage(MSG_KEY, "i"),
-            "15:15: " + getCheckMessage(MSG_KEY, "k"),
-            "21:15: " + getCheckMessage(MSG_KEY, "i"),
-            "22:15: " + getCheckMessage(MSG_KEY, "k"),
-            "28:15: " + getCheckMessage(MSG_KEY, "i"),
-            "29:15: " + getCheckMessage(MSG_KEY, "k"),
-            "35:15: " + getCheckMessage(MSG_KEY, "i"),
-            "36:15: " + getCheckMessage(MSG_KEY, "k"),
-            "42:15: " + getCheckMessage(MSG_KEY, "i"),
-            "43:15: " + getCheckMessage(MSG_KEY, "k"),
-            "48:15: " + getCheckMessage(MSG_KEY, "i"),
-            "49:15: " + getCheckMessage(MSG_KEY, "k"),
-            "55:15: " + getCheckMessage(MSG_KEY, "i"),
-            "56:15: " + getCheckMessage(MSG_KEY, "k"),
-            "62:15: " + getCheckMessage(MSG_KEY, "i"),
-            "63:15: " + getCheckMessage(MSG_KEY, "k"),
-            "69:15: " + getCheckMessage(MSG_KEY, "i"),
-            "70:15: " + getCheckMessage(MSG_KEY, "k"),
-            "76:15: " + getCheckMessage(MSG_KEY, "i"),
-            "77:15: " + getCheckMessage(MSG_KEY, "k"),
-            "83:14: " + getCheckMessage(MSG_KEY, "i"),
-            "84:14: " + getCheckMessage(MSG_KEY, "k"),
+            "18:15: " + getCheckMessage(MSG_KEY, "i"),
+            "19:15: " + getCheckMessage(MSG_KEY, "k"),
+            "25:15: " + getCheckMessage(MSG_KEY, "i"),
+            "26:15: " + getCheckMessage(MSG_KEY, "k"),
+            "32:15: " + getCheckMessage(MSG_KEY, "i"),
+            "33:15: " + getCheckMessage(MSG_KEY, "k"),
+            "39:15: " + getCheckMessage(MSG_KEY, "i"),
+            "40:15: " + getCheckMessage(MSG_KEY, "k"),
+            "46:15: " + getCheckMessage(MSG_KEY, "i"),
+            "47:15: " + getCheckMessage(MSG_KEY, "k"),
+            "52:15: " + getCheckMessage(MSG_KEY, "i"),
+            "53:15: " + getCheckMessage(MSG_KEY, "k"),
+            "59:15: " + getCheckMessage(MSG_KEY, "i"),
+            "60:15: " + getCheckMessage(MSG_KEY, "k"),
+            "66:15: " + getCheckMessage(MSG_KEY, "i"),
+            "67:15: " + getCheckMessage(MSG_KEY, "k"),
+            "73:15: " + getCheckMessage(MSG_KEY, "i"),
+            "74:15: " + getCheckMessage(MSG_KEY, "k"),
+            "80:15: " + getCheckMessage(MSG_KEY, "i"),
+            "81:15: " + getCheckMessage(MSG_KEY, "k"),
+            "87:14: " + getCheckMessage(MSG_KEY, "i"),
+            "88:14: " + getCheckMessage(MSG_KEY, "k"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputModifiedControlVariableTestVariousAssignments.java"),
@@ -172,7 +172,7 @@ public class ModifiedControlVariableCheckTest
     @Test
     public void testRecordDecompositionInEnhancedForLoop() throws Exception {
         final String[] expected = {
-            "32:15: " + getCheckMessage(MSG_KEY, "p"),
+            "37:15: " + getCheckMessage(MSG_KEY, "p"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputModifiedControlVariableRecordDecomposition.java"),

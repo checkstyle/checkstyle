@@ -185,4 +185,13 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
 
         verifyWithInlineConfigParser(getPath("Example16.java"), expected);
     }
+
+    @Test
+    public void testExample17() throws Exception {
+        final String[] expected = {
+            "21:5: Switch must contain at least one default branch.",
+        };
+
+        verifyWithInlineConfigParser(getPath("Example17.java"), expected);
+    }
 }

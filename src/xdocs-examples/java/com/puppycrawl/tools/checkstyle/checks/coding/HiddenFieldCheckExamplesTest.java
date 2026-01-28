@@ -102,10 +102,10 @@ public class HiddenFieldCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample7() throws Exception {
         final String[] expected = {
-            "18:16: " + getCheckMessage(MSG_KEY, "field"),
-            "22:12: " + getCheckMessage(MSG_KEY, "field"),
-            "24:28: " + getCheckMessage(MSG_KEY, "testField"),
-            "27:28: " + getCheckMessage(MSG_KEY, "field"),
+            "18:19: " + getCheckMessage(MSG_KEY, "field"),
+            "21:12: " + getCheckMessage(MSG_KEY, "field"),
+            "23:28: " + getCheckMessage(MSG_KEY, "testField"),
+            "26:28: " + getCheckMessage(MSG_KEY, "field"),
         };
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
