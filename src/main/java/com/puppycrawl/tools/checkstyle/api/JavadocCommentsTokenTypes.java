@@ -1500,8 +1500,10 @@ public final class JavadocCommentsTokenTypes {
     /**
      * Attribute name in a {@code @snippet} tag.
      *
-     * <p><b>Note:</b> In the current Checkstyle AST, all snippet attributes (such as {@code lang=java})
-     * appear as plain text under the {@code DESCRIPTION} node. There is <b>no</b> {@code SNIPPET_ATTR_NAME}
+     * <p><b>Note:</b> In the current Checkstyle AST, all snippet attributes 
+     * (such as {@code lang=java})
+     * appear as plain text under the {@code DESCRIPTION} node. There is <b>no</b> 
+     * {@code SNIPPET_ATTR_NAME}
      * node in the AST tree. All attribute content is represented as {@code TEXT}.</p>
      *
      * <p><b>Example:</b></p>
