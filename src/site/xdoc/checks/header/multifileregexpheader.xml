@@ -76,16 +76,10 @@ public class Example1 { }
 &lt;/module&gt;
 </code></pre></div>
                 <p id="java-raw">content of "java.header" file:</p>
-                <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// Checkstyle - Java code style checker. Copyright (C) 20XX-20XX the authors.
-// Licensed under the LGPL v2.1 or later. See LICENSE for details.
-// Distributed without warranty; see the GNU LGPL for more info.
+                <div class="wrapper"><pre class="prettyprint"><code class="language-text">src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/java.header
 </code></pre></div>
                 <p id="apache-raw">content of "apache.header" file:</p>
-                <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/* Licensed to the ASF under the Apache License, Version 2.0 (see NOTICE).
-* You may not use this file except in compliance:
-* http://www.apache.org/licenses/LICENSE-2.0 (AS IS, no warranties/conditions). */
+                <div class="wrapper"><pre class="prettyprint"><code class="language-text">src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/apache.header
 </code></pre></div>
                 <p id="Example2-code">Example2:</p>
                 <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -128,8 +122,7 @@ public class Example3 { }
 &lt;/module&gt;
 </code></pre></div>
                 <p id="universal-header">content of "universal.header" file:</p>
-                <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-^.*
+                <div class="wrapper"><pre class="prettyprint"><code class="language-text">src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/universal.header
 </code></pre></div>
                 <p id="Example4-code">
                   <code>&quot;.*&quot;</code> will match all lines and
