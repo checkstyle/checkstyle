@@ -1500,12 +1500,14 @@ public final class JavadocCommentsTokenTypes {
     /**
      * Attribute name in a {@code @snippet} tag.
      *
-     * <p>This node represents the name of an attribute in a Javadoc {@code @snippet} tag.</p>
+     * <p><b>Note:</b> In the current Checkstyle AST, all snippet attributes (such as {@code lang=java})
+     * appear as plain text under the {@code DESCRIPTION} node. There is <b>no</b> {@code SNIPPET_ATTR_NAME}
+     * node in the AST tree. All attribute content is represented as {@code TEXT}.</p>
      *
      * <p><b>Example:</b></p>
      * <pre>{@code * @snippet lang=java}</pre>
      *
-     * <b>Tree:</b>
+     * <p><b>Tree:</b></p>
      * <pre>{@code
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK ->  *
@@ -1514,11 +1516,8 @@ public final class JavadocCommentsTokenTypes {
      * |   `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
      * |       |--AT_SIGN -> @
      * |       |--TAG_NAME -> snippet
-     * |       |--SNIPPET_ATTRIBUTE -> SNIPPET_ATTRIBUTE
-     * |       |   |--SNIPPET_ATTR_NAME -> lang
-     * |       |   |--EQUALS -> =
-     * |       |   `--ATTRIBUTE_VALUE -> "java"
      * |       `--DESCRIPTION -> DESCRIPTION
+     * |           `--TEXT ->  lang=java
      * }</pre>
      *
      * @see #SNIPPET_ATTRIBUTE
