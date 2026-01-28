@@ -132,7 +132,7 @@ public class ChainedPropertyUtilTest extends AbstractModuleTestSupport {
             properties.load(stream);
         }
         catch (final IOException exc) {
-            throw new CheckstyleException(exc.getMessage(), exc);
+            throw new CheckstyleException("Failed to load properties ", exc);
         }
 
         return properties;
