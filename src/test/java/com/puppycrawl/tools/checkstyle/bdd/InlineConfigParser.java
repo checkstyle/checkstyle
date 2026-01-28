@@ -477,7 +477,7 @@ public final class InlineConfigParser {
             setViolations(testInputConfigBuilder, lines, setFilteredViolations, inputFilePath);
         }
         catch (CheckstyleException exc) {
-            throw new CheckstyleException(exc.getMessage() + " in " + inputFilePath, exc);
+            throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
         }
         return testInputConfigBuilder.build();
     }
@@ -495,7 +495,7 @@ public final class InlineConfigParser {
             }
         }
         catch (CheckstyleException exc) {
-            throw new CheckstyleException(exc.getMessage() + " in " + inputFilePath, exc);
+            throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
         }
 
         return testInputConfigBuilder.build().getViolations();
@@ -514,7 +514,7 @@ public final class InlineConfigParser {
             }
         }
         catch (CheckstyleException exc) {
-            throw new CheckstyleException(exc.getMessage() + " in " + inputFilePath, exc);
+            throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
         }
 
         return testInputConfigBuilder.build().getFilteredViolations();
@@ -560,7 +560,7 @@ public final class InlineConfigParser {
             setViolations(testInputConfigBuilder, lines, false, inputFilePath);
         }
         catch (CheckstyleException exc) {
-            throw new CheckstyleException(exc.getMessage() + " in " + inputFilePath, exc);
+            throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
         }
         return testInputConfigBuilder.buildWithXmlConfiguration();
     }

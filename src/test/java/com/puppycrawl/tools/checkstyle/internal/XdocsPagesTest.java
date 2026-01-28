@@ -806,8 +806,8 @@ public class XdocsPagesTest {
                 }
             }
             catch (CheckstyleException exc) {
-                throw new CheckstyleException(fileName + " has invalid Checkstyle xml ("
-                        + exc.getMessage() + "): " + unserializedSource, exc);
+                throw new CheckstyleException(fileName + " has invalid Checkstyle xml: "
+                        + unserializedSource, exc);
             }
         }
         return true;
