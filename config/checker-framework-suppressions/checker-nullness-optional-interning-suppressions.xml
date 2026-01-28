@@ -1517,7 +1517,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java</fileName>
     <specifier>override.return</specifier>
     <message>Incompatible return type.</message>
-    <lineContent>public Enumeration&lt;Object&gt; keys() {</lineContent>
+    <lineContent>public synchronized Enumeration&lt;Object&gt; keys() {</lineContent>
     <details>
       found   : Enumeration&lt;Object&gt;
       required: Enumeration&lt;@KeyFor(&quot;this&quot;) Object&gt;
@@ -8591,17 +8591,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/MetadataGeneratorUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter message of CheckstyleException constructor.</message>
-    <lineContent>throw new CheckstyleException(macroException.getMessage(), macroException);</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/MetadataGeneratorUtil.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter propertyJavadoc of MetadataGeneratorUtil.getPropertyDescription.</message>
     <lineContent>javadocs.get(property));</lineContent>
     <details>
@@ -8868,13 +8857,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
-    <specifier>annotations.on.use</specifier>
-    <message>invalid type: annotations [@Initialized, @Nullable] conflict with declaration of type java.util.Optional</message>
-    <lineContent>private static Optional&lt;String&gt; getPropertyVersionFromItsJavadoc(DetailNode propertyJavadoc) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter classLoader of PackageNamesLoader.getPackageNames.</message>
     <lineContent>final Set&lt;String&gt; packageNames = PackageNamesLoader.getPackageNames(cl);</lineContent>
@@ -8911,13 +8893,6 @@
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference currentClass</message>
     <lineContent>result = currentClass.getDeclaredField(propertyName);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference specifiedPropertyVersionInPropertyJavadoc</message>
-    <lineContent>if (specifiedPropertyVersionInPropertyJavadoc.isPresent()) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

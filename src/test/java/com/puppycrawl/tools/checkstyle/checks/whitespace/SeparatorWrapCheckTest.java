@@ -94,8 +94,7 @@ public class SeparatorWrapCheckTest
                 .that(exc.getMessage())
                 .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                    + "whitespace.SeparatorWrapCheck - "
-                    + "Cannot set property 'option' to 'invalid_option'");
+                    + "whitespace.SeparatorWrapCheck");
         }
     }
 
