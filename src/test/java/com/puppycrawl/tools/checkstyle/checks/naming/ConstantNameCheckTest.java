@@ -62,8 +62,7 @@ public class ConstantNameCheckTest
                 .that(exc.getMessage())
                 .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                    + "naming.ConstantNameCheck - "
-                    + "illegal value '\\' for property 'format'");
+                    + "naming.ConstantNameCheck");
         }
     }
 

@@ -25,7 +25,6 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuat
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocTagContinuationIndentationCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
@@ -37,7 +36,11 @@ public class JavadocTagContinuationIndentationCheckExamplesTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "27: " + getCheckMessage(MSG_KEY, 4),
+            "25: " + getCheckMessage(MSG_KEY, 4),
+            "42: " + getCheckMessage(MSG_KEY, 4),
+            "43: " + getCheckMessage(MSG_KEY, 4),
+            "44: " + getCheckMessage(MSG_KEY, 4),
+            "45: " + getCheckMessage(MSG_KEY, 4),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -45,29 +48,25 @@ public class JavadocTagContinuationIndentationCheckExamplesTest
 
     @Test
     public void testExample2() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "44: " + getCheckMessage(MSG_KEY, 2),
+            "45: " + getCheckMessage(MSG_KEY, 2),
+            "46: " + getCheckMessage(MSG_KEY, 2),
+            "47: " + getCheckMessage(MSG_KEY, 2),
+        };
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
-            "29: " + getCheckMessage(MSG_KEY, 4),
+            "14: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "a"),
+            "28: " + getCheckMessage(MSG_KEY, 4),
+            "45: " + getCheckMessage(MSG_KEY, 4),
+            "46: " + getCheckMessage(MSG_KEY, 4),
+            "47: " + getCheckMessage(MSG_KEY, 4),
+            "48: " + getCheckMessage(MSG_KEY, 4),
         };
-
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
-    }
-
-    @Test
-    public void testExample4() throws Exception {
-        final String[] expected = {
-            "29: " + getCheckMessage(MSG_KEY, 4),
-            "30: " + getCheckMessage(MSG_KEY, 4),
-            "31: " + getCheckMessage(MSG_KEY, 4),
-            "32: " + getCheckMessage(MSG_KEY, 4),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }

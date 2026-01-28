@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer;
  * @see <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
  *     javadoc - The Java API Documentation Generator</a>
  */
+@SuppressWarnings("InvalidInlineTag")
 public final class JavadocCommentsTokenTypes {
 
     /**
@@ -697,7 +698,40 @@ public final class JavadocCommentsTokenTypes {
     public static final int JAVADOC_INLINE_TAG = JavadocCommentsLexer.JAVADOC_INLINE_TAG;
 
     /**
-     * Start of an inline tag  <code>{</code>.
+     * Start of an inline tag <code>{</code>.
+     *
+     * <p>This node represents the start of a Javadoc inline tag like
+     * {@code @code} or {@code @link}.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     * * {@code code}
+     * &#42;/
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--TEXT -> /**
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->   *
+     * |--TEXT ->
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |   `--CODE_INLINE_TAG -> CODE_INLINE_TAG
+     * |       |--JAVADOC_INLINE_TAG_START -> { @
+     * |       |--TAG_NAME -> code
+     * |       |--TEXT ->   code
+     * |       `--JAVADOC_INLINE_TAG_END -> }
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->   *
+     * |--TEXT -> /
+     * |--NEWLINE -> \n
+     * |--TEXT -> public class Test {}
+     * `--NEWLINE -> \n
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int JAVADOC_INLINE_TAG_START =
             JavadocCommentsLexer.JAVADOC_INLINE_TAG_START;
@@ -1090,11 +1124,51 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Identifier token.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @throws Exception if error.}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--THROWS_BLOCK_TAG -> THROWS_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> throws
+     *         |--TEXT ->
+     *         |--IDENTIFIER -> Exception
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  if error.
+     * }</pre>
      */
     public static final int IDENTIFIER = JavadocCommentsLexer.IDENTIFIER;
 
     /**
-     * Hash symbol {@code #} used in references.
+     * Hash symbol {@code #} used in references within Javadoc.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @see MyClass#myMethod()}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * |   `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
+     * |       |--AT_SIGN -> @
+     * |       |--TAG_NAME -> see
+     * |       |--TEXT ->
+     * |       `--REFERENCE -> REFERENCE
+     * |           |--IDENTIFIER -> MyClass
+     * |           |--HASH -> #
+     * |           |--IDENTIFIER -> myMethod
+     * |           |--LPAREN -> (
+     * |           `--RPAREN -> )
+     * }</pre>
+     *
+     * @see #REFERENCE
      */
     public static final int HASH = JavadocCommentsLexer.HASH;
 
@@ -1110,6 +1184,31 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Comma symbol {@code , }.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @see #method(int, int)}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> see
+     *         |--TEXT ->
+     *         |--REFERENCE -> REFERENCE
+     *         |   |--HASH -> #
+     *         |   `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *         |       |--IDENTIFIER -> method
+     *         |       |--LPAREN -> (
+     *         |       |--PARAMETER_TYPE_LIST -> PARAMETER_TYPE_LIST
+     *         |       |   |--PARAMETER_TYPE -> int
+     *         |       |   |--COMMA -> ,
+     *         |       |   |--TEXT ->
+     *         |       |   `--PARAMETER_TYPE -> int
+     *         |       `--RPAREN -> )
+     * }</pre>
      */
     public static final int COMMA = JavadocCommentsLexer.COMMA;
 
@@ -1125,12 +1224,59 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Less-than symbol {@code < }.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @see List<String>}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * |   `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
+     * |       |--AT_SIGN -> @
+     * |       |--TAG_NAME -> see
+     * |       |--TEXT ->
+     * |       `--REFERENCE -> REFERENCE
+     * |           |--IDENTIFIER -> List
+     * |           `--TYPE_ARGUMENTS -> TYPE_ARGUMENTS
+     * |               |--LT -> <
+     * |               |--TYPE_ARGUMENT -> TYPE_ARGUMENT
+     * |               |   `--IDENTIFIER -> String
+     * |               `--GT -> >
+     * |--NEWLINE -> \n
+     * `--TEXT ->
+     * }</pre>
      */
     public static final int LT = JavadocCommentsLexer.LT;
 
     /**
      * Greater-than symbol {@code > }.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @see List<String>}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * |   `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
+     * |       |--AT_SIGN -> @
+     * |       |--TAG_NAME -> see
+     * |       |--TEXT ->
+     * |       `--REFERENCE -> REFERENCE
+     * |           |--IDENTIFIER -> List
+     * |           `--TYPE_ARGUMENTS -> TYPE_ARGUMENTS
+     * |               |--LT -> <
+     * |               |--TYPE_ARGUMENT -> TYPE_ARGUMENT
+     * |               |   `--IDENTIFIER -> String
+     * |               `--GT -> >
+     * |--NEWLINE -> \n
+     * `--Text ->
+     * }</pre>
      */
+
     public static final int GT = JavadocCommentsLexer.GT;
 
     /**
@@ -1421,6 +1567,29 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Term used in {@code {@index}} tag.
+     *
+     * <p>This node represents the term inside an inline {@code {@index ...}} tag in Javadoc.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * Example showing {@index keyword description of the index term}.}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->  Example showing
+     * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     `--INDEX_INLINE_TAG -> INDEX_INLINE_TAG
+     *         |--JAVADOC_INLINE_TAG_START -> { @
+     *         |--TAG_NAME -> index
+     *         |--TEXT ->
+     *         |--INDEX_TERM -> keyword
+     *         |--DESCRIPTION -> DESCRIPTION
+     *         |   `--TEXT ->  description of the index term
+     *         `--JAVADOC_INLINE_TAG_END -> }
+     * |--TEXT -> .
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int INDEX_TERM = JavadocCommentsLexer.INDEX_TERM;
 
@@ -1445,7 +1614,27 @@ public final class JavadocCommentsTokenTypes {
     public static final int FIELD_TYPE = JavadocCommentsLexer.FIELD_TYPE;
 
     /**
-     * Parameter name reference.
+     * Parameter name reference in a Javadoc {@code @param} block tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @param value The parameter of method.}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> param
+     *         |--TEXT ->
+     *         |--PARAMETER_NAME -> value
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  The parameter of method.
+     * }</pre>
+     *
+     * @see #PARAM_BLOCK_TAG
      */
     public static final int PARAMETER_NAME = JavadocCommentsLexer.PARAMETER_NAME;
 
@@ -1457,7 +1646,36 @@ public final class JavadocCommentsTokenTypes {
     // HTML
 
     /**
-     * General HTML element.
+     * General HTML element in a Javadoc comment.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * <p>Hello</p>
+     *  &#42;/
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK ->      *
+     * |--TEXT ->
+     * |--HTML_ELEMENT -> HTML_ELEMENT
+     * |   |--HTML_TAG_START -> HTML_TAG_START
+     * |   |   |--TAG_OPEN -> <
+     * |   |   |--TAG_NAME -> p
+     * |   |   `--TAG_CLOSE -> >
+     * |   |--HTML_CONTENT -> HTML_CONTENT
+     * |   |   `--TEXT -> Hello
+     * |   `--HTML_TAG_END -> HTML_TAG_END
+     * |       |--TAG_OPEN -> <
+     * |       |--TAG_SLASH -> /
+     * |       |--TAG_NAME -> p
+     * |       `--TAG_CLOSE -> >
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->      *
+     * |--TEXT -> /
+     * }</pre>
      */
     public static final int HTML_ELEMENT = JavadocCommentsLexer.HTML_ELEMENT;
 

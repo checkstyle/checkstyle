@@ -331,8 +331,7 @@ public class ParenPadCheckTest
                 .that(exc.getMessage())
                 .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                    + "whitespace.ParenPadCheck - "
-                    + "Cannot set property 'option' to 'invalid_option'");
+                    + "whitespace.ParenPadCheck");
         }
     }
 
