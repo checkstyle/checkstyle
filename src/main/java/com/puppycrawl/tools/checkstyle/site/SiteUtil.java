@@ -1187,7 +1187,7 @@ public final class SiteUtil {
             result = descriptor.getPropertyType();
         }
         catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException exc) {
-            throw new MacroExecutionException(exc.getMessage(), exc);
+            throw new MacroExecutionException("Failed to retrieve property type", exc);
         }
         return result;
     }
