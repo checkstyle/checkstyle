@@ -1520,7 +1520,29 @@ public final class JavadocCommentsTokenTypes {
     public static final int FORMAT_SPECIFIER = JavadocCommentsLexer.FORMAT_SPECIFIER;
 
     /**
-     * Attribute name in a {@code @snippet}.
+     * Attribute name in a {@code @snippet} tag.
+     *
+     * <p><b>Note:</b> In the current Checkstyle AST, all snippet attributes (such as {@code lang=java})
+     * appear as plain text under the {@code DESCRIPTION} node. There is <b>no</b> {@code SNIPPET_ATTR_NAME}
+     * node in the AST tree. All attribute content is represented as {@code TEXT}.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @snippet lang=java}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * |   `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
+     * |       |--AT_SIGN -> @
+     * |       |--TAG_NAME -> snippet
+     * |       `--DESCRIPTION -> DESCRIPTION
+     * |           `--TEXT ->  lang=java
+     * }</pre>
+     *
+     * @see #SNIPPET_ATTRIBUTE
      */
     public static final int SNIPPET_ATTR_NAME = JavadocCommentsLexer.SNIPPET_ATTR_NAME;
 
