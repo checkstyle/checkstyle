@@ -283,6 +283,7 @@
       -Xep:OperatorPrecedence:OFF
       -Xep:OptionalOrElseGet:ERROR
       -Xep:PatternMatchingInstanceof:ERROR
+      -Xep:MalformedInlineTag:ERROR
       -Xep:PrimitiveComparison:ERROR
       -Xep:RedundantStringConversion:ERROR
       -Xep:RedundantStringEscape:ERROR
