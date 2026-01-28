@@ -4221,6 +4221,14 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                 .hasSize(1);
     }
 
+    @Test
+    public void testTryBlockNewIssue() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, getPath("InputIndentationTryBlockNewIssue.java"), expected);
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;
