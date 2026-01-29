@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer;
+import org.antlr.v4.runtime.tree.Tree;
 
 /**
  * Contains the constants for all the tokens contained in the Abstract
@@ -223,24 +224,46 @@ public final class JavadocCommentsTokenTypes {
      * </ol>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * @deprecated deprecated text.}</pre>
+     * <pre>{@code
+     * /**
+     *  * @deprecated Use newMethod() instead.
+     *  */
+     * }</pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
+     * |--TEXT -> public class Test {
+     * |--NEWLINE -> \n
+     * |--NEWLINE -> \n
+     * |--TEXT ->     /**
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->      *
      * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--DEPRECATED_BLOCK_TAG -> DEPRECATED_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> deprecated
-     *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  deprecated text.
+     * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * |   `--DEPRECATED_BLOCK_TAG -> DEPRECATED_BLOCK_TAG
+     * |       |--AT_SIGN -> @
+     * |       |--TAG_NAME -> deprecated
+     * |       `--DESCRIPTION -> DESCRIPTION
+     * |           |--TEXT ->  Use newMethod() instead.
+     * |           |--NEWLINE -> \n
+     * |           |--LEADING_ASTERISK ->      *
+     * |           |--TEXT -> /
+     * |           |--NEWLINE -> \n
+     * |           |--TEXT ->     public void oldMethod() {
+     * |           |--NEWLINE -> \n
+     * |           |--TEXT ->     }
+     * |           |--NEWLINE -> \n
+     * |           `--TEXT -> }
+     * `--NEWLINE -> \n
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
      */
-    public static final int DEPRECATED_BLOCK_TAG = JavadocCommentsLexer.DEPRECATED_BLOCK_TAG;
+
+
+
+        public static final int DEPRECATED_BLOCK_TAG = JavadocCommentsLexer.DEPRECATED_BLOCK_TAG;
 
     /**
      * {@code @param} Javadoc block tag.
