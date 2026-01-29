@@ -1,13 +1,3 @@
-/*xml
-<module name="Checker">
-  <module name="TreeWalker">
-    <module name="EmptyLineSeparator">
-      <property name="allowMultipleEmptyLines" value="false"/>
-    </module>
-  </module>
-</module>
-*/
-
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 
 public class InputEmptyLineSeparatorCrash18660 {
