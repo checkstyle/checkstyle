@@ -181,6 +181,7 @@
           <item name="UnnecessaryNullCheckWithInstanceOf"
                 href="checks/coding/unnecessarynullcheckwithinstanceof.html"/>
           <item name="UnnecessaryParentheses" href="checks/coding/unnecessaryparentheses.html"/>
+          <item name="UnnecessaryPermitsClause" href="checks/coding/unnecessarypermitsclause.html"/>
           <item name="UnnecessarySemicolonAfterOuterTypeDeclaration"
                 href="checks/coding/unnecessarysemicolonafteroutertypedeclaration.html"/>
           <item name="UnnecessarySemicolonAfterTypeMemberDeclaration"

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryPermitsClauseCheck"
+             name="UnnecessaryPermitsClause"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks for unnecessary permits clauses in sealed classes and interfaces.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ In the Java programming language, a sealed type may specify a &lt;code&gt;permits&lt;/code&gt;
+ clause to explicitly list all allowed subclasses. The &lt;code&gt;permits&lt;/code&gt; clause is
+ optional if all permitted types are nested or declared within the same file.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ This check tracks:
+ &lt;ul&gt;
+   &lt;li&gt;the permitted types listed in the &lt;code&gt;permits&lt;/code&gt; clause of a sealed type&lt;/li&gt;
+   &lt;li&gt;all subclasses/implementations found in the same file&lt;/li&gt;
+ &lt;/ul&gt;
+ If all permitted types are found in the same compilation unit, a violation is logged.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="unnecessary.permit.clause"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
