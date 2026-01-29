@@ -279,7 +279,7 @@ public class JavadocTypeCheck
      * @return whether we should check a given node.
      */
     private boolean shouldCheck(DetailAST ast) {
-        final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
+        final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast).get();
 
         return surroundingScope.isIn(scope)
                 && (excludeScope == null || !surroundingScope.isIn(excludeScope))
