@@ -222,7 +222,7 @@ public class JavadocStyleCheck
         }
         else if (!ScopeUtil.isInCodeBlock(ast)) {
             final Scope customScope = ScopeUtil.getScope(ast);
-            final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
+            final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast).orElseThrow();
 
             check = customScope.isIn(scope)
                     && surroundingScope.isIn(scope)
