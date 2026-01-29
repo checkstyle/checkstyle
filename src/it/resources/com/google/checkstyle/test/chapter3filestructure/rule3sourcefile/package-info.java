@@ -17,4 +17,4 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.google.checkstyle.test.chapter3filestructure.rule3sourcefile;
-// false-negative above, ok until #17541
+// violation above ''package' should be separated from previous line.'

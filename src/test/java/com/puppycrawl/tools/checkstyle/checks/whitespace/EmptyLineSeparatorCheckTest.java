@@ -492,7 +492,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testDisAllowBlockCommentBeforePackage() throws Exception {
         final String[] expected = {
-            "15:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
+            "12:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
         };
         verifyWithInlineConfigParser(
                 getPath("packageinfo/test3/package-info.java"),
@@ -506,6 +506,16 @@ public class EmptyLineSeparatorCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("packageinfo/test4/package-info.java"),
+                expected);
+    }
+
+    @Test
+    public void testBlockCommentsBeforePackage() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("packageinfo/test5/package-info.java"),
                 expected);
     }
 
