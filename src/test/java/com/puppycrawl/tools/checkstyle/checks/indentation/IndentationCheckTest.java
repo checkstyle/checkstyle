@@ -3074,6 +3074,53 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIndentationContinuationLines() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("tabWidth", "4");
+
+        final String fileName = getPath("InputIndentationContinuationLines.java");
+
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "17:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "22:5: " + getCheckMessage(MSG_ERROR, "lambda arguments", 4, 8),
+            "27:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "28:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "29:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "35:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 8),
+            "40:7: " + getCheckMessage(MSG_ERROR, "lambda arguments", 6, 8),
+        };
+
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testIndentationLambdaCoverage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("tabWidth", "4");
+
+        final String fileName = getPath("InputIndentationLambdaCoverage.java");
+
+        final String[] expected = {
+            "21:9: " + getCheckMessage(MSG_CHILD_ERROR, "block", 8, 6),
+            "43:5: " + getCheckMessage(MSG_ERROR, "42", 4, 8),
+            "57:3: " + getCheckMessage(MSG_ERROR, "42", 2, 8),
+        };
+
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testSeparatedStatements() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
