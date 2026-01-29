@@ -105,13 +105,13 @@ public class XpathUtilTest {
         final File file = new File(tempFolder, uniqueFileName);
         Files.writeString(file.toPath(), fileContent, StandardCharsets.UTF_8);
         final String expected = addEndOfLine(
-            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
-            "`--CLASS_DEF -> CLASS_DEF [1:0]",
-            "    `--OBJBLOCK -> OBJBLOCK [1:11]",
-            "        |--METHOD_DEF -> METHOD_DEF [1:13]",
-            "        |   `--SLIST -> { [1:34]",
-            "        |       |--VARIABLE_DEF -> VARIABLE_DEF [1:35]",
-            "        |       |   |--IDENT -> a [1:39]");
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:1]",
+            "`--CLASS_DEF -> CLASS_DEF [1:1]",
+            "    `--OBJBLOCK -> OBJBLOCK [1:12]",
+            "        |--METHOD_DEF -> METHOD_DEF [1:14]",
+            "        |   `--SLIST -> { [1:35]",
+            "        |       |--VARIABLE_DEF -> VARIABLE_DEF [1:36]",
+            "        |       |   |--IDENT -> a [1:40]");
         final String result = XpathUtil.printXpathBranch(
             "//CLASS_DEF//METHOD_DEF//VARIABLE_DEF//IDENT", file);
         assertWithMessage("Branch string is different")
@@ -126,10 +126,10 @@ public class XpathUtilTest {
         final File file = new File(tempFolder, uniqueFileName);
         Files.writeString(file.toPath(), fileContent, StandardCharsets.UTF_8);
         final String expected = addEndOfLine(
-            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
-            "`--CLASS_DEF -> CLASS_DEF [1:0]",
-            "    `--OBJBLOCK -> OBJBLOCK [1:11]",
-            "        |--BLOCK_COMMENT_BEGIN -> /* [1:13]");
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:1]",
+            "`--CLASS_DEF -> CLASS_DEF [1:1]",
+            "    `--OBJBLOCK -> OBJBLOCK [1:12]",
+            "        |--BLOCK_COMMENT_BEGIN -> /* [1:14]");
         final String result = XpathUtil.printXpathBranch(
             "//CLASS_DEF//BLOCK_COMMENT_BEGIN", file);
         assertWithMessage("Branch string is different")
@@ -144,21 +144,21 @@ public class XpathUtilTest {
         final File file = new File(tempFolder, uniqueFileName);
         Files.writeString(file.toPath(), fileContent, StandardCharsets.UTF_8);
         final String expected = addEndOfLine(
-            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
-            "`--CLASS_DEF -> CLASS_DEF [1:0]",
-            "    `--OBJBLOCK -> OBJBLOCK [1:11]",
-            "        |--METHOD_DEF -> METHOD_DEF [1:13]",
-            "        |   `--SLIST -> { [1:34]",
-            "        |       |--VARIABLE_DEF -> VARIABLE_DEF [1:35]",
-            "        |       |   |--IDENT -> a [1:39]",
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:1]",
+            "`--CLASS_DEF -> CLASS_DEF [1:1]",
+            "    `--OBJBLOCK -> OBJBLOCK [1:12]",
+            "        |--METHOD_DEF -> METHOD_DEF [1:14]",
+            "        |   `--SLIST -> { [1:35]",
+            "        |       |--VARIABLE_DEF -> VARIABLE_DEF [1:36]",
+            "        |       |   |--IDENT -> a [1:40]",
             "---------",
-            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
-            "`--CLASS_DEF -> CLASS_DEF [1:0]",
-            "    `--OBJBLOCK -> OBJBLOCK [1:11]",
-            "        |--METHOD_DEF -> METHOD_DEF [1:13]",
-            "        |   `--SLIST -> { [1:34]",
-            "        |       |--VARIABLE_DEF -> VARIABLE_DEF [1:46]",
-            "        |       |   |--IDENT -> b [1:50]");
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:1]",
+            "`--CLASS_DEF -> CLASS_DEF [1:1]",
+            "    `--OBJBLOCK -> OBJBLOCK [1:12]",
+            "        |--METHOD_DEF -> METHOD_DEF [1:14]",
+            "        |   `--SLIST -> { [1:35]",
+            "        |       |--VARIABLE_DEF -> VARIABLE_DEF [1:47]",
+            "        |       |   |--IDENT -> b [1:51]");
         final String result = XpathUtil.printXpathBranch(
             "//CLASS_DEF//METHOD_DEF//VARIABLE_DEF//IDENT", file);
         assertWithMessage("Branch string is different")

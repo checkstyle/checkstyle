@@ -78,10 +78,10 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
             new File(getPath("InputAstTreeStringPrinterPrintBranch.java")),
             JavaParser.Options.WITH_COMMENTS);
         final String expected = addEndOfLine(
-            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
-            "`--CLASS_DEF -> CLASS_DEF [3:0]",
-            "    |--MODIFIERS -> MODIFIERS [3:0]",
-            "    |   `--LITERAL_PUBLIC -> public [3:0]");
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:1]",
+            "`--CLASS_DEF -> CLASS_DEF [3:1]",
+            "    |--MODIFIERS -> MODIFIERS [3:1]",
+            "    |   `--LITERAL_PUBLIC -> public [3:1]");
         final DetailAST nodeToPrint = ast.getFirstChild().getNextSibling()
                 .getFirstChild().getFirstChild();
         final String result = AstTreeStringPrinter.printBranch(nodeToPrint);

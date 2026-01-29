@@ -185,7 +185,7 @@ public final class AstTreeStringPrinter {
     private static String getNodeInfo(DetailAST node) {
         return TokenUtil.getTokenName(node.getType())
                 + " -> " + escapeAllControlChars(node.getText())
-                + " [" + node.getLineNo() + ':' + node.getColumnNo() + ']';
+                + " [" + node.getLineNo() + ':' + (node.getColumnNo() + 1) + ']';
     }
 
     /**
