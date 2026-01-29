@@ -200,7 +200,7 @@ public final class MethodCountCheck extends AbstractCheck {
      */
     private void raiseCounter(DetailAST method) {
         final MethodCounter actualCounter = counters.peek();
-        final Scope scope = ScopeUtil.getScope(method);
+        final Scope scope = ScopeUtil.getScope(method).orElseThrow();
         actualCounter.increment(scope);
     }
 
