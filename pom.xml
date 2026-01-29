@@ -283,6 +283,7 @@
       -Xep:OperatorPrecedence:OFF
       -Xep:OptionalOrElseGet:ERROR
       -Xep:PatternMatchingInstanceof:ERROR
+      -Xep:MalformedInlineTag:ERROR
       -Xep:PrimitiveComparison:ERROR
       -Xep:RedundantStringConversion:ERROR
       -Xep:RedundantStringEscape:ERROR
@@ -617,7 +618,7 @@
         <plugin>
           <groupId>com.diffplug.spotless</groupId>
           <artifactId>spotless-maven-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>3.2.1</version>
           <configuration>
             <java>
               <includes>
@@ -648,7 +649,7 @@
         <plugin>
           <groupId>org.openrewrite.maven</groupId>
           <artifactId>rewrite-maven-plugin</artifactId>
-          <version>6.28.0</version>
+          <version>6.28.1</version>
           <configuration>
             <configLocation>config/rewrite.yml</configLocation>
             <exportDatatables>true</exportDatatables>

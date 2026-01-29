@@ -240,7 +240,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding"
@@ -478,7 +477,7 @@ public final class InlineConfigParser {
             setViolations(testInputConfigBuilder, lines, setFilteredViolations, inputFilePath);
         }
         catch (CheckstyleException exc) {
-            throw new CheckstyleException(exc.getMessage() + " in " + inputFilePath, exc);
+            throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
         }
         return testInputConfigBuilder.build();
     }
@@ -496,7 +495,7 @@ public final class InlineConfigParser {
             }
         }
         catch (CheckstyleException exc) {
-            throw new CheckstyleException(exc.getMessage() + " in " + inputFilePath, exc);
+            throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
         }
 
         return testInputConfigBuilder.build().getViolations();
@@ -515,7 +514,7 @@ public final class InlineConfigParser {
             }
         }
         catch (CheckstyleException exc) {
-            throw new CheckstyleException(exc.getMessage() + " in " + inputFilePath, exc);
+            throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
         }
 
         return testInputConfigBuilder.build().getFilteredViolations();
@@ -561,7 +560,7 @@ public final class InlineConfigParser {
             setViolations(testInputConfigBuilder, lines, false, inputFilePath);
         }
         catch (CheckstyleException exc) {
-            throw new CheckstyleException(exc.getMessage() + " in " + inputFilePath, exc);
+            throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
         }
         return testInputConfigBuilder.buildWithXmlConfiguration();
     }
