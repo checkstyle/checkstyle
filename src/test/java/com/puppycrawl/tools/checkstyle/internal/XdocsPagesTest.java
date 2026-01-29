@@ -244,6 +244,14 @@ public class XdocsPagesTest {
     private static final Set<String> OPENJDK_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigOpenJdkStyleModules());
 
+    /**
+     * Modules that are not included in checkstyle-checks.xml.
+     * These checks exist but are not activated in Checkstyle's internal configuration.
+     */
+    private static final Set<String> MODULES_NOT_IN_CHECKSTYLE_CONFIG = Set.of(
+        "GoogleMethodName"
+    );
+
     private static final Set<String> NON_MODULE_XDOC = Set.of(
         "config_system_properties.xml",
         "sponsoring.xml",
@@ -1823,7 +1831,7 @@ public class XdocsPagesTest {
         }
 
         assertWithMessage("%s section '%s' should have a checkstyle section", fileName, sectionName)
-                .that(hasCheckstyle)
+                .that(hasCheckstyle || MODULES_NOT_IN_CHECKSTYLE_CONFIG.contains(sectionName))
                 .isTrue();
         assertWithMessage("%s section '%s' should have a google section since it is in it's config",
             fileName, sectionName)

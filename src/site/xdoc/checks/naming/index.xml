@@ -63,6 +63,17 @@
           </tr>
           <tr>
             <td>
+              <a href="googlemethodname.html#GoogleMethodName">
+                GoogleMethodName
+              </a>
+            </td>
+            <td>
+              Checks that method names conform to the <a href="https://google.github.io/styleguide/javaguide.html#s5.2.3-method-names">
+              Google Java Style Guide</a> for method naming.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="illegalidentifiername.html#IllegalIdentifierName">
                 IllegalIdentifierName
               </a>
