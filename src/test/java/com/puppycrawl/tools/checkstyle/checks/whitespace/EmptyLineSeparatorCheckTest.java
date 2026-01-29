@@ -84,6 +84,18 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testCrash18660Coverage() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(EmptyLineSeparatorCheck.class);
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorCrash18660.java"),
+                expected);
+    }
+
+    @Test
     public void testSeparationOfClassAndPackageWithComment() throws Exception {
 
         final String[] expected = {
