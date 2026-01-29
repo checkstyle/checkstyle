@@ -268,7 +268,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
      */
     private void processModifiersSubState(DetailAST modifiersAst, ScopeState state,
                                           boolean isStateValid) {
-        final Scope access = ScopeUtil.getScopeFromMods(modifiersAst);
+        final Scope access = ScopeUtil.getScopeFromMods(modifiersAst).get();
         if (state.declarationAccess.compareTo(access) > 0) {
             if (isStateValid
                     && !ignoreModifiers
