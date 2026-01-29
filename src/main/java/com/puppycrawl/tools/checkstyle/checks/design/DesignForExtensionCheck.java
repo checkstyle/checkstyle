@@ -364,7 +364,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
      */
     private static boolean canBeOverridden(DetailAST methodDef) {
         final DetailAST modifiers = methodDef.findFirstToken(TokenTypes.MODIFIERS);
-        return ScopeUtil.getSurroundingScope(methodDef).isIn(Scope.PROTECTED)
+        return ScopeUtil.getSurroundingScope(methodDef).get().isIn(Scope.PROTECTED)
             && !ScopeUtil.isInInterfaceOrAnnotationBlock(methodDef)
             && modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null
             && modifiers.findFirstToken(TokenTypes.ABSTRACT) == null
