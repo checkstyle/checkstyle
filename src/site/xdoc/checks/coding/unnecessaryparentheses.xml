@@ -181,6 +181,12 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
                     BAND</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#QUESTION">
                     QUESTION</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
+                    INDEX_OP</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
+                    DOT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
+                    LITERAL_NEW</a>
                   .
               </td>
               <td>
@@ -266,6 +272,10 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
                     POST_INC</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
                     POST_DEC</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
+                    INDEX_OP</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
+                    DOT</a>
                   .
               </td>
               <td>3.4</td>
