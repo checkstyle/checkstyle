@@ -150,6 +150,12 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             TokenTypes.ANNOTATION_FIELD_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.TYPECAST,
+            TokenTypes.TYPE_ARGUMENT,
+            TokenTypes.DOT,
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.LITERAL_THROWS,
+            TokenTypes.IMPLEMENTS_CLAUSE,
         };
         assertWithMessage("Default acceptable tokens are invalid")
                 .that(actual)
