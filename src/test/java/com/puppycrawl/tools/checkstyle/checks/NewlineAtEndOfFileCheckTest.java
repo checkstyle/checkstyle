@@ -110,7 +110,7 @@ public class NewlineAtEndOfFileCheckTest
 
     @Test
     public void testNoNewlineAtEndOfFile() throws Exception {
-        final String msgKeyNoNewlineEof = "File does not end with a newline :)";
+        final String msgKeyNoNewlineEof = "File does not end with a newline 'lf' :)";
         final String[] expected = {
             "1: " + msgKeyNoNewlineEof,
         };

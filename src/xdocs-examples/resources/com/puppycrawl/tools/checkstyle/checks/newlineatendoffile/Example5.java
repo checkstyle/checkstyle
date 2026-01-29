@@ -3,7 +3,7 @@
   <module name="NewlineAtEndOfFile"/>
 </module>
 */
-// violation 5 lines above 'File does not end with a newline.'
+// violation 5 lines above "File does not end with a newline 'lf'."
 package com.puppycrawl.tools.checkstyle.checks.newlineatendoffile;
 // xdoc section -- start
 public class Example5 { // ⤶
