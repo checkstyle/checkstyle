@@ -11,10 +11,146 @@ type: specs.openrewrite.org/v1beta/recipe
 name: org.checkstyle.CheckstyleAutoFix
 description: Checkstyle standard fixes.
 recipeList:
+  # composite recipes
   - org.checkstyle.autofix.CheckstyleAutoFix:
       violationReportPath: target/cs_errors.xml
       configurationPath: config/checkstyle-checks.xml
       propertiesPath: config/openrewrite-recipes-checkstyle.properties
+  # individual recipes
+  - org.openrewrite.java.RemoveUnusedImports
+  - org.openrewrite.java.ShortenFullyQualifiedTypeReferences
+  - org.openrewrite.java.SimplifySingleElementAnnotation
+  - org.openrewrite.java.format.EmptyNewlineAtEndOfFile
+  - org.openrewrite.java.format.NormalizeFormat
+  - org.openrewrite.java.format.NormalizeLineBreaks
+  - org.openrewrite.java.format.PadEmptyForLoopComponents
+  - org.openrewrite.java.format.RemoveTrailingWhitespace
+  # until https://github.com/checkstyle/checkstyle/issues/18789
+  # - org.openrewrite.java.migrate.UpgradeToJava21
+  - org.openrewrite.java.migrate.lang.StringRulesRecipes
+  - org.openrewrite.java.migrate.util.MigrateInflaterDeflaterToClose
+  - org.openrewrite.java.migrate.util.ReplaceStreamCollectWithToList
+  # - org.openrewrite.java.migrate.util.SequencedCollection
+  - org.openrewrite.java.recipes.JavaRecipeBestPractices
+  - org.openrewrite.java.recipes.RecipeTestingBestPractices
+  - org.openrewrite.maven.BestPractices
+  - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
+  - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
+  - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
+  - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
+  - tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes
+  - tech.picnic.errorprone.refasterrules.FileRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MapRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MockitoRulesRecipes
+  # current maintainer doesn't "like" orElseThrow() as better form of get()
+  # - tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
+  - tech.picnic.errorprone.refasterrules.PatternRulesRecipes
+  - tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes
+  - tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes
+  - tech.picnic.errorprone.refasterrules.StreamRulesRecipes
+  - tech.picnic.errorprone.refasterrules.TimeRulesRecipes
+---
+# Composite group for static analysis, as on openrewrite website
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.openrewrite.staticanalysis.CommonStaticAnalysis
+displayName: Common static analysis issues
+description: |
+  Resolve common static analysis issues (also known as SAST issues).
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  # - org.openrewrite.staticanalysis.AbstractClassPublicConstructor
+  # - org.openrewrite.staticanalysis.AddSerialVersionUidToSerializable
+  # - org.openrewrite.staticanalysis.AtomicPrimitiveEqualsUsesGet
+  # - org.openrewrite.staticanalysis.BigDecimalDoubleConstructorRecipe
+  # - org.openrewrite.staticanalysis.BigDecimalRoundingConstantsToEnums
+  # - org.openrewrite.staticanalysis.BooleanChecksNotInverted
+  # - org.openrewrite.staticanalysis.CaseInsensitiveComparisonsDoNotChangeCase
+  # - org.openrewrite.staticanalysis.CatchClauseOnlyRethrows
+  # - org.openrewrite.staticanalysis.ChainStringBuilderAppendCalls
+  # - org.openrewrite.staticanalysis.CollectionToArrayShouldHaveProperType
+  # - org.openrewrite.staticanalysis.CovariantEquals
+  # - org.openrewrite.staticanalysis.DefaultComesLast
+  # - org.openrewrite.staticanalysis.EmptyBlock
+  # - org.openrewrite.staticanalysis.EqualsAvoidsNull
+  # - org.openrewrite.staticanalysis.ExplicitInitialization
+  # - org.openrewrite.staticanalysis.ExternalizableHasNoArgsConstructor
+  # - org.openrewrite.staticanalysis.FinalizePrivateFields
+  # - org.openrewrite.staticanalysis.FallThrough
+  # - org.openrewrite.staticanalysis.FinalClass
+  # - org.openrewrite.staticanalysis.FixStringFormatExpressions
+  # - org.openrewrite.staticanalysis.ForLoopIncrementInUpdate
+  # - org.openrewrite.staticanalysis.HideUtilityClassConstructor
+  # - org.openrewrite.staticanalysis.IndexOfChecksShouldUseAStartPosition
+  # - org.openrewrite.staticanalysis.IndexOfReplaceableByContains
+  # - org.openrewrite.staticanalysis.IndexOfShouldNotCompareGreaterThanZero
+  - org.openrewrite.staticanalysis.InlineVariable
+  # - org.openrewrite.staticanalysis.IsEmptyCallOnCollections
+  # - org.openrewrite.staticanalysis.LambdaBlockToExpression
+  - org.openrewrite.staticanalysis.LowercasePackage
+  # - org.openrewrite.staticanalysis.MethodNameCasing
+  # - org.openrewrite.staticanalysis.MinimumSwitchCases
+  - org.openrewrite.staticanalysis.ModifierOrder
+  # - org.openrewrite.staticanalysis.MultipleVariableDeclarations
+  # - org.openrewrite.staticanalysis.NeedBraces
+  # - org.openrewrite.staticanalysis.NestedEnumsAreNotStatic
+  # - org.openrewrite.staticanalysis.NewStringBuilderBufferWithCharArgument
+  # - org.openrewrite.staticanalysis.NoDoubleBraceInitialization
+  # - org.openrewrite.staticanalysis.NoEmptyCollectionWithRawType
+  # - org.openrewrite.staticanalysis.NoEqualityInForCondition
+  - org.openrewrite.staticanalysis.NoFinalizer
+  # - org.openrewrite.staticanalysis.NoPrimitiveWrappersForToStringOrCompareTo
+  # - org.openrewrite.staticanalysis.NoRedundantJumpStatements
+  - org.openrewrite.staticanalysis.NoToStringOnStringType
+  # - org.openrewrite.staticanalysis.NoValueOfOnStringType
+  # - org.openrewrite.staticanalysis.ObjectFinalizeCallsSuper
+  # - org.openrewrite.staticanalysis.PreferSystemGetPropertyOverGetenv
+  # - org.openrewrite.staticanalysis.PrimitiveWrapperClassConstructorToValueOf
+  # - org.openrewrite.staticanalysis.RedundantFileCreation
+  # - org.openrewrite.staticanalysis.RemoveExtraSemicolons
+  # - org.openrewrite.staticanalysis.RemoveRedundantNullCheckBeforeInstanceof
+  # - org.openrewrite.staticanalysis.RemoveRedundantNullCheckBeforeLiteralEquals
+  # - org.openrewrite.staticanalysis.RemoveRedundantTypeCast
+  # - org.openrewrite.java.RemoveUnusedImports
+  - org.openrewrite.staticanalysis.RemoveUnusedLocalVariables
+  - org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods
+  # - org.openrewrite.staticanalysis.RenameLocalVariablesToCamelCase
+  # - org.openrewrite.staticanalysis.RenameMethodsNamedHashcodeEqualOrToString
+  # - org.openrewrite.staticanalysis.RenamePrivateFieldsToCamelCase
+  # - org.openrewrite.staticanalysis.ReplaceClassIsInstanceWithInstanceof
+  - org.openrewrite.staticanalysis.ReplaceLambdaWithMethodReference
+  # - org.openrewrite.staticanalysis.ReplaceStringBuilderWithString
+  # - org.openrewrite.staticanalysis.ReplaceStringConcatenationWithStringValueOf
+  # - org.openrewrite.staticanalysis.SimplifyArraysAsList
+  # - org.openrewrite.staticanalysis.SimplifyBooleanExpression
+  # - org.openrewrite.staticanalysis.SimplifyBooleanReturn
+  # - org.openrewrite.staticanalysis.SimplifyElseBranch
+  - org.openrewrite.staticanalysis.SimplifyTernaryRecipes
+  # - org.openrewrite.staticanalysis.StaticMethodNotFinal
+  # - org.openrewrite.staticanalysis.StringLiteralEquality
+  - org.openrewrite.staticanalysis.UnnecessaryCloseInTryWithResources
+  - org.openrewrite.staticanalysis.UnnecessaryExplicitTypeArguments
+  - org.openrewrite.staticanalysis.UnnecessaryParentheses
+  # - org.openrewrite.staticanalysis.UnnecessaryPrimitiveAnnotations
+  - org.openrewrite.staticanalysis.UnnecessaryReturnAsLastStatement
+  # - org.openrewrite.staticanalysis.UnwrapElseAfterReturn
+  # - org.openrewrite.staticanalysis.UpperCaseLiteralSuffixes
+  # - org.openrewrite.staticanalysis.UnnecessaryThrows
+  # - org.openrewrite.staticanalysis.UseCollectionInterfaces
+  # - org.openrewrite.staticanalysis.UseDiamondOperator
+  # - org.openrewrite.staticanalysis.UseJavaStyleArrayDeclarations
+  # - org.openrewrite.staticanalysis.UsePortableNewlines
+  # https://github.com/openrewrite/rewrite-static-analysis/issues/10
+  - org.openrewrite.staticanalysis.UseLambdaForFunctionalInterface
+  # - org.openrewrite.staticanalysis.UseStringReplace
+  # - org.openrewrite.staticanalysis.WhileInsteadOfFor
+  # - org.openrewrite.staticanalysis.WriteOctalValuesAsDecimal
+  # - org.openrewrite.kotlin.cleanup.EqualsMethodUsage
+  # - org.openrewrite.kotlin.cleanup.ImplicitParameterInLambda
+  # - org.openrewrite.kotlin.cleanup.ReplaceCharToIntWithCode
+  # - org.openrewrite.staticanalysis.CustomImportOrder
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: org.checkstyle.RefasterRules
@@ -42,7 +178,7 @@ recipeList:
   - tech.picnic.errorprone.refasterrules.MapRulesRecipes
   - tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes
   - tech.picnic.errorprone.refasterrules.MockitoRulesRecipes
-  # current maintainer don't "like" orElseThrow() as better form of get()
+  # current maintainer doesn't "like" orElseThrow() as better form of get()
   # - tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
   - tech.picnic.errorprone.refasterrules.PatternRulesRecipes
   - tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes
@@ -54,6 +190,9 @@ type: specs.openrewrite.org/v1beta/recipe
 name: org.checkstyle.StaticAnalysis
 description: OpenRewrite standard fixes.
 recipeList:
+  # composite recipes
+  - org.openrewrite.staticanalysis.CommonStaticAnalysis
+  # individual recipes
   - org.openrewrite.java.RemoveUnusedImports
   - org.openrewrite.java.ShortenFullyQualifiedTypeReferences
   - org.openrewrite.java.SimplifySingleElementAnnotation
@@ -70,8 +209,6 @@ recipeList:
   - org.openrewrite.java.recipes.JavaRecipeBestPractices
   - org.openrewrite.java.recipes.RecipeTestingBestPractices
   - org.openrewrite.maven.BestPractices
-  - org.openrewrite.staticanalysis.BufferedWriterCreationRecipes
-  - org.openrewrite.staticanalysis.EqualsAvoidsNull
   - org.openrewrite.staticanalysis.InlineVariable
   - org.openrewrite.staticanalysis.JavaApiBestPractices
   - org.openrewrite.staticanalysis.LowercasePackage
@@ -83,10 +220,31 @@ recipeList:
   - org.openrewrite.staticanalysis.RemoveUnusedPrivateFields
   - org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods
   - org.openrewrite.staticanalysis.ReplaceLambdaWithMethodReference
-  - org.openrewrite.staticanalysis.SimplifyTernaryRecipes
-  - org.openrewrite.staticanalysis.URLEqualsHashCodeRecipes
   - org.openrewrite.staticanalysis.UnnecessaryCloseInTryWithResources
   - org.openrewrite.staticanalysis.UnnecessaryExplicitTypeArguments
   - org.openrewrite.staticanalysis.UnnecessaryParentheses
   - org.openrewrite.staticanalysis.UnnecessaryReturnAsLastStatement
   - org.openrewrite.staticanalysis.UseLambdaForFunctionalInterface
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.checkstyle.AutoFixesPart2
+displayName: Auto Fixes Part 2
+description: ErrorProne Refaster rules.
+recipeList:
+  - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
+  - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
+  - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
+  - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
+  - tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes
+  - tech.picnic.errorprone.refasterrules.FileRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MapRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MockitoRulesRecipes
+  # current maintainer doesn't "like" orElseThrow() as better form of get()
+  # - tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
+  - tech.picnic.errorprone.refasterrules.PatternRulesRecipes
+  - tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes
+  - tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes
+  - tech.picnic.errorprone.refasterrules.StreamRulesRecipes
+  - tech.picnic.errorprone.refasterrules.TimeRulesRecipes
+---
