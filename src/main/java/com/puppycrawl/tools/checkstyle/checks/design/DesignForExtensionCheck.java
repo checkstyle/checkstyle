@@ -364,12 +364,16 @@ public class DesignForExtensionCheck extends AbstractCheck {
      */
     private static boolean canBeOverridden(DetailAST methodDef) {
         final DetailAST modifiers = methodDef.findFirstToken(TokenTypes.MODIFIERS);
-        return ScopeUtil.getSurroundingScope(methodDef).isIn(Scope.PROTECTED)
-            && !ScopeUtil.isInInterfaceOrAnnotationBlock(methodDef)
-            && modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null
-            && modifiers.findFirstToken(TokenTypes.ABSTRACT) == null
-            && modifiers.findFirstToken(TokenTypes.FINAL) == null
-            && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null;
+        return ScopeUtil.getSurroundingScope(methodDef)
+            .map(surroundingScope -> {
+                return surroundingScope.isIn(Scope.PROTECTED)
+                    && !ScopeUtil.isInInterfaceOrAnnotationBlock(methodDef)
+                    && modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null
+                    && modifiers.findFirstToken(TokenTypes.ABSTRACT) == null
+                    && modifiers.findFirstToken(TokenTypes.FINAL) == null
+                    && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null;
+            })
+            .orElse(Boolean.FALSE);
     }
 
     /**

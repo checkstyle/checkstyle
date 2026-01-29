@@ -222,12 +222,14 @@ public class JavadocStyleCheck
         }
         else if (!ScopeUtil.isInCodeBlock(ast)) {
             final Scope customScope = ScopeUtil.getScope(ast);
-            final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
-
-            check = customScope.isIn(scope)
-                    && surroundingScope.isIn(scope)
-                    && (excludeScope == null || !customScope.isIn(excludeScope)
-                            || !surroundingScope.isIn(excludeScope));
+            check = ScopeUtil.getSurroundingScope(ast)
+                    .map(surroiundingScope -> {
+                        return customScope.isIn(scope)
+                                && surroiundingScope.isIn(scope)
+                                && (excludeScope == null || !customScope.isIn(excludeScope)
+                                        || !surroiundingScope.isIn(excludeScope));
+                    })
+                    .orElse(Boolean.FALSE);
         }
         return check;
     }
