@@ -42,14 +42,14 @@ public final class ScopeUtil {
      * @param aMods root node of a modifier set
      * @return a {@code Scope} value or {@code null}
      */
-    public static Scope getDeclaredScopeFromMods(DetailAST aMods) {
-        Scope result = null;
+    public static Optional<Scope> getDeclaredScopeFromMods(DetailAST aMods) {
+        Optional<Scope> result = Optional.empty();
         for (DetailAST token = aMods.getFirstChild(); token != null;
              token = token.getNextSibling()) {
             result = switch (token.getType()) {
-                case TokenTypes.LITERAL_PUBLIC -> Scope.PUBLIC;
-                case TokenTypes.LITERAL_PROTECTED -> Scope.PROTECTED;
-                case TokenTypes.LITERAL_PRIVATE -> Scope.PRIVATE;
+                case TokenTypes.LITERAL_PUBLIC -> Optional.of(Scope.PUBLIC);
+                case TokenTypes.LITERAL_PROTECTED -> Optional.of(Scope.PROTECTED);
+                case TokenTypes.LITERAL_PRIVATE -> Optional.of(Scope.PRIVATE);
                 default -> result;
             };
         }
@@ -64,7 +64,7 @@ public final class ScopeUtil {
      */
     public static Scope getScope(DetailAST ast) {
         return Optional.ofNullable(ast.findFirstToken(TokenTypes.MODIFIERS))
-                .map(ScopeUtil::getDeclaredScopeFromMods)
+                .flatMap(ScopeUtil::getDeclaredScopeFromMods)
                 .orElseGet(() -> getDefaultScope(ast));
     }
 
@@ -77,7 +77,7 @@ public final class ScopeUtil {
      * @see #getDefaultScope(DetailAST)
      */
     public static Scope getScopeFromMods(DetailAST aMods) {
-        return Optional.ofNullable(getDeclaredScopeFromMods(aMods))
+        return getDeclaredScopeFromMods(aMods)
                 .orElseGet(() -> getDefaultScope(aMods));
     }
 
@@ -123,20 +123,20 @@ public final class ScopeUtil {
      * @param node the node to return the scope for
      * @return the Scope of the surrounding block
      */
-    public static Scope getSurroundingScope(DetailAST node) {
-        Scope returnValue = null;
+    public static Optional<Scope> getSurroundingScope(DetailAST node) {
+        Optional<Scope> returnValue = Optional.empty();
         for (DetailAST token = node;
              token != null;
              token = token.getParent()) {
             final int type = token.getType();
             if (TokenUtil.isTypeDeclaration(type)) {
                 final Scope tokenScope = getScope(token);
-                if (returnValue == null || returnValue.isIn(tokenScope)) {
-                    returnValue = tokenScope;
+                if (returnValue.isEmpty() || returnValue.get().isIn(tokenScope)) {
+                    returnValue = Optional.of(tokenScope);
                 }
             }
             else if (type == TokenTypes.LITERAL_NEW) {
-                returnValue = Scope.ANONINNER;
+                returnValue = Optional.of(Scope.ANONINNER);
                 // because Scope.ANONINNER is not in any other Scope
                 break;
             }
@@ -348,8 +348,8 @@ public final class ScopeUtil {
      * @return true if the ast node is in the scope.
      */
     public static boolean isInScope(DetailAST ast, Scope scope) {
-        final Scope surroundingScopeOfAstToken = getSurroundingScope(ast);
-        return surroundingScopeOfAstToken == scope;
+        final Optional<Scope> surroundingScopeOfAstToken = getSurroundingScope(ast);
+        return surroundingScopeOfAstToken.orElseThrow() == scope;
     }
 
 }
