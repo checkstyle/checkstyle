@@ -2194,6 +2194,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/DeclarationOrderCheck.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to get() not allowed on the given receiver.</message>
+    <lineContent>final Scope access = ScopeUtil.getScopeFromMods(modifiersAst).get();</lineContent>
+    <details>
+      found   : @MaybePresent Optional&lt;@MaybePresent Scope&gt;
+      required: @Present Optional&lt;@MaybePresent Scope&gt;
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsAvoidNullCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter parent of FieldFrame constructor.</message>
@@ -4194,6 +4205,17 @@
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference parent.findFirstToken(TokenTypes.IDENT)</message>
     <lineContent>return parent.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/DesignForExtensionCheck.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to get() not allowed on the given receiver.</message>
+    <lineContent>return ScopeUtil.getSurroundingScope(methodDef).get().isIn(Scope.PROTECTED)</lineContent>
+    <details>
+      found   : @MaybePresent Optional&lt;@MaybePresent Scope&gt;
+      required: @Present Optional&lt;@MaybePresent Scope&gt;
+    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6427,6 +6449,28 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to get() not allowed on the given receiver.</message>
+    <lineContent>final Scope customScope = ScopeUtil.getScope(ast).get();</lineContent>
+    <details>
+      found   : @MaybePresent Optional&lt;@MaybePresent Scope&gt;
+      required: @Present Optional&lt;@MaybePresent Scope&gt;
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to get() not allowed on the given receiver.</message>
+    <lineContent>final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast).get();</lineContent>
+    <details>
+      found   : @MaybePresent Optional&lt;@MaybePresent Scope&gt;
+      required: @Present Optional&lt;@MaybePresent Scope&gt;
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTag.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter firstArg of JavadocTag constructor.</message>
@@ -6466,6 +6510,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to get() not allowed on the given receiver.</message>
+    <lineContent>&amp;&amp; ScopeUtil.getScope(ast).get() != Scope.PRIVATE;</lineContent>
+    <details>
+      found   : @MaybePresent Optional&lt;@MaybePresent Scope&gt;
+      required: @Present Optional&lt;@MaybePresent Scope&gt;
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTypeCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference ident</message>
@@ -6498,6 +6553,17 @@
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field versionFormat</message>
     <lineContent>private Pattern versionFormat;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTypeCheck.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to get() not allowed on the given receiver.</message>
+    <lineContent>final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast).get();</lineContent>
+    <details>
+      found   : @MaybePresent Optional&lt;@MaybePresent Scope&gt;
+      required: @Present Optional&lt;@MaybePresent Scope&gt;
+    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6565,6 +6631,28 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to get() not allowed on the given receiver.</message>
+    <lineContent>final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast).get();</lineContent>
+    <details>
+      found   : @MaybePresent Optional&lt;@MaybePresent Scope&gt;
+      required: @Present Optional&lt;@MaybePresent Scope&gt;
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to get() not allowed on the given receiver.</message>
+    <lineContent>final Scope theScope = ScopeUtil.getScope(ast).get();</lineContent>
+    <details>
+      found   : @MaybePresent Optional&lt;@MaybePresent Scope&gt;
+      required: @Present Optional&lt;@MaybePresent Scope&gt;
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
     <lineContent>if (lcurly.getFirstChild() == rcurly) {</lineContent>
@@ -6582,6 +6670,17 @@
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field excludeScope</message>
     <lineContent>private Scope excludeScope;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocTypeCheck.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to get() not allowed on the given receiver.</message>
+    <lineContent>final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast).get();</lineContent>
+    <details>
+      found   : @MaybePresent Optional&lt;@MaybePresent Scope&gt;
+      required: @Present Optional&lt;@MaybePresent Scope&gt;
+    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -7224,6 +7323,17 @@
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference counters.peek()</message>
     <lineContent>final DetailAST latestDefinition = counters.peek().getScopeDefinition();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/MethodCountCheck.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to get() not allowed on the given receiver.</message>
+    <lineContent>final Scope scope = ScopeUtil.getScope(method).get();</lineContent>
+    <details>
+      found   : @MaybePresent Optional&lt;@MaybePresent Scope&gt;
+      required: @Present Optional&lt;@MaybePresent Scope&gt;
+    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -9258,37 +9368,23 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ScopeUtil.java</fileName>
-    <specifier>introduce.eliminate</specifier>
-    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
-    <lineContent>.orElseGet(() -&gt; getDefaultScope(aMods));</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ScopeUtil.java</fileName>
-    <specifier>introduce.eliminate</specifier>
-    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
-    <lineContent>.orElseGet(() -&gt; getDefaultScope(ast));</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ScopeUtil.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return result;</lineContent>
+    <specifier>method.invocation</specifier>
+    <message>call to get() not allowed on the given receiver.</message>
+    <lineContent>if (returnValue.isEmpty() || returnValue.get().isIn(tokenScope.get())) {</lineContent>
     <details>
-      type of expression: @Initialized @Nullable Scope
-      method return type: @Initialized @NonNull Scope
+      found   : @MaybePresent Optional&lt;@MaybePresent Scope&gt;
+      required: @Present Optional&lt;@MaybePresent Scope&gt;
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ScopeUtil.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return returnValue;</lineContent>
+    <specifier>method.invocation</specifier>
+    <message>call to get() not allowed on the given receiver.</message>
+    <lineContent>return surroundingScopeOfAstToken.get() == scope;</lineContent>
     <details>
-      type of expression: @Initialized @Nullable Scope
-      method return type: @Initialized @NonNull Scope
+      found   : @MaybePresent Optional&lt;@MaybePresent Scope&gt;
+      required: @Present Optional&lt;@MaybePresent Scope&gt;
     </details>
   </checkerFrameworkError>
 
