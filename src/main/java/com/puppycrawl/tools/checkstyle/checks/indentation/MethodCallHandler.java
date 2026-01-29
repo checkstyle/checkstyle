@@ -50,23 +50,30 @@ public class MethodCallHandler extends AbstractExpressionHandler {
 
     @Override
     protected IndentLevel getIndentImpl() {
+        //System.out.println("MethodCallHandler.getIndentImpl line: " + getMainAst().getLineNo());
         final IndentLevel indentLevel;
         // if inside a method call's params, this could be part of
         // an expression, so get the previous line's start
+        //System.out.println("MethodCallHandler.getIndentImpl: getParent is MethodCallHandler container line: " + container.getMainAst().getLineNo());
         if (getParent() instanceof MethodCallHandler container) {
+            //System.out.println("MethodCallHandler.getIndentImpl: getParent is MethodCallHandler container line: " + container.getMainAst().getLineNo());
+
             if (TokenUtil.areOnSameLine(container.getMainAst(), getMainAst())
                     || isChainedMethodCallWrapped()
                     || areMethodsChained(container.getMainAst(), getMainAst())) {
+                //System.out.println("MethodCallHandler.getIndentImpl: same line or chained/wrapped");
                 indentLevel = container.getIndent();
             }
             // we should increase indentation only if this is the first
             // chained method call which was moved to the next line
             else {
+                //System.out.println("MethodCallHandler.getIndentImpl: different line, increasing indent by lineWrappingIndentation: " + getIndentCheck().getLineWrappingIndentation());
                 indentLevel = new IndentLevel(container.getIndent(),
                     getIndentCheck().getLineWrappingIndentation());
             }
         }
         else if (getMainAst().getFirstChild().getType() == TokenTypes.LITERAL_NEW) {
+            //System.out.println("MethodCallHandler.getIndentImpl: LITERAL_NEW branch");
             indentLevel = super.getIndentImpl();
         }
         else {
@@ -83,6 +90,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
                 indentLevel = new IndentLevel(lineStart);
             }
         }
+        //System.out.println("MethodCallHandler.getIndentImpl result: " + indentLevel + " line: " + getMainAst().getLineNo());
         return indentLevel;
     }
 
@@ -189,15 +197,20 @@ public class MethodCallHandler extends AbstractExpressionHandler {
             ));
         }
 
+        //System.out.println("MethodCallHandler.getSuggestedChildIndent: child: " + child.getMainAst().getLineNo() + " suggested: " + suggestedLevel);
         return suggestedLevel;
     }
 
     @Override
     public void checkIndentation() {
+        //System.out.println("MethodCallHandler.checkIndentation line: " + getMainAst().getLineNo());
         DetailAST lparen = null;
         if (getMainAst().getType() == TokenTypes.METHOD_CALL) {
             final DetailAST exprNode = getMainAst().getParent();
-            if (exprNode.getParent().getType() == TokenTypes.SLIST) {
+            final int parentType = exprNode.getParent().getType();
+            //System.out.println("MethodCallHandler.checkIndentation: parentType = " + parentType);
+            if (parentType == TokenTypes.SLIST){
+                //|| parentType == TokenTypes.LITERAL_RETURN) {
                 checkExpressionSubtree(getMainAst().getFirstChild(), getIndent(), false, false);
                 lparen = getMainAst();
             }
@@ -215,8 +228,10 @@ public class MethodCallHandler extends AbstractExpressionHandler {
                 checkExpressionSubtree(
                     getMainAst().findFirstToken(TokenTypes.ELIST),
                     new IndentLevel(getIndent(), getBasicOffset()),
+                    //new IndentLevel(getIndent(), getIndentCheck().getLineWrappingIndentation()),
                     false, true);
 
+                //System.out.println("MethodCallHandler.checkIndentation: checking ELIST subtree at line " + getMainAst().findFirstToken(TokenTypes.ELIST).getLineNo() + " with level " + (new IndentLevel(getIndent(), getIndentCheck().getLineWrappingIndentation())));
                 checkRightParen(lparen, rparen);
                 checkWrappingIndentation(getMainAst(), getCallLastNode(getMainAst()));
             }
