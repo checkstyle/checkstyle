@@ -232,6 +232,8 @@
           <item name="JavadocTagContinuationIndentation"
                 href="checks/javadoc/javadoctagcontinuationindentation.html"/>
           <item name="JavadocType" href="checks/javadoc/javadoctype.html"/>
+          <item name="JavadocUtilizingTrailingSpace"
+                href="checks/javadoc/javadocutilizingtrailingspace.html"/>
           <item name="JavadocVariable" href="checks/javadoc/javadocvariable.html"/>
           <item name="MissingJavadocMethod" href="checks/javadoc/missingjavadocmethod.html"/>
           <item name="MissingJavadocPackage" href="checks/javadoc/missingjavadocpackage.html"/>
