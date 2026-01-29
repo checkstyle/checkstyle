@@ -496,4 +496,50 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeWithBlockComment.java"), expected);
     }
+
+    @Test
+    public void testAnnotationsInCodeBlock() throws Exception {
+        final String[] expected = {
+            "99:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+            "106:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeAnnotationsInCodeBlock.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationsInCodeBlock2() throws Exception {
+        final String[] expected = {
+            "28:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+            "45:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+            "59:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+            "67:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeAnnotationsInCodeBlock2.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationsInCodeBlock3() throws Exception {
+        final String[] expected = {
+            "32:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+            "78:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+            "86:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+            "94:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeAnnotationsInCodeBlock3.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationsInCodeBlock4() throws Exception {
+        final String[] expected = {
+            "29:5: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+            "42:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+            "50:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+            "58:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeAnnotationsInCodeBlock4.java"), expected);
+    }
 }
