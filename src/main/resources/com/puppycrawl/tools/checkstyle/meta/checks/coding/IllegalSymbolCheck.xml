@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck"
+             name="IllegalSymbol"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that specified symbols (by Unicode code points or ranges) are not used in code.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Rationale: This check helps prevent emoji symbols in code, enforce ASCII-only source files,
+ or forbid specific Unicode characters.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="false" name="asciiOnly" type="boolean">
+               <description>Control whether only ASCII characters are allowed.</description>
+            </property>
+            <property default-value="" name="symbolCodes" type="java.lang.String">
+               <description>Specify the symbols to check for.
+ Format: comma-separated list of hex codes or ranges
+ (e.g., "0x2705, 0xd83c-0xd83e").</description>
+            </property>
+            <property default-value="COMMENT_CONTENT"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="illegal.symbol"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

@@ -622,6 +622,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/illegalsymbol.html#IllegalSymbol">
+                IllegalSymbol
+              </a>
+            </td>
+            <td>
+              Checks that specified symbols (by Unicode code points or ranges) are not used in code.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/illegalthrows.html#IllegalThrows">
                 IllegalThrows
               </a>
