@@ -202,7 +202,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     @Override
     @SuppressWarnings("deprecation")
     public final void visitToken(DetailAST ast) {
-        final Scope theScope = ScopeUtil.getScope(ast);
+        final Scope theScope = ScopeUtil.getScope(ast).get();
         if (shouldCheck(ast, theScope)) {
             final FileContents contents = getFileContents();
             final TextBlock textBlock = contents.getJavadocBefore(ast.getLineNo());
@@ -288,7 +288,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * @return whether we should check a given node.
      */
     private boolean shouldCheck(final DetailAST ast, final Scope nodeScope) {
-        final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
+        final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast).get();
 
         return nodeScope != excludeScope
                 && surroundingScope != excludeScope
