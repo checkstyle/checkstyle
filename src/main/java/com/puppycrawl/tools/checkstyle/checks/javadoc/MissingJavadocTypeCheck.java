@@ -137,7 +137,7 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
      * @return whether we should check a given node.
      */
     private boolean shouldCheck(final DetailAST ast) {
-        final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
+        final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast).orElseThrow();
 
         return surroundingScope.isIn(scope)
                 && (excludeScope == null || !surroundingScope.isIn(excludeScope))
