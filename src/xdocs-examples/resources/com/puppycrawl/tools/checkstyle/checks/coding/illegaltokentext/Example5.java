@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 // xdoc section -- start
 public class Example5 {
   public void test() {
-    String link  = "href"; // violation, Custom illegal text found
+    String link  = "href"; // violation 'Custom illegal text found'
   }
 }
 // xdoc section -- end
