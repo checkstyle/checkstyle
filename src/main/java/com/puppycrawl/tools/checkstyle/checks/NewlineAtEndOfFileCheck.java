@@ -110,6 +110,7 @@ public class NewlineAtEndOfFileCheck
      */
     public static final String MSG_KEY_WRONG_ENDING = "wrong.line.end";
 
+
     /** Specify the type of line separator. */
     private LineSeparatorOption lineSeparator = LineSeparatorOption.LF_CR_CRLF;
 
@@ -152,7 +153,8 @@ public class NewlineAtEndOfFileCheck
                 log(1, MSG_KEY_WRONG_ENDING);
             }
             else if (!endsWithNewline(randomAccessFile, lineSeparator)) {
-                log(1, MSG_KEY_NO_NEWLINE_EOF);
+                log(1, MSG_KEY_NO_NEWLINE_EOF,
+                        lineSeparator.name().toLowerCase(Locale.ENGLISH));
             }
         }
     }
