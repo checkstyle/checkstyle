@@ -893,6 +893,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.whitespace.WhitespaceAfterCheck");
         NAME_TO_FULL_MODULE_NAME.put("WhitespaceAroundCheck",
                 BASE_PACKAGE + ".checks.whitespace.WhitespaceAroundCheck");
+        NAME_TO_FULL_MODULE_NAME.put("WhitespaceBeforeEmptyBodyCheck",
+                BASE_PACKAGE + ".checks.whitespace.WhitespaceBeforeEmptyBodyCheck");
     }
 
     /**
