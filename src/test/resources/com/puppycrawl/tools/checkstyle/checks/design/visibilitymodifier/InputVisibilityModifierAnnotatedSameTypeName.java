@@ -30,8 +30,10 @@ import org.junit.rules.TemporaryFolder;
 public class InputVisibilityModifierAnnotatedSameTypeName
 {
     @Rule
-    public TemporaryFolder publicJUnitRule = new TemporaryFolder(); // violation
+    public TemporaryFolder rule = new TemporaryFolder();
+    // violation above 'Variable 'rule' must be private and have accessor methods.'
 
     @ClassRule
-    public TemporaryFolder publicJUnitClassRule = new TemporaryFolder(); // violation
+    public TemporaryFolder classRule = new TemporaryFolder();
+    // violation above 'Variable 'classRule' must be private and have accessor methods.'
 }

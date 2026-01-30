@@ -44,20 +44,25 @@ class InputVisibilityModifierInner
         class InnerInterfaceInnerClass
         {
             // Ignore - need Javadoc and made private
-            public int rData; // violation
+            public int rData;
+            // violation above 'Variable 'rData' must be private and have accessor methods.'
 
             /** needs to be made private unless allowProtected. */
-            protected int protectedVariable; // violation
+            protected int safeField;
+            // violation above 'Variable 'safeField' must be private and have accessor methods.'
 
             /** needs to be made private unless allowPackage. */
-            int packageVariable; // violation
+            int localField;
+            // violation above 'Variable 'localField' must be private and have accessor methods.'
         }
     }
 
     /** demonstrate bug in handling static final **/
-    protected static Object sWeird = new Object(); // violation
+    protected static Object sWeird = new Object();
+    // violation above 'Variable 'sWeird' must be private and have accessor methods.'
     /** demonstrate bug in handling static final **/
-    static Object sWeird2 = new Object(); // violation
+    static Object sWeird2 = new Object();
+    // violation above 'Variable 'sWeird2' must be private and have accessor methods.'
 
     /** demonstrate bug in local final variable */
     public interface Inter
@@ -91,8 +96,10 @@ class InputVisibilityModifierInner
         B;
 
         /** Should be private */
-        public int someValue; // violation
+        public int someValue;
+        // violation above 'Variable 'someValue' must be private and have accessor methods.'
     }
 
-    float fSerialVersionUID = 0x1234567F; // violation
+    float fSerialVersionUID = 0x1234567F;
+    // violation above 'Variable 'fSerialVersionUID' must be private and have accessor methods.'
 }

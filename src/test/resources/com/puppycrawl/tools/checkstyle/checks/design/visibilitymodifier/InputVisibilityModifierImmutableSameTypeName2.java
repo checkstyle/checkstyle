@@ -25,9 +25,12 @@ import java.net.InetSocketAddress;
 
 public final class InputVisibilityModifierImmutableSameTypeName2
 {
-    public final java.util.GregorianCalendar calendar = null; // violation
-    public final InputVisibilityModifierGregorianCalendar calendar2 = null; // violation
-    public final InputVisibilityModifierGregorianCalendar calendar3 = null; // violation
+    public final java.util.GregorianCalendar calendar = null;
+    // violation above 'Variable 'calendar' must be private and have accessor methods.'
+    public final InputVisibilityModifierGregorianCalendar calendar2 = null;
+    // violation above 'Variable 'calendar2' must be private and have accessor methods.'
+    public final InputVisibilityModifierGregorianCalendar calendar3 = null;
+    // violation above 'Variable 'calendar3' must be private and have accessor methods.'
     public final InetSocketAddress address = null;
     public final InetSocketAddress adr = null;
 }

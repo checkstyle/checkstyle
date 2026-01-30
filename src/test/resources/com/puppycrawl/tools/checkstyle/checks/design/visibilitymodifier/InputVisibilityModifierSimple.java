@@ -46,7 +46,8 @@ final class InputVisibilityModifierSimple
     /** Valid format **/
     private int mNumCreated1 = 0;
     /** Valid format **/
-    protected int mNumCreated2 = 0; // violation
+    protected int mNumCreated2 = 0;
+    // violation above 'Variable 'mNumCreated2' must be private and have accessor methods.'
 
     /** commas are wrong **/
     private int[] mInts = new int[] {1,2, 3,
@@ -56,16 +57,21 @@ final class InputVisibilityModifierSimple
     // Accessor tests
     //
     /** should be private **/
-    public static int sTest1; // violation
+    public static int sTest1;
+    // violation above 'Variable 'sTest1' must be private and have accessor methods.'
     /** should be private **/
-    protected static int sTest3; // violation
+    protected static int sTest3;
+    // violation above 'Variable 'sTest3' must be private and have accessor methods.'
     /** should be private **/
-    static int sTest2; // violation
+    static int sTest2;
+    // violation above 'Variable 'sTest2' must be private and have accessor methods.'
 
     /** should be private **/
-    int mTest1; // violation
+    int mTest1;
+    // violation above 'Variable 'mTest1' must be private and have accessor methods.'
     /** should be private **/
-    public int mTest2; // violation
+    public int mTest2;
+    // violation above 'Variable 'mTest2' must be private and have accessor methods.'
 
     /**
      * @return hack

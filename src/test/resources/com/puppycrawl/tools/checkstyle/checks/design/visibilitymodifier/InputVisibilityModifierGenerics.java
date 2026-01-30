@@ -28,30 +28,49 @@ public final class InputVisibilityModifierGenerics {
     public final String name;
     public final Optional<String> keyword;
     public final ImmutableMap<String, BigDecimal> uuidMap;
-    public final ImmutableMap<String, ArrayList<Long>> perfSeries; // violation
-    public final ImmutableMap<java.lang.String, ArrayList<Long>> peopleMap; // violation
-    public final ImmutableMap<String, java.util.ArrayList<Long>> someMap; // violation
-    public final ImmutableMap<java.lang.String, java.util.ArrayList<Long>> newMap; // violation
+    public final ImmutableMap<String, ArrayList<Long>> perfSeries;
+    // violation above 'Variable 'perfSeries' must be private and have accessor methods.'
+    public final ImmutableMap<java.lang.String, ArrayList<Long>> peopleMap;
+    // violation above 'Variable 'peopleMap' must be private and have accessor methods.'
+    public final ImmutableMap<String, java.util.ArrayList<Long>> someMap;
+    // violation above 'Variable 'someMap' must be private and have accessor methods.'
+    public final ImmutableMap<java.lang.String, java.util.ArrayList<Long>> newMap;
+    // violation above 'Variable 'newMap' must be private and have accessor methods.'
     public final ImmutableMap<java.lang.String, java.math.BigDecimal> orders;
-    public final Optional<java.lang.Object> optionalOfObject; // violation
-    public final Optional<Object> obj; // violation
+    public final Optional<java.lang.Object> optionalOfObject;
+    // violation above 'Variable 'optionalOfObject' must be private and have accessor methods.'
+    public final Optional<Object> obj;
+    // violation above 'Variable 'obj' must be private and have accessor methods.'
 
-    public String rqUID; // violation
-    public Optional<String> rqTime; // violation
-    public ImmutableMap<String, BigDecimal> rates; // violation
-    public ImmutableMap<String, ArrayList<Long>> loans; // violation
-    public ImmutableMap<java.lang.String, ArrayList<Long>> cards; // violation
-    public ImmutableMap<String, java.util.ArrayList<Long>> values; // violation
-    public ImmutableMap<java.lang.String, java.util.ArrayList<Long>> permissions; // violation
+    public String rqUID;
+    // violation above 'Variable 'rqUID' must be private and have accessor methods.'
+    public Optional<String> rqTime;
+    // violation above 'Variable 'rqTime' must be private and have accessor methods.'
+    public ImmutableMap<String, BigDecimal> rates;
+    // violation above 'Variable 'rates' must be private and have accessor methods.'
+    public ImmutableMap<String, ArrayList<Long>> loans;
+    // violation above 'Variable 'loans' must be private and have accessor methods.'
+    public ImmutableMap<java.lang.String, ArrayList<Long>> cards;
+    // violation above 'Variable 'cards' must be private and have accessor methods.'
+    public ImmutableMap<String, java.util.ArrayList<Long>> values;
+    // violation above 'Variable 'values' must be private and have accessor methods.'
+    public ImmutableMap<java.lang.String, java.util.ArrayList<Long>> permissions;
+    // violation above 'Variable 'permissions' must be private and have accessor methods.'
 
-    public final Map<String, String> mapOfStrings; // violation
-    public final java.util.Map<String, String> names; // violation
-    public final java.util.Map<String, Object> links; // violation
-    public final Map<String, Object> presentations; // violation
-    public final Map<String, java.lang.Object> collection; // violation
+    public final Map<String, String> mapOfStrings;
+    // violation above 'Variable 'mapOfStrings' must be private and have accessor methods.'
+    public final java.util.Map<String, String> names;
+    // violation above 'Variable 'names' must be private and have accessor methods.'
+    public final java.util.Map<String, Object> links;
+    // violation above 'Variable 'links' must be private and have accessor methods.'
+    public final Map<String, Object> presentations;
+    // violation above 'Variable 'presentations' must be private and have accessor methods.'
+    public final Map<String, java.lang.Object> collection;
+    // violation above 'Variable 'collection' must be private and have accessor methods.'
 
     public final com.google.common.collect.ImmutableMap<String, BigDecimal> prices;
-    public final com.google.common.collect.ImmutableMap<String, Object> exceptions; // violation
+    public final com.google.common.collect.ImmutableMap<String, Object> exceptions;
+    // violation above 'Variable 'exceptions' must be private and have accessor methods.'
 
     public InputVisibilityModifierGenerics() {
         this.name = "John Doe";
