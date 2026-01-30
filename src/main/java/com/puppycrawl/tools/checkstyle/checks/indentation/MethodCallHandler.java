@@ -217,9 +217,38 @@ public class MethodCallHandler extends AbstractExpressionHandler {
                     new IndentLevel(getIndent(), getBasicOffset()),
                     false, true);
 
-                checkRightParen(lparen, rparen);
+                checkRparenIndent(lparen, rparen);
                 checkWrappingIndentation(getMainAst(), getCallLastNode(getMainAst()));
             }
+        }
+    }
+
+    /**
+     * Checks the indentation of the right parenthesis for method calls.
+     *
+     * @param lparen left parenthesis associated with rparen
+     * @param rparen parenthesis to check
+     */
+    private void checkRparenIndent(DetailAST lparen, DetailAST rparen) {
+        final int rparenLevel = expandedTabsColumnNo(rparen);
+        final int lparenLevel = expandedTabsColumnNo(lparen);
+
+        final IndentLevel standardIndent = getIndent();
+
+        // For chained method calls, also allow rparen at the line start position
+        IndentLevel enhancedIndent = standardIndent;
+        if (getParent() instanceof MethodCallHandler) {
+            final int lineStart = getLineStart(getFirstAst(getMainAst()));
+            if (lineStart != standardIndent.getFirstIndentLevel()) {
+                enhancedIndent = IndentLevel.addAcceptable(standardIndent,
+                        new IndentLevel(lineStart));
+            }
+        }
+
+        if (rparenLevel != lparenLevel + 1
+                && !enhancedIndent.isAcceptable(rparenLevel)
+                && isOnStartOfLine(rparen)) {
+            logError(rparen, "rparen", rparenLevel);
         }
     }
 
