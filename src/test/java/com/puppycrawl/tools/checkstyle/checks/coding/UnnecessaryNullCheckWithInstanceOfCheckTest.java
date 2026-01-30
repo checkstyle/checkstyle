@@ -45,7 +45,9 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
             "60:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "69:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "74:26: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "85:19: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "78:14: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "80:30: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "86:19: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
         };
         verifyWithInlineConfigParser(getPath(
             "InputUnnecessaryNullCheckWithInstanceOfOne.java"), expected);
@@ -193,4 +195,37 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
             .that(check.getRequiredTokens())
             .isNotNull();
     }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofComplexCases() throws Exception {
+
+        final String[] expected = {
+            "14:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "19:27: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "22:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "27:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "34:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "39:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "61:16: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "66:25: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath(
+                "InputUnnecessaryNullCheckWithInstanceOfComplexCases.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofMutationKiller() throws Exception {
+
+        final String[] expected = {
+            "27:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "32:29: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "39:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "44:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "51:14: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "62:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath(
+                "InputUnnecessaryNullCheckWithInstanceOfMutationKiller.java"), expected);
+    }
+
 }
