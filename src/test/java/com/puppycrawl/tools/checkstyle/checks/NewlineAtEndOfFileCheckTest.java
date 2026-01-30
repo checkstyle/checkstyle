@@ -101,7 +101,7 @@ public class NewlineAtEndOfFileCheckTest
     @Test
     public void testNoNewlineLfAtEndOfFile() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF, "\\n"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNewlineAtEndOfFileNoNewline.java"),
@@ -116,6 +116,27 @@ public class NewlineAtEndOfFileCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputNewlineAtEndOfFileNoNewline2.java"),
+            expected);
+    }
+
+    @Test
+    public void testNoNewlineSystemAtEndOfFile() throws Exception {
+        final String systemSep = System.lineSeparator();
+        final String expectedEscapeChars;
+        if ("\r\n".equals(systemSep)) {
+            expectedEscapeChars = "\\r\\n";
+        }
+        else if ("\n".equals(systemSep)) {
+            expectedEscapeChars = "\\n";
+        }
+        else {
+            expectedEscapeChars = "\\r";
+        }
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF, expectedEscapeChars),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileNoNewlineSystem.java"),
             expected);
     }
 
