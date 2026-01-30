@@ -24,12 +24,11 @@ recipeList:
   - org.openrewrite.java.format.NormalizeLineBreaks
   - org.openrewrite.java.format.PadEmptyForLoopComponents
   - org.openrewrite.java.format.RemoveTrailingWhitespace
-  # until https://github.com/checkstyle/checkstyle/issues/18789
-  # - org.openrewrite.java.migrate.UpgradeToJava21
+  - org.openrewrite.java.migrate.UpgradeToJava21
   - org.openrewrite.java.migrate.lang.StringRulesRecipes
   - org.openrewrite.java.migrate.util.MigrateInflaterDeflaterToClose
   - org.openrewrite.java.migrate.util.ReplaceStreamCollectWithToList
-  # - org.openrewrite.java.migrate.util.SequencedCollection
+  - org.openrewrite.java.migrate.util.SequencedCollection
   - org.openrewrite.java.recipes.JavaRecipeBestPractices
   - org.openrewrite.java.recipes.RecipeTestingBestPractices
   - org.openrewrite.maven.BestPractices
