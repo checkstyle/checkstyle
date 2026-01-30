@@ -771,6 +771,7 @@ public final class JavadocCommentsTokenTypes {
      * }</pre>
      *
      * @see #JAVADOC_INLINE_TAG
+     * @see #JAVADOC_INLINE_TAG_START
      */
     public static final int JAVADOC_INLINE_TAG_END = JavadocCommentsLexer.JAVADOC_INLINE_TAG_END;
 
