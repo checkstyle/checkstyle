@@ -58,17 +58,23 @@ public class InputVisibilityModifierAnnotated {
     protected String fqGoogleCommonsAnnotatedProtected;
 
     @CustomAnnotation
-    public String customAnnotatedPublic; // violation
+    public String publicCustom;
+    // violation above 'Variable 'publicCustom' must be private and have accessor methods.'
 
     @CustomAnnotation
-    String customAnnotatedPackage; // violation
+    String packageCustom;
+    // violation above 'Variable 'packageCustom' must be private and have accessor methods.'
 
     @CustomAnnotation
-    protected String customAnnotatedProtected; // violation
+    protected String protectedCustom;
+    // violation above 'Variable 'protectedCustom' must be private and have accessor methods.'
 
-    public String unannotatedPublic; // violation
-    String unannotatedPackage; // violation
-    protected String unannotatedProtected; // violation
+    public String unannotatedPublic;
+    // violation above 'Variable 'unannotatedPublic' must be private and have accessor methods.'
+    String unannotatedPackage;
+    // violation above 'Variable 'unannotatedPackage' must be private and have accessor methods.'
+    protected String unannotatedProtected;
+    // violation above 'Variable 'unannotatedProtected' must be private and have accessor methods.'
     private String unannotatedPrivate;
 
     @Retention(value=RetentionPolicy.RUNTIME)

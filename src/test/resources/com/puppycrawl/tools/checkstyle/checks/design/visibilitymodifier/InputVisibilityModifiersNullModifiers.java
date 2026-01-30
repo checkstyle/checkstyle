@@ -29,7 +29,8 @@ class InputVisibilityModifiersNullModifiers {
     public InputVisibilityModifiersNullModifiers(Set<Map.Entry<Integer,Integer>> s) {this.s = s;}
     public Iterator<Map.Entry<String,String>> iterator() {
         return new Iterator<Map.Entry<String,String>>() {
-            Iterator<Map.Entry<Integer,Integer>> i = s.iterator(); // violation
+            Iterator<Map.Entry<Integer,Integer>> i = s.iterator();
+            // violation above 'Variable 'i' must be private and have accessor methods.'
             public boolean hasNext() {return i.hasNext();}
             public Map.Entry<String,String> next() {
                 return null;

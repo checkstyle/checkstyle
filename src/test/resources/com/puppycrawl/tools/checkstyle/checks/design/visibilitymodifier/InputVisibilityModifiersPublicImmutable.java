@@ -28,11 +28,16 @@ import java.util.List;
 import com.google.common.collect.ImmutableSet;
 
 public class InputVisibilityModifiersPublicImmutable {
-    public final int someIntValue; // violation
-    public final ImmutableSet<String> includes; // violation
-    public final java.lang.String notes; // violation
-    public final BigDecimal value; // violation
-    public final List list; // violation
+    public final int someIntValue;
+    // violation above 'Variable 'someIntValue' must be private and have accessor methods.'
+    public final ImmutableSet<String> includes;
+    // violation above 'Variable 'includes' must be private and have accessor methods.'
+    public final java.lang.String notes;
+    // violation above 'Variable 'notes' must be private and have accessor methods.'
+    public final BigDecimal value;
+    // violation above 'Variable 'value' must be private and have accessor methods.'
+    public final List list;
+    // violation above 'Variable 'list' must be private and have accessor methods.'
     public InputVisibilityModifiersPublicImmutable(Collection<String> includes,
                                             BigDecimal value, String notes, int someValue, List l) {
         this.includes = ImmutableSet.copyOf(includes);

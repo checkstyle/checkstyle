@@ -31,7 +31,8 @@ class InputVisibilityModifierInner1
     class InnerInner2
     {
         // Ignore
-        public int fData; // violation
+        public int fData;
+        // violation above 'Variable 'fData' must be private and have accessor methods.'
     }
 
     // Ignore - 2 violations
@@ -91,7 +92,8 @@ class InputVisibilityModifierInner1
         B;
 
         /** Should be private */
-        public int someValue; // violation
+        public int someValue;
+        // violation above 'Variable 'someValue' must be private and have accessor methods.'
     }
 
     float fSerialVersionUID = 0x1234567F;
