@@ -74,4 +74,10 @@ public class InputIndentationMethodCallLineWrap {                            //i
             chainingWithLambda(                                              //indent:12 exp:12
             x -> x);                                                         //indent:12 exp:16 warn
     }                                                                        //indent:4 exp:4
+
+
+    void testLineWrap() {                                                    //indent:4 exp:4
+        toString(                                                            //indent:8 exp:8
+               );                                                            //indent:15 exp:8 warn
+    }                                                                        //indent:4 exp:4
 }                                                                            //indent:0 exp:0
