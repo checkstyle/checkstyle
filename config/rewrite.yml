@@ -1,21 +1,17 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.AllAutoFixes
-displayName: Auto Fixes
-description: Master list of all auto fixes for local development.
-recipeList:
-  - org.checkstyle.AutoFixesPart1
-  - org.checkstyle.AutoFixesPart2
----
-type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.AutoFixesPart1
-displayName: Auto Fixes Part 1
-description: OpenRewrite and Checkstyle standard fixes.
+name: org.checkstyle.CheckstyleAutoFix
+description: Checkstyle standard fixes.
 recipeList:
   - org.checkstyle.autofix.CheckstyleAutoFix:
       violationReportPath: target/cs_errors.xml
       configurationPath: config/checkstyle-checks.xml
       propertiesPath: config/openrewrite-recipes-checkstyle.properties
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.checkstyle.StaticAnalysis
+description: OpenRewrite standard fixes.
+recipeList:
   - org.openrewrite.java.RemoveUnusedImports
   - org.openrewrite.java.ShortenFullyQualifiedTypeReferences
   - org.openrewrite.java.SimplifySingleElementAnnotation
@@ -55,9 +51,8 @@ recipeList:
   - org.openrewrite.staticanalysis.UseLambdaForFunctionalInterface
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.AutoFixesPart2
-displayName: Auto Fixes Part 2
-description: ErrorProne Refaster rules.
+name: org.checkstyle.RefasterRules
+description: Picnic Refaster rules.
 recipeList:
   - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
   - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
