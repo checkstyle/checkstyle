@@ -1,7 +1,7 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.RecipeComposition
-description: Composition of all standard fixes. # seems smell, as pom declaration not working...
+# seems smell, as pom declaration not working...
+name: org.checkstyle.AllAutoFixes
 recipeList:
   - org.checkstyle.CheckstyleAutoFix
   - org.checkstyle.RefasterRules
