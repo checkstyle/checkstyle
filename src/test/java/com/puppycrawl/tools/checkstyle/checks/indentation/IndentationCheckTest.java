@@ -349,6 +349,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "53:19: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 18, 20),
             "54:15: " + getCheckMessage(MSG_ERROR, "method call rparen", 14, 16),
             "75:13: " + getCheckMessage(MSG_ERROR, "lambda arguments", 12, 16),
+            "81:16: " + getCheckMessage(MSG_ERROR, "method call rparen", 15, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationMethodCallLineWrap.java"), expected);
     }
@@ -1601,10 +1602,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("throwsIndent", "4");
         final String fileName = getPath("InputIndentationChainedMethodCalls.java");
         final String[] expected = {
-            "33:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
-            "38:5: " + getCheckMessage(MSG_ERROR, ".", 4, 8),
-            "39:5: " + getCheckMessage(MSG_ERROR, ".", 4, 8),
-            "42:5: " + getCheckMessage(MSG_ERROR, "new", 4, 8),
+            "36:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "41:5: " + getCheckMessage(MSG_ERROR, ".", 4, 8),
+            "42:5: " + getCheckMessage(MSG_ERROR, ".", 4, 8),
+            "45:5: " + getCheckMessage(MSG_ERROR, "new", 4, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
