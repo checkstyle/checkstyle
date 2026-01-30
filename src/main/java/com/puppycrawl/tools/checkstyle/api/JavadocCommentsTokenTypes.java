@@ -1521,7 +1521,35 @@ public final class JavadocCommentsTokenTypes {
     public static final int FORMAT_SPECIFIER = JavadocCommentsLexer.FORMAT_SPECIFIER;
 
     /**
-     * Attribute name in a {@code @snippet}.
+     * Attribute name in a {@code @snippet} tag.
+     *
+     * <p>
+     * <b>Note:</b> In the current Checkstyle AST, all snippet attributes (such as
+     * {@code lang=java}) appear as plain text under the {@code DESCRIPTION} node.
+     * There is <b>no</b> {@code SNIPPET_ATTR_NAME} node in the AST tree.
+     * All attribute content is represented as {@code TEXT}.</p>
+     *
+     * <p>
+     * <b>Example:</b>
+     * </p>
+     * <pre>{@code * @snippet lang=java}</pre>
+     *
+     * <p>
+     * <b>Tree:</b>
+     * </p>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * |   `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
+     * |       |--AT_SIGN -> @
+     * |       |--TAG_NAME -> snippet
+     * |       `--DESCRIPTION -> DESCRIPTION
+     * |           `--TEXT ->  lang=java
+     * }</pre>
+     *
+     * @see #SNIPPET_ATTRIBUTE
      */
     public static final int SNIPPET_ATTR_NAME = JavadocCommentsLexer.SNIPPET_ATTR_NAME;
 
@@ -1597,17 +1625,92 @@ public final class JavadocCommentsTokenTypes {
     public static final int INDEX_TERM = JavadocCommentsLexer.INDEX_TERM;
 
     /**
-     * Single snippet attribute.
+     * Single attribute in a {@code @snippet} tag.
+     *
+     * <p>
+     * Represents a single attribute (e.g., {@code lang=java})
+     * in a {@code @snippet} tag.</p>
+     *
+     * <p><b>Note:</b> In the current Checkstyle AST, all snippet
+     * attributes appear as plain text under the {@code DESCRIPTION} node,
+     * not as a separate {@code SNIPPET_ATTRIBUTE} node.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @snippet lang=java}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * |   `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
+     * |       |--AT_SIGN -> @
+     * |       |--TAG_NAME -> snippet
+     * |       `--DESCRIPTION -> DESCRIPTION
+     * |           `--TEXT ->  lang=java
+     * }</pre>
      */
     public static final int SNIPPET_ATTRIBUTE = JavadocCommentsLexer.SNIPPET_ATTRIBUTE;
 
     /**
-     * Collection of snippet attributes.
+     * Collection of attributes in a {@code @snippet} tag.
+     *
+     * <p>
+     * Represents all attributes (e.g., {@code lang=java region=main}) in a {@code @snippet} tag.
+     * </p>
+     *
+     * <p><b>Note:</b> In the current Checkstyle AST, all snippet attributes appear as
+     * plain text under the {@code DESCRIPTION} node, not as a separate
+     * {@code SNIPPET_ATTRIBUTES} node.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @snippet lang=java region=main}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * |   `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
+     * |       |--AT_SIGN -> @
+     * |       |--TAG_NAME -> snippet
+     * |       `--DESCRIPTION -> DESCRIPTION
+     * |           `--TEXT ->  lang=java region=main
+     * }</pre>
      */
     public static final int SNIPPET_ATTRIBUTES = JavadocCommentsLexer.SNIPPET_ATTRIBUTES;
 
     /**
-     * Body content of a {@code @snippet}.
+     * Body content of a {@code @snippet} tag.
+     *
+     * <p>
+     * Represents the code or text content inside a {@code @snippet} tag in Javadoc.
+     * </p>
+     *
+     * <b>Example:</b>
+     * <pre>{@code
+     * * @snippet lang=java
+     * * System.out.println("hello");
+     * * }
+     * </pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * |   `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
+     * |       |--AT_SIGN -> @
+     * |       |--TAG_NAME -> snippet
+     * |       `--DESCRIPTION -> DESCRIPTION
+     * |           |--TEXT ->  lang=java
+     * |           |--NEWLINE -> \n
+     * |           |--LEADING_ASTERISK ->  *
+     * |           `--TEXT -> System.out.println("hello");
+     * }</pre>
      */
     public static final int SNIPPET_BODY = JavadocCommentsLexer.SNIPPET_BODY;
 
