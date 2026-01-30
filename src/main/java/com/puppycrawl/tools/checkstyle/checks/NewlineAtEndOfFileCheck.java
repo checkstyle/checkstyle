@@ -110,6 +110,15 @@ public class NewlineAtEndOfFileCheck
      */
     public static final String MSG_KEY_WRONG_ENDING = "wrong.line.end";
 
+    /** Escape character representation for LF. */
+    private static final String ESCAPED_LF = "\\n";
+
+    /** Escape character representation for CRLF. */
+    private static final String ESCAPED_CRLF = "\\r\\n";
+
+    /** Escape character representation for CR. */
+    private static final String ESCAPED_CR = "\\r";
+
     /** Specify the type of line separator. */
     private LineSeparatorOption lineSeparator = LineSeparatorOption.LF_CR_CRLF;
 
@@ -152,7 +161,8 @@ public class NewlineAtEndOfFileCheck
                 log(1, MSG_KEY_WRONG_ENDING);
             }
             else if (!endsWithNewline(randomAccessFile, lineSeparator)) {
-                log(1, MSG_KEY_NO_NEWLINE_EOF);
+                log(1, MSG_KEY_NO_NEWLINE_EOF,
+                        getLineSeparatorEscapeChars(lineSeparator));
             }
         }
     }
@@ -186,6 +196,46 @@ public class NewlineAtEndOfFileCheck
                         + readBytes);
             }
             result = separator.matches(lastBytes);
+        }
+        return result;
+    }
+
+    /**
+     * Returns the escape character representation for the given line separator option.
+     *
+     * @param option the line separator option
+     * @return the escape character representation (e.g., "\\n", "\\r\\n")
+     */
+    private static String getLineSeparatorEscapeChars(LineSeparatorOption option) {
+        final String result;
+        switch (option) {
+            case LF:
+                result = ESCAPED_LF;
+                break;
+            case CRLF:
+                result = ESCAPED_CRLF;
+                break;
+            case CR:
+                result = ESCAPED_CR;
+                break;
+            case LF_CR_CRLF:
+                result = ESCAPED_LF + "', '" + ESCAPED_CR + "' or '" + ESCAPED_CRLF;
+                break;
+            case SYSTEM:
+                final String systemSep = System.lineSeparator();
+                if ("\r\n".equals(systemSep)) {
+                    result = ESCAPED_CRLF;
+                }
+                else if ("\n".equals(systemSep)) {
+                    result = ESCAPED_LF;
+                }
+                else {
+                    result = ESCAPED_CR;
+                }
+                break;
+            default:
+                result = option.name().toLowerCase(Locale.ENGLISH);
+                break;
         }
         return result;
     }
