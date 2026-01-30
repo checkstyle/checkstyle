@@ -61,15 +61,26 @@ public class HexLiteralCaseCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.NUM_LONG, TokenTypes.NUM_INT};
+        return new int[] {TokenTypes.NUM_LONG, TokenTypes.NUM_INT, TokenTypes.NUM_FLOAT,
+            TokenTypes.NUM_DOUBLE,
+        };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         final String text = ast.getText();
-        if ((text.startsWith("0x") || text.startsWith("0X"))
-                && containsLowerLetter(text)) {
-            log(ast, MSG_KEY);
+        final int type = ast.getType();
+        if (text.startsWith("0x") || text.startsWith("0X")) {
+            if (type == TokenTypes.NUM_FLOAT || type == TokenTypes.NUM_DOUBLE) {
+                if (lowerLetterInHexFloatLiteral(text)) {
+                    log(ast, MSG_KEY);
+                }
+            }
+            else {
+                if (containsLowerLetter(text)) {
+                    log(ast, MSG_KEY);
+                }
+            }
         }
     }
 
@@ -91,4 +102,29 @@ public class HexLiteralCaseCheck extends AbstractCheck {
         return result;
     }
 
+    /**
+     * Checks if the given text contains any lowercase hexadecimal letter in
+     * Hex Float Literal (a–f).
+     *
+     * @param text the literal text to check
+     * @return true if the literal contains lowercase hex digits; false otherwise
+     */
+    public static boolean lowerLetterInHexFloatLiteral(final String text) {
+        boolean result = false;
+        int pIndex = text.indexOf('p');
+        if (pIndex == -1) {
+            pIndex = text.indexOf('P');
+        }
+
+        if (pIndex != -1) {
+            for (char character : text.substring(0, pIndex).toCharArray()) {
+                if (character >= A_ASCII && character <= F_ASCII) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+
+        return result;
+    }
 }
