@@ -1690,11 +1690,7 @@ public final class JavadocCommentsTokenTypes {
      * </p>
      *
      * <b>Example:</b>
-     * <pre>{@code
-     * * @snippet lang=java
-     * * System.out.println("hello");
-     * * }
-     * </pre>
+     * <pre>{@code * @snippet lang=java * System.out.println("hello");}</pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
