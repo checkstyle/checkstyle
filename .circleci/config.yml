@@ -312,13 +312,17 @@ workflows:
   openrewrite:
     jobs:
       - validate-with-maven-script:
-          name: "openrewrite-recipes-1"
+          name: "checkstyle-auto-fix"
           image-name: "cimg/openjdk:21.0"
-          command: "./.ci/validation.sh openrewrite-recipes-1"
+          command: "./.ci/validation.sh checkstyle-auto-fix"
       - validate-with-maven-script:
-          name: "openrewrite-recipes-2"
+          name: "refaster-rules"
           image-name: "cimg/openjdk:21.0"
-          command: "./.ci/validation.sh openrewrite-recipes-2"
+          command: "./.ci/validation.sh refaster-rules"
+      - validate-with-maven-script:
+          name: "static-analysis"
+          image-name: "cimg/openjdk:21.0"
+          command: "./.ci/validation.sh static-analysis"
 
   spotless:
     jobs:
