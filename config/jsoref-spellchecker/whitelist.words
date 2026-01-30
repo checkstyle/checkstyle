@@ -274,7 +274,6 @@ Dconfig
 Dconnection
 ddd
 DDDL
-Ddisable
 Ddry
 DEADBEEF
 DECCHARS
@@ -327,7 +326,6 @@ doclint
 doctype
 documentationcomments
 donotignoreexceptions
-Dorekit
 Dorg
 DOTALL
 doubletag
@@ -1130,7 +1128,6 @@ protonpack
 Psevntu
 PSHOME
 PSMODULEP
-Pstatic
 pubconstr
 pubifc
 PUBLI
@@ -1158,6 +1155,7 @@ rcurly
 rdiachenko
 RDz
 reactivex
+readarray
 README
 Readonly
 rebased

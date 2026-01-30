@@ -8869,17 +8869,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter message of MacroExecutionException constructor.</message>
-    <lineContent>throw new MacroExecutionException(exc.getMessage(), exc);</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter moduleClassLoader of Checker.setModuleClassLoader.</message>
     <lineContent>checker.setModuleClassLoader(Checker.class.getClassLoader());</lineContent>
     <details>
@@ -9221,17 +9210,6 @@
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference typeParam.findFirstToken(TokenTypes.IDENT)</message>
     <lineContent>typeParam.findFirstToken(TokenTypes.IDENT).getText());</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return returnValue;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable AccessModifierOption
-      method return type: @Initialized @NonNull AccessModifierOption
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

@@ -1148,7 +1148,29 @@ public final class JavadocCommentsTokenTypes {
     public static final int IDENTIFIER = JavadocCommentsLexer.IDENTIFIER;
 
     /**
-     * Hash symbol {@code #} used in references.
+     * Hash symbol {@code #} used in references within Javadoc.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @see MyClass#myMethod()}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * |   `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
+     * |       |--AT_SIGN -> @
+     * |       |--TAG_NAME -> see
+     * |       |--TEXT ->
+     * |       `--REFERENCE -> REFERENCE
+     * |           |--IDENTIFIER -> MyClass
+     * |           |--HASH -> #
+     * |           |--IDENTIFIER -> myMethod
+     * |           |--LPAREN -> (
+     * |           `--RPAREN -> )
+     * }</pre>
+     *
+     * @see #REFERENCE
      */
     public static final int HASH = JavadocCommentsLexer.HASH;
 
