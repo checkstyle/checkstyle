@@ -1379,7 +1379,7 @@ spotless)
   ./mvnw -e --no-transfer-progress spotless:check
   ;;
 
-openrewrite-recipes-1)
+openrewrite-recipes)
   echo "Cloning and building OpenRewrite recipes (Part 1)..."
   PROJECT_ROOT="$(pwd)"
   export MAVEN_OPTS="-Xmx4g -Xms2g"
@@ -1397,8 +1397,7 @@ openrewrite-recipes-1)
   set -e
   echo "Running OpenRewrite recipes Part 1..."
   ./mvnw -e --no-transfer-progress rewrite:run \
-    -Drewrite.recipeChangeLogLevel=INFO \
-    -Drewrite.activeRecipes=org.checkstyle.AutoFixesPart1
+    -Drewrite.recipeChangeLogLevel=INFO
 
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
@@ -1406,7 +1405,7 @@ openrewrite-recipes-1)
   rm -rf /tmp/checkstyle-openrewrite-recipes
   ;;
 
-openrewrite-recipes-2)
+CheckstyleAutoFix)
   echo "Cloning and building OpenRewrite recipes (Part 2)..."
   PROJECT_ROOT="$(pwd)"
   export MAVEN_OPTS="-Xmx4g -Xms2g"
@@ -1425,7 +1424,61 @@ openrewrite-recipes-2)
   echo "Running OpenRewrite recipes Part 2..."
   ./mvnw -e --no-transfer-progress rewrite:run \
     -Drewrite.recipeChangeLogLevel=INFO \
-    -Drewrite.activeRecipes=org.checkstyle.AutoFixesPart2
+    -Drewrite.activeRecipes=org.checkstyle.CheckstyleAutoFix
+
+  echo "Checking for uncommitted changes..."
+  ./.ci/print-diff-as-patch.sh target/rewrite.patch
+
+  rm -rf /tmp/checkstyle-openrewrite-recipes
+  ;;
+
+RefasterRules)
+  echo "Cloning and building OpenRewrite recipes (Part 2)..."
+  PROJECT_ROOT="$(pwd)"
+  export MAVEN_OPTS="-Xmx4g -Xms2g"
+
+  cd /tmp
+  git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
+  cd checkstyle-openrewrite-recipes
+  ./mvnw -e --no-transfer-progress clean install -DskipTests
+
+  cd "$PROJECT_ROOT"
+
+  echo "Running Checkstyle validation to get report for openrewrite..."
+  set +e
+  ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
+  set -e
+  echo "Running OpenRewrite recipes Part 2..."
+  ./mvnw -e --no-transfer-progress rewrite:run \
+    -Drewrite.recipeChangeLogLevel=INFO \
+    -Drewrite.activeRecipes=org.checkstyle.RefasterRules
+
+  echo "Checking for uncommitted changes..."
+  ./.ci/print-diff-as-patch.sh target/rewrite.patch
+
+  rm -rf /tmp/checkstyle-openrewrite-recipes
+  ;;
+
+StaticAnalysis)
+  echo "Cloning and building OpenRewrite recipes (Part 2)..."
+  PROJECT_ROOT="$(pwd)"
+  export MAVEN_OPTS="-Xmx4g -Xms2g"
+
+  cd /tmp
+  git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
+  cd checkstyle-openrewrite-recipes
+  ./mvnw -e --no-transfer-progress clean install -DskipTests
+
+  cd "$PROJECT_ROOT"
+
+  echo "Running Checkstyle validation to get report for openrewrite..."
+  set +e
+  ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
+  set -e
+  echo "Running OpenRewrite recipes Part 2..."
+  ./mvnw -e --no-transfer-progress rewrite:run \
+    -Drewrite.recipeChangeLogLevel=INFO \
+    -Drewrite.activeRecipes=org.checkstyle.StaticAnalysis
 
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
