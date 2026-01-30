@@ -17,12 +17,8 @@ recipeList:
       configurationPath: config/checkstyle-checks.xml
       propertiesPath: config/openrewrite-recipes-checkstyle.properties
   - org.openrewrite.java.RemoveUnusedImports
-  - org.openrewrite.java.ShortenFullyQualifiedTypeReferences
-  - org.openrewrite.java.SimplifySingleElementAnnotation
-  - org.openrewrite.java.format.EmptyNewlineAtEndOfFile
   - org.openrewrite.java.format.NormalizeFormat
   - org.openrewrite.java.format.NormalizeLineBreaks
-  - org.openrewrite.java.format.PadEmptyForLoopComponents
   - org.openrewrite.java.format.RemoveTrailingWhitespace
   # until https://github.com/checkstyle/checkstyle/issues/18789
   # - org.openrewrite.java.migrate.UpgradeToJava21
@@ -33,8 +29,12 @@ recipeList:
   - org.openrewrite.java.recipes.JavaRecipeBestPractices
   - org.openrewrite.java.recipes.RecipeTestingBestPractices
   - org.openrewrite.maven.BestPractices
+  # Static analysis composite recipes (include further recipes)
   - org.openrewrite.staticanalysis.BufferedWriterCreationRecipes
-  - org.openrewrite.staticanalysis.EqualsAvoidsNull
+  - org.openrewrite.staticanalysis.CodeCleanup
+  - org.openrewrite.staticanalysis.SimplifyTernaryRecipes
+  - org.openrewrite.staticanalysis.URLEqualsHashCodeRecipes
+  # Static analysis non-composite recipes
   - org.openrewrite.staticanalysis.InlineVariable
   - org.openrewrite.staticanalysis.JavaApiBestPractices
   - org.openrewrite.staticanalysis.LowercasePackage
@@ -46,11 +46,8 @@ recipeList:
   - org.openrewrite.staticanalysis.RemoveUnusedPrivateFields
   - org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods
   - org.openrewrite.staticanalysis.ReplaceLambdaWithMethodReference
-  - org.openrewrite.staticanalysis.SimplifyTernaryRecipes
-  - org.openrewrite.staticanalysis.URLEqualsHashCodeRecipes
   - org.openrewrite.staticanalysis.UnnecessaryCloseInTryWithResources
   - org.openrewrite.staticanalysis.UnnecessaryExplicitTypeArguments
-  - org.openrewrite.staticanalysis.UnnecessaryParentheses
   - org.openrewrite.staticanalysis.UnnecessaryReturnAsLastStatement
   - org.openrewrite.staticanalysis.UseLambdaForFunctionalInterface
 ---
