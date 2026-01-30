@@ -38,7 +38,9 @@ public class HexLiteralCaseCheckTest
     @Test
     public void testGetRequiredTokens() {
         final HexLiteralCaseCheck check = new HexLiteralCaseCheck();
-        final int[] expectedTokens = {TokenTypes.NUM_LONG, TokenTypes.NUM_INT};
+        final int[] expectedTokens = {TokenTypes.NUM_LONG, TokenTypes.NUM_INT,
+            TokenTypes.NUM_FLOAT, TokenTypes.NUM_DOUBLE,
+        };
         assertWithMessage("Default required tokens are valid")
             .that(check.getRequiredTokens())
             .isEqualTo(expectedTokens);
@@ -46,12 +48,14 @@ public class HexLiteralCaseCheckTest
 
     @Test
     public void testAcceptableTokens() {
-        final int[] expected = {TokenTypes.NUM_LONG, TokenTypes.NUM_INT};
+        final int[] expected = {TokenTypes.NUM_LONG, TokenTypes.NUM_INT,
+            TokenTypes.NUM_FLOAT, TokenTypes.NUM_DOUBLE,
+        };
         final HexLiteralCaseCheck check = new HexLiteralCaseCheck();
         final int[] actual = check.getAcceptableTokens();
         assertWithMessage("Invalid size of tokens")
                 .that(actual.length)
-                .isEqualTo(2);
+                .isEqualTo(4);
         assertWithMessage("Default acceptable tokens are invalid")
                 .that(actual)
                 .isEqualTo(expected);
@@ -76,6 +80,26 @@ public class HexLiteralCaseCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputHexLiteralCaseCheck.java"), expected
+        );
+    }
+
+    @Test
+    public void testCheck2()
+            throws Exception {
+        final String[] expected = {
+            "10:16: " + getCheckMessage(MSG_KEY),
+            "11:16: " + getCheckMessage(MSG_KEY),
+            "12:16: " + getCheckMessage(MSG_KEY),
+            "13:16: " + getCheckMessage(MSG_KEY),
+            "14:15: " + getCheckMessage(MSG_KEY),
+            "15:15: " + getCheckMessage(MSG_KEY),
+            "17:15: " + getCheckMessage(MSG_KEY),
+            "19:15: " + getCheckMessage(MSG_KEY),
+            "20:15: " + getCheckMessage(MSG_KEY),
+            "21:16: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputHexLiteralCaseCheck2.java"), expected
         );
     }
 
