@@ -655,7 +655,7 @@
             <exportDatatables>true</exportDatatables>
             <skipMavenParsing>true</skipMavenParsing>
             <activeRecipes>
-              <recipe>org.checkstyle.AllAutoFixes</recipe>
+              <recipe>org.checkstyle.RecipeComposition</recipe>
             </activeRecipes>
             <exclusions>
               <exclusion>**.ci-temp**</exclusion>
