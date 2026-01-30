@@ -33,41 +33,55 @@ import org.junit.rules.TemporaryFolder;
 
 public class InputVisibilityModifierAnnotated3 {
     @Rule
-    public TemporaryFolder publicJUnitRule = new TemporaryFolder(); // violation
+    public TemporaryFolder rule = new TemporaryFolder();
+    // violation above 'Variable 'rule' must be private and have accessor methods.'
 
     @Rule
-    public TemporaryFolder fqPublicJUnitRule = new TemporaryFolder(); // violation
+    public TemporaryFolder ruleFull = new TemporaryFolder();
+    // violation above 'Variable 'ruleFull' must be private and have accessor methods.'
 
     @VisibleForTesting
-    public String googleCommonsAnnotatedPublic; // violation
+    public String publicGoogle;
+    // violation above 'Variable 'publicGoogle' must be private and have accessor methods.'
 
     @VisibleForTesting
-    String googleCommonsAnnotatedPackage; // violation
+    String packageGoogle;
+    // violation above 'Variable 'packageGoogle' must be private and have accessor methods.'
 
     @VisibleForTesting
-    protected String googleCommonsAnnotatedProtected; // violation
+    protected String protectedGoogle;
+    // violation above 'Variable 'protectedGoogle' must be private and have accessor methods.'
 
     @VisibleForTesting
-    public String fqGoogleCommonsAnnotatedPublic; // violation
+    public String publicGoogleFull;
+    // violation above 'Variable 'publicGoogleFull' must be private and have accessor methods.'
 
     @VisibleForTesting
-    String fqGoogleCommonsAnnotatedPackage; // violation
+    String packageGoogleFull;
+    // violation above 'Variable 'packageGoogleFull' must be private and have accessor methods.'
 
     @VisibleForTesting
-    protected String fqGoogleCommonsAnnotatedProtected; // violation
+    protected String protectedGoogleFull;
+    // violation above 'Variable 'protectedGoogleFull' must be private and have accessor methods.'
 
     @CustomAnnotation
-    public String customAnnotatedPublic; // violation
+    public String publicCustom;
+    // violation above 'Variable 'publicCustom' must be private and have accessor methods.'
 
     @CustomAnnotation
-    String customAnnotatedPackage; // violation
+    String packageCustom;
+    // violation above 'Variable 'packageCustom' must be private and have accessor methods.'
 
     @CustomAnnotation
-    protected String customAnnotatedProtected; // violation
+    protected String protectedCustom;
+    // violation above 'Variable 'protectedCustom' must be private and have accessor methods.'
 
-    public String unannotatedPublic; // violation
-    String unannotatedPackage; // violation
-    protected String unannotatedProtected; // violation
+    public String unannotatedPublic;
+    // violation above 'Variable 'unannotatedPublic' must be private and have accessor methods.'
+    String unannotatedPackage;
+    // violation above 'Variable 'unannotatedPackage' must be private and have accessor methods.'
+    protected String unannotatedProtected;
+    // violation above 'Variable 'unannotatedProtected' must be private and have accessor methods.'
     private String unannotatedPrivate;
 
     @Retention(value=RetentionPolicy.RUNTIME)
@@ -76,8 +90,10 @@ public class InputVisibilityModifierAnnotated3 {
     }
 
     @ClassRule
-    public static TemporaryFolder publicJUnitClassRule = new TemporaryFolder(); // violation
+    public static TemporaryFolder classRule = new TemporaryFolder();
+    // violation above 'Variable 'classRule' must be private and have accessor methods.'
 
     @ClassRule
-    public static TemporaryFolder fqPublicJUnitClassRule = new TemporaryFolder(); // violation
+    public static TemporaryFolder classRuleFull = new TemporaryFolder();
+    // violation above 'Variable 'classRuleFull' must be private and have accessor methods.'
 }
