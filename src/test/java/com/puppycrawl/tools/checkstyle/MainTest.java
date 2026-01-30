@@ -42,6 +42,7 @@ import java.util.Locale;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -1007,34 +1008,34 @@ public class MainTest {
     @Test
     public void testPrintTreeOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
-            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
-            "|--PACKAGE_DEF -> package [1:0]",
-            "|   |--ANNOTATIONS -> ANNOTATIONS [1:39]",
-            "|   |--DOT -> . [1:39]",
-            "|   |   |--DOT -> . [1:28]",
-            "|   |   |   |--DOT -> . [1:22]",
-            "|   |   |   |   |--DOT -> . [1:11]",
-            "|   |   |   |   |   |--IDENT -> com [1:8]",
-            "|   |   |   |   |   `--IDENT -> puppycrawl [1:12]",
-            "|   |   |   |   `--IDENT -> tools [1:23]",
-            "|   |   |   `--IDENT -> checkstyle [1:29]",
-            "|   |   `--IDENT -> main [1:40]",
-            "|   `--SEMI -> ; [1:44]",
-            "|--CLASS_DEF -> CLASS_DEF [3:0]",
-            "|   |--MODIFIERS -> MODIFIERS [3:0]",
-            "|   |   `--LITERAL_PUBLIC -> public [3:0]",
-            "|   |--LITERAL_CLASS -> class [3:7]",
-            "|   |--IDENT -> InputMain [3:13]",
-            "|   `--OBJBLOCK -> OBJBLOCK [3:23]",
-            "|       |--LCURLY -> { [3:23]",
-            "|       `--RCURLY -> } [4:0]",
-            "`--CLASS_DEF -> CLASS_DEF [5:0]",
-            "    |--MODIFIERS -> MODIFIERS [5:0]",
-            "    |--LITERAL_CLASS -> class [5:0]",
-            "    |--IDENT -> InputMainInner [5:6]",
-            "    `--OBJBLOCK -> OBJBLOCK [5:21]",
-            "        |--LCURLY -> { [5:21]",
-            "        `--RCURLY -> } [6:0]");
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:1]",
+            "|--PACKAGE_DEF -> package [1:1]",
+            "|   |--ANNOTATIONS -> ANNOTATIONS [1:40]",
+            "|   |--DOT -> . [1:40]",
+            "|   |   |--DOT -> . [1:29]",
+            "|   |   |   |--DOT -> . [1:23]",
+            "|   |   |   |   |--DOT -> . [1:12]",
+            "|   |   |   |   |   |--IDENT -> com [1:9]",
+            "|   |   |   |   |   `--IDENT -> puppycrawl [1:13]",
+            "|   |   |   |   `--IDENT -> tools [1:24]",
+            "|   |   |   `--IDENT -> checkstyle [1:30]",
+            "|   |   `--IDENT -> main [1:41]",
+            "|   `--SEMI -> ; [1:45]",
+            "|--CLASS_DEF -> CLASS_DEF [3:1]",
+            "|   |--MODIFIERS -> MODIFIERS [3:1]",
+            "|   |   `--LITERAL_PUBLIC -> public [3:1]",
+            "|   |--LITERAL_CLASS -> class [3:8]",
+            "|   |--IDENT -> InputMain [3:14]",
+            "|   `--OBJBLOCK -> OBJBLOCK [3:24]",
+            "|       |--LCURLY -> { [3:24]",
+            "|       `--RCURLY -> } [4:1]",
+            "`--CLASS_DEF -> CLASS_DEF [5:1]",
+            "    |--MODIFIERS -> MODIFIERS [5:1]",
+            "    |--LITERAL_CLASS -> class [5:1]",
+            "    |--IDENT -> InputMainInner [5:7]",
+            "    `--OBJBLOCK -> OBJBLOCK [5:22]",
+            "        |--LCURLY -> { [5:22]",
+            "        `--RCURLY -> } [6:1]");
 
         assertMainReturnCode(0, "-t", getPath("InputMain.java"));
         assertWithMessage("Unexpected output log")
@@ -1048,13 +1049,13 @@ public class MainTest {
     @Test
     public void testPrintXpathOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
-            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
-            "|--CLASS_DEF -> CLASS_DEF [3:0]",
-            "|   `--OBJBLOCK -> OBJBLOCK [3:28]",
-            "|       |--METHOD_DEF -> METHOD_DEF [4:4]",
-            "|       |   `--SLIST -> { [4:20]",
-            "|       |       |--VARIABLE_DEF -> VARIABLE_DEF [5:8]",
-            "|       |       |   |--IDENT -> a [5:12]");
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:1]",
+            "|--CLASS_DEF -> CLASS_DEF [3:1]",
+            "|   `--OBJBLOCK -> OBJBLOCK [3:29]",
+            "|       |--METHOD_DEF -> METHOD_DEF [4:5]",
+            "|       |   `--SLIST -> { [4:21]",
+            "|       |       |--VARIABLE_DEF -> VARIABLE_DEF [5:9]",
+            "|       |       |   |--IDENT -> a [5:13]");
         assertMainReturnCode(0, "-b",
                 "/COMPILATION_UNIT/CLASS_DEF//METHOD_DEF[./IDENT[@text='methodOne']]"
                         + "//VARIABLE_DEF/IDENT",
@@ -1068,14 +1069,51 @@ public class MainTest {
     }
 
     @Test
+    public void testCliTreeAndSuppressionConsistency(@SysOut Capturable systemOut) {
+        final String filePath = getPath("InputMain.java");
+
+        assertMainReturnCode(0, "-t", filePath);
+
+        final String treeOutput = systemOut.getCapturedData();
+
+        final Pattern pattern = Pattern.compile("(\\w+) -> .*?\\[(\\d+:\\d+)\\]");
+        final Matcher matcher = pattern.matcher(treeOutput);
+
+        boolean foundAtLeastOne = false;
+        while (matcher.find()) {
+            foundAtLeastOne = true;
+            final String tokenName = matcher.group(1);
+            final String coordinates = matcher.group(2);
+
+            final int previousLength = systemOut.getCapturedData().length();
+
+            assertMainReturnCode(0, "-s", coordinates, filePath);
+
+            final String allOutput = systemOut.getCapturedData();
+            final String newOutput = allOutput.substring(previousLength);
+
+            if (!"COMPILATION_UNIT".equals(tokenName)) {
+                assertWithMessage("CLI -s should return XPath ending in /%s for coordinates %s",
+                        tokenName, coordinates)
+                        .that(newOutput)
+                        .contains("/" + tokenName);
+            }
+        }
+
+        assertWithMessage("Should have found at least one token in -t output")
+                .that(foundAtLeastOne)
+                .isTrue();
+    }
+
+    @Test
     public void testPrintXpathCommentNode(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
-            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
-            "`--CLASS_DEF -> CLASS_DEF [17:0]",
-            "    `--OBJBLOCK -> OBJBLOCK [17:19]",
-            "        |--CTOR_DEF -> CTOR_DEF [19:4]",
-            "        |   |--BLOCK_COMMENT_BEGIN -> /* [18:4]");
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:1]",
+            "`--CLASS_DEF -> CLASS_DEF [17:1]",
+            "    `--OBJBLOCK -> OBJBLOCK [17:20]",
+            "        |--CTOR_DEF -> CTOR_DEF [19:5]",
+            "        |   |--BLOCK_COMMENT_BEGIN -> /* [18:5]");
         assertMainReturnCode(0, "-b", "/COMPILATION_UNIT/CLASS_DEF//BLOCK_COMMENT_BEGIN",
                 getPath("InputMainXPath.java"));
         assertWithMessage("Unexpected output log")
@@ -1089,7 +1127,7 @@ public class MainTest {
     @Test
     public void testPrintXpathNodeParentNull(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        final String expected = addEndOfLine("COMPILATION_UNIT -> COMPILATION_UNIT [1:0]");
+        final String expected = addEndOfLine("COMPILATION_UNIT -> COMPILATION_UNIT [1:1]");
         assertMainReturnCode(0, "-b", "/COMPILATION_UNIT", getPath("InputMainXPath.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
@@ -1103,13 +1141,13 @@ public class MainTest {
     public void testPrintXpathFullOption(
             @SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
-            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
-            "|--CLASS_DEF -> CLASS_DEF [3:0]",
-            "|   `--OBJBLOCK -> OBJBLOCK [3:28]",
-            "|       |--METHOD_DEF -> METHOD_DEF [8:4]",
-            "|       |   `--SLIST -> { [8:26]",
-            "|       |       |--VARIABLE_DEF -> VARIABLE_DEF [9:8]",
-            "|       |       |   |--IDENT -> a [9:12]");
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:1]",
+            "|--CLASS_DEF -> CLASS_DEF [3:1]",
+            "|   `--OBJBLOCK -> OBJBLOCK [3:29]",
+            "|       |--METHOD_DEF -> METHOD_DEF [8:5]",
+            "|       |   `--SLIST -> { [8:27]",
+            "|       |       |--VARIABLE_DEF -> VARIABLE_DEF [9:9]",
+            "|       |       |   |--IDENT -> a [9:13]");
         final String xpath = "/COMPILATION_UNIT/CLASS_DEF//METHOD_DEF[./IDENT[@text='method']]"
                 + "//VARIABLE_DEF/IDENT";
         assertMainReturnCode(0, "--branch-matching-xpath", xpath, getPath("InputMainXPath.java"));
@@ -1125,15 +1163,15 @@ public class MainTest {
     public void testPrintXpathTwoResults(
             @SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
-            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
-            "|--CLASS_DEF -> CLASS_DEF [12:0]",
-            "|   `--OBJBLOCK -> OBJBLOCK [12:10]",
-            "|       |--METHOD_DEF -> METHOD_DEF [13:4]",
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:1]",
+            "|--CLASS_DEF -> CLASS_DEF [12:1]",
+            "|   `--OBJBLOCK -> OBJBLOCK [12:11]",
+            "|       |--METHOD_DEF -> METHOD_DEF [13:5]",
             "---------",
-            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
-            "|--CLASS_DEF -> CLASS_DEF [12:0]",
-            "|   `--OBJBLOCK -> OBJBLOCK [12:10]",
-            "|       |--METHOD_DEF -> METHOD_DEF [14:4]");
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:1]",
+            "|--CLASS_DEF -> CLASS_DEF [12:1]",
+            "|   `--OBJBLOCK -> OBJBLOCK [12:11]",
+            "|       |--METHOD_DEF -> METHOD_DEF [14:5]");
         assertMainReturnCode(0, "--branch-matching-xpath",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Two']]//METHOD_DEF",
                 getPath("InputMainXPath.java"));
@@ -1163,37 +1201,37 @@ public class MainTest {
     public void testPrintTreeCommentsOption(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
-            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
-            "|--PACKAGE_DEF -> package [1:0]",
-            "|   |--ANNOTATIONS -> ANNOTATIONS [1:39]",
-            "|   |--DOT -> . [1:39]",
-            "|   |   |--DOT -> . [1:28]",
-            "|   |   |   |--DOT -> . [1:22]",
-            "|   |   |   |   |--DOT -> . [1:11]",
-            "|   |   |   |   |   |--IDENT -> com [1:8]",
-            "|   |   |   |   |   `--IDENT -> puppycrawl [1:12]",
-            "|   |   |   |   `--IDENT -> tools [1:23]",
-            "|   |   |   `--IDENT -> checkstyle [1:29]",
-            "|   |   `--IDENT -> main [1:40]",
-            "|   `--SEMI -> ; [1:44]",
-            "|--CLASS_DEF -> CLASS_DEF [3:0]",
-            "|   |--MODIFIERS -> MODIFIERS [3:0]",
-            "|   |   |--BLOCK_COMMENT_BEGIN -> /* [2:0]",
-            "|   |   |   |--COMMENT_CONTENT -> comment [2:2]",
-            "|   |   |   `--BLOCK_COMMENT_END -> */ [2:8]",
-            "|   |   `--LITERAL_PUBLIC -> public [3:0]",
-            "|   |--LITERAL_CLASS -> class [3:7]",
-            "|   |--IDENT -> InputMain [3:13]",
-            "|   `--OBJBLOCK -> OBJBLOCK [3:23]",
-            "|       |--LCURLY -> { [3:23]",
-            "|       `--RCURLY -> } [4:0]",
-            "`--CLASS_DEF -> CLASS_DEF [5:0]",
-            "    |--MODIFIERS -> MODIFIERS [5:0]",
-            "    |--LITERAL_CLASS -> class [5:0]",
-            "    |--IDENT -> InputMainInner [5:6]",
-            "    `--OBJBLOCK -> OBJBLOCK [5:21]",
-            "        |--LCURLY -> { [5:21]",
-            "        `--RCURLY -> } [6:0]");
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:1]",
+            "|--PACKAGE_DEF -> package [1:1]",
+            "|   |--ANNOTATIONS -> ANNOTATIONS [1:40]",
+            "|   |--DOT -> . [1:40]",
+            "|   |   |--DOT -> . [1:29]",
+            "|   |   |   |--DOT -> . [1:23]",
+            "|   |   |   |   |--DOT -> . [1:12]",
+            "|   |   |   |   |   |--IDENT -> com [1:9]",
+            "|   |   |   |   |   `--IDENT -> puppycrawl [1:13]",
+            "|   |   |   |   `--IDENT -> tools [1:24]",
+            "|   |   |   `--IDENT -> checkstyle [1:30]",
+            "|   |   `--IDENT -> main [1:41]",
+            "|   `--SEMI -> ; [1:45]",
+            "|--CLASS_DEF -> CLASS_DEF [3:1]",
+            "|   |--MODIFIERS -> MODIFIERS [3:1]",
+            "|   |   |--BLOCK_COMMENT_BEGIN -> /* [2:1]",
+            "|   |   |   |--COMMENT_CONTENT -> comment [2:3]",
+            "|   |   |   `--BLOCK_COMMENT_END -> */ [2:9]",
+            "|   |   `--LITERAL_PUBLIC -> public [3:1]",
+            "|   |--LITERAL_CLASS -> class [3:8]",
+            "|   |--IDENT -> InputMain [3:14]",
+            "|   `--OBJBLOCK -> OBJBLOCK [3:24]",
+            "|       |--LCURLY -> { [3:24]",
+            "|       `--RCURLY -> } [4:1]",
+            "`--CLASS_DEF -> CLASS_DEF [5:1]",
+            "    |--MODIFIERS -> MODIFIERS [5:1]",
+            "    |--LITERAL_CLASS -> class [5:1]",
+            "    |--IDENT -> InputMainInner [5:7]",
+            "    `--OBJBLOCK -> OBJBLOCK [5:22]",
+            "        |--LCURLY -> { [5:22]",
+            "        `--RCURLY -> } [6:1]");
 
         assertMainReturnCode(0, "-T", getPath("InputMain.java"));
         assertWithMessage("Unexpected output log")
@@ -2050,5 +2088,4 @@ public class MainTest {
         }
 
     }
-
 }
