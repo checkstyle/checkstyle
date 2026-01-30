@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ArrayBracketNoWhitespace</title>
+  </head>
+  <body>
+    <section name="ArrayBracketNoWhitespace">
+      <p>Since Checkstyle 13.1.0</p>
+      <subsection name="Description" id="ArrayBracketNoWhitespace_Description">
+        <div>
+          Checks that the whitespace around square-bracket tokens <code>[</code> and <code>]</code>
+          follows the Google Java Style Guide requirements for array declarations, array creation,
+          and array indexing.
+        </div>
+
+        <p>
+          Left square bracket ("<code>[</code>"):
+        </p>
+        <ul>
+        <li>must not be preceded with whitespace when preceded by a
+          <code>TYPE</code> or <code>IDENT</code> in array declarations or array access</li>
+        <li>must not be followed with whitespace</li>
+        </ul>
+
+        <p>
+          Right square bracket ("<code>]</code>"):
+        </p>
+        <ul>
+        <li>must not be preceded with whitespace</li>
+        <li>must be followed with whitespace in all cases, except when followed by:
+        <ul>
+        <li>another bracket: <code>[][]</code></li>
+        <li>a dot for member access: <code>arr[i].length</code></li>
+        <li>a comma or semicolon: <code>arr[i],</code> or <code>arr[i];</code></li>
+        <li>postfix operators: <code>arr[i]++</code> or <code>arr[i]--</code></li>
+        <li>a right parenthesis or another closing construct: <code>(arr[i])</code></li>
+        </ul>
+        </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Examples" id="ArrayBracketNoWhitespace_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ArrayBracketNoWhitespace"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  int[] numbersWarn = new int[10 ]; // violation, ']' is preceded with whitespace
+  int[] numbersGood = new int[10];
+
+  String [] dataWarn = {"a", "b"}; // violation, '[' is preceded with whitespace
+  String[] dataGood = {"a", "b"};
+
+  byte bufferWarn[ ];
+  // 2 violations above
+  // '[' is followed by whitespace
+  // ']' is preceded with whitespace
+  byte bufferGood[];
+
+  int[] matrixWarn[] ; // violation, ']' is followed by whitespace
+  int[] matrixGood[];
+
+  void processArray(int[] arr) {
+    int value = arr [0]; // violation, '[' is preceded with whitespace
+    int valueGood = arr[0];
+  }
+
+  void calculateWarn(int values[ ]) {
+    // 2 violations above
+    // '[' is followed by whitespace
+    // ']' is preceded with whitespace
+  }
+  void calculateGood(int values[]) {
+  }
+  void processData(int[] values, String[] labels) {
+    for (int i = 0; i &lt; values.length; i++) {
+      values[i] = values[i] * 2;
+    }
+  }
+
+  void initializeData() {
+    String[] namesWarn = new String[ 5 ];
+    // 2 violations above
+    // '[' is followed by whitespace
+    // ']' is preceded with whitespace
+    String[] namesGood = new String[5];
+
+    int[][] gridWarn = new int[3 ][4]; // violation, ']' is preceded with whitespace
+    int[][] gridGood = new int[3][4];
+    int[][] correctGrid = new int[5][5];
+    correctGrid[0][0] = 1;
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="ArrayBracketNoWhitespace_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ArrayBracketNoWhitespace">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="ArrayBracketNoWhitespace_Violation_Messages">
+      <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
+              ws.followed
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notFollowed%22">
+              ws.notFollowed
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
+              ws.preceded
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="ArrayBracketNoWhitespace_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="ArrayBracketNoWhitespace_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
