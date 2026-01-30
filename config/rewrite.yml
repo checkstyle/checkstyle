@@ -19,6 +19,8 @@ recipeList:
       propertiesPath: config/openrewrite-recipes-checkstyle.properties
   - org.openrewrite.staticanalysis.CommonStaticAnalysis
   # individual recipes
+  - org.openrewrite.staticanalysis.CommonStaticAnalysis
+  # individual recipes
   - org.openrewrite.java.RemoveUnusedImports
   - org.openrewrite.java.ShortenFullyQualifiedTypeReferences
   - org.openrewrite.java.SimplifySingleElementAnnotation
@@ -36,6 +38,31 @@ recipeList:
   - org.openrewrite.java.recipes.JavaRecipeBestPractices
   - org.openrewrite.java.recipes.RecipeTestingBestPractices
   - org.openrewrite.maven.BestPractices
+  - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
+  - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
+  - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
+  - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
+  - tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes
+  - tech.picnic.errorprone.refasterrules.FileRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MapRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MockitoRulesRecipes
+  # current maintainer don't "like" orElseThrow() as better form of get()
+  # - tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
+  - tech.picnic.errorprone.refasterrules.PatternRulesRecipes
+  - tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes
+  - tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes
+  - tech.picnic.errorprone.refasterrules.StreamRulesRecipes
+  - tech.picnic.errorprone.refasterrules.TimeRulesRecipes
+---
+# Composite group for static analysis, as on openrewrite website
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.openrewrite.staticanalysis.CommonStaticAnalysis
+displayName: Common static analysis issues
+description: |
+  Resolve common static analysis issues (also known as SAST issues).
+recipeList:
   - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
   - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
   - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
