@@ -1379,8 +1379,8 @@ spotless)
   ./mvnw -e --no-transfer-progress spotless:check
   ;;
 
-openrewrite-recipes-1)
-  echo "Cloning and building OpenRewrite recipes (Part 1)..."
+openrewrite-checkstyle-auto-fix)
+  echo "Cloning and building OpenRewrite recipes..."
   PROJECT_ROOT="$(pwd)"
   export MAVEN_OPTS="-Xmx4g -Xms2g"
 
@@ -1395,10 +1395,10 @@ openrewrite-recipes-1)
   set +e
   ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
   set -e
-  echo "Running OpenRewrite recipes Part 1..."
+  echo "Running CheckstyleAutoFix recipes..."
   ./mvnw -e --no-transfer-progress rewrite:run \
     -Drewrite.recipeChangeLogLevel=INFO \
-    -Drewrite.activeRecipes=org.checkstyle.AutoFixesPart1
+    -Drewrite.activeRecipes=org.checkstyle.CheckstyleAutoFix
 
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
@@ -1406,8 +1406,8 @@ openrewrite-recipes-1)
   rm -rf /tmp/checkstyle-openrewrite-recipes
   ;;
 
-openrewrite-recipes-2)
-  echo "Cloning and building OpenRewrite recipes (Part 2)..."
+openrewrite-refaster-rules)
+  echo "Cloning and building OpenRewrite recipes..."
   PROJECT_ROOT="$(pwd)"
   export MAVEN_OPTS="-Xmx4g -Xms2g"
 
@@ -1418,14 +1418,33 @@ openrewrite-recipes-2)
 
   cd "$PROJECT_ROOT"
 
-  echo "Running Checkstyle validation to get report for openrewrite..."
-  set +e
-  ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
-  set -e
-  echo "Running OpenRewrite recipes Part 2..."
+  echo "Running RefasterRules recipes..."
   ./mvnw -e --no-transfer-progress rewrite:run \
     -Drewrite.recipeChangeLogLevel=INFO \
-    -Drewrite.activeRecipes=org.checkstyle.AutoFixesPart2
+    -Drewrite.activeRecipes=org.checkstyle.RefasterRules
+
+  echo "Checking for uncommitted changes..."
+  ./.ci/print-diff-as-patch.sh target/rewrite.patch
+
+  rm -rf /tmp/checkstyle-openrewrite-recipes
+  ;;
+
+openrewrite-static-analysis)
+  echo "Cloning and building OpenRewrite recipes..."
+  PROJECT_ROOT="$(pwd)"
+  export MAVEN_OPTS="-Xmx4g -Xms2g"
+
+  cd /tmp
+  git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
+  cd checkstyle-openrewrite-recipes
+  ./mvnw -e --no-transfer-progress clean install -DskipTests
+
+  cd "$PROJECT_ROOT"
+
+  echo "Running StaticAnalysis recipes..."
+  ./mvnw -e --no-transfer-progress rewrite:run \
+    -Drewrite.recipeChangeLogLevel=INFO \
+    -Drewrite.activeRecipes=org.checkstyle.StaticAnalysis
 
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
