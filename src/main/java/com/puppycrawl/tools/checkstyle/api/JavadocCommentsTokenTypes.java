@@ -1181,7 +1181,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b></p>
      * <pre>{@code * @see #method(int)}</pre>
      *
-     * <p><b>Tree:</b></p>
+     * <b>Tree:</b>
      * <pre>{@code
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK ->  *
