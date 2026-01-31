@@ -7301,6 +7301,13 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/EmptyLineSeparatorCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference firstConstant</message>
+    <lineContent>if (firstConstant.getLineNo() == ast.getLineNo()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/EmptyLineSeparatorCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference token.findFirstToken(TokenTypes.TYPE)</message>
     <lineContent>for (DetailAST typeChild = token.findFirstToken(TokenTypes.TYPE).getLastChild();</lineContent>
   </checkerFrameworkError>

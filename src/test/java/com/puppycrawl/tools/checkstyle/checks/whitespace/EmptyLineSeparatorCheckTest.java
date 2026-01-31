@@ -371,6 +371,48 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testEmptyLineWithEnumConstant() throws Exception {
+        final String[] expected = {
+            "20:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "24:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "28:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "32:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "41:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "50:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorEnumConstant.java"), expected
+        );
+    }
+
+    @Test
+    public void testEmptyLineWithEnumConstantWithDefaultProperties() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorEnumConstantDefault.java"), expected
+        );
+    }
+
+    @Test
+    public void testEmptyLineWithSingleLineEnum() throws Exception {
+        final String[] expected = {
+            "18:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_DEF"),
+            "23:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_DEF"),
+            "27:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "27:23: " + getCheckMessage(MSG_MULTIPLE_LINES_AFTER, "ENUM_CONSTANT_DEF"),
+            "39:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "42:9: " + getCheckMessage(MSG_MULTIPLE_LINES_AFTER, "ENUM_CONSTANT_DEF"),
+            "42:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "55:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorSingleLineEnum.java"), expected);
+    }
+
+    @Test
     public void testInterfaceFields() throws Exception {
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
@@ -395,6 +437,7 @@ public class EmptyLineSeparatorCheckTest
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.STATIC_INIT,
             TokenTypes.INSTANCE_INIT,
             TokenTypes.METHOD_DEF,
