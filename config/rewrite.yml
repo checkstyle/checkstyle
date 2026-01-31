@@ -201,7 +201,7 @@ recipeList:
   - tech.picnic.errorprone.refasterrules.MockitoRulesRecipes
   - tech.picnic.errorprone.refasterrules.MultimapRulesRecipes
   - tech.picnic.errorprone.refasterrules.NullRulesRecipes
-  - tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
+  # tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
   - tech.picnic.errorprone.refasterrules.PatternRulesRecipes
   - tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes
   - tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes
