@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 public class Example3 {
   public void myTest() {
     final String quote = """
-            \""""; // violation above
+            \""""; // violation above 'Token text matches the illegal pattern '"'.'
   }
 }
 // xdoc section -- end
