@@ -195,7 +195,7 @@ public final class JavadocCommentsTokenTypes {
      * </ol>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * @author name.}</pre>
+     * <pre>{@code * @author name}</pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -207,12 +207,13 @@ public final class JavadocCommentsTokenTypes {
      *         |--AT_SIGN -> @
      *         |--TAG_NAME -> author
      *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  name.
+     *             `--TEXT ->  name
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
      */
     public static final int AUTHOR_BLOCK_TAG = JavadocCommentsLexer.AUTHOR_BLOCK_TAG;
+
 
     /**
      * {@code @deprecated} block tag.
@@ -1554,7 +1555,38 @@ public final class JavadocCommentsTokenTypes {
     public static final int SNIPPET_ATTR_NAME = JavadocCommentsLexer.SNIPPET_ATTR_NAME;
 
     /**
-     * Equals sign {@code = }.
+     * Equals sign {@code =}.
+     *
+     * <p>Used within snippet attributes to assign values.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * &#123;@snippet lang="java" :
+     *   int x = 1;
+     * }
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--SNIPPET_INLINE_TAG -> SNIPPET_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *     |--SNIPPET_ATTRIBUTES -> SNIPPET_ATTRIBUTES
+     *     |   `--SNIPPET_ATTRIBUTE -> SNIPPET_ATTRIBUTE
+     *     |       |--TEXT ->
+     *     |       |--SNIPPET_ATTR_NAME -> lang
+     *     |       |--EQUALS -> =
+     *     |       `--ATTRIBUTE_VALUE -> "java"
+     *     |--COLON -> :
+     *     |--SNIPPET_BODY -> SNIPPET_BODY
+     *     |   |--NEWLINE -> \n
+     *     |   |--TEXT ->   int x = 1;
+     *     |   |--NEWLINE -> \r\n
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #SNIPPET_ATTRIBUTE
+     * @see #SNIPPET_ATTRIBUTES
      */
     public static final int EQUALS = JavadocCommentsLexer.EQUALS;
 
