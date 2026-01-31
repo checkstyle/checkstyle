@@ -20,6 +20,7 @@ type: specs.openrewrite.org/v1beta/recipe
 name: org.checkstyle.RefasterRules
 description: Picnic Refaster rules.
 recipeList:
+  - AllRefasterRules
   - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
   - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
   - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
@@ -154,7 +155,7 @@ recipeList:
   - org.openrewrite.staticanalysis.CustomImportOrder
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: tech.picnic.errorprone.refasterrules.AllRefasterRules
+name: AllRefasterRules
 displayName: All Picnic Refaster rules
 description: |
   Collection of all Refaster rules from Picnic's error-prone-contrib project.
