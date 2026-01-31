@@ -180,6 +180,30 @@ public class NewlineAtEndOfFileCheckTest
     }
 
     @Test
+    public void testSystemLineSeparatorEscapeCharsCrlf() throws Exception {
+        final String originalLineSeparator = System.getProperty("line.separator");
+        try {
+            System.setProperty("line.separator", "\r\n");
+            final String actual = TestUtil.invokeStaticMethod(
+                    NewlineAtEndOfFileCheck.class,
+                    "getLineSeparatorEscapeChars",
+                    String.class,
+                    LineSeparatorOption.SYSTEM);
+            assertWithMessage("Unexpected escape chars for system CRLF")
+                    .that(actual)
+                    .isEqualTo("\\r\\n");
+        }
+        finally {
+            if (originalLineSeparator == null) {
+                System.clearProperty("line.separator");
+            }
+            else {
+                System.setProperty("line.separator", originalLineSeparator);
+            }
+        }
+    }
+
+    @Test
     public void testSetLineSeparatorFailure()
             throws Exception {
         final DefaultConfiguration checkConfig =
@@ -271,7 +295,7 @@ public class NewlineAtEndOfFileCheckTest
 
     @Test
     public void testFileLengthLessThanSeparatorLength() throws Exception {
-        final File tempFile = File.createTempFile("checkstyle", ".txt");
+        final File tempFile = Files.createTempFile("checkstyle", ".txt").toFile();
         try {
             Files.write(tempFile.toPath(), new byte[] {'a'});
             try (RandomAccessFile file = new RandomAccessFile(tempFile, "r")) {
