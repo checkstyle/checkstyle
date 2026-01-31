@@ -4488,6 +4488,8 @@
         <option value="resource"/>
         <!-- suppression for invalid inline tag -->
         <option value="InvalidInlineTag"/>
+        <!-- suppression for unrecognised javadoc tag -->
+        <option value="UnrecognisedJavadocTag"/>
         <!-- false positives -->
         <option value="JUnitTestCaseWithNoTests"/>
         <!-- false positives -->
