@@ -118,7 +118,7 @@ public class NewHandler extends AbstractExpressionHandler {
             final boolean isLineWrappedNew = TokenUtil.isOfType(mainAst.getParent().getParent(),
                                         TokenTypes.ASSIGN, TokenTypes.LITERAL_RETURN);
 
-            if (isLineWrappedNew || doesChainedMethodNeedsLineWrapping()) {
+            if (isLineWrappedNew || doesNewNeedLineWrappingIndent()) {
                 result = new IndentLevel(result, getLineWrappingIndent());
             }
         }
@@ -145,20 +145,34 @@ public class NewHandler extends AbstractExpressionHandler {
     }
 
     /**
-     * The function checks if the new keyword is a child of chained method calls,
-     * it checks if the new is directly followed by equal operator or return operator.
+     * Checks if the new keyword needs line wrapping indentation.
+     * This applies when new is within an assignment, return, or ternary operator
      *
-     * @return true if the new it is chained method calls and new keyword is directly followed
-     *         by assign or return
+     * @return true if the new keyword is inside an assignment, return, or ternary operator
      */
-    private boolean doesChainedMethodNeedsLineWrapping() {
+    private boolean doesNewNeedLineWrappingIndent() {
         DetailAST ast = mainAst.getParent();
 
         while (TokenUtil.isOfType(ast, TokenTypes.DOT, TokenTypes.METHOD_CALL, TokenTypes.EXPR)) {
             ast = ast.getParent();
         }
 
-        return TokenUtil.isOfType(ast, TokenTypes.ASSIGN, TokenTypes.LITERAL_RETURN);
+        return TokenUtil.isOfType(ast, TokenTypes.ASSIGN, TokenTypes.LITERAL_RETURN)
+            || TokenUtil.isOfType(ast, TokenTypes.QUESTION) && isParentAssignOrReturn(ast);
+    }
+
+    /**
+     * Checks if the parent of the given AST is an assignment or return statement.
+     *
+     * @param ast the AST node to check
+     * @return true if the parent is ASSIGN or LITERAL_RETURN
+     */
+    private static boolean isParentAssignOrReturn(DetailAST ast) {
+        DetailAST parent = ast.getParent();
+        while (parent.getType() == TokenTypes.EXPR) {
+            parent = parent.getParent();
+        }
+        return TokenUtil.isOfType(parent, TokenTypes.ASSIGN, TokenTypes.LITERAL_RETURN);
     }
 
 }
