@@ -78,7 +78,8 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                     "RequireEmptyLineBeforeBlockTagGroup",
                     "SingleLineJavadoc",
                     "SummaryJavadoc",
-                    "WriteTag"
+                    "WriteTag",
+                    "UnusedImports"
     );
 
     // Older regex-based checks that are under INCOMPATIBLE_JAVADOC_CHECK_NAMES
