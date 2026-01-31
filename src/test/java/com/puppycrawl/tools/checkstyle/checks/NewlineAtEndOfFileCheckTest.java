@@ -27,6 +27,7 @@ import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -101,11 +102,53 @@ public class NewlineAtEndOfFileCheckTest
     @Test
     public void testNoNewlineLfAtEndOfFile() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF, "\\n"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNewlineAtEndOfFileNoNewline.java"),
             expected);
+    }
+
+    @Test
+    public void testNoNewlineCrAtEndOfFile() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addProperty("lineSeparator", LineSeparatorOption.CR.toString());
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF, "\\r"),
+        };
+        verify(
+                checkConfig,
+                getPath("InputNewlineAtEndOfFileNoNewline.java"),
+                expected);
+    }
+
+    @Test
+    public void testNoNewlineCrlfAtEndOfFile() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addProperty("lineSeparator", LineSeparatorOption.CRLF.toString());
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF, "\\r\\n"),
+        };
+        verify(
+                checkConfig,
+                getPath("InputNewlineAtEndOfFileNoNewline.java"),
+                expected);
+    }
+
+    @Test
+    public void testNoNewlineLfCrCrlfAtEndOfFile() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF, "\\n', '\\r' or '\\r\\n"),
+        };
+        verify(
+                checkConfig,
+                getPath("InputNewlineAtEndOfFileNoNewline.java"),
+                expected);
     }
 
     @Test
@@ -117,6 +160,47 @@ public class NewlineAtEndOfFileCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputNewlineAtEndOfFileNoNewline2.java"),
             expected);
+    }
+
+    @Test
+    public void testNoNewlineSystemAtEndOfFile() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addProperty("lineSeparator", LineSeparatorOption.SYSTEM.toString());
+        final String expectedEscapeChars = System.lineSeparator()
+                .replace("\r", "\\r")
+                .replace("\n", "\\n");
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF, expectedEscapeChars),
+        };
+        verify(
+                checkConfig,
+                getPath("InputNewlineAtEndOfFileNoNewline.java"),
+                expected);
+    }
+
+    @Test
+    public void testSystemLineSeparatorEscapeCharsCrlf() throws Exception {
+        final String originalLineSeparator = System.getProperty("line.separator");
+        try {
+            System.setProperty("line.separator", "\r\n");
+            final String actual = TestUtil.invokeStaticMethod(
+                    NewlineAtEndOfFileCheck.class,
+                    "getLineSeparatorEscapeChars",
+                    String.class,
+                    LineSeparatorOption.SYSTEM);
+            assertWithMessage("Unexpected escape chars for system CRLF")
+                    .that(actual)
+                    .isEqualTo("\\r\\n");
+        }
+        finally {
+            if (originalLineSeparator == null) {
+                System.clearProperty("line.separator");
+            }
+            else {
+                System.setProperty("line.separator", originalLineSeparator);
+            }
+        }
     }
 
     @Test
@@ -206,6 +290,30 @@ public class NewlineAtEndOfFileCheckTest
                     .hasCauseThat()
                         .hasMessageThat()
                         .isEqualTo("Unable to read 1 bytes, got 0");
+        }
+    }
+
+    @Test
+    public void testFileLengthLessThanSeparatorLength() throws Exception {
+        final File tempFile = Files.createTempFile("checkstyle", ".txt").toFile();
+        try {
+            Files.write(tempFile.toPath(), new byte[] {'a'});
+            try (RandomAccessFile file = new RandomAccessFile(tempFile, "r")) {
+                final boolean result = TestUtil.invokeStaticMethod(
+                        NewlineAtEndOfFileCheck.class,
+                        "endsWithNewline",
+                        Boolean.class,
+                        file,
+                        LineSeparatorOption.CRLF);
+                assertWithMessage("File shorter than separator should not match")
+                        .that(result)
+                        .isFalse();
+            }
+        }
+        finally {
+            if (!tempFile.delete()) {
+                tempFile.deleteOnExit();
+            }
         }
     }
 
