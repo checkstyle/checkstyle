@@ -174,7 +174,7 @@ recipeList:
   - tech.picnic.errorprone.refasterrules.BugCheckerRulesRecipes
   - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
   - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
-  - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
+  # tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
   - tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes
   - tech.picnic.errorprone.refasterrules.DequeRulesRecipes
   - tech.picnic.errorprone.refasterrules.DoubleStreamRulesRecipes
