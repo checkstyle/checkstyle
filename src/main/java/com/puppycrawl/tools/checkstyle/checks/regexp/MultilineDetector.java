@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
 /**
  * A detector that matches across multiple lines.
  */
-class MultilineDetector {
+public class MultilineDetector {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
