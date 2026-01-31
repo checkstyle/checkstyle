@@ -3,7 +3,7 @@ type: specs.openrewrite.org/v1beta/recipe
 name: org.checkstyle.AllAutoFixes
 description: Workaround, as pom declaration not applied.
 recipeList:
-  - org.checkstyle.CheckstyleAutoFix
+#  - org.checkstyle.CheckstyleAutoFix
   - org.checkstyle.RefasterRules
   - org.checkstyle.StaticAnalysis
 ---
