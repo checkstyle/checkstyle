@@ -68,11 +68,11 @@ public class Example1 { }
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
-  &lt;module name="MultiFileRegexpHeader"&gt;
-    &lt;property name="fileExtensions" value="java"/&gt;
-    &lt;property name="headerFiles" value="${config.folder}/java.header,
-    ${config.folder}/apache.header"/&gt;
-  &lt;/module&gt;
+    &lt;module name="MultiFileRegexpHeader"&gt;
+        &lt;property name="fileExtensions" value="java"/&gt;
+        &lt;property name="headerFiles" value="${config.folder}/java.header,
+        ${config.folder}/apache.header"/&gt;
+    &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
 
@@ -105,11 +105,11 @@ public class Example2 { }
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
-  &lt;module name="MultiFileRegexpHeader"&gt;
-    &lt;property
-      name="headerFiles" value="${config.folder}/java.header,
-      ${config.folder}/apache.header"/&gt;
-  &lt;/module&gt;
+    &lt;module name="MultiFileRegexpHeader"&gt;
+        &lt;property name="headerFiles"
+                  value="${config.folder}/java.header,
+                  ${config.folder}/apache.header"/&gt;
+    &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
 

@@ -38,42 +38,47 @@ public class MultiFileRegexpHeaderCheckExamplesTest extends AbstractExamplesModu
 
     @Test
     public void testExample2() throws Exception {
-        final String[] expected = {
-            "1: " + getCheckMessage(MultiFileRegexpHeaderCheck.MSG_HEADER_MISMATCH,
-                    "// Checkstyle - Java code style checker."
-                   + " Copyright (C) 20XX-20XX the authors.",
+        final String path =
                      "src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/header/"
                       + "multifileregexpheader/java.header, "
                     + "src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/header/"
-                      + "multifileregexpheader/apache.header"),
+                       + "multifileregexpheader/apache.header";
+        final String[] expected = {
+            "1: " + getCheckMessage(MultiFileRegexpHeaderCheck.MSG_HEADER_MISMATCH,
+                    "// Checkstyle - Java code style checker."
+                   + " Copyright (C) 20XX-20XX the authors.", path),
         };
-
         System.setProperty("config.folder", "src/xdocs-examples/resources/" + getPackageLocation());
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
-
+        verifyWithExternalXmlConfig(getPath("Example2.xml"),
+                                    getPath("Example2.java"),
+                                     expected);
     }
 
     @Test
     public void testExample3() throws Exception {
-        final String[] expected = {
-            "1: " + getCheckMessage(MultiFileRegexpHeaderCheck.MSG_HEADER_MISMATCH,
-                    "// Checkstyle - Java code style checker."
-                   + " Copyright (C) 20XX-20XX the authors.",
+        final String path =
                      "src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/header/"
                       + "multifileregexpheader/java.header, "
                     + "src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/header/"
-                       + "multifileregexpheader/apache.header"),
+                       + "multifileregexpheader/apache.header";
+        final String[] expected = {
+            "1: " + getCheckMessage(MultiFileRegexpHeaderCheck.MSG_HEADER_MISMATCH,
+                       "// Checkstyle - Java code style checker."
+                   + " Copyright (C) 20XX-20XX the authors.", path),
         };
-
         System.setProperty("config.folder", "src/xdocs-examples/resources/" + getPackageLocation());
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithExternalXmlConfig(getPath("Example3.xml"),
+                                    getPath("Example3.java"),
+                                     expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         System.setProperty("config.folder", "src/xdocs-examples/resources/" + getPackageLocation());
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithExternalXmlConfig(getPath("Example4.xml"),
+                                    getPath("Example4.java"),
+                                     expected);
     }
 }
 

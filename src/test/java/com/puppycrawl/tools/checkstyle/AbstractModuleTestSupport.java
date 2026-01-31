@@ -257,6 +257,28 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Performs verification of the file with the given file path using configuration,
+     * loaded from an external XML resource and the array of expected messages.
+     *
+     * @param configPath path to the XML configuration resource.
+     * @param filePath file path to verify.
+     * @param expected an array of expected messages.
+     * @throws Exception if exception occurs during verification process.
+     */
+    protected void verifyWithExternalXmlConfig(
+            String configPath,
+            String filePath,
+            String... expected)
+            throws Exception {
+        final Configuration config =
+                ConfigurationLoader.loadConfiguration(
+                        configPath,
+                        new PropertiesExpander(System.getProperties()),
+                        ConfigurationLoader.IgnoredModulesOptions.EXECUTE);
+        verify(config, filePath, expected);
+    }
+
+    /**
      * Performs verification of the file with the given file path using specified configuration
      * and the array expected messages. Also performs verification of the config specified in
      * input file.
