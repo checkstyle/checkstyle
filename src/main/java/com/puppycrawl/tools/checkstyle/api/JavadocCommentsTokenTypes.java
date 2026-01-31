@@ -1526,7 +1526,55 @@ public final class JavadocCommentsTokenTypes {
     public static final int SNIPPET_ATTR_NAME = JavadocCommentsLexer.SNIPPET_ATTR_NAME;
 
     /**
-     * Equals sign {@code = }.
+     * Equals sign {@code =}.
+     *
+     * <p>Used within snippet attributes to assign values.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * class Test {
+     *     // Example snippet showing usage of '='
+     *     {@snippet lang="java" id="ex" :
+     *       int myVar = 5;
+     *     }
+     *     void m() {}
+     * }
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--TEXT -> class Test {
+     * |--NEWLINE -> \r\n
+     * |--TEXT ->     // Example snippet showing usage of '='
+     * |--NEWLINE -> \r\n
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |   `--SNIPPET_INLINE_TAG -> SNIPPET_INLINE_TAG
+     * |       |--JAVADOC_INLINE_TAG_START -> &#123;@
+     * |       |--SNIPPET_ATTRIBUTES -> SNIPPET_ATTRIBUTES
+     * |       |   |--SNIPPET_ATTRIBUTE -> SNIPPET_ATTRIBUTE
+     * |       |   |   |--SNIPPET_ATTR_NAME -> lang
+     * |       |   |   |--EQUALS -> =
+     * |       |   |   `--ATTRIBUTE_VALUE -> "java"
+     * |       |   `--SNIPPET_ATTRIBUTE -> SNIPPET_ATTRIBUTE
+     * |       |       |--SNIPPET_ATTR_NAME -> id
+     * |       |       |--EQUALS -> =
+     * |       |       `--ATTRIBUTE_VALUE -> "ex"
+     * |       |--COLON -> :
+     * |       |--SNIPPET_BODY -> SNIPPET_BODY
+     * |       |   |--NEWLINE -> \r\n
+     * |       |   |--TEXT ->   int myVar = 5;
+     * |       |   |--NEWLINE -> \r\n
+     * |       `--JAVADOC_INLINE_TAG_END -> }
+     * |--NEWLINE -> \r\n
+     * |--TEXT ->     void m() {}
+     * |--NEWLINE -> \r\n
+     * |--TEXT -> }
+     * `--NEWLINE -> \r\n
+     * }</pre>
+     *
+     * @see #SNIPPET_ATTRIBUTE
+     * @see #SNIPPET_ATTRIBUTES
      */
     public static final int EQUALS = JavadocCommentsLexer.EQUALS;
 
