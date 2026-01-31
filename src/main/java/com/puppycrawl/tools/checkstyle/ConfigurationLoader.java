@@ -373,6 +373,7 @@ public final class ConfigurationLoader {
          * @throws CheckstyleException if the string contains an opening
          *                           {@code ${} without a closing
          *                           {@code }}
+         * @noinspection UnrecognisedJavadocTag
          */
         private String replaceProperties(
                 String value, String defaultValue)
@@ -426,6 +427,7 @@ public final class ConfigurationLoader {
          * @throws CheckstyleException if the string contains an opening
          *                           {@code ${} without a closing
          *                           {@code }}
+         * @noinspection UnrecognisedJavadocTag
          */
         private static void parsePropertyString(String value,
                                                Collection<String> fragments,
