@@ -1,11 +1,4 @@
 /*xml
-<module name="Checker">
-  <module name="MultiFileRegexpHeader">
-    <property name="fileExtensions" value="java"/>
-    <property name="headerFiles" value="${config.folder}/java.header,
-    ${config.folder}/apache.header"/>
-  </module>
-</module>
 */
 // xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
@@ -13,4 +6,4 @@ package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
 // because headerFile is bigger then target java file
 public class Example2 { }
 // xdoc section -- end
-// violation 15 lines above 'Header mismatch, expected line content was'
+// violation 8 lines above 'Header mismatch, expected line content was'
