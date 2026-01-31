@@ -149,6 +149,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.STATIC_INIT,
             TokenTypes.INSTANCE_INIT,
             TokenTypes.METHOD_DEF,
@@ -166,7 +167,11 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        checkComments(ast);
+
+        if (ast.getType() != TokenTypes.ENUM_CONSTANT_DEF) {
+            checkComments(ast);
+        }
+
         if (hasMultipleLinesBefore(ast)) {
             log(ast, MSG_MULTIPLE_LINES, ast.getText());
         }
@@ -201,6 +206,10 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             case TokenTypes.VARIABLE_DEF -> processVariableDef(ast, nextToken);
 
             case TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT -> processImport(ast, nextToken);
+
+            case TokenTypes.PACKAGE_DEF -> processPackage(ast, nextToken);
+
+            case TokenTypes.ENUM_CONSTANT_DEF -> processEnumConstant(ast);
 
             default -> {
                 if (nextToken.getType() == TokenTypes.RCURLY) {
@@ -364,7 +373,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private boolean hasMultipleLinesBefore(DetailAST ast) {
         return (ast.getType() != TokenTypes.VARIABLE_DEF || isTypeField(ast))
-                && hasNotAllowedTwoEmptyLinesBefore(ast);
+                && hasNotAllowedTwoEmptyLinesBefore(ast)
+                && ast.getType() != TokenTypes.ENUM_CONSTANT_DEF;
     }
 
     /**
@@ -448,6 +458,92 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
                 && isViolatingEmptyLineBetweenFieldsPolicy(nextToken)) {
             log(nextToken, MSG_SHOULD_BE_SEPARATED,
                     nextToken.getText());
+        }
+    }
+
+    /**
+     * Process Enum Constant.
+     *
+     * @param ast token
+     */
+    public void processEnumConstant(DetailAST ast) {
+
+        // Check empty line before enum Constant (comment skipped)
+        final DetailAST secondLastChild = ast.getLastChild().getPreviousSibling();
+
+        final boolean hasMultipleEmptyLinesBeforeConstant =
+                !isEnumConstantOnSharedLine(ast)
+                && hasNotAllowedTwoEmptyLinesBefore(ast);
+
+        final boolean hasMultipleEmptyLinesBeforeConstantComment =
+                secondLastChild.getLineNo() > ast.getPreviousSibling().getLineNo()
+                && hasMultipleLinesBefore(secondLastChild);
+
+        if (hasMultipleEmptyLinesBeforeConstant
+                || hasMultipleEmptyLinesBeforeConstantComment) {
+            log(ast, MSG_MULTIPLE_LINES, ast.getText());
+        }
+
+        checkMultipleEmptyLinesAfterLastEnumConstant(ast);
+    }
+
+    /**
+     * Checks whether the enum constant is placed on a line that also contains
+     * another enum constant.
+     *
+     * @param ast the ast to check.
+     * @return true if the enum constant shares its line with another enum constant
+     */
+    private static boolean isEnumConstantOnSharedLine(DetailAST ast) {
+        boolean result = false;
+        final DetailAST objectBlock = ast.getParent();
+        // true if token is placed in single line enum
+        if (objectBlock.getParent().getLineNo() == ast.getLineNo()) {
+            result = true;
+        }
+        else {
+            // For multiline enum, true if token is placed in group of single line
+            // except first enum constant
+            final DetailAST firstConstant =
+                    objectBlock.findFirstToken(TokenTypes.ENUM_CONSTANT_DEF);
+            if (firstConstant.getLineNo() == ast.getLineNo()
+                    && firstConstant.getColumnNo() < ast.getColumnNo()) {
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Checks whether there are more than one empty lines after the last enum
+     * constant before the closing brace.
+     *
+     * @param ast token
+     */
+    private void checkMultipleEmptyLinesAfterLastEnumConstant(DetailAST ast) {
+        if (!allowMultipleEmptyLines) {
+            // skip next token is comma or comment
+            DetailAST nextToken = ast.getNextSibling();
+            while (nextToken.getType() == TokenTypes.COMMA
+                    || TokenUtil.isCommentType(nextToken.getType())) {
+                nextToken = nextToken.getNextSibling();
+            }
+
+            // Check empty line after last enum constant
+            if (nextToken.getType() == TokenTypes.RCURLY
+                    && hasEmptyLine(ast.getLineNo(), nextToken.getLineNo())) {
+                final List<Integer> emptyLines = new ArrayList<>();
+                for (int lineNo = ast.getLineNo(); lineNo < nextToken.getLineNo(); ++lineNo) {
+                    if (CommonUtil.isBlank(getLine(lineNo))) {
+                        emptyLines.add(lineNo);
+                    }
+                }
+
+                if (emptyLines.size() > 1) {
+                    log(ast, MSG_MULTIPLE_LINES_AFTER, ast.getText());
+                }
+            }
         }
     }
 
