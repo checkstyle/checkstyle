@@ -1,6 +1,6 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-# seems smell, as pom declaration not working...
+# workaround, as pom declaration not working.
 name: org.checkstyle.AllAutoFixes
 recipeList:
   - org.checkstyle.CheckstyleAutoFix
@@ -23,7 +23,8 @@ recipeList:
   - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
   - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
   - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
-  - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
+  # collision to: UpgradeToJava21 first <-> getFirst
+  # tech.picnic.errorprone.refasterrules.CollectionRulesRecipes$SortedSetFirstRecipe
   - tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes
   - tech.picnic.errorprone.refasterrules.FileRulesRecipes
   - tech.picnic.errorprone.refasterrules.MapRulesRecipes
@@ -49,12 +50,11 @@ recipeList:
   - org.openrewrite.java.format.NormalizeLineBreaks
   - org.openrewrite.java.format.PadEmptyForLoopComponents
   - org.openrewrite.java.format.RemoveTrailingWhitespace
-  # until https://github.com/checkstyle/checkstyle/issues/18789
-  # - org.openrewrite.java.migrate.UpgradeToJava21
+  - org.openrewrite.java.migrate.UpgradeToJava21
   - org.openrewrite.java.migrate.lang.StringRulesRecipes
   - org.openrewrite.java.migrate.util.MigrateInflaterDeflaterToClose
   - org.openrewrite.java.migrate.util.ReplaceStreamCollectWithToList
-  # - org.openrewrite.java.migrate.util.SequencedCollection
+  - org.openrewrite.java.migrate.util.SequencedCollection
   - org.openrewrite.java.recipes.JavaRecipeBestPractices
   - org.openrewrite.java.recipes.RecipeTestingBestPractices
   - org.openrewrite.maven.BestPractices
