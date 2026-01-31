@@ -46,13 +46,13 @@
         </macro>
         <hr class="example-separator"/>
 
-        <p id="Example2-config">
+        <p id="Example2-raw">
           To configure the check to use multiple header files:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example2.java"/>
-          <param name="type" value="config"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example2.xml"/>
+          <param name="type" value="raw"/>
         </macro>
 
         <p id="java-raw">content of <code>java.header</code> file:</p>
@@ -77,14 +77,14 @@
         </macro>
         <hr class="example-separator"/>
 
-        <p id="Example3-config">
+        <p id="Example3-raw">
           To configure the check to verify that each file starts with one of
           multiple headers.
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example3.java"/>
-          <param name="type" value="config"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example3.xml"/>
+          <param name="type" value="raw"/>
         </macro>
 
         <p id="Example3-code">Example3:</p>
@@ -95,13 +95,13 @@
         </macro>
         <hr class="example-separator"/>
 
-        <p id="Example4-config">
+        <p id="Example4-raw">
           For a configuration where any header is accepted:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example4.java"/>
-          <param name="type" value="config"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example4.xml"/>
+          <param name="type" value="raw"/>
         </macro>
 
         <p id="universal-raw">content of <code>universal.header</code> file:</p>
