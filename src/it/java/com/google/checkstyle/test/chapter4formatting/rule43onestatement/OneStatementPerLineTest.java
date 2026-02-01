@@ -50,4 +50,13 @@ public class OneStatementPerLineTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getNonCompilablePath("InputFormattedOneStatementPerLine2.java"));
     }
 
+    @Test
+    public void testOneStatementEdgeCasesInput() throws Exception {
+        verifyWithWholeConfig(getPath("InputOneStatementPerLine2.java"));
+    }
+
+    @Test
+    public void testOneStatementEdgeCaseInputFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedOneStatementPerLine2.java"));
+    }
 }
