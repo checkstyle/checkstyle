@@ -32,7 +32,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-class IndentationTrailingCommentsVerticalAlignmentTest {
+public final class IndentationTrailingCommentsVerticalAlignmentTest {
 
     private static final String INDENTATION_TEST_FILES_PATH =
         "com/puppycrawl/tools/checkstyle/checks/indentation/indentation";
