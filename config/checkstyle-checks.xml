@@ -829,6 +829,7 @@
     </module>
     <module name="UpperEll"/>
     <module name="HexLiteralCase"/>
+    <module name="NumericalCharacterCase"/>
 
     <!-- Modifiers -->
     <module name="ClassMemberImpliedModifier">
