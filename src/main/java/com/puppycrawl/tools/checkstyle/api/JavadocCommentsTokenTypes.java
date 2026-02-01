@@ -1176,7 +1176,33 @@ public final class JavadocCommentsTokenTypes {
     public static final int HASH = JavadocCommentsLexer.HASH;
 
     /**
-     * Left parenthesis {@code ( }.
+     * Left parenthesis {@code (} used in references within Javadoc.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * * &#123;@link String#length()}
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |   `--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     * |       |--JAVADOC_INLINE_TAG_START -> &#123;@
+     * |       |--TAG_NAME -> link
+     * |       |--TEXT ->
+     * |       |--REFERENCE -> REFERENCE
+     * |       |   |--IDENTIFIER -> String
+     * |       |   |--HASH -> #
+     * |       |   `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     * |       |       |--IDENTIFIER -> length
+     * |       |       |--LPAREN -> (
+     * |       |       `--RPAREN -> )
+     * |       `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #REFERENCE
      */
     public static final int LPAREN = JavadocCommentsLexer.LPAREN;
 
