@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>NumericalCharacterCase</title>
+  </head>
+  <body>
+    <section name="NumericalCharacterCase">
+      <p>Since Checkstyle 13.2.0</p>
+      <subsection name="Description" id="NumericalCharacterCase_Description">
+        <div>
+          Checks that all numerical literal prefixes, infixes, and suffixes are written
+          using lowercase letters (for example prefixes : <code>0x, 0b</code>,
+          infixes : <code>e, p</code>, suffixes : <code>f, d</code>).
+          This convention follows the
+          <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-literals">
+          OpenJDK Style Guide</a>.
+        </div>
+
+        <p><b>ATTENTION:</b></p>
+
+        <p>This Check ignores suffix : <code>L</code> for long literals
+          because we have {@link UpperEllCheck} for this.</p>
+      </subsection>
+
+      <subsection name="Examples" id="NumericalCharacterCase_Examples">
+        <p id="Example1-config">To configure the check:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NumericalCharacterCase"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  int hex1 = 0X1A; // violation 'Numerical prefix should be in lowercase.'
+  int hex2 = 0x1A;
+
+  int bin1 = 0B1010; // violation 'Numerical prefix should be in lowercase.'
+  int bin2 = 0b1010;
+
+  float exp1 = 1.23E3f; // violation 'Numerical infix should be in lowercase.'
+  float exp2 = 1.23e3f;
+
+  double hexEx1 = 0x1.3P2; // violation 'Numerical infix should be in lowercase.'
+  double hexEx2 = 0x1.3p2;
+
+  float suf1 = 10F; // violation 'Numerical suffix should be in lowercase.'
+  float suf2 = 10f;
+
+  double suf3 = 10D; // violation 'Numerical suffix should be in lowercase.'
+  double suf4 = 10d;
+
+  float mix1 = 1.2E3F; // violation 'Numerical infix should be in lowercase.'
+  float mix3 = 1.2e3f;
+
+  double mix4 = 0x1.3P2D; // violation 'Numerical infix should be in lowercase.'
+  double mix5 = 0x1.3p2D; // violation 'Numerical suffix should be in lowercase.'
+  double mix6 = 0x1.3p2d;
+
+  int ok1 = 0x1F; // ok, here 'F' is a hexadecimal digit, not a numeric suffix.
+  double ok2 = 123.456;
+  double ok3 = 1 / 5432.0;
+
+  // ok, here 'E' is a hexadecimal digit, not a numeric infix.
+  double ok4 = 0x1E2.2p2d;
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="NumericalCharacterCase_Example_of_Usage">
+        <ul>
+          <li>
+           <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NumericalCharacterCase">
+           Checkstyle Style
+            </a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="NumericalCharacterCase_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22numerical.literal.infix%22">
+              numerical.literal.infix
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22numerical.literal.prefix%22">
+              numerical.literal.prefix
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22numerical.literal.suffix%22">
+              numerical.literal.suffix
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="NumericalCharacterCase_Package">
+        <p> com.puppycrawl.tools.checkstyle.checks </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="NumericalCharacterCase_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

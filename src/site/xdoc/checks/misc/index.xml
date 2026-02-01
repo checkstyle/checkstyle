@@ -103,6 +103,18 @@
           </tr>
           <tr>
             <td>
+              <a href="numericalcharactercase.html#NumericalCharacterCase">
+                NumericalCharacterCase
+              </a>
+            </td>
+            <td>
+              Checks that all numerical literal prefixes, infixes, and suffixes are written using
+              lowercase letters (for example prefixes : <code>0x, 0b</code>, infixes : <code>e,
+              p</code>, suffixes : <code>f, d</code>).
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="orderedproperties.html#OrderedProperties">
                 OrderedProperties
               </a>
