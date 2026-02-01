@@ -859,6 +859,8 @@ public class PackageObjectFactory implements ModuleFactory {
      * Fill short-to-full module names map with Checks from whitespace package.
      */
     private static void fillChecksFromWhitespacePackage() {
+        NAME_TO_FULL_MODULE_NAME.put("ArrayBracketNoWhitespaceCheck",
+                BASE_PACKAGE + ".checks.whitespace.ArrayBracketNoWhitespaceCheck");
         NAME_TO_FULL_MODULE_NAME.put("EmptyForInitializerPadCheck",
                 BASE_PACKAGE + ".checks.whitespace.EmptyForInitializerPadCheck");
         NAME_TO_FULL_MODULE_NAME.put("EmptyForIteratorPadCheck",
