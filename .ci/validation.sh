@@ -1246,6 +1246,18 @@ git-no-merge-commits)
   fi
   ;;
 
+git-check-squash-commit)
+  # Check if there are multiple commits that should be squashed into one
+  COMMIT_COUNT=$(git rev-list --count master.."$PR_HEAD_SHA")
+  if [ "$COMMIT_COUNT" -gt 1 ]; then
+    echo "Multiple commits found in PR. Please squash them into a single commit."
+    echo "Commit count: $COMMIT_COUNT"
+    echo "To learn how to clean up your commit history, visit:"
+    echo "https://www.reddit.com/r/git/comments/14msx5x/git_reset_soft_instead_of_git_rebase_i_headn/"
+    exit 1
+  fi
+  ;;
+
 git-check-pull-number)
   PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
   echo "PR_NUMBER=${PR_NUMBER}"
