@@ -32,7 +32,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-class IndentationTrailingCommentsVerticalAlignmentTest {
+public class IndentationTrailingCommentsVerticalAlignmentTest {
 
     private static final String INDENTATION_TEST_FILES_PATH =
         "com/puppycrawl/tools/checkstyle/checks/indentation/indentation";
@@ -41,7 +41,7 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
 
     @MethodSource("indentationTestFiles")
     @ParameterizedTest
-    public void testTrailingCommentsAlignment(Path testFile) throws IOException {
+    public final void testTrailingCommentsAlignment(Path testFile) throws IOException {
         final List<String> lines = Files.readAllLines(testFile);
         int expectedStartIndex = -1;
 
