@@ -164,6 +164,10 @@
   <!-- Example needs to have really long regex format properly shown in config  -->
   <suppress checks="LineLength" files="illegalidentifiername[\\/]Example[2].java"/>
 
+  <!--  Example needs to have a complete violation message -->
+  <suppress checks="LineLength"
+            files="unnecessarypermitsclause[\\/]Example[1].java"/>
+
   <!-- Example must show PackageDeclaration violations -->
   <suppress checks="PackageDeclaration"
     files="packagedeclaration[\\/]Example\d+.*"/>
