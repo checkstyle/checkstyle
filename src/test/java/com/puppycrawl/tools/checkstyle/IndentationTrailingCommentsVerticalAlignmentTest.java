@@ -27,21 +27,28 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-class IndentationTrailingCommentsVerticalAlignmentTest {
+public class IndentationTrailingCommentsVerticalAlignmentTest {
 
     private static final String INDENTATION_TEST_FILES_PATH =
         "com/puppycrawl/tools/checkstyle/checks/indentation/indentation";
 
-    private static final int TAB_WIDTH = 4;
+    private int tabWidth;
+
+    @BeforeEach
+    public void setUp() {
+        tabWidth = 4;
+    }
 
     @MethodSource("indentationTestFiles")
     @ParameterizedTest
-    public void testTrailingCommentsAlignment(Path testFile) throws IOException {
+    public final void testTrailingCommentsAlignment(Path testFile) throws IOException {
+        final int currentTabWidth = tabWidth;
         final List<String> lines = Files.readAllLines(testFile);
         int expectedStartIndex = -1;
 
@@ -55,7 +62,7 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
                 final String codePart = line.substring(0, commentStartIndex);
                 if (!codePart.isBlank()) {
                     int actualStartIndex =
-                        CommonUtil.lengthExpandedTabs(line, commentStartIndex, TAB_WIDTH);
+                        CommonUtil.lengthExpandedTabs(line, commentStartIndex, currentTabWidth);
 
                     // for unicode characters having supplementary code points
                     final long extraWidth = codePart.codePoints().filter(
