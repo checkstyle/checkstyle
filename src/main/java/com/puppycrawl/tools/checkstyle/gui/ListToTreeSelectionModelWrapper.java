@@ -32,7 +32,7 @@ import javax.swing.tree.TreePath;
  * in the DefaultTreeSelectionModel.
  *
  */
-final class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
+public final class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
 
     /** A unique serial version identifier. */
     @Serial
