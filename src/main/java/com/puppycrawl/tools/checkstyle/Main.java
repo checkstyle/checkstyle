@@ -577,7 +577,7 @@ public final class Main {
          * @return a new AuditListener for this OutputFormat
          * @throws IOException if there is any IO exception during logger initialization
          */
-        public AuditListener createListener(
+        AuditListener createListener(
             OutputStream out,
             OutputStreamOptions options) throws IOException {
             final AuditListener result;
