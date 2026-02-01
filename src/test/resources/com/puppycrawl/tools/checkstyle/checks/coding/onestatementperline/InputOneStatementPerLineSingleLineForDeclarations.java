@@ -68,6 +68,6 @@ public class InputOneStatementPerLineSingleLineForDeclarations {
         bar(() -> {
             return;}, () -> {return;});
     }
-
+    // violation 2 lines above 'Only one statement per line allowed.'
     void bar(Runnable r1, Runnable r2) { }
 }
