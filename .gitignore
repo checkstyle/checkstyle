@@ -50,3 +50,5 @@ replay_pid*
 # antlr4 grammar generates these
 **/gen
 **/JavaLanguageLexer.tokens
+# Java upgrade tool generated files
+.github/java-upgrade/
