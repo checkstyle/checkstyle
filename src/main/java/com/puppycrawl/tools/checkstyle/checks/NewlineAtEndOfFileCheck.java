@@ -22,7 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.EnumMap;
 import java.util.Locale;
+import java.util.Map;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
@@ -110,6 +112,28 @@ public class NewlineAtEndOfFileCheck
      */
     public static final String MSG_KEY_WRONG_ENDING = "wrong.line.end";
 
+    /** Escape character representation for LF. */
+    private static final String ESCAPED_LF = "\\n";
+
+    /** Escape character representation for CRLF. */
+    private static final String ESCAPED_CRLF = "\\r\\n";
+
+    /** Escape character representation for CR. */
+    private static final String ESCAPED_CR = "\\r";
+
+    /** Map of line separator options to escape strings. */
+    private static final Map<LineSeparatorOption, String> ESCAPE_CHARS_BY_OPTION =
+            new EnumMap<>(LineSeparatorOption.class);
+
+    static {
+        ESCAPE_CHARS_BY_OPTION.put(LineSeparatorOption.LF, ESCAPED_LF);
+        ESCAPE_CHARS_BY_OPTION.put(LineSeparatorOption.CRLF, ESCAPED_CRLF);
+        ESCAPE_CHARS_BY_OPTION.put(LineSeparatorOption.CR, ESCAPED_CR);
+        ESCAPE_CHARS_BY_OPTION.put(
+                LineSeparatorOption.LF_CR_CRLF,
+                ESCAPED_LF + "', '" + ESCAPED_CR + "' or '" + ESCAPED_CRLF);
+    }
+
     /** Specify the type of line separator. */
     private LineSeparatorOption lineSeparator = LineSeparatorOption.LF_CR_CRLF;
 
@@ -152,7 +176,8 @@ public class NewlineAtEndOfFileCheck
                 log(1, MSG_KEY_WRONG_ENDING);
             }
             else if (!endsWithNewline(randomAccessFile, lineSeparator)) {
-                log(1, MSG_KEY_NO_NEWLINE_EOF);
+                log(1, MSG_KEY_NO_NEWLINE_EOF,
+                        getLineSeparatorEscapeChars(lineSeparator));
             }
         }
     }
@@ -186,6 +211,25 @@ public class NewlineAtEndOfFileCheck
                         + readBytes);
             }
             result = separator.matches(lastBytes);
+        }
+        return result;
+    }
+
+    /**
+     * Returns the escape character representation for the given line separator option.
+     *
+     * @param option the line separator option
+     * @return the escape character representation (e.g., "\\n", "\\r\\n")
+     */
+    private static String getLineSeparatorEscapeChars(LineSeparatorOption option) {
+        final String result;
+        if (option == LineSeparatorOption.SYSTEM) {
+            result = System.lineSeparator()
+                    .replace("\r", ESCAPED_CR)
+                    .replace("\n", ESCAPED_LF);
+        }
+        else {
+            result = ESCAPE_CHARS_BY_OPTION.get(option);
         }
         return result;
     }
