@@ -1743,6 +1743,34 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Field type reference.
+     *
+     * <p>Example:</p>
+     * {@code int myField}
+     *
+     * <p>AST Example:</p>
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT [0:1]
+     * |--TEXT -> public class Test { [0:1]
+     * |--NEWLINE -> \n [0:20]
+     * |--NEWLINE -> \n [1:1]
+     * |--TEXT -> /** [2:1]
+     * |--NEWLINE -> \n [2:8]
+     * |--LEADING_ASTERISK -> * [3:1]
+     * |--TEXT -> [3:7]
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG [3:8]
+     * |   `--CODE_INLINE_TAG -> CODE_INLINE_TAG [3:8]
+     * |       |--JAVADOC_INLINE_TAG_START -> {@ [3:8]
+     * |       |--TAG_NAME -> code [3:10]
+     * |       |--TEXT ->  int myField [3:14]
+     * |       `--JAVADOC_INLINE_TAG_END -> } [3:26]
+     * |--NEWLINE -> \n [3:27]
+     * |--LEADING_ASTERISK -> * [4:1]
+     * |--TEXT -> / [4:7]
+     * |--NEWLINE -> \n [4:8]
+     * |--TEXT -> private int myField; [5:1]
+     * |--NEWLINE -> \n [5:25]
+     * |--NEWLINE -> \n [6:1]
+     * |--TEXT -> } [7:1]
+     * `--NEWLINE -> \n [7:2]
      */
     public static final int FIELD_TYPE = JavadocCommentsLexer.FIELD_TYPE;
 
