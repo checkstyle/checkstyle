@@ -1742,7 +1742,31 @@ public final class JavadocCommentsTokenTypes {
     public static final int SNIPPET_BODY = JavadocCommentsLexer.SNIPPET_BODY;
 
     /**
-     * Field type reference.
+     * Field type reference in a Javadoc.
+     *
+     * <p>Example:</p>
+     * <pre>{@code int myField}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--TEXT -> public class Test {
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT -> Field type reference.
+     * |--HTML_ELEMENT -> HTML_ELEMENT
+     * |   |--HTML_TAG_START -> HTML_TAG_START
+     * |   |   |--TAG_OPEN -> <
+     * |   |   |--TAG_NAME -> p
+     * |   |   `--TAG_CLOSE -> >
+     * |   |--HTML_CONTENT -> HTML_CONTENT
+     * |   |   `--TEXT -> Example:
+     * |   `--HTML_TAG_END -> HTML_TAG_END
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT -> {@code int myField}
+     * }</pre>
+     *
+     * @see #FIELD_TYPE
      */
     public static final int FIELD_TYPE = JavadocCommentsLexer.FIELD_TYPE;
 
