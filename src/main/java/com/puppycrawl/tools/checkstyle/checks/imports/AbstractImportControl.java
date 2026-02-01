@@ -27,7 +27,7 @@ import java.util.Deque;
  * classes are allowed to be used. Each instance must have a single parent or
  * be the root node.
  */
-abstract class AbstractImportControl {
+public abstract class AbstractImportControl {
 
     /** List of {@link AbstractImportRule} objects to check. */
     private final Deque<AbstractImportRule> rules = new ArrayDeque<>();
