@@ -27,8 +27,21 @@ class Example1 {
   long l2 = 0x7FFF_FFFF_FFFF_FFFFL;
 
   long l3 = 0x7FFF_AAA_bBB_DDDL;
-  // violation  above 'Should use uppercase hexadecimal letters.'
+  // violation above 'Should use uppercase hexadecimal letters.'
   long l4 = 0x7FFF_AAA_BBB_DDDL;
+
+  float c = 0x1ap1f; // violation  'Should use uppercase hexadecimal letters.'
+  float c2 = 0x1Ap1f;
+  double e = 0x1AbC.p1d; // violation  'Should use uppercase hexadecimal letters.'
+  double e2 = 0x1ABC.p1d;
+  double f = 0x1AbC.P1D; // violation  'Should use uppercase hexadecimal letters.'
+  double f2 = 0x1ABC.P1D;
+  float g = 0x1b.p1f; // violation  'Should use uppercase hexadecimal letters.'
+  float g2 = 0x1B.p1f;
+  float h = 0x1b.P1F; // violation  'Should use uppercase hexadecimal letters.'
+  float h2 = 0x1B.P1F;
+  float i = 0x1B.p1f;
+  double j = 0x1B.p1d;
 
 }
 // xdoc section -- end
