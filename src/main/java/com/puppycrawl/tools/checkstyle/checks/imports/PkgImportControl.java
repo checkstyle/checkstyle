@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
  * Each instance may have zero or more children. A child may
  * be a sub-package, a class, or an allow/disallow rule.
  */
-class PkgImportControl extends AbstractImportControl {
+public class PkgImportControl extends AbstractImportControl {
     /** The package separator: ".". */
     private static final String DOT = ".";
 
