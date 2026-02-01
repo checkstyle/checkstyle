@@ -34,7 +34,8 @@ public class InputTextBlockGoogleStyleFormatting8 extends RuntimeException {
     }
 
     enum SlExample {
-        // violation below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation below 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
         CA_RSA("RSA", """
                 -----BEGIN CERTIFICATE-----
                 """), // violation 'Text-block quotes are not vertically aligned'
@@ -47,6 +48,7 @@ public class InputTextBlockGoogleStyleFormatting8 extends RuntimeException {
              """
                -----BEGIN CERTIFICATE-----
              """),
+        // violation 2 lines below 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
         SIMPLE_REQUEST_RSA("RSA",
                          """
                -----BEGIN CERTIFICATE-----
