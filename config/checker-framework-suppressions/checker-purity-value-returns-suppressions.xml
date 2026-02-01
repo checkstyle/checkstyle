@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/DesignForExtensionCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter other of Optional.orElse.</message>
+    <lineContent>.orElse(Boolean.FALSE);</lineContent>
+    <details>
+      found   : @BoolVal(false) Boolean
+      required: Boolean
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter other of Optional.orElse.</message>
+    <lineContent>.orElse(Boolean.FALSE);</lineContent>
+    <details>
+      found   : @BoolVal(false) Boolean
+      required: Boolean
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTypeCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter other of Optional.orElse.</message>
+    <lineContent>.orElse(Boolean.FALSE);</lineContent>
+    <details>
+      found   : @BoolVal(false) Boolean
+      required: Boolean
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter other of Optional.orElse.</message>
+    <lineContent>.orElse(Boolean.FALSE);</lineContent>
+    <details>
+      found   : @BoolVal(false) Boolean
+      required: Boolean
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocTypeCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter other of Optional.orElse.</message>
+    <lineContent>.orElse(Boolean.FALSE);</lineContent>
+    <details>
+      found   : @BoolVal(false) Boolean
+      required: Boolean
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter radix of Integer.parseInt.</message>
@@ -41,6 +96,17 @@
     <details>
       found   : int
       required: @IntRange(from=2, to=36) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ScopeUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter other of Optional.orElse.</message>
+    <lineContent>.orElse(Boolean.FALSE);</lineContent>
+    <details>
+      found   : @BoolVal(false) Boolean
+      required: Boolean
     </details>
   </checkerFrameworkError>
 
