@@ -63,6 +63,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
  * @since 8.24
  */
 @StatelessCheck
+@SuppressWarnings("UnrecognisedJavadocTag")
 public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
 
     /**
