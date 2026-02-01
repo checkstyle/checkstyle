@@ -1246,7 +1246,7 @@ git-no-merge-commits)
   fi
   ;;
 
-git-squash-commits)
+git-only-squash-commits)
   # Check if there are multiple commits that should be squashed into one
   COMMIT_COUNT=$(git rev-list --count master.."$PR_HEAD_SHA")
   if [ "$COMMIT_COUNT" -gt 1 ]; then
