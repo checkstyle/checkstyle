@@ -931,6 +931,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.UpperEllCheck");
         NAME_TO_FULL_MODULE_NAME.put("HexLiteralCaseCheck",
                 BASE_PACKAGE + ".checks.HexLiteralCaseCheck");
+        NAME_TO_FULL_MODULE_NAME.put("NumericalCharacterCaseCheck",
+                BASE_PACKAGE + ".checks.NumericalCharacterCaseCheck");
     }
 
     /**
