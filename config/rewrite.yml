@@ -41,7 +41,7 @@ recipeList:
   - tech.picnic.errorprone.refasterrules.MapRulesRecipes
   - tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes
   - tech.picnic.errorprone.refasterrules.MockitoRulesRecipes
-  # current maintainer don't "like" orElseThrow() as better form of get()
+  # current maintainer doesn't "like" orElseThrow() as better form of get()
   # - tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
   - tech.picnic.errorprone.refasterrules.PatternRulesRecipes
   - tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes
@@ -53,7 +53,9 @@ type: specs.openrewrite.org/v1beta/recipe
 name: org.checkstyle.StaticAnalysis
 description: OpenRewrite standard fixes.
 recipeList:
-  - org.openrewrite.java.RemoveUnusedImports
+  # composite recipes
+  - org.openrewrite.staticanalysis.CommonStaticAnalysis
+  # individual recipes
   - org.openrewrite.java.ShortenFullyQualifiedTypeReferences
   - org.openrewrite.java.SimplifySingleElementAnnotation
   - org.openrewrite.java.format.EmptyNewlineAtEndOfFile
