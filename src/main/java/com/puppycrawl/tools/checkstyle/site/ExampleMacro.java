@@ -139,32 +139,61 @@ public class ExampleMacro extends AbstractMacro {
     /**
      * Extract a configuration snippet from the given lines. Config delimiters use the whole
      * line for themselves and have no indentation. We use equals() instead of contains()
-     * to be more strict because some examples contain those delimiters.
+     * to be more strict because some examples contain those delimiters. If the delimiters
+     * are not found, returns the entire file content.
      *
      * @param lines the lines to extract the snippet from.
      * @return the configuration snippet.
      */
     private static String getConfigSnippet(Collection<String> lines) {
-        return lines.stream()
+        final String snippet = lines.stream()
                 .dropWhile(line -> !XML_CONFIG_START.equals(line))
                 .skip(1)
                 .takeWhile(line -> !XML_CONFIG_END.equals(line))
                 .collect(Collectors.joining(ModuleJavadocParsingUtil.NEWLINE));
+
+        // If no snippet was found (markers not present), return the entire file content
+        final String result;
+        if (snippet.isBlank()) {
+            result = lines.stream()
+                    .collect(Collectors.joining(ModuleJavadocParsingUtil.NEWLINE));
+        }
+        else {
+            result = snippet;
+        }
+
+        return result;
     }
 
     /**
      * Extract a code snippet from the given lines. Code delimiters can be indented, so
-     * we use contains() instead of equals().
+     * we use contains() instead of equals(). If the delimiters are not found, returns
+     * the file content excluding the XML config block.
      *
      * @param lines the lines to extract the snippet from.
      * @return the code snippet.
      */
     private static String getCodeSnippet(Collection<String> lines) {
-        return lines.stream()
+        final String snippet = lines.stream()
                 .dropWhile(line -> !line.contains(CODE_SNIPPET_START))
                 .skip(1)
                 .takeWhile(line -> !line.contains(CODE_SNIPPET_END))
                 .collect(Collectors.joining(ModuleJavadocParsingUtil.NEWLINE));
+
+        // If no snippet was found (markers not present), return the file content
+        // excluding the XML config block
+        final String result;
+        if (snippet.isBlank()) {
+            result = lines.stream()
+                    .dropWhile(line -> !XML_CONFIG_END.equals(line))
+                    .skip(1)
+                    .collect(Collectors.joining(ModuleJavadocParsingUtil.NEWLINE));
+        }
+        else {
+            result = snippet;
+        }
+
+        return result;
     }
 
     /**
