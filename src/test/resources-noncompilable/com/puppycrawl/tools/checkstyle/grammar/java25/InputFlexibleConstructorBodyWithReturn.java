@@ -1,5 +1,4 @@
-// non-compiled with javac: compilable with Java25
-
+// Java25
 package com.puppycrawl.tools.checkstyle.grammar.java25;
 
 public class InputFlexibleConstructorBodyWithReturn {
