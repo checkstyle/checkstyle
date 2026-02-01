@@ -195,7 +195,7 @@ public final class JavadocCommentsTokenTypes {
      * </ol>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * @author name.}</pre>
+     * <pre>{@code * @author name}</pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -207,12 +207,13 @@ public final class JavadocCommentsTokenTypes {
      *         |--AT_SIGN -> @
      *         |--TAG_NAME -> author
      *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  name.
+     *             `--TEXT ->  name
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
      */
     public static final int AUTHOR_BLOCK_TAG = JavadocCommentsLexer.AUTHOR_BLOCK_TAG;
+
 
     /**
      * {@code @deprecated} block tag.
