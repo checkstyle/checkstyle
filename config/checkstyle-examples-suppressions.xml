@@ -74,6 +74,12 @@
   <suppress checks="Indent"
     files="nolinewrap[\\/]Example5.java"/>
 
+  <!-- multifileregexpheader examples intentionally omit xdoc section markers -->
+  <suppress id="xdocStartComment"
+    files="multifileregexpheader[\\/]Example[1-4].java"/>
+  <suppress id="xdocEndComment"
+    files="multifileregexpheader[\\/]Example[1-4].java"/>
+
   <!-- Check applies to resources-noncompilable files.  -->
   <suppress id="presenceOfCompilationComment" files="resources[\\/].*"/>
 
