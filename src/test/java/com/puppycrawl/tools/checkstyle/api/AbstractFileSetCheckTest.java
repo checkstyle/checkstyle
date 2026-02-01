@@ -72,7 +72,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
             check.process(firstFile, new FileText(firstFile, Collections.emptyList()));
 
         assertWithMessage("Invalid message")
-                .that(firstFileMessages.first().getViolation())
+                .that(firstFileMessages.getFirst().getViolation())
                 .isEqualTo("File should not be empty.");
 
         final SortedSet<Violation> internalMessages =
@@ -196,7 +196,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
                 .that(internalViolations)
                 .hasSize(1);
 
-        final Violation violation = internalViolations.first();
+        final Violation violation = internalViolations.getFirst();
         assertWithMessage("expected line")
                 .that(violation.getLineNo())
                 .isEqualTo(1);
@@ -244,7 +244,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
                 .that(dispatcher.errorList)
                 .hasSize(1);
 
-        final Violation violation = dispatcher.errorList.first();
+        final Violation violation = dispatcher.errorList.getFirst();
         assertWithMessage("expected line")
                 .that(violation.getLineNo())
                 .isEqualTo(1);
