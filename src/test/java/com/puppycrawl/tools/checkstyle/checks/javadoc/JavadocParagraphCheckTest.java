@@ -262,4 +262,12 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocParagraphNested.java"), expected);
     }
+
+    @Test
+    public void testParagraphAfterBlockTagWithEmptyLine() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocParagraphLineBeforeAfterBlockTag.java"), expected);
+    }
 }

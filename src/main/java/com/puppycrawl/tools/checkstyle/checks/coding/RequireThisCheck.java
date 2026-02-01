@@ -388,8 +388,6 @@ public class RequireThisCheck extends AbstractCheck {
             }
 
             case TokenTypes.PATTERN_VARIABLE_DEF -> {
-                // Pattern variables (e.g. 's' in 'if (o instanceof String s)') are
-                // flow-scoped locals; add to current frame so they are not flagged as fields.
                 final DetailAST patternVariableIdent = ast.getLastChild();
                 if (patternVariableIdent.getType() == TokenTypes.IDENT) {
                     frame.addIdent(patternVariableIdent);
@@ -922,14 +920,11 @@ public class RequireThisCheck extends AbstractCheck {
     }
 
     /**
-     * Find the class frame containing declaration.
-     * If the name is first found in a local scope (block, parameter, pattern variable, etc.),
-     * returns null so that the reference is not flagged as requiring {@code this}.
-     *
-     * @param name IDENT ast of the declaration to find.
-     * @param lookForMethod whether we are looking for a method name.
-     * @return ClassFrame containing declaration, or null if not found or if the name
-     *         refers to a local/pattern variable.
+
+     * @param name 
+     * @param lookForMethod 
+     * @return 
+     *        
      */
     private AbstractFrame findClassFrame(DetailAST name, boolean lookForMethod) {
         AbstractFrame frame = current.peek();
@@ -943,7 +938,7 @@ public class RequireThisCheck extends AbstractCheck {
             if (frame instanceof ClassFrame) {
                 break;
             }
-            // Name is in a local scope (block, parameter, pattern variable, etc.)
+            
             return null;
         }
 
