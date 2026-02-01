@@ -63,13 +63,7 @@ public class XdocsExampleFileTest {
             Map.entry("ConstantNameCheck", Set.of("applyToPackage", "applyToPrivate")),
             Map.entry("WhitespaceAroundCheck", Set.of("allowEmptySwitchBlockStatements")),
             Map.entry("SuppressWarningsHolder", Set.of("aliasList")),
-            Map.entry("IndentationCheck", Set.of(
-                    "basicOffset",
-                    "lineWrappingIndentation",
-                    "throwsIndent",
-                    "arrayInitIndent",
-                    "braceAdjustment"
-            )),
+            Map.entry("IllegalTokenTextCheck", Set.of("message")),
             Map.entry("ClassMemberImpliedModifierCheck", Set.of(
                     "violateImpliedStaticOnNestedEnum",
                     "violateImpliedStaticOnNestedRecord",
