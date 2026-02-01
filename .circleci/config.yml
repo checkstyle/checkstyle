@@ -1,5 +1,5 @@
+name: CI
 version: 2.1
-
 jobs:
 
   run-inspections:
