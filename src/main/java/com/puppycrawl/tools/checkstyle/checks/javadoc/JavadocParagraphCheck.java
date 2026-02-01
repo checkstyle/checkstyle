@@ -311,6 +311,8 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         DetailNode previousSibling = newLine.getPreviousSibling();
         if (previousSibling != null && (previousSibling.getParent().getType()
                 == JavadocCommentsTokenTypes.JAVADOC_CONTENT
+                || previousSibling.getParent().getType()
+                    == JavadocCommentsTokenTypes.DESCRIPTION
                 || insideNonTightHtml(previousSibling))) {
             if (previousSibling.getType() == JavadocCommentsTokenTypes.TEXT
                     && CommonUtil.isBlank(previousSibling.getText())) {
