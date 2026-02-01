@@ -200,14 +200,23 @@ public final class JavadocCommentsTokenTypes {
      * <b>Tree:</b>
      * <pre>{@code
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
+     * |--TEXT -> /**
+     * |--NEWLINE -> \r\n
+     * |--LEADING_ASTERISK ->  *
      * |--TEXT ->
      * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
      *     `--AUTHOR_BLOCK_TAG -> AUTHOR_BLOCK_TAG
      *         |--AT_SIGN -> @
      *         |--TAG_NAME -> author
      *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  name.
+     *             |--TEXT ->  name
+     *             |--NEWLINE -> \r\n
+     *             |--LEADING_ASTERISK ->  *
+     *             |--TEXT -> /
+     *             |--NEWLINE -> \r\n
+     *             |--TEXT -> public class Test {
+     *             |--NEWLINE -> \r\n
+     *             `--TEXT -> }
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
