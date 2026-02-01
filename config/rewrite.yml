@@ -18,24 +18,63 @@ recipeList:
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: org.checkstyle.RefasterRules
-description: Picnic Refaster rules.
+displayName: All Picnic Refaster rules
+description: Collection of all Refaster rules from Picnic's error-prone-contrib project.
 recipeList:
+  # tech.picnic.errorprone.refasterrules.AssertJBigIntegerRulesRecipes
+  # tech.picnic.errorprone.refasterrules.AssertJByteRulesRecipes
+  # tech.picnic.errorprone.refasterrules.AssertJDoubleRulesRecipes
+  # tech.picnic.errorprone.refasterrules.AssertJFileRulesRecipes
+  # tech.picnic.errorprone.refasterrules.AssertJFloatRulesRecipes
+  # tech.picnic.errorprone.refasterrules.AssertJIntegerRulesRecipes
+  # tech.picnic.errorprone.refasterrules.AssertJLongRulesRecipes
+  # tech.picnic.errorprone.refasterrules.AssertJShortRulesRecipes
+  # tech.picnic.errorprone.refasterrules.AssertJStreamRulesRecipes
+  # tech.picnic.errorprone.refasterrules.AssortedRulesRecipes
   - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
+  # tech.picnic.errorprone.refasterrules.BugCheckerRulesRecipes
   - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
   - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
   - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
   - tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes
+  # tech.picnic.errorprone.refasterrules.DequeRulesRecipes
   - tech.picnic.errorprone.refasterrules.FileRulesRecipes
+  - tech.picnic.errorprone.refasterrules.DoubleStreamRulesRecipes
+  - tech.picnic.errorprone.refasterrules.EqualityRulesRecipes
+  # tech.picnic.errorprone.refasterrules.ImmutableEnumSetRulesRecipes
+  # tech.picnic.errorprone.refasterrules.ImmutableListMultimapRulesRecipes
+  # tech.picnic.errorprone.refasterrules.ImmutableListRulesRecipes
+  # tech.picnic.errorprone.refasterrules.ImmutableMapRulesRecipes
+  # tech.picnic.errorprone.refasterrules.ImmutableMultisetRulesRecipes
+  # tech.picnic.errorprone.refasterrules.ImmutableSetMultimapRulesRecipes
+  # tech.picnic.errorprone.refasterrules.ImmutableSetRulesRecipes
+  # tech.picnic.errorprone.refasterrules.ImmutableSortedMapRulesRecipes
+  # tech.picnic.errorprone.refasterrules.ImmutableSortedMultisetRulesRecipes
+  # tech.picnic.errorprone.refasterrules.ImmutableSortedSetRulesRecipes
+  # tech.picnic.errorprone.refasterrules.ImmutableTableRulesRecipes
+  # tech.picnic.errorprone.refasterrules.IntStreamRulesRecipes
+  # tech.picnic.errorprone.refasterrules.Jackson2RulesRecipes
+  # tech.picnic.errorprone.refasterrules.Jackson3RulesRecipes
+  # tech.picnic.errorprone.refasterrules.LongStreamRulesRecipes
   - tech.picnic.errorprone.refasterrules.MapRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MapEntryRulesRecipes
   - tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes
   - tech.picnic.errorprone.refasterrules.MockitoRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MultimapRulesRecipes
+  - tech.picnic.errorprone.refasterrules.NullRulesRecipes
   # current maintainer don't "like" orElseThrow() as better form of get()
-  # - tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
+  # tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
   - tech.picnic.errorprone.refasterrules.PatternRulesRecipes
   - tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes
   - tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes
+  # tech.picnic.errorprone.refasterrules.RandomGeneratorRulesRecipes
+  # tech.picnic.errorprone.refasterrules.RxJava2AdapterRulesRecipes
+  # tech.picnic.errorprone.refasterrules.SpringTestRulesRecipes
   - tech.picnic.errorprone.refasterrules.StreamRulesRecipes
+  # tech.picnic.errorprone.refasterrules.StringRulesRecipes
+  # tech.picnic.errorprone.refasterrules.SuggestedFixRulesRecipes
   - tech.picnic.errorprone.refasterrules.TimeRulesRecipes
+  # tech.picnic.errorprone.refasterrules.WebClientRulesRecipes
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: org.checkstyle.StaticAnalysis
