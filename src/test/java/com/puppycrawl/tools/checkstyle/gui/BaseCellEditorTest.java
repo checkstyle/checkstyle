@@ -26,7 +26,7 @@ import javax.swing.event.ChangeEvent;
 
 import org.junit.jupiter.api.Test;
 
-class BaseCellEditorTest {
+public class BaseCellEditorTest {
 
     @Test
     public void testToString() {

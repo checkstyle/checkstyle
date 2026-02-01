@@ -29,7 +29,10 @@
                     |AbstractJavadocCheckTest.java|
                     |AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java|
                     |AbstractAutomaticBeanTest.java|AbstractClassNameCheckExamplesTest.java"/>
-
+  <!--  method cannot be static because it’s a JUnit 5 @ParameterizedTest -->
+  <suppress checks="DesignForExtension"
+             files="IndentationTrailingCommentsVerticalAlignmentTest\.java"
+             lines="44"/>
   <!-- Tone down the checking for test code -->
   <suppress checks="ExecutableStatementCount|JavaNCSS"
              files="[\\/]XdocsPagesTest\.java"/>
