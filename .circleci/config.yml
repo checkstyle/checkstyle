@@ -260,11 +260,14 @@ workflows:
   git-validation:
     jobs:
       - validate-with-script:
-          name: "git-no-merge-commits"
-          command: "./.ci/validation.sh git-no-merge-commits"
+          name: git-no-merge-commits
+          command: ./.ci/validation.sh git-no-merge-commits
       - validate-with-script:
-          name: "git-check-pull-number"
-          command: "./.ci/validation.sh git-check-pull-number"
+          name: git-squash-commits
+          command: ./.ci/validation.sh git-squash-commits
+      - validate-with-script:
+          name: git-check-pull-number
+          command: ./.ci/validation.sh git-check-pull-number
 
   cli-validation:
     jobs:
