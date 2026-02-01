@@ -1623,7 +1623,26 @@ public final class JavadocCommentsTokenTypes {
     public static final int ATTRIBUTE_VALUE = JavadocCommentsLexer.ATTRIBUTE_VALUE;
 
     /**
-     * Colon symbol {@code : }.
+     * Colon symbol {@code :}.
+     *
+     * <p>Example in Javadoc inline tag:</p>
+     * <pre>
+     * {@code key:value}
+     * </pre>
+     *
+     * <p>Tree:</p>
+     * <pre>
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--CODE_INLINE_TAG -> CODE_INLINE_TAG
+     * |--JAVADOC_INLINE_TAG_START -> &#123;&#64;
+     * |--TAG_NAME -> code
+     * |--TEXT -> key
+     * |--COLON -> :
+     * |--TEXT -> value
+     * `--JAVADOC_INLINE_TAG_END -> &#125;
+     * </pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int COLON = JavadocCommentsLexer.COLON;
 
