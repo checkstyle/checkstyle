@@ -195,11 +195,20 @@ public class MethodCallHandler extends AbstractExpressionHandler {
     @Override
     public void checkIndentation() {
         DetailAST lparen = null;
+        boolean isMethodCallInReturn = false;
         if (getMainAst().getType() == TokenTypes.METHOD_CALL) {
             final DetailAST exprNode = getMainAst().getParent();
-            if (exprNode.getParent().getType() == TokenTypes.SLIST) {
+            final int parentType = exprNode.getParent().getType();
+            if (parentType == TokenTypes.SLIST) {
                 checkExpressionSubtree(getMainAst().getFirstChild(), getIndent(), false, false);
                 lparen = getMainAst();
+            }
+            else if (parentType == TokenTypes.LITERAL_RETURN
+                    && getMainAst().getFirstChild().getType() != TokenTypes.DOT) {
+                // For simple (non-chained) method calls in return statements, check arguments
+                // Chained method calls (with DOT) are handled by normal indentation logic
+                lparen = getMainAst();
+                isMethodCallInReturn = true;
             }
         }
         else {
@@ -212,9 +221,19 @@ public class MethodCallHandler extends AbstractExpressionHandler {
             checkLeftParen(lparen);
 
             if (!TokenUtil.areOnSameLine(rparen, lparen)) {
+                // Use lineWrappingIndentation for method calls in return statements
+                final IndentLevel elistIndent;
+                if (isMethodCallInReturn) {
+                    elistIndent = new IndentLevel(getIndent(),
+                        getIndentCheck().getLineWrappingIndentation());
+                }
+                else {
+                    elistIndent = new IndentLevel(getIndent(), getBasicOffset());
+                }
+
                 checkExpressionSubtree(
                     getMainAst().findFirstToken(TokenTypes.ELIST),
-                    new IndentLevel(getIndent(), getBasicOffset()),
+                    elistIndent,
                     false, true);
 
                 checkRparenIndent(lparen, rparen);
