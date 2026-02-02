@@ -1273,7 +1273,22 @@ public final class JavadocCommentsTokenTypes {
     public static final int SLASH = JavadocCommentsLexer.SLASH;
 
     /**
-     * Question mark symbol {@code ? }.
+     * Question mark symbol {@code ?} used in generic type wildcards.
+     *
+     * <p>This token appears in references that use wildcard type arguments,
+     * such as {@code ? extends Type} or {@code ? super Type}.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * List<? extends Number>
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--QUESTION -> ?
+     * }</pre>
+     *
+     * @see #TYPE_ARGUMENT
      */
     public static final int QUESTION = JavadocCommentsLexer.QUESTION;
 
