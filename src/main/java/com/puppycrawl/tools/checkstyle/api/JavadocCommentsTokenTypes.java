@@ -1268,7 +1268,11 @@ public final class JavadocCommentsTokenTypes {
     public static final int COMMA = JavadocCommentsLexer.COMMA;
 
     /**
-     * Slash symbol {@code / }.
+     * Slash symbol {@code /}.
+     *
+     * <p>This token represents the slash character used by the Javadoc lexer.
+     * Inside regular Javadoc text, the slash is usually part of {@link #TEXT}
+     * rather than a standalone AST node.</p>
      */
     public static final int SLASH = JavadocCommentsLexer.SLASH;
 
