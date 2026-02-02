@@ -254,7 +254,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocPositionCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingLeadingAsteriskCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc"
                     + ".JavadocMissingWhitespaceAfterAsteriskCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc"
