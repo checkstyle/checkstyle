@@ -62,9 +62,10 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     public static final String MSG_KEY = "multiple.statements.line";
 
     /**
-     * Counts number of semicolons in nested lambdas.
+     * Stack of statement line-number for nested lambdas and anonymous classes.
+     * Used to isolate validation to the current nesting depth.
      */
-    private final Deque<Integer> countOfSemiInLambda = new ArrayDeque<>();
+    private final Deque<Integer> nestingScope = new ArrayDeque<>();
 
     /**
      * Hold the line-number where the last statement ended.
@@ -82,14 +83,14 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     private boolean inForHeader;
 
     /**
-     * Holds if current token is inside lambda.
+     * Hold the line-number where the last anonymous class or lambda ended.
      */
-    private boolean isInLambda;
+    private int lastStatementInNesting;
 
     /**
-     * Hold the line-number where the last lambda statement ended.
+     * Hold the column-number of the last statement in the current nesting scope.
      */
-    private int lambdaStatementEnd;
+    private int lastStatementColumnInScope;
 
     /**
      * Hold the line-number where the last resource variable statement ended.
@@ -100,6 +101,11 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
      * Enable resources processing.
      */
     private boolean treatTryResourcesAsStatement;
+
+    /**
+     * Hold the column-number of the last statement in the current nesting scope.
+     */
+    private int lastStatementInCurrentScope;
 
     /**
      * Setter to enable resources processing.
@@ -128,6 +134,9 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
             TokenTypes.FOR_INIT,
             TokenTypes.FOR_ITERATOR,
             TokenTypes.LAMBDA,
+            TokenTypes.EMPTY_STAT,
+            TokenTypes.OBJBLOCK,
+            TokenTypes.METHOD_CALL,
         };
     }
 
@@ -135,17 +144,23 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     public void beginTree(DetailAST rootAST) {
         lastStatementEnd = 0;
         lastVariableResourceStatementEnd = 0;
+        lastStatementInCurrentScope = 0;
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.SEMI -> checkIfSemicolonIsInDifferentLineThanPrevious(ast);
+            case TokenTypes.SEMI, TokenTypes.EMPTY_STAT ->
+                checkIfSemicolonIsInDifferentLineThanPrevious(ast);
             case TokenTypes.FOR_ITERATOR -> forStatementEnd = ast.getLineNo();
-            case TokenTypes.LAMBDA -> {
-                isInLambda = true;
-                countOfSemiInLambda.push(0);
+            case TokenTypes.LAMBDA, TokenTypes.OBJBLOCK -> {
+                lastStatementInNesting = 0;
+                if (ast.getType() == TokenTypes.LAMBDA
+                        || ast.getParent().getType() == TokenTypes.LITERAL_NEW) {
+                    nestingScope.push(lastStatementEnd);
+                }
             }
+            case TokenTypes.METHOD_CALL -> nestingScope.push(lastStatementEnd);
             default -> inForHeader = true;
         }
     }
@@ -153,23 +168,41 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.SEMI -> {
+            case TokenTypes.SEMI, TokenTypes.EMPTY_STAT -> {
                 lastStatementEnd = ast.getLineNo();
                 forStatementEnd = 0;
-                lambdaStatementEnd = 0;
+                lastStatementInNesting = 0;
+                lastStatementColumnInScope = ast.getColumnNo();
+                lastStatementInCurrentScope = lastStatementEnd;
             }
             case TokenTypes.FOR_ITERATOR -> inForHeader = false;
-            case TokenTypes.LAMBDA -> {
-                countOfSemiInLambda.pop();
-                if (countOfSemiInLambda.isEmpty()) {
-                    isInLambda = false;
+            case TokenTypes.LAMBDA, TokenTypes.OBJBLOCK -> {
+                if (ast.getType() == TokenTypes.LAMBDA
+                        || ast.getParent().getType() == TokenTypes.LITERAL_NEW) {
+                    popNestingScope(ast);
                 }
-                lambdaStatementEnd = ast.getLineNo();
             }
+            case TokenTypes.METHOD_CALL -> popNestingScope(ast);
             default -> {
                 // do nothing
             }
         }
+    }
+
+    /**
+     * Exits a nesting scope and restores the previous scope's last statement position.
+     * Finds the actual last line by traversing to the deepest child node.
+     *
+     * @param ast the AST node ending the nesting scope
+     */
+    private void popNestingScope(DetailAST ast) {
+        DetailAST currentAst = ast;
+        while (currentAst != null) {
+            lastStatementInNesting = currentAst.getLineNo();
+            currentAst = currentAst.getLastChild();
+        }
+        lastStatementInCurrentScope = nestingScope.pop();
+        lastStatementColumnInScope = 0;
     }
 
     /**
@@ -178,42 +211,65 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
      * @param ast semicolon to check
      */
     private void checkIfSemicolonIsInDifferentLineThanPrevious(DetailAST ast) {
-        DetailAST currentStatement = ast;
-        final DetailAST previousSibling = ast.getPreviousSibling();
-        final boolean isUnnecessarySemicolon = previousSibling == null
-            || previousSibling.getType() == TokenTypes.RESOURCES
-            || ast.getParent().getType() == TokenTypes.COMPILATION_UNIT;
-        if (!isUnnecessarySemicolon) {
-            currentStatement = ast.getPreviousSibling();
+        boolean validStatement = true;
+        if (isResource(ast.getParent())) {
+            validStatement = checkResourceVariable(ast);
         }
-        if (isInLambda) {
-            checkLambda(ast, currentStatement);
+        else if (!inForHeader) {
+            validStatement = isValidStatement(ast);
         }
-        else if (isResource(ast.getParent())) {
-            checkResourceVariable(ast);
-        }
-        else if (!inForHeader && isOnTheSameLine(currentStatement, lastStatementEnd,
-                forStatementEnd, lambdaStatementEnd)) {
+        if (!validStatement) {
             log(ast, MSG_KEY);
         }
     }
 
     /**
-     * Checks semicolon placement in lambda.
+     * Checks whether the current statement is placed on a separate line
+     * from the previous statement.
      *
-     * @param ast semicolon to check
-     * @param currentStatement current statement
+     * @param ast semicolon token representing the end of the current statement
+     * @return {@code true} if the current statement starts on a different line
+     *         than the previous statement; {@code false} otherwise
      */
-    private void checkLambda(DetailAST ast, DetailAST currentStatement) {
-        int countOfSemiInCurrentLambda = countOfSemiInLambda.pop();
-        countOfSemiInCurrentLambda++;
-        countOfSemiInLambda.push(countOfSemiInCurrentLambda);
-        if (!inForHeader && countOfSemiInCurrentLambda > 1
-                && isOnTheSameLine(currentStatement,
-                lastStatementEnd, forStatementEnd,
-                lambdaStatementEnd)) {
-            log(ast, MSG_KEY);
+    private boolean isValidStatement(DetailAST ast) {
+        final DetailAST statementStart = getStatementStart(ast);
+        final boolean validStatement;
+        final boolean onPreviousLine = onPreviousLine(ast);
+        if (onPreviousLine) {
+            validStatement = false;
         }
+        else if (statementStart == null) {
+            validStatement = true;
+        }
+        else {
+            validStatement = !isStatementStartOnPreviousLine(statementStart);
+        }
+        return validStatement;
+    }
+
+    /**
+     * Returns the starting node of the statement, or the previous statement's
+     * start if the current one is an empty statement.
+     *
+     * @param ast the SEMI token.
+     * @return the start of the associated statement or the previous sibling.
+     */
+    private static DetailAST getStatementStart(DetailAST ast) {
+        final DetailAST statementStart;
+        final DetailAST parent = ast.getParent();
+        final boolean statementBeginFromParent =
+                parent.getType() == TokenTypes.VARIABLE_DEF
+                        || parent.getType() == TokenTypes.OBJBLOCK
+                        || parent.getType() == TokenTypes.IMPORT
+                        || parent.getType() == TokenTypes.STATIC_IMPORT
+                        || parent.getType() == TokenTypes.MODULE_IMPORT;
+        if (statementBeginFromParent) {
+            statementStart = ast.getParent();
+        }
+        else {
+            statementStart = ast.getPreviousSibling();
+        }
+        return statementStart;
     }
 
     /**
@@ -228,38 +284,47 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     }
 
     /**
-     * Checks resource variable.
+     * Checks whether the current statement represents a valid resource
+     * declaration in a try-with-resources statement.
      *
-     * @param currentStatement current statement
+     * @param currentStatement the statement to check
+     * @return {@code true} if the statement is a valid resource declaration;
+     *         {@code false} otherwise.
      */
-    private void checkResourceVariable(DetailAST currentStatement) {
+    private boolean checkResourceVariable(DetailAST currentStatement) {
+        boolean result = true;
         if (treatTryResourcesAsStatement) {
             final DetailAST nextNode = currentStatement.getNextSibling();
             if (currentStatement.getPreviousSibling().findFirstToken(TokenTypes.ASSIGN) != null) {
                 lastVariableResourceStatementEnd = currentStatement.getLineNo();
             }
-            if (nextNode.findFirstToken(TokenTypes.ASSIGN) != null
-                && nextNode.getLineNo() == lastVariableResourceStatementEnd) {
-                log(currentStatement, MSG_KEY);
-            }
+            result = nextNode.findFirstToken(TokenTypes.ASSIGN) == null
+                    || nextNode.getLineNo() != lastVariableResourceStatementEnd;
         }
+        return result;
     }
 
     /**
-     * Checks whether two statements are on the same line.
+     * Checks whether the ast is on the line with another statement.
      *
      * @param ast token for the current statement.
-     * @param lastStatementEnd the line-number where the last statement ended.
-     * @param forStatementEnd the line-number where the last 'for-loop'
-     *                        statement ended.
-     * @param lambdaStatementEnd the line-number where the last lambda
-     *                        statement ended.
      * @return true if two statements are on the same line.
      */
-    private static boolean isOnTheSameLine(DetailAST ast, int lastStatementEnd,
-                                           int forStatementEnd, int lambdaStatementEnd) {
+    private boolean onPreviousLine(DetailAST ast) {
         return lastStatementEnd == ast.getLineNo() && forStatementEnd != ast.getLineNo()
-                && lambdaStatementEnd != ast.getLineNo();
+                && lastStatementInNesting != ast.getLineNo();
+
+    }
+
+    /**
+     * Checks whether ast is on the line with another statement.
+     *
+     * @param ast token for the current statement.
+     * @return true if two statements are on the same line.
+     */
+    private boolean isStatementStartOnPreviousLine(DetailAST ast) {
+        return lastStatementInCurrentScope == ast.getLineNo() && forStatementEnd != ast.getLineNo()
+                && lastStatementColumnInScope < ast.getColumnNo();
     }
 
 }
