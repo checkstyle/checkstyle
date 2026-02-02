@@ -2,7 +2,6 @@
 JavadocMissingLeadingAsterisk
 violateExecutionOnNonTightHtml = (default)false
 
-
 */
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmissingleadingasterisk;
@@ -10,47 +9,47 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmissingleadingaste
 public class InputJavadocMissingLeadingAsteriskIncorrect {
 
   /**
-   Java style. // violation
+   Java style. // violation 'Javadoc line should start with leading asterisk'
    **/
   public int missingAsterisk;
 
   /**
- // violation
+ // violation 'Javadoc line should start with leading asterisk'
    *
    */
   public int blankComment;
 
   /**
    *
-     @deprecated block tag // violation
+     @deprecated block tag // violation 'Javadoc line should start with leading asterisk'
    */
   public int blockTag;
 
   /**
    *
-     Last line */ // violation
+     Last line */ // violation 'Javadoc line should start with leading asterisk'
   public int lastLine;
 
   /**
-   Line one. // violation
-   Line two. // violation
+   Line one. // violation 'Javadoc line should start with leading asterisk'
+   Line two. // violation 'Javadoc line should start with leading asterisk'
    */
   public int twoViolations;
 
   /** Wrapped
-      single-line comment */ // violation
+      single-line comment */ // violation 'Javadoc line should start with leading asterisk'
   public int wrapped;
 
   /**
    * <pre>
-      int foo = 0; // violation
+      int foo = 0; // violation 'Javadoc line should start with leading asterisk'
    * </pre>
    **/
   public int pre;
 
   /**
    * {@code
-      int foo = 0; // violation
+      int foo = 0; // violation 'Javadoc line should start with leading asterisk'
    * }
    **/
   public int code;
@@ -59,9 +58,9 @@ public class InputJavadocMissingLeadingAsteriskIncorrect {
 
 /**
 * EOF immediately after NEWLINE.
- // violation
-@deprecated block tag // violation
-Not blank text*/ // violation
+ // violation 'Javadoc line should start with leading asterisk'
+@deprecated block tag // violation 'Javadoc line should start with leading asterisk'
+Not blank text*/ // violation 'Javadoc line should start with leading asterisk'
 class NoTextAfterNewLineIncorrect {
 
 }

@@ -57,18 +57,18 @@ public class JavadocMissingLeadingAsteriskCheckTest extends AbstractModuleTestSu
     @Test
     public void testIncorrect() throws Exception {
         final String[] expected = {
-            "13: " + getCheckMessage(MSG_MISSING_ASTERISK),
-            "18: " + getCheckMessage(MSG_MISSING_ASTERISK),
-            "25: " + getCheckMessage(MSG_MISSING_ASTERISK),
-            "31: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "12: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "17: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "24: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "30: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "34: " + getCheckMessage(MSG_MISSING_ASTERISK),
             "35: " + getCheckMessage(MSG_MISSING_ASTERISK),
-            "36: " + getCheckMessage(MSG_MISSING_ASTERISK),
-            "41: " + getCheckMessage(MSG_MISSING_ASTERISK),
-            "46: " + getCheckMessage(MSG_MISSING_ASTERISK),
-            "53: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "40: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "45: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "52: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "61: " + getCheckMessage(MSG_MISSING_ASTERISK),
             "62: " + getCheckMessage(MSG_MISSING_ASTERISK),
             "63: " + getCheckMessage(MSG_MISSING_ASTERISK),
-            "64: " + getCheckMessage(MSG_MISSING_ASTERISK),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMissingLeadingAsteriskIncorrect.java"), expected);
