@@ -2097,6 +2097,7 @@
                 <exclude>**/JavadocTypeCheck.class</exclude>
                 <exclude>**/MissingDeprecatedCheck.class</exclude>
                 <exclude>**/NonEmptyAtclauseDescriptionCheck.class</exclude>
+                <exclude>**/PreferJavadocInlineTagsCheck.class</exclude>
                 <exclude>**/RequireEmptyLineBeforeBlockTagGroupCheck.class</exclude>
                 <exclude>**/SingleLineJavadocCheck.class</exclude>
                 <exclude>**/SummaryJavadocCheck.class</exclude>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>PreferJavadocInlineTags</title>
+  </head>
+  <body>
+    <section name="PreferJavadocInlineTags">
+      <p>Since Checkstyle 13.3.0</p>
+      <subsection name="Description" id="PreferJavadocInlineTags_Description">
+        <div>
+          Checks that Javadoc inline tags are preferred over HTML equivalents.
+        </div>
+
+        <p>
+          Per <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html">
+          OpenJDK Style Guidelines v6</a>
+          Javadoc inline tags should be preferred over their HTML equivalents.
+        </p>
+
+        <p>
+          <b>Violations (HTML tags that should be replaced):</b>
+        </p>
+        <ul>
+        <li><code>{@code ...}</code> over <code>&lt;code&gt;...&lt;/code&gt;</code></li>
+        <li><code>{@link ...}</code> over <code>&lt;a href="#..."&gt;</code> for internal references</li>
+        <li><code>{@literal &lt;}</code> over <code>&amp;lt;</code></li>
+        <li><code>{@literal &gt;}</code> over <code>&amp;gt;</code></li>
+        </ul>
+
+        <p>
+          <b>Not flagged:</b>
+        </p>
+        <ul>
+        <li>Block-level HTML tags with no Javadoc equivalent:
+          <code>&lt;p&gt;</code>, <code>&lt;pre&gt;</code>,
+          <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>,
+          <code>&lt;li&gt;</code>, <code>&lt;table&gt;</code>,
+          <code>&lt;div&gt;</code>, <code>&lt;blockquote&gt;</code>, etc.</li>
+        <li>Content inside <code>&lt;pre&gt;</code> blocks (code examples)</li>
+        <li>Content inside <code>{@code}</code> and <code>{@literal}</code> inline tags</li>
+        </ul>
+      </subsection>
+
+      <subsection name="Properties" id="PreferJavadocInlineTags_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
+     Tight-HTML Rules</a>.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="PreferJavadocInlineTags_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="PreferJavadocInlineTags"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+
+  // violation 2 lines below 'Prefer Javadoc inline tag '{@code ...}''
+  /**
+   * Returns &lt;code&gt;true&lt;/code&gt; if valid.
+   */
+  public boolean isValid() { return true; }
+
+  // violation 2 lines below 'Prefer Javadoc inline tag '{@link ...}''
+  /**
+   * See &lt;a href="#validate"&gt;validate&lt;/a&gt;.
+   */
+  public void method() { }
+
+  // 2 violations 4 lines below:
+  //  'Prefer Javadoc inline tag '{@literal &lt;}' over '&amp;lt;'.'
+  //  'Prefer Javadoc inline tag '{@literal &gt;}' over '&amp;gt;'.'
+  /**
+   * Use &amp;lt;T&amp;gt; for generic types.
+   */
+  public void generics() { }
+
+  /**
+   * Correct: Returns {@code true}.
+   */
+  public void correctUsage() { }
+
+  /**
+   * External links are allowed: &lt;a href="https://example.com"&gt;link&lt;/a&gt;.
+   */
+  public void externalLink() { }
+
+  /**
+   * Content inside pre blocks is allowed:
+   * &lt;pre&gt;
+   * &lt;code&gt;sample&lt;/code&gt;;
+   * &amp;lt;a href="#method"&amp;gt;link&amp;lt;/a&amp;gt;
+   * &lt;/pre&gt;
+   */
+  public void insidePreBlock() { }
+
+  /**
+   * Content inside inline tags is allowed:
+   * Entities: {@code &amp;lt;T&amp;gt;}
+   * Literal: {@literal &lt;a href="#"&gt;link&lt;/a&gt;}
+   */
+  public void insideInlineTags() { }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="PreferJavadocInlineTags_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+PreferJavadocInlineTags">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="PreferJavadocInlineTags_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+              javadoc.parse.rule.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+              javadoc.unclosedHtml
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22prefer.javadoc.inline.tag%22">
+              prefer.javadoc.inline.tag
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="PreferJavadocInlineTags_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="PreferJavadocInlineTags_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
