@@ -1268,7 +1268,28 @@ public final class JavadocCommentsTokenTypes {
     public static final int COMMA = JavadocCommentsLexer.COMMA;
 
     /**
-     * Slash symbol {@code / }.
+     * Slash symbol {@code /} used in module or package references within Javadoc.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * &#123;@link java.base/java.lang.String&#125;
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     `--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     *         |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *         |--TAG_NAME -> link
+     *         |--TEXT ->
+     *         |--REFERENCE -> REFERENCE
+     *         |   |--IDENTIFIER -> java.base
+     *         |   |--SLASH -> /
+     *         |   `--IDENTIFIER -> java.lang.String
+     *         `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #REFERENCE
      */
     public static final int SLASH = JavadocCommentsLexer.SLASH;
 
