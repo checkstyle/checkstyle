@@ -50,10 +50,14 @@
           Default values of properties are used.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="MultiFileRegexpHeader"/&gt;
-&lt;/module&gt;
-</code></pre></div>
+      &lt;?xml version="1.0"?&gt;
+      &lt;!DOCTYPE module PUBLIC
+        "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+      &lt;module name="Checker"&gt;
+          &lt;module name="MultiFileRegexpHeader"/&gt;
+      &lt;/module&gt;
+      </code></pre></div>
 
         <p id="Example1-code">Example1:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -96,9 +100,8 @@ public class Example1 { }
         <p id="Example2-code">Example2:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
-/* violation on first line 'Header mismatch, expected line content was' */
-// because headerFile is bigger then target java file
 public class Example2 { }
+// violation 2 lines above 'Header mismatch, expected line content was'
 </code></pre></div>
         <hr class="example-separator"/>
 
@@ -124,6 +127,7 @@ public class Example2 { }
 package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
 /* violation on first line 'Header mismatch, expected line content was' */
 public class Example3 { }
+// violation 7 lines above 'Header mismatch, expected line content was'
 </code></pre></div>
         <hr class="example-separator"/>
 
@@ -154,7 +158,6 @@ public class Example3 { }
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
-// ok, as regex value matches all lines
 public class Example4 { }
 </code></pre></div>
 
