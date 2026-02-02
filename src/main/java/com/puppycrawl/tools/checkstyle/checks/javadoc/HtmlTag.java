@@ -23,7 +23,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
  * Used to keep track of a tag and the text that follows it.
  *
  */
-class HtmlTag {
+public class HtmlTag {
 
     /** The maximum length of text to display with this tag. */
     private static final int MAX_TEXT_LEN = 60;
