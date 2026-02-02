@@ -172,4 +172,9 @@
   <suppress checks="FileLength"
     files=".*[\\/]javadocstyle[\\/]Example7\.java$"/>
 
+  <!-- violation messages are long by design to show full text -->
+  <suppress checks="LineLength" files="googlenonconstantfieldname[\\/]Example\d+.*"/>
+  <suppress id="discouragedRegexpInViolationMessage"
+            files="googlenonconstantfieldname[\\/]Example\d+.*"/>
+
 </suppressions>
