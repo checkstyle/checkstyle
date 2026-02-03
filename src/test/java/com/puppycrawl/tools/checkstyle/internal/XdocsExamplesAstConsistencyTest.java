@@ -178,8 +178,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/indentation/commentsindentation/Example6",
             "checks/indentation/commentsindentation/Example7",
             "checks/indentation/commentsindentation/Example8",
-            "checks/javadoc/javadocleadingasteriskalign/Example2",
-            "checks/javadoc/javadocleadingasteriskalign/Example3",
             "checks/javadoc/javadocmethod/Example7",
             "checks/javadoc/javadocmethod/Example8",
             "checks/javadoc/javadocstyle/Example7",
