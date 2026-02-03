@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
 public class InputMatchXpathAvoidInstanceCreationWithoutVar {
     public void test() {
-        SomeObject a = new SomeObject(); // violation
+        SomeObject a = new SomeObject(); // violation 'Illegal code structure detected'
         var b = new SomeObject();
     }
 
