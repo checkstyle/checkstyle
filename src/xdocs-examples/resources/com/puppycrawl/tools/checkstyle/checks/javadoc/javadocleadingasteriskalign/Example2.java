@@ -16,7 +16,12 @@ public class Example2 {
   /**
     *  Javadoc for instance variable. // violation
     */ // violation
-  private String name;
+  private int ball;
+
+  /**
+    *  Javadoc for instance variable. // violation
+    */ // violation
+  private int age;
 
   /**
   *  Javadoc for method. // violation
@@ -26,7 +31,7 @@ public class Example2 {
   /**
    Javadoc for Constructor.
 */ // violation
-  private Example2() {}
+  public Example2() {}
 
   /**
     * Javadoc for enum. // violation
@@ -40,12 +45,7 @@ public class Example2 {
 
     /**
         * Incorrect indentation for leading asterisk. */ // violation
-    TWO,
-
-    /**
- *    // violation
-     */
-    THREE
+    TWO
   }
 }
 // xdoc section -- end

@@ -19,7 +19,12 @@ public class Example3 {
   /** <- Preceded with Tabs.
    * <- Preceded with Tabs & Spaces.
    */ // <- Preceded with Tabs & Spaces.
-  private String name;
+  private int ball;
+
+  /** <- Preceded with Tabs.
+   * <- Preceded with Tabs & Spaces.
+   */ // <- Preceded with Tabs & Spaces.
+  private int age;
 
   /** <- Preceded with Spaces.
    * <- Preceded with Tabs.
@@ -29,7 +34,7 @@ public class Example3 {
   /**
     * // violation
   */ // violation
-  private Example3() {}
+  public Example3() {}
 
   private enum tabsExample {
     /**
