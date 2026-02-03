@@ -134,6 +134,20 @@ public class AbstractViolationReporterTest {
         }
     }
 
+    @Test
+    public void testSetSeverity() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(emptyCheck.getClass());
+        config.addAttribute("severity", "warning");
+        emptyCheck.configure(config);
+
+        assertWithMessage("Invalid severity level")
+                .that(emptyCheck.getSeverityLevel())
+                .isEqualTo(SeverityLevel.WARNING);
+        assertWithMessage("Invalid severity")
+                .that(emptyCheck.getSeverity())
+                .isEqualTo("warning");
+    }
+
     public static class EmptyCheck extends AbstractCheck {
 
         @Override
