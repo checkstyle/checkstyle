@@ -318,7 +318,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
             .isEqualTo(8.0);
         assertWithMessage("Invalid parse result")
             .that(CheckUtil.parseDouble("-21474836480", TokenTypes.NUM_LONG))
-            .isEqualTo(-2.147_483_648E10);
+            .isEqualTo(-2.147_483_648e10);
         assertWithMessage("Invalid parse result")
             .that(CheckUtil.parseDouble("-2", TokenTypes.NUM_INT))
             .isEqualTo(-2);
@@ -330,7 +330,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
             .isEqualTo(2915.0);
         assertWithMessage("Invalid parse result")
             .that(CheckUtil.parseDouble("21474836470", TokenTypes.NUM_LONG))
-            .isEqualTo(2.147_483_647E10);
+            .isEqualTo(2.147_483_647e10);
         assertWithMessage("Invalid parse result")
             .that(CheckUtil.parseDouble("073l", TokenTypes.NUM_LONG))
             .isEqualTo(59.0);
