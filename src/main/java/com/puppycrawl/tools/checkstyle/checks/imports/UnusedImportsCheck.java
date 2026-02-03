@@ -95,6 +95,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * @since 3.0
  */
 @FileStatefulCheck
+@SuppressWarnings("UnrecognisedJavadocTag")
 public class UnusedImportsCheck extends AbstractCheck {
 
     /**
