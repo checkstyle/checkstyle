@@ -1773,8 +1773,22 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * String literal inside Javadoc.
+     *
+     * <p>Example in Javadoc:</p>
+     * <pre>
+     * &amp;#64;see "foo"
+     * </pre>
+     *
+     * <p>Tree:</p>
+     * <pre>
+     * JAVADOC_TAG -> JAVADOC_TAG
+     * |--SEE_LITERAL -> &amp;#64;see
+     * |--WS ->
+     * |--STRING_LITERAL -> "foo"
+     * |--NEWLINE -> \n
+     * `--TEXT ->
+     * </pre>
      */
-    public static final int STRING_LITERAL = JavadocCommentsLexer.STRING_LITERAL;
 
     // HTML
 
