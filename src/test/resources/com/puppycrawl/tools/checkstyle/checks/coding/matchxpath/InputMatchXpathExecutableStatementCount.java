@@ -22,7 +22,7 @@ public class InputMatchXpathExecutableStatementCount {
         }
     }
 
-    public void test2() { // violation
+    public void test2() { // violation 'Executable number of statements exceed threshold'
         test();
         "HELLO WORLD".toString();
         int a = 123;

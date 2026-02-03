@@ -216,12 +216,12 @@
       10.4
     </maven.sevntu-checkstyle-check.checkstyle.version>
     <maven.versions.plugin.version>2.21.0</maven.versions.plugin.version>
-    <maven.compiler.plugin.version>3.14.1</maven.compiler.plugin.version>
+    <maven.compiler.plugin.version>3.15.0</maven.compiler.plugin.version>
     <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
     <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
     <java.version>21</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
-    <pitest.plugin.version>1.22.0</pitest.plugin.version>
+    <pitest.plugin.version>1.22.1</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
@@ -232,7 +232,7 @@
     <junit.version>6.0.2</junit.version>
     <forbiddenapis.version>3.10</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
-    <checkerframework.version>3.53.0</checkerframework.version>
+    <checkerframework.version>3.53.1</checkerframework.version>
     <error-prone.version>2.46.0</error-prone.version>
     <error-prone-support.version>0.28.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
@@ -300,6 +300,7 @@
       -Xep:TruthAssertExpected:ERROR
       -Xep:TypeParameterUnusedInFormals:ERROR
       -Xep:UnnecessaryLambda:ERROR
+      -Xep:UnrecognisedJavadocTag:ERROR
       -Xep:UnsynchronizedOverridesSynchronized:ERROR
       -Xep:UnusedMethod:ERROR
       -Xep:VoidUsed:ERROR
@@ -3308,6 +3309,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.UpperEllCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.HexLiteralCaseCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.NumericalPrefixesInfixesSuffixesCharacterCaseCheck*</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheckTest</param>
@@ -3328,6 +3330,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.UpperEllCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.HexLiteralCaseCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.NumericalPrefixesInfixesSuffixesCharacterCaseCheckTest</param>
                 <!-- needed for SuppressWarningsFilter -->
                 <param>com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilterTest</param>
               </targetTests>

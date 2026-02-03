@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class InputMatchXpathDoubleBrace {
     public void test() {
-        new ArrayList<Integer>() {{ // violation
+        new ArrayList<Integer>() {{ // violation 'Do not use double-brace initialization'
             add(2);
             add(4);
             add(6);
