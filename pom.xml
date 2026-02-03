@@ -216,7 +216,7 @@
       10.4
     </maven.sevntu-checkstyle-check.checkstyle.version>
     <maven.versions.plugin.version>2.21.0</maven.versions.plugin.version>
-    <maven.compiler.plugin.version>3.14.1</maven.compiler.plugin.version>
+    <maven.compiler.plugin.version>3.15.0</maven.compiler.plugin.version>
     <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
     <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
     <java.version>21</java.version>
