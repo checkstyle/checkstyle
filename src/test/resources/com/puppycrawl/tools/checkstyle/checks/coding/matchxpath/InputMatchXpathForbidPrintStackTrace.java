@@ -15,7 +15,7 @@ public class InputMatchXpathForbidPrintStackTrace {
       try {
          throw new IOException();
       } catch (IOException e) {
-         e.printStackTrace(); // violation
+         e.printStackTrace(); // violation 'printStackTrace() method calls are forbidden'
       }
    }
 
