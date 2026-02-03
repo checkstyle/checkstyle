@@ -153,4 +153,22 @@ public class AbstractViolationReporterTest {
 
     }
 
+    @Test
+    public void testSetSeverity() {
+        final AbstractViolationReporter reporter = new AbstractViolationReporter() {
+            @Override
+            public void log(final int line, final String key, final Object... args) {
+            }
+
+            @Override
+            public void log(final int line, final int col, final String key, final Object... args) {
+            }
+        };
+
+        reporter.setSeverity("warning");
+
+        assertWithMessage("Severity level should be set to WARNING")
+                .that(reporter.getSeverityLevel())
+                .isEqualTo(SeverityLevel.WARNING);
+    }
 }
