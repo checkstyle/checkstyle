@@ -1934,6 +1934,18 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * String literal inside Javadoc.
+     *
+     * <p>Example in Javadoc:</p>
+     *
+     * <p>Tree:</p>
+     * <pre>{@code
+     * |   |   |       |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * |   |   |       |   `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
+     * |   |   |       |       |--AT_SIGN -> @
+     * |   |   |       |       |--TAG_NAME -> see
+     * |   |   |       |       |--TEXT ->
+     * |   |   |       |       `--STRING_LITERAL -> "foo"
+     * }</pre>
      */
     public static final int STRING_LITERAL = JavadocCommentsLexer.STRING_LITERAL;
 
