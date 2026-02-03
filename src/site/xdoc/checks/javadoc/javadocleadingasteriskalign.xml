@@ -113,7 +113,12 @@ public class Example2 {
   /**
     *  Javadoc for instance variable. // violation
     */ // violation
-  private String name;
+  private int ball;
+
+  /**
+    *  Javadoc for instance variable. // violation
+    */ // violation
+  private int age;
 
   /**
   *  Javadoc for method. // violation
@@ -123,7 +128,7 @@ public class Example2 {
   /**
    Javadoc for Constructor.
 */ // violation
-  private Example2() {}
+  public Example2() {}
 
   /**
     * Javadoc for enum. // violation
@@ -137,12 +142,7 @@ public class Example2 {
 
     /**
         * Incorrect indentation for leading asterisk. */ // violation
-    TWO,
-
-    /**
- *    // violation
-     */
-    THREE
+    TWO
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -170,7 +170,12 @@ public class Example3 {
   /** &lt;- Preceded with Tabs.
    * &lt;- Preceded with Tabs &amp; Spaces.
    */ // &lt;- Preceded with Tabs &amp; Spaces.
-  private String name;
+  private int ball;
+
+  /** &lt;- Preceded with Tabs.
+   * &lt;- Preceded with Tabs &amp; Spaces.
+   */ // &lt;- Preceded with Tabs &amp; Spaces.
+  private int age;
 
   /** &lt;- Preceded with Spaces.
    * &lt;- Preceded with Tabs.
@@ -180,7 +185,7 @@ public class Example3 {
   /**
     * // violation
   */ // violation
-  private Example3() {}
+  public Example3() {}
 
   private enum tabsExample {
     /**
