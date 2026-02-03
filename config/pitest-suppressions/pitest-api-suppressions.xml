@@ -1,3 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>AbstractViolationReporter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter</mutatedClass>
+    <mutatedMethod>setSeverity</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+  </mutation>
 </suppressedMutations>
