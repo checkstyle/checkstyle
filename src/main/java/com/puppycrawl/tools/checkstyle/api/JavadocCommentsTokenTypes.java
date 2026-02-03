@@ -1866,6 +1866,21 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Void HTML element (self-closing).
+     *
+     * <p>Example in Javadoc:</p>
+     * <pre>
+     * &lt;br&gt;
+     * </pre>
+     *
+     * <p>Tree:</p>
+     * <pre>
+     * HTML_ELEMENT -> HTML_ELEMENT
+     * `--VOID_ELEMENT -> VOID_ELEMENT
+     * `--HTML_TAG_START -> HTML_TAG_START
+     * |--TAG_OPEN -> &lt;
+     * |--TAG_NAME -> br
+     * `--TAG_CLOSE -> &gt;
+     * </pre>
      */
     public static final int VOID_ELEMENT = JavadocCommentsLexer.VOID_ELEMENT;
 
