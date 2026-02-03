@@ -995,6 +995,7 @@ nullcase
 nullcheck
 nullness
 numberperline
+numericalprefixesinfixessuffixescharactercase
 numericliterals
 nutsandbolts
 nvim
