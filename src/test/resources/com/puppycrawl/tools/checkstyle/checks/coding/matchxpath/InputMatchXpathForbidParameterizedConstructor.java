@@ -10,9 +10,11 @@ package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
 public class InputMatchXpathForbidParameterizedConstructor {
 
-    public InputMatchXpathForbidParameterizedConstructor(Object c) { } // violation
+    // violation below 'Parameterized constructors are not allowed'
+    public InputMatchXpathForbidParameterizedConstructor(Object c) { }
 
-    public InputMatchXpathForbidParameterizedConstructor(int a, String b) { } // violation
+    // violation below 'Parameterized constructors are not allowed'
+    public InputMatchXpathForbidParameterizedConstructor(int a, String b) { }
 
     public InputMatchXpathForbidParameterizedConstructor() { }
 }
