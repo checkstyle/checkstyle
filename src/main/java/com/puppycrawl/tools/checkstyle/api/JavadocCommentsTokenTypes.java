@@ -1794,7 +1794,38 @@ public final class JavadocCommentsTokenTypes {
     public static final int SNIPPET_BODY = JavadocCommentsLexer.SNIPPET_BODY;
 
     /**
-     * Field type reference.
+     * Field type reference in a Javadoc.
+     *
+     * <p>Example:</p>
+     * <pre>
+     * &#47;**
+     * * &#64;serialField counter int The counter.
+     * *&#47;
+     * </pre>
+     *
+     * <b>Tree:</b>
+     * <pre>
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--TEXT -> /&#42;*
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--SERIAL_FIELD_BLOCK_TAG -> SERIAL_FIELD_BLOCK_TAG
+     * |--AT_SIGN -> @
+     * |--TAG_NAME -> serialField
+     * |--TEXT ->
+     * |--IDENTIFIER -> counter
+     * |--TEXT ->
+     * |--FIELD_TYPE -> int
+     * `--DESCRIPTION -> DESCRIPTION
+     * |--TEXT ->  The counter.
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->  *
+     * `--TEXT -> /
+     * </pre>
+     *
+     * @see #FIELD_TYPE
      */
     public static final int FIELD_TYPE = JavadocCommentsLexer.FIELD_TYPE;
 
