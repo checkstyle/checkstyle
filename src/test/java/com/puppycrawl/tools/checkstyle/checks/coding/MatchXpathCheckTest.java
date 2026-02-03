@@ -158,8 +158,8 @@ public class MatchXpathCheckTest
     public void testForbidParameterizedConstructor()
             throws Exception {
         final String[] expected = {
-            "13:5: Parameterized constructors are not allowed",
-            "15:5: Parameterized constructors are not allowed",
+            "14:5: Parameterized constructors are not allowed",
+            "17:5: Parameterized constructors are not allowed",
         };
         verifyWithInlineConfigParser(
                 getPath("InputMatchXpathForbidParameterizedConstructor.java"),
