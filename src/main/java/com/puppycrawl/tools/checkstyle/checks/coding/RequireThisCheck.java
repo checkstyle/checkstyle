@@ -387,6 +387,13 @@ public class RequireThisCheck extends AbstractCheck {
                 }
             }
 
+            case TokenTypes.PATTERN_VARIABLE_DEF -> {
+                final DetailAST patternVariableIdent = ast.getLastChild();
+                if (patternVariableIdent.getType() == TokenTypes.IDENT) {
+                    frame.addIdent(patternVariableIdent);
+                }
+            }
+
             case TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF, TokenTypes.ENUM_DEF,
                  TokenTypes.ANNOTATION_DEF, TokenTypes.RECORD_DEF -> {
                 final DetailAST classFrameNameIdent = ast.findFirstToken(TokenTypes.IDENT);
@@ -913,11 +920,11 @@ public class RequireThisCheck extends AbstractCheck {
     }
 
     /**
-     * Find the class frame containing declaration.
-     *
-     * @param name IDENT ast of the declaration to find.
-     * @param lookForMethod whether we are looking for a method name.
-     * @return AbstractFrame containing declaration or null.
+
+     * @param name 
+     * @param lookForMethod 
+     * @return 
+     *        
      */
     private AbstractFrame findClassFrame(DetailAST name, boolean lookForMethod) {
         AbstractFrame frame = current.peek();
@@ -925,11 +932,14 @@ public class RequireThisCheck extends AbstractCheck {
         while (true) {
             frame = findFrame(frame, name, lookForMethod);
 
-            if (frame == null || frame instanceof ClassFrame) {
+            if (frame == null) {
                 break;
             }
-
-            frame = frame.getParent();
+            if (frame instanceof ClassFrame) {
+                break;
+            }
+            
+            return null;
         }
 
         return frame;
