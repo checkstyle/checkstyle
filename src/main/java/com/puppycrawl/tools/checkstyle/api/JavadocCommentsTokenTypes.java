@@ -1559,6 +1559,22 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Single type argument in generics.
+     *
+     * <p>This node represents one individual type inside a generic type
+     * argument list.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * {@link java.util.List<String>}
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--TYPE_ARGUMENT -> TYPE_ARGUMENT
+     * |   `--IDENTIFIER -> String
+     * }</pre>
+     *
+     * @see #TYPE_ARGUMENTS
      */
     public static final int TYPE_ARGUMENT = JavadocCommentsLexer.TYPE_ARGUMENT;
 
