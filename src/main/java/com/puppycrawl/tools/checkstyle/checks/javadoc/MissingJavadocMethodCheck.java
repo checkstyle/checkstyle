@@ -288,12 +288,14 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * @return whether we should check a given node.
      */
     private boolean shouldCheck(final DetailAST ast, final Scope nodeScope) {
-        final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
-
-        return nodeScope != excludeScope
-                && surroundingScope != excludeScope
-                && nodeScope.isIn(scope)
-                && surroundingScope.isIn(scope);
+        return ScopeUtil.getSurroundingScope(ast)
+            .map(surroundingScope -> {
+                return nodeScope != excludeScope
+                    && surroundingScope != excludeScope
+                    && nodeScope.isIn(scope)
+                    && surroundingScope.isIn(scope);
+            })
+            .orElse(Boolean.FALSE);
     }
 
     /**

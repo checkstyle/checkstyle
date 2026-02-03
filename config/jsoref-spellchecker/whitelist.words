@@ -78,6 +78,7 @@ attr
 autoboxing
 autobuild
 autocomplete
+autoconfiguration
 autocrlf
 autofix
 Autoproxy
@@ -382,7 +383,6 @@ emptytag
 Emtpy
 endline
 enegger
-ENMI
 ent
 enum
 eol
@@ -1407,6 +1407,7 @@ Toolbar
 toolongpackagetotestcoveragegooglesjavastylerule
 TOSTRING
 Touchscreen
+tpc
 trailingcomment
 treemap
 treeset
@@ -1451,6 +1452,7 @@ unnecessarysemicoloninenumeration
 unnecessarysemicolonintrywithresources
 unparseable
 Unproxyable
+unrecognised
 unregister
 unstale
 unsubscribe
