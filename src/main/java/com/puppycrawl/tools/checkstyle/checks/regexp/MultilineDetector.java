@@ -76,7 +76,7 @@ public class MultilineDetector {
      * @param fileText the text to process
      */
     public void processLines(FileText fileText) {
-        text = new FileText(fileText);
+        text = fileText;
         resetState();
 
         final String format = options.getFormat();
@@ -84,7 +84,7 @@ public class MultilineDetector {
             options.getReporter().log(1, MSG_EMPTY);
         }
         else {
-            matcher = options.getPattern().matcher(fileText.getFullText());
+            matcher = options.getPattern().matcher(text.getFullText());
             findMatch();
             finish();
         }
@@ -98,7 +98,16 @@ public class MultilineDetector {
             while (foundMatch) {
                 currentMatches++;
                 if (currentMatches > options.getMaximum()) {
-                    final LineColumn start = text.lineColumn(matcher.start());
+                    final int startIndex;
+                    if (options.getReportGroup() > 0
+                            && options.getReportGroup() <= matcher.groupCount()) {
+                        startIndex = matcher.start(options.getReportGroup());
+                    }
+                    else {
+                        startIndex = matcher.start();
+                    }
+                    final LineColumn start = text.lineColumn(startIndex);
+
                     if (options.getMessage().isEmpty()) {
                         options.getReporter().log(start.getLine(),
                                 MSG_REGEXP_EXCEEDED, matcher.pattern().toString());
