@@ -568,7 +568,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         for (DetailAST typeChild = token.findFirstToken(TokenTypes.TYPE).getLastChild();
              typeChild != null; typeChild = typeChild.getPreviousSibling()) {
 
-            if (isTokenNotOnPreviousSiblingLines(typeChild, token)) {
+            if (typeChild.getLineNo() > 2 && isTokenNotOnPreviousSiblingLines(typeChild, token)) {
 
                 final String commentBeginningPreviousLine =
                     getLine(typeChild.getLineNo() - 2);
