@@ -1930,6 +1930,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/unnecessarypermitsclause.html#UnnecessaryPermitsClause">
+                UnnecessaryPermitsClause
+              </a>
+            </td>
+            <td>
+              Checks for unnecessary permits clauses in sealed classes and interfaces.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/unnecessarysemicolonafteroutertypedeclaration.html#UnnecessarySemicolonAfterOuterTypeDeclaration">
                 UnnecessarySemicolonAfterOuterTypeDeclaration
               </a>

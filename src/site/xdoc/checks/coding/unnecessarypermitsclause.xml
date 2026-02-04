@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>UnnecessaryPermitsClause</title>
+  </head>
+  <body>
+    <section name="UnnecessaryPermitsClause">
+      <p>Since Checkstyle 13.1.0</p>
+      <subsection name="Description" id="UnnecessaryPermitsClause_Description">
+        <div>
+          Checks for unnecessary permits clauses in sealed classes and interfaces.
+        </div>
+
+        <p>
+          In the Java programming language, a sealed type may specify a <code>permits</code>
+          clause to explicitly list all allowed subclasses. The <code>permits</code> clause is
+          optional if all permitted types are nested or declared within the same file.
+        </p>
+
+        <p>
+          This check tracks:
+        <ul>
+        <li>the permitted types listed in the <code>permits</code> clause of a sealed type</li>
+        <li>all subclasses/implementations found in the same file</li>
+        </ul>
+          If all permitted types are found in the same compilation unit, a violation is logged.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="UnnecessaryPermitsClause_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnnecessaryPermitsClause"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public sealed class Example1 permits A, B {
+// violation above 'permits clause unnecessary for 'Example1', all subclasses in same file.'
+}
+
+final class A extends Example1 {
+}
+
+final class B extends Example1 {
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnnecessaryPermitsClause"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public sealed interface Example2 permits A, B {
+    // ok as all permitted subclasses are not in same file
+}
+
+final class A implements Example2 {
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="UnnecessaryPermitsClause_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessaryPermitsClause">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="UnnecessaryPermitsClause_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.permit.clause%22">
+              unnecessary.permit.clause
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="UnnecessaryPermitsClause_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="UnnecessaryPermitsClause_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
