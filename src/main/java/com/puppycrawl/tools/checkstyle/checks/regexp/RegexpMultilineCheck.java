@@ -58,6 +58,8 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
     private boolean ignoreCase;
     /** Control whether to match expressions across multiple lines. */
     private boolean matchAcrossLines;
+    /** Specify which capturing group to use for violation reporting. */
+    private int reportGroup;
 
     /** The detector to use. */
     private MultilineDetector detector;
@@ -72,6 +74,7 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
             .minimum(minimum)
             .maximum(maximum)
             .ignoreCase(ignoreCase)
+            .reportGroup(reportGroup)
             .build();
         detector = new MultilineDetector(options);
     }
@@ -159,6 +162,16 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
      */
     public void setMatchAcrossLines(boolean matchAcrossLines) {
         this.matchAcrossLines = matchAcrossLines;
+    }
+
+    /**
+     * Setter to specify which capturing group to use for violation reporting.
+     *
+     * @param reportGroup the capturing group number to use (0 for entire match).
+     * @since 13.1.0
+     */
+    public void setReportGroup(int reportGroup) {
+        this.reportGroup = reportGroup;
     }
 
 }

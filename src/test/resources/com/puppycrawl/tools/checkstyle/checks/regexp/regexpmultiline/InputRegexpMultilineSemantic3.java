@@ -6,6 +6,7 @@ ignoreCase = true
 minimum = (default)0
 maximum = (default)0
 matchAcrossLines = (default)false
+reportGroup = (default)0
 fileExtensions = (default)""
 
 
