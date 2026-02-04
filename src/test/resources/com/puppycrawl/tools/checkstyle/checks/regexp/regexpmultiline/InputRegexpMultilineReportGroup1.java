@@ -1,31 +1,21 @@
 /*
 RegexpMultiline
-format = (a)bc\.*?def
+format = Start.*(End)
 message = (default)(null)
 ignoreCase = (default)false
 minimum = (default)0
 maximum = (default)0
 matchAcrossLines = true
-reportGroup = (default)0
+reportGroup = 1
 fileExtensions = (default)""
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpmultiline;
 
-/**
- * Config format = 'ABC.*?DEF'(lowercased)
- * matchAcrossLines = true
- */
-public class InputRegexpMultilineMultilineSupport2 {
+public class InputRegexpMultilineReportGroup1 {
     void method() {
-// abc // violation
-// def
-// abc // violation
-    }
-
-    void method2() {
-// def
-// abc
+// Start
+// End   // violation
     }
 }
