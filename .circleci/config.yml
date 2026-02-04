@@ -265,6 +265,9 @@ workflows:
       - validate-with-script:
           name: "git-check-pull-number"
           command: "./.ci/validation.sh git-check-pull-number"
+      - validate-with-script:
+          name: git-check-single-commit
+          command: ./.ci/validation.sh git-check-single-commit
 
   cli-validation:
     jobs:
