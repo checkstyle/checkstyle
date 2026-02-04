@@ -66,12 +66,7 @@ public class PrecedingIterator implements AxisIterator {
 
             if (result == null && previousSiblingEnum != null) {
                 result = previousSiblingEnum.next();
-                if (result == null) {
-                    previousSiblingEnum = null;
-                }
-                else {
-                    descendantEnum = new ReverseDescendantIterator(result);
-                }
+                checkResultForPreceding(result);
             }
 
             if (result == null) {
@@ -83,5 +78,20 @@ public class PrecedingIterator implements AxisIterator {
             }
         }
         return result;
+    }
+
+    /**
+     * Check the result from preceding-sibling axis and prepare descendant
+     * iterator if needed.
+     *
+     * @param result the result from preceding-sibling axis
+     */
+    public void checkResultForPreceding(NodeInfo result) {
+        if (result == null) {
+            previousSiblingEnum = null;
+        }
+        else {
+            descendantEnum = new ReverseDescendantIterator(result);
+        }
     }
 }
