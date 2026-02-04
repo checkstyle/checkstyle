@@ -259,4 +259,13 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
                 getPath("InputRegexpMultilineMultilineSupport2.java"), expected);
     }
 
+    @Test
+    public void testReportGroup() throws Exception {
+        final String[] expected = {
+            "20: Console print after specific context",
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpMultilineReportGroup.java"), expected);
+    }
+
 }

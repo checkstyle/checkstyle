@@ -17,7 +17,6 @@
           Rationale: This check can be used to when the regular expression can be span multiple lines.
         </p>
       </subsection>
-
       <subsection name="Properties" id="RegexpMultiline_Properties">
         <div class="wrapper">
           <table>
@@ -77,10 +76,16 @@
               <td><code>0</code></td>
               <td>5.0</td>
             </tr>
+            <tr>
+              <td><a id="reportGroup"/><a href="#reportGroup">reportGroup</a></td>
+              <td>Specify which capturing group determines violation position.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>0</code></td>
+              <td>13.2.0</td>
+            </tr>
           </table>
         </div>
       </subsection>
-
       <subsection name="Examples" id="RegexpMultiline_Examples">
         <p id="Example1-config">
         To run the check with its default configuration (no matches will be):
@@ -355,8 +360,37 @@ class Example5 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /var/tmp/Test.java // violation, a file must not be empty.
         </code></pre></div>
-      </subsection>
+        <hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check to match text that spans multiple lines,
+          and report the violation on a specific capturing group (in this case, group 2):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpMultiline"&gt;
+    &lt;property name="matchAcrossLines" value="true"/&gt;
+    &lt;property name="format" value="(// CONTEXT\n\s*)(System\.out\.print\()"/&gt;
+    &lt;property name="reportGroup" value="2"/&gt;
+    &lt;property name="message" value="Console print after specific context"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example7 {
+  void testMethod1() {
+    // CONTEXT
+    System.out.print("Should be reported here"); // violation
+  }
 
+  void testMethod2() {
+    System.out.print("This alone is OK");
+  }
+}
+</code></pre></div>
+      </subsection>
       <subsection name="Example of Usage" id="RegexpMultiline_Example_of_Usage">
         <ul>
           <li>
@@ -365,7 +399,6 @@ class Example5 {
           </li>
         </ul>
       </subsection>
-
       <subsection name="Violation Messages" id="RegexpMultiline_Violation_Messages">
         <ul>
           <li>
@@ -395,13 +428,11 @@ class Example5 {
           to learn how to.
         </p>
       </subsection>
-
       <subsection name="Package" id="RegexpMultiline_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.regexp
         </p>
       </subsection>
-
       <subsection name="Parent Module" id="RegexpMultiline_Parent_Module">
         <p>
           <a href="../../config.html#Checker">Checker</a>

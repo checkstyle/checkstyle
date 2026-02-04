@@ -54,6 +54,8 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
     private int minimum;
     /** Specify the maximum number of matches required in each file. */
     private int maximum;
+    /** Specify which capturing group determines violation position. */
+    private int reportGroup;
     /** Control whether to ignore case when searching. */
     private boolean ignoreCase;
     /** Control whether to match expressions across multiple lines. */
@@ -72,6 +74,7 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
             .minimum(minimum)
             .maximum(maximum)
             .ignoreCase(ignoreCase)
+            .reportGroup(reportGroup)
             .build();
         detector = new MultilineDetector(options);
     }
@@ -139,6 +142,16 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
      */
     public void setMaximum(int maximum) {
         this.maximum = maximum;
+    }
+
+    /**
+     * Setter to specify which capturing group determines violation position.
+     *
+     * @param reportGroup capturing group index
+     * @since 13.2.0
+     */
+    public void setReportGroup(int reportGroup) {
+        this.reportGroup = reportGroup;
     }
 
     /**
