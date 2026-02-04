@@ -37,9 +37,10 @@ public class InputOneStatementPerLine2 {
     // violation above ''{' at column 64 should have line break after.'
     List<Integer> ints = new LinkedList<Integer>();
     ints.stream().map(t -> { return t * 2; }).filter(t -> { return false; });
-    // 2 violations above:
+    // 3 violations above:
     //  ''{' at column 28 should have line break after.'
     //  ''{' at column 59 should have line break after.'
+    //  'Only one statement per line allowed.'
     ints.stream().map(t -> { int m = t * 2; return m; });
     // 2 violations above:
     //  ''{' at column 28 should have line break after.'
