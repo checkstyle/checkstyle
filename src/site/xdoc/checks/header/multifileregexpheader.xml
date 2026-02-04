@@ -49,10 +49,10 @@
           To configure the check such that no violations arise.
           Default values of properties are used.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="MultiFileRegexpHeader"/&gt;
-&lt;/module&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
+// ok, as by default there is not specific header defined to validate it presence
+public class Example1 { }
 </code></pre></div>
 
         <p id="Example1-code">Example1:</p>
@@ -95,35 +95,45 @@ public class Example1 { }
 
         <p id="Example2-code">Example2:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// Wrong header format
 package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
-/* violation on first line 'Header mismatch, expected line content was' */
-// because headerFile is bigger then target java file
-public class Example2 { }
+
+public class Example2 {
+    // Some code
+}
+// violation 6 lines above 'Header mismatch, expected line content was'
 </code></pre></div>
         <hr class="example-separator"/>
 
         <p id="Example3-raw">
-          To configure the check to verify that each file starts with one of
-          multiple headers.
+          To configure the check to use multiple header files (same as Example2), 
+          but with code that has a matching header:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;?xml version="1.0"?&gt;
 &lt;!DOCTYPE module PUBLIC
-        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
         "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
 &lt;module name="Checker"&gt;
     &lt;module name="MultiFileRegexpHeader"&gt;
-        &lt;property name="headerFiles"
-                  value="${config.folder}/java.header, ${config.folder}/apache.header"/&gt;
+        &lt;property name="fileExtensions" value="java"/&gt;
+        &lt;property name="headerFiles" value="${config.folder}/java.header, ${config.folder}/apache.header"/&gt;
     &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
 
         <p id="Example3-code">Example3:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/* Licensed to the ASF under the Apache License, Version 2.0 (see NOTICE).
+* You may not use this file except in compliance:
+* http://www.apache.org/licenses/LICENSE-2.0 (AS IS, no warranties/conditions). */
 package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
-/* violation on first line 'Header mismatch, expected line content was' */
-public class Example3 { }
+
+public class Example3 {
+    // Some code
+}
+// ok
+</code></pre></div>
 </code></pre></div>
         <hr class="example-separator"/>
 
@@ -153,8 +163,8 @@ public class Example3 { }
           <code>&quot;.*&quot;</code> matches all lines, so no violations are expected.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// Any header works here
 package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
-// ok, as regex value matches all lines
 public class Example4 { }
 </code></pre></div>
 
