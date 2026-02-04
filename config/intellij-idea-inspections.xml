@@ -4490,6 +4490,8 @@
         <option value="InvalidInlineTag"/>
         <!-- suppression for unrecognised javadoc tag -->
         <option value="UnrecognisedJavadocTag"/>
+        <!-- suppression for inline me suggester -->
+        <option value="InlineMeSuggester"/>
         <!-- false positives -->
         <option value="JUnitTestCaseWithNoTests"/>
         <!-- false positives -->
