@@ -137,11 +137,13 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
      * @return whether we should check a given node.
      */
     private boolean shouldCheck(final DetailAST ast) {
-        final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
-
-        return surroundingScope.isIn(scope)
-                && (excludeScope == null || !surroundingScope.isIn(excludeScope))
-                && !AnnotationUtil.containsAnnotation(ast, skipAnnotations);
+        return ScopeUtil.getSurroundingScope(ast)
+            .map(surroundingScope -> {
+                return surroundingScope.isIn(scope)
+                    && (excludeScope == null || !surroundingScope.isIn(excludeScope))
+                    && !AnnotationUtil.containsAnnotation(ast, skipAnnotations);
+            })
+            .orElse(Boolean.FALSE);
     }
 
 }

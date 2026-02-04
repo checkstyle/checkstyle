@@ -263,12 +263,57 @@ no-error-pmd)
 no-error-hazelcast)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
-  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
   echo "Checkout Hazelcast sources..."
   checkout_from "https://github.com/hazelcast/hazelcast.git"
   cd .ci-temp/hazelcast
-  mvn -e --no-transfer-progress checkstyle:check \
-    -Dcheckstyle.version="${CS_POM_VERSION}"
+
+  # Modules using Apache License header
+  APACHE_SOURCES=()
+  for module in hazelcast hazelcast-spring hazelcast-spring-boot-autoconfiguration \
+                hazelcast-spring-tests hazelcast-build-utils hazelcast-tpc-engine \
+                hazelcast-archunit-rules; do
+    if [ -d "$module/src/main/java" ]; then
+      APACHE_SOURCES+=("$module/src/main/java")
+    fi
+    if [ -d "$module/src/test/java" ]; then
+      APACHE_SOURCES+=("$module/src/test/java")
+    fi
+  done
+
+  cat > checkstyle-apache.properties << EOF
+checkstyle.suppressions.file=checkstyle/suppressions.xml
+checkstyle.header.file=checkstyle/ClassHeaderApache.txt
+EOF
+  echo "Running Checkstyle on Apache-licensed modules..."
+  readarray -t apache_files < <(find "${APACHE_SOURCES[@]}" \
+    -name '*.java' ! -name 'module-info.java')
+  java -jar ../../target/checkstyle-"${CS_POM_VERSION}"-all.jar \
+    -c checkstyle/checkstyle.xml \
+    -p checkstyle-apache.properties \
+    "${apache_files[@]}"
+
+  # hazelcast-sql uses Hazelcast Community License header
+  COMMUNITY_SOURCES=()
+  if [ -d "hazelcast-sql/src/main/java" ]; then
+    COMMUNITY_SOURCES+=("hazelcast-sql/src/main/java")
+  fi
+  if [ -d "hazelcast-sql/src/test/java" ]; then
+    COMMUNITY_SOURCES+=("hazelcast-sql/src/test/java")
+  fi
+
+  cat > checkstyle-community.properties << EOF
+checkstyle.suppressions.file=checkstyle/suppressions.xml
+checkstyle.header.file=checkstyle/ClassHeaderHazelcastCommunity.txt
+EOF
+  echo "Running Checkstyle on Community-licensed modules (hazelcast-sql)..."
+  readarray -t community_files < <(find "${COMMUNITY_SOURCES[@]}" \
+    -name '*.java' ! -name 'module-info.java')
+  java -jar ../../target/checkstyle-"${CS_POM_VERSION}"-all.jar \
+    -c checkstyle/checkstyle.xml \
+    -p checkstyle-community.properties \
+    "${community_files[@]}"
+
   cd ..
   removeFolderWithProtectedFiles hazelcast
   ;;

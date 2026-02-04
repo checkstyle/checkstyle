@@ -244,13 +244,6 @@
     <Bug pattern="ITC_INHERITANCE_TYPE_CHECKING"/>
   </Match>
   <Match>
-    <!-- Till https://github.com/checkstyle/checkstyle/issues/13351 -->
-    <Or>
-      <Class name="com.puppycrawl.tools.checkstyle.utils.ScopeUtil"/>
-    </Or>
-    <Bug pattern="ENMI_NULL_ENUM_VALUE"/>
-  </Match>
-  <Match>
     <!-- Swing TreeModel API requires passing 'this' as event source -->
     <Or>
       <Class name="com.puppycrawl.tools.checkstyle.gui.ParseTreeTableModel"/>

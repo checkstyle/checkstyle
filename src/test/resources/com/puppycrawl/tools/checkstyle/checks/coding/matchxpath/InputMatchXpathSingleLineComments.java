@@ -10,7 +10,9 @@ public class InputMatchXpathSingleLineComments {
     void foo() {
         int num; // Trailing comment
 
-        boolean isTrue; //Some Comment // violation
-        double pi = 3.14; //Constant PI value // violation
+        // violation below 'Illegal code structure detected'
+        boolean isTrue; //Some Comment
+        // violation below 'Illegal code structure detected'
+        double pi = 3.14; //Constant PI value
     }
 }

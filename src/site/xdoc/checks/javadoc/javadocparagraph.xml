@@ -36,7 +36,8 @@
         <p>This Check ignores HTML comments.</p>
 
         <p>The Check ignores all the nested paragraph tags,
-          it will not give any kind of violation if the paragraph tag is nested.</p>
+          it will not give any kind of violation if the paragraph tag is nested.
+          It also ignores paragraph tags inside block tags.</p>
       </subsection>
 
       <subsection name="Properties" id="JavadocParagraph_Properties">

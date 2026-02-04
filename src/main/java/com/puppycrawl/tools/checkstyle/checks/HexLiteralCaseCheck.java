@@ -44,10 +44,10 @@ public class HexLiteralCaseCheck extends AbstractCheck {
     public static final String MSG_KEY = "hex.literal";
 
     /** ASCII value for lowercase 'a'. */
-    private static final int A_ASCII = 97;
+    private static final int A_LOWER_ASCII = 97;
 
     /** ASCII value for lowercase 'f'. */
-    private static final int F_ASCII = 102;
+    private static final int F_LOWER_ASCII = 102;
 
     @Override
     public int[] getDefaultTokens() {
@@ -61,15 +61,26 @@ public class HexLiteralCaseCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.NUM_LONG, TokenTypes.NUM_INT};
+        return new int[] {TokenTypes.NUM_LONG, TokenTypes.NUM_INT, TokenTypes.NUM_FLOAT,
+            TokenTypes.NUM_DOUBLE,
+        };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         final String text = ast.getText();
-        if ((text.startsWith("0x") || text.startsWith("0X"))
-                && containsLowerLetter(text)) {
-            log(ast, MSG_KEY);
+        if (text.startsWith("0x") || text.startsWith("0X")) {
+            final int type = ast.getType();
+            if (type == TokenTypes.NUM_FLOAT || type == TokenTypes.NUM_DOUBLE) {
+                if (containsLowerLetterInHexFloatLiteral(text)) {
+                    log(ast, MSG_KEY);
+                }
+            }
+            else {
+                if (containsLowerLetter(text)) {
+                    log(ast, MSG_KEY);
+                }
+            }
         }
     }
 
@@ -83,7 +94,7 @@ public class HexLiteralCaseCheck extends AbstractCheck {
         boolean result = false;
         final char[] characterList = text.toCharArray();
         for (char character : characterList) {
-            if (character >= A_ASCII && character <= F_ASCII) {
+            if (character >= A_LOWER_ASCII && character <= F_LOWER_ASCII) {
                 result = true;
                 break;
             }
@@ -91,4 +102,24 @@ public class HexLiteralCaseCheck extends AbstractCheck {
         return result;
     }
 
+    /**
+     * Checks if the given text contains any lowercase hexadecimal letter in
+     * Hex Float Literal (a–f).
+     *
+     * @param text the literal text to check
+     * @return true if the literal contains lowercase hex digits; false otherwise
+     */
+    public static boolean containsLowerLetterInHexFloatLiteral(final String text) {
+        boolean result = false;
+
+        final int index = text.length() - 1;
+        for (char character : text.substring(0, index).toCharArray()) {
+            if (character >= A_LOWER_ASCII && character <= F_LOWER_ASCII) {
+                result = true;
+                break;
+            }
+        }
+
+        return result;
+    }
 }

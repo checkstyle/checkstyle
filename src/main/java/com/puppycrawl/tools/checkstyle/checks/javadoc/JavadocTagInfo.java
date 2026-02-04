@@ -64,6 +64,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  *
  */
+@SuppressWarnings("UnrecognisedJavadocTag")
 public enum JavadocTagInfo {
 
     /**
