@@ -98,7 +98,19 @@ public class MultilineDetector {
             while (foundMatch) {
                 currentMatches++;
                 if (currentMatches > options.getMaximum()) {
-                    final LineColumn start = text.lineColumn(matcher.start());
+                    final int reportGroupValue = options.getReportGroup();
+                    final int violationStartIndex;
+
+                    if (reportGroupValue <= matcher.groupCount()
+                            && matcher.start(reportGroupValue) != -1) {
+                        violationStartIndex = matcher.start(reportGroupValue);
+                    }
+                    else {
+                        violationStartIndex = matcher.start();
+                    }
+
+                    final LineColumn start = text.lineColumn(violationStartIndex);
+
                     if (options.getMessage().isEmpty()) {
                         options.getReporter().log(start.getLine(),
                                 MSG_REGEXP_EXCEEDED, matcher.pattern().toString());

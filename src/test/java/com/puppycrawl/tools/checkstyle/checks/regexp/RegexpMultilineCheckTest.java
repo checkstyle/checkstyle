@@ -259,4 +259,40 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
                 getPath("InputRegexpMultilineMultilineSupport2.java"), expected);
     }
 
+    @Test
+    public void testReportGroup1() throws Exception {
+        final String[] expected = {
+            "19: " + "Illegal multiline match found",
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpMultilineReportGroup1.java"), expected);
+    }
+
+    @Test
+    public void testReportGroup2() throws Exception {
+        final String[] expected = {
+            "20: " + "Illegal literal found",
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpMultilineReportGroup2.java"), expected);
+    }
+
+    @Test
+    public void testReportGroup3() throws Exception {
+        final String[] expected = {
+            "19: " + "Required pattern match",
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpMultilineReportGroup3.java"), expected);
+    }
+
+    @Test
+    public void testReportGroup4() throws Exception {
+        final String[] expected = {
+            "19: " + "Invalid group check",
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpMultilineReportGroup4.java"), expected);
+    }
+
 }
