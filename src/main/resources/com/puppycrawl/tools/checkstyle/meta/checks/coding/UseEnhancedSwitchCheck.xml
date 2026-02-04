@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UseEnhancedSwitchCheck"
+             name="UseEnhancedSwitch"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Ensures that the enhanced switch (using &lt;code&gt;-&gt;&lt;/code&gt; for case labels) is used
+ instead of the traditional switch (using &lt;code&gt;:&lt;/code&gt; for case labels) where possible.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Rationale: Java 14 has introduced enhancements for switch statements and expressions
+ that disallow fall-through behavior. The enhanced switch syntax using &lt;code&gt;-&gt;&lt;/code&gt;
+ for case labels typically leads to more concise and readable code, reducing the likelihood
+ of errors associated with fall-through cases.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ See the &lt;a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-14.html#jls-14.11.1-200"&gt;
+ Java Language Specification&lt;/a&gt; for more information about &lt;code&gt;-&gt;&lt;/code&gt; case labels, also known as
+ "switch rules".
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="use.enhanced.switch"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
