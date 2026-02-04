@@ -570,6 +570,10 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
             if (isTokenNotOnPreviousSiblingLines(typeChild, token)) {
 
+                if (typeChild.getLineNo() <= 2) {
+                    continue;
+                }
+
                 final String commentBeginningPreviousLine =
                     getLine(typeChild.getLineNo() - 2);
                 final String commentBeginningPrePreviousLine =
