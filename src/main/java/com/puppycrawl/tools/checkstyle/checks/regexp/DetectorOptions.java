@@ -46,6 +46,8 @@ public final class DetectorOptions {
     private int minimum;
     /** Maximum number of times regular expression should occur in a file. */
     private int maximum;
+    /** Capturing group index used to determine violation position. */
+    private int reportGroup;
     /** Whether to ignore case when matching. */
     private boolean ignoreCase;
     /** Used to determine whether to suppress a detected match. */
@@ -109,6 +111,15 @@ public final class DetectorOptions {
      */
     public int getMaximum() {
         return maximum;
+    }
+
+    /**
+     * Returns the capturing group index used for violation position.
+     *
+     * @return capturing group index
+     */
+    public int getReportGroup() {
+        return reportGroup;
     }
 
     /**
@@ -208,6 +219,19 @@ public final class DetectorOptions {
          */
         public Builder maximum(int val) {
             maximum = val;
+            return this;
+        }
+
+        /**
+         * Specifies which capturing group determines violation position.
+         *
+         * @param val capturing group index
+         * @return Builder object
+         * @noinspection ReturnOfInnerClass
+         * @noinspectionreason ReturnOfInnerClass - builder is only used in enclosing class
+         */
+        public Builder reportGroup(int val) {
+            reportGroup = val;
             return this;
         }
 

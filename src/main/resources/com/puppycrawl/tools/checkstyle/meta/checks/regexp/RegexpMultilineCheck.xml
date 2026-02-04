@@ -34,6 +34,9 @@
             <property default-value="0" name="minimum" type="int">
                <description>Specify the minimum number of matches required in each file.</description>
             </property>
+            <property default-value="0" name="reportGroup" type="int">
+               <description>Specify which capturing group determines violation position.</description>
+            </property>
          </properties>
          <message-keys>
             <message-key key="regexp.StackOverflowError"/>
