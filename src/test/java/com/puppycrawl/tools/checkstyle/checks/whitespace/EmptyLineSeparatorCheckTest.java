@@ -751,4 +751,133 @@ public class EmptyLineSeparatorCheckTest
         );
     }
 
+    /**
+     * This input file intentionally has no inline config header
+     * to reproduce the crash conditions (token at index 0 or 1),
+     * so {@code verifyWithInlineConfigParser} cannot be used here.
+     */
+    @Test
+    public void testIssue18660() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+            getNonCompilablePath("InputEmptyLineSeparatorCrash18660.java"),
+                expected);
+    }
+
+    /**
+     * This input file intentionally has no inline config header
+     * to reproduce the crash conditions (token at index 0 or 1),
+     * so {@code verifyWithInlineConfigParser} cannot be used here.
+     */
+    @Test
+    public void testIssue18660a() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorIssue18660a.java"), expected);
+    }
+
+    /**
+     * This input file intentionally has no inline config header
+     * to reproduce the crash conditions (token at index 0 or 1),
+     * so {@code verifyWithInlineConfigParser} cannot be used here.
+     */
+    @Test
+    public void testIssue18660b() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
+        final String[] expected = {
+            "6:24: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+        };
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorIssue18660b.java"), expected);
+    }
+
+    /**
+     * This input file intentionally has no inline config header
+     * to reproduce the crash conditions (token at index 0 or 1),
+     * so {@code verifyWithInlineConfigParser} cannot be used here.
+     */
+    @Test
+    public void testIssue18660c() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorIssue18660c.java"), expected);
+    }
+
+    /**
+     * This input file intentionally has no inline config header
+     * to reproduce the crash conditions (token at index 0 or 1),
+     * so {@code verifyWithInlineConfigParser} cannot be used here.
+     */
+    @Test
+    public void testIssue18660d() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
+        final String[] expected = {
+            "7:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+        };
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorIssue18660d.java"), expected);
+    }
+
+    /**
+     * This input file intentionally has no inline config header
+     * to reproduce the crash conditions (token at index 0 or 1),
+     * so {@code verifyWithInlineConfigParser} cannot be used here.
+     */
+    @Test
+    public void testIssue18660e() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+                getNonCompilablePath("InputEmptyLineSeparatorIssue18660e.java"),
+                expected);
+    }
+
+    /**
+     * This input file intentionally has no inline config header
+     * to reproduce the crash conditions (token at index 0 or 1),
+     * so {@code verifyWithInlineConfigParser} cannot be used here.
+     */
+    @Test
+    public void testMutationHasEmptyLineBefore() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
+        final String[] expected = {
+            "6:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+            "9:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "12:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputEmptyLineSeparatorMutationTest.java"), expected);
+    }
+
+    /**
+     * This input file intentionally has no inline config header
+     * to reproduce the crash conditions (token at index 0 or 1),
+     * so {@code verifyWithInlineConfigParser} cannot be used here.
+     */
+    @Test
+    public void testTopOfFileEdgeCase() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(EmptyLineSeparatorCheck.class);
+        final String[] expected = {};
+        verify(checkConfig,
+                getNonCompilablePath("InputEmptyLineSeparatorCrash18660.java"), expected);
+    }
+
 }
