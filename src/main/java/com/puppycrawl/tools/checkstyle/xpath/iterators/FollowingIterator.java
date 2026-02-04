@@ -66,12 +66,7 @@ public class FollowingIterator implements AxisIterator {
 
             if (result == null && siblingEnum != null) {
                 result = siblingEnum.next();
-                if (result == null) {
-                    siblingEnum = null;
-                }
-                else {
-                    descendantEnum = result.iterateAxis(AxisInfo.DESCENDANT);
-                }
+                checkResultForFollowing(result);
             }
 
             if (result == null) {
@@ -83,5 +78,20 @@ public class FollowingIterator implements AxisIterator {
             }
         } while (result == null);
         return result;
+    }
+
+    /**
+     * Check the result from following-sibling axis and prepare descendant
+     * iterator if needed.
+     *
+     * @param result the result node.
+     */
+    public void checkResultForFollowing(NodeInfo result) {
+        if (result == null) {
+            siblingEnum = null;
+        }
+        else {
+            descendantEnum = result.iterateAxis(AxisInfo.DESCENDANT);
+        }
     }
 }
