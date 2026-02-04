@@ -256,6 +256,7 @@
       -Xep:FormatStringShouldUsePlaceholders:ERROR
       -Xep:IdentityConversion:ERROR
       -Xep:ImmutablesSortedSetComparator:ERROR
+      -Xep:InlineMeSuggester:OFF
       -Xep:InconsistentCapitalization:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:InlineFormatString:OFF
