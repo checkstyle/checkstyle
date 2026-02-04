@@ -385,6 +385,12 @@ public class SuppressWithNearbyCommentFilter
             }
         }
 
+        /**
+         * Generated equals implementation.
+         *
+         * @noinspection ObjectEqualsForPrimitives
+         * @noinspectionreason ObjectEqualsForPrimitives - this code is generated
+         */
         @Override
         public boolean equals(Object other) {
             if (this == other) {
@@ -394,12 +400,12 @@ public class SuppressWithNearbyCommentFilter
                 return false;
             }
             final Tag tag = (Tag) other;
-            return Objects.equals(firstLine, tag.firstLine)
-                    && Objects.equals(lastLine, tag.lastLine)
-                    && Objects.equals(text, tag.text)
-                    && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
-                    && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp)
-                    && Objects.equals(tagIdRegexp, tag.tagIdRegexp);
+            return firstLine == tag.firstLine
+                && lastLine == tag.lastLine
+                && Objects.equals(text, tag.text)
+                && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
+                && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp)
+                && Objects.equals(tagIdRegexp, tag.tagIdRegexp);
         }
 
         @Override
