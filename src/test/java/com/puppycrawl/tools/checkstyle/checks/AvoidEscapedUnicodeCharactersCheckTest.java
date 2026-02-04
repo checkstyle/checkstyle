@@ -457,6 +457,32 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
+    public void testAvoidEscapedUnicodeCharactersTextBlockWithTrailingComment()
+            throws Exception {
+        final String[] expected = {
+            "18:33: " + getCheckMessage(MSG_KEY),
+            "23:25: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath(
+                "InputAvoidEscapedUnicodeCharactersTextBlockWithTrailingComment.java"),
+            expected);
+    }
+
+    @Test
+    public void testAvoidEscapedUnicodeCharactersEdgeCases() throws Exception {
+        final String[] expected = {
+            "17:28: " + getCheckMessage(MSG_KEY),
+            "20:32: " + getCheckMessage(MSG_KEY),
+            "24:20: " + getCheckMessage(MSG_KEY),
+            "28:21: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAvoidEscapedUnicodeCharactersEdgeCases.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
         final int[] actual = check.getAcceptableTokens();
