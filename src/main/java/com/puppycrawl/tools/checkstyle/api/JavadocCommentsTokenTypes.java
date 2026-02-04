@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer;
  * @see <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
  *     javadoc - The Java API Documentation Generator</a>
  */
-@SuppressWarnings("InvalidInlineTag")
+@SuppressWarnings({"InvalidInlineTag", "UnrecognisedJavadocTag"})
 public final class JavadocCommentsTokenTypes {
 
     /**
@@ -1268,12 +1268,63 @@ public final class JavadocCommentsTokenTypes {
     public static final int COMMA = JavadocCommentsLexer.COMMA;
 
     /**
-     * Slash symbol {@code / }.
+     * Slash symbol {@code /} used in module or package references within Javadoc.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * &#123;@link java.base/java.lang.String&#125;
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     `--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     *         |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *         |--TAG_NAME -> link
+     *         |--TEXT ->
+     *         |--REFERENCE -> REFERENCE
+     *         |   |--IDENTIFIER -> java.base
+     *         |   |--SLASH -> /
+     *         |   `--IDENTIFIER -> java.lang.String
+     *         `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #REFERENCE
      */
     public static final int SLASH = JavadocCommentsLexer.SLASH;
 
     /**
-     * Question mark symbol {@code ? }.
+     * Question mark symbol {@code ?} used in generic type wildcards.
+     *
+     * <p>This token appears in references that use wildcard type arguments,
+     * such as {@code ? extends Type} or {@code ? super Type}.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * &#123;@link java.util.List&lt;? extends Number&gt;&#125;
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     `--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     *         |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *         |--TAG_NAME -> link
+     *         |--TEXT ->
+     *         |--REFERENCE -> REFERENCE
+     *         |   `--TYPE_ARGUMENTS -> TYPE_ARGUMENTS
+     *         |       |--LT -> <
+     *         |       |--TYPE_ARGUMENT -> TYPE_ARGUMENT
+     *         |       |   |--QUESTION -> ?
+     *         |       |   |--TEXT ->
+     *         |       |   |--EXTENDS -> extends
+     *         |       |   |--TEXT ->
+     *         |       |   `--IDENTIFIER -> Number
+     *         |       `--GT -> >
+     *         `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #TYPE_ARGUMENT
      */
     public static final int QUESTION = JavadocCommentsLexer.QUESTION;
 
@@ -1559,6 +1610,33 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Single type argument in generics.
+     *
+     * <p>This node represents one individual type inside a generic type
+     * argument list.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * {@link java.util.List<String>}
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *     |--TAG_NAME -> link
+     *     |--TEXT ->
+     *     |--REFERENCE -> REFERENCE
+     *         |--IDENTIFIER -> java.util.List
+     *         `--TYPE_ARGUMENTS -> TYPE_ARGUMENTS
+     *             |--LT -> <
+     *             |--TYPE_ARGUMENT -> TYPE_ARGUMENT
+     *             |   `--IDENTIFIER -> String
+     *             `--GT -> >
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #TYPE_ARGUMENTS
      */
     public static final int TYPE_ARGUMENT = JavadocCommentsLexer.TYPE_ARGUMENT;
 
@@ -1794,7 +1872,38 @@ public final class JavadocCommentsTokenTypes {
     public static final int SNIPPET_BODY = JavadocCommentsLexer.SNIPPET_BODY;
 
     /**
-     * Field type reference.
+     * Field type reference in a Javadoc.
+     *
+     * <p>Example:</p>
+     * <pre>
+     * &#47;**
+     * * &#64;serialField counter int The counter.
+     * *&#47;
+     * </pre>
+     *
+     * <b>Tree:</b>
+     * <pre>
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--TEXT -> /&#42;*
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--SERIAL_FIELD_BLOCK_TAG -> SERIAL_FIELD_BLOCK_TAG
+     * |--AT_SIGN -> @
+     * |--TAG_NAME -> serialField
+     * |--TEXT ->
+     * |--IDENTIFIER -> counter
+     * |--TEXT ->
+     * |--FIELD_TYPE -> int
+     * `--DESCRIPTION -> DESCRIPTION
+     * |--TEXT ->  The counter.
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->  *
+     * `--TEXT -> /
+     * </pre>
+     *
+     * @see #FIELD_TYPE
      */
     public static final int FIELD_TYPE = JavadocCommentsLexer.FIELD_TYPE;
 
@@ -1866,6 +1975,21 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Void HTML element (self-closing).
+     *
+     * <p>Example in Javadoc:</p>
+     * <pre>
+     * &lt;br&gt;
+     * </pre>
+     *
+     * <p>Tree:</p>
+     * <pre>
+     * HTML_ELEMENT -> HTML_ELEMENT
+     * `--VOID_ELEMENT -> VOID_ELEMENT
+     *     `--HTML_TAG_START -> HTML_TAG_START
+     *         |--TAG_OPEN -> &lt;
+     *         |--TAG_NAME -> br
+     *         `--TAG_CLOSE -> &gt;
+     * </pre>
      */
     public static final int VOID_ELEMENT = JavadocCommentsLexer.VOID_ELEMENT;
 
