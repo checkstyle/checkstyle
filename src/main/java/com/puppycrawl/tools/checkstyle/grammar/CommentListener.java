@@ -57,4 +57,14 @@ public interface CommentListener {
                             int startLineNo, int startColNo,
                             int endLineNo, int endColNo);
 
+    /**
+     * Report the location of a Markdown comment that can span multiple lines.
+     *
+     * @param startLineNo the starting line number
+     * @param startColNo the starting column number
+     * @param endLineNo the ending line number
+     * @param endColNo the ending column number
+     */
+    void reportMarkdownComment(int startLineNo, int startColNo,
+                           int endLineNo, int endColNo);
 }

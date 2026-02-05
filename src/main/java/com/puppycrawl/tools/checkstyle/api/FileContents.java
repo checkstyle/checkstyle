@@ -63,6 +63,9 @@ public final class FileContents implements CommentListener {
      */
     private final Map<Integer, List<TextBlock>> clangComments = new HashMap<>();
 
+    /** Map of the Markdown comments indexed on the last line of the comment. */
+    private final Map<Integer, TextBlock> markdownComments = new HashMap<>();
+
     /**
      * Creates a new {@code FileContents} instance.
      *
@@ -368,6 +371,16 @@ public final class FileContents implements CommentListener {
     }
 
     /**
+     * Returns a map of all the Markdown comments. The key is one more than the last line number,
+     * the value is the Markdown comment {@link TextBlock} ending at that line.
+     *
+     * @return the Map of Markdown comments
+     */
+    public Map<Integer, TextBlock> getMarkdownComments() {
+        return Collections.unmodifiableMap(markdownComments);
+    }
+
+    /**
      * Checks if the current file is a package-info.java file.
      *
      * @return true if the package file.
@@ -377,5 +390,51 @@ public final class FileContents implements CommentListener {
     @Deprecated(since = "10.2")
     public boolean inPackageInfo() {
         return "package-info.java".equals(text.getFile().getName());
+    }
+
+    @Override
+    public void reportMarkdownComment(int startLineNo, int startColNo,
+                                    int endLineNo, int endColNo) {
+        int adjustedEndLineNo = endLineNo;
+        int adjustedEndColNo = endColNo;
+        if (adjustedEndColNo == -1) {
+            adjustedEndLineNo--;
+            adjustedEndColNo = line(adjustedEndLineNo - 1).length() - 1;
+        }
+        final String[] textLines = extractMarkdownComment(startLineNo, startColNo,
+                                                        adjustedEndLineNo, adjustedEndColNo);
+        final TextBlock markdownComment = new Comment(textLines, startColNo,
+                                                    adjustedEndLineNo, adjustedEndColNo);
+        markdownComments.put(adjustedEndLineNo + 1, markdownComment);
+    }
+
+    /**
+     * Extracts a Markdown comment from the file text.
+     *
+     * @param startLineNo the starting line number
+     * @param startColNo the starting column number
+     * @param endLineNo the ending line number
+     * @param endColNo the ending column number
+     * @return the extracted Markdown comment lines
+     */
+    private String[] extractMarkdownComment(int startLineNo, int startColNo,
+                                            int endLineNo, int endColNo) {
+        final String[] returnValue;
+        if (startLineNo == endLineNo) {
+            returnValue = new String[1];
+            returnValue[0] = line(startLineNo - 1).substring(startColNo, endColNo + 1);
+        }
+        else {
+            returnValue = new String[endLineNo - startLineNo + 1];
+            returnValue[0] = line(startLineNo - 1).substring(startColNo);
+            for (int lineIndex = startLineNo; lineIndex < endLineNo; lineIndex++) {
+                returnValue[lineIndex - startLineNo + 1] = line(lineIndex);
+            }
+            returnValue[returnValue.length - 1] = line(endLineNo - 1).substring(0, endColNo + 1);
+        }
+        for (int lineIndex = 0; lineIndex < returnValue.length; lineIndex++) {
+            returnValue[lineIndex] = returnValue[lineIndex].replaceFirst("^\\s*///\\s*", "");
+        }
+        return returnValue;
     }
 }
