@@ -24,6 +24,7 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Filter;
+import org.checkerframework.checker.nullness.qual.PolyNull;
 
 /**
  * This filter element is immutable and processes {@link AuditEvent}
@@ -210,11 +211,7 @@ public class SuppressFilterElement
      * @param pattern pattern object
      * @return value of pattern or null
      */
-    private static String getPatternSafely(Pattern pattern) {
-        String result = null;
-        if (pattern != null) {
-            result = pattern.pattern();
-        }
-        return result;
+    private static @PolyNull String getPatternSafely(@PolyNull Pattern pattern) {
+        return pattern == null ? null : pattern.pattern();
     }
 }
