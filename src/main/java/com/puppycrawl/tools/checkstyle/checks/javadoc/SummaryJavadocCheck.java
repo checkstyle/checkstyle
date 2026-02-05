@@ -97,6 +97,13 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private Pattern forbiddenSummaryFragments = CommonUtil.createPattern("^$");
 
     /**
+     * Specify the regexp for forbidden summary fragments in inline return tags.
+     * By default, this is the same as forbiddenSummaryFragments but without the
+     * ^[a-z] pattern, to allow inline return tags that start with lowercase.
+     */
+    private Pattern forbiddenSummaryFragmentsInlineReturn = null;
+
+    /**
      * Specify the period symbol. Used to check the first sentence ends with a period. Periods that
      * are not followed by a whitespace character are ignored (eg. the period in v1.0). Because some
      * periods include whitespace built into the character, if this is set to a non-default value
@@ -117,6 +124,23 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     public void setForbiddenSummaryFragments(Pattern pattern) {
         forbiddenSummaryFragments = pattern;
+        // Remove the ^[a-z] part from the pattern for inline return tags
+        // This is needed because inline {@return ...} is explicitly allowed by Google style guide
+        final String patternStr = pattern.pattern();
+        if (patternStr.endsWith("|^[a-z]")) {
+            // Remove |^[a-z] from the end (7 characters including the preceding |)
+            forbiddenSummaryFragmentsInlineReturn = CommonUtil.createPattern(
+                patternStr.substring(0, patternStr.length() - 7));
+        } else if (patternStr.contains("|^[a-z]|")) {
+            // Remove |^[a-z] from the middle
+            forbiddenSummaryFragmentsInlineReturn = CommonUtil.createPattern(
+                patternStr.replace("|^[a-z]|", "|"));
+        } else if (patternStr.equals("^[a-z]")) {
+            // If the entire pattern is just ^[a-z], use empty pattern
+            forbiddenSummaryFragmentsInlineReturn = CommonUtil.createPattern("^$");
+        } else {
+            forbiddenSummaryFragmentsInlineReturn = pattern;
+        }
     }
 
     /**
@@ -284,7 +308,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             if (isPeriodNotAtEnd) {
                 log(inlineSummaryTag.getLineNumber(), MSG_SUMMARY_MISSING_PERIOD);
             }
-            else if (containsForbiddenFragment(inlineSummary)) {
+            else if (containsForbiddenFragmentForInlineReturn(inlineSummary)) {
                 log(inlineSummaryTag.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
@@ -303,7 +327,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         if (returnVisible.isEmpty()) {
             log(inlineReturnTag.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
         }
-        else if (containsForbiddenFragment(inlineReturn)) {
+        else if (containsForbiddenFragmentForInlineReturn(inlineReturn)) {
             log(inlineReturnTag.getLineNumber(), MSG_SUMMARY_JAVADOC);
         }
     }
@@ -355,6 +379,23 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         final String javadocText = JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN
                 .matcher(firstSentence).replaceAll(" ");
         return forbiddenSummaryFragments.matcher(trimExcessWhitespaces(javadocText)).find();
+    }
+
+    /**
+     * Tests if inline return content contains forbidden summary fragment.
+     * This method uses the forbiddenSummaryFragmentsInlineReturn pattern which
+     * excludes the ^[a-z] pattern to allow inline {@return ...} tags that start with lowercase.
+     *
+     * @param inlineReturn string with inline return content.
+     * @return {@code true} if inline return contains forbidden summary fragment.
+     */
+    private boolean containsForbiddenFragmentForInlineReturn(String inlineReturn) {
+        final String javadocText = JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN
+                .matcher(inlineReturn).replaceAll(" ");
+        final Pattern pattern = forbiddenSummaryFragmentsInlineReturn != null
+                ? forbiddenSummaryFragmentsInlineReturn
+                : forbiddenSummaryFragments;
+        return pattern.matcher(trimExcessWhitespaces(javadocText)).find();
     }
 
     /**
