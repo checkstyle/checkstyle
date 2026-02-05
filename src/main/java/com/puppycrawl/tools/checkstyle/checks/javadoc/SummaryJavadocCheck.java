@@ -91,10 +91,22 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     /** Default period literal. */
     private static final String DEFAULT_PERIOD = ".";
 
+    /** Default empty regexp. */
+    private static final String DEFAULT_EMPTY_REGEXP = "^$";
+
+    /** Single whitespace string. */
+    private static final String SINGLE_SPACE = " ";
+
     /**
      * Specify the regexp for forbidden summary fragments.
      */
-    private Pattern forbiddenSummaryFragments = CommonUtil.createPattern("^$");
+    private Pattern forbiddenSummaryFragments = CommonUtil.createPattern(DEFAULT_EMPTY_REGEXP);
+
+    /**
+     * Specify the regexp for forbidden fragments in inline return tags.
+     */
+        private Pattern forbiddenInlineReturnFragments =
+            CommonUtil.createPattern(DEFAULT_EMPTY_REGEXP);
 
     /**
      * Specify the period symbol. Used to check the first sentence ends with a period. Periods that
@@ -117,6 +129,16 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     public void setForbiddenSummaryFragments(Pattern pattern) {
         forbiddenSummaryFragments = pattern;
+    }
+
+    /**
+     * Setter to specify the regexp for forbidden fragments in inline return tags.
+     *
+     * @param pattern a pattern.
+     * @since 12.1
+     */
+    public void setForbiddenInlineReturnFragments(Pattern pattern) {
+        forbiddenInlineReturnFragments = pattern;
     }
 
     /**
@@ -307,7 +329,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             log(inlineReturnTag.getLineNumber(), inlineReturnTag.getColumnNumber(),
                     MSG_SUMMARY_JAVADOC_MISSING);
         }
-        else if (containsForbiddenFragment(inlineReturn)) {
+        else if (containsForbiddenInlineReturnFragment(inlineReturn)) {
             log(inlineReturnTag.getLineNumber(), inlineReturnTag.getColumnNumber(),
                     MSG_SUMMARY_JAVADOC);
         }
@@ -358,8 +380,20 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private boolean containsForbiddenFragment(String firstSentence) {
         final String javadocText = JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN
-                .matcher(firstSentence).replaceAll(" ");
+                .matcher(firstSentence).replaceAll(SINGLE_SPACE);
         return forbiddenSummaryFragments.matcher(trimExcessWhitespaces(javadocText)).find();
+    }
+
+    /**
+     * Tests if inline return contains forbidden fragment.
+     *
+     * @param inlineReturn string with inline return content.
+     * @return {@code true} if inline return contains forbidden fragment.
+     */
+    private boolean containsForbiddenInlineReturnFragment(String inlineReturn) {
+        final String javadocText = JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN
+                .matcher(inlineReturn).replaceAll(SINGLE_SPACE);
+        return forbiddenInlineReturnFragments.matcher(trimExcessWhitespaces(javadocText)).find();
     }
 
     /**
