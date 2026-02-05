@@ -41,7 +41,7 @@
               <td>Specify the regexp for forbidden fragments in inline return tags.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>^$</code></td>
-              <td>12.1.0</td>
+              <td>13.4.0</td>
             </tr>
             <tr>
               <td><a id="forbiddenSummaryFragments"/><a href="#forbiddenSummaryFragments">forbiddenSummaryFragments</a></td>
