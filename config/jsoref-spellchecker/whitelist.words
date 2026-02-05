@@ -769,7 +769,7 @@ keyname
 keyscan
 konstantinos
 Kordas
-Kotlin
+kotlin
 Kp
 lambdabodylength
 lambdaparametername
@@ -1228,6 +1228,7 @@ Saludo
 Sameline
 sariflogger
 sarifweb
+SAST
 Savinov
 saxonica
 sbe
@@ -1434,6 +1435,7 @@ ubuntu
 ucc
 UElement
 ufeff
+Uid
 ul
 UMD
 UML
