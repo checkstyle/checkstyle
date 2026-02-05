@@ -237,12 +237,12 @@ public class Example3 {
       <subsection name="Violation Messages" id="EmptyBlock_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22block.empty%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22block.empty%22">
               block.empty
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22block.noStatement%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22block.noStatement%22">
               block.noStatement
             </a>
           </li>

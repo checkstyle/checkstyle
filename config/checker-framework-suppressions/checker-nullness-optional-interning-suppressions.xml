@@ -6469,7 +6469,6 @@
     </details>
   </checkerFrameworkError>
 
-
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTypeCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
@@ -7619,17 +7618,6 @@
     <details>
       type of expression: @Initialized @Nullable Pattern
       method return type: @Initialized @NonNull Pattern
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return result;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable String
-      method return type: @Initialized @NonNull String
     </details>
   </checkerFrameworkError>
 
@@ -9027,7 +9015,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ViolationMessagesMacro.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference clss.getPackage()</message>
-    <lineContent>+ clss.getPackage().getName().replace(&quot;.&quot;, &quot;%2F&quot;)</lineContent>
+    <lineContent>+ clss.getPackage().getName().replace(&apos;.&apos;, &apos;/&apos;)</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

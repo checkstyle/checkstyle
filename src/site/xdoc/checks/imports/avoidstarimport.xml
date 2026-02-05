@@ -224,7 +224,7 @@ import java.net.*;
       <subsection name="Violation Messages" id="AvoidStarImport_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.avoidStar%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.avoidStar%22">
               import.avoidStar
             </a>
           </li>
