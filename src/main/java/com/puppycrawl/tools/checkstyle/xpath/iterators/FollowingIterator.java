@@ -64,12 +64,9 @@ public class FollowingIterator implements AxisIterator {
                 result = descendantEnum.next();
             }
 
-            if (result == null && siblingEnum != null) {
+            if (result == null) {
                 result = siblingEnum.next();
-                if (result == null) {
-                    siblingEnum = null;
-                }
-                else {
+                if (result != null) {
                     descendantEnum = result.iterateAxis(AxisInfo.DESCENDANT);
                 }
             }
