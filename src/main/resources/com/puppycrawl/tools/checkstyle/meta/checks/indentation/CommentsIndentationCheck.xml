@@ -12,7 +12,7 @@
  here&lt;/a&gt;
  &lt;/div&gt;</description>
          <properties>
-            <property default-value="SINGLE_LINE_COMMENT,BLOCK_COMMENT_BEGIN"
+            <property default-value="SINGLE_LINE_COMMENT,BLOCK_COMMENT_BEGIN,MARKDOWN_COMMENT"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
@@ -21,6 +21,7 @@
          </properties>
          <message-keys>
             <message-key key="comments.indentation.block"/>
+            <message-key key="comments.indentation.markdown"/>
             <message-key key="comments.indentation.single"/>
          </message-keys>
       </check>
