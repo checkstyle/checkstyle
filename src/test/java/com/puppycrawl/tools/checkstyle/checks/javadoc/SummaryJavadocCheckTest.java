@@ -277,6 +277,17 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInlineReturnGoogle() throws Exception {
+        final String[] expected = {
+            "23: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "33: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturnGoogle.java"), expected);
+    }
+
+    @Test
     public void testPeriodAtEnd() throws Exception {
         final String[] expected = {
             "19: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
