@@ -1,0 +1,32 @@
+name: IDEA inspections
+on:
+  pull_request:
+    branches: [ master ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qodana:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: none
+      checks: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Run Qodana Scan
+        uses: JetBrains/qodana-action@v2025.3
+        with:
+          use-caches: false
+          args: --print-problems
+
+      - name: Brief Report
+        if: always()
+        run: |
+          .ci/print-brief-qodana-report.sh "${{ runner.temp }}/qodana/results/qodana.sarif.json"
