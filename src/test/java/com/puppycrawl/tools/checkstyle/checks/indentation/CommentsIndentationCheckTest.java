@@ -420,4 +420,13 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputCommentsIndentationStartOfMethodCallChainNpe.java"), expected);
     }
+
+    // @Test
+    // public void testMarkdownComments() throws Exception {
+    //     final String[] expected = {
+    //         "15:1: " + getCheckMessage(MSG_KEY_MARKDOWN, 17, 0, 8),
+    //     };
+    //     verifyWithInlineConfigParser(
+    //             getPath("InputCommentsIndentationMarkdown.java"), expected);
+    // }
 }
