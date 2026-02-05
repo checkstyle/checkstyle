@@ -63,6 +63,9 @@ public final class FileContents implements CommentListener {
      */
     private final Map<Integer, List<TextBlock>> clangComments = new HashMap<>();
 
+    /** Map of the Markdown comments indexed on the last line of the comment. */
+    private final Map<Integer, TextBlock> markdownComments = new HashMap<>();
+
     /**
      * Creates a new {@code FileContents} instance.
      *
@@ -368,6 +371,16 @@ public final class FileContents implements CommentListener {
     }
 
     /**
+     * Returns a map of all the Markdown comments. The key is one more than the last line number,
+     * the value is the Markdown comment {@link TextBlock} ending at that line.
+     *
+     * @return the Map of Markdown comments
+     */
+    public Map<Integer, TextBlock> getMarkdownComments() {
+        return Collections.unmodifiableMap(markdownComments);
+    }
+
+    /**
      * Checks if the current file is a package-info.java file.
      *
      * @return true if the package file.
@@ -377,5 +390,16 @@ public final class FileContents implements CommentListener {
     @Deprecated(since = "10.2")
     public boolean inPackageInfo() {
         return "package-info.java".equals(text.getFile().getName());
+    }
+
+    @Override
+    public void reportMarkdownComment(String content, int startLineNo,
+            int startColNo, int endLineNo, int endColNo) {
+        final String[] textLines = content.split("\n");
+
+        final TextBlock markdownComment = new Comment(textLines, startColNo,
+                endLineNo, endColNo);
+
+        markdownComments.put(endLineNo, markdownComment);
     }
 }
