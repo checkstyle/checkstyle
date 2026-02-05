@@ -741,4 +741,15 @@ public class EmptyLineSeparatorCheckTest
         );
     }
 
+    /*
+    * This test file intentionally does not use an inline config header
+    * to reproduce the crash conditions (token at index 0 or 1).
+    */
+    @Test
+    public void testCrash18660Coverage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputEmptyLineSeparatorCrash18660.java"), expected);
+    }
+
 }
