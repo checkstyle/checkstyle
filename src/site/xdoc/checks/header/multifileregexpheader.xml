@@ -49,11 +49,15 @@
           To configure the check such that no violations arise.
           Default values of properties are used.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
-// ok, as by default there is not specific header defined to validate it presence
-public class Example1 { }
-</code></pre></div>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      &lt;?xml version="1.0"?&gt;
+      &lt;!DOCTYPE module PUBLIC
+        "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+      &lt;module name="Checker"&gt;
+          &lt;module name="MultiFileRegexpHeader"/&gt;
+      &lt;/module&gt;
+      </code></pre></div>
 
         <p id="Example1-code">Example1:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
