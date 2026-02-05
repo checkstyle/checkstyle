@@ -22,7 +22,9 @@ package com.puppycrawl.tools.checkstyle;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck.MSG_JAVADOC_CONTENT_SECOND_LINE;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -55,6 +57,38 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid return root")
             .that(JavaParser.appendHiddenCommentNodes(null))
             .isNull();
+    }
+
+    @Test
+    public void testParseException() throws Exception {
+        final File input = new File(getNonCompilablePath("InputJavaParser.java"));
+        final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        final PrintStream originalErr = System.err;
+        System.setErr(new PrintStream(errContent));
+        try {
+            JavaParser.parseFile(input, JavaParser.Options.WITH_COMMENTS);
+            assertWithMessage("exception expected").fail();
+        }
+        catch (CheckstyleException exc) {
+            assertWithMessage("Invalid exception message")
+                .that(exc.toString())
+                .isEqualTo(CheckstyleException.class.getName()
+                            + ": IllegalStateException occurred while parsing file "
+                            + input.getAbsolutePath() + ".");
+            assertWithMessage("Invalid class")
+                .that(exc.getCause())
+                .isInstanceOf(IllegalStateException.class);
+            assertWithMessage("Invalid exception message")
+                .that(exc.getCause().toString())
+                .isEqualTo(IllegalStateException.class.getName()
+                            + ": 2:0: no viable alternative at input 'classD'");
+        }
+        finally {
+            System.setErr(originalErr);
+        }
+        assertWithMessage("No error should be printed to stderr")
+            .that(errContent.toString().trim())
+            .isEmpty();
     }
 
     @Test
@@ -193,29 +227,6 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testParseException() throws Exception {
-        final File input = new File(getNonCompilablePath("InputJavaParser.java"));
-        try {
-            JavaParser.parseFile(input, JavaParser.Options.WITH_COMMENTS);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.toString())
-                .isEqualTo(CheckstyleException.class.getName()
-                            + ": IllegalStateException occurred while parsing file "
-                            + input.getAbsolutePath() + ".");
-            assertWithMessage("Invalid class")
-                .that(exc.getCause())
-                .isInstanceOf(IllegalStateException.class);
-            assertWithMessage("Invalid exception message")
-                .that(exc.getCause().toString())
-                .isEqualTo(IllegalStateException.class.getName()
-                            + ": 2:0: no viable alternative at input 'classD'");
-        }
-    }
-
-    @Test
     public void testComments() throws Exception {
         final DetailAST root =
             JavaParser.parseFile(new File(getPath("InputJavaParserHiddenComments3.java")),
@@ -256,6 +267,46 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         assertWithMessage("Unexpected text block content")
             .that(content.getText())
             .isEqualTo(expectedContents);
+    }
+
+    @Test
+    public void testAppendHiddenMarkdownCommentNodes() throws Exception {
+        final DetailAST root =
+            JavaParser.parseFile(new File(getPath("InputJavaParserMarkdown.java")),
+                JavaParser.Options.WITH_COMMENTS);
+
+        final Optional<DetailAST> markdownComment = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.MARKDOWN_COMMENT);
+        assertWithMessage("Markdown comment should be present")
+            .that(markdownComment.isPresent())
+            .isTrue();
+
+        final DetailAST comment = markdownComment.orElseThrow();
+
+        assertWithMessage("Unexpected line number")
+            .that(comment.getLineNo())
+            .isEqualTo(4);
+        assertWithMessage("Unexpected column number")
+            .that(comment.getColumnNo())
+            .isEqualTo(4);
+        assertWithMessage("Unexpected comment content")
+            .that(comment.getText())
+            .isEqualTo("///");
+
+        final DetailAST commentContent = comment.getFirstChild();
+
+        assertWithMessage("Unexpected token type")
+            .that(commentContent.getType())
+            .isEqualTo(TokenTypes.COMMENT_CONTENT);
+        assertWithMessage("Unexpected line number")
+            .that(commentContent.getLineNo())
+            .isEqualTo(4);
+        assertWithMessage("Unexpected column number")
+            .that(commentContent.getColumnNo())
+            .isEqualTo(7);
+        assertWithMessage("Unexpected comment content")
+                .that(commentContent.getText())
+                .isEqualTo("This is a markdown comment");
     }
 
     @Test
