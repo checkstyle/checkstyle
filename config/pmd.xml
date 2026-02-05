@@ -157,6 +157,7 @@
                 value="//ClassDeclaration[@SimpleName='Definitions'
                            or @SimpleName='LoadExternalDtdFeatureProvider'
                            or @SimpleName='JavadocCommentsTokenTypes'
+                           or @SimpleName='MarkdownTokenTypes'
                            or @SimpleName='TokenTypes'
                            or @SimpleName='AutomaticBean']"/>
     </properties>
