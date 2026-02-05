@@ -180,6 +180,115 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testMarkdownCommentWithIndentation() throws Exception {
+        final DetailAST root =
+            JavaParser.parseFile(new File(getPath("InputJavaParserMarkdownIndented.java")),
+                JavaParser.Options.WITH_COMMENTS);
+
+        final Optional<DetailAST> markdownComment = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.MARKDOWN_JAVADOC_COMMENT);
+        assertWithMessage("Markdown comment should be present")
+            .that(markdownComment.isPresent())
+            .isTrue();
+
+        final DetailAST comment = markdownComment.orElseThrow();
+
+        assertWithMessage("Unexpected line number")
+            .that(comment.getLineNo())
+            .isEqualTo(2);
+        assertWithMessage("Unexpected column number")
+            .that(comment.getColumnNo())
+            .isEqualTo(4);
+        assertWithMessage("Unexpected comment content")
+            .that(comment.getText())
+            .isEqualTo("///");
+
+        final DetailAST commentContent = comment.getFirstChild();
+
+        assertWithMessage("Unexpected token type")
+            .that(commentContent.getType())
+            .isEqualTo(TokenTypes.COMMENT_CONTENT);
+        assertWithMessage("Unexpected line number")
+            .that(commentContent.getLineNo())
+            .isEqualTo(2);
+        assertWithMessage("Unexpected column number")
+            .that(commentContent.getColumnNo())
+            .isEqualTo(7);
+        assertWithMessage("Unexpected comment content")
+            .that(commentContent.getText())
+            .isEqualTo("/// Indented markdown comment\n");
+    }
+
+    @Test
+    public void testAppendHiddenMarkdownCommentNodes() throws Exception {
+        final DetailAST root =
+            JavaParser.parseFile(new File(getPath("InputJavaParserMarkdown.java")),
+                JavaParser.Options.WITH_COMMENTS);
+
+        final Optional<DetailAST> markdownComment = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.MARKDOWN_JAVADOC_COMMENT);
+        assertWithMessage("Markdown comment should be present")
+            .that(markdownComment.isPresent())
+            .isTrue();
+
+        final DetailAST comment = markdownComment.orElseThrow();
+
+        assertWithMessage("Unexpected line number")
+            .that(comment.getLineNo())
+            .isEqualTo(3);
+        assertWithMessage("Unexpected column number")
+            .that(comment.getColumnNo())
+            .isEqualTo(0);
+        assertWithMessage("Unexpected comment content")
+            .that(comment.getText())
+            .isEqualTo("///");
+
+        final DetailAST commentContent = comment.getFirstChild();
+
+        assertWithMessage("Unexpected token type")
+            .that(commentContent.getType())
+            .isEqualTo(TokenTypes.COMMENT_CONTENT);
+        assertWithMessage("Unexpected line number")
+            .that(commentContent.getLineNo())
+            .isEqualTo(3);
+        assertWithMessage("Unexpected column number")
+            .that(commentContent.getColumnNo())
+            .isEqualTo(3);
+        assertWithMessage("Unexpected comment content")
+                .that(commentContent.getText())
+                .isEqualTo("/// Multiline test\n/// another line\n");
+    }
+
+    @Test
+    public void testAppendHiddenMarkdownCommentMisaligned() throws Exception {
+        final DetailAST root =
+            JavaParser.parseFile(new File(getPath("InputJavaParserMarkdown2.java")),
+                JavaParser.Options.WITH_COMMENTS);
+
+        final Optional<DetailAST> markdownComment = TestUtil.findTokenInAstByPredicate(root,
+            ast -> {
+                return ast.getType() == TokenTypes.MARKDOWN_JAVADOC_COMMENT
+                    && ast.getFirstChild().getText().contains("Misaligned markdown comment");
+            });
+
+        assertWithMessage("Misaligned Markdown comment should be present")
+            .that(markdownComment.isPresent())
+            .isTrue();
+
+        final DetailAST comment = markdownComment.orElseThrow();
+
+        assertWithMessage("Unexpected column number")
+            .that(comment.getColumnNo())
+            .isEqualTo(0);
+
+        final DetailAST commentContent = comment.getFirstChild();
+
+        assertWithMessage("Unexpected column number")
+            .that(commentContent.getColumnNo())
+            .isEqualTo(3);
+    }
+
+    @Test
     public void testDontAppendCommentNodes() throws Exception {
         final DetailAST root =
             JavaParser.parseFile(new File(getPath("InputJavaParserHiddenComments.java")),
