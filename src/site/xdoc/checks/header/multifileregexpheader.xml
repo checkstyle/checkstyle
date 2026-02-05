@@ -45,7 +45,7 @@
       </subsection>
 
       <subsection name="Examples" id="MultiFileRegexpHeader_Examples">
-        <p id="Example1-config">
+        <p id="Example1-raw">
           To configure the check such that no violations arise.
           Default values of properties are used.
         </p>
