@@ -299,7 +299,7 @@
     <module name="MissingOverrideOnRecordAccessor"/>
     <module name="PackageAnnotation"/>
     <module name="SuppressWarnings">
-      <property name="format" value="^((?!unchecked|deprecation|rawtypes|resource|InvalidInlineTag).)*$"/>
+      <property name="format" value="^((?!unchecked|deprecation|rawtypes|resource|InvalidInlineTag|UnrecognisedJavadocTag).)*$"/>
       <message key="suppressed.warning.not.allowed"
            value="The warning ''{0}'' cannot be suppressed at this location.
            Only few javac warnings are allowed to suppress.
@@ -829,6 +829,7 @@
     </module>
     <module name="UpperEll"/>
     <module name="HexLiteralCase"/>
+    <module name="NumericalPrefixesInfixesSuffixesCharacterCase"/>
 
     <!-- Modifiers -->
     <module name="ClassMemberImpliedModifier">

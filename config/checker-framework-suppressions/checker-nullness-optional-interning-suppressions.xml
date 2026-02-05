@@ -9272,36 +9272,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ScopeUtil.java</fileName>
     <specifier>introduce.eliminate</specifier>
     <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
-    <lineContent>.orElseGet(() -&gt; getDefaultScope(aMods));</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ScopeUtil.java</fileName>
-    <specifier>introduce.eliminate</specifier>
-    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
     <lineContent>.orElseGet(() -&gt; getDefaultScope(ast));</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ScopeUtil.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return result;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable Scope
-      method return type: @Initialized @NonNull Scope
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ScopeUtil.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return returnValue;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable Scope
-      method return type: @Initialized @NonNull Scope
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -9636,42 +9607,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>siblingEnum = null;</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull AxisIterator
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: descendantEnum</message>
     <lineContent>public FollowingIterator(NodeInfo start) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return result;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable NodeInfo
-      method return type: @Initialized @NonNull NodeInfo
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>previousSiblingEnum = null;</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull AxisIterator
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

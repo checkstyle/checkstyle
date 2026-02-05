@@ -327,6 +327,8 @@
   <suppress id="propertiesMacroMustExist"
             files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]misc[\\/]hexliteralcase.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]misc[\\/]numericalprefixesinfixessuffixescharactercase.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
             files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
   <suppress id="propertiesMacroMustExist"
             files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting.xml.template"/>
