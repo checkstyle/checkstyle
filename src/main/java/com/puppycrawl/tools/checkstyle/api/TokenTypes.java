@@ -6721,6 +6721,16 @@ public final class TokenTypes {
     public static final int LITERAL_MODULE = JavaLanguageLexer.LITERAL_MODULE;
 
     /**
+     * A markdown comment.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * /// This is a markdown comment
+     * </pre>
+     */
+    public static final int MARKDOWN_JAVADOC_COMMENT = JavaLanguageLexer.MARKDOWN_COMMENT;
+
+    /**
      * A module import declaration - {@code import module}.
      *
      * <p>For example:</p>
