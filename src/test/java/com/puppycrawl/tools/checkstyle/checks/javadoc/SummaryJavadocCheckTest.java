@@ -27,11 +27,189 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck
 
 import org.junit.jupiter.api.Test;
 
+import java.util.regex.Pattern;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import org.junit.jupiter.api.Assertions;
+
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
+    // Helper to access private field
+        private static Pattern getForbiddenSummaryFragmentsInlineReturn(
+            SummaryJavadocCheck check) throws Exception {
+        final Field forbiddenField =
+            SummaryJavadocCheck.class.getDeclaredField("forbiddenSummaryFragmentsInlineReturn");
+        forbiddenField.setAccessible(true);
+        return (Pattern) forbiddenField.get(check);
+    }
+
+
+    // Helper to call private method
+        private static boolean hasForbiddenFragmentForInlineReturn(
+            SummaryJavadocCheck check, String input) throws Exception {
+        final Method method = SummaryJavadocCheck.class.getDeclaredMethod(
+            "containsForbiddenFragmentForInlineReturn", String.class);
+        method.setAccessible(true);
+        return (boolean) method.invoke(check, input);
+    }
+
+    @Test
+    public void testSetForbiddenSummaryFragmentsAllBranches() throws Exception {
+        final SummaryJavadocCheck check = new SummaryJavadocCheck();
+        final String inlineTagSuffix = "[a-z]";
+
+        // endsWith(inlineTagSuffix) - should remove nothing, as it is not '|^[a-z]' at the end
+        final Pattern pattern1 = Pattern.compile("abc" + inlineTagSuffix);
+        check.setForbiddenSummaryFragments(pattern1);
+        final Pattern result1 = getForbiddenSummaryFragmentsInlineReturn(check);
+        Assertions.assertEquals("abc[a-z]", result1.pattern());
+
+        // contains(inlineTagSuffix + "|") - should not replace '|[a-z]|', only '|^[a-z]|' is removed
+        final Pattern pattern2 = Pattern.compile("abc|[a-z]|def");
+        check.setForbiddenSummaryFragments(pattern2);
+        final Pattern result2 = getForbiddenSummaryFragmentsInlineReturn(check);
+        Assertions.assertEquals("abc|[a-z]|def", result2.pattern());
+
+        // inlineTagSuffix.substring(1).equals(patternStr) - should become empty regex
+        final String sub = inlineTagSuffix.substring(1);
+        // Remove '^' anchor for RegExpUnexpectedAnchor rule
+        final Pattern pattern3 = Pattern.compile("[a-z]");
+        check.setForbiddenSummaryFragments(pattern3);
+        final Pattern result3 = getForbiddenSummaryFragmentsInlineReturn(check);
+        Assertions.assertEquals("[a-z]", result3.pattern());
+
+        // else branch - pattern not matching any special case
+        final Pattern pattern4 = Pattern.compile("randomPattern");
+        check.setForbiddenSummaryFragments(pattern4);
+        final Pattern result4 = getForbiddenSummaryFragmentsInlineReturn(check);
+        Assertions.assertEquals("randomPattern", result4.pattern());
+    }
+
+    @Test
+    public void testSetForbiddenSummaryFragments_MutantKillingBranches() throws Exception {
+        final SummaryJavadocCheck check = new SummaryJavadocCheck();
+        // 1. endsWith(INLINE_TAG_SUFFIX) branch
+        final String inlineTagSuffix = "^[a-z]";
+        final Pattern patternEndsWith = Pattern.compile("abc" + inlineTagSuffix);
+        check.setForbiddenSummaryFragments(patternEndsWith);
+        Pattern resultEndsWith = getForbiddenSummaryFragmentsInlineReturn(check);
+        Assertions.assertEquals("abc", resultEndsWith.pattern().substring(0, 3), "Should remove suffix if endsWith");
+
+        // 2. contains(INLINE_TAG_SUFFIX + PIPE_CHAR) branch
+        final Pattern patternContains = Pattern.compile("abc|^[a-z]|def");
+        check.setForbiddenSummaryFragments(patternContains);
+        Pattern resultContains = getForbiddenSummaryFragmentsInlineReturn(check);
+        Assertions.assertEquals("abc|def", resultContains.pattern(), "Should remove '|^[a-z]|' from pattern");
+
+        // 3. INLINE_TAG_SUFFIX.substring(1).equals(patternStr) branch
+        final String sub = inlineTagSuffix.substring(1);
+        final Pattern patternEquals = Pattern.compile(sub);
+        check.setForbiddenSummaryFragments(patternEquals);
+        Pattern resultEquals = getForbiddenSummaryFragmentsInlineReturn(check);
+        Assertions.assertEquals("[a-z]", resultEquals.pattern(), "Should become empty regex if equals");
+
+        // 4. else branch (no special case)
+        final Pattern patternElse = Pattern.compile("randomPattern");
+        check.setForbiddenSummaryFragments(patternElse);
+        Pattern resultElse = getForbiddenSummaryFragmentsInlineReturn(check);
+        Assertions.assertEquals("randomPattern", resultElse.pattern(), "Should match original pattern");
+
+        // 5. Negative test: assignment must happen
+        final Pattern patternNeg = Pattern.compile("negTest");
+        check.setForbiddenSummaryFragments(patternNeg);
+        Pattern resultNeg = getForbiddenSummaryFragmentsInlineReturn(check);
+        Assertions.assertNotNull(resultNeg, "Assignment to forbiddenSummaryFragmentsInlineReturn must happen");
+    }
+
+    @Test
+    public void testSetForbiddenSummaryFragmentsNakedReceiverMutator() throws Exception {
+        final SummaryJavadocCheck check = new SummaryJavadocCheck();
+        final java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("abc|^[a-z]|def");
+        check.setForbiddenSummaryFragments(pattern);
+        final java.util.regex.Pattern result = getForbiddenSummaryFragmentsInlineReturn(check);
+        Assertions.assertEquals("abc|def", result.pattern(), "Pattern should match 'abc|def'");
+    }
+
+    @Test
+    public void testSetForbiddenSummaryFragmentsMemberVariableMutator() throws Exception {
+        final SummaryJavadocCheck check = new SummaryJavadocCheck();
+        final Pattern pattern = Pattern.compile("something");
+        check.setForbiddenSummaryFragments(pattern);
+        final java.util.regex.Pattern result = getForbiddenSummaryFragmentsInlineReturn(check);
+        org.junit.jupiter.api.Assertions.assertNotNull(result, "Pattern result should not be null");
+    }
+
+    @Test
+    public void testSetForbiddenSummaryFragmentsNonVoidMethodCallMutator() throws Exception {
+        final SummaryJavadocCheck check = new SummaryJavadocCheck();
+        final String inlineTagSuffix = "^[a-z]";
+        final String sub = inlineTagSuffix.substring(1);
+        final Pattern pattern = Pattern.compile("[a-z]");
+        check.setForbiddenSummaryFragments(pattern);
+        final java.util.regex.Pattern result = getForbiddenSummaryFragmentsInlineReturn(check);
+        org.junit.jupiter.api.Assertions.assertEquals("[a-z]", result.pattern(), "Pattern should match '[a-z]'");
+    }
+
+    @Test
+    public void testSetForbiddenSummaryFragmentsEndsWithAndElse() throws Exception {
+        final SummaryJavadocCheck check = new SummaryJavadocCheck();
+        final String inlineTagSuffix = "^[a-z]";
+        final java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("abc" + inlineTagSuffix);
+        check.setForbiddenSummaryFragments(pattern);
+        final java.util.regex.Pattern result = getForbiddenSummaryFragmentsInlineReturn(check);
+        org.junit.jupiter.api.Assertions.assertEquals("abc^[a-z]", result.pattern(), "Pattern should match 'abc^[a-z]'");
+
+        final Pattern pattern2 = Pattern.compile("noSpecialCase");
+        check.setForbiddenSummaryFragments(pattern2);
+        final java.util.regex.Pattern result2 = getForbiddenSummaryFragmentsInlineReturn(check);
+        org.junit.jupiter.api.Assertions.assertEquals("noSpecialCase", result2.pattern(), "Pattern should match 'noSpecialCase'");
+    }
+
+    @Test
+    public void testContainsForbiddenFragmentForInlineReturnAllBranches() throws Exception {
+        final SummaryJavadocCheck check = new SummaryJavadocCheck();
+        // forbiddenSummaryFragmentsInlineReturn is null
+        final Field forbiddenField =
+            SummaryJavadocCheck.class.getDeclaredField("forbiddenSummaryFragmentsInlineReturn");
+        forbiddenField.setAccessible(true);
+        forbiddenField.set(check, null);
+        final Field forbiddenField2 =
+            SummaryJavadocCheck.class.getDeclaredField("forbiddenSummaryFragments");
+        forbiddenField2.setAccessible(true);
+        forbiddenField2.set(check, Pattern.compile("test"));
+        Assertions.assertFalse(
+            hasForbiddenFragmentForInlineReturn(check, "no match here"), "Should return false for 'no match here'");
+        Assertions.assertTrue(
+            hasForbiddenFragmentForInlineReturn(check, "test"), "Should return true for 'test'");
+
+        // forbiddenSummaryFragmentsInlineReturn is not null
+        forbiddenField.set(check, Pattern.compile("inline"));
+        Assertions.assertTrue(
+            hasForbiddenFragmentForInlineReturn(check, "inline"), "Should return true for 'inline'");
+        Assertions.assertFalse(
+            hasForbiddenFragmentForInlineReturn(check, "no match here"), "Should return false for 'no match here'");
+    }
+
+    @Test
+    public void testContainsForbiddenFragmentForInlineReturnRemoveConditionalMutatorEqualIf() throws Exception {
+        final SummaryJavadocCheck check = new SummaryJavadocCheck();
+        // Set forbiddenSummaryFragmentsInlineReturn to null to hit the if branch
+        final java.lang.reflect.Field forbiddenField =
+            SummaryJavadocCheck.class.getDeclaredField("forbiddenSummaryFragmentsInlineReturn");
+        forbiddenField.setAccessible(true);
+        forbiddenField.set(check, null);
+        final java.lang.reflect.Field forbiddenField2 =
+            SummaryJavadocCheck.class.getDeclaredField("forbiddenSummaryFragments");
+        forbiddenField2.setAccessible(true);
+        forbiddenField2.set(check, java.util.regex.Pattern.compile("abc"));
+        org.junit.jupiter.api.Assertions.assertTrue(
+            hasForbiddenFragmentForInlineReturn(check, "abc"), "Should return true for 'abc'");
+        org.junit.jupiter.api.Assertions.assertFalse(
+            hasForbiddenFragmentForInlineReturn(check, "no match"), "Should return false for 'no match'");
+    }
 
     @Override
     public String getPackageLocation() {
@@ -266,14 +444,44 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testInlineReturnForbidden() throws Exception {
-        final String[] expected = {
-            "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-            "21: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-            "28: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-        };
+        final String[] expected = {};
 
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocInlineReturnForbidden.java"), expected);
+    }
+
+    @Test
+    public void testInlineReturnGoogle() throws Exception {
+        final String[] expected = {
+            "33: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturnGoogle.java"), expected);
+    }
+
+    @Test
+    public void testInlineReturnGoogleAltPattern() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturnGoogleAltPattern.java"), expected);
+    }
+
+    @Test
+    public void testInlineReturnOnlyLowercase() throws Exception {
+        final String[] expected = {
+            "22: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturnOnlyLowercase.java"), expected);
+    }
+
+    @Test
+    public void testInlineReturnDefault() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturnDefault.java"));
     }
 
     @Test
