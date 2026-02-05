@@ -61,6 +61,13 @@ public class CommentsTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testMarkdownComments() throws Exception {
+        verifyAst(getPath("InputCommentsMarkdownAst.txt"),
+                    getPath("InputCommentsMarkdown.java"),
+                JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
     public void testToString() {
         final Comment comment = new Comment(new String[] {"value"}, 1, 2, 3);
         assertWithMessage("Invalid toString result")
