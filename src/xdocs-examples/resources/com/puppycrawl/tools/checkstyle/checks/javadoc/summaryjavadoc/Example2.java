@@ -4,6 +4,8 @@
     <module name="SummaryJavadoc">
       <property name="forbiddenSummaryFragments"
         value="^This method returns.*"/>
+      <property name="forbiddenInlineReturnFragments"
+        value="^@return the .*|^This method returns.*|^A [{]@code [a-zA-Z0-9]+[}]( is a )"/>
     </module>
   </module>
 </module>
