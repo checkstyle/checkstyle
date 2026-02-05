@@ -25,13 +25,150 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.MSG_SUMMARY_JAVADOC_MISSING;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.MSG_SUMMARY_MISSING_PERIOD;
 
+import java.util.regex.Pattern;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
+    private static Pattern getForbiddenSummaryFragmentsInlineReturn(
+            SummaryJavadocCheck check) {
+        return TestUtil.getInternalState(
+                check, "forbiddenSummaryFragmentsInlineReturn", Pattern.class);
+    }
+
+    private static boolean hasForbiddenFragmentForInlineReturn(
+            SummaryJavadocCheck check, String input) throws Exception {
+        return TestUtil.invokeMethod(
+                check, "containsForbiddenFragmentForInlineReturn", Boolean.class, input);
+    }
+
+    @Test
+    public void testSetForbiddenSummaryFragmentsMutantsBranches() {
+        final SummaryJavadocCheck check = new SummaryJavadocCheck();
+        final Pattern endsWithPattern = Pattern.compile("abc|^[a-z]");
+        check.setForbiddenSummaryFragments(endsWithPattern);
+        final Pattern resultEndsWith =
+                getForbiddenSummaryFragmentsInlineReturn(check);
+        assertWithMessage("endsWith pattern")
+                .that(resultEndsWith.pattern())
+                .isEqualTo("abc");
+
+        final Pattern containsPattern = Pattern.compile("abc|^[a-z]|def");
+        check.setForbiddenSummaryFragments(containsPattern);
+        final Pattern resultContains =
+                getForbiddenSummaryFragmentsInlineReturn(check);
+        assertWithMessage("contains pattern")
+                .that(resultContains.pattern())
+                .isEqualTo("abc|def");
+
+        final Pattern equalsPattern = Pattern.compile("^[a-z]");
+        check.setForbiddenSummaryFragments(equalsPattern);
+        final Pattern resultEquals =
+                getForbiddenSummaryFragmentsInlineReturn(check);
+        assertWithMessage("equals pattern")
+                .that(resultEquals.pattern())
+                .isEqualTo("^$");
+
+        final Pattern elsePattern = Pattern.compile("randomPattern");
+        check.setForbiddenSummaryFragments(elsePattern);
+        final Pattern resultElse =
+                getForbiddenSummaryFragmentsInlineReturn(check);
+        assertWithMessage("else pattern identity")
+                .that(resultElse)
+                .isSameInstanceAs(elsePattern);
+    }
+
+    @Test
+    public void testSetForbiddenSummaryFragmentsMutantsAssignmentAndIdentity() {
+        final SummaryJavadocCheck check = new SummaryJavadocCheck();
+
+        final Pattern baselinePattern = Pattern.compile("baseline");
+        check.setForbiddenSummaryFragments(baselinePattern);
+        final Pattern resultBaseline =
+                getForbiddenSummaryFragmentsInlineReturn(check);
+        assertWithMessage("baseline pattern identity")
+                .that(resultBaseline)
+                .isSameInstanceAs(baselinePattern);
+
+        final Pattern endsWithPattern = Pattern.compile("abc|^[a-z]");
+        check.setForbiddenSummaryFragments(endsWithPattern);
+        final Pattern resultEndsWith =
+                getForbiddenSummaryFragmentsInlineReturn(check);
+        assertWithMessage("endsWith pattern mutation")
+                .that(resultEndsWith.pattern())
+                .isEqualTo("abc");
+        assertWithMessage("endsWith pattern not same")
+                .that(resultEndsWith)
+                .isNotSameInstanceAs(endsWithPattern);
+
+        final Pattern equalsPattern = Pattern.compile("^[a-z]");
+        check.setForbiddenSummaryFragments(equalsPattern);
+        final Pattern resultEquals =
+                getForbiddenSummaryFragmentsInlineReturn(check);
+        assertWithMessage("equals pattern mutation")
+                .that(resultEquals.pattern())
+                .isEqualTo("^$");
+        assertWithMessage("equals pattern not same")
+                .that(resultEquals)
+                .isNotSameInstanceAs(equalsPattern);
+
+        final Pattern noInlinePattern = Pattern.compile("abc|def");
+        check.setForbiddenSummaryFragments(noInlinePattern);
+        final Pattern resultNeg =
+                getForbiddenSummaryFragmentsInlineReturn(check);
+        assertWithMessage("noInline pattern identity")
+                .that(resultNeg)
+                .isSameInstanceAs(noInlinePattern);
+    }
+
+    @Test
+    public void testContainsForbiddenFragmentForInlineReturnAllBranches()
+            throws Exception {
+        final SummaryJavadocCheck check = new SummaryJavadocCheck();
+        // forbiddenSummaryFragmentsInlineReturn is null
+        TestUtil.setInternalState(
+                check, "forbiddenSummaryFragmentsInlineReturn", null);
+        TestUtil.setInternalState(
+                check, "forbiddenSummaryFragments", Pattern.compile("test"));
+        assertWithMessage("match found")
+                .that(hasForbiddenFragmentForInlineReturn(check, "no match here"))
+                .isFalse();
+        assertWithMessage("no match found")
+                .that(hasForbiddenFragmentForInlineReturn(check, "test"))
+                .isTrue();
+
+        // forbiddenSummaryFragmentsInlineReturn is not null
+        TestUtil.setInternalState(check, "forbiddenSummaryFragmentsInlineReturn",
+                Pattern.compile("inline"));
+        assertWithMessage("inline match found")
+                .that(hasForbiddenFragmentForInlineReturn(check, "inline"))
+                .isTrue();
+        assertWithMessage("inline no match")
+                .that(hasForbiddenFragmentForInlineReturn(check, "no match here"))
+                .isFalse();
+    }
+
+    @Test
+    public void testContainsForbiddenFragmentForInlineReturnRemoveConditionalMutatorEqualIf()
+            throws Exception {
+        final SummaryJavadocCheck check = new SummaryJavadocCheck();
+        // Set forbiddenSummaryFragmentsInlineReturn to null to hit if branch
+        TestUtil.setInternalState(
+                check, "forbiddenSummaryFragmentsInlineReturn", null);
+        TestUtil.setInternalState(
+                check, "forbiddenSummaryFragments", Pattern.compile("abc"));
+        assertWithMessage("match abc")
+                .that(hasForbiddenFragmentForInlineReturn(check, "abc"))
+                .isTrue();
+        assertWithMessage("no match")
+                .that(hasForbiddenFragmentForInlineReturn(check, "no match"))
+                .isFalse();
+    }
 
     @Override
     public String getPackageLocation() {
@@ -275,6 +412,40 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocInlineReturnForbidden.java"), expected);
+    }
+
+    @Test
+    public void testInlineReturnGoogle() throws Exception {
+        final String[] expected = {
+            "33: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturnGoogle.java"), expected);
+    }
+
+    @Test
+    public void testInlineReturnGoogleAltPattern() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturnGoogleAltPattern.java"), expected);
+    }
+
+    @Test
+    public void testInlineReturnOnlyLowercase() throws Exception {
+        final String[] expected = {
+            "22: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturnOnlyLowercase.java"), expected);
+    }
+
+    @Test
+    public void testInlineReturnDefault() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturnDefault.java"));
     }
 
     @Test
