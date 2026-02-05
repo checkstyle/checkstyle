@@ -1,0 +1,4 @@
+/**
+ * {@snippet : body}
+ */
+class Test {}
