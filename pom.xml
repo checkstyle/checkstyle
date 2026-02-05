@@ -280,6 +280,7 @@
       -Xep:NestedOptionals:ERROR
       -Xep:NullArgumentForNonNullParameter:ERROR
       -Xep:NullableOptional:ERROR
+      -Xep:ObjectEqualsForPrimitives:ERROR
       <!-- We prefer UnnecessaryParenthesesCheck over error-prone's OperatorPrecedence. -->
       -Xep:OperatorPrecedence:OFF
       -Xep:OptionalOrElseGet:ERROR
