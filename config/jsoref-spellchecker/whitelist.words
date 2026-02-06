@@ -1463,6 +1463,7 @@ unusedcatchparametershouldbeunnamed
 unusedimports
 unusedlambdaparametershouldbeunnamed
 unusedlocalvariable
+unusedprivatefield
 upperell
 upsss
 urandom
