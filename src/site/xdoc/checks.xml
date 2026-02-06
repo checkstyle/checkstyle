@@ -882,6 +882,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/javadoc/javadocutilizingtrailingspace.html#JavadocUtilizingTrailingSpace">
+                JavadocUtilizingTrailingSpace
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc lines efficiently utilize the available horizontal space.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/javadoc/javadocvariable.html#JavadocVariable">
                 JavadocVariable
               </a>
