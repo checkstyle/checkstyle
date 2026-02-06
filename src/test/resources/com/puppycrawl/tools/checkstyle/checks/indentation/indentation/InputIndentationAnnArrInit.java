@@ -55,4 +55,10 @@ interface SomeInterface {                                             //indent:0
      }                                                                //indent:5 exp:2,6 warn
   )                                                                   //indent:2 exp:2
   void works();                                                       //indent:2 exp:2
+
+  void method();                                                      //indent:2 exp:2
+  @Anno({                                                             //indent:2 exp:2
+      "example"                                                       //indent:6 exp:6
+  })                                                                  //indent:2 exp:2
+  void method1();                                                     //indent:2 exp:2
 }                                                                     //indent:0 exp:0

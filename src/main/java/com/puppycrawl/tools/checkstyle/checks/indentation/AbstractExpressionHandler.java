@@ -499,7 +499,15 @@ public abstract class AbstractExpressionHandler {
      */
     protected final void findSubtreeAst(DetailAstSet astSet, DetailAST tree,
         boolean allowNesting) {
-        if (!indentCheck.getHandlerFactory().isHandledType(tree.getType())) {
+        // Skip TEXT_BLOCK_LITERAL_END in annotation array context as it has special
+        // indentation rules.
+        final boolean isTextBlockLiteralEnd = tree.getType() == TokenTypes.TEXT_BLOCK_LITERAL_END;
+        final boolean isInAnnotationArray = isInAnnotationArrayContext();
+        final boolean isTextBlockInsideAnnotationArray =
+            isTextBlockLiteralEnd && isInAnnotationArray;
+
+        if (!isTextBlockInsideAnnotationArray
+                && !indentCheck.getHandlerFactory().isHandledType(tree.getType())) {
             final int lineNum = tree.getLineNo();
             final Integer colNum = astSet.getStartColumn(lineNum);
 
@@ -515,6 +523,24 @@ public abstract class AbstractExpressionHandler {
                 findSubtreeAst(astSet, node, allowNesting);
             }
         }
+    }
+
+    /**
+     * Checks if the current handler is in an annotation array initialization context.
+     *
+     * @return true if in annotation array context, false otherwise
+     */
+    private boolean isInAnnotationArrayContext() {
+        AbstractExpressionHandler handler = this;
+        boolean result = false;
+        while (handler != null) {
+            if (handler.getClass().getSimpleName().equals("AnnotationArrayInitHandler")) {
+                result = true;
+                break;
+            }
+            handler = handler.getParent();
+        }
+        return result;
     }
 
     /**
