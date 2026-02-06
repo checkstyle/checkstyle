@@ -3,6 +3,14 @@
   <module name="TreeWalker">
     <module name="JavadocMethod">
         <property name="tokens" value="CTOR_DEF"/>
+        <property name="validateThrows" value="false" default="true"/>
+        <property name="allowedAnnotations" value="Override" default="true"/>
+        <property name="accessModifiers"
+                value="public, protected, package, private"
+                default="true"/>
+        <property name="allowMissingParamTags" value="false" default="true"/>
+        <property name="allowMissingReturnTag" value="false" default="true"/>
+        <property name="allowInlineReturn" value="false" default="true"/>
     </module>
   </module>
 </module>
