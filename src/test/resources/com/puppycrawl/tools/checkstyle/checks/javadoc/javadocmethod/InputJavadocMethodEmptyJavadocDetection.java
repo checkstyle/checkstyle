@@ -1,0 +1,92 @@
+/*
+JavadocMethod
+validateThrows = (default)false
+allowedAnnotations = (default)Override
+accessModifiers = (default)public, protected, package, private
+allowMissingParamTags = (default)false
+allowMissingReturnTag = (default)false
+allowInlineReturn = (default)false
+tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
+
+public class InputJavadocMethodEmptyJavadocDetection {
+
+    /** */
+    /** Method with empty javadoc followed by real javadoc.
+     * @param x value
+     */
+    public void methodWithEmptyThenRealJavadoc(int x) {
+    }
+
+    /**  */
+    /** Another empty javadoc with spaces followed by real javadoc.
+     * @return value
+     */
+    public int methodWithEmptySpacesThenRealJavadoc() {
+        return 0;
+    }
+
+    /**
+     *
+     */
+    /** Empty javadoc with newlines followed by real javadoc.
+     * @param y value
+     */
+    public void methodWithEmptyNewlinesThenRealJavadoc(String y) {
+    }
+
+    /** * */
+    /** Empty javadoc with asterisk followed by real javadoc. */
+    public void methodWithEmptyAsteriskThenRealJavadoc() {
+    }
+
+    /** a
+     * @param z value
+     */
+    public void methodWithNonEmptyJavadoc(int z) {
+    }
+
+    /** text
+     */
+    // violation below 'Expected @param tag for 'value''
+    public void methodWithTextJavadoc(String value) {
+    }
+
+    /**
+     * Non-empty javadoc with content.
+     * @param data value
+     */
+    public void methodWithProperJavadoc(Object data) {
+    }
+
+    /**   *  * */
+    /** All whitespace and asterisks followed by real javadoc.
+     * @return result
+     */
+    public int methodWithAllWhitespaceAsterisks() {
+        return 1;
+    }
+
+    /**
+     * Method with generic parameter.
+     * @param <T> the type
+     * @param item the item
+     */
+    public <T> void methodWithGenericParam(T item) {
+    }
+
+    /**
+     * Generic method missing type parameter documentation.
+     * @param element the element
+     */
+    // violation below 'Expected @param tag for '<E>''
+    public <E> void methodMissingGenericDocumentation(E element) {
+    }
+}
+
+
+
