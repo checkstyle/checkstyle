@@ -82,6 +82,14 @@
   <suppress id="xdocEndComment"
     files="multifileregexpheader[\\/]Example[1-4].java"/>
 
+  <!-- header examples use external XML configs instead of inline -->
+  <suppress id="exampleFileXmlConfigPresence"
+    files="header[\\/]Example[1-4].java"/>
+  <suppress id="xdocStartComment"
+    files="header[\\/]Example[1-4].java"/>
+  <suppress id="xdocEndComment"
+    files="header[\\/]Example[1-4].java"/>
+
   <!-- Check applies to resources-noncompilable files.  -->
   <suppress id="presenceOfCompilationComment" files="resources[\\/].*"/>
 
