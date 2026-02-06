@@ -162,12 +162,19 @@ div, p, td, table td, th, table th, li, pre, #breadcrumbs span,
   font-size: 15px;
 }
 
+.sidebar-nav li {
+  white-space: normal;
+  word-break: break-word;
+}
+
 .sidebar-nav li.expanded, .sidebar-nav li.collapsed {
   background-size: 7px;
 }
 
 .sidebar-nav {
-  padding: 8px 4px 0 12px;
+  width: 240px;
+  padding: 8px 6px 0 10px;
+  box-sizing: border-box;
 }
 
 .nav-list {
@@ -510,4 +517,22 @@ section#Properties .wrapper table td a {
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .version-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
