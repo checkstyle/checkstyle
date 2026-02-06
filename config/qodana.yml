@@ -1,0 +1,22 @@
+version: 1.0
+
+projectJDK: "21"
+
+failureConditions:
+  severityThresholds:
+    any: 0
+
+profile:
+  path: config/intellij-idea-inspections.xml
+
+exclude:
+  - name: All
+    paths:
+      - target/
+      - bin/
+      - .ci-temp/
+      - src/test/resources/
+      - src/it/resources/
+      - src/site/resources/js/google-analytics.js
+      - src/site/resources/styleguides/
+      - docs/GRAMMAR_UPDATES.md
