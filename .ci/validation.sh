@@ -1463,7 +1463,7 @@ openrewrite-checkstyle-auto-fix)
   rm -rf /tmp/checkstyle-openrewrite-recipes
   ;;
 
-openrewrite-refaster-rules-1)
+openrewrite-refaster-rules)
   echo "Cloning and building OpenRewrite recipes..."
   PROJECT_ROOT="$(pwd)"
   export MAVEN_OPTS="-Xmx4g -Xms2g"
@@ -1475,33 +1475,10 @@ openrewrite-refaster-rules-1)
 
   cd "$PROJECT_ROOT"
 
-  echo "Running RefasterRules Part 1 recipes..."
+  echo "Running RefasterRules recipes..."
   ./mvnw -e --no-transfer-progress rewrite:run \
     -Drewrite.recipeChangeLogLevel=INFO \
-    -Drewrite.activeRecipes=org.checkstyle.RefasterRules1
-
-  echo "Checking for uncommitted changes..."
-  ./.ci/print-diff-as-patch.sh target/rewrite.patch
-
-  rm -rf /tmp/checkstyle-openrewrite-recipes
-  ;;
-
-openrewrite-refaster-rules-2)
-  echo "Cloning and building OpenRewrite recipes..."
-  PROJECT_ROOT="$(pwd)"
-  export MAVEN_OPTS="-Xmx4g -Xms2g"
-
-  cd /tmp
-  git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
-  cd checkstyle-openrewrite-recipes
-  ./mvnw -e --no-transfer-progress clean install -DskipTests
-
-  cd "$PROJECT_ROOT"
-
-  echo "Running RefasterRules Part 2 recipes..."
-  ./mvnw -e --no-transfer-progress rewrite:run \
-    -Drewrite.recipeChangeLogLevel=INFO \
-    -Drewrite.activeRecipes=org.checkstyle.RefasterRules2
+    -Drewrite.activeRecipes=org.checkstyle.RefasterRules
 
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
