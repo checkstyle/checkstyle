@@ -280,37 +280,36 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
                 createImaginary(JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG);
         final ParseTree tagContent = ctx.inlineTagContent().getChild(0);
 
-        if (tagContent instanceof ParserRuleContext context) {
-            final Token tagName = (Token) context.getChild(0).getPayload();
-            final int tokenType = tagName.getType();
+        final ParserRuleContext context = (ParserRuleContext) tagContent;
+        final Token tagName = (Token) context.getChild(0).getPayload();
+        final int tokenType = tagName.getType();
 
-            final JavadocNodeImpl specificTagNode = switch (tokenType) {
-                case JavadocCommentsLexer.CODE ->
-                    buildImaginaryNode(JavadocCommentsTokenTypes.CODE_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.LINK ->
-                    buildImaginaryNode(JavadocCommentsTokenTypes.LINK_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.LINKPLAIN ->
-                    buildImaginaryNode(JavadocCommentsTokenTypes.LINKPLAIN_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.VALUE ->
-                    buildImaginaryNode(JavadocCommentsTokenTypes.VALUE_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.INHERIT_DOC ->
-                    buildImaginaryNode(JavadocCommentsTokenTypes.INHERIT_DOC_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.SUMMARY ->
-                    buildImaginaryNode(JavadocCommentsTokenTypes.SUMMARY_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.SYSTEM_PROPERTY ->
-                    buildImaginaryNode(JavadocCommentsTokenTypes.SYSTEM_PROPERTY_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.INDEX ->
-                    buildImaginaryNode(JavadocCommentsTokenTypes.INDEX_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.RETURN ->
-                    buildImaginaryNode(JavadocCommentsTokenTypes.RETURN_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.LITERAL ->
-                    buildImaginaryNode(JavadocCommentsTokenTypes.LITERAL_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.SNIPPET ->
-                    buildImaginaryNode(JavadocCommentsTokenTypes.SNIPPET_INLINE_TAG, ctx);
-                default -> buildImaginaryNode(JavadocCommentsTokenTypes.CUSTOM_INLINE_TAG, ctx);
-            };
-            inlineTagNode.addChild(specificTagNode);
-        }
+        final JavadocNodeImpl specificTagNode = switch (tokenType) {
+            case JavadocCommentsLexer.CODE ->
+                buildImaginaryNode(JavadocCommentsTokenTypes.CODE_INLINE_TAG, ctx);
+            case JavadocCommentsLexer.LINK ->
+                buildImaginaryNode(JavadocCommentsTokenTypes.LINK_INLINE_TAG, ctx);
+            case JavadocCommentsLexer.LINKPLAIN ->
+                buildImaginaryNode(JavadocCommentsTokenTypes.LINKPLAIN_INLINE_TAG, ctx);
+            case JavadocCommentsLexer.VALUE ->
+                buildImaginaryNode(JavadocCommentsTokenTypes.VALUE_INLINE_TAG, ctx);
+            case JavadocCommentsLexer.INHERIT_DOC ->
+                buildImaginaryNode(JavadocCommentsTokenTypes.INHERIT_DOC_INLINE_TAG, ctx);
+            case JavadocCommentsLexer.SUMMARY ->
+                buildImaginaryNode(JavadocCommentsTokenTypes.SUMMARY_INLINE_TAG, ctx);
+            case JavadocCommentsLexer.SYSTEM_PROPERTY ->
+                buildImaginaryNode(JavadocCommentsTokenTypes.SYSTEM_PROPERTY_INLINE_TAG, ctx);
+            case JavadocCommentsLexer.INDEX ->
+                buildImaginaryNode(JavadocCommentsTokenTypes.INDEX_INLINE_TAG, ctx);
+            case JavadocCommentsLexer.RETURN ->
+                buildImaginaryNode(JavadocCommentsTokenTypes.RETURN_INLINE_TAG, ctx);
+            case JavadocCommentsLexer.LITERAL ->
+                buildImaginaryNode(JavadocCommentsTokenTypes.LITERAL_INLINE_TAG, ctx);
+            case JavadocCommentsLexer.SNIPPET ->
+                buildImaginaryNode(JavadocCommentsTokenTypes.SNIPPET_INLINE_TAG, ctx);
+            default -> buildImaginaryNode(JavadocCommentsTokenTypes.CUSTOM_INLINE_TAG, ctx);
+        };
+        inlineTagNode.addChild(specificTagNode);
 
         return inlineTagNode;
     }
