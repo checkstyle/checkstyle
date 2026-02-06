@@ -319,15 +319,9 @@ workflows:
           image-name: "cimg/openjdk:21.0"
           command: "./.ci/validation.sh openrewrite-checkstyle-auto-fix"
       - validate-with-maven-script:
-          name: "openrewrite-refaster-rules-1"
+          name: "openrewrite-refaster-rules"
           image-name: "cimg/openjdk:21.0"
-          command: "./.ci/validation.sh openrewrite-refaster-rules-1"
-          no_output_timeout: 15m
-      - validate-with-maven-script:
-          name: "openrewrite-refaster-rules-2"
-          image-name: "cimg/openjdk:21.0"
-          command: "./.ci/validation.sh openrewrite-refaster-rules-2"
-          no_output_timeout: 15m
+          command: "./.ci/validation.sh openrewrite-refaster-rules"
       - validate-with-maven-script:
           name: "openrewrite-static-analysis"
           image-name: "cimg/openjdk:21.0"
