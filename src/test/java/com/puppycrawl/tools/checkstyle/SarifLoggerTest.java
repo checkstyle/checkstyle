@@ -176,27 +176,41 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAddExceptions() throws IOException {
-        final SarifLogger logger = new SarifLogger(outStream,
-                OutputStreamOptions.CLOSE);
+        final SarifLogger logger =
+                new SarifLogger(outStream, OutputStreamOptions.CLOSE);
+
         logger.auditStarted(null);
-        final Violation violation =
+
+        final Violation violation1 =
                 new Violation(1, 1,
                         "messages.properties", "null", null, null,
                         getClass(), "found an error");
-        final AuditEvent ev = new AuditEvent(this, null, violation);
+
+        final AuditEvent event1 = new AuditEvent(this, "Test1.java", violation1);
+
+        logger.fileStarted(event1);
+        logger.addException(event1,
+                new TestException("msg1", new RuntimeException("cause1")));
+        logger.fileFinished(event1);
+
         final Violation violation2 =
-                new Violation(1, 1,
+                new Violation(2, 1,
                         "messages.properties", "null", null, null,
-                        getClass(), "found an error");
-        final AuditEvent ev2 = new AuditEvent(this, "Test.java", violation2);
-        logger.fileStarted(ev);
-        logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
-        logger.fileFinished(ev);
-        logger.fileStarted(ev2);
-        logger.addException(ev2, new TestException("msg2", new RuntimeException("msg2")));
-        logger.fileFinished(ev);
+                        getClass(), "found another error");
+
+        final AuditEvent event2 = new AuditEvent(this, "Test2.java", violation2);
+
+        logger.fileStarted(event2);
+        logger.addException(event2,
+                new TestException("msg2", new RuntimeException("cause2")));
+        logger.fileFinished(event2);
+
         logger.auditFinished(null);
-        verifyContent(getPath("ExpectedSarifLoggerDoubleException.sarif"), outStream);
+
+        verifyContent(
+                getPath("ExpectedSarifLoggerDoubleException.sarif"),
+                outStream
+        );
     }
 
     @Test
