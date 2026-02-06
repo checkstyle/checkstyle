@@ -149,6 +149,9 @@
   <!-- No new line by design to show violation -->
   <suppress checks="NewlineAtEndOfFile"
     files="newlineatendoffile[\\/]Example\d+.*"/>
+  <!-- we need to show full violation message with symbols -->
+  <suppress checks="LineLength"
+    files="newlineatendoffile[\\/]Example[245].*"/>
 
   <!-- We need to maintain indentation on xml part -->
   <suppress checks="LineLength"
