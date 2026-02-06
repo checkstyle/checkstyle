@@ -623,6 +623,16 @@
           </tr>
           <tr>
             <td>
+              <a href="unusedprivatefield.html#UnusedPrivateField">
+                UnusedPrivateField
+              </a>
+            </td>
+            <td>
+              Check that a private field is declared, but never used.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="variabledeclarationusagedistance.html#VariableDeclarationUsageDistance">
                 VariableDeclarationUsageDistance
               </a>
