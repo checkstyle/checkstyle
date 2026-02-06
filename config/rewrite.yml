@@ -20,24 +20,12 @@ type: specs.openrewrite.org/v1beta/recipe
 name: org.checkstyle.RefasterRules
 description: Picnic Refaster rules.
 recipeList:
-  - org.checkstyle.RefasterRules1
-  - org.checkstyle.RefasterRules2
----
-type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.RefasterRules1
-description: Picnic Refaster rules - Part 1.
-recipeList:
   - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
   - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
   - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
   - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
   - tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes
   - tech.picnic.errorprone.refasterrules.FileRulesRecipes
----
-type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.RefasterRules2
-description: Picnic Refaster rules - Part 2.
-recipeList:
   - tech.picnic.errorprone.refasterrules.MapRulesRecipes
   - tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes
   - tech.picnic.errorprone.refasterrules.MockitoRulesRecipes
