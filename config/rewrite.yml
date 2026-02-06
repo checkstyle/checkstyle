@@ -1,6 +1,6 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-# seems smell, as pom declaration not working...
+# workaround, as pom declaration not working.
 name: org.checkstyle.AllAutoFixes
 recipeList:
   - org.checkstyle.CheckstyleAutoFix
