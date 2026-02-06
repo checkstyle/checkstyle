@@ -140,6 +140,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/design/visibilitymodifier/Example11",
             "checks/design/visibilitymodifier/Example12",
             "checks/finalparameters/Example4",
+            "checks/header/header/Example4",
             "checks/imports/avoidstaticimport/Example2",
             "checks/imports/customimportorder/Example10",
             "checks/imports/customimportorder/Example11",
