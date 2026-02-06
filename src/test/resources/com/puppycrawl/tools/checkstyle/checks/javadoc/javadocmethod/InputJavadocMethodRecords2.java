@@ -5,7 +5,8 @@ validateThrows = true
 accessModifiers = (default)public, protected, package, private
 allowMissingParamTags = true
 allowMissingReturnTag = (default)false
-tokens = METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
+allowInlineReturn = (default)false
+tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 
 
 */

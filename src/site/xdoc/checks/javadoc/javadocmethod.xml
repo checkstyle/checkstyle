@@ -166,6 +166,17 @@ public int checkReturnTag(final int aTagIndex,
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocMethod"/&gt;
+      &lt;property name="validateThrows" value="false" default="true"/&gt;
+      &lt;property name="allowedAnnotations" value="Override" default="true"/&gt;
+      &lt;property name="accessModifiers"
+              value="public, protected, package, private"
+              default="true"/&gt;
+      &lt;property name="allowMissingParamTags" value="false" default="true"/&gt;
+      &lt;property name="allowMissingReturnTag" value="false" default="true"/&gt;
+      &lt;property name="allowInlineReturn" value="false" default="true"/&gt;
+      &lt;property name="tokens"
+              value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF"
+              default="true"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -205,6 +216,13 @@ public class Example1 {
     &lt;module name="JavadocMethod"&gt;
       &lt;property name="accessModifiers" value="public"/&gt;
       &lt;property name="allowMissingParamTags" value="true"/&gt;
+      &lt;property name="validateThrows" value="false" default="true"/&gt;
+      &lt;property name="allowedAnnotations" value="Override" default="true"/&gt;
+      &lt;property name="allowMissingReturnTag" value="false" default="true"/&gt;
+      &lt;property name="allowInlineReturn" value="false" default="true"/&gt;
+      &lt;property name="tokens"
+              value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF"
+              default="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -243,6 +261,14 @@ public class Example2 {
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocMethod"&gt;
       &lt;property name="accessModifiers" value="private, package"/&gt;
+      &lt;property name="validateThrows" value="false" default="true"/&gt;
+      &lt;property name="allowedAnnotations" value="Override" default="true"/&gt;
+      &lt;property name="allowMissingParamTags" value="false" default="true"/&gt;
+      &lt;property name="allowMissingReturnTag" value="false" default="true"/&gt;
+      &lt;property name="allowInlineReturn" value="false" default="true"/&gt;
+      &lt;property name="tokens"
+              value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF"
+              default="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -280,6 +306,16 @@ public class Example3 {
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocMethod"&gt;
         &lt;property name="allowMissingReturnTag" value="true"/&gt;
+        &lt;property name="validateThrows" value="false" default="true"/&gt;
+        &lt;property name="allowedAnnotations" value="Override" default="true"/&gt;
+        &lt;property name="accessModifiers"
+                value="public, protected, package, private"
+                default="true"/&gt;
+        &lt;property name="allowMissingParamTags" value="false" default="true"/&gt;
+        &lt;property name="allowInlineReturn" value="false" default="true"/&gt;
+        &lt;property name="tokens"
+                value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF"
+                default="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -317,6 +353,16 @@ public class Example4 {
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocMethod"&gt;
         &lt;property name="allowedAnnotations" value="Deprecated"/&gt;
+        &lt;property name="validateThrows" value="false" default="true"/&gt;
+        &lt;property name="accessModifiers"
+                value="public, protected, package, private"
+                default="true"/&gt;
+        &lt;property name="allowMissingParamTags" value="false" default="true"/&gt;
+        &lt;property name="allowMissingReturnTag" value="false" default="true"/&gt;
+        &lt;property name="allowInlineReturn" value="false" default="true"/&gt;
+        &lt;property name="tokens"
+                value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF"
+                default="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -354,6 +400,14 @@ public class Example5 {
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocMethod"&gt;
         &lt;property name="tokens" value="CTOR_DEF"/&gt;
+        &lt;property name="validateThrows" value="false" default="true"/&gt;
+        &lt;property name="allowedAnnotations" value="Override" default="true"/&gt;
+        &lt;property name="accessModifiers"
+                value="public, protected, package, private"
+                default="true"/&gt;
+        &lt;property name="allowMissingParamTags" value="false" default="true"/&gt;
+        &lt;property name="allowMissingReturnTag" value="false" default="true"/&gt;
+        &lt;property name="allowInlineReturn" value="false" default="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -391,6 +445,16 @@ public class Example6 {
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocMethod"&gt;
       &lt;property name="validateThrows" value="true"/&gt;
+      &lt;property name="allowedAnnotations" value="Override" default="true"/&gt;
+      &lt;property name="accessModifiers"
+              value="public, protected, package, private"
+              default="true"/&gt;
+      &lt;property name="allowMissingParamTags" value="false" default="true"/&gt;
+      &lt;property name="allowMissingReturnTag" value="false" default="true"/&gt;
+      &lt;property name="allowInlineReturn" value="false" default="true"/&gt;
+      &lt;property name="tokens"
+              value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF"
+              default="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -490,6 +554,16 @@ public class Example7 {
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocMethod"&gt;
         &lt;property name="allowInlineReturn" value="true"/&gt;
+        &lt;property name="validateThrows" value="false" default="true"/&gt;
+        &lt;property name="allowedAnnotations" value="Override" default="true"/&gt;
+        &lt;property name="accessModifiers"
+                value="public, protected, package, private"
+                default="true"/&gt;
+        &lt;property name="allowMissingParamTags" value="false" default="true"/&gt;
+        &lt;property name="allowMissingReturnTag" value="false" default="true"/&gt;
+        &lt;property name="tokens"
+                value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF"
+                default="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
