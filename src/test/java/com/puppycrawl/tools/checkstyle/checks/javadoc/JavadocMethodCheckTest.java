@@ -611,4 +611,25 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodDoNotAllowInlineReturn.java"), expected);
     }
+
+    @Test
+    public void testJavadocMethodEdgeCases() throws Exception {
+        final String[] expected = {
+            "24:37: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
+            "68:46: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
+            "97:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<E>"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodEdgeCases.java"), expected);
+    }
+
+    @Test
+    public void testJavadocMethodEmptyJavadocDetection() throws Exception {
+        final String[] expected = {
+            "48:46: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "value"),
+            "79:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<E>"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodEmptyJavadocDetection.java"), expected);
+    }
 }
