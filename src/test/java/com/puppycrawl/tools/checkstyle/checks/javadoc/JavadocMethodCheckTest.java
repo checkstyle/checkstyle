@@ -611,4 +611,75 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodDoNotAllowInlineReturn.java"), expected);
     }
+
+    @Test
+    public void testJavadocMethodEdgeCases() throws Exception {
+        final String[] expected = {
+            "31:37: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
+            "97:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<E>"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodEdgeCases.java"), expected);
+    }
+
+    @Test
+    public void testJavadocMethodEmptyJavadocDetection() throws Exception {
+        final String[] expected = {
+            "56:46: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "value"),
+            "87:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<E>"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodEmptyJavadocDetection.java"), expected);
+    }
+
+    @Test
+    public void testJavadocInInterface() throws Exception {
+        final String[] expected = {
+            "31:6: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<T>"),
+            "45:6: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<T>"),
+            "51: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return", ""),
+            "56: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return", ""),
+            "68: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodInInterface.java"), expected);
+    }
+
+    @Test
+    public void testJavadocMethodInTest() throws Exception {
+        final String[] expected = {
+            "33:49: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodInTest.java"), expected);
+    }
+
+    @Test
+    public void testJavadocMethodInReferenceTest() throws Exception {
+        final String[] expected = {
+            "30:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+            "33:42: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "a"),
+            "52: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL, "@param", "a"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodInReferenceTest.java"), expected);
+    }
+
+    @Test
+    public void testJavadocMethodInBriefJavadoc() throws Exception {
+        final String msgReturnExpectedCustom =
+                "@return tag should be present and have description :)";
+        final String[] expected = {
+            "45: " + msgReturnExpectedCustom,
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodInBriefJavadoc.java"), expected);
+    }
+
+    @Test
+    public void testJavadocMethodAnnotationPositions() throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodAnnotationPositions.java"), expected);
+    }
 }
