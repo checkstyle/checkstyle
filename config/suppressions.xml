@@ -119,7 +119,6 @@
 
   <!-- these are legacy use cases until #11166 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="UnusedImportsCheck.java"/>
-  <suppress id="noUsageOfGetFileContentsMethod" files="JavadocMethodCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocStyleCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocTypeCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocVariableCheck.java"/>
