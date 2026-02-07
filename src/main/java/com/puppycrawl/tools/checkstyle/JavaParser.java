@@ -68,6 +68,9 @@ public final class JavaParser {
 
     }
 
+    /** Markdown comment delimiter. */
+    private static final String MARKDOWN_COMMENT_DELIMITER = "///";
+
     /** Stop instances being created. **/
     private JavaParser() {
     }
@@ -209,6 +212,9 @@ public final class JavaParser {
         if (token.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
             commentAst = createSlCommentNode(token);
         }
+        else if (token.getType() == TokenTypes.MARKDOWN_COMMENT) {
+            commentAst = createMarkdownCommentNode(token);
+        }
         else {
             commentAst = ParserUtil.createBlockCommentNode(token);
         }
@@ -239,6 +245,32 @@ public final class JavaParser {
 
         slComment.addChild(slCommentContent);
         return slComment;
+    }
+
+    /**
+     * Create Markdown comment from token.
+     *
+     * @param token to create the AST
+     * @return DetailAST with MARKDOWN_COMMENT type
+     */
+    private static DetailAST createMarkdownCommentNode(Token token) {
+        final DetailAstImpl mdComment = new DetailAstImpl();
+        mdComment.setType(TokenTypes.MARKDOWN_COMMENT);
+        mdComment.setText(MARKDOWN_COMMENT_DELIMITER);
+        mdComment.setColumnNo(token.getCharPositionInLine());
+        mdComment.setLineNo(token.getLine());
+
+        final DetailAstImpl mdCommentContent = new DetailAstImpl();
+        mdCommentContent.setType(TokenTypes.COMMENT_CONTENT);
+
+        final String tokenText = token.getText();
+        mdCommentContent.setColumnNo(token.getCharPositionInLine()
+                + MARKDOWN_COMMENT_DELIMITER.length());
+        mdCommentContent.setLineNo(token.getLine() + tokenText.split("\n", -1).length - 1);
+        mdCommentContent.setText(tokenText);
+
+        mdComment.addChild(mdCommentContent);
+        return mdComment;
     }
 
     /**
