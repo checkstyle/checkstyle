@@ -153,6 +153,7 @@ public final class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModule
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testCollectNodesWithNullAst() throws Exception {
         final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
 
@@ -172,6 +173,7 @@ public final class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModule
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testCollectNodesTracksCommentsAndColumns() throws Exception {
         final AvoidEscapedUnicodeCharactersCheck check = createCheckWithCollectedNodes();
 
@@ -227,6 +229,7 @@ public final class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModule
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testCollectNodesVisitedNodesBranch() throws Exception {
         final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
         final DetailAstImpl root = createAst(TokenTypes.COMPILATION_UNIT, 1, 0, "root");

@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -182,8 +182,8 @@ public class AvoidEscapedUnicodeCharactersCheck
     /** Max column of non-comment tokens per line. */
     private final Map<Integer, Integer> maxNonCommentColumnByLine = new HashMap<>();
 
-    /** Tracks visited nodes to prevent circular recursion. */
-    private final Set<DetailAST> visitedNodes = new HashSet<>();
+    /** Tracks visited nodes to prevent circular recursion using identity comparison. */
+    private final Map<DetailAST, Boolean> visitedNodes = new IdentityHashMap<>();
 
     /** Allow use escapes for non-printable, control characters. */
     private boolean allowEscapesForControlCharacters;
@@ -351,12 +351,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @param ast root node to traverse
      */
     private void collectNodes(DetailAST ast) {
-        if (ast != null && visitedNodes.add(ast)) {
-            for (DetailAST child = ast.getFirstChild(); child != null;
-                    child = child.getNextSibling()) {
-                collectNodes(child);
-            }
-
+        if (ast != null && visitedNodes.put(ast, Boolean.TRUE) == null) {
             final int lineNo = ast.getLineNo();
             if (lineNo > 0) {
                 if (isCommentStart(ast)) {
@@ -370,6 +365,13 @@ public class AvoidEscapedUnicodeCharactersCheck
                         maxNonCommentColumnByLine.merge(lineNo, columnNo, Math::max);
                     }
                 }
+            }
+
+            // Traverse children
+            DetailAST child = ast.getFirstChild();
+            while (child != null) {
+                collectNodes(child);
+                child = child.getNextSibling();
             }
         }
     }
