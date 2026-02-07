@@ -19,19 +19,21 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
@@ -174,10 +176,14 @@ public class AvoidEscapedUnicodeCharactersCheck
             + "|\\\\u[fF]{3}[bB]"
             + "|\\\\u[fF]{4}");
 
-    /** Cpp style comments. */
-    private Map<Integer, TextBlock> singlelineComments;
-    /** C style comments. */
-    private Map<Integer, List<TextBlock>> blockComments;
+    /** Comment nodes grouped by starting line number. */
+    private final Map<Integer, List<CommentInfo>> commentsByLine = new HashMap<>();
+
+    /** Max column of non-comment tokens per line. */
+    private final Map<Integer, Integer> maxNonCommentColumnByLine = new HashMap<>();
+
+    /** Tracks visited nodes to prevent circular recursion using identity comparison. */
+    private final Map<DetailAST, Boolean> visitedNodes = new IdentityHashMap<>();
 
     /** Allow use escapes for non-printable, control characters. */
     private boolean allowEscapesForControlCharacters;
@@ -250,12 +256,17 @@ public class AvoidEscapedUnicodeCharactersCheck
         };
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @Override
-    @SuppressWarnings("deprecation")
     public void beginTree(DetailAST rootAST) {
-        singlelineComments = getFileContents().getSingleLineComments();
-        blockComments = getFileContents().getBlockComments();
+        commentsByLine.clear();
+        maxNonCommentColumnByLine.clear();
+        visitedNodes.clear();
+        collectNodes(rootAST);
+    }
+
+    @Override
+    public boolean isCommentNodesRequired() {
+        return true;
     }
 
     @Override
@@ -308,38 +319,87 @@ public class AvoidEscapedUnicodeCharactersCheck
      */
     private boolean hasTrailComment(DetailAST ast) {
         int lineNo = ast.getLineNo();
+        int literalEndColumn = getLiteralEndColumn(ast);
 
         // Since the trailing comment in the case of text blocks must follow the """ delimiter,
         // we need to look for it after TEXT_BLOCK_LITERAL_END.
         if (ast.getType() == TokenTypes.TEXT_BLOCK_CONTENT) {
-            lineNo = ast.getNextSibling().getLineNo();
+            final DetailAST endToken = ast.getNextSibling();
+            if (endToken != null) {
+                lineNo = endToken.getLineNo();
+                literalEndColumn = getLiteralEndColumn(endToken);
+            }
         }
+        final List<CommentInfo> comments = commentsByLine.get(lineNo);
         boolean result = false;
-        if (singlelineComments.containsKey(lineNo)) {
-            result = true;
-        }
-        else {
-            final List<TextBlock> commentList = blockComments.get(lineNo);
-            if (commentList != null) {
-                final TextBlock comment = commentList.getLast();
-                final int[] codePoints = getLineCodePoints(lineNo - 1);
-                result = isTrailingBlockComment(comment, codePoints);
+        if (comments != null) {
+            final int maxNonCommentColumn = maxNonCommentColumnByLine.getOrDefault(lineNo, -1);
+            for (CommentInfo comment : comments) {
+                if (comment.startColumn > literalEndColumn
+                        && maxNonCommentColumn <= comment.startColumn) {
+                    result = true;
+                    break;
+                }
             }
         }
         return result;
     }
 
     /**
-     * Whether the C style comment is trailing.
+     * Collects comment nodes and tracks max non-comment token column per line.
      *
-     * @param comment the comment to check.
-     * @param codePoints the first line of the comment, in unicode code points
-     * @return true if the comment is trailing.
+     * @param ast root node to traverse
      */
-    private static boolean isTrailingBlockComment(TextBlock comment, int... codePoints) {
-        return comment.getText().length != 1
-            || CodePointUtil.isBlank(Arrays.copyOfRange(codePoints,
-                comment.getEndColNo() + 1, codePoints.length));
+    private void collectNodes(DetailAST ast) {
+        if (ast != null && visitedNodes.put(ast, Boolean.TRUE) == null) {
+            final int lineNo = ast.getLineNo();
+            if (lineNo > 0) {
+                if (isCommentStart(ast)) {
+                    commentsByLine
+                        .computeIfAbsent(lineNo, key -> new ArrayList<>())
+                        .add(new CommentInfo(ast.getColumnNo()));
+                }
+                else if (!TokenUtil.isCommentType(ast.getType())) {
+                    final int columnNo = ast.getColumnNo();
+                    if (columnNo >= 0) {
+                        maxNonCommentColumnByLine.merge(lineNo, columnNo, Math::max);
+                    }
+                }
+            }
+
+            // Traverse children
+            DetailAST child = ast.getFirstChild();
+            while (child != null) {
+                collectNodes(child);
+                child = child.getNextSibling();
+            }
+        }
+    }
+
+    /**
+     * Determines if the given node starts a comment.
+     *
+     * @param ast node to check
+     * @return true if the node is a comment start
+     */
+    private static boolean isCommentStart(DetailAST ast) {
+        return ast.getType() == TokenTypes.SINGLE_LINE_COMMENT
+                || ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN;
+    }
+
+    /**
+     * Calculates the ending column of a literal token.
+     *
+     * @param ast literal token
+     * @return ending column number
+     */
+    private static int getLiteralEndColumn(DetailAST ast) {
+        final String text = ast.getText();
+        int endColumn = ast.getColumnNo();
+        if (text != null) {
+            endColumn += text.length() - 1;
+        }
+        return endColumn;
     }
 
     /**
@@ -367,6 +427,14 @@ public class AvoidEscapedUnicodeCharactersCheck
     private boolean isAllCharactersEscaped(String literal) {
         return allowIfAllCharactersEscaped
                 && ALL_ESCAPED_CHARS.matcher(literal).find();
+    }
+
+    /**
+     * Simple comment info.
+     *
+     * @param startColumn the starting column of the comment
+     */
+    private record CommentInfo(int startColumn) {
     }
 
 }
