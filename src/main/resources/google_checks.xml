@@ -457,7 +457,7 @@
       <property name="commentFormat" value="\w+"/>
     </module>
     <module name="CommentsIndentation">
-      <property name="tokens" value="SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN"/>
+      <property name="tokens" value="SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN, MARKDOWN_COMMENT"/>
     </module>
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">

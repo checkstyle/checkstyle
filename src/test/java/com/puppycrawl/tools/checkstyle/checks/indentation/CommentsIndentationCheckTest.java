@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck.MSG_KEY_BLOCK;
+import static com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck.MSG_KEY_MARKDOWN;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck.MSG_KEY_SINGLE;
 
 import org.junit.jupiter.api.Test;
@@ -419,5 +420,14 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputCommentsIndentationStartOfMethodCallChainNpe.java"), expected);
+    }
+
+    @Test
+    public void testMarkdownComments() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_KEY_MARKDOWN, 17, 0, 8),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputCommentsIndentationMarkdown.java"), expected);
     }
 }
