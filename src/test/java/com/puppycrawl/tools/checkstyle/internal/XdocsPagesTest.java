@@ -1730,7 +1730,7 @@ public class XdocsPagesTest {
                     expectedUrl = "https://github.com/search?q="
                             + "path%3Asrc%2Fmain%2Fresources%2F"
                             + clss.getPackage().getName().replace(".", "%2F")
-                            + "%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2F"
+                            + "+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2F"
                             + "checkstyle+%22" + linkText + "%22";
                 }
 
