@@ -98,6 +98,9 @@
   <module name="Translation">
     <property name="requiredTranslations" value="de, es, fi, fr, ja, pt, ru, tr, zh"/>
   </module>
+
+  <module name="LineEnding"/>
+
   <module name="UniqueProperties"/>
   <module name="OrderedProperties" />
 
