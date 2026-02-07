@@ -24,7 +24,10 @@ jobs:
         uses: JetBrains/qodana-action@v2025.3
         with:
           use-caches: false
-          args: --print-problems
+          args: >
+            --config,config/qodana.yml,
+            --profile-path,config/intellij-idea-inspections.xml,
+            --print-problems
 
       - name: Brief Report
         if: always()

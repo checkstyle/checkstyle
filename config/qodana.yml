@@ -1,14 +1,12 @@
 version: 1.0
 
-linter: jetbrains/qodana-jvm-community:2025.3
+image: jetbrains/qodana-jvm-community:2025.3
 projectJDK: "21"
 
 failureConditions:
   severityThresholds:
     any: 0
 
-profile:
-  path: config/intellij-idea-inspections.xml
 
 exclude:
   - name: All
