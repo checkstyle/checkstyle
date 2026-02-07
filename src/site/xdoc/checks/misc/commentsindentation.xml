@@ -36,6 +36,8 @@
                     SINGLE_LINE_COMMENT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
                     BLOCK_COMMENT_BEGIN</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MARKDOWN_COMMENT">
+                    MARKDOWN_COMMENT</a>
                   .
               </td>
               <td>
@@ -43,6 +45,8 @@
                     SINGLE_LINE_COMMENT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
                     BLOCK_COMMENT_BEGIN</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MARKDOWN_COMMENT">
+                    MARKDOWN_COMMENT</a>
                   .
               </td>
               <td>6.10</td>
@@ -291,6 +295,11 @@ public class Example8 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22comments.indentation.block%22">
               comments.indentation.block
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22comments.indentation.markdown%22">
+              comments.indentation.markdown
             </a>
           </li>
           <li>

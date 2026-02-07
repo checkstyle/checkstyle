@@ -54,11 +54,17 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     public static final String MSG_KEY_BLOCK = "comments.indentation.block";
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties" file.
+     */
+    public static final String MSG_KEY_MARKDOWN = "comments.indentation.markdown";
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.SINGLE_LINE_COMMENT,
             TokenTypes.BLOCK_COMMENT_BEGIN,
+            TokenTypes.MARKDOWN_COMMENT,
         };
     }
 
@@ -67,6 +73,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
         return new int[] {
             TokenTypes.SINGLE_LINE_COMMENT,
             TokenTypes.BLOCK_COMMENT_BEGIN,
+            TokenTypes.MARKDOWN_COMMENT,
         };
     }
 
@@ -83,7 +90,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST commentAst) {
         switch (commentAst.getType()) {
-            case TokenTypes.SINGLE_LINE_COMMENT, TokenTypes.BLOCK_COMMENT_BEGIN ->
+            case TokenTypes.SINGLE_LINE_COMMENT, TokenTypes.BLOCK_COMMENT_BEGIN,
+                    TokenTypes.MARKDOWN_COMMENT ->
                 visitComment(commentAst);
 
             default -> {
@@ -594,7 +602,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
         return astType == TokenTypes.SINGLE_LINE_COMMENT
             || astType == TokenTypes.BLOCK_COMMENT_BEGIN
             || astType == TokenTypes.COMMENT_CONTENT
-            || astType == TokenTypes.BLOCK_COMMENT_END;
+            || astType == TokenTypes.BLOCK_COMMENT_END
+            || astType == TokenTypes.MARKDOWN_COMMENT;
     }
 
     /**
@@ -756,6 +765,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
         final String msgKey;
         if (comment.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
             msgKey = MSG_KEY_SINGLE;
+        }
+        else if (comment.getType() == TokenTypes.MARKDOWN_COMMENT) {
+            msgKey = MSG_KEY_MARKDOWN;
         }
         else {
             msgKey = MSG_KEY_BLOCK;

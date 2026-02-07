@@ -594,6 +594,7 @@
             <excludePackageNames>
               com.puppycrawl.tools.checkstyle.grammar.java:
               com.puppycrawl.tools.checkstyle.grammar.javadoc:
+              com.puppycrawl.tools.checkstyle.grammar.markdown:
             </excludePackageNames>
             <source>${java.version}</source>
             <show>private</show>
@@ -720,6 +721,9 @@
               <excludeRoot>target/generated-sources/antlr</excludeRoot>
               <excludeRoot>
                 target/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammar/javadoc
+              </excludeRoot>
+              <excludeRoot>
+                target/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammar/markdown
               </excludeRoot>
             </excludeRoots>
           </configuration>
@@ -1087,6 +1091,10 @@
                       com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsParser*
                     </exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer</exclude>
+                    <exclude>
+                      com.puppycrawl.tools.checkstyle.grammar.markdown.MarkdownParser*
+                    </exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.grammar.markdown.MarkdownLexer</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.JavadocCommentsAstVisitor</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsParserUtil</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsLexerUtil</exclude>
@@ -1675,6 +1683,7 @@
           <includes>
             <include>com/puppycrawl/tools/checkstyle/grammar/javadoc/*.g4</include>
             <include>com/puppycrawl/tools/checkstyle/grammar/java/*.g4</include>
+            <include>com/puppycrawl/tools/checkstyle/grammar/markdown/*.g4</include>
           </includes>
         </configuration>
         <executions>
