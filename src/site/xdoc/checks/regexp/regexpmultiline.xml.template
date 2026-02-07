@@ -138,6 +138,60 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /var/tmp/Test.java // violation, a file must not be empty.
         </code></pre></div>
+        <hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check to detect test string patterns and report violations
+          at the string content:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p>
+          The pattern <code>Test #[0-9]+: ([A-Za-z ]+)</code> contains one capturing group.
+          Setting <code>reportGroup="1"</code> reports violations at the test string content
+          (group 1) instead of at the beginning of the entire match (which would include "Test #").
+        </p>
+        <hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the check to detect variable assignments and report violations
+          at the numeric value:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example8.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example8.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p>
+          The pattern <code>([A-Z]+) = ([0-9]+)</code> has two capturing groups.
+          Setting <code>reportGroup="2"</code> reports violations at the numeric value
+          (group 2) instead of at the variable name (group 1) or the entire match (group 0).
+          This allows you to highlight the specific part of the pattern that needs attention.
+        </p>
+        <p>
+          Note: The <code>reportGroup</code> property specifies which capturing group to use
+          for determining the line number where violations are reported. Group 0 represents
+          the entire match, group 1 is the first capturing group, group 2 is the second, and so on.
+          If <code>reportGroup</code> exceeds the number of groups in the pattern, the check
+          falls back to reporting at the entire match.
+        </p>
       </subsection>
 
       <subsection name="Example of Usage" id="RegexpMultiline_Example_of_Usage">
