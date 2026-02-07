@@ -288,6 +288,32 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInlineReturnGoogleAltPattern() throws Exception {
+        final String[] expected = {
+            "22: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturnGoogleAltPattern.java"), expected);
+    }
+
+    @Test
+    public void testInlineReturnOnlyLowercase() throws Exception {
+        final String[] expected = {
+            "22: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturnOnlyLowercase.java"), expected);
+    }
+
+    @Test
+    public void testInlineReturnDefault() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturnDefault.java"));
+    }
+
+    @Test
     public void testPeriodAtEnd() throws Exception {
         final String[] expected = {
             "19: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
