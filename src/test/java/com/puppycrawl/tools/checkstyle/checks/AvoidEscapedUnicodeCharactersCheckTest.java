@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharacte
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
@@ -32,10 +33,11 @@ import org.junit.jupiter.api.Test;
 
 import com.google.common.base.Splitter;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSupport {
+public final class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSupport {
 
     // C0 (ASCII and derivatives)
     // https://en.wiktionary.org/wiki/Appendix:Control_characters#C0_.28ASCII_and_derivatives.29
@@ -150,18 +152,216 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         return "com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters";
     }
 
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testCollectNodesWithNullAst() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+
+        TestUtil.invokeVoidMethod(check, "collectNodes", (Object) null);
+
+        final Map<Integer, List<?>> commentsByLine = TestUtil.getInternalState(
+                check, "commentsByLine", Map.class);
+        final Map<Integer, Integer> maxNonCommentColumnByLine = TestUtil.getInternalState(
+                check, "maxNonCommentColumnByLine", Map.class);
+
+        assertWithMessage("commentsByLine should be empty")
+                .that(commentsByLine)
+                .isEmpty();
+        assertWithMessage("maxNonCommentColumnByLine should be empty")
+                .that(maxNonCommentColumnByLine)
+                .isEmpty();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testCollectNodesTracksCommentsAndColumns() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = createCheckWithCollectedNodes();
+
+        final Map<Integer, List<?>> commentsByLine = TestUtil.getInternalState(
+                check, "commentsByLine", Map.class);
+        final Map<Integer, Integer> maxNonCommentColumnByLine = TestUtil.getInternalState(
+                check, "maxNonCommentColumnByLine", Map.class);
+
+        assertWithMessage("commentsByLine should contain line 10")
+                .that(commentsByLine)
+                .containsKey(10);
+        assertWithMessage("maxNonCommentColumnByLine should contain line 10")
+                .that(maxNonCommentColumnByLine)
+                .containsKey(10);
+    }
+
+    @Test
+    public void testHasTrailCommentBranches() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = createCheckWithCollectedNodes();
+
+        assertTrailComment(check, 10, 5, true, "Trailing comment should be detected on line 10");
+        assertTrailComment(check, 12, 1, false,
+                "Trailing comment should be rejected by max column on line 12");
+        assertTrailComment(check, 14, 1, false,
+                "Trailing comment should be rejected when it starts before literal end");
+        assertTrailComment(check, 30, 1, true,
+                "Trailing comment should be detected with default max column");
+        assertTrailComment(check, 99, 1, false,
+                "No trailing comment should be detected when no comments exist");
+
+        final DetailAstImpl textBlockContentNoEnd = createAst(
+                TokenTypes.TEXT_BLOCK_CONTENT, 15, 1, "abc");
+        final boolean hasTrailCommentTextBlock = TestUtil.invokeMethod(
+                check, "hasTrailComment", Boolean.class, textBlockContentNoEnd);
+        assertWithMessage("No trailing comment should be detected for text block without end")
+                .that(hasTrailCommentTextBlock)
+                .isFalse();
+
+        final DetailAstImpl textBlockContent = createTextBlockContentWithEnd();
+        final boolean hasTrailCommentTextBlockEnd = TestUtil.invokeMethod(
+                check, "hasTrailComment", Boolean.class, textBlockContent);
+        assertWithMessage("Trailing comment should be detected after text block end")
+                .that(hasTrailCommentTextBlockEnd)
+                .isTrue();
+
+        final DetailAstImpl nullTextLiteral = createAst(TokenTypes.STRING_LITERAL, 2, 3, null);
+        final int endColumn = TestUtil.invokeStaticMethod(
+                AvoidEscapedUnicodeCharactersCheck.class, "getLiteralEndColumn",
+                Integer.class, nullTextLiteral);
+        assertWithMessage("End column should match column for null text")
+                .that(endColumn)
+                .isEqualTo(3);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testCollectNodesVisitedNodesBranch() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl root = createAst(TokenTypes.COMPILATION_UNIT, 1, 0, "root");
+
+        // Call collectNodes with the same node twice to test visitedNodes.add(ast) returning false
+        TestUtil.invokeVoidMethod(check, "collectNodes", root);
+        TestUtil.invokeVoidMethod(check, "collectNodes", root);
+
+        final Map<Integer, List<?>> commentsByLine = TestUtil.getInternalState(
+                check, "commentsByLine", Map.class);
+
+        // Should have been processed only once due to visitedNodes check
+        assertWithMessage("commentsByLine should be empty after processing root with no comments")
+                .that(commentsByLine)
+                .isEmpty();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testCollectNodesCyclicSiblingLink() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl root = createAst(TokenTypes.COMPILATION_UNIT, 1, 0, "root");
+        final DetailAstImpl child1 = createAst(TokenTypes.IDENT, 1, 0, "x");
+        final DetailAstImpl sharedNode = createAst(TokenTypes.SINGLE_LINE_COMMENT, 1, 5, "// comment");
+
+        // Normal structure: root -> child1 (with sharedNode as its child)
+        root.setFirstChild(child1);
+        child1.setFirstChild(sharedNode);
+
+        // Now set sharedNode also as the next sibling of child1
+        // This creates: root -> child1 (with sharedNode as child) -> sharedNode (as sibling)
+        // When collectNodes processes child1 and its children, it visits sharedNode
+        // Then when moving to next sibling (also sharedNode), visitedNodes check prevents reprocessing
+        child1.setNextSibling(sharedNode);
+
+        TestUtil.invokeVoidMethod(check, "collectNodes", root);
+
+        final Map<Integer, List<?>> commentsByLine = TestUtil.getInternalState(
+                check, "commentsByLine", Map.class);
+
+        // Should have processed the sharedNode comment once
+        assertWithMessage("commentsByLine should contain the comment")
+                .that(commentsByLine)
+                .containsKey(1);
+    }
+
+    @Test
+    public void testCollectNodesSelfReferencingNode() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl root = createAst(TokenTypes.COMPILATION_UNIT, 1, 0, "root");
+        final DetailAstImpl selfRefNode = createAst(TokenTypes.EXPR, 2, 0, "expr");
+
+        root.setFirstChild(selfRefNode);
+
+        // Use reflection to set nextSibling field to itself, creating self-reference
+        // This simulates malformed AST without causing initialization-time infinite loops
+        java.lang.reflect.Field nextSiblingField = DetailAstImpl.class.getDeclaredField("nextSibling");
+        nextSiblingField.setAccessible(true);
+        nextSiblingField.set(selfRefNode, selfRefNode);
+
+        // The guard should detect nextSibling == child and break without infinite loop
+        TestUtil.invokeVoidMethod(check, "collectNodes", root);
+
+        // Method should complete successfully
+        assertWithMessage("collectNodes should complete")
+                .that(check)
+                .isNotNull();
+    }
+
+    private static void assertTrailComment(AvoidEscapedUnicodeCharactersCheck check,
+            int lineNo, int columnNo, boolean expected, String message) throws Exception {
+        final DetailAstImpl literal = createAst(
+                TokenTypes.STRING_LITERAL, lineNo, columnNo, "\"x\"");
+        final boolean hasTrailComment = TestUtil.invokeMethod(
+                check, "hasTrailComment", Boolean.class, literal);
+        assertWithMessage(message)
+                .that(hasTrailComment)
+                .isEqualTo(expected);
+    }
+
+    private static AvoidEscapedUnicodeCharactersCheck createCheckWithCollectedNodes()
+            throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+
+        final DetailAstImpl root = createAst(TokenTypes.COMPILATION_UNIT, 1, 0, "root");
+        root.addChild(createAst(TokenTypes.STRING_LITERAL, 10, 5, "\"a\""));
+        root.addChild(createAst(TokenTypes.SINGLE_LINE_COMMENT, 10, 20, "//"));
+        root.addChild(createAst(TokenTypes.IDENT, 11, -1, "x"));
+        root.addChild(createAst(TokenTypes.IDENT, 0, 1, "y"));
+        root.addChild(createAst(TokenTypes.BLOCK_COMMENT_BEGIN, 12, 5, "/*"));
+        root.addChild(createAst(TokenTypes.BLOCK_COMMENT_END, 13, 3, "*/"));
+        root.addChild(createAst(TokenTypes.SINGLE_LINE_COMMENT, 14, 2, "//"));
+        root.addChild(createAst(TokenTypes.STRING_LITERAL, 12, 10, "\"b\""));
+        root.addChild(createAst(TokenTypes.SINGLE_LINE_COMMENT, 30, 10, "//"));
+        root.addChild(createAst(TokenTypes.TEXT_BLOCK_CONTENT, 20, 1, "abc"));
+        root.addChild(createAst(TokenTypes.TEXT_BLOCK_LITERAL_END, 20, 5, "\"\"\""));
+        root.addChild(createAst(TokenTypes.SINGLE_LINE_COMMENT, 20, 10, "//"));
+        root.addChild(createAst(TokenTypes.STRING_LITERAL, 20, 1, "\"x\""));
+
+        TestUtil.invokeVoidMethod(check, "collectNodes", root);
+        return check;
+    }
+
+    private static DetailAstImpl createTextBlockContentWithEnd() {
+        final DetailAstImpl textBlockContent = createAst(
+                TokenTypes.TEXT_BLOCK_CONTENT, 20, 1, "abc");
+        final DetailAstImpl textBlockEnd = createAst(
+                TokenTypes.TEXT_BLOCK_LITERAL_END, 20, 5, "\"\"\"");
+        textBlockContent.setNextSibling(textBlockEnd);
+        return textBlockContent;
+    }
+
+    private static DetailAstImpl createAst(int type, int line, int column, String text) {
+        final DetailAstImpl ast = new DetailAstImpl();
+        ast.initialize(type, text);
+        ast.setLineNo(line);
+        ast.setColumnNo(column);
+        return ast;
+    }
+
     @Test
     public void testGetRequiredTokens() {
         final AvoidEscapedUnicodeCharactersCheck checkObj =
-            new AvoidEscapedUnicodeCharactersCheck();
+                new AvoidEscapedUnicodeCharactersCheck();
         final int[] expected = {
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
         };
         assertWithMessage("Required tokens differ from expected")
-            .that(checkObj.getRequiredTokens())
-            .isEqualTo(expected);
+                .that(checkObj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test
@@ -453,6 +653,32 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         };
         verifyWithInlineConfigParser(
                 getPath("InputAvoidEscapedUnicodeCharactersEscapedS.java"),
+                expected);
+    }
+
+    @Test
+    public void testAvoidEscapedUnicodeCharactersTextBlockWithTrailingComment()
+            throws Exception {
+        final String[] expected = {
+            "18:33: " + getCheckMessage(MSG_KEY),
+            "23:25: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath(
+                "InputAvoidEscapedUnicodeCharactersTextBlockWithTrailingComment.java"),
+            expected);
+    }
+
+    @Test
+    public void testAvoidEscapedUnicodeCharactersEdgeCases() throws Exception {
+        final String[] expected = {
+            "17:28: " + getCheckMessage(MSG_KEY),
+            "20:32: " + getCheckMessage(MSG_KEY),
+            "24:20: " + getCheckMessage(MSG_KEY),
+            "28:21: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAvoidEscapedUnicodeCharactersEdgeCases.java"),
                 expected);
     }
 
