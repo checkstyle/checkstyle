@@ -33,8 +33,8 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.Comment;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -42,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
@@ -309,6 +310,11 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public final void visitToken(DetailAST ast) {
         processAST(ast);
     }
@@ -319,17 +325,110 @@ public class JavadocMethodCheck extends AbstractCheck {
      * @param ast the AST to process. Guaranteed to not be PACKAGE_DEF or
      *             IMPORT tokens.
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     private void processAST(DetailAST ast) {
         if (shouldCheck(ast)) {
-            final FileContents contents = getFileContents();
-            final TextBlock textBlock = contents.getJavadocBefore(ast.getLineNo());
+            final DetailAST javadocNode = findJavadocComment(ast);
 
-            if (textBlock != null) {
+            if (javadocNode != null) {
+                final TextBlock textBlock = convertToTextBlock(javadocNode);
                 checkComment(ast, textBlock);
             }
         }
+    }
+
+    /**
+     * Finds the javadoc comment node before the given AST node.
+     *
+     * @param ast the AST node (method, constructor, etc.)
+     * @return the javadoc comment node, or null if not found
+     */
+    private static DetailAST findJavadocComment(DetailAST ast) {
+        DetailAST javadoc = ast.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+        if (javadoc == null) {
+            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+            javadoc = findJavadocInModifiers(modifiers);
+            if (javadoc == null) {
+                final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+                if (type != null) {
+                    javadoc = type.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+                }
+            }
+        }
+        return javadoc;
+    }
+
+    /**
+     * Finds javadoc comment in MODIFIERS node and its children (including annotations).
+     *
+     * @param modifiers the MODIFIERS node
+     * @return the javadoc comment node, or null if not found
+     */
+    private static DetailAST findJavadocInModifiers(DetailAST modifiers) {
+        DetailAST lastJavadoc = null;
+        DetailAST child = modifiers.getFirstChild();
+        while (child != null) {
+            if (child.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                    && JavadocUtil.isJavadocComment(child)) {
+                lastJavadoc = child;
+            }
+            else {
+                final DetailAST comment = child.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+                if (comment != null && JavadocUtil.isJavadocComment(comment)) {
+                    lastJavadoc = comment;
+                }
+            }
+            child = child.getNextSibling();
+        }
+
+        return lastJavadoc;
+    }
+
+    /**
+     * Converts a javadoc comment AST node to a TextBlock.
+     *
+     * @param javadocNode the javadoc comment AST node
+     * @return the TextBlock representation
+     */
+    private TextBlock convertToTextBlock(DetailAST javadocNode) {
+        final int startLineNo = javadocNode.getLineNo();
+        final DetailAST endNode = javadocNode.getLastChild();
+        final int endLineNo = endNode.getLineNo();
+        final int endColNo = endNode.getColumnNo() + 1;
+        final String[] text = extractCommentText(startLineNo,
+                javadocNode.getColumnNo(), endLineNo, endColNo);
+        return new Comment(text, javadocNode.getColumnNo(), endLineNo, endColNo);
+    }
+
+    /**
+     * Extracts comment text from the file.
+     *
+     * @param startLineNo starting line number (1-based)
+     * @param startColNo starting column number (0-based)
+     * @param endLineNo ending line number (1-based)
+     * @param endColNo ending column number (0-based)
+     * @return array of strings representing the comment text
+     * @throws IllegalStateException if extracted text does not start with javadoc marker
+     */
+    private String[] extractCommentText(int startLineNo, int startColNo,
+                                        int endLineNo, int endColNo) {
+        final String[] lines;
+        final String firstLine = getLine(startLineNo - 1);
+
+        if (startLineNo == endLineNo) {
+            lines = new String[1];
+            lines[0] = firstLine.substring(startColNo, endColNo + 1);
+        }
+        else {
+            lines = new String[endLineNo - startLineNo + 1];
+            lines[0] = firstLine.substring(startColNo);
+            for (int cur = startLineNo; cur < endLineNo; cur++) {
+                lines[cur - startLineNo + 1] = getLine(cur);
+            }
+            final String lastLine = getLine(endLineNo - 1);
+            lines[lines.length - 1] = lastLine;
+        }
+
+        return lines;
     }
 
     /**
