@@ -246,6 +246,11 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
+    @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
     /**
      * Setter to allow empty method bodies.
      *
