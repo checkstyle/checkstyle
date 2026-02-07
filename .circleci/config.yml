@@ -23,7 +23,6 @@ jobs:
             mkdir .idea
             cp config/intellij-idea-inspections-misc.xml .idea/misc.xml
             ./.ci/idea-inspection.sh
-          no_output_timeout: 25m
           working_directory: ~/project
       - store_artifacts:
           path: /home/circleci/project/target/inspection-results
@@ -40,7 +39,7 @@ jobs:
         type: string
       no_output_timeout:
         type: string
-        default: 10m
+        default: 15m
     docker:
       - image: << parameters.image-name >>
     steps:
@@ -322,12 +321,10 @@ workflows:
           name: "openrewrite-refaster-rules-1"
           image-name: "cimg/openjdk:21.0"
           command: "./.ci/validation.sh openrewrite-refaster-rules-1"
-          no_output_timeout: 15m
       - validate-with-maven-script:
           name: "openrewrite-refaster-rules-2"
           image-name: "cimg/openjdk:21.0"
           command: "./.ci/validation.sh openrewrite-refaster-rules-2"
-          no_output_timeout: 15m
       - validate-with-maven-script:
           name: "openrewrite-static-analysis"
           image-name: "cimg/openjdk:21.0"
