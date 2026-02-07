@@ -885,17 +885,17 @@ public class Example14 {}
       <subsection name="Violation Messages" id="ImportControl_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.disallowed%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.disallowed%22">
               import.control.disallowed
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.missing.file%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.missing.file%22">
               import.control.missing.file
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.unknown.pkg%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.unknown.pkg%22">
               import.control.unknown.pkg
             </a>
           </li>

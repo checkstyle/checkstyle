@@ -187,7 +187,7 @@ class Application2 {
       <subsection name="Violation Messages" id="HideUtilityClassConstructor_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22hide.utility.class%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22hide.utility.class%22">
               hide.utility.class
             </a>
           </li>
