@@ -167,7 +167,9 @@ div, p, td, table td, th, table th, li, pre, #breadcrumbs span,
 }
 
 .sidebar-nav {
-  padding: 8px 4px 0 12px;
+  width: 240px;
+  padding: 8px 6px 0 10px;
+  box-sizing: border-box;
 }
 
 .nav-list {
@@ -511,3 +513,20 @@ section#Properties .wrapper table td a {
 html {
   scroll-behavior: smooth;
 }
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 240px;
+    min-width: 240px;
+  }
+
+  .content,
+  .main-content {
+    margin-left: 240px;
+  }
+
+  body {
+    overflow-x: auto;
+  }
+}
+
