@@ -30,7 +30,8 @@ recipeList:
   - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
   - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
   - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
-  - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
+  # Issue #18789: conflicts with UpgradeToJava21 (SortedSet.first vs getFirst)
+  # - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
   - tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes
   - tech.picnic.errorprone.refasterrules.FileRulesRecipes
 ---
