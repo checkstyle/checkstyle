@@ -41,6 +41,7 @@ public class InputLambdaChild {
         kind -> switch (kind) { case "EXCEPTION", "THROWS" -> true; default -> false; },
         String.class);
   }
+  // violation 3 lines above 'Only one statement per line allowed.'
 
   void group(Function<Integer, Integer> f1, Function<Integer, Integer> f2) {
     // Dummy method to test syntax/indentation
