@@ -1988,6 +1988,7 @@
                 <exclude>openrewrite-recipes-checkstyle.properties</exclude>
                 <exclude>org.eclipse.jdt.core.prefs</exclude>
                 <exclude>projects-to-test/**</exclude>
+                <exclude>qodana.yml</exclude>
                 <exclude>rewrite.yml</exclude>
                 <exclude>sarif-schema-2.1.0.json</exclude>
                 <exclude>signatures-test.txt</exclude>
