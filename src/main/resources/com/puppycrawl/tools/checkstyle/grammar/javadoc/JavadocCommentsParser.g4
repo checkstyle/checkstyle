@@ -60,7 +60,7 @@ javadoc
     ;
 
 mainDescription
-    : (TEXT | inlineTag | htmlElement | htmlComment)+
+    : description
     ;
 
 // Block tags
