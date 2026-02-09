@@ -323,8 +323,7 @@ no-error-configurate)
   echo "CS_version: ${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  # until https://github.com/checkstyle/checkstyle/issues/18327
-  checkout_from "https://github.com/stoyanK7/Configurate.git"
+  checkout_from "https://github.com/SpongePowered/Configurate.git"
   cd .ci-temp/Configurate
   git fetch --depth 1 origin major-checkstyle-12:major-checkstyle-12
   git checkout major-checkstyle-12
