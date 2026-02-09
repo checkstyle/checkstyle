@@ -2,8 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="RightCurly">
-      <property name="option" value="alone"/>
-      <property name="tokens" value="LITERAL_SWITCH, LITERAL_CASE"/>
+      <property name="option" value="alone_or_singleline"/>
     </module>
   </module>
 </module>
@@ -12,31 +11,47 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 // xdoc section -- start
-class Example3 {
+public class Example3 {
 
-  public void method0() {
-    int mode = 0;
-    int x;
-    switch (mode) {
-      case 1:
-        int y = 1;
-        break;
-      case 2: {x = 1;}   // violation '}' at column 22 should be alone on a line'
-      case 3: int z = 0; {break;} // ok, the braces is not a first child of case
-      default:
-        x = 0;
-    } // ok, RightCurly is alone
-  }
+  public void test() {
 
-  public void method01() {
-    int mode = 0;
-    switch (mode) {
-      case 1:
-        int x = 1;
-        break;
-      default:
-        x = 0; }
+    boolean foo = false;
+    if (foo) {
+      bar();
+    }
+    else {
+      bar();
+    }
+
+    if (foo) {
+      bar();
+    } else {
+      bar();
+    }
+
+    if (foo) { bar(); } int i = 0;
     // violation above, 'should be alone on a line.'
+
+    if (foo) { bar(); }
+    i = 0;
+
+    try {
+      bar();
+    }
+    catch (Exception e) {
+      bar();
+    }
+
+    try {
+      bar();
+    } catch (Exception e) {
+      bar();
+    }
   }
+
+  private void bar() {
+  }
+
+  public void testSingleLine() { bar(); } // ok, because singleline is allowed
 }
 // xdoc section -- end
