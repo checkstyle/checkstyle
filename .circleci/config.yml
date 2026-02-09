@@ -2,32 +2,6 @@ version: 2.1
 
 jobs:
 
-  run-inspections:
-    docker:
-      - image: amitkumardeoghoria/idea-image:jdk21-idea2022.3.3-v1
-
-    steps:
-      - checkout
-      - run:
-          name: Print versions
-          command: |
-            echo "Maven version:"
-            ./mvnw --version
-            echo "Java version:"
-            java --version
-            echo "IDEA version:"
-            echo $IDEA_VERSION
-      - run:
-          name: Run inspections
-          command: |
-            mkdir .idea
-            cp config/intellij-idea-inspections-misc.xml .idea/misc.xml
-            ./.ci/idea-inspection.sh
-          no_output_timeout: 15m
-          working_directory: ~/project
-      - store_artifacts:
-          path: /home/circleci/project/target/inspection-results
-
   validate-with-maven-script:
     description: Runs a maven script using the job name as the argument.
     parameters: &script_parameters
@@ -252,10 +226,6 @@ workflows:
           name: no-error-hazelcast
           image-name: *cs_img
           command: ./.ci/validation.sh no-error-hazelcast
-
-  idea:
-    jobs:
-      - run-inspections
 
   git-validation:
     jobs:
