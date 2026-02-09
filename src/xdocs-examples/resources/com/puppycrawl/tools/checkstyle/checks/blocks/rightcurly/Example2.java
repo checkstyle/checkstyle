@@ -19,8 +19,10 @@ public class Example2 {
     boolean foo = false;
     if (foo) {
       bar();
-    } else { bar(); }
-    // violation above, 'should be alone on a line.'
+    }
+    else {
+      bar();
+    } // violation, 'should be alone on a line.'
 
     if (foo) {
       bar();
@@ -28,23 +30,31 @@ public class Example2 {
       bar();
     }
 
+    if (foo) { bar(); } int i = 0;
+    // violation above, 'should be alone on a line.'
+
+    if (foo) { bar(); }
+    i = 0;
+
     try {
       bar();
-    } catch (Exception e) {
-      // ok above because config is set to token METHOD_DEF and LITERAL_ELSE
+    }
+    catch (Exception e) {
       bar();
     }
 
+    try {
+      bar();
+    } catch (Exception e) {
+      bar();
+    }
   }
 
   private void bar() {
   }
 
-  public void violate() { Object bar = "bar"; }
-  // violation above, 'should be alone on a line.'
-
-  public void ok() {
+  public void testSingleLine() {
     bar();
-  }
+  } // violation, 'should be alone on a line.'
 }
 // xdoc section -- end
