@@ -1642,6 +1642,20 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Description part of a Javadoc tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @param value The parameter description goes here.}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * `--PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> param
+     *     |--TEXT ->
+     *     |--PARAMETER_NAME -> value
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  The parameter description goes here.
+     * }</pre>
      */
     public static final int DESCRIPTION = JavadocCommentsLexer.DESCRIPTION;
 
