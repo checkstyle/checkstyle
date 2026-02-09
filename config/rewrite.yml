@@ -89,7 +89,6 @@ recipeList:
 ---
 # https://docs.openrewrite.org/recipes/staticanalysis/commonstaticanalysis
 name: org.checkstyle.CommonStaticAnalysis
-displayName: Common static analysis issues
 recipeList:
   - org.openrewrite.staticanalysis.AbstractClassPublicConstructor
   - org.openrewrite.staticanalysis.AtomicPrimitiveEqualsUsesGet
