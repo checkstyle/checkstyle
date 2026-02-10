@@ -1768,6 +1768,32 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Colon symbol {@code : }.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * {@snippet :config}}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--TEXT -> /**
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |   `--SNIPPET_INLINE_TAG -> SNIPPET_INLINE_TAG
+     * |       |--JAVADOC_INLINE_TAG_START -> {@
+     * |       |--COLON -> :
+     * |       |--SNIPPET_BODY -> SNIPPET_BODY
+     * |       |   `--TEXT -> config
+     * |       `--JAVADOC_INLINE_TAG_END -> }
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT -> /
+     * |--NEWLINE -> \n
+     * `--TEXT -> class Test {}
+     * }</pre>
+     *
+     * @see #SNIPPET_INLINE_TAG
      */
     public static final int COLON = JavadocCommentsLexer.COLON;
 
