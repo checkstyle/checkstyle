@@ -5,7 +5,8 @@
   </module>
 </module>
 */
-// violation 7 lines above 'ending for file is LF(\\n), but CRLF(\\r\\n) is'
+// violation 7 lines above
+// 'Expected line ending for file is LF(\\n), but CRLF(\\r\\n) is detected.'
 package com.puppycrawl.tools.checkstyle.checks.newlineatendoffile;
 // xdoc section -- start
 public class Example3 { // ⤶
