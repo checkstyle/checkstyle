@@ -35,29 +35,46 @@ public class EmptyStatementCheckTest
     }
 
     @Test
-    public void testEmptyStatements()
-            throws Exception {
+    public void testEmptyStatements() throws Exception {
         final String[] expected = {
-            "18:7: " + getCheckMessage(MSG_KEY),
-            "23:7: " + getCheckMessage(MSG_KEY),
-            "28:19: " + getCheckMessage(MSG_KEY),
-            "32:10: " + getCheckMessage(MSG_KEY),
-            "35:16: " + getCheckMessage(MSG_KEY),
-            "39:10: " + getCheckMessage(MSG_KEY),
-            "49:10: " + getCheckMessage(MSG_KEY),
-            "55:13: " + getCheckMessage(MSG_KEY),
-            "57:13: " + getCheckMessage(MSG_KEY),
-            "60:19: " + getCheckMessage(MSG_KEY),
-            "64:10: " + getCheckMessage(MSG_KEY),
-            "67:9: " + getCheckMessage(MSG_KEY),
-            "72:10: " + getCheckMessage(MSG_KEY),
-            "78:10: " + getCheckMessage(MSG_KEY),
-            "82:10: " + getCheckMessage(MSG_KEY),
-            "86:10: " + getCheckMessage(MSG_KEY),
+            "16:4: " + getCheckMessage(MSG_KEY),
+            "17:4: " + getCheckMessage(MSG_KEY),
+            "21:7: " + getCheckMessage(MSG_KEY),
+            "24:4: " + getCheckMessage(MSG_KEY),
+            "28:7: " + getCheckMessage(MSG_KEY),
+            "33:19: " + getCheckMessage(MSG_KEY),
+            "37:10: " + getCheckMessage(MSG_KEY),
+            "40:16: " + getCheckMessage(MSG_KEY),
+            "44:10: " + getCheckMessage(MSG_KEY),
+            "54:10: " + getCheckMessage(MSG_KEY),
+            "60:13: " + getCheckMessage(MSG_KEY),
+            "62:13: " + getCheckMessage(MSG_KEY),
+            "65:19: " + getCheckMessage(MSG_KEY),
+            "69:10: " + getCheckMessage(MSG_KEY),
+            "72:9: " + getCheckMessage(MSG_KEY),
+            "77:10: " + getCheckMessage(MSG_KEY),
+            "83:10: " + getCheckMessage(MSG_KEY),
+            "87:10: " + getCheckMessage(MSG_KEY),
+            "91:10: " + getCheckMessage(MSG_KEY),
         };
+        verifyWithInlineConfigParser(
+            getPath("InputEmptyStatement.java"), expected);
+    }
+
+    @Test
+    public void testEnumSemicolonIsNotEmptyStatement() throws Exception {
+        final String[] expected = {};
 
         verifyWithInlineConfigParser(
-                getPath("InputEmptyStatement.java"), expected);
+            getPath("InputEmptyStatementEnumSemicolon.java"), expected);
+    }
+
+    @Test
+    public void testNonTypeSemicolonIsNotEmptyStatement() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(
+            getPath("InputEmptyStatementNonTypeSemicolon.java"), expected);
     }
 
     @Test
