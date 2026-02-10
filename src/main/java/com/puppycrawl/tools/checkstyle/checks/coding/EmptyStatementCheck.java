@@ -53,12 +53,52 @@ public class EmptyStatementCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.EMPTY_STAT};
+        return new int[] {TokenTypes.EMPTY_STAT, TokenTypes.SEMI};
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        log(ast, MSG_KEY);
+        if (ast.getType() == TokenTypes.EMPTY_STAT) {
+            log(ast, MSG_KEY);
+        }
+        else if (isEmptyStatementInTypeBody(ast)) {
+            log(ast, MSG_KEY);
+        }
+        else if (isEmptyStatementAtCompilationUnitLevel(ast)) {
+            log(ast, MSG_KEY);
+        }
+    }
+
+    /**
+     * Checks if a semicolon token represents an empty statement at compilation unit level.
+     *
+     * @param ast semicolon token
+     * @return {@code true} if semicolon is at compilation unit level
+     */
+    private static boolean isEmptyStatementAtCompilationUnitLevel(DetailAST ast) {
+        return ast.getParent().getType() == TokenTypes.COMPILATION_UNIT;
+    }
+
+    /**
+     * Checks if a semicolon token represents an empty statement in a type body.
+     *
+     * @param ast semicolon token
+     * @return {@code true} if semicolon is inside a type body except enum block
+     */
+    private static boolean isEmptyStatementInTypeBody(DetailAST ast) {
+        return ast.getParent().getType() == TokenTypes.OBJBLOCK
+            && !isEnumConstantsTerminator(ast);
+    }
+
+    /**
+     * Checks if a semicolon in enum block is the enum constants terminator.
+     *
+     * @param ast semicolon token
+     * @return {@code true} if previous sibling is an enum constant
+     */
+    private static boolean isEnumConstantsTerminator(DetailAST ast) {
+        final DetailAST previousSibling = ast.getPreviousSibling();
+        return previousSibling != null && previousSibling.getType() == TokenTypes.ENUM_CONSTANT_DEF;
     }
 
 }
