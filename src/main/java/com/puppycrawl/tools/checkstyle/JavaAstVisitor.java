@@ -197,9 +197,9 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     public DetailAstImpl visitTypeDeclaration(JavaLanguageParser.TypeDeclarationContext ctx) {
         final DetailAstImpl typeDeclaration;
         if (ctx.type == null) {
-            typeDeclaration = create(ctx.semi.getFirst());
+            typeDeclaration = create(TokenTypes.EMPTY_STAT, ctx.semi.getFirst());
             ctx.semi.subList(1, ctx.semi.size())
-                    .forEach(semi -> addLastSibling(typeDeclaration, create(semi)));
+                    .forEach(semi -> addLastSibling(typeDeclaration, create(TokenTypes.EMPTY_STAT, semi)));
         }
         else {
             typeDeclaration = visit(ctx.type);
@@ -402,7 +402,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitEmptyClass(JavaLanguageParser.EmptyClassContext ctx) {
-        return flattenedTree(ctx);
+        return create(TokenTypes.EMPTY_STAT, ctx.start);
     }
 
     @Override
@@ -477,7 +477,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
             returnTree = visit(ctx.interfaceMemberDeclaration());
         }
         else {
-            returnTree = create(ctx.SEMI());
+            returnTree = create(TokenTypes.EMPTY_STAT, ctx.SEMI().getSymbol());
         }
         return returnTree;
     }
@@ -810,7 +810,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
             returnTree = visit(ctx.annotationTypeElementRest());
         }
         else {
-            returnTree = create(ctx.SEMI());
+            returnTree = create(TokenTypes.EMPTY_STAT, ctx.SEMI().getSymbol());
         }
         return returnTree;
     }

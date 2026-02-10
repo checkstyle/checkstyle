@@ -38,22 +38,23 @@ public class EmptyStatementCheckTest
     public void testEmptyStatements()
             throws Exception {
         final String[] expected = {
-            "18:7: " + getCheckMessage(MSG_KEY),
-            "23:7: " + getCheckMessage(MSG_KEY),
-            "28:19: " + getCheckMessage(MSG_KEY),
-            "32:10: " + getCheckMessage(MSG_KEY),
-            "35:16: " + getCheckMessage(MSG_KEY),
-            "39:10: " + getCheckMessage(MSG_KEY),
-            "49:10: " + getCheckMessage(MSG_KEY),
-            "55:13: " + getCheckMessage(MSG_KEY),
+            "16:4: " + getCheckMessage(MSG_KEY),
+            "20:7: " + getCheckMessage(MSG_KEY),
+            "25:7: " + getCheckMessage(MSG_KEY),
+            "30:19: " + getCheckMessage(MSG_KEY),
+            "34:10: " + getCheckMessage(MSG_KEY),
+            "37:16: " + getCheckMessage(MSG_KEY),
+            "41:10: " + getCheckMessage(MSG_KEY),
+            "51:10: " + getCheckMessage(MSG_KEY),
             "57:13: " + getCheckMessage(MSG_KEY),
-            "60:19: " + getCheckMessage(MSG_KEY),
-            "64:10: " + getCheckMessage(MSG_KEY),
-            "67:9: " + getCheckMessage(MSG_KEY),
-            "72:10: " + getCheckMessage(MSG_KEY),
-            "78:10: " + getCheckMessage(MSG_KEY),
-            "82:10: " + getCheckMessage(MSG_KEY),
-            "86:10: " + getCheckMessage(MSG_KEY),
+            "59:13: " + getCheckMessage(MSG_KEY),
+            "62:19: " + getCheckMessage(MSG_KEY),
+            "66:10: " + getCheckMessage(MSG_KEY),
+            "69:9: " + getCheckMessage(MSG_KEY),
+            "74:10: " + getCheckMessage(MSG_KEY),
+            "80:10: " + getCheckMessage(MSG_KEY),
+            "84:10: " + getCheckMessage(MSG_KEY),
+            "88:10: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
