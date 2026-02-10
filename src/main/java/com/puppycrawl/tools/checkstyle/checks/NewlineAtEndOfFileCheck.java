@@ -149,7 +149,10 @@ public class NewlineAtEndOfFileCheck
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r")) {
             if (lineSeparator == LineSeparatorOption.LF
                     && endsWithNewline(randomAccessFile, LineSeparatorOption.CRLF)) {
-                log(1, MSG_KEY_WRONG_ENDING);
+                log(1,"wrong.line.ending",
+                        getLineSeparatorEscapeChars(LineSeparatorOption.LF),
+                        getLineSeparatorEscapeChars(LineSeparatorOption.CRLF)
+                );
             }
             else if (!endsWithNewline(randomAccessFile, lineSeparator)) {
                 log(1, MSG_KEY_NO_NEWLINE_EOF);
@@ -190,4 +193,31 @@ public class NewlineAtEndOfFileCheck
         return result;
     }
 
+    /**
+     * Returns escaped representation of line separator option
+     * for use in violation messages.
+     *
+     * @param option line separator option
+     * @return escaped line separator characters
+     */
+    private static String getLineSeparatorEscapeChars(LineSeparatorOption option) {
+        return switch (option) {
+            case LF -> "LF(\\n)";
+            case CR -> "CR(\\r)";
+            case CRLF -> "CRLF(\\r\\n)";
+            case LF_CR_CRLF -> "LF(\\n), CR(\\r), or CRLF(\\r\\n)";
+            case SYSTEM -> {
+                final String sep = System.lineSeparator();
+                if ("\n".equals(sep)) {
+                    yield "LF(\\n)";
+                }
+                else if ("\r\n".equals(sep)) {
+                    yield "CRLF(\\r\\n)";
+                }
+                else {
+                    yield "CR(\\r)";
+                }
+            }
+        };
+    }
 }
