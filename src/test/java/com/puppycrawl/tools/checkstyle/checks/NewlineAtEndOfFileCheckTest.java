@@ -22,11 +22,11 @@ package com.puppycrawl.tools.checkstyle.checks;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_UNABLE_OPEN;
-import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_WRONG_ENDING;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -61,7 +61,11 @@ public class NewlineAtEndOfFileCheckTest
     @Test
     public void testNewlineLfAtEndOfFileLfNotOverlapWithCrLf() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING),
+            "1: " + getCheckMessage(
+                "wrong.line.ending",
+                "LF(\\n)",
+                "CRLF(\\r\\n)"
+            ),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNewlineAtEndOfFileCrlf.java"),
@@ -215,6 +219,36 @@ public class NewlineAtEndOfFileCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputNewlineAtEndOfFileTestTrimProperty.java"),
                 expected);
+    }
+
+    @Test
+    public void testGetLineSeparatorEscapeChars() throws Exception {
+        final Class<?> clazz = NewlineAtEndOfFileCheck.class;
+
+        final Method method =
+                clazz.getDeclaredMethod("getLineSeparatorEscapeChars",
+                        LineSeparatorOption.class);
+        method.setAccessible(true);
+
+        assertWithMessage("LF branch")
+                .that(method.invoke(null, LineSeparatorOption.LF))
+                .isEqualTo("LF(\\n)");
+
+        assertWithMessage("CR branch")
+                .that(method.invoke(null, LineSeparatorOption.CR))
+                .isEqualTo("CR(\\r)");
+
+        assertWithMessage("CRLF branch")
+                .that(method.invoke(null, LineSeparatorOption.CRLF))
+                .isEqualTo("CRLF(\\r\\n)");
+
+        assertWithMessage("LF_CR_CRLF branch")
+                .that(method.invoke(null, LineSeparatorOption.LF_CR_CRLF))
+                .isEqualTo("LF(\\n), CR(\\r), or CRLF(\\r\\n)");
+
+        assertWithMessage("SYSTEM branch")
+                .that(method.invoke(null, LineSeparatorOption.SYSTEM))
+                .isNotNull();
     }
 
     private static final class ReadZeroRandomAccessFile extends RandomAccessFile {
