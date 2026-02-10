@@ -58,6 +58,7 @@ public class EmptyStatementCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
+        // Always log empty statements, including those outside method bodies
         log(ast, MSG_KEY);
     }
 
