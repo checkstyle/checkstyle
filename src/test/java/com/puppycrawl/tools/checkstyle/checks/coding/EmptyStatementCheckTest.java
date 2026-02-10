@@ -25,6 +25,9 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck.
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class EmptyStatementCheckTest
     extends AbstractModuleTestSupport {
@@ -35,29 +38,198 @@ public class EmptyStatementCheckTest
     }
 
     @Test
-    public void testEmptyStatements()
-            throws Exception {
+    public void testEmptyStatements() throws Exception {
         final String[] expected = {
-            "18:7: " + getCheckMessage(MSG_KEY),
-            "23:7: " + getCheckMessage(MSG_KEY),
-            "28:19: " + getCheckMessage(MSG_KEY),
-            "32:10: " + getCheckMessage(MSG_KEY),
-            "35:16: " + getCheckMessage(MSG_KEY),
-            "39:10: " + getCheckMessage(MSG_KEY),
-            "49:10: " + getCheckMessage(MSG_KEY),
-            "55:13: " + getCheckMessage(MSG_KEY),
-            "57:13: " + getCheckMessage(MSG_KEY),
-            "60:19: " + getCheckMessage(MSG_KEY),
-            "64:10: " + getCheckMessage(MSG_KEY),
-            "67:9: " + getCheckMessage(MSG_KEY),
-            "72:10: " + getCheckMessage(MSG_KEY),
-            "78:10: " + getCheckMessage(MSG_KEY),
-            "82:10: " + getCheckMessage(MSG_KEY),
-            "86:10: " + getCheckMessage(MSG_KEY),
+            "16:4: " + getCheckMessage(MSG_KEY),
+            "17:4: " + getCheckMessage(MSG_KEY),
+            "21:7: " + getCheckMessage(MSG_KEY),
+            "24:4: " + getCheckMessage(MSG_KEY),
+            "28:7: " + getCheckMessage(MSG_KEY),
+            "33:19: " + getCheckMessage(MSG_KEY),
+            "37:10: " + getCheckMessage(MSG_KEY),
+            "40:16: " + getCheckMessage(MSG_KEY),
+            "44:10: " + getCheckMessage(MSG_KEY),
+            "54:10: " + getCheckMessage(MSG_KEY),
+            "60:13: " + getCheckMessage(MSG_KEY),
+            "62:13: " + getCheckMessage(MSG_KEY),
+            "65:19: " + getCheckMessage(MSG_KEY),
+            "69:10: " + getCheckMessage(MSG_KEY),
+            "72:9: " + getCheckMessage(MSG_KEY),
+            "77:10: " + getCheckMessage(MSG_KEY),
+            "83:10: " + getCheckMessage(MSG_KEY),
+            "87:10: " + getCheckMessage(MSG_KEY),
+            "91:10: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputEmptyStatement.java"), expected);
+    }
+
+    @Test
+    public void testEnumSemicolonIsNotEmptyStatement() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(
+            getPath("InputEmptyStatementEnumSemicolon.java"), expected);
+    }
+
+    @Test
+    public void testEnumSimpleSemicolonIsNotEmptyStatement() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(
+            getPath("InputEmptyStatementEnumSimple.java"), expected);
+    }
+
+    @Test
+    public void testExtraSemicolonInEnumIsEmptyStatement() throws Exception {
+        final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputEmptyStatement.java"), expected);
+            getPath("InputEmptyStatementEnumExtraSemicolon.java"), expected);
+    }
+
+    @Test
+    public void testSemicolonInEnumWithNoConstantsIsEmptyStatement() throws Exception {
+        final String[] expected = {
+            "10:5: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputEmptyStatementEnumNoConstantsSemicolon.java"), expected);
+    }
+
+    @Test
+    public void testSemicolonInClassBodyIsEmptyStatement() throws Exception {
+        final String[] expected = {
+            "10:5: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputEmptyStatementSemicolonInClassBody.java"), expected);
+    }
+
+    @Test
+    public void testSemicolonInInterfaceBodyIsEmptyStatement() throws Exception {
+        final String[] expected = {
+            "10:5: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputEmptyStatementInterfaceBody.java"), expected);
+    }
+
+    @Test
+    public void testSemicolonInForLoopIsNotEmptyStatement() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(
+            getPath("InputEmptyStatementForLoopSemicolon.java"), expected);
+    }
+
+    @Test
+    public void testSemicolonInEnumWithFieldIsEmptyStatement() throws Exception {
+        final String[] expected = {
+            "13:5: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputEmptyStatementEnumWithField.java"), expected);
+    }
+
+    @Test
+    public void testSemicolonInEnumWithMethodIsEmptyStatement() throws Exception {
+        final String[] expected = {
+            "14:6: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputEmptyStatementEnumWithMethod.java"), expected);
+    }
+
+    @Test
+    public void testSemicolonInStatementIsNotEmptyStatement() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(
+            getPath("InputEmptyStatementStatementWithSemiColon.java"), expected);
+    }
+
+    @Test
+    public void testNonTypeSemicolonIsNotEmptyStatement() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(
+            getPath("InputEmptyStatementNonTypeSemicolon.java"), expected);
+    }
+
+    @Test
+    public void testStandaloneSemicolonBeforeType() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputEmptyStatementStandaloneSemicolonBeforeType.java"), expected);
+    }
+
+    @Test
+    public void testEnumSemicolonWithBodyIsNotEmptyStatement() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(
+            getPath("InputEmptyStatementEnumWithBody.java"), expected);
+    }
+
+    @Test
+    public void testPrivateHelpersCoverage() throws Exception {
+        final DetailAstImpl semicolonInCompUnit = new DetailAstImpl();
+        semicolonInCompUnit.setType(TokenTypes.SEMI);
+        final DetailAstImpl compilationUnit = new DetailAstImpl();
+        compilationUnit.setType(TokenTypes.COMPILATION_UNIT);
+        compilationUnit.addChild(semicolonInCompUnit);
+
+        final boolean isAtCompUnitLevel = TestUtil.invokeStaticMethod(
+            EmptyStatementCheck.class,
+            "isEmptyStatementAtCompilationUnitLevel",
+            Boolean.class,
+            semicolonInCompUnit);
+        assertWithMessage(
+            "Semicolon with COMPILATION_UNIT parent should be treated as empty statement")
+                .that(isAtCompUnitLevel)
+                .isTrue();
+
+        final DetailAstImpl semicolonInObjBlock = new DetailAstImpl();
+        semicolonInObjBlock.setType(TokenTypes.SEMI);
+        final DetailAstImpl objectBlock = new DetailAstImpl();
+        objectBlock.setType(TokenTypes.OBJBLOCK);
+        objectBlock.addChild(semicolonInObjBlock);
+
+        final boolean isNotAtCompUnitLevel = TestUtil.invokeStaticMethod(
+            EmptyStatementCheck.class,
+            "isEmptyStatementAtCompilationUnitLevel",
+            Boolean.class,
+            semicolonInObjBlock);
+        assertWithMessage("Semicolon with OBJBLOCK parent should not be at compilation unit level")
+                .that(isNotAtCompUnitLevel)
+                .isFalse();
+
+        final DetailAstImpl enumBlockWithOnlySemicolon = new DetailAstImpl();
+        enumBlockWithOnlySemicolon.setType(TokenTypes.OBJBLOCK);
+        final DetailAstImpl semicolonWithoutSibling = new DetailAstImpl();
+        semicolonWithoutSibling.setType(TokenTypes.SEMI);
+        enumBlockWithOnlySemicolon.addChild(semicolonWithoutSibling);
+
+        final boolean isTerminatorWithoutSibling = TestUtil.invokeStaticMethod(
+            EmptyStatementCheck.class,
+            "isEnumConstantsTerminator",
+            Boolean.class,
+            semicolonWithoutSibling);
+        assertWithMessage(
+            "Semicolon without previous sibling should not be enum constants terminator")
+                .that(isTerminatorWithoutSibling)
+                .isFalse();
     }
 
     @Test
