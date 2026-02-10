@@ -172,4 +172,7 @@
   <!-- Uses non-ascii symbols intentionally -->
   <suppress id="checkASCII"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]ConfigurationLoaderTest.java"/>
+
+  <!-- Suppress PreferJavadocInlineTags for all files -->
+  <suppress checks="PreferJavadocInlineTags"/>
 </suppressions>
