@@ -10,6 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.emptystatement;
 
 // xdoc section -- start
 public class Example1 {
+  ; // violation 'Empty statement'
   public void foo() {
     int i = 5;
     if(i > 3); // violation 'Empty statement'
@@ -19,5 +20,6 @@ public class Example1 {
     while (i > 10)
       i++;
   }
+  ;
 }
 // xdoc section -- end
