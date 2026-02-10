@@ -53,12 +53,104 @@ public class EmptyStatementCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.EMPTY_STAT};
+        return new int[] {
+            TokenTypes.EMPTY_STAT,
+            TokenTypes.SEMI,
+        };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        log(ast, MSG_KEY);
+        if (isEmptyStatement(ast)) {
+            log(ast, MSG_KEY);
+        }
+    }
+
+    /**
+     * Checks if token represents an empty statement that should be logged.
+     *
+     * @param ast semicolon or empty statement token
+     * @return {@code true} if token represents an empty statement
+     */
+    private static boolean isEmptyStatement(DetailAST ast) {
+        final boolean result;
+        if (ast.getType() == TokenTypes.EMPTY_STAT) {
+            result = true;
+        }
+        else {
+            final DetailAST parent = ast.getParent();
+            final int parentType = parent.getType();
+            result = parentType == TokenTypes.COMPILATION_UNIT
+                || parentType == TokenTypes.OBJBLOCK
+                    && !isEnumConstantsTerminator(ast);
+        }
+        return result;
+    }
+
+    /**
+     * Checks if a semicolon in enum block is the enum constants terminator.
+     *
+     * @param semicolon semicolon token
+     * @return {@code true} if semicolon is enum constants terminator
+     */
+    private static boolean isEnumConstantsTerminator(DetailAST semicolon) {
+        boolean result = false;
+
+        if (isSemicolonInEnumObjectBlock(semicolon)) {
+            final DetailAST previousSibling = semicolon.getPreviousSibling();
+            final DetailAST nextSibling = semicolon.getNextSibling();
+            result = isAfterEnumConstants(previousSibling)
+                || isNoConstantsWithMembers(previousSibling, nextSibling);
+        }
+
+        return result;
+    }
+
+    /**
+     * Checks if semicolon is directly inside enum object block.
+     *
+     * @param semicolon semicolon token
+     * @return {@code true} if semicolon is inside enum object block
+     */
+    private static boolean isSemicolonInEnumObjectBlock(DetailAST semicolon) {
+        boolean result = false;
+        if (semicolon != null) {
+            final DetailAST parent = semicolon.getParent();
+            if (parent != null && parent.getType() == TokenTypes.OBJBLOCK) {
+                final DetailAST grandParent = parent.getParent();
+                if (grandParent != null && grandParent.getType() == TokenTypes.ENUM_DEF) {
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks if previous sibling indicates enum constants list terminator.
+     *
+     * @param previousSibling previous sibling before semicolon
+     * @return {@code true} if semicolon follows enum constants
+     */
+    private static boolean isAfterEnumConstants(DetailAST previousSibling) {
+        return previousSibling != null
+            && (previousSibling.getType() == TokenTypes.ENUM_CONSTANT_DEF
+            || previousSibling.getType() == TokenTypes.COMMA);
+    }
+
+    /**
+     * Checks if semicolon terminates empty enum-constants list before members.
+     *
+     * @param previousSibling previous sibling before semicolon
+     * @param nextSibling next sibling after semicolon
+     * @return {@code true} if semicolon separates constants section and members
+     */
+    private static boolean isNoConstantsWithMembers(DetailAST previousSibling,
+                                                    DetailAST nextSibling) {
+        return previousSibling != null
+            && previousSibling.getType() == TokenTypes.LCURLY
+            && nextSibling != null
+            && nextSibling.getType() != TokenTypes.RCURLY;
     }
 
 }
