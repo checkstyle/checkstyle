@@ -34,8 +34,10 @@ public class EmptyStatementCheckExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "15:14: " + getCheckMessage(MSG_KEY),
-            "17:28: " + getCheckMessage(MSG_KEY),
+            "13:3: " + getCheckMessage(MSG_KEY),
+            "16:14: " + getCheckMessage(MSG_KEY),
+            "18:28: " + getCheckMessage(MSG_KEY),
+            "23:3: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);

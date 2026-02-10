@@ -53,12 +53,69 @@ public class EmptyStatementCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.EMPTY_STAT};
+        return new int[] {
+            TokenTypes.EMPTY_STAT,
+            TokenTypes.SEMI,
+        };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        log(ast, MSG_KEY);
+        if (isEmptyStatement(ast)) {
+            log(ast, MSG_KEY);
+        }
+    }
+
+    /**
+     * Checks if token represents an empty statement that should be logged.
+     *
+     * @param ast semicolon or empty statement token
+     * @return {@code true} if token represents an empty statement
+     */
+    private static boolean isEmptyStatement(DetailAST ast) {
+        final boolean result;
+        if (ast.getType() == TokenTypes.EMPTY_STAT) {
+            result = true;
+        }
+        else {
+            final DetailAST parent = ast.getParent();
+            final int parentType = parent.getType();
+            result = parentType == TokenTypes.COMPILATION_UNIT
+                || parentType == TokenTypes.OBJBLOCK
+                    && !isEnumConstantsTerminator(ast);
+        }
+        return result;
+    }
+
+    /**
+     * Checks if a semicolon in enum block is the enum constants terminator.
+     *
+     * @param semicolon semicolon token
+     * @return {@code true} if semicolon is enum constants terminator
+     */
+    private static boolean isEnumConstantsTerminator(DetailAST semicolon) {
+        boolean result = false;
+
+        if (semicolon != null) {
+            final DetailAST parent = semicolon.getParent();
+            final DetailAST grandParent = parent == null ? null : parent.getParent();
+            final boolean isSemicolonInEnumObjectBlock = parent != null
+                && parent.getType() == TokenTypes.OBJBLOCK
+                && grandParent != null
+                && grandParent.getType() == TokenTypes.ENUM_DEF;
+
+            if (isSemicolonInEnumObjectBlock) {
+                final DetailAST previousSibling = semicolon.getPreviousSibling();
+                final DetailAST nextSibling = semicolon.getNextSibling();
+                result = previousSibling != null
+                    && (previousSibling.getType() == TokenTypes.ENUM_CONSTANT_DEF
+                        || previousSibling.getType() == TokenTypes.COMMA
+                        || previousSibling.getType() == TokenTypes.LCURLY
+                            && nextSibling != null
+                            && nextSibling.getType() != TokenTypes.RCURLY);
+            }
+        }
+        return result;
     }
 
 }
