@@ -216,6 +216,7 @@ Combobox
 commentsindentation
 commerical
 commitish
+commonstaticanalysis
 commonutil
 Compat
 compilermsgs
@@ -768,7 +769,7 @@ keyname
 keyscan
 konstantinos
 Kordas
-Kotlin
+kotlin
 Kp
 lambdabodylength
 lambdaparametername
@@ -1318,7 +1319,6 @@ stemp
 stext
 sthref
 stmt
-stoyan
 streamapi
 strictfp
 stringliteralequality
