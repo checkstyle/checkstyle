@@ -1367,16 +1367,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final DetailAstImpl literalInstanceOf = create(ctx.LITERAL_INSTANCEOF());
         literalInstanceOf.addChild(visit(ctx.expr()));
         final ParseTree patternOrType = ctx.getChild(2);
-
-        final DetailAstImpl patternDef;
-        if (patternOrType instanceof JavaLanguageParser.ParenPatternContext) {
-            // Parenthesized pattern has a `PATTERN_DEF` parent
-            patternDef = createImaginary(TokenTypes.PATTERN_DEF);
-            patternDef.addChild(visit(patternOrType));
-        }
-        else {
-            patternDef = visit(patternOrType);
-        }
+        final DetailAstImpl patternDef = visit(patternOrType);
         literalInstanceOf.addChild(patternDef);
         return literalInstanceOf;
     }
@@ -1970,15 +1961,13 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final JavaLanguageParser.InnerPatternContext innerPattern = ctx.innerPattern();
         final ParserRuleContext primaryPattern = innerPattern.primaryPattern();
         final ParserRuleContext recordPattern = innerPattern.recordPattern();
-        final boolean isSimpleTypePattern = primaryPattern != null
-                && primaryPattern.getChild(0) instanceof JavaLanguageParser.TypePatternContext;
 
         final DetailAstImpl pattern;
 
         if (recordPattern != null) {
             pattern = visit(recordPattern);
         }
-        else if (isSimpleTypePattern) {
+        else if (primaryPattern != null) {
             // For simple type pattern like 'Integer i`, we do not add `PATTERN_DEF` parent
             pattern = visit(primaryPattern);
         }
@@ -2000,15 +1989,6 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         guardAstNode.addChild(visit(ctx.primaryPattern()));
         guardAstNode.addChild(visit(ctx.expression()));
         return guardAstNode;
-    }
-
-    @Override
-    public DetailAstImpl visitParenPattern(JavaLanguageParser.ParenPatternContext ctx) {
-        final DetailAstImpl lparen = create(ctx.LPAREN());
-        final ParseTree innerPattern = ctx.getChild(1);
-        lparen.addChild(visit(innerPattern));
-        lparen.addChild(create(ctx.RPAREN()));
-        return lparen;
     }
 
     @Override
