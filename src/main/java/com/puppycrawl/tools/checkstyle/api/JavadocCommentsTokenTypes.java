@@ -1644,6 +1644,21 @@ public final class JavadocCommentsTokenTypes {
      * Description part of a Javadoc tag.
      *
      * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     * * This is the description of the method.
+     * *&#47;
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC -> JAVADOC
+     * |--NEWLINE -> \n
+     * |--JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |   |--LEADING_ASTERISK ->  *
+     * |   `--DESCRIPTION -> DESCRIPTION
+     * |       `--TEXT ->  This is the description of the method.
+     * `--NEWLINE -> \n
      * <pre>{@code * @param value The parameter description goes here.}</pre>
      *
      * <p><b>Tree:</b></p>
