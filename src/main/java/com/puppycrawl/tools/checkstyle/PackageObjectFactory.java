@@ -909,6 +909,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.FinalParametersCheck");
         NAME_TO_FULL_MODULE_NAME.put("NewlineAtEndOfFileCheck",
                 BASE_PACKAGE + ".checks.NewlineAtEndOfFileCheck");
+        NAME_TO_FULL_MODULE_NAME.put("LineEndingCheck",
+                BASE_PACKAGE + ".checks.LineEndingCheck");
         NAME_TO_FULL_MODULE_NAME.put("NoCodeInFileCheck",
                 BASE_PACKAGE + ".checks.NoCodeInFileCheck");
         NAME_TO_FULL_MODULE_NAME.put("OuterTypeFilenameCheck",
@@ -931,6 +933,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.UpperEllCheck");
         NAME_TO_FULL_MODULE_NAME.put("HexLiteralCaseCheck",
                 BASE_PACKAGE + ".checks.HexLiteralCaseCheck");
+        NAME_TO_FULL_MODULE_NAME.put("NumericalPrefixesInfixesSuffixesCharacterCaseCheck",
+                BASE_PACKAGE + ".checks.NumericalPrefixesInfixesSuffixesCharacterCaseCheck");
     }
 
     /**

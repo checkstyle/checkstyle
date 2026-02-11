@@ -244,13 +244,6 @@
     <Bug pattern="ITC_INHERITANCE_TYPE_CHECKING"/>
   </Match>
   <Match>
-    <!-- Till https://github.com/checkstyle/checkstyle/issues/13351 -->
-    <Or>
-      <Class name="com.puppycrawl.tools.checkstyle.utils.ScopeUtil"/>
-    </Or>
-    <Bug pattern="ENMI_NULL_ENUM_VALUE"/>
-  </Match>
-  <Match>
     <!-- Swing TreeModel API requires passing 'this' as event source -->
     <Or>
       <Class name="com.puppycrawl.tools.checkstyle.gui.ParseTreeTableModel"/>
@@ -270,12 +263,6 @@
           https://github.com/checkstyle/checkstyle/pull/13269 -->
     <Class
     name="com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck"/>
-    <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR"/>
-  </Match>
-  <Match>
-    <!-- until https://github.com/checkstyle/checkstyle/issues/14121 -->
-    <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
-    <Method name="indentationLog"/>
     <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR"/>
   </Match>
   <Match>

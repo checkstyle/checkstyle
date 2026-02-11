@@ -263,8 +263,11 @@
           <item name="FinalParameters" href="checks/misc/finalparameters.html"/>
           <item name="HexLiteralCase" href="checks/misc/hexliteralcase.html"/>
           <item name="Indentation" href="checks/misc/indentation.html"/>
+          <item name="LineEnding" href="checks/misc/lineending.html"/>
           <item name="NewlineAtEndOfFile" href="checks/misc/newlineatendoffile.html"/>
           <item name="NoCodeInFile" href="checks/misc/nocodeinfile.html"/>
+          <item name="NumericalPrefixesInfixesSuffixesCharacterCase"
+                href="checks/misc/numericalprefixesinfixessuffixescharactercase.html"/>
           <item name="OrderedProperties" href="checks/misc/orderedproperties.html"/>
           <item name="OuterTypeFilename" href="checks/misc/outertypefilename.html"/>
           <item name="TodoComment" href="checks/misc/todocomment.html"/>

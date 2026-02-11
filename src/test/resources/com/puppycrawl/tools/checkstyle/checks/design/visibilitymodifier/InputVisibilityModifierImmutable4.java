@@ -52,10 +52,13 @@ public final class InputVisibilityModifierImmutable4
         public final boolean bool = false;
         public final java.net.URI uri = null;
         public final java.io.File file = null;
-        public int value = 42; // violation
+        public int value = 42;
+        // violation above 'Variable 'value' must be private and have accessor methods.'
         public final java.net.URL url = null;
-        public boolean bValue = false; // violation
-        public Long longValue = 1L; // violation
+        public boolean rate = false;
+        // violation above 'Variable 'rate' must be private and have accessor methods.'
+        public Long id = 1L;
+        // violation above 'Variable 'id' must be private and have accessor methods.'
     }
 
     class Example {

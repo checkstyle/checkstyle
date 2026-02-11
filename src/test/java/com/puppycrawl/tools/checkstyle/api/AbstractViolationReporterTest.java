@@ -94,7 +94,7 @@ public class AbstractViolationReporterTest {
                 .that(messages)
                 .hasSize(1);
         assertWithMessage("violation differs from expected")
-                .that(messages.first().getViolation())
+                .that(messages.getFirst().getViolation())
                 .isEqualTo("This is a custom violation.");
     }
 
@@ -112,7 +112,7 @@ public class AbstractViolationReporterTest {
                 .hasSize(1);
 
         assertWithMessage("violation differs from expected")
-                .that(messages.first().getViolation())
+                .that(messages.getFirst().getViolation())
                 .isEqualTo("This is a custom violation with TestParam.");
     }
 
@@ -132,6 +132,21 @@ public class AbstractViolationReporterTest {
                     .that(exc.getMessage())
                     .isEqualTo("Unmatched braces in the pattern.");
         }
+    }
+
+    @Test
+    public void testSetSeverity() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(EmptyCheck.class);
+        final String severity = "warning";
+        config.addProperty("severity", severity);
+        emptyCheck.configure(config);
+
+        assertWithMessage("Invalid severity level")
+                .that(emptyCheck.getSeverityLevel())
+                .isEqualTo(SeverityLevel.WARNING);
+        assertWithMessage("Invalid severity")
+                .that(emptyCheck.getSeverity())
+                .isEqualTo(severity);
     }
 
     public static class EmptyCheck extends AbstractCheck {

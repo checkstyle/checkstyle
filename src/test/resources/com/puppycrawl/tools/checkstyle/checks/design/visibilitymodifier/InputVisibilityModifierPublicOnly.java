@@ -46,9 +46,12 @@ public class InputVisibilityModifierPublicOnly
     }
 
     private int mSize;
-    int mLen; // violation
-    protected int mDeer; // violation
-    public int aFreddo; // violation
+    int mLen;
+    // violation above 'Variable 'mLen' must be private and have accessor methods.'
+    protected int mDeer;
+    // violation above 'Variable 'mDeer' must be private and have accessor methods.'
+    public int aFreddo;
+    // violation above 'Variable 'aFreddo' must be private and have accessor methods.'
 
     /** {@inheritDoc} */
     public String toString()

@@ -83,6 +83,17 @@
           </tr>
           <tr>
             <td>
+              <a href="lineending.html#LineEnding">
+                LineEnding
+              </a>
+            </td>
+            <td>
+              Checks whether file uses a specific line-ending sequence (<code>LF</code>,
+              <code>CRLF</code>, or <code>CR</code>).
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="newlineatendoffile.html#NewlineAtEndOfFile">
                 NewlineAtEndOfFile
               </a>
@@ -99,6 +110,18 @@
             </td>
             <td>
               Checks whether file contains code.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="numericalprefixesinfixessuffixescharactercase.html#NumericalPrefixesInfixesSuffixesCharacterCase">
+                NumericalPrefixesInfixesSuffixesCharacterCase
+              </a>
+            </td>
+            <td>
+              Checks that all numerical literal prefixes, infixes, and suffixes are written using
+              lowercase letters (for example prefixes : <code>0x, 0b</code>, infixes : <code>e,
+              p</code>, suffixes : <code>f, d</code>).
             </td>
           </tr>
           <tr>

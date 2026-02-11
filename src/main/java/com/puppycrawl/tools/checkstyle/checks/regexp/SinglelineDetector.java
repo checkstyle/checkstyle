@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 /**
  * A detector that matches individual lines.
  */
-class SinglelineDetector {
+public class SinglelineDetector {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

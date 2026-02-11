@@ -30,11 +30,14 @@ import com.google.common.collect.ImmutableSet;
 public final class InputVisibilityModifierImmutable
 {
     public final int someIntValue;
-    public final ImmutableSet<String> includes; // violation
-    public final ImmutableSet<String> excludes; // violation
+    public final ImmutableSet<String> includes;
+    // violation above 'Variable 'includes' must be private and have accessor methods.'
+    public final ImmutableSet<String> excludes;
+    // violation above 'Variable 'excludes' must be private and have accessor methods.'
     public final java.lang.String notes;
     public final BigDecimal money;
-    public final List list; // violation
+    public final List list;
+    // violation above 'Variable 'list' must be private and have accessor methods.'
 
     public InputVisibilityModifierImmutable(Collection<String> includes,Collection<String> excludes,
                                             BigDecimal value, String notes, int someValue, List l) {
@@ -52,13 +55,17 @@ public final class InputVisibilityModifierImmutable
         public final boolean bool = false;
         public final java.net.URI uri = null;
         public final java.io.File file = null;
-        public int value = 42; // violation
+        public int value = 42;
+        // violation above 'Variable 'value' must be private and have accessor methods.'
         public final java.net.URL url = null;
-        public boolean bValue = false; // violation
-        public java.lang.Long longValue = 1L; // violation
+        public boolean rate = false;
+        // violation above 'Variable 'rate' must be private and have accessor methods.'
+        public java.lang.Long id = 1L;
+        // violation above 'Variable 'id' must be private and have accessor methods.'
     }
 
     class Example {
-        final int C_D_E = 0; // violation
+        final int C_D_E = 0;
+        // violation above 'Variable 'C_D_E' must be private and have accessor methods.'
     }
 }

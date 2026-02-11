@@ -52,7 +52,6 @@ APRV
 Aqj
 ARCHITEW
 archunit
-arget
 Arial
 arity
 Arquillian
@@ -78,6 +77,7 @@ attr
 autoboxing
 autobuild
 autocomplete
+autoconfiguration
 autocrlf
 autofix
 Autoproxy
@@ -382,7 +382,6 @@ emptytag
 Emtpy
 endline
 enegger
-ENMI
 ent
 enum
 eol
@@ -427,6 +426,8 @@ Fdesign
 FDF
 FEF
 fenum
+ffc
+ffcp
 ffd
 fff
 FFFA
@@ -788,6 +789,7 @@ liberapay
 lifecycle
 linebreak
 linecolumn
+lineending
 linelength
 linkcheck
 linkplain
@@ -810,7 +812,6 @@ lte
 lucene
 lui
 luiframework
-LVL
 madbean
 magicnumber
 mailhost
@@ -920,7 +921,6 @@ needbraces
 NEGS
 Nejmeh
 neovim
-NEQ
 nestedfordepth
 nestedifdepth
 nestedtrydepth
@@ -995,6 +995,7 @@ nullcase
 nullcheck
 nullness
 numberperline
+numericalprefixesinfixessuffixescharactercase
 numericliterals
 nutsandbolts
 nvim
@@ -1141,6 +1142,7 @@ py
 qa
 qalab
 qaplug
+qodana
 qualitygates
 Qube
 qux
@@ -1167,7 +1169,7 @@ redundantimport
 redundantmodifier
 refactor
 refactoring
-Refaster
+refaster
 refasterrules
 refid
 refreshenv
@@ -1316,7 +1318,6 @@ stemp
 stext
 sthref
 stmt
-stoyan
 streamapi
 strictfp
 stringliteralequality
@@ -1407,6 +1408,7 @@ Toolbar
 toolongpackagetotestcoveragegooglesjavastylerule
 TOSTRING
 Touchscreen
+tpc
 trailingcomment
 treemap
 treeset
@@ -1451,6 +1453,7 @@ unnecessarysemicoloninenumeration
 unnecessarysemicolonintrywithresources
 unparseable
 Unproxyable
+unrecognised
 unregister
 unstale
 unsubscribe

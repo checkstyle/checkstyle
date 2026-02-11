@@ -32,5 +32,6 @@ public enum InputVisibilityModifiersEnumIsSealed {
     public final int someField = Integer.MAX_VALUE;
 
     /** Disallowed because mutable. */
-    public final Hole hole = null; // violation
+    public final Hole hole = null;
+    // violation above 'Variable 'hole' must be private and have accessor methods.'
 }

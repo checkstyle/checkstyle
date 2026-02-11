@@ -922,6 +922,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/misc/lineending.html#LineEnding">
+                LineEnding
+              </a>
+            </td>
+            <td>
+              Checks whether file uses a specific line-ending sequence (<code>LF</code>,
+              <code>CRLF</code>, or <code>CR</code>).
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/sizes/linelength.html#LineLength">
                 LineLength
               </a>
@@ -1355,6 +1366,18 @@
             </td>
             <td>
               Checks that the block tag is followed by description.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/misc/numericalprefixesinfixessuffixescharactercase.html#NumericalPrefixesInfixesSuffixesCharacterCase">
+                NumericalPrefixesInfixesSuffixesCharacterCase
+              </a>
+            </td>
+            <td>
+              Checks that all numerical literal prefixes, infixes, and suffixes are written using
+              lowercase letters (for example prefixes : <code>0x, 0b</code>, infixes : <code>e,
+              p</code>, suffixes : <code>f, d</code>).
             </td>
           </tr>
           <tr>

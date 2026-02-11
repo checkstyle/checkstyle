@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+        "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<module name="Checker">
+    <module name="RegexpHeader">
+        <property name="headerFile" value="${config.folder}/java.header"/>
+        <property name="multiLines" value="10, 13"/>
+    </module>
+</module>
