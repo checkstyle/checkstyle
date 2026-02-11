@@ -1,77 +1,40 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-# workaround, as pom declaration not working.
 name: org.checkstyle.AllAutoFixes
+displayName: Auto Fixes
+description: Master list of all auto fixes for local development.
 recipeList:
-  - org.checkstyle.CheckstyleAutoFix
-  - org.checkstyle.RefasterRules
-  - org.checkstyle.StaticAnalysis
+  - org.checkstyle.AutoFixesPart1
+  - org.checkstyle.AutoFixesPart2
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.CheckstyleAutoFix
-description: Checkstyle standard fixes.
+name: org.checkstyle.AutoFixesPart1
+displayName: Auto Fixes Part 1
+description: OpenRewrite and Checkstyle standard fixes.
 recipeList:
+  # composite recipes
   - org.checkstyle.autofix.CheckstyleAutoFix:
       violationReportPath: target/cs_errors.xml
       configurationPath: config/checkstyle-checks.xml
       propertiesPath: config/openrewrite-recipes-checkstyle.properties
----
-type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.RefasterRules
-description: Picnic Refaster rules.
-recipeList:
-  - org.checkstyle.RefasterRules1
-  - org.checkstyle.RefasterRules2
----
-type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.RefasterRules1
-description: Picnic Refaster rules - Part 1.
-recipeList:
-  - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
-  - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
-  - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
-  # Issue #18789: conflicts with UpgradeToJava21 (SortedSet.first vs getFirst)
-  # - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
-  - tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes
-  - tech.picnic.errorprone.refasterrules.FileRulesRecipes
----
-type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.RefasterRules2
-description: Picnic Refaster rules - Part 2.
-recipeList:
-  - tech.picnic.errorprone.refasterrules.MapRulesRecipes
-  - tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes
-  - tech.picnic.errorprone.refasterrules.MockitoRulesRecipes
-  # current maintainer don't "like" orElseThrow() as better form of get()
-  # - tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
-  - tech.picnic.errorprone.refasterrules.PatternRulesRecipes
-  - tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes
-  - tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes
-  - tech.picnic.errorprone.refasterrules.StreamRulesRecipes
-  - tech.picnic.errorprone.refasterrules.TimeRulesRecipes
----
-type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.StaticAnalysis
-description: OpenRewrite standard fixes.
-recipeList:
+  - org.openrewrite.staticanalysis.CodeCleanup
+  # individual recipes
   - org.openrewrite.java.RemoveUnusedImports
-  - org.openrewrite.java.ShortenFullyQualifiedTypeReferences
-  - org.openrewrite.java.SimplifySingleElementAnnotation
-  - org.openrewrite.java.format.EmptyNewlineAtEndOfFile
   - org.openrewrite.java.format.NormalizeFormat
   - org.openrewrite.java.format.NormalizeLineBreaks
-  - org.openrewrite.java.format.PadEmptyForLoopComponents
   - org.openrewrite.java.format.RemoveTrailingWhitespace
-  - org.openrewrite.java.migrate.UpgradeToJava21
+  # until https://github.com/checkstyle/checkstyle/issues/18789
+  # - org.openrewrite.java.migrate.UpgradeToJava21
   - org.openrewrite.java.migrate.lang.StringRulesRecipes
   - org.openrewrite.java.migrate.util.MigrateInflaterDeflaterToClose
   - org.openrewrite.java.migrate.util.ReplaceStreamCollectWithToList
-  - org.openrewrite.java.migrate.util.SequencedCollection
+  # - org.openrewrite.java.migrate.util.SequencedCollection
   - org.openrewrite.java.recipes.JavaRecipeBestPractices
   - org.openrewrite.java.recipes.RecipeTestingBestPractices
   - org.openrewrite.maven.BestPractices
   - org.openrewrite.staticanalysis.BufferedWriterCreationRecipes
-  - org.openrewrite.staticanalysis.EqualsAvoidsNull
+  - org.openrewrite.staticanalysis.SimplifyTernaryRecipes
+  - org.openrewrite.staticanalysis.URLEqualsHashCodeRecipes
   - org.openrewrite.staticanalysis.InlineVariable
   - org.openrewrite.staticanalysis.JavaApiBestPractices
   - org.openrewrite.staticanalysis.LowercasePackage
@@ -83,10 +46,29 @@ recipeList:
   - org.openrewrite.staticanalysis.RemoveUnusedPrivateFields
   - org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods
   - org.openrewrite.staticanalysis.ReplaceLambdaWithMethodReference
-  - org.openrewrite.staticanalysis.SimplifyTernaryRecipes
-  - org.openrewrite.staticanalysis.URLEqualsHashCodeRecipes
   - org.openrewrite.staticanalysis.UnnecessaryCloseInTryWithResources
   - org.openrewrite.staticanalysis.UnnecessaryExplicitTypeArguments
-  - org.openrewrite.staticanalysis.UnnecessaryParentheses
   - org.openrewrite.staticanalysis.UnnecessaryReturnAsLastStatement
   - org.openrewrite.staticanalysis.UseLambdaForFunctionalInterface
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.checkstyle.AutoFixesPart2
+displayName: Auto Fixes Part 2
+description: ErrorProne Refaster rules.
+recipeList:
+  - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
+  - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
+  - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
+  - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
+  - tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes
+  - tech.picnic.errorprone.refasterrules.FileRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MapRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MockitoRulesRecipes
+  # current maintainer don't "like" orElseThrow() as better form of get()
+  # - tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
+  - tech.picnic.errorprone.refasterrules.PatternRulesRecipes
+  - tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes
+  - tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes
+  - tech.picnic.errorprone.refasterrules.StreamRulesRecipes
+  - tech.picnic.errorprone.refasterrules.TimeRulesRecipes
