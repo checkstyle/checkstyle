@@ -557,3 +557,16 @@
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]switchexpr[\\/]ParserRecovery.java$"/>
 </module>
+<!-- Parenthesized patterns removed from grammar -->
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]patterns[\\/]Guards.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]patterns[\\/]Parenthesized.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]patterns[\\/]RawTypeBindingWarning.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]patterns[\\/]Domination.java$"/>
+</module>
