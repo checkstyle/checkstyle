@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+/// ////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2026 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+/// ////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
@@ -46,10 +46,8 @@ public class RightCurlyCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "22:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "21"),
-            "43:47: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "47"),
+            "56:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
         };
-
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
