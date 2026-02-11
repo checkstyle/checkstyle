@@ -18,7 +18,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 import javax.crypto.BadPaddingException;
 import java.util.List; //comment test
-import javax.crypto.Cipher; // violation 'Wrong order for 'javax.crypto.Cipher' import.'
+import javax.crypto.Cipher; // violation 'Import statement for 'javax.crypto.Cipher' violates the configured import group order.'
 
 public class InputImportOrder_Wildcard {
 }
