@@ -45,6 +45,7 @@ public class Example2 {
     try {
       bar();
     } catch (Exception e) {
+      // ok above because config is set to token METHOD_DEF and LITERAL_ELSE
       bar();
     }
 
