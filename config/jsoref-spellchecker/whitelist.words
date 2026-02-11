@@ -371,7 +371,8 @@ elif
 elist
 Ellipsize
 emacs
-Emoji
+emoji
+Emoticons
 emptyblock
 emptycatchblock
 emptyforinitializerpad
@@ -434,6 +435,7 @@ FFFA
 FFFB
 FFFD
 ffff
+FFFFF
 FFFFL
 Fgoogle
 Fheader
@@ -594,6 +596,7 @@ illegalex
 illegalidentifiername
 illegalimport
 illegalinstantiation
+illegalsymbol
 illegalthrows
 illegaltoken
 illegaltokentext
