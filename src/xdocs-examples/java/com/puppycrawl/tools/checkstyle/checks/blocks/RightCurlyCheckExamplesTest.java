@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+/// ////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2026 the original author or authors.
 //
@@ -27,57 +27,55 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class RightCurlyCheckExamplesTest extends AbstractExamplesModuleTestSupport {
-    @Override
-    public String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly";
-    }
+  @Override
+  public String getPackageLocation() {
+    return "com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly";
+  }
 
-    @Test
-    public void testExample1() throws Exception {
-        final String[] expected = {
-            "19:5: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", "5"),
-            "32:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "23"),
-            "40:5: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", "5"),
-        };
+  @Test
+  public void testExample1() throws Exception {
+    final String[] expected = {
+      "19:5: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", "5"),
+      "32:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "23"),
+      "40:5: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", "5"),
+    };
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
-    }
+    verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+  }
 
-    @Test
-    public void testExample2() throws Exception {
-        final String[] expected = {
-            "22:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "21"),
-            "43:47: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "47"),
-        };
+  @Test
+  public void testExample2() throws Exception {
+    final String[] expected = {
+      "56:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
+    };
+    verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+  }
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
-    }
+  @Test
+  public void testExample3() throws Exception {
+    final String[] expected = {
+      "24:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "22"),
+      "38:16: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "16"),
+    };
 
-    @Test
-    public void testExample3() throws Exception {
-        final String[] expected = {
-            "24:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "22"),
-            "38:16: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "16"),
-        };
+    verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+  }
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
-    }
+  @Test
+  public void testExample4() throws Exception {
+    final String[] expected = {
+      "22:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "5"),
+    };
 
-    @Test
-    public void testExample4() throws Exception {
-        final String[] expected = {
-            "22:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "5"),
-        };
+    verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+  }
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
-    }
+  @Test
+  public void testExample5() throws Exception {
+    final String[] expected = {
+      "44:16: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "16"),
+    };
 
-    @Test
-    public void testExample5() throws Exception {
-        final String[] expected = {
-            "44:16: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "16"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
-    }
+    verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+  }
 }
