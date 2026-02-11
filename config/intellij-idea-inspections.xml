@@ -1679,14 +1679,6 @@
   </inspection_tool>
   <inspection_tool class="EmptyCatchBlockJS" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <inspection_tool class="EmptyClass" enabled="true" level="WARNING" enabled_by_default="true">
-    <option name="ignorableAnnotations">
-      <value/>
-    </option>
-    <option name="ignoreClassWithParameterization" value="false"/>
-    <option name="ignoreThrowables" value="true"/>
-    <option name="commentsAreContent" value="true"/>
-  </inspection_tool>
   <inspection_tool class="EmptyDirectory" enabled="true" level="ERROR" enabled_by_default="true"/>
   <inspection_tool class="EmptyEventHandler" enabled="false" level="WARNING"
                    enabled_by_default="false"/>
@@ -1763,8 +1755,6 @@
                    enabled_by_default="true"/>
   <inspection_tool class="EqualsWhichDoesntCheckParameterClass" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <inspection_tool class="EqualsWithItself" enabled="true" level="ERROR"
-                   enabled_by_default="true"/>
   <!-- there is false-positive, and rest cases are result of our loading modules by reflection
     that throws Error. Error is not always jvm problem,
     a bunch of libraries throw Error instead of Exception -->
@@ -1839,8 +1829,6 @@
     <option name="m_ignoreInvisibleFields" value="true"/>
   </inspection_tool>
   <inspection_tool class="FieldMayBeFinal" enabled="true" level="ERROR"
-                   enabled_by_default="true"/>
-  <inspection_tool class="FieldMayBeStatic" enabled="true" level="WARNING"
                    enabled_by_default="true"/>
   <inspection_tool class="FieldNotUsedInToString" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
@@ -3760,8 +3748,6 @@
                    enabled_by_default="false"/>
   <inspection_tool class="RedundantStringFormatCall" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <inspection_tool class="RedundantSuppression" enabled="true" level="ERROR"
-                   enabled_by_default="true"/>
   <inspection_tool class="RedundantSuspendModifier" enabled="false" level="WARNING"
                    enabled_by_default="false"/>
   <inspection_tool class="RedundantThrows" enabled="true" level="ERROR"
@@ -4471,8 +4457,6 @@
         <option value="CallToSystemExit"/>
         <!-- we use it for testing purposes -->
         <option value="unused"/>
-        <!-- we use it for testing purposes -->
-        <option value="UseOfPropertiesAsHashtable"/>
         <!-- till #4862, #4864 -->
         <option value="ThisEscapedInObjectConstruction"/>
         <!-- it will make code too complicated in some cases -->
@@ -4853,12 +4837,6 @@
                    enabled_by_default="true">
     <option name="ignoreReferencesNeedingImport" value="true"/>
   </inspection_tool>
-  <inspection_tool class="UnnecessarilyQualifiedStaticUsage" enabled="true" level="ERROR"
-                   enabled_by_default="true">
-    <option name="m_ignoreStaticFieldAccesses" value="false"/>
-    <option name="m_ignoreStaticMethodCalls" value="false"/>
-    <option name="m_ignoreStaticAccessFromStaticContext" value="false"/>
-  </inspection_tool>
   <inspection_tool class="UnnecessarilyQualifiedStaticallyImportedElement" enabled="true"
                    level="ERROR" enabled_by_default="true"/>
   <inspection_tool class="UnnecessaryBlockStatement" enabled="true" level="ERROR"
@@ -5088,8 +5066,6 @@
                    enabled_by_default="true"/>
   <inspection_tool class="UseOfProcessBuilder" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <inspection_tool class="UseOfPropertiesAsHashtable" enabled="true" level="ERROR"
-                   enabled_by_default="true"/>
   <inspection_tool class="UseOfSunClasses" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
   <inspection_tool class="UsePrimitiveTypes" enabled="false" level="WARNING"
@@ -5278,8 +5254,43 @@
     <option name="ADD_SERVLET_TO_ENTRIES" value="true"/>
     <option name="ADD_NONJAVA_TO_ENTRIES" value="true"/>
   </inspection_tool>
-  <inspection_tool class="ClassCanBeRecord" enabled="true"
-                   level="WEAK WARNING" enabled_by_default="true" />
   <inspection_tool class="EnhancedSwitchMigration" enabled="true"
                    level="WARNING" enabled_by_default="true" />
+  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
+  <inspection_tool class="ClassCanBeRecord" enabled="false"
+                   level="WEAK WARNING" enabled_by_default="false"/>
+  <inspection_tool class="ClassEscapesItsScope" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
+  <inspection_tool class="EmptyClass" enabled="false" level="WARNING" enabled_by_default="false">
+    <option name="ignorableAnnotations">
+      <value/>
+    </option>
+    <option name="ignoreClassWithParameterization" value="false"/>
+    <option name="ignoreThrowables" value="true"/>
+    <option name="commentsAreContent" value="true"/>
+  </inspection_tool>
+  <inspection_tool class="EqualsWithItself" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="ExtractMethodRecommender" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
+  <inspection_tool class="FieldMayBeStatic" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
+  <inspection_tool class="Java9ReflectionClassVisibility" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
+  <inspection_tool class="MappingBeforeCount" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
+  <inspection_tool class="RedundantSuppression" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="SystemGetProperty" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
+  <inspection_tool class="UnnecessarilyQualifiedStaticUsage" enabled="false" level="ERROR"
+                   enabled_by_default="false">
+    <option name="m_ignoreStaticFieldAccesses" value="false"/>
+    <option name="m_ignoreStaticMethodCalls" value="false"/>
+    <option name="m_ignoreStaticAccessFromStaticContext" value="false"/>
+  </inspection_tool>
+  <inspection_tool class="UseOfPropertiesAsHashtable" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="WhileCanBeDoWhile" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
 </profile>

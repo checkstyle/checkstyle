@@ -1,6 +1,6 @@
 version: 1.0
 
-linter: jetbrains/qodana-jvm-community:2025.3
+image: jetbrains/qodana-jvm-community:2025.3
 projectJDK: "21"
 
 failureConditions:
@@ -47,3 +47,16 @@ exclude:
       - src/test/java/com/puppycrawl/tools/checkstyle/grammar/javadoc/ParseTreeBuilder.java
 
       - docs/GRAMMAR_UPDATES.md
+
+  # Non-standard package names in IT folder are by design
+  - name: PackageNamingConvention
+
+  # Javadoc is intentional
+  - name: JavadocDeclaration
+    paths:
+      - src/main/java/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.java
+  - name: JavadocReference
+    paths:
+      - src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java
+      - src/main/java/com/puppycrawl/tools/checkstyle/JavadocCommentsAstVisitor.java
+      - src/test/java/com/puppycrawl/tools/checkstyle/JavaAstVisitorTest.java
