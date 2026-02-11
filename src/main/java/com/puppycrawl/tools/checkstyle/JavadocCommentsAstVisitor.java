@@ -53,6 +53,8 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * @see JavadocCommentsParser
  * @see JavadocNodeImpl
  * @see JavaAstVisitor
+ * @noinspection JavadocReference
+ * @noinspectionreason JavadocReference - References are valid
  */
 public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<JavadocNodeImpl> {
 
