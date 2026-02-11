@@ -24,7 +24,6 @@ jobs:
         uses: JetBrains/qodana-action@v2025.3
         with:
           use-caches: false
-          args: --print-problems
 
       - name: Brief Report
         if: always()
