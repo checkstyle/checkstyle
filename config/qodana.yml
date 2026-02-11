@@ -8,7 +8,7 @@ failureConditions:
     any: 0
 
 profile:
-  path: config/intellij-idea-inspections.xml
+  path: intellij-idea-inspections.xml
 
 exclude:
   - name: All
