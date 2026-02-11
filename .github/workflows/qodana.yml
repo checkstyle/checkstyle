@@ -20,8 +20,21 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Find and use qodana.yml
+        run: |
+          if [ -f "config/qodana.yml" ]; then
+            echo "Using qodana.yml from config directory"
+            cp config/qodana.yml .
+          else
+            echo "ERROR: No qodana.yml found!"
+            find . -name "*.yml" -o -name "*.yaml" | head -10
+            exit 1
+          fi
+
       - name: Run Qodana Scan
         uses: JetBrains/qodana-action@v2025.3
+        env:
+          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
         with:
           use-caches: false
           args: --print-problems
