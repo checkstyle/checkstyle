@@ -54,6 +54,10 @@ type: specs.openrewrite.org/v1beta/recipe
 name: org.checkstyle.StaticAnalysis
 description: OpenRewrite standard fixes.
 recipeList:
+  # Composite recipes (contain further recipes)
+  - org.checkstyle.StaticAnalysisCompositeRecipes
+  # Individual recipes
+  - org.checkstyle.StaticAnalysisIndividualRecipes
   - org.openrewrite.java.RemoveUnusedImports
   - org.openrewrite.java.ShortenFullyQualifiedTypeReferences
   - org.openrewrite.java.SimplifySingleElementAnnotation
@@ -70,7 +74,19 @@ recipeList:
   - org.openrewrite.java.recipes.JavaRecipeBestPractices
   - org.openrewrite.java.recipes.RecipeTestingBestPractices
   - org.openrewrite.maven.BestPractices
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.checkstyle.StaticAnalysisCompositeRecipes
+description: Composite static analysis recipes (contain further recipes).
+recipeList:
   - org.openrewrite.staticanalysis.BufferedWriterCreationRecipes
+  - org.openrewrite.staticanalysis.SimplifyTernaryRecipes
+  - org.openrewrite.staticanalysis.URLEqualsHashCodeRecipes
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.checkstyle.StaticAnalysisIndividualRecipes
+description: Individual static analysis recipes.
+recipeList:
   - org.openrewrite.staticanalysis.EqualsAvoidsNull
   - org.openrewrite.staticanalysis.InlineVariable
   - org.openrewrite.staticanalysis.JavaApiBestPractices
@@ -83,8 +99,6 @@ recipeList:
   - org.openrewrite.staticanalysis.RemoveUnusedPrivateFields
   - org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods
   - org.openrewrite.staticanalysis.ReplaceLambdaWithMethodReference
-  - org.openrewrite.staticanalysis.SimplifyTernaryRecipes
-  - org.openrewrite.staticanalysis.URLEqualsHashCodeRecipes
   - org.openrewrite.staticanalysis.UnnecessaryCloseInTryWithResources
   - org.openrewrite.staticanalysis.UnnecessaryExplicitTypeArguments
   - org.openrewrite.staticanalysis.UnnecessaryParentheses
