@@ -28,13 +28,13 @@ import javax.swing.JComponent; // violation 'Extra separation in import group be
 import javax.swing.JTable;
 
 import static java.io.File.*; // violation 'Extra separation in import group before 'java.io.File.*''
-import java.io.File; // violation 'Wrong order for 'java.io.File' import.'
+import java.io.File; // violation 'Import 'java.io.File' violates the configured relative order between static and non-static imports.'
 
 import static java.io.File.createTempFile; // violation 'Extra separation in import group before 'java.io.File.createTempFile''
 import static java.awt.Button.ABORT;
 import static javax.swing.WindowConstants.*;
-
-import java.io.Reader; // 2 violations
+// violation below 'Extra separation in import group before 'java.io.Reader''
+import java.io.Reader; // violation 'Import 'java.io.Reader' violates the configured relative order between static and non-static imports.'
 
 public class InputImportOrder_Bottom {
 }
