@@ -463,6 +463,11 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 if (tempNode.getType() == JavadocCommentsTokenTypes.TEXT) {
                     contents.append(tempNode.getText());
                 }
+                else {
+                    final DetailNode htmlContentToken = JavadocUtil.findFirstToken(
+                            tempNode, JavadocCommentsTokenTypes.HTML_CONTENT);
+                    contents.append(getStringInsideHtmlTag("", htmlContentToken));
+                }
                 tempNode = tempNode.getNextSibling();
             }
         }
