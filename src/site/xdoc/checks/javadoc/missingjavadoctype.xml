@@ -164,18 +164,26 @@ class Example3 {
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MissingJavadocType"&gt;
-      &lt;property name="skipAnnotations" value="SpringBootApplication,Configuration"/&gt;
+      &lt;property name="scope" value="private"/&gt;
+      &lt;property name="skipAnnotations"
+        value="SpringBootApplication,Configuration"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example4:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-@SpringBootApplication // no violations about missing comment on class
-public class Application {}
+/** Documented. */
+class Example4 {
+  /** Javadoc.*/
+  @SpringBootApplication
+  private class Application { } // ok
 
-@Configuration // no violations about missing comment on class
-class DatabaseConfiguration {}
+  @Configuration
+  private class DatabaseConfiguration { } // ok
+
+  private class MissingDoc { } // violation, 'Missing a Javadoc comment'
+}
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           To configure a check that allows missing comments for classes annotated with
@@ -185,6 +193,7 @@ class DatabaseConfiguration {}
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MissingJavadocType"&gt;
+      &lt;property name="scope" value="private"/&gt;
       &lt;property name="skipAnnotations" value="Annotation,MyClass.Annotation"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
@@ -194,14 +203,17 @@ class DatabaseConfiguration {}
           Example5:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-@Annotation // ok
-class Class1 {}
+/** Documented. */
+class Example5 {
+  /** Javadoc.*/
+  @Annotation
+  private class Class1 { } // ok
 
-@MyClass.Annotation // ok
-class Class2 {}
+  @MyClass.Annotation
+  private class Class2 { } // ok
 
-@com.mycompany.MyClass.Annotation // violation, as this form is missed in config
-class Class3 {}
+  private class Class3 { } // violation, 'Missing a Javadoc comment'
+}
 </code></pre></div>
       </subsection>
 
