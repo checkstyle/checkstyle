@@ -107,4 +107,13 @@ public class JavadocStyleCheckExamplesTest extends AbstractExamplesModuleTestSup
         };
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
+
+    @Test
+    public void testExample8() throws Exception {
+        final String[] expected = {
+            "21: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+    }
 }
