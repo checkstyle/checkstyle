@@ -1,10 +1,10 @@
 /*
 UnusedImports
 processJavadoc = false
+violateExecutionOnNonTightHtml = (default)false
 
 
 */
-
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
 import com.google.errorprone.annotations.*;
