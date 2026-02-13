@@ -201,19 +201,19 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
      * @param ast a method we start to check.
      */
     private void visitMethodDef(DetailAST ast) {
-        contextStack.push(context);
+        contextStack.addFirst(context);
         final boolean check = !CheckUtil.isEqualsMethod(ast);
         context = new Context(check);
     }
 
     /** Removes old context. */
     private void leaveMethodDef() {
-        context = contextStack.pop();
+        context = contextStack.removeFirst();
     }
 
     /** Creates and pushes new context. */
     private void visitExpr() {
-        contextStack.push(context);
+        contextStack.addFirst(context);
         context = new Context(context.isChecking());
     }
 
@@ -224,7 +224,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
      */
     private void leaveExpr(DetailAST ast) {
         context.checkCount(ast);
-        context = contextStack.pop();
+        context = contextStack.removeFirst();
     }
 
     /**

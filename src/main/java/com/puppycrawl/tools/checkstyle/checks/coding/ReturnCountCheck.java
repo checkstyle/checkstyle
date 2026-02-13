@@ -175,7 +175,7 @@ public final class ReturnCountCheck extends AbstractCheck {
      * @param ast method definition for check.
      */
     private void visitMethodDef(DetailAST ast) {
-        contextStack.push(context);
+        contextStack.addFirst(context);
         final DetailAST methodNameAST = ast.findFirstToken(TokenTypes.IDENT);
         final boolean check = !format.matcher(methodNameAST.getText()).find();
         context = new Context(check);
@@ -188,14 +188,14 @@ public final class ReturnCountCheck extends AbstractCheck {
      */
     private void leave(DetailAST ast) {
         context.checkCount(ast);
-        context = contextStack.pop();
+        context = contextStack.removeFirst();
     }
 
     /**
      * Creates new lambda context and places old one on the stack.
      */
     private void visitLambda() {
-        contextStack.push(context);
+        contextStack.addFirst(context);
         context = new Context(true);
     }
 

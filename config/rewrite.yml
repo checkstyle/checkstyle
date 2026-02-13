@@ -4,7 +4,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: org.checkstyle.AllAutoFixes
 recipeList:
   - org.checkstyle.CheckstyleAutoFix
-  - org.checkstyle.RefasterRules
+  - org.checkstyle.RefasterRules1
+  - org.checkstyle.RefasterRules2
   - org.checkstyle.StaticAnalysis
 ---
 type: specs.openrewrite.org/v1beta/recipe
@@ -17,38 +18,70 @@ recipeList:
       propertiesPath: config/openrewrite-recipes-checkstyle.properties
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.RefasterRules
-description: Picnic Refaster rules.
-recipeList:
-  - org.checkstyle.RefasterRules1
-  - org.checkstyle.RefasterRules2
----
-type: specs.openrewrite.org/v1beta/recipe
 name: org.checkstyle.RefasterRules1
 description: Picnic Refaster rules - Part 1.
 recipeList:
+  # AssertJ rules (unrelated)
+  # - tech.picnic.errorprone.refasterrules.AssertJBigIntegerRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.AssertJByteRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.AssertJDoubleRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.AssertJFileRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.AssertJFloatRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.AssertJIntegerRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.AssertJLongRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.AssertJShortRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.AssertJStreamRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.AssortedRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.BugCheckerRulesRecipes
   - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
   - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
   - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
   # Issue #18789: conflicts with UpgradeToJava21 (SortedSet.first vs getFirst)
   # - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
   - tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes
+  - tech.picnic.errorprone.refasterrules.DequeRulesRecipes
+  - tech.picnic.errorprone.refasterrules.DoubleStreamRulesRecipes
+  - tech.picnic.errorprone.refasterrules.EqualityRulesRecipes
   - tech.picnic.errorprone.refasterrules.FileRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.ImmutableEnumSetRulesRecipes # unrelated
+  # - tech.picnic.errorprone.refasterrules.ImmutableListMultimapRulesRecipes # unrelated
+  # - tech.picnic.errorprone.refasterrules.ImmutableListRulesRecipes # unrelated
+  # - tech.picnic.errorprone.refasterrules.ImmutableMapRulesRecipes # unrelated
+  # - tech.picnic.errorprone.refasterrules.ImmutableMultisetRulesRecipes # unrelated
+  # - tech.picnic.errorprone.refasterrules.ImmutableSetMultimapRulesRecipes # unrelated
+  # - tech.picnic.errorprone.refasterrules.ImmutableSetRulesRecipes # unrelated
+  # - tech.picnic.errorprone.refasterrules.ImmutableSortedMapRulesRecipes # unrelated
+  # - tech.picnic.errorprone.refasterrules.ImmutableSortedMultisetRulesRecipes # unrelated
+  # - tech.picnic.errorprone.refasterrules.ImmutableSortedSetRulesRecipes # unrelated
+  # - tech.picnic.errorprone.refasterrules.ImmutableTableRulesRecipes # unrelated
+  - tech.picnic.errorprone.refasterrules.IntStreamRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.Jackson2RulesRecipes # unrelated
+  # - tech.picnic.errorprone.refasterrules.Jackson3RulesRecipes # unrelated
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: org.checkstyle.RefasterRules2
 description: Picnic Refaster rules - Part 2.
 recipeList:
+  - tech.picnic.errorprone.refasterrules.LongStreamRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MapEntryRulesRecipes
   - tech.picnic.errorprone.refasterrules.MapRulesRecipes
   - tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes
   - tech.picnic.errorprone.refasterrules.MockitoRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MultimapRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.NullRulesRecipes # incompatible
   # current maintainer don't "like" orElseThrow() as better form of get()
   # - tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
   - tech.picnic.errorprone.refasterrules.PatternRulesRecipes
   - tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes
   - tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.RandomGeneratorRulesRecipes # unrelated
+  # - tech.picnic.errorprone.refasterrules.RxJava2AdapterRulesRecipes # unrelated
+  # - tech.picnic.errorprone.refasterrules.SpringTestRulesRecipes # unrelated
   - tech.picnic.errorprone.refasterrules.StreamRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.StringRulesRecipes # incompatible
+  # - tech.picnic.errorprone.refasterrules.SuggestedFixRulesRecipes # unrelated
   - tech.picnic.errorprone.refasterrules.TimeRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.WebClientRulesRecipes # unrelated
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: org.checkstyle.StaticAnalysis
