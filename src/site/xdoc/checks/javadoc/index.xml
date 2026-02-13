@@ -198,6 +198,16 @@
           </tr>
           <tr>
             <td>
+              <a href="preferjavadocinlinetags.html#PreferJavadocInlineTags">
+                PreferJavadocInlineTags
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc inline tags are preferred over HTML equivalents.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="requireemptylinebeforeblocktaggroup.html#RequireEmptyLineBeforeBlockTagGroup">
                 RequireEmptyLineBeforeBlockTagGroup
               </a>
