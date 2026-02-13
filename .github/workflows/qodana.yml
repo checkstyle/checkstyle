@@ -24,6 +24,9 @@ jobs:
         uses: JetBrains/qodana-action@v2025.3
         with:
           use-caches: false
+          use-annotations: false
+          pr-mode: false
+
           args: |
             --config,config/qodana.yml,
             --print-problems
