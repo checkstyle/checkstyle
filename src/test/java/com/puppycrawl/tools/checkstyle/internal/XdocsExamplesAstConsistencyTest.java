@@ -186,6 +186,8 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/javadoc/javadocstyle/Example7",
             "checks/javadoc/javadoctagcontinuationindentation/Example4",
             "checks/javadoc/javadocvariable/Example5",
+            "checks/javadoc/missingjavadoctype/Example4",
+            "checks/javadoc/missingjavadoctype/Example5",
             "checks/metrics/classdataabstractioncoupling/Example11",
             "checks/metrics/classdataabstractioncoupling/Example2",
             "checks/metrics/classdataabstractioncoupling/Example3",
