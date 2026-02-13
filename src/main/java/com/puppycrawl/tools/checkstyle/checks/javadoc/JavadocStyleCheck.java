@@ -430,7 +430,7 @@ public class JavadocStyleCheck
             else {
                 // We only push html tags that are allowed
                 if (isAllowedTag(tag)) {
-                    htmlStack.push(tag);
+                    htmlStack.addFirst(tag);
                 }
             }
         }
@@ -461,16 +461,16 @@ public class JavadocStyleCheck
      */
     private void checkUnclosedTags(Deque<HtmlTag> htmlStack, String token) {
         final Deque<HtmlTag> unclosedTags = new ArrayDeque<>();
-        HtmlTag lastOpenTag = htmlStack.pop();
+        HtmlTag lastOpenTag = htmlStack.removeFirst();
         while (!token.equalsIgnoreCase(lastOpenTag.getId())) {
             // Find unclosed elements. Put them on a stack so the
             // output order won't be back-to-front.
             if (isSingleTag(lastOpenTag)) {
-                lastOpenTag = htmlStack.pop();
+                lastOpenTag = htmlStack.removeFirst();
             }
             else {
-                unclosedTags.push(lastOpenTag);
-                lastOpenTag = htmlStack.pop();
+                unclosedTags.addFirst(lastOpenTag);
+                lastOpenTag = htmlStack.removeFirst();
             }
         }
 
