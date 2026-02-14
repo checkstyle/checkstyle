@@ -470,26 +470,17 @@ public class ImportOrderCheck
     private void doVisitTokenInSameGroup(boolean isStatic,
             boolean previous, String name, DetailAST ast) {
         if (ordered) {
-            if (option == ImportOrderOption.INFLOW) {
-                if (isWrongOrder(name, isStatic)) {
-                    log(ast, MSG_ORDERING, name);
-                }
+            if (option == ImportOrderOption.INFLOW && isWrongOrder(name, isStatic)) {
+                log(ast, MSG_ORDERING, name);
             }
-            else {
-                final boolean shouldFireError =
-                    // previous non-static but current is static (above)
-                    // or
-                    // previous static but current is non-static (under)
-                    previous
-                        ||
-                        // current and previous static or current and
-                        // previous non-static
-                        lastImportStatic == isStatic
-                    && isWrongOrder(name, isStatic);
-
-                if (shouldFireError) {
-                    log(ast, MSG_ORDERING, name);
-                }
+            // Check ordering for non-INFLOW options:
+            // - previous flag indicates wrong position between static/non-static groups
+            // - OR same static as last import but in wrong order within group
+            if (option != ImportOrderOption.INFLOW
+                && previous
+                || lastImportStatic == isStatic
+                && isWrongOrder(name, isStatic)) {
+                log(ast, MSG_ORDERING, name);
             }
         }
     }
