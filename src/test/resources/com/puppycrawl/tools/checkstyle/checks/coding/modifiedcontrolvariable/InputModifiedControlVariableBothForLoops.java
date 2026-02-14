@@ -18,14 +18,14 @@ class InputModifiedControlVariableBothForLoops
     {
         // violation :
         for (int i = 0; i < 1; i++) {
-            i++; // violation
+            i++; // violation 'Control variable 'i' is modified.'
         }
         for (int i = 0; i < 1; i++) {
-            i = i + 1; // violation
+            i = i + 1; // violation 'Control variable 'i' is modified.'
         }
         for (int i = 0; i < 1; i++) {
-            for (int j = 0; j < 1; i++) { // violation
-                --i; // violation
+            for (int j = 0; j < 1; i++) { // violation 'Control variable 'i' is modified.'
+                --i; // violation 'Control variable 'i' is modified.'
             }
         }
         for (int i = 0, j = 0; i < 1; i++) {
@@ -53,14 +53,14 @@ class InputModifiedControlVariableBothForLoops
         String[] sa = {"a", "b"};
         for(String s:sa) {}
         for(String s:sa) {
-            s = "new string"; // violation
+            s = "new string"; // violation 'Control variable 's' is modified.'
         }
         for(int i=0;i < 10;) {
             i++;
         }
         for (int i = 0, l = 0,m=0; l < 10; i++,m=m+2) {
             l++;
-            m++; // violation
+            m++; // violation 'Control variable 'm' is modified.'
         }
         for (int i = 0; i < 10; ) {
             i = 11;
@@ -71,8 +71,8 @@ class InputModifiedControlVariableBothForLoops
             w++;
         }
         for (int i=0,k=0; i<10 && k < 10; ++i,++k) {
-            i = i + 3; // violation
-            k = k + 4; // violation
+            i = i + 3; // violation 'Control variable 'i' is modified.'
+            k = k + 4; // violation 'Control variable 'k' is modified.'
         }
         for (int i = 0,j = 0 ; i <10; i++) {
             j++;
@@ -82,7 +82,7 @@ class InputModifiedControlVariableBothForLoops
             new NestedClass() {
                 public void method() {}
             };
-            v = "bad"; // violation
+            v = "bad"; // violation 'Control variable 'v' is modified.'
         }
         for (int i = 0; i < 10; i += 1) {
             for (i = 7; i < 10; i += 1) {}
