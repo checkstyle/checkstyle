@@ -250,12 +250,15 @@
       -Xep:EnumOrdinal:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:EqualsGetClass:OFF
+      <!-- todo: -Xep:EqualsUsingHashCode:ERROR -->
       -Xep:ExplicitArgumentEnumeration:ERROR
       -Xep:ExplicitEnumOrdering:ERROR
+      <!-- todo: -Xep:EscapedEntity:ERROR -->
       -Xep:FormatStringConcatenation:ERROR
       -Xep:FormatStringShouldUsePlaceholders:ERROR
       -Xep:IdentityConversion:ERROR
       -Xep:ImmutablesSortedSetComparator:ERROR
+      <!-- todo: -Xep:ImmutableEnumChecker:ERROR #18933 -->
       -Xep:InlineMeSuggester:ERROR
       -Xep:InconsistentCapitalization:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
@@ -305,6 +308,7 @@
       -Xep:UnrecognisedJavadocTag:ERROR
       -Xep:UnsynchronizedOverridesSynchronized:ERROR
       -Xep:UnusedMethod:ERROR
+      -Xep:UnusedVariable:ERROR
       -Xep:VoidUsed:ERROR
     </error-prone.configuration-args>
   </properties>
@@ -2691,6 +2695,9 @@
 
     <profile>
       <id>error-prone-compile</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <build>
         <plugins>
           <plugin>
@@ -2718,13 +2725,11 @@
                 <configuration>
                   <failOnError>false</failOnError>
                   <compilerArgs>
-                    <arg>-Xpkginfo:always</arg>
-                    <arg>-XDcompilePolicy=simple</arg>
-                    <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
                     <arg>--should-stop=ifError=FLOW</arg>
-                    <arg>
-                      -Xplugin:ErrorProne ${error-prone.configuration-args}
-                    </arg>
+                    <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
+                    <arg>-XDcompilePolicy=simple</arg>
+                    <arg>-Xpkginfo:always</arg>
+                    <arg>-Xplugin:ErrorProne ${error-prone.configuration-args}</arg>
                   </compilerArgs>
                   <annotationProcessorPaths>
                     <path>
@@ -2748,6 +2753,9 @@
 
     <profile>
       <id>error-prone-test-compile</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <build>
         <plugins>
           <plugin>
@@ -2776,14 +2784,11 @@
                   <failOnError>false</failOnError>
                   <compilerArgs>
                     <arg>--should-stop=ifError=FLOW</arg>
-                    <arg>-Xpkginfo:always</arg>
-                    <arg>-XDcompilePolicy=simple</arg>
                     <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
-                    <arg>
-                      -Xplugin:ErrorProne \
-                      -XepExcludedPaths:.*[\\/]resources[\\/].* \
-                      ${error-prone.configuration-args}
-                    </arg>
+                    <arg>-XDcompilePolicy=simple</arg>
+                    <arg>-XepExcludedPaths:.*[\\/]resources[\\/].*</arg>
+                    <arg>-Xpkginfo:always</arg>
+                    <arg>-Xplugin:ErrorProne ${error-prone.configuration-args}</arg>
                   </compilerArgs>
                   <annotationProcessorPaths>
                     <path>
