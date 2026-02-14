@@ -262,9 +262,8 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private void processIdent(DetailAST ast) {
         int parentType = ast.getParent().getType();
-        if (parentType == TokenTypes.EXPR
-                && ast.getParent().getParent().getParent().getType()
-                    == TokenTypes.ANNOTATION_FIELD_DEF) {
+
+        if (isInsideAnnotation(ast)) {
             parentType = TokenTypes.ANNOTATION_FIELD_DEF;
         }
         switch (parentType) {
@@ -290,6 +289,29 @@ public class RequireThisCheck extends AbstractCheck {
                 }
             }
         }
+    }
+
+    /**
+     * Checks whether the given IDENT is inside an annotation.
+     *
+     * @param ast IDENT token
+     * @return true if IDENT is inside annotation definition or its default value
+     */
+    private static boolean isInsideAnnotation(DetailAST ast) {
+        boolean result = false;
+        DetailAST current = ast;
+
+        while (current != null && !result) {
+            final int type = current.getType();
+            if (type == TokenTypes.ANNOTATION
+                    || type == TokenTypes.ANNOTATION_FIELD_DEF
+                    || type == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
+                result = true;
+            }
+            current = current.getParent();
+        }
+
+        return result;
     }
 
     /**
@@ -447,6 +469,7 @@ public class RequireThisCheck extends AbstractCheck {
             final DetailAST mods =
                     ast.findFirstToken(TokenTypes.MODIFIERS);
             if (ScopeUtil.isInInterfaceBlock(ast)
+                    || ScopeUtil.isInAnnotationBlock(ast)
                     || mods.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
                 ((ClassFrame) frame).addStaticMember(ident);
             }
