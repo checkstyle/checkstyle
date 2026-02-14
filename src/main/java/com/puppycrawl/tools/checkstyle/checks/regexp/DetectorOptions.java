@@ -52,6 +52,8 @@ public final class DetectorOptions {
     private MatchSuppressor suppressor;
     /** Pattern created from format. Lazily initialized. */
     private Pattern pattern;
+    /** Which capturing group to use for violation reporting. */
+    private int reportGroup;
 
     /** Default constructor.*/
     private DetectorOptions() {
@@ -129,6 +131,15 @@ public final class DetectorOptions {
         return pattern;
     }
 
+    /**
+     * Which capturing group to use for violation reporting.
+     *
+     * @return the capturing group to use for violation reporting.
+     */
+    public int getReportGroup() {
+        return reportGroup;
+    }
+
     /** Class which implements Builder pattern to build DetectorOptions instance. */
     public final class Builder {
 
@@ -142,6 +153,19 @@ public final class DetectorOptions {
          */
         public Builder reporter(AbstractViolationReporter val) {
             reporter = val;
+            return this;
+        }
+
+        /**
+         * Specifies which capturing group to use for violation reporting.
+         *
+         * @param val the capturing group to use.
+         * @return Builder object.
+         * @noinspection ReturnOfInnerClass
+         * @noinspectionreason ReturnOfInnerClass - builder is only used in enclosing class
+         */
+        public Builder reportGroup(int val) {
+            reportGroup = val;
             return this;
         }
 
@@ -247,6 +271,9 @@ public final class DetectorOptions {
             message = Optional.ofNullable(message).orElse("");
             suppressor = Optional.ofNullable(suppressor).orElse(NeverSuppress.INSTANCE);
             pattern = Optional.ofNullable(format).map(this::createPattern).orElse(null);
+
+            reportGroup = Math.max(0, reportGroup);
+
             return DetectorOptions.this;
         }
 
