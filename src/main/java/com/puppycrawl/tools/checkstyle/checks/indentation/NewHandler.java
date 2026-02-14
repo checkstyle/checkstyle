@@ -28,6 +28,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  */
 public class NewHandler extends AbstractExpressionHandler {
 
+    /**
+     * Token types that require line wrapping indentation for new keyword.
+     */
+    private static final int[] LINE_WRAP_NEW_PARENT_TYPES = {
+        TokenTypes.ASSIGN,
+        TokenTypes.LITERAL_RETURN,
+        TokenTypes.LITERAL_THROW,
+    };
+
     /** The AST which is handled by this handler. */
     private final DetailAST mainAst;
 
@@ -116,10 +125,18 @@ public class NewHandler extends AbstractExpressionHandler {
             result = super.getIndentImpl();
 
             final boolean isLineWrappedNew = TokenUtil.isOfType(mainAst.getParent().getParent(),
-                                        TokenTypes.ASSIGN, TokenTypes.LITERAL_RETURN);
+                LINE_WRAP_NEW_PARENT_TYPES);
 
-            if (isLineWrappedNew || doesChainedMethodNeedsLineWrapping()) {
+            final int ternaryLevel = getTernaryNestingLevel();
+
+            if (isLineWrappedNew || doesNewNeedLineWrappingIndent()) {
                 result = new IndentLevel(result, getLineWrappingIndent());
+            }
+
+            if (ternaryLevel >= 2) {
+                for (int idx = 1; idx < ternaryLevel; idx++) {
+                    result = new IndentLevel(result, getLineWrappingIndent());
+                }
             }
         }
         else {
@@ -145,20 +162,64 @@ public class NewHandler extends AbstractExpressionHandler {
     }
 
     /**
-     * The function checks if the new keyword is a child of chained method calls,
-     * it checks if the new is directly followed by equal operator or return operator.
+     * Checks if the new keyword needs line wrapping indentation.
+     * This applies when new is within an assignment, return, throw, or ternary operator
+     * (where the ternary is part of an assignment, return, or throw statement).
      *
-     * @return true if the new it is chained method calls and new keyword is directly followed
-     *         by assign or return
+     * @return true if the new keyword needs line wrapping indentation
      */
-    private boolean doesChainedMethodNeedsLineWrapping() {
+    private boolean doesNewNeedLineWrappingIndent() {
         DetailAST ast = mainAst.getParent();
 
         while (TokenUtil.isOfType(ast, TokenTypes.DOT, TokenTypes.METHOD_CALL, TokenTypes.EXPR)) {
             ast = ast.getParent();
         }
 
-        return TokenUtil.isOfType(ast, TokenTypes.ASSIGN, TokenTypes.LITERAL_RETURN);
+        return TokenUtil.isOfType(ast, LINE_WRAP_NEW_PARENT_TYPES)
+                || ast.getType() == TokenTypes.QUESTION && isParentAssignReturnOrThrow(ast);
+    }
+
+    /**
+     * Checks if the parent of the given AST is an assignment, return or throw statement.
+     *
+     * @param ast the AST node to check
+     * @return true if the parent is ASSIGN, LITERAL_RETURN or LITERAL_THROW
+     */
+    private static boolean isParentAssignReturnOrThrow(DetailAST ast) {
+        DetailAST parent = ast.getParent();
+        while (TokenUtil.isOfType(parent, TokenTypes.EXPR, TokenTypes.QUESTION)) {
+            parent = parent.getParent();
+        }
+        return TokenUtil.isOfType(parent, LINE_WRAP_NEW_PARENT_TYPES);
+    }
+
+    /**
+     * Counts how many ternary operator levels the new keyword is nested in,
+     * where the outermost ternary is part of an assignment, return, or throw.
+     *
+     * @return the number of ternary nesting levels, or 0 if not in a valid ternary context
+     */
+    private int getTernaryNestingLevel() {
+        DetailAST ast = mainAst.getParent();
+
+        while (TokenUtil.isOfType(ast, TokenTypes.DOT, TokenTypes.METHOD_CALL, TokenTypes.EXPR)) {
+            ast = ast.getParent();
+        }
+
+        int level = 0;
+        while (ast.getType() == TokenTypes.QUESTION) {
+            level++;
+            do {
+                ast = ast.getParent();
+            } while (ast.getType() == TokenTypes.EXPR);
+        }
+
+        int result = 0;
+        if (TokenUtil.isOfType(ast, LINE_WRAP_NEW_PARENT_TYPES)) {
+            result = level;
+        }
+
+        return result;
     }
 
 }
