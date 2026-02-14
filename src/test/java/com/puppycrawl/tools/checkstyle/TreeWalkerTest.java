@@ -40,6 +40,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -997,25 +998,6 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
     }
 
-    public static class RequiredTokenIsEmptyIntArray extends AbstractCheck {
-
-        @Override
-        public int[] getRequiredTokens() {
-            return CommonUtil.EMPTY_INT_ARRAY;
-        }
-
-        @Override
-        public int[] getDefaultTokens() {
-            return new int[] {TokenTypes.ANNOTATION};
-        }
-
-        @Override
-        public int[] getAcceptableTokens() {
-            return CommonUtil.EMPTY_INT_ARRAY;
-        }
-
-    }
-
     /**
      * Test check with controllable ID and hashCode for deterministic sorting tests.
      * Tracks execution order to verify sorting.
@@ -1054,8 +1036,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
-            final TestCheck other = (TestCheck) obj;
-            return hashCode() == other.hashCode();
+            return Objects.equals(getId(), ((TestCheck) obj).getId())
+                && hashCode() == obj.hashCode();
         }
 
         @Override
