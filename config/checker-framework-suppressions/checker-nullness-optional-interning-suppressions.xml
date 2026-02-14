@@ -9015,7 +9015,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ViolationMessagesMacro.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference clss.getPackage()</message>
-    <lineContent>+ clss.getPackage().getName().replace(&quot;.&quot;, &quot;%2F&quot;)</lineContent>
+    <lineContent>+ clss.getPackage().getName().replace(&apos;.&apos;, &apos;/&apos;)</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
