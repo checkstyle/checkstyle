@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.PipedOutputStream;
 import java.io.OutputStream;
 
-public class InputOneStatementPerLineBeginTreeTest {
+public class InputOneStatementPerLineBeginTree3 {
 
     void testNestedInLambda() {
         Runnable r = () -> {

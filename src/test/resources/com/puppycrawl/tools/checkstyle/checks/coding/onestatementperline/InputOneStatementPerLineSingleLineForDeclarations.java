@@ -68,6 +68,5 @@ public class InputOneStatementPerLineSingleLineForDeclarations {
         bar(() -> {
             return;}, () -> {return;});
     }
-
     void bar(Runnable r1, Runnable r2) { }
 }
