@@ -251,7 +251,6 @@
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:EqualsGetClass:OFF
       -Xep:EqualsUsingHashCode:ERROR
-      <!-- todo: -Xep:EqualsUsingHashCode:ERROR -->
       -Xep:ExplicitArgumentEnumeration:ERROR
       -Xep:ExplicitEnumOrdering:ERROR
       <!-- todo: -Xep:EscapedEntity:ERROR -->
