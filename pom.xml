@@ -250,15 +250,12 @@
       -Xep:EnumOrdinal:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:EqualsGetClass:OFF
-      -Xep:EqualsUsingHashCode:ERROR
       -Xep:ExplicitArgumentEnumeration:ERROR
       -Xep:ExplicitEnumOrdering:ERROR
-      <!-- todo: -Xep:EscapedEntity:ERROR -->
       -Xep:FormatStringConcatenation:ERROR
       -Xep:FormatStringShouldUsePlaceholders:ERROR
       -Xep:IdentityConversion:ERROR
       -Xep:ImmutablesSortedSetComparator:ERROR
-      <!-- todo: -Xep:ImmutableEnumChecker:ERROR #18933 -->
       -Xep:InlineMeSuggester:ERROR
       -Xep:InconsistentCapitalization:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
@@ -308,7 +305,6 @@
       -Xep:UnrecognisedJavadocTag:ERROR
       -Xep:UnsynchronizedOverridesSynchronized:ERROR
       -Xep:UnusedMethod:ERROR
-      -Xep:UnusedVariable:ERROR
       -Xep:VoidUsed:ERROR
     </error-prone.configuration-args>
   </properties>

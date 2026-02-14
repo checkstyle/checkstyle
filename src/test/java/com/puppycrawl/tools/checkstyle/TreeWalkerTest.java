@@ -32,7 +32,16 @@ import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -1045,8 +1054,10 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
-            return Objects.equals(getId(), ((TestCheck) obj).getId());
+            final TestCheck other = (TestCheck) obj;
+            return hashCode() == other.hashCode();
         }
+
         @Override
         public int[] getDefaultTokens() {
             return CommonUtil.EMPTY_INT_ARRAY;
