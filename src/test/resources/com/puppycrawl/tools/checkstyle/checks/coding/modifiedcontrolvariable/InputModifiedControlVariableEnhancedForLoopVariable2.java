@@ -22,7 +22,7 @@ public class InputModifiedControlVariableEnhancedForLoopVariable2 {
     void m2(int[] a) {
         for (int i = 0, j = 1; ; i++, j++) {
             for (int k : a) {
-                i++; // violation
+                i++; // violation 'Control variable 'i' is modified.'
             }
         }
     }
