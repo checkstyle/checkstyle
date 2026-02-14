@@ -86,6 +86,24 @@ public class ImportOrderCheck
      */
     public static final String MSG_SEPARATED_IN_GROUP = "import.groups.separated.internally";
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_ORDERING_LEX = "import.ordering.lex";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_ORDERING_STATIC = "import.ordering.static";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_ORDERING_GROUP = "import.ordering.group";
+
     /** The special wildcard that catches all remaining groups. */
     private static final String WILDCARD_GROUP_NAME = "*";
 
@@ -404,7 +422,7 @@ public class ImportOrderCheck
             doVisitTokenInSameGroup(isStatic, previous, name, ast);
         }
         else {
-            log(ast, MSG_ORDERING, name);
+            log(ast, MSG_ORDERING_GROUP, name);
         }
         if (isSeparatorInGroup(groupIdx, isStatic, ast.getLineNo())) {
             log(ast, MSG_SEPARATED_IN_GROUP, name);
@@ -472,23 +490,17 @@ public class ImportOrderCheck
         if (ordered) {
             if (option == ImportOrderOption.INFLOW) {
                 if (isWrongOrder(name, isStatic)) {
-                    log(ast, MSG_ORDERING, name);
+                    log(ast, MSG_ORDERING_LEX, name, lastImport);
                 }
             }
             else {
-                final boolean shouldFireError =
-                    // previous non-static but current is static (above)
-                    // or
-                    // previous static but current is non-static (under)
-                    previous
-                        ||
-                        // current and previous static or current and
-                        // previous non-static
-                        lastImportStatic == isStatic
-                    && isWrongOrder(name, isStatic);
-
-                if (shouldFireError) {
-                    log(ast, MSG_ORDERING, name);
+                if (previous) {
+                    // static vs non-static placement violation
+                    log(ast, MSG_ORDERING_STATIC, name);
+                }
+                else if (lastImportStatic == isStatic && isWrongOrder(name, isStatic)) {
+                    // lexicographical violation
+                    log(ast, MSG_ORDERING_LEX, name, lastImport);
                 }
             }
         }

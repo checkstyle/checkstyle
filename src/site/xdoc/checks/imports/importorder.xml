@@ -572,6 +572,21 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
             </a>
           </li>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.ordering.group%22">
+              import.ordering.group
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.ordering.lex%22">
+              import.ordering.lex
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.ordering.static%22">
+              import.ordering.static
+            </a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.separation%22">
               import.separation
             </a>
