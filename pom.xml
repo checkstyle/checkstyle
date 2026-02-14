@@ -2786,9 +2786,11 @@
                     <arg>--should-stop=ifError=FLOW</arg>
                     <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
                     <arg>-XDcompilePolicy=simple</arg>
-                    <arg>-XepExcludedPaths:.*[\\/]resources[\\/].*</arg>
                     <arg>-Xpkginfo:always</arg>
-                    <arg>-Xplugin:ErrorProne ${error-prone.configuration-args}</arg>
+                    <arg>
+                      -Xplugin:ErrorProne ${error-prone.configuration-args} \
+                      -XepExcludedPaths:.*[\\/]resources[\\/].*
+                    </arg>
                   </compilerArgs>
                   <annotationProcessorPaths>
                     <path>
