@@ -358,4 +358,37 @@ public class FileContentsTest {
                 .that(ex.getClass())
                 .isEqualTo(UnsupportedOperationException.class);
     }
+
+    @Test
+    public void testGetJavadocBeforeWithBlockCommentOnSameLine() {
+        final FileContents fileContents = new FileContents(
+                new FileText(new File("filename"), Arrays.asList(
+                        "/** Javadoc */",
+                        "   /* block comment */ code here",
+                        "   public void method() {}")));
+        fileContents.reportBlockComment(1, 0, 1, 13);
+        fileContents.reportBlockComment(2, 3, 2, 20);
+        final TextBlock javadoc = fileContents.getJavadocBefore(3);
+
+        assertWithMessage("Should find javadoc when block comment has code on same line")
+                .that(javadoc)
+                .isNull();
+    }
+
+    @Test
+    public void testGetJavadocBeforeWithBlockCommentStartingWithCode() {
+        final FileContents fileContents = new FileContents(
+                new FileText(new File("filename"), Arrays.asList(
+                        "/** Javadoc */",
+                        "  code /* block comment",
+                        "   more comment */",
+                        "   public void method() {}")));
+        fileContents.reportBlockComment(1, 0, 1, 13);
+        fileContents.reportBlockComment(2, 7, 3, 17);
+        final TextBlock javadoc = fileContents.getJavadocBefore(4);
+
+        assertWithMessage("Should find javadoc when block comment line starts with code")
+                .that(javadoc)
+                .isNull();
+    }
 }
