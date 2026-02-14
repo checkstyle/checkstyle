@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 
 /**
  * Represents the options for line ending settings.
@@ -39,7 +38,7 @@ public enum LineEndingOption {
     CR("\r");
 
     /** The line ending representation. */
-    private final byte[] lineEnding;
+    private final String lineEnding;
 
     /**
      * Creates a new {@code LineEndingOption} instance.
@@ -47,7 +46,7 @@ public enum LineEndingOption {
      * @param end the line ending, e.g. "\n"
      */
     LineEndingOption(String end) {
-        lineEnding = end.getBytes(StandardCharsets.US_ASCII);
+        lineEnding = end;
     }
 
     /**
@@ -57,7 +56,7 @@ public enum LineEndingOption {
      * @return true if bytes is equal to the byte representation of this line ending.
      */
     public boolean matches(byte... bytes) {
-        return Arrays.equals(lineEnding, bytes);
+        return lineEnding.equals(new String(bytes, StandardCharsets.US_ASCII));
     }
 
 }
