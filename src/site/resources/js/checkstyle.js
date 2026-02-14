@@ -105,8 +105,8 @@ function setBodyColumnMargin() {
       leftColumn.className = "span2";
       bodyColumn.className = "span10";
     } else if (window.innerWidth > 1280) {
-      leftColumn.className = "span3";
-      bodyColumn.className = "span9";
+      leftColumn.className = "span2";
+      bodyColumn.className = "span10";
     } else if  (window.innerWidth > 823) {
       leftColumn.className = "span4";
       bodyColumn.className = "span8";

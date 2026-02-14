@@ -13,8 +13,8 @@
 
   <custom>
     <fluidoSkin>
-      <leftColumnClass>span4</leftColumnClass>
-      <bodyColumnClass>span8</bodyColumnClass>
+      <leftColumnClass>span2</leftColumnClass>
+      <bodyColumnClass>span10</bodyColumnClass>
     </fluidoSkin>
   </custom>
 
