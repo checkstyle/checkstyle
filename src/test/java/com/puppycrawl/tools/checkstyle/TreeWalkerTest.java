@@ -40,6 +40,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -1054,10 +1055,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
-            final TestCheck other = (TestCheck) obj;
-            return hashCode() == other.hashCode();
+            return Objects.equals(getId(), ((TestCheck) obj).getId());
         }
-
         @Override
         public int[] getDefaultTokens() {
             return CommonUtil.EMPTY_INT_ARRAY;
