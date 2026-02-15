@@ -13,30 +13,12 @@ tokens = (default)EXPR, IDENT, NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG, \
 
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 
-public class InputUnnecessaryParenthesesOperator3 {
+public class InputUnnecessaryParenthesesConstructor {
 
-    public void closeBlock() {
-        int code = 3;
-        if ((code & 2) > 21) {}
-        if ((code | 2) > 21) {}
-        if ((code ^ 2) > 21) {}
-
-        if ((code & 2) < 21) {}
-        if ((code | 1) < 8) {}
-        if ((code ^ 2) < 21) {}
-
-        if ((code & 2) <= 21) {}
-        if ((code | 1) <= 8) {}
-        if ((code ^ 2) <= 21) {}
-
-        if ((code & 2) >= 21) {}
-        if ((code | 1) >= 8) {}
-        if ((code ^ 2) >= 21) {}
-        if ((code ^ 1) >= 21) {}
-
-        int x = 9, y = 8;
-        if(x>= 0 != (x<=8 | y<=11) && y>=8) {
-            return;
-        }
+    public void main() {
+        int length1 = new StringBuilder().length();
+        // parentheses not needed, but used for extra clarity
+        int length2 = (new StringBuilder()).length();
     }
+
 }
