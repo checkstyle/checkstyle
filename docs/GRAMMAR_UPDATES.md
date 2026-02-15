@@ -131,8 +131,7 @@ guardedPattern
     : primaryPattern guard expression
     ;
 
-// we use the `LAND` token to represent the logical `&&` operator
-guard: ( LAND | LITERAL_WHEN );
+guard: LITERAL_WHEN;
 ```
 
 Notes:

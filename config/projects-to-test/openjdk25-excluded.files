@@ -742,3 +742,7 @@
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyInnerAccessErrorMessageTest.java$"/>
 </module>
+<!-- Parenthesized patterns removed from grammar -->
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]patterns[\\/]Parenthesized.java$"/>
+</module>
