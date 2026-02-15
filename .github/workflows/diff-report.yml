@@ -172,18 +172,18 @@ jobs:
           REF="forked/$BRANCH"
           REPO="../../../../checkstyle"
           BASE_BRANCH="upstream/master"
-          export MAVEN_OPTS="-Xmx5g"
+          export JAVA_OPTS="-Xmx5g"
           if [ -f new_module_config.xml ]; then
             groovy diff.groovy -r "$REPO" -p "$REF" -pc new_module_config.xml -m single\
-              -l projects.properties -xm "-Dcheckstyle.failsOnError=false"\
+              -l projects.properties \
               --allowExcludes
           elif [ -f patch_config.xml ]; then
             groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -bc diff_config.xml\
-              -pc patch_config.xml -l projects.properties -xm "-Dcheckstyle.failsOnError=false"\
+              -pc patch_config.xml -l projects.properties \
               --allowExcludes
           else
             groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -c diff_config.xml\
-              -l projects.properties -xm "-Dcheckstyle.failsOnError=false"\
+              -l projects.properties \
               --allowExcludes
           fi
 
