@@ -402,7 +402,8 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitEmptyClass(JavaLanguageParser.EmptyClassContext ctx) {
-        return flattenedTree(ctx);
+        // Emit EMPTY_STAT for class-level semicolons
+        return create(TokenTypes.EMPTY_STAT, ctx.SEMI().getSymbol());
     }
 
     @Override

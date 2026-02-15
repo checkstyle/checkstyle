@@ -58,7 +58,25 @@ public class EmptyStatementCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        log(ast, MSG_KEY);
+        // Always log empty statements, including those outside method bodies
+        // Always log empty statements, including those at class level
+        // (direct children of OBJBLOCK for a type)
+        boolean shouldLog = true;
+        final DetailAST parent = ast.getParent();
+        if (parent != null && parent.getType() == TokenTypes.OBJBLOCK) {
+            final DetailAST grandParent = parent.getParent();
+            if (grandParent != null
+                && (grandParent.getType() == TokenTypes.CLASS_DEF
+                    || grandParent.getType() == TokenTypes.ENUM_DEF
+                    || grandParent.getType() == TokenTypes.ANNOTATION_DEF
+                    || grandParent.getType() == TokenTypes.INTERFACE_DEF)) {
+                // This is a class-level empty statement
+                shouldLog = true;
+            }
+        }
+        if (shouldLog) {
+            log(ast, MSG_KEY);
+        }
     }
 
 }

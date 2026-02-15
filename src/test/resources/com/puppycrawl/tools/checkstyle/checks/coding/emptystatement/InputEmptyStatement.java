@@ -13,6 +13,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding.emptystatement;
  */
 public class InputEmptyStatement
 {
+   ; // violation 'Empty statement'
+
    public InputEmptyStatement()
    {
       ; // violation 'Empty statement'
