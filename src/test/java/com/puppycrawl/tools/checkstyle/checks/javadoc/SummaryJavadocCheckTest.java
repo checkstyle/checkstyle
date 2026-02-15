@@ -201,11 +201,10 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "57: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "64: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "74: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            // Until https://github.com/checkstyle/checkstyle/issues/11425
-            "82: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "93: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "103: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "110: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "81: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "92: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "102: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "109: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
         };
 
         verifyWithInlineConfigParser(
@@ -408,10 +407,9 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSummaryJavadocLargeJavaDoc() throws Exception {
         final String[] expected = {
-            "13: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "27: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "41: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "61: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "26: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "40: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "60: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
         };
 
         verifyWithInlineConfigParser(
@@ -426,5 +424,18 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocForbiddenFragmentsTabFormatted.java"), expected);
+    }
+
+    @Test
+    public void testNestedHtmlSummary() throws Exception {
+        final String[] expected = {
+            "38: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "44: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "50: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "56: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocNestedHtml.java"), expected);
     }
 }
