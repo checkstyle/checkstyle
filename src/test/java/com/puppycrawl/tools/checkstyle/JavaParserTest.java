@@ -58,6 +58,29 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testParseException() throws Exception {
+        final File input = new File(getNonCompilablePath("InputJavaParser.java"));
+        try {
+            JavaParser.parseFile(input, JavaParser.Options.WITH_COMMENTS);
+            assertWithMessage("exception expected").fail();
+        }
+        catch (CheckstyleException exc) {
+            assertWithMessage("Invalid exception message")
+                .that(exc.toString())
+                .isEqualTo(CheckstyleException.class.getName()
+                            + ": IllegalStateException occurred while parsing file "
+                            + input.getAbsolutePath() + ".");
+            assertWithMessage("Invalid class")
+                .that(exc.getCause())
+                .isInstanceOf(IllegalStateException.class);
+            assertWithMessage("Invalid exception message")
+                .that(exc.getCause().toString())
+                .isEqualTo(IllegalStateException.class.getName()
+                            + ": 2:0: no viable alternative at input 'classD'");
+        }
+    }
+
+    @Test
     public void testAppendHiddenBlockCommentNodes() throws Exception {
         final DetailAST root =
             JavaParser.parseFile(new File(getPath("InputJavaParserHiddenComments.java")),
@@ -190,29 +213,6 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         assertWithMessage("Single line comment should be present")
                 .that(singleLineComment.isPresent())
                 .isFalse();
-    }
-
-    @Test
-    public void testParseException() throws Exception {
-        final File input = new File(getNonCompilablePath("InputJavaParser.java"));
-        try {
-            JavaParser.parseFile(input, JavaParser.Options.WITH_COMMENTS);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.toString())
-                .isEqualTo(CheckstyleException.class.getName()
-                            + ": IllegalStateException occurred while parsing file "
-                            + input.getAbsolutePath() + ".");
-            assertWithMessage("Invalid class")
-                .that(exc.getCause())
-                .isInstanceOf(IllegalStateException.class);
-            assertWithMessage("Invalid exception message")
-                .that(exc.getCause().toString())
-                .isEqualTo(IllegalStateException.class.getName()
-                            + ": 2:0: no viable alternative at input 'classD'");
-        }
     }
 
     @Test

@@ -595,6 +595,7 @@
             <excludePackageNames>
               com.puppycrawl.tools.checkstyle.grammar.java:
               com.puppycrawl.tools.checkstyle.grammar.javadoc:
+              com.puppycrawl.tools.checkstyle.grammar.markdown:
             </excludePackageNames>
             <source>${java.version}</source>
             <show>private</show>
