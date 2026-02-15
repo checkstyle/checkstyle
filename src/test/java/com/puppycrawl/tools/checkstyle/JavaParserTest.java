@@ -422,6 +422,46 @@ public class JavaParserTest extends AbstractModuleTestSupport {
                 getPath("InputJavaParserHiddenComments4.java"), expected);
     }
 
+    @Test
+    public void testAppendHiddenMarkdownCommentNodes() throws Exception {
+        final DetailAST root =
+            JavaParser.parseFile(new File(getPath("InputJavaParserMarkdown.java")),
+                JavaParser.Options.WITH_COMMENTS);
+
+        final Optional<DetailAST> markdownComment = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.MARKDOWN_JAVADOC_COMMENT);
+        assertWithMessage("Markdown comment should be present")
+            .that(markdownComment.isPresent())
+            .isTrue();
+
+        final DetailAST comment = markdownComment.orElseThrow();
+
+        assertWithMessage("Unexpected line number")
+            .that(comment.getLineNo())
+            .isEqualTo(4);
+        assertWithMessage("Unexpected column number")
+            .that(comment.getColumnNo())
+            .isEqualTo(4);
+        assertWithMessage("Unexpected comment content")
+            .that(comment.getText())
+            .isEqualTo("///");
+
+        final DetailAST commentContent = comment.getFirstChild();
+
+        assertWithMessage("Unexpected token type")
+            .that(commentContent.getType())
+            .isEqualTo(TokenTypes.COMMENT_CONTENT);
+        assertWithMessage("Unexpected line number")
+            .that(commentContent.getLineNo())
+            .isEqualTo(5);
+        assertWithMessage("Unexpected column number")
+            .that(commentContent.getColumnNo())
+            .isEqualTo(7);
+        assertWithMessage("Unexpected comment content")
+                .that(commentContent.getText())
+                .isEqualTo("/// This is a markdown comment\n");
+    }
+
     private static final class CountComments {
         private final List<String> lineComments = new ArrayList<>();
         private final List<String> blockComments = new ArrayList<>();
