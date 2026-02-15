@@ -347,6 +347,16 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testPatternVariables() throws Exception {
+
+        final String[] expected = {
+            "28:9: " + getCheckMessage(MSG_VARIABLE, "s", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisPatternVariables.java"), expected);
+    }
+
+    @Test
     public void testTryWithResources() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
