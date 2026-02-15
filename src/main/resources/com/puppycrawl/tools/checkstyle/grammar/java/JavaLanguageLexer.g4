@@ -118,7 +118,7 @@ tokens {
     NOT_FOR_USAGE_5, NOT_FOR_USAGE_6, NOT_FOR_USAGE_7,
 
     LITERAL_UNDERSCORE, UNNAMED_PATTERN_DEF,
-    LITERAL_MODULE, MODULE_IMPORT
+    LITERAL_MODULE, MODULE_IMPORT, MARKDOWN_COMMENT
 }
 
 @header {
@@ -358,6 +358,16 @@ fragment OneDoubleQuote
 // Whitespace and comments
 
 WS:                      [ \t\r\n\u000C]+ -> skip;
+
+MARKDOWN_COMMENT
+    : '///' { _input.LA(1) != '/' }?
+      { startLine = _tokenStartLine;
+        startCol = _tokenStartCharPositionInLine; }
+      ~[\r\n]*
+      ( ('\r'? '\n') [ \t]* '///' { _input.LA(1) != '/' }? ~[\r\n]* )*
+      ('\r'? '\n' | EOF)
+    -> channel(COMMENTS)
+    ;
 
 BLOCK_COMMENT_BEGIN:
      // Match block comment start delimiter, set start position
