@@ -34,8 +34,6 @@ import java.util.regex.PatternSyntaxException;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
-import com.puppycrawl.tools.checkstyle.PropertyType;
-import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
@@ -86,15 +84,6 @@ public class MultiFileRegexpHeaderCheck
      * containing patterns and line contents.
      */
     private final List<HeaderFileMetadata> headerFilesMetadata = new ArrayList<>();
-
-    /**
-     * Specify a comma-separated list of files containing the required headers.
-     * If a file's header matches none, the violation references
-     * the first file in this list. Users can order files to set
-     * a preferred header for such reporting.
-     */
-    @XdocsPropertyType(PropertyType.STRING)
-    private String headerFiles;
 
     /**
      * Setter to specify a comma-separated list of files containing the required headers.
