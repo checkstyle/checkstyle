@@ -149,6 +149,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.STATIC_INIT,
             TokenTypes.INSTANCE_INIT,
             TokenTypes.METHOD_DEF,
@@ -210,7 +211,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
                         log(result, MSG_MULTIPLE_LINES_AFTER, result.getText());
                     }
                 }
-                else if (!hasEmptyLineAfter(ast)) {
+                else if (astType != TokenTypes.ENUM_CONSTANT_DEF && !hasEmptyLineAfter(ast)) {
                     log(nextToken, MSG_SHOULD_BE_SEPARATED, nextToken.getText());
                 }
             }
