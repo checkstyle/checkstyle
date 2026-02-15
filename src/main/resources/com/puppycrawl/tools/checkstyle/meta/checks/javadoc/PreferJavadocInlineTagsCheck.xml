@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.PreferJavadocInlineTagsCheck"
+             name="PreferJavadocInlineTags"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that Javadoc inline tags are preferred over HTML equivalents.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Per &lt;a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html"&gt;
+ OpenJDK Style Guidelines v6&lt;/a&gt;
+ Javadoc inline tags should be preferred over their HTML equivalents.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ &lt;b&gt;Violations (HTML tags that should be replaced):&lt;/b&gt;
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;code&gt;{@code ...}&lt;/code&gt; over &lt;code&gt;&amp;lt;code&amp;gt;...&amp;lt;/code&amp;gt;&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;code&gt;{@link ...}&lt;/code&gt; over &lt;code&gt;&amp;lt;a href="#..."&amp;gt;&lt;/code&gt; for internal references&lt;/li&gt;
+ &lt;li&gt;&lt;code&gt;{@literal &amp;lt;}&lt;/code&gt; over &lt;code&gt;&amp;amp;lt;&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;code&gt;{@literal &amp;gt;}&lt;/code&gt; over &lt;code&gt;&amp;amp;gt;&lt;/code&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;
+ &lt;b&gt;Not flagged:&lt;/b&gt;
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;Block-level HTML tags with no Javadoc equivalent:
+     &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;pre&amp;gt;&lt;/code&gt;,
+     &lt;code&gt;&amp;lt;ul&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;ol&amp;gt;&lt;/code&gt;,
+     &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;table&amp;gt;&lt;/code&gt;,
+     &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;blockquote&amp;gt;&lt;/code&gt;, etc.&lt;/li&gt;
+ &lt;li&gt;Content inside &lt;code&gt;&amp;lt;pre&amp;gt;&lt;/code&gt; blocks (code examples)&lt;/li&gt;
+ &lt;li&gt;Content inside &lt;code&gt;{@code}&lt;/code&gt; and &lt;code&gt;{@literal}&lt;/code&gt; inline tags&lt;/li&gt;
+ &lt;/ul&gt;</description>
+         <properties>
+            <property default-value="false"
+                      name="violateExecutionOnNonTightHtml"
+                      type="boolean">
+               <description>Control when to print violations if the Javadoc being examined by this check
+ violates the tight html rules defined at
+ &lt;a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules"&gt;
+     Tight-HTML Rules&lt;/a&gt;.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="javadoc.parse.rule.error"/>
+            <message-key key="javadoc.unclosedHtml"/>
+            <message-key key="prefer.javadoc.inline.tag"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
