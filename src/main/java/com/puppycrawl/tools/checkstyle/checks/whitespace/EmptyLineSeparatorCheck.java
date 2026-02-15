@@ -266,18 +266,34 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             }
         }
 
+        return positionToPotentialPostFixNode(result, line);
+    }
+
+    /**
+     * A post fix AST will always have a sibling METHOD CALL
+     * METHOD CALL will at least have two children
+     * The first child is DOT in case of POSTFIX which have at least 2 children
+     * First child of DOT again puts us back to normal AST tree which will
+     * recurse down below from here.
+     *
+     * @param postFixAst the ast to check.
+     * @param line the empty line which gives violation.
+     * @return The potential post fix node after which empty lines are present.
+     */
+    private static DetailAST positionToPotentialPostFixNode(DetailAST postFixAst, int line) {
+        DetailAST result = postFixAst;
         if (result.getNextSibling() != null) {
             final Optional<DetailAST> postFixNode = getPostFixNode(result.getNextSibling());
             if (postFixNode.isPresent()) {
-                // A post fix AST will always have a sibling METHOD CALL
-                // METHOD CALL will at least have two children
-                // The first child is DOT in case of POSTFIX which have at least 2 children
-                // First child of DOT again puts us back to normal AST tree which will
-                // recurse down below from here
                 final DetailAST firstChildAfterPostFix = postFixNode.orElseThrow();
                 result = getLastElementBeforeEmptyLines(firstChildAfterPostFix, line);
             }
         }
+
+        if (result.getLineNo() > line) {
+            result = postFixAst;
+        }
+
         return result;
     }
 
