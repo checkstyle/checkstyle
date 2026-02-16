@@ -281,6 +281,7 @@
       -Xep:NullArgumentForNonNullParameter:ERROR
       -Xep:NullableOptional:ERROR
       -Xep:ObjectEqualsForPrimitives:ERROR
+      -Xep:UnusedVariable:ERROR
       <!-- We prefer UnnecessaryParenthesesCheck over error-prone's OperatorPrecedence. -->
       -Xep:OperatorPrecedence:OFF
       -Xep:OptionalOrElseGet:ERROR
