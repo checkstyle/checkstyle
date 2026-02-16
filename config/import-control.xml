@@ -68,6 +68,12 @@
     <allow class="org.antlr.v4.runtime.CommonToken"/>
   </file>
 
+  <file name="TextBlockGoogleStyleFormattingCheck">
+    <allow class="com.puppycrawl.tools.checkstyle.DetailAstImpl"/>
+    <allow class="com.puppycrawl.tools.checkstyle.StatelessCheck"/>
+    <allow class="com.puppycrawl.tools.checkstyle.utils.TokenUtil"/>
+  </file>
+
   <file name="LocalizedMessage">
     <allow class="java.text.MessageFormat"/>
   </file>
