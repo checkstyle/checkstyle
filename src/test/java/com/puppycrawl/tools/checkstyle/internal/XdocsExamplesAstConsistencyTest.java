@@ -266,6 +266,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/whitespace/whitespacearound/Example7",
             "checks/whitespace/whitespacearound/Example8",
             "checks/whitespace/whitespacearound/Example9",
+            "checks/whitespace/whitespacearound/Example11",
             "filters/suppressionfilter/Example2",
             "filters/suppressionfilter/Example3",
             "filters/suppressionfilter/Example4",
