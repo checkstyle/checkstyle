@@ -62,6 +62,13 @@ if ((condition1 &amp;&amp; condition2)
               <th>since</th>
             </tr>
             <tr>
+              <td><a id="allowTextBlockQuotesOnLeftMargin"/><a href="#allowTextBlockQuotesOnLeftMargin">allowTextBlockQuotesOnLeftMargin</a></td>
+              <td>Allow text block opening and closing quotes on left margin.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.3</td>
+            </tr>
+            <tr>
               <td><a id="arrayInitIndent"/><a href="#arrayInitIndent">arrayInitIndent</a></td>
               <td>Specify how far an array initialization should be indented when on next line.</td>
               <td><a href="../../property_types.html#int">int</a></td>
@@ -243,6 +250,7 @@ class Example2 {
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Indentation"&gt;
       &lt;property name="forceStrictCondition" value="true"/&gt;
+            &lt;property name="allowTextBlockQuotesOnLeftMargin" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;

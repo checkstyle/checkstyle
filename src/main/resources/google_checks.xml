@@ -325,6 +325,7 @@
       <property name="caseIndent" value="2"/>
       <property name="throwsIndent" value="4"/>
       <property name="lineWrappingIndentation" value="4"/>
+      <property name="allowTextBlockQuotesOnLeftMargin" value="true"/>
       <property name="arrayInitIndent" value="2"/>
     </module>
 
