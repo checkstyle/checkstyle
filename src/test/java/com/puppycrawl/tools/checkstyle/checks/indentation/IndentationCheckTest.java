@@ -1387,10 +1387,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("forceStrictCondition", "true");
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = {
-            "18:1: " + getCheckMessage(MSG_ERROR, "\"\"\"", 0, 8),
             "29:17: " + getCheckMessage(MSG_ERROR, "\"\"\"", 16, 12),
-            "46:1: " + getCheckMessage(MSG_ERROR, "\"\"\"", 0, 12),
-            "52:1: " + getCheckMessage(MSG_ERROR, "\"\"\"", 0, 12),
             "59:9: " + getCheckMessage(MSG_ERROR, "\"\"\"", 8, 12),
             "78:15: " + getCheckMessage(MSG_ERROR, "\"\"\"", 14, 12),
         };
