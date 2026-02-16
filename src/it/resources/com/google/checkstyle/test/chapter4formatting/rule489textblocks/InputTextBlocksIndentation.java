@@ -8,7 +8,7 @@ public class InputTextBlocksIndentation {
     String e1 =
         """
     content of the block. e1
-        """; // ok until #18227
+        """; // violation above 'Each line in the text-block .* indented .*'
 
     String e2 =
         """
@@ -29,7 +29,7 @@ public class InputTextBlocksIndentation {
     getData(
             """
         Indentation of Text-block
-            """, // Above line's indentation is less, ok until #18227
+            """, // violation above 'Each line in the text-block .* indented .*'
         5
     );
   }
