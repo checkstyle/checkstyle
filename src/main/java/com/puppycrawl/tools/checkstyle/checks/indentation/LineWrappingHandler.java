@@ -282,7 +282,16 @@ public class LineWrappingHandler {
      * @return true if node is line-starting node.
      */
     private boolean shouldProcessTextBlockLiteral(DetailAST node) {
-        return node.getType() != TokenTypes.TEXT_BLOCK_LITERAL_END
+        final int nodeType = node.getType();
+        final boolean isTextBlockQuote = TokenUtil.isOfType(nodeType,
+                TokenTypes.TEXT_BLOCK_LITERAL_BEGIN,
+                TokenTypes.TEXT_BLOCK_LITERAL_END);
+
+        if (isTextBlockQuote && expandedTabsColumnNo(node) == 0) {
+            return false;
+        }
+
+        return nodeType != TokenTypes.TEXT_BLOCK_LITERAL_END
                 || expandedTabsColumnNo(node) == getLineStart(node);
     }
 
