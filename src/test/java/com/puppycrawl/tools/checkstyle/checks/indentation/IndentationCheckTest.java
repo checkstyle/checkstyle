@@ -1398,6 +1398,24 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    // we can not use verifyWarns() due to usage of multi line string syntax in input
+    @Test
+    public void testTextBlockLiteralWithLeftMarginQuotesAllowed() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("allowTextBlockQuotesOnLeftMargin", "true");
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = {
+            "29:17: " + getCheckMessage(MSG_ERROR, "\"\"\"", 16, 12),
+            "59:9: " + getCheckMessage(MSG_ERROR, "\"\"\"", 8, 12),
+            "78:15: " + getCheckMessage(MSG_ERROR, "\"\"\"", 14, 12),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationTextBlockWithLeftMarginQuotes.java"),
+            expected);
+    }
+
     @Test
     public void testValidNewKeywordWithForceStrictCondition() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
