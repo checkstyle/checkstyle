@@ -21,7 +21,7 @@ public class InputUnnecessarySemicolonAfterTypeMemberDeclarationNullAst {
                     int j = k;
                 };
                 class Local3 {
-                    int l = 15;; // violation
+                    int l = 15;; // violation, 'Unnecessary semicolon.'
                 }
             case 1:
         }
