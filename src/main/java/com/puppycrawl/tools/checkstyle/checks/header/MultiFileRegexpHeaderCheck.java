@@ -94,7 +94,7 @@ public class MultiFileRegexpHeaderCheck
      * a preferred header for such reporting.
      */
     @XdocsPropertyType(PropertyType.STRING)
-    private String headerFiles;
+    private String headerFiles = "";
 
     /**
      * Setter to specify a comma-separated list of files containing the required headers.
@@ -110,9 +110,11 @@ public class MultiFileRegexpHeaderCheck
         final String[] files;
         if (headerFiles == null) {
             files = CommonUtil.EMPTY_STRING_ARRAY;
+            this.headerFiles = "";
         }
         else {
             files = headerFiles.clone();
+            this.headerFiles = String.join(", ", headerFiles);
         }
 
         headerFilesMetadata.clear();
@@ -129,9 +131,7 @@ public class MultiFileRegexpHeaderCheck
      *         or an empty string if no header files are configured or none have valid paths.
      */
     public String getConfiguredHeaderPaths() {
-        return headerFilesMetadata.stream()
-                .map(HeaderFileMetadata::headerFilePath)
-                .collect(Collectors.joining(", "));
+        return headerFiles;
     }
 
     @Override
