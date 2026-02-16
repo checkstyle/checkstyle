@@ -21,13 +21,16 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck.MSG_CLOSE_QUOTES_ERROR;
+import static com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck.MSG_LINE_INDENTATION;
 import static com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck.MSG_OPEN_QUOTES_ERROR;
 import static com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck.MSG_VERTICALLY_UNALIGNED;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestSupport {
 
@@ -249,6 +252,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
             "39:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "44:1: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "51:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "62:10: " + getCheckMessage(MSG_LINE_INDENTATION),
             "69:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "99:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "102:17: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
@@ -367,6 +371,9 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     @Test
     public void testDefaultTextBlockFormatIndentationOfContent() throws Exception {
         final String[] expected = {
+            "13:6: " + getCheckMessage(MSG_LINE_INDENTATION),
+            "14:6: " + getCheckMessage(MSG_LINE_INDENTATION),
+            "26:6: " + getCheckMessage(MSG_LINE_INDENTATION),
             "47:17: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
         };
         verifyWithInlineConfigParser(
@@ -383,4 +390,39 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
         verifyWithInlineConfigParser(
                 getPath("InputTextBlockGoogleStyleFormattingAnnotations.java"), expected);
     }
+
+    @Test
+    public void testTextBlockWithBlankLines() throws Exception {
+        final String[] expected = {
+            "47:1: " + getCheckMessage(MSG_LINE_INDENTATION),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputTextBlockGoogleStyleFormatting11.java"), expected);
+    }
+
+        @Test
+        public void testCoverageForPrivateHelpers() throws Exception {
+        final DetailAstImpl content = new DetailAstImpl();
+        content.setText("");
+        final DetailAstImpl closingQuotes = new DetailAstImpl();
+        content.setNextSibling(closingQuotes);
+
+        final boolean isClosingQuotesOnNewLine = TestUtil.invokeStaticMethod(
+            TextBlockGoogleStyleFormattingCheck.class,
+            "closingQuotesAreAloneOnTheLine",
+            Boolean.class,
+            closingQuotes);
+        assertWithMessage("Expected closing quotes to be alone on line for empty content")
+            .that(isClosingQuotesOnNewLine)
+            .isTrue();
+
+        final int indentation = TestUtil.invokeStaticMethod(
+            TextBlockGoogleStyleFormattingCheck.class,
+            "getIndentation",
+            Integer.class,
+            "");
+        assertWithMessage("Expected zero indentation for empty line")
+            .that(indentation)
+            .isEqualTo(0);
+        }
 }
