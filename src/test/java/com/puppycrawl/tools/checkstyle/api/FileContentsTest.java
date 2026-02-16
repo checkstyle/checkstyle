@@ -358,4 +358,131 @@ public class FileContentsTest {
                 .that(ex.getClass())
                 .isEqualTo(UnsupportedOperationException.class);
     }
+
+    @Test
+    public void testReportMarkdownCommentSingleLine() {
+        final FileContents fileContents = new FileContents(
+                new FileText(new File("filename"), Collections.emptyList()));
+        final String content = "/// markdown comment";
+        final int startLineNo = 1;
+        final int startColNo = 3;
+        final int endLineNo = 1;
+        final int endColNo = 19;
+        fileContents.reportMarkdownComment(content, startLineNo, startColNo, endLineNo, endColNo);
+
+        final Map<Integer, TextBlock> markdownComments = fileContents.getMarkdownComments();
+        assertWithMessage("Map should have one entry")
+                .that(markdownComments.size())
+                .isEqualTo(1);
+        assertWithMessage("Invalid key")
+                .that(markdownComments.containsKey(endLineNo + 1))
+                .isTrue();
+        final TextBlock comment = markdownComments.get(endLineNo + 1);
+        assertWithMessage("Invalid text")
+                .that(comment.getText())
+                .isEqualTo(new String[] {content});
+        assertWithMessage("Invalid start line")
+                .that(comment.getStartLineNo())
+                .isEqualTo(startLineNo);
+        assertWithMessage("Invalid end line")
+                .that(comment.getEndLineNo())
+                .isEqualTo(endLineNo);
+        assertWithMessage("Invalid start col")
+                .that(comment.getStartColNo())
+                .isEqualTo(startColNo);
+        assertWithMessage("Invalid end col")
+                .that(comment.getEndColNo())
+                .isEqualTo(endColNo);
+    }
+
+    @Test
+    public void testReportMarkdownCommentMultiLine() {
+        final FileContents fileContents = new FileContents(
+                new FileText(new File("filename"), Collections.emptyList()));
+        final String content = "   /// line1\n/// line2\n/// line3";
+        final String[] expectedText = {"   /// line1", "/// line2", "/// line3"};
+        final int startLineNo = 1;
+        final int startColNo = 4;
+        final int endLineNo = 3;
+        final int endColNo = 8;
+        fileContents.reportMarkdownComment(content, startLineNo, startColNo, endLineNo, endColNo);
+
+        final Map<Integer, TextBlock> markdownComments = fileContents.getMarkdownComments();
+        assertWithMessage("Map should have one entry")
+                .that(markdownComments.size())
+                .isEqualTo(1);
+        assertWithMessage("Invalid key")
+                .that(markdownComments.containsKey(endLineNo + 1))
+                .isTrue();
+        final TextBlock comment = markdownComments.get(endLineNo + 1);
+        assertWithMessage("Invalid text")
+                .that(Arrays.toString(comment.getText()))
+                .isEqualTo(Arrays.toString(expectedText));
+        assertWithMessage("Invalid start line")
+                .that(comment.getStartLineNo())
+                .isEqualTo(startLineNo);
+        assertWithMessage("Invalid end line")
+                .that(comment.getEndLineNo())
+                .isEqualTo(endLineNo);
+        assertWithMessage("Invalid start col")
+                .that(comment.getStartColNo())
+                .isEqualTo(startColNo);
+        assertWithMessage("Invalid end col")
+                .that(comment.getEndColNo())
+                .isEqualTo(endColNo);
+    }
+
+    @Test
+    public void testReportMarkdownCommentWithTrailingNewline() {
+        final FileContents fc = new FileContents(
+                new FileText(new File("filename"), Collections.emptyList()));
+
+        fc.reportMarkdownComment("/// comment\n", 5, 0, 6, -1);
+
+        final TextBlock c = fc.getMarkdownComments().get(6);
+        assertWithMessage("end line should be adjusted")
+                .that(c.getEndLineNo()).isEqualTo(5);
+        assertWithMessage("end col from last line")
+                .that(c.getEndColNo()).isEqualTo(10);
+    }
+
+    @Test
+    public void testReportMarkdownCommentWithTrailingCarriageReturn() {
+        final FileContents fc = new FileContents(
+                new FileText(new File("filename"), Collections.emptyList()));
+
+        fc.reportMarkdownComment("/// comment\r", 10, 0, 11, -1);
+
+        final TextBlock c = fc.getMarkdownComments().get(11);
+        assertWithMessage("end line should be adjusted")
+                .that(c.getEndLineNo()).isEqualTo(10);
+    }
+
+    @Test
+    public void testReportMarkdownCommentEmptyContent() {
+        final FileContents fc = new FileContents(
+                new FileText(new File("filename"), Collections.emptyList()));
+
+        fc.reportMarkdownComment("", 1, 0, 1, -1);
+
+        final TextBlock c = fc.getMarkdownComments().get(2);
+        assertWithMessage("empty content should give empty array")
+                .that(c.getText()).isEqualTo(new String[0]);
+        assertWithMessage("end col should be -1")
+                .that(c.getEndColNo()).isEqualTo(-1);
+    }
+
+    @Test
+    public void testUnmodifiableGetMarkdownComments() {
+        final FileContents fileContents = new FileContents(
+                new FileText(new File("filename"), Collections.emptyList()));
+        fileContents.reportMarkdownComment("///markdown comment", 1, 0, 1, 18);
+        final Map<Integer, TextBlock> comments = fileContents.getMarkdownComments();
+        final Exception ex = getExpectedThrowable(UnsupportedOperationException.class,
+                () -> comments.remove(0));
+        assertWithMessage("Exception class not expected")
+                .that(ex.getClass())
+                .isEqualTo(UnsupportedOperationException.class);
+    }
+
 }
