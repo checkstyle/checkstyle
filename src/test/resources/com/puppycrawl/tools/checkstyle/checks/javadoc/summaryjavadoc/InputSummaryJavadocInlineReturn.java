@@ -86,4 +86,7 @@ class InputSummaryJavadocInlineReturn {
      * {@return nothing, this is a class}
      */
     private class NotAMethod {} // ok, javadoc tool produces an error
+
+    /***/
+    private String hello; // violation above 'Summary javadoc is missing.'
 }
