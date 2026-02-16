@@ -185,15 +185,15 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         }
 
         if (changeToTag) {
-            result.append("{@");
-            result.append(name);
-            result.append(' ');
+            result.append("{@")
+                    .append(name)
+                    .append(' ');
         }
         else {
-            result.append('<');
-            result.append(name);
-            result.append(getAttributeText(name, node.getAttributes()));
-            result.append('>');
+            result.append('<')
+                    .append(name)
+                    .append(getAttributeText(name, node.getAttributes()))
+                    .append('>');
         }
 
         if (newLineOpenAfter) {
@@ -215,9 +215,9 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             result.append('}');
         }
         else {
-            result.append("</");
-            result.append(name);
-            result.append('>');
+            result.append("</")
+                    .append(name)
+                    .append('>');
         }
     }
 
@@ -279,10 +279,10 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 attrValue = attribute.getNodeValue();
             }
 
-            result.append(attrName);
-            result.append("=\"");
-            result.append(attrValue);
-            result.append('"');
+            result.append(attrName)
+                    .append("=\"")
+                    .append(attrValue)
+                    .append('"');
         }
 
         return result.toString();
