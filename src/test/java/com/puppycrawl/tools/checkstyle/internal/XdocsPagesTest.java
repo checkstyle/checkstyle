@@ -1691,8 +1691,8 @@ public class XdocsPagesTest {
         final StringBuilder expectedText = new StringBuilder(120);
 
         for (String s : list) {
-            expectedText.append(s);
-            expectedText.append('\n');
+            expectedText.append(s)
+                    .append('\n');
         }
 
         if (!expectedText.isEmpty()) {
