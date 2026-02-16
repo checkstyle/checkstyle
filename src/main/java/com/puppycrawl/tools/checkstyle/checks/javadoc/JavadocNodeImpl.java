@@ -50,7 +50,7 @@ public class JavadocNodeImpl implements DetailNode {
     /**
      * Column number.
      */
-    private int columnNumber;
+    private int columnNumber = Integer.MAX_VALUE;
 
     /**
      * Parent node.
