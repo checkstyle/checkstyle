@@ -77,6 +77,11 @@ public class MultiFileRegexpHeaderCheck
     private static final String EMPTY_LINE_PATTERN = "^$";
 
     /**
+     * Separator for multiple header file paths in the configuration and messages.
+     */
+    private static final String HEADER_FILE_SEPARATOR = ", ";
+
+    /**
      * Compiled regex pattern for a blank line.
      **/
     private static final Pattern BLANK_LINE = Pattern.compile(EMPTY_LINE_PATTERN);
@@ -113,6 +118,7 @@ public class MultiFileRegexpHeaderCheck
         }
         else {
             files = headerFiles.clone();
+            this.headerFiles = String.join(HEADER_FILE_SEPARATOR, headerFiles);
         }
 
         headerFilesMetadata.clear();
@@ -131,7 +137,7 @@ public class MultiFileRegexpHeaderCheck
     public String getConfiguredHeaderPaths() {
         return headerFilesMetadata.stream()
                 .map(HeaderFileMetadata::headerFilePath)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(HEADER_FILE_SEPARATOR));
     }
 
     @Override
@@ -151,7 +157,7 @@ public class MultiFileRegexpHeaderCheck
 
             if (matchResult.stream().noneMatch(MatchResult::isMatching)) {
                 final MatchResult mismatch = matchResult.getFirst();
-                final String allConfiguredHeaderPaths = getConfiguredHeaderPaths();
+                final String allConfiguredHeaderPaths = headerFiles;
                 log(mismatch.lineNumber(), mismatch.messageKey(),
                         mismatch.messageArg(), allConfiguredHeaderPaths);
             }
