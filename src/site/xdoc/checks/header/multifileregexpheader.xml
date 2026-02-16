@@ -37,7 +37,7 @@
               <td><a id="headerFiles"/><a href="#headerFiles">headerFiles</a></td>
               <td>Specify a comma-separated list of files containing the required headers. If a file's header matches none, the violation references the first file in this list. Users can order files to set a preferred header for such reporting.</td>
               <td><a href="../../property_types.html#String">String</a></td>
-              <td><code>null</code></td>
+              <td><code/></td>
               <td>10.24.0</td>
             </tr>
           </table>
