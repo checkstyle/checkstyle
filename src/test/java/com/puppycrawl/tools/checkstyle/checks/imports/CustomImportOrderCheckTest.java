@@ -414,7 +414,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         final Class<?> clazz = CustomImportOrderCheck.class;
         final Object t = TestUtil.instantiate(clazz);
         final Object actual = TestUtil.invokeMethod(t, "getFullImportIdent",
-                Object.class, new Object[] {null});
+                Object.class, (Object) null);
 
         final String expected = "";
         assertWithMessage("Invalid getFullImportIdent result")

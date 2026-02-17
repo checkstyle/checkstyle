@@ -280,9 +280,9 @@ public final class XMLLogger
                     if (Character.isISOControl(chr)) {
                         // true escape characters need '&' before, but it also requires XML 1.1
                         // until https://github.com/checkstyle/checkstyle/issues/5168
-                        sb.append("#x");
-                        sb.append(Integer.toHexString(chr));
-                        sb.append(';');
+                        sb.append("#x")
+                                .append(Integer.toHexString(chr))
+                                .append(';');
                     }
                     else {
                         sb.append(chr);

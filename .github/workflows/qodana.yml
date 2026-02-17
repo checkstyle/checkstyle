@@ -18,12 +18,15 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v6
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Run Qodana Scan
         uses: JetBrains/qodana-action@v2025.3
         with:
           use-caches: false
+          use-annotations: false
+          pr-mode: false
+
           args: |
             --config,config/qodana.yml,
             --print-problems
