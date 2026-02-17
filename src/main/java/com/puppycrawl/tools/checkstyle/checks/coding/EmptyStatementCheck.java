@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
@@ -53,12 +55,91 @@ public class EmptyStatementCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.EMPTY_STAT};
+        return new int[] {TokenTypes.EMPTY_STAT, TokenTypes.SEMI};
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        log(ast, MSG_KEY);
+        if (ast.getType() == TokenTypes.EMPTY_STAT) {
+            if (!isSemicolonAfterTypeMember(ast)) {
+                log(ast, MSG_KEY);
+            }
+        }
+        else if (isSemicolonInCompilationUnit(ast)
+            || isStandaloneSemicolonInTypeBody(ast)) {
+            log(ast, MSG_KEY);
+        }
+    }
+
+    /**
+     * Checks if a semicolon token is directly inside compilation unit.
+     *
+     * @param ast semicolon token
+     * @return {@code true} if semicolon is directly inside compilation unit
+     */
+    private static boolean isSemicolonInCompilationUnit(DetailAST ast) {
+        return ast.getParent().getType() == TokenTypes.COMPILATION_UNIT;
+    }
+
+    /**
+     * Checks if a semicolon token represents a standalone empty statement in type body.
+     *
+     * @param ast semicolon token
+     * @return {@code true} if semicolon is in type body and is not after type member declaration
+     */
+    private static boolean isStandaloneSemicolonInTypeBody(DetailAST ast) {
+        return ast.getParent().getType() == TokenTypes.OBJBLOCK
+            && !ScopeUtil.isInEnumBlock(ast)
+            && !isSemicolonAfterTypeMember(ast);
+    }
+
+    /**
+     * Checks if a semicolon token directly follows a type member declaration.
+     *
+     * @param ast semicolon token
+     * @return {@code true} if semicolon directly follows a type member declaration
+     */
+    private static boolean isSemicolonAfterTypeMember(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        final boolean isTypeMemberChild = isTypeMemberDeclaration(parent.getType());
+        final boolean isAfterTypeMember = TokenUtil.isOfType(ast.getPreviousSibling(),
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.COMPACT_CTOR_DEF);
+        return isTypeMemberChild || isAfterTypeMember;
+    }
+
+    /**
+     * Checks if token type is a declaration of type member.
+     *
+     * @param tokenType token type
+     * @return {@code true} if token type is a declaration of type member
+     */
+    private static boolean isTypeMemberDeclaration(int tokenType) {
+        return TokenUtil.isOfType(tokenType,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.COMPACT_CTOR_DEF);
     }
 
 }
