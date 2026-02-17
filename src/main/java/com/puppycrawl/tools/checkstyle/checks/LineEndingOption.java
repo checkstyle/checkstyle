@@ -56,7 +56,10 @@ public enum LineEndingOption {
      * @return true if bytes is equal to the byte representation of this line ending.
      */
     public boolean matches(byte... bytes) {
-        return lineEnding.equals(new String(bytes, StandardCharsets.US_ASCII));
+        return Arrays.equals(
+                lineEnding.getBytes(StandardCharsets.US_ASCII),
+                bytes
+        );
     }
 
 }
