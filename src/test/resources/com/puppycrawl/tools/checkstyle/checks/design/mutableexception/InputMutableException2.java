@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.mutableexception;
 public class InputMutableException2 {
     public class FooException extends Exception {
         private final int finalErrorCode;
-        private int errorCode = 1; // violation
+        private int errorCode = 1; // violation 'The field 'errorCode' must be declared final'
 
         public FooException() {
             finalErrorCode = 1;
@@ -28,7 +28,7 @@ public class InputMutableException2 {
     }
 
     public class BarError extends Throwable {
-        private int errorCode; // violation
+        private int errorCode; // violation 'The field 'errorCode' must be declared final'
     }
 
     public class BazDoesNotExtendError {
@@ -51,7 +51,7 @@ public class InputMutableException2 {
     class CustomException extends Exception {}
 
     class CustomMutableException extends Exception {
-        int errorCode; // violation
+        int errorCode; // violation 'The field 'errorCode' must be declared final'
     }
 
     class ExampleException extends Exception {
