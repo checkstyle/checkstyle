@@ -19,7 +19,7 @@ import static java.lang.Byte.MAX_VALUE;
 import static java.lang.Character.toLowerCase;
 import static java.lang.Character.valueOf;
 import static java.lang.Character.UnicodeBlock.BASIC_LATIN;
-// violation above 'Wrong order for...'
+// violation above 'Wrong lexicographical order for ...'
 // xdoc section -- end
 
 public class Example9 { }

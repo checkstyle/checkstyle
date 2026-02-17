@@ -24,14 +24,14 @@ import static java.awt.Button.ABORT
 ;
 import javax.swing.JComponent;
 import javax.swing.JTable;
-import java.io.File; // violation 'Wrong order for 'java.io.File' import.'
+import java.io.File; // violation 'Import statement for 'java.io.File' violates the configured import group order.'
 import static java.io.File.createTempFile;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import static javax.swing.WindowConstants.*;
 
-import static sun.tools.util.ModifierFilter.ALL_ACCESS; // violation 'Extra separation in import group before .*'
+import static sun.tools.util.ModifierFilter.ALL_ACCESS; // violation 'Extra separation in import group before 'sun.tools.util.ModifierFilter.ALL_ACCESS''
 import static sun.tools.util.ModifierFilter.PACKAGE;
 
 public class InputImportOrder3 {
