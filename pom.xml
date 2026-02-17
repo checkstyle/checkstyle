@@ -229,7 +229,7 @@
     <pitest.junit5.plugin.version>1.2.3</pitest.junit5.plugin.version>
     <pitest.accelerator.junit5.plugin.version>1.0.6</pitest.accelerator.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
-    <junit.version>6.0.2</junit.version>
+    <junit.version>6.0.3</junit.version>
     <forbiddenapis.version>3.10</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <checkerframework.version>3.53.1</checkerframework.version>
@@ -270,6 +270,7 @@
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitMethodDeclaration:OFF
       <!-- We prefer different style of writing tests. -->
+      -Xep:ImmutableEnumChecker:ERROR
       -Xep:JUnitValueSource:OFF
       -Xep:JdkObsolete:ERROR
       -Xep:LexicographicalAnnotationAttributeListing:ERROR
@@ -281,6 +282,7 @@
       -Xep:NullArgumentForNonNullParameter:ERROR
       -Xep:NullableOptional:ERROR
       -Xep:ObjectEqualsForPrimitives:ERROR
+      -Xep:UnusedVariable:ERROR
       <!-- We prefer UnnecessaryParenthesesCheck over error-prone's OperatorPrecedence. -->
       -Xep:OperatorPrecedence:OFF
       -Xep:OptionalOrElseGet:ERROR

@@ -11,11 +11,11 @@ package com.puppycrawl.tools.checkstyle.checks.design.mutableexception;
 public class InputMutableExceptionMultipleInputs {
 
     public class BarError extends Throwable {
-        private int errorCode; // violation
+        private int errorCode; // violation 'The field 'errorCode' must be declared final'
     }
 
     class CustomMutableException extends java.lang.Exception {
-        int errorCode; // violation
+        int errorCode; // violation 'The field 'errorCode' must be declared final'
         final int errorCount = 6;
     }
 

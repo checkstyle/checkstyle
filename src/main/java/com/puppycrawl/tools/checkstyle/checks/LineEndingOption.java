@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 
 /**
  * Represents the options for line ending settings.

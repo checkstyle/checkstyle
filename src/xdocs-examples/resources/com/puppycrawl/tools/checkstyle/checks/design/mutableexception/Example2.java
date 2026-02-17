@@ -20,7 +20,7 @@ class Example2 extends Exception {
 }
 
 class SecondException extends Exception {
-  private int code; // violation
+  private int code; // violation 'The field 'code' must be declared final'
 
   public SecondException() {
     code = 2;
@@ -38,7 +38,7 @@ class SecondThrowable extends Throwable {
 }
 
 class SecondBadException extends java.lang.Exception {
-  int code; // violation
+  int code; // violation 'The field 'code' must be declared final'
 
   public SecondBadException(int code) {
     this.code = code;
