@@ -31,6 +31,7 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
+  ; // violation 'Empty statement'
   public void foo() {
     int i = 5;
     if(i &gt; 3); // violation 'Empty statement'
@@ -40,6 +41,7 @@ public class Example1 {
     while (i &gt; 10)
       i++;
   }
+  ;
 }
 </code></pre></div>
       </subsection>
