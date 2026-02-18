@@ -60,8 +60,8 @@ recipeList:
         # all suppressions until https://github.com/checkstyle/checkstyle/issues/18952
         - org.openrewrite.staticanalysis.DefaultComesLast
         - org.openrewrite.staticanalysis.EmptyBlock
-        - org.openrewrite.staticanalysis.ForLoopControlVariablePostfixOperators
         - org.openrewrite.staticanalysis.FinalizePrivateFields
+        - org.openrewrite.staticanalysis.ForLoopControlVariablePostfixOperators
         - org.openrewrite.java.format.MethodParamPad
         - org.openrewrite.java.format.NoWhitespaceAfter
         - org.openrewrite.java.format.NoWhitespaceBefore
