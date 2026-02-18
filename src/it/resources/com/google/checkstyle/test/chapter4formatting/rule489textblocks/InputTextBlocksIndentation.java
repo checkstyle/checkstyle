@@ -7,8 +7,8 @@ public class InputTextBlocksIndentation {
   public void textIndentation1() {
     String e1 =
         """
-    content of the block. e1
-        """; // ok until #18227
+         content of the block. e1
+        """;
 
     String e2 =
         """
@@ -20,7 +20,7 @@ public class InputTextBlocksIndentation {
     // than expected indentation if `forceStrictCondition` is turned off.
     String e3 =
           """
-      content of the block. e1
+           content of the block. e1
         """; // violation 'Text-block quotes are not vertically aligned'
 
     // Expected indentation is the opening quotes on line 30 is 8,
@@ -28,7 +28,7 @@ public class InputTextBlocksIndentation {
     // than expected indentation if `forceStrictCondition` is turned off.
     getData(
             """
-        Indentation of Text-block
+                  Indentation of Text-block
             """, // Above line's indentation is less, ok until #18227
         5
     );
