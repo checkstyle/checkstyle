@@ -167,7 +167,9 @@ div, p, td, table td, th, table th, li, pre, #breadcrumbs span,
 }
 
 .sidebar-nav {
-  padding: 8px 4px 0 12px;
+  width: 240px;
+  padding: 8px 6px 0 10px;
+  box-sizing: border-box;
 }
 
 .nav-list {
@@ -511,3 +513,23 @@ section#Properties .wrapper table td a {
 html {
   scroll-behavior: smooth;
 }
+
+@media (max-width: 767px) {
+  .sidebar-nav {
+    width: 270px;
+    padding-left: 6px;
+    padding-right: 4px;
+    box-sizing: border-box;
+  }
+  .well.sidebar-nav {
+    padding-right: 0px;
+    padding-left: 6px;
+  }
+  .nav-list > li > a {
+    padding-right: 6px;
+  }
+  .nav-list > li > a::after {
+    right: 6px;
+  }
+}
+
