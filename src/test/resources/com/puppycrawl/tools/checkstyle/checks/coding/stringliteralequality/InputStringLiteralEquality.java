@@ -13,18 +13,18 @@ import java.util.Locale;
 public class InputStringLiteralEquality
 {
     void foo(String name)
-    {
-        if (name == "Lars") // violation
+    {   // violation below 'Literal Strings should be compared using equals(), not '=='.'
+        if (name == "Lars")
         {
             // flagged, should use equals
         }
-
-        if ("Oleg" == name) // violation
+        // violation below 'Literal Strings should be compared using equals(), not '=='.'
+        if ("Oleg" == name)
         {
             // flagged, should use equals
         }
-
-        if ("Oliver" == "Oliver") // violation
+        // violation below 'Literal Strings should be compared using equals(), not '=='.'
+        if ("Oliver" == "Oliver")
         {
             // doesn't make much sense because this can be evaluated
             // to true at compile-time, but is flagged anyway
