@@ -8,7 +8,7 @@ public class InputTextBlocksGeneralForm {
 
     // violation below 'Opening quotes (""") of text-block must be on the new line'
     final String simpleScript = """
-        s
+                                 s
         """; // violation 'Text-block quotes are not vertically aligned'
 
     final String simpleScript1 =
@@ -18,13 +18,13 @@ public class InputTextBlocksGeneralForm {
 
     // violation below 'Opening quotes (""") of text-block must be on the new line'
     getData("""
-        Hello,
-        This is a multi-line message.
+            Hello,
+            This is a multi-line message.
         """); // violation 'Text-block quotes are not vertically aligned'
 
     // violation below 'Opening quotes (""") of text-block must be on the new line'
     return """
-        this is sample text
+            this is sample text
         """; // violation 'Text-block quotes are not vertically aligned'
   }
 
