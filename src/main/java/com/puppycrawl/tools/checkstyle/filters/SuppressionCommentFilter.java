@@ -60,7 +60,7 @@ import com.puppycrawl.tools.checkstyle.utils.WeakReferenceHolder;
  *
  * <p>
  * Attention: This filter may only be specified within the TreeWalker module
- * ({@code &lt;module name="TreeWalker"/&gt;}) and only applies to checks which are also
+ * ({@code <module name="TreeWalker"/>}) and only applies to checks which are also
  * defined within this module. To filter non-TreeWalker checks like {@code RegexpSingleline}, a
  * <a href="https://checkstyle.org/filters/suppresswithplaintextcommentfilter.html">
  * SuppressWithPlainTextCommentFilter</a> or similar filter must be used.
@@ -121,7 +121,7 @@ public class SuppressionCommentFilter
     private final WeakReferenceHolder<FileContents> fileContentsHolder =
             new WeakReferenceHolder<>();
 
-    /** Control whether to check C style comments ({@code &#47;* ... *&#47;}). */
+    /** Control whether to check C style comments (&#47;* ... *&#47;). */
     private boolean checkC = true;
 
     /** Control whether to check C++ style comments ({@code //}). */
@@ -210,7 +210,7 @@ public class SuppressionCommentFilter
     }
 
     /**
-     * Setter to control whether to check C style comments ({@code &#47;* ... *&#47;}).
+     * Setter to control whether to check C style comments (&#47;* ... *&#47;).
      *
      * @param checkC {@code true} if C comments are checked.
      * @since 3.5

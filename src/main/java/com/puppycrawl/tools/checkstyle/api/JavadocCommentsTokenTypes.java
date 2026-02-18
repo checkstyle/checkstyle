@@ -671,7 +671,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      * * {@code code}
-     * &#42;/
+     * * /
      * }</pre>
      *
      * <b>Tree:</b>
@@ -709,7 +709,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      * * {@code code}
-     * &#42;/
+     * * /
      * }</pre>
      *
      * <b>Tree:</b>
@@ -748,7 +748,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      * * {@code code}
-     * &#42;/
+     * * /
      * }</pre>
      *
      * <b>Tree:</b>
@@ -1182,7 +1182,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
-     * * &#123;@link String#length()}
+     * * {@link String#length()}
      * }</pre>
      *
      * <b>Tree:</b>
@@ -1191,7 +1191,7 @@ public final class JavadocCommentsTokenTypes {
      * |--TEXT ->
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      *     `--LINK_INLINE_TAG -> LINK_INLINE_TAG
-     *         |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *         |--JAVADOC_INLINE_TAG_START -> {@
      *         |--TAG_NAME -> link
      *         |--TEXT ->
      *         |--REFERENCE -> REFERENCE
@@ -1213,7 +1213,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
-     * * &#123;@link String#length()}
+     * * {@link String#length()}
      * }</pre>
      *
      * <b>Tree:</b>
@@ -1222,7 +1222,7 @@ public final class JavadocCommentsTokenTypes {
      * |--TEXT ->
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      *     `--LINK_INLINE_TAG -> LINK_INLINE_TAG
-     *         |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *         |--JAVADOC_INLINE_TAG_START -> {@
      *         |--TAG_NAME -> link
      *         |--TEXT ->
      *         |--REFERENCE -> REFERENCE
@@ -1274,14 +1274,14 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
-     * &#123;@link java.base/java.lang.String&#125;
+     * {@link String};
      * }</pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      *     `--LINK_INLINE_TAG -> LINK_INLINE_TAG
-     *         |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *         |--JAVADOC_INLINE_TAG_START -> {@
      *         |--TAG_NAME -> link
      *         |--TEXT ->
      *         |--REFERENCE -> REFERENCE
@@ -1303,14 +1303,14 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
-     * &#123;@link java.util.List&lt;? extends Number&gt;&#125;
+     * {@link java.util.List<? extends Number>};
      * }</pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      *     `--LINK_INLINE_TAG -> LINK_INLINE_TAG
-     *         |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *         |--JAVADOC_INLINE_TAG_START -> {@
      *         |--TAG_NAME -> link
      *         |--TEXT ->
      *         |--REFERENCE -> REFERENCE
@@ -1395,7 +1395,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
-     * * {@link java.util.List&lt;? extends Number&gt; list of any subtype of Number}
+     * * {@link java.util.List<? extends Number> list of any subtype of Number}
      * }</pre>
      *
      * <b>Tree:</b>
@@ -1473,7 +1473,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
-     *     |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *     |--JAVADOC_INLINE_TAG_START -> {@
      *     |--TAG_NAME -> link
      *     |--REFERENCE -> REFERENCE
      *     |   |--IDENTIFIER -> List
@@ -1506,9 +1506,10 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * |--LINK_INLINE_TAG -> LINK_INLINE_TAG
-     * |   |--JAVADOC_INLINE_TAG_START -> &#123;@
+     * |   |--JAVADOC_INLINE_TAG_START -> {@
      * |   |--TAG_NAME -> link
-     * |   `--REFERENCE -> String#length()
+     * |   |--REFERENCE -> String#length()
+     *     `--JAVADOC_INLINE_TAG_END -> }
      * }</pre>
      *
      * @see #JAVADOC_INLINE_TAG
@@ -1529,7 +1530,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
-     *     |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *     |--JAVADOC_INLINE_TAG_START -> {@
      *     |--TAG_NAME -> link
      *     |--TEXT ->
      *     |--REFERENCE -> REFERENCE
@@ -1593,7 +1594,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
-     *     |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *     |--JAVADOC_INLINE_TAG_START -> {@
      *     |--TAG_NAME -> link
      *     |--TEXT ->
      *     |--REFERENCE -> REFERENCE
@@ -1625,7 +1626,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
-     *     |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *     |--JAVADOC_INLINE_TAG_START -> {@
      *     |--TAG_NAME -> link
      *     |--TEXT ->
      *     |--REFERENCE -> REFERENCE
@@ -1706,7 +1707,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
-     * &#123;@snippet lang="java" :
+     * {@snippet lang="java" :
      *   int x = 1;
      * }
      * }</pre>
@@ -1715,7 +1716,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * `--SNIPPET_INLINE_TAG -> SNIPPET_INLINE_TAG
-     *     |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *     |--JAVADOC_INLINE_TAG_START -> {@
      *     |--SNIPPET_ATTRIBUTES -> SNIPPET_ATTRIBUTES
      *     |   `--SNIPPET_ATTRIBUTE -> SNIPPET_ATTRIBUTE
      *     |       |--TEXT ->
@@ -2005,7 +2006,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      *  * <p>Hello</p>
-     *  &#42;/
+     *  * /
      * }</pre>
      *
      * <b>Tree:</b>
