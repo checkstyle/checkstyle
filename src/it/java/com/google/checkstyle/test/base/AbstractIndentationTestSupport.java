@@ -261,7 +261,7 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
      */
     private static int getLineStart(String line, final int tabWidth) {
         int lineStart = 0;
-        for (int index = 0; index < line.length(); index++) {
+        for (int index = 0; index < line.length(); ++index) {
             if (!Character.isWhitespace(line.charAt(index))) {
                 lineStart = CommonUtil.lengthExpandedTabs(line, index, tabWidth);
                 break;
