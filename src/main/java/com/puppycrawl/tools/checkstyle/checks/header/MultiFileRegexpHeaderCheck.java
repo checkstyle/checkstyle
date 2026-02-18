@@ -34,8 +34,6 @@ import java.util.regex.PatternSyntaxException;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
-import com.puppycrawl.tools.checkstyle.PropertyType;
-import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
@@ -93,15 +91,6 @@ public class MultiFileRegexpHeaderCheck
     private final List<HeaderFileMetadata> headerFilesMetadata = new ArrayList<>();
 
     /**
-     * Specify a comma-separated list of files containing the required headers.
-     * If a file's header matches none, the violation references
-     * the first file in this list. Users can order files to set
-     * a preferred header for such reporting.
-     */
-    @XdocsPropertyType(PropertyType.STRING)
-    private String headerFiles;
-
-    /**
      * Setter to specify a comma-separated list of files containing the required headers.
      * If a file's header matches none, the violation references
      * the first file in this list. Users can order files to set
@@ -118,11 +107,8 @@ public class MultiFileRegexpHeaderCheck
         }
         else {
             files = headerFiles.clone();
-            this.headerFiles = String.join(HEADER_FILE_SEPARATOR, headerFiles);
         }
-
         headerFilesMetadata.clear();
-
         for (final String headerFile : files) {
             headerFilesMetadata.add(HeaderFileMetadata.createFromFile(headerFile));
         }
@@ -145,9 +131,7 @@ public class MultiFileRegexpHeaderCheck
 
             if (matchResult.stream().noneMatch(MatchResult::isMatching)) {
                 final MatchResult mismatch = matchResult.getFirst();
-                final String allConfiguredHeaderPaths = headerFiles;
-                log(mismatch.lineNumber(), mismatch.messageKey(),
-                        mismatch.messageArg(), allConfiguredHeaderPaths);
+                log(mismatch.lineNumber(), mismatch.messageKey(), mismatch.messageArg());
             }
         }
     }
