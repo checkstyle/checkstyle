@@ -84,7 +84,6 @@ public class GeneratedJavaTokenTypesTest {
                  'GeneratedJavaTokenTypesTest' and confirm which token is at fault.
                 Token numbers must not change or else they will create a conflict\
                  with users.
-
                 See Issue: https://github.com/checkstyle/checkstyle/issues/505
                 """;
 

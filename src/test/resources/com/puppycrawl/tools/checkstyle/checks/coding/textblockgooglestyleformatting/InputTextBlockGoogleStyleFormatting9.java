@@ -28,7 +28,7 @@ public class InputTextBlockGoogleStyleFormatting9 {
         "checkstyle:membername"
     }) // violation below 'Opening quotes (""") of text-block must be on the new line'
     String STRING3 = """
-        string
+                     string
         """; // violation 'Text-block quotes are not vertically aligned'
 
     @SuppressWarnings({

@@ -25,16 +25,16 @@ public class InputTextBlockGoogleStyleFormatting4 {
             //   'Text-block quotes are not vertically aligned'
             String concat = """
                 The quick brown fox""" + "  \n" + """
-                jumps over the lazy dog a href
+                                                  jumps over the lazy dog a href
                 """;
             // violation 3 lines above 'Opening quotes (""") of text-block must be on the new line'
             // violation 2 lines above 'Text-block quotes are not vertically aligned'
 
             // violation below 'Opening quotes (""") of text-block must be on the new line'
             return """
-                Expected to migrate process instance '%d' \
-                but a concurrent command was executed on the process instance. \
-                Please retry the migration."""
+                    Expected to migrate process instance '%d' \
+                    but a concurrent command was executed on the process instance. \
+                    Please retry the migration."""
                     .formatted(processInstanceKey);
             // 2 violations 2 lines above:
             //   'Closing quotes (""") of text-block should not be preceded by non-whitespace'
@@ -45,10 +45,10 @@ public class InputTextBlockGoogleStyleFormatting4 {
         String simplePropertyUpdateScript = "simplePUS";
         // violation below 'Opening quotes (""") of text-block must be on the new line'
         return ("""
-           def newInstance = params.instance;
+                 def newInstance = params.instance;
            def existingInstance = ctx._source;
         """
-           + simplePropertyUpdateScript);
+           + simplePropertyUpdateScript); // violation 2 lines above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
         // violation 2 lines above 'Text-block quotes are not vertically aligned'
    }
 
@@ -57,27 +57,27 @@ public class InputTextBlockGoogleStyleFormatting4 {
 
         // violation below 'Opening quotes (""") of text-block must be on the new line'
         return """
-            def newInstance = params.instance;
-            def existingInstance = ctx._source;
+                def newInstance = params.instance;
+               def existingInstance = ctx._source;
             """ // violation 'Text-block quotes are not vertically aligned'
             + simpleProp // violation below 'Opening quotes (""") of text-block must be on the new'
             + """
-            if (existingInstance.startDate != null && existingInstance.endDate != null) {
+               if (existingInstance.startDate != null && existingInstance.endDate != null) {
               def dateFormatter = new SimpleDateFormat(params.dateFormatPattern);
                .collect(Collectors.toMap(variable -> variable.id, Function(), (oldVar) ->
                   (newVar.version > oldVar.version) ? newVar : oldVar
                )).values();
            }
-           """; // violation 'Text-block quotes are not vertically aligned'
-    }
+           """; // violation above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
+    }  // violation above 'Text-block quotes are not vertically aligned'
 
     private static String testMethod3() {
         // violation below 'Opening quotes (""") of text-block must be on the new line'
         return """
-            def flowNodesById = existingInstance.flowNodeInstances.stream()
+                def flowNodesById = existingInstance.flowNodeInstances.stream()
             def newFlowNodes = params.instance.flowNodeInstances;
-            """ // violation 'Text-block quotes are not vertically aligned'
-            +
+            """ // violation above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
+            +   // violation 1 lines above 'Text-block quotes are not vertically aligned'
             """
             def isUserTaskImport = "user-task".equals(params.sourceExportIndex);
             for (def newFlowNode : newFlowNodes) {}
@@ -89,7 +89,7 @@ public class InputTextBlockGoogleStyleFormatting4 {
         String simpleProp = "simplePUS";
         // violation below 'Opening quotes (""") of text-block must be on the new line'
         return """
-            def incidentsById = existingInstance.incidents.stream()
+                def incidentsById = existingInstance.incidents.stream()
         """ // violation 'Text-block quotes are not vertically aligned'
          + simpleProp // violation below 'Opening quotes (""") of text-block must be on the new'
          + """
