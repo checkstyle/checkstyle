@@ -306,7 +306,7 @@
       -Xep:UnnecessaryLambda:ERROR
       -Xep:UnrecognisedJavadocTag:ERROR
       -Xep:UnsynchronizedOverridesSynchronized:ERROR
-      -Xep:UnusedMethod:ERROR
+      -Xep:Unused:ERROR
       -Xep:VoidUsed:ERROR
     </error-prone.configuration-args>
   </properties>
