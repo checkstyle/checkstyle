@@ -4256,6 +4256,20 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verifyWarns(checkConfig, fileName, expected);
     }
 
+    @Test
+    public void testTryBlockConstructorParameters() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "8");
+        checkConfig.addProperty("tabWidth", "4");
+
+        final String fileName = getPath("InputIndentationTryCtorParams.java");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;
