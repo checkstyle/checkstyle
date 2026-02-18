@@ -113,7 +113,7 @@ public final class JavadocMetadataScraperUtil {
             case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END -> "</code>";
             case JavadocCommentsTokenTypes.TAG_NAME -> "";
             case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_START -> "<code>";
-            default -> codeChild.getText().trim();
+            default -> codeChild.getText().trim().replace("&", "&amp;");
         };
     }
 

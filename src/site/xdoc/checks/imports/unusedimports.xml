@@ -37,7 +37,7 @@
           dependency for documentation purposes only. As an example, the import
           <code>java.util.List</code> would be considered referenced with the Javadoc
           comment <code>{@link List}</code>. The alternative to avoid introducing a compile-time
-          dependency would be to write the Javadoc comment as <code>{&#64;link java.util.List}</code>.
+          dependency would be to write the Javadoc comment as <code>{@link java.util.List}</code>.
         </li>
         </ul>
 

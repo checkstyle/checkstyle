@@ -69,7 +69,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * dependency for documentation purposes only. As an example, the import
  * {@code java.util.List} would be considered referenced with the Javadoc
  * comment {@code {@link List}}. The alternative to avoid introducing a compile-time
- * dependency would be to write the Javadoc comment as {@code {&#64;link java.util.List}}.
+ * dependency would be to write the Javadoc comment as {@code {@link java.util.List}}.
  * </li>
  * </ul>
  *
