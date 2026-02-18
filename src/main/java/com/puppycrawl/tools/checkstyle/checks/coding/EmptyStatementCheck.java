@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <div>
@@ -53,12 +54,28 @@ public class EmptyStatementCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.EMPTY_STAT};
+        return new int[] {TokenTypes.EMPTY_STAT, TokenTypes.SEMI};
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        log(ast, MSG_KEY);
+        if (ast.getType() == TokenTypes.EMPTY_STAT) {
+            log(ast, MSG_KEY);
+        }
+        else if (isEmptyStatementInTypeBody(ast)) {
+            log(ast, MSG_KEY);
+        }
+    }
+
+    /**
+     * Checks if a semicolon token represents an empty statement in a type body.
+     *
+     * @param ast semicolon token
+     * @return {@code true} if semicolon is inside a type body except enum block
+     */
+    private static boolean isEmptyStatementInTypeBody(DetailAST ast) {
+        return ast.getParent().getType() == TokenTypes.OBJBLOCK
+            && !ScopeUtil.isInEnumBlock(ast);
     }
 
 }
