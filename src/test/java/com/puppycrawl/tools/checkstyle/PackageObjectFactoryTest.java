@@ -387,17 +387,13 @@ public class PackageObjectFactoryTest {
                         packageObjectFactoryClass, "NAME_TO_FULL_MODULE_NAME").values();
 
         final Optional<Class<?>> optional1 = classes.stream()
-                .filter(clazz -> {
-                    return !canonicalNames.contains(clazz.getCanonicalName())
-                            && !Definitions.INTERNAL_MODULES.contains(clazz.getName());
-                }).findFirst();
+                .filter(clazz -> !canonicalNames.contains(clazz.getCanonicalName())
+                            && !Definitions.INTERNAL_MODULES.contains(clazz.getName())).findFirst();
         assertWithMessage("Invalid canonical name: %s", optional1)
                 .that(optional1.isPresent())
                 .isFalse();
-        final Optional<String> optional2 = canonicalNames.stream().filter(canonicalName -> {
-            return classes.stream().map(Class::getCanonicalName)
-                    .noneMatch(clssCanonicalName -> clssCanonicalName.equals(canonicalName));
-        }).findFirst();
+        final Optional<String> optional2 = canonicalNames.stream().filter(canonicalName -> classes.stream().map(Class::getCanonicalName)
+                    .noneMatch(clssCanonicalName -> clssCanonicalName.equals(canonicalName))).findFirst();
         assertWithMessage("Invalid class: %s", optional2)
                 .that(optional2.isPresent())
                 .isFalse();
@@ -534,9 +530,8 @@ public class PackageObjectFactoryTest {
         final PackageObjectFactory objectFactory =
             new PackageObjectFactory(packages, classLoader, SEARCH_REGISTERED_PACKAGES);
         final CheckstyleException ex =
-                TestUtil.getExpectedThrowable(CheckstyleException.class, () -> {
-                    objectFactory.createModule("PackageObjectFactoryTest$MockClass");
-                });
+                TestUtil.getExpectedThrowable(CheckstyleException.class, () ->
+                    objectFactory.createModule("PackageObjectFactoryTest$MockClass"));
 
         assertWithMessage("Invalid exception message")
             .that(ex.getMessage())

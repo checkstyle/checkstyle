@@ -257,10 +257,8 @@ public final class ModuleJavadocParsingUtil {
     public static DetailNode getModuleSinceVersionTagStartNode(DetailNode moduleJavadoc) {
         return JavadocUtil.getAllNodesOfType(
                 moduleJavadoc, JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG).stream()
-            .filter(javadocTag -> {
-                return javadocTag.getFirstChild().getType()
-                        == JavadocCommentsTokenTypes.SINCE_BLOCK_TAG;
-            })
+            .filter(javadocTag -> javadocTag.getFirstChild().getType()
+                        == JavadocCommentsTokenTypes.SINCE_BLOCK_TAG)
             .findFirst()
             .orElse(null);
     }

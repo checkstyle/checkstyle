@@ -539,10 +539,8 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final String expectedLogFragment = ") Scanning path " + path;
 
         final boolean logFound = antTask.getLoggedMessages().stream()
-                .anyMatch(pair -> {
-                    return pair.getMsg().contains(expectedLogFragment)
-                            && pair.getLevel() == Project.MSG_VERBOSE;
-                });
+                .anyMatch(pair -> pair.getMsg().contains(expectedLogFragment)
+                            && pair.getLevel() == Project.MSG_VERBOSE);
 
         assertWithMessage("Verbose log should contain the scanning path")
                 .that(logFound)

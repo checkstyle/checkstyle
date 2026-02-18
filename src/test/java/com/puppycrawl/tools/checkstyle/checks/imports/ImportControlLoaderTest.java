@@ -150,9 +150,8 @@ public class ImportControlLoaderTest {
             final URI uri = mock();
             when(uri.toURL()).thenReturn(url);
 
-            final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class, () -> {
-                ImportControlLoader.load(uri);
-            });
+            final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class, () ->
+                ImportControlLoader.load(uri));
             assertWithMessage("Invalid exception class")
                     .that(ex)
                     .hasCauseThat()
