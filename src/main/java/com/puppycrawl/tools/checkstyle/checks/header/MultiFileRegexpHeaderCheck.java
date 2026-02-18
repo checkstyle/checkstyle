@@ -139,15 +139,15 @@ public class MultiFileRegexpHeaderCheck
     @Override
     protected void processFiltered(File file, FileText fileText) {
         if (!headerFilesMetadata.isEmpty()) {
-            final List<MatchResult> matchResult = headerFilesMetadata.stream()
+            final List<MatchResult> matches = headerFilesMetadata.stream()
                     .map(headerFile -> matchHeader(fileText, headerFile))
                     .toList();
-
-            if (matchResult.stream().noneMatch(MatchResult::isMatching)) {
-                final MatchResult mismatch = matchResult.getFirst();
-                final String allConfiguredHeaderPaths = headerFiles;
-                log(mismatch.lineNumber(), mismatch.messageKey(),
-                        mismatch.messageArg(), allConfiguredHeaderPaths);
+            if (matches.stream().noneMatch(MatchResult::isMatching)) {
+                final MatchResult noneMatch = matches.getFirst();
+                log(noneMatch.lineNumber(),
+                    noneMatch.messageKey(),
+                    noneMatch.messageArg(),
+                    headerFiles);
             }
         }
     }
