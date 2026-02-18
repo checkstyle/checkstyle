@@ -189,4 +189,156 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
         final List<String> expectedSecondInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
         verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
+
+    @Test
+    public void testEmptyStatement() throws Exception {
+        final String[] expected = {
+            "13:11: " + getCheckMessage(MSG_KEY),
+            "17:29: " + getCheckMessage(MSG_KEY),
+            "17:40: " + getCheckMessage(MSG_KEY),
+            "22:11: " + getCheckMessage(MSG_KEY),
+            "22:22: " + getCheckMessage(MSG_KEY),
+            "24:20: " + getCheckMessage(MSG_KEY),
+            "24:22: " + getCheckMessage(MSG_KEY),
+            "25:19: " + getCheckMessage(MSG_KEY),
+            "25:20: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineEmptyStatement.java"),
+                expected);
+    }
+
+    @Test
+    public void testEmptyStatement2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineEmptyStatement2.java"),
+                expected);
+    }
+
+    @Test
+    public void testAnnotation() throws Exception {
+        final String[] expected = {
+            "14:27: " + getCheckMessage(MSG_KEY),
+            "19:22: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineAnnotation.java"),
+                expected);
+    }
+
+    @Test
+    public void testTryResourcesInLambda() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLine2.java"),
+                expected);
+    }
+
+    @Test
+    public void testTryResourcesAndLoops() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineBeginTree3.java"),
+                expected);
+    }
+
+    @Test
+    public void testLastStatementEnd() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineLastStatementEnd.java"),
+                getPath("InputOneStatementPerLineLastStatementEnd2.java"),
+                expected);
+    }
+
+    @Test
+    public void testAnonymousClassAndStatements() throws Exception {
+        final String[] expected = {
+            "16:82: " + getCheckMessage(MSG_KEY),
+            "19:66: " + getCheckMessage(MSG_KEY),
+            "24:51: " + getCheckMessage(MSG_KEY),
+            "27:82: " + getCheckMessage(MSG_KEY),
+            "35:10: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineAnonymousClass.java"),
+                expected
+        );
+    }
+
+    @Test
+    public void testNestedLambdaAndStatements() throws Exception {
+        final String[] expected = {
+            "18:57: " + getCheckMessage(MSG_KEY),
+            "21:20: " + getCheckMessage(MSG_KEY),
+            "26:85: " + getCheckMessage(MSG_KEY),
+            "33:14: " + getCheckMessage(MSG_KEY),
+            "37:41: " + getCheckMessage(MSG_KEY),
+            "41:62: " + getCheckMessage(MSG_KEY),
+            "44:41: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineNestedLambda.java"),
+                expected
+        );
+    }
+
+    @Test
+    public void testAnonymousClassAndLambda() throws Exception {
+        final String[] expected = {
+            "17:72: " + getCheckMessage(MSG_KEY),
+            "24:58: " + getCheckMessage(MSG_KEY),
+            "26:11: " + getCheckMessage(MSG_KEY),
+            "30:51: " + getCheckMessage(MSG_KEY),
+            "48:43: " + getCheckMessage(MSG_KEY),
+            "55:12: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineAnonymousClassAndLambda.java"),
+                expected
+        );
+    }
+
+    @Test
+    public void testImportStatements() throws Exception {
+        final String[] expected = {
+            "11:35: " + getCheckMessage(MSG_KEY),
+            "14:28: " + getCheckMessage(MSG_KEY),
+            "18:12: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineImportStatements.java"),
+                expected
+        );
+    }
+
+    @Test
+    public void testNonCompilableModuleImportStatements() throws Exception {
+        final String[] expected = {
+            "12:24: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputOneStatementPerLineImportStatement.java"),
+                expected
+        );
+    }
+
+    @Test
+    public void testLambdasInMethodCall() throws Exception {
+        final String[] expected = {
+            "21:10: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineMethodCalls.java"),
+                expected
+        );
+    }
+
 }
