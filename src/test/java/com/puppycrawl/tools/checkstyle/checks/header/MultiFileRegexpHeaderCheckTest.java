@@ -508,9 +508,8 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
         final String headerFile = "UnExisted file";
         final IllegalArgumentException thrown =
-                getExpectedThrowable(IllegalArgumentException.class, () -> {
-                    check.setHeaderFiles(headerFile);
-                });
+                getExpectedThrowable(IllegalArgumentException.class, () ->
+                    check.setHeaderFiles(headerFile));
         assertWithMessage("Exception message did not match for invalid file name.")
                 .that(thrown.getMessage())
                 .isEqualTo("Error reading or corrupted header file: " + headerFile);
@@ -840,9 +839,8 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
 
         final IllegalArgumentException thrown =
-                getExpectedThrowable(IllegalArgumentException.class, () -> {
-                    check.setHeaderFiles((String) null);
-                });
+                getExpectedThrowable(IllegalArgumentException.class, () ->
+                    check.setHeaderFiles((String) null));
         assertWithMessage("Exception message mismatch for null header path")
                 .that(thrown.getMessage()).isEqualTo("Header file is not set");
     }

@@ -466,9 +466,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, variableDef,
                         "variables",
-                        variables -> {
-                            return ((Collection<?>) variables).isEmpty();
-                        }))
+                        variables -> ((Collection<?>) variables).isEmpty()))
                 .isTrue();
     }
 
@@ -487,23 +485,17 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDefToken,
                         "typeDeclarations",
-                        typeDeclarations -> {
-                            return ((Collection<?>) typeDeclarations).isEmpty();
-                        }))
+                        typeDeclarations -> ((Collection<?>) typeDeclarations).isEmpty()))
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDefToken,
                         "typeDeclAstToTypeDeclDesc",
-                        typeDeclAstToTypeDeclDesc -> {
-                            return ((Map<?, ?>) typeDeclAstToTypeDeclDesc).isEmpty();
-                        }))
+                        typeDeclAstToTypeDeclDesc -> ((Map<?, ?>) typeDeclAstToTypeDeclDesc).isEmpty()))
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDefToken,
                         "depth",
-                        depth -> {
-                            return (int) depth == 0;
-                        }))
+                        depth -> (int) depth == 0))
                 .isTrue();
     }
 
@@ -525,16 +517,12 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         check.visitToken(classDefAst);
         check.visitToken(literalNew.orElseThrow());
         check.beginTree(null);
-        final Predicate<Object> isClear = anonInnerAstToTypeDesc -> {
-            return ((Map<?, ?>) anonInnerAstToTypeDesc).isEmpty();
-        };
+        final Predicate<Object> isClear = anonInnerAstToTypeDesc -> ((Map<?, ?>) anonInnerAstToTypeDesc).isEmpty();
         assertWithMessage("State is not cleared on beginTree")
                 .that(isClear.test(TestUtil.getInternalState(
                         check, "anonInnerAstToTypeDeclDesc", Object.class)))
                 .isTrue();
-        final Predicate<Object> isQueueClear = anonInnerClassHolders -> {
-            return ((Collection<?>) anonInnerClassHolders).isEmpty();
-        };
+        final Predicate<Object> isQueueClear = anonInnerClassHolders -> ((Collection<?>) anonInnerClassHolders).isEmpty();
         assertWithMessage("State is not cleared on beginTree")
                 .that(isQueueClear.test(TestUtil.getInternalState(
                         check, "anonInnerClassHolders", Object.class)))
@@ -594,11 +582,9 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 JavaParser.Options.WITHOUT_COMMENTS);
 
         final DetailAST fieldObj = TestUtil.findTokenInAstByPredicate(root,
-                        ast -> {
-                            return ast.getType() == TokenTypes.VARIABLE_DEF
+                        ast -> ast.getType() == TokenTypes.VARIABLE_DEF
                                     && "fieldObj".equals(ast.findFirstToken(TokenTypes.IDENT)
-                                    .getText());
-                        })
+                                    .getText()))
                 .orElseThrow();
         final DetailAST literalNewField = fieldObj.findFirstToken(TokenTypes.ASSIGN)
                 .findFirstToken(TokenTypes.EXPR)
@@ -615,11 +601,9 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 .isFalse();
 
         final DetailAST localObj = TestUtil.findTokenInAstByPredicate(root,
-                        ast -> {
-                            return ast.getType() == TokenTypes.VARIABLE_DEF
+                        ast -> ast.getType() == TokenTypes.VARIABLE_DEF
                                     && "localObj".equals(ast.findFirstToken(TokenTypes.IDENT)
-                                    .getText());
-                        })
+                                    .getText()))
                 .orElseThrow();
         final DetailAST literalNewLocal = localObj.findFirstToken(TokenTypes.ASSIGN)
                 .findFirstToken(TokenTypes.EXPR)

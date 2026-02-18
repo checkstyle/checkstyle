@@ -262,13 +262,11 @@ public class JavadocTypeCheck
 
                 if (!allowMissingParamTags) {
 
-                    typeParamNames.forEach(typeParamName -> {
-                        checkTypeParamTag(ast, tags, typeParamName);
-                    });
+                    typeParamNames.forEach(typeParamName ->
+                        checkTypeParamTag(ast, tags, typeParamName));
 
-                    recordComponentNames.forEach(componentName -> {
-                        checkComponentParamTag(ast, tags, componentName);
-                    });
+                    recordComponentNames.forEach(componentName ->
+                        checkComponentParamTag(ast, tags, componentName));
                 }
 
                 checkUnusedParamTags(tags, typeParamNames, recordComponentNames);
@@ -284,11 +282,9 @@ public class JavadocTypeCheck
      */
     private boolean shouldCheck(DetailAST ast) {
         return ScopeUtil.getSurroundingScope(ast)
-            .map(surroundingScope -> {
-                return surroundingScope.isIn(scope)
+            .map(surroundingScope -> surroundingScope.isIn(scope)
                     && (excludeScope == null || !surroundingScope.isIn(excludeScope))
-                    && !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);
-            })
+                    && !AnnotationUtil.containsAnnotation(ast, allowedAnnotations))
             .orElse(Boolean.FALSE);
     }
 
@@ -305,9 +301,8 @@ public class JavadocTypeCheck
             final String[] lines = textBlock.getText();
             tags.getInvalidTags().stream()
                 .filter(tag -> !isTagInsideCodeOrLiteralBlock(lines, textBlock, tag))
-                .forEach(tag -> {
-                    log(tag.getLine(), tag.getCol(), MSG_UNKNOWN_TAG, tag.getName());
-                });
+                .forEach(tag ->
+                    log(tag.getLine(), tag.getCol(), MSG_UNKNOWN_TAG, tag.getName()));
         }
         return tags.getValidTags();
     }

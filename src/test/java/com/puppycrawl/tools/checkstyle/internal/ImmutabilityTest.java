@@ -364,9 +364,7 @@ public class ImmutabilityTest {
 
             if (javaType instanceof JavaParameterizedType parameterizedType) {
                 isParameterizedTypeImmutable = parameterizedType.getActualTypeArguments().stream()
-                    .allMatch(actualTypeArgument -> {
-                        return IMMUTABLE_TYPES.contains(actualTypeArgument.toErasure().getName());
-                    });
+                    .allMatch(actualTypeArgument -> IMMUTABLE_TYPES.contains(actualTypeArgument.toErasure().getName()));
             }
             return isParameterizedTypeImmutable;
         }
@@ -432,11 +430,9 @@ public class ImmutabilityTest {
         public boolean test(JavaClass input) {
             final Set<JavaField> fields = input.getFields();
             return fields.stream()
-                .filter(javaField -> {
-                    return !ModulePropertyPredicate.isModuleProperty(javaField)
+                .filter(javaField -> !ModulePropertyPredicate.isModuleProperty(javaField)
                         && !javaField.getName().contains("$")
-                        && !SUPPRESSED_FIELDS_IN_MODULES.contains(javaField.getFullName());
-                })
+                        && !SUPPRESSED_FIELDS_IN_MODULES.contains(javaField.getFullName()))
                 .allMatch(javaField -> {
                     final Set<JavaModifier> javaFieldModifiers = javaField.getModifiers();
                     return javaFieldModifiers.contains(JavaModifier.FINAL)

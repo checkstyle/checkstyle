@@ -120,9 +120,8 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     @Test
     public void testBadRegex() {
         final IllegalArgumentException ex =
-                getExpectedThrowable(IllegalArgumentException.class, () -> {
-                    CommonUtil.createPattern("[");
-                });
+                getExpectedThrowable(IllegalArgumentException.class, () ->
+                    CommonUtil.createPattern("["));
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasMessageThat()
@@ -132,9 +131,8 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     @Test
     public void testBadRegex2() {
         final IllegalArgumentException ex =
-                getExpectedThrowable(IllegalArgumentException.class, () -> {
-                    CommonUtil.createPattern("[", Pattern.MULTILINE);
-                });
+                getExpectedThrowable(IllegalArgumentException.class, () ->
+                    CommonUtil.createPattern("[", Pattern.MULTILINE));
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasMessageThat()
@@ -260,9 +258,8 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetNonExistentConstructor() {
-        final IllegalStateException ex = getExpectedThrowable(IllegalStateException.class, () -> {
-            CommonUtil.getConstructor(Math.class);
-        });
+        final IllegalStateException ex = getExpectedThrowable(IllegalStateException.class, () ->
+            CommonUtil.getConstructor(Math.class));
         assertWithMessage("Invalid exception cause")
                 .that(ex)
                 .hasCauseThat()
@@ -284,9 +281,8 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     @Test
     public void testInvokeConstructorThatFails() throws NoSuchMethodException {
         final Constructor<Dictionary> constructor = Dictionary.class.getConstructor();
-        final IllegalStateException ex = getExpectedThrowable(IllegalStateException.class, () -> {
-            CommonUtil.invokeConstructor(constructor);
-        });
+        final IllegalStateException ex = getExpectedThrowable(IllegalStateException.class, () ->
+            CommonUtil.invokeConstructor(constructor));
         assertWithMessage("Invalid exception cause")
                 .that(ex)
                 .hasCauseThat()
@@ -307,11 +303,10 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testCloseWithException() {
-        final IllegalStateException ex = getExpectedThrowable(IllegalStateException.class, () -> {
+        final IllegalStateException ex = getExpectedThrowable(IllegalStateException.class, () ->
             CommonUtil.close(() -> {
                 throw new IOException("Test IOException");
-            });
-        });
+            }));
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasMessageThat()
@@ -588,9 +583,8 @@ public class CommonUtilTest extends AbstractPathTestSupport {
             utilities.when(() -> CommonUtil.getCheckstyleResource(fileName))
                     .thenReturn(configUrl);
 
-            final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class, () -> {
-                CommonUtil.getUriByFilename(fileName);
-            });
+            final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class, () ->
+                CommonUtil.getUriByFilename(fileName));
             assertWithMessage("Invalid exception cause")
                     .that(ex)
                     .hasCauseThat()

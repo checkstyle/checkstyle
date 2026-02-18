@@ -243,10 +243,8 @@ public class FinalClassCheck
                                        ClassDesc currentClass) {
         final String superClassName = getSuperClassName(currentClass.getTypeDeclarationAst());
         if (superClassName != null) {
-            final ToIntFunction<ClassDesc> nestedClassCountProvider = classDesc -> {
-                return CheckUtil.typeDeclarationNameMatchingCount(qualifiedClassName,
+            final ToIntFunction<ClassDesc> nestedClassCountProvider = classDesc -> CheckUtil.typeDeclarationNameMatchingCount(qualifiedClassName,
                                                                   classDesc.getQualifiedName());
-            };
             getNearestClassWithSameName(superClassName, nestedClassCountProvider)
                 .or(() -> Optional.ofNullable(innerClasses.get(superClassName)))
                 .ifPresent(ClassDesc::registerNestedSubclass);
@@ -266,9 +264,7 @@ public class FinalClassCheck
                                                          String outerTypeDeclName) {
         final String superClassName = CheckUtil.getShortNameOfAnonInnerClass(literalNewAst);
 
-        final ToIntFunction<ClassDesc> anonClassCountProvider = classDesc -> {
-            return getAnonSuperTypeMatchingCount(outerTypeDeclName, classDesc.getQualifiedName());
-        };
+        final ToIntFunction<ClassDesc> anonClassCountProvider = classDesc -> getAnonSuperTypeMatchingCount(outerTypeDeclName, classDesc.getQualifiedName());
         getNearestClassWithSameName(superClassName, anonClassCountProvider)
             .or(() -> Optional.ofNullable(innerClasses.get(superClassName)))
             .ifPresent(ClassDesc::registerSuperClassOfAnonymousInnerClass);

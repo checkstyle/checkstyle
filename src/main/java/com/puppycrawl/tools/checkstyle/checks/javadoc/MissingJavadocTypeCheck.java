@@ -138,11 +138,9 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
      */
     private boolean shouldCheck(final DetailAST ast) {
         return ScopeUtil.getSurroundingScope(ast)
-            .map(surroundingScope -> {
-                return surroundingScope.isIn(scope)
+            .map(surroundingScope -> surroundingScope.isIn(scope)
                     && (excludeScope == null || !surroundingScope.isIn(excludeScope))
-                    && !AnnotationUtil.containsAnnotation(ast, skipAnnotations);
-            })
+                    && !AnnotationUtil.containsAnnotation(ast, skipAnnotations))
             .orElse(Boolean.FALSE);
     }
 

@@ -223,12 +223,10 @@ public class JavadocStyleCheck
         else if (!ScopeUtil.isInCodeBlock(ast)) {
             final Scope customScope = ScopeUtil.getScope(ast);
             check = ScopeUtil.getSurroundingScope(ast)
-                    .map(surroundingScope -> {
-                        return customScope.isIn(scope)
+                    .map(surroundingScope -> customScope.isIn(scope)
                                 && surroundingScope.isIn(scope)
                                 && (excludeScope == null || !customScope.isIn(excludeScope)
-                                        || !surroundingScope.isIn(excludeScope));
-                    })
+                                        || !surroundingScope.isIn(excludeScope)))
                     .orElse(Boolean.FALSE);
         }
         return check;

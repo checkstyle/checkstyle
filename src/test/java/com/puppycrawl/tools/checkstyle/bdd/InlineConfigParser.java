@@ -643,18 +643,15 @@ public final class InlineConfigParser {
         final boolean isSuppressedModule = SUPPRESSED_MODULES.contains(fullyQualifiedClassName);
 
         if (PUBLIC_MODULE_DETAILS_MAP.isEmpty()) {
-            XmlMetaReader.readAllModulesIncludingThirdPartyIfAny().forEach(module -> {
-                PUBLIC_MODULE_DETAILS_MAP.put(module.getFullQualifiedName(), module);
-            });
+            XmlMetaReader.readAllModulesIncludingThirdPartyIfAny().forEach(module ->
+                PUBLIC_MODULE_DETAILS_MAP.put(module.getFullQualifiedName(), module));
         }
 
         final ModuleDetails moduleDetails = PUBLIC_MODULE_DETAILS_MAP.get(fullyQualifiedClassName);
 
         if (!isSuppressedModule && moduleDetails != null) {
             defaultProperties.putAll(moduleDetails.getProperties().stream()
-                    .filter(prop -> {
-                        return prop.getName() != null && prop.getDefaultValue() != null;
-                    })
+                    .filter(prop -> prop.getName() != null && prop.getDefaultValue() != null)
                     .collect(Collectors.toUnmodifiableMap(
                             ModulePropertyDetails::getName,
                             ModulePropertyDetails::getDefaultValue
@@ -752,11 +749,9 @@ public final class InlineConfigParser {
         if (value instanceof double[] arr) {
             result = Arrays.stream(arr)
                            .boxed()
-                           .map(number -> {
-                               return BigDecimal.valueOf(number)
+                           .map(number -> BigDecimal.valueOf(number)
                                                 .stripTrailingZeros()
-                                                .toPlainString();
-                           })
+                                                .toPlainString())
                            .collect(Collectors.joining(","));
         }
         else if (value instanceof int[] ints) {
@@ -937,10 +932,8 @@ public final class InlineConfigParser {
         if (!propertiesWithMissingDefaultTag.isEmpty()) {
 
             final String propertiesList = propertiesWithMissingDefaultTag.entrySet().stream()
-                    .map(entry -> {
-                        return String.format(Locale.ROOT, "%s = (default)%s",
-                                entry.getKey(), entry.getValue());
-                    })
+                    .map(entry -> String.format(Locale.ROOT, "%s = (default)%s",
+                                entry.getKey(), entry.getValue()))
                     .collect(Collectors.joining(", "));
 
             final String message = String.format(Locale.ROOT,
@@ -961,14 +954,11 @@ public final class InlineConfigParser {
         Map<String, String> defaultProperties) throws CheckstyleException {
 
         final Map<String, String> matchedProperties = actualProperties.entrySet().stream()
-                .filter(entry -> {
-                    return entry.getValue()
-                        .equals(defaultProperties.get(entry.getKey().toString()));
-                })
+                .filter(entry -> entry.getValue()
+                        .equals(defaultProperties.get(entry.getKey().toString())))
                 .collect(HashMap::new,
-                        (map, entry) -> {
-                        map.put(entry.getKey().toString(), entry.getValue().toString());
-                    }, HashMap::putAll);
+                        (map, entry) ->
+                        map.put(entry.getKey().toString(), entry.getValue().toString()), HashMap::putAll);
         final List<String> missingProperties = defaultProperties.keySet().stream()
                 .filter(propertyName -> !actualProperties.containsKey(propertyName))
                 .toList();
@@ -1215,24 +1205,21 @@ public final class InlineConfigParser {
         else if (multipleViolationsMatcher.matches()) {
             Collections
                     .nCopies(Integer.parseInt(multipleViolationsMatcher.group(1)), lineNo + 1)
-                    .forEach(actualLineNumber -> {
-                        inputConfigBuilder.addViolation(actualLineNumber, null);
-                    });
+                    .forEach(actualLineNumber ->
+                        inputConfigBuilder.addViolation(actualLineNumber, null));
         }
         else if (multipleViolationsAboveMatcher.matches()) {
             Collections
                     .nCopies(Integer.parseInt(multipleViolationsAboveMatcher.group(1)), lineNo)
-                    .forEach(actualLineNumber -> {
-                        inputConfigBuilder.addViolation(actualLineNumber, null);
-                    });
+                    .forEach(actualLineNumber ->
+                        inputConfigBuilder.addViolation(actualLineNumber, null));
         }
         else if (multipleViolationsBelowMatcher.matches()) {
             Collections
                     .nCopies(Integer.parseInt(multipleViolationsBelowMatcher.group(1)),
                             lineNo + 2)
-                    .forEach(actualLineNumber -> {
-                        inputConfigBuilder.addViolation(actualLineNumber, null);
-                    });
+                    .forEach(actualLineNumber ->
+                        inputConfigBuilder.addViolation(actualLineNumber, null));
         }
         else if (useFilteredViolations) {
             setFilteredViolation(inputConfigBuilder, lineNo + 1,

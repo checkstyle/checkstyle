@@ -45,9 +45,8 @@ public class NullUtilTest {
 
     @Test
     public void testNotNullWithNullValue() {
-        final AssertionError ex = getExpectedThrowable(AssertionError.class, () -> {
-            NullUtil.notNull(null);
-        });
+        final AssertionError ex = getExpectedThrowable(AssertionError.class, () ->
+            NullUtil.notNull(null));
         assertWithMessage("Error should indicate misuse")
                 .that(ex)
                 .hasMessageThat()

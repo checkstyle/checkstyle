@@ -133,9 +133,8 @@ public class RedundantImportCheck
             staticAndModuleImports
                     .stream()
                     .filter(existingImport -> importText.equals(existingImport.getText()))
-                    .forEach(existingImport -> {
-                        log(ast, MSG_DUPLICATE, existingImport.getLineNo(), importText);
-                    });
+                    .forEach(existingImport ->
+                        log(ast, MSG_DUPLICATE, existingImport.getLineNo(), importText));
 
             staticAndModuleImports.add(importFullIdent);
         }
