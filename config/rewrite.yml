@@ -58,23 +58,23 @@ recipeList:
   - org.openrewrite.staticanalysis.CodeCleanup:
       exclude:
         # all suppressions until https://github.com/checkstyle/checkstyle/issues/18952
+        - org.openrewrite.staticanalysis.DefaultComesLast
+        - org.openrewrite.staticanalysis.EmptyBlock
+        - org.openrewrite.staticanalysis.FinalizePrivateFields
+        - org.openrewrite.staticanalysis.ForLoopControlVariablePostfixOperators
         - org.openrewrite.java.format.MethodParamPad
         - org.openrewrite.java.format.NoWhitespaceAfter
         - org.openrewrite.java.format.NoWhitespaceBefore
-        - org.openrewrite.staticanalysis.ChainStringBuilderAppendCalls
-        - org.openrewrite.staticanalysis.CustomImportOrder
-        - org.openrewrite.staticanalysis.DefaultComesLast
-        - org.openrewrite.staticanalysis.EmptyBlock
+        - org.openrewrite.staticanalysis.TypecastParenPad
         - org.openrewrite.staticanalysis.ExplicitInitialization
         - org.openrewrite.staticanalysis.FallThrough
-        - org.openrewrite.staticanalysis.FinalizePrivateFields
-        - org.openrewrite.staticanalysis.ForLoopControlVariablePostfixOperators
         - org.openrewrite.staticanalysis.HideUtilityClassConstructor
         - org.openrewrite.staticanalysis.NeedBraces
         - org.openrewrite.staticanalysis.OperatorWrap
-        - org.openrewrite.staticanalysis.ReplaceStringBuilderWithString
         - org.openrewrite.staticanalysis.ReplaceThreadRunWithThreadStart
-        - org.openrewrite.staticanalysis.TypecastParenPad
+        - org.openrewrite.staticanalysis.ChainStringBuilderAppendCalls
+        - org.openrewrite.staticanalysis.ReplaceStringBuilderWithString
+        - org.openrewrite.staticanalysis.CustomImportOrder
 
   # individual recipes
   - org.openrewrite.java.RemoveUnusedImports
