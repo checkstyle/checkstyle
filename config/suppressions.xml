@@ -148,6 +148,12 @@
   <suppress checks="ClassFanOutComplexity"
             files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]JavadocCommentsAstVisitor.java"/>
 
+  <!-- Suppress TextBlockGoogleStyleFormatting for specific test files -->
+  <suppress checks="TextBlockGoogleStyleFormatting"
+          files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]DetailAstImplTest\.java"/>
+  <suppress checks="TextBlockGoogleStyleFormatting"
+          files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]TreeWalkerTest\.java"/>
+
   <!-- DetailAST API requires large number of methods -->
   <suppress checks="MethodCount"
             files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]DetailAstImpl.java"/>

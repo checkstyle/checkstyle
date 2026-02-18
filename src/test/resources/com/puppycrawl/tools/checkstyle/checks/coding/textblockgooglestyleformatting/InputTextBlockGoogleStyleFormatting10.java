@@ -11,8 +11,7 @@ public class InputTextBlockGoogleStyleFormatting10 {
         final String simpleScript =
             """
      Less Indentation than expected
-     Violation is expected here.
-            """; // violation above, ok until #18227
+            """; // violation above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
 
         final String simpleScript1 =
             """
@@ -26,7 +25,7 @@ public class InputTextBlockGoogleStyleFormatting10 {
      Less Indentation than expected
                 and each line has a different indentation value
                         Violation is expected here.
-                """; // violation above, ok until #18227
+                """; // violation 3 lines above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
 
         final String simpleScript3 = simpleScript +
             simpleScript1 +

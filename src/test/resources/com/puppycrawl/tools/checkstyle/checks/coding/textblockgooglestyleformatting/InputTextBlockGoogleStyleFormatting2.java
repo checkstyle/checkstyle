@@ -49,7 +49,7 @@ public class InputTextBlockGoogleStyleFormatting2 {
 
         // violation below 'Opening quotes (""") of text-block must be on the new line'
         getData("""
-            Hello,
+                    Hello,
             This is a multi-line message.""");
         // 2 violations above:
         //   'Closing quotes (""") of text-block should not be preceded by non-whitespace characte'

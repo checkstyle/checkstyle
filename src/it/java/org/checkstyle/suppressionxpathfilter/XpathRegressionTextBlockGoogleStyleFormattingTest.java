@@ -56,7 +56,7 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='textFun']]"
                        + "/SLIST/VARIABLE_DEF[./IDENT[@text='simpleScript']]/ASSIGN/EXPR"
                        + "/TEXT_BLOCK_LITERAL_BEGIN[./TEXT_BLOCK_CONTENT"
-                       + "[@text='\\n            s\\n            ']]/TEXT_BLOCK_LITERAL_END"
+                       + "[@text='\\n                s\\n            ']]/TEXT_BLOCK_LITERAL_END"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -82,7 +82,8 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='textFun1']]/SLIST/EXPR"
                     + "/METHOD_CALL[./IDENT[@text='getData']]/ELIST/EXPR/"
                     + "TEXT_BLOCK_LITERAL_BEGIN[./TEXT_BLOCK_CONTENT"
-                    + "[@text='\\n            Hello,\\n            This is a multi-line message"
+                    + "[@text='\\n                 Hello,\\n                 "
+                    + "This is a multi-line message"
                     + ".\\n            ']]/TEXT_BLOCK_LITERAL_END"
         );
 
