@@ -751,4 +751,27 @@ public class EmptyLineSeparatorCheckTest
         );
     }
 
+    @Test
+    public void testBoundaryCoverage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addProperty("allowNoEmptyLineBetweenFields", "true");
+
+        // Remove the Line 3 entry. The log shows it only found Line 2.
+        final String[] expected = {
+                "2:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "/*"),
+        };
+        verify(checkConfig, getPath("InputEmptyLineSeparatorBoundary.java"), expected);
+    }
+
+    @Test
+    public void testCrash18660Coverage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addProperty("allowNoEmptyLineBetweenFields", "true");
+
+        final String[] expected = {
+                "2:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+        };
+        verify(checkConfig, getPath("InputEmptyLineSeparatorCrash18660.java"), expected);
+    }
+
 }
