@@ -16,7 +16,7 @@ public class InputTextBlockGoogleStyleFormatting3 {
         // violation 4 lines below 'Opening quotes (""") of text-block must be on the new line'
         // violation 4 lines below 'Closing quotes (""") of text-block should not be preceded by'
         getData("""
-            first string
+                      first string
             """ + """
             some String""", // violation 'Text-block quotes are not vertically aligned'
             """
