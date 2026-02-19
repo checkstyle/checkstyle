@@ -845,7 +845,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * int x1 = 5;
      * /*
      *  *
-     *  *&#47;
+     *  * /
      *  boolean bool = true; - same indentation level
      * }
      * </pre>
@@ -916,8 +916,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
      *
      * <p>
      * {@code
-     * double d = 3.14; /* some comment *&#47;
-     * /* some comment *&#47; double d = 18.5;
+     * double d = 3.14; /* some comment * /
+     * /* some comment * / double d = 18.5;
      * }
      * </p>
      *
