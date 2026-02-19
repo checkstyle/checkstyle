@@ -10,9 +10,9 @@ public class InputTextBlockGoogleStyleFormatting10 {
     public static void textFun() {
         final String simpleScript =
             """
-     Less Indentation than expected
-     Violation is expected here.
-            """; // violation above, ok until #18227
+     Less Indentation than expected // violation 'Each line in the text-block should be indented'
+     Violation is expected here. // violation 'Each line in the text-block should be indented'
+            """; // violation above
 
         final String simpleScript1 =
             """
@@ -23,10 +23,10 @@ public class InputTextBlockGoogleStyleFormatting10 {
                 simpleScript +
                 simpleScript1 +
                 """
-     Less Indentation than expected
+     Less Indentation than expected // violation 'Each line in the text-block should be indented'
                 and each line has a different indentation value
                         Violation is expected here.
-                """; // violation above, ok until #18227
+                """; // violation above
 
         final String simpleScript3 = simpleScript +
             simpleScript1 +
