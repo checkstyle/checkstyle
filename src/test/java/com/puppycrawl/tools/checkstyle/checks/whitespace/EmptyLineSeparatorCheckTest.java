@@ -751,4 +751,39 @@ public class EmptyLineSeparatorCheckTest
         );
     }
 
+    /**
+     * Tests boundary conditions for line indices to prevent IndexOutOfBoundsException
+     * when comments are at the beginning of a file.
+     *
+     * @throws Exception if there is an error during file processing.
+     */
+    @Test
+    public void testBoundaryCoverage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addProperty("allowNoEmptyLineBetweenFields", "true");
+
+        // Remove the Line 3 entry. The log shows it only found Line 2.
+        final String[] expected = {
+                "2:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "/*"),
+        };
+        verify(checkConfig, getPath("InputEmptyLineSeparatorBoundary.java"), expected);
+    }
+
+    /**
+     * Tests a specific crash scenario where a class definition is preceded by
+     * a comment at the very beginning of the file.
+     *
+     * @throws Exception if there is an error during file processing.
+     */
+    @Test
+    public void testCrashCoverage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addProperty("allowNoEmptyLineBetweenFields", "true");
+
+        final String[] expected = {
+                "2:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+        };
+        verify(checkConfig, getPath("InputEmptyLineSeparatorCrash.java"), expected);
+    }
+
 }
