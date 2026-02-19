@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -250,8 +251,7 @@ public final class TextBlockGoogleStyleFormattingCheck
             if (!line.isBlank()) {
                 final int actualIndentation = getIndentation(line);
                 if (actualIndentation < expectedIndentation) {
-                    final com.puppycrawl.tools.checkstyle.DetailAstImpl ast =
-                            new com.puppycrawl.tools.checkstyle.DetailAstImpl();
+                    final DetailAstImpl ast = new DetailAstImpl();
                     ast.setLineNo(contentLineNumber + lineIndex);
                     ast.setColumnNo(actualIndentation);
                     log(ast, MSG_LINE_INDENTATION);
