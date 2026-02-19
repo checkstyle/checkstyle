@@ -112,7 +112,9 @@ public class NewHandler extends AbstractExpressionHandler {
         IndentLevel result;
         // if our expression isn't first on the line, just use the start
         // of the line
-        if (getLineStart(mainAst) == mainAst.getColumnNo()) {
+        if (getLineStart(mainAst) == expandedTabsColumnNo(mainAst)
+            && getLineStart(mainAst) == mainAst.getColumnNo()
+        ) {
             result = super.getIndentImpl();
 
             final boolean isLineWrappedNew = TokenUtil.isOfType(mainAst.getParent().getParent(),
