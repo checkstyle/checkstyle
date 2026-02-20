@@ -29,7 +29,7 @@ public class InputTextBlockGoogleStyleFormattingNotVerticallyAligned {
         final String simpleScript4 = simpleScript +
             simpleScript3.endsWith(
                     """
-                this is simple
+                    this is simple
             """); // violation 'Text-block quotes are not vertically aligned'
 
         getData(
@@ -45,7 +45,7 @@ public class InputTextBlockGoogleStyleFormattingNotVerticallyAligned {
     }
 
     public String textFun2() {
-        final String simpleScript2 =
+        final String simpleScript2 = // violation 2 lines below 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
                 """
             this is sample text
             """; // violation 'Text-block quotes are not vertically aligned'
@@ -57,13 +57,13 @@ public class InputTextBlockGoogleStyleFormattingNotVerticallyAligned {
             """);
 
         getData(
-            1,
+            1, // violation 2 lines below 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
             """
          this is a multi-line message
             """); // line above has less indentation than quotes, ok until
 
         getData(
-            1,
+            1, // violation 2 lines below 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
                 """
             this is a multi-line message
             """); // violation 'Text-block quotes are not vertically aligned'
@@ -95,7 +95,7 @@ public class InputTextBlockGoogleStyleFormattingNotVerticallyAligned {
 
         getData(
                 """
-            first string
+                      first string
             """ + // violation 'Text-block quotes are not vertically aligned'
             """
             some String
@@ -108,8 +108,8 @@ public class InputTextBlockGoogleStyleFormattingNotVerticallyAligned {
         return
             """
            THE MULTI-LINE MESSAGE
-           """; // violation 'Text-block quotes are not vertically aligned'
-    }
+           """; // violation above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
+    } // violation 1 lines above 'Text-block quotes are not vertically aligned'
 
     public static void getData(String data) {}
     public static void getData(String data, String data2) {}
