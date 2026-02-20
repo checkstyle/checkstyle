@@ -1,0 +1,42 @@
+/*
+NoCauseGetMessageInExceptionConstructor
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.coding.nocausegetmessageinexceptionconstructor;
+
+import java.io.IOException;
+
+// xdoc section -- start
+class InputNoCauseGetMessageInExceptionConstructorNested {
+
+    void method1() {
+        // Nested try-catch example (see below)
+        try {
+            throw new IOException();
+        } catch (IOException ex) {
+            try {
+                throw new IOException("Error: " + ex.getMessage());
+                // violation above 'Avoid using '.getMessage()'
+                // in throw statement.
+            } catch (RuntimeException | IOException re) {
+                System.out.println(re);
+            }
+        }
+
+        // Nested try-catch example (see below)
+        try {
+            try {
+                throw new IOException();
+            } catch (IOException inner) {
+                throw new IOException("Inner: " + inner.getMessage());
+                // violation above 'Avoid using '.getMessage()'
+                // in throw statement.
+            }
+        } catch (RuntimeException | IOException outer) {
+            System.out.println(outer);
+        }
+    }
+}
+// xdoc section -- end
