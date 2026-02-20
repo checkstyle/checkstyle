@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -130,7 +131,9 @@ public final class JavadocPropertiesGenerator {
                 final DetailAST modifiers = member.findFirstToken(TokenTypes.MODIFIERS);
                 final String firstJavadocSentence = getFirstJavadocSentence(modifiers);
                 if (firstJavadocSentence != null) {
-                    consumer.accept(getName(member) + "=" + firstJavadocSentence.trim());
+                    consumer.accept(NullUtil.notNull(
+                            member.findFirstToken(TokenTypes.IDENT)).getText()
+                            + "=" + firstJavadocSentence.trim());
                 }
             }
         }
@@ -175,16 +178,6 @@ public final class JavadocPropertiesGenerator {
             }
         }
         return result;
-    }
-
-    /**
-     * Extracts the name of an ast.
-     *
-     * @param ast to extract the name
-     * @return the text content of the inner {@code TokenTypes.IDENT} node
-     */
-    private static String getName(DetailAST ast) {
-        return ast.findFirstToken(TokenTypes.IDENT).getText();
     }
 
     /**
