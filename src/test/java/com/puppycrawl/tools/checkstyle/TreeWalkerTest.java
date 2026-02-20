@@ -209,9 +209,11 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                 getExpectedThrowable(CheckstyleException.class, () -> {
                     execute(checkConfig, getPath("InputTreeWalker.java"));
                 }, "CheckstyleException is expected");
-        final String errorMsg = exc.getMessage();
-        final Pattern expected = Pattern.compile(Pattern.quote("cannot initialize module"
-                + " com.puppycrawl.tools.checkstyle.TreeWalker - Token ")
+        assertWithMessage("Error message is unexpected")
+            .that(exc.getMessage())
+            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker");
+        final String errorMsg = exc.getCause().getMessage();
+        final Pattern expected = Pattern.compile(Pattern.quote("Token ")
                 + "\"(ENUM_DEF|CLASS_DEF|METHOD_DEF|IMPORT)\""
                 + Pattern.quote(" was not found in Acceptable tokens list in check"
                 + " com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"));
@@ -246,6 +248,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                 }, "CheckstyleException is expected");
         assertWithMessage("Error message is unexpected")
             .that(exception.getMessage())
+            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker");
+        assertWithMessage("Error message is unexpected")
+            .that(exception.getCause().getMessage())
             .contains("TreeWalker is not allowed as a parent of");
     }
 
@@ -299,12 +304,15 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         assertWithMessage("Error message is unexpected")
             .that(exc.getMessage())
             .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle."
-                    + "TreeWalker - Check 'com.puppycrawl.tools.checkstyle."
+                    + "TreeWalker");
+        assertWithMessage("Error message is unexpected")
+            .that(exc.getCause().getMessage())
+            .isEqualTo("Check 'com.puppycrawl.tools.checkstyle."
                     + "TreeWalkerTest$BadJavaDocCheck' waits for comment type token "
                     + "('SINGLE_LINE_COMMENT') and should override "
                     + "'isCommentNodesRequired()' method to return 'true'");
         assertWithMessage("Error message is unexpected")
-            .that(exc.getMessage())
+            .that(exc.getCause().getMessage())
             .contains("isCommentNodesRequired");
     }
 
