@@ -12,20 +12,20 @@ public class InputTextBlockGoogleStyleFormatting7 {
             getVi( // violation below 'Opening quotes (""") of text-block must be on the new line'
                         new ObjectString("""
                                 </doc>
-                                """))
+                                """)) // violation above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
                         .toCharArray();
         // violation 2 lines above 'Text-block quotes are not vertically aligned'
 
         String ctx =
             // violation below 'Opening quotes (""") of text-block must be on the new line'
             getTestAppContext("""
-                        <bean id='docBuilderFactory'
+                                    <bean id='docBuilderFactory'
                         """ + // violation 'Text-block quotes are not vertically aligned'
                     // violation below 'Opening quotes (""") of text-block must be on the new line'
                         getVi(new ObjectString("")) + """
                             <si-xml:xpath-splitter id='splitter'
-                        """); // violation 'Text-block quotes are not vertically aligned'
-    }
+                        """); // violation above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
+    } // violation above 'Text-block quotes are not vertically aligned'
 
     public void testMethod2(Object config) {
       try {
@@ -58,15 +58,15 @@ public class InputTextBlockGoogleStyleFormatting7 {
     public String testMethod3(String s1) {
         // violation below 'Opening quotes (""") of text-block must be on the new line'
         String s2 = s1.isBlank() ? """
-                Mode 1
+                                    Mode 1
                 """ // violation 'Text-block quotes are not vertically aligned'
                 : s1.equals("s1") ?
                 """
                 Mode 2
                 """ : """
                 Default Mode
-                """;
-        // violation 3 lines above 'Opening quotes (""") of text-block must be on the new line'
+                """; // violation 2 lines above 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
         // violation 2 lines above 'Text-block quotes are not vertically aligned'
 
         return switch (s1) {

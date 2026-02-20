@@ -24,7 +24,7 @@ public class InputFormattedTextBlocksGeneralForm {
 
     // violation below 'Opening quotes (""") of text-block must be on the new line'
     return """
-    this is sample text
+           this is sample text
     """; // violation 'Text-block quotes are not vertically aligned'
     // violation above 'incorrect indentation level 4, expected level should be 8.'
   }
@@ -45,7 +45,7 @@ public class InputFormattedTextBlocksGeneralForm {
 
     // violation below 'Opening quotes (""") of text-block must be on the new line'
     return """
-    THE MULTI-LINE MESSAGE
+            THE MULTI-LINE MESSAGE
     """; // violation 'Text-block quotes are not vertically aligned'
     // violation above 'incorrect indentation level 4, expected level should be 8.'
   }
@@ -68,7 +68,7 @@ public class InputFormattedTextBlocksGeneralForm {
     // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
     return s
         + """
-        very good
+          very good
         """
             .charAt(0) // violation above 'Text-block quotes are not vertically aligned'
         + getName();

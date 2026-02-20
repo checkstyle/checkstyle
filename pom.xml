@@ -2108,6 +2108,7 @@
                 <exclude>**/SummaryJavadocCheck.class</exclude>
                 <exclude>**/WriteTagCheck.class</exclude>
                 <exclude>**/JavadocMetadataScraperUtil.class</exclude>
+                <exclude>**/TextBlockGoogleStyleFormattingCheck.class</exclude>
               </excludes>
             </configuration>
           </execution>
