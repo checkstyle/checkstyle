@@ -3422,6 +3422,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.annotation.*</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.NullUtil</avoidCallsTo>
+              </avoidCallsTo>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
@@ -3483,6 +3486,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.blocks.*</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.NullUtil</avoidCallsTo>
+              </avoidCallsTo>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
@@ -3603,6 +3609,7 @@
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.NullUtil</avoidCallsTo>
               </avoidCallsTo>
               <features>
                 <feature>+funmodifiablecollection</feature>
@@ -3730,6 +3737,9 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInEnumerationCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.WhenShouldBeUsedCheckTest</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.NullUtil</avoidCallsTo>
+              </avoidCallsTo>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
@@ -4716,6 +4726,7 @@
               <avoidCallsTo>
                 <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.NullUtil</avoidCallsTo>
               </avoidCallsTo>
               <excludedClasses>
                 <class>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsLexerUtil</class>
@@ -4822,6 +4833,9 @@
                 </avoidCallsTo>
                 <avoidCallsTo>
                   com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil
+                </avoidCallsTo>
+                <avoidCallsTo>
+                  com.puppycrawl.tools.checkstyle.utils.NullUtil
                 </avoidCallsTo>
               </avoidCallsTo>
               <coverageThreshold>100</coverageThreshold>
