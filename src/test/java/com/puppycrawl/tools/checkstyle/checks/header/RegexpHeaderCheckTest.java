@@ -135,8 +135,10 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid exception message")
                 .that(exc.getMessage())
                 .isEqualTo("cannot initialize module"
-                    + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
-                    + " - Cannot set property 'headerFile' to ''");
+                    + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck");
+        assertWithMessage("Invalid exception message")
+                .that(exc.getCause().getMessage())
+                .isEqualTo("Cannot set property 'headerFile' to ''");
     }
 
     @Test
@@ -199,8 +201,10 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid exception message")
                 .that(exc.getMessage())
                 .isEqualTo("cannot initialize module"
-                    + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
-                    + " - Cannot set property 'header' to '^(.*\\n.*)'");
+                    + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck");
+        assertWithMessage("Invalid exception message")
+                .that(exc.getCause().getMessage())
+                .isEqualTo("Cannot set property 'header' to '^(.*\\n.*)'");
     }
 
     @Test

@@ -88,9 +88,13 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasMessageThat()
-                        .startsWith("cannot initialize module"
-                            + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
-                            + " - illegal value ");
+                        .isEqualTo("cannot initialize module"
+                            + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck");
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasCauseThat()
+                .hasMessageThat()
+                        .startsWith("illegal value ");
         assertWithMessage("Invalid cause exception message")
                 .that(ex)
                 .hasCauseThat()
@@ -111,8 +115,12 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
                 .that(ex)
                 .hasMessageThat()
                         .isEqualTo("cannot initialize module"
-                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
-                                + " - Cannot set property 'charset' to 'XSO-8859-1'");
+                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck");
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasCauseThat()
+                .hasMessageThat()
+                        .isEqualTo("Cannot set property 'charset' to 'XSO-8859-1'");
         assertWithMessage("Invalid cause exception message")
                 .that(ex)
                 .hasCauseThat()
@@ -132,8 +140,12 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
                 .that(ex)
                 .hasMessageThat()
                         .isEqualTo("cannot initialize module"
-                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
-                                + " - Cannot set property 'headerFile' to ''");
+                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck");
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasCauseThat()
+                .hasMessageThat()
+                        .isEqualTo("Cannot set property 'headerFile' to ''");
         assertWithMessage("Invalid cause exception message")
                 .that(ex)
                 .hasCauseThat()
@@ -154,8 +166,12 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
                 .that(ex)
                 .hasMessageThat()
                         .isEqualTo("cannot initialize module"
-                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
-                                + " - Cannot set property 'headerFile' to 'null'");
+                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck");
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasCauseThat()
+                .hasMessageThat()
+                        .isEqualTo("Cannot set property 'headerFile' to 'null'");
     }
 
     @Test

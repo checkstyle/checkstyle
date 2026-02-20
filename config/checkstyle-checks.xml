@@ -593,6 +593,7 @@
       <!-- This Check is conflicting with ArrayTrailingComma -->
       <property name="severity" value="ignore"/>
     </module>
+    <module name="NoCauseGetMessageInExceptionConstructor"/>
     <module name="NoClone"/>
     <module name="NoCodeInFile"/>
     <module name="NoEnumTrailingComma">
