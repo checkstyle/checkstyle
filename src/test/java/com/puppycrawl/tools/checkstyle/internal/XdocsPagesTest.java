@@ -934,7 +934,8 @@ public class XdocsPagesTest {
                 case 1 -> validatePropertySection(fileName, sectionName, subSection, instance);
                 case 3 -> validateUsageExample(fileName, sectionName, subSection);
                 case 4 -> validateViolationSection(fileName, sectionName, subSection, instance);
-                case 5 -> validatePackageSection(fileName, sectionName, subSection, instance);
+                case 5 -> validateFullyQualifiedNameSection(
+                        fileName, sectionName, subSection, instance);
                 case 6 -> validateParentSection(fileName, sectionName, subSection);
                 default -> {
                     // no code by design
@@ -974,7 +975,7 @@ public class XdocsPagesTest {
             case 2 -> "Examples";
             case 3 -> "Example of Usage";
             case 4 -> "Violation Messages";
-            case 5 -> "Package";
+            case 5 -> "Fully Qualified Name";
             case 6 -> "Parent Module";
             default -> null;
         };
@@ -1841,11 +1842,15 @@ public class XdocsPagesTest {
                 .isTrue();
     }
 
-    private static void validatePackageSection(String fileName, String sectionName,
-            Node subSection, Object instance) {
-        assertWithMessage("%s section '%s' should have matching package", fileName, sectionName)
-            .that(subSection.getTextContent().trim())
-            .isEqualTo(instance.getClass().getPackage().getName());
+    private static void validateFullyQualifiedNameSection(String fileName, String sectionName,
+                                                          Node subSection, Object instance) {
+        final String fullyQualifiedName = subSection.getTextContent()
+                .replaceAll("\\s+", "");
+
+        assertWithMessage("%s section '%s' should have matching fully qualified name",
+                fileName, sectionName)
+                .that(fullyQualifiedName)
+                .contains(instance.getClass().getName());
     }
 
     private static void validateParentSection(String fileName, String sectionName,

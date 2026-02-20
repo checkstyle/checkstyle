@@ -112,11 +112,13 @@ class Example1 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="JavadocMissingWhitespaceAfterAsterisk_Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
-        </p>
-      </subsection>
+  <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+    <p>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingWhitespaceAfterAsteriskCheck</p>
+    <p>
+      Use this fully qualified class name in configuration when an exact class reference is
+      required.
+    </p>
+  </subsection>
 
       <subsection name="Parent Module" id="JavadocMissingWhitespaceAfterAsterisk_Parent_Module">
         <p>

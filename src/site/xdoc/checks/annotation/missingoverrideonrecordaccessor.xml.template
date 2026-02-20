@@ -68,9 +68,13 @@
           see the documentation</a> to learn how to.
         </p>
       </subsection>
-      <subsection name="Package" id="MissingOverrideOnRecordAccessor_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
-      </subsection>
+  <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+    <p> com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideOnRecordAccessorCheck</p>
+    <p>
+      Use this fully qualified class name in configuration when an exact class reference is
+      required.
+    </p>
+  </subsection>
       <subsection name="Parent Module" id="MissingOverrideOnRecordAccessor_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="MissingOverrideOnRecordAccessor"/>
