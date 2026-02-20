@@ -148,6 +148,7 @@ casegroup
 catchparametername
 cba
 cbeaff
+ccc
 CComments
 cdata
 cde
@@ -345,6 +346,7 @@ Edad
 ededed
 edef
 edu
+eee
 Eghj
 Ei
 ej
@@ -740,6 +742,7 @@ kazgroup
 kbd
 kclee
 KDoc
+keydown
 keyframes
 keyname
 keyscan
@@ -1074,6 +1077,7 @@ pmdruleset
 PModel
 png
 Pno
+poc
 poetix
 Pointcut
 POJO
@@ -1277,6 +1281,7 @@ STT
 Studman
 Styleable
 styleguide
+stylesheet
 subdir
 subelements
 subext
@@ -1358,6 +1363,7 @@ tokentype
 tolist
 Toolbar
 toolongpackagetotestcoveragegooglesjavastylerule
+topbar
 TOSTRING
 Touchscreen
 tpc
