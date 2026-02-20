@@ -3,6 +3,7 @@
   <module name="TreeWalker">
     <module name="Indentation">
       <property name="forceStrictCondition" value="true"/>
+            <property name="allowTextBlockQuotesOnLeftMargin" value="true"/>
     </module>
   </module>
 </module>
