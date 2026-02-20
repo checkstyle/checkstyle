@@ -162,6 +162,7 @@ charset
 CHDBEFIF
 checkchmod
 checkerframework
+checkmodule
 checksandfilessuppressionfilegeneratorauditlistener
 checkstyle
 checkstyleanttask
