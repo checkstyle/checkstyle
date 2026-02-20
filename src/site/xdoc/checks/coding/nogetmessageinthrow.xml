@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>NoGetMessageInThrow</title>
+  </head>
+  <body>
+    <section name="NoGetMessageInThrow">
+      <p>Since Checkstyle 13.1.0</p>
+      <subsection name="Description" id="Description">
+        <div>
+          Checks that throw statements within catch blocks do not use
+          the caught exception's getMessage() call when the thrown exception
+          is the same type as the caught exception, as rethrowing the same
+          exception type with its own message is redundant.
+        </div>
+
+        <p>
+          Rationale: When throwing an exception of the same type as the caught
+          exception and including the caught exception's message via getMessage(),
+          the information is redundant. The original exception should be rethrown
+          directly, or a different exception type should be used.
+        </p>
+
+        <p>
+          Example of violations:
+        </p>
+        <div class="wrapper"><pre>
+catch (IOException ex) {
+    throw new IOException("Error: " + ex.getMessage()); // violation
+}
+        </pre></div>
+
+        <p>
+          Correct usage:
+        </p>
+        <div class="wrapper"><pre>
+catch (IOException ex) {
+    throw new RuntimeException("Error: " + ex.getMessage(), ex); // OK, different type
+}
+catch (IOException ex) {
+    throw new IOException("Error processing file", ex); // OK, no getMessage()
+}
+        </pre></div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NoGetMessageInThrow"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  void method1() throws IOException {
+    try {
+      throw new IOException();
+    } catch (IOException ex) {
+      // violation below, 'ex.getMessage()' is redundant
+      throw new IllegalStateException("Error: " + ex.getMessage(), ex);
+    }
+  }
+
+  void method2() throws IOException {
+    try {
+      throw new IOException();
+    } catch (IOException ex) {
+      // OK, provides context without redundant message
+      throw new IllegalStateException("Error processing file", ex);
+    }
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoGetMessageInThrow">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22no.getmessage.in.throw%22">
+              no.getmessage.in.throw
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
