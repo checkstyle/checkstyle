@@ -561,7 +561,7 @@ public final class Main {
      * @noinspection PackageVisibleInnerClass
      * @noinspectionreason PackageVisibleInnerClass - we keep this enum package visible for tests
      */
-    enum OutputFormat {
+    /* package */ enum OutputFormat {
         /** XML output format. */
         XML,
         /** SARIF output format. */
@@ -577,7 +577,7 @@ public final class Main {
          * @return a new AuditListener for this OutputFormat
          * @throws IOException if there is any IO exception during logger initialization
          */
-        AuditListener createListener(
+        /* package */ AuditListener createListener(
             OutputStream out,
             OutputStreamOptions options) throws IOException {
             final AuditListener result;
