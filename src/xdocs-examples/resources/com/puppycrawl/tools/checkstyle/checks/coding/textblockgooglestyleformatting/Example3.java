@@ -42,7 +42,7 @@ public class Example3 {
     getData(
         """
         This is a multi-line message.
-        """);
+        """); // violation above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
 
     return
         """

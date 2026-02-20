@@ -202,4 +202,8 @@
   <suppress checks="LineLength"
             files="lineending[\\/]Example4.java"/>
 
+  <!-- violation required to show behavior of Check -->
+  <suppress checks="LineLength"
+          files="textblockgooglestyleformatting[\\/](Example2|Example3|Example4)\.java"/>
+
 </suppressions>
