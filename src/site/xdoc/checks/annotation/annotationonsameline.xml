@@ -204,8 +204,12 @@ class Example2 implements Foo {
         </p>
       </subsection>
 
-      <subsection name="Package" id="AnnotationOnSameLine_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="AnnotationOnSameLine_Parent_Module">
