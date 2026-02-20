@@ -12,37 +12,44 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 // xdoc section -- start
-class Example5 {
-
+public class Example5 {
+  public void test() {
+    boolean f = false;
+    if (f) {
+      bar();
+    }
+    else {
+      bar();
+    }
+    if (f) {
+      bar();
+    } else {
+      bar();
+    }
+    if (f) { bar(); } int i = 0;
+    try {
+      bar();
+    }
+    catch (Exception e) {
+      bar();
+    }
+  }
+  private void bar() {
+  }
+  public void testSingleLine() { bar(); }
+  public void violate() { Object b = "b"; }
   public void method0() {
     int mode = 0;
     int x;
     switch (mode) {
-      case 1:
-        int y = 1;
-        break;
-      case 2: {x = 1;}   // ok, RightCurly is in single line
-      case 3: int z = 0; {break;} // ok, the braces is not a first child of case
-      default:
-        x = 0;
+      case 1: int y = 1; break;
+      case 2: {x = 1;}
+      case 3: int z = 0; {break;}
+      default: x = 0;
     }
-  }
-
-  public static void method7() {
-    int mode = 0;
     switch (mode) {
-      case 1:
-        int x = 5;
-    } // ok, RightCurly is on the same line as LeftCurly
-  }
-
-  public void method() {
-    int mode = 0;
-    int x;
-    switch (mode) {
-      case 1:
-        x = 1; }
-    // violation above, 'should be alone on a line.'
+      case 1: x = 1; break;
+      default: x = 0; } // violation, 'should be alone on a line.'
   }
 }
 // xdoc section -- end
