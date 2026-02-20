@@ -116,52 +116,44 @@
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-
   public void test() {
-
-    boolean foo = false;
-    if (foo) {
+    boolean f = false;
+    if (f) {
       bar();
     } // violation, 'should be on the same line'
-    // as the next part of a multi-block statement (one that directly
-    // contains multiple blocks: if/else-if/else, do/while or try/catch/finally).
     else {
       bar();
     }
-
-    if (foo) {
+    if (f) {
       bar();
-    } else {
+    } else { // ok, 'should be alone on a line.'
       bar();
     }
-
-    if (foo) { bar(); } int i = 0;
-    // violation above, 'should be alone on a line.'
-
-    if (foo) { bar(); }
-    i = 0;
-
+    if (f) { bar(); } int i = 0; // violation, 'should be alone on a line.'
     try {
       bar();
     } // violation, 'should be on the same line'
-    // as the next part of a multi-block statement (one that directly
-    // contains multiple blocks: if/else-if/else, do/while or try/catch/finally).
     catch (Exception e) {
       bar();
     }
-
-    try {
-      bar();
-    } catch (Exception e) {
-      bar();
-    }
-
   }
-
   private void bar() {
   }
-
-  public void testSingleLine() { bar(); } // ok, because singleline is allowed
+  public void testSingleLine() { bar(); } // ok, 'should be alone on a line.'
+  public void violate() { Object b = "b"; } // ok, 'should be alone on a line.'
+  public void method0() {
+    int mode = 0;
+    int x;
+    switch (mode) {
+      case 1: int y = 1; break;
+      case 2: {x = 1;} // ok, 'should be alone on a line.'
+      case 3: int z = 0; {break;}
+      default: x = 0;
+    }
+    switch (mode) {
+      case 1: x = 1; break;
+      default: x = 0; } // ok, 'should be alone on a line.'
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -183,38 +175,43 @@ public class Example1 {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
-
   public void test() {
-
-    boolean foo = false;
-    if (foo) {
+    boolean f = false;
+    if (f) {
       bar();
-    } else { bar(); }
-    // violation above, 'should be alone on a line.'
-
-    if (foo) {
-      bar();
-    } else {
+    } // ok, 'should be on the same line'
+    else {
       bar();
     }
-
+    if (f) {
+      bar();
+    } else { // ok, 'should be alone on a line.'
+      bar();
+    }
+    if (f) { bar(); } int i = 0; // ok, 'should be alone on a line.'
     try {
       bar();
-    } catch (Exception e) {
-      // ok above because config is set to token METHOD_DEF and LITERAL_ELSE
+    } // ok, 'should be on the same line'
+    catch (Exception e) {
       bar();
     }
-
   }
-
   private void bar() {
   }
-
-  public void violate() { Object bar = "bar"; }
-  // violation above, 'should be alone on a line.'
-
-  public void ok() {
-    bar();
+  public void testSingleLine() { bar(); } // violation, 'should be alone on a line.'
+  public void violate() { Object b = "b"; } // violation, 'should be alone on a line.'
+  public void method0() {
+    int mode = 0;
+    int x;
+    switch (mode) {
+      case 1: int y = 1; break;
+      case 2: {x = 1;} // ok, 'should be alone on a line.'
+      case 3: int z = 0; {break;}
+      default: x = 0;
+    }
+    switch (mode) {
+      case 1: x = 1; break;
+      default: x = 0; } // ok, 'should be alone on a line.'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -236,31 +233,44 @@ public class Example2 {
 </code></pre></div>
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
-
+public class Example3 {
+  public void test() {
+    boolean f = false;
+    if (f) {
+      bar();
+    } // ok, 'should be on the same line'
+    else {
+      bar();
+    }
+    if (f) {
+      bar();
+    } else { // ok, 'should be alone on a line.'
+      bar();
+    }
+    if (f) { bar(); } int i = 0; // ok, 'should be alone on a line.'
+    try {
+      bar();
+    } // ok, 'should be on the same line'
+    catch (Exception e) {
+      bar();
+    }
+  }
+  private void bar() {
+  }
+  public void testSingleLine() { bar(); } // ok, 'should be alone on a line.'
+  public void violate() { Object b = "b"; } // ok, 'should be alone on a line.'
   public void method0() {
     int mode = 0;
     int x;
     switch (mode) {
-      case 1:
-        int y = 1;
-        break;
-      case 2: {x = 1;}   // violation '}' at column 22 should be alone on a line'
-      case 3: int z = 0; {break;} // ok, the braces is not a first child of case
-      default:
-        x = 0;
-    } // ok, RightCurly is alone
-  }
-
-  public void method01() {
-    int mode = 0;
+      case 1: int y = 1; break;
+      case 2: {x = 1;} // violation, 'should be alone on a line.'
+      case 3: int z = 0; {break;}
+      default: x = 0;
+    }
     switch (mode) {
-      case 1:
-        int x = 1;
-        break;
-      default:
-        x = 0; }
-    // violation above, 'should be alone on a line.'
+      case 1: x = 1; break;
+      default: x = 0; } // violation, 'should be alone on a line.'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -284,35 +294,44 @@ class Example3 {
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
-
   public void test() {
-
-    boolean foo = false;
-    if (foo) {
+    boolean f = false;
+    if (f) {
+      bar();
+    } // ok, 'should be on the same line'
+    else {
+      bar();
+    }
+    if (f) {
       bar();
     } else { // violation, 'should be alone on a line.'
       bar();
     }
-
-    if (foo) {
-      bar();
-    }
-    else {
-      bar();
-    }
-
+    if (f) { bar(); } int i = 0; // violation, 'should be alone on a line.'
     try {
       bar();
-    } catch (Exception e) { // ok because config did not set token LITERAL_TRY
+    } // ok, 'should be on the same line'
+    catch (Exception e) {
       bar();
     }
-
   }
-
   private void bar() {
   }
-
-  public void violate() { bar(); } // ok , because singleline
+  public void testSingleLine() { bar(); } // ok, 'should be alone on a line.'
+  public void violate() { Object b = "b"; } // ok, 'should be alone on a line.'
+  public void method0() {
+    int mode = 0;
+    int x;
+    switch (mode) {
+      case 1: int y = 1; break;
+      case 2: {x = 1;} // ok, 'should be alone on a line.'
+      case 3: int z = 0; {break;}
+      default: x = 0;
+    }
+    switch (mode) {
+      case 1: x = 1; break;
+      default: x = 0; } // ok, 'should be alone on a line.'
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
@@ -333,37 +352,44 @@ public class Example4 {
 </code></pre></div>
         <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5 {
-
+public class Example5 {
+  public void test() {
+    boolean f = false;
+    if (f) {
+      bar();
+    } // ok, 'should be on the same line'
+    else {
+      bar();
+    }
+    if (f) {
+      bar();
+    } else { // ok, 'should be alone on a line.'
+      bar();
+    }
+    if (f) { bar(); } int i = 0; // ok, 'should be alone on a line.'
+    try {
+      bar();
+    } // ok, 'should be on the same line'
+    catch (Exception e) {
+      bar();
+    }
+  }
+  private void bar() {
+  }
+  public void testSingleLine() { bar(); } // ok, 'should be alone on a line.'
+  public void violate() { Object b = "b"; } // ok, 'should be alone on a line.'
   public void method0() {
     int mode = 0;
     int x;
     switch (mode) {
-      case 1:
-        int y = 1;
-        break;
-      case 2: {x = 1;}   // ok, RightCurly is in single line
-      case 3: int z = 0; {break;} // ok, the braces is not a first child of case
-      default:
-        x = 0;
+      case 1: int y = 1; break;
+      case 2: {x = 1;} // ok, 'should be alone on a line.'
+      case 3: int z = 0; {break;}
+      default: x = 0;
     }
-  }
-
-  public static void method7() {
-    int mode = 0;
     switch (mode) {
-      case 1:
-        int x = 5;
-    } // ok, RightCurly is on the same line as LeftCurly
-  }
-
-  public void method() {
-    int mode = 0;
-    int x;
-    switch (mode) {
-      case 1:
-        x = 1; }
-    // violation above, 'should be alone on a line.'
+      case 1: x = 1; break;
+      default: x = 0; } // violation, 'should be alone on a line.'
   }
 }
 </code></pre></div>
