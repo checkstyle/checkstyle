@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 
 /**
  * <div>
@@ -221,7 +222,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
         final int astType = ast.getType();
         if (astTypeIsClassOrEnumOrRecordDef(astType)) {
             frame.setClassOrEnumOrRecordDef(true);
-            frame.setFrameName(ast.findFirstToken(TokenTypes.IDENT).getText());
+            frame.setFrameName(NullUtil.notNull(ast.findFirstToken(TokenTypes.IDENT)).getText());
         }
         currentFrame.addChild(frame);
         currentFrame = frame;
@@ -573,7 +574,8 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
          */
         /* package */ void addField(DetailAST field) {
             if (field.findFirstToken(TokenTypes.IDENT) != null) {
-                fieldNameToAst.put(getFieldName(field), field);
+                fieldNameToAst.put(NullUtil.notNull(
+                        field.findFirstToken(TokenTypes.IDENT)).getText(), field);
             }
         }
 
@@ -621,16 +623,6 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
          */
         /* package */ Set<DetailAST> getMethodCalls() {
             return Collections.unmodifiableSet(methodCalls);
-        }
-
-        /**
-         * Get the name of the field.
-         *
-         * @param field to get the name from.
-         * @return name of the field.
-         */
-        private static String getFieldName(DetailAST field) {
-            return field.findFirstToken(TokenTypes.IDENT).getText();
         }
 
     }
