@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -33,14 +34,18 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://google.github.io/styleguide/javaguide.html#s4.8.9-text-blocks">
  * Google Java Style Guide</a>.
  * </div>
- * This Check performs two validations:
+ * This Check performs three validations:
  * <ol>
  *   <li>
- *    It ensures that the opening and closing text-block quotes ({@code """}) each appear on their
+ *    It ensures that the opening and closing text-block quotes ({@code """}) each appear on their 
  *    own line, with no other item preceding them.
  *   </li>
  *   <li>
  *    Opening and closing quotes are vertically aligned.
+ *   </li>
+ *   <li>
+ *    Each line in the text-block is indented at least as much as
+ *    the opening and closing quotes.
  *   </li>
  * </ol>
  * Note: Closing quotes can be followed by additional code on the same line.
@@ -48,22 +53,31 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * @since 12.3.0
  */
 @StatelessCheck
-public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
+public final class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties" file.
+     * A key is pointing to the warning message text in
+     * "messages.properties" file.
      */
     public static final String MSG_OPEN_QUOTES_ERROR = "textblock.format.open";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties" file.
+     * A key is pointing to the warning message text in
+     * "messages.properties" file.
      */
     public static final String MSG_CLOSE_QUOTES_ERROR = "textblock.format.close";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties" file.
+     * A key is pointing to the warning message text in
+     * "messages.properties" file.
      */
     public static final String MSG_VERTICALLY_UNALIGNED = "textblock.vertically.unaligned";
+
+    /**
+     * A key is pointing to the warning message text in
+     * "messages.properties" file.
+     */
+    public static final String MSG_LINE_INDENTATION = "textblock.line.indentation";
 
     @Override
     public int[] getDefaultTokens() {
@@ -83,18 +97,28 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
     }
 
     @Override
-    public void visitToken(DetailAST ast) {
-        if (!openingQuotesAreAloneOnTheLine(ast)) {
+    public void visitToken(final DetailAST ast) {
+        final boolean openingQuotesAlone = openingQuotesAreAloneOnTheLine(ast);
+        if (!openingQuotesAlone) {
             log(ast, MSG_OPEN_QUOTES_ERROR);
         }
 
         final DetailAST closingQuotes = getClosingQuotes(ast);
-        if (!closingQuotesAreAloneOnTheLine(closingQuotes)) {
+        final boolean closingQuotesAlone =
+                closingQuotesAreAloneOnTheLine(closingQuotes);
+        if (!closingQuotesAlone) {
             log(closingQuotes, MSG_CLOSE_QUOTES_ERROR);
         }
 
-        if (!quotesAreVerticallyAligned(ast, closingQuotes)) {
+        final boolean quotesAligned = quotesAreVerticallyAligned(
+                ast, closingQuotes);
+        if (!quotesAligned) {
             log(closingQuotes, MSG_VERTICALLY_UNALIGNED);
+        }
+
+        // Only check content indentation if quotes are properly formatted
+        if (openingQuotesAlone && quotesAligned) {
+            checkContentIndentation(ast);
         }
     }
 
@@ -105,27 +129,30 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      * @param closeQuotes the ast to check.
      * @return true if both quotes have same indentation else false.
      */
-    private static boolean quotesAreVerticallyAligned(DetailAST openQuotes, DetailAST closeQuotes) {
+    private static boolean quotesAreVerticallyAligned(
+            final DetailAST openQuotes, final DetailAST closeQuotes) {
         return openQuotes.getColumnNo() == closeQuotes.getColumnNo();
     }
 
     /**
-     * Gets the {@code TEXT_BLOCK_LITERAL_END} of a {@code TEXT_BLOCK_LITERAL_BEGIN}.
+     * Gets the text block literal end of text block literal begin.
      *
      * @param ast the ast to check
      * @return DetailAST {@code TEXT_BLOCK_LITERAL_END}
      */
-    private static DetailAST getClosingQuotes(DetailAST ast) {
+    private static DetailAST getClosingQuotes(final DetailAST ast) {
         return ast.getFirstChild().getNextSibling();
     }
 
     /**
-     * Determines if the Opening quotes of text block are not preceded by any code.
+     * Determines if the Opening quotes of text block are not preceded
+     * by any code.
      *
      * @param openingQuotes opening quotes
      * @return true if the opening quotes are on the new line.
      */
-    private static boolean openingQuotesAreAloneOnTheLine(DetailAST openingQuotes) {
+    private static boolean openingQuotesAreAloneOnTheLine(
+            final DetailAST openingQuotes) {
         DetailAST parent = openingQuotes;
         boolean quotesAreNotPreceded = true;
         while (quotesAreNotPreceded || parent.getType() == TokenTypes.ELIST
@@ -134,7 +161,8 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
             parent = parent.getParent();
 
             if (parent.getType() == TokenTypes.METHOD_DEF) {
-                quotesAreNotPreceded = !quotesArePrecededWithComma(openingQuotes);
+                quotesAreNotPreceded = !quotesArePrecededWithComma(
+                        openingQuotes);
             }
             else if (parent.getType() == TokenTypes.QUESTION
                     && openingQuotes.getPreviousSibling() != null) {
@@ -142,7 +170,8 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
                         openingQuotes.getPreviousSibling());
             }
             else {
-                quotesAreNotPreceded = !TokenUtil.areOnSameLine(openingQuotes, parent);
+                quotesAreNotPreceded = !TokenUtil.areOnSameLine(
+                        openingQuotes, parent);
             }
 
             if (TokenUtil.isOfType(parent.getType(),
@@ -164,25 +193,94 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      * @param openingQuotes the quotes
      * @return true if {@code ,} is present before opening quotes.
      */
-    private static boolean quotesArePrecededWithComma(DetailAST openingQuotes) {
+    private static boolean quotesArePrecededWithComma(
+            final DetailAST openingQuotes) {
         final DetailAST expression = openingQuotes.getParent();
         return expression.getPreviousSibling() != null
-                && TokenUtil.areOnSameLine(openingQuotes, expression.getPreviousSibling());
+                && TokenUtil.areOnSameLine(openingQuotes,
+                        expression.getPreviousSibling());
     }
 
     /**
-     * Determines if the Closing quotes of text block are not preceded by any code.
+     * Determines if the Closing quotes of text block are not preceded
+     * by any code.
      *
      * @param closingQuotes closing quotes
      * @return true if the closing quotes are on the new line.
      */
-    private static boolean closingQuotesAreAloneOnTheLine(DetailAST closingQuotes) {
+    private static boolean closingQuotesAreAloneOnTheLine(
+            final DetailAST closingQuotes) {
         final DetailAST content = closingQuotes.getPreviousSibling();
         final String text = content.getText();
         int index = text.length() - 1;
-        while (text.charAt(index) == ' ') {
-            index--;
+        while (index != -1) {
+            if (text.charAt(index) != ' ') {
+                break;
+            }
+            --index;
         }
-        return Character.isWhitespace(text.charAt(index));
+        return index == -1 || Character.isWhitespace(text.charAt(index));
+    }
+
+    /**
+     * Checks that each line in the text block content is indented
+     * at least as much as the opening and closing quotes.
+     *
+     * @param openingQuotes opening quotes
+     */
+    private void checkContentIndentation(final DetailAST openingQuotes) {
+        final int expectedIndentation = openingQuotes.getColumnNo();
+        final DetailAST content = openingQuotes.getFirstChild();
+        final String contentText = content.getText();
+        final String[] lines = contentText.split("\n", -1);
+        final int contentLineNumber = content.getLineNo();
+
+        // Skip the first line (empty line after opening quotes)
+        // and the last line (empty line before closing quotes)
+        for (int lineIndex = 1; lineIndex != lines.length - 1; ++lineIndex) {
+            final String line = lines[lineIndex];
+            // Skip completely blank lines
+            if (!line.isBlank()) {
+                final int actualIndentation = getIndentation(line);
+                if (actualIndentation < expectedIndentation) {
+                    final DetailAST violationAst = createViolationAst(
+                            contentLineNumber + lineIndex, actualIndentation);
+                    log(violationAst, MSG_LINE_INDENTATION);
+                }
+            }
+        }
+    }
+
+    /**
+     * Creates a synthetic AST node at the given location for logging.
+     *
+     * @param lineNo line number
+     * @param columnNo column number
+     * @return synthetic ast node at location
+     */
+    private static DetailAST createViolationAst(
+            final int lineNo, final int columnNo) {
+        final DetailAstImpl violationAst = new DetailAstImpl();
+        violationAst.setLineNo(lineNo);
+        violationAst.setColumnNo(columnNo);
+        return violationAst;
+    }
+
+    /**
+     * Gets the indentation level (number of leading whitespace
+     * characters) of a line.
+     *
+     * @param line the line to check
+     * @return the indentation level
+     */
+    private static int getIndentation(final String line) {
+        int indentation = 0;
+        while (indentation < line.length()) {
+            if (!Character.isWhitespace(line.charAt(indentation))) {
+                break;
+            }
+            ++indentation;
+        }
+        return indentation;
     }
 }
