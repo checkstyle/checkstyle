@@ -22,7 +22,7 @@ jobs:
       - restore_cache:
           name: Restore Maven repo and wrapper cache
           keys:
-            - mvn-cache-{{ checksum pom.xml }}
+            - mvn-cache-{{ checksum "pom.xml" }}
       - run:
           command: << parameters.command >>
           no_output_timeout: << parameters.no_output_timeout >>
@@ -32,7 +32,7 @@ jobs:
             ./.ci/validation.sh ci-temp-check
       - save_cache:
           name: Save Maven repo and wrapper cache
-          key: mvn-cache-{{ checksum pom.xml }}
+          key: mvn-cache-{{ checksum "pom.xml" }}
           paths:
             - .m2
             - .mvn/wrapper
