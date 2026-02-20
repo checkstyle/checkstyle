@@ -110,6 +110,21 @@ public class NewlineAtEndOfFileCheck
      */
     public static final String MSG_KEY_WRONG_ENDING = "wrong.line.end";
 
+    /**
+     * Escaped representation of LF line separator.
+     */
+    private static final String LF_ESCAPED = "LF(\\n)";
+
+    /**
+     * Escaped representation of CR line separator.
+     */
+    private static final String CR_ESCAPED = "CR(\\r)";
+
+    /**
+     * Escaped representation of CRLF line separator.
+     */
+    private static final String CRLF_ESCAPED = "CRLF(\\r\\n)";
+
     /** Specify the type of line separator. */
     private LineSeparatorOption lineSeparator = LineSeparatorOption.LF_CR_CRLF;
 
@@ -149,7 +164,10 @@ public class NewlineAtEndOfFileCheck
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r")) {
             if (lineSeparator == LineSeparatorOption.LF
                     && endsWithNewline(randomAccessFile, LineSeparatorOption.CRLF)) {
-                log(1, MSG_KEY_WRONG_ENDING);
+                log(1, "wrong.line.ending",
+                        getLineSeparatorEscapeChars(LineSeparatorOption.LF),
+                        getLineSeparatorEscapeChars(LineSeparatorOption.CRLF)
+                );
             }
             else if (!endsWithNewline(randomAccessFile, lineSeparator)) {
                 log(1, MSG_KEY_NO_NEWLINE_EOF);
@@ -190,4 +208,31 @@ public class NewlineAtEndOfFileCheck
         return result;
     }
 
+    /**
+     * Returns escaped representation of line separator option
+     * for use in violation messages.
+     *
+     * @param option line separator option
+     * @return escaped line separator characters
+     */
+    private static String getLineSeparatorEscapeChars(LineSeparatorOption option) {
+        return switch (option) {
+            case LF -> LF_ESCAPED;
+            case CR -> CR_ESCAPED;
+            case CRLF -> CRLF_ESCAPED;
+            case LF_CR_CRLF -> LF_ESCAPED + ", " + CR_ESCAPED + ", or " + CRLF_ESCAPED;
+            case SYSTEM -> {
+                final String sep = System.lineSeparator();
+                if ("\n".equals(sep)) {
+                    yield LF_ESCAPED;
+                }
+                else if ("\r\n".equals(sep)) {
+                    yield CRLF_ESCAPED;
+                }
+                else {
+                    yield CR_ESCAPED;
+                }
+            }
+        };
+    }
 }
