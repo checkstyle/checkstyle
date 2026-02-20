@@ -436,10 +436,15 @@ public class MainTest {
         assertMainReturnCode(-2, "-c", getPath("InputMainConfig-non-existent-classname.xml"),
                     getPath("InputMain.java"));
         final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
-                + " cannot initialize module TreeWalker - ";
+                + " cannot initialize module TreeWalker" + EOL;
+        final String nestedCause = "Caused by: com.puppycrawl.tools.checkstyle.api."
+                + "CheckstyleException: cannot initialize module NonExistentClass" + EOL;
         assertWithMessage("Unexpected system error log")
                 .that(systemErr.getCapturedData())
                 .startsWith(cause);
+        assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData())
+                .contains(nestedCause);
     }
 
     @Test
@@ -805,11 +810,16 @@ public class MainTest {
         assertMainReturnCode(-2, "-c", getPath("InputMainConfig-incorrectChildren.xml"),
                     getPath("InputMain.java"));
         final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
-                + "CheckstyleException: cannot initialize module RegexpSingleline"
-                + " - RegexpSingleline is not allowed as a child in RegexpSingleline";
+                + "CheckstyleException: cannot initialize module RegexpSingleline" + EOL;
+        final String causeOutput = "Caused by: com.puppycrawl.tools.checkstyle.api."
+                + "CheckstyleException: RegexpSingleline is not allowed as a child in "
+                + "RegexpSingleline";
         assertWithMessage("Unexpected system error log")
                 .that(systemErr.getCapturedData())
                 .startsWith(errorOutput);
+        assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData())
+                .contains(causeOutput);
     }
 
     @Test
@@ -817,11 +827,15 @@ public class MainTest {
         assertMainReturnCode(-2, "-c", getPath("InputMainConfig-incorrectChildren2.xml"),
                     getPath("InputMain.java"));
         final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
-                + "CheckstyleException: cannot initialize module TreeWalker - "
-                + "cannot initialize module JavadocMethod";
+                + "CheckstyleException: cannot initialize module TreeWalker" + EOL;
+        final String causeOutput = "Caused by: com.puppycrawl.tools.checkstyle.api."
+                + "CheckstyleException: cannot initialize module JavadocMethod" + EOL;
         assertWithMessage("Unexpected system error log")
                 .that(systemErr.getCapturedData())
                 .startsWith(errorOutput);
+        assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData())
+                .contains(causeOutput);
     }
 
     @Test
@@ -1951,10 +1965,15 @@ public class MainTest {
         assertMainReturnCode(-2, "-c", getPath("InputMainConfig-non-existent-classname-ignore.xml"),
                     "--executeIgnoredModules", getPath("InputMain.java"));
         final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
-                + " cannot initialize module TreeWalker - ";
+                + " cannot initialize module TreeWalker" + EOL;
+        final String nestedCause = "Caused by: com.puppycrawl.tools.checkstyle.api."
+                + "CheckstyleException: cannot initialize module NonExistentClass" + EOL;
         assertWithMessage("Unexpected system error log")
                 .that(systemErr.getCapturedData())
                 .startsWith(cause);
+        assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData())
+                .contains(nestedCause);
     }
 
     @Test
@@ -1963,11 +1982,16 @@ public class MainTest {
         assertMainReturnCode(-2, "-c", getPath("InputMainConfig-TypeName-bad-value.xml"),
                     "--executeIgnoredModules", getPath("InputMain.java"));
         final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
-                + " cannot initialize module TreeWalker - ";
+                + " cannot initialize module TreeWalker" + EOL;
+        final String nestedCause = "Caused by: com.puppycrawl.tools.checkstyle.api."
+                + "CheckstyleException: cannot initialize module TypeName" + EOL;
         final String causeDetail = "it is not a boolean";
         assertWithMessage("Unexpected system error log")
                 .that(systemErr.getCapturedData())
                 .startsWith(cause);
+        assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData())
+                .contains(nestedCause);
         assertWithMessage("Unexpected system error log")
                 .that(systemErr.getCapturedData())
                 .contains(causeDetail);
