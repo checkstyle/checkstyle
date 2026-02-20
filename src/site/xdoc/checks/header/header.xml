@@ -220,9 +220,13 @@ public class Example4 { }
         </p>
       </subsection>
 
-      <subsection name="Package" id="Header_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.header </p>
-      </subsection>
+       <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+         <p> com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck</p>
+         <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+         </p>
+       </subsection>
 
       <subsection name="Parent Module" id="Header_Parent_Module">
         <p>
