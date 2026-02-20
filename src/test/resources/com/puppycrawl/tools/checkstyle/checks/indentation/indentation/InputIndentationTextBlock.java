@@ -15,7 +15,7 @@ public class InputIndentationTextBlock {                                    //in
 //below indent:4 exp:4
     private static final String GO1 = """
     GO                                                                      //indent:4 exp:4
-""";                                                                        //indent:0 exp:8 warn
+""";                                                                        //indent:0 exp:0
 //below indent:4 exp:4
     private static final String GO2 = """
     GO                                                                      //indent:4 exp:4
@@ -42,14 +42,14 @@ public class InputIndentationTextBlock {                                    //in
           stuff""")) {                                                      //indent:10 exp:10
         }                                                                   //indent:8 exp:8
         String a =                                                          //indent:8 exp:8
-//below indent:0 exp:12 warn
+//below indent:0 exp:0
 """
           3                                                                 //indent:10 exp:10
           4                                                                 //indent:10 exp:10
           5                                                                 //indent:10 exp:10
           6                                                                 //indent:10 exp:10
           7                                                                 //indent:10 exp:10
-"""                                                                         //indent:0 exp:12 warn
+"""                                                                         //indent:0 exp:0
               ;                                                             //indent:14 exp:14
     }                                                                       //indent:4 exp:4
 
