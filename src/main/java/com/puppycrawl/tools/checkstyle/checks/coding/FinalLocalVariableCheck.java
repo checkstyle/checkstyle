@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -485,7 +486,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private boolean shouldCheckUnnamedVariable(DetailAST ast) {
         return validateUnnamedVariables
-                 || !"_".equals(ast.findFirstToken(TokenTypes.IDENT).getText());
+                 || !"_".equals(NullUtil.notNull(ast.findFirstToken(TokenTypes.IDENT)).getText());
     }
 
     /**
@@ -495,7 +496,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private void insertParameter(DetailAST ast) {
         final Map<String, FinalVariableCandidate> scope = scopeStack.peek().scope;
-        final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
+        final DetailAST astNode = NullUtil.notNull(ast.findFirstToken(TokenTypes.IDENT));
         scope.put(astNode.getText(), new FinalVariableCandidate(astNode));
     }
 
@@ -506,7 +507,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private void insertVariable(DetailAST ast) {
         final Map<String, FinalVariableCandidate> scope = scopeStack.peek().scope;
-        final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
+        final DetailAST astNode = NullUtil.notNull(ast.findFirstToken(TokenTypes.IDENT));
         final FinalVariableCandidate candidate = new FinalVariableCandidate(astNode);
         // for-each variables are implicitly assigned
         candidate.assigned = ast.getParent().getType() == TokenTypes.FOR_EACH_CLAUSE;
