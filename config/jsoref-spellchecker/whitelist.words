@@ -518,6 +518,7 @@ Gdrox
 generalform
 genericwhitespace
 Getenv
+getmessage
 gg
 gh
 Ghj
@@ -968,6 +969,7 @@ noarch
 noarraytrailingcomma
 noblank
 nobr
+nocausegetmessageinexceptionconstructor
 noclone
 nocode
 nocodeinfile
@@ -1214,7 +1216,8 @@ requireemptylinebeforeblocktaggroup
 requirethis
 Rescanning
 resourceleak
-Rethrown
+rethrowing
+rethrown
 returncount
 returnsreceiver
 returntag
