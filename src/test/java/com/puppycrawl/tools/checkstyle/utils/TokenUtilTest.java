@@ -395,4 +395,32 @@ public class TokenUtilTest {
                 .isFalse();
     }
 
+    @Test
+    public void testGetIdent() {
+        final DetailAstImpl ast = new DetailAstImpl();
+        final DetailAstImpl ident = new DetailAstImpl();
+        ident.setType(TokenTypes.IDENT);
+        ast.addChild(ident);
+
+        assertWithMessage("Invalid ident")
+                .that(TokenUtil.getIdent(ast))
+                .isEqualTo(ident);
+    }
+
+    @Test
+    public void testGetIdentMissing() {
+        final DetailAstImpl ast = new DetailAstImpl();
+        ast.setType(TokenTypes.FOR_CONDITION);
+
+        try {
+            TokenUtil.getIdent(ast);
+            assertWithMessage("AssertionError is expected").fail();
+        }
+        catch (AssertionError expected) {
+            assertWithMessage("Invalid exception message")
+                    .that(expected.getMessage())
+                    .isEqualTo("Misuse of notNull: argument was null");
+        }
+    }
+
 }
