@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck"
+             name="IllegalSymbol"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that specified symbols (by Unicode code points or ranges) are not used in code.
+ By default, blocks common symbol ranges.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Rationale: This check helps prevent emoji symbols and special characters in code
+ (commonly added by AI tools), enforce coding standards, or forbid specific Unicode characters.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Default ranges cover:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;U+2190–U+27BF: Arrows, Mathematical Operators, Box Drawing, Geometric Shapes,
+ Miscellaneous Symbols, and Dingbats&lt;/li&gt;
+ &lt;li&gt;U+1F600–U+1F64F: Emoticons&lt;/li&gt;
+ &lt;li&gt;U+1F680–U+1F6FF: Transport and Map Symbols&lt;/li&gt;
+ &lt;li&gt;U+1F700–U+10FFFF: Alchemical Symbols and other pictographic symbols&lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;
+ For a complete list of Unicode characters and ranges, see:
+ &lt;a href="https://en.wikipedia.org/wiki/List_of_Unicode_characters"&gt;
+ List of Unicode characters&lt;/a&gt;
+ &lt;/p&gt;
+
+ &lt;ul&gt;
+ &lt;li&gt;
+ Property &lt;code&gt;symbolCodes&lt;/code&gt; - Specify the symbols to check for, as Unicode code points
+ or ranges. Format: comma-separated list of hex codes or ranges
+ (e.g., &lt;code&gt;"0x2705, 0x1F600-0x1F64F"&lt;/code&gt;). To allow only ASCII characters,
+ use &lt;code&gt;"0x0080-0x10FFFF"&lt;/code&gt;.
+ Type is &lt;code&gt;java.lang.String&lt;/code&gt;.
+ Default value is &lt;code&gt;"0x2190-0x27BF, 0x1F600-0x1F64F, 0x1F680-0x1F6FF, 0x1F700-0x1FFFFF"&lt;/code&gt;.
+ &lt;/li&gt;
+ &lt;/ul&gt;</description>
+         <properties>
+            <property default-value="0x2190-0x27BF, 0x1F600-0x1F64F, 0x1F680-0x1F6FF, 0x1F700-0x1FFFFF"
+                      name="symbolCodes"
+                      type="java.lang.String">
+               <description>Specify the symbols to check for.
+ Format: comma-separated list of hex codes or ranges
+ (e.g., "0x2705, 0x1F600-0x1F64F").</description>
+            </property>
+            <property default-value="COMMENT_CONTENT"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="illegal.symbol"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
