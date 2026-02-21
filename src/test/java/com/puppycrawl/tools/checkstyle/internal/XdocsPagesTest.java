@@ -59,6 +59,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.jspecify.annotations.NonNull;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -1722,18 +1723,7 @@ public class XdocsPagesTest {
             for (Node node : XmlUtil.findChildElementsByTag(subSection, "a")) {
                 final String url = node.getAttributes().getNamedItem("href").getTextContent();
                 final String linkText = node.getTextContent().trim();
-                final String expectedUrl;
-
-                if ("see the documentation".equals(linkText)) {
-                    expectedUrl = "../../config.html#Custom_messages";
-                }
-                else {
-                    expectedUrl = "https://github.com/search?q="
-                            + "path%3Asrc%2Fmain%2Fresources%2F"
-                            + clss.getPackage().getName().replace(".", "%2F")
-                            + "%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2F"
-                            + "checkstyle+%22" + linkText + "%22";
-                }
+                final String expectedUrl = getString(linkText, clss);
 
                 assertWithMessage("%s section '%s' should have matching url for '%s'", fileName,
                     sectionName, linkText)
@@ -1741,6 +1731,22 @@ public class XdocsPagesTest {
                     .isEqualTo(expectedUrl);
             }
         }
+    }
+
+    private static @NonNull String getString(String linkText, Class<?> clss) {
+        final String expectedUrl;
+
+        if ("see the documentation".equals(linkText)) {
+            expectedUrl = "../../config.html#Custom_messages";
+        }
+        else {
+            expectedUrl = "https://github.com/search?q="
+                    + "path%3Asrc%2Fmain%2Fresources%2F"
+                    + clss.getPackage().getName().replace(".", "%2F")
+                    + "%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2F"
+                    + "checkstyle+%22" + linkText + "%22";
+        }
+        return expectedUrl;
     }
 
     private static void validateUsageExample(String fileName, String sectionName, Node subSection) {
