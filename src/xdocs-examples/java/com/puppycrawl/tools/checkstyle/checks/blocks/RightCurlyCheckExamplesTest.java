@@ -35,49 +35,47 @@ public class RightCurlyCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "19:5: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", "5"),
-            "32:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "23"),
-            "40:5: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", "5"),
+            "19:5: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 5),
+            "32:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
+            "40:5: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 5),
         };
-
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "22:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "21"),
-            "43:47: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "47"),
+            "61:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
+            "63:47: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 47),
         };
-
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "24:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "22"),
-            "38:16: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "16"),
+            "73:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 22),
+            "87:17: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 17),
+            "104:16: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 16),
         };
-
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "22:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "5"),
+            "31:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "35:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
         };
-
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "44:16: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "16"),
+            "87:17: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 17),
+            "104:16: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 16),
         };
-
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 }

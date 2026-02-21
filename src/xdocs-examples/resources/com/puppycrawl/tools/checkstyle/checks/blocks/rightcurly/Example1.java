@@ -19,7 +19,7 @@ public class Example1 {
     } // violation, 'should be on the same line'
     // as the next part of a multi-block statement (one that directly
     // contains multiple blocks: if/else-if/else, do/while or try/catch/finally).
-    else {
+    else { // ok
       bar();
     }
 
@@ -40,7 +40,7 @@ public class Example1 {
     } // violation, 'should be on the same line'
     // as the next part of a multi-block statement (one that directly
     // contains multiple blocks: if/else-if/else, do/while or try/catch/finally).
-    catch (Exception e) {
+    catch (Exception e) { // ok because config did not set token LITERAL_TRY
       bar();
     }
 
@@ -56,5 +56,50 @@ public class Example1 {
   }
 
   public void testSingleLine() { bar(); } // ok, because singleline is allowed
+
+  public void violate() { Object bar = "bar"; }
+  // ok
+
+  public void method0() {
+    int mode = 0;
+    int x;
+    switch (mode) {
+      case 1:
+        int y = 1;
+        break;
+      case 2: {x = 1;}   // ok
+      case 3: int z = 0; {break;} // ok, the braces is not a first child of case
+      default:
+        x = 0;
+    } // ok, RightCurly is alone
+  }
+
+  public void method01() {
+    int mode = 0;
+    switch (mode) {
+      case 1:
+        int x = 1;
+        break;
+      default:
+        x = 0; }
+    // ok
+  }
+
+  public static void method7() {
+    int mode = 0;
+    switch (mode) {
+      case 1:
+        int x = 5;
+    } // ok, RightCurly is on the same line as LeftCurly
+  }
+
+  public void method() {
+    int mode = 0;
+    int x;
+    switch (mode) {
+      case 1:
+        x = 1; }
+    // ok
+  }
 }
 // xdoc section -- end
