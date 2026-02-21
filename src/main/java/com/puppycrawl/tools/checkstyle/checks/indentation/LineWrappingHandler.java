@@ -282,8 +282,17 @@ public class LineWrappingHandler {
      * @return true if node is line-starting node.
      */
     private boolean shouldProcessTextBlockLiteral(DetailAST node) {
-        return node.getType() != TokenTypes.TEXT_BLOCK_LITERAL_END
-                || expandedTabsColumnNo(node) == getLineStart(node);
+        final int nodeType = node.getType();
+        final boolean isTextBlockQuote = TokenUtil.isOfType(nodeType,
+                TokenTypes.TEXT_BLOCK_LITERAL_BEGIN,
+                TokenTypes.TEXT_BLOCK_LITERAL_END);
+        final boolean isZeroIndentedTextBlockQuote = isTextBlockQuote
+            && expandedTabsColumnNo(node) == 0
+            && indentCheck.isAllowTextBlockQuotesOnLeftMargin();
+
+        return !isZeroIndentedTextBlockQuote
+                && (nodeType != TokenTypes.TEXT_BLOCK_LITERAL_END
+                || expandedTabsColumnNo(node) == getLineStart(node));
     }
 
     /**
