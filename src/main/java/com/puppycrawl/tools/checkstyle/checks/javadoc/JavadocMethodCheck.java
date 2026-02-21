@@ -991,6 +991,9 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     /**
      * Contains class's {@code Token}.
+     *
+     * @noinspection ClassCanBeRecord
+     * @noinspectionreason We can not break compatibility with previous versions.
      */
     private static class ClassInfo {
 
@@ -1020,6 +1023,9 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     /**
      * Represents text element with location in the text.
+     *
+     * @noinspection ClassCanBeRecord
+     * @noinspectionreason We can not break compatibility with previous versions.
      */
     private static final class Token {
 
