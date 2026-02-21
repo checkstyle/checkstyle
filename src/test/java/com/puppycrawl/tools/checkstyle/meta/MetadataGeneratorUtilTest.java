@@ -39,12 +39,6 @@ import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 @ExtendWith(SystemOutGuard.class)
 public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
 
-    private final Set<String> modulesContainingNoMetadataFile = Set.of(
-            "Checker",
-            "TreeWalker",
-            "ClassAndPropertiesSettersJavadocScraper"
-    );
-
     @Override
     public String getPackageLocation() {
         return null;
@@ -62,6 +56,11 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
     @Test
     public void testMetadataFilesGenerationAllFiles(@SystemOutGuard.SysOut Capturable systemOut)
             throws Exception {
+        final Set<String> modulesContainingNoMetadataFile = Set.of(
+            "Checker",
+            "TreeWalker",
+            "ClassAndPropertiesSettersJavadocScraper"
+        );
         systemOut.captureMuted();
 
         MetadataGeneratorUtil.generate(System.getProperty("user.dir")
