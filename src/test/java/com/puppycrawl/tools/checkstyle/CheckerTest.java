@@ -57,6 +57,7 @@ import java.util.UUID;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Project;
+import org.jspecify.annotations.NonNull;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -500,16 +501,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFinishLocalSetupFullyInitialized() throws Exception {
-        final Checker checker = new Checker();
-        final ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
-        checker.setModuleClassLoader(contextClassLoader);
-        final PackageObjectFactory factory = new PackageObjectFactory(
-            new HashSet<>(), contextClassLoader);
-        checker.setModuleFactory(factory);
-        checker.setBasedir("testBaseDir");
-        checker.setLocaleLanguage("it");
-        checker.setLocaleCountry("IT");
-        checker.finishLocalSetup();
+        final Checker checker = getChecker();
 
         final Context context = TestUtil.getInternalState(checker, "childContext", Context.class);
         final String encoding = StandardCharsets.UTF_8.name();
@@ -528,6 +520,20 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Locale is set to unexpected value")
             .that(locale)
             .isEqualTo(Locale.ITALY);
+    }
+
+    private static @NonNull Checker getChecker() throws CheckstyleException {
+        final Checker checker = new Checker();
+        final ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
+        checker.setModuleClassLoader(contextClassLoader);
+        final PackageObjectFactory factory = new PackageObjectFactory(
+            new HashSet<>(), contextClassLoader);
+        checker.setModuleFactory(factory);
+        checker.setBasedir("testBaseDir");
+        checker.setLocaleLanguage("it");
+        checker.setLocaleCountry("IT");
+        checker.finishLocalSetup();
+        return checker;
     }
 
     @Test
@@ -796,36 +802,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .isNull();
     }
 
-    /**
-     * Test doesn't need to be serialized.
-     *
-     * @noinspection SerializableInnerClassWithNonSerializableOuterClass
-     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
-     *      for test does not require serialization
-     */
     @Test
     public void testCatchErrorInProcessFilesMethod() throws Exception {
         // Assume that I/O error is happened when we try to invoke 'lastModified()' method.
         final String errorMessage = "Java Virtual Machine is broken"
             + " or has run out of resources necessary for it to continue operating.";
-        final Error expectedError = new IOError(new InternalError(errorMessage));
-
-        final File mock = new File("testFile") {
-            @Serial
-            private static final long serialVersionUID = 1L;
-
-            /**
-             * Test is checking catch clause when exception is thrown.
-             *
-             * @noinspection ProhibitedExceptionThrown
-             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-             *      throw exception as part of test
-             */
-            @Override
-            public long lastModified() {
-                throw expectedError;
-            }
-        };
+        final File mock = getFile2(errorMessage);
 
         final Checker checker = new Checker();
         final List<File> filesToProcess = new ArrayList<>();
@@ -857,22 +839,20 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Test doesn't need to be serialized.
+     * Returns mocked file that throws error on {@code lastModified()}.
      *
+     * @param errorMessage error message for the exception
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
      * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
      *      for test does not require serialization
      */
-    @Test
-    public void testCatchErrorWithNoFileName() throws Exception {
-        // Assume that I/O error is happened when we try to invoke 'lastModified()' method.
-        final String errorMessage = "Java Virtual Machine is broken"
-            + " or has run out of resources necessary for it to continue operating.";
+    private static @NonNull File getFile2(String errorMessage) {
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final File mock = new File("testFile") {
+        return new File("testFile") {
             @Serial
             private static final long serialVersionUID = 1L;
+
             /**
              * Test is checking catch clause when exception is thrown.
              *
@@ -884,12 +864,15 @@ public class CheckerTest extends AbstractModuleTestSupport {
             public long lastModified() {
                 throw expectedError;
             }
-
-            @Override
-            public String getAbsolutePath() {
-                return null;
-            }
         };
+    }
+
+    @Test
+    public void testCatchErrorWithNoFileName() throws Exception {
+        // Assume that I/O error is happened when we try to invoke 'lastModified()' method.
+        final String errorMessage = "Java Virtual Machine is broken"
+            + " or has run out of resources necessary for it to continue operating.";
+        final File mock = getFile3(errorMessage);
 
         final Checker checker = new Checker();
         final List<File> filesToProcess = new ArrayList<>();
@@ -916,6 +899,40 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .hasMessageThat()
                     .isEqualTo(errorMessage);
         }
+    }
+
+    /**
+     * Returns mocked file that throws error on {@code lastModified()}.
+     *
+     * @param errorMessage error message for the exception
+     * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
+     */
+    private static @NonNull File getFile3(String errorMessage) {
+        final Error expectedError = new IOError(new InternalError(errorMessage));
+
+        return new File("testFile") {
+            @Serial
+            private static final long serialVersionUID = 1L;
+
+            /**
+             * Test is checking catch clause when exception is thrown.
+             *
+             * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
+             *      throw exception as part of test
+             */
+            @Override
+            public long lastModified() {
+                throw expectedError;
+            }
+
+            @Override
+            public String getAbsolutePath() {
+                return null;
+            }
+        };
     }
 
     /**
@@ -1147,13 +1164,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
     }
 
-    /**
-     * Test doesn't need to be serialized.
-     *
-     * @noinspection SerializableInnerClassWithNonSerializableOuterClass
-     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
-     *      for test does not require serialization
-     */
     @Test
     public void testCatchErrorWithCache() throws Exception {
         final File cacheFile = createTempFile("junit");
@@ -1164,28 +1174,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final String errorMessage = "Java Virtual Machine is broken"
             + " or has run out of resources necessary for it to continue operating.";
-        final Error expectedError = new IOError(new InternalError(errorMessage));
-
-        final File mock = new File("testFile") {
-            @Serial
-            private static final long serialVersionUID = 1L;
-            @Override
-            public String getAbsolutePath() {
-                return "testFile";
-            }
-
-            /**
-             * Test is checking catch clause when exception is thrown.
-             *
-             * @noinspection ProhibitedExceptionThrown
-             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-             *      throw exception as part of test
-             */
-            @Override
-            public File getAbsoluteFile() {
-                throw expectedError;
-            }
-        };
+        final File mock = getMock(errorMessage);
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -1226,12 +1215,40 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Test doesn't need to be serialized.
+     * Returns mocked file that throws error on {@code getAbsolutePath()}.
      *
+     * @param errorMessage error message for the exception
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
      * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
      *      for test does not require serialization
      */
+    private static @NonNull File getMock(String errorMessage) {
+        final Error expectedError = new IOError(new InternalError(errorMessage));
+
+        return new File("testFile") {
+            @Serial
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            public String getAbsolutePath() {
+                return "testFile";
+            }
+
+            /**
+             * Returns mocked file that throws error on {@code lastModified()}.
+             *
+             * @param errorMessage error message for the exception
+             * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+             * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+             *      for test does not require serialization
+             */
+            @Override
+            public File getAbsoluteFile() {
+                throw expectedError;
+            }
+        };
+    }
+
     @Test
     public void testCatchErrorWithCacheWithNoFileName() throws Exception {
         final File cacheFile = createTempFile("junit");
@@ -1242,24 +1259,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final String errorMessage = "Java Virtual Machine is broken"
             + " or has run out of resources necessary for it to continue operating.";
-        final Error expectedError = new IOError(new InternalError(errorMessage));
-
-        final File mock = new File("testFile") {
-            @Serial
-            private static final long serialVersionUID = 1L;
-
-            /**
-             * Test is checking catch clause when exception is thrown.
-             *
-             * @noinspection ProhibitedExceptionThrown
-             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-             *      throw exception as part of test
-             */
-            @Override
-            public String getAbsolutePath() {
-                throw expectedError;
-            }
-        };
+        final File mock = getFile1(errorMessage);
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -1298,18 +1298,17 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Test doesn't need to be serialized.
+     * Returns mocked file that throws error on {@code lastModified()}.
      *
+     * @param errorMessage error message for the exception
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
      * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
      *      for test does not require serialization
      */
-    @Test
-    public void testExceptionWithNoFileName() {
-        final String errorMessage = "Security Exception";
-        final RuntimeException expectedError = new SecurityException(errorMessage);
+    private static @NonNull File getFile1(String errorMessage) {
+        final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final File mock = new File("testFile") {
+        return new File("testFile") {
             @Serial
             private static final long serialVersionUID = 1L;
 
@@ -1325,6 +1324,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 throw expectedError;
             }
         };
+    }
+
+    @Test
+    public void testExceptionWithNoFileName() {
+        final String errorMessage = "Security Exception";
+        final File mock = getFile4(errorMessage);
 
         final Checker checker = new Checker();
         final List<File> filesToProcess = new ArrayList<>();
@@ -1347,12 +1352,35 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Test doesn't need to be serialized.
+     * Returns mocked file that throws error on {@code lastModified()}.
      *
+     * @param errorMessage error message for the exception
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
      * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
      *      for test does not require serialization
      */
+    private static @NonNull File getFile4(String errorMessage) {
+        final RuntimeException expectedError = new SecurityException(errorMessage);
+
+        return new File("testFile") {
+            @Serial
+            private static final long serialVersionUID = 1L;
+
+            /**
+             * Returns mocked file that throws error on {@code lastModified()}.
+             *
+             * @param errorMessage error message for the exception
+             * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+             * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+             *      for test does not require serialization
+             */
+            @Override
+            public String getAbsolutePath() {
+                throw expectedError;
+            }
+        };
+    }
+
     @Test
     public void testExceptionWithCacheAndNoFileName() throws Exception {
         final File cacheFile = createTempFile("junit");
@@ -1362,24 +1390,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String errorMessage = "Security Exception";
-        final RuntimeException expectedError = new SecurityException(errorMessage);
-
-        final File mock = new File("testFile") {
-            @Serial
-            private static final long serialVersionUID = 1L;
-
-            /**
-             * Test is checking catch clause when exception is thrown.
-             *
-             * @noinspection ProhibitedExceptionThrown
-             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-             *      throw exception as part of test
-             */
-            @Override
-            public String getAbsolutePath() {
-                throw expectedError;
-            }
-        };
+        final File mock = getFile(errorMessage);
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -1413,6 +1424,15 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .that(cache)
                     .hasSize(1);
         }
+    }
+
+    /**
+     * Runs getFiles4() method internally.
+     *
+     * @param errorMessage error message for the exception
+     */
+    private static @NonNull File getFile(String errorMessage) {
+        return getFile4(errorMessage);
     }
 
     @Test
