@@ -127,7 +127,6 @@
   <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocTypeCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpSinglelineJavaCheck.java"/>
-  <suppress id="noUsageOfGetFileContentsMethod" files="AvoidEscapedUnicodeCharactersCheck.java"/>
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/5234 -->
   <suppress id="MatchXPathBranchContains" files="[\\/]DetailAstImplTest.java"/>
