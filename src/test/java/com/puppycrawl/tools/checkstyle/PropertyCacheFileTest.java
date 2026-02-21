@@ -45,6 +45,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Stream;
 
+import org.jspecify.annotations.NonNull;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.OS;
@@ -209,6 +210,14 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         final File externalResourcePath = new File(temporaryFolder, externalFile);
         externalResourcePath.createNewFile();
         final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
+        final PropertyCacheFile cache = getPropertyCacheFile(uniqueFileName, config, externalResourcePath);
+
+        assertWithMessage("Should return true in file is in cache")
+                .that(cache.isInCache("myFile", 1))
+                .isTrue();
+    }
+
+    private @NonNull PropertyCacheFile getPropertyCacheFile(String uniqueFileName, Configuration config, File externalResourcePath) throws IOException {
         final File filePath = new File(temporaryFolder, uniqueFileName);
         filePath.createNewFile();
         final PropertyCacheFile cache = new PropertyCacheFile(config, filePath.toString());
@@ -228,10 +237,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         cache.load();
         cache.put("myFile", 1);
         cache.putExternalResources(resources);
-
-        assertWithMessage("Should return true in file is in cache")
-                .that(cache.isInCache("myFile", 1))
-                .isTrue();
+        return cache;
     }
 
     @Test
