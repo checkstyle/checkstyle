@@ -366,12 +366,10 @@ public class JavadocStyleCheck
             else if (index > 0 && builder.charAt(index) == '/'
                     && builder.charAt(index - 1) == '*') {
                 builder.deleteCharAt(index);
-                builder.deleteCharAt(index - 1);
-                index--;
-                while (builder.charAt(index - 1) == '*') {
+                do {
                     builder.deleteCharAt(index - 1);
                     index--;
-                }
+                } while (builder.charAt(index - 1) == '*');
             }
             else {
                 break;
