@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnusedPrivateFieldCheck"
+             name="UnusedPrivateField"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Check that a private field is declared, but never used.
+ &lt;/div&gt;</description>
+         <properties>
+            <property default-value="true" name="checkUnusedPrivateField" type="boolean">
+               <description>Allow private field by default it is true.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="unused.private.field"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

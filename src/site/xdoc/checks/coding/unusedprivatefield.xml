@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0
+  https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>UnusedPrivateField</title>
+  </head>
+
+  <body>
+    <section name="UnusedPrivateField">
+      <p>Since Checkstyle 13.3.0</p>
+
+      <subsection name="Description" id="UnusedPrivateField_Description">
+        <div>
+          Check that a private field is declared, but never used.
+        </div>
+      </subsection>
+
+      <subsection name="Properties" id="UnusedPrivateField_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="checkUnusedPrivateField"/><a href="#checkUnusedPrivateField">checkUnusedPrivateField</a></td>
+              <td>Allow private field by default it is true.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>13.3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="UnusedPrivateField_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+    &lt;module name="TreeWalker"&gt;
+      &lt;module name="UnusedPrivateField"&gt;
+      &lt;/module&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+</code></pre></div>
+
+        <p id="Example1-code">
+        Example of UnusedPrivateFieldCheck usage:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+
+  private int unused; // violation, unused private field
+
+  private int used;
+
+  private int getUsed(){
+    return used;
+  }
+  private static final int CONSTANT = 10;   // ok, constant is used
+
+  void foo() {
+    System.out.println(used); // ok, used in inner class
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+    &lt;module name="TreeWalker"&gt;
+      &lt;module name="UnusedPrivateField"&gt;
+          &lt;property name="checkUnusedPrivateField" value="true"/&gt;
+      &lt;/module&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+</code></pre></div>
+
+        <p id="Example2-code">
+        Example2:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+
+  private int unused; // ok, as private field is value is false
+
+  private int used;
+
+  private int getUsed(){
+    return used;
+  }
+
+  private static final int CONSTANT = 10; // ok, constant is used
+
+  void foo() {
+    System.out.println(used); // ok, used in inner class
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="UnusedPrivateField_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedPrivateField">
+              Checkstyle Style
+            </a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="UnusedPrivateField_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unused.private.field%22">
+              unused.private.field
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="UnusedPrivateField_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="UnusedPrivateField_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+
+    </section>
+  </body>
+</document>

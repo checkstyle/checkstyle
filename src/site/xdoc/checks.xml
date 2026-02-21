@@ -2021,6 +2021,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/unusedprivatefield.html#UnusedPrivateField">
+                UnusedPrivateField
+              </a>
+            </td>
+            <td>
+              Check that a private field is declared, but never used.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/misc/upperell.html#UpperEll">
                 UpperEll
               </a>
