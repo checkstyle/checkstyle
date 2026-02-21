@@ -34,9 +34,9 @@ public class InputCorrectJavadocLeadingAsteriskAlignment {
    */
   public InputCorrectJavadocLeadingAsteriskAlignment(int a) {}
 
-  /*************************************************
+  /**
    *** @param str testing.....
-   **********************************/
+   */
   // False negative for above javadoc, until #18271, #18273.
   public InputCorrectJavadocLeadingAsteriskAlignment(String str) {}
 
