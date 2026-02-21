@@ -134,13 +134,12 @@ public class FilterSetTest {
                 .isNotEmpty();
     }
 
-    private static final class DummyFilter implements Filter {
-
-        private final boolean acceptValue;
-
-        private DummyFilter(boolean accept) {
-            acceptValue = accept;
-        }
+    /**
+     * Dummy filter for testing.
+     *
+     * @param acceptValue boolean flag to accept the event.
+     */
+    private record DummyFilter(boolean acceptValue) implements Filter {
 
         @Override
         public boolean accept(AuditEvent event) {

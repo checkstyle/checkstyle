@@ -451,38 +451,10 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
     /**
      * Stores information about a check as parsed from an index.xml file.
      * It holds the hyperlink reference (href) and the description text.
+     *
+     * @param href The href attribute for the check's link.
+     * @param description The description text for the check.
      */
-    private static final class CheckIndexInfo {
-        private final String hrefValue;
-        private final String descriptionText;
-
-        /**
-         * Constructs a new CheckIndexInfo instance.
-         *
-         * @param href The href attribute for the check's link.
-         * @param description The description text for the check.
-         */
-        /* package */ CheckIndexInfo(String href, String description) {
-            hrefValue = href;
-            descriptionText = description;
-        }
-
-        /**
-         * Gets the href attribute for the check's link.
-         *
-         * @return The href string.
-         */
-        private String href() {
-            return hrefValue;
-        }
-
-        /**
-         * Gets the description text for the check.
-         *
-         * @return The description string.
-         */
-        private String description() {
-            return descriptionText;
-        }
+    private record CheckIndexInfo(String href, String description) {
     }
 }
