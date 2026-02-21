@@ -21,6 +21,15 @@
       "results": [
         {
           "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:Test1.java"
+                }
+              }
+            }
+          ],
           "message": {
             "text": "stackTrace\nexample"
           }
@@ -31,7 +40,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file:Test.java"
+                  "uri": "file:Test2.java"
                 }
               }
             }
