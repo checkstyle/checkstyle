@@ -36,12 +36,10 @@ public class InputTextBlocksIndentation {
 
   /** Somejavadoc. */
   public void textFuncIndenation2() {
-    // violation 2 lines below '.* incorrect indentation level 0, expected .* 8.'
-    String e2 = // false-positive, ok until #18228
+    String e2 =
 """
 content of the block e2
-"""; // false-positive, ok until #18228
-    // violation above '.* incorrect indentation level 0, expected .* 8.'
+""";
 
     // violation 2 lines below '.* incorrect indentation level 4, expected .* 6.'
     getData(
