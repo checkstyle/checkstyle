@@ -499,7 +499,15 @@ public abstract class AbstractExpressionHandler {
      */
     protected final void findSubtreeAst(DetailAstSet astSet, DetailAST tree,
         boolean allowNesting) {
-        if (!indentCheck.getHandlerFactory().isHandledType(tree.getType())) {
+        // For TEXT_BLOCK_LITERAL_END in annotation array context, check if it aligns
+        // with TEXT_BLOCK_LITERAL_BEGIN instead of using default indentation rules.
+        final boolean isTextBlockLiteralEnd = tree.getType() == TokenTypes.TEXT_BLOCK_LITERAL_END;
+        final boolean isInAnnotationArray = isInAnnotationArrayContext();
+
+        if (isTextBlockLiteralEnd && isInAnnotationArray) {
+            checkTextBlockEndAlignment(tree);
+        }
+        else if (!indentCheck.getHandlerFactory().isHandledType(tree.getType())) {
             final int lineNum = tree.getLineNo();
             final Integer colNum = astSet.getStartColumn(lineNum);
 
@@ -515,6 +523,41 @@ public abstract class AbstractExpressionHandler {
                 findSubtreeAst(astSet, node, allowNesting);
             }
         }
+    }
+
+    /**
+     * Checks if the text block end delimiter aligns with the text block start delimiter.
+     *
+     * @param textBlockEnd the TEXT_BLOCK_LITERAL_END node to check
+     */
+    private void checkTextBlockEndAlignment(DetailAST textBlockEnd) {
+        final DetailAST textBlockBegin = textBlockEnd.getParent();
+        final int beginIndent = expandedTabsColumnNo(textBlockBegin);
+        final int endIndent = expandedTabsColumnNo(textBlockEnd);
+
+        if (beginIndent != endIndent && isOnStartOfLine(textBlockEnd)) {
+            final IndentLevel expectedIndent = new IndentLevel(beginIndent);
+            logError(textBlockEnd, "text block end", endIndent, expectedIndent);
+        }
+    }
+
+    /**
+     * Checks if the current handler is in an annotation array initialization context.
+     *
+     * @return true if in annotation array context, false otherwise
+     */
+    private boolean isInAnnotationArrayContext() {
+        AbstractExpressionHandler handler = this;
+        boolean result = false;
+        while (handler != null) {
+            if (handler.mainAst != null
+                    && handler.mainAst.getType() == TokenTypes.ANNOTATION_ARRAY_INIT) {
+                result = true;
+                break;
+            }
+            handler = handler.parent;
+        }
+        return result;
     }
 
     /**
