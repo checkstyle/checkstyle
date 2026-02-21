@@ -58,13 +58,13 @@ recipeList:
   - org.openrewrite.staticanalysis.CodeCleanup:
       exclude:
         # all suppressions until https://github.com/checkstyle/checkstyle/issues/18952
+        - org.openrewrite.java.format.MethodParamPad
+        - org.openrewrite.java.format.NoWhitespaceAfter
+        - org.openrewrite.java.format.NoWhitespaceBefore
         - org.openrewrite.staticanalysis.DefaultComesLast
         - org.openrewrite.staticanalysis.EmptyBlock
         - org.openrewrite.staticanalysis.FinalizePrivateFields
         - org.openrewrite.staticanalysis.ForLoopControlVariablePostfixOperators
-        - org.openrewrite.java.format.MethodParamPad
-        - org.openrewrite.java.format.NoWhitespaceAfter
-        - org.openrewrite.java.format.NoWhitespaceBefore
         - org.openrewrite.staticanalysis.TypecastParenPad
         - org.openrewrite.staticanalysis.ExplicitInitialization
         - org.openrewrite.staticanalysis.FallThrough
