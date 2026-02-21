@@ -148,6 +148,60 @@ class Example3 {
   final static int MYSELF = 100;
   protected final static int myselfConstant = 1;
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          The following configuration skip validation on private constant field.
+        </p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ConstantName"&gt;
+      &lt;property name="applyToPrivate" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+  public final static int FIRST_CONSTANT1 = 10;
+  protected final static int SECOND_CONSTANT2 = 100;
+  final static int third_Constant3 = 1000; // violation 'must match pattern'
+  private final static int fourth_Const4 = 50;
+  public final static int log = 10; // violation 'must match pattern'
+  protected final static int logger = 50; // violation 'must match pattern'
+  final static int loggerMYSELF = 5; // violation 'must match pattern'
+  final static int MYSELF = 100;
+  protected final static int myselfConstant = 1; // violation 'must match pattern'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          The following configuration skip validation on package-private constant field.
+        </p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ConstantName"&gt;
+      &lt;property name="applyToPackage" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 {
+  public final static int FIRST_CONSTANT1 = 10;
+  protected final static int SECOND_CONSTANT2 = 100;
+  final static int third_Constant3 = 1000;
+  private final static int fourth_Const4 = 50; // violation 'must match pattern'
+  public final static int log = 10; // violation 'must match pattern'
+  protected final static int logger = 50; // violation 'must match pattern'
+  final static int loggerMYSELF = 5;
+  final static int MYSELF = 100;
+  protected final static int myselfConstant = 1; // violation 'must match pattern'
+}
 </code></pre></div>
       </subsection>
 
