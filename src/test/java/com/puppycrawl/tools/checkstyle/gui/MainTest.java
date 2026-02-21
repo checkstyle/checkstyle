@@ -56,13 +56,12 @@ public class MainTest extends AbstractGuiTestSupport {
         Main.main(args);
 
         SwingUtilities.invokeAndWait(() -> {
-            // Close the main window
-            final long mainFrameCount = Arrays.stream(Window.getWindows())
+            final Window[] mainFrames = Arrays.stream(Window.getWindows())
                     .filter(wnd -> wnd instanceof MainFrame && wnd.isVisible())
-                    .peek(Window::dispose)
-                    .count();
+                    .toArray(Window[]::new);
+            Arrays.stream(mainFrames).forEach(Window::dispose);
             assertWithMessage("Only one window is expected")
-                    .that(mainFrameCount)
+                    .that(mainFrames.length)
                     .isEqualTo(1);
         });
     }
