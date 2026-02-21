@@ -59,8 +59,8 @@ public class InputTextBlockGoogleStyleFormattingNotVerticallyAligned {
         getData(
             1,
             """
-         this is a multi-line message
-            """); // line above has less indentation than quotes, ok until
+         this is a multi-line message // violation 'Each line in the text-block should be indented'
+            """); // line above has less indentation than quotes
 
         getData(
             1,
