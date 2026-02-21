@@ -108,6 +108,13 @@ public class NewlineAtEndOfFileCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    public static final String MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR =
+            "noNewlineAtEOFWithSeparator";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
     public static final String MSG_KEY_WRONG_ENDING = "wrong.line.end";
 
     /** Specify the type of line separator. */
@@ -152,7 +159,15 @@ public class NewlineAtEndOfFileCheck
                 log(1, MSG_KEY_WRONG_ENDING);
             }
             else if (!endsWithNewline(randomAccessFile, lineSeparator)) {
-                log(1, MSG_KEY_NO_NEWLINE_EOF);
+                if (lineSeparator == LineSeparatorOption.LF
+                        || lineSeparator == LineSeparatorOption.CR
+                        || lineSeparator == LineSeparatorOption.CRLF) {
+                    log(1, MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR,
+                            lineSeparator.toString().toLowerCase(Locale.ENGLISH));
+                }
+                else {
+                    log(1, MSG_KEY_NO_NEWLINE_EOF);
+                }
             }
         }
     }
