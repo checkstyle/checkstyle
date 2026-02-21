@@ -39,11 +39,12 @@ import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 @ExtendWith(SystemOutGuard.class)
 public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
 
-    private final Set<String> modulesContainingNoMetadataFile = Set.of(
+    private final Set<String> modulesContainingNoMetadataFile =
+            new LinkedHashSet<>(Set.of(
             "Checker",
             "TreeWalker",
             "ClassAndPropertiesSettersJavadocScraper"
-    );
+    ));
 
     @Override
     public String getPackageLocation() {
