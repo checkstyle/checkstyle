@@ -340,8 +340,6 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * is correct.
      *
      * @param annotation the annotation token
-     * @noinspection EnhancedSwitchMigration
-     * @noinspectionreason EnhancedSwitch statement cause too many problems with other tools
      */
     private void checkStyleType(final DetailAST annotation) {
         switch (elementStyle) {
