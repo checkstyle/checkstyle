@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.GoogleNonConstantFieldNameCheck"
+             name="GoogleNonConstantFieldName"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that non-constant field names conform to the
+ &lt;a href=
+ "https://google.github.io/styleguide/javaguide.html#s5.2.5-non-constant-field-names"&gt;
+ Google Java Style Guide&lt;/a&gt; for non-constant field naming.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ This check enforces Google's specific non-constant field naming requirements:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;Non-constant field names must start with a lowercase letter and use uppercase letters
+ for word boundaries.&lt;/li&gt;
+ &lt;li&gt;Underscores may be used to separate adjacent numbers (e.g., version
+ numbers like &lt;code&gt;guava33_4_5&lt;/code&gt;), but NOT between letters and digits.&lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;
+ Static fields are skipped because Checkstyle cannot determine type immutability
+ to distinguish constants from non-constants. Fields in interfaces and annotations
+ are also skipped because they are implicitly &lt;code&gt;public static final&lt;/code&gt; (constants)
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="google.non.constant.field.name.format"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
