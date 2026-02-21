@@ -33,22 +33,10 @@ import org.itsallcode.junit.sysextensions.SystemOutGuard;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
 @ExtendWith(SystemOutGuard.class)
-public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
-
-    private final Set<String> modulesContainingNoMetadataFile = Set.of(
-            "Checker",
-            "TreeWalker",
-            "ClassAndPropertiesSettersJavadocScraper"
-    );
-
-    @Override
-    public String getPackageLocation() {
-        return null;
-    }
+public final class MetadataGeneratorUtilTest {
 
     /**
      * Generates metadata for checkstyle modules and verifies number of
@@ -62,6 +50,11 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
     @Test
     public void testMetadataFilesGenerationAllFiles(@SystemOutGuard.SysOut Capturable systemOut)
             throws Exception {
+        final Set<String> modulesContainingNoMetadataFile = Set.of(
+            "Checker",
+            "TreeWalker",
+            "ClassAndPropertiesSettersJavadocScraper"
+        );
         systemOut.captureMuted();
 
         MetadataGeneratorUtil.generate(System.getProperty("user.dir")
