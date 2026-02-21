@@ -275,6 +275,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BNOT,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
+            TokenTypes.TYPECAST,
         };
     }
 
@@ -326,6 +327,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BOR,
             TokenTypes.BAND,
             TokenTypes.QUESTION,
+            TokenTypes.TYPECAST,
         };
     }
 
@@ -390,8 +392,6 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     public void leaveToken(DetailAST ast) {
         final int type = ast.getType();
         final DetailAST parent = ast.getParent();
-
-        // shouldn't process assign in annotation pairs
         if (type != TokenTypes.ASSIGN
             || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
             if (type == TokenTypes.EXPR) {
@@ -400,10 +400,27 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             else if (TokenUtil.isOfType(type, ASSIGNMENTS)) {
                 assignDepth--;
             }
+            else if (type == TokenTypes.TYPECAST && isSurroundedTypecast(ast)) {
+                log(ast.getPreviousSibling(), MSG_EXPR);
+            }
             else if (isSurrounded(ast) && unnecessaryParenAroundOperators(ast)) {
                 log(ast.getPreviousSibling(), MSG_EXPR);
             }
         }
+    }
+
+    /**
+     * Checks if a typecast is surrounded by unnecessary parentheses.
+     *
+     * @param ast the typecast node to check.
+     * @return {@code true} if the typecast is surrounded by unnecessary parentheses.
+     */
+    private static boolean isSurroundedTypecast(DetailAST ast) {
+        final int parentType = ast.getParent().getType();
+        return parentType != TokenTypes.EXPR
+                && parentType != TokenTypes.ASSIGN
+                && parentType != TokenTypes.DOT
+                && isSurrounded(ast);
     }
 
     /**
