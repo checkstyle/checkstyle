@@ -1452,14 +1452,10 @@ openrewrite-checkstyle-auto-fix)
   ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
   set -e
   echo "Running CheckstyleAutoFix recipes..."
-  ./mvnw -e --no-transfer-progress rewrite:run \
+  rm -rf /tmp/checkstyle-openrewrite-recipes
+  ./mvnw -e --no-transfer-progress rewrite:dryRun \
     -Drewrite.recipeChangeLogLevel=INFO \
     -Drewrite.activeRecipes=org.checkstyle.CheckstyleAutoFix
-
-  echo "Checking for uncommitted changes..."
-  ./.ci/print-diff-as-patch.sh target/rewrite.patch
-
-  rm -rf /tmp/checkstyle-openrewrite-recipes
   ;;
 
 openrewrite-refaster-rules-1)
@@ -1475,14 +1471,10 @@ openrewrite-refaster-rules-1)
   cd "$PROJECT_ROOT"
 
   echo "Running RefasterRules Part 1 recipes..."
-  ./mvnw -e --no-transfer-progress rewrite:run \
+  rm -rf /tmp/checkstyle-openrewrite-recipes
+  ./mvnw -e --no-transfer-progress rewrite:dryRun \
     -Drewrite.recipeChangeLogLevel=INFO \
     -Drewrite.activeRecipes=org.checkstyle.RefasterRules1
-
-  echo "Checking for uncommitted changes..."
-  ./.ci/print-diff-as-patch.sh target/rewrite.patch
-
-  rm -rf /tmp/checkstyle-openrewrite-recipes
   ;;
 
 openrewrite-refaster-rules-2)
@@ -1498,14 +1490,10 @@ openrewrite-refaster-rules-2)
   cd "$PROJECT_ROOT"
 
   echo "Running RefasterRules Part 2 recipes..."
-  ./mvnw -e --no-transfer-progress rewrite:run \
+  rm -rf /tmp/checkstyle-openrewrite-recipes
+  ./mvnw -e --no-transfer-progress rewrite:dryRun \
     -Drewrite.recipeChangeLogLevel=INFO \
     -Drewrite.activeRecipes=org.checkstyle.RefasterRules2
-
-  echo "Checking for uncommitted changes..."
-  ./.ci/print-diff-as-patch.sh target/rewrite.patch
-
-  rm -rf /tmp/checkstyle-openrewrite-recipes
   ;;
 
 openrewrite-static-analysis)
@@ -1521,14 +1509,10 @@ openrewrite-static-analysis)
   cd "$PROJECT_ROOT"
 
   echo "Running StaticAnalysis recipes..."
-  ./mvnw -e --no-transfer-progress rewrite:run \
+  rm -rf /tmp/checkstyle-openrewrite-recipes
+  ./mvnw -e --no-transfer-progress rewrite:dryRun \
     -Drewrite.recipeChangeLogLevel=INFO \
     -Drewrite.activeRecipes=org.checkstyle.StaticAnalysis
-
-  echo "Checking for uncommitted changes..."
-  ./.ci/print-diff-as-patch.sh target/rewrite.patch
-
-  rm -rf /tmp/checkstyle-openrewrite-recipes
   ;;
 
 *)
