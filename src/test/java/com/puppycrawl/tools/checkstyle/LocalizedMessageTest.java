@@ -32,6 +32,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.jspecify.annotations.NonNull;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
@@ -83,38 +84,12 @@ public class LocalizedMessageTest {
 
     /**
      * Tests reload of resource bundle.
-     *
-     * @noinspection resource, IOResourceOpenedButNotSafelyClosed
-     * @noinspectionreason resource - we have no need to use try with resources in testing
-     * @noinspectionreason IOResourceOpenedButNotSafelyClosed - no need to close resources in
-     *      testing
      */
     @Test
     public void testBundleReloadUrlNotNull() throws IOException {
         final AtomicBoolean closed = new AtomicBoolean();
 
-        final InputStream inputStream = new InputStream() {
-            @Override
-            public int read() {
-                return -1;
-            }
-
-            @Override
-            public void close() {
-                closed.set(true);
-            }
-        };
-        final URLConnection urlConnection = new URLConnection(null) {
-            @Override
-            public void connect() {
-                // no code
-            }
-
-            @Override
-            public InputStream getInputStream() {
-                return inputStream;
-            }
-        };
+        final URLConnection urlConnection = getConnection(closed);
         final URL url = URL.of(URI.create("test:///"), new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL u) {
@@ -139,17 +114,16 @@ public class LocalizedMessageTest {
     }
 
     /**
-     * Tests reload of resource bundle.
+     * Returns URL connection for testing.
      *
+     * @param closed atomic boolean to track if connection was closed
+     * @return URLConnection for testing
      * @noinspection resource, IOResourceOpenedButNotSafelyClosed
      * @noinspectionreason resource - we have no need to use try with resources in testing
-     * @noinspectionreason IOResourceOpenedButNotSafelyClosed - no need to close resources in
-     *      testing
+     * @noinspectionreason IOResourceOpenedButNotSafelyClosed - no need to close resources
+     *      in testing
      */
-    @Test
-    public void testBundleReloadUrlNotNullFalseReload() throws IOException {
-        final AtomicBoolean closed = new AtomicBoolean();
-
+    private static @NonNull URLConnection getConnection(AtomicBoolean closed) {
         final InputStream inputStream = new InputStream() {
             @Override
             public int read() {
@@ -161,7 +135,7 @@ public class LocalizedMessageTest {
                 closed.set(true);
             }
         };
-        final URLConnection urlConnection = new URLConnection(null) {
+        return new URLConnection(null) {
             @Override
             public void connect() {
                 // no code
@@ -172,6 +146,16 @@ public class LocalizedMessageTest {
                 return inputStream;
             }
         };
+    }
+
+    /**
+     * Tests reload of resource bundle.
+     */
+    @Test
+    public void testBundleReloadUrlNotNullFalseReload() throws IOException {
+        final AtomicBoolean closed = new AtomicBoolean();
+
+        final URLConnection urlConnection = getConnection(closed);
         final URL url = URL.of(URI.create("test:///"), new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL u) {
