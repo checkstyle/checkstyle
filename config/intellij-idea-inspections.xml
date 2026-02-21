@@ -1767,9 +1767,8 @@
                    enabled_by_default="true"/>
   <inspection_tool class="EqualsWhichDoesntCheckParameterClass" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
-  <inspection_tool class="EqualsWithItself" enabled="false" level="ERROR"
-                   enabled_by_default="false"/>
+  <inspection_tool class="EqualsWithItself" enabled="true" level="ERROR"
+                   enabled_by_default="true"/>
   <!-- there is false-positive, and rest cases are result of our loading modules by reflection
     that throws Error. Error is not always jvm problem,
     a bunch of libraries throw Error instead of Exception -->
