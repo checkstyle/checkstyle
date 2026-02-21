@@ -4873,9 +4873,8 @@
                    enabled_by_default="true">
     <option name="ignoreReferencesNeedingImport" value="true"/>
   </inspection_tool>
-  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
-  <inspection_tool class="UnnecessarilyQualifiedStaticUsage" enabled="false" level="ERROR"
-                   enabled_by_default="false">
+  <inspection_tool class="UnnecessarilyQualifiedStaticUsage" enabled="true" level="ERROR"
+                   enabled_by_default="true">
     <option name="m_ignoreStaticFieldAccesses" value="false"/>
     <option name="m_ignoreStaticMethodCalls" value="false"/>
     <option name="m_ignoreStaticAccessFromStaticContext" value="false"/>
