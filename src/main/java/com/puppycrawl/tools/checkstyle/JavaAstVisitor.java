@@ -93,9 +93,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * The order of {@code visit...} methods in {@code JavaAstVisitor.java} and production rules in
  * {@code JavaLanguageParser.g4} should be consistent to ease maintenance.
  * </p>
- *
- * @noinspection JavadocReference
- * @noinspectionreason JavadocReference - References are valid
  */
 public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAstImpl> {
 
