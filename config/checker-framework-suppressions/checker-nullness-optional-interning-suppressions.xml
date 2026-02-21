@@ -5780,7 +5780,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/MemberDefHandler.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter ast of AbstractExpressionHandler.getFirstToken.</message>
-    <lineContent>final DetailAST ident = AbstractExpressionHandler.getFirstToken(type);</lineContent>
+    <lineContent>final DetailAST ident = getFirstToken(type);</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
       required: @Initialized @NonNull DetailAST
