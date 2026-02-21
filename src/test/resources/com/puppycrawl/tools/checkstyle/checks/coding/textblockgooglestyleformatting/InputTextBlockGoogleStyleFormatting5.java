@@ -16,7 +16,7 @@ public class InputTextBlockGoogleStyleFormatting5 {
         // violation below 'Opening quotes (""") of text-block must be on the new line'
         testing(thisMethodReturnsString() + """
         I am testing
-        """);
+        """); // violation above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
         // violation above 'Text-block quotes are not vertically aligned'
     }
 
@@ -24,14 +24,14 @@ public class InputTextBlockGoogleStyleFormatting5 {
         // violation below 'Opening quotes (""") of text-block must be on the new line'
         testing(thisMethodReturnsString(), """
             I am testing
-            """);
+            """); // violation above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
         // violation above 'Text-block quotes are not vertically aligned'
     }
 
     // violation below 'Opening quotes (""") of text-block must be on the new line'
     String testing1 = thisMethodReturnsString() + """
                          I am testing
-                         """;
+                         """; // violation above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
     // violation above 'Text-block quotes are not vertically aligned'
 
     String type = "json";
@@ -40,19 +40,19 @@ public class InputTextBlockGoogleStyleFormatting5 {
             {
                 "status": "ok"
             }
-            """;
+            """; // violation 3 lines above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
         // violation above 'Text-block quotes are not vertically aligned'
 
         // violation below 'Opening quotes (""") of text-block must be on the new line'
         case "xml" -> """
             <status>ok</status>
-            """;
+            """; // violation above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
         // violation above 'Text-block quotes are not vertically aligned'
 
         // violation below 'Opening quotes (""") of text-block must be on the new line'
         default -> """
             plain text ok
-            """;
+            """; // violation above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
         // violation above 'Text-block quotes are not vertically aligned'
      };
 
@@ -62,14 +62,14 @@ public class InputTextBlockGoogleStyleFormatting5 {
             throw new IllegalArgumentException("""
                 Value must be non-negative.
                 You passed a negative number.
-            """);
+            """); // violation 2 lines above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
             // violation above 'Text-block quotes are not vertically aligned'
         }
     }
 
     final boolean condition = true;
     // violation 3 lines below 'Opening quotes (""") of text-block must be on the new line'
-
+    // violation 3 lines below 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
     // violation 3 lines below 'Text-block quotes are not vertically aligned'
     String s = condition ? """
         Yes case
@@ -77,7 +77,7 @@ public class InputTextBlockGoogleStyleFormatting5 {
         No case
         """;
     // violation 3 lines above 'Opening quotes (""") of text-block must be on the new line'
-
+    // violation 3 lines above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
     // violation 3 lines above 'Text-block quotes are not vertically aligned'
 
     public static String thisMethodReturnsString() {

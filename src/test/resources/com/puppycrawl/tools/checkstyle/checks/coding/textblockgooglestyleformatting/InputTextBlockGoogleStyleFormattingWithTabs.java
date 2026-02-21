@@ -20,7 +20,8 @@ public class InputTextBlockGoogleStyleFormattingWithTabs {
 	}
 
 	private static String testMethod2() {
-		// violation below 'Opening quotes (""") of text-block must be on the new line'
+		// violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+		// violation 2 lines below 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
 		return """
 				def flowNodesById = existingInstance.flowNodeInstances.stream()
 				def newFlowNodes = params.instance.flowNodeInstances;
@@ -39,8 +40,8 @@ public class InputTextBlockGoogleStyleFormattingWithTabs {
 						new ObjectString("""
 								<doc type="one">
 								</doc>
-								""")) // violation 'Text-block quotes are not vertically aligned'
-						.toCharArray();
+								""")) // violation 2 lines above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
+						.toCharArray();// violation above'Text-block quotes are not vertically aligned'
 	}
 
 	public String getMethodOne(ObjectString s1) {

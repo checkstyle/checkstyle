@@ -21,7 +21,8 @@ public class Example2 {
         """;
 
     final String simpleScript2Violate = simpleScript1Violate +
-        // violation below 'quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
         simpleScript1Violate + """
         this is simple script
         """; // violation 'Text-block quotes are not vertically aligned'
@@ -32,21 +33,22 @@ public class Example2 {
             """;
 
     getData(
-        // violation below 'quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
         1, """
            this is a multi-line message
-           """);
+           """); // violation above lines above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
     getData(
         1,
            """
            this is a multi-line message
-           """);
+           """); // violation above lines above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
 
     // violation below 'Opening quotes (""") of text-block must be on the new line'
     return """
         this is sample text
         """; // violation 'Text-block quotes are not vertically aligned'
-  }
+  } // violation 2 lines above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
   public void getData(String text, int num) {}
   public void getData(int num, String text) {}
 }

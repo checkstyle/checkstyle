@@ -23,6 +23,7 @@
  &lt;/ol&gt;
  Note: Closing quotes can be followed by additional code on the same line.</description>
          <message-keys>
+            <message-key key="textblock.Indentation.unaligned"/>
             <message-key key="textblock.format.close"/>
             <message-key key="textblock.format.open"/>
             <message-key key="textblock.vertically.unaligned"/>
