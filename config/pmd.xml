@@ -14,7 +14,9 @@
   </rule>
   <rule ref="category/java/bestpractices.xml/UnusedLocalVariable">
     <properties>
-      <!-- until https://github.com/checkstyle/checkstyle/issues/14870 -->
+      <!-- All suppressed variables are in try-with-resources blocks
+           used for side effects (stream existence checks, Mockito
+           scoped mocks, exception-triggering opens), not for their values. -->
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='FilterUtil']
                         //MethodDeclaration[@Name='isFileExists']
@@ -26,8 +28,6 @@
                         //MethodDeclaration[@Name='getFileNotFoundDetail']
                 | //ClassDeclaration[@SimpleName='HeaderCheckTest']
                         //MethodDeclaration[@Name='testIoExceptionWhenLoadingHeader']
-                | //ClassDeclaration[@SimpleName='CustomImportOrderCheckTest']
-                        //MethodDeclaration[@Name='testGetFullImportIdent']
                | //ClassDeclaration[@SimpleName='MainFrameTest']
                         //MethodDeclaration[@Name='testOpenFileButton']
                | //ClassDeclaration[@SimpleName='ConfigurationLoaderTest']
@@ -72,19 +72,25 @@
   </rule>
   <rule ref="category/java/bestpractices.xml/LiteralsFirstInComparisons">
     <properties>
-      <!-- until https://github.com/checkstyle/checkstyle/issues/14870 -->
+      <!-- False positives, NODE_NAME is a static final String constant ("a")
+           and is already on the left side of .equals(). PMD does not recognize
+           static final fields as literals for this rule. -->
       <property name="violationSuppressXPath" value="//ClassDeclaration[
         @SimpleName='XdocsUrlTest']//MethodDeclaration[@Name='characters' or @Name='endElement']"/>
     </properties>
   </rule>
   <rule ref="category/java/bestpractices.xml/LooseCoupling">
     <properties>
-      <!-- until https://github.com/checkstyle/checkstyle/issues/14870 -->
+      <!-- False positives:
+           - ImmutableList in CodeSelectorPresentationTest, deliberate immutability
+             contract, changing to List would compile but lose the intent.
+           - JavaClasses in ArchUnit tests, while JavaClasses implements
+             Collection and DescribedIterable, ArchUnit's ArchRule.check()
+             requires the concrete JavaClasses type, so no interface can
+             be used as a substitute. -->
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='CodeSelectorPresentationTest']
                      //FieldDeclaration//VariableDeclarator[@Name='linesToPosition']
-                | //ClassDeclaration[@SimpleName='FileText']
-                     //ConstructorDeclaration
                 | //ClassDeclaration[@SimpleName='ArchUnitSuperClassTest']
                   //MethodDeclaration[@Name=
                   'testChecksShouldHaveAllowedAbstractClassAsSuperclass']
@@ -211,18 +217,6 @@
       <property name="ignoredAnnotations" value="" />
       <property name="regex" value="\/\*\s+(package)\s+\*\/" />
       <property name="checkTopLevelTypes" value="false" />
-      <!-- until https://github.com/checkstyle/checkstyle/issues/14870 -->
-      <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='Main']
-                        //EnumDeclaration[@SimpleName='OutputFormat']"/>
-    </properties>
-  </rule>
-  <rule ref="category/java/codestyle.xml/UnnecessaryBoxing">
-    <properties>
-      <!-- until https://github.com/checkstyle/checkstyle/issues/14870 -->
-      <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='IntMatchFilterElement']
-                        //MethodDeclaration[@Name='hashCode']"/>
     </properties>
   </rule>
 
@@ -264,26 +258,12 @@
   </rule>
   <rule ref="category/java/errorprone.xml/DoNotTerminateVM">
     <properties>
-      <!-- There is no alternative to using System.exit in the CLI class
-           to report the return code. -->
-      <!-- For MainTest.assertMainReturnCode
-            until https://github.com/checkstyle/checkstyle/issues/14870 -->
+    <!-- Mockito's verify(mock).exit() calls .exit() on a mock Runtime object
+         to assert the expected exit code. PMD cannot distinguish mock calls
+         from real Runtime.exit() calls. -->
       <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='ExitHelper']
-                 | //ClassDeclaration[@SimpleName='MainTest']
+                value="//ClassDeclaration[@SimpleName='MainTest']
                     //MethodDeclaration[@Name='assertMainReturnCode'] "/>
-    </properties>
-  </rule>
-  <rule ref="category/java/errorprone.xml/ConstructorCallsOverridableMethod">
-    <properties>
-      <!-- until https://github.com/checkstyle/checkstyle/issues/14870 -->
-      <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='MainFrame'
-                                          or @SimpleName='OrderedPropertiesCheck'
-                                          or @SimpleName='TranslationCheck'
-                                          or @SimpleName='UniquePropertiesCheck'
-                                          or @SimpleName='JavadocPackageCheck']
-                        //ConstructorDeclaration"/>
     </properties>
   </rule>
 
@@ -315,9 +295,7 @@
                 value="//ClassDeclaration[@SimpleName='Checker']
                              //MethodDeclaration[@Name='processFiles']
                       | //ClassDeclaration[@SimpleName='TranslationCheck']
-                             //MethodDeclaration[@Name='getTranslationKeys']
-                      | //ClassDeclaration[@SimpleName='JavadocMethodCheck']
-                             //MethodDeclaration[@Name='resolveClass']"/>
+                             //MethodDeclaration[@Name='getTranslationKeys']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts">
@@ -325,9 +303,6 @@
       <!-- The default is 3, but we try to use single point of exit from the method and that
        requires some extra IFs. -->
       <property name="problemDepth" value="5"/>
-      <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='ClassResolver']
-                             //MethodDeclaration[@Name='resolve']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/AvoidThrowingRawExceptionTypes">
@@ -341,10 +316,16 @@
   </rule>
   <rule ref="category/java/design.xml/CouplingBetweenObjects">
     <properties>
-      <!-- I do not see any problem, looks like a false positive.
-           SiteUtil is a utility class providing different functionality. -->
-      <!-- For all Except SiteUtil and HandlerFactory
-          until https://github.com/checkstyle/checkstyle/issues/14870 -->
+      <!-- SiteUtil and HandlerFactory are utility/factory classes that
+           work with many different classes by design.
+           Checker, Main, TreeWalker, and CheckstyleAntTask are framework
+           orchestrators that coordinate multiple subsystems.
+           JavaAstVisitor and JavadocCommentsAstVisitor are parser visitors
+           bound by the grammar structure they process.
+           TranslationCheck and JavadocMethodCheck perform complex validation
+           that requires interaction with many different classes.
+           Reducing coupling in these classes would require major architectural
+           refactoring that would damage readability and maintainability. -->
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='HandlerFactory'
                 or @SimpleName='SiteUtil' or @SimpleName='Checker' or @SimpleName='JavaAstVisitor'
@@ -400,10 +381,7 @@
              //MethodDeclaration[@Name='getDefaultValue']
       | //ClassDeclaration[@SimpleName='SiteUtil']
                //MethodDeclaration[@Name='getDefaultValue']
-      | //ClassDeclaration[@SimpleName='DescriptionExtractor']
-               //MethodDeclaration[@Name='getDescriptionFromJavadoc']
-      | //ClassDeclaration[@SimpleName='JavadocTokenTypes'
-        or @SimpleName='TokenTypes' or @SimpleName='RequireThisCheck'
+      | //ClassDeclaration[@SimpleName='TokenTypes' or @SimpleName='RequireThisCheck'
         or @SimpleName='JavadocMethodCheck' or @SimpleName='JavaAstVisitor'
         or @SimpleName='SiteUtil' or @SimpleName='JavadocCommentsAstVisitor']"/>
     </properties>
@@ -462,14 +440,13 @@
                 value="//ClassDeclaration[@SimpleName='XdocsPagesTest']
                     //MethodDeclaration[@Name='getModulePropertyExpectedValue']
                     |  //ClassDeclaration[@SimpleName='SiteUtil']
-                    //MethodDeclaration[@Name='getDefaultValue']
-                    |  //ClassDeclaration[@SimpleName='DescriptionExtractor']
-                    //MethodDeclaration[@Name='getDescriptionFromJavadoc']"/>
+                    //MethodDeclaration[@Name='getDefaultValue']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ClassWithOnlyPrivateConstructorsShouldBeFinal">
     <properties>
-       <!-- until https://github.com/checkstyle/checkstyle/issues/14870 -->
+      <!-- False positive, AbstractInvalidClass is abstract and cannot be final,
+           the rule does not account for abstract classes. -->
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='AbstractInvalidClass']"/>
     </properties>
@@ -499,11 +476,10 @@
 
   <rule ref="category/java/performance.xml/UseArraysAsList">
     <properties>
-      <!-- until https://github.com/checkstyle/checkstyle/issues/14870 -->
+      <!-- False positive, getFirstJavadocParagraphNodes traverses a linked
+           node tree, not an array, Arrays.asList() cannot replace this. -->
       <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='DescriptionExtractor']
-                        //MethodDeclaration[@Name='getDescriptionNodes']
-                | //ClassDeclaration[@SimpleName='SiteUtil']
+                value="//ClassDeclaration[@SimpleName='SiteUtil']
                         //MethodDeclaration[@Name='getFirstJavadocParagraphNodes"/>
     </properties>
   </rule>
@@ -518,10 +494,9 @@
 
   <rule ref="category/java/design.xml/NPathComplexity">
     <properties>
+      <!-- Splitting SiteUtil.getDescriptionFromJavadocForXdoc will damage readability -->
       <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='DescriptionExtractor']
-                      //MethodDeclaration[@Name='getDescriptionFromJavadoc']
-                      | //ClassDeclaration[@SimpleName='SiteUtil']
+                value="//ClassDeclaration[@SimpleName='SiteUtil']
                       //MethodDeclaration[@Name='getDescriptionFromJavadocForXdoc']"/>
     </properties>
   </rule>
