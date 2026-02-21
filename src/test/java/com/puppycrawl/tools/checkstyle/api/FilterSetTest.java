@@ -134,6 +134,12 @@ public class FilterSetTest {
                 .isNotEmpty();
     }
 
+    /**
+     * Dummy filter for testing.
+     *
+     * @noinspection ClassCanBeRecord
+     * @noinspectionreason Test class does not need to be a record.
+     */
     private static final class DummyFilter implements Filter {
 
         private final boolean acceptValue;

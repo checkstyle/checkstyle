@@ -25,6 +25,9 @@ import java.util.List;
 /**
  * Value object for combining the list of valid validTags with information
  * about invalid validTags encountered in a certain Javadoc comment.
+ *
+ * @noinspection ClassCanBeRecord
+ * @noinspectionreason We can not break compatibility with previous versions.
  */
 public final class JavadocTags {
 
