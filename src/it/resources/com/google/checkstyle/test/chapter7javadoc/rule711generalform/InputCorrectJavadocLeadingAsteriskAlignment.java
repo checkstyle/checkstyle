@@ -22,7 +22,7 @@ public class InputCorrectJavadocLeadingAsteriskAlignment {
 
   // violation 2 lines below "Javadoc line should start with leading asterisk."
   /**
-    No leading asterisk present.
+   No leading asterisk present.
    */
   public InputCorrectJavadocLeadingAsteriskAlignment() {}
 
@@ -34,10 +34,12 @@ public class InputCorrectJavadocLeadingAsteriskAlignment {
    */
   public InputCorrectJavadocLeadingAsteriskAlignment(int a) {}
 
+  // violation below "Comment uses box-like repetitive character pattern."
   /*************************************************
    *** @param str testing.....
    **********************************/
   // False negative for above javadoc, until #18271, #18273.
+
   public InputCorrectJavadocLeadingAsteriskAlignment(String str) {}
 
   /** * */ // violation "Summary javadoc is missing."
