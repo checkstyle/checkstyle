@@ -13,38 +13,43 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 // xdoc section -- start
 public class Example2 {
-
   public void test() {
-
-    boolean foo = false;
-    if (foo) {
+    boolean f = false;
+    if (f) {
       bar();
-    } else { bar(); }
-    // violation above, 'should be alone on a line.'
-
-    if (foo) {
-      bar();
-    } else {
+    } // ok, 'should be on the same line'
+    else {
       bar();
     }
-
+    if (f) {
+      bar();
+    } else { // ok, 'should be alone on a line.'
+      bar();
+    }
+    if (f) { bar(); } int i = 0; // ok, 'should be alone on a line.'
     try {
       bar();
-    } catch (Exception e) {
-      // ok above because config is set to token METHOD_DEF and LITERAL_ELSE
+    } // ok, 'should be on the same line'
+    catch (Exception e) {
       bar();
     }
-
   }
-
   private void bar() {
   }
-
-  public void violate() { Object bar = "bar"; }
-  // violation above, 'should be alone on a line.'
-
-  public void ok() {
-    bar();
+  public void testSingleLine() { bar(); } // violation, 'should be alone on a line.'
+  public void violate() { Object b = "b"; } // violation, 'should be alone on a line.'
+  public void method0() {
+    int mode = 0;
+    int x;
+    switch (mode) {
+      case 1: int y = 1; break;
+      case 2: {x = 1;} // ok, 'should be alone on a line.'
+      case 3: int z = 0; {break;}
+      default: x = 0;
+    }
+    switch (mode) {
+      case 1: x = 1; break;
+      default: x = 0; } // ok, 'should be alone on a line.'
   }
 }
 // xdoc section -- end
