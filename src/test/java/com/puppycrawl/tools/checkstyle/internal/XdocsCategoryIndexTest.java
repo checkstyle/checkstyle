@@ -452,6 +452,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
      * Stores information about a check as parsed from an index.xml file.
      * It holds the hyperlink reference (href) and the description text.
      */
+    // noinspection ClassCanBeRecord
     private static final class CheckIndexInfo {
         private final String hrefValue;
         private final String descriptionText;

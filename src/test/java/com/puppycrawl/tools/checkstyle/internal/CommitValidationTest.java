@@ -382,6 +382,7 @@ public class CommitValidationTest {
 
     }
 
+    // noinspection ClassCanBeRecord
     private static final class RevCommitsPair {
 
         private final Iterator<RevCommit> first;

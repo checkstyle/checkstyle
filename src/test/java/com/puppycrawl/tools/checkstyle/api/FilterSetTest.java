@@ -134,6 +134,7 @@ public class FilterSetTest {
                 .isNotEmpty();
     }
 
+    // noinspection ClassCanBeRecord
     private static final class DummyFilter implements Filter {
 
         private final boolean acceptValue;
