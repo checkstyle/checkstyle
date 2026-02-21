@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 
 /**
  * Class for scraping class javadoc and all property setter javadocs from the
@@ -65,7 +66,8 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
             if (methodDef != null
                     && isSetterMethod(methodDef)
                     && isMethodOfScrapedModule(methodDef)) {
-                final String methodName = methodDef.findFirstToken(TokenTypes.IDENT).getText();
+                final String methodName = NullUtil.notNull(
+                        methodDef.findFirstToken(TokenTypes.IDENT)).getText();
                 final String propertyName = getPropertyName(methodName);
                 JavadocScraperResultUtil.putPropertyJavadocNode(propertyName, ast);
             }
@@ -74,7 +76,8 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
         else if (BlockCommentPosition.isOnClass(blockCommentAst)) {
             final DetailAST classDef = getParentAst(blockCommentAst, TokenTypes.CLASS_DEF);
             if (classDef != null) {
-                final String className = classDef.findFirstToken(TokenTypes.IDENT).getText();
+                final String className = NullUtil.notNull(
+                        classDef.findFirstToken(TokenTypes.IDENT)).getText();
                 if (className.equals(moduleName)) {
                     JavadocScraperResultUtil.setModuleJavadocNode(ast);
                 }
@@ -96,7 +99,8 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
 
         boolean isMethodOfModule = false;
         if (classDef != null) {
-            final String className = classDef.findFirstToken(TokenTypes.IDENT).getText();
+            final String className = NullUtil.notNull(
+                    classDef.findFirstToken(TokenTypes.IDENT)).getText();
             isMethodOfModule = className.equals(moduleName);
         }
 

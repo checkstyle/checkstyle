@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -99,7 +100,8 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
             }
         }
         else {
-            final String outerTypeName = ast.findFirstToken(TokenTypes.IDENT).getText();
+            final String outerTypeName = NullUtil.notNull(
+                    ast.findFirstToken(TokenTypes.IDENT)).getText();
 
             if (!fileName.equals(outerTypeName)) {
                 wrongType = ast;

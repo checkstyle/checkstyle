@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -202,7 +203,7 @@ public class FinalParametersCheck extends AbstractCheck {
                 && !isIgnoredPrimitiveParam(param)
                 && !isIgnoredUnnamedParam(param)
                 && !CheckUtil.isReceiverParameter(param)) {
-            final DetailAST paramName = param.findFirstToken(TokenTypes.IDENT);
+            final DetailAST paramName = NullUtil.notNull(param.findFirstToken(TokenTypes.IDENT));
             final DetailAST firstNode = CheckUtil.getFirstNode(param);
             log(firstNode,
                 MSG_KEY, paramName.getText());
