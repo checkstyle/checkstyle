@@ -3774,9 +3774,8 @@
                    enabled_by_default="false"/>
   <inspection_tool class="RedundantStringFormatCall" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
-  <inspection_tool class="RedundantSuppression" enabled="false" level="ERROR"
-                   enabled_by_default="false"/>
+  <inspection_tool class="RedundantSuppression" enabled="true" level="ERROR"
+                   enabled_by_default="true"/>
   <inspection_tool class="RedundantSuspendModifier" enabled="false" level="WARNING"
                    enabled_by_default="false"/>
   <inspection_tool class="RedundantThrows" enabled="true" level="ERROR"
