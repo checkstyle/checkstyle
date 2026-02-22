@@ -51,4 +51,17 @@ public class TodoCommentCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "17:3: Comment should not be enclosed in a box.",
+            "25:5: Comment should not be enclosed in a box.",
+            "31:5: Comment should not be enclosed in a box.",
+            "37:5: Comment should not be enclosed in a box.",
+            "43:5: Comment should not be enclosed in a box.",
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
 }
