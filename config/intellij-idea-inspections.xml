@@ -5110,8 +5110,8 @@
   <inspection_tool class="UseOfProcessBuilder" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
   <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
-  <inspection_tool class="UseOfPropertiesAsHashtable" enabled="false" level="ERROR"
-                   enabled_by_default="false"/>
+  <inspection_tool class="UseOfPropertiesAsHashtable" enabled="true" level="ERROR"
+                   enabled_by_default="true"/>
   <inspection_tool class="UseOfSunClasses" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
   <inspection_tool class="UsePrimitiveTypes" enabled="false" level="WARNING"
