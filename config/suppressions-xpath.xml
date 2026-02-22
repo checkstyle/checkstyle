@@ -511,4 +511,11 @@
           checks="LocalVariableNameCheck"
           query="//METHOD_DEF[./IDENT[@text='getLineNumbersFromExpected']]
                 //VARIABLE_DEF/IDENT[@text='i']"/>
+  <!-- Suppress settersHaveSinceTag for abstract classes and non Check/Filter classes -->
+  <suppress-xpath
+          id="settersHaveSinceTag"
+          checks="MatchXpath"
+          query="//CLASS_DEF[not(./IDENT[ends-with(@text, 'Check')
+          or ends-with(@text, 'Filter')])
+          or ./MODIFIERS/ABSTRACT]//METHOD_DEF"/>
 </suppressions>
