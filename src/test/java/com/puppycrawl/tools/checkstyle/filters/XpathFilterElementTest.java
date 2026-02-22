@@ -205,17 +205,6 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonMatchingCheckRegexp() throws Exception {
-        final XpathFilterElement filter =
-                new XpathFilterElement(null, "NonMatchingRegexp", null, null, null);
-        final TreeWalkerAuditEvent ev = getEvent(3, 0,
-                TokenTypes.CLASS_DEF);
-        assertWithMessage("Event should be accepted")
-                .that(filter.accept(ev))
-                .isTrue();
-    }
-
-    @Test
     public void testNonMatchingCheckPattern() throws Exception {
         final Pattern pattern = Pattern.compile("NonMatchingRegexp");
         final XpathFilterElement filter =
