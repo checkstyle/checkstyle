@@ -29,172 +29,172 @@
   <suppress checks="PackageDeclarationCheck"
     files="customimportorder/InputCustomImportOrderNoPackage3\.java"/>
   <suppress checks="PackageDeclarationCheck"
-    files="customimportorder/InputCustomImportOrderDefaultPackage\.java"/>
+    files="customimportorder[\\/]InputCustomImportOrderDefaultPackage\.java"/>
   <suppress checks="PackageDeclarationCheck"
-    files="customimportorder/InputCustomImportOrderSamePackage\.java"/>
+    files="customimportorder[\\/]InputCustomImportOrderSamePackage\.java"/>
   <suppress checks="PackageDeclarationCheck"
-    files="customimportorder/InputCustomImportOrderSamePackage2\.java"/>
+    files="customimportorder[\\/]InputCustomImportOrderSamePackage2\.java"/>
   <suppress checks="PackageDeclarationCheck"
-    files="customimportorder/InputCustomImportOrderSamePackageDepth25\.java"/>
+    files="customimportorder[\\/]InputCustomImportOrderSamePackageDepth25\.java"/>
   <suppress checks="PackageDeclarationCheck"
-    files="customimportorder/InputCustomImportOrderSamePackageDepth252\.java"/>
+    files="customimportorder[\\/]InputCustomImportOrderSamePackageDepth252\.java"/>
   <suppress checks="PackageDeclarationCheck"
-    files="customimportorder/InputCustomImportOrderSamePackageDepth253\.java"/>
+    files="customimportorder[\\/]InputCustomImportOrderSamePackageDepth253\.java"/>
   <suppress checks="PackageDeclarationCheck"
-    files="customimportorder/InputCustomImportOrderSamePackageDepth254\.java"/>
+    files="customimportorder[\\/]InputCustomImportOrderSamePackageDepth254\.java"/>
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
-    files="illegalinstantiation/InputIllegalInstantiationNoPackage\.java"/>
+    files="illegalinstantiation[\\/]InputIllegalInstantiationNoPackage\.java"/>
   <suppress checks="PackageDeclarationCheck"
-    files="illegalinstantiation/InputIllegalInstantiationLang\d*\.java"/>
+    files="illegalinstantiation[\\/]InputIllegalInstantiationLang\d*\.java"/>
   <suppress checks="PackageDeclarationCheck"
-    files="illegalinstantiation/InputIllegalInstantiationBeginTree2\.java"/>
+    files="illegalinstantiation[\\/]InputIllegalInstantiationBeginTree2\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
-    files="redundantimport/InputRedundantImport_UnnamedPackage\.java"/>
+    files="redundantimport[\\/]InputRedundantImport_UnnamedPackage\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
-    files="redundantimport/InputRedundantImportWithoutPackage\.java"/>
+    files="redundantimport[\\/]InputRedundantImportWithoutPackage\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
-    files="unusedimports/InputUnusedImportsFileInUnnamedPackage\.java"/>
+    files="unusedimports[\\/]InputUnusedImportsFileInUnnamedPackage\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
-    files="importcontrol/InputImportControlBeginTree2\.java"/>
+    files="importcontrol[\\/]InputImportControlBeginTree2\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
-    files="annotateddeclarationvisibility/InputAnnotatedDeclarationVisibilityClear2\.java"/>
+    files="annotateddeclarationvisibility[\\/]InputAnnotatedDeclarationVisibilityClear2\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
-            files="unusedimports/InputUnusedImportsSingleWordPackage\.java"/>
+            files="unusedimports[\\/]InputUnusedImportsSingleWordPackage\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
-    files="linelength/InputLineLengthLongPackageStatement\.java"/>
+    files="linelength[\\/]InputLineLengthLongPackageStatement\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
-    files="unusedlocalvariable/InputUnusedLocalVariableWithoutPackageStatement\.java"/>
+    files="unusedlocalvariable[\\/]InputUnusedLocalVariableWithoutPackageStatement\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
-    files="uncommentedmain/InputUncommentedMainBeginTreePackage2\.java"/>
+    files="uncommentedmain[\\/]InputUncommentedMainBeginTreePackage2\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
-    files="rulepackagenames/InputBadPackageName2\.java"/>
+    files="rulepackagenames[\\/]InputBadPackageName2\.java"/>
   <suppress checks="PackageDeclarationCheck"
-    files="rulepackagenames/InputPackageBadName3\.java"/>
+    files="rulepackagenames[\\/]InputPackageBadName3\.java"/>
   <suppress checks="PackageDeclarationCheck"
-    files="rulepackagenames/InputPackageNameBad\.java"/>
+    files="rulepackagenames[\\/]InputPackageNameBad\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="RegexpSingleline"
-    files="javadoctype/InputJavadocTypeWithBlockComment\.java"/>
+    files="javadoctype[\\/]InputJavadocTypeWithBlockComment\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="OuterTypeFilename"
-    files="/InputOuterType.*\.java"/>
+    files="[\\/]InputOuterType.*\.java"/>
   <suppress checks="OuterTypeFilename"
-    files="/InputSuppressionXpathFilterDecideByMessage\.java"/>
+    files="[\\/]InputSuppressionXpathFilterDecideByMessage\.java"/>
   <suppress checks="OuterTypeFilename"
-    files="rule522classnames/Input.*ClassNames\.java"/>
+    files="rule522classnames[\\/]Input.*ClassNames\.java"/>
   <suppress checks="OuterTypeFilename"
-    files="/package-info\.java"/>
+    files="[\\/]package-info\.java"/>
   <suppress checks="OuterTypeFilename"
-    files="src/it/resources/.*/InputXpathOuterTypeFilename.*\.java"/>
+    files="src[\\/]it[\\/]resources[\\/].*[\\/]InputXpathOuterTypeFilename.*\.java"/>
   <suppress checks="OuterTypeFilename"
-    files="src/it/resources/.*/InputFileName3\.java"/>
+    files="src[\\/]it[\\/]resources[\\/].*[\\/]InputFileName3\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress id="noTrailingWhitespace"
-    files="/InputJavadocContentLocationTrailingSpace\.java"/>
+    files="[\\/]InputJavadocContentLocationTrailingSpace\.java"/>
   <suppress id="noTrailingWhitespace"
-    files="/InputJavadocParagraphCorrect\.java"/>
+    files="[\\/]InputJavadocParagraphCorrect\.java"/>
   <suppress id="noTrailingWhitespace"
-    files="/InputJavadocTagContinuationIndentationGuavaFalsePositive\.java"/>
+    files="[\\/]InputJavadocTagContinuationIndentationGuavaFalsePositive\.java"/>
   <suppress id="noTrailingWhitespace"
-    files="/InputRegexpTrailingComment10\.java"/>
+    files="[\\/]InputRegexpTrailingComment10\.java"/>
   <suppress id="noTrailingWhitespace"
-    files="/InputRegexpSinglelineJavaTrailingComment10\.java"/>
+    files="[\\/]InputRegexpSinglelineJavaTrailingComment10\.java"/>
   <suppress id="noTrailingWhitespace"
-    files="/InputTextBlockGoogleStyleFormatting10\.java"/>
+    files="[\\/]InputTextBlockGoogleStyleFormatting10\.java"/>
   <suppress id="noTrailingWhitespace"
-            files="/javadocparagraph/InputJavadocParagraphCheck1\.java"/>
+            files="[\\/]javadocparagraph[\\/]InputJavadocParagraphCheck1\.java"/>
   <suppress id="noTrailingWhitespace"
-            files="/javadocparagraph/InputJavadocParagraphIncorrect4\.java"/>
+            files="[\\/]javadocparagraph[\\/]InputJavadocParagraphIncorrect4\.java"/>
 
   <!-- Input file contains trailing whitespace to kill pitest mutation -->
   <suppress id="noTrailingWhitespace"
-    files="separatorwrap/InputSeparatorWrapForTestTrailingWhitespace\.java"/>
+    files="separatorwrap[\\/]InputSeparatorWrapForTestTrailingWhitespace\.java"/>
   <suppress id="noTrailingWhitespace"
-    files="nonemptyatclausedescription/InputNonEmptyAtclauseDescriptionOne\.java"/>
+    files="nonemptyatclausedescription[\\/]InputNonEmptyAtclauseDescriptionOne\.java"/>
   <suppress id="noTrailingWhitespace"
-    files="requireemptylinebeforeblocktaggroup/InputRequireEmptyLineBeforeBlockTagGroupIncorrect\.java"/>
+    files="requireemptylinebeforeblocktaggroup[\\/]InputRequireEmptyLineBeforeBlockTagGroupIncorrect\.java"/>
   <suppress id="noTrailingWhitespace"
-    files="requireemptylinebeforeblocktaggroup/InputRequireEmptyLineBeforeBlockTagGroupCorrect\.java"/>
+    files="requireemptylinebeforeblocktaggroup[\\/]InputRequireEmptyLineBeforeBlockTagGroupCorrect\.java"/>
   <suppress id="noTrailingWhitespace"
-    files="javadoctagcontinuationindentation/InputJavadocTagContinuationIndentationDescription\.java"/>
+    files="javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationDescription\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="FileTabCharacter"
-    files="/InputJavadocWithCrAsNewline\.javadoc"/>
+    files="[\\/]InputJavadocWithCrAsNewline\.javadoc"/>
   <suppress checks="FileTabCharacter"
-    files="/InputLeadingAsterisksExtended\.javadoc"/>
+    files="[\\/]InputLeadingAsterisksExtended\.javadoc"/>
   <suppress checks="FileTabCharacter"
-    files="/InputListWithUnclosedItemInUnclosedParagraph\.javadoc"/>
+    files="[\\/]InputListWithUnclosedItemInUnclosedParagraph\.javadoc"/>
   <suppress checks="FileTabCharacter"
-    files="/InputMixedCaseOfHtmlTags\.javadoc"/>
+    files="[\\/]InputMixedCaseOfHtmlTags\.javadoc"/>
   <suppress checks="FileTabCharacter"
-    files="/InputUnclosedParagraphFollowedByJavadocTag\.javadoc"/>
+    files="[\\/]InputUnclosedParagraphFollowedByJavadocTag\.javadoc"/>
   <suppress checks="FileTabCharacter"
-    files="/InputFileTabCharacter\.java"/>
+    files="[\\/]InputFileTabCharacter\.java"/>
   <suppress checks="FileTabCharacter"
-    files="/InputMainGenerateChecksAndFilesSuppressionsTabWidth\.java"/>
+    files="[\\/]InputMainGenerateChecksAndFilesSuppressionsTabWidth\.java"/>
   <suppress checks="FileTabCharacter"
-    files="/InputMainGenerateXpathSuppressionsTabWidth\.java"/>
+    files="[\\/]InputMainGenerateXpathSuppressionsTabWidth\.java"/>
   <suppress checks="FileTabCharacter"
-    files="/InputXpathQueryGeneratorTabWidth\.java"/>
+    files="[\\/]InputXpathQueryGeneratorTabWidth\.java"/>
   <suppress checks="FileTabCharacter"
-    files="/InputFileTabCharacterSimple\.java"/>
+    files="[\\/]InputFileTabCharacterSimple\.java"/>
   <suppress checks="FileTabCharacter"
-    files="/InputFileTabCharacterSimple1\.java"/>
+    files="[\\/]InputFileTabCharacterSimple1\.java"/>
   <suppress checks="FileTabCharacter"
-    files="/InputFileTabCharacterCustomMessage\.java"/>
+    files="[\\/]InputFileTabCharacterCustomMessage\.java"/>
   <suppress checks="FileTabCharacter"
-    files="/InputCheckerTabCharacter\.txt"/>
+    files="[\\/]InputCheckerTabCharacter\.txt"/>
   <suppress checks="FileTabCharacter"
-    files=".*/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/ruleindentation/InputFileTabCharacterInvalid\.java"/>
+    files=".*[\\/]src[\\/]it[\\/]resources[\\/]com[\\/]openjdk[\\/]checkstyle[\\/]test[\\/]chapterformatting[\\/]ruleindentation[\\/]InputFileTabCharacterInvalid\.java"/>
   <suppress checks="FileTabCharacter"
-    files="src/test/resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Input.*\.java"/>
+    files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]indentation[\\/]Input.*\.java"/>
   <suppress checks="FileTabCharacter"
-    files="src/test/resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Input.*"/>
+    files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppresswithplaintextcommentfilter[\\/]Input.*"/>
   <suppress checks="FileTabCharacter"
-    files="/it/resources/com/google/checkstyle/test/chapter2filebasic/rule231filetab/Input.*\.java"/>
+    files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter2filebasic[\\/]rule231filetab[\\/]Input.*\.java"/>
   <suppress checks="FileTabCharacter"
-    files="/InputRegressionJavaClass1\.java"/>
+    files="[\\/]InputRegressionJavaClass1\.java"/>
   <suppress checks="FileTabCharacter"
-    files="/InputComments2\.java"/>
+    files="[\\/]InputComments2\.java"/>
   <suppress checks="FileTabCharacter"
-    files="/InputMainSuppressionsStringPrinter\.java"/>
+    files="[\\/]InputMainSuppressionsStringPrinter\.java"/>
   <suppress checks="FileTabCharacter"
-    files="/InputXpathFileGeneratorAstFilter\.java"/>
+    files="[\\/]InputXpathFileGeneratorAstFilter\.java"/>
   <suppress checks="FileTabCharacter"
-    files="/InputNoLineWrapBad\.java"/>
+    files="[\\/]InputNoLineWrapBad\.java"/>
   <suppress checks="FileTabCharacter"
-    files="/InputNoLineWrapBad2\.java"/>
+    files="[\\/]InputNoLineWrapBad2\.java"/>
   <suppress checks="FileTabCharacter"
-    files="/InputAstTreeStringPrinterFullOfBlockComments\.java"/>
+    files="[\\/]InputAstTreeStringPrinterFullOfBlockComments\.java"/>
   <suppress checks="FileTabCharacter"
-    files="/InputAstTreeStringPrinterJavadocPosition\.java"/>
+    files="[\\/]InputAstTreeStringPrinterJavadocPosition\.java"/>
   <suppress checks="FileTabCharacter"
-    files="/InputAstTreeStringPrinterComments\.java"/>
+    files="[\\/]InputAstTreeStringPrinterComments\.java"/>
   <suppress checks="FileTabCharacter"
     files="/InputIllegalInstantiationLang\d*\.java"/>
   <suppress checks="FileTabCharacter"
@@ -242,7 +242,9 @@
   <suppress checks="FileTabCharacter"
     files="/InputCheckerTabCharacterCustomWidth\.java"/>
   <suppress checks="FileTabCharacter"
-    files="src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/textblockgooglestyleformatting/InputTextBlockGoogleStyleFormattingWithTabs\.java"/>
+    files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting[\\/]InputTextBlockGoogleStyleFormattingWithTabs\.java"/>
+  <suppress checks="FileTabCharacter"
+    files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]javalinelength[\\/]InputJavaLineLengthDefault\.java"/>
   <!-- intentional tabs for testing SummaryJavadocCheck with tab-formatted javadoc -->
   <suppress checks="FileTabCharacter"
     files="/InputSummaryJavadocForbiddenFragmentsTabFormatted\.java"/>
