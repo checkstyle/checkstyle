@@ -3,6 +3,7 @@
   <module name="TreeWalker">
     <module name="NoLineWrap">
       <property name="tokens" value="CLASS_DEF, METHOD_DEF, CTOR_DEF"/>
+      <property name="skipAnnotations" value="false"/>
     </module>
   </module>
 </module>
@@ -17,10 +18,10 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import static java.math.BigInteger.ZERO;
 
 class // violation 'should not be line-wrapped'
-  Example5 {
+  Example6 {
 
-  @Deprecated
-  public Example5() {
+  @Deprecated // violation 'should not be line-wrapped'
+  public Example6() {
   }
 
   public static void // violation 'should not be line-wrapped'
@@ -33,7 +34,7 @@ class // violation 'should not be line-wrapped'
       Bar() {
     }
 
-    @Deprecated
+    @Deprecated // violation 'should not be line-wrapped'
     public void fun() {
     }
 
