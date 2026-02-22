@@ -588,7 +588,6 @@ public class MethodLimitCheck extends AbstractCheck
 
     </section>
 
-
     <section name="XPath Support">
 
       <p>
