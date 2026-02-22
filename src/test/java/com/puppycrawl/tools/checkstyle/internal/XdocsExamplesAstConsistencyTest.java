@@ -232,6 +232,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/regexp/regexpsingleline/Example4",
             "checks/regexp/regexpmultiline/Example5",
             "checks/sizes/lambdabodylength/Example2",
+            "checks/sizes/javalinelength/Example2",
             "checks/sizes/linelength/Example6",
             "checks/trailingcomment/Example2",
             "checks/trailingcomment/Example3",
