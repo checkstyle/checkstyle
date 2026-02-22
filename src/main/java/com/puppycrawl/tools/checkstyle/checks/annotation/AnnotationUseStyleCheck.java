@@ -340,23 +340,16 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * is correct.
      *
      * @param annotation the annotation token
-     * @noinspection EnhancedSwitchMigration
-     * @noinspectionreason EnhancedSwitch statement cause too many problems with other tools
      */
     private void checkStyleType(final DetailAST annotation) {
-        switch (elementStyle) {
-            case COMPACT_NO_ARRAY:
-                checkCompactNoArrayStyle(annotation);
-                break;
-            case COMPACT:
-                checkCompactStyle(annotation);
-                break;
-            case EXPANDED:
-                checkExpandedStyle(annotation);
-                break;
-            case IGNORE:
-            default:
-                break;
+        if (elementStyle == ElementStyleOption.COMPACT_NO_ARRAY) {
+            checkCompactNoArrayStyle(annotation);
+        }
+        else if (elementStyle == ElementStyleOption.COMPACT) {
+            checkCompactStyle(annotation);
+        }
+        else if (elementStyle == ElementStyleOption.EXPANDED) {
+            checkExpandedStyle(annotation);
         }
     }
 
