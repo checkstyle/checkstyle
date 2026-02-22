@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suppressions PUBLIC
-    "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.1//EN"
-    "https://checkstyle.org/dtds/suppressions_1_1_xpath_experimental.dtd">
+    "-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.1//EN"
+    "https://checkstyle.org/dtds/suppressions_1_1_xpath.dtd">
 <suppressions>
   <suppress-xpath id="uniqueId"
                   query="/COMPILATION_UNIT/CLASS_DEF[./IDENT
