@@ -843,6 +843,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.sizes.ExecutableStatementCountCheck");
         NAME_TO_FULL_MODULE_NAME.put("FileLengthCheck",
                 BASE_PACKAGE + ".checks.sizes.FileLengthCheck");
+        NAME_TO_FULL_MODULE_NAME.put("JavaLineLengthCheck",
+                BASE_PACKAGE + ".checks.sizes.JavaLineLengthCheck");
         NAME_TO_FULL_MODULE_NAME.put("LambdaBodyLengthCheck",
                 BASE_PACKAGE + ".checks.sizes.LambdaBodyLengthCheck");
         NAME_TO_FULL_MODULE_NAME.put("LineLengthCheck",
