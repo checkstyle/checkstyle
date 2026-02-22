@@ -41,6 +41,16 @@
           </tr>
           <tr>
             <td>
+              <a href="javalinelength.html#JavaLineLength">
+                JavaLineLength
+              </a>
+            </td>
+            <td>
+              Checks for long lines but ignores lines whose tokens are specified.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="lambdabodylength.html#LambdaBodyLength">
                 LambdaBodyLength
               </a>
