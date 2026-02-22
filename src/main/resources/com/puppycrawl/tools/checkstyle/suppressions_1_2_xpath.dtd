@@ -1,8 +1,8 @@
 <!-- Add the following to any file that is to be validated against this DTD:
 
 <!DOCTYPE suppressions PUBLIC
-    "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
-    "https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd">
+    "-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd">
 -->
 
 <!ELEMENT suppressions (suppress|suppress-xpath)*>
