@@ -51,6 +51,7 @@ APRV
 Aqj
 ARCHITEW
 archunit
+args
 Arial
 arity
 Arquillian
@@ -662,6 +663,7 @@ javadocvariable
 Javaee
 javaformat
 javaguide
+javalinelength
 javamagazine
 javamail
 javancss
