@@ -49,6 +49,7 @@ appveyor
 APRV
 Aqj
 archunit
+args
 Arial
 arity
 Arquillian
@@ -653,6 +654,7 @@ javadocvariable
 Javaee
 javaformat
 javaguide
+javalinelength
 javamagazine
 javamail
 javancss
