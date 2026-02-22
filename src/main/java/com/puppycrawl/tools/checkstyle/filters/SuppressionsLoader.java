@@ -73,24 +73,39 @@ public final class SuppressionsLoader
     /** The resource for the configuration dtd. */
     private static final String DTD_SUPPRESSIONS_NAME_1_2 =
         "com/puppycrawl/tools/checkstyle/suppressions_1_2.dtd";
-    /** The public ID for the configuration dtd. */
-    private static final String DTD_PUBLIC_ID_1_1_XPATH =
+
+    /** The old public ID for the configuration dtd. */
+    private static final String DTD_PUBLIC_ID_1_1_XPATH_EXPERIMENTAL =
         "-//Puppy Crawl//DTD Suppressions Xpath Experimental 1.1//EN";
+    /** The old public ID for version 1_1 configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_1_XPATH_EXPERIMENTAL =
+        "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.1//EN";
+    /** The new public ID for the configuration dtd. */
+    private static final String DTD_PUBLIC_ID_1_1_XPATH =
+        "-//Puppy Crawl//DTD Suppressions Xpath 1.1//EN";
     /** The new public ID for version 1_1 configuration dtd. */
     private static final String DTD_PUBLIC_CS_ID_1_1_XPATH =
-        "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.1//EN";
+        "-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.1//EN";
     /** The resource for the configuration dtd. */
     private static final String DTD_SUPPRESSIONS_NAME_1_1_XPATH =
-        "com/puppycrawl/tools/checkstyle/suppressions_1_1_xpath_experimental.dtd";
-    /** The public ID for the configuration dtd. */
-    private static final String DTD_PUBLIC_ID_1_2_XPATH =
+        "com/puppycrawl/tools/checkstyle/suppressions_1_1_xpath.dtd";
+
+    /** The old public ID for the configuration dtd. */
+    private static final String DTD_PUBLIC_ID_1_2_XPATH_EXPERIMENTAL =
         "-//Puppy Crawl//DTD Suppressions Xpath Experimental 1.2//EN";
+    /** The old public ID for version 1_2 configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_2_XPATH_EXPERIMENTAL =
+        "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN";
+    /** The new public ID for the configuration dtd. */
+    private static final String DTD_PUBLIC_ID_1_2_XPATH =
+        "-//Puppy Crawl//DTD Suppressions Xpath 1.2//EN";
     /** The new public ID for version 1_2 configuration dtd. */
     private static final String DTD_PUBLIC_CS_ID_1_2_XPATH =
-        "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN";
+        "-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN";
     /** The resource for the configuration dtd. */
     private static final String DTD_SUPPRESSIONS_NAME_1_2_XPATH =
-        "com/puppycrawl/tools/checkstyle/suppressions_1_2_xpath_experimental.dtd";
+        "com/puppycrawl/tools/checkstyle/suppressions_1_2_xpath.dtd";
+
     /** File search error message. **/
     private static final String UNABLE_TO_FIND_ERROR_MESSAGE = "Unable to find: ";
     /** String literal for attribute name. **/
@@ -304,12 +319,20 @@ public final class SuppressionsLoader
         map.put(DTD_PUBLIC_ID_1_0, DTD_SUPPRESSIONS_NAME_1_0);
         map.put(DTD_PUBLIC_ID_1_1, DTD_SUPPRESSIONS_NAME_1_1);
         map.put(DTD_PUBLIC_ID_1_2, DTD_SUPPRESSIONS_NAME_1_2);
-        map.put(DTD_PUBLIC_ID_1_1_XPATH, DTD_SUPPRESSIONS_NAME_1_1_XPATH);
-        map.put(DTD_PUBLIC_ID_1_2_XPATH, DTD_SUPPRESSIONS_NAME_1_2_XPATH);
         map.put(DTD_PUBLIC_CS_ID_1_0, DTD_SUPPRESSIONS_NAME_1_0);
         map.put(DTD_PUBLIC_CS_ID_1_1, DTD_SUPPRESSIONS_NAME_1_1);
         map.put(DTD_PUBLIC_CS_ID_1_2, DTD_SUPPRESSIONS_NAME_1_2);
+
+        // 1.1 Xpath mappings
+        map.put(DTD_PUBLIC_ID_1_1_XPATH_EXPERIMENTAL, DTD_SUPPRESSIONS_NAME_1_1_XPATH);
+        map.put(DTD_PUBLIC_CS_ID_1_1_XPATH_EXPERIMENTAL, DTD_SUPPRESSIONS_NAME_1_1_XPATH);
+        map.put(DTD_PUBLIC_ID_1_1_XPATH, DTD_SUPPRESSIONS_NAME_1_1_XPATH);
         map.put(DTD_PUBLIC_CS_ID_1_1_XPATH, DTD_SUPPRESSIONS_NAME_1_1_XPATH);
+
+        // 1.2 Xpath mappings
+        map.put(DTD_PUBLIC_ID_1_2_XPATH_EXPERIMENTAL, DTD_SUPPRESSIONS_NAME_1_2_XPATH);
+        map.put(DTD_PUBLIC_CS_ID_1_2_XPATH_EXPERIMENTAL, DTD_SUPPRESSIONS_NAME_1_2_XPATH);
+        map.put(DTD_PUBLIC_ID_1_2_XPATH, DTD_SUPPRESSIONS_NAME_1_2_XPATH);
         map.put(DTD_PUBLIC_CS_ID_1_2_XPATH, DTD_SUPPRESSIONS_NAME_1_2_XPATH);
         return map;
     }

@@ -387,6 +387,38 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid number of filters")
             .that(filterSet)
             .hasSize(1);
+    public void testXpathSuppressionsExperimentalPuppyCrawl11() throws Exception {
+        final String fn = getPath("InputSuppressionsLoaderXpathExperimentalPuppyCrawl11.xml");
+        final Set<TreeWalkerFilter> filterSet = SuppressionsLoader.loadXpathSuppressions(fn);
+        assertWithMessage("Invalid number of filters")
+            .that(filterSet)
+            .hasSize(1);
     }
 
+    @Test
+    public void testXpathSuppressionsExperimentalPuppyCrawl12() throws Exception {
+        final String fn = getPath("InputSuppressionsLoaderXpathExperimentalPuppyCrawl12.xml");
+        final Set<TreeWalkerFilter> filterSet = SuppressionsLoader.loadXpathSuppressions(fn);
+        assertWithMessage("Invalid number of filters")
+            .that(filterSet)
+            .hasSize(1);
+    }
+
+    @Test
+    public void testXpathSuppressionsExperimentalCheckstyle11() throws Exception {
+        final String fn = getPath("InputSuppressionsLoaderXpathExperimentalCheckstyle11.xml");
+        final Set<TreeWalkerFilter> filterSet = SuppressionsLoader.loadXpathSuppressions(fn);
+        assertWithMessage("Invalid number of filters")
+            .that(filterSet)
+            .hasSize(1);
+    }
+
+    @Test
+    public void testXpathSuppressionsExperimentalCheckstyle12() throws Exception {
+        final String fn = getPath("InputSuppressionsLoaderXpathExperimentalCheckstyle12.xml");
+        final Set<TreeWalkerFilter> filterSet = SuppressionsLoader.loadXpathSuppressions(fn);
+        assertWithMessage("Invalid number of filters")
+            .that(filterSet)
+            .hasSize(1);
+    }
 }
