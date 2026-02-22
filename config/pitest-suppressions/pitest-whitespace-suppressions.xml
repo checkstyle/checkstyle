@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>EmptyLineSeparatorCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</mutatedClass>
+    <mutatedMethod>hasConsecutiveEmptyLines</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
+    <description>changed conditional boundary</description>
+    <lineContent>for (int lineNo = startLine; lineNo &lt; endLine; ++lineNo) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EmptyLineSeparatorCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</mutatedClass>
+    <mutatedMethod>isEnumConstantOnSharedLine</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>if (objectBlock.getParent().getLineNo() == ast.getLineNo()) {</lineContent>
+  </mutation>
+</suppressedMutations>
