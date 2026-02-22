@@ -175,12 +175,12 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     public void testCtorWithNullParameter() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE);
-        dl.addException(new AuditEvent(5000), new IllegalStateException("upsss"));
+        dl.addException(new AuditEvent(5000), new IllegalStateException("oops"));
         dl.auditFinished(new AuditEvent(6000));
         final String output = infoStream.toString();
         assertWithMessage("Message should contain exception info")
                 .that(output)
-                .contains("java.lang.IllegalStateException: upsss");
+                .contains("java.lang.IllegalStateException: oops");
     }
 
     @Test
@@ -341,7 +341,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
                         errorStream, OutputStreamOptions.CLOSE);
                 dl.auditStarted(null);
                 dl.addException(new AuditEvent(5000, "myfile"),
-                        new IllegalStateException("upsss"));
+                        new IllegalStateException("oops"));
                 dl.auditFinished(new AuditEvent(6000, "myfile"));
                 infoOutput = infoStream.toString(StandardCharsets.UTF_8);
                 errorOutput = errorStream.toString(StandardCharsets.UTF_8);
@@ -365,7 +365,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
                 .contains(addExceptionMessage);
         assertWithMessage("Violation should contain exception message")
                 .that(errorOutput)
-                .contains("java.lang.IllegalStateException: upsss");
+                .contains("java.lang.IllegalStateException: oops");
     }
 
     @Test
