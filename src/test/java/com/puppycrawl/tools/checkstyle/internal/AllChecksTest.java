@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -46,17 +48,21 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.ModuleFactory;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.ConfigurationUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -74,6 +80,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         Locale.of("ru"),
         Locale.of("tr"),
     };
+
+    private static final Pattern SETTER_PATTERN = Pattern.compile("^set[A-Z].*");
 
     private static final Map<String, Set<String>> CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE =
             new HashMap<>();
@@ -589,6 +597,105 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                         .contains(key.toString());
             }
         }
+    }
+
+    @Test
+    public void testAllChecksOrFiltersSettersHaveSinceTag() throws Exception {
+
+        for (Class<?> module : CheckUtil.getCheckstyleModules()) {
+
+            if (Modifier.isAbstract(module.getModifiers())) {
+                continue;
+            }
+
+            final String className = module.getSimpleName();
+            if (className.endsWith("Check") || className.endsWith("Filter")) {
+
+                final File file = new File("src/main/java/"
+                        + module.getName().replace('.', '/') + ".java");
+                final DetailAST ast = JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS);
+                final DetailAST classDef = ast.findFirstToken(TokenTypes.CLASS_DEF);
+                final DetailAST objectBlock = classDef.findFirstToken(TokenTypes.OBJBLOCK);
+                DetailAST node = objectBlock.getFirstChild();
+
+                while (node != null) {
+                    if (node.getType() == TokenTypes.METHOD_DEF && isSetter(node)) {
+                        final DetailAST javadocBlockBegin = getPrecedingJavadocComment(node);
+                        if (javadocBlockBegin != null) {
+                            final String javadocContent =
+                                    JavadocUtil.getJavadocCommentContent(javadocBlockBegin);
+                            assertWithMessage("Setter '%s' in '%s' must have a @since tag",
+                                    node.findFirstToken(TokenTypes.IDENT).getText(), className)
+                                    .that(javadocContent.contains("@since"))
+                                    .isTrue();
+                        }
+                    }
+                    node = node.getNextSibling();
+                }
+            }
+        }
+    }
+
+    private static boolean isSetter(DetailAST ast) {
+
+        final boolean isSetterMethod;
+
+        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+
+        boolean hasOverride = false;
+
+        // Skip @Override methods
+        DetailAST annotation = modifiers.findFirstToken(TokenTypes.ANNOTATION);
+        while (annotation != null && annotation.getType() == TokenTypes.ANNOTATION) {
+            final DetailAST ident = annotation.findFirstToken(TokenTypes.IDENT);
+            if (ident != null && "Override".equals(ident.getText())) {
+                hasOverride = true;
+            }
+            annotation = annotation.getNextSibling();
+        }
+
+        if (hasOverride) {
+            isSetterMethod = false;
+        }
+        else if (modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) == null) {
+            isSetterMethod = false;
+        }
+        else {
+            boolean isSlistNotNull = false;
+            final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+            final String name = type.getNextSibling().getText();
+            final boolean matchesSetterFormat = SETTER_PATTERN.matcher(name).matches();
+            final boolean voidReturnType = type.findFirstToken(TokenTypes.LITERAL_VOID) != null;
+
+            final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
+            final boolean singleParam = params.getChildCount(TokenTypes.PARAMETER_DEF) == 1;
+
+            if (matchesSetterFormat && voidReturnType && singleParam) {
+                final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
+                isSlistNotNull = slist != null;
+            }
+            isSetterMethod = isSlistNotNull;
+        }
+
+        return isSetterMethod;
+    }
+
+    private static DetailAST getPrecedingJavadocComment(final DetailAST methodDef) {
+        final DetailAST modifiers = methodDef.findFirstToken(TokenTypes.MODIFIERS);
+        DetailAST blockComment = modifiers.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+        DetailAST result = null;
+
+        if (blockComment == null) {
+            final DetailAST annotation = modifiers.findFirstToken(TokenTypes.ANNOTATION);
+            if (annotation != null) {
+                blockComment = annotation.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+            }
+        }
+
+        if (blockComment != null && JavadocUtil.isJavadocComment(blockComment)) {
+            result = blockComment;
+        }
+        return result;
     }
 
     private static void verifyCheckstyleMessage(Map<String, List<String>> usedMessages,
