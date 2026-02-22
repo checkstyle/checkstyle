@@ -524,13 +524,11 @@
     <module name="MatchXpath">
       <property name="id" value="settersHaveSinceTag"/>
       <property name="query"
-                value="//CLASS_DEF[./IDENT[ends-with(@text, 'Check') or ends-with(@text, 'Filter')]
-                and not (./MODIFIERS/ABSTRACT)]
-                /OBJBLOCK/METHOD_DEF[./IDENT[starts-with(@text, 'set')]
-                and ./MODIFIERS/LITERAL_PUBLIC
-                and ./TYPE/LITERAL_VOID
-                and ./MODIFIERS/BLOCK_COMMENT_BEGIN
-                /COMMENT_CONTENT[not(contains(@text, '@since'))]]"/>
+               value="//METHOD_DEF[./IDENT[starts-with(@text, 'set')]
+               and ./MODIFIERS/LITERAL_PUBLIC
+               and ./TYPE/LITERAL_VOID
+               and ./MODIFIERS/BLOCK_COMMENT_BEGIN
+               /COMMENT_CONTENT[not(contains(@text, '@since'))]]"/>
       <message key="matchxpath.match"
                value="All property setters of a module should contain a '@since' tag."/>
     </module>
