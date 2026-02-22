@@ -657,6 +657,10 @@
     </module>
     <module name="SuppressionXpathSingleFilter">
       <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
+      <property name="checks" value="JavaLineLength"/>
+    </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
       <property name="checks" value="MagicNumber"/>
     </module>
     <module name="SuppressionXpathSingleFilter">
@@ -908,6 +912,12 @@
     <module name="AnonInnerLength"/>
     <module name="ExecutableStatementCount">
       <property name="max" value="30"/>
+    </module>
+    <module name="JavaLineLength">
+      <property name="max" value="100"/>
+      <property name="tokens" value="TEXT_BLOCK_LITERAL_BEGIN"/>
+      <property name="tokens" value="PACKAGE_DEF"/>
+      <property name="tokens" value="IMPORT"/>
     </module>
     <module name="LambdaBodyLength"/>
     <module name="MethodCount">
