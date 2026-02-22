@@ -154,7 +154,7 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- A &lt;a href="/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;&lt;em&gt;suppressions XML
+ A &lt;a href="/dtds/suppressions_1_2_xpath.dtd"&gt;&lt;em&gt;suppressions XML
  document&lt;/em&gt;&lt;/a&gt; contains a set
  of &lt;code&gt;suppress&lt;/code&gt; and &lt;code&gt;suppress-xpath&lt;/code&gt; elements, where
  each &lt;code&gt;suppress-xpath&lt;/code&gt; element can have the
