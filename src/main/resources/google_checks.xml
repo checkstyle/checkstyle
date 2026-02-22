@@ -449,9 +449,25 @@
     </module>
     <module name="SingleLineJavadoc"/>
     <module name="TodoComment">
+      <property name="id" value="TodoFormat"/>
       <property name="format" value="^[ \t]*(?!TODO:)(?i:TODO)\b:?"/>
       <message key="todo.match"
                value="''TODO:'' must be written in all caps and followed by a colon."/>
+    </module>
+    <module name="TodoComment">
+      <property name="id" value="BoxComments"/>
+      <property name="format" value="^[ \t]*([*=#])\1{8,}[ \t]*$"/>
+      <message key="todo.match"
+               value="Comment should not be enclosed in a box."/>
+    </module>
+    <!-- Suppress BoxComments in Javadoc files -->
+    <module name="SuppressionXpathSingleFilter">
+      <property name="id" value="BoxComments"/>
+      <property name="files" value=".*InputCorrectJavadocLeadingAsteriskAlignment\.java$"/>
+    </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="id" value="BoxComments"/>
+      <property name="files" value=".*InputFormattedCorrectJavadocLeadingAsteriskAlignment\.java$"/>
     </module>
     <module name="EmptyCatchBlock">
       <property name="commentFormat" value="\w+"/>
