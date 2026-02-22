@@ -224,20 +224,14 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAddErrorWithSpaceInPath() throws IOException {
+    public void testAddErrorWithSpaceInPath() throws Exception {
+        final String inputFile = "InputSarifLogger Space.java";
+        final String expectedReportFile = "ExpectedSarifLoggerSpaceInPath.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
-        logger.auditStarted(null);
-        final Violation violation =
-                new Violation(1, 1,
-                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
-                        getClass(), "found an error");
-        final AuditEvent ev = new AuditEvent(this, "/home/someuser/Code/Test 2.java", violation);
-        logger.fileStarted(ev);
-        logger.addError(ev);
-        logger.fileFinished(ev);
-        logger.auditFinished(null);
-        verifyContent(getPath("ExpectedSarifLoggerSpaceInPath.sarif"), outStream);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
     @Test
