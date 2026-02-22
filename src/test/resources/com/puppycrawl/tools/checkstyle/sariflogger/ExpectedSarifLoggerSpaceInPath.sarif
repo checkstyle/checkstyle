@@ -13,15 +13,20 @@
           "organization": "Checkstyle",
           "rules": [
             {
-              "id": "com.puppycrawl.tools.checkstyle.SarifLoggerTest",
+              "id": "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck",
               "messageStrings": {
-
+                "regexp.exceeded": {
+                  "text": "Line matches the illegal pattern ''{0}''."
+                },
+                "regexp.minimum": {
+                  "text": "File does not contain at least {0} matches for pattern ''{1}''."
+                }
               },
               "shortDescription": {
-                "text": "SarifLoggerTest"
+                "text": "RegexpSingleline"
               },
               "fullDescription": {
-                "text": "No description available"
+                "text": "<div>\n Checks that a specified pattern matches a single-line in any file type.\n <\/div>\n\n <p>\n Rationale: This check can be used to prototype checks and to find common bad\n practice such as calling <code>ex.printStacktrace()<\/code>,\n <code>System.out.println()<\/code>, <code>System.exit()<\/code>, etc.\n <\/p>"
               }
             }
           ],
@@ -36,11 +41,10 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file:/home/someuser/Code/Test%202.java"
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLogger%20Space.java"
                 },
                 "region": {
-                  "startColumn": 1,
-                  "startLine": 1
+                  "startLine": 4
                 }
               }
             }
@@ -48,7 +52,26 @@
           "message": {
             "text": "found an error"
           },
-          "ruleId": "com.puppycrawl.tools.checkstyle.SarifLoggerTest"
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLogger%20Space.java"
+                },
+                "region": {
+                  "startLine": 13
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "found an error"
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"
         }
       ]
     }
