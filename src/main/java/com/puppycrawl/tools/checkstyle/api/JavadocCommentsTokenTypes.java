@@ -1663,7 +1663,35 @@ public final class JavadocCommentsTokenTypes {
     public static final int DESCRIPTION = JavadocCommentsLexer.DESCRIPTION;
 
     /**
-     * Format specifier inside Javadoc content.
+     * Format specifier inside a {@code {@value}} inline tag.
+     * The {@value} tag is used to display the value of a constant directly
+     * within the Javadoc documentation. In newer Java versions (20+), there
+     * is ability include a format string inside the tag.
+     *
+     * <p>In this example, the format specifier {@code 0x%04x} is used to format the integer
+     * {@code Modifier#MANDATED} as a hexadecimal value, padded with zeros to a width of four characters.</p>
+     * <pre>{@code
+     * {@value %04x Modifier#MANDATED}
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--VALUE_INLINE_TAG -> VALUE_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> {@
+     *     |--TAG_NAME -> value
+     *     |--TEXT ->
+     *     |--FORMAT_SPECIFIER -> %04x
+     *     |--TEXT ->
+     *     |--REFERENCE -> REFERENCE
+     *     |   |--IDENTIFIER -> Modifier
+     *     |   |--HASH -> #
+     *     |   `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *     |       `--IDENTIFIER -> MANDATED
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #VALUE_INLINE_TAG
      */
     public static final int FORMAT_SPECIFIER = JavadocCommentsLexer.FORMAT_SPECIFIER;
 
