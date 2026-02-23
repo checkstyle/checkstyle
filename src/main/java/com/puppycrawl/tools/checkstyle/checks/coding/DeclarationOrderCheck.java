@@ -308,21 +308,25 @@ public class DeclarationOrderCheck extends AbstractCheck {
      * @return a set of all tokens of specific type starting with the current ast node.
      */
     private static Set<DetailAST> getAllTokensOfType(DetailAST ast, int tokenType) {
-        DetailAST vertex = ast;
-        final Set<DetailAST> result = new HashSet<>();
         final Deque<DetailAST> stack = new ArrayDeque<>();
-        while (vertex != null || !stack.isEmpty()) {
-            if (!stack.isEmpty()) {
-                vertex = stack.pop();
+        stack.push(ast);
+
+        final Set<DetailAST> result = new HashSet<>();
+
+        while (!stack.isEmpty()) {
+            final DetailAST current = stack.pop();
+            if (current.getType() == tokenType && !current.equals(ast)) {
+                result.add(current);
             }
-            while (vertex != null) {
-                if (vertex.getType() == tokenType && !vertex.equals(ast)) {
-                    result.add(vertex);
-                }
-                if (vertex.getNextSibling() != null) {
-                    stack.push(vertex.getNextSibling());
-                }
-                vertex = vertex.getFirstChild();
+
+            final DetailAST sibling = current.getNextSibling();
+            if (sibling != null) {
+                stack.push(sibling);
+            }
+
+            final DetailAST child = current.getFirstChild();
+            if (child != null) {
+                stack.push(child);
             }
         }
         return result;
