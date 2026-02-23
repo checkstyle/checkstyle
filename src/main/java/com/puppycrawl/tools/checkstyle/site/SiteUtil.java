@@ -1329,6 +1329,7 @@ public final class SiteUtil {
     private static String getDescriptionFromJavadocForXdoc(DetailNode javadoc, String moduleName)
             throws MacroExecutionException {
         boolean isInCodeLiteral = false;
+        boolean isInLiteralTag = false;
         boolean isInHtmlElement = false;
         boolean isInHrefAttribute = false;
         final StringBuilder description = new StringBuilder(128);
@@ -1367,8 +1368,11 @@ public final class SiteUtil {
                         || isInHtmlElement && node.getFirstChild() == null
                             // Some HTML elements span multiple lines, so we avoid the asterisk
                             && node.getType() != JavadocCommentsTokenTypes.LEADING_ASTERISK) {
-                    if (isInCodeLiteral) {
-                        description.append(node.getText().trim());
+                    if (isInCodeLiteral || isInLiteralTag) {
+                        description.append(node.getText().trim()
+                            .replace("&", "&amp;")
+                            .replace("<", "&lt;")
+                            .replace(">", "&gt;"));
                     }
                     else {
                         description.append(node.getText());
@@ -1384,6 +1388,15 @@ public final class SiteUtil {
                         && node.getType() == JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END) {
                     isInCodeLiteral = false;
                     description.append("</code>");
+                }
+                if (node.getType() == JavadocCommentsTokenTypes.TAG_NAME
+                        && node.getParent().getType()
+                        == JavadocCommentsTokenTypes.LITERAL_INLINE_TAG) {
+                    isInLiteralTag = true;
+                }
+                if (isInLiteralTag
+                        && node.getType() == JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END) {
+                    isInLiteralTag = false;
                 }
 
             }
