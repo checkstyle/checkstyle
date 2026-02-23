@@ -362,6 +362,7 @@ public class RightCurlyCheck extends AbstractCheck {
             return switch (ast.getType()) {
                 case TokenTypes.LITERAL_TRY, TokenTypes.LITERAL_CATCH -> getDetailsForTryCatch(ast);
                 case TokenTypes.LITERAL_IF -> getDetailsForIf(ast);
+                case TokenTypes.LITERAL_ELSE -> getDetailsForElse(ast);
                 case TokenTypes.LITERAL_DO -> getDetailsForDoLoops(ast);
                 case TokenTypes.LITERAL_SWITCH -> getDetailsForSwitch(ast);
                 case TokenTypes.LITERAL_CASE -> getDetailsForCase(ast);
@@ -503,6 +504,33 @@ public class RightCurlyCheck extends AbstractCheck {
             if (lcurly.getType() == TokenTypes.SLIST) {
                 rcurly = lcurly.getLastChild();
             }
+            return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);
+        }
+
+        /**
+        * Collects validation details for LITERAL-ELSE.
+        *
+        * @param ast a {@code DetailAST} value
+        * @return object containing all details to make validation
+        */
+        private static Details getDetailsForElse(DetailAST ast) {
+            final DetailAST lcurly = ast.getFirstChild();
+            DetailAST rcurly = null;
+
+            if (lcurly != null && lcurly.getType() == TokenTypes.SLIST) {
+                rcurly = lcurly.getLastChild();
+            }
+            final DetailAST nextToken = getNextToken(ast);
+
+            final boolean shouldCheckLastRcurly;
+
+            if (rcurly != null && nextToken != null
+             && TokenUtil.areOnSameLine(rcurly, nextToken)) {
+                shouldCheckLastRcurly = false;
+            } else {
+                shouldCheckLastRcurly = true;
+            }
+
             return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);
         }
 
