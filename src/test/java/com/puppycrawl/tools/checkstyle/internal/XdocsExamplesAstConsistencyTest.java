@@ -315,10 +315,7 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithplaintextcommentfilter/Example5",
             "filters/suppresswithplaintextcommentfilter/Example9",
             // No properties in module, multiple very different examples to ease reading
-            "checks/annotation/missingoverrideonrecordaccessor/Example2",
-            // contains ExampleX constructors
-            "checks/naming/methodname/Example3",
-            "checks/naming/methodname/Example4"
+            "checks/annotation/missingoverrideonrecordaccessor/Example2"
             );
 
     /**
@@ -574,10 +571,94 @@ public class XdocsExamplesAstConsistencyTest {
         }
 
         if (regularExamples.size() > 1) {
-            violations.addAll(validateAllMatch(dir, regularExamples));
+            if ("checks/naming/methodname".equals(relativePath)) {
+                violations.addAll(validateMethodNameExamples(dir, regularExamples));
+            }
+            else {
+                violations.addAll(validateAllMatch(dir, regularExamples));
+            }
         }
 
         return violations;
+    }
+
+    /**
+     * Validates MethodName examples by comparing files with and without constructors separately.
+     *
+     * @param dir the directory containing MethodName examples
+     * @param examples the list of examples that must be validated
+     * @return list of violation messages for mismatches
+     * @throws IOException if an I/O error occurs
+     */
+    private static List<String> validateMethodNameExamples(Path dir, List<Path> examples)
+            throws IOException {
+        final List<String> violations = new ArrayList<>();
+        final List<Path> constructorExamples = new ArrayList<>();
+        final List<Path> nonConstructorExamples = new ArrayList<>();
+
+        for (Path example : examples) {
+            if (containsConstructorDefinition(example)) {
+                constructorExamples.add(example);
+            }
+            else {
+                nonConstructorExamples.add(example);
+            }
+        }
+
+        if (nonConstructorExamples.size() > 1) {
+            violations.addAll(validateAllMatch(dir, nonConstructorExamples));
+        }
+        if (constructorExamples.size() > 1) {
+            violations.addAll(validateAllMatch(dir, constructorExamples));
+        }
+
+        return violations;
+    }
+
+    /**
+     * Checks whether an example contains at least one constructor definition.
+     *
+     * @param example the example file path
+     * @return true if the parsed xdoc section contains a constructor definition
+     * @throws IOException if an I/O error occurs
+     */
+    private static boolean containsConstructorDefinition(Path example) throws IOException {
+        final String xdocSection = extractXdocSection(example);
+        boolean result;
+        try {
+            final DetailAST ast = parseContent(xdocSection);
+            result = ast != null && hasDescendantOfType(ast, TokenTypes.CTOR_DEF);
+        }
+        catch (CheckstyleException exception) {
+            result = false;
+        }
+
+        return result;
+    }
+
+    /**
+     * Checks whether an AST contains a descendant of the given token type.
+     *
+     * @param ast the AST root to inspect
+     * @param tokenType the token type to find
+     * @return true if a matching node is found
+     */
+    private static boolean hasDescendantOfType(DetailAST ast, int tokenType) {
+        boolean result = false;
+        if (ast.getType() == tokenType) {
+            result = true;
+        }
+        else {
+            for (DetailAST child = ast.getFirstChild(); child != null;
+                 child = child.getNextSibling()) {
+                if (hasDescendantOfType(child, tokenType)) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+
+        return result;
     }
 
     /**
@@ -725,7 +806,7 @@ public class XdocsExamplesAstConsistencyTest {
     private static StructuralAstNode toStructuralAst(DetailAST ast) {
         final StructuralAstNode result;
 
-        if (isCommentNode(ast)) {
+        if (isCommentNode(ast) || isClassOrConstructorName(ast)) {
             result = null;
         }
         else {
@@ -756,6 +837,20 @@ public class XdocsExamplesAstConsistencyTest {
         return type == TokenTypes.SINGLE_LINE_COMMENT
                 || type == TokenTypes.BLOCK_COMMENT_BEGIN
                 || type == TokenTypes.COMMENT_CONTENT;
+    }
+
+    /**
+     * Checks if an AST node is an identifier representing class or constructor name.
+     *
+     * @param ast the AST node to check
+     * @return true if the node is a class or constructor name identifier
+     */
+    private static boolean isClassOrConstructorName(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        return parent != null
+                && ast.getType() == TokenTypes.IDENT
+                && (parent.getType() == TokenTypes.CLASS_DEF
+                    || parent.getType() == TokenTypes.CTOR_DEF);
     }
 
     /**
