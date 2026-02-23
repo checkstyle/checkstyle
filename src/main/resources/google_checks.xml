@@ -139,9 +139,11 @@
       <!-- suppression is required till https://github.com/checkstyle/checkstyle/issues/7541 -->
       <property name="id" value="RightCurlyAlone"/>
       <property name="query" value="//RCURLY[parent::SLIST[count(./*)=1
-                               and not(parent::LITERAL_CATCH)]
+                               and not(parent::LITERAL_CATCH)
+                               and not(following-sibling::LITERAL_ELSE)]
                                or (preceding-sibling::*[last()][self::LCURLY]
-                               and not(parent::SLIST/parent::LITERAL_CATCH))
+                               and not(parent::SLIST/parent::LITERAL_CATCH)
+                               and not(parent::SLIST[following-sibling::LITERAL_ELSE]))
                                or (parent::SLIST/parent::LITERAL_CATCH
                                and parent::SLIST/parent::LITERAL_CATCH/following-sibling::*)]"/>
     </module>
