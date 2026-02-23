@@ -29,8 +29,10 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
@@ -41,6 +43,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.meta.ModuleDetails;
+import com.puppycrawl.tools.checkstyle.meta.XmlMetaReader;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -68,6 +72,13 @@ public class XdocsExamplesAstConsistencyTest {
     private static final String XDOC_END_MARKER = "// xdoc section -- end";
 
     /**
+     * Set of module names (in lowercase) that have no configurable properties.
+     * Modules without properties can have very different AST examples since
+     * there is no configuration change to demonstrate.
+     */
+    private static final Set<String> MODULES_WITHOUT_PROPERTIES = getModulesWithoutProperties();
+
+    /**
      * Examples that cannot be parsed as valid Java.
      * These files are intentionally non-compilable for documentation purposes.
      *
@@ -84,6 +95,10 @@ public class XdocsExamplesAstConsistencyTest {
      *
      * <p>Format: "directory/ExampleN" where the example has unique code.
      *
+     * <p>Do NOT add examples for modules that have no configurable properties.
+     * Such modules are already skipped entirely by the
+     * {@code isNotModuleWithoutProperties} filter.
+     *
      * <p>Until: <a href="https://github.com/checkstyle/checkstyle/issues/18435">...</a>
      */
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
@@ -94,28 +109,23 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/blocks/emptycatchblock/Example4",
             "checks/blocks/emptycatchblock/Example5",
             "checks/blocks/needbraces/Example6",
-            "checks/coding/constructorsdeclarationgrouping/Example2",
-            "checks/coding/covariantequals/Example2",
+            "checks/blocks/rightcurly/Example2",
+            "checks/blocks/rightcurly/Example3",
+            "checks/blocks/rightcurly/Example4",
+            "checks/blocks/rightcurly/Example5",
             "checks/coding/illegaltoken/Example2",
             "checks/coding/illegaltokentext/Example3",
             "checks/coding/illegaltokentext/Example4",
             "checks/coding/illegaltokentext/Example5",
-            "checks/coding/innerassignment/Example2",
             "checks/coding/matchxpath/Example2",
             "checks/coding/matchxpath/Example3",
             "checks/coding/matchxpath/Example4",
             "checks/coding/matchxpath/Example5",
-            "checks/coding/missingswitchdefault/Example2",
-            "checks/coding/missingswitchdefault/Example3",
             "checks/coding/packagedeclaration/Example2",
             "checks/coding/requirethis/Example5",
             "checks/coding/requirethis/Example6",
-            "checks/coding/textblockgooglestyleformatting/Example2",
-            "checks/coding/textblockgooglestyleformatting/Example3",
-            "checks/coding/textblockgooglestyleformatting/Example4",
             "checks/coding/unnecessaryparentheses/Example2",
             "checks/coding/unnecessaryparentheses/Example3",
-            "checks/coding/unnecessarysemicoloninenumeration/Example2",
             "checks/coding/variabledeclarationusagedistance/Example2",
             "checks/descendanttoken/Example10",
             "checks/descendanttoken/Example11",
@@ -131,7 +141,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/descendanttoken/Example7",
             "checks/descendanttoken/Example8",
             "checks/descendanttoken/Example9",
-            "checks/design/onetoplevelclass/Example3",
             "checks/design/visibilitymodifier/Example11",
             "checks/design/visibilitymodifier/Example12",
             "checks/finalparameters/Example4",
@@ -212,10 +221,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/naming/typename/Example2",
             "checks/naming/typename/Example3",
             "checks/naming/typename/Example4",
-            "checks/outertypefilename/Example2",
-            "checks/outertypefilename/Example3",
-            "checks/outertypefilename/Example4",
-            "checks/outertypefilename/Example5",
             "checks/regexp/regexp/Example1",
             "checks/regexp/regexp/Example10",
             "checks/regexp/regexp/Example11",
@@ -292,7 +297,6 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppressionxpathsinglefilter/Example7",
             "filters/suppressionxpathsinglefilter/Example8",
             "filters/suppressionxpathsinglefilter/Example9",
-            "filters/suppresswarningsfilter/Example2",
             "filters/suppresswithnearbycommentfilter/Example2",
             "filters/suppresswithnearbycommentfilter/Example3",
             "filters/suppresswithnearbycommentfilter/Example4",
@@ -310,8 +314,6 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithnearbytextfilter/Example9",
             "filters/suppresswithplaintextcommentfilter/Example5",
             "filters/suppresswithplaintextcommentfilter/Example9",
-            // No properties in module, multiple very different examples to ease reading
-            "checks/annotation/missingoverrideonrecordaccessor/Example2",
             // contains ExampleX constructors
             "checks/naming/methodname/Example3",
             "checks/naming/methodname/Example4"
@@ -331,6 +333,7 @@ public class XdocsExamplesAstConsistencyTest {
             final List<Path> exampleDirs = pathStream
                     .filter(Files::isDirectory)
                     .filter(XdocsExamplesAstConsistencyTest::containsMultipleExamples)
+                    .filter(XdocsExamplesAstConsistencyTest::isNotModuleWithoutProperties)
                     .toList();
 
             for (Path dir : exampleDirs) {
@@ -356,8 +359,14 @@ public class XdocsExamplesAstConsistencyTest {
                         .append("\n\n");
             }
 
-            builder.append("If these examples have different code intent, "
-                    + "add them to SUPPRESSED_EXAMPLES:\n");
+            builder.append(
+                    """
+                    If these examples have different code intent, \
+                    add them to SUPPRESSED_EXAMPLES.
+                    Note: do NOT add entries for modules without properties - \
+                    those are skipped automatically by isNotModuleWithoutProperties.
+                    Suggested entries:
+                    """);
 
             for (String violation : violations) {
                 final String pattern = extractIndependentPattern(violation);
@@ -446,6 +455,35 @@ public class XdocsExamplesAstConsistencyTest {
         final String exampleName = exampleFileName.replace(".java", "");
         final String fullPath = relativePath + "/" + exampleName;
         return SUPPRESSED_EXAMPLES.contains(fullPath);
+    }
+
+    /**
+     * Retrieves the set of module names (in lowercase) that have no properties.
+     * These modules are identified by reading all module metadata and filtering
+     * those with empty property lists.
+     *
+     * @return set of lowercase module names without properties
+     */
+    private static Set<String> getModulesWithoutProperties() {
+        return XmlMetaReader.readAllModulesIncludingThirdPartyIfAny().stream()
+                .filter(module -> module.getProperties().isEmpty())
+                .map(ModuleDetails::getName)
+                .map(name -> name.toLowerCase(Locale.ROOT))
+                .collect(Collectors.toUnmodifiableSet());
+    }
+
+    /**
+     * Checks if a directory does NOT correspond to a module without properties.
+     * This is used as a filter predicate to skip modules without properties,
+     * since they can have very different AST examples by design (no configuration
+     * change to demonstrate).
+     *
+     * @param dir the directory path
+     * @return true if this directory should be processed (is NOT a module without properties)
+     */
+    private static boolean isNotModuleWithoutProperties(Path dir) {
+        final String dirName = dir.getFileName().toString().toLowerCase(Locale.ROOT);
+        return !MODULES_WITHOUT_PROPERTIES.contains(dirName);
     }
 
     /**
@@ -559,7 +597,6 @@ public class XdocsExamplesAstConsistencyTest {
             throws IOException {
         final List<String> violations = new ArrayList<>();
         final String relativePath = getRelativePath(dir);
-
         final List<Path> regularExamples = new ArrayList<>();
 
         for (Path example : examples) {
