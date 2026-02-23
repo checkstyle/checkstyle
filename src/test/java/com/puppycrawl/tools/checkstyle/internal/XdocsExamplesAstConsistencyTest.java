@@ -29,8 +29,10 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
@@ -41,6 +43,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.meta.ModuleDetails;
+import com.puppycrawl.tools.checkstyle.meta.XmlMetaReader;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -66,6 +70,13 @@ public class XdocsExamplesAstConsistencyTest {
 
     private static final String XDOC_START_MARKER = "// xdoc section -- start";
     private static final String XDOC_END_MARKER = "// xdoc section -- end";
+
+    /**
+     * Set of module names (in lowercase) that have no configurable properties.
+     * Modules without properties can have very different AST examples since
+     * there is no configuration change to demonstrate.
+     */
+    private static final Set<String> MODULES_WITHOUT_PROPERTIES = getModulesWithoutProperties();
 
     /**
      * Examples that cannot be parsed as valid Java.
@@ -314,8 +325,6 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithnearbytextfilter/Example9",
             "filters/suppresswithplaintextcommentfilter/Example5",
             "filters/suppresswithplaintextcommentfilter/Example9",
-            // No properties in module, multiple very different examples to ease reading
-            "checks/annotation/missingoverrideonrecordaccessor/Example2",
             // contains ExampleX constructors
             "checks/naming/methodname/Example3",
             "checks/naming/methodname/Example4"
@@ -335,6 +344,7 @@ public class XdocsExamplesAstConsistencyTest {
             final List<Path> exampleDirs = pathStream
                     .filter(Files::isDirectory)
                     .filter(XdocsExamplesAstConsistencyTest::containsMultipleExamples)
+                    .filter(XdocsExamplesAstConsistencyTest::isNotModuleWithoutProperties)
                     .toList();
 
             for (Path dir : exampleDirs) {
@@ -453,6 +463,35 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
+     * Retrieves the set of module names (in lowercase) that have no properties.
+     * These modules are identified by reading all module metadata and filtering
+     * those with empty property lists.
+     *
+     * @return set of lowercase module names without properties
+     */
+    private static Set<String> getModulesWithoutProperties() {
+        return XmlMetaReader.readAllModulesIncludingThirdPartyIfAny().stream()
+                .filter(module -> module.getProperties().isEmpty())
+                .map(ModuleDetails::getName)
+                .map(name -> name.toLowerCase(Locale.ROOT))
+                .collect(Collectors.toUnmodifiableSet());
+    }
+
+    /**
+     * Checks if a directory does NOT correspond to a module without properties.
+     * This is used as a filter predicate to skip modules without properties,
+     * since they can have very different AST examples by design (no configuration
+     * change to demonstrate).
+     *
+     * @param dir the directory path
+     * @return true if this directory should be processed (is NOT a module without properties)
+     */
+    private static boolean isNotModuleWithoutProperties(Path dir) {
+        final String dirName = dir.getFileName().toString().toLowerCase(Locale.ROOT);
+        return !MODULES_WITHOUT_PROPERTIES.contains(dirName);
+    }
+
+    /**
      * Gets the relative path from the common base path.
      *
      * @param dir the directory path
@@ -563,7 +602,6 @@ public class XdocsExamplesAstConsistencyTest {
             throws IOException {
         final List<String> violations = new ArrayList<>();
         final String relativePath = getRelativePath(dir);
-
         final List<Path> regularExamples = new ArrayList<>();
 
         for (Path example : examples) {
