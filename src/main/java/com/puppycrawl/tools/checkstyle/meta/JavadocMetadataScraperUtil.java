@@ -62,6 +62,9 @@ public final class JavadocMetadataScraperUtil {
                 if (isInsideCodeInlineTag(curNode)) {
                     childText = adjustCodeInlineTagChildToHtml(curNode);
                 }
+                else if (isInsideLiteralInlineTag(curNode)) {
+                    childText = adjustLiteralInlineTagChildToText(curNode);
+                }
 
                 result.append(childText);
             }
@@ -89,6 +92,17 @@ public final class JavadocMetadataScraperUtil {
     }
 
     /**
+     * Checks whether the given node is inside a {@code @literal} Javadoc inline tag.
+     *
+     * @param node the node to check
+     * @return true if the node is inside a {@code @literal} inline tag, false otherwise
+     */
+    private static boolean isInsideLiteralInlineTag(DetailNode node) {
+        return node.getParent() != null
+                && node.getParent().getType() == JavadocCommentsTokenTypes.LITERAL_INLINE_TAG;
+    }
+
+    /**
      * Checks whether selected Javadoc node is considered as something to write.
      *
      * @param detailNode javadoc node to check.
@@ -113,8 +127,35 @@ public final class JavadocMetadataScraperUtil {
             case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END -> "</code>";
             case JavadocCommentsTokenTypes.TAG_NAME -> "";
             case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_START -> "<code>";
-            default -> codeChild.getText().trim().replace("&", "&amp;");
+            default -> escapeXmlChars(codeChild.getText().trim());
         };
+    }
+
+    /**
+     * Adjusts a child of {@code @literal} Javadoc inline tag to its XML-escaped plain text form.
+     *
+     * @param literalChild child node of the {@code @literal} inline tag.
+     * @return escaped text for content nodes, or empty string for structural tokens.
+     */
+    public static String adjustLiteralInlineTagChildToText(DetailNode literalChild) {
+        return switch (literalChild.getType()) {
+            case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END,
+                 JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_START,
+                 JavadocCommentsTokenTypes.TAG_NAME -> "";
+            default -> escapeXmlChars(literalChild.getText().trim());
+        };
+    }
+
+    /**
+     * Escapes special XML characters in the given text.
+     *
+     * @param text the text to escape.
+     * @return text with XML special characters escaped.
+     */
+    private static String escapeXmlChars(String text) {
+        return text.replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;");
     }
 
     /**
