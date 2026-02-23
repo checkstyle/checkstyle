@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -42,6 +43,22 @@ public class NoLineWrapCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY = "no.line.wrap";
+
+    /**
+     * Property that defines whether annotations on the previous line should be
+     * checked as violation.
+     */
+    private boolean skipAnnotations = true;
+
+    /**
+     * Setter to specify whether to skip annotations to be part of target token.
+     *
+     * @param shouldSkipAnnotations whether to skip annotations to be part of target token.
+     * @since 13.3.0
+     */
+    public void setSkipAnnotations(boolean shouldSkipAnnotations) {
+        skipAnnotations = shouldSkipAnnotations;
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -71,9 +88,17 @@ public class NoLineWrapCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (!TokenUtil.areOnSameLine(ast, ast.getLastChild())) {
+        DetailAST detailAST = ast;
+        if (skipAnnotations && AnnotationUtil.containsAnnotation(ast)) {
+            final int astType = ast.getType();
+            if (TokenTypes.CTOR_DEF == astType || TokenTypes.COMPACT_CTOR_DEF == astType) {
+                detailAST = AnnotationUtil.getAnnotationHolder(ast).getFirstChild().getNextSibling();
+            } else {
+                detailAST = AnnotationUtil.getAnnotationHolder(ast).getNextSibling();
+            }
+        }
+        if (!TokenUtil.areOnSameLine(detailAST, ast.getLastChild())) {
             log(ast, MSG_KEY, ast.getText());
         }
     }
-
 }
