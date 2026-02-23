@@ -522,9 +522,16 @@ public class RightCurlyCheck extends AbstractCheck {
             }
             final DetailAST nextToken = getNextToken(ast);
 
-            final boolean lcurlyOnSameLineAsElse = lcurly != null
-                    && TokenUtil.areOnSameLine(ast, lcurly);
-            return new Details(lcurly, rcurly, nextToken, !lcurlyOnSameLineAsElse);
+            final boolean shouldCheckLastRcurly;
+
+            if (rcurly != null && nextToken != null
+             && TokenUtil.areOnSameLine(rcurly, nextToken)) {
+                shouldCheckLastRcurly = false;
+            } else {
+                shouldCheckLastRcurly = true;
+            }
+
+            return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);
         }
 
         /**
