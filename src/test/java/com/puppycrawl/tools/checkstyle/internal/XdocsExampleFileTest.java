@@ -59,7 +59,12 @@ public class XdocsExampleFileTest {
     // Until: https://github.com/checkstyle/checkstyle/issues/17449
     private static final Map<String, Set<String>> SUPPRESSED_PROPERTIES_BY_CHECK = Map.ofEntries(
             Map.entry("MissingJavadocTypeCheck", Set.of("skipAnnotations")),
+<<<<<<< HEAD
             Map.entry("JavadocStyleCheck", Set.of("endOfSentenceFormat")),
+=======
+            Map.entry("ConstantNameCheck", Set.of("applyToPackage", "applyToPrivate")),
+            Map.entry("WhitespaceAroundCheck", Set.of("allowEmptySwitchBlockStatements")),
+>>>>>>> 7ae513df93 (Issue #17449: update javadocstyle endOfSentenceFormat documentation and examples)
             Map.entry("SuppressWarningsHolder", Set.of("aliasList")),
             Map.entry("IndentationCheck", Set.of(
                     "basicOffset",
