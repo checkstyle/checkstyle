@@ -29,7 +29,7 @@ class InputRightCurlyLeftTestDefault
                 else
                 {
                     break;
-                }
+                } // violation '}' at column 17 should be on same line
                 switch (a)
                 {
                 case 0:
