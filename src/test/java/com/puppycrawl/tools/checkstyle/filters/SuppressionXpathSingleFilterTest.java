@@ -402,6 +402,19 @@ public class SuppressionXpathSingleFilterTest
                 expected, removeSuppressed(expected, suppressed));
     }
 
+    @Test
+    public void testNonMatchingCheckRegexp() throws Exception {
+        final String[] expected = {
+            "19:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
+        };
+
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressionXpathSingleFilterNonMatchingCheckRegexp.java"), expected,
+            removeSuppressed(expected, suppressed));
+    }
+
     /**
      * This test is required to cover pitest mutation
      * for reset of 'file' field in SuppressionXpathSingleFilter.
