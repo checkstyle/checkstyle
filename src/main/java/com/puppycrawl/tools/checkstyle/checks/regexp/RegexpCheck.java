@@ -87,7 +87,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * <b>Note:</b> When entering a regular expression as a parameter in
  * the XML config file you must also take into account the XML rules. e.g.
- * if you want to match a &lt; symbol you need to enter &amp;lt;.
+ * if you want to match a {@literal <} symbol you need to enter &amp;lt;.
  * The regular expression should be entered on one line.
  * </p>
  *
@@ -99,7 +99,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <p>
  * <b>Note:</b> To search for things that mean something in XML, like
- * &lt; you need to escape them like &amp;lt;. This is required so the
+ * {@literal <} you need to escape them like &amp;lt;. This is required so the
  * XML parser does not act on them, but instead passes the correct
  * character to the regexp engine.
  * </p>
