@@ -1663,7 +1663,30 @@ public final class JavadocCommentsTokenTypes {
     public static final int DESCRIPTION = JavadocCommentsLexer.DESCRIPTION;
 
     /**
-     * Format specifier inside Javadoc content.
+     * Format specifier inside a {@code {@value}} inline tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * {@value %s #MY_CONSTANT}
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--VALUE_INLINE_TAG -> VALUE_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> {@
+     *     |--TAG_NAME -> value
+     *     |--TEXT ->
+     *     |--FORMAT_SPECIFIER -> %s
+     *     |--TEXT ->
+     *     |--REFERENCE -> REFERENCE
+     *     |   |--HASH -> #
+     *     |   `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *     |       `--IDENTIFIER -> MY_CONSTANT
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #VALUE_INLINE_TAG
      */
     public static final int FORMAT_SPECIFIER = JavadocCommentsLexer.FORMAT_SPECIFIER;
 
