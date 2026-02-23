@@ -1664,10 +1664,13 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Format specifier inside a {@code {@value}} inline tag.
+     * Since Java 20, the {@code {@value}} tag supports an optional printf-style
+     * format specifier to control how the constant value is displayed,
+     * for example to render an integer constant as hexadecimal.
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
-     * {@value %s #MY_CONSTANT}
+     * {@value %04x Modifier#MANDATED}
      * }</pre>
      *
      * <p><b>Tree:</b></p>
@@ -1677,12 +1680,13 @@ public final class JavadocCommentsTokenTypes {
      *     |--JAVADOC_INLINE_TAG_START -> {@
      *     |--TAG_NAME -> value
      *     |--TEXT ->
-     *     |--FORMAT_SPECIFIER -> %s
+     *     |--FORMAT_SPECIFIER -> %04x
      *     |--TEXT ->
      *     |--REFERENCE -> REFERENCE
+     *     |   |--IDENTIFIER -> Modifier
      *     |   |--HASH -> #
      *     |   `--MEMBER_REFERENCE -> MEMBER_REFERENCE
-     *     |       `--IDENTIFIER -> MY_CONSTANT
+     *     |       `--IDENTIFIER -> MANDATED
      *     `--JAVADOC_INLINE_TAG_END -> }
      * }</pre>
      *
