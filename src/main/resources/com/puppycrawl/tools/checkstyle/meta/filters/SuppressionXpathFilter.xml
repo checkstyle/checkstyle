@@ -162,7 +162,8 @@
  &lt;code&gt;files&lt;/code&gt; -
  a &lt;a href="../property_types.html#Pattern"&gt;Pattern&lt;/a&gt;
  matched against the file name associated with an audit
- event. It is optional.
+ event. It is optional. If unmatched, all Unix path separators (/)
+ are converted to Windows separators (\) and retried.
  &lt;/li&gt;
  &lt;li&gt;
  &lt;code&gt;checks&lt;/code&gt; -
