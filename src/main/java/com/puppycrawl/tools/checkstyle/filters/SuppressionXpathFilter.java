@@ -190,7 +190,8 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * {@code files} -
  * a <a href="../property_types.html#Pattern">Pattern</a>
  * matched against the file name associated with an audit
- * event. It is optional.
+ * event. It is optional. If unmatched, all Unix path separators (/)
+ * are converted to Windows separators (\) and retried.
  * </li>
  * <li>
  * {@code checks} -

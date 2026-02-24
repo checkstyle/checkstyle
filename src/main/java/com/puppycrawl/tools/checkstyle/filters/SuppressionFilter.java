@@ -48,7 +48,8 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * <li>
  * {@code files} - a <a href="https://checkstyle.org/property_types.html#Pattern">
  * Pattern</a> matched against the file name associated with an audit event.
- * It is optional.
+ * It is optional. If unmatched, all Unix path separators (/)
+ * are converted to Windows separators (\) and retried.
  * </li>
  * <li>
  * {@code checks} - a <a href="https://checkstyle.org/property_types.html#Pattern">
