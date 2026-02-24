@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocVariableCheckTest
     extends AbstractModuleTestSupport {
@@ -63,17 +64,41 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testDefault()
-            throws Exception {
+    public void testMethods1() throws
+            Exception {
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "309:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "316:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "335:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-
         };
         verifyWithInlineConfigParser(
-                getPath("InputJavadocVariableTags.java"), expected);
+                getPath("InputJavadocVariableTagsMethods1.java"), expected);
+    }
+
+    @Test
+    public void testMethods2()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocVariableTagsMethods2.java"), expected);
+    }
+
+    @Test
+    public void testMethods3()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocVariableTagsMethods3.java"), expected);
+    }
+
+    @Test
+    public void testEnums()
+            throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "22:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "41:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocVariableTagsEnums.java"), expected);
     }
 
     @Test
