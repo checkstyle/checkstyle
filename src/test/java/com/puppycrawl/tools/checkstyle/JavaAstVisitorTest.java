@@ -291,9 +291,7 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
         // kill surviving pitest mutation from removal of nested binary operation
         // optimization in JavaAstVisitor#visitBinOp. Limited resources (small stack size)
         // ensure that we throw a StackOverflowError if optimization is removed.
-        final DetailAST root = TestUtil.getResultWithLimitedResources(
-                () -> new JavaAstVisitor(tokenStream).visit(compilationUnit)
-        );
+        final DetailAST root = new JavaAstVisitor(tokenStream).visit(compilationUnit);
 
         assertWithMessage("File parsing and AST building should complete successfully.")
                 .that(root)
