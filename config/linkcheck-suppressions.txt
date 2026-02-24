@@ -1214,6 +1214,7 @@
 <a href="com/puppycrawl/tools/checkstyle/checks/sizes/ExecutableStatementCountCheck.Context.html#%3Cinit%3E(com.puppycrawl.tools.checkstyle.api.DetailAST)">com/puppycrawl/tools/checkstyle/checks/sizes/ExecutableStatementCountCheck.Context.html#%3Cinit%3E(com.puppycrawl.tools.checkstyle.api.DetailAST)</a>: doesn't exist.
 <a href="com/puppycrawl/tools/checkstyle/checks/sizes/ExecutableStatementCountCheck.html#%3Cinit%3E()">com/puppycrawl/tools/checkstyle/checks/sizes/ExecutableStatementCountCheck.html#%3Cinit%3E()</a>: doesn't exist.
 <a href="com/puppycrawl/tools/checkstyle/checks/sizes/FileLengthCheck.html#%3Cinit%3E()">com/puppycrawl/tools/checkstyle/checks/sizes/FileLengthCheck.html#%3Cinit%3E()</a>: doesn't exist.
+<a href="com/puppycrawl/tools/checkstyle/checks/sizes/JavaLineLengthCheck.html#%3Cinit%3E()">com/puppycrawl/tools/checkstyle/checks/sizes/JavaLineLengthCheck.html#%3Cinit%3E()</a>: doesn't exist.
 <a href="com/puppycrawl/tools/checkstyle/checks/sizes/LambdaBodyLengthCheck.html#%3Cinit%3E()">com/puppycrawl/tools/checkstyle/checks/sizes/LambdaBodyLengthCheck.html#%3Cinit%3E()</a>: doesn't exist.
 <a href="com/puppycrawl/tools/checkstyle/checks/sizes/LineLengthCheck.html#%3Cinit%3E()">com/puppycrawl/tools/checkstyle/checks/sizes/LineLengthCheck.html#%3Cinit%3E()</a>: doesn't exist.
 <a href="com/puppycrawl/tools/checkstyle/checks/sizes/MethodCountCheck.html#%3Cinit%3E()">com/puppycrawl/tools/checkstyle/checks/sizes/MethodCountCheck.html#%3Cinit%3E()</a>: doesn't exist.
