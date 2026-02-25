@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import org.jspecify.annotations.NonNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -691,18 +692,7 @@ public class SuppressionCommentFilterTest
                 .thenReturn(returnValue)
                 .thenThrow(new IllegalStateException("Second call is not allowed"));
 
-        final String[] args = {"line_length", "^[a-z][a-zA-Z0-9]*$"};
-        final Violation violation = new Violation(27, 9, 58,
-                "com.puppycrawl.tools.checkstyle.checks.naming.messages",
-                "name.invalidPattern",
-                args,
-                SeverityLevel.ERROR,
-                "ignore",
-                MemberNameCheck.class,
-                null);
-
-        final TreeWalkerAuditEvent event = new TreeWalkerAuditEvent(
-                mockedContents, file.getAbsolutePath(), violation, rootAst);
+        final TreeWalkerAuditEvent event = getTreeWalkerAuditEvent(mockedContents, file, rootAst);
 
         final SuppressionCommentFilter filter = new SuppressionCommentFilter();
         filter.setOffCommentFormat(Pattern.compile("CSOFF"));
@@ -716,6 +706,22 @@ public class SuppressionCommentFilterTest
         // so exception is not expected
         assertWithMessage("should accept")
                 .that(filter.accept(event)).isTrue();
+    }
+
+    private static @NonNull TreeWalkerAuditEvent getTreeWalkerAuditEvent(FileContents mockedContents, File file, DetailAST rootAst) {
+        final String[] args = {"line_length", "^[a-z][a-zA-Z0-9]*$"};
+        final Violation violation = new Violation(27, 9, 58,
+                "com.puppycrawl.tools.checkstyle.checks.naming.messages",
+                "name.invalidPattern",
+                args,
+                SeverityLevel.ERROR,
+                "ignore",
+                MemberNameCheck.class,
+                null);
+
+        final TreeWalkerAuditEvent event = new TreeWalkerAuditEvent(
+                mockedContents, file.getAbsolutePath(), violation, rootAst);
+        return event;
     }
 
 }
