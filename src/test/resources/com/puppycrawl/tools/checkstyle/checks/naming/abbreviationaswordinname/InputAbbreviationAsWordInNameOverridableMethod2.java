@@ -26,7 +26,7 @@ abstract class InputAbbreviationAsWordInNameOverridableMethod2 extends Class1 {
     @Override
     @SuppressWarnings(value = { "" })
     @Before
-    protected void oveRRRRRrriddenMethod(){ // violation
+    protected void overRIDDENMethod(){ // violation
         int a = 0;
         // blah-blah
     }
@@ -34,7 +34,7 @@ abstract class InputAbbreviationAsWordInNameOverridableMethod2 extends Class1 {
 
 class Class12 {
     @SuppressWarnings(value = { "" })
-    protected void oveRRRRRrriddenMethod(){ // violation
+    protected void overRIDDENMethod(){ // violation
         int a = 0;
         // blah-blah
     }
@@ -46,7 +46,7 @@ class Class22 extends Class1 {
     @Override
     @SuppressWarnings(value = { "" })
     @Before
-    protected void oveRRRRRrriddenMethod(){ // violation
+    protected void overRIDDENMethod(){ // violation
         int a = 0;
         // blah-blah
     }
