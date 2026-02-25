@@ -1,7 +1,6 @@
 Aapt
 aarch
 abbreviationaswordinname
-abcun
 abstractcheck
 abstractclassname
 abstractfileset
@@ -95,7 +94,6 @@ awt
 azurewebsites
 Backquote
 backticks
-BADN
 badpackage
 baeldung
 baratali
@@ -114,7 +112,6 @@ bew
 bff
 bitbucket
 bjrke
-bleh
 Blic
 blockandinlinetags
 blockcomment
@@ -159,7 +156,6 @@ cdfd
 Cdi
 Cfg
 Cfml
-Cfoo
 cfz
 cgi
 chainedpropertyutil
@@ -299,7 +295,6 @@ dfa
 DFFF
 Dfile
 dfn
-Dfoo
 Dforbiddenapis
 Dgpg
 Dhttp
@@ -612,7 +607,6 @@ Inlined
 inlinetags
 innerassignment
 Innerclass
-INNERR
 innertypelast
 inplace
 instanceof
@@ -814,7 +808,6 @@ mailto
 mainframemodel
 Mancuso
 mapfile
-marazmatic
 markdownlint
 Massol
 matchxpath
@@ -1031,8 +1024,6 @@ OSX
 otechie
 outertypefilename
 outertypenumber
-outter
-ove
 overloadmethodsdeclarationorder
 overloadsplit
 overridable
@@ -1118,14 +1109,12 @@ programpractice
 Proguard
 propertycachefile
 propkey
-PROTECTE
 protonpack
 Psevntu
 PSHOME
 PSMODULEP
 pubconstr
 pubifc
-PUBLI
 pubpub
 pullrequest
 puppycrawl
@@ -1204,8 +1193,6 @@ rparen
 rpmfind
 rq
 Rr
-Rrridden
-RRRR
 Rsa
 RSPEC
 Rtl
@@ -1468,7 +1455,7 @@ UUID
 UWF
 uxxxx
 validator
-VALUEEEE
+VALUELONG
 vararg
 variabledeclarationusagedistance
 Veach
