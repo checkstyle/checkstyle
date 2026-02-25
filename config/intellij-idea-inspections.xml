@@ -4994,7 +4994,7 @@
          it is checked by RequireThisCheck -->
   <inspection_tool class="UnqualifiedFieldAccess" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
-  <!-- it is ok to skip name of outter class for inner class
+  <!-- it is ok to skip name of outer class for inner class
          in filed/variable declaration to keep type short -->
   <inspection_tool class="UnqualifiedInnerClassAccess" enabled="false" level="ERROR"
                    enabled_by_default="false"/>

@@ -52,8 +52,8 @@ public record InputSuppressWarningsRecords
         }
     }
 
-    // violation below, 'The warning 'abcun' cannot be suppressed at this location'
-    @SuppressWarnings(value = {"abcun"})
+    // violation below, 'The warning 'invalid' cannot be suppressed at this location'
+    @SuppressWarnings(value = {"invalid"})
     @Documented
     @interface inter {
         int cool();
