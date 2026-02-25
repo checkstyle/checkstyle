@@ -756,6 +756,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/sizes/javalinelength.html#JavaLineLength">
+                JavaLineLength
+              </a>
+            </td>
+            <td>
+              Checks for long lines but ignores lines whose tokens are specified.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/metrics/javancss.html#JavaNCSS">
                 JavaNCSS
               </a>
