@@ -577,4 +577,15 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    @Test
+    public void testLocalTypeDefsInsideLambdasTwo() throws Exception {
+        final String[] expected = {
+            "89:9: " + getCheckMessage(MSG_VARIABLE, "index", ""),
+            "98:21: " + getCheckMessage(MSG_VARIABLE, "index", ""),
+            "112:29: " + getCheckMessage(MSG_VARIABLE, "index", ""),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputRequireThisLocalTypeDefsInsideLambdas.java"), expected);
+    }
+
 }
