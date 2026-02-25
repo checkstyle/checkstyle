@@ -83,5 +83,6 @@ class InputGenericWhitespace implements Comparable<InputGenericWhitespace>, Seri
 
   public static class IntEnumValueType3<E extends Enum<E>  & IntEnum> {
     // violation above ''\>' is followed by whitespace.'
+    // violation 2 lines above 'Use a single space to separate non-whitespace characters'
   }
 }
