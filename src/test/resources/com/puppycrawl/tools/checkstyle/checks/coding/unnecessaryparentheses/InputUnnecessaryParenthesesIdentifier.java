@@ -6,7 +6,7 @@ tokens = (default)EXPR, IDENT, NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG, \
          MINUS_ASSIGN, MOD_ASSIGN, PLUS_ASSIGN, SL_ASSIGN, SR_ASSIGN, STAR_ASSIGN, \
          LAMBDA, TEXT_BLOCK_LITERAL_BEGIN, LAND, LITERAL_INSTANCEOF, GT, LT, GE, \
          LE, EQUAL, NOT_EQUAL, UNARY_MINUS, UNARY_PLUS, INC, DEC, LNOT, BNOT, \
-         POST_INC, POST_DEC
+         POST_INC, POST_DEC, INDEX_OP, DOT, LOR
 
 
 */
@@ -96,6 +96,7 @@ public class InputUnnecessaryParenthesesIdentifier {
                               + false // (line != null)
                               + " empty="
                               + (line.equals(""))
+            // violation above 'Unnecessary parentheses around expression'
                               + " comment="
                               + (isComment(line)));
         // violation above 'Unnecessary parentheses around identifier 'isComment''
