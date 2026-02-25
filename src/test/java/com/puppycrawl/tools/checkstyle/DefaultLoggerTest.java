@@ -37,7 +37,6 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
@@ -268,22 +267,21 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAddErrorIgnoreSeverityLevel() {
-        final OutputStream infoStream = new ByteArrayOutputStream();
-        final OutputStream errorStream = new ByteArrayOutputStream();
-        final DefaultLogger defaultLogger = new DefaultLogger(
-            infoStream, OutputStreamOptions.CLOSE,
-            errorStream, OutputStreamOptions.CLOSE);
-        defaultLogger.finishLocalSetup();
-        defaultLogger.auditStarted(null);
-        final Violation ignorableViolation = new Violation(1, 2, "bundle", "key",
-                                                           null, SeverityLevel.IGNORE, null,
-                                                           getClass(), "customViolation");
-        defaultLogger.addError(new AuditEvent(this, "fileName", ignorableViolation));
-        defaultLogger.auditFinished(null);
-        assertWithMessage("No violation was expected")
-            .that(errorStream.toString())
-            .isEmpty();
+    public void testAddErrorIgnoreSeverityLevel() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestIgnoreSeverityLevel.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestIgnoreSeverityLevel.txt";
+
+        final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
+        final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+                errorStream, OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndDefaultLogger(
+                getPath(inputFile),
+                getPath(expectedInfoFile),
+                getPath(expectedErrorFile),
+                dl, infoStream, errorStream);
     }
 
     @Test
