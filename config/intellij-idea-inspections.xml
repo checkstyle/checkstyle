@@ -5222,9 +5222,8 @@
   <inspection_tool class="Weblogic" enabled="false" level="ERROR" enabled_by_default="false"/>
   <inspection_tool class="WhenWithOnlyElse" enabled="false" level="WEAK WARNING"
                    enabled_by_default="false"/>
-  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
-  <inspection_tool class="WhileCanBeDoWhile" enabled="false" level="WARNING"
-                   enabled_by_default="false" />
+  <inspection_tool class="WhileCanBeDoWhile" enabled="true" level="WARNING"
+                   enabled_by_default="true"/>
   <inspection_tool class="WhileCanBeForeach" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
   <inspection_tool class="WhileLoopSpinsOnField" enabled="true" level="WARNING"
