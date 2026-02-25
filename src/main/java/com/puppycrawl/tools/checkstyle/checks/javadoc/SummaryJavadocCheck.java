@@ -91,10 +91,33 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     /** Default period literal. */
     private static final String DEFAULT_PERIOD = ".";
 
+    /** Empty regex pattern. */
+    private static final String EMPTY_REGEX_PATTERN = "^$";
+
+    /** Pipe character for regex alternation. */
+    private static final String PIPE_CHAR = "|";
+
+    /** Space character. */
+    private static final String SPACE = " ";
+
+    /** Pattern suffix to remove for inline return tags. */
+    private static final String INLINE_TAG_SUFFIX = PIPE_CHAR + "^[a-z]";
+
+    /** Length of pattern suffix to remove. */
+    private static final int SUFFIX_LENGTH = 7;
+
     /**
      * Specify the regexp for forbidden summary fragments.
      */
-    private Pattern forbiddenSummaryFragments = CommonUtil.createPattern("^$");
+    private Pattern forbiddenSummaryFragments = CommonUtil.createPattern(
+        EMPTY_REGEX_PATTERN);
+
+    /**
+     * Specify the regexp for forbidden summary fragments in inline return tags.
+     * By default, this is the same as forbiddenSummaryFragments but without the
+     * ^[a-z] pattern, to allow inline return tags that start with lowercase.
+     */
+    private Pattern forbiddenSummaryFragmentsInlineReturn;
 
     /**
      * Specify the period symbol. Used to check the first sentence ends with a period. Periods that
@@ -117,6 +140,27 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     public void setForbiddenSummaryFragments(Pattern pattern) {
         forbiddenSummaryFragments = pattern;
+        // Remove the ^[a-z] part from the pattern for inline return tags
+        // This is needed because inline {@return ...} is explicitly allowed by Google style guide
+        final String patternStr = pattern.pattern();
+        if (patternStr.endsWith(INLINE_TAG_SUFFIX)) {
+            // Remove |^[a-z] from the end
+            forbiddenSummaryFragmentsInlineReturn = CommonUtil.createPattern(
+                patternStr.substring(0, patternStr.length() - SUFFIX_LENGTH));
+        }
+        else if (patternStr.contains(INLINE_TAG_SUFFIX + PIPE_CHAR)) {
+            // Remove |^[a-z] from the middle
+            forbiddenSummaryFragmentsInlineReturn = CommonUtil.createPattern(
+                patternStr.replace(INLINE_TAG_SUFFIX + PIPE_CHAR, PIPE_CHAR));
+        }
+        else if (INLINE_TAG_SUFFIX.substring(1).equals(patternStr)) {
+            // If the entire pattern is just ^[a-z], use empty pattern
+            forbiddenSummaryFragmentsInlineReturn = CommonUtil.createPattern(
+                EMPTY_REGEX_PATTERN);
+        }
+        else {
+            forbiddenSummaryFragmentsInlineReturn = pattern;
+        }
     }
 
     /**
@@ -358,8 +402,30 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private boolean containsForbiddenFragment(String firstSentence) {
         final String javadocText = JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN
-                .matcher(firstSentence).replaceAll(" ");
+                .matcher(firstSentence).replaceAll(SPACE);
         return forbiddenSummaryFragments.matcher(trimExcessWhitespaces(javadocText)).find();
+    }
+
+    /**
+     * Tests if inline return content contains forbidden summary fragment.
+     * This method uses the forbiddenSummaryFragmentsInlineReturn pattern which
+     * excludes the ^[a-z] pattern to allow inline return tags that start with
+     * lowercase.
+     *
+     * @param inlineReturn string with inline return content.
+     * @return {@code true} if inline return contains forbidden summary fragment.
+     */
+    private boolean containsForbiddenFragmentForInlineReturn(String inlineReturn) {
+        final String javadocText = JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN
+                .matcher(inlineReturn).replaceAll(SPACE);
+        final Pattern pattern;
+        if (forbiddenSummaryFragmentsInlineReturn == null) {
+            pattern = forbiddenSummaryFragments;
+        }
+        else {
+            pattern = forbiddenSummaryFragmentsInlineReturn;
+        }
+        return pattern.matcher(trimExcessWhitespaces(javadocText)).find();
     }
 
     /**
@@ -381,7 +447,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 }
 
                 previousWhitespace = true;
-                print = ' ';
+                print = SPACE.charAt(0);
             }
             else {
                 previousWhitespace = false;
