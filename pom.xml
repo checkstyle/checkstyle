@@ -419,7 +419,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>4.3.1</version>
+      <version>4.4.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -1777,7 +1777,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <version>3.5.4</version>
+        <version>3.5.5</version>
         <configuration>
           <includes>
             <include>com/google/**/*.java</include>
@@ -1804,7 +1804,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.5.4</version>
+        <version>3.5.5</version>
         <configuration>
           <argLine>-Dfile.encoding=UTF-8 ${surefire.options}</argLine>
           <systemPropertyVariables>
@@ -2245,7 +2245,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-report-plugin</artifactId>
-        <version>3.5.4</version>
+        <version>3.5.5</version>
         <reportSets>
           <reportSet>
             <reports>

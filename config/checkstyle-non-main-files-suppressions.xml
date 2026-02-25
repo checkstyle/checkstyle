@@ -195,6 +195,8 @@
   <suppress id="noEmptyFile"
              files="src[\\/]test[\\/]resources[\\/].*[\\/]InputLineEndingOneLineCrlf\.txt"/>
   <suppress id="noEmptyFile"
+             files="src[\\/]test[\\/]resources[\\/].*[\\/]defaultlogger[\\/]ExpectedDefaultLoggerErrorsTestIgnoreSeverityLevel\.txt"/>
+  <suppress id="noEmptyFile"
              files="src[\\/]test[\\/]resources[\\/].*[\\/]InputLineEndingOneLineLf\.txt"/>
   <!-- not a curl command but a text replacement -->
   <suppress id="properCurlCommand" files=".ci[\\/]validation\.sh"/>

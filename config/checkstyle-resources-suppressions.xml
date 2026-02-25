@@ -247,8 +247,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocvariable[\\/]InputJavadocVariableNoJavadoc5\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocvariable[\\/]InputJavadocVariableTags\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocvariable[\\/]InputJavadocVariableNoJavadoc2\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocvariable[\\/]InputJavadocVariableNoJavadoc3\.java"/>
@@ -420,8 +418,6 @@
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]hiddenfield[\\/]InputHiddenField6\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]hiddenfield[\\/]InputHiddenFieldReorder\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]hiddenfield[\\/]InputHiddenField1\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]variabledeclarationusagedistance[\\/]InputVariableDeclarationUsageDistanceFinal\.java"/>
   <suppress checks="FileLength"
