@@ -307,10 +307,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             log(inlineReturnTag.getLineNumber(), inlineReturnTag.getColumnNumber(),
                     MSG_SUMMARY_JAVADOC_MISSING);
         }
-        else if (containsForbiddenFragment(inlineReturn)) {
-            log(inlineReturnTag.getLineNumber(), inlineReturnTag.getColumnNumber(),
-                    MSG_SUMMARY_JAVADOC);
-        }
     }
 
     /**
