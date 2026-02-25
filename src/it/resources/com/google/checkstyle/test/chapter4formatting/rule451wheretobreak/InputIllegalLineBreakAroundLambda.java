@@ -64,6 +64,7 @@ public class InputIllegalLineBreakAroundLambda {
           "Please try again after some time. Downtime.";
       case ErrorInProcessingTryAgain
           ->  "Please try again after some time. you made a mistake or there is something wrong.";
+      // violation above 'Use a single space to separate non-whitespace characters'
       // illegal line break before lambda above, ok until #17253
       default ->
           throw new IllegalArgumentException("");

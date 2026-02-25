@@ -89,6 +89,7 @@ src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/Inp
 src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule734nonrequiredjavadoc/InputInvalidJavadocPosition.java
 src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule734nonrequiredjavadoc/InputInvalidJavadocPositionRecord.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputWhitespaceAroundWhen.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputSingleSpaceSeparatorForElse.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputLambdaChild.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputSwitchOnStartOfTheLine.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputCatchParametersOnNewLine.java
