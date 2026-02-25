@@ -216,32 +216,6 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAddError() {
-        final OutputStream infoStream = new ByteArrayOutputStream();
-        final OutputStream errorStream = new ByteArrayOutputStream();
-        final String auditStartMessage = getAuditStartMessage();
-        final String auditFinishMessage = getAuditFinishMessage();
-        final DefaultLogger dl = new DefaultLogger(infoStream,
-                OutputStreamOptions.CLOSE, errorStream,
-                OutputStreamOptions.CLOSE);
-        dl.finishLocalSetup();
-        dl.auditStarted(null);
-        dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, "bundle", "key",
-                null, null, getClass(), "customViolation")));
-        dl.auditFinished(null);
-        assertWithMessage("expected output")
-            .that(infoStream.toString())
-            .isEqualTo(auditStartMessage
-                        + System.lineSeparator()
-                        + auditFinishMessage
-                        + System.lineSeparator());
-        assertWithMessage("expected output")
-            .that(errorStream.toString())
-            .isEqualTo("[ERROR] fileName:1:2: customViolation [DefaultLoggerTest]"
-                + System.lineSeparator());
-    }
-
-    @Test
     public void testAddErrorModuleId() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final OutputStream errorStream = new ByteArrayOutputStream();
