@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.utils.XpathUtil.getXpathItems;
 import java.io.File;
 import java.util.List;
 
+import org.jspecify.annotations.NonNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -78,6 +79,18 @@ public class ElementNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testSiblingsOrdering() {
+        final AbstractNode parentNode = getAbstractNode();
+        final List<AbstractNode> children = parentNode.getChildren();
+
+        assertWithMessage("Incorrect ordering value")
+            .that(children.getFirst().compareOrder(children.get(1)))
+            .isEqualTo(-1);
+        assertWithMessage("Incorrect ordering value")
+            .that(children.get(1).compareOrder(children.getFirst()))
+            .isEqualTo(1);
+    }
+
+    private static @NonNull AbstractNode getAbstractNode() {
         final DetailAstImpl detailAst1 = new DetailAstImpl();
         detailAst1.setType(TokenTypes.VARIABLE_DEF);
 
@@ -90,14 +103,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         parentAST.addChild(detailAst2);
 
         final AbstractNode parentNode = new ElementNode(rootNode, rootNode, parentAST, 1, 0);
-        final List<AbstractNode> children = parentNode.getChildren();
-
-        assertWithMessage("Incorrect ordering value")
-            .that(children.getFirst().compareOrder(children.get(1)))
-            .isEqualTo(-1);
-        assertWithMessage("Incorrect ordering value")
-            .that(children.get(1).compareOrder(children.getFirst()))
-            .isEqualTo(1);
+        return parentNode;
     }
 
     @Test
