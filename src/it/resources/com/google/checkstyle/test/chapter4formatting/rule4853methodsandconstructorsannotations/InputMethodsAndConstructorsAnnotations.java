@@ -67,6 +67,7 @@ public class InputMethodsAndConstructorsAnnotations {
   // violation below 'Annotation 'SomeAnnotation2' should be alone on line.'
   @SomeAnnotation1 @SomeAnnotation2  InputMethodsAndConstructorsAnnotations(String a,
                                                                             String b) {}
+  // violation 2 lines above 'Use a single space to separate non-whitespace characters'
 
   // violation below 'Annotation 'SuppressWarnings' should be alone on line.'
   @SuppressWarnings("blah") InputMethodsAndConstructorsAnnotations(int x, int y) {}
