@@ -321,6 +321,7 @@
           <item name="AnonInnerLength" href="checks/sizes/anoninnerlength.html"/>
           <item name="ExecutableStatementCount" href="checks/sizes/executablestatementcount.html"/>
           <item name="FileLength" href="checks/sizes/filelength.html"/>
+          <item name="JavaLineLength" href="checks/sizes/javalinelength.html"/>
           <item name="LambdaBodyLength" href="checks/sizes/lambdabodylength.html"/>
           <item name="LineLength" href="checks/sizes/linelength.html"/>
           <item name="MethodCount" href="checks/sizes/methodcount.html"/>
