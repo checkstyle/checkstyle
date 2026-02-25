@@ -242,28 +242,21 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAddErrorModuleId() {
-        final OutputStream infoStream = new ByteArrayOutputStream();
-        final OutputStream errorStream = new ByteArrayOutputStream();
-        final String auditFinishMessage = getAuditFinishMessage();
-        final String auditStartMessage = getAuditStartMessage();
+    public void testAddErrorModuleId() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestAddErrorModuleId.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestAddErrorModuleId.txt";
+
+        final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
+        final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
                 errorStream, OutputStreamOptions.CLOSE);
-        dl.finishLocalSetup();
-        dl.auditStarted(null);
-        dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, "bundle", "key",
-                null, "moduleId", getClass(), "customViolation")));
-        dl.auditFinished(null);
-        assertWithMessage("expected output")
-            .that(infoStream.toString())
-            .isEqualTo(auditStartMessage
-                        + System.lineSeparator()
-                        + auditFinishMessage
-                        + System.lineSeparator());
-        assertWithMessage("expected output")
-            .that(errorStream.toString())
-            .isEqualTo("[ERROR] fileName:1:2: customViolation [moduleId]"
-                + System.lineSeparator());
+
+        verifyWithInlineConfigParserAndDefaultLogger(
+                getPath(inputFile),
+                getPath(expectedInfoFile),
+                getPath(expectedErrorFile),
+                dl, infoStream, errorStream);
     }
 
     @Test
