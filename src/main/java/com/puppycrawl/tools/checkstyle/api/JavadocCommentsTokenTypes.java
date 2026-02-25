@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer;
  * @noinspection JavadocDeclaration
  * @noinspectionreason JavadocDeclaration - Javadoc is intentional
  */
-@SuppressWarnings({"InvalidInlineTag", "UnrecognisedJavadocTag"})
+@SuppressWarnings({"InvalidInlineTag", "UnrecognisedJavadocTag", "EmptyClass"})
 public final class JavadocCommentsTokenTypes {
 
     /**
