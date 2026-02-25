@@ -1801,7 +1801,12 @@ public final class JavadocCommentsTokenTypes {
      * Colon symbol {@code : }.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * {@snippet :config}}</pre>
+     * <pre>{@code
+     * /**
+     * * {@snippet :config}
+     * * /
+     * class Test {}
+     * }</pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
