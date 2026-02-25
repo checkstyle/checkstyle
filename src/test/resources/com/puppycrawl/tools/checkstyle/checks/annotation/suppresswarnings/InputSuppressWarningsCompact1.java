@@ -46,7 +46,7 @@ public class InputSuppressWarningsCompact1
         }
     }
 
-    @SuppressWarnings({"abcun"})
+    @SuppressWarnings({"invalid"})
     @Documented
     @interface Sweet {
         int cool();
@@ -57,7 +57,7 @@ public class InputSuppressWarningsCompact1
     // violation above, 'The warning '' cannot be suppressed at this location'
     @interface MoreSweetness {
 
-        @SuppressWarnings({"unused", "bleh"})
+        @SuppressWarnings({"unused", "ignore"})
         int cool();
     }
 

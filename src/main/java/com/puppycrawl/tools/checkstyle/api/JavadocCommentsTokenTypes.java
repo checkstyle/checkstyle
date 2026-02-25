@@ -1824,6 +1824,8 @@ public final class JavadocCommentsTokenTypes {
      * `--TEXT -> class Test {}
      * }</pre>
      *
+     * @noinspection EmptyClass
+     * @noinspectionreason EmptyClass - false positive from Language Injection in snippet block
      * @see #SNIPPET_INLINE_TAG
      */
     public static final int COLON = JavadocCommentsLexer.COLON;
