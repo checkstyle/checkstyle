@@ -265,6 +265,7 @@ Dconfig
 Dconnection
 Dcpd
 Dcyclonedx
+ddcfd
 DDDL
 Ddokka
 Ddry
@@ -317,6 +318,7 @@ Dmaven
 Dmdep
 dnd
 Dnew
+DNSSEC
 doccheck
 doccomments
 docdefaultconstr
@@ -380,6 +382,7 @@ emptytag
 Emtpy
 endline
 enegger
+enp
 ent
 enum
 eol
@@ -787,6 +790,7 @@ linux
 Lisetskii
 Ljava
 lkuehne
+LLMNR
 LNOT
 localctx
 localfinalvariablename
@@ -1163,6 +1167,7 @@ reportyml
 requiredtags
 requireemptylinebeforeblocktaggroup
 requirethis
+resolv
 resourceleak
 Rethrown
 Rethrows
@@ -1402,6 +1407,7 @@ tidelift
 timeline
 timezone
 TKN
+TLS
 tmp
 tmpdir
 tngtech
@@ -1534,6 +1540,7 @@ wikipedia
 wiktionary
 withgoogle
 wj
+wlp
 wnd
 WOC
 woff
