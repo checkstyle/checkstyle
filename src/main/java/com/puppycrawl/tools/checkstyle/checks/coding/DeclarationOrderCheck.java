@@ -315,18 +315,17 @@ public class DeclarationOrderCheck extends AbstractCheck {
 
         while (!stack.isEmpty()) {
             final DetailAST current = stack.pop();
-
             if (current.getType() == tokenType && !current.equals(ast)) {
                 result.add(current);
             }
 
             final DetailAST sibling = current.getNextSibling();
-            if (sibling != null && sibling != current) {
+            if (sibling != null) {
                 stack.push(sibling);
             }
 
             final DetailAST child = current.getFirstChild();
-            if (child != null && child != current) {
+            if (child != null) {
                 stack.push(child);
             }
         }
