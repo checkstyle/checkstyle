@@ -1,7 +1,6 @@
 Aapt
 aarch
 abbreviationaswordinname
-abcun
 abstractcheck
 abstractclassname
 abstractfileset
@@ -13,6 +12,7 @@ acm
 Aconfig
 actionlint
 addons
+admins
 Adoptium
 adr
 AFBR
@@ -33,6 +33,7 @@ annotationonsameline
 annotationusestyle
 annotationutil
 anoninner
+ANNOS
 anoninnerlength
 antfile
 antlib
@@ -53,6 +54,7 @@ ARCHITEW
 archunit
 Arial
 arity
+args
 Arquillian
 arraycopy
 arraytrailingcomma
@@ -95,7 +97,6 @@ awt
 azurewebsites
 Backquote
 backticks
-BADN
 badpackage
 baeldung
 baratali
@@ -114,7 +115,6 @@ bew
 bff
 bitbucket
 bjrke
-bleh
 Blic
 blockandinlinetags
 blockcomment
@@ -147,6 +147,7 @@ cacio
 caciocavallosilano
 calledmethods
 camelcase
+cas
 casegroup
 casesensitive
 catchparametername
@@ -159,7 +160,6 @@ cdfd
 Cdi
 Cfg
 Cfml
-Cfoo
 cfz
 cgi
 chainedpropertyutil
@@ -192,6 +192,7 @@ clazz
 clemens
 Clickable
 Cloneable
+cls
 clss
 cmdline
 cmp
@@ -284,6 +285,7 @@ delims
 DENORMALIZER
 Depedency
 dependabot
+deps
 deque
 descendanttoken
 descr
@@ -299,7 +301,6 @@ dfa
 DFFF
 Dfile
 dfn
-Dfoo
 Dforbiddenapis
 Dgpg
 Dhttp
@@ -307,6 +308,7 @@ Diachenko
 diffplug
 DIFFTOOL
 dirname
+dists
 Djacoco
 Djdepend
 Dlinkcheck
@@ -459,6 +461,7 @@ Findentation
 findstr
 firefox
 firstsentence
+fis
 FIXME
 Fjava
 Fjavadoc
@@ -612,7 +615,6 @@ Inlined
 inlinetags
 innerassignment
 Innerclass
-INNERR
 innertypelast
 inplace
 instanceof
@@ -635,6 +637,7 @@ isrutf
 isset
 issuecomment
 issuehunt
+Iterables
 Itemtype
 itemvalue
 ith
@@ -800,6 +803,7 @@ localhost
 localvariablename
 Loggable
 lombok
+lookaheads
 lookaround
 Loughran
 lparen
@@ -814,7 +818,6 @@ mailto
 mainframemodel
 Mancuso
 mapfile
-marazmatic
 markdownlint
 Massol
 matchxpath
@@ -1031,7 +1034,6 @@ OSX
 otechie
 outertypefilename
 outertypenumber
-outter
 ove
 overloadmethodsdeclarationorder
 overloadsplit
@@ -1118,14 +1120,12 @@ programpractice
 Proguard
 propertycachefile
 propkey
-PROTECTE
 protonpack
 Psevntu
 PSHOME
 PSMODULEP
 pubconstr
 pubifc
-PUBLI
 pubpub
 pullrequest
 puppycrawl
@@ -1204,8 +1204,6 @@ rparen
 rpmfind
 rq
 Rr
-Rrridden
-RRRR
 Rsa
 RSPEC
 Rtl
@@ -1361,10 +1359,12 @@ taglist
 taskdef
 tbody
 tcr
+tcs
 td
 teamcity
 technotes
 temurin
+tes
 Testik
 testmodules
 textblock
@@ -1468,7 +1468,7 @@ UUID
 UWF
 uxxxx
 validator
-VALUEEEE
+VALUELONG
 vararg
 variabledeclarationusagedistance
 Veach
