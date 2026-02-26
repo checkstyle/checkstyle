@@ -115,6 +115,7 @@ bjrke
 Blic
 blockandinlinetags
 blockcomment
+blockcommentendposition
 blockcommentposition
 blockcommentstyle
 blockindentation
@@ -275,6 +276,7 @@ delims
 DENORMALIZER
 Depedency
 dependabot
+deps
 deque
 descendanttoken
 descr
