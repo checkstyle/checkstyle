@@ -5,44 +5,45 @@ ignoreConstructorParameter = (default)false
 ignoreSetter = (default)false
 setterCanReturnItsClass = (default)false
 ignoreAbstractMethods = (default)false
-tokens = VARIABLE_DEF
+tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_COMPONENT_DEF
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
-class InputHiddenFieldMisc {
-    abstract static class InputHiddenFieldBug10845121 {
+class InputHiddenField2Misc {
+
+    abstract class InputHiddenFieldBug10845122 {
         String x;
-        public abstract void methodA(String x);
+        public abstract void methodA(String x); // violation, ''x' hides a field'
     }
 
-    static class Bug33709461 {
+    class Bug33709462 {
         private int xAxis;
-        public void setxAxis(int xAxis) {
+        public void setxAxis(int xAxis) { // violation, ''xAxis' hides a field'
             this.xAxis = xAxis;
         }
     }
 
-    static class OneLetterField1 {
+    class OneLetterField2 {
         int i;
-        void setI(int i) {
+        void setI(int i) { // violation, ''i' hides a field'
             this.i = i;
         }
         enum Inner {}
     }
 
-    static class DuplicateFieldFromPreviousClass1 {
+    class DuplicateFieldFromPreviousClass2 {
         public void method() {
             int i = 0;
         }
     }
 
-    static class NestedEnum1 {
+    class NestedEnum2 {
         enum Test {
-                A, B, C;
-                int i;
+            A, B, C;
+            int i;
         }
         void method(int i) {}
     }
