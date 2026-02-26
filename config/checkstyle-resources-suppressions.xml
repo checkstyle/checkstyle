@@ -100,6 +100,8 @@
   <suppress id="noTrailingWhitespace"
     files="[\\/]InputJavadocContentLocationTrailingSpace\.java"/>
   <suppress id="noTrailingWhitespace"
+    files="[\\/]InputArrayBracketNoWhitespaceDefault\.java"/>
+  <suppress id="noTrailingWhitespace"
     files="[\\/]InputJavadocParagraphCorrect\.java"/>
   <suppress id="noTrailingWhitespace"
     files="[\\/]InputJavadocTagContinuationIndentationGuavaFalsePositive\.java"/>
