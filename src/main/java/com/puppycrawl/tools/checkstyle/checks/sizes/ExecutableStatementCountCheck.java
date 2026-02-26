@@ -138,7 +138,7 @@ public final class ExecutableStatementCountCheck
      * @param ast the token representing the container node.
      */
     private void visitContainerNode(DetailAST ast) {
-        contextStack.addFirst(context);
+        contextStack.push(context);
         context = new Context(ast);
     }
 
@@ -152,7 +152,7 @@ public final class ExecutableStatementCountCheck
         if (count > max) {
             log(ast, MSG_KEY, count, max);
         }
-        context = contextStack.removeFirst();
+        context = contextStack.pop();
     }
 
     /**

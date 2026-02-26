@@ -118,14 +118,14 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
                     final DetailAST identifierAst = parameter.findFirstToken(TokenTypes.IDENT);
                     final LambdaParameterDetails lambdaParameter =
                             new LambdaParameterDetails(ast, identifierAst);
-                    lambdaParameters.addFirst(lambdaParameter);
+                    lambdaParameters.push(lambdaParameter);
                 });
             }
             else if (ast.getChildCount() != 0) {
                 // we are not switch rule and have a single parameter
                 final LambdaParameterDetails lambdaParameter =
                             new LambdaParameterDetails(ast, ast.findFirstToken(TokenTypes.IDENT));
-                lambdaParameters.addFirst(lambdaParameter);
+                lambdaParameters.push(lambdaParameter);
             }
         }
         else if (isLambdaParameterIdentifierCandidate(ast) && !isLeftHandOfAssignment(ast)) {
@@ -139,11 +139,11 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
 
     @Override
     public void leaveToken(DetailAST ast) {
-        while (lambdaParameters.peekFirst() != null
-                    && ast.equals(lambdaParameters.peekFirst().enclosingLambda)) {
+        while (lambdaParameters.peek() != null
+                    && ast.equals(lambdaParameters.peek().enclosingLambda)) {
 
             final Optional<LambdaParameterDetails> unusedLambdaParameter =
-                    Optional.ofNullable(lambdaParameters.peekFirst())
+                    Optional.ofNullable(lambdaParameters.peek())
                             .filter(parameter -> !parameter.isUsed())
                             .filter(parameter -> !"_".equals(parameter.getName()));
 
@@ -152,7 +152,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
                         MSG_UNUSED_LAMBDA_PARAMETER,
                         parameter.getName());
             });
-            lambdaParameters.removeFirst();
+            lambdaParameters.pop();
         }
     }
 

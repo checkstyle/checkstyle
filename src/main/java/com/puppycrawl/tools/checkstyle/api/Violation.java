@@ -369,7 +369,7 @@ public final class Violation
                 && columnNo == violation.columnNo
                 && columnCharIndex == violation.columnCharIndex
                 && tokenType == violation.tokenType
-                && severityLevel == violation.severityLevel
+                && Objects.equals(severityLevel, violation.severityLevel)
                 && Objects.equals(moduleId, violation.moduleId)
                 && Objects.equals(key, violation.key)
                 && Objects.equals(bundle, violation.bundle)

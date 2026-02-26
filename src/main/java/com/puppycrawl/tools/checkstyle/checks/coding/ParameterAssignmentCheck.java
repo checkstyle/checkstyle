@@ -126,7 +126,7 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
         if (TokenUtil.isOfType(type, TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF)
                 || type == TokenTypes.LAMBDA
                 && ast.getParent().getType() != TokenTypes.SWITCH_RULE) {
-            parameterNames = parameterNamesStack.removeFirst();
+            parameterNames = parameterNamesStack.pop();
         }
     }
 
@@ -151,7 +151,7 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
      * @param ast a method to process.
      */
     private void visitMethodDef(DetailAST ast) {
-        parameterNamesStack.addFirst(parameterNames);
+        parameterNamesStack.push(parameterNames);
         parameterNames = new HashSet<>();
 
         visitMethodParameters(ast.findFirstToken(TokenTypes.PARAMETERS));
@@ -163,7 +163,7 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
      * @param lambdaAst node of type {@link TokenTypes#LAMBDA}.
      */
     private void visitLambda(DetailAST lambdaAst) {
-        parameterNamesStack.addFirst(parameterNames);
+        parameterNamesStack.push(parameterNames);
         parameterNames = new HashSet<>();
 
         DetailAST parameterAst = lambdaAst.findFirstToken(TokenTypes.PARAMETERS);

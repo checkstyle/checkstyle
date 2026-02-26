@@ -486,7 +486,7 @@ public class SuppressionCommentFilter
             final Tag tag = (Tag) other;
             return line == tag.line
                     && column == tag.column
-                    && tagType == tag.tagType
+                    && Objects.equals(tagType, tag.tagType)
                     && Objects.equals(text, tag.text)
                     && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
                     && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp)

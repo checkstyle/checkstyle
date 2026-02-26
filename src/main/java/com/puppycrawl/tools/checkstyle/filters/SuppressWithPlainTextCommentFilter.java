@@ -373,7 +373,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
             }
             final Suppression suppression = (Suppression) other;
             return lineNo == suppression.lineNo
-                    && suppressionType == suppression.suppressionType
+                    && Objects.equals(suppressionType, suppression.suppressionType)
                     && Objects.equals(eventSourceRegexp, suppression.eventSourceRegexp)
                     && Objects.equals(eventMessageRegexp, suppression.eventMessageRegexp)
                     && Objects.equals(eventIdRegexp, suppression.eventIdRegexp);

@@ -83,7 +83,7 @@ public final class FullIdent {
         boolean bracketsExist = false;
         int dotCounter = 0;
         while (!identStack.isEmpty()) {
-            final DetailAST currentAst = identStack.removeFirst();
+            final DetailAST currentAst = identStack.pop();
 
             final DetailAST nextSibling = currentAst.getNextSibling();
 
@@ -150,7 +150,7 @@ public final class FullIdent {
      */
     private static void pushToIdentStack(Deque<DetailAST> stack, DetailAST ast) {
         if (ast != null) {
-            stack.addFirst(ast);
+            stack.push(ast);
         }
     }
 

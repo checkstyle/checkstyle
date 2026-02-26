@@ -169,7 +169,7 @@ public class JavaNCSSCheck extends AbstractCheck {
         counters = new ArrayDeque<>();
 
         // add a counter for the file
-        counters.addFirst(new Counter());
+        counters.push(new Counter());
     }
 
     @Override
@@ -180,7 +180,7 @@ public class JavaNCSSCheck extends AbstractCheck {
             || tokenType == TokenTypes.RECORD_DEF
             || isMethodOrCtorOrInitDefinition(tokenType)) {
             // add a counter for this class/method
-            counters.addFirst(new Counter());
+            counters.push(new Counter());
         }
 
         // check if token is countable
@@ -196,7 +196,7 @@ public class JavaNCSSCheck extends AbstractCheck {
 
         if (isMethodOrCtorOrInitDefinition(tokenType)) {
             // pop counter from the stack
-            final Counter counter = counters.removeFirst();
+            final Counter counter = counters.pop();
 
             final int count = counter.getCount();
             if (count > methodMaximum) {
@@ -205,7 +205,7 @@ public class JavaNCSSCheck extends AbstractCheck {
         }
         else if (tokenType == TokenTypes.CLASS_DEF) {
             // pop counter from the stack
-            final Counter counter = counters.removeFirst();
+            final Counter counter = counters.pop();
 
             final int count = counter.getCount();
             if (count > classMaximum) {
@@ -214,7 +214,7 @@ public class JavaNCSSCheck extends AbstractCheck {
         }
         else if (tokenType == TokenTypes.RECORD_DEF) {
             // pop counter from the stack
-            final Counter counter = counters.removeFirst();
+            final Counter counter = counters.pop();
 
             final int count = counter.getCount();
             if (count > recordMaximum) {
@@ -226,7 +226,7 @@ public class JavaNCSSCheck extends AbstractCheck {
     @Override
     public void finishTree(DetailAST rootAST) {
         // pop counter from the stack
-        final Counter counter = counters.removeFirst();
+        final Counter counter = counters.pop();
 
         final int count = counter.getCount();
         if (count > fileMaximum) {

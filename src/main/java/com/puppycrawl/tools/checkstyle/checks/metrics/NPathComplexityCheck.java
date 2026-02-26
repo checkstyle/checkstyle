@@ -351,7 +351,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
      */
     private void visitUnitaryOperator(DetailAST ast, int basicBranchingFactor) {
         final boolean isAfter = processingTokenEnd.isAfter(ast);
-        afterValues.addFirst(isAfter);
+        afterValues.push(isAfter);
         if (!isAfter) {
             processingTokenEnd.setToken(getLastToken(ast));
             final int expressionValue = basicBranchingFactor + countConditionalOperators(ast);
@@ -363,7 +363,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * Leaves ternary operator (?:) and return tokens.
      */
     private void leaveUnitaryOperator() {
-        if (Boolean.FALSE.equals(afterValues.removeFirst())) {
+        if (Boolean.FALSE.equals(afterValues.pop())) {
             final Values valuePair = popValue();
             BigInteger basicRangeValue = valuePair.getRangeValue();
             BigInteger expressionValue = valuePair.getExpressionValue();
@@ -430,8 +430,8 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * @param expressionValue value of expression calculated for current token.
      */
     private void pushValue(Integer expressionValue) {
-        rangeValues.addFirst(currentRangeValue);
-        expressionValues.addFirst(expressionValue);
+        rangeValues.push(currentRangeValue);
+        expressionValues.push(expressionValue);
         currentRangeValue = INITIAL_VALUE;
     }
 
@@ -441,8 +441,8 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * @return pair of head values from both of the stacks.
      */
     private Values popValue() {
-        final int expressionValue = expressionValues.removeFirst();
-        return new Values(rangeValues.removeFirst(), BigInteger.valueOf(expressionValue));
+        final int expressionValue = expressionValues.pop();
+        return new Values(rangeValues.pop(), BigInteger.valueOf(expressionValue));
     }
 
     /** Leaves try. */

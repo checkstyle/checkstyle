@@ -500,11 +500,11 @@ public final class ConfigurationLoader {
                 else {
                     // add configuration to it's parent
                     final DefaultConfiguration top =
-                            configStack.peekFirst();
+                        configStack.peek();
                     top.addChild(conf);
                 }
 
-                configStack.addFirst(conf);
+                configStack.push(conf);
             }
             else if (PROPERTY.equals(qName)) {
                 // extract value and name
@@ -524,7 +524,7 @@ public final class ConfigurationLoader {
 
                 // add to attributes of configuration
                 final DefaultConfiguration top =
-                        configStack.peekFirst();
+                    configStack.peek();
                 top.addProperty(name, value);
             }
             else if (MESSAGE.equals(qName)) {
@@ -533,7 +533,7 @@ public final class ConfigurationLoader {
                 final String value = attributes.getValue(VALUE);
 
                 // add to messages of configuration
-                final DefaultConfiguration top = configStack.peekFirst();
+                final DefaultConfiguration top = configStack.peek();
                 top.addMessage(key, value);
             }
             else {
@@ -549,7 +549,7 @@ public final class ConfigurationLoader {
                                String qName) throws SAXException {
             if (MODULE.equals(qName)) {
                 final Configuration recentModule =
-                        configStack.removeFirst();
+                    configStack.pop();
 
                 // get severity attribute if it exists
                 Optional<SeverityLevel> level = Optional.empty();
@@ -573,7 +573,7 @@ public final class ConfigurationLoader {
                     && level.isPresent() && level.get() == SeverityLevel.IGNORE;
 
                 if (omitModule && !configStack.isEmpty()) {
-                    final DefaultConfiguration parentModule = configStack.peekFirst();
+                    final DefaultConfiguration parentModule = configStack.peek();
                     parentModule.removeChild(recentModule);
                 }
             }

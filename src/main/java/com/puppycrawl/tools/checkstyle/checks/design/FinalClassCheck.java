@@ -140,7 +140,7 @@ public class FinalClassCheck
                  TokenTypes.RECORD_DEF -> {
                 final TypeDeclarationDescription description = new TypeDeclarationDescription(
                     extractQualifiedTypeName(ast), 0, ast);
-                typeDeclarations.addFirst(description);
+                typeDeclarations.push(description);
             }
 
             case TokenTypes.CLASS_DEF -> visitClass(ast);
@@ -151,7 +151,7 @@ public class FinalClassCheck
                 if (ast.getFirstChild() != null
                         && ast.getLastChild().getType() == TokenTypes.OBJBLOCK) {
                     anonInnerClassToOuterTypeDecl
-                        .put(ast, typeDeclarations.peekFirst().getQualifiedName());
+                        .put(ast, typeDeclarations.peek().getQualifiedName());
                 }
             }
 
@@ -167,7 +167,7 @@ public class FinalClassCheck
     private void visitClass(DetailAST ast) {
         final String qualifiedClassName = extractQualifiedTypeName(ast);
         final ClassDesc currClass = new ClassDesc(qualifiedClassName, typeDeclarations.size(), ast);
-        typeDeclarations.addFirst(currClass);
+        typeDeclarations.push(currClass);
         innerClasses.put(qualifiedClassName, currClass);
     }
 
@@ -190,7 +190,7 @@ public class FinalClassCheck
     @Override
     public void leaveToken(DetailAST ast) {
         if (TokenUtil.isTypeDeclaration(ast.getType())) {
-            typeDeclarations.removeFirst();
+            typeDeclarations.pop();
         }
         if (TokenUtil.isRootNode(ast.getParent())) {
             anonInnerClassToOuterTypeDecl.forEach(this::registerAnonymousInnerClassToSuperClass);
@@ -333,7 +333,7 @@ public class FinalClassCheck
         final String className = typeDeclarationAst.findFirstToken(TokenTypes.IDENT).getText();
         String outerTypeDeclarationQualifiedName = null;
         if (!typeDeclarations.isEmpty()) {
-            outerTypeDeclarationQualifiedName = typeDeclarations.peekFirst().getQualifiedName();
+            outerTypeDeclarationQualifiedName = typeDeclarations.peek().getQualifiedName();
         }
         return CheckUtil.getQualifiedTypeDeclarationName(packageName,
                                                          outerTypeDeclarationQualifiedName,

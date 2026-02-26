@@ -69,17 +69,17 @@ public final class JavadocCommentsLexerUtil {
         for (Token closingTag : closeTagNameTokens) {
             final Deque<Token> tempStack = new ArrayDeque<>();
             while (!unmatchedOpen.isEmpty()) {
-                final Token openingTag = unmatchedOpen.removeFirst();
+                final Token openingTag = unmatchedOpen.pop();
                 if (openingTag.getText().equalsIgnoreCase(closingTag.getText())
                         && openingTag.getTokenIndex() < closingTag.getTokenIndex()) {
                     break;
                 }
-                tempStack.addFirst(openingTag);
+                tempStack.push(openingTag);
             }
 
             // Put unmatched tags back
             while (!tempStack.isEmpty()) {
-                unmatchedOpen.addFirst(tempStack.removeFirst());
+                unmatchedOpen.push(tempStack.pop());
             }
 
         }

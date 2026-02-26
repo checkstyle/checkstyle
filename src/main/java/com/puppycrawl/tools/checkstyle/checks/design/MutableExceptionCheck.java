@@ -130,13 +130,13 @@ public final class MutableExceptionCheck extends AbstractCheck {
      * @param ast class definition node
      */
     private void visitClassDef(DetailAST ast) {
-        checkingStack.addFirst(checking);
+        checkingStack.push(checking);
         checking = isNamedAsException(ast) && isExtendedClassNamedAsException(ast);
     }
 
     /** Called when we leave class definition. */
     private void leaveClassDef() {
-        checking = checkingStack.removeFirst();
+        checking = checkingStack.pop();
     }
 
     /**

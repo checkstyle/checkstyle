@@ -111,7 +111,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.LITERAL_CATCH) {
             final CatchParameterDetails catchParameter = new CatchParameterDetails(ast);
-            catchParameters.addFirst(catchParameter);
+            catchParameters.push(catchParameter);
         }
         else if (isCatchParameterIdentifierCandidate(ast) && !isLeftHandOfAssignment(ast)) {
             // we do not count reassignment as usage
@@ -126,7 +126,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
     public void leaveToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.LITERAL_CATCH) {
             final Optional<CatchParameterDetails> unusedCatchParameter =
-                    Optional.ofNullable(catchParameters.peekFirst())
+                    Optional.ofNullable(catchParameters.peek())
                             .filter(parameter -> !parameter.isUsed())
                             .filter(parameter -> !"_".equals(parameter.getName()));
 
@@ -135,7 +135,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
                         MSG_UNUSED_CATCH_PARAMETER,
                         parameter.getName());
             });
-            catchParameters.removeFirst();
+            catchParameters.pop();
         }
     }
 

@@ -94,7 +94,7 @@ public final class PackageNamesLoader
         if (PACKAGE_ELEMENT_NAME.equals(qName)) {
             // push package name, name is mandatory attribute with not empty value by DTD
             final String name = attributes.getValue("name");
-            packageStack.addFirst(name);
+            packageStack.push(name);
         }
     }
 
@@ -122,7 +122,7 @@ public final class PackageNamesLoader
                            String qName) {
         if (PACKAGE_ELEMENT_NAME.equals(qName)) {
             packageNames.add(getPackageName());
-            packageStack.removeFirst();
+            packageStack.pop();
         }
     }
 

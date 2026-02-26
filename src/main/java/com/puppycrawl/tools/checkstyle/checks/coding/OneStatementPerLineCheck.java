@@ -144,7 +144,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
             case TokenTypes.FOR_ITERATOR -> forStatementEnd = ast.getLineNo();
             case TokenTypes.LAMBDA -> {
                 isInLambda = true;
-                countOfSemiInLambda.addFirst(0);
+                countOfSemiInLambda.push(0);
             }
             default -> inForHeader = true;
         }
@@ -160,7 +160,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
             }
             case TokenTypes.FOR_ITERATOR -> inForHeader = false;
             case TokenTypes.LAMBDA -> {
-                countOfSemiInLambda.removeFirst();
+                countOfSemiInLambda.pop();
                 if (countOfSemiInLambda.isEmpty()) {
                     isInLambda = false;
                 }
@@ -205,9 +205,9 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
      * @param currentStatement current statement
      */
     private void checkLambda(DetailAST ast, DetailAST currentStatement) {
-        int countOfSemiInCurrentLambda = countOfSemiInLambda.removeFirst();
+        int countOfSemiInCurrentLambda = countOfSemiInLambda.pop();
         countOfSemiInCurrentLambda++;
-        countOfSemiInLambda.addFirst(countOfSemiInCurrentLambda);
+        countOfSemiInLambda.push(countOfSemiInCurrentLambda);
         if (!inForHeader && countOfSemiInCurrentLambda > 1
                 && isOnTheSameLine(currentStatement,
                 lastStatementEnd, forStatementEnd,
