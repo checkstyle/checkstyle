@@ -45,7 +45,7 @@ public class Example4 {
       case 1: int y = 1; break;
       case 2: {x = 1;}
       case 3: int z = 0; {break;}
-      default: x = 0;
+      default: {x = 0;}
     }
     switch (mode) {
       case 1: x = 1; break;
