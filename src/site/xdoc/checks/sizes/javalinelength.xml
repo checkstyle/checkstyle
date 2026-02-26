@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>JavaLineLength</title>
+  </head>
+  <body>
+    <section name="JavaLineLength">
+      <p>Since Checkstyle 13.3.0</p>
+      <subsection name="Description" id="JavaLineLength_Description">
+        <div>
+          Checks for long lines but ignores lines whose tokens are specified.
+        </div>
+
+        <p>
+          Rationale: Long lines are hard to read in printouts or if developers
+          have limited screen space for the source code, e.g. if the IDE displays
+          additional information like project tree, class hierarchy, etc.
+        </p>
+      </subsection>
+
+      <subsection name="Notes" id="JavaLineLength_Notes">
+        <ul>
+        <li>
+          The calculation of the length of a line takes into account the number of
+          expanded spaces for a tab character (<code>'\t'</code>). The default number of spaces is <code>8</code>.
+          To specify a different number of spaces, the user can set
+          <a href="https://checkstyle.org/config.html#Checker"><code>Checker</code></a>
+          property <code>tabWidth</code> which applies to all Checks, including <code>LineLength</code>;
+          or can set property <code>tabWidth</code> for <code>LineLength</code> alone.
+        </li>
+        <li>
+          By default, package and import statements (lines matching pattern <code>^(package|import) .*</code>)
+          are not verified by this check.
+        </li>
+        <li>
+          Trailing comments are taken into consideration while calculating the line length.
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.regex.Pattern; // The length of this comment will be taken into consideration
+        </code></pre></div>
+          In the example above the length of the import statement is just 31 characters but total length
+          will be 94 characters.
+        </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Properties" id="JavaLineLength_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="max"/><a href="#max">max</a></td>
+              <td>Specify the maximum line length allowed.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>100</code></td>
+              <td>13.3.0</td>
+            </tr>
+            <tr>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
+              <td>tokens to check</td>
+              <td>set of any supported
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">
+                    tokens</a>
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TEXT_BLOCK_LITERAL_BEGIN">
+                    TEXT_BLOCK_LITERAL_BEGIN</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
+                    PACKAGE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
+                    IMPORT</a>
+                  .
+              </td>
+              <td>13.3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="JavaLineLength_Examples">
+        <p id="Example1-config">
+          To configure the check to accept TEXT_BLOCK_LITERAL_BEGIN to exceed 100 characters but not any other line:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavaLineLength"/&gt;
+      &lt;property name="max" value="100"/&gt;
+      &lt;property name="tokens" value="TEXT_BLOCK_LITERAL_BEGIN"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Example1:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+
+  String s1 = """
+            This string is a really long word that exceeds default line limit but will not raise violation.
+            """;
+
+  String s2 = "This string is a really long word that exceeds default line limit but will raise violation";
+  // violation above, 'Line is longer than 100 characters (found 107).'
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example2-config">
+          To configure the check to accept lines up to 80 characters long but ignore
+          TEXT_BLOCK_LITERAL_BEGIN and METHOD_DEF:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavaLineLength"&gt;
+      &lt;property name="max" value="80"/&gt;
+      &lt;property name="tokens" value="TEXT_BLOCK_LITERAL_BEGIN, METHOD_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          Example2:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+
+  String s1 = """
+            This string is greater than 80 characters but no violations will be raised.
+            """;
+
+  String s2 = "This string is greater than 80 characters but violations will be raised";
+  // violation above, 'Line is longer than 80 characters (found 88).'
+
+  public void methodWhoseCharactersExceed80Characters (String s1, String s2, String s3) {
+
+    String s4 = """
+                This string is greater than 80 characters but no violations will be raised.
+                """;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+      </subsection>
+
+      <subsection name="Example of Usage" id="JavaLineLength_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavaLineLength">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="JavaLineLength_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxLineLen%22">
+              maxLineLen
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="JavaLineLength_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.sizes
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="JavaLineLength_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
