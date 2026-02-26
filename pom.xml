@@ -256,8 +256,8 @@
       -Xep:FormatStringShouldUsePlaceholders:ERROR
       -Xep:IdentityConversion:ERROR
       -Xep:ImmutablesSortedSetComparator:ERROR
-      -Xep:InlineMeSuggester:ERROR
       -Xep:InconsistentCapitalization:ERROR
+      -Xep:InlineMeSuggester:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:InlineFormatString:OFF
       -Xep:InvalidInlineTag:ERROR
@@ -284,20 +284,19 @@
       -Xep:NullArgumentForNonNullParameter:ERROR
       -Xep:NullableOptional:ERROR
       -Xep:ObjectEqualsForPrimitives:ERROR
-      -Xep:UnusedVariable:ERROR
+      -Xep:MalformedInlineTag:ERROR
       <!-- We prefer UnnecessaryParenthesesCheck over error-prone's OperatorPrecedence. -->
       -Xep:OperatorPrecedence:OFF
       -Xep:OptionalOrElseGet:ERROR
       -Xep:PatternMatchingInstanceof:ERROR
-      -Xep:MalformedInlineTag:ERROR
       -Xep:PrimitiveComparison:ERROR
       -Xep:RedundantStringConversion:ERROR
       -Xep:RedundantStringEscape:ERROR
       -Xep:ReferenceEquality:ERROR
       -Xep:Slf4jLogStatement:ERROR
+      -Xep:StatementSwitchToExpressionSwitch:ERROR
       <!-- We prefer to qualify all static method calls with class name. -->
       -Xep:StaticImport:OFF
-      -Xep:StatementSwitchToExpressionSwitch:ERROR
       -Xep:StreamResourceLeak:ERROR
       -Xep:StringJoin:ERROR
       -Xep:StringJoining:ERROR
@@ -308,7 +307,7 @@
       -Xep:UnnecessaryLambda:ERROR
       -Xep:UnrecognisedJavadocTag:ERROR
       -Xep:UnsynchronizedOverridesSynchronized:ERROR
-      -Xep:UnusedMethod:ERROR
+      -Xep:Unused:ERROR
       -Xep:VoidUsed:ERROR
     </error-prone.configuration-args>
   </properties>
