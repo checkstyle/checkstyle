@@ -282,13 +282,13 @@ public class SuppressWarningsCheck extends AbstractCheck {
      */
     private void walkConditional(final DetailAST cond) {
         final Deque<DetailAST> condStack = new ArrayDeque<>();
-        condStack.push(cond);
+        condStack.addFirst(cond);
 
         while (!condStack.isEmpty()) {
-            final DetailAST currentCond = condStack.pop();
+            final DetailAST currentCond = condStack.removeFirst();
             if (currentCond.getType() == TokenTypes.QUESTION) {
-                condStack.push(getCondRight(currentCond));
-                condStack.push(getCondLeft(currentCond));
+                condStack.addFirst(getCondRight(currentCond));
+                condStack.addFirst(getCondLeft(currentCond));
             }
             else {
                 final String warningText = removeQuotes(currentCond.getText());
