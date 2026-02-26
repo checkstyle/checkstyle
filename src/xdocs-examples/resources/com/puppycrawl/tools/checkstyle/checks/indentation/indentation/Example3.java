@@ -3,6 +3,7 @@
   <module name="TreeWalker">
     <module name="Indentation">
       <property name="forceStrictCondition" value="true"/>
+      <property name="braceAdjustment" value="0"/>
     </module>
   </module>
 </module>
