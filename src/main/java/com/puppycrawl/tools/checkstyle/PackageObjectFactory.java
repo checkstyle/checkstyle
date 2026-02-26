@@ -871,6 +871,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.whitespace.GenericWhitespaceCheck");
         NAME_TO_FULL_MODULE_NAME.put("MethodParamPadCheck",
                 BASE_PACKAGE + ".checks.whitespace.MethodParamPadCheck");
+        NAME_TO_FULL_MODULE_NAME.put("MultilineCommentLeadingAsteriskPresenceCheck",
+                BASE_PACKAGE + ".checks.whitespace.MultilineCommentLeadingAsteriskPresenceCheck");
         NAME_TO_FULL_MODULE_NAME.put("NoLineWrapCheck",
                 BASE_PACKAGE + ".checks.whitespace.NoLineWrapCheck");
         NAME_TO_FULL_MODULE_NAME.put("NoWhitespaceAfterCheck",
