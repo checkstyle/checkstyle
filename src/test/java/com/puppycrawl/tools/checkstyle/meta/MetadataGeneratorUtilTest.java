@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 @ExtendWith(SystemOutGuard.class)
 public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
 
-    private final Set<String> modulesContainingNoMetadataFile = Set.of(
+    private static final Set<String> modulesContainingNoMetadataFile = Set.of(
             "Checker",
             "TreeWalker",
             "ClassAndPropertiesSettersJavadocScraper"
@@ -59,6 +59,7 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
      * @throws Exception if exception occurs during generating metadata or
      *                   if an I/O error is thrown when accessing the starting f
      */
+    @SuppressWarnings("static-method")
     @Test
     public void testMetadataFilesGenerationAllFiles(@SystemOutGuard.SysOut Capturable systemOut)
             throws Exception {
