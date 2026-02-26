@@ -565,7 +565,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
         DetailAST previousStatement = null;
         while (root != null || !stack.isEmpty()) {
             if (!stack.isEmpty()) {
-                root = stack.pop();
+                root = stack.removeFirst();
             }
             while (root != null) {
                 previousStatement = findPreviousStatement(comment, root);
@@ -575,7 +575,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
                     break;
                 }
                 if (root.getNextSibling() != null) {
-                    stack.push(root.getNextSibling());
+                    stack.addFirst(root.getNextSibling());
                 }
                 root = root.getFirstChild();
             }

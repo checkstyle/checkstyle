@@ -278,7 +278,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         }
         else if (isNonLocalTypeDeclaration(ast)) {
             depth--;
-            typeDeclarations.pop();
+            typeDeclarations.removeFirst();
         }
     }
 
@@ -340,7 +340,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         final String qualifiedName = getQualifiedTypeDeclarationName(typeDeclAst);
         final TypeDeclDesc currTypeDecl = new TypeDeclDesc(qualifiedName, depth, typeDeclAst);
         depth++;
-        typeDeclarations.push(currTypeDecl);
+        typeDeclarations.addFirst(currTypeDecl);
         typeDeclAstToTypeDeclDesc.put(typeDeclAst, currTypeDecl);
     }
 
@@ -350,7 +350,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param literalNewAst literalNewAst
      */
     private void visitLocalAnonInnerClass(DetailAST literalNewAst) {
-        anonInnerAstToTypeDeclDesc.put(literalNewAst, typeDeclarations.peek());
+        anonInnerAstToTypeDeclDesc.put(literalNewAst, typeDeclarations.peekFirst());
         anonInnerClassHolders.add(getBlockContainingLocalAnonInnerClass(literalNewAst));
     }
 
@@ -396,8 +396,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param variablesStack stack of all the relevant variables in the scope
      */
     private void logViolations(DetailAST scopeAst, Deque<VariableDesc> variablesStack) {
-        while (!variablesStack.isEmpty() && variablesStack.peek().getScope() == scopeAst) {
-            final VariableDesc variableDesc = variablesStack.pop();
+        while (!variablesStack.isEmpty() && variablesStack.peekFirst().getScope() == scopeAst) {
+            final VariableDesc variableDesc = variablesStack.removeFirst();
             if (!variableDesc.isUsed()
                     && !variableDesc.isInstVarOrClassVar()) {
                 final DetailAST typeAst = variableDesc.getTypeAst();
@@ -487,7 +487,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             if (isInstanceVarInInnerClass) {
                 desc.registerAsInstOrClassVar();
             }
-            variablesStack.push(desc);
+            variablesStack.addFirst(desc);
         }
     }
 
@@ -698,7 +698,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         final String className = typeDeclAst.findFirstToken(TokenTypes.IDENT).getText();
         String outerClassQualifiedName = null;
         if (!typeDeclarations.isEmpty()) {
-            outerClassQualifiedName = typeDeclarations.peek().getQualifiedName();
+            outerClassQualifiedName = typeDeclarations.peekFirst().getQualifiedName();
         }
         return CheckUtil
             .getQualifiedTypeDeclarationName(packageName, outerClassQualifiedName, className);
@@ -967,9 +967,12 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         /**
          * Register the variable as an instance variable or
          * class variable.
+         *
+         * @return self instance as designed in fluent interface.
          */
-        /* package */ void registerAsInstOrClassVar() {
+        /* package */ VariableDesc registerAsInstOrClassVar() {
             instVarOrClassVar = true;
+            return this;
         }
 
         /**
@@ -1069,13 +1072,10 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          * @return copy of variables in instanceAndClassVar stack with updated scope.
          */
         /* package */ Deque<VariableDesc> getUpdatedCopyOfVarStack(DetailAST literalNewAst) {
-            final DetailAST updatedScope = literalNewAst;
             final Deque<VariableDesc> instAndClassVarDeque = new ArrayDeque<>();
-            instanceAndClassVarStack.forEach(instVar -> {
-                final VariableDesc variableDesc = new VariableDesc(instVar.getName(),
-                        updatedScope);
-                variableDesc.registerAsInstOrClassVar();
-                instAndClassVarDeque.push(variableDesc);
+            instanceAndClassVarStack.forEach(inst -> {
+                instAndClassVarDeque.addFirst(
+                        new VariableDesc(inst.getName(), literalNewAst).registerAsInstOrClassVar());
             });
             return instAndClassVarDeque;
         }
@@ -1086,7 +1086,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          * @param variableDesc variable to be added
          */
         /* package */ void addInstOrClassVar(VariableDesc variableDesc) {
-            instanceAndClassVarStack.push(variableDesc);
+            instanceAndClassVarStack.addFirst(variableDesc);
         }
     }
 }

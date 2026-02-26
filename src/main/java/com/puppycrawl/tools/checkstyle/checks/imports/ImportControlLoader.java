@@ -180,30 +180,30 @@ public final class ImportControlLoader extends XmlLoader {
             final String pkg = safeGet(attributes, PKG_ATTRIBUTE_NAME);
             final MismatchStrategy strategyOnMismatch = getStrategyForImportControl(attributes);
             final boolean regex = containsRegexAttribute(attributes);
-            stack.push(new PkgImportControl(pkg, regex, strategyOnMismatch));
+            stack.addFirst(new PkgImportControl(pkg, regex, strategyOnMismatch));
         }
         else if (SUBPACKAGE_ELEMENT_NAME.equals(qName)) {
             final String name = safeGet(attributes, NAME_ATTRIBUTE_NAME);
             final MismatchStrategy strategyOnMismatch = getStrategyForSubpackage(attributes);
             final boolean regex = containsRegexAttribute(attributes);
-            final PkgImportControl parentImportControl = (PkgImportControl) stack.peek();
+            final PkgImportControl parentImportControl = (PkgImportControl) stack.peekFirst();
             final AbstractImportControl importControl = new PkgImportControl(parentImportControl,
                     name, regex, strategyOnMismatch);
             parentImportControl.addChild(importControl);
-            stack.push(importControl);
+            stack.addFirst(importControl);
         }
         else if (FILE_ELEMENT_NAME.equals(qName)) {
             final String name = safeGet(attributes, NAME_ATTRIBUTE_NAME);
             final boolean regex = containsRegexAttribute(attributes);
-            final PkgImportControl parentImportControl = (PkgImportControl) stack.peek();
+            final PkgImportControl parentImportControl = (PkgImportControl) stack.peekFirst();
             final AbstractImportControl importControl = new FileImportControl(parentImportControl,
                     name, regex);
             parentImportControl.addChild(importControl);
-            stack.push(importControl);
+            stack.addFirst(importControl);
         }
         else {
             final AbstractImportRule rule = createImportRule(qName, attributes);
-            stack.peek().addImportRule(rule);
+            stack.peekFirst().addImportRule(rule);
         }
     }
 
@@ -254,7 +254,7 @@ public final class ImportControlLoader extends XmlLoader {
     public void endElement(String namespaceUri, String localName,
         String qName) {
         if (SUBPACKAGE_ELEMENT_NAME.equals(qName) || FILE_ELEMENT_NAME.equals(qName)) {
-            stack.pop();
+            stack.removeFirst();
         }
     }
 
@@ -318,7 +318,7 @@ public final class ImportControlLoader extends XmlLoader {
      * @return the root {@link PkgImportControl} object loaded.
      */
     private PkgImportControl getRoot() {
-        return (PkgImportControl) stack.peek();
+        return (PkgImportControl) stack.peekFirst();
     }
 
     /**
