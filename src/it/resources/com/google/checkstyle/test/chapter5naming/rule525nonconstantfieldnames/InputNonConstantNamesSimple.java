@@ -6,17 +6,21 @@ final class InputNonConstantNamesSimple {
 
   public static final int MAX_ROWS = 2;
 
-  private int bad$Static = 2; // violation 'Member name 'bad\$Static' must match pattern'
+  private int bad$Static = 2;
+  // violation above, ''bad\$Static' must .* contain only letters, digits or underscores'
 
   private static int sum_Created = 0;
 
-  private int bad_Member = 2; // violation 'Member name 'bad_Member' must match pattern'
+  private int bad_Member = 2;
+  // violation above, ''bad_Member' .* underscores allowed only between adjacent digits.'
 
-  private int m = 0; // violation 'Member name 'm' must match pattern'
+  private int m = 0;
+  // violation above, 'Non-constant field name 'm' must start lowercase, be at least 2 chars'
 
-  protected int m_M = 0; // violation 'Member name 'm_M' must match pattern'
+  protected int m_M = 0;
+  // violation above, ''m_M' .* underscores allowed only between adjacent digits.'
 
-  private int[] m$nts = // violation 'Member name 'm\$nts' must match pattern'
+  private int[] m$nts = // violation ''m\$nts' must .* contain only letters, digits or underscores'
       new int[] {1, 2, 3, 4};
 
   public static int sTest1;
@@ -25,13 +29,17 @@ final class InputNonConstantNamesSimple {
 
   static int sTest2;
 
-  int mTest1; // violation 'Member name 'mTest1' must match pattern'
+  int mTest1;
+  // violation above, ''mTest1' must .* avoid single lowercase letter followed by uppercase'
 
-  public int mTest2; // violation 'Member name 'mTest2' must match pattern'
+  public int mTest2;
+  // violation above, ''mTest2' must .* avoid single lowercase letter followed by uppercase'
 
-  public int $mTest2; // violation 'Member name '\$mTest2' must match pattern'
+  public int $mTest2;
+  // violation above, ''\$mTest2' must .* contain only letters, digits or underscores'
 
-  public int mTes$t2; // violation 'Member name 'mTes\$t2' must match pattern'
+  public int mTes$t2;
+  // violation above, ''mTes\$t2' must .* contain only letters, digits or underscores'
 
   private void localVariables() {
     int a;
@@ -49,58 +57,75 @@ final class InputNonConstantNamesSimple {
 
     public static final int MAX_ROWS = 2;
 
-    private int bad$Static = 2; // violation 'Member name 'bad\$Static' must match pattern'
+    private int bad$Static = 2;
+    // violation above, ''bad\$Static' must .* contain only letters, digits or underscores'
 
     private int sum_Created = 0;
-    // violation above 'Member name 'sum_Created' must match pattern'
+    // violation above, ''sum_Created' .* underscores allowed only between adjacent digits.'
 
-    private int bad_Member = 2; // violation 'Member name 'bad_Member' must match pattern'
+    private int bad_Member = 2;
+    // violation above, ''bad_Member' .* underscores allowed only between adjacent digits.'
 
-    private int m = 0; // violation 'Member name 'm' must match pattern'
+    private int m = 0;
+    // violation above, 'Non-constant field name 'm' must start lowercase, be at least 2 chars'
 
-    protected int m_M = 0; // violation 'Member name 'm_M' must match pattern'
+    protected int m_M = 0;
+    // violation above, ''m_M' .* underscores allowed only between adjacent digits.'
 
     private int[] m$nts = new int[] {1, 2, 3, 4};
-    // violation above 'Member name 'm\$nts' must match pattern'
+    // violation above, ''m\$nts' must .* contain only letters, digits or underscores'
 
-    int mTest1; // violation 'Member name 'mTest1' must match pattern'
+    int mTest1;
+    // violation above, ''mTest1' must .* avoid single lowercase letter followed by uppercase'
 
-    public int mTest2; // violation 'Member name 'mTest2' must match pattern'
+    public int mTest2;
+    // violation above, ''mTest2' must .* avoid single lowercase letter followed by uppercase'
 
-    public int $mTest2; // violation 'Member name '\$mTest2' must match pattern'
+    public int $mTest2;
+    // violation above, ''\$mTest2' must .* contain only letters, digits or underscores'
 
-    public int mTes$t2; // violation 'Member name 'mTes\$t2' must match pattern'
+    public int mTes$t2;
+    // violation above, ''mTes\$t2' must .* contain only letters, digits or underscores'
 
-    public int mTest2$; // violation 'Member name 'mTest2\$' must match pattern'
+    public int mTest2$;
+    // violation above, ''mTest2\$' must .* contain only letters, digits or underscores'
 
     void fooMethod() {
       Foo foo =
           new Foo() {
 
-            int bad$Static = 2; // violation 'Member name 'bad\$Static' must match pattern'
+            int bad$Static = 2;
+            // violation above, ''bad\$Static' must .* contain only letters, digits or underscores'
 
             int sum_Created = 0;
-            // violation above 'Member name 'sum_Created' must match pattern'
+            // violation above, ''sum_Created' .* underscores allowed only between adjacent digits.'
 
             int bad_Member = 2;
-            // violation above 'Member name 'bad_Member' must match pattern'
+            // violation above, ''bad_Member' .* underscores allowed only between adjacent digits.'
 
-            int m = 0; // violation 'Member name 'm' must match pattern'
+            int m = 0;
+            // violation above, 'Non-constant field name 'm' must start lowercase, be at least 2'
 
-            int m_M = 0; // violation 'Member name 'm_M' must match pattern'
+            int m_M = 0;
+            // violation above, ''m_M' .* underscores allowed only between adjacent digits.'
 
             int[] m$nts = new int[] {1, 2, 3, 4};
-            // violation above 'Member name 'm\$nts' must match pattern'
+            // violation above, ''m\$nts' must .* contain only letters, digits or underscores'
 
-            int mTest1; // violation 'Member name 'mTest1' must match pattern'
+            int mTest1;
+            // violation above, ''mTest1' .* avoid single lowercase letter followed by uppercase'
 
-            int mTest2; // violation 'Member name 'mTest2' must match pattern'
+            int mTest2;
+            // violation above, ''mTest2' .* avoid single lowercase letter followed by uppercase'
 
-            int $mTest2; // violation 'Member name '\$mTest2' must match pattern'
+            int $mTest2;
+            // violation above, ''\$mTest2' must .* contain only letters, digits or underscores'
 
-            int mTes$t2; // violation 'Member name 'mTes\$t2' must match pattern'
+            int mTes$t2;
+            // violation above, ''mTes\$t2' must .* contain only letters, digits or underscores'
 
-            int mTest2$; // violation 'Member name 'mTest2\$' must match pattern'
+            int mTest2$;
+            // violation above, ''mTest2\$' must .* contain only letters, digits or underscores'
 
             public void greet() {}
           };
