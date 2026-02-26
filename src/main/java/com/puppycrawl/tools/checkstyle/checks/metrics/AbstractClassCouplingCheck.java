@@ -181,7 +181,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     public final void beginTree(DetailAST ast) {
         importedClassPackages.clear();
         classesContexts.clear();
-        classesContexts.push(new ClassContext("", null));
+        classesContexts.addFirst(new ClassContext("", null));
         packageName = "";
     }
 
@@ -257,12 +257,12 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      * @param ast The class ast.
      */
     private void createNewClassContext(String className, DetailAST ast) {
-        classesContexts.push(new ClassContext(className, ast));
+        classesContexts.addFirst(new ClassContext(className, ast));
     }
 
     /** Restores previous context. */
     private void checkCurrentClassAndRestorePrevious() {
-        classesContexts.pop().checkCoupling();
+        classesContexts.removeFirst().checkCoupling();
     }
 
     /**
@@ -271,7 +271,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      * @param ast TYPE token.
      */
     private void visitType(DetailAST ast) {
-        classesContexts.peek().visitType(ast);
+        classesContexts.peekFirst().visitType(ast);
     }
 
     /**
@@ -280,7 +280,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      * @param ast NEW token.
      */
     private void visitLiteralNew(DetailAST ast) {
-        classesContexts.peek().visitLiteralNew(ast);
+        classesContexts.peekFirst().visitLiteralNew(ast);
     }
 
     /**
@@ -289,7 +289,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      * @param ast THROWS token.
      */
     private void visitLiteralThrows(DetailAST ast) {
-        classesContexts.peek().visitLiteralThrows(ast);
+        classesContexts.peekFirst().visitLiteralThrows(ast);
     }
 
     /**
@@ -300,7 +300,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     private void visitAnnotationType(DetailAST annotationAST) {
         final DetailAST children = annotationAST.getFirstChild();
         final DetailAST type = children.getNextSibling();
-        classesContexts.peek().addReferencedClassName(type.getText());
+        classesContexts.peekFirst().addReferencedClassName(type.getText());
     }
 
     /**

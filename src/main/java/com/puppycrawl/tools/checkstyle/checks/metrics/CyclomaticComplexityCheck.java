@@ -248,7 +248,7 @@ public class CyclomaticComplexityCheck
 
     /** Push the current value on the stack. */
     private void pushValue() {
-        valueStack.push(currentValue);
+        valueStack.addFirst(currentValue);
         currentValue = INITIAL_VALUE;
     }
 
@@ -256,7 +256,7 @@ public class CyclomaticComplexityCheck
      * Pops a value off the stack and makes it the current value.
      */
     private void popValue() {
-        currentValue = valueStack.pop();
+        currentValue = valueStack.removeFirst();
     }
 
     /** Process the start of the method definition. */
