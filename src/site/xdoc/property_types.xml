@@ -201,6 +201,64 @@
       </ul>
     </section>
 
+    <section name="BlockCommentEndPositionOption">
+      <p>
+        This type represents policy on placement of the block comment end
+          <code>*/</code>.
+        The following table describes the valid options:
+      </p>
+
+      <div class="wrapper">
+        <table summary="BlockCommentEndPositionOption options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+
+          <tr>
+            <td><code>ALONE</code></td>
+            <td>
+              Represents the policy that the block comment end
+              must be alone on its own line.
+              Example:
+              <div class="wrapper">
+                <pre><code class="language-java">
+              &#47;**
+               * Multiple lines of Javadoc text are written here,
+               * wrapped normally...
+               *&#47;
+              public void method();
+                </code></pre>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>ALONE_OR_SINGLELINE</code></td>
+            <td>
+              Represents the policy that the block comment end
+              must be alone on its own line or on the same line as the
+              block comment begin.
+              Example:
+              <div class="wrapper">
+                <pre><code class="language-java">
+              &#47;**
+               * Multiple lines of Javadoc text are written here,
+               * wrapped normally...
+               *&#47;
+              public void method();
+
+              &#47;** Javadoc summary. *&#47;
+              public void method1();
+                </code></pre>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </div>
+    </section>
+
     <section name="BlockOption">
       <p>
         This type represents the policy for checking block statements. The
