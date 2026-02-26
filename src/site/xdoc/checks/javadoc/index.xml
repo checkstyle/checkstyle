@@ -22,6 +22,18 @@
           </tr>
           <tr>
             <td>
+              <a href="blockcommentendposition.html#BlockCommentEndPosition">
+                BlockCommentEndPosition
+              </a>
+            </td>
+            <td>
+              Checks that the Javadoc block comment end <code class="language-java">*&#47;</code>
+              position is either alone on its own line or on the same line as the block comment
+              begin code <code class="language-java">&#47;**</code>.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="invalidjavadocposition.html#InvalidJavadocPosition">
                 InvalidJavadocPosition
               </a>
