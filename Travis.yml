@@ -1,0 +1,143 @@
+version: ~> 1.0
+dist: focal
+# this arch is required as is for Partner Queue Solution - DO NOT MODIFY
+arch: ppc64le
+language: java
+
+cache:
+  directories:
+    - ~/.m2
+    - ~/.ivy2
+
+branches:
+  only:
+    - master
+
+before_install:
+  - sudo apt update
+
+install:
+  - sudo apt install -y groovy xsltproc xmlstarlet ant
+  - ./.ci/travis.sh install-adoptium-jdk
+  - ./.ci/travis.sh install-custom-mvn
+
+jobs:
+  fast_finish: true
+  include:
+
+    # this job do deploy maven repository
+    # unit tests (openjdk11)
+    - jdk: openjdk11
+      env:
+        - DESC="tests and deploy"
+        - CMD="mvn -e --no-transfer-progress clean integration-test failsafe:verify
+          -DargLine='-Xms1024m -Xmx2048m'"
+        - DEPLOY="true"
+        - USE_MAVEN_REPO="true"
+
+before_script:
+  - |
+    if [[ $TRAVIS_CPU_ARCH == 'ppc64le' ]]; then
+        export JAVA_HOME=/usr/lib/jvm/adoptopenjdk-11-hotspot-ppc64el
+        export PATH=$JAVA_HOME/bin:$PATH
+    fi
+  - groovy --version
+
+script:
+  # manually set JAVA_HOME to overcome issue with travis ci noted at
+  # https://github.com/checkstyle/checkstyle/pull/11699#issue-1261272652
+  # - JAVA_HOME='/usr/lib/jvm/adoptopenjdk-11-hotspot-ppc64el'
+  - ./.ci/travis.sh init-m2-repo
+  - ./.ci/travis.sh run-command "$CMD"
+  # - ./.ci/travis.sh remove-custom-mvn
+  # - ./.ci/travis.sh remove-adoptium-jdk
+  - ./.ci/validation.sh git-diff
+  - ./.ci/validation.sh ci-temp-check
+  - ./.ci/travis.sh quarterly-cache-cleanup
+  - sleep 5s
+
+after_success:
+  - ./.ci/travis.sh run-command-after-success
+  - ./.ci/travis.sh deploy-snapshot
+name: Auto Assign
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: wow-actions/auto-assign@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CONFIG_FILE: .github/auto-assign.yml
+          https://github.com/https-www-bitore-net/demo-repository/actions/runs/4055189711/workflow
+          f you received an alternative version of this notice in Microsoft Word on a CD, Braille, or on an Audio CD, the ID, BIC and TAA codes are provided near the beginning of the notice after the payee's name, address, report period, and social security number.
+Please enter the information requested below exactly as it appears on the Representative Payee Report you received from Social Security.
+
+NOTE:
+If the ID and BIC codes appear on the report, you must enter these codes.
+If the ID and BIC codes do not appear on the report, do not enter them. More info
+Now locate and enter your codes (not the sample codes) into the fields below.
+
+
+(xxx-xx-xxxx)
+ITEM 1: SSN 
+ITEM 3: ID     
+
+
+(six digit format)
+ITEM 2: TAA 
+ITEM 4: BIC 
+
+Dashboard
+Banking
+Sales
+Customers & leads
+Cash flow
+Expenses
+Payroll
+Time
+Reports
+Taxes
+Mileage
+Accounting
+My accountant
+Capital
+Commerce
+Apps
+Insurance
+Live Bookkeeping
+ZACHRY T WOOD
+My Experts
+Lists
+Chart of Accounts
+Displays your accounts. Balance sheet accounts track your assets and liabilities, and income and expense accounts categorize your transactions. From here, you can add or edit accounts.
+Recurring Transactions
+Displays a list of transactions that have been saved for reuse. From here, you can schedule transactions to occur either automatically or with reminders. You can also save unscheduled transactions to use at any time.
+Products and Services
+Displays the products and services you sell. From here, you can edit information about a product or service, such as its description, or the rate you charge.
+Product Categories
+A means of classifying items that you sell to customers. Provide a way for you to quickly organize what you sell, and save you time when completing sales transaction forms.
+Locations
+You can use locations to categorize your transactions by different parts of your company.
+Custom Form Styles
+Customize your sales form designs, set defaults, and manage multiple templates.
+Payment Methods
+Displays Cash, Check, and any other ways you categorize payments you receive from customers. That way, you can print deposit slips when you deposit the payments you have received.
+Terms
+Displays the list of terms that determine the due dates for payments from customers, or payments to vendors. Terms can also specify discounts for early payment. From here, you can add or edit terms.
+Classes
+Displays the classes you can use to categorize your accounting transactions.
+Attachments
+Displays the list of all attachments uploaded. From here you can add, edit, download, and export your attachments. You can also see all transactions linked to a particular attachment.
+Tags
+Displays the list of all tags created. You can add, edit, and delete your tags here.
+Custom Fields
+Sort, track, and report the information that matters to you. Add custom fields to your forms so that you can capture more business-related info.
+ 
+:Build ::
+
+:Publish ::
