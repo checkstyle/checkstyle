@@ -5,7 +5,7 @@
 <suppressions>
   <suppress
          files="InputMainViolationsForGoogle.java"
-         checks="MemberNameCheck"
+         checks="GoogleNonConstantFieldNameCheck"
          lines="7"
   />
   <suppress
