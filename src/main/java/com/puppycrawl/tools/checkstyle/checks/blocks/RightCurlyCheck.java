@@ -33,8 +33,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * <div>
  * Checks the placement of right curly braces (<code>'}'</code>) for code blocks. This check
- * supports if-else, try-catch-finally blocks, switch statements, switch cases, while-loops,
- *  for-loops, method definitions, class definitions, constructor definitions,
+ * supports if-else, try-catch-finally blocks, switch statements, switch cases, switch default,
+ * while-loops, for-loops, method definitions, class definitions, constructor definitions,
  * instance, static initialization blocks, annotation definitions and enum definitions.
  * For right curly brace of expression blocks of arrays, lambdas and class instances
  * please follow issue
@@ -116,6 +116,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.LITERAL_SWITCH,
             TokenTypes.LITERAL_CASE,
+            TokenTypes.LITERAL_DEFAULT,
         };
     }
 
@@ -364,7 +365,8 @@ public class RightCurlyCheck extends AbstractCheck {
                 case TokenTypes.LITERAL_IF -> getDetailsForIf(ast);
                 case TokenTypes.LITERAL_DO -> getDetailsForDoLoops(ast);
                 case TokenTypes.LITERAL_SWITCH -> getDetailsForSwitch(ast);
-                case TokenTypes.LITERAL_CASE -> getDetailsForCase(ast);
+                case TokenTypes.LITERAL_CASE, TokenTypes.LITERAL_DEFAULT ->
+                    getDetailsForCaseOrDefault(ast);
                 default -> getDetailsForOthers(ast);
             };
         }
@@ -391,33 +393,33 @@ public class RightCurlyCheck extends AbstractCheck {
         }
 
         /**
-         * Collects details about case statements.
+         * Collects details about case and default statements.
          *
-         * @param caseNode case statement to gather details about
-         * @return new Details about given case statement
+         * @param caseOrDefaultNode case or default statement to gather details about
+         * @return new Details about given case or default statement
          */
-        private static Details getDetailsForCase(DetailAST caseNode) {
-            final DetailAST caseParent = caseNode.getParent();
-            final int parentType = caseParent.getType();
+        private static Details getDetailsForCaseOrDefault(DetailAST caseOrDefaultNode) {
+            final DetailAST caseOrDefaultParent = caseOrDefaultNode.getParent();
+            final int parentType = caseOrDefaultParent.getType();
             final Optional<DetailAST> lcurly;
             final DetailAST statementList;
 
             if (parentType == TokenTypes.SWITCH_RULE) {
-                statementList = caseParent.findFirstToken(TokenTypes.SLIST);
+                statementList = caseOrDefaultParent.findFirstToken(TokenTypes.SLIST);
                 lcurly = Optional.ofNullable(statementList);
             }
             else {
-                statementList = caseNode.getNextSibling();
+                statementList = caseOrDefaultNode.getNextSibling();
                 lcurly = Optional.ofNullable(statementList)
                          .map(DetailAST::getFirstChild)
                          .filter(node -> node.getType() == TokenTypes.SLIST);
             }
             final DetailAST rcurly = lcurly.map(DetailAST::getLastChild)
-                    .filter(child -> !isSwitchExpression(caseParent))
+                    .filter(child -> !isSwitchExpression(caseOrDefaultParent))
                     .orElse(null);
             final Optional<DetailAST> nextToken =
                     Optional.ofNullable(lcurly.map(DetailAST::getNextSibling)
-                    .orElseGet(() -> getNextToken(caseParent)));
+                    .orElseGet(() -> getNextToken(caseOrDefaultParent)));
 
             return new Details(lcurly.orElse(null), rcurly, nextToken.orElse(null), true);
         }
