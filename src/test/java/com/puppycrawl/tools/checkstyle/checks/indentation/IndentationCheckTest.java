@@ -4208,8 +4208,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final Deque<PrimordialHandler> handlers = TestUtil.getInternalState(check,
                 "handlers", Deque.class);
 
-        handlers.push(new PrimordialHandler(check));
-        handlers.push(new PrimordialHandler(check));
+        handlers.addFirst(new PrimordialHandler(check));
+        handlers.addFirst(new PrimordialHandler(check));
 
         assertWithMessage("handlers should have 2 elements before beginTree")
                 .that(handlers)
