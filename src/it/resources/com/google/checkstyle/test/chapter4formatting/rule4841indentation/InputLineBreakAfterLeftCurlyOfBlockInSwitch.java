@@ -21,7 +21,8 @@ public class InputLineBreakAfterLeftCurlyOfBlockInSwitch {
       case 0, 1 -> System.out.println("0");
       case 2 ->
           handleTwoWithAnExtremelyLongMethodCallThatWouldNotFitOnTheSameLine();
-      default -> { handleSurprisingNumber(number); } // false-negative, ok until #17565
+      default -> { handleSurprisingNumber(number); }
+      // violation above ''}' at column 52 should be alone on a line.'
     }
   }
 

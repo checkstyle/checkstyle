@@ -11,8 +11,8 @@
       <subsection name="Description" id="RightCurly_Description">
         <div>
           Checks the placement of right curly braces (<code>'}'</code>) for code blocks. This check
-          supports if-else, try-catch-finally blocks, switch statements, switch cases, while-loops,
-          for-loops, method definitions, class definitions, constructor definitions,
+          supports if-else, try-catch-finally blocks, switch statements, switch cases, switch default,
+          while-loops, for-loops, method definitions, class definitions, constructor definitions,
           instance, static initialization blocks, annotation definitions and enum definitions.
           For right curly brace of expression blocks of arrays, lambdas and class instances
           please follow issue
@@ -83,6 +83,8 @@
                     LITERAL_SWITCH</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
                     LITERAL_CASE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DEFAULT">
+                    LITERAL_DEFAULT</a>
                   .
               </td>
               <td>
@@ -148,7 +150,7 @@ public class Example1 {
       case 1: int y = 1; break;
       case 2: {x = 1;}
       case 3: int z = 0; {break;}
-      default: x = 0;
+      default: {x = 0;}
     }
     switch (mode) {
       case 1: x = 1; break;
@@ -209,7 +211,7 @@ public class Example2 {
       case 1: int y = 1; break;
       case 2: {x = 1;}
       case 3: int z = 0; {break;}
-      default: x = 0;
+      default: {x = 0;}
     }
     switch (mode) {
       case 1: x = 1; break;
@@ -221,14 +223,14 @@ public class Example2 {
           To configure the check with policy <code>alone</code> for
           <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
           Switch</a>
-          Statements and Switch Cases:
+          Statements, Switch Cases and Switch Default:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RightCurly"&gt;
       &lt;property name="option" value="alone"/&gt;
-      &lt;property name="tokens" value="LITERAL_SWITCH, LITERAL_CASE"/&gt;
+      &lt;property name="tokens" value="LITERAL_SWITCH, LITERAL_CASE, LITERAL_DEFAULT"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -268,7 +270,7 @@ public class Example3 {
       case 1: int y = 1; break;
       case 2: {x = 1;} // violation, 'should be alone on a line.'
       case 3: int z = 0; {break;}
-      default: x = 0;
+      default: {x = 0;} // violation, 'should be alone on a line.'
     }
     switch (mode) {
       case 1: x = 1; break;
@@ -328,7 +330,7 @@ public class Example4 {
       case 1: int y = 1; break;
       case 2: {x = 1;}
       case 3: int z = 0; {break;}
-      default: x = 0;
+      default: {x = 0;}
     }
     switch (mode) {
       case 1: x = 1; break;
@@ -340,14 +342,14 @@ public class Example4 {
           To configure the check with policy <code>alone_or_singleline</code> for
           <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
           Switch</a>
-          Statements and Switch Cases:
+          Statements, Switch Cases and Switch Default:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RightCurly"&gt;
       &lt;property name="option" value="alone_or_singleline"/&gt;
-      &lt;property name="tokens" value="LITERAL_SWITCH, LITERAL_CASE"/&gt;
+      &lt;property name="tokens" value="LITERAL_SWITCH, LITERAL_CASE, LITERAL_DEFAULT"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -387,7 +389,7 @@ public class Example5 {
       case 1: int y = 1; break;
       case 2: {x = 1;}
       case 3: int z = 0; {break;}
-      default: x = 0;
+      default: {x = 0;}
     }
     switch (mode) {
       case 1: x = 1; break;
