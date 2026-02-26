@@ -59,6 +59,7 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
      * @throws Exception if exception occurs during generating metadata or
      *                   if an I/O error is thrown when accessing the starting f
      */
+    @SuppressWarnings("static-method")
     @Test
     public void testMetadataFilesGenerationAllFiles(@SystemOutGuard.SysOut Capturable systemOut)
             throws Exception {
