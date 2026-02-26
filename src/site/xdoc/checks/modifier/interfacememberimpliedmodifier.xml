@@ -238,6 +238,95 @@ public interface Example2 {
     //    'Implied modifier 'public' should be explicit'
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p>
+          This example checks that all implicit modifiers on methods and nested types are
+          explicitly specified, but fields do not need to be.
+        </p>
+        <p id="Example3-config">
+          Configuration:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="InterfaceMemberImpliedModifier"&gt;
+      &lt;property name="violateImpliedPublicField" value="false"/&gt;
+      &lt;property name="violateImpliedStaticField" value="false"/&gt;
+      &lt;property name="violateImpliedFinalField" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+          Code:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public interface Example3 {
+
+  public static final String UNKNOWN = "Unknown";
+  String OTHER = "Other";
+  // ok above because of configured properties
+
+  public static Example3 instance() { return null; }
+
+  public abstract Address createAddress(String addressLine, String city);
+  List&lt;Address&gt; findAddresses(String city);
+  // 2 violations above:
+  //    'Implied modifier 'abstract' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  interface Address {
+    // 2 violations above:
+    //    'Implied modifier 'public' should be explicit'
+    //    'Implied modifier 'static' should be explicit'
+    String getCity();
+    // 2 violations above:
+    //    'Implied modifier 'abstract' should be explicit'
+    //    'Implied modifier 'public' should be explicit'
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p>
+          This example checks that all implicit modifiers on fields and nested types are
+          explicitly specified, but methods do not need to be.
+        </p>
+        <p id="Example4-config">
+          Configuration:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="InterfaceMemberImpliedModifier"&gt;
+      &lt;property name="violateImpliedPublicMethod" value="false"/&gt;
+      &lt;property name="violateImpliedAbstractMethod" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">
+          Code:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public interface Example4 {
+
+  public static final String UNKNOWN = "Unknown";
+  String OTHER = "Other";
+  // 3 violations above:
+  //    'Implied modifier 'final' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  //    'Implied modifier 'static' should be explicit'
+  public static Example4 instance() { return null; }
+
+  public abstract Address createAddress(String addressLine, String city);
+  List&lt;Address&gt; findAddresses(String city);
+  // ok above because of configured properties
+  interface Address {
+    // 2 violations above:
+    //    'Implied modifier 'public' should be explicit'
+    //    'Implied modifier 'static' should be explicit'
+    String getCity();
+    // ok above because of configured properties
+  }
+}
 </code></pre></div>
       </subsection>
 
