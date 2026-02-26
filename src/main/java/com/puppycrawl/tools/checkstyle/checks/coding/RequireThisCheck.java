@@ -224,10 +224,10 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF, TokenTypes.ENUM_DEF,
                  TokenTypes.ANNOTATION_DEF, TokenTypes.SLIST, TokenTypes.METHOD_DEF,
                  TokenTypes.CTOR_DEF, TokenTypes.LITERAL_FOR, TokenTypes.RECORD_DEF ->
-                current.push(frames.get(ast));
+                current.addFirst(frames.get(ast));
             case TokenTypes.LITERAL_TRY -> {
                 if (ast.getFirstChild().getType() == TokenTypes.RESOURCE_SPECIFICATION) {
-                    current.push(frames.get(ast));
+                    current.addFirst(frames.get(ast));
                 }
             }
             default -> {
@@ -242,10 +242,10 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF, TokenTypes.ENUM_DEF,
                  TokenTypes.ANNOTATION_DEF, TokenTypes.SLIST, TokenTypes.METHOD_DEF,
                  TokenTypes.CTOR_DEF, TokenTypes.LITERAL_FOR,
-                 TokenTypes.RECORD_DEF -> current.pop();
+                 TokenTypes.RECORD_DEF -> current.removeFirst();
             case TokenTypes.LITERAL_TRY -> {
-                if (current.peek().getType() == FrameType.TRY_WITH_RESOURCES_FRAME) {
-                    current.pop();
+                if (current.peekFirst().getType() == FrameType.TRY_WITH_RESOURCES_FRAME) {
+                    current.removeFirst();
                 }
             }
             default -> {
@@ -363,7 +363,7 @@ public class RequireThisCheck extends AbstractCheck {
      */
     // -@cs[JavaNCSS] This method is a big switch and is too hard to remove.
     private static void collectDeclarations(Deque<AbstractFrame> frameStack, DetailAST ast) {
-        final AbstractFrame frame = frameStack.peek();
+        final AbstractFrame frame = frameStack.peekFirst();
 
         switch (ast.getType()) {
             case TokenTypes.VARIABLE_DEF -> collectVariableDeclarations(ast, frame);
@@ -810,14 +810,14 @@ public class RequireThisCheck extends AbstractCheck {
         final Deque<DetailAST> stack = new ArrayDeque<>();
         while (vertex != null || !stack.isEmpty()) {
             if (!stack.isEmpty()) {
-                vertex = stack.pop();
+                vertex = stack.removeFirst();
             }
             while (vertex != null) {
                 if (vertex.getType() == tokenType) {
                     result.add(vertex);
                 }
                 if (vertex.getNextSibling() != null) {
-                    stack.push(vertex.getNextSibling());
+                    stack.addFirst(vertex.getNextSibling());
                 }
                 vertex = vertex.getFirstChild();
             }
@@ -842,7 +842,7 @@ public class RequireThisCheck extends AbstractCheck {
         final Deque<DetailAST> stack = new ArrayDeque<>();
         while (vertex != null || !stack.isEmpty()) {
             if (!stack.isEmpty()) {
-                vertex = stack.pop();
+                vertex = stack.removeFirst();
             }
             while (vertex != null) {
                 if (tokenType == vertex.getType()
@@ -850,7 +850,7 @@ public class RequireThisCheck extends AbstractCheck {
                     result.add(vertex);
                 }
                 if (vertex.getNextSibling() != null) {
-                    stack.push(vertex.getNextSibling());
+                    stack.addFirst(vertex.getNextSibling());
                 }
                 vertex = vertex.getFirstChild();
             }
@@ -875,7 +875,7 @@ public class RequireThisCheck extends AbstractCheck {
         final Deque<DetailAST> stack = new ArrayDeque<>();
         while (vertex != null || !stack.isEmpty()) {
             if (!stack.isEmpty()) {
-                vertex = stack.pop();
+                vertex = stack.removeFirst();
             }
             while (vertex != null) {
                 if (isAstSimilar(token, vertex)
@@ -883,7 +883,7 @@ public class RequireThisCheck extends AbstractCheck {
                     result.add(vertex);
                 }
                 if (vertex.getNextSibling() != null) {
-                    stack.push(vertex.getNextSibling());
+                    stack.addFirst(vertex.getNextSibling());
                 }
                 vertex = vertex.getFirstChild();
             }
@@ -920,7 +920,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return AbstractFrame containing declaration or null.
      */
     private AbstractFrame findClassFrame(DetailAST name, boolean lookForMethod) {
-        AbstractFrame frame = current.peek();
+        AbstractFrame frame = current.peekFirst();
 
         while (true) {
             frame = findFrame(frame, name, lookForMethod);
@@ -943,7 +943,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return AbstractFrame containing declaration or null.
      */
     private AbstractFrame findFrame(DetailAST name, boolean lookForMethod) {
-        return findFrame(current.peek(), name, lookForMethod);
+        return findFrame(current.peekFirst(), name, lookForMethod);
     }
 
     /**
@@ -995,7 +995,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return the name of the nearest parent ClassFrame.
      */
     private String getNearestClassFrameName() {
-        AbstractFrame frame = current.peek();
+        AbstractFrame frame = current.peekFirst();
         while (frame.getType() != FrameType.CLASS_FRAME) {
             frame = frame.getParent();
         }
