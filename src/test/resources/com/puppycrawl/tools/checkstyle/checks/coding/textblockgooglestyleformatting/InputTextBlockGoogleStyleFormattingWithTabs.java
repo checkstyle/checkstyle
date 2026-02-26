@@ -20,7 +20,8 @@ public class InputTextBlockGoogleStyleFormattingWithTabs {
 	}
 
 	private static String testMethod2() {
-		// violation below 'Opening quotes (""") of text-block must be on the new line'
+		// violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+		// violation below 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
 		return """
 				def flowNodesById = existingInstance.flowNodeInstances.stream()
 				def newFlowNodes = params.instance.flowNodeInstances;
@@ -35,7 +36,8 @@ public class InputTextBlockGoogleStyleFormattingWithTabs {
 	private void testMethod3() {
 		char[] channelNames =
 				getMethodOne(
-				// violation below 'Opening quotes (""") of text-block must be on the new line'
+				// violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+				// violation below 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
 						new ObjectString("""
 								<doc type="one">
 								</doc>
