@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MultilineCommentLeadingAsteriskPresence</title>
+  </head>
+  <body>
+    <section name="MultilineCommentLeadingAsteriskPresence">
+      <p>Since Checkstyle 13.3.0</p>
+      <subsection name="Description" id="MultilineCommentLeadingAsteriskPresence_Description">
+        <div>
+          Checks that all lines in a multi-line block comment start with
+          a leading asterisk (*), as required by the
+          <a href="https://google.github.io/styleguide/javaguide.html#s4.8.6-comments">
+          Google Java Style Guide §4.8.6</a>.
+        </div>
+
+        <p>
+          For multi-line block comments, subsequent lines must start with * aligned
+          with the * on the previous line. This check does not apply to single-line
+          block comments (&#47;* comment *&#47;).
+        </p>
+
+        <p>
+          Parent is <code>com.puppycrawl.tools.checkstyle.TreeWalker</code>
+        </p>
+
+        <p>
+          Violation Message Keys:
+        </p>
+        <ul>
+        <li>
+          <code>multiline.comment.missing.asterisk</code>
+        </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Examples" id="MultilineCommentLeadingAsteriskPresence_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MultilineCommentLeadingAsteriskPresence"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  // OK: Single-line block comment
+  /* This is fine */
+
+  // OK: Multi-line with asterisks
+  /*
+   * This is correct.
+   * Each line has asterisk.
+   */
+  void method1() { }
+
+  // violation below 'Line in block comment should start with '*''
+  /*
+   First line missing asterisk.
+   * Second line OK.
+   */
+  void method2() { }
+
+  // violation 2 lines below 'Line in block comment should start with '*''
+  /*
+   * First line OK.
+   Second line missing asterisk.
+   */
+  void method3() { }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id=
+      "MultilineCommentLeadingAsteriskPresence_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultilineCommentLeadingAsteriskPresence">
+              Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultilineCommentLeadingAsteriskPresence">
+              Google Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id=
+      "MultilineCommentLeadingAsteriskPresence_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multiline.comment.missing.asterisk%22">
+              multiline.comment.missing.asterisk
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="MultilineCommentLeadingAsteriskPresence_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="MultilineCommentLeadingAsteriskPresence_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
