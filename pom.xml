@@ -3656,6 +3656,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryNullCheckWithInstanceOfCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryTypeArgumentsWithRecordPatternCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheck*</param>
@@ -3689,6 +3690,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryNullCheckWithInstanceOfCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryTypeArgumentsWithRecordPatternCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheckTest</param>
