@@ -32,6 +32,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.jspecify.annotations.NonNull;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
@@ -93,28 +94,7 @@ public class LocalizedMessageTest {
     public void testBundleReloadUrlNotNull() throws IOException {
         final AtomicBoolean closed = new AtomicBoolean();
 
-        final InputStream inputStream = new InputStream() {
-            @Override
-            public int read() {
-                return -1;
-            }
-
-            @Override
-            public void close() {
-                closed.set(true);
-            }
-        };
-        final URLConnection urlConnection = new URLConnection(null) {
-            @Override
-            public void connect() {
-                // no code
-            }
-
-            @Override
-            public InputStream getInputStream() {
-                return inputStream;
-            }
-        };
+        final URLConnection urlConnection = getConnection(closed);
         final URL url = URL.of(URI.create("test:///"), new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL u) {
@@ -138,6 +118,31 @@ public class LocalizedMessageTest {
                 .isTrue();
     }
 
+    private static @NonNull URLConnection getConnection(AtomicBoolean closed) {
+        final InputStream inputStream = new InputStream() {
+            @Override
+            public int read() {
+                return -1;
+            }
+
+            @Override
+            public void close() {
+                closed.set(true);
+            }
+        };
+        return new URLConnection(null) {
+            @Override
+            public void connect() {
+                // no code
+            }
+
+            @Override
+            public InputStream getInputStream() {
+                return inputStream;
+            }
+        };
+    }
+
     /**
      * Tests reload of resource bundle.
      *
@@ -150,28 +155,7 @@ public class LocalizedMessageTest {
     public void testBundleReloadUrlNotNullFalseReload() throws IOException {
         final AtomicBoolean closed = new AtomicBoolean();
 
-        final InputStream inputStream = new InputStream() {
-            @Override
-            public int read() {
-                return -1;
-            }
-
-            @Override
-            public void close() {
-                closed.set(true);
-            }
-        };
-        final URLConnection urlConnection = new URLConnection(null) {
-            @Override
-            public void connect() {
-                // no code
-            }
-
-            @Override
-            public InputStream getInputStream() {
-                return inputStream;
-            }
-        };
+        final URLConnection urlConnection = getConnection(closed);
         final URL url = URL.of(URI.create("test:///"), new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL u) {
