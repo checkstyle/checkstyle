@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryTypeArgumentsWithRecordPatternCheck"
+             name="UnnecessaryTypeArgumentsWithRecordPattern"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks for unnecessary explicit type arguments in record patterns.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ When a record pattern declares explicit type arguments that can be inferred
+ by the compiler, those type arguments are redundant and reduce readability.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="unnecessary.type.arguments.record.pattern"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
