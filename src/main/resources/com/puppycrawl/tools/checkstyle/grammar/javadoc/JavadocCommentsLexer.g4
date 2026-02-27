@@ -595,6 +595,7 @@ Value_IDENTIFIER
 
 FORMAT_SPECIFIER
     : '%' [#+\- 0,(]* [0-9]* ('.' [0-9]+)? [a-zA-Z]
+    | '"' ~["\r\n]* '"'
     ;
 
 Value_HASH: '#' -> type(HASH);

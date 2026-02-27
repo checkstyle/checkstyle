@@ -10,6 +10,8 @@
 * Example 9: {@value
 *               %.2f
 *               com.example.Constants#PI} — formatted reference to an external constant.
+* Example 10: {@value "%04x" #MANDATED} — quoted format specifier with member reference.
+* Example 11: {@value "0x%04x" Modifier#MANDATED} — quoted format with prefix text.
 * {@inheritDoc java.util.List}
 * {@inheritDoc}
 * {@inheritDoc
