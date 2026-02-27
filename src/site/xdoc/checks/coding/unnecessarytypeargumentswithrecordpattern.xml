@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>UnnecessaryTypeArgumentsWithRecordPattern</title>
+  </head>
+  <body>
+    <section name="UnnecessaryTypeArgumentsWithRecordPattern">
+      <p>Since Checkstyle 13.4.0</p>
+      <subsection name="Description" id="UnnecessaryTypeArgumentsWithRecordPattern_Description">
+        <div>
+          Checks for unnecessary explicit type arguments in record patterns.
+        </div>
+
+        <p>
+          When a record pattern declares explicit type arguments that can be inferred
+          by the compiler, those type arguments are redundant and reduce readability.
+        </p>
+      </subsection>
+      <subsection name="Examples" id="UnnecessaryTypeArgumentsWithRecordPattern_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnnecessaryTypeArgumentsWithRecordPattern"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Examples of violations:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  public void test() {
+    record Box&lt;T&gt;(T t) {}
+    record Pair&lt;A, B&gt;(A a, B b) {}
+    Box&lt;String&gt; box = null;
+    Box&lt;Box&lt;String&gt;&gt; nested = null;
+    Pair&lt;String, Integer&gt; pair = null;
+    // violation below, 'Unnecessary type arguments with record pattern.'
+    if (box instanceof Box&lt;String&gt;(var s)) {
+      System.out.println(s);
+    }
+    // 2 violations 3 lines below:
+    //                        'Unnecessary type arguments with record pattern.'
+    //                        'Unnecessary type arguments with record pattern.'
+    if (nested instanceof Box&lt;Box&lt;String&gt;&gt;(Box&lt;String&gt;(var s))) {
+      System.out.println(s);
+    }
+    // violation below, 'Unnecessary type arguments with record pattern.'
+    if (pair instanceof Pair&lt;String, Integer&gt;(var a, var b)) {
+      System.out.println(a + " " + b);
+    }
+    switch (nested) {
+      // violation below, 'Unnecessary type arguments with record pattern.'
+      case Box&lt;Box&lt;String&gt;&gt;(Box(var s)) -&gt;
+        System.out.println(s);
+      default -&gt; {}
+    }
+    if (box instanceof Box(var s)) { // ok
+      System.out.println(s);
+    }
+    if (box instanceof Box&lt;?&gt; (var s)) { // ok
+      System.out.println(s);
+    }
+    switch (nested) {
+      case Box(Box(var s)) -&gt; // ok
+        System.out.println(s);
+      default -&gt; {}
+    }
+  }
+}
+</code></pre></div>
+      </subsection>
+      <subsection name="Example of Usage"
+                  id="UnnecessaryTypeArgumentsWithRecordPattern_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessaryTypeArgumentsWithRecordPattern">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+      <subsection name="Violation Messages"
+            id="UnnecessaryTypeArgumentsWithRecordPattern_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.type.arguments.record.pattern%22">
+              unnecessary.type.arguments.record.pattern
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+      <subsection name="Package"
+                  id="UnnecessaryTypeArgumentsWithRecordPattern_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+      <subsection name="Parent Module"
+                  id="UnnecessaryTypeArgumentsWithRecordPattern_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
