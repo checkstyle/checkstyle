@@ -597,6 +597,10 @@ FORMAT_SPECIFIER
     : '%' [#+\- 0,(]* [0-9]* ('.' [0-9]+)? [a-zA-Z]
     ;
 
+Value_STRING_LITERAL
+    : '"' ~["\r\n]* '"' -> type(STRING_LITERAL)
+    ;
+
 Value_HASH: '#' -> type(HASH);
 
 Value_WS
