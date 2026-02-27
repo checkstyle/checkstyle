@@ -859,6 +859,9 @@
     <module name="RecordTypeParameterName"/>
     <module name="RecordComponentName"/>
     <module name="ConstantName"/>
+    <module name="GoogleNonConstantFieldName">
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="InterfaceTypeParameterName"/>
     <module name="LocalFinalVariableName"/>
     <module name="LocalVariableName">
