@@ -359,11 +359,14 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoCloseStream() throws IOException {
+    public void testNoCloseStream() throws Exception {
+        final String inputFile = "InputSarifLoggerEmpty.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEmpty.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.NONE);
-        logger.auditStarted(null);
-        logger.auditFinished(null);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
 
         assertWithMessage("Invalid close count")
             .that(outStream.getCloseCount())
@@ -371,9 +374,6 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid flush count")
             .that(outStream.getFlushCount())
             .isEqualTo(1);
-
-        outStream.close();
-        verifyContent(getPath("ExpectedSarifLoggerEmpty.sarif"), outStream);
     }
 
     @Test
