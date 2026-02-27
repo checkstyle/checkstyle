@@ -133,7 +133,6 @@ BTest
 btnfrs
 buf
 bugdatabase
-bugfixes
 Bunsubscribe
 bw
 BXOR
@@ -506,7 +505,6 @@ google
 googleblog
 googleecommon
 googlegroups
-googlenonconstantfieldname
 googlesource
 govstrangefolder
 GPath
