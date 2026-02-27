@@ -593,6 +593,16 @@
           </tr>
           <tr>
             <td>
+              <a href="unnecessarytypeargumentswithrecordpattern.html#UnnecessaryTypeArgumentsWithRecordPattern">
+                UnnecessaryTypeArgumentsWithRecordPattern
+              </a>
+            </td>
+            <td>
+              Checks for unnecessary explicit type arguments in record patterns.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="unusedcatchparametershouldbeunnamed.html#UnusedCatchParameterShouldBeUnnamed">
                 UnusedCatchParameterShouldBeUnnamed
               </a>
