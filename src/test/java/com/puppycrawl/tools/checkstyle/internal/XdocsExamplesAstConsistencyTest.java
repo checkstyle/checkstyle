@@ -116,6 +116,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/coding/unnecessaryparentheses/Example2",
             "checks/coding/unnecessaryparentheses/Example3",
             "checks/coding/unnecessarysemicoloninenumeration/Example2",
+            "checks/coding/useenhancedswitch/Example2",
             "checks/coding/variabledeclarationusagedistance/Example2",
             "checks/descendanttoken/Example10",
             "checks/descendanttoken/Example11",
