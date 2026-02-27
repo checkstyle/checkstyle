@@ -1441,6 +1441,7 @@ unusedcatchparametershouldbeunnamed
 unusedimports
 unusedlambdaparametershouldbeunnamed
 unusedlocalvariable
+unusedprivatefield
 upperell
 urandom
 uri
