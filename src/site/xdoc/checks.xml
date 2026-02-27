@@ -1189,6 +1189,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/whitespace/multilinecommentleadingasteriskpresence.html#MultilineCommentLeadingAsteriskPresence">
+                MultilineCommentLeadingAsteriskPresence
+              </a>
+            </td>
+            <td>
+              Checks that all lines in a multi-line block comment (&#47;* ...
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/multiplestringliterals.html#MultipleStringLiterals">
                 MultipleStringLiterals
               </a>
