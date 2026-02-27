@@ -196,4 +196,16 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
             getPath("InputSingleSpaceSeparatorCommentsWithEmoji.java"), expected);
     }
+
+    @Test
+    public void testSpaceErrorsAroundForElse() throws Exception {
+        final String[] expected = {
+            "13:14: " + getCheckMessage(MSG_KEY),
+            "17:17: " + getCheckMessage(MSG_KEY),
+            "17:28: " + getCheckMessage(MSG_KEY),
+            "24:16: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputSingleSpaceSeparatorForElse.java"), expected);
+    }
 }
