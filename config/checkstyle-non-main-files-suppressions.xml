@@ -312,6 +312,8 @@
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]javadoc[\\/]invalidjavadocposition.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]javadoc[\\/]settersincetag.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]javadoc[\\/]missingjavadocpackage.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]misc[\\/]nocodeinfile.xml.template"/>

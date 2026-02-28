@@ -522,19 +522,6 @@
                      '@noinspectionreason' tag, explaining why we suppressed inspection."/>
     </module>
     <module name="MatchXpath">
-      <property name="id" value="settersHaveSinceTag"/>
-      <property name="query"
-                value="//CLASS_DEF[./IDENT[ends-with(@text, 'Check') or ends-with(@text, 'Filter')]
-                and not (./MODIFIERS/ABSTRACT)]
-                /OBJBLOCK/METHOD_DEF[./IDENT[starts-with(@text, 'set')]
-                and ./MODIFIERS/LITERAL_PUBLIC
-                and ./TYPE/LITERAL_VOID
-                and ./MODIFIERS/BLOCK_COMMENT_BEGIN
-                /COMMENT_CONTENT[not(contains(@text, '@since'))]]"/>
-      <message key="matchxpath.match"
-               value="All property setters of a module should contain a '@since' tag."/>
-    </module>
-    <module name="MatchXpath">
       <property name="id" value="exampleTestsExtendAbstractExamplesModuleTestSupport"/>
       <property name="query"
                 value="//CLASS_DEF[./IDENT[ends-with(@text, 'ExamplesTest')]
@@ -671,6 +658,10 @@
       <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
       <property name="checks" value="MethodCount"/>
     </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
+      <property name="checks" value="SetterSinceTag"/>
+    </module>
     <!-- Fixing these cases will decrease code readability -->
     <module name="SuppressionXpathSingleFilter">
       <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
@@ -752,6 +743,7 @@
       <property name="scope" value="private"/>
     </module>
     <module name="NonEmptyAtclauseDescription"/>
+    <module name="SetterSinceTag"/>
     <module name="SingleLineJavadoc"/>
     <module name="WriteTag"/>
     <module name="SummaryJavadoc"/>
