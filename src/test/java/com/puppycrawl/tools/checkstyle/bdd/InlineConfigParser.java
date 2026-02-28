@@ -360,8 +360,6 @@ public final class InlineConfigParser {
     static {
         MODULE_MAPPINGS.put("IllegalCatch",
                 "com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck");
-        MODULE_MAPPINGS.put("MagicNumber",
-                "com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck");
         MODULE_MAPPINGS.put("SummaryJavadoc",
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck");
         MODULE_MAPPINGS.put("ClassDataAbstractionCoupling",

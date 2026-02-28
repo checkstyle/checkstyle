@@ -33,12 +33,12 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testExample1() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "13:20: '24' is a magic number.",
-            "14:20: '7' is a magic number.",
+            "28:20: '24' is a magic number.",
+            "29:20: '7' is a magic number.",
         };
 
         final String[] expectedWithFilter = {
-            "14:20: '7' is a magic number.",
+            "29:20: '7' is a magic number.",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example1.java"),
@@ -49,12 +49,12 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testExample2() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "15:11: '42' is a magic number.",
-            "16:11: '43' is a magic number.",
+            "30:11: '42' is a magic number.",
+            "31:11: '43' is a magic number.",
         };
 
         final String[] expectedWithFilter = {
-            "16:11: '43' is a magic number.",
+            "31:11: '43' is a magic number.",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example2.java"),
@@ -80,12 +80,12 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testExample4() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "20:11: '42' is a magic number.",
-            "21: Line is longer than 55 characters (found 65).",
+            "46:11: '42' is a magic number.",
+            "47: Line is longer than 55 characters (found 65).",
         };
 
         final String[] expectedWithFilter = {
-            "21: Line is longer than 55 characters (found 65).",
+            "47: Line is longer than 55 characters (found 65).",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example4.java"),
@@ -134,12 +134,12 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testExample7() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "17:11: '42' is a magic number.",
-            "18:11: '43' is a magic number.",
+            "32:11: '42' is a magic number.",
+            "33:11: '43' is a magic number.",
         };
 
         final String[] expectedWithFilter = {
-            "18:11: '43' is a magic number.",
+            "33:11: '43' is a magic number.",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example7.java"),
@@ -150,15 +150,15 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testExample8() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "18:11: '42' is a magic number.",
-            "19:11: '43' is a magic number.",
-            "20:11: '44' is a magic number.",
-            "21:11: '45' is a magic number.",
-            "22:11: '46' is a magic number.",
+            "33:11: '42' is a magic number.",
+            "34:11: '43' is a magic number.",
+            "35:11: '44' is a magic number.",
+            "36:11: '45' is a magic number.",
+            "37:11: '46' is a magic number.",
         };
 
         final String[] expectedWithFilter = {
-            "22:11: '46' is a magic number.",
+            "37:11: '46' is a magic number.",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example8.java"),
