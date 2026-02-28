@@ -7,9 +7,9 @@
 <suppressions>
   <suppress checks="JavadocStyle"
     files="Example1.java"
-    lines="20"/>
+    lines="35"/>
   <suppress checks="MagicNumber"
     files="Example1.java"
-    lines="23,27"/>
+    lines="38,42"/>
   <suppress message="Missing a Javadoc comment"/>
 </suppressions>

@@ -39,7 +39,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expectedWithoutFilter = {
-            "21:17: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "100"),
+            "36:17: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "100"),
         };
         final String[] expectedWithFilter = {};
 

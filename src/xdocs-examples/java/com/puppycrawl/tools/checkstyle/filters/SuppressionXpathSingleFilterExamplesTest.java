@@ -123,7 +123,7 @@ public class SuppressionXpathSingleFilterExamplesTest extends AbstractExamplesMo
     @Test
     public void testExample6() throws Exception {
         final String[] expectedWithoutFilter = {
-            "17:23: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY,
+            "32:23: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY,
                 "177"),
         };
         final String[] expectedWithFilter = {};
