@@ -132,7 +132,22 @@
   &lt;/module&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocStyle"/&gt;
-    &lt;module name="MagicNumber"/&gt;
+    &lt;module name="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"&gt;
+      &lt;property name="ignoreNumbers" value="-1, 0, 1, 2"/&gt;
+      &lt;property name="ignoreHashCodeMethod" value="false"/&gt;
+      &lt;property name="ignoreAnnotation" value="false"/&gt;
+      &lt;property name="ignoreFieldDeclaration" value="false"/&gt;
+      &lt;property name="ignoreAnnotationElementDefaults" value="true"/&gt;
+      &lt;property name="constantWaiverParentToken"
+                value="TYPECAST, METHOD_CALL, EXPR, ARRAY_INIT, UNARY_MINUS,
+                       UNARY_PLUS, ELIST, STAR, ASSIGN, PLUS_ASSIGN, MINUS_ASSIGN,
+                       STAR_ASSIGN, DIV_ASSIGN, MOD_ASSIGN, SR_ASSIGN, BSR_ASSIGN,
+                       SL_ASSIGN, BAND_ASSIGN, BXOR_ASSIGN, BOR_ASSIGN, LOR, LAND,
+                       BOR, BXOR, BAND, NOT_EQUAL, EQUAL, LT, GT, LE, GE, SL, SR,
+                       BSR, PLUS, MINUS, DIV, MOD, INC, DEC, POST_INC, POST_DEC,
+                       LITERAL_RETURN, ARRAY_DECLARATOR"/&gt;
+      &lt;property name="tokens" value="NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG"/&gt;
+    &lt;/module&gt;
     &lt;module name="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -158,10 +173,10 @@
 &lt;suppressions&gt;
   &lt;suppress checks="JavadocStyle"
     files="Example1.java"
-    lines="20"/&gt;
+    lines="35"/&gt;
   &lt;suppress checks="MagicNumber"
     files="Example1.java"
-    lines="23,27"/&gt;
+    lines="38,42"/&gt;
   &lt;suppress message="Missing a Javadoc comment"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>

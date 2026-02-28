@@ -145,15 +145,15 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testExample7() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "17:15: Name 'DoMATH' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "18:15: Name 'DoEng' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "22:19: '11' is a magic number.",
-            "23:8: Name 'FOO' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "32:15: Name 'DoMATH' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "33:15: Name 'DoEng' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "37:19: '11' is a magic number.",
+            "38:8: Name 'FOO' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
 
         final String[] expectedWithFilter = {
-            "18:15: Name 'DoEng' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "22:19: '11' is a magic number.",
+            "33:15: Name 'DoEng' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "37:19: '11' is a magic number.",
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
@@ -225,7 +225,7 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testExample11() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "16:27: '11' is a magic number.",
+            "31:27: '11' is a magic number.",
         };
 
         final String[] expectedWithFilter = {};
@@ -241,7 +241,7 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testExample12() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "16:27: '11' is a magic number.",
+            "31:27: '11' is a magic number.",
         };
 
         final String[] expectedWithFilter = {};
