@@ -131,9 +131,9 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
 
         };
         final String[] expectedWithoutFilter = {
-            "21:1: Class Data Abstraction Coupling is 2 (max allowed is 1) "
+            "36:1: Class Data Abstraction Coupling is 2 (max allowed is 1) "
                     + "classes [Example1, Example2].",
-            "24:23: '10022' is a magic number.",
+            "39:23: '10022' is a magic number.",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example8.java"), expectedWithoutFilter,
