@@ -126,24 +126,12 @@
       <property name="query" value="//RCURLY[parent::SLIST[parent::LITERAL_CATCH
                                and not(parent::LITERAL_CATCH/following-sibling::*)]]"/>
     </module>
-    <module name="RightCurly">
-      <property name="id" value="RightCurlyAlone"/>
-      <property name="option" value="alone"/>
+    <module name="RightCurlyAloneOrEmpty">
       <property name="tokens"
                value="CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, STATIC_INIT,
                     INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF, RECORD_DEF,
                     COMPACT_CTOR_DEF, LITERAL_SWITCH, LITERAL_CASE, LITERAL_FINALLY,
                     LITERAL_CATCH"/>
-    </module>
-    <module name="SuppressionXpathSingleFilter">
-      <!-- suppression is required till https://github.com/checkstyle/checkstyle/issues/7541 -->
-      <property name="id" value="RightCurlyAlone"/>
-      <property name="query" value="//RCURLY[parent::SLIST[count(./*)=1
-                               and not(parent::LITERAL_CATCH)]
-                               or (preceding-sibling::*[last()][self::LCURLY]
-                               and not(parent::SLIST/parent::LITERAL_CATCH))
-                               or (parent::SLIST/parent::LITERAL_CATCH
-                               and parent::SLIST/parent::LITERAL_CATCH/following-sibling::*)]"/>
     </module>
     <module name="WhitespaceAfter">
       <property name="tokens"
