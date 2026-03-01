@@ -382,6 +382,12 @@ public class CommitValidationTest {
 
     }
 
+    /**
+     * Pair of rev commits for testing.
+     *
+     * @noinspection ClassCanBeRecord
+     * @noinspectionreason Test class does not need to be a record.
+     */
     private static final class RevCommitsPair {
 
         private final Iterator<RevCommit> first;
