@@ -114,6 +114,8 @@
                     BAND_ASSIGN</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
                     METHOD_REF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                    LAMBDA</a>
                   .
               </td>
               <td>

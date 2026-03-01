@@ -100,8 +100,9 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         getAllowedDirectoryAndChecks();
 
     private static final Set<String> INTERNAL_MODULES = getInternalModules();
-    private static final DirectoryStream.Filter<Path> IS_DIRECTORY = path
-            -> path.toFile().isDirectory();
+    private static final DirectoryStream.Filter<Path> IS_DIRECTORY = path -> {
+        return path.toFile().isDirectory();
+    };
 
     private Path javaDir;
     private Path inputDir;
