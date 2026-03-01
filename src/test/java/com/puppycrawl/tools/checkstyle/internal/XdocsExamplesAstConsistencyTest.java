@@ -96,6 +96,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/blocks/needbraces/Example6",
             "checks/coding/constructorsdeclarationgrouping/Example2",
             "checks/coding/covariantequals/Example2",
+            "checks/coding/finallocalvariable/Example6",
             "checks/coding/illegaltoken/Example2",
             "checks/coding/illegaltokentext/Example3",
             "checks/coding/illegaltokentext/Example4",

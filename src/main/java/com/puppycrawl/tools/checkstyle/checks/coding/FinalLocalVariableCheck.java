@@ -111,6 +111,13 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private boolean validateUnnamedVariables;
 
     /**
+     * Control whether to check
+     * <a href="https://openjdk.org/jeps/394">
+     * pattern variables</a>.
+     */
+    private boolean validatePatternVariables;
+
+    /**
      * Setter to control whether to check
      * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
      * enhanced for-loop</a> variable.
@@ -134,6 +141,18 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         this.validateUnnamedVariables = validateUnnamedVariables;
     }
 
+    /**
+     * Setter to control whether to check
+     * <a href="https://openjdk.org/jeps/394">
+     * pattern varibles></a>.
+     *
+     * @param validatePatternVariables whether to check pattern variables
+     * @since 13.4.0
+     */
+    public final void setValidatePatternVariables(boolean validatePatternVariables) {
+        this.validatePatternVariables = validatePatternVariables;
+    }
+
     @Override
     public int[] getRequiredTokens() {
         return new int[] {
@@ -145,6 +164,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.LITERAL_BREAK,
             TokenTypes.LITERAL_FOR,
             TokenTypes.EXPR,
+            TokenTypes.PATTERN_VARIABLE_DEF,
         };
     }
 
@@ -160,6 +180,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.LITERAL_FOR,
             TokenTypes.VARIABLE_DEF,
             TokenTypes.EXPR,
+            TokenTypes.PATTERN_VARIABLE_DEF,
         };
     }
 
@@ -176,6 +197,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
             TokenTypes.EXPR,
+            TokenTypes.PATTERN_VARIABLE_DEF,
         };
     }
 
@@ -238,6 +260,12 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 // Switch labeled expression has no slist
                 if (ast.getParent().getType() == TokenTypes.SWITCH_RULE) {
                     storePrevScopeUninitializedVariableData();
+                }
+            }
+
+            case TokenTypes.PATTERN_VARIABLE_DEF -> {
+                if (validatePatternVariables && isNotChildOfAssign(ast)) {
+                    insertPatternVariable(ast);
                 }
             }
 
@@ -517,6 +545,24 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
+     * Insert a pattern variable at the topmost scope stack.
+     *
+     * @param ast the pattern variable to insert.
+     */
+    private void insertPatternVariable(DetailAST ast) {
+        final Map<String, FinalVariableCandidate> scope = scopeStack.peek().scope;
+        final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
+        final FinalVariableCandidate previousCanditate = scope.get(astNode.getText());
+        if (previousCanditate != null) {
+            final DetailAST ident = previousCanditate.variableIdent;
+            log(ident, MSG_KEY, ident.getText());
+        }
+        final FinalVariableCandidate candidate = new FinalVariableCandidate(astNode);
+        candidate.assigned = true;
+        scope.put(astNode.getText(), candidate);
+    }
+
+    /**
      * Check if VARIABLE_DEF is initialized or not.
      *
      * @param ast VARIABLE_DEF to be checked
@@ -534,6 +580,17 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private static boolean isFirstChild(DetailAST ast) {
         return ast.getPreviousSibling() == null;
+    }
+
+    /**
+     * Checks if pattern variable is not used for assign.
+     *
+     * @param ast PATTERN_VARIABLE_DEF.
+     * @return true if it's in conditional statement.
+     */
+    private static boolean isNotChildOfAssign(DetailAST ast) {
+        return ast.getParent().getParent()
+                .getParent().getType() != TokenTypes.ASSIGN;
     }
 
     /**
