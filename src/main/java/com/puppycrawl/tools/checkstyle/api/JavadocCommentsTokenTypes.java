@@ -189,7 +189,7 @@ public final class JavadocCommentsTokenTypes {
     public static final int AT_SIGN = JavadocCommentsLexer.AT_SIGN;
 
     /**
-     * {@code @author} Javadoc block tag.
+nano src/main/java/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.java     * {@code @author} Javadoc block tag.
      *
      * <p>Such Javadoc tag can have one child:</p>
      * <ol>
@@ -301,6 +301,40 @@ public final class JavadocCommentsTokenTypes {
      *
      * @see #JAVADOC_BLOCK_TAG
      */
+
+/**
+ * {@code @return} Javadoc block tag.
+ *
+ * <p>Such Javadoc tag can have one child:</p>
+ * <ol>
+ *   <li>{@link #DESCRIPTION}</li>
+ * </ol>
+ *
+ * <p><b>Example:</b></p>
+ * <pre>{@code
+ * /**
+ *  * @return result of computation
+ *  *\/
+ * }</pre>
+ *
+ * <b>Tree:</b>
+ * <pre>{@code
+ * JAVADOC_CONTENT -> JAVADOC_CONTENT
+ * |--TEXT -> /**
+ * |--NEWLINE -> \n
+ * |--LEADING_ASTERISK ->  *
+ * |--TEXT ->
+ * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+ * |   `--RETURN_BLOCK_TAG -> RETURN_BLOCK_TAG
+ * |       |--AT_SIGN -> @
+ * |       |--TAG_NAME -> return
+ * |       `--DESCRIPTION -> DESCRIPTION
+ * |           `--TEXT ->  result of computation
+ * }</pre>
+ *
+ * @see #JAVADOC_BLOCK_TAG
+ */
+
     public static final int RETURN_BLOCK_TAG = JavadocCommentsLexer.RETURN_BLOCK_TAG;
 
     /**
