@@ -3666,6 +3666,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck*</param>
@@ -3713,6 +3714,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheckTest</param>
@@ -3735,6 +3737,10 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
+              <avoidCallsTo>
+                <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+              </avoidCallsTo>
               <features>
                 <feature>+funmodifiablecollection</feature>
               </features>
