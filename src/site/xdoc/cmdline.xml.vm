@@ -2223,12 +2223,25 @@ java -jar target/checkstyle-X.X-SNAPSHOT-all.jar -c /sun_checks.xml MyClass.java
           (Root module, Checks, etc)</a> in configuration file:
         </b>
       </p>
-      <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint block-command"><code class="language-bash">
-          java -classpath MyCustom.jar;checkstyle-${projectVersion}-all.jar
-          com.puppycrawl.tools.checkstyle.Main -c config.xml Check.java
-        </code></pre></div>
-      </div>
+      <p><strong>For Linux/Unix:</strong></p>
+        <div class="wrap-content">
+          <div class="wrapper">
+            <pre class="prettyprint block-command"><code class="language-bash">
+        java -classpath MyCustom.jar:checkstyle-${projectVersion}-all.jar \
+            com.puppycrawl.tools.checkstyle.Main -c config.xml Check.java
+            </code></pre>
+          </div>
+        </div>
+
+        <p><strong>For Windows:</strong></p>
+        <div class="wrap-content">
+          <div class="wrapper">
+            <pre class="prettyprint block-command"><code class="language-bash">
+        java -classpath MyCustom.jar;checkstyle-${projectVersion}-all.jar ^
+            com.puppycrawl.tools.checkstyle.Main -c config.xml Check.java
+            </code></pre>
+          </div>
+        </div>
       <p>
         <b>Note</b>: Custom modules should be specified with the class'
         <a href="writingchecks.html#Integrating_Checks">full classpath</a>
