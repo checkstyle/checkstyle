@@ -338,6 +338,8 @@
                 href="checks/whitespace/emptyforinitializerpad.html"/>
           <item name="EmptyForIteratorPad" href="checks/whitespace/emptyforiteratorpad.html"/>
           <item name="EmptyLineSeparator" href="checks/whitespace/emptylineseparator.html"/>
+          <item name="EmptyLineWrappingInBlock"
+                href="checks/whitespace/emptylinewrappinginblock.html"/>
           <item name="FileTabCharacter" href="checks/whitespace/filetabcharacter.html"/>
           <item name="GenericWhitespace" href="checks/whitespace/genericwhitespace.html"/>
           <item name="MethodParamPad" href="checks/whitespace/methodparampad.html"/>
