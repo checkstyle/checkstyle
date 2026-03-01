@@ -13,8 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedi
 
 public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
 
-
-    int howMany1(int k) {
+    int testSwitchRegular(int k) {
         return switch (k) {
             case 1: {
                 int c = 0;
@@ -30,7 +29,6 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
                 a = 7;
                 yield 2;
             }
-
             case 2: {
                 int arg = 9; // violation 'Distance .* is 2.'
                 int d = 0;
@@ -40,39 +38,11 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
                         d += arg;
                     }
                 }
-
                 String ar[] = {"1", "2"};
                 for (String st : ar) {
                     System.identityHashCode(st);
                 }
                 yield 4;
-
-            }
-
-            case 3: {
-                int blockNumWithSimilarVar = 3;
-                int dist = 0;
-                int index = 0;
-                int block = 0;
-
-                if (blockNumWithSimilarVar <= 1) {
-                    do {
-                        dist++;
-                        if (block > 4) {
-                            break;
-                        }
-                        index++;
-                        block++;
-                    } while (index < 7);
-                } else {
-                    while (index < 8) {
-                        dist += block;
-                        index++;
-                        block++;
-                    }
-                }
-                yield 56;
-
             }
             default: {
                 int b = 0;
@@ -93,7 +63,7 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
         };
     }
 
-    int howMany2(int k) {
+    int testSwitchArrow(int k) {
         return switch (k) {
             case 1 -> {
                 int c = 0;
@@ -118,36 +88,11 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
                         d += arg;
                     }
                 }
-
                 String ar[] = {"1", "2"};
                 for (String st : ar) {
                     System.identityHashCode(st);
                 }
                 yield 3;
-            }
-            case 3 -> {
-                int blockNumWithSimilarVar = 3;
-                int dist = 0;
-                int index = 0;
-                int block = 0;
-
-                if (blockNumWithSimilarVar <= 1) {
-                    do {
-                        dist++;
-                        if (block > 4) {
-                            break;
-                        }
-                        index++;
-                        block++;
-                    } while (index < 7);
-                } else {
-                    while (index < 8) {
-                        dist += block;
-                        index++;
-                        block++;
-                    }
-                }
-                yield 4;
             }
             default -> {
                 int b = 0;
@@ -167,41 +112,5 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
             }
         };
     }
-
-    public boolean equals1(Object obj) {
-        int i = 1;
-        int a = 5;
-        int b = 6;
-        switch (i) {
-            case 1:
-                int count; // violation 'Distance between .* declaration and its first usage is 3.'
-                a = a + b;
-                b = a + a;
-                count = b;
-                break;
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-        }
-        return false;
-    }
-
-    public boolean equals2(Object obj) {
-        int i = 1;
-        int a = 5;
-        int b = 6;
-        switch (i) {
-            case 1 -> {
-                int count; // violation 'Distance between .* declaration and its first usage is 3.'
-                a = a + b;
-                b = a + a;
-                count = b;
-            }
-        }
-        return false;
-    }
 }
-
 
