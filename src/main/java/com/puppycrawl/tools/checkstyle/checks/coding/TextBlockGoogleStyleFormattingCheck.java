@@ -65,6 +65,11 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      */
     public static final String MSG_VERTICALLY_UNALIGNED = "textblock.vertically.unaligned";
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties" file.
+     */
+    public static final String MSG_TEXT_BLOCK_UNALIGNED = "textblock.Indentation.unaligned";
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -96,6 +101,12 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
         if (!quotesAreVerticallyAligned(ast, closingQuotes)) {
             log(closingQuotes, MSG_VERTICALLY_UNALIGNED);
         }
+
+        final int[] violation = getImproperIndentationLine(ast);
+        if (violation != null) {
+            log(violation[0], violation[1], MSG_TEXT_BLOCK_UNALIGNED);
+        }
+
     }
 
     /**
@@ -185,4 +196,34 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
         }
         return Character.isWhitespace(text.charAt(index));
     }
+
+    /**
+     * Determines the String content between opening and closing quotes  must be indented same.
+     *
+     * @param openingQuotes opening quotes
+     * @return  the first line with incorrect indentation, or -1 if all lines are OK.
+     */
+    private int[] getImproperIndentationLine(DetailAST openingQuotes) {
+        int[] violationLine = null;
+        final int quoteIndent = openingQuotes.getColumnNo();
+
+        final int startLine = openingQuotes.getLineNo() + 1;
+        final int endLine = getClosingQuotes(openingQuotes).getLineNo() - 1;
+        final String[] lines = getLines();
+        for (int index = startLine - 1; index < endLine; index++) {
+            final String line = lines[index];
+            int indent = 0;
+            while (indent < line.length()
+                    && Character.isWhitespace(line.charAt(indent))) {
+                indent++;
+            }
+
+            if (indent < quoteIndent) {
+                violationLine = new int[] {index + 1, indent};
+                break;
+            }
+        }
+        return violationLine;
+    }
+
 }
