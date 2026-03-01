@@ -118,6 +118,21 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
+                <p id="Example6-config">
+                  An example of how to configure for pattern variables.
+                </p>
+                <macro name="example">
+                  <param name="path"
+                         value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example6.java"/>
+                  <param name="type" value="config"/>
+                </macro>
+                <p id="Example6-code">Example:</p>
+                <macro name="example">
+                  <param name="path"
+                         value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example6.java"/>
+                  <param name="type" value="code"/>
+                </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="FinalLocalVariable_Example_of_Usage">
