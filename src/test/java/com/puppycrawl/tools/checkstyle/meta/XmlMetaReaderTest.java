@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.meta;
 import static com.google.common.truth.Truth.assertThat;
 
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -145,7 +146,7 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
 
     @Test
     public void testReadXmlMetaModuleTypeNull() throws Exception {
-        try (InputStream is = IOUtils.toInputStream("", "UTF-8")) {
+        try (InputStream is = IOUtils.toInputStream("", StandardCharsets.UTF_8)) {
             assertThat(XmlMetaReader.read(is, null)).isNull();
         }
     }
