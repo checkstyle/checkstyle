@@ -997,6 +997,7 @@
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
       <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
     </module>
+    <module name="EmptyLineWrappingInBlock"/>
     <module name="GenericWhitespace"/>
     <module name="MethodParamPad"/>
     <module name="NoLineWrap"/>
