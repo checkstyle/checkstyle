@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>SetterSinceTag</title>
+  </head>
+  <body>
+    <section name="SetterSinceTag">
+      <p>Since Checkstyle 13.3.0</p>
+      <subsection name="Description" id="SetterSinceTag_Description">
+        <div>
+          Checks that all the setter methods in a non-abstract class whose
+          class name ends with Check/FilterJavadoc contain since block tags.
+        </div>
+
+        <p>
+          Only performs checks on classes whose class name ends with Check/Filter.
+        </p>
+
+        <p>
+          Checks if setter methods have since block tag.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="SetterSinceTag_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SetterSinceTag"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          The following code produces a violation because setter method setId2 does not have
+          since block tag in the Javadoc:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+
+  static class ExampleCheck {
+    private Long id1;
+
+    private Long id2;
+
+    /**
+     * Set id of the user
+     *
+     * @param id1 id of the user
+     * @since 13.3.0
+     */
+    public void setId1(Long id1) {
+      this.id1 = id1;
+    }
+
+    /**
+     * Set id of the user
+     *
+     * @param id2 id of the user
+     */
+    public void setId2(Long id2) { // violation, '@since' tag is missing
+      this.id2 = id2;
+    }
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="SetterSinceTag_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SetterSinceTag">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="SetterSinceTag_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22setter.missing.sinceTag%22">
+              setter.missing.sinceTag
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="SetterSinceTag_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="SetterSinceTag_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
