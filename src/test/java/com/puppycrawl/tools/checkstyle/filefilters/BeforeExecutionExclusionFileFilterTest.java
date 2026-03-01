@@ -75,7 +75,7 @@ public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSu
         final String[] filteredViolations = CommonUtil.EMPTY_STRING_ARRAY;
 
         final String[] unfilteredViolations = {
-            "17:13: " + getCheckMessage(FinalLocalVariableCheck.class, MSG_KEY, "i"),
+            "18:13: " + getCheckMessage(FinalLocalVariableCheck.class, MSG_KEY, "i"),
         };
 
         verifyFilterWithInlineConfigParser(
