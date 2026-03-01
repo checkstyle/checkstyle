@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineWrappingInBlockCheck"
+             name="EmptyLineWrappingInBlock"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks the presence or absence of empty lines at the top and bottom of code blocks
+ (e.g. class, method, if, for). Configurable per block kind via &lt;code&gt;tokens&lt;/code&gt;.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ For each configured block type, &lt;code&gt;topSeparator&lt;/code&gt; controls the empty line
+ between the opening &lt;code&gt;'{'} and the first statement; {@code bottomSeparator}controls the empty line between the last statement and the closing {@code '}'&lt;/code&gt;.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Policy values: &lt;code&gt;empty_line&lt;/code&gt; (exactly one required), &lt;code&gt;empty_line_allowed&lt;/code&gt;
+ (no validation), &lt;code&gt;no_empty_line&lt;/code&gt; (forbidden).
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ See &lt;a href="https://github.com/checkstyle/checkstyle/issues/5313"&gt;#5313&lt;/a&gt;.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="empty_line"
+                      name="bottomSeparator"
+                      type="com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorOption">
+               <description>Set the policy for empty lines before the closing brace.</description>
+            </property>
+            <property default-value="CLASS_DEF,INTERFACE_DEF,ANNOTATION_DEF,ENUM_DEF,ENUM_CONSTANT_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+            <property default-value="empty_line"
+                      name="topSeparator"
+                      type="com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorOption">
+               <description>Set the policy for empty lines after the opening brace.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="empty.line.wrapping.bottom.no"/>
+            <message-key key="empty.line.wrapping.bottom.one"/>
+            <message-key key="empty.line.wrapping.top.no"/>
+            <message-key key="empty.line.wrapping.top.one"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
