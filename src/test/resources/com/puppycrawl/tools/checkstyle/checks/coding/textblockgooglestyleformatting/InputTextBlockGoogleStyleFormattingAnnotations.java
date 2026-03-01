@@ -58,12 +58,13 @@ public class InputTextBlockGoogleStyleFormattingAnnotations {
             // violation below 'Opening quotes (""") of text-block must be on the new line'
             description = """
                 Create a private key and print the associated address on the blockchain
-                          """)
+                          """)  // violation above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
     class Inner3 {}
 }
 
 // violation below 'Opening quotes (""") of text-block must be on the new line'
 @SuppressWarnings("""
 Text block in Annotation
-""") // violation 'Text-block quotes are not vertically aligned'
+""") // violation above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
+// violation above 'Text-block quotes are not vertically aligned'
 class OuterFirst{}

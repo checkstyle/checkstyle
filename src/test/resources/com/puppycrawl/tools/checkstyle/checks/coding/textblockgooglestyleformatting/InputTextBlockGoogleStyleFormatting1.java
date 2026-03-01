@@ -15,9 +15,9 @@ public class InputTextBlockGoogleStyleFormatting1 {
             """
             first string
             """ + """
-            some String
+                   some String
             """, """
-            second string
+                  second string
             """
            // violation 3 lines above 'Opening quotes (""") of text-block must be on the new line'
            // violation 2 lines above 'Text-block quotes are not vertically aligned'
@@ -43,7 +43,8 @@ public class InputTextBlockGoogleStyleFormatting1 {
               hello there1
               """, 0); // violation 'Text-block quotes are not vertically aligned'
 
-        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 3 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 3 lines below 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
         String test1 = s
             + """
             very good

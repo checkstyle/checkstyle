@@ -21,6 +21,7 @@ public class Example4 {
           s
       """;
 
+    // violation 4 lines below 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
     getData(
       1,
         """
@@ -30,13 +31,13 @@ public class Example4 {
       1,
         """
         this is a multi-line message
-        """);
+        """); // violation 2 lines above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
 
     return
         """
     this is sample text
       """; // violation 'text-block quotes are not vertically aligned'
-  }
+  } // violation 2 lines above 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
   public void getData(int num, String text) {}
 }
 // xdoc section -- end
