@@ -76,20 +76,6 @@ class InputLeftCurlyTestDefault3
             return 2;
     }
 
-    // Test static initialiser
-    static
-    { // violation ''{' at column 5 should be on the previous line'
-        int x = 1; // should not require any javadoc
-    }
-
-
-
-    public enum GreetingsEnum
-    { // violation ''{' at column 5 should be on the previous line'
-        HELLO,
-        GOODBYE
-    };
-
     void method2()
     { // violation ''{' at column 5 should be on the previous line'
         boolean flag = true;
@@ -101,75 +87,4 @@ class InputLeftCurlyTestDefault3
         // violation below ''{' at column 19 should have line break after'
         if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); }
     }
-}
-
-/**
- * Test input for closing brace if that brace terminates
- * a statement or the body of a constructor.
- */
-class FooCtor
-{ // violation ''{' at column 1 should be on the previous line'
-        int i;
-        public FooCtor()
-    { // violation ''{' at column 5 should be on the previous line'
-                i = 1;
-    }}
-
-/**
-* Test input for closing brace if that brace terminates
-* a statement or the body of a method.
-*/
-class FooMethod
-{ // violation ''{' at column 1 should be on the previous line'
-        public void fooMethod()
-    { // violation ''{' at column 5 should be on the previous line'
-                int i = 1;
-    }}
-
-/**
-* Test input for closing brace if that brace terminates
-* a statement or the body of a named class.
-*/
-class FooInner
-{ // violation ''{' at column 1 should be on the previous line'
-        class InnerFoo
-    { // violation ''{' at column 5 should be on the previous line'
-                public void fooInnerMethod ()
-        { // violation ''{' at column 9 should be on the previous line'
-
-                }
-    }}
-
-/**
- * False positive
- *
- */
-class Absent_CustomFieldSerializer3 {
-
-    public static void serialize() {} // Expected nothing but was "'}' should be alone on a line."
-}
-
-class Absent_CustomFieldSerializer4
-{ // violation ''{' at column 1 should be on the previous line'
-    public Absent_CustomFieldSerializer4() {}
-}
-
-class EmptyClass2 {}
-
-interface EmptyInterface3 {}
-
-class ClassWithStaticInitializers
-{ // violation ''{' at column 1 should be on the previous line'
-    static {
-    }
-    static
-    {}
-
-    static class Inner
-    { // violation ''{' at column 5 should be on the previous line'
-        static {
-            int i = 1;
-        }
-    }
-
 }
