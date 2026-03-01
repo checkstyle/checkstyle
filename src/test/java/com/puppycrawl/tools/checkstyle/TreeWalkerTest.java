@@ -40,6 +40,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -1029,24 +1030,6 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
 
         @Override
-        public int hashCode() {
-            // Use hash based on ID for deterministic testing
-            // IDs are set via configuration, compute hash from them
-            final String id = getId();
-            final int result;
-            if ("alpha".equals(id)) {
-                result = 2;
-            }
-            else if ("beta".equals(id)) {
-                result = 1;
-            }
-            else {
-                result = 0;
-            }
-            return result;
-        }
-
-        @Override
         public boolean equals(Object obj) {
             if (this == obj) {
                 return true;
@@ -1055,7 +1038,12 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                 return false;
             }
             final TestCheck other = (TestCheck) obj;
-            return hashCode() == other.hashCode();
+            return Objects.equals(getId(), other.getId());
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getId());
         }
 
         @Override

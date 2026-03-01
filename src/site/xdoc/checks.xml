@@ -539,6 +539,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/naming/googlenonconstantfieldname.html#GoogleNonConstantFieldName">
+                GoogleNonConstantFieldName
+              </a>
+            </td>
+            <td>
+              Checks that non-constant field names conform to the <a href="https://google.github.io/styleguide/javaguide.html#s5.2.5-non-constant-field-names">
+              Google Java Style Guide</a> for non-constant field naming.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/header/header.html#Header">
                 Header
               </a>
@@ -2027,6 +2038,18 @@
             </td>
             <td>
               Checks that long constants are defined with an upper ell.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/useenhancedswitch.html#UseEnhancedSwitch">
+                UseEnhancedSwitch
+              </a>
+            </td>
+            <td>
+              Ensures that the enhanced switch (using <code>-></code> for case labels) is used
+              instead of the traditional switch (using <code>:</code> for case labels) where
+              possible.
             </td>
           </tr>
           <tr>

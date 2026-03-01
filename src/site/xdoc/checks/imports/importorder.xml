@@ -134,17 +134,14 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.io.IOException;
 import java.net.URL;
-
-import java.io.IOException;
-// 2 violations above:
-//  'Extra separation in import group before 'java.io.IOException''
-//  'Wrong order for 'java.io.IOException' import.'
-import javax.net.ssl.TrustManager; // violation, extra separation due to above comment
+// violation below 'Extra separation in import group before 'java.io.IOException''
+import java.io.IOException; // violation 'Wrong lexicographical order for 'java.io.IOException' import. Should be before 'java.net.URL'.'
+import javax.net.ssl.TrustManager;
 import javax.swing.JComponent;
 import org.w3c.dom.Document;
-import java.util.Set; // violation, wrong order, 'java' should not come after 'org' imports
-import java.util.Map; // violation, wrong order, 'java' should not come after 'org' imports
-import com.sun.security.auth.UserPrincipal; // violation, wrong order
+import java.util.Set; // violation 'Wrong lexicographical order for 'java.util.Set' import. Should be before 'org.w3c.dom.Document'.'
+import java.util.Map; // violation 'Wrong lexicographical order for 'java.util.Map' import. Should be before 'java.util.Set'.'
+import com.sun.security.auth.UserPrincipal; // violation 'Wrong lexicographical order for 'com.sun.security.auth.UserPrincipal' import. Should be before 'java.util.Map'.'
 import com.sun.source.tree.Tree;
 </code></pre></div>
         <p>
@@ -183,15 +180,15 @@ import com.sun.source.tree.Tree;
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static java.lang.System.out;
-import static java.lang.Math.PI; // violation, alphabetical case-sensitive ASCII order, 'M' &lt; 'S'
+import static java.lang.Math.PI; // violation 'Wrong lexicographical order for 'java.lang.Math.PI' import. Should be before 'java.lang.System.out'.'
 import java.io.IOException;
 
-import java.net.URL; // violation, extra separation before import
+import java.net.URL; // violation 'Extra separation in import group before 'java.net.URL''
 import java.security.KeyManagementException;
 
 import javax.net.ssl.TrustManager;
 
-import javax.net.ssl.X509TrustManager; // violation, groups should not be separated internally
+import javax.net.ssl.X509TrustManager; // violation 'Extra separation in import group before 'javax.net.ssl.X509TrustManager''
 
 import org.w3c.dom.Document;
 </code></pre></div><hr class="example-separator"/>
@@ -227,15 +224,15 @@ import org.w3c.dom.Document;
 import static java.io.File.createTempFile;
 import static java.lang.Math.abs; // ok, alphabetical case-sensitive ASCII order, 'i' &lt; 'l'
 
-import java.io.File; // violation, alphabetical case-sensitive ASCII order, 'i' &lt; 'l'
+import java.io.File; // violation 'Extra separation in import group before 'java.io.File''
 
-import java.io.IOException; // violation, extra separation in 'java' import group
+import java.io.IOException; // violation 'Extra separation in import group before 'java.io.IOException''
 
 import org.w3c.dom.Document;
 
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE; // violation, wrong order, 'javax' must come before 'org'
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE; // violation 'Import statement for 'javax.swing.WindowConstants.EXIT_ON_CLOSE' violates the configured import group order.'
 import javax.swing.JComponent;
-import org.w3c.dom.Element; // violation, must be separated from previous 'javax' import
+import org.w3c.dom.Element; // violation ''org.w3c.dom.Element' should be separated from previous imports.'
 
 import com.sun.security.auth.UserPrincipal;
 import com.sun.source.tree.Tree;
@@ -287,11 +284,11 @@ import com.sun.source.tree.Tree;
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import com.sun.security.auth.UserPrincipal;
 import static java.lang.Math.abs;
-import javax.swing.JComponent; // violation, wrong order, 'javax' should come after all '*' group imports
+import javax.swing.JComponent; // violation 'Import 'javax.swing.JComponent' violates the configured relative order between static and non-static imports.'
 import java.net.URL;
 import java.security.KeyManagementException;
-import javax.swing.JComponent; // violation, duplicate + wrong position
-import com.sun.source.tree.Tree; // violation, wrong order, 'com' imports should be at top
+import javax.swing.JComponent; // violation 'Import statement for 'javax.swing.JComponent' violates the configured import group order.'
+import com.sun.source.tree.Tree; // violation 'Import statement for 'com.sun.source.tree.Tree' violates the configured import group order.'
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           To configure the check so that it matches default NetBeans formatter configuration
@@ -366,8 +363,8 @@ import static java.lang.Math.PI;
 import static java.lang.Math.abs; // ok, alphabetical case-sensitive ASCII order, 'P' &lt; 'a'
 import static java.util.Collections.emptyList; // ok, alphabetical after Math.*
 
-import java.util.Set; // violation, extra separation in import group
-import static java.lang.Math.sin; // violation, wrong order, all static imports must be at 'top'
+import java.util.Set; // violation 'Extra separation in import group before 'java.util.Set''
+import static java.lang.Math.sin; // violation 'Import 'java.lang.Math.sin' violates the configured relative order between static and non-static imports.'
 import org.w3c.dom.*;
 </code></pre></div><hr class="example-separator"/>
         <p id="Example7-config">
@@ -470,7 +467,7 @@ import static java.lang.Byte.MAX_VALUE;
 import static java.lang.Character.toLowerCase;
 import static java.lang.Character.valueOf;
 import static java.lang.Character.UnicodeBlock.BASIC_LATIN;
-// violation above 'Wrong order for...'
+// violation above 'Wrong lexicographical order for ...'
 </code></pre></div>
         <p>
           To configure the check to enforce static import group separation
@@ -545,7 +542,7 @@ import com.sun.security.auth.UserPrincipal;
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static java.io.File.listRoots;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
-import static java.io.File.createTempFile; // violation, should be before javax
+import static java.io.File.createTempFile; // violation 'Import statement for 'java.io.File.createTempFile' violates the configured import group order.'
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 </code></pre></div>
       </subsection>
@@ -567,8 +564,18 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.ordering%22">
-              import.ordering
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.ordering.group%22">
+              import.ordering.group
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.ordering.lex%22">
+              import.ordering.lex
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.ordering.static%22">
+              import.ordering.static
             </a>
           </li>
           <li>

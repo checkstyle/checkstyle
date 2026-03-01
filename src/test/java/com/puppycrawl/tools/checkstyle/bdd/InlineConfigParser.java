@@ -326,7 +326,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck",
             "com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck",
             "com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck",
             "com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck",
@@ -371,6 +370,8 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck");
         MODULE_MAPPINGS.put("MemberName",
                 "com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck");
+        MODULE_MAPPINGS.put("GoogleNonConstantFieldName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.GoogleNonConstantFieldNameCheck");
         MODULE_MAPPINGS.put("MethodName",
                 "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck");
         MODULE_MAPPINGS.put("ParameterName",

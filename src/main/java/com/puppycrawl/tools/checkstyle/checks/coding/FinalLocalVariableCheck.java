@@ -511,7 +511,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         // for-each variables are implicitly assigned
         candidate.assigned = ast.getParent().getType() == TokenTypes.FOR_EACH_CLAUSE;
         scope.put(astNode.getText(), candidate);
-        if (!isInitialized(astNode)) {
+        if (!isInitialized(ast)) {
             scopeStack.peek().uninitializedVariables.add(astNode);
         }
     }
@@ -523,7 +523,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @return true if initialized
      */
     private static boolean isInitialized(DetailAST ast) {
-        return ast.getParent().getLastChild().getType() == TokenTypes.ASSIGN;
+        return ast.getLastChild().getType() == TokenTypes.ASSIGN;
     }
 
     /**

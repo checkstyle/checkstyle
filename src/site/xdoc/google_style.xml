@@ -2722,7 +2722,7 @@
       </subsection>
       <subsection name="Suppressions" id="Google_Suppressions">
         <p>
-          It is possible to suppress some violations by embeded filters
+          It is possible to suppress some violations by embedded filters
           <a href="filters/suppressionfilter.html#SuppressionFilter">
             SuppressionFilter</a>,
           <a href="filters/suppressionxpathfilter.html#SuppressionXpathFilter">

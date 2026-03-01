@@ -200,6 +200,8 @@
   <suppress id="noEmptyFile"
              files="src[\\/]test[\\/]resources[\\/].*[\\/]InputLineEndingOneLineCrlf\.txt"/>
   <suppress id="noEmptyFile"
+             files="src[\\/]test[\\/]resources[\\/].*[\\/]defaultlogger[\\/]ExpectedDefaultLoggerErrorsTestIgnoreSeverityLevel\.txt"/>
+  <suppress id="noEmptyFile"
              files="src[\\/]test[\\/]resources[\\/].*[\\/]InputLineEndingOneLineLf\.txt"/>
   <!-- not a curl command but a text replacement -->
   <suppress id="properCurlCommand" files=".ci[\\/]validation\.sh"/>
@@ -342,6 +344,10 @@
             files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
   <suppress id="propertiesMacroMustExist"
             files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]naming[\\/]googlenonconstantfieldname.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]useenhancedswitch.xml.template"/>
 
   <!-- Index templates don't need since macro by design -->
   <suppress id="sinceMacroMustExist"

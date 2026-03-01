@@ -1,8 +1,6 @@
-aaaa
 Aapt
 aarch
 abbreviationaswordinname
-abcun
 abstractcheck
 abstractclassname
 abstractfileset
@@ -58,7 +56,6 @@ Arquillian
 arraycopy
 arraytrailingcomma
 arraytypestyle
-asda
 ASF
 Aspectj
 Asrc
@@ -97,7 +94,6 @@ awt
 azurewebsites
 Backquote
 backticks
-BADN
 badpackage
 baeldung
 baratali
@@ -116,7 +112,6 @@ bew
 bff
 bitbucket
 bjrke
-bleh
 Blic
 blockandinlinetags
 blockcomment
@@ -161,7 +156,6 @@ cdfd
 Cdi
 Cfg
 Cfml
-Cfoo
 cfz
 cgi
 chainedpropertyutil
@@ -214,7 +208,6 @@ colgroup
 columnlimit
 Combobox
 commentsindentation
-commerical
 commitish
 commonutil
 Compat
@@ -232,7 +225,6 @@ contextualized
 Contextualizing
 corrosponds
 courtlink
-courtlinkkk
 covariantequals
 COVEREDRATIO
 cpp
@@ -303,7 +295,6 @@ dfa
 DFFF
 Dfile
 dfn
-Dfoo
 Dforbiddenapis
 Dgpg
 Dhttp
@@ -515,6 +506,7 @@ google
 googleblog
 googleecommon
 googlegroups
+googlenonconstantfieldname
 googlesource
 govstrangefolder
 GPath
@@ -573,7 +565,6 @@ htmltags
 htmlunit
 http
 httpcomponents
-hurz
 HXKS
 hyperlink
 hz
@@ -617,7 +608,6 @@ Inlined
 inlinetags
 innerassignment
 Innerclass
-INNERR
 innertypelast
 inplace
 instanceof
@@ -819,7 +809,6 @@ mailto
 mainframemodel
 Mancuso
 mapfile
-marazmatic
 markdownlint
 Massol
 matchxpath
@@ -891,7 +880,6 @@ multiplevariabledeclarations
 Multiset
 multithreading
 mutableexception
-mutationtest
 MVC
 mvn
 mvnd
@@ -1037,8 +1025,6 @@ OSX
 otechie
 outertypefilename
 outertypenumber
-outter
-ove
 overloadmethodsdeclarationorder
 overloadsplit
 overridable
@@ -1124,14 +1110,12 @@ programpractice
 Proguard
 propertycachefile
 propkey
-PROTECTE
 protonpack
 Psevntu
 PSHOME
 PSMODULEP
 pubconstr
 pubifc
-PUBLI
 pubpub
 pullrequest
 puppycrawl
@@ -1145,7 +1129,6 @@ qaplug
 qodana
 qualitygates
 Qube
-qux
 qw
 qwe
 QX
@@ -1211,8 +1194,6 @@ rparen
 rpmfind
 rq
 Rr
-Rrridden
-RRRR
 Rsa
 RSPEC
 Rtl
@@ -1281,7 +1262,6 @@ solr
 someinner
 somename
 someoneelse
-someuser
 sonarcloud
 sonarqube
 sonarsource
@@ -1462,11 +1442,11 @@ unusedimports
 unusedlambdaparametershouldbeunnamed
 unusedlocalvariable
 upperell
-upsss
 urandom
 uri
 url
 usebackq
+useenhancedswitch
 userguide
 username
 usr
@@ -1477,7 +1457,7 @@ UUID
 UWF
 uxxxx
 validator
-VALUEEEE
+VALUELONG
 vararg
 variabledeclarationusagedistance
 Veach
