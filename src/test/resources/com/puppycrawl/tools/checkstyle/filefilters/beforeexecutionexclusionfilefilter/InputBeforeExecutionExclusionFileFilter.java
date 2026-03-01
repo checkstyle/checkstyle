@@ -6,6 +6,7 @@ fileNamePattern = FileFilter\\.java
 com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck
 validateEnhancedForLoopVariable = (default)false
 validateUnnamedVariables = (default)false
+validatePatternVariables = (default)false
 tokens = (default)VARIABLE_DEF
 
 */
