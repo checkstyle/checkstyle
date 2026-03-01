@@ -1,0 +1,433 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks.blocks;
+
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.Optional;
+
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+
+/**
+ * <div>
+ * Checks the placement of right curly braces (<code>'}'</code>) for code blocks. This check
+ * supports if-else, try-catch-finally blocks, switch statements, switch cases, while-loops,
+ *  for-loops, method definitions, class definitions, constructor definitions,
+ * instance, static initialization blocks, annotation definitions and enum definitions.
+ * For right curly brace of expression blocks of arrays, lambdas and class instances
+ * please follow issue
+ * <a href="https://github.com/checkstyle/checkstyle/issues/5945">#5945</a>.
+ * For right curly brace of enum constant please follow issue
+ * <a href="https://github.com/checkstyle/checkstyle/issues/7519">#7519</a>.
+ * </div>
+ *
+ * @since 3.0
+ */
+@StatelessCheck
+public class RightCurlyAloneOrEmptyCheck extends AbstractCheck {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_LINE_ALONE = "line.alone";
+
+    @Override
+    public int[] getDefaultTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return new int[] {
+            TokenTypes.LITERAL_TRY,
+            TokenTypes.LITERAL_CATCH,
+            TokenTypes.LITERAL_FINALLY,
+            TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_ELSE,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.LITERAL_WHILE,
+            TokenTypes.LITERAL_DO,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_CASE,
+        };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return CommonUtil.EMPTY_INT_ARRAY;
+    }
+
+    @Override
+    public void visitToken(DetailAST ast) {
+        final Details details = Details.getDetails(ast);
+        final DetailAST rcurly = details.rcurly();
+
+        if (rcurly != null) {
+            final String violation = validate(details);
+            if (!violation.isEmpty()) {
+                log(rcurly, violation, "}", rcurly.getColumnNo() + 1);
+            }
+        }
+    }
+
+    /**
+     * Does general validation.
+     *
+     * @param details for validation.
+     * @return violation message or empty string
+     *     if there was no violation during validation.
+     */
+    private String validate(Details details) {
+        if (isEmptyBlock(details.rcurly())) {
+            return "";
+        }
+
+        String targetSrcLine = getLine(details.rcurly().getLineNo() - 1);
+        if (!isAloneOnLine(details, targetSrcLine)) {
+            return MSG_KEY_LINE_ALONE;
+        }
+        return "";
+    }
+
+    /**
+     * Checks if the given right curly brace belongs to an empty block.
+     *
+     * @param rcurly the right curly token
+     * @return true if the block is empty
+     */
+    private static boolean isEmptyBlock(DetailAST rcurly) {
+        DetailAST parent = rcurly.getParent();
+        if (parent.getType() == TokenTypes.SLIST) {
+            return parent.getFirstChild() == rcurly;
+        } else {
+            DetailAST prevSibling = rcurly.getPreviousSibling();
+            return prevSibling != null && prevSibling.getType() == TokenTypes.LCURLY;
+        }
+    }
+
+    /**
+     * Checks whether right curly is alone on a line.
+     *
+     * @param details for validation.
+     * @param targetSrcLine A string with contents of rcurly's line
+     * @return true if right curly is alone on a line.
+     */
+    private static boolean isAloneOnLine(Details details, String targetSrcLine) {
+        final DetailAST rcurly = details.rcurly();
+        final DetailAST nextToken = details.nextToken();
+        return (nextToken == null || !TokenUtil.areOnSameLine(rcurly, nextToken)
+            || skipDoubleBraceInstInit(details))
+            && CommonUtil.hasWhitespaceBefore(details.rcurly().getColumnNo(),
+               targetSrcLine);
+    }
+
+    /**
+     * This method determines if the double brace initialization should be skipped over by the
+     * check. Double brace initializations are treated differently. The corresponding inner
+     * rcurly is treated as if it was alone on line even when it may be followed by another
+     * rcurly and a semi, raising no violations.
+     * <i>Please do note though that the line should not contain anything other than the following
+     * right curly and the semi following it or else violations will be raised.</i>
+     * Only the kind of double brace initializations shown in the following example code will be
+     * skipped over:<br>
+     * <pre>
+     *     {@code Map<String, String> map = new LinkedHashMap<>() {{
+     *           put("alpha", "man");
+     *       }}; // no violation}
+     * </pre>
+     *
+     * @param details {@link Details} object containing the details relevant to the rcurly
+     * @return if the double brace initialization rcurly should be skipped over by the check
+     */
+    private static boolean skipDoubleBraceInstInit(Details details) {
+        boolean skipDoubleBraceInstInit = false;
+        final DetailAST tokenAfterNextToken = Details.getNextToken(details.nextToken());
+        if (tokenAfterNextToken != null) {
+            final DetailAST rcurly = details.rcurly();
+            skipDoubleBraceInstInit = rcurly.getParent().getParent()
+                    .getType() == TokenTypes.INSTANCE_INIT
+                    && details.nextToken().getType() == TokenTypes.RCURLY
+                    && !TokenUtil.areOnSameLine(rcurly, Details.getNextToken(tokenAfterNextToken));
+        }
+        return skipDoubleBraceInstInit;
+    }
+
+    /**
+     * Structure that contains all details for validation.
+     *
+     * @param lcurly                the left curly token being analysed
+     * @param rcurly                the matching right curly token
+     * @param nextToken             the token following the right curly
+     * @param shouldCheckLastRcurly flag that indicates if the last right curly should be checked
+     */
+    private record Details(DetailAST lcurly, DetailAST rcurly,
+                           DetailAST nextToken, boolean shouldCheckLastRcurly) {
+
+        /**
+         * Token types that identify tokens that will never have SLIST in their AST.
+         */
+        private static final int[] TOKENS_WITH_NO_CHILD_SLIST = {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.RECORD_DEF,
+        };
+
+        /**
+         * Collects validation Details.
+         *
+         * @param ast a {@code DetailAST} value
+         * @return object containing all details to make a validation
+         */
+        private static Details getDetails(DetailAST ast) {
+            return switch (ast.getType()) {
+                case TokenTypes.LITERAL_TRY, TokenTypes.LITERAL_CATCH -> getDetailsForTryCatch(ast);
+                case TokenTypes.LITERAL_IF -> getDetailsForIf(ast);
+                case TokenTypes.LITERAL_DO -> getDetailsForDoLoops(ast);
+                case TokenTypes.LITERAL_SWITCH -> getDetailsForSwitch(ast);
+                case TokenTypes.LITERAL_CASE -> getDetailsForCase(ast);
+                default -> getDetailsForOthers(ast);
+            };
+        }
+
+        /**
+         * Collects details about switch statements and expressions.
+         *
+         * @param switchNode switch statement or expression to gather details about
+         * @return new Details about given switch statement or expression
+         */
+        private static Details getDetailsForSwitch(DetailAST switchNode) {
+            final DetailAST lcurly = switchNode.findFirstToken(TokenTypes.LCURLY);
+            final DetailAST rcurly;
+            DetailAST nextToken = null;
+            // skipping switch expression as check only handles statements
+            if (isSwitchExpression(switchNode)) {
+                rcurly = null;
+            }
+            else {
+                rcurly = switchNode.getLastChild();
+                nextToken = getNextToken(switchNode);
+            }
+            return new Details(lcurly, rcurly, nextToken, true);
+        }
+
+        /**
+         * Collects details about case statements.
+         *
+         * @param caseNode case statement to gather details about
+         * @return new Details about given case statement
+         */
+        private static Details getDetailsForCase(DetailAST caseNode) {
+            final DetailAST caseParent = caseNode.getParent();
+            final int parentType = caseParent.getType();
+            final Optional<DetailAST> lcurly;
+            final DetailAST statementList;
+
+            if (parentType == TokenTypes.SWITCH_RULE) {
+                statementList = caseParent.findFirstToken(TokenTypes.SLIST);
+                lcurly = Optional.ofNullable(statementList);
+            }
+            else {
+                statementList = caseNode.getNextSibling();
+                lcurly = Optional.ofNullable(statementList)
+                         .map(DetailAST::getFirstChild)
+                         .filter(node -> node.getType() == TokenTypes.SLIST);
+            }
+            final DetailAST rcurly = lcurly.map(DetailAST::getLastChild)
+                    .filter(child -> !isSwitchExpression(caseParent))
+                    .orElse(null);
+            final Optional<DetailAST> nextToken =
+                    Optional.ofNullable(lcurly.map(DetailAST::getNextSibling)
+                    .orElseGet(() -> getNextToken(caseParent)));
+
+            return new Details(lcurly.orElse(null), rcurly, nextToken.orElse(null), true);
+        }
+
+        /**
+         * Check whether switch is expression or not.
+         *
+         * @param switchNode switch statement or expression to provide detail
+         * @return true if it is a switch expression
+         */
+        private static boolean isSwitchExpression(DetailAST switchNode) {
+            DetailAST currentNode = switchNode;
+            boolean ans = false;
+
+            while (currentNode != null) {
+                if (currentNode.getType() == TokenTypes.EXPR) {
+                    ans = true;
+                }
+                currentNode = currentNode.getParent();
+            }
+            return ans;
+        }
+
+        /**
+         * Collects validation details for LITERAL_TRY, and LITERAL_CATCH.
+         *
+         * @param ast a {@code DetailAST} value
+         * @return object containing all details to make a validation
+         */
+        private static Details getDetailsForTryCatch(DetailAST ast) {
+            final DetailAST lcurly;
+            DetailAST nextToken;
+            final int tokenType = ast.getType();
+            if (tokenType == TokenTypes.LITERAL_TRY) {
+                if (ast.getFirstChild().getType() == TokenTypes.RESOURCE_SPECIFICATION) {
+                    lcurly = ast.getFirstChild().getNextSibling();
+                }
+                else {
+                    lcurly = ast.getFirstChild();
+                }
+                nextToken = lcurly.getNextSibling();
+            }
+            else {
+                nextToken = ast.getNextSibling();
+                lcurly = ast.getLastChild();
+            }
+
+            final boolean shouldCheckLastRcurly;
+            if (nextToken == null) {
+                shouldCheckLastRcurly = true;
+                nextToken = getNextToken(ast);
+            }
+            else {
+                shouldCheckLastRcurly = false;
+            }
+
+            final DetailAST rcurly = lcurly.getLastChild();
+            return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);
+        }
+
+        /**
+         * Collects validation details for LITERAL_IF.
+         *
+         * @param ast a {@code DetailAST} value
+         * @return object containing all details to make a validation
+         */
+        private static Details getDetailsForIf(DetailAST ast) {
+            final boolean shouldCheckLastRcurly;
+            final DetailAST lcurly;
+            DetailAST nextToken = ast.findFirstToken(TokenTypes.LITERAL_ELSE);
+
+            if (nextToken == null) {
+                shouldCheckLastRcurly = true;
+                nextToken = getNextToken(ast);
+                lcurly = ast.getLastChild();
+            }
+            else {
+                shouldCheckLastRcurly = false;
+                lcurly = nextToken.getPreviousSibling();
+            }
+
+            DetailAST rcurly = null;
+            if (lcurly.getType() == TokenTypes.SLIST) {
+                rcurly = lcurly.getLastChild();
+            }
+            return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);
+        }
+
+        /**
+         * Collects validation details for CLASS_DEF, RECORD_DEF, METHOD DEF, CTOR_DEF, STATIC_INIT,
+         * INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, and COMPACT_CTOR_DEF.
+         *
+         * @param ast a {@code DetailAST} value
+         * @return an object containing all details to make a validation
+         */
+        private static Details getDetailsForOthers(DetailAST ast) {
+            DetailAST rcurly = null;
+            final DetailAST lcurly;
+            final int tokenType = ast.getType();
+            if (isTokenWithNoChildSlist(tokenType)) {
+                final DetailAST child = ast.getLastChild();
+                lcurly = child;
+                rcurly = child.getLastChild();
+            }
+            else {
+                lcurly = ast.findFirstToken(TokenTypes.SLIST);
+                if (lcurly != null) {
+                    // SLIST could be absent if method is abstract
+                    rcurly = lcurly.getLastChild();
+                }
+            }
+            return new Details(lcurly, rcurly, getNextToken(ast), true);
+        }
+
+        /**
+         * Tests whether the provided tokenType will never have a SLIST as child in its AST.
+         * Like CLASS_DEF, ANNOTATION_DEF etc.
+         *
+         * @param tokenType the tokenType to test against.
+         * @return weather provided tokenType is definition token.
+         */
+        private static boolean isTokenWithNoChildSlist(int tokenType) {
+            return Arrays.stream(TOKENS_WITH_NO_CHILD_SLIST).anyMatch(token -> token == tokenType);
+        }
+
+        /**
+         * Collects validation details for LITERAL_DO loops' tokens.
+         *
+         * @param ast a {@code DetailAST} value
+         * @return an object containing all details to make a validation
+         */
+        private static Details getDetailsForDoLoops(DetailAST ast) {
+            final DetailAST lcurly = ast.findFirstToken(TokenTypes.SLIST);
+            final DetailAST nextToken = ast.findFirstToken(TokenTypes.DO_WHILE);
+            DetailAST rcurly = null;
+            if (lcurly != null) {
+                rcurly = lcurly.getLastChild();
+            }
+            return new Details(lcurly, rcurly, nextToken, false);
+        }
+
+        /**
+         * Finds next token after the given one.
+         *
+         * @param ast the given node.
+         * @return the token which represents next lexical item.
+         */
+        private static DetailAST getNextToken(DetailAST ast) {
+            DetailAST next = null;
+            DetailAST parent = ast;
+            while (next == null && parent != null) {
+                next = parent.getNextSibling();
+                parent = parent.getParent();
+            }
+            return next;
+        }
+    }
+}
