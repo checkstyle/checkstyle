@@ -344,6 +344,12 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         verifyWithInlineConfigParserAndXmlLogger(inputFile, expectedXmlReport);
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParserAndXmlLogger because this test
+     * requires a custom AuditEvent with a special character in the file
+     * name ("&") to verify XML escaping, without creating a physical file
+     * with special characters in the repository.
+     */
     @Test
     public void testFileOpenTag()
             throws Exception {
