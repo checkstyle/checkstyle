@@ -101,4 +101,35 @@ public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testInEnum() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathNoCloneInEnum.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(NoCloneCheck.class);
+
+        final String[] expectedViolation = {
+            "5:9: " + getCheckMessage(NoCloneCheck.class, NoCloneCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/INTERFACE_DEF"
+                    + "[./IDENT[@text='InputXpathNoCloneInEnum']]/OBJBLOCK"
+                    + "/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
+                    + "/METHOD_DEF[./IDENT[@text='clone']]",
+                "/COMPILATION_UNIT/INTERFACE_DEF"
+                    + "[./IDENT[@text='InputXpathNoCloneInEnum']]/OBJBLOCK"
+                    + "/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
+                    + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS",
+                "/COMPILATION_UNIT/INTERFACE_DEF"
+                    + "[./IDENT[@text='InputXpathNoCloneInEnum']]/OBJBLOCK"
+                    + "/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
+                    + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS/LITERAL_PUBLIC"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
