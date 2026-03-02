@@ -236,6 +236,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/regexp/regexpmultiline/Example5",
             "checks/sizes/lambdabodylength/Example2",
             "checks/sizes/linelength/Example6",
+            "checks/todocomment/Example3",
             "checks/trailingcomment/Example2",
             "checks/trailingcomment/Example3",
             "checks/trailingcomment/Example4",
