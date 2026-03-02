@@ -82,4 +82,28 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testInsideMethod() throws Exception {
+        final File fileToProcess = new File(getPath(
+                "InputXpathTrailingCommentInsideMethod.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(TrailingCommentCheck.class);
+
+        final String[] expectedViolation = {
+            "5:20: " + getCheckMessage(TrailingCommentCheck.class,
+                        TrailingCommentCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='InputXpathTrailingCommentInsideMethod']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"
+                        + "/SLIST/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' warn\\n']]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
