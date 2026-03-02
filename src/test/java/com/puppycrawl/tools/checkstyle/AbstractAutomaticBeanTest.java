@@ -29,6 +29,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.beanutils.ConvertUtilsBean;
 import org.apache.commons.beanutils.Converter;
+import org.jspecify.annotations.NonNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -204,24 +205,7 @@ public class AbstractAutomaticBeanTest {
 
     @Test
     public void testBeanConverters() throws Exception {
-        final ConverterBean bean = new ConverterBean();
-
-        // methods are not seen as used by reflection
-        bean.setStrings("BAD");
-        bean.setPattern(null);
-        bean.setSeverityLevel(null);
-        bean.setScope(null);
-        bean.setUri(null);
-        bean.setAccessModifiers(AccessModifierOption.PACKAGE);
-
-        final DefaultConfiguration config = new DefaultConfiguration("bean");
-        config.addProperty("strings", "a, b, c");
-        config.addProperty("pattern", ".*");
-        config.addProperty("severityLevel", "error");
-        config.addProperty("scope", "public");
-        config.addProperty("uri", "http://github.com");
-        config.addProperty("accessModifiers", "public, private");
-        bean.configure(config);
+        final ConverterBean bean = getConverterBean();
 
         final String message = "invalid result";
         assertWithMessage(message)
@@ -246,6 +230,28 @@ public class AbstractAutomaticBeanTest {
                 .asList()
                 .containsExactly(AccessModifierOption.PUBLIC, AccessModifierOption.PRIVATE)
                 .inOrder();
+    }
+
+    private static @NonNull ConverterBean getConverterBean() throws CheckstyleException {
+        final ConverterBean bean = new ConverterBean();
+
+        // methods are not seen as used by reflection
+        bean.setStrings("BAD");
+        bean.setPattern(null);
+        bean.setSeverityLevel(null);
+        bean.setScope(null);
+        bean.setUri(null);
+        bean.setAccessModifiers(AccessModifierOption.PACKAGE);
+
+        final DefaultConfiguration config = new DefaultConfiguration("bean");
+        config.addProperty("strings", "a, b, c");
+        config.addProperty("pattern", ".*");
+        config.addProperty("severityLevel", "error");
+        config.addProperty("scope", "public");
+        config.addProperty("uri", "http://github.com");
+        config.addProperty("accessModifiers", "public, private");
+        bean.configure(config);
+        return bean;
     }
 
     @Test
