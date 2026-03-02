@@ -172,6 +172,7 @@
       <message key="ws.notPreceded"
               value="WhitespaceAround: ''{0}'' is not preceded with whitespace."/>
     </module>
+    <module name="MultilineCommentLeadingAsteriskPresence"/>
     <module name="SuppressionXpathSingleFilter">
       <property name="checks" value="WhitespaceAround"/>
       <property name="query" value="//*[self::LITERAL_IF or self::LITERAL_ELSE or

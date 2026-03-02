@@ -176,6 +176,7 @@ public class InputFormattedOneStatementPerLine {
       one = 5;
     } // legal
 
+    // violation below 'Line in block comment should start with '*'.'
     /*
      One statement inside for block where
      increment and conditional expressions are empty

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.MultilineCommentLeadingAsteriskPresenceCheck"
+             name="MultilineCommentLeadingAsteriskPresence"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that all lines in a multi-line block comment start with
+ a leading asterisk (*), as required by the
+ &lt;a href="https://google.github.io/styleguide/javaguide.html#s4.8.6-comments"&gt;
+ Google Java Style Guide §4.8.6&lt;/a&gt;.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ For multi-line block comments, subsequent lines must start with * aligned
+ with the * on the previous line. This check does not apply to single-line
+ block comments (&amp;#47;* comment *&amp;#47;).
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Parent is &lt;code&gt;com.puppycrawl.tools.checkstyle.TreeWalker&lt;/code&gt;
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Violation Message Keys:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ &lt;code&gt;multiline.comment.missing.asterisk&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;/ul&gt;</description>
+         <message-keys>
+            <message-key key="multiline.comment.missing.asterisk"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
