@@ -1331,6 +1331,18 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/nogetmessageinthrow.html#NoGetMessageInThrow">
+                NoGetMessageInThrow
+              </a>
+            </td>
+            <td>
+              Checks that throw statements within catch blocks do not use the caught exception's
+              getMessage() call when the thrown exception is the same type as the caught exception,
+              as rethrowing the same exception type with its own message is redundant.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/whitespace/nolinewrap.html#NoLineWrap">
                 NoLineWrap
               </a>
