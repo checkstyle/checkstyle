@@ -28,6 +28,13 @@
  enhanced for-loop&lt;/a&gt; variable.</description>
             </property>
             <property default-value="false"
+                      name="validatePatternVariables"
+                      type="boolean">
+               <description>Control whether to check
+ &lt;a href="https://openjdk.org/jeps/394"&gt;
+ pattern variables&gt;&lt;/a&gt;.</description>
+            </property>
+            <property default-value="false"
                       name="validateUnnamedVariables"
                       type="boolean">
                <description>Control whether to check

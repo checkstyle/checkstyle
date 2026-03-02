@@ -41,6 +41,14 @@
               <td>6.5</td>
             </tr>
             <tr>
+              <td><a id="validatePatternVariables"/><a href="#validatePatternVariables">validatePatternVariables</a></td>
+              <td>Control whether to check <a href="https://openjdk.org/jeps/394">
+ pattern variables></a>.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.4.0</td>
+            </tr>
+            <tr>
               <td><a id="validateUnnamedVariables"/><a href="#validateUnnamedVariables">validateUnnamedVariables</a></td>
               <td>Control whether to check <a href="https://docs.oracle.com/javase/specs/jls/se21/preview/specs/unnamed-jls.html">
  unnamed variables</a>.</td>
@@ -247,6 +255,37 @@ class Example5
       System.out.println(i);
     }
     int result=foo(1,2); // violation, 'Variable 'result' should be declared final'
+  }
+}
+</code></pre></div>
+        <hr class="example-separator"/>
+                <p id="Example6-config">
+                  An example of how to configure for pattern variables.
+                </p>
+                <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="FinalLocalVariable"&gt;
+      &lt;property name="validatePatternVariables" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+                <p id="Example6-code">Example:</p>
+                <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example6 {
+  public void method() {
+    final Object o = 45;
+    // violation below, 'Variable 'p' should be declared final'
+    if (o instanceof String p) {
+      System.out.println(p);
+    }
+    if (o instanceof String p) { // ok
+      p = "rewrite";
+      System.out.println(p);
+    }
+    final boolean value = o instanceof String p;
+    // ok above, because p can't be reassigned
   }
 }
 </code></pre></div>
