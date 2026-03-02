@@ -242,6 +242,7 @@
                 href="checks/javadoc/nonemptyatclausedescription.html"/>
           <item name="RequireEmptyLineBeforeBlockTagGroup"
                 href="checks/javadoc/requireemptylinebeforeblocktaggroup.html"/>
+          <item name="SetterSinceTag" href="checks/javadoc/settersincetag.html"/>
           <item name="SingleLineJavadoc" href="checks/javadoc/singlelinejavadoc.html"/>
           <item name="SummaryJavadoc" href="checks/javadoc/summaryjavadoc.html"/>
           <item name="WriteTag" href="checks/javadoc/writetag.html"/>
