@@ -80,4 +80,28 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testParameter() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathArrayTypeStyleParameter.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(ArrayTypeStyleCheck.class);
+
+        final String[] expectedViolation = {
+            "4:28: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputXpathArrayTypeStyleParameter']]"
+                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"
+                    + "/PARAMETERS/PARAMETER_DEF[./IDENT[@text='args']]"
+                    + "/TYPE[./IDENT[@text='String']]/ARRAY_DECLARATOR"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
 }
