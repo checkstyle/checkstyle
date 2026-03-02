@@ -13,7 +13,7 @@ tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, \
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
-class InputLeftCurlyTestNewLine3
+class InputLeftCurlyTestNewLine3Basic
 {
     /** @see test method **/
     int foo() throws InterruptedException
@@ -76,20 +76,6 @@ class InputLeftCurlyTestNewLine3
             return 2;
     }
 
-    // Test static initialiser
-    static
-    {
-        int x = 1; // should not require any javadoc
-    }
-
-
-
-    public enum GreetingsEnum
-    {
-        HELLO,
-        GOODBYE
-    };
-
     void method2()
     {
         boolean flag = true;
@@ -101,75 +87,4 @@ class InputLeftCurlyTestNewLine3
         // statement if lcurly on the same line.
         if (flag) { String.valueOf("ok"); } // violation ''{' at column 19 should be on a new line'
     }
-}
-
-/**
- * Test input for closing brace if that brace terminates
- * a statement or the body of a constructor.
- */
-class FooCtorTestNewLine3
-{
-        int i;
-        public void FooCtor()
-    {
-                i = 1;
-    }}
-
-/**
-* Test input for closing brace if that brace terminates
-* a statement or the body of a method.
-*/
-class FooMethodTestNewLine3
-{
-        public void fooMethod()
-    {
-                int i = 1;
-    }}
-
-/**
-* Test input for closing brace if that brace terminates
-* a statement or the body of a named class.
-*/
-class FooInnerTestNewLine3
-{
-        class InnerFoo
-    {
-                public void fooInnerMethod ()
-        {
-
-                }
-    }}
-
-/**
- * False positive
- *
- */
-class Absent_CustomFieldSerializer3TestNewLine3 {
-    // violation above ''{' at column 49 should be on a new line'
-    public static void serialize() {} // Expected nothing but was "'}' should be alone on a line."
-}
-
-class Absent_CustomFieldSerializer4TestNewLine3
-{
-    public void Absent_CustomFieldSerializer4() {}
-}
-
-class EmptyClass2TestNewLine3 {}
-
-interface EmptyInterface3TestNewLine3 {}
-
-class ClassWithStaticInitializersTestNewLine3
-{
-    static { // violation ''{' at column 12 should be on a new line'
-    }
-    static
-    {}
-
-    static class Inner
-    {
-        static { // violation ''{' at column 16 should be on a new line'
-            int i = 1;
-        }
-    }
-
 }
