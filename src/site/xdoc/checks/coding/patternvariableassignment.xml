@@ -7,7 +7,7 @@
   </head>
   <body>
     <section name="PatternVariableAssignment">
-      <p>Since Checkstyle 10.26.0</p>
+      <p>Since Checkstyle 13.4.0</p>
       <subsection name="Description" id="PatternVariableAssignment_Description">
         <div>
           Checks for assignment of pattern variables.
