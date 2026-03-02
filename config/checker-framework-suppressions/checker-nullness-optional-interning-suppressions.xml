@@ -7265,7 +7265,7 @@
     <lineContent>else if (objectArrayType.isPresent()) {</lineContent>
     <details>
       Consider changing to:
-      typeLastNode.map(ENCLOSINGCLASS::orElseThrow).orElse(parent.getFirstChild())
+      typeLastNode.map(java.util.Optional::orElseThrow).orElse(parent.getFirstChild())
     </details>
   </checkerFrameworkError>
 
