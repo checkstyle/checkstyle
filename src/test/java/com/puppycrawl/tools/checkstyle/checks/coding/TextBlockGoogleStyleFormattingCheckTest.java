@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck.MSG_CLOSE_QUOTES_ERROR;
 import static com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck.MSG_OPEN_QUOTES_ERROR;
+import static com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck.MSG_TEXT_BLOCK_UNALIGNED;
 import static com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck.MSG_VERTICALLY_UNALIGNED;
 
 import org.junit.jupiter.api.Test;
@@ -53,12 +54,15 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
             "13:37: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "15:9: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "24:33: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "25:17: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "26:17: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "36:36: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "37:17: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "38:17: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "41:17: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "44:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "47:16: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "48:13: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "49:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "55:32: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "55:32: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
@@ -70,6 +74,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
             "97:17: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "99:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "99:19: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "100:13: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "101:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
         };
 
@@ -87,8 +92,9 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
             "28:35: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "28:35: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
             "44:15: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
-            "48:15: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "50:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "49:15: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "50:13: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
+            "51:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
         };
 
         verifyWithInlineConfigParser(
@@ -177,15 +183,18 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
             "27:51: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "29:17: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "34:20: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "37:44: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "37:44: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "37:48: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "37:48: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "47:17: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "49:12: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "50:9: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "59:16: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "62:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "64:15: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "70:12: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "71:12: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "76:16: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "78:13: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "79:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "91:16: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "93:9: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
@@ -200,22 +209,31 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     public void testDefaultTextBlockFormat5() throws Exception {
         final String[] expected = {
             "17:45: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "18:9: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "19:9: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "25:44: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "26:13: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "27:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "32:51: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "33:26: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "34:26: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "39:24: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "40:13: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "43:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "47:23: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "48:13: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "49:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "53:20: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "54:13: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "55:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "62:48: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "63:17: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "65:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "74:28: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "75:9: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "76:9: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "76:15: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "77:9: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "78:9: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
         };
 
@@ -229,11 +247,13 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
         final String[] expected = {
             "15:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "18:17: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
-            "24:24: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "27:33: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
-            "32:21: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
-            "39:66: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "42:65: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "25:24: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "26:33: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
+            "28:33: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "33:21: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "40:66: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "41:65: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
+            "43:65: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
         };
 
         verifyWithInlineConfigParser(
@@ -248,11 +268,15 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
             "33:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "39:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "44:1: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "50:13: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "51:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "62:10: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
+            "68:13: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "69:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "99:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "102:17: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "111:12: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "110:12: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
         };
 
         verifyWithInlineConfigParser(
@@ -313,10 +337,12 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     public void testDefaultTextBlockFormatWithNewKeyword() throws Exception {
         final String[] expected = {
             "13:42: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "14:33: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "15:33: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "21:31: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "23:25: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "25:55: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "26:29: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "27:25: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "36:70: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
             "36:70: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
@@ -325,6 +351,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
             "60:36: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "62:17: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "66:23: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "67:17: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "68:17: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "74:25: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "100:19: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
@@ -367,7 +394,9 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     @Test
     public void testDefaultTextBlockFormatIndentationOfContent() throws Exception {
         final String[] expected = {
-            "47:17: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "13:6: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
+            "25:6: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
+            "46:17: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
         };
         verifyWithInlineConfigParser(
                 getPath("InputTextBlockGoogleStyleFormatting10.java"), expected);
@@ -377,7 +406,9 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     public void testDefaultTextBlockFormatAnnotations() throws Exception {
         final String[] expected = {
             "59:27: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "60:17: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "66:19: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "67:1: " + getCheckMessage(MSG_TEXT_BLOCK_UNALIGNED),
             "68:1: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
         };
         verifyWithInlineConfigParser(
