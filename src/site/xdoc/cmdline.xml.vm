@@ -170,9 +170,9 @@ java -jar checkstyle-${projectVersion}-all.jar -D&lt;property&gt;=&lt;value&gt; 
                   <code>-g--generate-xpath-suppression</code>
                 </td>
                 <td>
-                  Generates to output a xpath suppression xml to use to suppress all violations from
+                  Generates an output suppression XML to use to suppress all violations from
                   user's config. Instead of printing every violation, all violations will be
-                  catched and single suppressions xml file will be printed out. Used only with
+                  caught and single suppressions xml file will be printed out. Used only with
                   <code>-c</code> option. Output location can be specified
                   with <code>-o</code> option.
                 </td>
@@ -190,10 +190,10 @@ java -jar checkstyle-${projectVersion}-all.jar -D&lt;property&gt;=&lt;value&gt; 
                   <code>-G--generate-checks-and-files-suppression</code>
                 </td>
                 <td>
-                  Generates to output a suppression xml that will have suppress elements
+                  Generates an output suppression XML that will have suppress elements
                   with "checks" and "files" attributes only to use to suppress all violations from
                   user's config. Instead of printing every violation, all violations will be
-                  catched and single suppressions xml file will be printed out. Used only with
+                  caught and single suppressions xml file will be printed out. Used only with
                   <code>-c</code> option. Output location can be specified
                   with <code>-o</code> option.
                 </td>
@@ -1887,16 +1887,16 @@ Checkstyle requires a configuration XML file that configures the checks to apply
                               XMLLogger, SarifLogger, and DefaultLogger respectively. Defaults to
                               plain.
   -g, --generate-xpath-suppression
-                            Generates to output a xpath suppression xml to use to suppress all
+                            Generates an output suppression XML to use to suppress all
                               violations from user's config. Instead of printing every violation,
-                              all violations will be catched and single suppressions xml file will
+                              all violations will be caught and single suppressions xml file will
                               be printed out. Used only with -c option. Output location can be
                               specified with -o option.
   -G, --generate-checks-and-files-suppression
-                            Generates to output a suppression xml that will have suppress elements
+                            Generates an output suppression XML that will have suppress elements
                               with "checks" and "files" attributes only to use to suppress all
                               violations from user's config. Instead of printing every violation,
-                              all violations will be catched and single suppressions xml file will
+                              all violations will be caught and single suppressions xml file will
                               be printed out. Used only with -c option. Output location can be
                               specified with -o option.
   -h, --help                Show this help message and exit.
