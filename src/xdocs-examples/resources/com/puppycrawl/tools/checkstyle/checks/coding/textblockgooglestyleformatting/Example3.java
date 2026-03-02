@@ -13,7 +13,7 @@ public class Example3 {
             """
             this is simple test""";
     // 2 violations above:
-    //   'Closing quotes (""") of text-block must be on the new line.'
+    //   'Closing quotes (""") of text-block should not be preceded.'
     //   'Text-block quotes are not vertically aligned'
     final String simpleScript1Correct =
             """
@@ -25,7 +25,7 @@ public class Example3 {
         """
         very good""".charAt(0);
     // 2 violations above:
-    //   'Closing quotes (""") of text-block must be on the new line.'
+    //   'Closing quotes (""") of text-block should not be preceded.'
     //   'Text-block quotes are not vertically aligned'
     String simpleScript2Correct = simpleScript1Correct
         +
@@ -37,7 +37,7 @@ public class Example3 {
         """
         This is a multi-line message.""");
     // 2 violations above:
-    //   'Closing quotes (""") of text-block must be on the new line.'
+    //   'Closing quotes (""") of text-block should not be preceded.'
     //   'Text-block quotes are not vertically aligned'
     getData(
         """
@@ -48,7 +48,7 @@ public class Example3 {
         """
         THE MULTI-LINE MESSAGE""";
     // 2 violations above:
-    //   'Closing quotes (""") of text-block must be on the new line.'
+    //   'Closing quotes (""") of text-block should not be preceded.'
     //   'Text-block quotes are not vertically aligned'
   }
   public void getData(String text, int num) {}

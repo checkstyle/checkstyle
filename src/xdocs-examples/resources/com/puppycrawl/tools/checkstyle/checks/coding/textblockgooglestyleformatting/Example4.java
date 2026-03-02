@@ -15,7 +15,7 @@ public class Example4 {
     final String simpleScriptViolate =
       """
           s
-           """; // violation 'text-block quotes are not vertically aligned'
+           """; // violation 'Text-block quotes are not vertically aligned'
     final String simpleScriptCorrect =
       """
           s
@@ -35,7 +35,7 @@ public class Example4 {
     return
         """
     this is sample text
-      """; // violation 'text-block quotes are not vertically aligned'
+      """; // violation 'Text-block quotes are not vertically aligned'
   }
   public void getData(int num, String text) {}
 }
