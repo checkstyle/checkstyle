@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.instantiat
 
 import java.util.Set;
 
+import org.jspecify.annotations.NonNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -261,18 +262,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
         final DetailAstImpl astForTest = new DetailAstImpl();
         astForTest.setType(TokenTypes.PACKAGE_DEF);
         final DetailAstImpl child = new DetailAstImpl();
-        final DetailAstImpl annotations = new DetailAstImpl();
-        final DetailAstImpl annotation = new DetailAstImpl();
-        final DetailAstImpl annotationNameHolder = new DetailAstImpl();
-        final DetailAstImpl annotationName = new DetailAstImpl();
-        annotations.setType(TokenTypes.ANNOTATIONS);
-        annotation.setType(TokenTypes.ANNOTATION);
-        annotationNameHolder.setType(TokenTypes.AT);
-        annotationName.setText("Annotation");
-
-        annotationNameHolder.setNextSibling(annotationName);
-        annotation.setFirstChild(annotationNameHolder);
-        annotations.setFirstChild(annotation);
+        final DetailAstImpl annotations = getDetailAst();
         child.setNextSibling(annotations);
         astForTest.setFirstChild(child);
 
@@ -281,11 +271,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
-    @Test
-    public void testContainsAnnotationWithStringFalse() {
-        final DetailAstImpl astForTest = new DetailAstImpl();
-        astForTest.setType(TokenTypes.PACKAGE_DEF);
-        final DetailAstImpl child = new DetailAstImpl();
+    private static @NonNull DetailAstImpl getDetailAst() {
         final DetailAstImpl annotations = new DetailAstImpl();
         final DetailAstImpl annotation = new DetailAstImpl();
         final DetailAstImpl annotationNameHolder = new DetailAstImpl();
@@ -298,6 +284,15 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
         annotationNameHolder.setNextSibling(annotationName);
         annotation.setFirstChild(annotationNameHolder);
         annotations.setFirstChild(annotation);
+        return annotations;
+    }
+
+    @Test
+    public void testContainsAnnotationWithStringFalse() {
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        astForTest.setType(TokenTypes.PACKAGE_DEF);
+        final DetailAstImpl child = new DetailAstImpl();
+        final DetailAstImpl annotations = getDetailAst();
         child.setNextSibling(annotations);
         astForTest.setFirstChild(child);
 
