@@ -17,7 +17,7 @@
           <a href="https://google.github.io/styleguide/javaguide.html#s4.8.9-text-blocks">
           Google Java Style Guide</a>.
         </div>
-          This Check performs two validations:
+          This Check performs three validations:
         <ol>
         <li>
           It ensures that the opening and closing text-block quotes (<code>"""</code>) each appear on their
@@ -25,6 +25,10 @@
         </li>
         <li>
           Opening and closing quotes are vertically aligned.
+        </li>
+        <li>
+          Each line in the text-block is indented at least as much as
+          the opening and closing quotes.
         </li>
         </ol>
           Note: Closing quotes can be followed by additional code on the same line.
@@ -235,6 +239,11 @@ public class Example4 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22textblock.format.open%22">
               textblock.format.open
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22textblock.line.indentation%22">
+              textblock.line.indentation
             </a>
           </li>
           <li>
