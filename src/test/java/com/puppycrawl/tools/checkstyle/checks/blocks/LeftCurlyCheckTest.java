@@ -149,7 +149,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefault3() throws Exception {
+    public void testDefault3Basic() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "20:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -163,52 +163,137 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             "57:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
             "59:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
             "68:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
-            "81:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "88:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "94:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "102:19: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 19),
-            "111:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
-            "114:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "123:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
-            "125:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "134:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
-            "136:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "138:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
-            "153:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
-            "162:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
-            "169:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "80:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "88:19: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 19),
         };
         verifyWithInlineConfigParser(
-                getPath("InputLeftCurlyTestDefault3.java"), expected);
+                getPath("InputLeftCurlyTestDefault3Basic.java"), expected);
     }
 
     @Test
-    public void testNewline3() throws Exception {
+    public void testDefault3Empty() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "30:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyTestDefault3Empty.java"), expected);
+    }
+
+    @Test
+    public void testDefault3Enum() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "19:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyTestDefault3Enum.java"), expected);
+    }
+
+    @Test
+    public void testDefault3Initializer() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "20:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "26:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "33:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyTestDefault3Initializer.java"), expected);
+    }
+
+    @Test
+    public void testDefault3Misc() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "25:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "28:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "37:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "39:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "48:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "50:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "52:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyTestDefault3Misc.java"), expected);
+    }
+
+    @Test
+    public void testNewline3Basic() throws Exception {
         final String[] expected = {
             "31:33: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 33),
-            "96:19: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 19),
-            "102:19: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 19),
-            "147:49: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 49),
-            "163:12: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 12),
-            "170:16: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 16),
+            "82:19: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 19),
+            "88:19: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 19),
         };
         verifyWithInlineConfigParser(
-                getPath("InputLeftCurlyTestNewLine3.java"), expected);
+                getPath("InputLeftCurlyTestNewLine3Basic.java"), expected);
     }
 
     @Test
-    public void testMissingBraces() throws Exception {
+    public void testNewline3Empty() throws Exception {
+        final String[] expected = {
+            "24:49: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 49),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyTestNewLine3Empty.java"), expected);
+    }
+
+    @Test
+    public void testNewline3Enum() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyTestNewLine3Enum.java"), expected);
+    }
+
+    @Test
+    public void testNewline3Initializer() throws Exception {
+        final String[] expected = {
+            "27:12: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 12),
+            "34:16: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 16),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyTestNewLine3Initializer.java"), expected);
+    }
+
+    @Test
+    public void testNewline3Misc() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyTestNewLine3Misc.java"), expected);
+    }
+
+    @Test
+    public void testMissingBracesConditional() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "20:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "26:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyTestMissingBracesConditional.java"), expected);
+    }
+
+    @Test
+    public void testMissingBracesLoop() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "20:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "26:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "39:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "56:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "74:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "110:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
         };
         verifyWithInlineConfigParser(
-                getPath("InputLeftCurlyTestMissingBraces.java"), expected);
+                getPath("InputLeftCurlyTestMissingBracesLoop.java"), expected);
+    }
+
+    @Test
+    public void testMissingBracesMisc() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "20:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyTestMissingBracesMisc.java"), expected);
     }
 
     @Test
