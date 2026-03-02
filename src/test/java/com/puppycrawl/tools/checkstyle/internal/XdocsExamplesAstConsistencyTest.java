@@ -180,6 +180,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/javadoc/javadocmethod/Example7",
             "checks/javadoc/javadocmethod/Example8",
             "checks/javadoc/javadocstyle/Example7",
+            "checks/javadoc/javadocstyle/Example8",
             "checks/javadoc/javadoctagcontinuationindentation/Example4",
             "checks/javadoc/javadocvariable/Example5",
             "checks/javadoc/missingjavadoctype/Example4",
