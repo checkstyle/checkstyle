@@ -9,6 +9,10 @@
   <!-- don't validate generated files -->
   <suppress id="lineLength" files="releasenotes.xml"/>
 
+  <!-- exclude java-upgrade logs from line length checks -->
+  <suppress id="lineLength"
+         files="\.github[\\/]java-upgrade[\\/].*[\\/]logs[\\/].*\.log"/>
+
   <!-- full path is required for logic of script google-java-format.sh -->
   <suppress id="lineLength" files="compilable-input-paths.txt"/>
   <suppress id="lineLength" files="noncompilable-input-paths.txt"/>
