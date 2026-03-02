@@ -453,25 +453,29 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testGetMessagesWithClassNotFoundException() throws Exception {
+        String inputFile = "InputSarifLoggerClassNotFound.java";
+        String expectedReportFile = "ExpectedSarifLoggerClassNotFoundException.sarif";
         final SarifLogger logger = new SarifLogger(outStream, OutputStreamOptions.CLOSE);
 
-        final ModuleDetails fakeModule = new ModuleDetails();
-        fakeModule.setName("FakeCheck");
-        fakeModule.setFullQualifiedName("com.fake.NonExistentCheck");
-        fakeModule.setDescription("Fake check for testing");
-        fakeModule.addToViolationMessages("fake.message.key");
+//        final ModuleDetails fakeModule = new ModuleDetails();
+//        fakeModule.setName("FakeCheck");
+//        fakeModule.setFullQualifiedName("com.fake.NonExistentCheck");
+//        fakeModule.setDescription("Fake check for testing");
+//        fakeModule.addToViolationMessages("fake.message.key");
+////
+//        @SuppressWarnings("unchecked")
+//        final Map<Object, ModuleDetails> ruleMetadata =
+//                TestUtil.getInternalState(logger, "ruleMetadata", Map.class);
+//        final Class<?> ruleKeyClass = TestUtil.getInnerClassType(SarifLogger.class, "RuleKey");
+//        final Object ruleKey =
+//                TestUtil.instantiate(ruleKeyClass, "com.fake.NonExistentCheck", null);
+//        ruleMetadata.put(ruleKey, fakeModule);
+//
+//        logger.auditFinished(null);
+//
+//        verifyContent(getPath("ExpectedSarifLoggerClassNotFoundException.sarif"), outStream);
 
-        @SuppressWarnings("unchecked")
-        final Map<Object, ModuleDetails> ruleMetadata =
-                TestUtil.getInternalState(logger, "ruleMetadata", Map.class);
-        final Class<?> ruleKeyClass = TestUtil.getInnerClassType(SarifLogger.class, "RuleKey");
-        final Object ruleKey =
-                TestUtil.instantiate(ruleKeyClass, "com.fake.NonExistentCheck", null);
-        ruleMetadata.put(ruleKey, fakeModule);
-
-        logger.auditFinished(null);
-
-        verifyContent(getPath("ExpectedSarifLoggerClassNotFoundException.sarif"), outStream);
+        verifyWithInlineConfigParserAndLogger(getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
     /**
