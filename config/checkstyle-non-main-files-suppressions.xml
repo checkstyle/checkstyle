@@ -95,6 +95,12 @@
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]whitespace[\\/]whitespaceafter[\\/]example1[\\/]package-info\.java"/>
 
+  <!-- EmptyLineWrappingInBlock test inputs: line wrap would break UT expectations -->
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/].*[\\/]emptylinewrappinginblock[\\/]Input.*\.java"/>
+  <suppress checks="NewlineAtEndOfFile"
+             files="src[\\/]test[\\/]resources[\\/].*[\\/]emptylinewrappinginblock[\\/]Input.*\.java"/>
+
   <!-- we can not change expected as it will require change of main class logic -->
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/].*ExpectedXMLLogger.*\.xml"/>
