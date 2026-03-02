@@ -91,4 +91,32 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                          expectedXpathQueries);
     }
+
+    @Test
+    public void testUpperEllThree() throws Exception {
+        final File fileToProcess =
+            new File(getPath("InputXpathUpperEllThree.java"));
+
+        final DefaultConfiguration moduleConfig =
+            createModuleConfig(UpperEllCheck.class);
+
+        final String[] expectedViolation = {
+            "5:18: " + getCheckMessage(UpperEllCheck.class,
+                                       UpperEllCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/ENUM_DEF"
+                + "[./IDENT[@text='InputXpathUpperEllThree']]/OBJBLOCK"
+                + "/VARIABLE_DEF[./IDENT[@text='field']]/ASSIGN/EXPR"
+                + "[./NUM_LONG[@text='123l']]",
+            "/COMPILATION_UNIT/ENUM_DEF"
+                + "[./IDENT[@text='InputXpathUpperEllThree']]/OBJBLOCK"
+                + "/VARIABLE_DEF[./IDENT[@text='field']]/ASSIGN/EXPR"
+                + "/NUM_LONG[@text='123l']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                         expectedXpathQueries);
+    }
 }
