@@ -40,7 +40,21 @@ public class PatternVariableAssignmentCheckTest extends AbstractModuleTestSuppor
             new PatternVariableAssignmentCheck();
         final int[] actual = patternVariableAssignmentCheckObj.getAcceptableTokens();
         final int[] expected = {
-            TokenTypes.LITERAL_INSTANCEOF,
+            TokenTypes.SLIST,
+            TokenTypes.PATTERN_VARIABLE_DEF,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.ASSIGN,
+            TokenTypes.PLUS_ASSIGN,
+            TokenTypes.MINUS_ASSIGN,
+            TokenTypes.STAR_ASSIGN,
+            TokenTypes.DIV_ASSIGN,
+            TokenTypes.MOD_ASSIGN,
+            TokenTypes.SR_ASSIGN,
+            TokenTypes.BSR_ASSIGN,
+            TokenTypes.SL_ASSIGN,
+            TokenTypes.BAND_ASSIGN,
+            TokenTypes.BXOR_ASSIGN,
+            TokenTypes.BOR_ASSIGN,
         };
         assertWithMessage("Default acceptable tokens are invalid")
             .that(actual)
@@ -70,11 +84,22 @@ public class PatternVariableAssignmentCheckTest extends AbstractModuleTestSuppor
 
         final String[] expected = {
             "56:17: " + getCheckMessage(MSG_KEY, "parent"),
-            "81:22: " + getCheckMessage(MSG_KEY, "string"),
+            "67:9: " + getCheckMessage(MSG_KEY, "r"),
+            "82:22: " + getCheckMessage(MSG_KEY, "string"),
         };
 
         verifyWithInlineXmlConfig(getPath(
             "InputPatternVariableAssignmentCheck2.java"), expected);
+    }
+
+    /**
+     * Test assignment edge cases that may have null first child.
+     */
+    @Test
+    public void testAssignmentEdgeCases() throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getPath("InputPatternVariableAssignmentAnnotationParams.java"), expected);
     }
 
 }
