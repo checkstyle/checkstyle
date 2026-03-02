@@ -253,7 +253,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/whitespace/separatorwrap/Example2",
             "checks/whitespace/separatorwrap/Example3",
             "checks/whitespace/singlespaceseparator/Example2",
-            "checks/whitespace/typecastparenpad/Example2",
             "checks/whitespace/whitespaceafter/Example2",
             "checks/whitespace/whitespacearound/Example10",
             "checks/whitespace/whitespacearound/Example2",
