@@ -88,4 +88,27 @@ public class XpathRegressionOneTopLevelClassTest extends AbstractXpathTestSuppor
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                          expectedXpathQueries);
     }
+
+    @Test
+    public void testThree() throws Exception {
+        final File fileToProcess =
+            new File(getPath("InputXpathOneTopLevelClassThird.java"));
+
+        final DefaultConfiguration moduleConfig =
+            createModuleConfig(OneTopLevelClassCheck.class);
+
+        final String[] expectedViolation = {
+            "7:1: " + getCheckMessage(OneTopLevelClassCheck.class,
+                                      OneTopLevelClassCheck.MSG_KEY, "Violating3rdClass"),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT[@text='Violating3Class']]",
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT[@text='Violating3Class']]/MODIFIERS",
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT[@text='Violating3Class']]/LITERAL_INTERFACE"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                         expectedXpathQueries);
+    }
 }
