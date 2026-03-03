@@ -7141,6 +7141,7 @@
     </details>
   </checkerFrameworkError>
 
+
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/EmptyLineSeparatorCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
