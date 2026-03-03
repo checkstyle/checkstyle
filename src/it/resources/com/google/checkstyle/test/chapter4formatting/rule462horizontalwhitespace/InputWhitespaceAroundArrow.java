@@ -33,7 +33,7 @@ public class InputWhitespaceAroundArrow {
     switch (o) {
       case String s when (
           // violation 2 lines below ''->' is not preceded with whitespace.'
-          // violation 2 lines below ''{' at column 9 should be on the previous line.'
+
           s.equals("a"))->
         {
         }
