@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.coding.requirethis;
 
-public class InputXpathRequireThisTwo {
+public class InputXpathRequireThisMethodCall {
     void method1() {
         int i = 3;
     }
