@@ -65,21 +65,20 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     private static final Locale[] ALL_LOCALES = {
         Locale.CHINESE,
         Locale.ENGLISH,
-        Locale.of("es"),
-        Locale.of("fi"),
+        new Locale("es"),
+        new Locale("fi"),
         Locale.FRENCH,
         Locale.GERMAN,
         Locale.JAPANESE,
-        Locale.of("pt"),
-        Locale.of("ru"),
-        Locale.of("tr"),
+        new Locale("pt"),
+        new Locale("ru"),
+        new Locale("tr"),
     };
 
     private static final Map<String, Set<String>> CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE =
             new HashMap<>();
     private static final Map<String, Set<String>> GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE =
             new HashMap<>();
-
     private static final Set<String> INTERNAL_MODULES;
 
     static {
