@@ -21,7 +21,6 @@ allchecks
 allclasses
 allowlegacy
 allprojects
-alot
 alundblad
 amazonaws
 amd
@@ -102,7 +101,6 @@ basedir
 basefont
 baz
 bc
-bdc
 bdd
 bdo
 beanutils
@@ -146,11 +144,8 @@ camelcase
 casegroup
 casesensitive
 catchparametername
-cba
-cbeaff
 CComments
 cdata
-cde
 cdfd
 Cdi
 Cfg
@@ -349,10 +344,8 @@ eclemma
 eclipsecommunityawards
 Edad
 edb
-ededed
 edef
 edu
-Eghj
 Ei
 ej
 ejb
@@ -369,7 +362,6 @@ emptyforiteratorpad
 emptylineseparator
 emptystatement
 emptytag
-Emtpy
 endline
 enegger
 ent
@@ -388,7 +380,6 @@ Eslint
 esslingen
 esversion
 etsy
-euf
 ev
 Evt
 exceptionoverrides
@@ -418,7 +409,6 @@ FEF
 fenum
 ffc
 ffcp
-ffd
 fff
 FFFA
 FFFB
@@ -493,7 +483,6 @@ genericwhitespace
 getenv
 gg
 gh
-Ghj
 gitattributes
 github
 githubusercontent
@@ -521,7 +510,6 @@ groovyism
 groupcdg
 groupon
 grp
-GSo
 gsoc
 Gsp
 GString
@@ -704,7 +692,6 @@ jide
 jidesoft
 jira
 jitpack
-jkl
 JLabel
 Jlo
 jls
@@ -771,7 +758,6 @@ len
 lexer
 lexing
 lgpl
-lhmap
 LHSOf
 libcore
 liberapay
@@ -900,12 +886,10 @@ nameofaffectedcheck
 namespace
 nanos
 nbactions
-nbia
 nbsp
 ncal
 ncss
 needbraces
-NEGS
 Nejmeh
 neovim
 nestedfordepth
@@ -922,7 +906,6 @@ Niederhauser
 nikitasavinov
 nio
 nlow
-NMCS
 NMTOKEN
 noarch
 noarg
@@ -1004,7 +987,6 @@ onetoplevelclass
 onevariableperline
 OOL
 oopsla
-OOQ
 opencollective
 openjdk
 openrewrite
@@ -1038,8 +1020,6 @@ packagenamesloader
 packageobjectfactory
 packagestatement
 packge
-packifc
-packpub
 Pageflow
 pageview
 Paikin
@@ -1082,7 +1062,6 @@ pkga
 pkghtml
 pkginfo
 pkx
-PLHM
 plugin
 PMB
 pmd
@@ -1104,7 +1083,6 @@ printf
 println
 PRINTSTACKTRACE
 priva
-PRMC
 programpractice
 Proguard
 propertycachefile
@@ -1113,9 +1091,6 @@ protonpack
 Psevntu
 PSHOME
 PSMODULEP
-pubconstr
-pubifc
-pubpub
 pullrequest
 puppycrawl
 pw
@@ -1164,7 +1139,6 @@ regexpsingleline
 regexpsinglelinejava
 relativized
 releasenotes
-RELi
 remkop
 reportyml
 REPOURL
@@ -1183,8 +1157,6 @@ rhs
 rhysd
 rickgiles
 rightcurly
-Rl
-Rli
 rnveach
 robinraju
 romani
@@ -1202,7 +1174,6 @@ rulesetfiles
 Ruslan
 rw
 rx
-sabaka
 Saludo
 Sameline
 sariflogger
@@ -1253,7 +1224,6 @@ SLo
 Slurper
 slurpersupport
 Sms
-smth
 snyk
 socio
 Sohjiro
@@ -1293,15 +1263,11 @@ staticvariablename
 stdin
 Stdlib
 stdout
-stemp
-stext
 sthref
 stmt
 streamapi
 strictfp
 stringliteralequality
-strkkk
-STT
 Studman
 Styleable
 styleguide
@@ -1352,12 +1318,9 @@ td
 teamcity
 technotes
 temurin
-Testik
 testmodules
 textblock
 textblockgooglestyleformatting
-tfij
-Tfo
 tfoot
 Thauvin
 thead
@@ -1400,7 +1363,6 @@ tstamp
 tt
 tta
 ttf
-tvf
 tw
 typecastparenpad
 typename
@@ -1454,7 +1416,6 @@ utf
 Uth
 UUID
 UWF
-uxxxx
 validator
 VALUELONG
 vararg
@@ -1506,13 +1467,11 @@ wiktionary
 windowsservercore
 withgoogle
 wj
-wnd
 WOC
 woff
 wontfix
 workaround
 workflow
-wq
 wrappinglines
 writetag
 writingchecks
@@ -1568,13 +1527,8 @@ xsi
 xsl
 xslt
 xsltproc
-XSO
 xwiki
-XXXX
-xxxxxx
-XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 xy
-XYzz
 xzf
 xzvf
 yaml
@@ -1587,9 +1541,6 @@ youtu
 youtube
 Yoyodyne
 yyyy
-Yzz
-Zbbh
 zf
 zh
-zm
 ZSH
