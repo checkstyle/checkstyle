@@ -1,9 +1,9 @@
 package org.checkstyle.suppressionxpathfilter.design.onetoplevelclass;
 
-public class InputXpathOneTopLevelClassFirst {
+public class InputXpathOneTopLevelClassThird {
     // methods
 }
 
-class ViolatingSecondClass { // warn
+interface ViolatingThirdClass { // warn
     // methods
 }
