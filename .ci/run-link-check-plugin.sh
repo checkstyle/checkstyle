@@ -9,6 +9,11 @@ uname -a
 curl --fail-with-body -I https://sourceforge.net/projects/checkstyle/
 ./mvnw -e --no-transfer-progress clean site -Dcheckstyle.ant.skip=true -DskipTests -DskipITs \
    -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dcheckstyle.skip=true
+
+   # Issue #15457: Temporarily replace absolute checkstyle.org links with relative ones for validation
+   echo "Fixing absolute links for validation..."
+   find src/main/java -name "*.java" -exec sed -i 's|https://checkstyle.org/|../|g' {} +
+
 mkdir -p .ci-temp
 
 OPTION=$1
