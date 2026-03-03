@@ -3073,46 +3073,23 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/PatternVariableAssignmentCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of List.add.</message>
-    <lineContent>innerPatternVariable.findFirstToken(TokenTypes.IDENT));</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailAST
-      required: @Initialized @NonNull DetailAST
-    </details>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ident</message>
+    <lineContent>final String name = ident.getText();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/PatternVariableAssignmentCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of List.add.</message>
-    <lineContent>outermostPatternVariable.findFirstToken(TokenTypes.IDENT));</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailAST
-      required: @Initialized @NonNull DetailAST
-    </details>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ident</message>
+    <lineContent>scopes.peek().add(ident.getText());</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/PatternVariableAssignmentCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter bound of PatternVariableAssignmentCheck.traverseUntilNeededBranchType.</message>
-    <lineContent>branchLeadingToReassignedVar, TokenTypes.EXPR)) {</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailAST
-      required: @Initialized @NonNull DetailAST
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/PatternVariableAssignmentCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter startingBranch of PatternVariableAssignmentCheck.traverseUntilNeededBranchType.</message>
-    <lineContent>assignIdent, assignToken.getFirstChild(), TokenTypes.IDENT) != null) {</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailAST
-      required: @Initialized @NonNull DetailAST
-    </details>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference scopes.peek()</message>
+    <lineContent>scopes.peek().add(ident.getText());</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
