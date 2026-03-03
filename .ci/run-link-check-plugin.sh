@@ -7,8 +7,20 @@ pwd
 uname -a
 ./mvnw --version
 curl --fail-with-body -I https://sourceforge.net/projects/checkstyle/
+
+# 1. Pehle links badlenge (Line length limit ke andar)
+echo "Fixing absolute links for validation..."
+find src/main/java -name "*.java" \
+  -exec sed -i 's|https://checkstyle.org/|../|g' {} +
+
+# 2. Phir Maven run karenge
 ./mvnw -e --no-transfer-progress clean site -Dcheckstyle.ant.skip=true -DskipTests -DskipITs \
    -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dcheckstyle.skip=true
+
+# 3. End mein kachra saaf karenge
+echo "Restoring original files to keep CI workspace clean..."
+git restore src/main/java/
+
 mkdir -p .ci-temp
 
 OPTION=$1
