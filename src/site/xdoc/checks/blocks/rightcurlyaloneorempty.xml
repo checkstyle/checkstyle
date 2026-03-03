@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+ <head>
+  <title>RightCurlyAloneOrEmpty</title>
+ </head>
+ <body>
+  <section name="RightCurlyAloneOrEmpty">
+   <p>Since Checkstyle 10.22.0</p>
+   <subsection name="Description" id="RightCurlyAloneOrEmpty_Description">
+    <p>
+      Checks the placement of right curlies for code blocks.
+      This check requires a line break before the right curly brace for non-empty blocks,
+      but allows concise (single-line) empty blocks.
+    </p>
+   </subsection>
+   <subsection name="Properties" id="RightCurlyAloneOrEmpty_Properties">
+    <div class="wrapper">
+     <table>
+      <tr>
+       <th>name</th>
+       <th>description</th>
+       <th>type</th>
+       <th>default value</th>
+       <th>since</th>
+      </tr>
+      <tr>
+       <td>tokens</td>
+       <td>tokens to check</td>
+       <td>subset of tokens
+        <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+            CLASS_DEF</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+            METHOD_DEF</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+            CTOR_DEF</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+            LITERAL_FOR</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+            LITERAL_WHILE</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+            STATIC_INIT</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+            INSTANCE_INIT</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+            ANNOTATION_DEF</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+            ENUM_DEF</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+            INTERFACE_DEF</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+            RECORD_DEF</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+            COMPACT_CTOR_DEF</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+            LITERAL_SWITCH</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
+            LITERAL_CASE</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
+            LITERAL_FINALLY</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+            LITERAL_CATCH</a>
+          .
+       </td>
+       <td>
+        <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+            CLASS_DEF</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+            METHOD_DEF</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+            CTOR_DEF</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+            LITERAL_FOR</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+            LITERAL_WHILE</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+            STATIC_INIT</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+            INSTANCE_INIT</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+            ANNOTATION_DEF</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+            ENUM_DEF</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+            INTERFACE_DEF</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+            RECORD_DEF</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+            COMPACT_CTOR_DEF</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+            LITERAL_SWITCH</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
+            LITERAL_CASE</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
+            LITERAL_FINALLY</a>
+        , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+            LITERAL_CATCH</a>
+          .
+       </td>
+       <td>10.22.0</td>
+      </tr>
+     </table>
+    </div>
+   </subsection>
+   <subsection name="Examples" id="RightCurlyAloneOrEmpty_Examples">
+    <p id="Example1-config"> To configure the check: </p>
+    <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RightCurlyAloneOrEmpty"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+    <p id="Example1-code">Example:</p>
+    <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  public @interface TestAnnotation {} // ok
+
+  public @interface TestAnnotation2 {
+    String someValue(); } // violation, ''}' at column 25 should be alone on a line.'
+
+  public @interface TestAnnotation3 {
+    String someValue();
+  } // ok
+}
+</code></pre></div>
+   </subsection>
+   <subsection name="Example of Usage" id="RightCurlyAloneOrEmpty_Example_of_Usage">
+    <ul>
+
+     <li>
+      <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurlyAloneOrEmpty">
+        Checkstyle Style</a>
+     </li>
+    </ul>
+   </subsection>
+   <subsection name="Violation Messages" id="RightCurlyAloneOrEmpty_Violation_Messages">
+    <ul>
+     <li>
+      <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.alone%22">
+        line.alone
+      </a>
+     </li>
+    </ul>
+    <p>
+      All messages can be customized if the default message doesn't suit you.
+      Please <a href="../../config.html#Custom_messages">see the documentation</a>
+      to learn how to.
+    </p>
+   </subsection>
+   <subsection name="Package" id="RightCurlyAloneOrEmpty_Package">
+    <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+   </subsection>
+   <subsection name="Parent Module" id="RightCurlyAloneOrEmpty_Parent_Module">
+    <p>
+     <a href="../../config.html#TreeWalker">TreeWalker</a>
+    </p>
+   </subsection>
+  </section>
+ </body>
+</document>
