@@ -5,7 +5,7 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
 
   class Inner {
     public void wrongEscapeSequences() {
-      final String r1 = // violation below 'Consider using special escape sequence'
+      final String r1 =
           """
           \u0008
           """;
@@ -37,56 +37,59 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
           """
           \\u005c
           """;
-      // The following have no escape sequences, should not cause violations
-      final String r9 =
+      final String r9 = // violation below 'Consider using special escape sequence'
           """
           \\u000b
           """;
-      final String r10 =
+      final String r10 = // violation below 'Consider using special escape sequence'
           """
           \\u001c
           """;
-      final String r11 =
+      final String r11 = // violation below 'Consider using special escape sequence'
           """
           \\u001D
           """;
-      final String r12 =
+      final String r12 = // violation below 'Consider using special escape sequence'
           """
           \\u001E
           """;
-      final String r13 =
+      final String r13 = // violation below 'Consider using special escape sequence'
           """
           \\u001F
           """;
-      final String r14 =
+      final String r14 = // violation below 'Consider using special escape sequence'
+          """
+          \\u005c
+          """;
+      final String r15 = // violation below 'Consider using special escape sequence'
           """
           \\u1680
           """;
-      final String r15 =
+      final String r16 = // violation below 'Consider using special escape sequence'
           """
           \\u2000
           """;
-      final String r16 =
+      final String r17 = // violation below 'Consider using special escape sequence'
           """
           \\u200A
           """;
-      final String r17 =
+      final String r18 = // violation below 'Consider using special escape sequence'
           """
           \\u2028
           """;
-      final String r18 =
+      final String r19 = // violation below 'Consider using special escape sequence'
           """
           \\u2029
           """;
-      final String r19 =
+      final String r20 = // violation below 'Consider using special escape sequence'
           """
           \\u202F
           """;
-      final String r20 =
+      final String r21 = // violation below 'Consider using special escape sequence'
           """
           \\u205F
           """;
-      final String r21 =
+      final String r22 = // violation below 'Consider using special escape sequence'
           """
           \\u3000
           """;
@@ -95,7 +98,7 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
 
   /** Some javadoc. */
   public void specialCharsWithWarnUnicode() {
-    String r1 = // violation below 'Consider using special escape sequence'
+    String r1 =
         """
         \\u0008
         """;
@@ -117,45 +120,76 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
         """;
     String r6 = // violation below 'Consider using special escape sequence'
         """
-        \\u0020
+        \\u0022
         """;
     String r7 = // violation below 'Consider using special escape sequence'
         """
-        \\u0022
+        \\u0027
         """;
     String r8 = // violation below 'Consider using special escape sequence'
         """
-        \\u0027
+        \\u005c
         """;
     String r9 = // violation below 'Consider using special escape sequence'
         """
-        \\u005c
-        """;
-    // The following have no escape sequences, should not cause violations
-    String r10 =
-        """
         \\u000b
         """;
-    String r11 =
+    String r10 = // violation below 'Consider using special escape sequence'
         """
         \\u001c
         """;
-    String r12 =
+    String r11 = // violation below 'Consider using special escape sequence'
+        """
+        \\u001D
+        """;
+    String r12 = // violation below 'Consider using special escape sequence'
+        """
+        \\u001E
+        """;
+    String r13 = // violation below 'Consider using special escape sequence'
+        """
+        \\u001F
+        """;
+    String r14 = // violation below 'Consider using special escape sequence'
+        """
+        \\u005c
+        """;
+    String r15 = // violation below 'Consider using special escape sequence'
         """
         \\u1680
         """;
-    String r13 =
+    String r16 = // violation below 'Consider using special escape sequence'
         """
         \\u2000
         """;
-    String r14 =
+    String r17 = // violation below 'Consider using special escape sequence'
+        """
+        \\u200A
+        """;
+    String r18 = // violation below 'Consider using special escape sequence'
+        """
+        \\u2028
+        """;
+    String r19 = // violation below 'Consider using special escape sequence'
+        """
+        \\u2029
+        """;
+    String r20 = // violation below 'Consider using special escape sequence'
+        """
+        \\u202F
+        """;
+    String r21 = // violation below 'Consider using special escape sequence'
+        """
+        \\u205F
+        """;
+    String r22 = // violation below 'Consider using special escape sequence'
         """
         \\u3000
         """;
   }
 
   private static void wrongEscapeSequences() {
-    final String r1 = // violation below 'Consider using special escape sequence'
+    final String r1 =
         """
         \u0008
         """;
@@ -175,31 +209,67 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
         """
         \u000csssdfsd
         """; // violation 2 lines above 'Unicode escape(s) usage should be avoided.
-    // The following have no escape sequences, should not cause violations
-    final String r6 =
+    final String r9 = // violation below 'Consider using special escape sequence'
         """
         \u000b
         """;
-    final String r7 =
+    final String r10 = // violation below 'Consider using special escape sequence'
         """
         \u001c
         """;
-    final String r8 =
+    final String r11 = // violation below 'Consider using special escape sequence'
+        """
+        \u001D
+        """;
+    final String r12 = // violation below 'Consider using special escape sequence'
+        """
+        \u001E
+        """;
+    final String r13 = // violation below 'Consider using special escape sequence'
+        """
+        \u001F
+        """;
+    // violation 2 lines below 'Unicode escape(s) usage should be avoided'
+    final String r14 = // violation below 'Consider using special escape sequence'
+        """
+        \u005c
+        """;
+    final String r15 = // violation below 'Consider using special escape sequence'
         """
         \u1680
         """;
-    final String r9 =
+    final String r16 = // violation below 'Consider using special escape sequence'
         """
         \u2000
         """;
-    final String r10 =
+    final String r17 = // violation below 'Consider using special escape sequence'
+        """
+        \u200A
+        """;
+    final String r18 = // violation below 'Consider using special escape sequence'
+        """
+        \u2028
+        """;
+    final String r19 = // violation below 'Consider using special escape sequence'
+        """
+        \u2029
+        """;
+    final String r20 = // violation below 'Consider using special escape sequence'
+        """
+        \u202F
+        """;
+    final String r21 = // violation below 'Consider using special escape sequence'
+        """
+        \u205F
+        """;
+    final String r22 = // violation below 'Consider using special escape sequence'
         """
         \u3000
         """;
   }
 
   private static void specialCharsWithWarn() {
-    String r1 = // violation below 'Consider using special escape sequence'
+    String r1 =
         """
         \\u0008
         """;
@@ -221,17 +291,13 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
         """;
     String r6 = // violation below 'Consider using special escape sequence'
         """
-        \\u0020
+        \\u0022
         """;
     String r7 = // violation below 'Consider using special escape sequence'
         """
-        \\u0022
-        """;
-    String r8 = // violation below 'Consider using special escape sequence'
-        """
         \\u0027
         """;
-    String r9 = // violation below 'Consider using special escape sequence'
+    String r8 = // violation below 'Consider using special escape sequence'
         """
         \\u005c
         """;
@@ -240,7 +306,7 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
   Inner anoInner =
       new Inner() {
         public void wrongEscapeSequences1() {
-          final String r1 = // violation below 'Consider using special escape sequence'
+          final String r1 =
               """
               \u0008
               """;
@@ -254,12 +320,12 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
               """;
           final String r4 = // violation below 'Consider using special escape sequence'
               """
-              \u0020
+              \u000csssdfsd
               """;
         }
 
         public void specialCharsWithWarn() {
-          String r1 = // violation below 'Consider using special escape sequence'
+          String r1 =
               """
               \\u0008
               """;
@@ -281,38 +347,69 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
               """;
           String r6 = // violation below 'Consider using special escape sequence'
               """
-              \\u0020
+              \\u0022
               """;
           String r7 = // violation below 'Consider using special escape sequence'
               """
-              \\u0022
+              \\u0027
               """;
           String r8 = // violation below 'Consider using special escape sequence'
               """
-              \\u0027
+              \\u005c
               """;
           String r9 = // violation below 'Consider using special escape sequence'
               """
-              \\u005c
-              """;
-          // The following have no escape sequences, should not cause violations
-          String r10 =
-              """
               \\u000b
               """;
-          String r11 =
+          String r10 = // violation below 'Consider using special escape sequence'
               """
               \\u001c
               """;
-          String r12 =
+          String r11 = // violation below 'Consider using special escape sequence'
+              """
+              \\u001D
+              """;
+          String r12 = // violation below 'Consider using special escape sequence'
+              """
+              \\u001E
+              """;
+          String r13 = // violation below 'Consider using special escape sequence'
+              """
+              \\u001F
+              """;
+          String r14 = // violation below 'Consider using special escape sequence'
+              """
+              \\u005c
+              """;
+          String r15 = // violation below 'Consider using special escape sequence'
               """
               \\u1680
               """;
-          String r13 =
+          String r16 = // violation below 'Consider using special escape sequence'
               """
               \\u2000
               """;
-          String r14 =
+          String r17 = // violation below 'Consider using special escape sequence'
+              """
+              \\u200A
+              """;
+          String r18 = // violation below 'Consider using special escape sequence'
+              """
+              \\u2028
+              """;
+          String r19 = // violation below 'Consider using special escape sequence'
+              """
+              \\u2029
+              """;
+          String r20 = // violation below 'Consider using special escape sequence'
+              """
+              \\u202F
+              """;
+          String r21 = // violation below 'Consider using special escape sequence'
+              """
+              \\u205F
+              """;
+          String r22 = // violation below 'Consider using special escape sequence'
               """
               \\u3000
               """;
