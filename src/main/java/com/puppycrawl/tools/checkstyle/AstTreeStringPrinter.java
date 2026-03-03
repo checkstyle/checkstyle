@@ -162,7 +162,7 @@ public final class AstTreeStringPrinter {
      * @param ast the root AST node.
      * @return string AST.
      */
-    private static String printTree(DetailAST ast) {
+    public static String printTree(DetailAST ast) {
         final StringBuilder messageBuilder = new StringBuilder(1024);
         DetailAST node = ast;
         while (node != null) {
