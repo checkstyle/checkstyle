@@ -9,6 +9,9 @@
  but it's possible to check any statement.
  &lt;/div&gt;</description>
          <properties>
+            <property default-value="true" name="skipAnnotations" type="boolean">
+               <description>Specify whether to skip annotations to be part of target token.</description>
+            </property>
             <property default-value="PACKAGE_DEF,IMPORT,STATIC_IMPORT"
                       name="tokens"
                       type="java.lang.String[]"
