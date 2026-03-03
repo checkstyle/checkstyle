@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -44,9 +45,9 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testFieldWrite() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathRequireThisOne.java"));
+                new File(getPath("InputXpathRequireThisFieldWrite.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RequireThisCheck.class);
@@ -59,7 +60,7 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputXpathRequireThisOne']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathRequireThisFieldWrite']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='changeAge']]/SLIST/EXPR/ASSIGN"
                 + "/IDENT[@text='age']"
         );
@@ -69,9 +70,38 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testFieldRead() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathRequireThisTwo.java"));
+                new File(getPath("InputXpathRequireThisFieldRead.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(RequireThisCheck.class);
+        moduleConfig.addProperty("validateOnlyOverlapping", "false");
+
+        final String[] expectedViolation = {
+            "7:16: " + getCheckMessage(RequireThisCheck.class,
+                RequireThisCheck.MSG_VARIABLE, "age", ""),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathRequireThisFieldRead']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='getAge']]/SLIST/LITERAL_RETURN/EXPR"
+                + "[./IDENT[@text='age']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathRequireThisFieldRead']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='getAge']]/SLIST/LITERAL_RETURN/EXPR"
+                + "/IDENT[@text='age']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
+    @Test
+    public void testMethodCall() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathRequireThisMethodCall.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RequireThisCheck.class);
@@ -84,7 +114,7 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputXpathRequireThisTwo']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathRequireThisMethodCall']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='method2']]/SLIST/EXPR"
                 + "/METHOD_CALL/IDENT[@text='method1']"
         );

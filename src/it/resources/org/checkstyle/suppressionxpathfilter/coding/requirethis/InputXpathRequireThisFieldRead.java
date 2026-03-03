@@ -1,9 +1,9 @@
 package org.checkstyle.suppressionxpathfilter.coding.requirethis;
 
-public class InputXpathRequireThisOne {
+public class InputXpathRequireThisFieldRead {
     private int age = 23;
 
-    public void changeAge() {
-        age = 24; //warn
+    public int getAge() {
+        return age;  //warn
     }
 }
