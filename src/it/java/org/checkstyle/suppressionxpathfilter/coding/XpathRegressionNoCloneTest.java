@@ -111,19 +111,19 @@ public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
                 createModuleConfig(NoCloneCheck.class);
 
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(NoCloneCheck.class, NoCloneCheck.MSG_KEY),
+            "8:9: " + getCheckMessage(NoCloneCheck.class, NoCloneCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/INTERFACE_DEF"
+                "/COMPILATION_UNIT/ENUM_DEF"
                     + "[./IDENT[@text='InputXpathNoCloneInEnum']]/OBJBLOCK"
                     + "/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='clone']]",
-                "/COMPILATION_UNIT/INTERFACE_DEF"
+                "/COMPILATION_UNIT/ENUM_DEF"
                     + "[./IDENT[@text='InputXpathNoCloneInEnum']]/OBJBLOCK"
                     + "/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS",
-                "/COMPILATION_UNIT/INTERFACE_DEF"
+                "/COMPILATION_UNIT/ENUM_DEF"
                     + "[./IDENT[@text='InputXpathNoCloneInEnum']]/OBJBLOCK"
                     + "/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS/LITERAL_PUBLIC"

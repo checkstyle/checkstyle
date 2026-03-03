@@ -1,9 +1,11 @@
 package org.checkstyle.suppressionxpathfilter.coding.noclone;
 
-public interface InputXpathNoCloneInEnum {
+public enum InputXpathNoCloneInEnum {
+
+    INSTANCE;
+
     class InnerClass {
-        public Object clone() throws CloneNotSupportedException { // warn
-            return super.clone();
-        }
+        public Object clone() { return null; } // warn
     }
+
 }
