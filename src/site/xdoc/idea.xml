@@ -41,6 +41,29 @@
       </p>
     </section>
 
+    <section name="Exclude Non-Compiled Resource Directories">
+      <p>
+        Checkstyle contains test input files under several directories that are intentionally
+        not meant to be compiled. These files often contain violations on purpose and will cause
+        build errors if IntelliJ IDEA tries to compile them. You must mark these directories as
+        <b>Excluded</b> in the Project Structure settings before running tests through
+        IntelliJ's interface.
+        <br/><br/>
+        Open <code>File | Project Structure</code> (or press <code>Ctrl+Alt+Shift+S</code>),
+        navigate to <code>Modules</code>, select the checkstyle module, then open the
+        <code>Sources</code> tab. Right-click each of the following directories and select
+        <code>Excluded</code>:
+        <br/>
+        <ul>
+          <li><code>src/it/resources</code></li>
+          <li><code>src/test/resources</code></li>
+          <li><code>src/test/resources-noncompilable</code></li>
+          <li><code>src/xdocs-examples/resources</code></li>
+        </ul>
+        The directories should appear highlighted in red once marked as excluded.
+      </p>
+    </section>
+
     <section name="Debug">
       <p>
         Open the Check's source file by double-click on it in a source tree as is shown:<br/><br/>
