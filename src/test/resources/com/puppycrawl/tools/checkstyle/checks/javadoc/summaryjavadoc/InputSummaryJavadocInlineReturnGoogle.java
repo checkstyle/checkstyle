@@ -1,0 +1,38 @@
+/*
+SummaryJavadoc
+violateExecutionOnNonTightHtml = (default)false
+forbiddenSummaryFragments = ^@return the *|^This method returns |^A \
+                            [{]@code [a-zA-Z0-9]+[}]( is a )|^[a-z]
+forbiddenInlineReturnFragments = ^@return the *|^This method returns |^A \
+                                  [{]@code [a-zA-Z0-9]+[}]( is a )
+period = (default).
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
+
+public class InputSummaryJavadocInlineReturnGoogle {
+    /** {@return the customer ID} */
+    int customerId() {
+        return 0;
+    }
+
+    /** {@return the nothing} */
+    int returnNothing() {
+        return 0;
+    }
+
+    /** {@return This method returns something} */ // violation 'Forbidden summary fragment.'
+    int returnSomething() {
+        return 0;
+    }
+
+    /** {@return a customer object} */
+    Object getCustomer() {
+        return null;
+    }
+
+    /** some javadoc. */ // violation 'Forbidden summary fragment.'
+    void someMethod() {
+    }
+}

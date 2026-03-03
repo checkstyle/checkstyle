@@ -37,6 +37,13 @@
               <th>since</th>
             </tr>
             <tr>
+              <td><a id="forbiddenInlineReturnFragments"/><a href="#forbiddenInlineReturnFragments">forbiddenInlineReturnFragments</a></td>
+              <td>Specify the regexp for forbidden fragments in inline return tags.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>^$</code></td>
+              <td>6.0</td>
+            </tr>
+            <tr>
               <td><a id="forbiddenSummaryFragments"/><a href="#forbiddenSummaryFragments">forbiddenSummaryFragments</a></td>
               <td>Specify the regexp for forbidden summary fragments.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
@@ -133,6 +140,8 @@ class Example1 {
     &lt;module name="SummaryJavadoc"&gt;
       &lt;property name="forbiddenSummaryFragments"
         value="^This method returns.*"/&gt;
+      &lt;property name="forbiddenInlineReturnFragments"
+        value="^@return the .*|^This method returns.*|^A [{]@code [a-zA-Z0-9]+[}]( is a )"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
