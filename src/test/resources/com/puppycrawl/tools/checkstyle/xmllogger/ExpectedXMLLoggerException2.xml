@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="">
-<file name="Test.java">
+<file name="InputXMLLoggerAddExceptionBetweenFileStartedAndFinished.java">
 <exception>
 <![CDATA[
 stackTrace&#10;example
