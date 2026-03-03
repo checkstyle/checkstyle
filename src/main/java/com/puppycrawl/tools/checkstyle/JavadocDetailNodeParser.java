@@ -246,7 +246,7 @@ public class JavadocDetailNodeParser {
          * Stores the first non-tight HTML tag encountered while parsing javadoc.
          *
          * @see <a
-         *     href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+         *     href="https://checkstyle.org/writingjavadocchecks-invalid.html#Tight-HTML_rules">
          *     Tight HTML rules</a>
          */
         private DetailNode firstNonTightHtmlTag;
