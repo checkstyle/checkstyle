@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyAloneOrEmptyCheck"
+             name="RightCurlyAloneOrEmpty"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks the placement of right curlies for code blocks.
+ This check is specifically designed for Google Style.
+ &lt;/div&gt;</description>
+         <properties>
+            <property default-value="CLASS_DEF,METHOD_DEF,CTOR_DEF,LITERAL_FOR,LITERAL_WHILE,STATIC_INIT,INSTANCE_INIT,ANNOTATION_DEF,ENUM_DEF,INTERFACE_DEF,RECORD_DEF,COMPACT_CTOR_DEF,LITERAL_SWITCH,LITERAL_CASE,LITERAL_FINALLY,LITERAL_CATCH"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="line.alone"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

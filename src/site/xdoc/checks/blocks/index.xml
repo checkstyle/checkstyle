@@ -76,7 +76,7 @@
               </a>
             </td>
             <td>
-              Checks the placement of right curly braces (<code>'}'</code>) for code blocks.
+              Checks the placement of right curlies for code blocks.
             </td>
           </tr>
         </table>

@@ -1,23 +1,18 @@
-/*
-RightCurlyAloneOrEmpty
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="RightCurlyAloneOrEmpty"/>
+  </module>
+</module>
 */
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurlyaloneorempty;
 
 class InputRightCurlyAloneOrEmptyNoViolations {
-  public @interface TestAnnotation {}
+    void method1() {
+        int x = 1;
+    } // ok
 
-  public @interface TestAnnotation1 { String someValue(); }
-
-  public @interface TestAnnotation2 {
-    String someValue(); }  // violation
-
-  public @interface TestAnnotation3 {
-    String someValue();
-  } //ok
-
-  public @interface TestAnnotation4 { String someValue();
-  } //ok
-
-  enum TestEnum2 {
-    SOME_VALUE; } // violation
+    void method2() {
+        int x = 1; } // violation
 }
