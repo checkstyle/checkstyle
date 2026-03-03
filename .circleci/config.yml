@@ -1,7 +1,8 @@
 version: 2.1
-
+openjdk_21_img: &openjdk_21_img cimg/openjdk:21.0.8
+cs_img: &cs_img amitkumardeoghoria/jdk-21-groovy-git-mvn-ant-jq:v1
+base_img: &base_img cimg/base:2022.11
 jobs:
-
   validate-with-maven-script:
     description: Runs a maven script using the job name as the argument.
     parameters: &script_parameters
@@ -36,7 +37,6 @@ jobs:
           paths:
             - .m2
             - .mvn/wrapper
-
   validate-with-script:
     description: Runs a non-maven script using the job name as the argument.
     parameters: *script_parameters
@@ -53,11 +53,9 @@ jobs:
             export PR_HEAD_SHA=$CIRCLE_SHA1
             export PR_NUMBER=$CIRCLE_PR_NUMBER
             << parameters.command >>
-
   sonarqube:
     docker:
-      - image: &cs_img amitkumardeoghoria/jdk-21-groovy-git-mvn-ant-jq:v1
-
+      - image: *cs_img
     steps:
       - checkout
       - run:
@@ -67,11 +65,9 @@ jobs:
             export PR_BRANCH_NAME=$CIRCLE_BRANCH
             export SONAR_API_TOKEN=$SONAR_TOKEN
             ./.ci/validation.sh sonarqube
-
   yamllint:
     docker:
-      - image: cimg/base:2022.11
-
+      - image: *base_img
     steps:
       - checkout
       - run:
@@ -82,14 +78,7 @@ jobs:
       - run:
           name: Run yamllint
           command: yamllint -f parsable -c config/yamllint.yaml .
-
 workflows:
-  #  sonarqube:
-  #    jobs:
-  #      - sonarqube:
-  #          context:
-  #            - sonarqube
-
   test:
     jobs:
       # no-exception-test script
@@ -109,11 +98,10 @@ workflows:
           name: no-exception-only-javadoc
           image-name: *cs_img
           command: ./.ci/no-exception-test.sh no-exception-only-javadoc
-
       # validation script
       - validate-with-maven-script:
           name: no-error-xwiki
-          image-name: cimg/openjdk:21.0.6
+          image-name: *openjdk_21_img
           command: ./.ci/validation.sh no-error-xwiki
       - validate-with-maven-script:
           name: no-error-pmd
@@ -195,7 +183,7 @@ workflows:
           command: ./.ci/validation.sh assembly-run-all-jar
       - validate-with-maven-script:
           name: no-error-test-sbe
-          image-name: cimg/openjdk:21.0.6
+          image-name: *openjdk_21_img
           command: ./.ci/validation.sh no-error-test-sbe
       - validate-with-maven-script:
           name: no-error-spotbugs
@@ -203,21 +191,20 @@ workflows:
           command: ./.ci/validation.sh no-error-spotbugs
       - validate-with-maven-script:
           name: no-error-pgjdbc
-          image-name: cimg/openjdk:21.0
+          image-name: *openjdk_21_img
           command: ./.ci/validation.sh no-error-pgjdbc
       - validate-with-maven-script:
           name: linkcheck-plugin
-          image-name: cimg/openjdk:21.0.6
+          image-name: *openjdk_21_img
           command: ./.ci/run-link-check-plugin.sh --skip-external
       - validate-with-maven-script:
           name: no-exception-samples-gradle
-          image-name: cimg/openjdk:21.0.6
+          image-name: *openjdk_21_img
           command: ./.ci/no-exception-test.sh no-exception-samples-gradle
       - validate-with-maven-script:
           name: no-exception-samples-maven
-          image-name: cimg/openjdk:21.0.6
+          image-name: *openjdk_21_img
           command: ./.ci/no-exception-test.sh no-exception-samples-maven
-
       - validate-with-maven-script:
           name: no-exception-samples-ant
           image-name: *cs_img
@@ -226,7 +213,6 @@ workflows:
           name: no-error-hazelcast
           image-name: *cs_img
           command: ./.ci/validation.sh no-error-hazelcast
-
   git-validation:
     jobs:
       - validate-with-script:
@@ -238,7 +224,6 @@ workflows:
       - validate-with-script:
           name: git-check-single-commit
           command: ./.ci/validation.sh git-check-single-commit
-
   cli-validation:
     jobs:
       - yamllint
@@ -250,9 +235,8 @@ workflows:
           command: ./.ci/validation.sh check-github-workflows-concurrency
       - validate-with-script:
           name: check-wildcards-on-pitest-target-classes
-          image-name: cimg/base:2022.11
+          image-name: *base_img
           command: ./.ci/validation.sh check-wildcards-on-pitest-target-classes
-
   javac-validation:
     jobs:
       - validate-with-script:
@@ -260,11 +244,11 @@ workflows:
           command: ./.ci/validation.sh check-since-version
       - validate-with-script:
           name: javac21
-          image-name: cimg/openjdk:21.0.6
+          image-name: *openjdk_21_img
           command: ./.ci/validation.sh javac21
       - validate-with-script:
           name: java 21 test resources compile
-          image-name: cimg/openjdk:21.0.8
+          image-name: *openjdk_21_img
           command: ./.ci/validation.sh compile-test-resources
       - validate-with-script:
           name: javac22
@@ -274,36 +258,33 @@ workflows:
           name: javac25
           image-name: cimg/openjdk:25.0
           command: ./.ci/validation.sh javac25
-
   site-validation:
     jobs:
       - validate-with-maven-script:
           name: jdk21-package-site
           image-name: *cs_img
           command: ./.ci/validation.sh package-site
-
   openrewrite:
     jobs:
       - validate-with-maven-script:
           name: openrewrite-checkstyle-auto-fix
-          image-name: cimg/openjdk:21.0
+          image-name: *openjdk_21_img
           command: ./.ci/validation.sh openrewrite-checkstyle-auto-fix
       - validate-with-maven-script:
           name: openrewrite-refaster-rules-1
-          image-name: cimg/openjdk:21.0
+          image-name: *openjdk_21_img
           command: ./.ci/validation.sh openrewrite-refaster-rules-1
       - validate-with-maven-script:
           name: openrewrite-refaster-rules-2
-          image-name: cimg/openjdk:21.0
+          image-name: *openjdk_21_img
           command: ./.ci/validation.sh openrewrite-refaster-rules-2
       - validate-with-maven-script:
           name: openrewrite-static-analysis
-          image-name: cimg/openjdk:21.0
+          image-name: *openjdk_21_img
           command: ./.ci/validation.sh openrewrite-static-analysis
-
   spotless:
     jobs:
       - validate-with-maven-script:
           name: spotless
-          image-name: cimg/openjdk:21.0
+          image-name: *openjdk_21_img
           command: ./.ci/validation.sh spotless
