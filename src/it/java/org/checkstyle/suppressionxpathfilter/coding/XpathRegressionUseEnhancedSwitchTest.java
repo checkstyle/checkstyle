@@ -77,4 +77,22 @@ public class XpathRegressionUseEnhancedSwitchTest
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
+    @Test
+    public void testExpressionsValid() throws Exception {
+        final File fileToProcess = new File(
+                getPath("InputXpathUseEnhancedSwitchReturn.java"));
+
+        final DefaultConfiguration moduleConfig = createModuleConfig(UseEnhancedSwitchCheck.class);
+        final String[] expectedViolation = {
+            "6:13: " + getCheckMessage(UseEnhancedSwitchCheck.class,
+                UseEnhancedSwitchCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = List.of(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathUseEnhancedSwitchReturn']]"
+            + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_FOR/SLIST/LITERAL_SWITCH"
+        );
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
 }
