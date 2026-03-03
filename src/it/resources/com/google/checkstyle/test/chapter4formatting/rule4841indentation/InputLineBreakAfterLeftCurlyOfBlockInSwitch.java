@@ -10,10 +10,8 @@ public class InputLineBreakAfterLeftCurlyOfBlockInSwitch {
             System.out.println("try");
             yield 1;
           }
-          // violation below ''{' at column 36 should have line break after'
-          case 2, 9, 10, 11, 12 -> { yield 2; }
-          // violation below ''{' at column 30 should have line break after'
-          case 3, 5, 4, 8 -> { yield month << 2; }
+          case 2, 9, 10, 11, 12 -> { yield 2; } // false-negative, ok until #17565
+          case 3, 5, 4, 8 -> { yield month << 2; } // false-negative, ok until #17565
           default -> 0;
         };
   }
@@ -23,8 +21,7 @@ public class InputLineBreakAfterLeftCurlyOfBlockInSwitch {
       case 0, 1 -> System.out.println("0");
       case 2 ->
           handleTwoWithAnExtremelyLongMethodCallThatWouldNotFitOnTheSameLine();
-      // violation below ''{' at column 18 should have line break after'
-      default -> { handleSurprisingNumber(number); }
+      default -> { handleSurprisingNumber(number); } // false-negative, ok until #17565
     }
   }
 
