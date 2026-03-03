@@ -36,7 +36,7 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
     /** Length of all separators. */
     private static final int LENGTH_OF_ALL_SEPARATORS = 10;
 
-    /** Suffix of module names like XXXXCheck. */
+    /** Suffix of module names like FooCheck. */
     private static final String SUFFIX = "Check";
 
     @Override
