@@ -771,7 +771,6 @@ len
 lexer
 lexing
 lgpl
-lhmap
 LHSOf
 libcore
 liberapay
@@ -900,8 +899,8 @@ nameofaffectedcheck
 namespace
 nanos
 nbactions
-nbia
 nbsp
+nbia
 ncal
 ncss
 needbraces
@@ -1253,7 +1252,7 @@ SLo
 Slurper
 slurpersupport
 Sms
-smth
+Smth
 snyk
 socio
 Sohjiro
@@ -1356,9 +1355,9 @@ Testik
 testmodules
 textblock
 textblockgooglestyleformatting
+tfoot
 tfij
 Tfo
-tfoot
 Thauvin
 thead
 thesummaryfragment
@@ -1522,6 +1521,8 @@ writingjavadocchecks
 writinglisteners
 Wsdl
 www
+WWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWW
 Wyq
 xa
 xabc
@@ -1572,9 +1573,7 @@ XSO
 xwiki
 XXXX
 xxxxxx
-XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 xy
-XYzz
 xzf
 xzvf
 yaml
@@ -1587,7 +1586,6 @@ youtu
 youtube
 Yoyodyne
 yyyy
-Yzz
 Zbbh
 zf
 zh
