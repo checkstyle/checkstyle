@@ -60,13 +60,7 @@ public class XdocsExampleFileTest {
     private static final Map<String, Set<String>> SUPPRESSED_PROPERTIES_BY_CHECK = Map.ofEntries(
             Map.entry("JavadocStyleCheck", Set.of("endOfSentenceFormat")),
             Map.entry("SuppressWarningsHolder", Set.of("aliasList")),
-            Map.entry("IndentationCheck", Set.of(
-                    "basicOffset",
-                    "lineWrappingIndentation",
-                    "throwsIndent",
-                    "arrayInitIndent",
-                    "braceAdjustment"
-            )),
+            Map.entry("IllegalTokenTextCheck", Set.of("message")),
             Map.entry("ClassMemberImpliedModifierCheck", Set.of(
                     "violateImpliedStaticOnNestedEnum",
                     "violateImpliedStaticOnNestedRecord",
