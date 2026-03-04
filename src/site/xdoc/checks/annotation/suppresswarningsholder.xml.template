@@ -91,10 +91,22 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
+          <p id="Example5-config">
+      You can also define a custom alias for a check using the check name or simple
+      name with <code>aliasList</code> in format of <code>CheckName=alias</code>:
+    </p>
+    <macro name="example">
+      <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example5.java"/>
+      <param name="type" value="config"/>
+    </macro>
+    <p id="Example5-code">Example:</p>
+    <macro name="example">
+      <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example5.java"/>
+      <param name="type" value="code"/>
+    </macro>
       </subsection>
-
       <subsection name="Example of Usage" id="SuppressWarningsHolder_Example_of_Usage">
         <ul>
           <li>
