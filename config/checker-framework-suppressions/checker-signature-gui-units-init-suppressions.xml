@@ -738,14 +738,14 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
     <specifier>call.ui</specifier>
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
-    <lineContent>final int widthOfSixCharacterString = fontMetrics.stringWidth(&quot;WWWWWW&quot;);</lineContent>
+    <lineContent>final int widthOfSixCharacterString = fontMetrics.stringWidth(&quot;XXXXXX&quot;);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
     <specifier>call.ui</specifier>
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
-    <lineContent>fontMetrics.stringWidth(&quot;WWWWWWWWWWWWWWWWWWWWWWWWWWWW&quot;);</lineContent>
+    <lineContent>fontMetrics.stringWidth(&quot;XXXXXXXXXXXXXXXXXXXXXXXXXXXX&quot;);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

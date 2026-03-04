@@ -184,7 +184,7 @@ public final class TreeTable extends JTable {
     private void setColumnsInitialWidth() {
         final FontMetrics fontMetrics = getFontMetrics(getFont());
         // Six character string to contain "Column" column.
-        final int widthOfSixCharacterString = fontMetrics.stringWidth("WWWWWW");
+        final int widthOfSixCharacterString = fontMetrics.stringWidth("XXXXXX");
         // Padding must be added to width for columns to make them fully
         // visible in table header.
         final int padding = 10;
@@ -197,7 +197,7 @@ public final class TreeTable extends JTable {
         getColumn("Tree").setPreferredWidth(preferredTreeColumnWidth);
         // Twenty-eight character string to contain "Type" column
         final int widthOfTwentyEightCharacterString =
-                fontMetrics.stringWidth("WWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+                fontMetrics.stringWidth("XXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         final int preferredTypeColumnWidth = widthOfTwentyEightCharacterString + padding;
         getColumn("Type").setPreferredWidth(preferredTypeColumnWidth);
     }
