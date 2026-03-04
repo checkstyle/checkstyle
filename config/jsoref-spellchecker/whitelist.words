@@ -31,6 +31,7 @@ annotationlocation
 annotationonsameline
 annotationusestyle
 annotationutil
+annotationwithoutjavadoc
 anoninner
 anoninnerlength
 antfile
