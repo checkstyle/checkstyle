@@ -7,8 +7,20 @@ pwd
 uname -a
 ./mvnw --version
 curl --fail-with-body -I https://sourceforge.net/projects/checkstyle/
+
+# Replace absolute links with relative paths for validation
+echo "Fixing absolute links for validation..."
+find src/main/java -name "*.java" \
+  -exec sed -i 's|https://checkstyle.org/|../|g' {} +
+
+# Generate site and run validation checks
 ./mvnw -e --no-transfer-progress clean site -Dcheckstyle.ant.skip=true -DskipTests -DskipITs \
    -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dcheckstyle.skip=true
+
+# Restore original java files to keep CI workspace clean
+echo "Restoring original files to keep CI workspace clean..."
+git restore src/main/java/
+
 mkdir -p .ci-temp
 
 OPTION=$1
