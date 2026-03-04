@@ -183,29 +183,6 @@ public class Example4 {
   }
 
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
-          You can also define a custom alias for a check using the check name or simple
-          name with <code>aliasList</code> in format of <code>CheckName=alias</code>:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="ConstantName"/&gt;
-    &lt;module name="SuppressWarningsHolder"&gt;
-      &lt;property name="aliasList" value="ConstantName=myapp"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-  &lt;module name="SuppressWarningsFilter"/&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example5-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5 {
-  private static final int i = 0; // violation, 'Name 'i' must match pattern'
-  @SuppressWarnings("myapp")
-  private static final int m = 0; // violation suppressed
-}
 </code></pre></div>
 
       </subsection>
