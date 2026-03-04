@@ -1088,9 +1088,8 @@
     <option name="m_includeLibraryClasses" value="false"/>
     <option name="m_limit" value="15"/>
   </inspection_tool>
-  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
-  <inspection_tool class="ClassEscapesItsScope" enabled="false" level="WARNING"
-                   enabled_by_default="false" />
+  <inspection_tool class="ClassEscapesItsScope" enabled="true" level="WARNING"
+                   enabled_by_default="true" />
   <!-- we do not need that -->
   <inspection_tool class="ClassHasNoToStringMethod" enabled="false" level="ERROR"
                    enabled_by_default="false">
