@@ -182,7 +182,7 @@ public class CommitValidationTest {
         assertWithMessage("should accept commit message with supplemental prefix")
                 .that(0)
                 .isEqualTo(validateCommitMessage("supplemental: Test message for supplemental for"
-                        + " Issue #XXXX"));
+                        + " Issue #9999"));
         assertWithMessage("should not accept commit message with periods on end")
                 .that(3)
                 .isEqualTo(validateCommitMessage("supplemental: Test. Test."));

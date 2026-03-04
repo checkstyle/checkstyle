@@ -105,7 +105,7 @@ public class LocalFinalVariableNameCheckTest
             "43:29: " + getCheckMessage(MSG_INVALID_PATTERN, "br", pattern),
             "63:22: " + getCheckMessage(MSG_INVALID_PATTERN, "zf", pattern),
             "82:30: " + getCheckMessage(MSG_INVALID_PATTERN, "fis8859_1", pattern),
-            "86:32: " + getCheckMessage(MSG_INVALID_PATTERN, "isrutf8", pattern),
+            "86:32: " + getCheckMessage(MSG_INVALID_PATTERN, "streamreader", pattern),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLocalFinalVariableNameTryResources.java"), expected);
