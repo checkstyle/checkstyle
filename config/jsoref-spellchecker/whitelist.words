@@ -50,6 +50,7 @@ APRV
 Aqj
 ARCHITEW
 archunit
+args
 Arial
 arity
 Arquillian
@@ -771,6 +772,7 @@ len
 lexer
 lexing
 lgpl
+lhmap
 LHSOf
 libcore
 liberapay
@@ -1182,6 +1184,7 @@ rhs
 rhysd
 rickgiles
 rightcurly
+rightcurlyaloneorempty
 Rl
 Rli
 rnveach
@@ -1252,7 +1255,7 @@ SLo
 Slurper
 slurpersupport
 Sms
-Smth
+smth
 snyk
 socio
 Sohjiro
@@ -1521,8 +1524,6 @@ writingjavadocchecks
 writinglisteners
 Wsdl
 www
-WWWWWW
-WWWWWWWWWWWWWWWWWWWWWWWWWWWW
 Wyq
 xa
 xabc
@@ -1573,7 +1574,9 @@ XSO
 xwiki
 XXXX
 xxxxxx
+XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 xy
+XYzz
 xzf
 xzvf
 yaml
@@ -1586,6 +1589,7 @@ youtu
 youtube
 Yoyodyne
 yyyy
+Yzz
 Zbbh
 zf
 zh

@@ -5,7 +5,7 @@
     "https://checkstyle.org/dtds/configuration_1_1.dtd">
 
 <module name="Checker">
-    <metadata name="any-possible-value" value="just something"/>
+    <metadata name="any-possible-value" value="just smth"/>
 
     <property name="tabWidth" value="4" />
     <property name="basedir" value="${checkstyle.basedir}" />
