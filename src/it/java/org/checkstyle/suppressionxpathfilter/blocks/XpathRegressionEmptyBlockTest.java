@@ -84,4 +84,24 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testEmptyForLoopWithTokenProperty() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathEmptyBlockEmpty.java"));
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(EmptyBlockCheck.class);
+        moduleConfig.addProperty("tokens", "LITERAL_FOR");
+        final String[] expectedViolation = {
+            "5:38: " + getCheckMessage(EmptyBlockCheck.class,
+                EmptyBlockCheck.MSG_KEY_BLOCK_NO_STATEMENT),
+        };
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/COMPILATION_UNIT"
+                        + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyBlockEmpty']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='emptyLoop']]"
+                        + "/SLIST/LITERAL_FOR/SLIST"
+        );
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
