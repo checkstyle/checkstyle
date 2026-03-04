@@ -137,9 +137,6 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     /**
      * {@inheritDoc} Creates child module.
-     *
-     * @noinspection ChainOfInstanceofChecks
-     * @noinspectionreason ChainOfInstanceofChecks - we treat checks and filters differently
      */
     @Override
     public void setupChild(Configuration childConf)
@@ -157,18 +154,17 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         catch (final CheckstyleException exc) {
             throw new CheckstyleException("cannot initialize module " + name, exc);
         }
-        if (module instanceof AbstractCheck check) {
-            check.init();
-            registerCheck(check);
-        }
-        else if (module instanceof TreeWalkerFilter filter) {
-            filters.add(filter);
-        }
-        else {
-            throw new CheckstyleException(
-                "TreeWalker is not allowed as a parent of " + name
-                        + " Please review 'Parent Module' section for this Check in web"
-                        + " documentation if Check is standard.");
+        // -@cs[MissingNullCaseInSwitch] until issue #19173
+        switch (module) {
+            case AbstractCheck check -> {
+                check.init();
+                registerCheck(check);
+            }
+            case TreeWalkerFilter filter -> filters.add(filter);
+            case null, default -> throw new CheckstyleException(
+                    "TreeWalker is not allowed as a parent of " + name
+                            + " Please review 'Parent Module' section for this Check in web"
+                            + " documentation if Check is standard.");
         }
     }
 
