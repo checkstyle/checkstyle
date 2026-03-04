@@ -84,4 +84,25 @@ public class XpathRegressionPackageAnnotationTest extends AbstractXpathTestSuppo
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testThree() throws Exception {
+        final File fileToProcess =
+                new File(getNonCompilablePath(
+                        "InputXpathPackageAnnotationThree.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(PackageAnnotationCheck.class);
+
+        final String[] expectedViolation = {
+            "5:1: " + getCheckMessage(PackageAnnotationCheck.class,
+                PackageAnnotationCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries =
+                Arrays.asList("/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF");
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
