@@ -1682,8 +1682,7 @@
   </inspection_tool>
   <inspection_tool class="EmptyCatchBlockJS" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
-  <inspection_tool class="EmptyClass" enabled="false" level="WARNING" enabled_by_default="false">
+  <inspection_tool class="EmptyClass" enabled="true" level="WARNING" enabled_by_default="true">
     <option name="ignorableAnnotations">
       <value/>
     </option>
@@ -4513,6 +4512,8 @@
         <option value="JUnitTestClassNamingConvention"/>
         <!-- usage of picocli library in Main.java case we won't fix -->
         <option value="CanBeFinal"/>
+        <!-- false positives -->
+        <option value="EmptyClass"/>
       </list>
     </option>
   </inspection_tool>
