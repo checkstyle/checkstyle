@@ -281,9 +281,9 @@ public class AllTestsTest {
             String folderPath, boolean skipFileNaming, String fileName) {
         boolean result = false;
 
-        for (String clss : classes) {
-            if (folderPath.endsWith(File.separatorChar + clss.toLowerCase(Locale.ENGLISH))
-                    && (skipFileNaming || fileName.startsWith(clss))) {
+        for (String className : classes) {
+            if (folderPath.endsWith(File.separatorChar + className.toLowerCase(Locale.ENGLISH))
+                    && (skipFileNaming || fileName.startsWith(className))) {
                 result = true;
                 break;
             }
