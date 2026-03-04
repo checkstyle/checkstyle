@@ -18,7 +18,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import static java.io.File.createTempFile;
 import static java.lang.Math.abs; // ok, alphabetical case-sensitive ASCII order, 'i' < 'l'
 
-import java.io.File; // violation 'Extra separation in import group before 'java.io.File''
+import java.io.File;
 
 import java.io.IOException; // violation 'Extra separation in import group before 'java.io.IOException''
 
