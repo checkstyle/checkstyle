@@ -78,7 +78,7 @@ public class RightCurlyAloneOrEmptyCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST rcurly = getRightCurly(ast);
-        if (rcurly != null && rcurly.getType() == TokenTypes.RCURLY && !isEmptyBlock(rcurly)) {
+        if (rcurly.getType() == TokenTypes.RCURLY && !isEmptyBlock(rcurly)) {
             final String targetSrcLine = getLine(rcurly.getLineNo() - 1);
             if (!CommonUtil.hasWhitespaceBefore(rcurly.getColumnNo(), targetSrcLine)) {
                 log(rcurly, MSG_KEY_LINE_ALONE, "}", rcurly.getColumnNo() + 1);
@@ -90,17 +90,21 @@ public class RightCurlyAloneOrEmptyCheck extends AbstractCheck {
      * Gets the right curly brace token for the given AST node.
      *
      * @param ast the AST node to get the right curly brace for
-     * @return the right curly brace token, or {@code null} if not found
+     * @return the right curly brace token
      */
     private static DetailAST getRightCurly(DetailAST ast) {
         DetailAST result = ast.findFirstToken(TokenTypes.SLIST);
         if (result == null) {
             result = ast.findFirstToken(TokenTypes.OBJBLOCK);
         }
-        if (result == null) {
-            result = ast;
+        final DetailAST lastChild;
+        if (result != null) {
+            lastChild = result.getLastChild();
         }
-        return result.getLastChild();
+        else {
+            lastChild = ast.getLastChild();
+        }
+        return lastChild;
     }
 
     /**
@@ -111,10 +115,13 @@ public class RightCurlyAloneOrEmptyCheck extends AbstractCheck {
      */
     private static boolean isEmptyBlock(DetailAST rcurly) {
         final DetailAST parent = rcurly.getParent();
+        final boolean result;
         if (parent.getType() == TokenTypes.SLIST) {
-            return parent.getFirstChild() == rcurly;
+            result = parent.getFirstChild() == rcurly;
         }
-        final DetailAST prevSibling = rcurly.getPreviousSibling();
-        return prevSibling != null && prevSibling.getType() == TokenTypes.LCURLY;
+        else {
+            result = rcurly.getPreviousSibling().getType() == TokenTypes.LCURLY;
+        }
+        return result;
     }
 }

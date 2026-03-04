@@ -72,4 +72,23 @@ public class XpathRegressionRightCurlyAloneOrEmptyTest extends AbstractXpathTest
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpath);
     }
+
+    @Test
+    public void testThree() throws Exception {
+        final File fileToProcess =
+            new File(getPath("InputXpathRightCurlyAloneOrEmpty3.java"));
+        final DefaultConfiguration moduleConfig =
+            createModuleConfig(RightCurlyAloneOrEmptyCheck.class);
+        final String[] expectedViolation = {
+            "5:20: " + getCheckMessage(RightCurlyAloneOrEmptyCheck.class,
+                RightCurlyAloneOrEmptyCheck.MSG_KEY_LINE_ALONE, "}", 20),
+        };
+        final List<String> expectedXpath = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathRightCurlyAloneOrEmpty3']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"
+                + "/SLIST/RCURLY"
+        );
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpath);
+    }
 }

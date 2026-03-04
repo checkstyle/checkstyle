@@ -51,3 +51,6 @@ replay_pid*
 **/gen
 **/JavaLanguageLexer.tokens
 .aider*
+.aider*
+fix_npe_crash.py
+.aider.chat.history.md

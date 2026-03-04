@@ -6,6 +6,8 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks the placement of right curlies for code blocks.
+ This check requires a line break before the right curly brace for non-empty blocks,
+ but allows concise (single-line) empty blocks.
  This check is specifically designed for Google Style.
  &lt;/div&gt;</description>
          <properties>

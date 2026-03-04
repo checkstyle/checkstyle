@@ -32,22 +32,18 @@ public class InputWhitespaceAroundArrow {
   void test(Object o, Object o2, int y) {
     switch (o) {
       case String s when (
-          // violation 2 lines below ''->' is not preceded with whitespace.'
-          // violation 2 lines below ''{' at column 9 should be on the previous line.'
-          s.equals("a"))->
+          s.equals("a"))-> // violation ''->' is not preceded with whitespace.'
         {
         }
       case Point(int x, int xy) when !(x >= 0 && y >= 0) -> {}
-      // violation below ''->' is not preceded with whitespace.'
-      default->
+      default-> // violation ''->' is not preceded with whitespace.'
         {}
     }
 
     int x = switch (o) {
       case String s -> {
         switch (o2) {
-          // violation below ''->' is not preceded with whitespace.'
-          case Integer i when i == 0-> {
+          case Integer i when i == 0-> { // violation ''->' is not preceded with whitespace.'
             if (y == 0) {
               System.out.println(0);
             }
