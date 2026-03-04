@@ -1096,18 +1096,13 @@ public final class SiteUtil {
      *                     <a href="https://github.com/checkstyle/checkstyle/issues/13500">13500</a>
      */
     private static IntStream getIntStream(Object value) {
-        final IntStream stream;
-        if (value instanceof Collection<?> collection) {
-            stream = collection.stream()
+        // -@cs[MissingNullCaseInSwitch] until issue #19173
+        return switch (value) {
+            case Collection<?> collection -> collection.stream()
                     .mapToInt(int.class::cast);
-        }
-        else if (value instanceof BitSet set) {
-            stream = set.stream();
-        }
-        else {
-            stream = Arrays.stream((int[]) value);
-        }
-        return stream;
+            case BitSet set -> set.stream();
+            default -> Arrays.stream((int[]) value);
+        };
     }
 
     /**

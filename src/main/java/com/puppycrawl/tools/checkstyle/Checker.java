@@ -483,21 +483,16 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             throw new CheckstyleException(
                     getLocalizedMessage("Checker.setupChildModule", name, exc.getMessage()), exc);
         }
-        if (child instanceof FileSetCheck fsc) {
-            fsc.init();
-            addFileSetCheck(fsc);
-        }
-        else if (child instanceof BeforeExecutionFileFilter filter) {
-            addBeforeExecutionFileFilter(filter);
-        }
-        else if (child instanceof Filter filter) {
-            addFilter(filter);
-        }
-        else if (child instanceof AuditListener listener) {
-            addListener(listener);
-        }
-        else {
-            throw new CheckstyleException(
+        // -@cs[MissingNullCaseInSwitch] until issue #19173
+        switch (child) {
+            case FileSetCheck fsc -> {
+                fsc.init();
+                addFileSetCheck(fsc);
+            }
+            case BeforeExecutionFileFilter filter -> addBeforeExecutionFileFilter(filter);
+            case Filter filter -> addFilter(filter);
+            case AuditListener listener -> addListener(listener);
+            default -> throw new CheckstyleException(
                     getLocalizedMessage("Checker.setupChildNotAllowed", name));
         }
     }
