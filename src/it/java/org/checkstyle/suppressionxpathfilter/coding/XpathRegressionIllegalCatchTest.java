@@ -90,4 +90,28 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testThree() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathIllegalCatchThree.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(IllegalCatchCheck.class);
+
+        final String[] expectedViolation = {
+            "6:11: " + getCheckMessage(IllegalCatchCheck.class,
+                IllegalCatchCheck.MSG_KEY, "Throwable"),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathIllegalCatchThree']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='methodOne']]/SLIST"
+                + "/LITERAL_TRY/LITERAL_CATCH"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
