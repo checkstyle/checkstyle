@@ -90,6 +90,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/annotation/annotationonsameline/Example2",
             "checks/annotation/missingoverride/Example2",
             "checks/annotation/suppresswarningsholder/Example1",
+            "checks/annotation/suppresswarningsholder/Example5",
             "checks/blocks/emptyblock/Example3",
             "checks/blocks/emptycatchblock/Example4",
             "checks/blocks/emptycatchblock/Example5",
