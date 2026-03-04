@@ -73,7 +73,7 @@ public class FinalClassCheckTest
     @Test
     public void testFinalClass2() throws Exception {
         final String[] expected = {
-            "26:5: " + getCheckMessage(MSG_KEY, "someinnerClass"),
+            "26:5: " + getCheckMessage(MSG_KEY, "InnerFinalClass"),
             "33:5: " + getCheckMessage(MSG_KEY, "SomeClass"),
             "39:5: " + getCheckMessage(MSG_KEY, "SomeClass"),
             "60:1: " + getCheckMessage(MSG_KEY, "TestNewKeyword"),

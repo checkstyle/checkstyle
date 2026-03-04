@@ -14,7 +14,6 @@ actionlint
 addons
 Adoptium
 adr
-AFBR
 AFilter
 aggregators
 allchecks
@@ -48,7 +47,6 @@ APPLET
 appveyor
 APRV
 Aqj
-ARCHITEW
 archunit
 Arial
 arity
@@ -185,10 +183,6 @@ classpath
 classtypeparametername
 clazz
 clemens
-Clickable
-Cloneable
-clss
-cmdline
 cmp
 cmt
 CNAME
@@ -222,7 +216,6 @@ Contextualizable
 contextualization
 contextualized
 Contextualizing
-corrosponds
 courtlink
 covariantequals
 COVEREDRATIO
@@ -267,7 +260,6 @@ ddd
 DDDL
 Ddry
 DEADBEEF
-DECCHARS
 declarationorder
 declaredwhenneeded
 Deconstruction
@@ -343,7 +335,6 @@ Dversion
 Dxml
 eb
 EBFF
-EBNF
 ecj
 eclemma
 eclipsecommunityawards
@@ -403,15 +394,12 @@ fallthru
 Fannotation
 favicon
 Fblocks
-FCBL
-FCCD
 Fchecks
 Fcheckstyle
 fchurn
 Fcoding
 Fcom
 fd
-FDCF
 Fdesign
 FDF
 FEF
@@ -420,11 +408,7 @@ ffc
 ffcp
 ffd
 fff
-FFFA
-FFFB
-FFFD
 ffff
-FFFFL
 Fgoogle
 Fheader
 fht
@@ -507,7 +491,6 @@ googleecommon
 googlegroups
 googlenonconstantfieldname
 googlesource
-govstrangefolder
 GPath
 gpg
 gpgv
@@ -622,10 +605,8 @@ invalidinherit
 invalidjavadocposition
 ioe
 ioffset
-IPonr
 isfalse
 isindex
-isrutf
 isset
 issuecomment
 issuehunt
@@ -672,7 +653,6 @@ javaparser
 javarevisited
 javascript
 javase
-javastrangefolder
 javax
 Jax
 jb
@@ -894,7 +874,6 @@ myname
 myproject
 Mysql
 mytag
-NAMEFILE
 nameofaffectedcheck
 namespace
 nanos
@@ -946,7 +925,6 @@ nonconstantfieldnames
 nondex
 nonemptyatclausedescription
 nonemptyblocks
-NONFORMATTED
 NONGROUP
 NONJAVA
 nonjavadoc
@@ -1037,8 +1015,6 @@ packagenamesloader
 packageobjectfactory
 packagestatement
 packge
-packifc
-packpub
 Pageflow
 pageview
 Paikin
@@ -1077,8 +1053,6 @@ pid
 pinentry
 PIPESTATUS
 pitest
-pkga
-pkghtml
 pkginfo
 pkx
 PLHM
@@ -1112,9 +1086,6 @@ protonpack
 Psevntu
 PSHOME
 PSMODULEP
-pubconstr
-pubifc
-pubpub
 pullrequest
 puppycrawl
 pw
@@ -1257,8 +1228,6 @@ snyk
 socio
 Sohjiro
 solr
-someinner
-somename
 someoneelse
 sonarcloud
 sonarqube
@@ -1379,7 +1348,6 @@ toc
 todo
 todocomment
 tokenizer
-tokennizer
 tokentype
 tolist
 Toolbar
@@ -1521,8 +1489,6 @@ writingjavadocchecks
 writinglisteners
 Wsdl
 www
-WWWWWW
-WWWWWWWWWWWWWWWWWWWWWWWWWWWW
 Wyq
 xa
 xabc
@@ -1571,8 +1537,6 @@ xslt
 xsltproc
 XSO
 xwiki
-XXXX
-xxxxxx
 xy
 xzf
 xzvf
