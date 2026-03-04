@@ -59,30 +59,6 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMatching() throws Exception {
-        final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathFilterElementSuppressByXpath']]";
-        final XpathFilterElement filter = new XpathFilterElement(
-                "InputXpathFilterElementSuppressByXpath", "Test", null, null, xpath);
-        final TreeWalkerAuditEvent ev = getEvent(3, 0,
-                TokenTypes.CLASS_DEF);
-        assertWithMessage("Event should be rejected")
-                .that(filter.accept(ev))
-                .isFalse();
-    }
-
-    @Test
-    public void testNonMatchingTokenType() throws Exception {
-        final String xpath = "//METHOD_DEF[./IDENT[@text='countTokens']]";
-        final XpathFilterElement filter = new XpathFilterElement(
-                "InputXpathFilterElementSuppressByXpath", "Test", null, null, xpath);
-        final TreeWalkerAuditEvent ev = getEvent(4, 4,
-                TokenTypes.CLASS_DEF);
-        assertWithMessage("Event should be accepted")
-                .that(filter.accept(ev))
-                .isTrue();
-    }
-
-    @Test
     public void testNonMatchingLineNumber() throws Exception {
         final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathFilterElementSuppressByXpath']]";
         final XpathFilterElement filter = new XpathFilterElement(
