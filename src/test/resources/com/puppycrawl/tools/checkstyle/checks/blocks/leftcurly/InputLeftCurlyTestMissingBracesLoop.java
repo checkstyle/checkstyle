@@ -13,7 +13,7 @@ tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, \
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
-class InputLeftCurlyTestMissingBraces
+class InputLeftCurlyTestMissingBracesLoop
 { // violation ''{' at column 1 should be on the previous line'
     /** @return helper func **/
     boolean condition()
@@ -68,57 +68,4 @@ class InputLeftCurlyTestMissingBraces
             if (i > 2)
                 testFor();
     }
-
-    /** Test if constructs **/
-    public void testIf()
-    { // violation ''{' at column 5 should be on the previous line'
-        // Valid
-        if (condition()) {
-            testIf();
-        }
-        else if (condition()) {
-            testIf();
-        }
-        else {
-            testIf();
-        }
-
-        // Invalid
-        if (condition());
-        if (condition())
-            testIf();
-        if (condition())
-            testIf();
-        else
-            testIf();
-        if (condition())
-            testIf();
-        else {
-            testIf();
-        }
-        if (condition()) {
-            testIf();
-        }
-        else
-            testIf();
-        if (condition())
-            if (condition())
-                testIf();
-    }
-
-    void whitespaceAfterSemi()
-    { // violation ''{' at column 5 should be on the previous line'
-        //reject
-        int i = 1;int j = 2;
-
-        //accept
-        for (;;) {
-        }
-    }
-
-    /** Empty constructor block. **/
-    public InputLeftCurlyTestMissingBraces() {}
-
-    /** Empty method block. **/
-    public void emptyImplementation() {}
 }
