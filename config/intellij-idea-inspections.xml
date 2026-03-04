@@ -4614,9 +4614,8 @@
   </inspection_tool>
   <inspection_tool class="SystemExit" enabled="true" level="ERROR" enabled_by_default="true"/>
   <inspection_tool class="SystemGC" enabled="true" level="WARNING" enabled_by_default="true"/>
-  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
-  <inspection_tool class="SystemGetProperty" enabled="false" level="WARNING"
-                   enabled_by_default="false" />
+  <inspection_tool class="SystemGetProperty" enabled="true" level="WARNING"
+                   enabled_by_default="true" />
   <inspection_tool class="SystemGetenv" enabled="true" level="ERROR" enabled_by_default="true"/>
   <inspection_tool class="SystemOutErr" enabled="true" level="ERROR" enabled_by_default="true"/>
   <!-- we do not use system variables for any security relates reasons
