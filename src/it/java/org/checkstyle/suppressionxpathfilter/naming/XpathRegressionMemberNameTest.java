@@ -96,4 +96,27 @@ public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testMemberNameEnum() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathMemberNameEnum.java"));
+
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(MemberNameCheck.class);
+
+        final String[] expectedViolation = {
+            "5:16: " + getCheckMessage(MemberNameCheck.class,
+                        AbstractNameCheck.MSG_INVALID_PATTERN, "NUM3", pattern),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/COMPILATION_UNIT"
+                        + "/ENUM_DEF[./IDENT[@text='InputXpathMemberNameEnum']]"
+                        + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM3']"
+        );
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
 }
