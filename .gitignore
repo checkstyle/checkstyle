@@ -50,3 +50,7 @@ replay_pid*
 # antlr4 grammar generates these
 **/gen
 **/JavaLanguageLexer.tokens
+.aider*
+.aider*
+fix_npe_crash.py
+.aider.chat.history.md
