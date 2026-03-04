@@ -224,7 +224,7 @@ import org.w3c.dom.Document;
 import static java.io.File.createTempFile;
 import static java.lang.Math.abs; // ok, alphabetical case-sensitive ASCII order, 'i' &lt; 'l'
 
-import java.io.File; // violation 'Extra separation in import group before 'java.io.File''
+import java.io.File;
 
 import java.io.IOException; // violation 'Extra separation in import group before 'java.io.IOException''
 

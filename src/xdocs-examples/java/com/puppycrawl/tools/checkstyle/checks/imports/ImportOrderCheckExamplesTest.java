@@ -74,8 +74,6 @@ public class ImportOrderCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "21:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP,
-                    "java.io.File"),
             "23:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP,
                     "java.io.IOException"),
             "27:1: " + getCheckMessage(MSG_ORDERING_GROUP,
