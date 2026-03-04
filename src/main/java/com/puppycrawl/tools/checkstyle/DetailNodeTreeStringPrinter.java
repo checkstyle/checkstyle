@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
 public final class DetailNodeTreeStringPrinter {
 
     /** OS specific line separator. */
-    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+    private static final String LINE_SEPARATOR = System.lineSeparator();
 
     /** Prevent instances. */
     private DetailNodeTreeStringPrinter() {

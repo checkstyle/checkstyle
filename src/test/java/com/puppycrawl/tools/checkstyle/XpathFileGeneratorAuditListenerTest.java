@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 public class XpathFileGeneratorAuditListenerTest {
 
     /** OS specific line separator. */
-    private static final String EOL = System.getProperty("line.separator");
+    private static final String EOL = System.lineSeparator();
 
     private static final Violation FIRST_MESSAGE = createViolation(3, 51,
             TokenTypes.LCURLY, null, LeftCurlyCheck.class);
