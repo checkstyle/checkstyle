@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
 
     /** OS specific line separator. */
-    private static final String EOL = System.getProperty("line.separator");
+    private static final String EOL = System.lineSeparator();
 
     private static final String SUPPRESSION_XML_HEADER =
                 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + EOL
