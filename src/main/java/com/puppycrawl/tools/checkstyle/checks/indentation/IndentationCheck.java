@@ -172,6 +172,9 @@ public class IndentationCheck extends AbstractCheck {
      */
     private boolean forceStrictCondition;
 
+    /** Allow text block opening/closing quotes to start on left margin. */
+    private boolean allowTextBlockQuotesOnLeftMargin;
+
     /**
      * Getter to query strict indent level in line wrapping case. If value is true, line wrap indent
      * have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent
@@ -193,6 +196,25 @@ public class IndentationCheck extends AbstractCheck {
      */
     public void setForceStrictCondition(boolean value) {
         forceStrictCondition = value;
+    }
+
+    /**
+     * Getter to query whether text block opening and closing quotes are allowed on left margin.
+     *
+     * @return {@code true} if text block quotes may start at column 0.
+     */
+    public boolean isAllowTextBlockQuotesOnLeftMargin() {
+        return allowTextBlockQuotesOnLeftMargin;
+    }
+
+    /**
+     * Setter to allow text block opening and closing quotes on left margin.
+     *
+     * @param value user's value of allowTextBlockQuotesOnLeftMargin.
+     * @since 13.3.0
+     */
+    public void setAllowTextBlockQuotesOnLeftMargin(boolean value) {
+        allowTextBlockQuotesOnLeftMargin = value;
     }
 
     /**
