@@ -925,6 +925,11 @@
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
       <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
     </module>
+    <module name="EmptyLineWrappingInBlock">
+      <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ANNOTATION_DEF, ENUM_DEF, ENUM_CONSTANT_DEF"/>
+      <property name="topSeparator" value="empty_line_allowed"/>
+      <property name="bottomSeparator" value="empty_line_allowed"/>
+    </module>
     <module name="GenericWhitespace"/>
     <module name="MethodParamPad"/>
     <module name="NoLineWrap"/>
