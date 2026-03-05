@@ -364,7 +364,7 @@ public class UnusedImportsCheck extends AbstractCheck {
     private static List<JavadocTag> getTargetTags(TextBlock cmt,
             JavadocUtil.JavadocTagType javadocTagType) {
         return JavadocUtil.getJavadocTags(cmt, javadocTagType)
-            .getValidTags()
+            .validTags()
             .stream()
             .filter(tag -> isMatchingTagType(tag, javadocTagType))
             .map(UnusedImportsCheck::bestTryToMatchReference)
