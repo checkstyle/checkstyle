@@ -4,6 +4,6 @@ public class InputXpathOneTopLevelClassFirst {
     // methods
 }
 
-class ViolatingSecondClass { //warn
+class ViolatingSecondClass { // warn
     // methods
 }

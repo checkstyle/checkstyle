@@ -53,7 +53,8 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "4:1: " + getCheckMessage(ImportOrderCheck.class,
-                        ImportOrderCheck.MSG_ORDERING, "java.util.Set"),
+                    ImportOrderCheck.MSG_ORDERING_STATIC,
+                    "java.util.Set"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -119,7 +120,9 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "5:1: " + getCheckMessage(ImportOrderCheck.class,
-                        ImportOrderCheck.MSG_ORDERING, "java.lang.Math.PI"),
+                    ImportOrderCheck.MSG_ORDERING_LEX,
+                    "java.lang.Math.PI",
+                    "java.util.Set"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -141,7 +144,8 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "5:1: " + getCheckMessage(ImportOrderCheck.class,
-                        ImportOrderCheck.MSG_ORDERING, "java.util.Date"),
+                    ImportOrderCheck.MSG_ORDERING_GROUP,
+                    "java.util.Date"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(

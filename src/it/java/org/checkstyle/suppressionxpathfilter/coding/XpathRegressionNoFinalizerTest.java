@@ -108,4 +108,36 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testInEnum() throws Exception {
+        final File fileToProcess = new File(
+                getPath("InputXpathNoFinalizerInEnum.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(NoFinalizerCheck.class);
+
+        final String[] expectedViolation = {
+            "5:9: " + getCheckMessage(NoFinalizerCheck.class,
+                    NoFinalizerCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/INTERFACE_DEF"
+                + "[./IDENT[@text='InputXpathNoFinalizerInEnum']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='finalize']]",
+                "/COMPILATION_UNIT/INTERFACE_DEF"
+                + "[./IDENT[@text='InputXpathNoFinalizerInEnum']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS",
+                "/COMPILATION_UNIT/INTERFACE_DEF"
+                + "[./IDENT[@text='InputXpathNoFinalizerInEnum']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS/LITERAL_PROTECTED"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
 }

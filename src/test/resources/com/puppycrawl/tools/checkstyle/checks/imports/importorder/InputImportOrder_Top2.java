@@ -30,8 +30,8 @@ import java.io.InputStream;
 
 import javax.swing.JComponent; // violation 'Extra separation in import group before 'javax.swing.JComponent''
 import javax.swing.JTable;
-
-import static java.io.File.*; // 2 violations
+// violation below 'Extra separation in import group before 'java.io.File.*''
+import static java.io.File.*; // violation 'Import 'java.io.File.*' violates the configured relative order between static and non-static imports.'
 import java.io.File;
 import java.io.Reader;
 

@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>13.3.0-SNAPSHOT</version>
+  <version>13.4.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -232,7 +232,7 @@
     <junit.version>6.0.3</junit.version>
     <forbiddenapis.version>3.10</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
-    <checkerframework.version>3.53.1</checkerframework.version>
+    <checkerframework.version>3.54.0</checkerframework.version>
     <error-prone.version>2.46.0</error-prone.version>
     <error-prone-support.version>0.28.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
@@ -625,7 +625,7 @@
         <plugin>
           <groupId>com.diffplug.spotless</groupId>
           <artifactId>spotless-maven-plugin</artifactId>
-          <version>3.2.1</version>
+          <version>3.3.0</version>
           <configuration>
             <java>
               <includes>
@@ -3694,6 +3694,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterTypeMemberDeclarationCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInEnumerationCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UseEnhancedSwitchCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.WhenShouldBeUsedCheck*</param>
               </targetClasses>
               <targetTests>
@@ -3728,6 +3729,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInEnumerationCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UseEnhancedSwitchCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.WhenShouldBeUsedCheckTest</param>
               </targetTests>
               <excludedTestClasses>
@@ -5329,6 +5331,10 @@
                 <!-- JavadocUtil#getAllNodesOfType  -->
                 <param>
                   com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtilTest
+                </param>
+                <!-- CheckUtil#getNextNonCommentAst and CheckUtil#isTerminated -->
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheckTest
                 </param>
               </targetTests>
               <avoidCallsTo>
