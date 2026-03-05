@@ -129,6 +129,44 @@
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpSinglelineJavaCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="AvoidEscapedUnicodeCharactersCheck.java"/>
 
+  <!-- suppressed BlockCommentEndPosition in some files -->
+  <suppress checks="BlockCommentEndPosition"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]DefaultLogger.java"/>
+  <suppress checks="BlockCommentEndPosition"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]Definitions.java"/>
+  <suppress checks="BlockCommentEndPosition"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]JavadocPropertiesGenerator.java"/>
+  <suppress checks="BlockCommentEndPosition"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]LocalizedMessage.java"/>
+  <suppress checks="BlockCommentEndPosition"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]Main.java"/>
+  <suppress checks="BlockCommentEndPosition"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]PackageObjectFactory.java"/>
+  <suppress checks="BlockCommentEndPosition"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]api[\\/]FileContents.java"/>
+  <suppress checks="BlockCommentEndPosition"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]api[\\/]FullIdent.java"/>
+  <suppress checks="BlockCommentEndPosition"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]api[\\/]TokenTypes.java"/>
+  <suppress checks="BlockCommentEndPosition"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]blocks[\\/]LeftCurlyOption.java"/>
+  <suppress checks="BlockCommentEndPosition"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]blocks[\\/]RightCurlyOption.java"/>
+  <suppress checks="BlockCommentEndPosition"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]ExplicitInitializationCheck.java"/>
+  <suppress checks="BlockCommentEndPosition"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]header[\\/]MultiFileRegexpHeaderCheck.java"/>
+  <suppress checks="BlockCommentEndPosition"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]imports[\\/]ImportOrderCheck.java"/>
+  <suppress checks="BlockCommentEndPosition"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]JavadocTag.java"/>
+  <suppress checks="BlockCommentEndPosition"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]regexp[\\/]CommentSuppressor.java"/>
+  <suppress checks="BlockCommentEndPosition"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]regexp[\\/]MatchSuppressor.java"/>
+  <suppress checks="BlockCommentEndPosition"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]utils[\\/]CommonUtil.java"/>
+
   <!-- until https://github.com/checkstyle/checkstyle/issues/5234 -->
   <suppress id="MatchXPathBranchContains" files="[\\/]DetailAstImplTest.java"/>
 

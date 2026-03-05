@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>BlockCommentEndPosition</title>
+  </head>
+
+  <body>
+    <section name="BlockCommentEndPosition">
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/BlockCommentEndPositionCheck.java"/>
+      </macro>
+
+      <subsection name="Description" id="BlockCommentEndPosition_Description">
+        <macro name="description">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/BlockCommentEndPositionCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Properties" id="BlockCommentEndPosition_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/BlockCommentEndPositionCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="BlockCommentEndPosition_Examples">
+        <p id="Example1-config">
+          To configure the default check to validate whether the block comment end
+          should be on its own line or on a single line:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/blockcommentendposition/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          This setting produces a violation for each block comment end
+          that is not on its own line, except for single-line:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/blockcommentendposition/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example2-config">
+          To ensure that the block comment end appears on its own line:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/blockcommentendposition/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
+          This setting produces a violation for each block comment end
+          that is not on its own line:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/blockcommentendposition/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="BlockCommentEndPosition_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+BlockCommentEndPosition">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="BlockCommentEndPosition_Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="BlockCommentEndPosition"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="BlockCommentEndPosition_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="BlockCommentEndPosition_Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="BlockCommentEndPosition"/>
+        </macro>
+      </subsection>
+
+    </section>
+  </body>
+</document>

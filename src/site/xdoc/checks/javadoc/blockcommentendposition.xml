@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>BlockCommentEndPosition</title>
+  </head>
+
+  <body>
+    <section name="BlockCommentEndPosition">
+      <p>Since Checkstyle 13.3.0</p>
+
+      <subsection name="Description" id="BlockCommentEndPosition_Description">
+        <div>
+          Checks that the Javadoc block comment end <code class="language-java">*&#47;</code>
+          position is either alone on its own line or on the same line as
+          the block comment begin code <code class="language-java">&#47;**</code>.
+        </div>
+
+        <p>
+          It is possible to enforce two different strategies:
+        </p>
+        <ul>
+        <li>
+          <code>alone</code> - The block comment end must be alone on its own line.
+          This allows only multi-line Javadoc comments:
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+&#47;**
+ * Multiple lines of Javadoc text are written here,
+ * wrapped normally...
+ *&#47;
+public void method();
+        </code></pre></div>
+        </li>
+        <li>
+          <code>alone_or_singleline</code> - The block comment end must be either
+          alone on its own line or on the same line as the block comment begin.
+          This allows multi-line Javadoc as well as single-line Javadoc comments:
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// Block comment end is alone on its own line
+&#47;**
+ * Multiple lines of Javadoc text are written here,
+ * wrapped normally...
+ *&#47;
+public void method();
+
+// Single-line Javadoc
+&#47;** Javadoc summary. *&#47;
+public void method1();
+        </code></pre></div>
+        </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Properties" id="BlockCommentEndPosition_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="strategy"/><a href="#strategy">strategy</a></td>
+              <td>Specify the policy on strategy of the block comment end position.</td>
+              <td><a href="../../property_types.html#BlockCommentEndPositionOption">BlockCommentEndPositionOption</a></td>
+              <td><code>alone_or_singleline</code></td>
+              <td>13.3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="BlockCommentEndPosition_Examples">
+        <p id="Example1-config">
+          To configure the default check to validate whether the block comment end
+          should be on its own line or on a single line:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="BlockCommentEndPosition"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          This setting produces a violation for each block comment end
+          that is not on its own line, except for single-line:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+ * This multi-line Javadoc is ok because
+ * block comment end alone on the line.
+ */
+class Example1 {
+
+  /** This Javadoc is ok because single-line javadoc is allowed. */
+  int n = 10;
+
+  /**
+   * This Javadoc causes violation because
+   * block comment is not alone on the line.
+   *
+   * @param a the first number
+   * @param b the second number
+   * @return the sum of a and b */
+  int add(int a, int b) {
+    // violation 2 lines above ''BLOCK_COMMENT_END' must be on the new line.'
+    return a + b;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To ensure that the block comment end appears on its own line:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="BlockCommentEndPosition"&gt;
+      &lt;property name="strategy" value="alone"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          This setting produces a violation for each block comment end
+          that is not on its own line:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/** violation because singleline is not allowed. */
+class Example2 {
+  // violation 2 lines above ''BLOCK_COMMENT_END' must be on the new line.'
+
+  /**
+   * This Javadoc cause violation because block comment end
+   * is not alone on the line. */
+  int n = 10;
+  // violation 2 lines above ''BLOCK_COMMENT_END' must be on the new line.'
+
+  /**
+   * This is ok because block comment is alone on the line.
+   *
+   * @param a the first number
+   * @param b the second number
+   * @return the sum of a and b
+   */
+  int add(int a, int b) {
+    return a + b;
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="BlockCommentEndPosition_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+BlockCommentEndPosition">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="BlockCommentEndPosition_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22block.comment.end%22">
+              block.comment.end
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="BlockCommentEndPosition_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="BlockCommentEndPosition_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+
+    </section>
+  </body>
+</document>

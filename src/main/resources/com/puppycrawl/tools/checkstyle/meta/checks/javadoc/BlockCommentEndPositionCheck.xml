@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.BlockCommentEndPositionCheck"
+             name="BlockCommentEndPosition"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that the Javadoc block comment end &lt;code class="language-java"&gt;*&amp;#47;&lt;/code&gt;
+ position is either alone on its own line or on the same line as
+ the block comment begin code &lt;code class="language-java"&gt;&amp;#47;**&lt;/code&gt;.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ It is possible to enforce two different strategies:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ &lt;code&gt;alone&lt;/code&gt; - The block comment end must be alone on its own line.
+ This allows only multi-line Javadoc comments:
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &amp;#47;**
+  * Multiple lines of Javadoc text are written here,
+  * wrapped normally...
+  *&amp;#47;
+ public void method();
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;code&gt;alone_or_singleline&lt;/code&gt; - The block comment end must be either
+ alone on its own line or on the same line as the block comment begin.
+ This allows multi-line Javadoc as well as single-line Javadoc comments:
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ // Block comment end is alone on its own line
+ &amp;#47;**
+  * Multiple lines of Javadoc text are written here,
+  * wrapped normally...
+  *&amp;#47;
+ public void method();
+
+ // Single-line Javadoc
+ &amp;#47;** Javadoc summary. *&amp;#47;
+ public void method1();
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/li&gt;
+ &lt;/ul&gt;</description>
+         <properties>
+            <property default-value="alone_or_singleline"
+                      name="strategy"
+                      type="com.puppycrawl.tools.checkstyle.checks.javadoc.BlockCommentEndPositionOption">
+               <description>Specify the policy on strategy of the block comment end position.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="block.comment.end"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
