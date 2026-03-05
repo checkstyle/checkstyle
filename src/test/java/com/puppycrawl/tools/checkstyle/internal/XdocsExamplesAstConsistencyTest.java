@@ -97,6 +97,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/coding/illegaltoken/Example2",
             "checks/coding/illegaltokentext/Example3",
             "checks/coding/illegaltokentext/Example4",
+            "checks/coding/illegalsymbol/Example4",
             "checks/coding/illegaltokentext/Example5",
             "checks/coding/matchxpath/Example2",
             "checks/coding/matchxpath/Example3",
