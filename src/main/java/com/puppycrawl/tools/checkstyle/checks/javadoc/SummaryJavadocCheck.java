@@ -177,7 +177,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private void validateUntaggedSummary(DetailNode ast) {
         final String summaryDoc = getSummarySentence(ast);
         if (summaryDoc.isEmpty()) {
-            log(ast.getLineNumber(), ast.getColumnNumber(), MSG_SUMMARY_JAVADOC_MISSING);
+            log(ast, MSG_SUMMARY_JAVADOC_MISSING);
         }
         else if (!period.isEmpty()) {
             if (summaryDoc.contains(period)) {
@@ -185,15 +185,15 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
                 if (firstSentence.isPresent()) {
                     if (containsForbiddenFragment(firstSentence.get())) {
-                        log(ast.getLineNumber(), ast.getColumnNumber(), MSG_SUMMARY_JAVADOC);
+                        log(ast, MSG_SUMMARY_JAVADOC);
                     }
                 }
                 else {
-                    log(ast.getLineNumber(), ast.getColumnNumber(), MSG_SUMMARY_FIRST_SENTENCE);
+                    log(ast, MSG_SUMMARY_FIRST_SENTENCE);
                 }
             }
             else {
-                log(ast.getLineNumber(), ast.getColumnNumber(), MSG_SUMMARY_FIRST_SENTENCE);
+                log(ast, MSG_SUMMARY_FIRST_SENTENCE);
             }
         }
     }
@@ -276,19 +276,16 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         final String inlineSummary = getContentOfInlineCustomTag(descriptionNode);
         final String summaryVisible = getVisibleContent(inlineSummary);
         if (summaryVisible.isEmpty()) {
-            log(inlineSummaryTag.getLineNumber(), inlineSummaryTag.getColumnNumber(),
-                    MSG_SUMMARY_JAVADOC_MISSING);
+            log(inlineSummaryTag, MSG_SUMMARY_JAVADOC_MISSING);
         }
         else if (!period.isEmpty()) {
             final boolean isPeriodNotAtEnd =
                     summaryVisible.lastIndexOf(period) != summaryVisible.length() - 1;
             if (isPeriodNotAtEnd) {
-                log(inlineSummaryTag.getLineNumber(), inlineSummaryTag.getColumnNumber(),
-                        MSG_SUMMARY_MISSING_PERIOD);
+                log(inlineSummaryTag, MSG_SUMMARY_MISSING_PERIOD);
             }
             else if (containsForbiddenFragment(inlineSummary)) {
-                log(inlineSummaryTag.getLineNumber(), inlineSummaryTag.getColumnNumber(),
-                        MSG_SUMMARY_JAVADOC);
+                log(inlineSummaryTag, MSG_SUMMARY_JAVADOC);
             }
         }
     }
@@ -304,12 +301,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         final String inlineReturn = getContentOfInlineCustomTag(descriptionNode);
         final String returnVisible = getVisibleContent(inlineReturn);
         if (returnVisible.isEmpty()) {
-            log(inlineReturnTag.getLineNumber(), inlineReturnTag.getColumnNumber(),
-                    MSG_SUMMARY_JAVADOC_MISSING);
+            log(inlineReturnTag, MSG_SUMMARY_JAVADOC_MISSING);
         }
         else if (containsForbiddenFragment(inlineReturn)) {
-            log(inlineReturnTag.getLineNumber(), inlineReturnTag.getColumnNumber(),
-                    MSG_SUMMARY_JAVADOC);
+            log(inlineReturnTag, MSG_SUMMARY_JAVADOC);
         }
     }
 
