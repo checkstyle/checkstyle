@@ -939,7 +939,7 @@ public class JavadocMethodCheck extends AbstractCheck {
                     final Token token = exceptionInfo.getName();
                     log(exceptionInfo.getAst(),
                         MSG_EXPECTED_TAG,
-                        JavadocTagInfo.THROWS.getText(), token.getText());
+                        JavadocTagInfo.THROWS.getText(), token.text());
                 });
         }
     }
@@ -953,7 +953,7 @@ public class JavadocMethodCheck extends AbstractCheck {
     private static void processThrows(Iterable<ExceptionInfo> throwsIterable,
                                       String documentedClassName) {
         for (ExceptionInfo exceptionInfo : throwsIterable) {
-            if (isClassNamesSame(exceptionInfo.getName().getText(),
+            if (isClassNamesSame(exceptionInfo.getName().text(),
                     documentedClassName)) {
                 exceptionInfo.setFound();
                 break;
@@ -969,8 +969,8 @@ public class JavadocMethodCheck extends AbstractCheck {
      * @return true is ExceptionInfo object have the same name
      */
     private static boolean isExceptionInfoSame(ExceptionInfo info1, ExceptionInfo info2) {
-        return isClassNamesSame(info1.getName().getText(),
-                                    info2.getName().getText());
+        return isClassNamesSame(info1.getName().text(),
+                                    info2.getName().text());
     }
 
     /**
@@ -991,40 +991,18 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     /**
      * Contains class's {@code Token}.
+     *
+     * @param name {@code FullIdent} associated with this class.
      */
-    private static class ClassInfo {
-
-        /** {@code FullIdent} associated with this class. */
-        private final Token name;
-
-        /**
-         * Creates new instance of class information object.
-         *
-         * @param className token which represents class name.
-         * @throws IllegalArgumentException when className is nulls
-         */
-        /* package */ ClassInfo(final Token className) {
-            name = className;
-        }
-
-        /**
-         * Gets class name.
-         *
-         * @return class name
-         */
-        /* package */ final Token getName() {
-            return name;
-        }
-
+    private record ClassInfo(Token name) {
     }
 
     /**
      * Represents text element with location in the text.
+     *
+     * @param text Token's text.
      */
-    private static final class Token {
-
-        /** Token's text. */
-        private final String text;
+    private record Token(String text) {
 
         /**
          * Converts FullIdent to Token.
@@ -1032,18 +1010,8 @@ public class JavadocMethodCheck extends AbstractCheck {
          * @param fullIdent full ident to convert.
          */
         private Token(FullIdent fullIdent) {
-            text = fullIdent.getText();
+            this(fullIdent.getText());
         }
-
-        /**
-         * Gets text of the token.
-         *
-         * @return text of the token
-         */
-        /* package */ String getText() {
-            return text;
-        }
-
     }
 
     /** Stores useful information about declared exception. */
@@ -1097,7 +1065,7 @@ public class JavadocMethodCheck extends AbstractCheck {
          * @return exception's name
          */
         private Token getName() {
-            return classInfo.getName();
+            return classInfo.name();
         }
 
     }
