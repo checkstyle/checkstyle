@@ -403,6 +403,19 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     }
 
     /**
+     * Logs a message against a DetailNode.
+     * This is a wrapper method to log violations using a DetailNode
+     * instead of manually specifying line and column numbers.
+     *
+     * @param node the DetailNode that has the violation
+     * @param key the message key from the check messages
+     * @param args the arguments to the message
+     */
+    protected final void log(DetailNode node, String key, Object... args) {
+        log(node.getLineNumber(), node.getColumnNumber(), key, args);
+    }
+
+    /**
      * The file context holder.
      */
     private static final class FileContext {
