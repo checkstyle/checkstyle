@@ -497,28 +497,6 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks whether none of the examples in this directory define any module properties.
-     * When a module has no configurable properties, its examples may intentionally use
-     * very different code to demonstrate different behaviours, so consistency checking
-     * is not meaningful.
-     *
-     * @param examples the list of example files in the directory
-     * @return true if no example file contains a {@code <property} element in its XML config
-     * @throws IOException if an I/O error occurs reading an example file
-     */
-    private static boolean isModuleWithNoProperties(List<Path> examples) throws IOException {
-        boolean result = true;
-        for (Path example : examples) {
-            final String content = Files.readString(example);
-            if (content.contains("<property ")) {
-                result = false;
-                break;
-            }
-        }
-        return result;
-    }
-
-    /**
      * Checks examples in a directory. Non-independent examples must match.
      *
      * @param dir the directory containing example files
@@ -565,22 +543,19 @@ public class XdocsExamplesAstConsistencyTest {
     private static List<String> compareExamples(Path dir, List<Path> examples)
             throws IOException {
         final List<String> violations = new ArrayList<>();
+        final String relativePath = getRelativePath(dir);
 
-        if (!isModuleWithNoProperties(examples)) {
-            final String relativePath = getRelativePath(dir);
+        final List<Path> regularExamples = new ArrayList<>();
 
-            final List<Path> regularExamples = new ArrayList<>();
-
-            for (Path example : examples) {
-                final String fileName = example.getFileName().toString();
-                if (!isExampleIndependent(relativePath, fileName)) {
-                    regularExamples.add(example);
-                }
+        for (Path example : examples) {
+            final String fileName = example.getFileName().toString();
+            if (!isExampleIndependent(relativePath, fileName)) {
+                regularExamples.add(example);
             }
+        }
 
-            if (regularExamples.size() > 1) {
-                violations.addAll(validateAllMatch(dir, regularExamples));
-            }
+        if (regularExamples.size() > 1) {
+            violations.addAll(validateAllMatch(dir, regularExamples));
         }
 
         return violations;
