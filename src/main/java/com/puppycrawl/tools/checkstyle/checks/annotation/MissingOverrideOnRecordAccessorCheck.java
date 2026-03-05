@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
@@ -90,11 +91,21 @@ public class MissingOverrideOnRecordAccessorCheck extends AbstractCheck {
         if (grandParent.getType() == TokenTypes.RECORD_DEF) {
             final DetailAST parameters = ast.findFirstToken(TokenTypes.PARAMETERS);
             if (parameters.getChildCount() == 0) {
-                final String methodName = ast.findFirstToken(TokenTypes.IDENT).getText();
+                final String methodName = getMethodName(ast);
                 result = getRecordComponentNames(grandParent).contains(methodName);
             }
         }
         return result;
+    }
+
+    /**
+     * Gets the method name from a method definition AST.
+     *
+     * @param methodDef the METHOD_DEF AST node
+     * @return the method name
+     */
+    private static String getMethodName(DetailAST methodDef) {
+        return TokenUtil.getIdent(methodDef).getText();
     }
 
     /**
@@ -109,7 +120,7 @@ public class MissingOverrideOnRecordAccessorCheck extends AbstractCheck {
         DetailAST child = recordComponents.getFirstChild();
         while (child != null) {
             if (child.getType() == TokenTypes.RECORD_COMPONENT_DEF) {
-                names.add(child.findFirstToken(TokenTypes.IDENT).getText());
+                names.add(TokenUtil.getIdent(child).getText());
             }
             child = child.getNextSibling();
         }
