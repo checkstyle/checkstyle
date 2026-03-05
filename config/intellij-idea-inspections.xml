@@ -4407,7 +4407,7 @@
   <inspection_tool class="StringToUpperWithoutLocale" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
   <!--  usage of string.split will use less efficient way of parsing,
-    usage of some other tokennizer might demand new dependency -->
+    usage of some other tokenizer might demand new dependency -->
   <inspection_tool class="StringTokenizer" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
   <inspection_tool class="StringTokenizerDelimiter" enabled="true" level="ERROR"

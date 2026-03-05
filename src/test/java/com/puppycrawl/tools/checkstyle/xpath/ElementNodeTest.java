@@ -224,7 +224,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
 
         assertWithMessage("Must be null")
-            .that(elementNode.getAttributeValue((NamespaceUri) null, "somename"))
+            .that(elementNode.getAttributeValue((NamespaceUri) null, "testattr"))
             .isNull();
     }
 
