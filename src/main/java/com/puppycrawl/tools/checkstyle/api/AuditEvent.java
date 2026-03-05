@@ -35,6 +35,8 @@ package com.puppycrawl.tools.checkstyle.api;
  * </p>
  *
  * @see AuditListener
+ * @noinspection ClassCanBeRecord
+ * @noinspectionreason We can not break compatibility with previous versions.
  */
 public final class AuditEvent {
 
