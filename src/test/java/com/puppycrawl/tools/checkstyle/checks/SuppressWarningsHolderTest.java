@@ -117,11 +117,11 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     @Test
     public void testGetDefaultAlias() {
         assertWithMessage("Default alias differs from expected")
-            .that(SuppressWarningsHolder.getDefaultAlias("SomeName"))
-            .isEqualTo("somename");
+            .that(SuppressWarningsHolder.getDefaultAlias("TestName"))
+            .isEqualTo("testname");
         assertWithMessage("Default alias differs from expected")
-            .that(SuppressWarningsHolder.getDefaultAlias("SomeNameCheck"))
-            .isEqualTo("somename");
+            .that(SuppressWarningsHolder.getDefaultAlias("TestNameCheck"))
+            .isEqualTo("testname");
     }
 
     @Test
