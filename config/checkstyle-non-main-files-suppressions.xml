@@ -418,8 +418,7 @@
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionAvoidDoubleBraceInitializationTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionAvoidNoArgumentSuperConstructorCallTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionDefaultComesLastTest.java" />
-  <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionDeclarationOrderTest.java" />
-  <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionEqualsAvoidNullTest.java" />
+  <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionExplicitInitializationTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionFallThroughTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionHiddenFieldTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionIllegalThrowsTest.java" />
@@ -433,6 +432,7 @@
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionNestedTryDepthTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionNoEnumTrailingCommaTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionOneStatementPerLineTest.java" />
+  <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionDeclarationOrderTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionOverloadMethodsDeclarationOrderTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionPackageDeclarationTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionSimplifyBooleanReturnTest.java" />
