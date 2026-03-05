@@ -88,4 +88,27 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testEnum() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathExplicitInitializationEnum.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(ExplicitInitializationCheck.class);
+
+        final String[] expectedViolation = {
+            "5:9: " + getCheckMessage(ExplicitInitializationCheck.class,
+                ExplicitInitializationCheck.MSG_KEY, "a", 0),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/COMPILATION_UNIT/ENUM_DEF"
+                        + "[./IDENT[@text='InputXpathExplicitInitializationEnum']]"
+                        + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='a']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
