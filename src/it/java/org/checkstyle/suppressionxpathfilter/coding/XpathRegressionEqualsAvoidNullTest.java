@@ -88,4 +88,27 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
+    @Test
+    public void testRecord() throws Exception {
+        final File fileToProcess = new File(
+            getPath("InputXpathEqualsAvoidNullRecord.java"));
+
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
+
+        final String[] expectedViolation = {
+            "5:17: " + getCheckMessage(CLAZZ,
+                    EqualsAvoidNullCheck.MSG_EQUALS_AVOID_NULL),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/RECORD_DEF[./IDENT"
+                        + "[@text='InputXpathEqualsAvoidNullRecord']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/EXPR",
+                "/COMPILATION_UNIT/RECORD_DEF[./IDENT"
+                        + "[@text='InputXpathEqualsAvoidNullRecord']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/EXPR/METHOD_CALL");
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
 }
