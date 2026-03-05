@@ -49,6 +49,7 @@ public class InputRightCurlySwitchWhen {
             }
             case ColoredPoint(int x, _, _) when (x == 8) -> {
                 int b = 2;} // violation '}' at column 27 should be alone on a line'
+            default -> { }
         }
     }
 
@@ -60,7 +61,8 @@ public class InputRightCurlySwitchWhen {
             }
             case ColoredPoint(int x, _, _) when (x == 10) -> {
                 int x2 = 20;
-            } } // violation '}' at column 13 should be alone on a line'
+            } default -> { } // violation '}' at column 13 should be alone on a line'
+        }
     }
 
     public void testSwitchRuleWhenGuard5() {
@@ -70,6 +72,7 @@ public class InputRightCurlySwitchWhen {
                 int v = 1;
             } case ColoredPoint(int x, _, _) when (x == 12) -> {int v = 2;}
             // violation above '}' at column 13 should be alone on a line'
+            default -> { }
         }
     }
 }
