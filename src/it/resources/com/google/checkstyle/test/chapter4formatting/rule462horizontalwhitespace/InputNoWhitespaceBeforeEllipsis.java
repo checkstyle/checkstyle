@@ -61,9 +61,13 @@ public class InputNoWhitespaceBeforeEllipsis {
 
   void test12(@NonNull String @C []    ... arg) {}
   // violation above ''...' is preceded with whitespace'
+  // violation 2 lines above 'Use a single space to separate non-whitespace characters'
 
+  // violation below 'Use a single space to separate non-whitespace characters'
   void test13(@NonNull String    [] @B ... arg) {}
 
   void test14(   String    [] @B ... arg) {}
   // violation above ''(' is followed by whitespace'
+  // violation 2 lines above 'Use a single space to separate non-whitespace characters'
+  // violation 3 lines above 'Use a single space to separate non-whitespace characters'
 }
