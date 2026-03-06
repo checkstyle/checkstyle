@@ -84,4 +84,23 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testEmptyTryCatchBlock() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathEmptyBlockTryCatch.java"));
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(EmptyBlockCheck.class);
+        final String[] expectedViolation = {
+            "5:13: " + getCheckMessage(EmptyBlockCheck.class,
+                EmptyBlockCheck.MSG_KEY_BLOCK_NO_STATEMENT),
+        };
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/COMPILATION_UNIT"
+                        + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyBlockTryCatch']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='emptyTryCatch']]"
+                        + "/SLIST/LITERAL_TRY/SLIST"
+        );
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
