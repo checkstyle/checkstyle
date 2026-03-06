@@ -176,7 +176,7 @@ linkInlineTag
     ;
 
 valueInlineTag
-    : tagName=VALUE FORMAT_SPECIFIER? reference?
+    : tagName=VALUE (FORMAT_SPECIFIER | STRING_LITERAL)? reference?
     ;
 
 inheritDocInlineTag
