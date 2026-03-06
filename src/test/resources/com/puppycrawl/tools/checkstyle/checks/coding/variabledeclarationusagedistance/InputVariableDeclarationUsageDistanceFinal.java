@@ -1,9 +1,10 @@
 /*
 VariableDeclarationUsageDistance
 allowedDistance = 1
+ignoreFinal = (default)true
 ignoreVariablePattern = (default)
 validateBetweenScopes = true
-ignoreFinal = (default)true
+
 
 
 */
