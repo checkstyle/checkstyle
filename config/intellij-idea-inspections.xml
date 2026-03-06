@@ -2785,9 +2785,8 @@
          When this problem is resolved we could reconsider disablement. -->
   <inspection_tool class="Java8MapApi" enabled="false" level="WARNING"
                    enabled_by_default="false"/>
-  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
-  <inspection_tool class="Java9ReflectionClassVisibility" enabled="false" level="WARNING"
-                   enabled_by_default="false" />
+  <inspection_tool class="Java9ReflectionClassVisibility" enabled="true" level="WARNING"
+                   enabled_by_default="true" />
   <inspection_tool class="JavaCollectionsStaticMethod" enabled="false" level="WEAK WARNING"
                    enabled_by_default="false"/>
   <inspection_tool class="JavaDoc" enabled="true" level="ERROR" enabled_by_default="true">
