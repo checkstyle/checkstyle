@@ -93,14 +93,14 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "9:43: " + getCheckMessage(CLAZZ, EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
+            "10:47: " + getCheckMessage(CLAZZ, EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathEmptyCatchBlockThree']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='process']]"
-                + "/SLIST/LITERAL_TRY/LITERAL_CATCH/SLIST"
+                + "/SLIST/LITERAL_TRY/SLIST/LITERAL_TRY/LITERAL_CATCH/SLIST"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
