@@ -31,6 +31,7 @@ annotationlocation
 annotationonsameline
 annotationusestyle
 annotationutil
+annotationwithoutjavadoc
 anoninner
 anoninnerlength
 antfile
@@ -133,7 +134,6 @@ BTest
 btnfrs
 buf
 bugdatabase
-bugfixes
 Bunsubscribe
 bw
 BXOR
@@ -772,7 +772,6 @@ len
 lexer
 lexing
 lgpl
-lhmap
 LHSOf
 libcore
 liberapay
@@ -1254,7 +1253,7 @@ SLo
 Slurper
 slurpersupport
 Sms
-smth
+Smth
 snyk
 socio
 Sohjiro
@@ -1446,6 +1445,7 @@ urandom
 uri
 url
 usebackq
+useenhancedswitch
 userguide
 username
 usr
@@ -1522,6 +1522,8 @@ writingjavadocchecks
 writinglisteners
 Wsdl
 www
+WWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWW
 Wyq
 xa
 xabc
@@ -1572,9 +1574,7 @@ XSO
 xwiki
 XXXX
 xxxxxx
-XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 xy
-XYzz
 xzf
 xzvf
 yaml
@@ -1587,7 +1587,6 @@ youtu
 youtube
 Yoyodyne
 yyyy
-Yzz
 Zbbh
 zf
 zh

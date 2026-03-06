@@ -90,4 +90,29 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testThree() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathNoArrayTrailingCommaThree.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(NoArrayTrailingCommaCheck.class);
+
+        final String[] expectedViolation = {
+            "6:50: " + getCheckMessage(NoArrayTrailingCommaCheck.class,
+                NoArrayTrailingCommaCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputXpathNoArrayTrailingCommaThree']]"
+                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"
+                    + "/SLIST/EXPR/METHOD_CALL[./IDENT[@text='print']]"
+                    + "/ELIST/EXPR/LITERAL_NEW/ARRAY_INIT/COMMA[3]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

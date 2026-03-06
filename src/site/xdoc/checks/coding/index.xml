@@ -623,6 +623,18 @@
           </tr>
           <tr>
             <td>
+              <a href="useenhancedswitch.html#UseEnhancedSwitch">
+                UseEnhancedSwitch
+              </a>
+            </td>
+            <td>
+              Ensures that the enhanced switch (using <code>-></code> for case labels) is used
+              instead of the traditional switch (using <code>:</code> for case labels) where
+              possible.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="variabledeclarationusagedistance.html#VariableDeclarationUsageDistance">
                 VariableDeclarationUsageDistance
               </a>

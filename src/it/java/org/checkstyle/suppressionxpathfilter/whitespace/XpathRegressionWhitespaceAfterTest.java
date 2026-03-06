@@ -89,4 +89,27 @@ public class XpathRegressionWhitespaceAfterTest extends AbstractXpathTestSupport
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testWhitespaceAfterIfBlock() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathWhitespaceAfterIfBlock.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(WhitespaceAfterCheck.class);
+
+        final String[] expectedViolation = {
+            "9:9: " + getCheckMessage(WhitespaceAfterCheck.class,
+                    WhitespaceAfterCheck.MSG_WS_NOT_FOLLOWED, "if"),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathWhitespaceAfterIfBlock']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_IF"
+                + "[./SLIST/EXPR/METHOD_CALL/DOT/IDENT[@text='println']]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
