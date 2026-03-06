@@ -620,6 +620,36 @@ public class Example7 {
   private void testEmptyMethod() {}
   // violation 4 lines above 'Javadoc has empty description section'
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the check with custom <code>endOfSentenceFormat</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocStyle"&gt;
+      &lt;property name="endOfSentenceFormat"
+        value="[。]$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p id="Example8-code">Example8:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example8 {
+
+  /**
+   * This sentence ends with Japanese period。
+   */
+  void ok() {}
+
+  /**
+   * This sentence missing Japanese period
+   */
+  // violation 3 lines above 'First sentence should end with a period.'
+  void violation() {}
+}
 </code></pre></div>
       </subsection>
 
