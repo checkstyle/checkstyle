@@ -1,10 +1,9 @@
 /*
 VariableDeclarationUsageDistance
 allowedDistance = 1
-ignoreFinal = false
 ignoreVariablePattern = a|b|c|d|block|dist|t|m
 validateBetweenScopes = true
-
+ignoreFinal = false
 
 
 */
