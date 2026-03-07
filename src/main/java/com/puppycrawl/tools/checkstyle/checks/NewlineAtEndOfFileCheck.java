@@ -110,6 +110,15 @@ public class NewlineAtEndOfFileCheck
      */
     public static final String MSG_KEY_WRONG_ENDING = "wrong.line.end";
 
+    /** Escape character representation for LF. */
+    private static final String ESCAPED_LF = "\\n";
+
+    /** Escape character representation for CRLF. */
+    private static final String ESCAPED_CRLF = "\\r\\n";
+
+    /** Escape character representation for CR. */
+    private static final String ESCAPED_CR = "\\r";
+
     /** Specify the type of line separator. */
     private LineSeparatorOption lineSeparator = LineSeparatorOption.LF_CR_CRLF;
 
@@ -152,7 +161,8 @@ public class NewlineAtEndOfFileCheck
                 log(1, MSG_KEY_WRONG_ENDING);
             }
             else if (!endsWithNewline(randomAccessFile, lineSeparator)) {
-                log(1, MSG_KEY_NO_NEWLINE_EOF);
+                log(1, MSG_KEY_NO_NEWLINE_EOF,
+                        getLineSeparatorEscapeChars(lineSeparator));
             }
         }
     }
@@ -188,6 +198,25 @@ public class NewlineAtEndOfFileCheck
             result = separator.matches(lastBytes);
         }
         return result;
+    }
+
+    /**
+     * Returns the escape character representation for the given line separator option.
+     *
+     * @param option the line separator option
+     * @return the escape character representation (e.g., "\\n", "\\r\\n")
+     */
+    private static String getLineSeparatorEscapeChars(LineSeparatorOption option) {
+        return switch (option) {
+            case LF -> ESCAPED_LF;
+            case CRLF -> ESCAPED_CRLF;
+            case CR -> ESCAPED_CR;
+            case LF_CR_CRLF ->
+                    ESCAPED_LF + "', '" + ESCAPED_CR + "' or '" + ESCAPED_CRLF;
+            case SYSTEM -> System.getProperty("line.separator")
+                    .replace("\r", ESCAPED_CR)
+                    .replace("\n", ESCAPED_LF);
+        };
     }
 
 }
