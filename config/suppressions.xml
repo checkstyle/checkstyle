@@ -172,4 +172,8 @@
   <!-- Uses non-ascii symbols intentionally -->
   <suppress id="checkASCII"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]ConfigurationLoaderTest.java"/>
+
+  <!-- Setter does not have since block tag -->
+  <suppress checks="SetterSinceTag"
+            files="src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]XpathFileGeneratorAstFilter.java"/>
 </suppressions>

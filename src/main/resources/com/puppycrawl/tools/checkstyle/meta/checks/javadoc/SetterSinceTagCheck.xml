@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.SetterSinceTagCheck"
+             name="SetterSinceTag"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that all the setter methods in a non-abstract class whose
+ class name ends with Check/FilterJavadoc contain since block tags.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Only performs checks on classes whose class name ends with Check/Filter.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Checks if setter methods have since block tag.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="setter.missing.sinceTag"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
