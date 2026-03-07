@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
+import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_UNABLE_OPEN;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_WRONG_ENDING;
 
@@ -99,9 +99,19 @@ public class NewlineAtEndOfFileCheckTest
     }
 
     @Test
+    public void testCrEndingWhenLfExpected() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR, "lf"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileCrWhenLfExpected.java"),
+            expected);
+    }
+
+    @Test
     public void testNoNewlineLfAtEndOfFile() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR, "lf"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNewlineAtEndOfFileNoNewline.java"),
