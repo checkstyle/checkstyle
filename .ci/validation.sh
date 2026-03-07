@@ -288,7 +288,7 @@ EOF
   echo "Running Checkstyle on Apache-licensed modules..."
   readarray -t apache_files < <(find "${APACHE_SOURCES[@]}" \
     -name '*.java' ! -name 'module-info.java')
-  java -jar ../../target/checkstyle-"${CS_POM_VERSION}"-all.jar \
+  java -Xmx3g -jar ../../target/checkstyle-"${CS_POM_VERSION}"-all.jar \
     -c checkstyle/checkstyle.xml \
     -p checkstyle-apache.properties \
     "${apache_files[@]}"
@@ -309,7 +309,7 @@ EOF
   echo "Running Checkstyle on Community-licensed modules (hazelcast-sql)..."
   readarray -t community_files < <(find "${COMMUNITY_SOURCES[@]}" \
     -name '*.java' ! -name 'module-info.java')
-  java -jar ../../target/checkstyle-"${CS_POM_VERSION}"-all.jar \
+  java -Xmx3g -jar ../../target/checkstyle-"${CS_POM_VERSION}"-all.jar \
     -c checkstyle/checkstyle.xml \
     -p checkstyle-community.properties \
     "${community_files[@]}"
@@ -771,6 +771,7 @@ javac25)
   ;;
 
 package-site)
+  export MAVEN_OPTS="-Xmx3g"
   ./mvnw -e --no-transfer-progress package -Passembly,no-validations
   ./mvnw -e --no-transfer-progress site -Dlinkcheck.skip=true
   ;;
@@ -813,6 +814,7 @@ no-error-pgjdbc)
   echo "Checkout target sources ..."
   checkout_from https://github.com/pgjdbc/pgjdbc.git
   cd .ci-temp/pgjdbc
+  export GRADLE_OPTS="-Xmx3g"
   ./gradlew --no-parallel --no-daemon checkstyleAll \
             -PenableMavenLocal -Pcheckstyle.version="${CS_POM_VERSION}"
   cd ../
@@ -1168,6 +1170,7 @@ no-exception-hbase)
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#Hbase/Hbase/' projects-to-test-on.properties
+  export JAVA_OPTS="-Xmx3g"
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
       --useShallowClone \
@@ -1186,6 +1189,7 @@ no-exception-Pmd-elasticsearch-lombok-ast)
   sed -i.'' 's/#pmd/pmd/' projects-to-test-on.properties
   sed -i.'' 's/#elasticsearch/elasticsearch/' projects-to-test-on.properties
   sed -i.'' 's/#lombok-ast/lombok-ast/' projects-to-test-on.properties
+  export JAVA_OPTS="-Xmx3g"
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
       --useShallowClone \
