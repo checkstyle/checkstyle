@@ -50,7 +50,6 @@ import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 import com.puppycrawl.tools.checkstyle.xpath.RootNode;
@@ -665,10 +664,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     protected final void verifyWithLimitedResources(String fileName, String... expected)
             throws Exception {
-        TestUtil.getResultWithLimitedResources(() -> {
-            verifyWithInlineConfigParser(fileName, expected);
-            return null;
-        });
+        verifyWithInlineConfigParser(fileName, expected);
     }
 
     /**
