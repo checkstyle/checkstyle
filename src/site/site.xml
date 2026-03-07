@@ -353,6 +353,8 @@
           <item name="TypecastParenPad" href="checks/whitespace/typecastparenpad.html"/>
           <item name="WhitespaceAfter" href="checks/whitespace/whitespaceafter.html"/>
           <item name="WhitespaceAround" href="checks/whitespace/whitespacearound.html"/>
+          <item name="WhitespaceBeforeEmptyBody"
+                href="checks/whitespace/whitespacebeforeemptybody.html"/>
         </item>
       </item>
 
