@@ -2108,6 +2108,8 @@
                 <exclude>**/SummaryJavadocCheck.class</exclude>
                 <exclude>**/WriteTagCheck.class</exclude>
                 <exclude>**/JavadocMetadataScraperUtil.class</exclude>
+                <!-- until https://github.com/checkstyle/checkstyle/issues/5770 -->
+                <exclude>**/JavadocUtilizingTrailingSpaceCheck.class</exclude>
               </excludes>
             </configuration>
           </execution>
