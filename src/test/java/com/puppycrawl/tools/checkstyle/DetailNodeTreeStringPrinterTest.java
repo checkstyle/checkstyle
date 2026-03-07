@@ -79,15 +79,19 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     public void testNoViableAltException() throws Exception {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinterNoViableAltException.javadoc"));
+        final String message = "Invalid Javadoc syntax. "
+                + "Please review the Javadoc specification for correct tag usage.";
         try {
             DetailNodeTreeStringPrinter.printFileAst(file);
             assertWithMessage("Exception is expected").fail();
         }
         catch (IllegalArgumentException exc) {
-            final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
-                    "getParseErrorMessage", String.class,
+            final String expected = TestUtil.invokeStaticMethod(
+                    DetailNodeTreeStringPrinter.class,
+                    "getParseErrorMessage",
+                    String.class,
                     new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
-                            8, "no viable alternative at input 'see <'", "SEE_TAG"));
+                            8, message, "SEE_TAG"));
             assertWithMessage("Generated and expected parse error messages don't match")
                 .that(exc.getMessage())
                 .isEqualTo(expected);
@@ -98,15 +102,19 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     public void testHtmlTagCloseBeforeTagOpen() throws Exception {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinterHtmlTagCloseBeforeTagOpen.javadoc"));
+        final String message = "Invalid Javadoc syntax. "
+                + "Please review the Javadoc specification for correct tag usage.";
         try {
             DetailNodeTreeStringPrinter.printFileAst(file);
             assertWithMessage("Exception is expected").fail();
         }
         catch (IllegalArgumentException exc) {
-            final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
-                    "getParseErrorMessage", String.class,
+            final String expected = TestUtil.invokeStaticMethod(
+                    DetailNodeTreeStringPrinter.class,
+                    "getParseErrorMessage",
+                    String.class,
                     new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
-                            3, "no viable alternative at input '</'", "HTML_ELEMENT"));
+                            3, message, "HTML_ELEMENT"));
             assertWithMessage("Generated and expected parse error messages don't match")
                 .that(exc.getMessage())
                 .isEqualTo(expected);
