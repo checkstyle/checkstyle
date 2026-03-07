@@ -874,6 +874,40 @@
       </p>
     </section>
 
+    <section name="SeparatorOption">
+      <p>
+        This type represents the policy for empty lines at the top or bottom of a block.
+        The following table describes the valid options:
+      </p>
+
+      <div class="wrapper">
+        <table summary="separator options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+          <tr>
+            <td><code>empty_line</code></td>
+            <td>
+              Exactly one empty line is required.
+            </td>
+          </tr>
+          <tr>
+            <td><code>empty_line_allowed</code></td>
+            <td>
+              No validation; any number of empty lines is allowed.
+            </td>
+          </tr>
+          <tr>
+            <td><code>no_empty_line</code></td>
+            <td>
+              No empty line is allowed.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
     <section name="SeverityLevel">
       <p>
         This type represents the severity level of a module violation.
