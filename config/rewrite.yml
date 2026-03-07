@@ -75,7 +75,9 @@ recipeList:
         - org.openrewrite.staticanalysis.ChainStringBuilderAppendCalls
         - org.openrewrite.staticanalysis.ReplaceStringBuilderWithString
         - org.openrewrite.staticanalysis.CustomImportOrder
-
+  - org.openrewrite.staticanalysis.CommonStaticAnalysis:
+      exclude:
+        - org.openrewrite.staticanalysis.LambdaBlockToExpression
   # individual recipes
   - org.openrewrite.java.RemoveUnusedImports
   - org.openrewrite.java.format.NormalizeFormat
