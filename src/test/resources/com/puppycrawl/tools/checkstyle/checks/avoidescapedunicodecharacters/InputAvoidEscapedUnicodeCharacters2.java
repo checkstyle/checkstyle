@@ -153,4 +153,7 @@ public class InputAvoidEscapedUnicodeCharacters2 {
                 // violation below, 'Unicode escape(s) usage should be avoided.'
         private String validEscapeWithManyUs = "t\uuuuuuuuu1234";
         private String validEscapeWithManyUsCommented = "t\uuuuuuuuu1234"; // comment
+
+        private String concatenated = "\u03bcs" + "x"; // Greek letter mu
+                // violation above, 'Unicode escape(s) usage should be avoided.'
 }

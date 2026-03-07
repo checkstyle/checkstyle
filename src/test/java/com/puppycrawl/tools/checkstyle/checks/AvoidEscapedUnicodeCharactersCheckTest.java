@@ -22,20 +22,27 @@ package com.puppycrawl.tools.checkstyle.checks;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck.MSG_KEY;
 
+import java.lang.reflect.Field;
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 import com.google.common.base.Splitter;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSupport {
+public final class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSupport {
 
     // C0 (ASCII and derivatives)
     // https://en.wiktionary.org/wiki/Appendix:Control_characters#C0_.28ASCII_and_derivatives.29
@@ -150,18 +157,597 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         return "com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters";
     }
 
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testCollectNodesWithNullAst() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+
+        TestUtil.invokeVoidMethod(check, "collectNodes", (Object) null);
+
+        final Map<Integer, List<?>> commentsByLine = TestUtil.getInternalState(
+                check, "commentsByLine", Map.class);
+        final Map<Integer, Integer> maxNonCommentColumnByLine = TestUtil.getInternalState(
+                check, "maxNonCommentColumnByLine", Map.class);
+
+        assertWithMessage("commentsByLine should be empty")
+                .that(commentsByLine)
+                .isEmpty();
+        assertWithMessage("maxNonCommentColumnByLine should be empty")
+                .that(maxNonCommentColumnByLine)
+                .isEmpty();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testCollectNodesTracksCommentsAndColumns() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = createCheckWithCollectedNodes();
+
+        final Map<Integer, List<?>> commentsByLine = TestUtil.getInternalState(
+                check, "commentsByLine", Map.class);
+        final Map<Integer, Integer> maxNonCommentColumnByLine = TestUtil.getInternalState(
+                check, "maxNonCommentColumnByLine", Map.class);
+
+        assertWithMessage("commentsByLine should contain line 10")
+                .that(commentsByLine)
+                .containsKey(10);
+        assertWithMessage("maxNonCommentColumnByLine should contain line 10")
+                .that(maxNonCommentColumnByLine)
+                .containsKey(10);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testCollectNodesTracksCharLiteral() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl root = createAst(TokenTypes.COMPILATION_UNIT, 1, 0, "root");
+        root.addChild(createAst(TokenTypes.CHAR_LITERAL, 5, 2, "'a'"));
+
+        TestUtil.invokeVoidMethod(check, "collectNodes", root);
+
+        final Map<Integer, List<Integer>> literalStartColumnsByLine = TestUtil.getInternalState(
+                check, "literalStartColumnsByLine", Map.class);
+        assertWithMessage("literalStartColumnsByLine should contain char literal line")
+                .that(literalStartColumnsByLine)
+                .containsKey(5);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testCollectNodesTracksTextBlockLiteral() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl root = createAst(TokenTypes.COMPILATION_UNIT, 1, 0, "root");
+        root.addChild(createAst(TokenTypes.TEXT_BLOCK_CONTENT, 6, 1, "abc"));
+
+        TestUtil.invokeVoidMethod(check, "collectNodes", root);
+
+        final Map<Integer, List<Integer>> literalStartColumnsByLine = TestUtil.getInternalState(
+                check, "literalStartColumnsByLine", Map.class);
+        assertWithMessage("literalStartColumnsByLine should contain text block line")
+                .that(literalStartColumnsByLine)
+                .containsKey(6);
+    }
+
+    @Test
+    public void testHasTrailCommentBranches() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = createCheckWithCollectedNodes();
+
+        assertTrailComment(check, 10, 5, true, "Trailing comment should be detected on line 10");
+        assertTrailComment(check, 12, 1, false,
+                "Trailing comment should be rejected by max column on line 12");
+        assertTrailComment(check, 14, 1, false,
+                "Trailing comment should be rejected when it starts before literal end");
+        assertTrailComment(check, 30, 1, true,
+                "Trailing comment should be detected with default max column");
+        assertTrailComment(check, 99, 1, false,
+                "No trailing comment should be detected when no comments exist");
+
+        final DetailAstImpl textBlockContentNoEnd = createAst(
+                TokenTypes.TEXT_BLOCK_CONTENT, 15, 1, "abc");
+        final boolean hasTrailCommentTextBlock = TestUtil.invokeMethod(
+                check, "hasTrailComment", Boolean.class, textBlockContentNoEnd);
+        assertWithMessage("No trailing comment should be detected for text block without end")
+                .that(hasTrailCommentTextBlock)
+                .isFalse();
+
+        final DetailAstImpl textBlockContent = createTextBlockContentWithEnd();
+        final boolean hasTrailCommentTextBlockEnd = TestUtil.invokeMethod(
+                check, "hasTrailComment", Boolean.class, textBlockContent);
+        assertWithMessage("Trailing comment should be detected after text block end")
+                .that(hasTrailCommentTextBlockEnd)
+                .isTrue();
+
+        final DetailAstImpl nullTextLiteral = createAst(TokenTypes.STRING_LITERAL, 2, 3, null);
+        final int endColumn = TestUtil.invokeStaticMethod(
+                AvoidEscapedUnicodeCharactersCheck.class, "getLiteralEndColumn",
+                Integer.class, nullTextLiteral);
+        assertWithMessage("End column should match column for null text")
+                .that(endColumn)
+                .isEqualTo(3);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testCollectNodesVisitedNodesBranch() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl root = createAst(TokenTypes.COMPILATION_UNIT, 1, 0, "root");
+
+        // Call collectNodes with the same node twice to test visitedNodes.add(ast) returning false
+        TestUtil.invokeVoidMethod(check, "collectNodes", root);
+        TestUtil.invokeVoidMethod(check, "collectNodes", root);
+
+        final Map<Integer, List<?>> commentsByLine = TestUtil.getInternalState(
+                check, "commentsByLine", Map.class);
+
+        // Should have been processed only once due to visitedNodes check
+        assertWithMessage("commentsByLine should be empty after processing root with no comments")
+                .that(commentsByLine)
+                .isEmpty();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testCollectNodesCyclicSiblingLink() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl root = createAst(TokenTypes.COMPILATION_UNIT, 1, 0, "root");
+        final DetailAstImpl child1 = createAst(TokenTypes.IDENT, 1, 0, "x");
+        final DetailAstImpl sharedNode =
+                createAst(TokenTypes.SINGLE_LINE_COMMENT, 1, 5, "// comment");
+
+        // Normal structure: root -> child1 (with sharedNode as its child)
+        root.setFirstChild(child1);
+        child1.setFirstChild(sharedNode);
+
+        // Now set sharedNode also as the next sibling of child1
+        // This creates: root -> child1 (with sharedNode as child) -> sharedNode (as sibling)
+        // When collectNodes processes child1 and its children, it visits sharedNode
+        // Then when moving to next sibling (also sharedNode),
+        // visitedNodes check prevents reprocessing
+        child1.setNextSibling(sharedNode);
+
+        TestUtil.invokeVoidMethod(check, "collectNodes", root);
+
+        final Map<Integer, List<?>> commentsByLine = TestUtil.getInternalState(
+                check, "commentsByLine", Map.class);
+
+        // Should have processed the sharedNode comment once
+        assertWithMessage("commentsByLine should contain the comment")
+                .that(commentsByLine)
+                .containsKey(1);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testPushChildrenStopsOnVisitedSibling() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl root = createAst(TokenTypes.COMPILATION_UNIT, 1, 0, "root");
+        final DetailAstImpl child1 = createAst(TokenTypes.IDENT, 1, 0, "x");
+        final DetailAstImpl child2 = createAst(TokenTypes.IDENT, 1, 1, "y");
+
+        root.setFirstChild(child1);
+        child1.setNextSibling(child2);
+
+        final Map<DetailAST, Boolean> visitedNodes = TestUtil.getInternalState(
+                check, "visitedNodes", Map.class);
+        visitedNodes.put(child2, Boolean.TRUE);
+
+        final Deque<DetailAST> stack = new ArrayDeque<>();
+        TestUtil.invokeVoidMethod(check, "pushChildren", root, stack);
+
+        assertWithMessage("Only the unvisited child should be pushed")
+                .that(stack)
+                .containsExactly(child1);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testPushChildrenSkipsVisitedChild() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl root = createAst(TokenTypes.COMPILATION_UNIT, 1, 0, "root");
+        final DetailAstImpl child = createAst(TokenTypes.IDENT, 1, 0, "x");
+
+        root.setFirstChild(child);
+
+        final Map<DetailAST, Boolean> visitedNodes = TestUtil.getInternalState(
+                check, "visitedNodes", Map.class);
+        visitedNodes.put(child, Boolean.TRUE);
+
+        final Deque<DetailAST> stack = new ArrayDeque<>();
+        TestUtil.invokeVoidMethod(check, "pushChildren", root, stack);
+
+        assertWithMessage("Visited child should not be pushed")
+                .that(stack)
+                .isEmpty();
+    }
+
+        @Test
+        public void testCollectNodesSelfReferencingNode() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl root = createAst(TokenTypes.COMPILATION_UNIT, 1, 0, "root");
+        final DetailAstImpl selfRefNode = createAst(TokenTypes.EXPR, 2, 0, "expr");
+
+        root.setFirstChild(selfRefNode);
+
+        // Use reflection to set nextSibling field to itself, creating self-reference
+        // This simulates malformed AST without causing initialization-time infinite loops
+        final Field nextSiblingField =
+                DetailAstImpl.class.getDeclaredField("nextSibling");
+        nextSiblingField.setAccessible(true);
+        nextSiblingField.set(selfRefNode, selfRefNode);
+
+        // The guard should detect nextSibling == child and break without infinite loop
+        TestUtil.invokeVoidMethod(check, "collectNodes", root);
+
+        // Method should complete successfully
+        assertWithMessage("collectNodes should complete")
+                .that(check)
+                .isNotNull();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testCollectNodesSkipsVisitedRoot() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl root = createAst(TokenTypes.COMPILATION_UNIT, 1, 0, "root");
+        root.addChild(createAst(TokenTypes.SINGLE_LINE_COMMENT, 2, 3, "// comment"));
+
+        final Map<DetailAST, Boolean> visitedNodes = TestUtil.getInternalState(
+                check, "visitedNodes", Map.class);
+        visitedNodes.put(root, Boolean.TRUE);
+
+        TestUtil.invokeVoidMethod(check, "collectNodes", root);
+
+        final Map<Integer, List<?>> commentsByLine = TestUtil.getInternalState(
+                check, "commentsByLine", Map.class);
+        assertWithMessage("Pre-visited root should be skipped")
+                .that(commentsByLine)
+                .isEmpty();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testPushChildrenStopsOnSelfReferencingSibling() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl root = createAst(TokenTypes.COMPILATION_UNIT, 1, 0, "root");
+        final DetailAstImpl child = createAst(TokenTypes.IDENT, 1, 0, "x");
+
+        root.setFirstChild(child);
+        child.setNextSibling(child);
+
+        final Deque<DetailAST> stack = new ArrayDeque<>();
+        TestUtil.invokeVoidMethod(check, "pushChildren", root, stack);
+
+        assertWithMessage("Self-referencing sibling should stop traversal")
+                .that(stack)
+                .containsExactly(child);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testBeginTreeClearsState() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl rootWithComment = createAst(TokenTypes.COMPILATION_UNIT, 1, 0, "root");
+        rootWithComment.addChild(createAst(TokenTypes.SINGLE_LINE_COMMENT, 2, 3, "// comment"));
+        rootWithComment.addChild(createAst(TokenTypes.STRING_LITERAL, 2, 6, "\"a\""));
+
+        check.beginTree(rootWithComment);
+
+        final DetailAstImpl emptyRoot = createAst(TokenTypes.COMPILATION_UNIT, 0, 0, "root");
+        check.beginTree(emptyRoot);
+
+        final Map<Integer, List<?>> commentsByLine = TestUtil.getInternalState(
+                check, "commentsByLine", Map.class);
+        final Map<Integer, List<Integer>> literalStartColumnsByLine = TestUtil.getInternalState(
+                check, "literalStartColumnsByLine", Map.class);
+        final Map<Integer, Integer> maxNonCommentColumnByLine = TestUtil.getInternalState(
+                check, "maxNonCommentColumnByLine", Map.class);
+
+        assertWithMessage("commentsByLine should be cleared between beginTree calls")
+                .that(commentsByLine)
+                .isEmpty();
+        assertWithMessage("literalStartColumnsByLine should be cleared between beginTree calls")
+                .that(literalStartColumnsByLine)
+                .isEmpty();
+        assertWithMessage("maxNonCommentColumnByLine should be cleared between beginTree calls")
+                .that(maxNonCommentColumnByLine)
+                .isEmpty();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testCollectNodesDoesNotDoubleCountComments() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl root = createAst(TokenTypes.COMPILATION_UNIT, 1, 0, "root");
+        root.addChild(createAst(TokenTypes.SINGLE_LINE_COMMENT, 3, 5, "// once"));
+
+        TestUtil.invokeVoidMethod(check, "collectNodes", root);
+        TestUtil.invokeVoidMethod(check, "collectNodes", root);
+
+        final Map<Integer, List<?>> commentsByLine = TestUtil.getInternalState(
+                check, "commentsByLine", Map.class);
+        assertWithMessage("Comment should be recorded once")
+                .that(commentsByLine.get(3))
+                .hasSize(1);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testRecordNodeIgnoresNonPositiveLine() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl ast = createAst(TokenTypes.STRING_LITERAL, 0, 1, "\"x\"");
+
+        TestUtil.invokeVoidMethod(check, "recordNode", ast);
+
+        final Map<Integer, List<?>> commentsByLine = TestUtil.getInternalState(
+                check, "commentsByLine", Map.class);
+        final Map<Integer, Integer> maxNonCommentColumnByLine = TestUtil.getInternalState(
+                check, "maxNonCommentColumnByLine", Map.class);
+        final Map<Integer, List<Integer>> literalStartColumnsByLine = TestUtil.getInternalState(
+                check, "literalStartColumnsByLine", Map.class);
+
+        assertWithMessage("commentsByLine should ignore line 0")
+                .that(commentsByLine)
+                .isEmpty();
+        assertWithMessage("maxNonCommentColumnByLine should ignore line 0")
+                .that(maxNonCommentColumnByLine)
+                .isEmpty();
+        assertWithMessage("literalStartColumnsByLine should ignore line 0")
+                .that(literalStartColumnsByLine)
+                .isEmpty();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testRecordMaxNonCommentColumnIgnoresNegativeColumn() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+
+        TestUtil.invokeVoidMethod(check, "recordMaxNonCommentColumn", 3, -1);
+
+        final Map<Integer, Integer> maxNonCommentColumnByLine = TestUtil.getInternalState(
+                check, "maxNonCommentColumnByLine", Map.class);
+        assertWithMessage("Negative column should not be recorded")
+                .that(maxNonCommentColumnByLine)
+                .isEmpty();
+    }
+
+    @Test
+    public void testCollectNodesParentChildCycle() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl root = createAst(TokenTypes.COMPILATION_UNIT, 1, 0, "root");
+        final DetailAstImpl child = createAst(TokenTypes.IDENT, 1, 0, "x");
+
+        // Create parent-child cycle: root -> child, child -> root (as child's child)
+        root.setFirstChild(child);
+        child.setFirstChild(root);
+
+        // The guard should detect root is already visited and not recurse again
+        TestUtil.invokeVoidMethod(check, "collectNodes", root);
+
+        // Method should complete without infinite loop
+        assertWithMessage("collectNodes should complete")
+                .that(check)
+                .isNotNull();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testHasAnotherLiteralAfterWithNullEntry() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final Map<Integer, List<Integer>> literalStartColumnsByLine = TestUtil.getInternalState(
+                check, "literalStartColumnsByLine", Map.class);
+        literalStartColumnsByLine.put(1, Arrays.asList((Integer) null));
+
+        final boolean result = TestUtil.invokeMethod(check, "hasAnotherLiteralAfter",
+                Boolean.class, 1, 2, 10);
+        assertWithMessage("Null literal column should be ignored")
+                .that(result)
+                .isFalse();
+    }
+
+    @Test
+    public void testHasAnotherLiteralAfterNoColumns() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+
+        final boolean result = TestUtil.invokeMethod(check, "hasAnotherLiteralAfter",
+                Boolean.class, 1, 2, 10);
+        assertWithMessage("Missing line entry should be treated as no literals")
+                .that(result)
+                .isFalse();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testHasAnotherLiteralAfterBeforeLiteralEnd() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final Map<Integer, List<Integer>> literalStartColumnsByLine = TestUtil.getInternalState(
+                check, "literalStartColumnsByLine", Map.class);
+        literalStartColumnsByLine.put(1, Arrays.asList(2));
+
+        final boolean result = TestUtil.invokeMethod(check, "hasAnotherLiteralAfter",
+                Boolean.class, 1, 4, 10);
+        assertWithMessage("Literal start before end should be ignored")
+                .that(result)
+                .isFalse();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testHasAnotherLiteralAfterAtBoundary() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final Map<Integer, List<Integer>> literalStartColumnsByLine = TestUtil.getInternalState(
+                check, "literalStartColumnsByLine", Map.class);
+        literalStartColumnsByLine.put(1, Arrays.asList(4));
+
+        final boolean equalEndResult = TestUtil.invokeMethod(check, "hasAnotherLiteralAfter",
+                Boolean.class, 1, 4, 12);
+        assertWithMessage("Literal start at end column should be ignored")
+                .that(equalEndResult)
+                .isFalse();
+
+        literalStartColumnsByLine.put(1, Arrays.asList(10));
+        final boolean equalCommentResult = TestUtil.invokeMethod(check, "hasAnotherLiteralAfter",
+                Boolean.class, 1, 2, 10);
+        assertWithMessage("Literal start at comment column should be ignored")
+                .that(equalCommentResult)
+                .isFalse();
+    }
+
+    @Test
+    public void testIsTrailingCommentCandidateStartBeforeLiteralEnd() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl literal = createAst(TokenTypes.STRING_LITERAL, 1, 1, "\"ab\"");
+        final Object position = TestUtil.invokeStaticMethod(
+                AvoidEscapedUnicodeCharactersCheck.class, "resolveLiteralPosition",
+                Object.class, literal);
+
+        final boolean result = TestUtil.invokeMethod(check, "isTrailingCommentCandidate",
+                Boolean.class, position, 2, 10);
+        assertWithMessage("Comment before literal end should be rejected")
+                .that(result)
+                .isFalse();
+    }
+
+    @Test
+    public void testIsTrailingCommentCandidateMaxNonCommentAfterComment() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl literal = createAst(TokenTypes.STRING_LITERAL, 1, 1, "\"ab\"");
+        final Object position = TestUtil.invokeStaticMethod(
+                AvoidEscapedUnicodeCharactersCheck.class, "resolveLiteralPosition",
+                Object.class, literal);
+
+        final boolean result = TestUtil.invokeMethod(check, "isTrailingCommentCandidate",
+                Boolean.class, position, 10, 12);
+        assertWithMessage("Max non-comment after comment should be rejected")
+                .that(result)
+                .isFalse();
+    }
+
+    @Test
+    public void testIsTrailingCommentCandidateMaxNonCommentEqualsComment() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl literal = createAst(TokenTypes.STRING_LITERAL, 1, 1, "\"ab\"");
+        final Object position = TestUtil.invokeStaticMethod(
+                AvoidEscapedUnicodeCharactersCheck.class, "resolveLiteralPosition",
+                Object.class, literal);
+
+        final boolean result = TestUtil.invokeMethod(check, "isTrailingCommentCandidate",
+                Boolean.class, position, 6, 6);
+        assertWithMessage("Max non-comment equal to comment should be accepted")
+                .that(result)
+                .isTrue();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testIsTrailingCommentCandidateAnotherLiteralAfter() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl literal = createAst(TokenTypes.STRING_LITERAL, 1, 1, "\"ab\"");
+        final Object position = TestUtil.invokeStaticMethod(
+                AvoidEscapedUnicodeCharactersCheck.class, "resolveLiteralPosition",
+                Object.class, literal);
+        final Map<Integer, List<Integer>> literalStartColumnsByLine = TestUtil.getInternalState(
+                check, "literalStartColumnsByLine", Map.class);
+        literalStartColumnsByLine.put(1, Arrays.asList(5));
+
+        final boolean result = TestUtil.invokeMethod(check, "isTrailingCommentCandidate",
+                Boolean.class, position, 10, 9);
+        assertWithMessage("Another literal before comment should be rejected")
+                .that(result)
+                .isFalse();
+    }
+
+    @Test
+    public void testIsTrailingCommentCandidateValid() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl literal = createAst(TokenTypes.STRING_LITERAL, 1, 1, "\"ab\"");
+        final Object position = TestUtil.invokeStaticMethod(
+                AvoidEscapedUnicodeCharactersCheck.class, "resolveLiteralPosition",
+                Object.class, literal);
+
+        final boolean result = TestUtil.invokeMethod(check, "isTrailingCommentCandidate",
+                Boolean.class, position, 10, 9);
+        assertWithMessage("Trailing comment should be accepted")
+                .that(result)
+                .isTrue();
+    }
+
+    @Test
+    public void testIsTrailingCommentCandidateCommentAtLiteralEnd() throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final DetailAstImpl literal = createAst(TokenTypes.STRING_LITERAL, 1, 1, "\"ab\"");
+        final Object position = TestUtil.invokeStaticMethod(
+                AvoidEscapedUnicodeCharactersCheck.class, "resolveLiteralPosition",
+                Object.class, literal);
+
+        final boolean result = TestUtil.invokeMethod(check, "isTrailingCommentCandidate",
+                Boolean.class, position, 4, 4);
+        assertWithMessage("Comment at literal end should be rejected")
+                .that(result)
+                .isFalse();
+    }
+
+    private static void assertTrailComment(AvoidEscapedUnicodeCharactersCheck check,
+            int lineNo, int columnNo, boolean expected, String message) throws Exception {
+        final DetailAstImpl literal = createAst(
+                TokenTypes.STRING_LITERAL, lineNo, columnNo, "\"x\"");
+        final boolean hasTrailComment = TestUtil.invokeMethod(
+                check, "hasTrailComment", Boolean.class, literal);
+        assertWithMessage(message)
+                .that(hasTrailComment)
+                .isEqualTo(expected);
+    }
+
+    private static AvoidEscapedUnicodeCharactersCheck createCheckWithCollectedNodes()
+            throws Exception {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+
+        final DetailAstImpl root = createAst(TokenTypes.COMPILATION_UNIT, 1, 0, "root");
+        root.addChild(createAst(TokenTypes.STRING_LITERAL, 10, 5, "\"a\""));
+        root.addChild(createAst(TokenTypes.SINGLE_LINE_COMMENT, 10, 20, "//"));
+        root.addChild(createAst(TokenTypes.IDENT, 11, -1, "x"));
+        root.addChild(createAst(TokenTypes.IDENT, 0, 1, "y"));
+        root.addChild(createAst(TokenTypes.BLOCK_COMMENT_BEGIN, 12, 5, "/*"));
+        root.addChild(createAst(TokenTypes.BLOCK_COMMENT_END, 13, 3, "*/"));
+        root.addChild(createAst(TokenTypes.SINGLE_LINE_COMMENT, 14, 2, "//"));
+        root.addChild(createAst(TokenTypes.STRING_LITERAL, 12, 10, "\"b\""));
+        root.addChild(createAst(TokenTypes.SINGLE_LINE_COMMENT, 30, 10, "//"));
+        root.addChild(createAst(TokenTypes.TEXT_BLOCK_CONTENT, 20, 1, "abc"));
+        root.addChild(createAst(TokenTypes.TEXT_BLOCK_LITERAL_END, 20, 5, "\"\"\""));
+        root.addChild(createAst(TokenTypes.SINGLE_LINE_COMMENT, 20, 10, "//"));
+        root.addChild(createAst(TokenTypes.STRING_LITERAL, 20, 1, "\"x\""));
+
+        TestUtil.invokeVoidMethod(check, "collectNodes", root);
+        return check;
+    }
+
+    private static DetailAstImpl createTextBlockContentWithEnd() {
+        final DetailAstImpl textBlockContent = createAst(
+                TokenTypes.TEXT_BLOCK_CONTENT, 20, 1, "abc");
+        final DetailAstImpl textBlockEnd = createAst(
+                TokenTypes.TEXT_BLOCK_LITERAL_END, 20, 5, "\"\"\"");
+        textBlockContent.setNextSibling(textBlockEnd);
+        return textBlockContent;
+    }
+
+    private static DetailAstImpl createAst(int type, int line, int column, String text) {
+        final DetailAstImpl ast = new DetailAstImpl();
+        ast.initialize(type, text);
+        ast.setLineNo(line);
+        ast.setColumnNo(column);
+        return ast;
+    }
+
     @Test
     public void testGetRequiredTokens() {
         final AvoidEscapedUnicodeCharactersCheck checkObj =
-            new AvoidEscapedUnicodeCharactersCheck();
+                new AvoidEscapedUnicodeCharactersCheck();
         final int[] expected = {
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
         };
         assertWithMessage("Required tokens differ from expected")
-            .that(checkObj.getRequiredTokens())
-            .isEqualTo(expected);
+                .that(checkObj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test
@@ -304,6 +890,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             "148:46: " + getCheckMessage(MSG_KEY),
             "151:46: " + getCheckMessage(MSG_KEY),
             "154:48: " + getCheckMessage(MSG_KEY),
+            "157:39: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAvoidEscapedUnicodeCharacters2.java"), expected);
@@ -453,6 +1040,32 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         };
         verifyWithInlineConfigParser(
                 getPath("InputAvoidEscapedUnicodeCharactersEscapedS.java"),
+                expected);
+    }
+
+    @Test
+    public void testAvoidEscapedUnicodeCharactersTextBlockWithTrailingComment()
+            throws Exception {
+        final String[] expected = {
+            "18:33: " + getCheckMessage(MSG_KEY),
+            "23:25: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath(
+                "InputAvoidEscapedUnicodeCharactersTextBlockWithTrailingComment.java"),
+            expected);
+    }
+
+    @Test
+    public void testAvoidEscapedUnicodeCharactersEdgeCases() throws Exception {
+        final String[] expected = {
+            "17:28: " + getCheckMessage(MSG_KEY),
+            "20:32: " + getCheckMessage(MSG_KEY),
+            "24:20: " + getCheckMessage(MSG_KEY),
+            "28:21: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAvoidEscapedUnicodeCharactersEdgeCases.java"),
                 expected);
     }
 
