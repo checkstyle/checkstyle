@@ -51,6 +51,7 @@ APRV
 Aqj
 ARCHITEW
 archunit
+args
 Arial
 arity
 Arquillian
@@ -1425,6 +1426,7 @@ unnecessarysemicolonafteroutertypedeclaration
 unnecessarysemicolonaftertypememberdeclaration
 unnecessarysemicoloninenumeration
 unnecessarysemicolonintrywithresources
+unnecessarytypeargumentswithrecordpattern
 unparseable
 Unproxyable
 unrecognised

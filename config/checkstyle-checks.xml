@@ -605,6 +605,7 @@
     <module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
     <module name="UnnecessarySemicolonInEnumeration"/>
     <module name="UnnecessarySemicolonInTryWithResources"/>
+    <module name="UnnecessaryTypeArgumentsWithRecordPattern"/>
     <module name="UnusedCatchParameterShouldBeUnnamed">
       <!--
         Unnamed catch parameters will not compile on java versions between 9 and 21. As
