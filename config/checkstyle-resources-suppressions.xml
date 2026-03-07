@@ -225,6 +225,8 @@
     files="[\\/]InputCheckerTabCharacterCustomWidth\.java"/>
   <suppress checks="FileTabCharacter"
     files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting[\\/]InputTextBlockGoogleStyleFormattingWithTabs\.java"/>
+  <suppress checks="FileTabCharacter"
+    files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]javalinelength[\\/]InputJavaLineLengthDefault\.java"/>
   <!-- intentional tabs for testing SummaryJavadocCheck with tab-formatted javadoc -->
   <suppress checks="FileTabCharacter"
     files="[\\/]InputSummaryJavadocForbiddenFragmentsTabFormatted\.java"/>
