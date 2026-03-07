@@ -139,10 +139,10 @@ public final class XpathFileGeneratorAuditListener
         if (!isXmlHeaderPrinted) {
             writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
             writer.println("<!DOCTYPE suppressions PUBLIC");
-            writer.println("    \"-//Checkstyle//DTD SuppressionXpathFilter Experimental "
+            writer.println("    \"-//Checkstyle//DTD SuppressionXpathFilter "
                     + "Configuration 1.2//EN\"");
             writer.println("    \"https://checkstyle.org/dtds/"
-                    + "suppressions_1_2_xpath_experimental.dtd\">");
+                    + "suppressions_1_2_xpath.dtd\">");
             writer.println("<suppressions>");
             isXmlHeaderPrinted = true;
         }

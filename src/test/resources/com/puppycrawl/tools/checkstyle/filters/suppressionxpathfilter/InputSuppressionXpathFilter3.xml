@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suppressions PUBLIC
-    "-//Puppy Crawl//DTD Suppressions Xpath Experimental 1.1//EN"
-    "com/puppycrawl/tools/checkstyle/suppressions_1_1_xpath_experimental.dtd">
+    "-//Puppy Crawl//DTD Suppressions Xpath 1.1//EN"
+    "com/puppycrawl/tools/checkstyle/suppressions_1_1_xpath.dtd">
 
 <suppressions>
   <suppress-xpath id="uniqueId"

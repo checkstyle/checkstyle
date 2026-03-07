@@ -164,9 +164,9 @@ public class XpathFileGeneratorAuditListenerTest {
 
         final String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + EOL
                 + "<!DOCTYPE suppressions PUBLIC" + EOL
-                + "    \"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2"
+                + "    \"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2"
                 + "//EN\"" + EOL
-                + "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">"
+                + "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd\">"
                 + EOL
                 + "<suppressions>" + EOL
                 + "  <suppress-xpath" + EOL
@@ -191,9 +191,9 @@ public class XpathFileGeneratorAuditListenerTest {
 
         final String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + EOL
                 + "<!DOCTYPE suppressions PUBLIC" + EOL
-                + "    \"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2"
+                + "    \"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2"
                 + "//EN\"" + EOL
-                + "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">"
+                + "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd\">"
                 + EOL
                 + "<suppressions>" + EOL
                 + "  <suppress-xpath" + EOL
@@ -227,9 +227,9 @@ public class XpathFileGeneratorAuditListenerTest {
 
         final String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + EOL
                 + "<!DOCTYPE suppressions PUBLIC" + EOL
-                + "    \"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2"
+                + "    \"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2"
                 + "//EN\"" + EOL
-                + "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">"
+                + "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd\">"
                 + EOL
                 + "<suppressions>" + EOL
                 + "  <suppress-xpath" + EOL

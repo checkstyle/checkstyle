@@ -128,9 +128,9 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
             bw.write("<?xml version=\"1.0\"?>\n");
             bw.write("<!DOCTYPE suppressions PUBLIC\n");
             bw.write("    \"-//Checkstyle//DTD SuppressionXpathFilter ");
-            bw.write("Experimental Configuration 1.2//EN\"\n");
+            bw.write("Configuration 1.2//EN\"\n");
             bw.write("    \"https://checkstyle.org/dtds/");
-            bw.write("suppressions_1_2_xpath_experimental.dtd\">\n");
+            bw.write("suppressions_1_2_xpath.dtd\">\n");
             bw.write("<suppressions>\n");
             bw.write("   <suppress-xpath\n");
             bw.write("       checks=\"");

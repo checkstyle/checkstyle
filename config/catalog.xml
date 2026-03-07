@@ -20,8 +20,12 @@
           uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_1.dtd"/>
   <system systemId="https://checkstyle.org/dtds/suppressions_1_2.dtd"
           uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_2.dtd"/>
+  <system systemId="https://checkstyle.org/dtds/suppressions_1_1_xpath.dtd"
+          uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_1_xpath.dtd"/>
   <system systemId="https://checkstyle.org/dtds/suppressions_1_1_xpath_experimental.dtd"
           uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_1_xpath_experimental.dtd"/>
+  <system systemId="https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"
+          uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_2_xpath.dtd"/>
   <system systemId="https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"
           uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_2_xpath_experimental.dtd"/>
   <system systemId="https://checkstyle.org/dtds/import_control_1_0.dtd"
