@@ -1,3 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>isFileMatch</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Matcher::find</description>
+    <lineContent>boolean match = fileRegexp.matcher(fileName).find();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>isFileMatch</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (!match) {</lineContent>
+  </mutation>
 </suppressedMutations>
