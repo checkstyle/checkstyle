@@ -989,6 +989,7 @@
       <property name="tokens" value="BXOR_ASSIGN"/>
       <property name="tokens" value="BOR_ASSIGN"/>
       <property name="tokens" value="BAND_ASSIGN"/>
+      <property name="tokens" value="LAMBDA"/>
       <property name="option" value="eol"/>
     </module>
     <module name="ParenPad"/>

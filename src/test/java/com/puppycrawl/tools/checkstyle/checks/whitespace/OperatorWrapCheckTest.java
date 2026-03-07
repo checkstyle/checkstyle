@@ -218,4 +218,19 @@ public class OperatorWrapCheckTest
                         "InputOperatorWrapInstanceOfOperatorEndOfLine.java"), expected);
     }
 
+    @Test
+    public void testLambdaEol() throws Exception {
+        final String[] expected = {
+            "20:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "->"),
+            "28:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "->"),
+            "37:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "->"),
+            "45:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "->"),
+            "57:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "->"),
+            "66:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "->"),
+            "76:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "->"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOperatorWrapLambda.java"), expected);
+    }
+
 }

@@ -11,7 +11,7 @@ public class InputIllegalLineBreakAroundLambda {
 
   void test() {
     MyLambdaInterface div = (a, b)
-        -> { // illegal line break before lambda, ok until #17253
+        -> { // violation ''->' should be on the previous line.'
           if (b != 0) {
             return a / b;
           }
@@ -39,13 +39,13 @@ public class InputIllegalLineBreakAroundLambda {
     ArrayList<String> list = new ArrayList<>();
     list.stream()
         .map(x
-            -> x.toString()); // illegal line break before lambda, ok until #17253
+            -> x.toString()); // violation ''->' should be on the previous line.'
 
     String dayString = switch (day) {
       case 1
-          -> "one day of the week";  // illegal line break before lambda, ok until #17253
+          -> "one day of the week";  // violation ''->' should be on the previous line.'
       case 2
-          -> // illegal line break before lambda, ok until #17253
+          -> // violation ''->' should be on the previous line.'
               "two day of the week";
       case 3 -> // ok because text following '->' is unbraced.
           "third day of the week";
@@ -58,13 +58,13 @@ public class InputIllegalLineBreakAroundLambda {
     String status = switch (transaction) {
       case TransactionIsComplete -> "ok done";
       case NotValidTryAgain
-          -> // illegal line break before lambda, ok until #17253
+          -> // violation ''->' should be on the previous line.'
               "Please Enter the valid value. Try again this time with valid value";
       case CouldNotBeginTheProcess ->
           "Please try again after some time. Downtime.";
       case ErrorInProcessingTryAgain
           ->  "Please try again after some time. you made a mistake or there is something wrong.";
-      // illegal line break before lambda above, ok until #17253
+      // violation above, ''->' should be on the previous line.'
       default ->
           throw new IllegalArgumentException("");
     };

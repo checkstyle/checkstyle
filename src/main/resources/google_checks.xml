@@ -377,6 +377,10 @@
                     LT, MINUS, MOD, NOT_EQUAL, PLUS, QUESTION, SL, SR, STAR, METHOD_REF,
                     TYPE_EXTENSION_AND "/>
     </module>
+    <module name="OperatorWrap">
+      <property name="option" value="EOL"/>
+      <property name="tokens" value="LAMBDA"/>
+    </module>
     <module name="AnnotationLocation">
       <property name="id" value="AnnotationLocationMostCases"/>
       <property name="tokens"
