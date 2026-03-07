@@ -51,4 +51,17 @@ public class TodoCommentCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "17:3: Comment uses box-like repetitive character pattern.",
+            "25:5: Comment uses box-like repetitive character pattern.",
+            "31:5: Comment uses box-like repetitive character pattern.",
+            "37:5: Comment uses box-like repetitive character pattern.",
+            "43:5: Comment uses box-like repetitive character pattern.",
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
 }

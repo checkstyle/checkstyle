@@ -68,6 +68,23 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to detect box comments (Google Java Style Guide §4.8.6.3):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="TodoComment_Example_of_Usage">
