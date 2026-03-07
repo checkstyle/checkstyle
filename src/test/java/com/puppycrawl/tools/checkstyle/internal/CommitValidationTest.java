@@ -263,12 +263,12 @@ public class CommitValidationTest {
         try (Repository repo = new FileRepositoryBuilder().findGitDir().build()) {
             final RevCommitsPair revCommitsPair = resolveRevCommitsPair(repo);
             if (COMMITS_RESOLUTION_MODE == CommitsResolutionMode.BY_COUNTER) {
-                commits = getCommitsByCounter(revCommitsPair.getFirst());
-                commits.addAll(getCommitsByCounter(revCommitsPair.getSecond()));
+                commits = getCommitsByCounter(revCommitsPair.first());
+                commits.addAll(getCommitsByCounter(revCommitsPair.second()));
             }
             else {
-                commits = getCommitsByLastCommitAuthor(revCommitsPair.getFirst());
-                commits.addAll(getCommitsByLastCommitAuthor(revCommitsPair.getSecond()));
+                commits = getCommitsByLastCommitAuthor(revCommitsPair.first());
+                commits.addAll(getCommitsByLastCommitAuthor(revCommitsPair.second()));
             }
         }
         return commits;
@@ -382,27 +382,16 @@ public class CommitValidationTest {
 
     }
 
-    private static final class RevCommitsPair {
-
-        private final Iterator<RevCommit> first;
-        private final Iterator<RevCommit> second;
+    /**
+     * Pair of rev commits for testing.
+     *
+     * @param first First iterator of rev commits.
+     * @param second Second iterator of rev commits.
+     */
+    private record RevCommitsPair(Iterator<RevCommit> first, Iterator<RevCommit> second) {
 
         private RevCommitsPair() {
-            first = Collections.emptyIterator();
-            second = Collections.emptyIterator();
-        }
-
-        private RevCommitsPair(Iterator<RevCommit> first, Iterator<RevCommit> second) {
-            this.first = first;
-            this.second = second;
-        }
-
-        private Iterator<RevCommit> getFirst() {
-            return first;
-        }
-
-        private Iterator<RevCommit> getSecond() {
-            return second;
+            this(Collections.emptyIterator(), Collections.emptyIterator());
         }
 
     }
