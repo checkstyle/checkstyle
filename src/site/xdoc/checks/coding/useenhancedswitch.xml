@@ -10,20 +10,20 @@
       <p>Since Checkstyle 13.3.0</p>
       <subsection name="Description" id="UseEnhancedSwitch_Description">
         <div>
-          Ensures that the enhanced switch (using <code>-></code> for case labels) is used
+          Ensures that the enhanced switch (using <code>-&gt;</code> for case labels) is used
           instead of the traditional switch (using <code>:</code> for case labels) where possible.
         </div>
 
         <p>
           Rationale: Java 14 has introduced enhancements for switch statements and expressions
-          that disallow fall-through behavior. The enhanced switch syntax using <code>-></code>
+          that disallow fall-through behavior. The enhanced switch syntax using <code>-&gt;</code>
           for case labels typically leads to more concise and readable code, reducing the likelihood
           of errors associated with fall-through cases.
         </p>
 
         <p>
           See the <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-14.html#jls-14.11.1-200">
-          Java Language Specification</a> for more information about <code>-></code> case labels, also known as
+          Java Language Specification</a> for more information about <code>-&gt;</code> case labels, also known as
           "switch rules".
         </p>
       </subsection>
