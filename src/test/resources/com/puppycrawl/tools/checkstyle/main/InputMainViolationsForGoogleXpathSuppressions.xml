@@ -5,7 +5,7 @@
 <suppressions>
   <suppress-xpath
          files="InputMainViolationsForGoogle.java"
-         checks="MemberNameCheck"
+         checks="GoogleNonConstantFieldNameCheck"
          query="//CLASS_DEF[./IDENT[@text='InputMainViolationsForGoogle']]/
                   OBJBLOCK/VARIABLE_DEF/IDENT[@text='m_field']"
   />

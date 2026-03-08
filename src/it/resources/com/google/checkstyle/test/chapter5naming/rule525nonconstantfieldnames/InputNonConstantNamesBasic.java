@@ -2,28 +2,37 @@ package com.google.checkstyle.test.chapter5naming.rule525nonconstantfieldnames;
 
 /** Some javadoc. */
 public class InputNonConstantNamesBasic {
-  public int mPublic; // violation 'Member name 'mPublic' must match pattern'
-  protected int mProtected; // violation 'Member name 'mProtected' must match pattern'
-  int mPackage; // violation 'Member name 'mPackage' must match pattern'
-  private int mPrivate; // violation 'Member name 'mPrivate' must match pattern'
+  // violation below, ''mPublic' must .* avoid single lowercase letter followed by uppercase'
+  public int mPublic;
+  // violation below, ''mProtected' must .* avoid single lowercase letter followed by uppercase'
+  protected int mProtected;
+  // violation below, ''mPackage' must .* avoid single lowercase letter followed by uppercase'
+  int mPackage;
+  // violation below, ''mPrivate' must .* avoid single lowercase letter followed by uppercase'
+  private int mPrivate;
 
-  public int _public; // violation 'Member name '_public' must match pattern'
-  protected int prot_ected; // violation 'Member name 'prot_ected' must match pattern'
-  int package_; // violation 'Member name 'package_' must match pattern'
-  private int priva$te; // violation 'Member name 'priva\$te' must match pattern'
+  public int _public; // violation ''_public' .* underscores allowed only between adjacent digits.'
+  // violation below, ''prot_ected' .* underscores allowed only between adjacent digits.'
+  protected int prot_ected;
+  int package_; // violation ''package_' .* underscores allowed only between adjacent digits.'
+  // violation below, ''priva\$te' must .* contain only letters, digits or underscores'
+  private int priva$te;
 
   public int ppublic;
   protected int pprotected;
   int ppackage;
   private int pprivate;
 
-  int ABC = 0;
-  // 2 violations above:
+  // 2 violations 3 lines below:
   //  'Abbreviation in name 'ABC' must contain no more than '1' consecutive capital letters.'
-  //  'Member name 'ABC' must match pattern'
-  final int C_D_E = 0; // violation 'Member name 'C_D_E' must match pattern'
+  //  'Non-constant field name 'ABC' must start lowercase, be at least 2 chars'
+  int ABC = 0;
+  final int C_D_E = 0; // violation ''C_D_E' .* underscores allowed only between adjacent digits.'
 
-  public int $mPublic; // violation 'Member name '\$mPublic' must match pattern'
-  protected int mPro$tected; // violation 'Member name 'mPro\$tected' must match pattern'
-  int mPackage$; // violation 'Member name 'mPackage\$' must match pattern'
+  // violation below, ''\$mPublic' must .* contain only letters, digits or underscores'
+  public int $mPublic;
+  // violation below, ''mPro\$tected' must .* contain only letters, digits or underscores'
+  protected int mPro$tected;
+  // violation below, ''mPackage\$' must .* contain only letters, digits or underscores'
+  int mPackage$;
 }

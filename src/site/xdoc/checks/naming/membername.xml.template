@@ -80,10 +80,6 @@
       <subsection name="Example of Usage" id="MemberName_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
-            Google Style</a>
-          </li>
-          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
             Sun Style</a>
           </li>
