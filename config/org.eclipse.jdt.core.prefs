@@ -67,7 +67,6 @@ org.eclipse.jdt.core.compiler.problem.redundantNullAnnotation=error
 org.eclipse.jdt.core.compiler.problem.redundantNullCheck=error
 org.eclipse.jdt.core.compiler.problem.redundantSpecificationOfTypeArguments=error
 org.eclipse.jdt.core.compiler.problem.redundantSuperinterface=error
-org.eclipse.jdt.core.compiler.problem.reportMethodCanBeStatic=error
 org.eclipse.jdt.core.compiler.problem.reportPreviewFeatures=error
 org.eclipse.jdt.core.compiler.problem.specialParameterHidingField=error
 org.eclipse.jdt.core.compiler.problem.staticAccessReceiver=error
@@ -125,6 +124,7 @@ org.eclipse.jdt.core.compiler.problem.potentialNullReference=ignore
 org.eclipse.jdt.core.compiler.problem.potentiallyUnclosedCloseable=ignore
 # Too many false positives for methods that should be static but would cause issues.
 org.eclipse.jdt.core.compiler.problem.reportMethodCanBePotentiallyStatic=ignore
+org.eclipse.jdt.core.compiler.problem.reportMethodCanBeStatic=ignore
 # We should print all errors
 org.eclipse.jdt.core.compiler.problem.suppressOptionalErrors=disabled
 org.eclipse.jdt.core.compiler.problem.suppressWarnings=disabled

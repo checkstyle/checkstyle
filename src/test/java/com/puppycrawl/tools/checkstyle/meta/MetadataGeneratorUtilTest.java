@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 @ExtendWith(SystemOutGuard.class)
 public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
 
-    private final Set<String> modulesContainingNoMetadataFile = Set.of(
+    private static final Set<String> MODULES_CONTAINING_NO_METADATA_FILE = Set.of(
             "Checker",
             "TreeWalker",
             "ClassAndPropertiesSettersJavadocScraper"
@@ -84,7 +84,7 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
                 .stream()
                 .sorted()
                 .collect(Collectors.toCollection(LinkedHashSet::new));
-        checkstyleModules.removeAll(modulesContainingNoMetadataFile);
+        checkstyleModules.removeAll(MODULES_CONTAINING_NO_METADATA_FILE);
         assertWithMessage("Number of generated metadata files dont match with "
                 + "number of checkstyle module")
                 .that(metaFiles)
