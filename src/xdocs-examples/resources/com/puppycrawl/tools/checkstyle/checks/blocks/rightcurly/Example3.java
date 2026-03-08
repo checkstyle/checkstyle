@@ -3,7 +3,7 @@
   <module name="TreeWalker">
     <module name="RightCurly">
       <property name="option" value="alone"/>
-      <property name="tokens" value="LITERAL_SWITCH, LITERAL_CASE"/>
+      <property name="tokens" value="LITERAL_SWITCH, LITERAL_CASE, LITERAL_DEFAULT"/>
     </module>
   </module>
 </module>
@@ -45,7 +45,7 @@ public class Example3 {
       case 1: int y = 1; break;
       case 2: {x = 1;} // violation, 'should be alone on a line.'
       case 3: int z = 0; {break;}
-      default: x = 0;
+      default: {x = 0;} // violation, 'should be alone on a line.'
     }
     switch (mode) {
       case 1: x = 1; break;

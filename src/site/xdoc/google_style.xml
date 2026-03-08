@@ -732,12 +732,10 @@
                   <br/>
                   <br/>
                   There are some false-negatives regarding <code>ELSE</code>
-                  and <code>DEFAULT</code> blocks, they will be addressed at:
+                  blocks, they will be addressed at:
                   <a href="https://github.com/checkstyle/checkstyle/issues/15791">
                     #15791
                   </a>
-                  and
-                  <a href="https://github.com/checkstyle/checkstyle/issues/14782">#14782</a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks">
