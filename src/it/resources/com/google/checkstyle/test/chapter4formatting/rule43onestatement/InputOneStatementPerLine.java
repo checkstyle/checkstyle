@@ -301,6 +301,7 @@ public class InputOneStatementPerLine {
     //  ''{' at column 30 should have line break after.'
     //  ''}' at column 41 should be alone on a line.'
 
+    // violation below 'Line in block comment should start with '*'.'
     /*
       One statement inside for block where
       increment and conditional expressions are empty

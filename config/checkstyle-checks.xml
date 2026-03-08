@@ -928,6 +928,7 @@
     <module name="GenericWhitespace"/>
     <module name="MethodParamPad"/>
     <module name="NoLineWrap"/>
+    <module name="MultilineCommentLeadingAsteriskPresence"/>
     <module name="NoWhitespaceAfter">
       <property name="tokens" value="ARRAY_INIT"/>
       <property name="tokens" value="AT"/>

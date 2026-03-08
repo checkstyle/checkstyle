@@ -77,6 +77,18 @@
           </tr>
           <tr>
             <td>
+              <a href="multilinecommentleadingasteriskpresence.html#MultilineCommentLeadingAsteriskPresence">
+                MultilineCommentLeadingAsteriskPresence
+              </a>
+            </td>
+            <td>
+              Checks that all lines in a multi-line block comment start with a leading asterisk (*),
+              as required by the <a href="https://google.github.io/styleguide/javaguide.html#s4.8.6-comments">
+              Google Java Style Guide §4.8.6</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="nolinewrap.html#NoLineWrap">
                 NoLineWrap
               </a>

@@ -324,6 +324,8 @@
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]whitespace[\\/]genericwhitespace.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]whitespace[\\/]multilinecommentleadingasteriskpresence.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]whitespace[\\/]nowhitespacebeforecasedefaultcolon.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppresswarningsfilter.xml.template"/>
