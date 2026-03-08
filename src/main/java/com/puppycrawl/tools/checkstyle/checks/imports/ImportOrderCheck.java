@@ -489,7 +489,14 @@ public class ImportOrderCheck
      */
     private boolean isSeparatorInGroup(int groupIdx, boolean isStatic, int line) {
         final boolean inSameGroup = groupIdx == lastGroup;
-        return (inSameGroup || !needSeparator(isStatic)) && isSeparatorBeforeImport(line);
+        final boolean result;
+        if (inSameGroup) {
+            result = (isStatic == lastImportStatic || !separated) && isSeparatorBeforeImport(line);
+        }
+        else {
+            result = !needSeparator(isStatic) && isSeparatorBeforeImport(line);
+        }
+        return result;
     }
 
     /**
