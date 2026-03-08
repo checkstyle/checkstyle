@@ -2,7 +2,8 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="Indentation"/>
-  </module>
+      <property name = "basicOffset" value="4"/>
+    </module>
 </module>
 */
 
