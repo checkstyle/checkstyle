@@ -55,14 +55,16 @@ public class InputTextBlockGoogleStyleFormattingAnnotations {
 
     @Inner.Command(
             name = "Inner3",
-            // violation below 'Opening quotes (""") of text-block must be on the new line'
+            // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+            // violation below 'Each line of text in the text block must be indented'
             description = """
                 Create a private key and print the associated address on the blockchain
                           """)
     class Inner3 {}
 }
 
-// violation below 'Opening quotes (""") of text-block must be on the new line'
+// violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+// violation below 'Each line of text in the text block must be indented'
 @SuppressWarnings("""
 Text block in Annotation
 """) // violation 'Text-block quotes are not vertically aligned'

@@ -34,7 +34,7 @@ public class Example4 {
 
     return
         """
-    this is sample text
+        this is sample text
       """; // violation 'text-block quotes are not vertically aligned'
   }
   public void getData(int num, String text) {}
