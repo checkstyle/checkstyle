@@ -69,6 +69,9 @@
   <suppress checks="MethodCount" files="[\\/]UnusedLocalVariableCheck.java"/>
   <!-- Utility class is combination of a lot of different methods .  -->
   <suppress checks="MethodCount" files="[\\/]SiteUtil.java"/>
+  <!-- getMessage() is used to build a localized message, not redundantly copying it -->
+  <suppress checks="NoGetMessageInThrow" files="[\\/]Checker\.java"/>
+
   <!-- parse method needs catching Exceptions to print context of execution -->
   <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]InlineConfigParser\.java"/>
   <!-- exception maybe thrown while executing the static block -->

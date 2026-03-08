@@ -574,6 +574,9 @@
       <property name="severity" value="ignore"/>
     </module>
     <module name="NoFinalizer"/>
+    <module name="NoGetMessageInThrow">
+      <property name="severity" value="warning"/>
+    </module>
     <module name="OneStatementPerLine"/>
     <module name="OverloadMethodsDeclarationOrder"/>
     <module name="PackageDeclaration"/>

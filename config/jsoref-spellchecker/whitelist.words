@@ -51,6 +51,7 @@ APRV
 Aqj
 ARCHITEW
 archunit
+args
 Arial
 arity
 Arquillian
@@ -491,6 +492,7 @@ Gdrox
 generalform
 genericwhitespace
 getenv
+getmessage
 gg
 gh
 Ghj
@@ -935,6 +937,7 @@ NODESET
 noembed
 noenumtrailingcomma
 nofinalizer
+nogetmessageinthrow
 noinspection
 noinspectionreason
 nojavadoc
@@ -1165,7 +1168,8 @@ REPOURL
 requireemptylinebeforeblocktaggroup
 requirethis
 resourceleak
-Rethrown
+rethrowing
+rethrown
 returncount
 returnsreceiver
 reviewdog

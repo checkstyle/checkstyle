@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NoGetMessageInThrowCheck"
+             name="NoGetMessageInThrow"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that throw statements within catch blocks do not use
+ the caught exception's getMessage() call when the thrown exception
+ is the same type as the caught exception, as rethrowing the same
+ exception type with its own message is redundant.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Rationale: When throwing an exception of the same type as the caught
+ exception and including the caught exception's message via getMessage(),
+ the information is redundant. The original exception should be rethrown
+ directly, or a different exception type should be used.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Example of violations:
+ &lt;/p&gt;
+ &lt;div class="wrapper"&gt;&lt;pre&gt;
+ catch (IOException ex) {
+     throw new IOException("Error: " + ex.getMessage()); // violation
+ }
+ &lt;/pre&gt;&lt;/div&gt;
+
+ &lt;p&gt;
+ Correct usage:
+ &lt;/p&gt;
+ &lt;div class="wrapper"&gt;&lt;pre&gt;
+ catch (IOException ex) {
+     throw new RuntimeException("Error: " + ex.getMessage(), ex); // OK, different type
+ }
+ catch (IOException ex) {
+     throw new IOException("Error processing file", ex); // OK, no getMessage()
+ }
+ &lt;/pre&gt;&lt;/div&gt;</description>
+         <message-keys>
+            <message-key key="no.getmessage.in.throw"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
