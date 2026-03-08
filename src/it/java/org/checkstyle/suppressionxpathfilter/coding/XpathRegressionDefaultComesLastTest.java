@@ -97,4 +97,31 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testSwitchInInterface() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathDefaultComesLastSwitchInInterface.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(DefaultComesLastCheck.class);
+
+        final String[] expectedViolation = {
+            "6:13: " + getCheckMessage(DefaultComesLastCheck.class,
+                    DefaultComesLastCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
+                + "[@text='InputXpathDefaultComesLastSwitchInInterface']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/CASE_GROUP"
+                + "[./SLIST/SINGLE_LINE_COMMENT/COMMENT_CONTENT[@text=' warn\\n']]",
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
+                + "[@text='InputXpathDefaultComesLastSwitchInInterface']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/CASE_GROUP"
+                + "/LITERAL_DEFAULT"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
