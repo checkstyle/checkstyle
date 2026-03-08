@@ -422,6 +422,8 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck");
         MODULE_MAPPINGS.put("EmptyLineSeparator",
                 "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck");
+        MODULE_MAPPINGS.put("EmptyLineWrappingInBlock",
+                "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineWrappingInBlockCheck");
         MODULE_MAPPINGS.put("LocalVariableName",
                 "com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck");
         MODULE_MAPPINGS.put("ModifierOrder",
