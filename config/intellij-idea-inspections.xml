@@ -1806,7 +1806,8 @@
                    enabled_by_default="true"/>
   <inspection_tool class="ExternalizableWithoutPublicNoArgConstructor" enabled="true"
                    level="ERROR" enabled_by_default="true"/>
-  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
+  <!-- recommendations are not always good, we will control
+         how it is good for reviewers (not author). -->
   <inspection_tool class="ExtractMethodRecommender" enabled="false" level="WARNING"
                    enabled_by_default="false" />
   <inspection_tool class="FacesModelInspection" enabled="false" level="WARNING"
