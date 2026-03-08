@@ -11,7 +11,7 @@
   />
   <suppress-xpath
          files="InputMainViolationsForGoogle.java"
-         checks="MethodNameCheck"
+         checks="GoogleMethodNameCheck"
          query="//CLASS_DEF[./IDENT[@text='InputMainViolationsForGoogle']]/
                   OBJBLOCK/METHOD_DEF/IDENT[@text='_method']"
   />
