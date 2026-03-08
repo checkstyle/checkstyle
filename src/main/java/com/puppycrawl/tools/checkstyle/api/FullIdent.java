@@ -101,7 +101,11 @@ public final class FullIdent {
                 pushToIdentStack(identStack, firstChild);
             }
             else if (typeOfAst == TokenTypes.DOT) {
-                pushToIdentStack(identStack, firstChild.getNextSibling());
+                DetailAST sibling = firstChild.getNextSibling();
+                if (sibling.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+                    sibling = sibling.getNextSibling();
+                }
+                pushToIdentStack(identStack, sibling);
                 pushToIdentStack(identStack, firstChild);
                 dotCounter++;
             }

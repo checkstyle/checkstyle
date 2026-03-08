@@ -1,10 +1,10 @@
 /*
 UnusedImports
 processJavadoc = false
+violateExecutionOnNonTightHtml = (default)false
 
 
 */
-
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
 import static java.lang.annotation.ElementType.TYPE_USE;
