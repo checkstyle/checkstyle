@@ -67,6 +67,10 @@
   <suppress id="lineLength" files="config[\\/]sarif-schema-2.1.0.json"/>
   <!-- test resources are weird by design, no validations in them -->
   <suppress id="lineLength"
+       files="src[\\/]test[\\/]resources[\\/].*[\\/]InputJavaLineLength.*\.java"/>
+  <suppress id="lineLength"
+       files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]sizes[\\/]javalinelength\.xml\.template"/>
+  <suppress id="lineLength"
          files="src[\\/]it[\\/]resources[\\/].*[\\/]Input.*ColumnLimit\.java"/>
   <suppress id="lineLength"
          files="src[\\/]it[\\/]resources[\\/].*[\\/]InputPackageStatement\.java"/>
