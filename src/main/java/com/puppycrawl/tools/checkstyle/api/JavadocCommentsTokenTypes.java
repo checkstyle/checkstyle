@@ -27,7 +27,8 @@ import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer;
  *
  * @see <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
  *     javadoc - The Java API Documentation Generator</a>
- * @noinspection JavadocDeclaration
+ * @noinspection EmptyClass, JavadocDeclaration
+ * @noinspectionreason EmptyClass - false positive from Language Injection in snippet block
  * @noinspectionreason JavadocDeclaration - Javadoc is intentional
  */
 @SuppressWarnings({"InvalidInlineTag", "UnrecognisedJavadocTag"})

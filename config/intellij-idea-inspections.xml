@@ -1681,8 +1681,7 @@
   </inspection_tool>
   <inspection_tool class="EmptyCatchBlockJS" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
-  <inspection_tool class="EmptyClass" enabled="false" level="WARNING" enabled_by_default="false">
+  <inspection_tool class="EmptyClass" enabled="true" level="WARNING" enabled_by_default="true">
     <option name="ignorableAnnotations">
       <value/>
     </option>
@@ -1806,7 +1805,6 @@
                    enabled_by_default="true"/>
   <inspection_tool class="ExternalizableWithoutPublicNoArgConstructor" enabled="true"
                    level="ERROR" enabled_by_default="true"/>
-  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
   <inspection_tool class="ExtractMethodRecommender" enabled="false" level="WARNING"
                    enabled_by_default="false" />
   <inspection_tool class="FacesModelInspection" enabled="false" level="WARNING"
@@ -1846,7 +1844,6 @@
   </inspection_tool>
   <inspection_tool class="FieldMayBeFinal" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
   <inspection_tool class="FieldMayBeStatic" enabled="false" level="WARNING"
                    enabled_by_default="false"/>
   <inspection_tool class="FieldNotUsedInToString" enabled="true" level="ERROR"
@@ -4511,6 +4508,7 @@
         <option value="JUnitTestClassNamingConvention"/>
         <!-- usage of picocli library in Main.java case we won't fix -->
         <option value="CanBeFinal"/>
+        <option value="EmptyClass"/>
       </list>
     </option>
   </inspection_tool>
