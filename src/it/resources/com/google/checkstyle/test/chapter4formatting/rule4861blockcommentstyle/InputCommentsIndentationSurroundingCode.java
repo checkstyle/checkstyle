@@ -54,7 +54,7 @@ public class InputCommentsIndentationSurroundingCode {
     int v = 6;
     if (a == b && v == b
             || (a == 1
-                /// // odd indentation comment
+                // // odd indentation comment
           /* // odd indentation comment
            * one fine day ... */
             // violation 3 lines above '.* indentation should.* as line 62.'
