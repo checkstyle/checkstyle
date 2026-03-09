@@ -51,6 +51,7 @@ APRV
 Aqj
 ARCHITEW
 archunit
+args
 Arial
 arity
 Arquillian
@@ -163,6 +164,7 @@ charset
 CHDBEFIF
 checkchmod
 checkerframework
+checkmodule
 checksandfilessuppressionfilegeneratorauditlistener
 checkstyle
 checkstyleanttask
