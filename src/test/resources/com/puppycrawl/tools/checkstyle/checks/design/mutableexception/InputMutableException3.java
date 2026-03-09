@@ -39,7 +39,7 @@ public class InputMutableException3 {
         private int errorCode;
 
         public class CustomFailure extends ThreadDeath {
-            private int errorCode; // violation
+            private int errorCode; // violation 'The field 'errorCode' must be declared final'
             public void someMethod() {
                 if(true) {
                     final int i = 0;

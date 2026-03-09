@@ -173,6 +173,22 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example10.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
+        <p id="Example11-config">
+          To configure the check to allow empty switch block statements:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example11.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example11-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example11.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
       </subsection>
 
       <subsection name="Example of Usage" id="WhitespaceAround_Example_of_Usage">

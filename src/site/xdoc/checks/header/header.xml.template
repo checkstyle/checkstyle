@@ -35,15 +35,15 @@
       </subsection>
 
       <subsection name="Examples" id="Header_Examples">
-        <p id="Example1-config">
+        <p id="Example1-raw">
           To configure the check such that no violations arise.
           Default values of properties are used.
         </p>
 
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example1.java"/>
-          <param name="type" value="config"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example1.xml"/>
+          <param name="type" value="raw"/>
         </macro>
         <p id="Example1-code">Example1:</p>
         <macro name="example">
@@ -51,7 +51,7 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example2-config">
+        <p id="Example2-raw">
           To configure the check to use header file <code>"java.header"</code> and
           ignore lines <code>2</code>, <code>3</code>, and <code> 4</code> and only process Java
           files. 'ignoreLines' property is very useful for supporting headers that contain
@@ -60,8 +60,8 @@
 
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example2.java"/>
-          <param name="type" value="config"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example2.xml"/>
+          <param name="type" value="raw"/>
         </macro>
         <p id="java-raw">content of "java.header" file:</p>
         <macro name="example">
@@ -75,13 +75,13 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example2.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example3-config">
+        <p id="Example3-raw">
           Without the need for an external header file:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example3.java"/>
-          <param name="type" value="config"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example3.xml"/>
+          <param name="type" value="raw"/>
         </macro>
         <p id="Example3-code">Example3:</p>
         <macro name="example">
@@ -89,13 +89,13 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example3.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="Example4-raw">
           In case target file is less in size than header file:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example4.java"/>
-          <param name="type" value="config"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example4.xml"/>
+          <param name="type" value="raw"/>
         </macro>
         <p id="Example4-code">Example:</p>
         <macro name="example">

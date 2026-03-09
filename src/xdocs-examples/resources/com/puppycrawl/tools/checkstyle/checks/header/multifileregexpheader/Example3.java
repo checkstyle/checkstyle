@@ -1,8 +1,8 @@
-/*xml
-*/
-// xdoc section -- start
+/* Licensed to the ASF under the Apache License, Version 2.0 (see NOTICE).
+ * You may not use this file except in compliance:
+ * http://www.apache.org/licenses/LICENSE-2.0 (AS IS, no warranties/conditions). */
 package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
-/* violation on first line 'Header mismatch, expected line content was' */
-public class Example3 { }
-// xdoc section -- end
-// violation 7 lines above 'Header mismatch, expected line content was'
+
+public class Example3 {
+    // Some code
+}

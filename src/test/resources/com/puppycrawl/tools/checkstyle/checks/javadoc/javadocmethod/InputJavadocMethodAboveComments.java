@@ -1,6 +1,12 @@
 /*
 JavadocMethod
+allowedAnnotations = (default)Override
 validateThrows = true
+accessModifiers = (default)public, protected, package, private
+allowMissingParamTags = (default)false
+allowMissingReturnTag = (default)false
+allowInlineReturn = (default)false
+tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 
 */
 
@@ -16,7 +22,6 @@ public class InputJavadocMethodAboveComments {
     public int foo() throws Exception { // violation, 'Expected @throws tag for 'Exception''
         return 0;
     }
-
     /**
      * A Javadoc comment.
      * @return 0
@@ -25,7 +30,6 @@ public class InputJavadocMethodAboveComments {
     public int foo2() throws Exception { // violation, 'Expected @throws tag for 'Exception''
         return 0;
     }
-
     /**
      * A dangling Javadoc comment.
      * @throws Exception exception
@@ -39,7 +43,6 @@ public class InputJavadocMethodAboveComments {
     public int foo3() throws Exception {
         return 0;
     }
-
     /**
      * A dangling Javadoc comment.
      * @throws Exception exception
@@ -52,7 +55,6 @@ public class InputJavadocMethodAboveComments {
     public int foo4() throws Exception {  // violation, 'Expected @throws tag for 'Exception''
         return 0;
     }
-
     /**
      * A Javadoc comment.
      * @return 0
@@ -63,7 +65,6 @@ public class InputJavadocMethodAboveComments {
     public int method() throws Exception { // violation, 'Expected @throws tag for 'Exception''
         return 0;
     }
-
     /**
      * A Javadoc comment.
      * @return 0
@@ -74,7 +75,6 @@ public class InputJavadocMethodAboveComments {
     public int method2() throws Exception {  // violation,'Expected @throws tag for 'Exception''
         return 0;
     }
-
     /**
      * A Javadoc comment.
      * @return 0
@@ -84,7 +84,6 @@ public class InputJavadocMethodAboveComments {
     public int method3() throws Exception { // violation, 'Expected @throws tag for 'Exception''
         return 0;
     }
-
     /**
      * A Javadoc comment.
      * @return 0
@@ -94,26 +93,20 @@ public class InputJavadocMethodAboveComments {
     public int method4() throws Exception { // violation, 'Expected @throws tag for 'Exception''
         return 0;
     }
-
     /*@ A JML Annotation */
     public int foo5() {
         return 0;
     }
-
     /**
      * A Javadoc comment.
      * @return 0
      */
     /*@ A JML Annotation */ public int foo6() { return 0; }
-
-
     public void foo7() throws Exception { }
-
     /**
      * A Javadoc comment.
      * @return 0
      */
     public int foo8() { return 0; } /* @ A JML Annotation */
-
     public void foo9() throws Exception { }
 }

@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.filters;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 
@@ -210,6 +212,7 @@ public class SuppressFilterElement
      * @param pattern pattern object
      * @return value of pattern or null
      */
+    @Nullable
     private static String getPatternSafely(Pattern pattern) {
         String result = null;
         if (pattern != null) {

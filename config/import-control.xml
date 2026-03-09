@@ -109,6 +109,7 @@
     <allow class="com.puppycrawl.tools.checkstyle.utils.CheckUtil" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.utils.JavadocUtil" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.utils.TokenUtil" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.utils.NullUtil" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.PropertyType"/>
   </subpackage>
 

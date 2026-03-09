@@ -17,7 +17,7 @@ public class InputAnnotationUseStyleEverythingMixed
 
 }
 
-@SomeArraysDiffStyle(pooches={DOGS.LEO}, um={}, duh={"bleh"})
+@SomeArraysDiffStyle(pooches={DOGS.LEO}, um={}, duh={"ignore"})
 @SuppressWarnings("") //compact_no_array
 @Deprecated()
 class Dep7 {
@@ -30,7 +30,7 @@ class Dep7 {
 enum SON7 {
 
     @Deprecated
-    @SomeArraysDiffStyle(pooches={DOGS.LEO}, um={""}, duh={"bleh"})
+    @SomeArraysDiffStyle(pooches={DOGS.LEO}, um={""}, duh={"ignore"})
     @APooch(dog=DOGS.HERBIE)
     @Another("") //compact_no_array
     ETHAN

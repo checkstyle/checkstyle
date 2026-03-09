@@ -595,6 +595,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.UnnecessarySemicolonInEnumerationCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnnecessarySemicolonInTryWithResourcesCheck",
                 BASE_PACKAGE + ".checks.coding.UnnecessarySemicolonInTryWithResourcesCheck");
+        NAME_TO_FULL_MODULE_NAME.put("UseEnhancedSwitchCheck",
+            BASE_PACKAGE + ".checks.coding.UseEnhancedSwitchCheck");
         NAME_TO_FULL_MODULE_NAME.put("VariableDeclarationUsageDistanceCheck",
                 BASE_PACKAGE + ".checks.coding.VariableDeclarationUsageDistanceCheck");
         NAME_TO_FULL_MODULE_NAME.put("WhenShouldBeUsedCheck",
@@ -791,6 +793,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.naming.LocalVariableNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("MemberNameCheck",
                 BASE_PACKAGE + ".checks.naming.MemberNameCheck");
+        NAME_TO_FULL_MODULE_NAME.put("GoogleNonConstantFieldNameCheck",
+                BASE_PACKAGE + ".checks.naming.GoogleNonConstantFieldNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("MethodNameCheck",
                 BASE_PACKAGE + ".checks.naming.MethodNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("MethodTypeParameterNameCheck",
@@ -909,6 +913,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.FinalParametersCheck");
         NAME_TO_FULL_MODULE_NAME.put("NewlineAtEndOfFileCheck",
                 BASE_PACKAGE + ".checks.NewlineAtEndOfFileCheck");
+        NAME_TO_FULL_MODULE_NAME.put("LineEndingCheck",
+                BASE_PACKAGE + ".checks.LineEndingCheck");
         NAME_TO_FULL_MODULE_NAME.put("NoCodeInFileCheck",
                 BASE_PACKAGE + ".checks.NoCodeInFileCheck");
         NAME_TO_FULL_MODULE_NAME.put("OuterTypeFilenameCheck",
@@ -931,6 +937,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.UpperEllCheck");
         NAME_TO_FULL_MODULE_NAME.put("HexLiteralCaseCheck",
                 BASE_PACKAGE + ".checks.HexLiteralCaseCheck");
+        NAME_TO_FULL_MODULE_NAME.put("NumericalPrefixesInfixesSuffixesCharacterCaseCheck",
+                BASE_PACKAGE + ".checks.NumericalPrefixesInfixesSuffixesCharacterCaseCheck");
     }
 
     /**

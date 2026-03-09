@@ -83,4 +83,28 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testInsideMethod() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathTodoCommentInsideMethod.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(TodoCommentCheck.class);
+        moduleConfig.addProperty("format", "FIXME:");
+
+        final String[] expectedViolation = {
+            "5:11: " + getCheckMessage(TodoCommentCheck.class, MSG_KEY, "FIXME:"),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
+                        + "'InputXpathTodoCommentInsideMethod']]/OBJBLOCK/"
+                        + "METHOD_DEF[./IDENT[@text='method']]/SLIST/"
+                        + "SINGLE_LINE_COMMENT/COMMENT_CONTENT[@text=' FIXME: //warn\\n']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

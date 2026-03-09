@@ -143,10 +143,10 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
         final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
         checkInstance.configure(checkConfig);
-        final String allConfiguredPaths = checkInstance.getConfiguredHeaderPaths();
 
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$", allConfiguredPaths),
+            "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$",
+                    getPath("InputRegexpHeaderNewLines.header")),
         };
         verify(checkConfig,
                 getPath("InputRegexpHeaderConsecutiveNewLines.java"), expected);
@@ -179,10 +179,10 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
         final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
         checkInstance.configure(checkConfig);
-        final String allConfiguredPaths = checkInstance.getConfiguredHeaderPaths();
 
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_HEADER_MISMATCH, "^/*$", allConfiguredPaths),
+            "1: " + getCheckMessage(MSG_HEADER_MISMATCH, "^/*$",
+                    getPath("InputRegexpHeader.header")),
         };
         verify(checkConfig, getPath("InputRegexpHeaderNonMatching.java"),
                 expected);
@@ -196,10 +196,10 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
         final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
         checkInstance.configure(checkConfig);
-        final String allConfiguredPaths = checkInstance.getConfiguredHeaderPaths();
 
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_HEADER_MISMATCH, "^/*$", allConfiguredPaths),
+            "1: " + getCheckMessage(MSG_HEADER_MISMATCH, "^/*$",
+                    getUriString("InputRegexpHeader.header")),
         };
         verify(checkConfig, getPath("InputRegexpHeaderNonMatching.java"),
                 expected);
@@ -213,10 +213,10 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
         final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
         checkInstance.configure(checkConfig);
-        final String allConfiguredPaths = checkInstance.getConfiguredHeaderPaths();
 
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$", allConfiguredPaths),
+            "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$",
+                    getUriString("InputRegexpHeaderNewLines.header")),
         };
         verify(checkConfig,
                 getPath("InputRegexpHeaderConsecutiveNewLines.java"), expected);
@@ -271,10 +271,10 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
         final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
         checkInstance.configure(checkConfig);
-        final String allPaths = checkInstance.getConfiguredHeaderPaths();
 
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_HEADER_MISMATCH, "// .*", allPaths),
+            "2: " + getCheckMessage(MSG_HEADER_MISMATCH, "// .*",
+                    getPath("InputRegexpHeader.header")),
         };
         verify(checkConfig, getPath("InputRegexpHeaderMulti52.java"), expected);
     }
@@ -287,10 +287,10 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
         final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
         checkInstance.configure(checkConfig);
-        final String allPaths2 = checkInstance.getConfiguredHeaderPaths();
 
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_HEADER_MISMATCH, "// .*", allPaths2),
+            "2: " + getCheckMessage(MSG_HEADER_MISMATCH, "// .*",
+                    getPath("InputRegexpHeader.header")),
         };
         verify(checkConfig, getPath("InputRegexpHeaderMulti52.java"), expected);
     }
@@ -425,10 +425,9 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
         final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
         checkInstance.configure(checkConfig);
-        final String allPaths = checkInstance.getConfiguredHeaderPaths();
 
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$", allPaths),
+            "2: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$", headerFile.getPath()),
         };
         verify(checkConfig, fileNoBlank.getPath(), expected);
     }
@@ -455,10 +454,10 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
         final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
         checkInstance.configure(checkConfig);
-        final String allPaths = checkInstance.getConfiguredHeaderPaths();
 
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Header 1", allPaths),
+            "1: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Header 1",
+                    header1File.getPath() + ", " + header2File.getPath()),
         };
         verify(checkConfig, testFile.getPath(), expected);
     }
@@ -538,10 +537,9 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
         final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
         checkInstance.configure(checkConfig);
-        final String allPaths = checkInstance.getConfiguredHeaderPaths();
 
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_HEADER_MISSING, headerFile.getPath(), allPaths),
+            "1: " + getCheckMessage(MSG_HEADER_MISSING, headerFile.getPath(), headerFile.getPath()),
         };
         verify(checkConfig, testFile.getPath(), expected);
     }
@@ -566,11 +564,10 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
         final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
         checkInstance.configure(checkConfig);
-        final String allPaths = checkInstance.getConfiguredHeaderPaths();
 
         final String[] expected = {
             "2: " + getCheckMessage(MSG_HEADER_MISMATCH,
-                "// Second line matches", allPaths),
+                "// Second line matches", headerFile.getPath()),
         };
         verify(checkConfig, testFile.getPath(), expected);
     }
@@ -595,10 +592,10 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
         final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
         checkInstance.configure(checkConfig);
-        final String allPaths = checkInstance.getConfiguredHeaderPaths();
 
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Different line", allPaths),
+            "2: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Different line",
+                    headerFile.getPath()),
         };
         verify(checkConfig, testFile.getPath(), expected);
     }
@@ -621,10 +618,9 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
         final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
         checkInstance.configure(checkConfig);
-        final String allPaths = checkInstance.getConfiguredHeaderPaths();
-
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Header content", allPaths),
+            "1: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Header content",
+                    headerFile.getPath()),
         };
         verify(checkConfig, testFile.getPath(), expected);
     }
@@ -651,11 +647,10 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
         final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
         checkInstance.configure(checkConfig);
-        final String allPaths = checkInstance.getConfiguredHeaderPaths();
 
         final String[] expected = {
             "3: " + getCheckMessage(MSG_HEADER_MISMATCH,
-                    "// Third line with different pattern", allPaths),
+                    "// Third line with different pattern", headerFile.getPath()),
         };
         verify(checkConfig, testFile.getPath(), expected);
     }
@@ -680,10 +675,9 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
         final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
         checkInstance.configure(checkConfig);
-        final String allPaths = checkInstance.getConfiguredHeaderPaths();
 
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_HEADER_MISSING, headerFile.getPath(), allPaths),
+            "1: " + getCheckMessage(MSG_HEADER_MISSING, headerFile.getPath(), headerFile.getPath()),
         };
         verify(checkConfig, testFile.getPath(), expected);
     }
@@ -708,10 +702,9 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
         final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
         checkInstance.configure(checkConfig);
-        final String allPaths = checkInstance.getConfiguredHeaderPaths();
 
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_HEADER_MISSING, headerFile.getPath(), allPaths),
+            "1: " + getCheckMessage(MSG_HEADER_MISSING, headerFile.getPath(), headerFile.getPath()),
         };
         verify(checkConfig, testFile.getPath(), expected);
     }
@@ -785,10 +778,10 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
         final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
         checkInstance.configure(checkConfig);
-        final String allPaths = checkInstance.getConfiguredHeaderPaths();
 
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Third line with pattern .*", allPaths),
+            "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Third line with pattern .*",
+                    headerFile.getPath()),
         };
         verify(checkConfig, testFile.getPath(), expected);
     }
@@ -933,51 +926,4 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
                     .contains("unable to load header file nonexistent.header");
         }
     }
-
-    @Test
-    public void testConfiguredHeaderPathsNoFiles() {
-        final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
-        assertWithMessage("Expected empty string when no header files are configured")
-            .that(check.getConfiguredHeaderPaths())
-            .isEmpty();
-    }
-
-    @Test
-    public void testConfiguredHeaderPathsSingleFile() throws IOException {
-        final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
-        final File headerFile = new File(temporaryFolder, "singleTest.header");
-        Files.writeString(headerFile.toPath(), "// Single test header", StandardCharsets.UTF_8);
-        final String path = headerFile.getAbsolutePath();
-
-        check.setHeaderFiles(path);
-
-        assertWithMessage("Expected path of the single configured file")
-            .that(check.getConfiguredHeaderPaths())
-            .isEqualTo(path);
-    }
-
-    @Test
-    public void testConfiguredHeaderPathsMultipleFiles() throws IOException {
-        final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
-        final File headerFile1 = new File(temporaryFolder, "multiTest1.header");
-        Files.writeString(headerFile1.toPath(), "// Multi test header 1", StandardCharsets.UTF_8);
-        final String path1 = headerFile1.getAbsolutePath();
-
-        final File headerFile2 = new File(temporaryFolder, "multiTest2.header");
-        Files.writeString(headerFile2.toPath(), "// Multi test header 2", StandardCharsets.UTF_8);
-        final String path2 = headerFile2.getAbsolutePath();
-
-        check.setHeaderFiles(path1, path2);
-
-        final String expectedPaths = path1 + ", " + path2;
-        assertWithMessage("Expected comma-separated paths of multiple configured files")
-            .that(check.getConfiguredHeaderPaths())
-            .isEqualTo(expectedPaths);
-
-        check.setHeaderFiles(path1, path2);
-        assertWithMessage("Expected comma-separated paths when set with distinct args")
-            .that(check.getConfiguredHeaderPaths())
-            .isEqualTo(expectedPaths);
-    }
-
 }

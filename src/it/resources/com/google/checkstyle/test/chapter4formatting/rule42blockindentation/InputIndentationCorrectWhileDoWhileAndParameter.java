@@ -115,7 +115,7 @@ class InputIndentationCorrectWhileDoWhileAndParameter {
                 new InnerClassFoo())) {}
 
             do {
-              /* Do smth*/
+              /* Do something*/
 
             } while (conditionFirst(
                 "Loooooooooooooooooong",
@@ -148,7 +148,7 @@ class InputIndentationCorrectWhileDoWhileAndParameter {
                 || conditionNoArg() && fooooooooobooleanBooleanVeryLongName) {}
 
             do {
-              /* Do smth*/
+              /* Do something*/
 
             } while (conditionSecond(
                     10000000000.0,
@@ -217,7 +217,7 @@ class InputIndentationCorrectWhileDoWhileAndParameter {
           || conditionNoArg()) {}
 
       do {
-        /* Do smth*/
+        /* Do something*/
 
       } while (conditionSecond(
               10000000000.0,

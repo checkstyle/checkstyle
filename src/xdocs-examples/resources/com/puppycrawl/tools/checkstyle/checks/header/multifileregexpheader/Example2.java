@@ -1,9 +1,7 @@
-/*xml
-*/
-// xdoc section -- start
+// Wrong header format
 package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
-/* violation on first line 'Header mismatch, expected line content was' */
-// because headerFile is bigger then target java file
-public class Example2 { }
-// xdoc section -- end
-// violation 8 lines above 'Header mismatch, expected line content was'
+
+public class Example2 {
+    // Some code
+}
+// violation 6 lines above 'Header mismatch, expected line content was'

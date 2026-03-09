@@ -86,7 +86,7 @@ public class JavadocPackageCheckTest
             "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
         verifyWithInlineConfigParser(
-            getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored.java"),
+            getPath("packagehtml" + File.separator + "InputJavadocPackageHtmlIgnored.java"),
             expected);
     }
 
@@ -94,7 +94,7 @@ public class JavadocPackageCheckTest
     public void testHtmlAllowed() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-            getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored2.java"),
+            getPath("packagehtml" + File.separator + "InputJavadocPackageHtmlIgnored2.java"),
             getPath("noparentfile" + File.separator + "package-info.java"),
             expected);
     }

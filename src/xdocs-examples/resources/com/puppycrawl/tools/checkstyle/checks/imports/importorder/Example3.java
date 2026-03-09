@@ -18,15 +18,15 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import static java.io.File.createTempFile;
 import static java.lang.Math.abs; // ok, alphabetical case-sensitive ASCII order, 'i' < 'l'
 
-import java.io.File; // violation, alphabetical case-sensitive ASCII order, 'i' < 'l'
+import java.io.File; // violation 'Extra separation in import group before 'java.io.File''
 
-import java.io.IOException; // violation, extra separation in 'java' import group
+import java.io.IOException; // violation 'Extra separation in import group before 'java.io.IOException''
 
 import org.w3c.dom.Document;
 
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE; // violation, wrong order, 'javax' must come before 'org'
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE; // violation 'Import statement for 'javax.swing.WindowConstants.EXIT_ON_CLOSE' violates the configured import group order.'
 import javax.swing.JComponent;
-import org.w3c.dom.Element; // violation, must be separated from previous 'javax' import
+import org.w3c.dom.Element; // violation ''org.w3c.dom.Element' should be separated from previous imports.'
 
 import com.sun.security.auth.UserPrincipal;
 import com.sun.source.tree.Tree;

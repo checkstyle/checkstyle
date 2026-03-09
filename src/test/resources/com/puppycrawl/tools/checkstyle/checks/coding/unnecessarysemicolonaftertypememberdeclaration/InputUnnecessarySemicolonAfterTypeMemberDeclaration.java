@@ -10,28 +10,28 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, VARIABLE_D
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicolonaftertypememberdeclaration;
 
 public class InputUnnecessarySemicolonAfterTypeMemberDeclaration {
-    ; // violation
+    ; // violation, 'Unnecessary semicolon.'
 
-    {/*init block*/}; // violation
+    {/*init block*/}; // violation, 'Unnecessary semicolon.'
 
-    static {}; // violation
+    static {}; // violation, 'Unnecessary semicolon.'
 
-    InputUnnecessarySemicolonAfterTypeMemberDeclaration(){}; // violation
+    InputUnnecessarySemicolonAfterTypeMemberDeclaration(){}; // violation, 'Unnecessary semicolon.'
 
-    class B{}; // violation
+    class B{}; // violation, 'Unnecessary semicolon.'
 
-    void method(){}; // violation
+    void method(){}; // violation, 'Unnecessary semicolon.'
 
-    interface aa{}; // violation
+    interface aa{}; // violation, 'Unnecessary semicolon.'
 
-    enum aa1{}; // violation
+    enum aa1{}; // violation, 'Unnecessary semicolon.'
 
-    @interface anno {}; // violation
+    @interface anno {}; // violation, 'Unnecessary semicolon.'
 
-    int field;; // violation
+    int field;; // violation, 'Unnecessary semicolon.'
 
     enum c{
-        B,C;; // violation
+        B,C;; // violation, 'Unnecessary semicolon.'
     }
 
     void ignoreEmptyStatements(){
@@ -43,13 +43,13 @@ enum e {
     int enumField;
 };
 @interface an {
-    ; // violation
+    ; // violation, 'Unnecessary semicolon.'
 };
 interface i {
-    ; // violation
+    ; // violation, 'Unnecessary semicolon.'
 };
 @interface annotation {
-    String value();; // violation
+    String value();; // violation, 'Unnecessary semicolon.'
 }
 enum e1 {}
 enum e2 {;}

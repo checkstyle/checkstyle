@@ -174,7 +174,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCache() throws Exception {
         final String[] expected = {
-            "12: " + getCheckMessage(SummaryJavadocCheck.class, MSG_SUMMARY_FIRST_SENTENCE),
+            "12:4: " + getCheckMessage(SummaryJavadocCheck.class, MSG_SUMMARY_FIRST_SENTENCE),
         };
         verifyWithInlineConfigParser(getPath("InputAbstractJavadocCache1.java"),
             getPath("InputAbstractJavadocCache2.java"), expected);
@@ -189,7 +189,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCacheWithTwoBlockCommentAtSameLine() throws Exception {
         final String[] expected = {
-            "13: " + getCheckMessage(SummaryJavadocCheck.class, MSG_SUMMARY_FIRST_SENTENCE),
+            "13:20: " + getCheckMessage(SummaryJavadocCheck.class, MSG_SUMMARY_FIRST_SENTENCE),
         };
         verifyWithInlineConfigParser(getPath("InputAbstractJavadocCache4.java"), expected);
     }

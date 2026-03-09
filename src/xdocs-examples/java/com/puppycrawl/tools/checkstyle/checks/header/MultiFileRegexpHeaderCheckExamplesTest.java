@@ -33,7 +33,9 @@ public class MultiFileRegexpHeaderCheckExamplesTest extends AbstractExamplesModu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyWithExternalXmlConfig(getPath("Example1.xml"),
+                                    getPath("Example1.java"),
+                                     expected);
     }
 
     @Test

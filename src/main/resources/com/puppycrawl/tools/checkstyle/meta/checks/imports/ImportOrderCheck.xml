@@ -95,7 +95,9 @@
          </properties>
          <message-keys>
             <message-key key="import.groups.separated.internally"/>
-            <message-key key="import.ordering"/>
+            <message-key key="import.ordering.group"/>
+            <message-key key="import.ordering.lex"/>
+            <message-key key="import.ordering.static"/>
             <message-key key="import.separation"/>
          </message-keys>
       </check>

@@ -1,0 +1,7 @@
+package com.puppycrawl.tools.checkstyle.checks.lineending; // violation 'CR, but LF is detected.'
+                                                           // violation 'CR, but LF is detected.'
+public class InputLineEndingCrExpected2 {                  // violation 'CR, but LF is detected.'
+    public void method() {                                 // violation 'CR, but LF is detected.'
+        int a = 1;                                         // violation 'CR, but LF is detected.'
+    }                                                      // violation 'CR, but LF is detected.'
+}                                                          // violation 'CR, but LF is detected.'

@@ -24,7 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 /** Some Javadoc A {@code Foo} is a simple Javadoc. */
-class OverrideAlwaysUsedTest extends AbstractGoogleModuleTestSupport {
+public class OverrideAlwaysUsedTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

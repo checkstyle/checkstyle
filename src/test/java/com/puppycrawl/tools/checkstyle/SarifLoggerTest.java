@@ -145,31 +145,29 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-     public void testDoubleError() throws Exception {
-        final String inputFile = "InputSarifLoggerDoubleError.java";
-        final String expectedReportFile = "ExpectedSarifLoggerDoubleError.sarif";
+    public void testDoubleError() throws Exception {
+        final SarifLogger logger =
+                new SarifLogger(outStream, OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath("InputSarifLoggerDoubleError.java"),
+                getPath("ExpectedSarifLoggerDoubleError.sarif"),
+                logger,
+                outStream
+        );
+    }
+
+    @Test
+    public void testAddException() throws Exception {
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
 
         verifyWithInlineConfigParserAndLogger(
-                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
-    }
-
-    @Test
-    public void testAddException() throws IOException {
-        final SarifLogger logger = new SarifLogger(outStream,
-                OutputStreamOptions.CLOSE);
-        logger.auditStarted(null);
-        final Violation message =
-                new Violation(1, 1,
-                        "messages.properties", "null", null, null,
-                        getClass(), "found an error");
-        final AuditEvent ev = new AuditEvent(this, null, message);
-        logger.fileStarted(ev);
-        logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
-        logger.fileFinished(ev);
-        logger.auditFinished(null);
-        verifyContent(getPath("ExpectedSarifLoggerSingleException.sarif"), outStream);
+                getPath("InputSarifLoggerSingleException.java"),
+                getPath("ExpectedSarifLoggerSingleException.sarif"),
+                logger,
+                outStream
+        );
     }
 
     @Test
@@ -222,20 +220,14 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAddErrorWithSpaceInPath() throws IOException {
+    public void testAddErrorWithSpaceInPath() throws Exception {
+        final String inputFile = "InputSarifLogger Space.java";
+        final String expectedReportFile = "ExpectedSarifLoggerSpaceInPath.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
-        logger.auditStarted(null);
-        final Violation violation =
-                new Violation(1, 1,
-                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
-                        getClass(), "found an error");
-        final AuditEvent ev = new AuditEvent(this, "/home/someuser/Code/Test 2.java", violation);
-        logger.fileStarted(ev);
-        logger.addError(ev);
-        logger.fileFinished(ev);
-        logger.auditFinished(null);
-        verifyContent(getPath("ExpectedSarifLoggerSpaceInPath.sarif"), outStream);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
     @Test
@@ -363,11 +355,14 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoCloseStream() throws IOException {
+    public void testNoCloseStream() throws Exception {
+        final String inputFile = "InputSarifLoggerEmpty.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEmpty.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.NONE);
-        logger.auditStarted(null);
-        logger.auditFinished(null);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
 
         assertWithMessage("Invalid close count")
             .that(outStream.getCloseCount())
@@ -375,9 +370,6 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid flush count")
             .that(outStream.getFlushCount())
             .isEqualTo(1);
-
-        outStream.close();
-        verifyContent(getPath("ExpectedSarifLoggerEmpty.sarif"), outStream);
     }
 
     @Test

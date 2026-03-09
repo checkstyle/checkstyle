@@ -116,9 +116,9 @@ public class InputEqualsAvoidNullIgnoreCase {
 
         new Object().equals("more cheese");
 
-        InputEqualsAvoidNullOutter1 outter = new InputEqualsAvoidNullOutter1();
+        InputEqualsAvoidNullOuter1 outer = new InputEqualsAvoidNullOuter1();
 
-        outter.new InputEqualsAvoidNullInner().equals("eat pizza and enjoy inner classes");
+        outer.new InputEqualsAvoidNullInner().equals("eat pizza and enjoy inner classes");
     }
 
     /**
@@ -173,9 +173,9 @@ public class InputEqualsAvoidNullIgnoreCase {
 
         new Object().equals("more cheese");
 
-        InputEqualsAvoidNullOutter1 outter = new InputEqualsAvoidNullOutter1();
+        InputEqualsAvoidNullOuter1 outer = new InputEqualsAvoidNullOuter1();
 
-        outter.new InputEqualsAvoidNullInner().equals("eat pizza and enjoy inner classes");
+        outer.new InputEqualsAvoidNullInner().equals("eat pizza and enjoy inner classes");
 
         s.equalsIgnoreCase(s += "mushrooms");
 
@@ -199,7 +199,7 @@ public class InputEqualsAvoidNullIgnoreCase {
 
 }
 
-class InputEqualsAvoidNullOutter1 {
+class InputEqualsAvoidNullOuter1 {
     public class InputEqualsAvoidNullInner {
             public boolean equals(Object o) {
                 return true;

@@ -98,4 +98,33 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testInRecord() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathUncommentedMainInRecord.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(UncommentedMainCheck.class);
+
+        final String[] expectedViolation = {
+            "4:5: " + getCheckMessage(UncommentedMainCheck.class,
+                        UncommentedMainCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/RECORD_DEF"
+                        + "[./IDENT[@text='InputXpathUncommentedMainInRecord']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]",
+                "/COMPILATION_UNIT/RECORD_DEF"
+                        + "[./IDENT[@text='InputXpathUncommentedMainInRecord']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS",
+                "/COMPILATION_UNIT/RECORD_DEF"
+                        + "[./IDENT[@text='InputXpathUncommentedMainInRecord']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS/LITERAL_PUBLIC"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

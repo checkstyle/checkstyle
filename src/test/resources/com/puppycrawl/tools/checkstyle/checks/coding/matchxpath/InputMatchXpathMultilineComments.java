@@ -11,13 +11,15 @@ package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
 public class InputMatchXpathMultilineComments {
 
-    /* // violation
+    // violation below 'Illegal code structure detected'
+    /*
     Forbidden comment
     Some other comment
      */
     void foo1() {}
 
-    /* // violation
+    // violation below 'Illegal code structure detected'
+    /*
     Some other comment
     Forbidden comment
     */

@@ -85,4 +85,26 @@ public class XpathRegressionUnusedImportsTest extends AbstractXpathTestSupport {
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testImportBreak() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathUnusedImportsBreak.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(UnusedImportsCheck.class);
+
+        final String[] expectedViolation = {
+            "3:8: " + getCheckMessage(UnusedImportsCheck.class,
+                    UnusedImportsCheck.MSG_KEY, "java.util.List"),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/COMPILATION_UNIT/IMPORT/DOT"
+                        + "[./IDENT[@text='List']]/DOT/IDENT[@text='java']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
 }

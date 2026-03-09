@@ -85,8 +85,8 @@ public class MatchXpathCheckTest
     @Test
     public void testCheckWithSingleLineCommentsStartsWithSpace() throws Exception {
         final String[] expected = {
-            "13:25: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
-            "14:27: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+            "14:25: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+            "16:27: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputMatchXpathSingleLineComments.java"), expected);
@@ -95,8 +95,8 @@ public class MatchXpathCheckTest
     @Test
     public void testCheckWithBlockComments() throws Exception {
         final String[] expected = {
-            "12:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
-            "14:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+            "13:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+            "16:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputMatchXpathBlockComments.java"), expected);
@@ -105,8 +105,8 @@ public class MatchXpathCheckTest
     @Test
     public void testCheckWithMultilineComments() throws Exception {
         final String[] expected = {
-            "14:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
-            "20:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+            "15:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+            "22:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputMatchXpathMultilineComments.java"), expected);
@@ -158,8 +158,8 @@ public class MatchXpathCheckTest
     public void testForbidParameterizedConstructor()
             throws Exception {
         final String[] expected = {
-            "13:5: Parameterized constructors are not allowed",
-            "15:5: Parameterized constructors are not allowed",
+            "14:5: Parameterized constructors are not allowed",
+            "17:5: Parameterized constructors are not allowed",
         };
         verifyWithInlineConfigParser(
                 getPath("InputMatchXpathForbidParameterizedConstructor.java"),

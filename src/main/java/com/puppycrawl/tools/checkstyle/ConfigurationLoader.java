@@ -47,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Loads a configuration from a standard configuration XML file.
  *
  */
+@SuppressWarnings("UnrecognisedJavadocTag")
 public final class ConfigurationLoader {
 
     /**

@@ -20,6 +20,6 @@ public class InputSuperFinalizeMethodReference extends ClassWithFinalizer {
 }
 
 class ClassWithFinalizer {
-    protected void finalize() throws Throwable { // violation
-    }
+    protected void finalize() throws Throwable {
+    }// violation above, 'Method 'finalize' should call 'super.finalize''
 }

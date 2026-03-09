@@ -35,19 +35,20 @@ public class HeaderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample1() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyWithExternalXmlConfig(getPath("Example1.xml"),
+                                    getPath("Example1.java"),
+                                    expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(HeaderCheck.MSG_MISMATCH,
-                "////////////////////////////////////////////////////////////////"
-                    + "///////////////////////////////"),
+            "1: " + getCheckMessage(MSG_MISSING),
         };
         System.setProperty("config.folder", "src/xdocs-examples/resources/" + getPackageLocation());
-        verifyWithInlineConfigParser(
-                getPath("Example2.java"), expected);
+        verifyWithExternalXmlConfig(getPath("Example2.xml"),
+                                    getPath("Example2.java"),
+                                    expected);
 
     }
 
@@ -57,7 +58,9 @@ public class HeaderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
             "1: " + getCheckMessage(HeaderCheck.MSG_MISMATCH, "// Copyright (C) 2004 MyCompany"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithExternalXmlConfig(getPath("Example3.xml"),
+                                    getPath("Example3.java"),
+                                    expected);
     }
 
     @Test
@@ -66,6 +69,8 @@ public class HeaderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
             "1: " + getCheckMessage(MSG_MISSING),
         };
         System.setProperty("config.folder", "src/xdocs-examples/resources/" + getPackageLocation());
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithExternalXmlConfig(getPath("Example4.xml"),
+                                    getPath("Example4.java"),
+                                    expected);
     }
 }

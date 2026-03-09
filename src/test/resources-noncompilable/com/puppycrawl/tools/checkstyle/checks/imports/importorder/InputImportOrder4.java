@@ -29,7 +29,7 @@ import static java.io.File.createTempFile;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
-import static javax.swing.WindowConstants.*; // violation 'Wrong order for 'javax.swing.WindowConstants.*' import.'
+import static javax.swing.WindowConstants.*; // violation 'Import statement for 'javax.swing.WindowConstants.*' violates the configured import group order.'
 
 import static sun.tools.util.ModifierFilter.ALL_ACCESS;
 import static sun.tools.util.ModifierFilter.PACKAGE;

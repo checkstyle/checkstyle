@@ -14,6 +14,7 @@
 [![][semaphoreci img]][semaphoreci]
 [![][azure img]][azure]
 [![][error prone img]][error prone]
+[![][qodana img]][qodana]
 [![][pitest img]][pitest]
 [![][checker framework img]][checker framework]
 [![][dependabot img]][dependabot]
@@ -206,3 +207,6 @@ Checkstyle uses libraries:
 
 [milestone]:https://github.com/checkstyle/checkstyle/actions/workflows/set-milestone-on-referenced-issue.yml
 [milestone img]:https://github.com/checkstyle/checkstyle/actions/workflows/set-milestone-on-referenced-issue.yml/badge.svg
+
+[qodana]:https://github.com/checkstyle/checkstyle/actions/workflows/qodana.yml
+[qodana img]:https://github.com/checkstyle/checkstyle/actions/workflows/qodana.yml/badge.svg

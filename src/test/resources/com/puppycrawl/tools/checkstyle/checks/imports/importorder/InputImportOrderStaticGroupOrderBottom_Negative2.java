@@ -18,7 +18,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 import org.antlr.v4.runtime.*;
 
-import static java.lang.Math.PI; // violation 'Wrong order for 'java.lang.Math.PI' import.'
+import static java.lang.Math.PI; // violation 'Import 'java.lang.Math.PI' violates the configured relative order between static and non-static imports.'
 import static org.antlr.v4.runtime.Recognizer.EOF;
 
 import java.util.Set;

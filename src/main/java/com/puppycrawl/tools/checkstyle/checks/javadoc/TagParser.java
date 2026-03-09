@@ -43,7 +43,7 @@ import java.util.List;
  * </p>
  *
  */
-class TagParser {
+public class TagParser {
 
     /** HtmlTags found on the input line of text. */
     private final List<HtmlTag> tags = new ArrayList<>();

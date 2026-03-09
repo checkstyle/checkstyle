@@ -46,14 +46,14 @@ public class InputSuppressWarningsSingle3
         }
     }
 
-    @SuppressWarnings("abcun")
+    @SuppressWarnings("invalid")
     @Documented
     @interface Sweet {
         int cool();
     }
 
     @Documented
-    @SuppressWarnings("abcun")
+    @SuppressWarnings("invalid")
     @interface MoreSweetness {
 
         @SuppressWarnings("unused")

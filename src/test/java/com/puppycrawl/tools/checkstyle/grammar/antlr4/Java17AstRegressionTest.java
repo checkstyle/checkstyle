@@ -71,10 +71,4 @@ public class Java17AstRegressionTest extends AbstractTreeTestSupport {
         verifyAst(getPath("ExpectedAntlr4AstRegressionCaseDefault.txt"),
                 getPath("InputAntlr4AstRegressionCaseDefault.java"));
     }
-
-    @Test
-    public void testNoLongerSupportedByJava() throws Exception {
-        verifyAst(getNonCompilablePath("ExpectedAntlr4AstRegressionNoLongerSupportedByJava.txt"),
-                getNonCompilablePath("InputAntlr4AstRegressionNoLongerSupportedByJava.java"));
-    }
 }

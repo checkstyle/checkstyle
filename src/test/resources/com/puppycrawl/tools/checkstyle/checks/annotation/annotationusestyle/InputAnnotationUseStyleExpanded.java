@@ -17,7 +17,7 @@ public class InputAnnotationUseStyleExpanded
 
 }
 
-@SomeArraysDiffStyle(pooches={DOGS.LEO}, um={}, duh={"bleh"})
+@SomeArraysDiffStyle(pooches={DOGS.LEO}, um={}, duh={"ignore"})
 @SuppressWarnings("") //compact_no_array // violation 'Annotation style must be 'EXPANDED''
 @Deprecated()
 class Dep4 {
@@ -30,7 +30,7 @@ class Dep4 {
 enum SON4 {
 
     @Deprecated
-    @SomeArraysDiffStyle(pooches={DOGS.LEO}, um={""}, duh={"bleh"})
+    @SomeArraysDiffStyle(pooches={DOGS.LEO}, um={""}, duh={"ignore"})
     @APooch(dog=DOGS.HERBIE)
     @Another("") //compact_no_array // violation 'Annotation style must be 'EXPANDED''
     ETHAN

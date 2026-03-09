@@ -1,7 +1,7 @@
 /*
 AbbreviationAsWordInName
 allowedAbbreviationLength = 4
-allowedAbbreviations = MARAZMATIC, VARIABLE
+allowedAbbreviations = SYSTEMATIC, VARIABLE
 ignoreFinal = (default)true
 ignoreStatic = false
 ignoreStaticFinal = false
@@ -22,7 +22,7 @@ public class InputAbbreviationAsWordInNameIgnoreFinalKeepStaticFinal {
     abstract class NonAAAAbstractClassName {
     }
 
-    abstract class FactoryWithBADNAme {
+    abstract class FactoryWithHARDName {
     }
 
     abstract class AbstractCLASSName { // violation
@@ -45,15 +45,15 @@ public class InputAbbreviationAsWordInNameIgnoreFinalKeepStaticFinal {
     }
 
     abstract class AbstractClassName3 {
-        class AbstractINNERRClass { // violation
+        class AbstractINNERSClass { // violation
         }
     }
 
     abstract class Class3Factory {
         class WellNamedFACTORY { // violation
-            public void marazmaticMETHODName() { // violation
-                int marazmaticVARIABLEName = 2;
-                int MARAZMATICVariableName = 1;
+            public void systematicMETHODName() { // violation
+                int systematicVARIABLEName = 2;
+                int SYSTEMATICVariableName = 1;
             }
         }
     }
@@ -79,25 +79,25 @@ public class InputAbbreviationAsWordInNameIgnoreFinalKeepStaticFinal {
 
     interface Interface1 {
 
-        String VALUEEEE = "value"; // violation
+        String VALUELONG = "value"; // violation
 
     }
 
     interface Interface2 {
 
-        static String VALUEEEE = "value"; // violation
+        static String VALUELONG = "value"; // violation
 
     }
 
     interface Interface3 {
 
-        final String VALUEEEE = "value"; // violation
+        final String VALUELONG = "value"; // violation
 
     }
 
     interface Interface4 {
 
-        final static String VALUEEEE = "value"; // violation
+        final static String VALUELONG = "value"; // violation
 
     }
 

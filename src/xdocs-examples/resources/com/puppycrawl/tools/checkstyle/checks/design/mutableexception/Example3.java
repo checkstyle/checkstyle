@@ -29,7 +29,7 @@ class ThirdException extends Exception {
 
 class ThirdThrowable extends Throwable {
   final int code; // ok
-  String message; // violation
+  String message; // violation 'The field 'message' must be declared final'
 
   public ThirdThrowable(int code, String message) {
     this.code = code;

@@ -430,7 +430,7 @@ public class HiddenFieldCheck
         String setterName = name;
         // we should not capitalize the first character if the second
         // one is a capital one, since according to JavaBeans spec
-        // setXYzz() is a setter for XYzz property, not for xYzz one.
+        // setFooBar() is a setter for FooBar property, not for fooBar one.
         if (name.length() == 1 || !Character.isUpperCase(name.charAt(1))) {
             setterName = name.substring(0, 1).toUpperCase(Locale.ENGLISH) + name.substring(1);
         }

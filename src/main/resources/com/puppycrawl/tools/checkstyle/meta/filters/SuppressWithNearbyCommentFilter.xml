@@ -30,7 +30,7 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="checkC" type="boolean">
-               <description>Control whether to check C style comments (&lt;code&gt;&amp;#47;* ... *&amp;#47;&lt;/code&gt;).</description>
+               <description>Control whether to check C style comments (&amp;#47;* ... *&amp;#47;).</description>
             </property>
             <property default-value="true" name="checkCPP" type="boolean">
                <description>Control whether to check C++ style comments (&lt;code&gt;//&lt;/code&gt;).</description>

@@ -561,7 +561,7 @@ public final class Main {
      * @noinspection PackageVisibleInnerClass
      * @noinspectionreason PackageVisibleInnerClass - we keep this enum package visible for tests
      */
-    enum OutputFormat {
+    /* package */ enum OutputFormat {
         /** XML output format. */
         XML,
         /** SARIF output format. */
@@ -577,7 +577,7 @@ public final class Main {
          * @return a new AuditListener for this OutputFormat
          * @throws IOException if there is any IO exception during logger initialization
          */
-        public AuditListener createListener(
+        /* package */ AuditListener createListener(
             OutputStream out,
             OutputStreamOptions options) throws IOException {
             final AuditListener result;
@@ -716,19 +716,19 @@ public final class Main {
 
         /** Switch whether to generate xpath suppressions file or not. */
         @Option(names = {"-g", "--generate-xpath-suppression"},
-                description = "Generates to output a xpath suppression xml to use to suppress all "
+                description = "Generates an output xpath suppression XML to use to suppress all "
                         + "violations from user's config. Instead of printing every violation, "
-                        + "all violations will be catched and single suppressions xml file will "
+                        + "all violations will be caught and single suppressions xml file will "
                         + "be printed out. Used only with -c option. Output "
                         + "location can be specified with -o option.")
         private boolean generateXpathSuppressionsFile;
 
         /** Switch whether to generate check and file suppressions file or not. */
         @Option(names = {"-G", "--generate-checks-and-files-suppression"},
-                description = "Generates to output a suppression xml that will have suppress "
+                description = "Generates an output suppression XML that will have suppress "
                         + "elements with \"checks\" and \"files\" attributes only to use to "
                         + "suppress all violations from user's config. Instead of printing every "
-                        + "violation, all violations will be catched and single suppressions xml "
+                        + "violation, all violations will be caught and single suppressions xml "
                         + "file will be printed out. Used only with -c option. Output "
                         + "location can be specified with -o option.")
         private boolean generateCheckAndFileSuppressionsFile;

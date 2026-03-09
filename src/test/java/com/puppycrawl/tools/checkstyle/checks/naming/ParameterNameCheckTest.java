@@ -161,7 +161,7 @@ public class ParameterNameCheckTest
 
         final String[] expected = {
             "20:28: " + getCheckMessage(MSG_INVALID_PATTERN, "object", pattern),
-            "24:30: " + getCheckMessage(MSG_INVALID_PATTERN, "aaaa", pattern),
+            "24:30: " + getCheckMessage(MSG_INVALID_PATTERN, "data", pattern),
             "28:19: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
             "28:28: " + getCheckMessage(MSG_INVALID_PATTERN, "bd", pattern),
             "30:18: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
@@ -181,7 +181,7 @@ public class ParameterNameCheckTest
         final String[] expected = {
             "15:34: " + getCheckMessage(MSG_INVALID_PATTERN, "o", pattern),
             "20:28: " + getCheckMessage(MSG_INVALID_PATTERN, "object", pattern),
-            "24:30: " + getCheckMessage(MSG_INVALID_PATTERN, "aaaa", pattern),
+            "24:30: " + getCheckMessage(MSG_INVALID_PATTERN, "data", pattern),
             "28:19: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
             "28:28: " + getCheckMessage(MSG_INVALID_PATTERN, "bd", pattern),
             "30:18: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
@@ -199,12 +199,12 @@ public class ParameterNameCheckTest
         final String pattern = "^h$";
 
         final String[] expected = {
-            "14:49: " + getCheckMessage(MSG_INVALID_PATTERN, "pubconstr", pattern),
+            "14:49: " + getCheckMessage(MSG_INVALID_PATTERN, "constructorParam", pattern),
             "18:31: " + getCheckMessage(MSG_INVALID_PATTERN, "inner", pattern),
-            "28:24: " + getCheckMessage(MSG_INVALID_PATTERN, "pubpub", pattern),
-            "39:21: " + getCheckMessage(MSG_INVALID_PATTERN, "pubifc", pattern),
-            "53:24: " + getCheckMessage(MSG_INVALID_PATTERN, "packpub", pattern),
-            "69:21: " + getCheckMessage(MSG_INVALID_PATTERN, "packifc", pattern),
+            "28:24: " + getCheckMessage(MSG_INVALID_PATTERN, "publicParam", pattern),
+            "39:21: " + getCheckMessage(MSG_INVALID_PATTERN, "interfaceParam", pattern),
+            "53:24: " + getCheckMessage(MSG_INVALID_PATTERN, "packageParam", pattern),
+            "69:21: " + getCheckMessage(MSG_INVALID_PATTERN, "paramName", pattern),
             };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameAccessModifier.java"), expected);

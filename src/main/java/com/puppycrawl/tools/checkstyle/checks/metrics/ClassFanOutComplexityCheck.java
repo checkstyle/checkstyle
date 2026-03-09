@@ -101,8 +101,6 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
      *
      * @param from array representing regular expressions of classes to ignore.
      * @propertySince 7.7
-     * @noinspection RedundantMethodOverride
-     * @noinspectionreason Display module's unique property version
      */
     @Override
     public void setExcludeClassesRegexps(Pattern... from) {
@@ -114,8 +112,6 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
      *
      * @param excludedClasses classes to ignore.
      * @propertySince 5.7
-     * @noinspection RedundantMethodOverride
-     * @noinspectionreason Display module's unique property version
      */
     @Override
     public void setExcludedClasses(String... excludedClasses) {
@@ -128,8 +124,6 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
      * @param excludedPackages packages to ignore.
      * @throws IllegalArgumentException if there are invalid identifiers among the packages.
      * @propertySince 7.7
-     * @noinspection RedundantMethodOverride
-     * @noinspectionreason Display module's unique property version
      */
     @Override
     public void setExcludedPackages(String... excludedPackages) {

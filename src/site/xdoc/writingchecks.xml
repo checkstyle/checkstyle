@@ -371,8 +371,7 @@ public class MethodLimitCheck extends AbstractCheck
 
     // report violation if limit is reached
     if (methodDefs > this.max) {
-      String message = "too many methods, only " + this.max + " are allowed";
-      log(ast.getLineNo(), message);
+      log(ast, "too.many.methods", this.max);
     }
   }
 }
@@ -589,6 +588,43 @@ public class MethodLimitCheck extends AbstractCheck
 
     </section>
 
+    <section name="XPath Support">
+
+      <p>
+        Checkstyle supports XPath expressions for filtering and suppressing violations.
+        For a check to work correctly with XPath-based suppressions, it must log violations
+        using the <code>log(DetailAST ast, String key, Object... args)</code> method rather
+        than the line/column number based variants like <code>log(int lineNo, String key,
+        Object... args)</code>.
+      </p>
+
+      <p>
+        The reason is that the <code>DetailAST</code>-based log method automatically stores
+        the token type of the violating AST node in the violation message. This token type
+        is required by the XPath suppression mechanism to correctly match and suppress
+        violations. When you use <code>log(int lineNo, ...)</code>, the token type is not
+        stored, and XPath suppressions will not work for that check.
+      </p>
+
+      <p>
+        Here is the correct way to log a violation in your Check:
+      </p>
+
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// Correct - use DetailAST based log method for XPath support
+log(ast, "too.many.methods", this.max);
+
+// Incorrect - do not use line number based log method
+// log(ast.getLineNo(), "too.many.methods", this.max);
+      </code></pre></div>
+
+      <p>
+        You can verify XPath suppression support for your check by using the
+        <a href="https://checkstyle.org/cmdline.html">command line tool</a> with
+        the <code>-g</code> flag to generate XPath suppressions for detected violations.
+      </p>
+
+    </section>
     <section name="Integrating Checks">
 
       <p>

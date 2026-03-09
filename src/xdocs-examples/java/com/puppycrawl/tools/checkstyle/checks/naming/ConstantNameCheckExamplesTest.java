@@ -71,4 +71,30 @@ public class ConstantNameCheckExamplesTest extends AbstractExamplesModuleTestSup
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "17:20: " + getCheckMessage(MSG_INVALID_PATTERN, "third_Constant3", DEFAULT_PATTERN),
+            "19:27: " + getCheckMessage(MSG_INVALID_PATTERN, "log", DEFAULT_PATTERN),
+            "20:30: " + getCheckMessage(MSG_INVALID_PATTERN, "logger", DEFAULT_PATTERN),
+            "21:20: " + getCheckMessage(MSG_INVALID_PATTERN, "loggerMYSELF", DEFAULT_PATTERN),
+            "23:30: " + getCheckMessage(MSG_INVALID_PATTERN, "myselfConstant", DEFAULT_PATTERN),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "18:28: " + getCheckMessage(MSG_INVALID_PATTERN, "fourth_Const4", DEFAULT_PATTERN),
+            "19:27: " + getCheckMessage(MSG_INVALID_PATTERN, "log", DEFAULT_PATTERN),
+            "20:30: " + getCheckMessage(MSG_INVALID_PATTERN, "logger", DEFAULT_PATTERN),
+            "23:30: " + getCheckMessage(MSG_INVALID_PATTERN, "myselfConstant", DEFAULT_PATTERN),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
 }

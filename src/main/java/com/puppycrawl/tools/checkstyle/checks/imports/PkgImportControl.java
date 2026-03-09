@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
  * Each instance may have zero or more children. A child may
  * be a sub-package, a class, or an allow/disallow rule.
  */
-class PkgImportControl extends AbstractImportControl {
+public class PkgImportControl extends AbstractImportControl {
     /** The package separator: ".". */
     private static final String DOT = ".";
 
@@ -93,6 +93,7 @@ class PkgImportControl extends AbstractImportControl {
     /* package */ PkgImportControl(PkgImportControl parent, String subPackageName, boolean regex,
             MismatchStrategy strategyOnMismatch) {
         super(parent, strategyOnMismatch);
+        this.regex = regex || parent.regex;
         if (regex || parent.regex) {
             // regex gets inherited
             final String parentRegex = ensureSelfContainedRegex(parent.fullPackageName,
@@ -101,13 +102,11 @@ class PkgImportControl extends AbstractImportControl {
             fullPackageName = parentRegex + DOT_REGEX + thisRegex;
             patternForPartialMatch = createPatternForPartialMatch(fullPackageName);
             patternForExactMatch = createPatternForExactMatch(fullPackageName);
-            this.regex = true;
         }
         else {
             fullPackageName = parent.fullPackageName + DOT + subPackageName;
             patternForPartialMatch = null;
             patternForExactMatch = null;
-            this.regex = false;
         }
     }
 

@@ -3981,8 +3981,6 @@ public final class TokenTypes {
      * boolean isBuilderReferenceType = text instanceof StringBuilder; // reference type
      * boolean isBuilderPatternWithPattern =
      *         text instanceof StringBuilder s; // type pattern, no `PATTERN_DEF`
-     * boolean isBuilderEmpty = text instanceof
-     *         (StringBuilder sb &amp;&amp; sb.isEmpty());  // guarded pattern, `PATTERN_DEF`
      * </pre>
      *
      * <p>parses as:</p>
@@ -4014,31 +4012,6 @@ public final class TokenTypes {
      * |                   |   `--IDENT -&gt; StringBuilder
      * |                   `--IDENT -&gt; s
      * |--SEMI -&gt; ;
-     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
-     * |   |--MODIFIERS -&gt; MODIFIERS
-     * |   |--TYPE -&gt; TYPE
-     * |   |   `--LITERAL_BOOLEAN -&gt; boolean
-     * |   |--IDENT -&gt; isBuilderEmpty
-     * |   `--ASSIGN -&gt; =
-     * |       `--EXPR -&gt; EXPR
-     * |           `--LITERAL_INSTANCEOF -&gt; instanceof
-     * |               |--IDENT -&gt; text
-     * |               `--PATTERN_DEF -&gt; PATTERN_DEF
-     * |                   `--LPAREN -&gt; (
-     * |                       |--LAND -&gt; &amp;&amp;
-     * |                       |   |--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
-     * |                       |   |   |--MODIFIERS -&gt; MODIFIERS
-     * |                       |   |   |--TYPE -&gt; TYPE
-     * |                       |   |   |   `--IDENT -&gt; StringBuilder
-     * |                       |   |   `--IDENT -&gt; sb
-     * |                       |   `--METHOD_CALL -&gt; (
-     * |                       |       |--DOT -&gt; .
-     * |                       |       |   |--IDENT -&gt; sb
-     * |                       |       |   `--IDENT -&gt; isEmpty
-     * |                       |       |--ELIST -&gt; ELIST
-     * |                       |       `--RPAREN -&gt; )
-     * |                       `--RPAREN -&gt; )
-     * `--SEMI -&gt; ;
      * </pre>
      *
      * @see <a
@@ -4050,7 +4023,6 @@ public final class TokenTypes {
      * @see #DOT
      * @see #TYPE
      * @see #PATTERN_VARIABLE_DEF
-     * @see #PATTERN_DEF
      * @see FullIdent
      **/
     public static final int LITERAL_INSTANCEOF =

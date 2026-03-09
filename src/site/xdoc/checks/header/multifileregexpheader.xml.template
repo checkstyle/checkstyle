@@ -28,14 +28,14 @@
       </subsection>
 
       <subsection name="Examples" id="MultiFileRegexpHeader_Examples">
-        <p id="Example1-config">
+        <p id="Example1-raw">
           To configure the check such that no violations arise.
           Default values of properties are used.
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example1.java"/>
-          <param name="type" value="config"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example1.xml"/>
+          <param name="type" value="raw"/>
         </macro>
 
         <p id="Example1-code">Example1:</p>

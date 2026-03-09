@@ -1,7 +1,7 @@
 /*
 AbbreviationAsWordInName
 allowedAbbreviationLength = 4
-allowedAbbreviations = MARAZMATIC, VARIABLE
+allowedAbbreviations = SYSTEMATIC, VARIABLE
 ignoreFinal = (default)true
 ignoreStatic = (default)true
 ignoreStaticFinal = false
@@ -25,19 +25,19 @@ public class InputAbbreviationAsWordInNameIgnoreNonStaticFinalPart2 {
     }
 
     @interface Annotation1 {
-        String VALUEEEE = "value"; // violation
+        String VALUELONG = "value"; // violation
     }
 
     @interface Annotation2 {
-        static String VALUEEEE = "value"; // violation
+        static String VALUELONG = "value"; // violation
     }
 
     @interface Annotation3 {
-        final String VALUEEEE = "value"; // violation
+        final String VALUELONG = "value"; // violation
     }
 
     @interface Annotation4 {
-        final static String VALUEEEE = "value"; // violation
+        final static String VALUELONG = "value"; // violation
     }
 
     final class InnerClassOneVIOLATION { // violation

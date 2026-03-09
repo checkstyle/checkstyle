@@ -49,6 +49,7 @@ public final class TestInputConfiguration {
             "com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck",
             "com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck",
+            "com.puppycrawl.tools.checkstyle.checks.LineEndingCheck",
             "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck",
             "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck",

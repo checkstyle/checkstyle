@@ -69,9 +69,9 @@ public class StringLiteralEqualityCheckTest
             "31:26: " + getCheckMessage(MSG_KEY, "!="),
             "34:15: " + getCheckMessage(MSG_KEY, "!="),
             "37:32: " + getCheckMessage(MSG_KEY, "=="),
-            "39:33: " + getCheckMessage(MSG_KEY, "!="),
-            "41:31: " + getCheckMessage(MSG_KEY, "!="),
-            "42:27: " + getCheckMessage(MSG_KEY, "=="),
+            "40:33: " + getCheckMessage(MSG_KEY, "!="),
+            "45:31: " + getCheckMessage(MSG_KEY, "!="),
+            "46:27: " + getCheckMessage(MSG_KEY, "=="),
         };
         verifyWithInlineConfigParser(
                 getPath("InputStringLiteralEqualityConcatenatedString.java"), expected);

@@ -31,27 +31,27 @@ class InputNonEmptyAtclauseDescriptionOne
 
         }
 
-        // violation 3 lines below
+        // violation 3 lines below 'At-clause should have a non-empty description'
         /**
          * Some javadoc.
          * @param a
          * @param b
          * @param c
-         */ // violation 2 lines above
-        // violation 2 lines above
+         */ // violation 2 lines above 'At-clause should have a non-empty description'
+        // violation 2 lines above 'At-clause should have a non-empty description'
         public InputNonEmptyAtclauseDescriptionOne(String a, int b, double c)
         {
 
         }
 
-        // violation 3 lines below
+        // violation 3 lines below 'At-clause should have a non-empty description'
         /**
          *
          * @param a
          * @param e
          * @deprecated       
-         */ // violation 2 lines above
-        // violation 2 lines above
+         */ // violation 2 lines above 'At-clause should have a non-empty description'
+        // violation 2 lines above 'At-clause should have a non-empty description'
         public InputNonEmptyAtclauseDescriptionOne(String a, boolean e)
         {
 
@@ -84,9 +84,9 @@ class InputNonEmptyAtclauseDescriptionOne
                 return 1;
         }
 
-        // violation 5 lines below
-        // violation 5 lines below
-        // violation 5 lines below
+        // violation 5 lines below 'At-clause should have a non-empty description'
+        // violation 5 lines below 'At-clause should have a non-empty description'
+        // violation 5 lines below 'At-clause should have a non-empty description'
         /**
          *
          * @param a
@@ -96,9 +96,9 @@ class InputNonEmptyAtclauseDescriptionOne
          * @throws Exception
          * @deprecated              
          * 
-         */ // violation 4 lines above
-        // violation 4 lines above
-        // violation 4 lines above
+         */ // violation 4 lines above 'At-clause should have a non-empty description'
+        // violation 4 lines above 'At-clause should have a non-empty description'
+        // violation 4 lines above 'At-clause should have a non-empty description'
         public int foo3(String a, int b, double c) throws Exception
         {
                 return 1;

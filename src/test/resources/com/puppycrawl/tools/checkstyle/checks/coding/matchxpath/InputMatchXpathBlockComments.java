@@ -9,9 +9,11 @@ query = //BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT[contains(@text, '{') \
 package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
 public class InputMatchXpathBlockComments {
-    /* void foo() {} */ // violation
+    // violation below 'Illegal code structure detected'
+    /* void foo() {} */
 
-    /* public class // violation
+    // violation below 'Illegal code structure detected'
+    /* public class
         {
             void foo2() {}
         }

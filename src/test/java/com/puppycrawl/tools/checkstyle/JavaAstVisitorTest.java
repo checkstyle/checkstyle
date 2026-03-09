@@ -48,6 +48,15 @@ import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParserBaseVisito
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 // -@cs[ClassDataAbstractionCoupling] No way to split up class usage.
+
+/**
+ * Tests for {@code JavaAstVisitor}.
+ *
+ * <p>Verifies correct traversal and processing of Java AST nodes.</p>
+ *
+ * @noinspection JavadocReference References are valid in project context
+ * @noinspectionreason JavadocReference - References are valid
+ */
 public class JavaAstVisitorTest extends AbstractModuleTestSupport {
 
     /**

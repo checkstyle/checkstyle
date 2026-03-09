@@ -122,8 +122,6 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
      * @param shouldReportViolation value to which the field shall be set to
      * @since 8.3
      * @propertySince 8.24
-     * @noinspection RedundantMethodOverride
-     * @noinspectionreason Display module's unique property version
      */
     @Override
     public void setViolateExecutionOnNonTightHtml(boolean shouldReportViolation) {

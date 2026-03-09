@@ -1,4 +1,4 @@
-// Java21
+// non-compiled with javac: Compilable with Java22
 package org.checkstyle.suppressionxpathfilter.coding.missingnullcaseinswitch;
 
 public class InputXpathMissingNullCaseInSwitchNested {

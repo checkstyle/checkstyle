@@ -19,7 +19,7 @@ abstract class InputAbbreviationAsWordInNameType4 {
 abstract class NonAAAAbstractClassName4 {
 }
 
-abstract class FactoryWithBADNAme4 {
+abstract class FactoryWithHARDName4 {
 }
 
 abstract class AbstractCLASSName4 {
@@ -42,15 +42,15 @@ class Class1Factory14 {
 }
 
 abstract class AbstractClassName34 {
-    class AbstractINNERRClass { // violation
+    class AbstractINNERSClass { // violation
     }
 }
 
 abstract class Class3Factory4 {
     class WellNamedFACTORY { // violation
-        public void marazmaticMETHODName() {
-            int marazmaticVARIABLEName = 2;
-            int MARAZMATICVariableName = 1;
+        public void systematicMETHODName() {
+            int systematicVARIABLEName = 2;
+            int SYSTEMATICVariableName = 1;
         }
     }
 }
@@ -76,25 +76,25 @@ abstract class NonAAAAbstractClassName24 {
 
 interface Interface14 {
 
-    String VALUEEEE = "value"; // in interface this is final/static
+    String VALUELONG = "value"; // in interface this is final/static
 
 }
 
 interface Interface24 {
 
-    static String VALUEEEE = "value"; // in interface this is final/static
+    static String VALUELONG = "value"; // in interface this is final/static
 
 }
 
 interface Interface34 {
 
-    final String VALUEEEE = "value"; // in interface this is final/static
+    final String VALUELONG = "value"; // in interface this is final/static
 
 }
 
 interface Interface44 {
 
-    final static String VALUEEEE = "value"; // in interface this is final/static
+    final static String VALUELONG = "value"; // in interface this is final/static
 
 }
 

@@ -25,9 +25,6 @@ import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
  * A Java Bean that implements the component lifecycle interfaces by
  * calling the bean's setters for all configuration attributes.
  *
- * @noinspection AbstractClassNeverImplemented
- * @noinspectionreason All files now use {@code AbstractAutomaticBean}.
- *     We will remove this class in #12873.
  * @deprecated since 10.9.3. Use {@code AbstractAutomaticBean} instead.
  */
 // -@cs[AbstractClassName] We can not break compatibility with previous versions.

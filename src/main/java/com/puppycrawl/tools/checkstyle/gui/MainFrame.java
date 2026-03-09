@@ -55,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
  * @noinspection MagicNumber
  * @noinspectionreason MagicNumber - "magic numbers" are required to set GUI elements
  */
-public class MainFrame extends JFrame {
+public final class MainFrame extends JFrame {
 
     /** A unique serial version identifier. */
     @Serial

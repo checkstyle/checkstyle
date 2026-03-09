@@ -96,4 +96,34 @@ public class XpathRegressionFinalClassTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testStaticNestedClass() throws Exception {
+        final File fileToProcess = new File(getPath(
+                "InputXpathFinalClassStaticNestedClass.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(FinalClassCheck.class);
+
+        final String[] expectedViolation = {
+            "5:5: " + getCheckMessage(FinalClassCheck.class,
+                    FinalClassCheck.MSG_KEY, "StaticNestedClass"),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                        + "@text='InputXpathFinalClassStaticNestedClass']]"
+                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='StaticNestedClass']]",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                        + "@text='InputXpathFinalClassStaticNestedClass']]"
+                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='StaticNestedClass']]/MODIFIERS",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                        + "@text='InputXpathFinalClassStaticNestedClass']]"
+                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='StaticNestedClass']]"
+                        + "/MODIFIERS/LITERAL_STATIC"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

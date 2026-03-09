@@ -17,7 +17,7 @@ public class InputModifiedControlVariableEnhancedForLoopVariable3 {
     {
         final String[] lines = {"line1", "line2", "line3"};
         for (String line: lines) {
-            line = line.trim(); // violation
+            line = line.trim(); // violation 'Control variable 'line' is modified.'
         }
     }
 }

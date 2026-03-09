@@ -80,4 +80,23 @@ public class XpathRegressionEmptyStatementTest extends AbstractXpathTestSupport 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testWhileLoopEmptyStatement() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathEmptyStatementWhile.java"));
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(EmptyStatementCheck.class);
+        final String[] expectedViolation = {
+            "5:21: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
+        };
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/COMPILATION_UNIT"
+                        + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyStatementWhile']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
+                        + "/SLIST/LITERAL_WHILE/EMPTY_STAT"
+        );
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

@@ -57,7 +57,8 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <p>This Check ignores HTML comments.</p>
  *
  * <p>The Check ignores all the nested paragraph tags,
- * it will not give any kind of violation if the paragraph tag is nested.</p>
+ * it will not give any kind of violation if the paragraph tag is nested.
+ * It also ignores paragraph tags inside block tags.</p>
  *
  * @since 6.0
  */
@@ -165,7 +166,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @param tag html tag.
      */
     private void checkParagraphTag(DetailNode tag) {
-        if (!isNestedParagraph(tag)) {
+        if (!isNestedParagraph(tag) && !isInsideBlockTag(tag)) {
             final DetailNode newLine = getNearestEmptyLine(tag);
             if (isFirstParagraph(tag)) {
                 log(tag.getLineNumber(), tag.getColumnNumber(), MSG_REDUNDANT_PARAGRAPH);
@@ -208,6 +209,27 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         }
 
         return nested;
+    }
+
+    /**
+     * Determines whether the paragraph tag is inside javadoc block tag.
+     *
+     * @param tag html tag.
+     * @return true, if the paragraph tag is inside javadoc block tag.
+     */
+    private static boolean isInsideBlockTag(DetailNode tag) {
+        boolean result = false;
+        DetailNode parent = tag;
+
+        while (parent != null) {
+            if (parent.getType() == JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG) {
+                result = true;
+                break;
+            }
+            parent = parent.getParent();
+        }
+
+        return result;
     }
 
     /**

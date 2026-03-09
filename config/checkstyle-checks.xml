@@ -98,6 +98,9 @@
   <module name="Translation">
     <property name="requiredTranslations" value="de, es, fi, fr, ja, pt, ru, tr, zh"/>
   </module>
+
+  <module name="LineEnding"/>
+
   <module name="UniqueProperties"/>
   <module name="OrderedProperties" />
 
@@ -299,7 +302,7 @@
     <module name="MissingOverrideOnRecordAccessor"/>
     <module name="PackageAnnotation"/>
     <module name="SuppressWarnings">
-      <property name="format" value="^((?!unchecked|deprecation|rawtypes|resource|InvalidInlineTag).)*$"/>
+      <property name="format" value="^((?!unchecked|deprecation|rawtypes|resource|InvalidInlineTag|UnrecognisedJavadocTag|InlineMeSuggester|OverlyComplexBooleanExpression).)*$"/>
       <message key="suppressed.warning.not.allowed"
            value="The warning ''{0}'' cannot be suppressed at this location.
            Only few javac warnings are allowed to suppress.
@@ -618,6 +621,7 @@
       <property name="severity" value="ignore"/>
     </module>
     <module name="UnusedLocalVariable"/>
+    <module name="UseEnhancedSwitch"/>
     <module name="VariableDeclarationUsageDistance"/>
     <module name="WhenShouldBeUsed"/>
 
@@ -829,6 +833,7 @@
     </module>
     <module name="UpperEll"/>
     <module name="HexLiteralCase"/>
+    <module name="NumericalPrefixesInfixesSuffixesCharacterCase"/>
 
     <!-- Modifiers -->
     <module name="ClassMemberImpliedModifier">
@@ -855,6 +860,9 @@
     <module name="RecordTypeParameterName"/>
     <module name="RecordComponentName"/>
     <module name="ConstantName"/>
+    <module name="GoogleNonConstantFieldName">
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="InterfaceTypeParameterName"/>
     <module name="LocalFinalVariableName"/>
     <module name="LocalVariableName">

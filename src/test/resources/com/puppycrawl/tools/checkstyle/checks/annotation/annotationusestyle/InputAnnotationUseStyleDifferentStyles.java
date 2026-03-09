@@ -18,7 +18,7 @@ public class InputAnnotationUseStyleDifferentStyles
 }
 
 // violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
-@SomeArraysDiffStyle(pooches={DOGS.LEO},um={}, duh={"bleh"})
+@SomeArraysDiffStyle(pooches={DOGS.LEO},um={}, duh={"ignore"})
 @SuppressWarnings("") //compact_no_array
 @Deprecated() // violation 'Annotation cannot have closing parenthesis'
 class Dep {
@@ -32,7 +32,7 @@ enum SON {
 
     @Deprecated
     // violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
-    @SomeArraysDiffStyle(pooches={DOGS.LEO},um={""}, duh={"bleh"})
+    @SomeArraysDiffStyle(pooches={DOGS.LEO},um={""}, duh={"ignore"})
     @APooch(dog=DOGS.HERBIE)
     @Another("") //compact_no_array
     ETHAN

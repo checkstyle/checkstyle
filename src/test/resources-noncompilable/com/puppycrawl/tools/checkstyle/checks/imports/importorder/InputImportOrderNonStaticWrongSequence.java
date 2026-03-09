@@ -16,7 +16,7 @@ tokens = (default)STATIC_IMPORT
 
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import java.util.LinkedList;
-import java.util.HashMap; // violation 'Wrong order for 'java.util.HashMap' import.'
+import java.util.HashMap; // violation 'Wrong lexicographical order for 'java.util.HashMap' import. Should be before 'java.util.LinkedList'.'
 
 class InputImportOrderNonStaticWrongSequence {
 }

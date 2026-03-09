@@ -1,6 +1,6 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-# seems smell, as pom declaration not working...
+# workaround, as pom declaration not working.
 name: org.checkstyle.AllAutoFixes
 recipeList:
   - org.checkstyle.CheckstyleAutoFix
@@ -20,12 +20,25 @@ type: specs.openrewrite.org/v1beta/recipe
 name: org.checkstyle.RefasterRules
 description: Picnic Refaster rules.
 recipeList:
+  - org.checkstyle.RefasterRules1
+  - org.checkstyle.RefasterRules2
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.checkstyle.RefasterRules1
+description: Picnic Refaster rules - Part 1.
+recipeList:
   - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
   - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
   - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
-  - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
+  # Issue #18789: conflicts with UpgradeToJava21 (SortedSet.first vs getFirst)
+  # - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
   - tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes
   - tech.picnic.errorprone.refasterrules.FileRulesRecipes
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.checkstyle.RefasterRules2
+description: Picnic Refaster rules - Part 2.
+recipeList:
   - tech.picnic.errorprone.refasterrules.MapRulesRecipes
   - tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes
   - tech.picnic.errorprone.refasterrules.MockitoRulesRecipes
@@ -41,25 +54,42 @@ type: specs.openrewrite.org/v1beta/recipe
 name: org.checkstyle.StaticAnalysis
 description: OpenRewrite standard fixes.
 recipeList:
+  # composite list
+  - org.openrewrite.staticanalysis.CodeCleanup:
+      exclude:
+        # all suppressions until https://github.com/checkstyle/checkstyle/issues/18952
+        - org.openrewrite.staticanalysis.DefaultComesLast
+        - org.openrewrite.staticanalysis.EmptyBlock
+        - org.openrewrite.staticanalysis.FinalizePrivateFields
+        - org.openrewrite.staticanalysis.ForLoopControlVariablePostfixOperators
+        - org.openrewrite.java.format.MethodParamPad
+        - org.openrewrite.java.format.NoWhitespaceAfter
+        - org.openrewrite.java.format.NoWhitespaceBefore
+        - org.openrewrite.staticanalysis.TypecastParenPad
+        - org.openrewrite.staticanalysis.ExplicitInitialization
+        - org.openrewrite.staticanalysis.FallThrough
+        - org.openrewrite.staticanalysis.HideUtilityClassConstructor
+        - org.openrewrite.staticanalysis.NeedBraces
+        - org.openrewrite.staticanalysis.OperatorWrap
+        - org.openrewrite.staticanalysis.ReplaceThreadRunWithThreadStart
+        - org.openrewrite.staticanalysis.ChainStringBuilderAppendCalls
+        - org.openrewrite.staticanalysis.ReplaceStringBuilderWithString
+        - org.openrewrite.staticanalysis.CustomImportOrder
+
+  # individual recipes
   - org.openrewrite.java.RemoveUnusedImports
-  - org.openrewrite.java.ShortenFullyQualifiedTypeReferences
-  - org.openrewrite.java.SimplifySingleElementAnnotation
-  - org.openrewrite.java.format.EmptyNewlineAtEndOfFile
   - org.openrewrite.java.format.NormalizeFormat
   - org.openrewrite.java.format.NormalizeLineBreaks
-  - org.openrewrite.java.format.PadEmptyForLoopComponents
   - org.openrewrite.java.format.RemoveTrailingWhitespace
-  # until https://github.com/checkstyle/checkstyle/issues/18789
-  # - org.openrewrite.java.migrate.UpgradeToJava21
+  - org.openrewrite.java.migrate.UpgradeToJava21
   - org.openrewrite.java.migrate.lang.StringRulesRecipes
   - org.openrewrite.java.migrate.util.MigrateInflaterDeflaterToClose
   - org.openrewrite.java.migrate.util.ReplaceStreamCollectWithToList
-  # - org.openrewrite.java.migrate.util.SequencedCollection
+  - org.openrewrite.java.migrate.util.SequencedCollection
   - org.openrewrite.java.recipes.JavaRecipeBestPractices
   - org.openrewrite.java.recipes.RecipeTestingBestPractices
   - org.openrewrite.maven.BestPractices
   - org.openrewrite.staticanalysis.BufferedWriterCreationRecipes
-  - org.openrewrite.staticanalysis.EqualsAvoidsNull
   - org.openrewrite.staticanalysis.InlineVariable
   - org.openrewrite.staticanalysis.JavaApiBestPractices
   - org.openrewrite.staticanalysis.LowercasePackage
@@ -75,6 +105,5 @@ recipeList:
   - org.openrewrite.staticanalysis.URLEqualsHashCodeRecipes
   - org.openrewrite.staticanalysis.UnnecessaryCloseInTryWithResources
   - org.openrewrite.staticanalysis.UnnecessaryExplicitTypeArguments
-  - org.openrewrite.staticanalysis.UnnecessaryParentheses
   - org.openrewrite.staticanalysis.UnnecessaryReturnAsLastStatement
   - org.openrewrite.staticanalysis.UseLambdaForFunctionalInterface

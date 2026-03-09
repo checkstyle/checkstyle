@@ -31,7 +31,8 @@
  &lt;p&gt;This Check ignores HTML comments.&lt;/p&gt;
 
  &lt;p&gt;The Check ignores all the nested paragraph tags,
- it will not give any kind of violation if the paragraph tag is nested.&lt;/p&gt;</description>
+ it will not give any kind of violation if the paragraph tag is nested.
+ It also ignores paragraph tags inside block tags.&lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="allowNewlineParagraph" type="boolean">
                <description>Control whether the &amp;lt;p&amp;gt; tag should be placed

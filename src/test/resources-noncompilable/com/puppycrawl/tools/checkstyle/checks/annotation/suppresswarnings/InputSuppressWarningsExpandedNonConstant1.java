@@ -46,7 +46,7 @@ public class InputSuppressWarningsExpandedNonConstant1
         }
     }
 
-    @SuppressWarnings(value={"abcun"})
+    @SuppressWarnings(value={"invalid"})
     @Documented
     @interface Sweet {
         int cool();
@@ -57,7 +57,7 @@ public class InputSuppressWarningsExpandedNonConstant1
     // violation above, 'The warning '' cannot be suppressed at this location'
     @interface MoreSweetness {
 
-        @SuppressWarnings(value={"unused", "bleh"})
+        @SuppressWarnings(value={"unused", "ignore"})
         int cool();
     }
 

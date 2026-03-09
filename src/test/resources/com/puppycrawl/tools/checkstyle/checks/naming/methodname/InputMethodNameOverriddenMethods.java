@@ -15,21 +15,21 @@ package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 public class InputMethodNameOverriddenMethods extends SomeClass
 {
     @Override
-    public void PUBLICfoo() { //Ignored due to impossibility of change by developer
+    public void PublicFOO() { //Ignored due to impossibility of change by developer
 
     }
 
     @java.lang.Override
-    protected void PROTECTEDfoo() { //Ignored due to impossibility of change by developer
+    protected void ProtectedFOO() { //Ignored due to impossibility of change by developer
 
     }
 }
 
 class SomeClass {
-    public void PUBLICfoo() {  // violation 'Name 'PUBLICfoo' must match pattern'
+    public void PublicFOO() {  // violation 'Name 'PublicFOO' must match pattern'
 
     }
-    protected void PROTECTEDfoo() { // violation 'Name 'PROTECTEDfoo' must match pattern'
+    protected void ProtectedFOO() { // violation 'Name 'ProtectedFOO' must match pattern'
 
     }
 }

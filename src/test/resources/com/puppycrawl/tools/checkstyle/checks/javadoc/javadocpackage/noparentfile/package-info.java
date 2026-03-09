@@ -1,5 +1,8 @@
 /*
 JavadocPackage
+allowLegacy = (default)false
+fileExtensions = (default).java
+
 
 */
 

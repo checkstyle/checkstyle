@@ -21,7 +21,7 @@ public class InputParameterNameOverrideAnnotation {
 
     }
 
-    public void foo2(Integer aaaa) {} // violation
+    public void foo2(Integer data) {} // violation
 
     void foo3() {} // No NPE here!
 

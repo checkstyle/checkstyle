@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 /**
  * Base class for import rules.
  */
-abstract class AbstractImportRule {
+public abstract class AbstractImportRule {
 
     /** Indicates whether to allow access or not. */
     private final boolean allowed;

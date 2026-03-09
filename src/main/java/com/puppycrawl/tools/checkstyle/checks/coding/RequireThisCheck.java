@@ -318,7 +318,7 @@ public class RequireThisCheck extends AbstractCheck {
      *         'this' and null otherwise.
      */
     private AbstractFrame getFieldWithoutThis(DetailAST ast, int parentType) {
-        final boolean importOrPackage = ScopeUtil.getSurroundingScope(ast) == null;
+        final boolean importOrPackage = ScopeUtil.getSurroundingScope(ast).isEmpty();
         final boolean typeName = parentType == TokenTypes.TYPE
                 || parentType == TokenTypes.LITERAL_NEW;
         AbstractFrame frame = null;

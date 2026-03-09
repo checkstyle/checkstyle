@@ -108,8 +108,8 @@ public final class InlineTagUtil {
     private static String convertLinesToString(String... lines) {
         final StringBuilder builder = new StringBuilder(1024);
         for (String line : lines) {
-            builder.append(line);
-            builder.append(LINE_FEED);
+            builder.append(line)
+                    .append(LINE_FEED);
         }
         return builder.toString();
     }

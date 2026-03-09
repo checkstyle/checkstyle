@@ -99,7 +99,7 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
             }
         }
         else {
-            final String outerTypeName = ast.findFirstToken(TokenTypes.IDENT).getText();
+            final String outerTypeName = TokenUtil.getIdent(ast).getText();
 
             if (!fileName.equals(outerTypeName)) {
                 wrongType = ast;
