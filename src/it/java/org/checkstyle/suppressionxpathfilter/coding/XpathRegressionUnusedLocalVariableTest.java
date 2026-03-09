@@ -112,4 +112,41 @@ public class XpathRegressionUnusedLocalVariableTest extends AbstractXpathTestSup
                 expectedXpathQueries);
 
     }
+
+    @Test
+    public void testThree() throws Exception {
+        final File fileToProcess = new File(getPath(
+                "InputXpathUnusedLocalVariableThree.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(UnusedLocalVariableCheck.class);
+
+        final String[] expectedViolation = {
+            "6:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
+                    UnusedLocalVariableCheck.MSG_UNUSED_NAMED_LOCAL_VARIABLE, "c"),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                        + "@text='InputXpathUnusedLocalVariableThree']]/OBJBLOCK/"
+                        + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF[./IDENT[@text='c']]",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                        + "@text='InputXpathUnusedLocalVariableThree']]/OBJBLOCK/"
+                        + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
+                        + "./IDENT[@text='c']]/MODIFIERS",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                        + "@text='InputXpathUnusedLocalVariableThree']]/OBJBLOCK/"
+                        + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
+                        + "./IDENT[@text='c']]/TYPE",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                        + "@text='InputXpathUnusedLocalVariableThree']]/OBJBLOCK/"
+                        + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
+                        + "./IDENT[@text='c']]/TYPE/LITERAL_INT"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+
+    }
+
 }
