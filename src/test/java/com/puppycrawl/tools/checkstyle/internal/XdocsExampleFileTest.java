@@ -61,7 +61,6 @@ public class XdocsExampleFileTest {
             Map.entry("JavadocStyleCheck", Set.of("endOfSentenceFormat")),
             Map.entry("SuppressWarningsHolder", Set.of("aliasList")),
             Map.entry("IndentationCheck", Set.of(
-                    "basicOffset",
                     "lineWrappingIndentation",
                     "throwsIndent",
                     "arrayInitIndent",
