@@ -13,7 +13,7 @@ public class InputCommentsIndentationInEmptyBlock {
         int a = 5, b = 3, v = 6;
         if (a == b
             && v == b || ( a ==1
-                   /// violation '.* incorrect .* level 19, expected is 31, .* same .* as line 19.'
+                   // violation '.* incorrect .* level 19, expected is 31, .* same .* as line 19.'
                        /* // violation '.* incorrect .* level 23, expected is 31, .* as line 19.'
                         * one fine day ... */
                                && b == 1)   ) {
