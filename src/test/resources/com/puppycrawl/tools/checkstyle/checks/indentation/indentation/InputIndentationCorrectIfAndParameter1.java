@@ -1,13 +1,13 @@
-package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;                                                      //indent:0 exp:0
+package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent:0 exp:0
 
-import static com.puppycrawl.tools.checkstyle.checks.indentation.indentation.InputIndentationIfAndParameter.co;              //indent:0 exp:0
-import static com.puppycrawl.tools.checkstyle.checks.indentation.indentation.InputIndentationIfAndParameter.getFifth;        //indent:0 exp:0
-import static com.puppycrawl.tools.checkstyle.checks.indentation.indentation.InputIndentationIfAndParameter.conditionFirst;  //indent:0 exp:0
-import static com.puppycrawl.tools.checkstyle.checks.indentation.indentation.InputIndentationIfAndParameter.conditionFourth; //indent:0 exp:0
-import static com.puppycrawl.tools.checkstyle.checks.indentation.indentation.InputIndentationIfAndParameter.conNoArg;        //indent:0 exp:0
-import static com.puppycrawl.tools.checkstyle.checks.indentation.indentation.InputIndentationIfAndParameter.conditionSecond; //indent:0 exp:0
-import static com.puppycrawl.tools.checkstyle.checks.indentation.indentation.InputIndentationIfAndParameter.conditionThird;  //indent:0 exp:0
-import static com.puppycrawl.tools.checkstyle.checks.indentation.indentation.InputIndentationIfAndParameter.getString;       //indent:0 exp:0
+import static InputIndentationIfAndParameter.co; //indent:0 exp:0
+import static InputIndentationIfAndParameter.getFifth; //indent:0 exp:0
+import static InputIndentationIfAndParameter.conditionFirst; //indent:0 exp:0
+import static InputIndentationIfAndParameter.conditionFourth; //indent:0 exp:0
+import static InputIndentationIfAndParameter.conNoArg; //indent:0 exp:0
+import static InputIndentationIfAndParameter.conditionSecond; //indent:0 exp:0
+import static InputIndentationIfAndParameter.conditionThird; //indent:0 exp:0
+import static InputIndentationIfAndParameter.getString; //indent:0 exp:0
 
 /**                                                                                                                          //indent:0 exp:0
  * This test-input is intended to be checked using following configuration:                                                  //indent:1 exp:1
