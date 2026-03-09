@@ -88,7 +88,8 @@ public class InputVariableDeclarationUsageDistanceGeneral3 {
     }
 
     public void method7() {
-        // until https://github.com/checkstyle/checkstyle/issues/13011, the below distance is 3
+        // the below distance is 1 (expected 3),
+        // until https://github.com/checkstyle/checkstyle/issues/19156
         Integer t = 5;
         nothing();
         System.out.println();
