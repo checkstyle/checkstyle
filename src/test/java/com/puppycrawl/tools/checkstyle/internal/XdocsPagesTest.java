@@ -1575,15 +1575,11 @@ public class XdocsPagesTest {
      */
     private static String getIntArrayPropertyValue(Object value) {
         final IntStream stream;
-        if (value instanceof Collection<?> collection) {
-            stream = collection.stream()
+        switch (value) {
+            case Collection<?> collection -> stream = collection.stream()
                     .mapToInt(number -> (int) number);
-        }
-        else if (value instanceof BitSet set) {
-            stream = set.stream();
-        }
-        else {
-            stream = Arrays.stream((int[]) value);
+            case BitSet set -> stream = set.stream();
+            default -> stream = Arrays.stream((int[]) value);
         }
         String result = stream
                 .mapToObj(TokenUtil::getTokenName)
