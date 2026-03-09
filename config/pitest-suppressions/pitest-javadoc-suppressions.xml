@@ -1,3 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>JavadocVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck</mutatedClass>
+    <mutatedMethod>hasJavadocCommentOnAnnotations</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to DetailAST::getNextSibling</description>
+    <lineContent>child != null; child = child.getNextSibling()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck</mutatedClass>
+    <mutatedMethod>hasJavadocCommentOnAnnotations</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (child.getType() == TokenTypes.ANNOTATION</lineContent>
+  </mutation>
 </suppressedMutations>
