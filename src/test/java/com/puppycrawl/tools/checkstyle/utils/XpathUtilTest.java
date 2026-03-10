@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.AbstractPathTestSupport.addEndOfLine;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static com.puppycrawl.tools.checkstyle.utils.XpathUtil.getTextAttributeValue;
 
@@ -174,18 +175,16 @@ public class XpathUtilTest {
         Files.writeString(file.toPath(), fileContent, StandardCharsets.UTF_8);
         final String invalidXpath = "\\//CLASS_DEF"
                 + "//METHOD_DEF//VARIABLE_DEF//IDENT";
-        try {
+        final CheckstyleException exc = getExpectedThrowable(CheckstyleException.class, () -> {
             XpathUtil.printXpathBranch(invalidXpath, file);
-            assertWithMessage("Should end with exception").fail();
-        }
-        catch (CheckstyleException exc) {
-            final String expectedMessage =
-                "Error during evaluation for xpath: " + invalidXpath
-                    + ", file: " + file.getCanonicalPath();
-            assertWithMessage("Exception message is different")
-                .that(exc.getMessage())
-                .isEqualTo(expectedMessage);
-        }
+        });
+
+        final String expectedMessage =
+            "Error during evaluation for xpath: " + invalidXpath
+                + ", file: " + file.getCanonicalPath();
+        assertWithMessage("Exception message is different")
+            .that(exc.getMessage())
+            .isEqualTo(expectedMessage);
     }
 
     @Test
