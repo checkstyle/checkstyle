@@ -172,4 +172,8 @@
   <!-- Uses non-ascii symbols intentionally -->
   <suppress id="checkASCII"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]ConfigurationLoaderTest.java"/>
+
+  <!-- Remove suppression once all violations are fixed, tracked in #11315 -->
+  <suppress checks="MatchXpath" files=".*[\\/]src[\\/]test[\\/].*|.*CommitValidationTest\.java"/>
+
 </suppressions>
