@@ -849,4 +849,20 @@ public class JavadocStyleCheckTest
                 getPath("InputJavadocStyleUnclosedTags.java"),
                 expected);
     }
+
+    @Test
+    public void testJavadocStyleFormatTraditional() throws Exception {
+        final String[] expected = {
+            "26: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleFormatTraditional.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleFormatMarkdown() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleFormatMarkdown.java"), expected);
+    }
 }
