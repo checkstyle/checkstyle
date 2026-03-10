@@ -848,6 +848,7 @@
     <module name="RedundantModifier">
       <property name="jdkVersion" value="${checkstyle.java.version}"/>
     </module>
+    <module name="AnnotatedMethodVisibilityModifier"/>
 
     <!-- Naming Conventions -->
     <module name="AbbreviationAsWordInName">
