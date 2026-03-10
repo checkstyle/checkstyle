@@ -64,7 +64,7 @@ public class JavadocMissingWhitespaceAfterAsteriskCheck extends AbstractJavadocC
 
             if (!isLast(lastAsteriskPosition, text)
                     && !Character.isWhitespace(text.charAt(lastAsteriskPosition + 1))) {
-                log(nextNode.getLineNumber(), nextNode.getColumnNumber(), MSG_KEY);
+                log(nextNode, MSG_KEY);
             }
         }
     }
