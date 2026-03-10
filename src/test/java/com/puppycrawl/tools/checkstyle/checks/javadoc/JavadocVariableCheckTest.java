@@ -428,4 +428,35 @@ public class JavadocVariableCheckTest
             getPath("InputJavadocVariableAboveComment.java"),
             expected);
     }
+
+    @Test
+    public void testJavadocOnAnnotatedField() throws Exception {
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocVariableOnAnnotatedField.java"),
+            expected);
+    }
+
+    @Test
+    public void testJavadocOnPrivateEnumConstants() throws Exception {
+        final String[] expected = {
+            "21:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocVariableOnPrivateEnumConstants.java"),
+            expected);
+    }
+
+    @Test
+    public void testJavadocOnType() throws Exception {
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "17:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocVariableJavadocOnType.java"),
+            expected);
+    }
 }
