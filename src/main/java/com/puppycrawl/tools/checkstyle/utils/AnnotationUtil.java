@@ -128,7 +128,7 @@ public final class AnnotationUtil {
      * @param annotationNode The annotation AST.
      * @return The full ident text.
      */
-    private static String getAnnotationFullIdent(DetailAST annotationNode) {
+    public static String getAnnotationFullIdent(DetailAST annotationNode) {
         final DetailAST identNode = annotationNode.findFirstToken(TokenTypes.IDENT);
         final String annotationString;
 
