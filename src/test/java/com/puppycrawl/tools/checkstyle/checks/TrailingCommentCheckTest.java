@@ -134,4 +134,14 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
             getPath("InputTrailingCommentWithEmoji.java"), expected);
     }
+
+    @Test
+    public void testTrailingCommentsVerticalAlignment() throws Exception {
+        final String[] expected = {
+            "7:17: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputTrailingCommentVerticalAlignment.java"), expected);
+    }
 }
