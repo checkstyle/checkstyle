@@ -1,162 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<document xmlns="http://maven.apache.org/XDOC/2.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
-
-  <head>
-    <title>Beginning Development</title>
-  </head>
-
-  <body>
-    <section name="Content">
-      <macro name="toc">
-        <param name="fromDepth" value="1"/>
-        <param name="toDepth" value="1"/>
-      </macro>
-    </section>
-    <section name="Before Development">
-      <p>
-        1. Ensure that Git and Java JDK >= 21 are installed.<br/>
-        You can find information about development environment preparation here:
-        <a href="https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki/Prepare-Development-Environment-in-Ubuntu-12.04">
-        Prepare development environment in Ubuntu</a>.<br/>
-      </p>
-      <p>
-        <b>Note:</b> JDK 25 is currently not supported. Some test dependencies
-        (cacio-tta, Mockito/ByteBuddy) are incompatible with JDK 25.
-        Please use JDK 21 (LTS) for development until this issue is resolved.
-        See <a href="https://github.com/checkstyle/checkstyle/issues/18361">issue #18361</a>
-        for more details.
-      </p>
-      <p>
-        2. Fork Checkstyle upstream project. As it is described
-        <a href="https://help.github.com/articles/fork-a-repo/"> here</a><br/>
-        3. Clone your forked repository to your computer:
-      </p>
-      <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
-git clone git@github.com:your_user_name/checkstyle.git
-        </code></pre></div>
-      </div>
-      <p>
-        4. Before opening project in IDE, build the project in your terminal to download<br/>
-        all needed artifacts. From the repository root folder, run:
-      </p>
-      <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
-./mvnw install
-        </code></pre></div>
-      </div>
-    </section>
-
-    <section name="Starting Development">
-      <p>
-        Here you can find instructions about importing and debugging the project for IDEs:<br/>
-        <a href="eclipse.html">Eclipse IDE</a><br/>
-        <a href="netbeans.html">NetBeans IDE</a><br/>
-        <a href="idea.html">IntelliJ IDEA IDE</a><br/>
-      </p>
-
-      <p>
-        Community video walk throughs of these instructions are available in SteLeo1602's
-        <a href="https://www.youtube.com/playlist?list=PLHM9s_lN4X0hzOQ0sUmGdroxW0HfREAqj">
-           playlist on YouTube.</a>
-      </p>
-
-      <p>
-        Follow these instructions of Git usage and creating a Pull Request:<br/>
-           1) Configure remotes by pointing to the official checkstyle repository,<br/>
-        naming it "upstream":
-      </p>
-      <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-git remote add upstream https://github.com/checkstyle/checkstyle
-        </code></pre></div>
-      </div>
-      <p>
-           2) Create a branch for a new check:
-      </p>
-      <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-git checkout -b my-new-check
-        </code></pre></div>
-      </div>
-      <p>
-           3) Commit changes to my-new-check branch:
-      </p>
-      <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-git add .
-git commit -m "commit message"
-        </code></pre></div>
-      </div>
-      <p>
-           4) Push branch to GitHub, to allow your mentor to review your code:
-      </p>
-      <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-git push origin my-new-check
-        </code></pre></div>
-      </div>
-      <p>
-           5) Repeat steps 3-4 till development is complete<br/>
-           All additional commits, please <a href="https://davidwalsh.name/squash-commits-git">
-           squash to first</a>. Please read all rules for PullRequest at
-           our <a href="https://github.com/checkstyle/checkstyle/wiki/PR-rules">wiki</a>.
-      </p>
-      <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-git rebase -i master
-git push --force origin my-new-check
-        </code></pre></div>
-      </div>
-      <p>
-           6) Update current branch and local master by pulling changes that were done<br/>
-           by other contributors:
-      </p>
-      <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-git checkout master
-git pull upstream master
-git push origin master
-        </code></pre></div>
-      </div>
-      <p>
-           7) Rebase your branch on your updated master:
-      </p>
-      <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-git checkout my-new-check
-git rebase master
-        </code></pre></div>
-      </div>
-      <p>
-           8) In the process of the rebase, it may discover conflicts.<br/>
-           In that case it will stop and allow you to fix the conflicts.<br/>
-           After fixing conflicts, use
-      </p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-git add .
-      </code></pre></div>
-      <p> to update the index with those contents, and then just run:</p>
-      <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-git rebase --continue
-        </code></pre></div>
-      </div>
-      <p>
-           9) Push branch to GitHub (with all your final changes and actual code of Checkstyle):
-      </p>
-      <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-git push --force origin my-new-check
-        </code></pre></div>
-      </div>
-      <p>
-         10) Only after all content is finished and testing is done - send a
-        <a href="https://help.github.com/articles/using-pull-requests/">Pull Request</a>
-      </p>
-    </section>
-  </body>
+<document>
+    <properties>
+        <title>Beginning_Development</title>
+    </properties>
+    <body>
+        <section name="beginning_development">
+            <p>
+                The beginning_development guidelines have moved to GitHub.
+            </p>
+            <p>
+                Please see
+                <a href="https://github.com/checkstyle/checkstyle/blob/master/docs/BEGINNING_DEVELOPMENT.md">
+                    BEGINNING_DEVELOPMENT.md
+                </a>
+                for the complete and up-to-date documentation.
+            </p>
+        </section>
+    </body>
 </document>
