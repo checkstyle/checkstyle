@@ -4234,6 +4234,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.modifier.*</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.NullUtil</avoidCallsTo>
+              </avoidCallsTo>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>

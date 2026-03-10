@@ -181,6 +181,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example6",
             "checks/metrics/javancss/Example5",
             "checks/metrics/npathcomplexity/Example2",
+            "checks/modifier/annotatedmethodvisibilitymodifier/Example3",
             "checks/naming/abbreviationaswordinname/Example3",
             "checks/naming/abbreviationaswordinname/Example4",
             "checks/naming/abbreviationaswordinname/Example5",
