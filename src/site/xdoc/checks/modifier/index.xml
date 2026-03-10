@@ -11,6 +11,17 @@
         <table>
           <tr>
             <td>
+              <a href="annotatedmethodvisibilitymodifier.html#AnnotatedMethodVisibilityModifier">
+                AnnotatedMethodVisibilityModifier
+              </a>
+            </td>
+            <td>
+              Checks that elements annotated with specified annotations have only allowed visibility
+              modifiers.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="classmemberimpliedmodifier.html#ClassMemberImpliedModifier">
                 ClassMemberImpliedModifier
               </a>

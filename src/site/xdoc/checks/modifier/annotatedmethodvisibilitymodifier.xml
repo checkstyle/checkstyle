@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>AnnotatedMethodVisibilityModifier</title>
+  </head>
+  <body>
+    <section name="AnnotatedMethodVisibilityModifier">
+      <p>Since Checkstyle 13.4.0</p>
+      <subsection name="Description" id="AnnotatedMethodVisibilityModifier_Description">
+        <div>
+          Checks that elements annotated with specified annotations
+          have only allowed visibility modifiers.
+        </div>
+
+        <p>
+          This check enforces consistency between annotation presence and
+          declared visibility. If a configured annotation is found on a target
+          element, its visibility modifier must match one of the allowed values.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="AnnotatedMethodVisibilityModifier_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="annotations"/><a href="#annotations">annotations</a></td>
+              <td>Setter for annotation canonical names.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>com.google.common.annotations.VisibleForTesting</code></td>
+              <td>13.4.0</td>
+            </tr>
+            <tr>
+              <td><a id="visibility"/><a href="#visibility">visibility</a></td>
+              <td>Setter for allowed visibility modifiers. Allowed values: public, protected, private, package-private</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>package-private, protected</code></td>
+              <td>13.4.0</td>
+            </tr>
+            <tr>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                  .
+              </td>
+              <td>13.4.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="AnnotatedMethodVisibilityModifier_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotatedMethodVisibilityModifier" /&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import com.google.common.annotations.VisibleForTesting;
+
+public class Example1 {
+
+  @VisibleForTesting
+  protected void allowedProtectedMethod() {}
+
+  @VisibleForTesting
+  void allowedPackagePrivateMethod() {}
+
+  @VisibleForTesting
+  protected int allowedProtectedField;
+
+  @VisibleForTesting
+  public void violationPublicMethod() {}
+  // violation above 'Annotated element has disallowed visibility 'public'.'
+
+  @VisibleForTesting
+  private void violationPrivateMethod() {}
+  // violation above 'Annotated element has disallowed visibility 'private'.'
+
+  @VisibleForTesting
+  @Deprecated
+  public int violationPublicField;
+  // violation above 'Annotated element has disallowed visibility 'public'.'
+
+  @VisibleForTesting
+  public Example1() {}
+  // violation above 'Annotated element has disallowed visibility 'public'.'
+
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example2-config">
+          To configure the check for only methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotatedMethodVisibilityModifier"&gt;
+      &lt;property name="tokens" value="PACKAGE_DEF, IMPORT, METHOD_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import com.google.common.annotations.VisibleForTesting;
+
+public class Example2 {
+
+  @VisibleForTesting
+  protected void allowedProtectedMethod() {}
+
+  @VisibleForTesting
+  void allowedPackagePrivateMethod() {}
+
+  @VisibleForTesting
+  protected int allowedProtectedField;
+
+  @VisibleForTesting
+  public void violationPublicMethod() {}
+  // violation above 'Annotated element has disallowed visibility 'public'.'
+
+  @VisibleForTesting
+  private void violationPrivateMethod() {}
+  // violation above 'Annotated element has disallowed visibility 'private'.'
+
+  @VisibleForTesting
+  @Deprecated
+  public int allowedPublicField;
+
+  @VisibleForTesting
+  public Example2() {}
+
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example3-config">
+          To configure the annotations and allowed visibility:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotatedMethodVisibilityModifier"&gt;
+      &lt;property name="annotations"
+        value="com.google.common.annotations.Beta, com.google.common.annotations.VisibleForTesting"/&gt;
+      &lt;property name="visibility" value="package-private"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
+
+  @com.google.common.annotations.Beta
+  protected void allowedProtectedMethod() {}
+  // violation above 'Annotated element has disallowed visibility 'protected'.'
+
+  @VisibleForTesting
+  public void violationPublicMethod() {}
+  // violation above 'Annotated element has disallowed visibility 'public'.'
+
+  @com.google.common.annotations.Beta
+  private void violationPrivateMethod() {}
+  // violation above 'Annotated element has disallowed visibility 'private'.'
+
+  @com.google.common.annotations.Beta
+  int allowedPrivateField;
+
+  @VisibleForTesting
+  public Example3() {}
+  // violation above 'Annotated element has disallowed visibility 'public'.'
+
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="AnnotatedMethodVisibilityModifier_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotatedMethodVisibilityModifier">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages"
+        id="AnnotatedMethodVisibilityModifier_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotated.visibility.modifier%22">
+              annotated.visibility.modifier
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="AnnotatedMethodVisibilityModifier_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.modifier
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="AnnotatedMethodVisibilityModifier_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
