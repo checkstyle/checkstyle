@@ -66,6 +66,10 @@
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
+    files="annotateddeclarationvisibility[\\/]InputAnnotatedDeclarationVisibilityClear2\.java"/>
+
+  <!-- intentional problem for testing -->
+  <suppress checks="PackageDeclarationCheck"
             files="unusedimports[\\/]InputUnusedImportsSingleWordPackage\.java"/>
 
   <!-- intentional problem for testing -->
