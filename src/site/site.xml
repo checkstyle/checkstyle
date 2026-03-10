@@ -280,6 +280,8 @@
           <item name="UpperEll" href="checks/misc/upperell.html"/>
         </item>
         <item name="Modifiers" href="checks/modifier/index.html" collapse="true">
+          <item name="AnnotatedMethodVisibilityModifier"
+                href="checks/modifier/annotatedmethodvisibilitymodifier.html"/>
           <item name="ClassMemberImpliedModifier"
                 href="checks/modifier/classmemberimpliedmodifier.html"/>
           <item name="InterfaceMemberImpliedModifier"
