@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
 import java.util.List;
@@ -278,54 +279,46 @@ public class JavadocUtilTest {
 
     @Test
     public void testGetTokenNameForLargeId() {
-        try {
-            JavadocUtil.getTokenName(30073);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Unknown javadoc token id. Given id: 30073");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    JavadocUtil.getTokenName(30073);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Unknown javadoc token id. Given id: 30073");
     }
 
     @Test
     public void testGetTokenNameForInvalidId() {
-        try {
-            JavadocUtil.getTokenName(110);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Unknown javadoc token id. Given id: 110");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    JavadocUtil.getTokenName(110);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Unknown javadoc token id. Given id: 110");
     }
 
     @Test
     public void testGetTokenNameForLowerBoundInvalidId() {
-        try {
-            JavadocUtil.getTokenName(10095);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Unknown javadoc token id. Given id: 10095");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    JavadocUtil.getTokenName(10095);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Unknown javadoc token id. Given id: 10095");
     }
 
     @Test
     public void testGetTokenIdThatIsUnknown() {
-        try {
-            JavadocUtil.getTokenId("");
-            assertWithMessage("exception expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Unknown javadoc token name. Given name ");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    JavadocUtil.getTokenId("");
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Unknown javadoc token name. Given name ");
     }
 
     @Test

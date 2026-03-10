@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.xpath;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.utils.XpathUtil.getXpathItems;
 
 import java.io.File;
@@ -530,30 +531,26 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     public void testQueryRootNotImplementedAxis() throws Exception {
         final String xpath = "//namespace::*";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
-        try {
-            getXpathItems(xpath, rootNode);
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception")
-                    .that(exc.getMessage())
-                    .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, () -> {
+                    getXpathItems(xpath, rootNode);
+                });
+        assertWithMessage("Invalid exception")
+                .that(exc.getMessage())
+                .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testQueryElementNotImplementedAxis() throws Exception {
         final String xpath = "/COMPILATION_UNIT/CLASS_DEF//namespace::*";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
-        try {
-            getXpathItems(xpath, rootNode);
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception")
-                    .that(exc.getMessage())
-                    .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, () -> {
+                    getXpathItems(xpath, rootNode);
+                });
+        assertWithMessage("Invalid exception")
+                .that(exc.getMessage())
+                .isEqualTo("Operation is not supported");
     }
 
     @Test

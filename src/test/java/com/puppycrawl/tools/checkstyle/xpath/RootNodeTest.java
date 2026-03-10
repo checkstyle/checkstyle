@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.xpath;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.utils.XpathUtil.getXpathItems;
 
 import java.io.File;
@@ -56,15 +57,13 @@ public class RootNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testCompareOrder() {
-        try {
-            rootNode.compareOrder(null);
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, () -> {
+                    rootNode.compareOrder(null);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
@@ -191,288 +190,213 @@ public class RootNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetStringValue() {
-        try {
-            rootNode.getStringValue();
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, rootNode::getStringValue);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testGetAttributeValue() {
-        try {
-            rootNode.getAttributeValue("", "");
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, () -> {
+                    rootNode.getAttributeValue("", "");
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testGetDeclaredNamespaces() {
-        try {
-            rootNode.getDeclaredNamespaces(null);
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, () -> {
+                    rootNode.getDeclaredNamespaces(null);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testIsId() {
-        try {
-            rootNode.isId();
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, rootNode::isId);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testIsIdref() {
-        try {
-            rootNode.isIdref();
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, rootNode::isIdref);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testIsNilled() {
-        try {
-            rootNode.isNilled();
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, rootNode::isNilled);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testIsStreamed() {
-        try {
-            rootNode.isStreamed();
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, rootNode::isStreamed);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testGetConfiguration() {
-        try {
-            rootNode.getConfiguration();
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class,
+                        rootNode::getConfiguration);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testSetSystemId() {
-        try {
-            rootNode.setSystemId("1");
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, () -> {
+                    rootNode.setSystemId("1");
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testGetSystemId() {
-        try {
-            rootNode.getSystemId();
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, rootNode::getSystemId);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testGetPublicId() {
-        try {
-            rootNode.getPublicId();
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, rootNode::getPublicId);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testBaseUri() {
-        try {
-            rootNode.getBaseURI();
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, rootNode::getBaseURI);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testSaveLocation() {
-        try {
-            rootNode.saveLocation();
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, rootNode::saveLocation);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testGetStringValueCs() {
-        try {
-            rootNode.getUnicodeStringValue();
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class,
+                        rootNode::getUnicodeStringValue);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testFingerprint() {
-        try {
-            rootNode.getFingerprint();
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, rootNode::getFingerprint);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testGetDisplayName() {
-        try {
-            rootNode.getDisplayName();
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, rootNode::getDisplayName);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testGetPrefix() {
-        try {
-            rootNode.getPrefix();
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, rootNode::getPrefix);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testGetSchemaType() {
-        try {
-            rootNode.getSchemaType();
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, rootNode::getSchemaType);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testAtomize() {
-        try {
-            rootNode.atomize();
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, rootNode::atomize);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testGenerateId() {
-        try {
-            rootNode.generateId(null);
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, () -> {
+                    rootNode.generateId(null);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testCopy() {
-        try {
-            rootNode.copy(null, -1, null);
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class, () -> {
+                    rootNode.copy(null, -1, null);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
     public void testGetAllNamespaces() {
-        try {
-            rootNode.getAllNamespaces();
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class,
+                        rootNode::getAllNamespaces);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     @Test
