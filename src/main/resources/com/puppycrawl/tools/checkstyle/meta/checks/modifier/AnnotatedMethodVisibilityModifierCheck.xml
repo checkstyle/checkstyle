@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.AnnotatedMethodVisibilityModifierCheck"
+             name="AnnotatedMethodVisibilityModifier"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that elements annotated with specified annotations
+ have only allowed visibility modifiers.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ This check enforces consistency between annotation presence and
+ declared visibility. If a configured annotation is found on a target
+ element, its visibility modifier must match one of the allowed values.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="com.google.common.annotations.VisibleForTesting"
+                      name="annotations"
+                      type="java.lang.String[]">
+               <description>Setter for annotation canonical names.</description>
+            </property>
+            <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,RECORD_DEF,METHOD_DEF,CTOR_DEF,VARIABLE_DEF,ANNOTATION_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+            <property default-value="package-private, protected"
+                      name="visibility"
+                      type="java.lang.String[]">
+               <description>Setter for allowed visibility modifiers.
+ Allowed values:
+ public, protected, private, package-private</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="annotated.visibility.modifier"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
