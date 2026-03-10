@@ -32,10 +32,9 @@ public class Example8 {
     // violation 4 lines above 'First sentence should end with a period'
   }
   /**
-   * Some description here!
    */
   public void testMethod4() {
-    // violation 4 lines above 'First sentence should end with a period'
+    // ok, empty Javadoc is not reported when checkEmptyJavadoc is false
   }
   /**
    * Some description here
