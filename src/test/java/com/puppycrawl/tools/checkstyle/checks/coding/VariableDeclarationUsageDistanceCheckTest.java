@@ -342,6 +342,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     public void testGeneralClass3() throws Exception {
         final String[] expected = {
             "46:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "92:9: " + getCheckMessage(MSG_KEY, "t", 3, 1),
         };
 
         verifyWithInlineConfigParser(
@@ -361,6 +362,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     @Test
     public void testVariableDeclarationUsageDistanceTryResources() throws Exception {
         final String[] expected = {
+            "91:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
             "19:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
             "20:9: " + getCheckMessage(MSG_KEY, "b", 2, 1),
         };
@@ -422,5 +424,36 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceMethodDef.java"), expected);
+    }
+
+    @Test
+    public void testInitializationSequence() throws Exception {
+        final String[] expected = {
+            "25:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "40:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "55:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "69:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "83:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "95:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "107:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "119:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "134:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "149:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "166:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "182:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "196:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "210:9: " + getCheckMessage(MSG_KEY, "list2", 3, 1),
+            "223:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "240:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "262:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "283:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "300:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "316:9: " + getCheckMessage(MSG_KEY, "list2", 3, 1),
+            "336:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "359:9: " + getCheckMessage(MSG_KEY, "list", 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceInitializationSequence.java"), expected);
     }
 }

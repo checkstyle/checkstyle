@@ -88,7 +88,7 @@ public class InputVariableDeclarationUsageDistanceTryResources {
     }
     void method4() throws Exception {
         String b = "abc";
-        myClass a = new myClass("", b);
+        myClass a = new myClass("", b);  // violation 'Distance .* is 2'
         Scanner scanner = new Scanner(System.in);
         scanner.nextBigInteger(100);
         try (final AutoCloseable t = a.getAutoCloseable(3);) {
