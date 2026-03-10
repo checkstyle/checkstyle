@@ -1,5 +1,6 @@
 /*
 JavadocStyle
+format = (default)any
 scope = public
 excludeScope = (default)null
 checkFirstSentence = (default)true
@@ -7,7 +8,6 @@ endOfSentenceFormat = (default)([.?!][ \t\n\r\f<])|([.?!]$)
 checkEmptyJavadoc = (default)false
 checkHtml = false
 tokens = METHOD_DEF
-
 
 */
 
