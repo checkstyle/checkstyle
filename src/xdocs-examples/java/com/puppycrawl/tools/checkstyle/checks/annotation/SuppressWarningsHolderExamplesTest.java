@@ -83,4 +83,15 @@ public class SuppressWarningsHolderExamplesTest extends AbstractExamplesModuleTe
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+        final String[] expected = {
+            "16:36: " + getCheckMessage(ConstantNameCheck.class,
+                        AbstractNameCheck.MSG_INVALID_PATTERN, "i", pattern),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
 }
