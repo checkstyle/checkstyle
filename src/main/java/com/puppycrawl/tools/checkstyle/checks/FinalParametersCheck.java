@@ -202,7 +202,7 @@ public class FinalParametersCheck extends AbstractCheck {
                 && !isIgnoredPrimitiveParam(param)
                 && !isIgnoredUnnamedParam(param)
                 && !CheckUtil.isReceiverParameter(param)) {
-            final DetailAST paramName = param.findFirstToken(TokenTypes.IDENT);
+            final DetailAST paramName = TokenUtil.getIdent(param);
             final DetailAST firstNode = CheckUtil.getFirstNode(param);
             log(firstNode,
                 MSG_KEY, paramName.getText());

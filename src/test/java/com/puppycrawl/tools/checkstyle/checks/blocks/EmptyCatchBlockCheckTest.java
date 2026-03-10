@@ -81,7 +81,7 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
             "220:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "229:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
-        final String originalLineSeparator = System.getProperty("line.separator");
+        final String originalLineSeparator = System.lineSeparator();
         try {
             System.setProperty("line.separator", "\r\n");
             verifyWithInlineConfigParser(

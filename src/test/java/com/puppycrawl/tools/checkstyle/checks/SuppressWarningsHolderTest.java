@@ -610,7 +610,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "18:16: " + getCheckMessage(MemberNameCheck.class,
+            "22:16: " + getCheckMessage(MemberNameCheck.class,
                     AbstractNameCheck.MSG_INVALID_PATTERN, "K", pattern),
         };
         verifyWithInlineConfigParser(

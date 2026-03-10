@@ -1088,9 +1088,8 @@
     <option name="m_includeLibraryClasses" value="false"/>
     <option name="m_limit" value="15"/>
   </inspection_tool>
-  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
-  <inspection_tool class="ClassEscapesItsScope" enabled="false" level="WARNING"
-                   enabled_by_default="false" />
+  <inspection_tool class="ClassEscapesItsScope" enabled="true" level="WARNING"
+                   enabled_by_default="true" />
   <!-- we do not need that -->
   <inspection_tool class="ClassHasNoToStringMethod" enabled="false" level="ERROR"
                    enabled_by_default="false">
@@ -1807,7 +1806,8 @@
                    enabled_by_default="true"/>
   <inspection_tool class="ExternalizableWithoutPublicNoArgConstructor" enabled="true"
                    level="ERROR" enabled_by_default="true"/>
-  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
+  <!-- recommendations are not always good, we will control
+         how it is good for reviewers (not author). -->
   <inspection_tool class="ExtractMethodRecommender" enabled="false" level="WARNING"
                    enabled_by_default="false" />
   <inspection_tool class="FacesModelInspection" enabled="false" level="WARNING"
@@ -1847,9 +1847,8 @@
   </inspection_tool>
   <inspection_tool class="FieldMayBeFinal" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
-  <inspection_tool class="FieldMayBeStatic" enabled="false" level="WARNING"
-                   enabled_by_default="false"/>
+  <inspection_tool class="FieldMayBeStatic" enabled="true" level="WARNING"
+                   enabled_by_default="true"/>
   <inspection_tool class="FieldNotUsedInToString" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
   <inspection_tool class="FieldRepeatedlyAccessed" enabled="true" level="ERROR"
@@ -2785,9 +2784,8 @@
          When this problem is resolved we could reconsider disablement. -->
   <inspection_tool class="Java8MapApi" enabled="false" level="WARNING"
                    enabled_by_default="false"/>
-  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
-  <inspection_tool class="Java9ReflectionClassVisibility" enabled="false" level="WARNING"
-                   enabled_by_default="false" />
+  <inspection_tool class="Java9ReflectionClassVisibility" enabled="true" level="WARNING"
+                   enabled_by_default="true" />
   <inspection_tool class="JavaCollectionsStaticMethod" enabled="false" level="WEAK WARNING"
                    enabled_by_default="false"/>
   <inspection_tool class="JavaDoc" enabled="true" level="ERROR" enabled_by_default="true">
@@ -4122,9 +4120,8 @@
                    enabled_by_default="false"/>
   <inspection_tool class="SpringBootApplicationYaml" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
-  <!-- until #14806 -->
-  <inspection_tool class="YAMLSchemaValidation" enabled="false" level="ERROR"
-                   enabled_by_default="false"/>
+  <inspection_tool class="YAMLSchemaValidation" enabled="true" level="ERROR"
+                   enabled_by_default="true"/>
   <inspection_tool class="SpringBootBootstrapConfigurationInspection" enabled="false"
                    level="WEAK WARNING" enabled_by_default="false"/>
   <inspection_tool class="SpringCacheAnnotationsOnInterfaceInspection" enabled="false"
@@ -4614,9 +4611,8 @@
   </inspection_tool>
   <inspection_tool class="SystemExit" enabled="true" level="ERROR" enabled_by_default="true"/>
   <inspection_tool class="SystemGC" enabled="true" level="WARNING" enabled_by_default="true"/>
-  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
-  <inspection_tool class="SystemGetProperty" enabled="false" level="WARNING"
-                   enabled_by_default="false" />
+  <inspection_tool class="SystemGetProperty" enabled="true" level="WARNING"
+                   enabled_by_default="true" />
   <inspection_tool class="SystemGetenv" enabled="true" level="ERROR" enabled_by_default="true"/>
   <inspection_tool class="SystemOutErr" enabled="true" level="ERROR" enabled_by_default="true"/>
   <!-- we do not use system variables for any security relates reasons
@@ -5296,9 +5292,8 @@
     <option name="ADD_SERVLET_TO_ENTRIES" value="true"/>
     <option name="ADD_NONJAVA_TO_ENTRIES" value="true"/>
   </inspection_tool>
-  <!-- temporary disabled until https://github.com/checkstyle/checkstyle/issues/18926 -->
-  <inspection_tool class="ClassCanBeRecord" enabled="false"
-                   level="WEAK WARNING" enabled_by_default="false" />
+  <inspection_tool class="ClassCanBeRecord" enabled="true"
+                   level="WEAK WARNING" enabled_by_default="true" />
   <inspection_tool class="EnhancedSwitchMigration" enabled="true"
                    level="WARNING" enabled_by_default="true" />
 </profile>
