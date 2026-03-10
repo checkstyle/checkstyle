@@ -164,6 +164,17 @@ public class JavadocStyleCheck
      */
     private boolean checkEmptyJavadoc;
 
+    /**
+     * Specify the Javadoc comment format to check.
+     * Use {@code any} (default) to check all formats, {@code traditional} to check only
+     * traditional {@code /**} Javadoc comments, or {@code markdown} to check only
+     * Markdown {@code ///} Javadoc comments.
+     *
+     * <p>Note: {@code traditional} and {@code any} currently behave identically because
+     * Markdown {@code ///} Javadoc AST support is not yet available in the check pipeline.
+     */
+    private JavadocStyleFormatOption format = JavadocStyleFormatOption.ANY;
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
@@ -244,7 +255,7 @@ public class JavadocStyleCheck
      * @see #checkHtmlTags(DetailAST, TextBlock)
      */
     private void checkComment(final DetailAST ast, final TextBlock comment) {
-        if (comment != null) {
+        if (comment != null && shouldCheckFormat()) {
             if (checkFirstSentence) {
                 checkFirstSentenceEnding(ast, comment);
             }
@@ -257,6 +268,26 @@ public class JavadocStyleCheck
                 checkJavadocIsNotEmpty(comment);
             }
         }
+    }
+
+    /**
+     * Determines whether the currently configured format means Javadoc comments should be checked.
+     *
+     * <p>Note: since {@link FileContents#getJavadocBefore(int)} only stores traditional
+     * {@code /**} block comments, Markdown {@code ///} comments stored as single-line comments
+     * never appear here. Therefore {@code format=markdown} means no comments are checked via
+     * this path.
+     *
+     * <p>Also note: {@code format=traditional} and {@code format=any} currently behave
+     * identically because the AST pipeline does not yet expose Markdown {@code ///} Javadoc
+     * comments to this check. Once Markdown Javadoc AST support is available (see JEP 467),
+     * {@code format=traditional} will filter exclusively to {@code /**} comments while
+     * {@code format=any} will check both styles.
+     *
+     * @return {@code true} if comments should be checked for the configured format.
+     */
+    private boolean shouldCheckFormat() {
+        return format != JavadocStyleFormatOption.MARKDOWN;
     }
 
     /**
@@ -595,6 +626,20 @@ public class JavadocStyleCheck
      */
     public void setCheckEmptyJavadoc(boolean flag) {
         checkEmptyJavadoc = flag;
+    }
+
+    /**
+     * Setter to specify the Javadoc comment format to check.
+     * Use {@code any} (default) to check all formats, {@code traditional} to check only
+     * traditional {@code /**} Javadoc comments, or {@code markdown} to check only
+     * Markdown {@code ///} Javadoc comments.
+     *
+     * @param value string to decode format from
+     * @throws IllegalArgumentException if unable to decode
+     * @since 10.24.0
+     */
+    public void setFormat(String value) {
+        format = JavadocStyleFormatOption.valueOf(value.trim().toUpperCase(Locale.ENGLISH));
     }
 
 }
