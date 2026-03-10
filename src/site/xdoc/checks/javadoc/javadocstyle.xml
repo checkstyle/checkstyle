@@ -106,6 +106,13 @@
               <td>3.4</td>
             </tr>
             <tr>
+              <td><a id="format"/><a href="#format">format</a></td>
+              <td>Specify the Javadoc comment format to check. Use <code>any</code> (default) to check all formats, <code>traditional</code> to check only traditional <code>/**</code> Javadoc comments, or <code>markdown</code> to check only Markdown <code>///</code> Javadoc comments.</td>
+              <td><a href="../../property_types.html#JavadocStyleFormatOption">JavadocStyleFormatOption</a></td>
+              <td><code>any</code></td>
+              <td>10.24.0</td>
+            </tr>
+            <tr>
               <td><a id="scope"/><a href="#scope">scope</a></td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
               <td><a href="../../property_types.html#Scope">Scope</a></td>
@@ -619,6 +626,54 @@ public class Example7 {
    */
   private void testEmptyMethod() {}
   // violation 4 lines above 'Javadoc has empty description section'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the check to validate only traditional Javadoc comments
+          (using <code>/**</code> delimiters):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocStyle"&gt;
+      &lt;property name="format" value="traditional"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p id="Example8-code">Example8:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+ * Some description here
+ */
+public class Example8 {
+  Example8() {
+    // violation 5 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here.
+   */
+  private void testMethod1() {}
+  /**
+   * {@return {@code true} if this object
+   * has been initialized, {@code false} otherwise}
+   */
+  private boolean testMethod2() {
+    return true;
+  }
+  /**
+   * Some description here
+   */
+  private void testMethod3() {
+    // violation 4 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here
+   */
+  public void testMethod4() {
+    // violation 4 lines above 'First sentence should end with a period'
+  }
 }
 </code></pre></div>
       </subsection>
