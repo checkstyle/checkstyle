@@ -71,13 +71,6 @@ public class XdocsExampleFileTest {
                     "violateImpliedStaticOnNestedEnum",
                     "violateImpliedStaticOnNestedRecord",
                     "violateImpliedStaticOnNestedInterface"
-            )),
-            Map.entry("InterfaceMemberImpliedModifierCheck", Set.of(
-                    "violateImpliedFinalField",
-                    "violateImpliedPublicField",
-                    "violateImpliedStaticField",
-                    "violateImpliedPublicMethod",
-                    "violateImpliedAbstractMethod"
             ))
     );
 

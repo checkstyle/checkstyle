@@ -38,7 +38,7 @@ public class PkgImportRuleTest {
             .that(rule.verifyImport("p"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkga"))
+            .that(rule.verifyImport("pkgextra"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("pkg.a"))
@@ -87,7 +87,7 @@ public class PkgImportRuleTest {
             .that(rule.verifyImport("p"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkga"))
+            .that(rule.verifyImport("pkgextra"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("pkg.a"))
@@ -136,7 +136,7 @@ public class PkgImportRuleTest {
             .that(rule.verifyImport("p"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkga"))
+            .that(rule.verifyImport("pkgextra"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("pkg.a"))
@@ -168,7 +168,7 @@ public class PkgImportRuleTest {
             .that(rule)
             .isNotNull();
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkga"))
+            .that(rule.verifyImport("pkgextra"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("pkg.a"))

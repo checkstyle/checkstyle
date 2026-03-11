@@ -23,7 +23,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
  * Represents the result of an access check.
  *
  */
-enum AccessResult {
+public enum AccessResult {
 
     /** Represents that access is allowed. */
     ALLOWED,

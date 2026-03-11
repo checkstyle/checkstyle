@@ -52,12 +52,12 @@ public final class ChecksAndFilesSuppressionFileGeneratorAuditListener
     private final boolean closeStream;
 
     /**
-     * Collects the check names corrosponds to file name.
+     * Collects the check names corresponds to file name.
      */
     private final Map<Path, Set<String>> filesAndChecksCollector = new HashMap<>();
 
     /**
-     * Collects the module ids corrosponds to file name.
+     * Collects the module ids corresponds to file name.
      */
     private final Map<Path, Set<String>> filesAndModuleIdCollector = new HashMap<>();
 

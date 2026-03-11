@@ -117,11 +117,11 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     @Test
     public void testGetDefaultAlias() {
         assertWithMessage("Default alias differs from expected")
-            .that(SuppressWarningsHolder.getDefaultAlias("SomeName"))
-            .isEqualTo("somename");
+            .that(SuppressWarningsHolder.getDefaultAlias("TestName"))
+            .isEqualTo("testname");
         assertWithMessage("Default alias differs from expected")
-            .that(SuppressWarningsHolder.getDefaultAlias("SomeNameCheck"))
-            .isEqualTo("somename");
+            .that(SuppressWarningsHolder.getDefaultAlias("TestNameCheck"))
+            .isEqualTo("testname");
     }
 
     @Test
@@ -610,7 +610,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "18:16: " + getCheckMessage(MemberNameCheck.class,
+            "22:16: " + getCheckMessage(MemberNameCheck.class,
                     AbstractNameCheck.MSG_INVALID_PATTERN, "K", pattern),
         };
         verifyWithInlineConfigParser(

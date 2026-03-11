@@ -32,7 +32,7 @@ public class IllegalTokenCheckExamplesTest extends AbstractExamplesModuleTestSup
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "13:10: " + getCheckMessage(IllegalTokenCheck.MSG_KEY, "outer:"),
+            "15:10: " + getCheckMessage(IllegalTokenCheck.MSG_KEY, "outer:"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);

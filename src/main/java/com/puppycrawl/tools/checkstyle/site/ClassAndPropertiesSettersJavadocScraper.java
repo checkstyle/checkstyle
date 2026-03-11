@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Class for scraping class javadoc and all property setter javadocs from the
@@ -65,7 +66,7 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
             if (methodDef != null
                     && isSetterMethod(methodDef)
                     && isMethodOfScrapedModule(methodDef)) {
-                final String methodName = methodDef.findFirstToken(TokenTypes.IDENT).getText();
+                final String methodName = TokenUtil.getIdent(methodDef).getText();
                 final String propertyName = getPropertyName(methodName);
                 JavadocScraperResultUtil.putPropertyJavadocNode(propertyName, ast);
             }
@@ -74,7 +75,7 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
         else if (BlockCommentPosition.isOnClass(blockCommentAst)) {
             final DetailAST classDef = getParentAst(blockCommentAst, TokenTypes.CLASS_DEF);
             if (classDef != null) {
-                final String className = classDef.findFirstToken(TokenTypes.IDENT).getText();
+                final String className = TokenUtil.getIdent(classDef).getText();
                 if (className.equals(moduleName)) {
                     JavadocScraperResultUtil.setModuleJavadocNode(ast);
                 }
@@ -96,7 +97,7 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
 
         boolean isMethodOfModule = false;
         if (classDef != null) {
-            final String className = classDef.findFirstToken(TokenTypes.IDENT).getText();
+            final String className = TokenUtil.getIdent(classDef).getText();
             isMethodOfModule = className.equals(moduleName);
         }
 

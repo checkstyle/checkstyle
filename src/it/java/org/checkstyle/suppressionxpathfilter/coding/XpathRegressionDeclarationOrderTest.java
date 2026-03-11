@@ -100,4 +100,36 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSuppor
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testInnerClass() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathDeclarationOrderInnerClass.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(DeclarationOrderCheck.class);
+
+        final String[] expectedViolation = {
+            "6:9: " + getCheckMessage(DeclarationOrderCheck.class,
+                DeclarationOrderCheck.MSG_ACCESS),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='InputXpathDeclarationOrderInnerClass']]"
+                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]"
+                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a']]",
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='InputXpathDeclarationOrderInnerClass']]"
+                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]"
+                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a']]/MODIFIERS",
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='InputXpathDeclarationOrderInnerClass']]"
+                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]"
+                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a']]/MODIFIERS/LITERAL_PUBLIC"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

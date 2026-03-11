@@ -49,7 +49,7 @@ public class JavadocUtilTest {
         final JavadocTags allTags =
             JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.ALL);
         assertWithMessage("Invalid valid tags size")
-            .that(allTags.getValidTags())
+            .that(allTags.validTags())
             .hasSize(5);
     }
 
@@ -63,7 +63,7 @@ public class JavadocUtilTest {
         final JavadocTags allTags =
             JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.ALL);
         assertWithMessage("Invalid valid tags size")
-            .that(allTags.getValidTags())
+            .that(allTags.validTags())
             .hasSize(1);
     }
 
@@ -79,10 +79,10 @@ public class JavadocUtilTest {
         final JavadocTags inlineTags =
             JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.INLINE);
         assertWithMessage("Invalid valid tags size")
-            .that(blockTags.getValidTags())
+            .that(blockTags.validTags())
             .hasSize(1);
         assertWithMessage("Invalid valid tags size")
-            .that(inlineTags.getValidTags())
+            .that(inlineTags.validTags())
             .hasSize(2);
     }
 
@@ -93,7 +93,7 @@ public class JavadocUtilTest {
         };
         final Comment comment = new Comment(text, 1, 1, text[0].length());
         final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
-            comment, JavadocUtil.JavadocTagType.ALL).getValidTags();
+            comment, JavadocUtil.JavadocTagType.ALL).validTags();
         assertWithMessage("Invalid first arg")
             .that(tags.getFirst().getFirstArg())
             .isEqualTo("List link text");
@@ -106,7 +106,7 @@ public class JavadocUtilTest {
         };
         final Comment comment = new Comment(text, 1, 1, text[0].length());
         final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
-            comment, JavadocUtil.JavadocTagType.ALL).getValidTags();
+            comment, JavadocUtil.JavadocTagType.ALL).validTags();
         assertWithMessage("Invalid first arg")
             .that(tags.getFirst().getFirstArg())
             .isEqualTo("List#add(Object)");
@@ -121,7 +121,7 @@ public class JavadocUtilTest {
         final Comment comment = new Comment(text, 1, 2, text[1].length());
 
         final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
-            comment, JavadocUtil.JavadocTagType.ALL).getValidTags();
+            comment, JavadocUtil.JavadocTagType.ALL).validTags();
 
         assertWithMessage("Invalid tags size")
             .that(tags)
@@ -156,7 +156,7 @@ public class JavadocUtilTest {
         final Comment comment = new Comment(text, 1, 0, text[0].length());
 
         final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
-            comment, JavadocUtil.JavadocTagType.INLINE).getValidTags();
+            comment, JavadocUtil.JavadocTagType.INLINE).validTags();
 
         assertWithMessage("Invalid tags size")
             .that(tags)
@@ -182,17 +182,17 @@ public class JavadocUtilTest {
         final JavadocTags allTags =
             JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.ALL);
         assertWithMessage("Unexpected invalid tags size")
-            .that(allTags.getInvalidTags())
+            .that(allTags.invalidTags())
             .hasSize(2);
         assertTag("Unexpected invalid tag", new InvalidJavadocTag(1, 4, "fake"),
-                allTags.getInvalidTags().getFirst());
+                allTags.invalidTags().getFirst());
         assertTag("Unexpected invalid tag", new InvalidJavadocTag(2, 4, "bogus"),
-                allTags.getInvalidTags().get(1));
+                allTags.invalidTags().get(1));
         assertWithMessage("Unexpected valid tags size")
-            .that(allTags.getValidTags())
+            .that(allTags.validTags())
             .hasSize(1);
         assertTag("Unexpected valid tag", new JavadocTag(3, 4, "link", "List valid"),
-                allTags.getValidTags().getFirst());
+                allTags.validTags().getFirst());
     }
 
     @Test

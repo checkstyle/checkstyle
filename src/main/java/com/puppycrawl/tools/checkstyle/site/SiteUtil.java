@@ -1329,6 +1329,7 @@ public final class SiteUtil {
     private static String getDescriptionFromJavadocForXdoc(DetailNode javadoc, String moduleName)
             throws MacroExecutionException {
         boolean isInCodeLiteral = false;
+        boolean isInLiteralTag = false;
         boolean isInHtmlElement = false;
         boolean isInHrefAttribute = false;
         final StringBuilder description = new StringBuilder(128);
@@ -1362,13 +1363,12 @@ public final class SiteUtil {
                     description.append(node.getText());
                     isInHtmlElement = false;
                 }
-                if (node.getType() == JavadocCommentsTokenTypes.TEXT
-                        // If a node has children, its text is not part of the description
-                        || isInHtmlElement && node.getFirstChild() == null
-                            // Some HTML elements span multiple lines, so we avoid the asterisk
-                            && node.getType() != JavadocCommentsTokenTypes.LEADING_ASTERISK) {
-                    if (isInCodeLiteral) {
-                        description.append(node.getText().trim());
+                if (isTextContent(node, isInHtmlElement)) {
+                    if (isInCodeLiteral || isInLiteralTag) {
+                        description.append(node.getText().trim()
+                            .replace("&", "&amp;")
+                            .replace("<", "&lt;")
+                            .replace(">", "&gt;"));
                     }
                     else {
                         description.append(node.getText());
@@ -1385,6 +1385,15 @@ public final class SiteUtil {
                     isInCodeLiteral = false;
                     description.append("</code>");
                 }
+                if (node.getType() == JavadocCommentsTokenTypes.TAG_NAME
+                        && node.getParent().getType()
+                        == JavadocCommentsTokenTypes.LITERAL_INLINE_TAG) {
+                    isInLiteralTag = true;
+                }
+                if (isInLiteralTag
+                        && node.getType() == JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END) {
+                    isInLiteralTag = false;
+                }
 
             }
 
@@ -1398,6 +1407,19 @@ public final class SiteUtil {
         }
 
         return description.toString().trim();
+    }
+
+    /**
+     * Checks whether the node contains text content that should be written to the description.
+     *
+     * @param node the node to check.
+     * @param isInHtmlElement whether we are inside an HTML element.
+     * @return true if the node contains text content to write.
+     */
+    private static boolean isTextContent(DetailNode node, boolean isInHtmlElement) {
+        return node.getType() == JavadocCommentsTokenTypes.TEXT
+                || isInHtmlElement && node.getFirstChild() == null
+                    && node.getType() != JavadocCommentsTokenTypes.LEADING_ASTERISK;
     }
 
     /**

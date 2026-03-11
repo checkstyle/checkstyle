@@ -158,20 +158,16 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAddException() throws IOException {
+    public void testAddException() throws Exception {
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
-        logger.auditStarted(null);
-        final Violation message =
-                new Violation(1, 1,
-                        "messages.properties", "null", null, null,
-                        getClass(), "found an error");
-        final AuditEvent ev = new AuditEvent(this, null, message);
-        logger.fileStarted(ev);
-        logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
-        logger.fileFinished(ev);
-        logger.auditFinished(null);
-        verifyContent(getPath("ExpectedSarifLoggerSingleException.sarif"), outStream);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath("InputSarifLoggerSingleException.java"),
+                getPath("ExpectedSarifLoggerSingleException.sarif"),
+                logger,
+                outStream
+        );
     }
 
     @Test
@@ -359,11 +355,14 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoCloseStream() throws IOException {
+    public void testNoCloseStream() throws Exception {
+        final String inputFile = "InputSarifLoggerEmpty.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEmpty.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.NONE);
-        logger.auditStarted(null);
-        logger.auditFinished(null);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
 
         assertWithMessage("Invalid close count")
             .that(outStream.getCloseCount())
@@ -371,9 +370,6 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid flush count")
             .that(outStream.getFlushCount())
             .isEqualTo(1);
-
-        outStream.close();
-        verifyContent(getPath("ExpectedSarifLoggerEmpty.sarif"), outStream);
     }
 
     @Test

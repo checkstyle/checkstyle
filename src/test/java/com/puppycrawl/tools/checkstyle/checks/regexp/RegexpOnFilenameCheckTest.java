@@ -205,7 +205,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     public void testNotMatchFolderAndFileNotMatchesFolder() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("match", "false");
-        checkConfig.addProperty("folderPattern", ".*[\\\\/]javastrangefolder[\\\\/].*");
+        checkConfig.addProperty("folderPattern", ".*[\\\\/]testinputfolder[\\\\/].*");
         checkConfig.addProperty("fileNamePattern", ".*\\.dat");
         verify(checkConfig, getPath("InputRegexpOnFilenameSemantic.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
@@ -215,7 +215,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     public void testNotMatchFolderAndFileNotMatchesFile() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("match", "false");
-        checkConfig.addProperty("folderPattern", ".*[\\\\/]govstrangefolder[\\\\/].*");
+        checkConfig.addProperty("folderPattern", ".*[\\\\/]otherinputfolder[\\\\/].*");
         checkConfig.addProperty("fileNamePattern", ".*\\.java");
         verify(checkConfig, getPath("InputRegexpOnFilenameSemantic.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);

@@ -1958,18 +1958,11 @@
                 </td>
                 <td>
                   <span class="wrapper inline">
-                    <img src="images/ok_blue.png" alt="" />
+                    <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="checks/naming/membername.html#MemberName">MemberName</a>
-                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
+                  <a href="checks/naming/googlenonconstantfieldname.html#GoogleNonConstantFieldName">GoogleNonConstantFieldName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+GoogleNonConstantFieldName">
                   config</a>)
-                  <br/>
-                  <br/>
-                  There are some false-negatives regarding the use of underscore in
-                  the member names. They will be addressed at:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/17842">
-                    #17842
-                  </a>
                   <br/>
                   <br/>
                   <span class="wrapper inline">
@@ -1980,8 +1973,8 @@
                   As with section 5.2.4, due to
                   <a href="writingchecks.html#Limitations">limitations</a>,
                   Checkstyle cannot determine whether a static final field is semantically
-                  a constant or not. In other words, MemberName cannot verify that static
-                  final fields use lower case name when they are not constants (e.g.,
+                  a constant or not. In other words, GoogleNonConstantFieldName cannot verify
+                  that static final fields use lower case name when they are not constants (e.g.,
                   static final List&lt;String&gt; names).
                 </td>
                 <td>
