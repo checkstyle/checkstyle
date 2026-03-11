@@ -1,5 +1,5 @@
 /*
-com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck
+MissingJavadocMethod
 allowMissingPropertyJavadoc = true
 
 
