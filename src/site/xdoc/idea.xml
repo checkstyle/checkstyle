@@ -43,16 +43,18 @@
 
     <section name="Exclude Non-Compiled Resource Directories">
       <p>
-        The <code>src/test/resources-noncompilable</code> directory contains test input files
-        that are intentionally not compilable and will cause build errors if IntelliJ IDEA tries
-        to compile them. You must mark this directory as <b>Excluded</b> in the Project Structure
-        settings before running tests through IntelliJ's interface.
-        <br/><br/>
+        The following directories contain files that are not compilable and will cause build
+        errors if IntelliJ IDEA tries to compile them. Mark each as <b>Excluded</b> in the
+        Project Structure settings before running tests via IntelliJ's interface:
+        <ul>
+          <li><code>src/it/resources-noncompilable</code></li>
+          <li><code>src/test/resources-noncompilable</code></li>
+          <li><code>src/xdocs-examples/resources-noncompilable</code></li>
+        </ul>
         Open <code>File | Project Structure</code> (or press <code>Ctrl+Alt+Shift+S</code>),
         navigate to <code>Modules</code>, select the checkstyle module, then open the
-        <code>Sources</code> tab. Right-click <code>src/test/resources-noncompilable</code>
-        and select <code>Excluded</code>.
-        The directory should appear highlighted in red once marked as excluded.
+        <code>Sources</code> tab. Right-click each directory above and select
+        <code>Excluded</code>.
       </p>
     </section>
 
