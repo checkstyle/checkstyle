@@ -71,6 +71,14 @@
             <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
                <description>Specify the visibility scope where Javadoc comments are not checked.</description>
             </property>
+            <property default-value="any"
+                      name="format"
+                      type="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleFormatOption">
+               <description>Specify the Javadoc comment format to check.
+ Use &lt;code&gt;any&lt;/code&gt; (default) to check all formats, &lt;code&gt;traditional&lt;/code&gt; to check only
+ traditional &lt;code&gt;/**&lt;/code&gt; Javadoc comments, or &lt;code&gt;markdown&lt;/code&gt; to check only
+ Markdown &lt;code&gt;///&lt;/code&gt; Javadoc comments.</description>
+            </property>
             <property default-value="private"
                       name="scope"
                       type="com.puppycrawl.tools.checkstyle.api.Scope">
