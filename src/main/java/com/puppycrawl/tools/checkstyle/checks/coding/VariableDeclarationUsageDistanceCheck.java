@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Optional;
@@ -221,17 +222,29 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @return true if statements between declaration and usage of variable are
      *         initialization methods.
      */
-    private static boolean isInitializationSequence(
+    private boolean isInitializationSequence(
             DetailAST variableUsageAst, String variableName) {
+        DetailAST currentAst = variableUsageAst;
+
+        // exemption when first usage is in block declaration
+        if (validateBetweenScopes && currentAst!= null && Set.of(
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_WHILE,
+            TokenTypes.LITERAL_DO,
+            TokenTypes.LITERAL_TRY
+        ).contains(currentAst.getType())) {
+            currentAst = getNextNodeToCheckBetweenScopes(currentAst);
+        }
+
         boolean result = true;
         boolean isUsedVariableDeclarationFound = false;
-        DetailAST currentSiblingAst = variableUsageAst;
         String initInstanceName = "";
-
-        while (result && !isUsedVariableDeclarationFound && currentSiblingAst != null) {
-            if (currentSiblingAst.getType() == TokenTypes.EXPR
-                    && currentSiblingAst.getFirstChild().getType() == TokenTypes.METHOD_CALL) {
-                final DetailAST methodCallAst = currentSiblingAst.getFirstChild();
+        while (result && !isUsedVariableDeclarationFound && currentAst != null) {
+            if (currentAst.getType() == TokenTypes.EXPR
+                    && currentAst.getFirstChild().getType() == TokenTypes.METHOD_CALL) {
+                final DetailAST methodCallAst = currentAst.getFirstChild();
                 final String instanceName = getInstanceName(methodCallAst);
                 if (instanceName.isEmpty()) {
                     result = false;
@@ -246,17 +259,97 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 }
 
             }
-            else if (currentSiblingAst.getType() == TokenTypes.VARIABLE_DEF) {
+            else if (currentAst.getType() == TokenTypes.VARIABLE_DEF) {
                 final String currentVariableName =
-                        currentSiblingAst.findFirstToken(TokenTypes.IDENT).getText();
+                        currentAst.findFirstToken(TokenTypes.IDENT).getText();
                 isUsedVariableDeclarationFound = variableName.equals(currentVariableName);
             }
             else {
-                result = currentSiblingAst.getType() == TokenTypes.SEMI;
+                result = currentAst.getType() == TokenTypes.SEMI ||
+                    currentAst.getType() == TokenTypes.LCURLY;
             }
-            currentSiblingAst = currentSiblingAst.getPreviousSibling();
+
+            // find next AST node to check
+            if (validateBetweenScopes) {
+                currentAst = getNextNodeToCheckBetweenScopes(currentAst);
+            }
+            else {
+                currentAst = currentAst.getPreviousSibling();
+            }
         }
         return result;
+    }
+
+    /**
+     * Returns the next node to check for initialization sequence
+     * when validateBetweenScopes is true.
+     *
+     * @param currentAst The current node.
+     * @return The next node to check for initialization sequence.
+     */
+    private static DetailAST getNextNodeToCheckBetweenScopes(DetailAST currentAst) {
+        DetailAST nextAst;
+        if (currentAst.getPreviousSibling() != null) {
+            nextAst = currentAst.getPreviousSibling();
+        } else {
+            // go up the tree
+            final DetailAST predecessor = getFirstPredecessorOfTypes(
+                Set.of(
+                    TokenTypes.SLIST,
+                    TokenTypes.RESOURCE_SPECIFICATION,
+                    TokenTypes.OBJBLOCK,
+                    TokenTypes.LITERAL_SYNCHRONIZED
+                ), currentAst);
+
+            nextAst = switch (predecessor.getType()) {
+                case TokenTypes.SLIST -> getNextNodeToCheckBetweenScopesSlist(predecessor);
+                case TokenTypes.RESOURCE_SPECIFICATION, TokenTypes.OBJBLOCK ->
+                    predecessor.getParent().getPreviousSibling();
+                case TokenTypes.LITERAL_SYNCHRONIZED -> predecessor.getPreviousSibling();
+                default -> currentAst.getPreviousSibling();
+            };
+        }
+        return nextAst;
+    }
+
+    /**
+     * Returns the next node to check for initialization sequence when the
+     * current node is a direct child of SLIST.
+     *
+     * @param ast The SLIST node which is the parent of the current node.
+     * @return The next node to check for initialization sequence.
+     */
+    private static DetailAST getNextNodeToCheckBetweenScopesSlist(DetailAST ast) {
+        return switch (ast.getParent().getType()) {
+            case TokenTypes.LITERAL_ELSE, TokenTypes.LITERAL_CATCH,
+                 TokenTypes.LITERAL_FINALLY, TokenTypes.CASE_GROUP ->
+                ast.getParent().getParent().getPreviousSibling();
+            case TokenTypes.LITERAL_TRY, TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE,
+                 TokenTypes.LITERAL_DO, TokenTypes.LITERAL_IF,
+                 TokenTypes.LITERAL_SYNCHRONIZED ->
+                ast.getParent().getPreviousSibling();
+            case TokenTypes.METHOD_DEF, TokenTypes.INSTANCE_INIT ->
+                getFirstPredecessorOfTypes(
+                Collections.singleton(TokenTypes.CLASS_DEF), ast).getPreviousSibling();
+            default -> ast.getPreviousSibling();
+        };
+    }
+
+    /**
+     * Returns the AST node of the specified types that is the closest predecessor
+     * of the specified node.
+     *
+     * @param types The set of types of the predecessor to search for.
+     * @param ast The AST node for which predecessor is searched.
+     * @return The closest predecessor of one of the specified types;
+     *         null if no such node exists.
+     */
+    private static DetailAST getFirstPredecessorOfTypes(Set<Integer> types, DetailAST ast) {
+        DetailAST current = ast.getParent();
+        while (current != null && !types.contains(current.getType())) {
+            current = current.getParent();
+        }
+        return current;
     }
 
     /**
@@ -370,6 +463,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             // If there's no any variable usage, then distance = 0.
             else if (variableUsageExpressions.isEmpty()) {
                 variableUsageAst = null;
+                dist = 0;
             }
             // If variable usage exists in different scopes, then distance =
             // distance until variable first usage.

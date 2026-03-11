@@ -342,6 +342,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     public void testGeneralClass3() throws Exception {
         final String[] expected = {
             "46:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "92:9: " + getCheckMessage(MSG_KEY, "t", 3, 1),
         };
 
         verifyWithInlineConfigParser(
@@ -422,5 +423,94 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceMethodDef.java"), expected);
+    }
+
+    @Test
+    public void testInitializationSequence1() throws Exception {
+        final String[] expected = {
+            "25:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "40:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "55:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "69:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "83:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "97:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath(
+                "InputVariableDeclarationUsageDistanceInitializationSequence1.java"),
+            expected);
+    }
+
+    @Test
+    public void testInitializationSequence2() throws Exception {
+        final String[] expected = {
+            "25:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "40:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "53:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "68:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "82:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "94:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "105:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath(
+                "InputVariableDeclarationUsageDistanceInitializationSequence2.java"),
+            expected);
+    }
+
+    @Test
+    public void testInitializationSequence3() throws Exception {
+        final String[] expected = {
+            "24:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "38:9: " + getCheckMessage(MSG_KEY, "list2", 3, 1),
+            "51:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "70:9: " + getCheckMessage(MSG_KEY, "list", 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath(
+                "InputVariableDeclarationUsageDistanceInitializationSequence3.java"),
+            expected);
+    }
+
+    @Test
+    public void testInitializationSequence4() throws Exception {
+        final String[] expected = {
+            "25:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "40:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "57:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "73:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath(
+                "InputVariableDeclarationUsageDistanceInitializationSequence4.java"),
+            expected);
+    }
+
+    @Test
+    public void testInitializationSequence5() throws Exception {
+        final String[] expected = {
+            "27:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "44:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "60:9: " + getCheckMessage(MSG_KEY, "list2", 3, 1),
+            "80:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath(
+                "InputVariableDeclarationUsageDistanceInitializationSequence5.java"),
+            expected);
+    }
+
+    @Test
+    public void testInitializationSequence() throws Exception {
+        testInitializationSequence1();
+        testInitializationSequence2();
+        testInitializationSequence3();
+        testInitializationSequence4();
+        testInitializationSequence5();
     }
 }
