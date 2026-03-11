@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDecl
 import static com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenInAstByPredicate;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
 import java.nio.file.Path;
@@ -118,18 +119,16 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
         final DetailAstImpl modifiers = new DetailAstImpl();
         modifiers.setType(TokenTypes.METHOD_DEF);
 
-        try {
-            CheckUtil.getAccessModifierFromModifiersToken(modifiers);
-            assertWithMessage("%s was expected.", IllegalArgumentException.class.getSimpleName())
-                .fail();
-        }
-        catch (IllegalArgumentException exc) {
-            final String expectedExceptionMsg = "expected non-null AST-token with type 'MODIFIERS'";
-            final String actualExceptionMsg = exc.getMessage();
-            assertWithMessage("Invalid exception message")
-                .that(actualExceptionMsg)
-                .isEqualTo(expectedExceptionMsg);
-        }
+        final IllegalArgumentException exc =
+            getExpectedThrowable(IllegalArgumentException.class, () -> {
+                CheckUtil.getAccessModifierFromModifiersToken(modifiers);
+            });
+
+        final String expectedExceptionMsg = "expected non-null AST-token with type 'MODIFIERS'";
+        final String actualExceptionMsg = exc.getMessage();
+        assertWithMessage("Invalid exception message")
+            .that(actualExceptionMsg)
+            .isEqualTo(expectedExceptionMsg);
     }
 
     @Test

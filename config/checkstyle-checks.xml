@@ -265,6 +265,13 @@
 
   <module name="TreeWalker">
     <property name="tabWidth" value="4"/>
+    <module name="MatchXpath">
+      <property name="id" value="MatchXpathForbidTryCatchFail"/>
+      <property name="query" value="//METHOD_CALL[./IDENT[@text='assertWithMessage']
+        and (./following-sibling::IDENT[@text='fail'])]"/>
+      <message key="matchxpath.match"
+               value="Exceptions should be validated by `getExpectedThrowable`."/>
+    </module>
 
     <!-- Annotations -->
     <module name="AnnotationLocation">
