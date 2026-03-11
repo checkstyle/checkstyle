@@ -26,6 +26,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.M
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocStyleCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
@@ -106,5 +107,21 @@ public class JavadocStyleCheckExamplesTest extends AbstractExamplesModuleTestSup
             "56: " + getCheckMessage(MSG_EMPTY),
         };
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+    }
+
+    @Test
+    public void testExample8() throws Exception {
+        final String[] expected = {
+            "12: " + getCheckMessage(MSG_NO_PERIOD),
+            "30: " + getCheckMessage(MSG_NO_PERIOD),
+            "36: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+    }
+
+    @Test
+    public void testExample9() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
     }
 }
