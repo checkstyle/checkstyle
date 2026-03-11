@@ -212,7 +212,13 @@ public class TokenUtilTest {
                 .that(TokenUtil.isCommentType(TokenTypes.COMMENT_CONTENT))
                 .isTrue();
         assertWithMessage("Should return true when valid type passed")
+                .that(TokenUtil.isCommentType(TokenTypes.MARKDOWN_JAVADOC_COMMENT))
+                .isTrue();
+        assertWithMessage("Should return true when valid type passed")
                 .that(TokenUtil.isCommentType("COMMENT_CONTENT"))
+                .isTrue();
+        assertWithMessage("Should return true when valid type passed")
+                .that(TokenUtil.isCommentType("MARKDOWN_JAVADOC_COMMENT"))
                 .isTrue();
         assertWithMessage("Should return false when invalid type passed")
                 .that(TokenUtil.isCommentType(TokenTypes.CLASS_DEF))
@@ -228,7 +234,7 @@ public class TokenUtilTest {
 
         assertWithMessage("Invalid token total number")
             .that(tokenTypesTotalNumber)
-            .isEqualTo(191);
+            .isEqualTo(192);
     }
 
     @Test
@@ -238,10 +244,10 @@ public class TokenUtilTest {
 
         assertWithMessage("Invalid token length")
             .that(allTokenIds.length)
-            .isEqualTo(191);
+            .isEqualTo(192);
         assertWithMessage("invalid sum")
             .that(sum)
-            .isEqualTo(20273);
+            .isEqualTo(20501);
     }
 
     @Test
