@@ -201,8 +201,14 @@ public class JavadocDetailNodeParser {
                 target = convertUpperCamelToUpperUnderscore(ruleName);
             }
 
+            String message = msg;
+            if (message.contains("no viable alternative at input")) {
+                message = "Invalid Javadoc syntax. Please review the Javadoc specification "
+                        + "for correct tag usage.";
+            }
+
             errorMessage = new ParseErrorMessage(lineNumber,
-                    MSG_JAVADOC_PARSE_RULE_ERROR, charPositionInLine, msg, target);
+                    MSG_JAVADOC_PARSE_RULE_ERROR, charPositionInLine, message, target);
 
         }
 

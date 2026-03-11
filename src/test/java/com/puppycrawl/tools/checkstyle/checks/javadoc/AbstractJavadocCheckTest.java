@@ -70,13 +70,15 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testJavadocTagsWithoutArgs() throws Exception {
+        final String message = "Invalid Javadoc syntax. "
+                + "Please review the Javadoc specification for correct tag usage.";
         final String[] expected = {
             "16: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 4,
-                    "no viable alternative at input 'see'", "SEE_TAG"),
+                    message, "SEE_TAG"),
             "65: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 13,
-                    "no viable alternative at input '}'", "REFERENCE"),
+                    message, "REFERENCE"),
             "73: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 19,
-                    "no viable alternative at input '}'", "REFERENCE"),
+                    message, "REFERENCE"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocJavadocTagsWithoutArgs.java"), expected);
@@ -506,11 +508,13 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testVisitCountForCheckAcceptingJavadocWithNonTightHtml() throws Exception {
+        final String message = "Invalid Javadoc syntax. "
+                + "Please review the Javadoc specification for correct tag usage.";
         final String[] expected = {
             "14: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "23: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "27: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 68,
-                    "no viable alternative at input '</'", "HTML_ELEMENT"),
+                    message, "HTML_ELEMENT"),
             "34: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "48: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
             "66: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
