@@ -531,6 +531,71 @@
       </div>
     </section>
 
+    <section name="JavadocStyleFormatOption">
+      <p>
+        This type represents the format of Javadoc comments to check.
+        The following table describes the valid options:
+      </p>
+
+      <div class="wrapper">
+        <table summary="JavadocStyleFormatOption options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+
+          <tr>
+            <td><code>any</code></td>
+            <td>
+              Represents any Javadoc format. All Javadoc comments are checked
+              regardless of their format (traditional or markdown).
+              Example:
+              <div class="wrapper">
+                <pre><code class="language-java">
+            &#47;** Summary text. *&#47;
+            public void method() {}
+                </code></pre>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>traditional</code></td>
+            <td>
+              Represents the traditional Javadoc format using <code>/**</code> delimiters.
+              Only traditional Javadoc comments are checked when this option is selected.
+              Example:
+              <div class="wrapper">
+                <pre><code class="language-java">
+            &#47;**
+             * Summary text.
+             *&#47;
+            public void method() {}
+                </code></pre>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>markdown</code></td>
+            <td>
+              Represents the Markdown Javadoc format using <code>///</code> line prefixes.
+              Only Markdown Javadoc comments are checked when this option is selected.
+              Note: requires Java 23+ Markdown Javadoc support (JEP 467).
+              Example:
+              <div class="wrapper">
+                <pre><code class="language-java">
+            /// Summary text.
+            public void method() {}
+                </code></pre>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </div>
+    </section>
+
     <section name="LeftCurlyOption">
       <p>
         This type represents the policy for checking the placement of a
