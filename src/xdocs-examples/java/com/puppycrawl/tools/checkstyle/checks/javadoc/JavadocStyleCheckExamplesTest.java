@@ -107,4 +107,17 @@ public class JavadocStyleCheckExamplesTest extends AbstractExamplesModuleTestSup
         };
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
+
+    @Test
+    public void testExample8() throws Exception {
+        final String[] expected = {
+            "13: " + getCheckMessage(MSG_NO_PERIOD),
+            "33: " + getCheckMessage(MSG_NO_PERIOD),
+            "39: " + getCheckMessage(MSG_NO_PERIOD),
+            "45: " + getCheckMessage(MSG_NO_PERIOD),
+            "52: " + getCheckMessage(MSG_NO_PERIOD),
+            "54: " + getCheckMessage(MSG_INCOMPLETE_TAG, "   * <p"),
+        };
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+    }
 }
