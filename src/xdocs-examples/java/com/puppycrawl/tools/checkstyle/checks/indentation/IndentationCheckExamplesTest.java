@@ -61,4 +61,10 @@ public class IndentationCheckExamplesTest extends AbstractExamplesModuleTestSupp
         final String[] expected = {};
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
 }
