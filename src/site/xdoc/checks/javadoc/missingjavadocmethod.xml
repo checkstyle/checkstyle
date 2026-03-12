@@ -91,6 +91,13 @@ public boolean isSomething()
               <td>8.21</td>
             </tr>
             <tr>
+              <td><a id="requireJavadocForAbstractOnly"/><a href="#requireJavadocForAbstractOnly">requireJavadocForAbstractOnly</a></td>
+              <td>Control whether to require Javadoc only for methods declared in interfaces or abstract classes.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.4.0</td>
+            </tr>
+            <tr>
               <td><a id="scope"/><a href="#scope">scope</a></td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
               <td><a href="../../property_types.html#Scope">Scope</a></td>
