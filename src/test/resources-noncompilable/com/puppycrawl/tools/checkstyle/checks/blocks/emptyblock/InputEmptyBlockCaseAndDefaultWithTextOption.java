@@ -92,3 +92,4 @@ public class InputEmptyBlockCaseAndDefaultWithTextOption {
     }
 
 }
+// non-compiled with javac: Compilable with Java25

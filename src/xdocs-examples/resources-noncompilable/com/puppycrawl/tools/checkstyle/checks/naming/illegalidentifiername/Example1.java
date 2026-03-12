@@ -9,7 +9,7 @@
 
 
 
-// non-compiled with javac: Compilable with Java17
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.naming.illegalidentifiername;
 
 // xdoc section -- start

@@ -30,3 +30,4 @@ public class InputIllegalIdentifierNameRecordPattern {
     record ColorPoint(Point p, String color) { }
 
 }
+// non-compiled with javac: Compilable with Java25

@@ -93,3 +93,4 @@ public class InputFallThroughWithPatternMatching {
 
     }
 }
+// non-compiled with javac: Compilable with Java25

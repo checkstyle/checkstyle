@@ -37,3 +37,4 @@ public class InputPatternVariableNameRecordPattern {
     record Point(int x, int y) { }
     record ColoredPoint(Point point, String color) { }
 }
+// non-compiled with javac: Compilable with Java25

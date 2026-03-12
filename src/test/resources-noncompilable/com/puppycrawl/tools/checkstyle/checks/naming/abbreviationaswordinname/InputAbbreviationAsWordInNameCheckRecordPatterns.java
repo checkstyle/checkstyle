@@ -49,3 +49,4 @@ public class InputAbbreviationAsWordInNameCheckRecordPatterns {
     record ColoredPoint(int x, int y, String color) {}
     record Rectangle(ColoredPoint upperLeft, ColoredPoint lowerRight) {}
 }
+// non-compiled with javac: Compilable with Java25

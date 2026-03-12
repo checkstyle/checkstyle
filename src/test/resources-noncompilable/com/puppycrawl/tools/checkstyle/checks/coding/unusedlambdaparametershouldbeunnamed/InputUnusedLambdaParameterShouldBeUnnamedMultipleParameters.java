@@ -115,3 +115,4 @@ public class InputUnusedLambdaParameterShouldBeUnnamedMultipleParameters {
         return y;
     }
 }
+// non-compiled with javac: Compilable with Java25

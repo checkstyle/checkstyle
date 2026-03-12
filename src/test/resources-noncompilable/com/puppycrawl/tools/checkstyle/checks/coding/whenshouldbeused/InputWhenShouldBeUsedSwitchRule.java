@@ -116,3 +116,4 @@ public class InputWhenShouldBeUsedSwitchRule {
     int get() { return 0; }
     record Point(int x, int y) {}
 }
+// non-compiled with javac: Compilable with Java25

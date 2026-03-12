@@ -40,3 +40,4 @@ public class InputNoWhitespaceBeforeCaseDefaultColonPatternMatchingForSwitch {
     record ColoredPoint(int p, int x, boolean c) { }
     record Rectangle(ColoredPoint upperLeft, ColoredPoint lowerRight) { }
 }
+// non-compiled with javac: Compilable with Java25

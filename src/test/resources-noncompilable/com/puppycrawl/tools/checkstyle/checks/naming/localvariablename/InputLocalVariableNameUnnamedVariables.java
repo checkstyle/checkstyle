@@ -38,3 +38,4 @@ public class InputLocalVariableNameUnnamedVariables {
         for (int ab = 0, _ = Integer.valueOf(1); ab < 3; ab++) { }
     }
 }
+// non-compiled with javac: Compilable with Java25

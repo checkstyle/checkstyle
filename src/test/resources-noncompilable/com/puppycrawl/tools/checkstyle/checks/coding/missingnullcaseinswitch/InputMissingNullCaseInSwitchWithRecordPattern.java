@@ -100,3 +100,4 @@ public class InputMissingNullCaseInSwitchWithRecordPattern {
     record ColoredPoint(int p, int x, String c) { }
     record Rectangle(ColoredPoint upperLeft, ColoredPoint lowerRight) { }
 }
+// non-compiled with javac: Compilable with Java25

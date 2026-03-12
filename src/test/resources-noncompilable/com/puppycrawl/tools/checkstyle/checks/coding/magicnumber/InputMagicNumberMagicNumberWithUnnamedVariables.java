@@ -25,3 +25,4 @@ public class InputMagicNumberMagicNumberWithUnnamedVariables {
         double _ = 3.1415; // violation ''3.1415' is a magic number'
     }
 }
+// non-compiled with javac: Compilable with Java25

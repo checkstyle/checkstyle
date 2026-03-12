@@ -91,3 +91,4 @@ public class InputOperatorWrapInstanceOfOperatorEndOfLine {
     }
     record Point(int x,int y) {}
 }
+// non-compiled with javac: Compilable with Java25

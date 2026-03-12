@@ -64,3 +64,4 @@ public class InputAnnotationOnSameLinePatternVariables {
                         @Deprecated
                         String color) { }
 }
+// non-compiled with javac: Compilable with Java25

@@ -103,3 +103,4 @@ public class InputNPathComplexityPatternMatchingForSwitch {
     record A(int x) {}
     record B(String s) {}
 }
+// non-compiled with javac: Compilable with Java25

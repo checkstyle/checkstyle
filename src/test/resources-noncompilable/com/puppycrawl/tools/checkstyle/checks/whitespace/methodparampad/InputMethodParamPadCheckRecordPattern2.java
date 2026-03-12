@@ -57,3 +57,4 @@ public class InputMethodParamPadCheckRecordPattern2 {
     record ColoredPoint (Point p, String s) {}
     record Point (int x, int y) {}
 }
+// non-compiled with javac: Compilable with Java25

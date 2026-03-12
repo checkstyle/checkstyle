@@ -34,3 +34,4 @@ public class InputCatchParameterNameUnnamed {
         }
     }
 }
+// non-compiled with javac: Compilable with Java25

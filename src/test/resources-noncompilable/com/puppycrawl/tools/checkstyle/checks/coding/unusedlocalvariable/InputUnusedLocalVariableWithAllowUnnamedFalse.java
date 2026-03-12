@@ -51,3 +51,4 @@ public class InputUnusedLocalVariableWithAllowUnnamedFalse {
         return 0;
     }
 }
+// non-compiled with javac: Compilable with Java25

@@ -33,3 +33,4 @@ public class InputBooleanExpressionComplexityWhenExpression {
 
     record ColoredPoint(boolean p, boolean x, boolean c) { }
 }
+// non-compiled with javac: Compilable with Java25

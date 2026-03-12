@@ -20,3 +20,4 @@ public class InputXpathWhenShouldBeUsedNested {
         };
     }
 }
+// non-compiled with javac: Compilable with Java25

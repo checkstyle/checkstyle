@@ -34,3 +34,4 @@ public class InputEqualsAvoidNullRecordPattern {
     }
 
 }
+// non-compiled with javac: Compilable with Java25

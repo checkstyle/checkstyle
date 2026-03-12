@@ -42,3 +42,4 @@ public class InputLocalFinalVariableNameUnnamedVariables {
         return null;
     }
 }
+// non-compiled with javac: Compilable with Java25

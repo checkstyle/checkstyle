@@ -51,3 +51,4 @@ public class InputMagicNumberMagicNumberInGuards {
 
     record Point(int x, int y, double z) { }
 }
+// non-compiled with javac: Compilable with Java25

@@ -5,7 +5,7 @@
   </module>
 </module>
 */
-// non-compiled with javac: Compilable with Java22
+// non-compiled with javac: Compilable with Java25
 
 
 

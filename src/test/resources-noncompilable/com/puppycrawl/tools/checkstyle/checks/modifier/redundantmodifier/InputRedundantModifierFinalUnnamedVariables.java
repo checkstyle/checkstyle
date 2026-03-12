@@ -84,3 +84,4 @@ public class InputRedundantModifierFinalUnnamedVariables {
 
     record Point(int x, int y) { }
 }
+// non-compiled with javac: Compilable with Java25

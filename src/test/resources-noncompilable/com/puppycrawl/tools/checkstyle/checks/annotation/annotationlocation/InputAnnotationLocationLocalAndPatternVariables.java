@@ -27,3 +27,4 @@ public class InputAnnotationLocationLocalAndPatternVariables {
     }
     record ColoredPoint(int p, int x, int c) { }
 }
+// non-compiled with javac: Compilable with Java25

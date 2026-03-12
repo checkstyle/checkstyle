@@ -45,3 +45,4 @@ public class InputLambdaParameterNameUnnamed {
     }
 
 }
+// non-compiled with javac: Compilable with Java25

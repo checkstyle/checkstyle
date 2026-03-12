@@ -107,3 +107,4 @@ public class InputUnusedLambdaParameterShouldBeUnnamedNested {
         };
     }
 }
+// non-compiled with javac: Compilable with Java25

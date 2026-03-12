@@ -36,3 +36,4 @@ public class InputUnnecessaryParenthesesCheckPatterns {
 
     record Rectangle(int x, int y) { }
 }
+// non-compiled with javac: Compilable with Java25

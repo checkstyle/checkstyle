@@ -98,3 +98,4 @@ public class InputUnusedCatchParameterShouldBeUnnamedNested {
         }
     }
 }
+// non-compiled with javac: Compilable with Java25

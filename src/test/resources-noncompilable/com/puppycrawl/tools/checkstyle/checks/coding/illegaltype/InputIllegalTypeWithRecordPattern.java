@@ -85,3 +85,4 @@ public class InputIllegalTypeWithRecordPattern {
         }
     }
 }
+// non-compiled with javac: Compilable with Java25

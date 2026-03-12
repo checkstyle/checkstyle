@@ -117,3 +117,4 @@ public class InputWhenShouldBeUsedSwitchStatements {
     }
     int get() { return 0; }
 }
+// non-compiled with javac: Compilable with Java25

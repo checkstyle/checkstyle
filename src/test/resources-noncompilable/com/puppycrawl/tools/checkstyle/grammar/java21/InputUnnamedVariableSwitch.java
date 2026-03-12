@@ -116,3 +116,4 @@ public class InputUnnamedVariableSwitch {
     record Box<T extends Base>(T content) { }
     record Box2<T extends Base>(T content) { }
 }
+// non-compiled with javac: Compilable with Java25

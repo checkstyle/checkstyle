@@ -38,3 +38,4 @@ public class InputUnnamedVariables {
     var name_ = "test"; // violation 'Local variable name 'name_' must match pattern'
   }
 }
+// non-compiled with javac: Compilable with Java25

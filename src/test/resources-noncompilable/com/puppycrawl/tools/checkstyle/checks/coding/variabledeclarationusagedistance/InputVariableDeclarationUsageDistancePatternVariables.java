@@ -43,3 +43,4 @@ public class InputVariableDeclarationUsageDistancePatternVariables {
     record ColoredPoint(int x, int y, int color) {
     }
 }
+// non-compiled with javac: Compilable with Java25

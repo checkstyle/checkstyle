@@ -67,3 +67,4 @@ public class InputMissingSwitchDefaultRecordPattern {
     }
 
 }
+// non-compiled with javac: Compilable with Java25

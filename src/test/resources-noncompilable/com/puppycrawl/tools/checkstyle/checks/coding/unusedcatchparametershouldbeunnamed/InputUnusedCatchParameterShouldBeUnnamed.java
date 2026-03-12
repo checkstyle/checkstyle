@@ -116,3 +116,4 @@ public class InputUnusedCatchParameterShouldBeUnnamed {
 
 class ETwo { void printStackTrace() {}}
 class ATwo {}
+// non-compiled with javac: Compilable with Java25

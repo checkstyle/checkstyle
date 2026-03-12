@@ -98,3 +98,4 @@ ColoredPoint(_,_,_)                                                         //in
         }                                                                   //indent:8 exp:8
     }                                                                       //indent:4 exp:4
 }                                                                           //indent:0 exp:0
+// non-compiled with javac: Compilable with Java25

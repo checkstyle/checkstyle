@@ -38,3 +38,4 @@ public class InputSuppressWarningsPatternVariables {
     }
     record ColoredPoint(int x, int y, int z) { }
 }
+// non-compiled with javac: Compilable with Java25

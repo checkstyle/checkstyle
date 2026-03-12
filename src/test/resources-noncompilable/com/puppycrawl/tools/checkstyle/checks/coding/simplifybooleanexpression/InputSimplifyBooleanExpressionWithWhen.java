@@ -44,3 +44,4 @@ public class InputSimplifyBooleanExpressionWithWhen {
     }
     record R(boolean x, boolean y) {}
 }
+// non-compiled with javac: Compilable with Java25

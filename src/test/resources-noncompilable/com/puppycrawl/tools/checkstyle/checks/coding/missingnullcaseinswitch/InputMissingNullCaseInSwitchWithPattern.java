@@ -117,3 +117,4 @@ public class InputMissingNullCaseInSwitchWithPattern {
         }
     }
 }
+// non-compiled with javac: Compilable with Java25

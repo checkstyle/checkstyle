@@ -90,6 +90,7 @@ public class InputUnusedCatchParameterShouldBeUnnamedWithResourceAndFinally {
         return null;
     }
 }
+// non-compiled with javac: Compilable with Java25
 
 class EOne {
     void printStackTrace() {

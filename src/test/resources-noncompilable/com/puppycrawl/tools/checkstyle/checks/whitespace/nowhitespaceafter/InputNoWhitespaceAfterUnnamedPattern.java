@@ -19,3 +19,4 @@ public class InputNoWhitespaceAfterUnnamedPattern {
 
     record Point(int x, int y   , String color) { }
 }
+// non-compiled with javac: Compilable with Java25

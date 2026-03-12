@@ -67,3 +67,4 @@ public class InputUnnamedVariableBasic {
     record R(Object o) {}
     public @interface Foo { }
 }
+// non-compiled with javac: Compilable with Java25
