@@ -108,4 +108,14 @@ public class MissingJavadocMethodCheckExamplesTest extends AbstractExamplesModul
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
+
+    @Test
+    public void testExample8() throws Exception {
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "22:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+    }
 }
