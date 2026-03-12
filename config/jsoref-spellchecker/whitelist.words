@@ -173,7 +173,7 @@ checkutil
 chmod
 chr
 ci
-cimg
+cs_img
 Cinit
 circleci
 cirrusci
