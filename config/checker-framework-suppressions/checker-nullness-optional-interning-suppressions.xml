@@ -9534,4 +9534,10 @@
       method return type: @Initialized @NonNull NodeInfo
     </details>
   </checkerFrameworkError>
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference modifiers</message>
+    <lineContent>abstractOrInterface = modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;</lineContent>
+  </checkerFrameworkError>
 </suppressedErrors>
