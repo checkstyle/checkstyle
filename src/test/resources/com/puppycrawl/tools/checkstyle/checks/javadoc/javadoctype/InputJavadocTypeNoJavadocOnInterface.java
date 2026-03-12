@@ -7,7 +7,7 @@ versionFormat = (default)null
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
-tokens = INTERFACE_DEF
+tokens = (default)BLOCK_COMMENT_BEGIN
 
 
 */
