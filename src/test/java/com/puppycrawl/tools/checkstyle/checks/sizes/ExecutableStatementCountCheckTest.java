@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.util.Collection;
 
@@ -132,15 +133,12 @@ public class ExecutableStatementCountCheckTest
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(
             new CommonToken(TokenTypes.ENUM, "ENUM"));
-        try {
-            checkObj.visitToken(ast);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (IllegalStateException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("ENUM[0x-1]");
-        }
+        final IllegalStateException visit =
+                getExpectedThrowable(IllegalStateException.class,
+                        () -> checkObj.visitToken(ast));
+        assertWithMessage("Invalid exception message")
+            .that(visit.getMessage())
+            .isEqualTo("ENUM[0x-1]");
     }
 
     @Test
@@ -150,15 +148,12 @@ public class ExecutableStatementCountCheckTest
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(
             new CommonToken(TokenTypes.ENUM, "ENUM"));
-        try {
-            checkObj.leaveToken(ast);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (IllegalStateException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("ENUM[0x-1]");
-        }
+        final IllegalStateException leave =
+                getExpectedThrowable(IllegalStateException.class,
+                        () -> checkObj.leaveToken(ast));
+        assertWithMessage("Invalid exception message")
+            .that(leave.getMessage())
+            .isEqualTo("ENUM[0x-1]");
     }
 
     @Test
