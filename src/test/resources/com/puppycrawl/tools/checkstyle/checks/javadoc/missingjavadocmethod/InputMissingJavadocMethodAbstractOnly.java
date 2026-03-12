@@ -36,3 +36,8 @@ public class InputMissingJavadocMethodAbstractOnly {
         void interfaceMethod(); // violation
     }
 }
+
+    enum TestEnum {
+        A;
+        void enumMethod() {} // ok, valid
+    }

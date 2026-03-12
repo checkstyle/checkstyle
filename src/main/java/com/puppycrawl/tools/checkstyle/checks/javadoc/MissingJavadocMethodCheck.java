@@ -404,20 +404,20 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      */
     private static boolean isInAbstractOrInterfaceContext(final DetailAST ast) {
         boolean abstractOrInterface = false;
+        boolean finished = false;
         DetailAST parent = ast.getParent();
-        while (parent != null) {
+        while (parent != null && !finished) {
             final int type = parent.getType();
             if (type == TokenTypes.INTERFACE_DEF) {
                 abstractOrInterface = true;
-                break;
+                finished = true;
             }
-            if (type == TokenTypes.CLASS_DEF
+            else if (type == TokenTypes.CLASS_DEF
                     || type == TokenTypes.ENUM_DEF) {
                 final DetailAST modifiers =
                         parent.findFirstToken(TokenTypes.MODIFIERS);
-                abstractOrInterface = modifiers != null
-                        && modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
-                break;
+                abstractOrInterface = modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
+                finished = true;
             }
             parent = parent.getParent();
         }
