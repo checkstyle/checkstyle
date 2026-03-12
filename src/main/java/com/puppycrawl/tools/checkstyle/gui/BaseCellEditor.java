@@ -101,7 +101,7 @@ public class BaseCellEditor implements CellEditor {
      * Notifies all registered CellEditorListeners.
      * Invokes editingStopped if stopped is true,
      * editingCanceled otherwise.
-     * 
+     *
      * @param stopped true to notify listeners of editing stopped,
      *                false to notify of editing canceled
      */
