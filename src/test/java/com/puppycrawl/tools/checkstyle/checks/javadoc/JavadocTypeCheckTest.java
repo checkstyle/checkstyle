@@ -40,10 +40,11 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetRequiredTokens() {
-        final JavadocTypeCheck javadocTypeCheck = new JavadocTypeCheck();
-        assertWithMessage("JavadocTypeCheck#getRequiredTokens should return empty array by default")
-            .that(javadocTypeCheck.getRequiredTokens())
+    public void testGetRequiredJavadocTokens() {
+        final JavadocTypeCheck check = new JavadocTypeCheck();
+
+        assertWithMessage("JavadocTypeCheck#getRequiredJavadocTokens should return empty array")
+            .that(check.getRequiredJavadocTokens())
             .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
     }
 
@@ -53,11 +54,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
 
         final int[] actual = javadocTypeCheck.getAcceptableTokens();
         final int[] expected = {
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.RECORD_DEF,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
 
         assertWithMessage("Default acceptable tokens are invalid")
@@ -145,9 +142,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testAuthorRegularEx()
             throws Exception {
         final String[] expected = {
-            "31:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "67:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "103:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "32:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "77:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "113:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeJavadoc.java"), expected);
@@ -157,15 +154,16 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testAuthorRegularExError()
             throws Exception {
         final String[] expected = {
-            "22:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "22:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
             "31:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
             "40:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "58:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "67:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "76:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "94:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "103:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "112:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "56:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "65:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "74:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "83:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "101:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "110:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "119:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeJavadoc_1.java"), expected);
@@ -296,6 +294,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "19:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "mytag"),
             "21:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "mytag"),
             "28:5: " + getCheckMessage(MSG_UNKNOWN_TAG, "mytag"),
+            "34:4: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
+            "40:4: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
+            "46:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeBadTag.java"),
@@ -372,9 +373,8 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadocTypeParamDescriptionWithAngularTags() throws Exception {
         final String[] expected = {
-            "44:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<P>"),
-            "46:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <U>"),
-            "50:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "region"),
+            "45:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<P>"),
+            "51:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "region"),
         };
 
         verifyWithInlineConfigParser(
@@ -385,11 +385,10 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testJavadocTypeRecordParamDescriptionWithAngularTags() throws Exception {
         final String[] expected = {
             "51:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<P>"),
-            "53:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <U>"),
             "57:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "region"),
-            "60:1: " + getCheckMessage(MSG_MISSING_TAG, "@param a"),
-            "73:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "e"),
-            "76:1: " + getCheckMessage(MSG_MISSING_TAG, "@param c"),
+            "65:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T>"),
+            "71:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "a"),
+            "80:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "a"),
         };
 
         verifyWithInlineConfigParser(
@@ -423,8 +422,8 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testJavadocTypeInterfaceMemberScopeIsPublic() throws Exception {
 
         final String[] expected = {
-            "19:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T>"),
-            "24:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T>"),
+            "19:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T>"),
+            "24:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T>"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeInterfaceMemberScopeIsPublic.java"), expected);
@@ -510,10 +509,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAnnotationsInCodeBlock2() throws Exception {
         final String[] expected = {
-            "28:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
-            "45:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
-            "59:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
-            "67:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+            "43:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+            "57:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+            "65:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeAnnotationsInCodeBlock2.java"), expected);
@@ -541,5 +539,12 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeAnnotationsInCodeBlock4.java"), expected);
+    }
+
+    @Test
+    public void testPackageInfo() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeEmptyFile.java"), expected);
     }
 }
