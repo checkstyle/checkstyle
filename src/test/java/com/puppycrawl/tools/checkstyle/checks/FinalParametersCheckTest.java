@@ -155,7 +155,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "52:14: " + getCheckMessage(MSG_KEY, "i_"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputFinalParametersUnnamedPropertyTrue.java"), expected);
+                getNonCompilablePath("InputFinalParametersUnnamedPropertyTrue.java"), expected);
     }
 
     @Test
@@ -171,7 +171,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "52:14: " + getCheckMessage(MSG_KEY, "i_"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputFinalParametersUnnamedPropertyFalse.java"), expected);
+                getNonCompilablePath("InputFinalParametersUnnamedPropertyFalse.java"), expected);
     }
 
     @Test

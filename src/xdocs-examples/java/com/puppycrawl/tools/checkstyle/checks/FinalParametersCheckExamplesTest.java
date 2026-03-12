@@ -64,6 +64,6 @@ public class FinalParametersCheckExamplesTest extends AbstractExamplesModuleTest
             "44:10: " + getCheckMessage(MSG_KEY, "number"),
         };
         verifyWithInlineConfigParser(
-                getPath("Example4.java"), expected);
+                getNonCompilablePath("Example4.java"), expected);
     }
 }

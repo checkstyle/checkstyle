@@ -419,7 +419,7 @@ public class FinalLocalVariableCheckTest
             "50:18: " + getCheckMessage(MSG_KEY, "__"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputFinalLocalVariableValidateUnnamedVariablesTrue.java"),
+                getNonCompilablePath("InputFinalLocalVariableValidateUnnamedVariablesTrue.java"),
             expected);
     }
 
@@ -432,7 +432,7 @@ public class FinalLocalVariableCheckTest
             "50:18: " + getCheckMessage(MSG_KEY, "__"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputFinalLocalVariableValidateUnnamedVariablesFalse.java"),
+                getNonCompilablePath("InputFinalLocalVariableValidateUnnamedVariablesFalse.java"),
             expected);
     }
 

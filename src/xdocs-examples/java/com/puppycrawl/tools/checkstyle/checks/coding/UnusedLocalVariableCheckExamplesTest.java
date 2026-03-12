@@ -43,7 +43,7 @@ public class UnusedLocalVariableCheckExamplesTest extends AbstractExamplesModule
         };
 
         verifyWithInlineConfigParser(
-                getPath("Example1.java"), expected);
+                getNonCompilablePath("Example1.java"), expected);
     }
 
     @Test
@@ -59,6 +59,6 @@ public class UnusedLocalVariableCheckExamplesTest extends AbstractExamplesModule
         };
 
         verifyWithInlineConfigParser(
-                getPath("Example2.java"), expected);
+                getNonCompilablePath("Example2.java"), expected);
     }
 }

@@ -3952,8 +3952,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("caseIndent", "4");
         checkConfig.addProperty("throwsIndent", "8");
 
-        final String fileName = getPath(
-                "InputIndentationRecordPattern.java");
+        final String fileName = getNonCompilablePath("InputIndentationRecordPattern.java");
         final String[] expected = {
             "19:17: " + getCheckMessage(MSG_ERROR, "ColoredPoint", 16, 12),
             "24:9: " + getCheckMessage(MSG_ERROR, "ColoredPoint", 8, 12),

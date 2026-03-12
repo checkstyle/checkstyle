@@ -1092,7 +1092,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputSuppressWarningsPatternVariables.java"),
+                getNonCompilablePath("InputSuppressWarningsPatternVariables.java"),
                 expected);
     }
 
