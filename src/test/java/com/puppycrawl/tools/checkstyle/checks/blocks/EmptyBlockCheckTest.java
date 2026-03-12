@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck.MSG_KEY_BLOCK_EMPTY;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck.MSG_KEY_BLOCK_NO_STATEMENT;
 
@@ -124,20 +125,17 @@ public class EmptyBlockCheckTest
     @Test
     public void testInvalidOption() throws Exception {
 
-        try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-
-            verifyWithInlineConfigParser(
-                    getPath("InputEmptyBlockSemanticInvalid.java"), expected);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                        + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                        + "blocks.EmptyBlockCheck");
-        }
+        final CheckstyleException exc = getExpectedThrowable(CheckstyleException.class,
+                () -> {
+                    final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+                    verifyWithInlineConfigParser(
+                            getPath("InputEmptyBlockSemanticInvalid.java"), expected);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                    + "blocks.EmptyBlockCheck");
     }
 
     @Test

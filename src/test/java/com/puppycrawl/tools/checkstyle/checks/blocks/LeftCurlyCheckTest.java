@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_KEY_LINE_BREAK_AFTER;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_KEY_LINE_NEW;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_KEY_LINE_PREVIOUS;
@@ -581,20 +582,17 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testInvalidOption() throws Exception {
 
-        try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-
-            verifyWithInlineConfigParser(
-                    getPath("InputLeftCurlyTestInvalidOption.java"), expected);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                    + "blocks.LeftCurlyCheck");
-        }
+        final CheckstyleException exc = getExpectedThrowable(CheckstyleException.class,
+                () -> {
+                    final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+                    verifyWithInlineConfigParser(
+                            getPath("InputLeftCurlyTestInvalidOption.java"), expected);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                + "blocks.LeftCurlyCheck");
     }
 
     @Test
