@@ -173,6 +173,15 @@
   <suppress id="checkASCII"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]ConfigurationLoaderTest.java"/>
 
+  <!-- Existing source code did not comply before check was introduced -->
+  <suppress id="javadocUtilizingTrailingSpace"
+            files="[\\/]src[\\/](main|test|it)[\\/]java[\\/].*\.java"/>
+  <!-- External repos (sevntu.checkstyle, contribution) are not required to comply -->
+  <suppress id="javadocUtilizingTrailingSpace"
+            files="[\\/]\.ci-temp[\\/]sevntu\.checkstyle[\\/]"/>
+  <suppress id="javadocUtilizingTrailingSpace"
+            files="[\\/]\.ci-temp[\\/]contribution[\\/]"/>
+
   <!-- Remove suppression once all violations are fixed, tracked in #19176 -->
   <suppress checks="MatchXpath"
             id="MatchXpathForbidTryCatchFail"

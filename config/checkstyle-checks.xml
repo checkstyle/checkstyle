@@ -36,6 +36,11 @@
   <module name="SuppressionFilter">
     <property name="file" value="${checkstyle.suppressions.file}"/>
   </module>
+  <!-- External repos checked by no-error-* CI jobs are not required to comply -->
+  <module name="SuppressionSingleFilter">
+    <property name="id" value="javadocUtilizingTrailingSpace"/>
+    <property name="files" value="[\\/]\.ci-temp[\\/]"/>
+  </module>
   <!-- Tone down the checking for test code -->
   <module name="SuppressionSingleFilter">
     <property name="checks" value="JavadocPackage"/>
@@ -746,6 +751,7 @@
       <property name="scope" value="public"/>
     </module>
     <module name="JavadocTagContinuationIndentation"/>
+    <module name="JavadocUtilizingTrailingSpace"/>
     <module name="JavadocType">
       <!-- avoid errors on tag '@noinspection' -->
       <property name="allowUnknownTags" value="true"/>
