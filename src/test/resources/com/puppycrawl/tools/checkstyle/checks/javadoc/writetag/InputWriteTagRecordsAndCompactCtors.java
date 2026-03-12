@@ -4,6 +4,7 @@ tag = @incomplete
 tagSeverity = error
 tagFormat = \\S
 tokens = INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, COMPACT_CTOR_DEF, CTOR_DEF
+violateExecutionOnNonTightHtml = (default)false
 
 
 */
