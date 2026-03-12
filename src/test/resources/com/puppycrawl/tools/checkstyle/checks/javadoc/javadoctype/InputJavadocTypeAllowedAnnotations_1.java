@@ -7,7 +7,7 @@ versionFormat = (default)null
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype.ThisIsOk_1
-tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+tokens = (default)BLOCK_COMMENT_BEGIN
 
 
 */
