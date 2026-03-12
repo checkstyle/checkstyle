@@ -58,8 +58,8 @@ public class XdocsExampleFileTest {
     // This list is temporarily suppressed.
     // Until: https://github.com/checkstyle/checkstyle/issues/17449
     private static final Map<String, Set<String>> SUPPRESSED_PROPERTIES_BY_CHECK = Map.ofEntries(
-            Map.entry("JavadocStyleCheck", Set.of("endOfSentenceFormat")),
             Map.entry("SuppressWarningsHolder", Set.of("aliasList")),
+            Map.entry("JavadocStyleCheck", Set.of("endOfSentenceFormat")),
             Map.entry("IndentationCheck", Set.of(
                     "basicOffset",
                     "lineWrappingIndentation",
