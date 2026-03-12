@@ -197,7 +197,8 @@ public final class TreeTable extends JTable {
         getColumn("Line").setMaxWidth(widthOfColumnContainingSixCharacterString);
         getColumn("Column").setMaxWidth(widthOfColumnContainingSixCharacterString);
         final int preferredTreeColumnWidth =
-                Math.toIntExact(Math.round(getPreferredSize().getWidth() * TREE_COLUMN_WIDTH_RATIO));
+                Math.toIntExact(Math.round(
+                        getPreferredSize().getWidth() * TREE_COLUMN_WIDTH_RATIO));
         getColumn("Tree").setPreferredWidth(preferredTreeColumnWidth);
         // Twenty-eight character string to contain "Type" column
         final int widthOfTwentyEightCharacterString =
