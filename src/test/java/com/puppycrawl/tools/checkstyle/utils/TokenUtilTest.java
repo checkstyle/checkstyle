@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
 import java.lang.reflect.Field;
@@ -59,20 +60,18 @@ public class TokenUtilTest {
     public void testGetIntFromInaccessibleField() throws NoSuchFieldException {
         final Field field = Integer.class.getDeclaredField("value");
 
-        try {
-            TokenUtil.getIntFromField(field, 0);
-            assertWithMessage("IllegalStateException is expected").fail();
-        }
-        catch (IllegalStateException expected) {
-            // The exception message may vary depending on the version of the JDK.
-            // It will definitely contain the TokenUtil class name and the Integer class name.
-            final String message = expected.getMessage();
-            assertWithMessage("Invalid exception message: %s", message)
-                    .that(message.startsWith("java.lang.IllegalAccessException: ")
-                            && message.contains("com.puppycrawl.tools.checkstyle.utils.TokenUtil")
-                            && message.contains("access a member of class java.lang.Integer"))
-                    .isTrue();
-        }
+        final IllegalStateException expected =
+                getExpectedThrowable(IllegalStateException.class, () -> {
+                    TokenUtil.getIntFromField(field, 0);
+                }, "IllegalStateException is expected");
+        // The exception message may vary depending on the version of the JDK.
+        // It will definitely contain the TokenUtil class name and the Integer class name.
+        final String message = expected.getMessage();
+        assertWithMessage("Invalid exception message: %s", message)
+                .that(message.startsWith("java.lang.IllegalAccessException: ")
+                        && message.contains("com.puppycrawl.tools.checkstyle.utils.TokenUtil")
+                        && message.contains("access a member of class java.lang.Integer"))
+                .isTrue();
     }
 
     @Test
@@ -126,15 +125,13 @@ public class TokenUtilTest {
         }
 
         final int nextAfterMaxId = maxId + 1;
-        try {
-            TokenUtil.getTokenName(nextAfterMaxId);
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException expectedException) {
-            assertWithMessage("Invalid exception message")
-                .that(expectedException.getMessage())
-                .isEqualTo("unknown TokenTypes id '" + nextAfterMaxId + "'");
-        }
+        final IllegalArgumentException expectedException =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    TokenUtil.getTokenName(nextAfterMaxId);
+                }, "IllegalArgumentException is expected");
+        assertWithMessage("Invalid exception message")
+            .that(expectedException.getMessage())
+            .isEqualTo("unknown TokenTypes id '" + nextAfterMaxId + "'");
     }
 
     @Test
@@ -158,43 +155,37 @@ public class TokenUtilTest {
     @Test
     public void testTokenValueIncorrect2() {
         final int id = 0;
-        try {
-            TokenUtil.getTokenName(id);
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException expected) {
-            assertWithMessage("Invalid exception message")
-                .that(expected.getMessage())
-                .isEqualTo("unknown TokenTypes id '" + id + "'");
-        }
+        final IllegalArgumentException expected =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    TokenUtil.getTokenName(id);
+                }, "IllegalArgumentException is expected");
+        assertWithMessage("Invalid exception message")
+            .that(expected.getMessage())
+            .isEqualTo("unknown TokenTypes id '" + id + "'");
     }
 
     @Test
     public void testTokenIdIncorrect() {
         final String id = "NON_EXISTENT_VALUE";
-        try {
-            TokenUtil.getTokenId(id);
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException expected) {
-            assertWithMessage("Invalid exception message")
-                .that(expected.getMessage())
-                .isEqualTo("unknown TokenTypes value '" + id + "'");
-        }
+        final IllegalArgumentException expected =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    TokenUtil.getTokenId(id);
+                }, "IllegalArgumentException is expected");
+        assertWithMessage("Invalid exception message")
+            .that(expected.getMessage())
+            .isEqualTo("unknown TokenTypes value '" + id + "'");
     }
 
     @Test
     public void testShortDescriptionIncorrect() {
         final String id = "NON_EXISTENT_VALUE";
-        try {
-            TokenUtil.getShortDescription(id);
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException expected) {
-            assertWithMessage("Invalid exception message")
-                .that(expected.getMessage())
-                .isEqualTo("unknown TokenTypes value '" + id + "'");
-        }
+        final IllegalArgumentException expected =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    TokenUtil.getShortDescription(id);
+                }, "IllegalArgumentException is expected");
+        assertWithMessage("Invalid exception message")
+            .that(expected.getMessage())
+            .isEqualTo("unknown TokenTypes value '" + id + "'");
     }
 
     @Test
