@@ -101,6 +101,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/coding/matchxpath/Example3",
             "checks/coding/matchxpath/Example4",
             "checks/coding/matchxpath/Example5",
+            "checks/coding/matchxpath/Example6",
             "checks/coding/packagedeclaration/Example2",
             "checks/coding/requirethis/Example5",
             "checks/coding/requirethis/Example6",
