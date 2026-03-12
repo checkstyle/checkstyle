@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.util.Collection;
@@ -115,27 +116,19 @@ public class ModifiedControlVariableCheckTest
         classDefAst.setType(TokenTypes.CLASS_DEF);
         classDefAst.setText("CLASS_DEF");
 
-        try {
-            check.visitToken(classDefAst);
-            assertWithMessage("IllegalStateException is expected").fail();
-        }
-        catch (IllegalStateException exc) {
-            // it is OK
-            assertWithMessage("Error message must include token name")
-                    .that(exc.getMessage())
-                    .contains("CLASS_DEF");
-        }
+        final IllegalStateException visitTokenException =
+                getExpectedThrowable(IllegalStateException.class,
+                        () -> check.visitToken(classDefAst));
+        assertWithMessage("Error message must include token name")
+                .that(visitTokenException.getMessage())
+                .contains("CLASS_DEF");
 
-        try {
-            check.leaveToken(classDefAst);
-            assertWithMessage("IllegalStateException is expected").fail();
-        }
-        catch (IllegalStateException exc) {
-            // it is OK
-            assertWithMessage("Error message must include token name")
-                    .that(exc.getMessage())
-                    .contains("CLASS_DEF");
-        }
+        final IllegalStateException leaveTokenException =
+                getExpectedThrowable(IllegalStateException.class,
+                        () -> check.leaveToken(classDefAst));
+        assertWithMessage("Error message must include token name")
+                .that(leaveTokenException.getMessage())
+                .contains("CLASS_DEF");
     }
 
     @Test
