@@ -91,6 +91,13 @@ public boolean isSomething()
               <td>8.21</td>
             </tr>
             <tr>
+              <td><a id="requireJavadocForAbstractOnly"/><a href="#requireJavadocForAbstractOnly">requireJavadocForAbstractOnly</a></td>
+              <td>Control whether to require Javadoc only for methods declared in interfaces or abstract classes.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.4.0</td>
+            </tr>
+            <tr>
               <td><a id="scope"/><a href="#scope">scope</a></td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
               <td><a href="../../property_types.html#Scope">Scope</a></td>
@@ -396,6 +403,36 @@ public class Example7 {
     System.out.println("line 1");
     System.out.println("line 2");
     System.out.println("line 3");
+  }
+}
+</code></pre></div>
+
+<hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the check to require Javadoc only for methods in
+          interfaces or abstract classes:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocMethod"&gt;
+      &lt;property name="requireJavadocForAbstractOnly" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example8 {
+  public void concreteMethod() {} // ok, in concrete class
+
+  public abstract class AbstractInner {
+    public abstract void abstractMethod(); // violation, 'Missing a Javadoc comment'
+    public void concreteInAbstract() {} // violation, 'Missing a Javadoc comment'
+  }
+
+  public interface InnerInterface {
+    void interfaceMethod(); // violation, 'Missing a Javadoc comment'
   }
 }
 </code></pre></div>

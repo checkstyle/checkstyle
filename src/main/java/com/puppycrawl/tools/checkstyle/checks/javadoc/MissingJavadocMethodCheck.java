@@ -118,6 +118,15 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     private Set<String> allowedAnnotations = Set.of("Override");
 
     /**
+     * Control whether to require Javadoc only for methods declared in interfaces
+     * or abstract classes. When {@code true}, methods in concrete (non-abstract)
+     * classes are not checked.
+     *
+     * @since 13.4.0
+     */
+    private boolean requireJavadocForAbstractOnly;
+
+    /**
      * Setter to configure annotations that allow missed documentation.
      *
      * @param userAnnotations user's value.
@@ -125,6 +134,17 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      */
     public void setAllowedAnnotations(String... userAnnotations) {
         allowedAnnotations = Set.of(userAnnotations);
+    }
+
+    /**
+     * Setter to control whether to require Javadoc only for methods declared in
+     * interfaces or abstract classes.
+     *
+     * @param value a {@code boolean} value
+     * @since 13.4.0
+     */
+    public void setRequireJavadocForAbstractOnly(final boolean value) {
+        requireJavadocForAbstractOnly = value;
     }
 
     /**
@@ -288,14 +308,18 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * @return whether we should check a given node.
      */
     private boolean shouldCheck(final DetailAST ast, final Scope nodeScope) {
-        return ScopeUtil.getSurroundingScope(ast)
-            .map(surroundingScope -> {
-                return nodeScope != excludeScope
-                    && surroundingScope != excludeScope
-                    && nodeScope.isIn(scope)
-                    && surroundingScope.isIn(scope);
-            })
-            .orElse(Boolean.FALSE);
+        boolean result = false;
+        if (!requireJavadocForAbstractOnly || isInAbstractOrInterfaceContext(ast)) {
+            result = ScopeUtil.getSurroundingScope(ast)
+                .map(surroundingScope -> {
+                    return nodeScope != excludeScope
+                        && surroundingScope != excludeScope
+                        && nodeScope.isIn(scope)
+                        && surroundingScope.isIn(scope);
+                })
+                .orElse(Boolean.FALSE);
+        }
+        return result;
     }
 
     /**
@@ -369,5 +393,34 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
             }
         }
         return setterMethod;
+    }
+
+    /**
+     * Checks whether the given AST node is declared inside an interface or
+     * an abstract class.
+     *
+     * @param ast the method/constructor node to check
+     * @return {@code true} if the enclosing type is an interface or abstract class
+     */
+    private static boolean isInAbstractOrInterfaceContext(final DetailAST ast) {
+        boolean abstractOrInterface = false;
+        DetailAST parent = ast.getParent();
+        while (parent != null) {
+            final int type = parent.getType();
+            if (type == TokenTypes.INTERFACE_DEF) {
+                abstractOrInterface = true;
+                break;
+            }
+            if (type == TokenTypes.CLASS_DEF
+                    || type == TokenTypes.ENUM_DEF) {
+                final DetailAST modifiers =
+                        parent.findFirstToken(TokenTypes.MODIFIERS);
+                abstractOrInterface = modifiers != null
+                        && modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
+                break;
+            }
+            parent = parent.getParent();
+        }
+        return abstractOrInterface;
     }
 }
