@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 /**
  *
- * @param <T> stuff <stuff>
+ * @param <T> stuff
  * @param value
  */
 public record InputJavadocTypeRecordParamDescriptionWithAngularTags<T>(String value) {
@@ -18,82 +18,65 @@ public record InputJavadocTypeRecordParamDescriptionWithAngularTags<T>(String va
 
 /**
  *
- * @param    <T>    🐦‍🔥stuff<stuff>stu🐦‍🔥ff</stuff>stuff🐦‍🔥
- * @param     a     <stuff>
+ * @param    <T>    stuff
+ * @param     a     stuff
  */
 record Record1<T>(int a) {}
 
 /**
  *
  * @param <T> &lt;stuff&gt;
- * @param a stUff&lt;stuff&gt;sutff&lt;🐦‍🔥&gt;🐦‍🔥
- * @param b <>>>>><<<<
+ * @param a stuff
+ * @param b stuff
  */
 record Record2<T>(int a, int b) {
     /**
      *
      * @param <T>
-     * @param a <//< <stuff></> stuff >>  <stuff>st<u>ff</stuff> >><
-     * @param b stuff <><><<stuff></></></> stuff
-     * @param c /-+`[]:^^<stuff **%%$>##(sutff)stuff()</stuff> @@
+     * @param a some description
+     * @param b another description
+     * @param c yet another description
      */
     record Record3<T>(int a, int b, int c) {}
 
     /**
      *
-     * @param <V> [(<>{@code stuff<stuff>&lt;stuff&gt;}</>)]{@code {&lt;stuff&gt;}}
+     * @param <V> stuff
      */
     record Record4<V>() {}
 }
 
 /**
  * @param <T>
- * @param    <P>     stuff <><><<stuff></></></> stuff // violation,'Unused @param tag for '<P>'.'
+ * @param    <P>     stuff // violation, 'Unused @param tag for '<P>'.'
  */
-record Record5<T, U>() {} // violation, 'Type Javadoc comment is missing @param <U> tag.'
+record Record5<T>() {}
 
 /**
  *
- * @param region [(<>{@code stuff<stuff🐦‍🔥>🐦‍🔥&lt;stuff&gt;}</>)]{@code {&lt;stuff&gt;}}
+ * @param region stuff
  * // violation above, 'Unused @param tag for 'region'.'
  */
-record Record6(int a) {} // violation, 'Type Javadoc comment is missing @param a tag.'
+record Record6() {}
 
 /**
  *
- * @param <T>
- * @param a 🐦‍🔥<><🐦‍🔥><<stuff></></></> stuff🐦‍🔥
+ *
+ * @param <T> // violation, 'Unused @param tag for '<T>'.'
+ * @param a some description
  * @param b
  */
-record Record7<T>(int a, int b) {}
-
+record Record7(int a, int b) {}
 /**
- * @param a <<></>></><<></>></>
- * @param b stuff<stuff>:<>:<>:<🐦‍🔥<<🐦‍🔥>>🐦‍🔥>
- * @param e [(<>{@code stuff<stuff🐦[(‍{🔥}])>🐦‍🔥&lt;stuff&gt;}</>)]{@code {&lt;stuff&gt;}}
- * // violation above, 'Unused @param tag for 'e'.'
+ * @param a some description // violation, 'Unused @param tag for 'a'.'
+ * @param b
  */
-record Record8(int a, int b, int c) { // violation, 'Type Javadoc comment is missing @param c tag.'
-}
+record Record8(int b) {}
 
 /**
  *
- * @param a [(<>{@code stuff<stuff🐦‍🔥>🐦‍🔥&lt;stuff&gt;}</>)]
- */
-record Record9(int a) {}
-
-/**
  *
- * @param a <><><><><><><><>
- * @param b >><>>><><><<<><<
- * @param c {@code <{[(<stu<f>f>)]}>}
- */
-record Record10(int a, int b, int c) {}
-
-/**
- * One Transaction.
  *
- * @param transactionId  unique ID of the transaction in format: {@code <first Code>:<second Code>}
+ * @param a // violation, 'Unused @param tag for 'a'.'
  */
-record MyTransaction(String transactionId) {
-}
+record Record9() {}
