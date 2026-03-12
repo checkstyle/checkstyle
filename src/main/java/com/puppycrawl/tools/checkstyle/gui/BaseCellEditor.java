@@ -25,6 +25,7 @@ import javax.swing.CellEditor;
 import javax.swing.event.CellEditorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.EventListenerList;
+import java.util.function.Consumer;
 
 /**
  * A base class for CellEditors, providing default implementations for all
@@ -84,15 +85,8 @@ public class BaseCellEditor implements CellEditor {
      * @see EventListenerList
      */
     protected void fireEditingStopped() {
-        // Guaranteed to return a non-null array
-        final Object[] listeners = listenerList.getListenerList();
-        // Process the listeners last to first, notifying
-        // those that are interested in this event
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == CellEditorListener.class) {
-                ((CellEditorListener) listeners[i + 1]).editingStopped(new ChangeEvent(this));
-            }
-        }
+    fireEditingEvent(listener ->
+        listener.editingStopped(new ChangeEvent(this)));
     }
 
     /**
@@ -102,15 +96,23 @@ public class BaseCellEditor implements CellEditor {
      * @see EventListenerList
      */
     protected void fireEditingCanceled() {
-        // Guaranteed to return a non-null array
+    fireEditingEvent(listener ->
+        listener.editingCanceled(new ChangeEvent(this)));
+    }
+
+
+    /**
+     * Notifies all registered {@link CellEditorListener}s by invoking
+     * the specified action for each listener.
+     *
+     * @param action the action to perform on each CellEditorListener
+     */
+    private void fireEditingEvent(Consumer<CellEditorListener> action) {
         final Object[] listeners = listenerList.getListenerList();
-        // Process the listeners last to first, notifying
-        // those that are interested in this event
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == CellEditorListener.class) {
-                ((CellEditorListener) listeners[i + 1]).editingCanceled(new ChangeEvent(this));
+                action.accept((CellEditorListener) listeners[i + 1]);
             }
         }
     }
-
 }
