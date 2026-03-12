@@ -7,7 +7,7 @@ versionFormat = (default)null
 allowMissingParamTags = true
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
-tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+tokens = (default)BLOCK_COMMENT_BEGIN
 
 
 */
@@ -16,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 /**
  * Some explanation.
- * @param < A  > A type param
+ * @param <A> A type param
  * @param <B1> Another type param
  * @param <D123> The wrong type param   // violation 'Unused @param tag for '<D123>'.'
  * @author Nobody
