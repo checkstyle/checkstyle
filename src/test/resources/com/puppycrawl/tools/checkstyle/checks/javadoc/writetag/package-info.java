@@ -8,11 +8,7 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 */
 
+/**
+ * Test.
+ */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
-
-class InputWriteTagNoJavadoc
-{
-    public void method()
-    {
-    }
-}
