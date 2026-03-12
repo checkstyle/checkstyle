@@ -7,7 +7,7 @@ versionFormat = (default)null
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
-tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+tokens = (default)BLOCK_COMMENT_BEGIN
 
 
 */
@@ -20,7 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
  */
 class InputJavadocTypeAnnotationsInCodeBlock2 {}
 
-// violation 5 lines below 'Unknown tag 'unknown'.'
+// violation 6 lines below 'Unknown tag 'unknown'.'
 /**
  * Bare HTML pre tag does NOT protect content from parsing.
  * Block tags must appear at line start - this one is at block tag position.
