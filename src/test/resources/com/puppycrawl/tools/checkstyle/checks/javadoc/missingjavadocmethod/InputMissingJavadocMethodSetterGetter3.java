@@ -7,7 +7,7 @@ import java.util.Map;
  * It is class.
  * @param <V> ssss
  * @param <C> dddd
- */
+*/
 public class InputMissingJavadocMethodSetterGetter3<V, C> {
     private Map<String, Integer> field = new HashMap<>();
     protected int[] array = new int[10];
