@@ -9,11 +9,7 @@ BLOCK_COMMENT_BEGIN
 
 */
 
+/**
+ * Test.
+ */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
-
-class InputWriteTagNoJavadoc
-{
-    public void method()
-    {
-    }
-}
