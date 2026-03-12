@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.Test;
 
@@ -447,45 +448,37 @@ public class JavadocTagInfoTest {
             .that(JavadocTagInfo.VERSION.toString())
             .isEqualTo("text [@version] name [version] type [BLOCK]");
 
-        try {
-            JavadocTagInfo.fromName(null);
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("the name is null");
-        }
+        final IllegalArgumentException excNullName =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    JavadocTagInfo.fromName(null);
+                }, "IllegalArgumentException is expected");
+        assertWithMessage("Invalid exception message")
+            .that(excNullName.getMessage())
+            .isEqualTo("the name is null");
 
-        try {
-            JavadocTagInfo.fromName("myname");
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("the name [myname] is not a valid Javadoc tag name");
-        }
+        final IllegalArgumentException excInvalidName =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    JavadocTagInfo.fromName("myname");
+                }, "IllegalArgumentException is expected");
+        assertWithMessage("Invalid exception message")
+            .that(excInvalidName.getMessage())
+            .isEqualTo("the name [myname] is not a valid Javadoc tag name");
 
-        try {
-            JavadocTagInfo.fromText(null);
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("the text is null");
-        }
+        final IllegalArgumentException excNullText =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    JavadocTagInfo.fromText(null);
+                }, "IllegalArgumentException is expected");
+        assertWithMessage("Invalid exception message")
+            .that(excNullText.getMessage())
+            .isEqualTo("the text is null");
 
-        try {
-            JavadocTagInfo.fromText("myname");
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("the text [myname] is not a valid Javadoc tag text");
-        }
+        final IllegalArgumentException excInvalidText =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    JavadocTagInfo.fromText("myname");
+                }, "IllegalArgumentException is expected");
+        assertWithMessage("Invalid exception message")
+            .that(excInvalidText.getMessage())
+            .isEqualTo("the text [myname] is not a valid Javadoc tag text");
 
         assertWithMessage("Invalid fromText result")
             .that(JavadocTagInfo.fromText("@version"))
