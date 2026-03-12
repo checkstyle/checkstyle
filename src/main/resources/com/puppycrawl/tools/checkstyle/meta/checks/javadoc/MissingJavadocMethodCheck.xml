@@ -59,6 +59,12 @@
             <property default-value="-1" name="minLineCount" type="int">
                <description>Control the minimal amount of lines in method to allow no documentation.</description>
             </property>
+            <property default-value="false"
+                      name="requireJavadocForAbstractOnly"
+                      type="boolean">
+               <description>Control whether to require Javadoc only for methods declared in
+ interfaces or abstract classes.</description>
+            </property>
             <property default-value="public"
                       name="scope"
                       type="com.puppycrawl.tools.checkstyle.api.Scope">
