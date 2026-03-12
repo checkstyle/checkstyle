@@ -3,7 +3,7 @@ WriteTag
 tag = @emptytag
 tagFormat =
 tagSeverity = (default)info
-tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+target = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 
 */

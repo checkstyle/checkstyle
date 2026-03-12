@@ -2,7 +2,7 @@
 WriteTag
 tag = @todo
 tagFormat = \\S
-tokens = INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF
+target = INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF
 severity = ignore
 
 */
@@ -17,7 +17,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
  * @doubletag second text
  * @emptytag
  */
-class InputWriteTagMethod
+class InputWriteTagMethod implements Comparable<Integer>
 {
     // violation 2 lines below 'Javadoc tag @todo=Add a constructor comment'
     /**
@@ -37,6 +37,16 @@ class InputWriteTagMethod
      */
     public void anotherMethod()
     {
+    }
+
+    /**
+     * Compares to an integer.
+     * @param o the object to be compared.
+     * @return 0
+     */
+    @Override
+    public int compareTo(Integer o) {
+        return 0;
     }
 }
 
