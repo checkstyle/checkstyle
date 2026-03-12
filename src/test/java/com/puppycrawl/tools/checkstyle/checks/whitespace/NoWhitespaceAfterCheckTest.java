@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck.MSG_KEY;
 
 import org.antlr.v4.runtime.CommonToken;
@@ -231,15 +232,11 @@ public class NoWhitespaceAfterCheckTest
         astArrayDeclarator.addChild(astRightBracket);
 
         final NoWhitespaceAfterCheck check = new NoWhitespaceAfterCheck();
-        try {
-            check.visitToken(astArrayDeclarator);
-            assertWithMessage("no intended exception thrown").fail();
-        }
-        catch (IllegalStateException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("unexpected ast syntax import[0x-1]");
-        }
+        final IllegalStateException exc = getExpectedThrowable(IllegalStateException.class,
+                () -> check.visitToken(astArrayDeclarator));
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("unexpected ast syntax import[0x-1]");
     }
 
     @Test
