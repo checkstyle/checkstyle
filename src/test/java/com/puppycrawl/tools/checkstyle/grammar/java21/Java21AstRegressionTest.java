@@ -42,8 +42,7 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
         verifyAst(
                 getPath(
                         "ExpectedUnnamedVariableBasic.txt"),
-                getPath(
-                        "InputUnnamedVariableBasic.java"));
+                getNonCompilablePath("InputUnnamedVariableBasic.java"));
     }
 
     @Test
@@ -51,8 +50,7 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
         verifyAst(
                 getPath(
                         "ExpectedUnnamedVariableSwitch.txt"),
-                getPath(
-                        "InputUnnamedVariableSwitch.java"));
+                getNonCompilablePath("InputUnnamedVariableSwitch.java"));
     }
 
     @Test

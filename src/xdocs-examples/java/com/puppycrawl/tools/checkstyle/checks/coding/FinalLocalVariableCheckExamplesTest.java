@@ -35,56 +35,56 @@ public class FinalLocalVariableCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "31:9: " + getCheckMessage(MSG_KEY, "result"),
+            "32:9: " + getCheckMessage(MSG_KEY, "result"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "17:22: " + getCheckMessage(MSG_KEY, "x"),
-            "17:29: " + getCheckMessage(MSG_KEY, "y"),
-            "25:37: " + getCheckMessage(MSG_KEY, "args"),
-            "31:9: " + getCheckMessage(MSG_KEY, "result"),
+            "18:22: " + getCheckMessage(MSG_KEY, "x"),
+            "18:29: " + getCheckMessage(MSG_KEY, "y"),
+            "26:37: " + getCheckMessage(MSG_KEY, "args"),
+            "32:9: " + getCheckMessage(MSG_KEY, "result"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "28:17: " + getCheckMessage(MSG_KEY, "i"),
-            "31:9: " + getCheckMessage(MSG_KEY, "result"),
+            "29:17: " + getCheckMessage(MSG_KEY, "i"),
+            "32:9: " + getCheckMessage(MSG_KEY, "result"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "17:22: " + getCheckMessage(MSG_KEY, "x"),
-            "17:29: " + getCheckMessage(MSG_KEY, "y"),
-            "25:37: " + getCheckMessage(MSG_KEY, "args"),
-            "31:9: " + getCheckMessage(MSG_KEY, "result"),
+            "18:22: " + getCheckMessage(MSG_KEY, "x"),
+            "18:29: " + getCheckMessage(MSG_KEY, "y"),
+            "26:37: " + getCheckMessage(MSG_KEY, "args"),
+            "32:9: " + getCheckMessage(MSG_KEY, "result"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "17:22: " + getCheckMessage(MSG_KEY, "x"),
-            "17:29: " + getCheckMessage(MSG_KEY, "y"),
-            "21:9: " + getCheckMessage(MSG_KEY, "_"),
-            "25:37: " + getCheckMessage(MSG_KEY, "args"),
-            "31:9: " + getCheckMessage(MSG_KEY, "result"),
+            "18:22: " + getCheckMessage(MSG_KEY, "x"),
+            "18:29: " + getCheckMessage(MSG_KEY, "y"),
+            "22:9: " + getCheckMessage(MSG_KEY, "_"),
+            "26:37: " + getCheckMessage(MSG_KEY, "args"),
+            "32:9: " + getCheckMessage(MSG_KEY, "result"),
         };
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example5.java"), expected);
     }
 
 }

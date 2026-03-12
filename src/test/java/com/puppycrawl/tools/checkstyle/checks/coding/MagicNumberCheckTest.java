@@ -797,7 +797,7 @@ public class MagicNumberCheckTest
             "46:23: " + getCheckMessage(MSG_KEY, "6"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberMagicNumberInGuards.java"), expected);
+                getNonCompilablePath("InputMagicNumberMagicNumberInGuards.java"), expected);
     }
 
     @Test
@@ -808,7 +808,7 @@ public class MagicNumberCheckTest
             "25:20: " + getCheckMessage(MSG_KEY, "3.1415"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberMagicNumberWithUnnamedVariables.java"),
+                getNonCompilablePath("InputMagicNumberMagicNumberWithUnnamedVariables.java"),
                 expected);
     }
 
