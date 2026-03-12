@@ -2550,7 +2550,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("throwsIndent", "4");
         final String fileName = getPath("InputIndentationValidClassDefIndent1.java");
         final String[] expected = {
-            "43:1: " + getCheckMessage(MSG_ERROR, "class", 0, 4),
+            "45:1: " + getCheckMessage(MSG_ERROR, "class", 0, 4),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
