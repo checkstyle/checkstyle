@@ -175,6 +175,9 @@
     files="suppresswithplaintextcommentfilter[\\/]Example9.java"/>
   <suppress checks="LineLength"
     files="linelength[\\/]Example\d+.*"/>
+  <!-- NewlineAtEndOfFile examples -->
+  <suppress checks="LineLength"
+            files="newlineatendoffile[\\/]Example3.java"/>
   <!-- it prints user regexp -->
   <suppress checks="LineLength"
             files="regexponfilename[\\/]Example[2].java"/>
