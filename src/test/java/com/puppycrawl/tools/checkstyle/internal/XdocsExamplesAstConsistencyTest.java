@@ -295,7 +295,7 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithnearbytextfilter/Example8",
             "filters/suppresswithnearbytextfilter/Example9",
             "filters/suppresswithplaintextcommentfilter/Example5",
-            "filters/suppresswithplaintextcommentfilter/Example9",
+            "filters/suppresswithplaintextcommentfilter/Example9"
             );
 
     /**
