@@ -146,6 +146,20 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example5.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example6-config">
+          Reports a violation if an array initialization has more than <b>10</b> elements.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example6.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
