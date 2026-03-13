@@ -70,6 +70,10 @@ public final class TreeTable extends JTable {
     private static final long serialVersionUID = -8493693409423365387L;
     /** The newline character. */
     private static final String NEWLINE = "\n";
+    /** The ratio of the total width allocated to the tree column. */
+    private static final double TREE_COLUMN_WIDTH_RATIO = 0.6;
+    /** The number of characters used to calculate the type column width. */
+    private static final int TYPE_COLUMN_CHAR_COUNT = 28;
     /** A subclass of JTree. */
     private final TreeTableCellRenderer tree;
     /** JTextArea editor. */
@@ -193,11 +197,12 @@ public final class TreeTable extends JTable {
         getColumn("Line").setMaxWidth(widthOfColumnContainingSixCharacterString);
         getColumn("Column").setMaxWidth(widthOfColumnContainingSixCharacterString);
         final int preferredTreeColumnWidth =
-                Math.toIntExact(Math.round(getPreferredSize().getWidth() * 0.6));
+                Math.toIntExact(Math.round(
+                        getPreferredSize().getWidth() * TREE_COLUMN_WIDTH_RATIO));
         getColumn("Tree").setPreferredWidth(preferredTreeColumnWidth);
         // Twenty-eight character string to contain "Type" column
         final int widthOfTwentyEightCharacterString =
-                fontMetrics.stringWidth("MMMMMMMMMMMMMMMMMMMMMMMMMMMM");
+                fontMetrics.stringWidth("M".repeat(TYPE_COLUMN_CHAR_COUNT));
         final int preferredTypeColumnWidth = widthOfTwentyEightCharacterString + padding;
         getColumn("Type").setPreferredWidth(preferredTypeColumnWidth);
     }
@@ -397,12 +402,12 @@ public final class TreeTable extends JTable {
         @Override
         public boolean isCellEditable(EventObject event) {
             if (event instanceof MouseEvent mouseEvent) {
-                for (int counter = getColumnCount() - 1; counter >= 0;
-                     counter--) {
-                    if (getColumnClass(counter) == ParseTreeTableModel.class) {
+                for (int columnIndex = getColumnCount() - 1; columnIndex >= 0;
+                     columnIndex--) {
+                    if (getColumnClass(columnIndex) == ParseTreeTableModel.class) {
                         final MouseEvent newMouseEvent = new MouseEvent(tree, mouseEvent.getID(),
                                 mouseEvent.getWhen(), mouseEvent.getModifiersEx(),
-                                mouseEvent.getX() - getCellRect(0, counter, true).x,
+                                mouseEvent.getX() - getCellRect(0, columnIndex, true).x,
                                 mouseEvent.getY(), mouseEvent.getClickCount(),
                                 mouseEvent.isPopupTrigger());
                         tree.dispatchEvent(newMouseEvent);
