@@ -1624,6 +1624,10 @@
                   <a href="checks/misc/commentsindentation.html#CommentsIndentation">
                     CommentsIndentation</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
+                  config</a>),
+                  <a href="checks/whitespace/multilinecommentleadingasteriskpresence.html#MultilineCommentLeadingAsteriskPresence">
+                    MultilineCommentLeadingAsteriskPresence</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultilineCommentLeadingAsteriskPresence">
                   config</a>)
                 </td>
                 <td>

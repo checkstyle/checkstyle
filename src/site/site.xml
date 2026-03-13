@@ -238,6 +238,8 @@
           <item name="MissingJavadocMethod" href="checks/javadoc/missingjavadocmethod.html"/>
           <item name="MissingJavadocPackage" href="checks/javadoc/missingjavadocpackage.html"/>
           <item name="MissingJavadocType" href="checks/javadoc/missingjavadoctype.html"/>
+          <item name="MultilineCommentLeadingAsteriskPresence"
+                href="checks/whitespace/multilinecommentleadingasteriskpresence.html"/>
           <item name="NonEmptyAtclauseDescription"
                 href="checks/javadoc/nonemptyatclausedescription.html"/>
           <item name="RequireEmptyLineBeforeBlockTagGroup"
