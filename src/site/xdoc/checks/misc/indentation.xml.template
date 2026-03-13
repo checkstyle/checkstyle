@@ -88,7 +88,88 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example4.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the Check with arrayInitIndent:.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example5.java"/>
+          <param name="type" value="config"/>
         </macro>
+        <p id="Example5-code">
+           Example of compliant code with arrayInitIndent
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+         <p id="Example6-config">
+            To configure the Check with basicOffset:
+         </p>
+         <macro name="example">
+            <param name="path"
+                    value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example6.java"/>
+            <param name="type" value="config"/>
+         </macro>
+         <p id="Example6-code">
+            Example of compliant code with basicOffset
+         </p>
+         <macro name="example">
+           <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example6.java"/>
+           <param name="type" value="code"/>
+         </macro><hr class="example-separator"/>
+         <p id="Example7-config">
+           To configure the Check with braceAdjustment:
+         </p>
+         <macro name="example">
+            <param name="path"
+                    value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example7.java"/>
+            <param name="type" value="config"/>
+         </macro>
+         <p id="Example7-code">
+            Example of compliant code with braceAdjustment
+         </p>
+         <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example7.java"/>
+          <param name="type" value="code"/>
+         </macro><hr class="example-separator"/>
+         <p id="Example8-config">
+            To configure the Check with throwsIndent:
+         </p>
+         <macro name="example">
+            <param name="path"
+                     value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example8.java"/>
+            <param name="type" value="config"/>
+         </macro>
+         <p id="Example8-code">
+            Example of compliant code with throwsIndent
+         </p>
+         <macro name="example">
+           <param name="path"
+                  value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example8.java"/>
+           <param name="type" value="code"/>
+         </macro><hr class="example-separator"/>
+          <p id="Example9-config">
+             To configure the Check with lineWrappingIndentation:
+          </p>
+          <macro name="example">
+            <param name="path"
+                      value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example9.java"/>
+            <param name="type" value="config"/>
+          </macro>
+          <p id="Example9-code">
+             Example of compliant code with lineWrappingIndentation
+          </p>
+          <macro name="example">
+            <param name="path"
+                     value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example9.java"/>
+            <param name="type" value="code"/>
+          </macro>
+
       </subsection>
 
       <subsection name="Example of Usage" id="Indentation_Example_of_Usage">
