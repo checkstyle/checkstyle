@@ -480,7 +480,6 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             throw new CheckstyleException(
                     getLocalizedMessage("Checker.setupChildModule", name, exc.getMessage()), exc);
         }
-        // -@cs[MissingNullCaseInSwitch] until issue #19173
         switch (child) {
             case FileSetCheck fsc -> {
                 fsc.init();

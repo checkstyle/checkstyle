@@ -154,7 +154,6 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         catch (final CheckstyleException exc) {
             throw new CheckstyleException("cannot initialize module " + name, exc);
         }
-        // -@cs[MissingNullCaseInSwitch] until issue #19173
         switch (module) {
             case AbstractCheck check -> {
                 check.init();
