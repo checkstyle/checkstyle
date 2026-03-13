@@ -1227,7 +1227,6 @@ SERIALVERSIONUID
 servlet
 severitymatchfilter
 sevntu
-shasum
 shellcheck
 shengchen
 Shiell
@@ -1282,7 +1281,6 @@ stackoverflow
 stackoverflowerror
 stacktrace
 standalone
-staticanalysis
 staticvariablename
 stdin
 Stdlib
@@ -1370,7 +1368,6 @@ tidelift
 timeline
 timezone
 TKN
-Tls
 tmp
 tmpdir
 tngtech
@@ -1441,7 +1438,6 @@ upperell
 urandom
 uri
 url
-usebackq
 useenhancedswitch
 userguide
 username
@@ -1480,7 +1476,6 @@ Wakelock
 walkthrough
 Warni
 Weakento
-webclient
 Webflow
 webjar
 Weblogic
@@ -1570,7 +1565,6 @@ xwiki
 XXXX
 xxxxxx
 xy
-xzf
 xzvf
 yaml
 yamllint
