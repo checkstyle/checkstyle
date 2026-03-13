@@ -24,6 +24,9 @@ my @excludes=qw(
   ^config/checker-framework-suppressions/
   ^config/archunit-store/
   ^config/sarif-schema-2.1.0.json$
+  ^mvnw$
+  ^mvnw\.cmd$
+  ^config/rewrite\.yml$
 );
 my $exclude = join "|", @excludes;
 while (<>) {

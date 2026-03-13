@@ -101,6 +101,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/coding/matchxpath/Example3",
             "checks/coding/matchxpath/Example4",
             "checks/coding/matchxpath/Example5",
+            "checks/coding/matchxpath/Example6",
             "checks/coding/packagedeclaration/Example2",
             "checks/coding/requirethis/Example5",
             "checks/coding/requirethis/Example6",
@@ -295,9 +296,7 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithnearbytextfilter/Example8",
             "filters/suppresswithnearbytextfilter/Example9",
             "filters/suppresswithplaintextcommentfilter/Example5",
-            "filters/suppresswithplaintextcommentfilter/Example9",
-            // No properties in module, multiple very different examples to ease reading
-            "checks/annotation/missingoverrideonrecordaccessor/Example2"
+            "filters/suppresswithplaintextcommentfilter/Example9"
             );
 
     /**
