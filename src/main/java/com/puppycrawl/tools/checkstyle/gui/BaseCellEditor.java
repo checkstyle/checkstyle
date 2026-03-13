@@ -84,15 +84,7 @@ public class BaseCellEditor implements CellEditor {
      * @see EventListenerList
      */
     protected void fireEditingStopped() {
-        // Guaranteed to return a non-null array
-        final Object[] listeners = listenerList.getListenerList();
-        // Process the listeners last to first, notifying
-        // those that are interested in this event
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == CellEditorListener.class) {
-                ((CellEditorListener) listeners[i + 1]).editingStopped(new ChangeEvent(this));
-            }
-        }
+        notifyListeners(true);
     }
 
     /**
@@ -102,13 +94,29 @@ public class BaseCellEditor implements CellEditor {
      * @see EventListenerList
      */
     protected void fireEditingCanceled() {
-        // Guaranteed to return a non-null array
+        notifyListeners(false);
+    }
+
+    /**
+     * Notifies all registered CellEditorListeners.
+     * Invokes editingStopped if stopped is true,
+     * editingCanceled otherwise.
+     *
+     * @param stopped true to notify listeners of editing stopped,
+     *                false to notify of editing canceled
+     */
+    private void notifyListeners(boolean stopped) {
         final Object[] listeners = listenerList.getListenerList();
-        // Process the listeners last to first, notifying
-        // those that are interested in this event
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == CellEditorListener.class) {
-                ((CellEditorListener) listeners[i + 1]).editingCanceled(new ChangeEvent(this));
+        for (int idx = listeners.length - 2; idx >= 0; idx -= 2) {
+            if (listeners[idx] == CellEditorListener.class) {
+                final CellEditorListener listener =
+                        (CellEditorListener) listeners[idx + 1];
+                if (stopped) {
+                    listener.editingStopped(new ChangeEvent(this));
+                }
+                else {
+                    listener.editingCanceled(new ChangeEvent(this));
+                }
             }
         }
     }

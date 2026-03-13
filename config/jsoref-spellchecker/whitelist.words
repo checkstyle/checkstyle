@@ -286,6 +286,7 @@ descendanttoken
 descr
 Deserializable
 designforextension
+Designite
 destfile
 Destructuring
 detailast
@@ -853,7 +854,6 @@ mkordas
 mktemp
 MLINKCHECK
 MMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMM
 moby
 mockit
 mockito
