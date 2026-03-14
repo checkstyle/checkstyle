@@ -1,8 +1,7 @@
 /*
 FallThrough
-checkLastCaseGroup = (default)false
-reliefPattern = (default)falls?[ -]?thr(u|ough)
-
+checkLastCaseGroup = false
+reliefPattern = falls?[ -]?thr(u|ough)
 
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.fallthrough;
@@ -48,16 +47,15 @@ public class InputFallThroughInfiniteLoop {
             case 15: // violation 'Fall\ through from previous branch of the switch statement.'
                 while (true) break;
             case 16: // violation 'Fall\ through from previous branch of the switch statement.'
-
                 while (true) {}
             case 17:
-                while (true) { for(;;) { break; } }
+                while (true) { for (;;) { break; } }
             case 18:
-                while (true) { while(true) { break; } }
+                while (true) { while (true) { break; } }
             case 19:
-                while (true) { do { break; } while(true); }
+                while (true) { do { break; } while (true); }
             case 20:
-                while (true) { switch(0) { case 0: break; } }
+                while (true) { switch (0) { case 0: break; } }
             case 21:
                 while (true) { { break; } }
             case 22: // violation 'Fall\ through from previous branch of the switch statement.'
@@ -68,6 +66,23 @@ public class InputFallThroughInfiniteLoop {
                 while (true) { if (cond) { break; } }
             case 25: // violation 'Fall\ through from previous branch of the switch statement.'
                 int c = 3;
+
+            // additional coverage cases for infinite loop detection
+            case 26:
+                while (true) {
+                    if (cond) {
+                        break;
+                    }
+                }
+            case 27:
+                while (true) {
+                    while (true) {}
+                }
+            case 28:
+                while (true) {
+                    continue;
+                }
+
             default: // violation 'Fall\ through from previous branch of the switch statement.'
                 break;
         }
