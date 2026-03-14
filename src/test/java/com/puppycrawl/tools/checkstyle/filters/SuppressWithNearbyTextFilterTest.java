@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -332,92 +333,88 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void testInvalidCheckPattern() throws Exception {
+    public void testInvalidCheckPattern() {
         final String[] violationAndSuppressedMessages = {
             "18: " + getLineLengthCheckMessage(80, 93),
         };
 
-        try {
-            verifyFilterWithInlineConfigParser(
-                getPath("InputSuppressWithNearbyTextFilterInvalidCheckPattern.txt"),
-                violationAndSuppressedMessages
-            );
-            assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-            assertWithMessage("Invalid exception message")
-                .that(cause)
-                .hasMessageThat()
-                .isEqualTo("unable to parse expanded comment a![b");
-        }
+        final CheckstyleException exc = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> {
+                    verifyFilterWithInlineConfigParser(
+                        getPath("InputSuppressWithNearbyTextFilterInvalidCheckPattern.txt"),
+                        violationAndSuppressedMessages
+                    );
+                });
+        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
+        assertWithMessage("Invalid exception message")
+            .that(cause)
+            .hasMessageThat()
+            .isEqualTo("unable to parse expanded comment a![b");
     }
 
     @Test
-    public void testInvalidIdPattern() throws Exception {
+    public void testInvalidIdPattern() {
         final String[] violationAndSuppressedMessages = {
             "18: " + getLineLengthCheckMessage(80, 93),
         };
 
-        try {
-            verifyFilterWithInlineConfigParser(
-                getPath("InputSuppressWithNearbyTextFilterInvalidIdPattern.txt"),
-                violationAndSuppressedMessages
-            );
-            assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-            assertWithMessage("Invalid exception message")
-                .that(cause)
-                .hasMessageThat()
-                .isEqualTo("unable to parse expanded comment a![b");
-        }
+        final CheckstyleException exc = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> {
+                    verifyFilterWithInlineConfigParser(
+                        getPath("InputSuppressWithNearbyTextFilterInvalidIdPattern.txt"),
+                        violationAndSuppressedMessages
+                    );
+                });
+        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
+        assertWithMessage("Invalid exception message")
+            .that(cause)
+            .hasMessageThat()
+            .isEqualTo("unable to parse expanded comment a![b");
     }
 
     @Test
-    public void testInvalidMessagePattern() throws Exception {
+    public void testInvalidMessagePattern() {
         final String[] violationAndSuppressedMessages = {
             "18: " + getLineLengthCheckMessage(80, 93),
         };
 
-        try {
-            verifyFilterWithInlineConfigParser(
-                getPath("InputSuppressWithNearbyTextFilterInvalidMessagePattern.txt"),
-                violationAndSuppressedMessages
-            );
-            assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-            assertWithMessage("Invalid exception message")
-                .that(cause)
-                .hasMessageThat()
-                .isEqualTo("unable to parse expanded comment a![b");
-        }
+        final CheckstyleException exc = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> {
+                    verifyFilterWithInlineConfigParser(
+                        getPath("InputSuppressWithNearbyTextFilterInvalidMessagePattern.txt"),
+                        violationAndSuppressedMessages
+                    );
+                });
+        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
+        assertWithMessage("Invalid exception message")
+            .that(cause)
+            .hasMessageThat()
+            .isEqualTo("unable to parse expanded comment a![b");
     }
 
     @Test
-    public void testInvalidLineRange() throws Exception {
+    public void testInvalidLineRange() {
         final String[] violationAndSuppressedMessages = {
             "18: " + getLineLengthCheckMessage(80, 93),
         };
 
-        try {
-            verifyFilterWithInlineConfigParser(
-                getPath("InputSuppressWithNearbyTextFilterInvalidLineRange.txt"),
-                violationAndSuppressedMessages
-            );
-            assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc)
-                .hasCauseThat()
-                .hasMessageThat()
-                .isEqualTo("unable to parse line range"
-                        + " from 'SUPPRESS CHECKSTYLE LineLengthCheck' using a!b");
-        }
+        final CheckstyleException exc = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> {
+                    verifyFilterWithInlineConfigParser(
+                        getPath("InputSuppressWithNearbyTextFilterInvalidLineRange.txt"),
+                        violationAndSuppressedMessages
+                    );
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc)
+            .hasCauseThat()
+            .hasMessageThat()
+            .isEqualTo("unable to parse line range"
+                    + " from 'SUPPRESS CHECKSTYLE LineLengthCheck' using a!b");
     }
 
     /**
@@ -488,24 +485,23 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         final AuditEvent auditEvent = new AuditEvent(this, fileName, message);
         final SuppressWithNearbyTextFilter filter = new SuppressWithNearbyTextFilter();
 
-        try {
-            filter.accept(auditEvent);
-            assertWithMessage("%s is expected", IllegalStateException.class.getSimpleName()).fail();
-        }
-        catch (IllegalStateException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Cannot read source file: " + fileName);
+        final IllegalStateException exc = getExpectedThrowable(
+                IllegalStateException.class,
+                () -> {
+                    filter.accept(auditEvent);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Cannot read source file: " + fileName);
 
-            final Throwable cause = exc.getCause();
-            assertWithMessage("Exception cause has invalid type")
-                    .that(cause)
-                    .isInstanceOf(FileNotFoundException.class);
-            assertWithMessage("Invalid exception message")
+        final Throwable cause = exc.getCause();
+        assertWithMessage("Exception cause has invalid type")
                 .that(cause)
-                .hasMessageThat()
-                .isEqualTo(fileName + " (No such file or directory)");
-        }
+                .isInstanceOf(FileNotFoundException.class);
+        assertWithMessage("Invalid exception message")
+            .that(cause)
+            .hasMessageThat()
+            .isEqualTo(fileName + " (No such file or directory)");
     }
 
     /**
