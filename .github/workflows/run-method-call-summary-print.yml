@@ -1,0 +1,108 @@
+#####################################################################################
+# GitHub Action to run methods-distance analysis:
+#
+#  User provides a Java file URL
+#  Workflow generates method/call summary in JSON
+#  JSON is printed in formatted form in console
+#
+#####################################################################################
+
+name: Run-Method-Call-Summary-Print
+
+on:
+  workflow_dispatch:
+    inputs:
+      java-source-url:
+        description: 'URL to Java source file to analyze'
+        required: true
+      compile:
+        description: 'compile java by javac'
+        required: true
+        default: 'false'
+
+concurrency:
+  group: ${{ github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        with:
+          java-version: 21
+          distribution: 'temurin'
+
+      - name: Checkout methods-distance repo
+        run: |
+          git clone https://github.com/sevntu-checkstyle/methods-distance.git
+
+      - name: Build project with Maven
+        run: |
+          cd methods-distance
+          mvn -e --no-transfer-progress -B package
+
+      - name: Download target Java source
+        run: |
+          curl --fail-with-body -X GET "${{ inputs.java-source-url }}" \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -o "Test.java"
+
+      - name: Run methods-distance analysis
+        run: |
+          pwd
+          ls -la
+          echo "Content of Test.java:"
+          cat -n "Test.java"
+          echo ""
+          
+          if [[ "${{ inputs.compile }}" == "true" ]]; then
+            echo "javac Test.java:"
+            javac "Test.java"
+          fi
+          
+          echo ""
+          cd "methods-distance/methods-distance"
+          
+          JAR=(target/methods-distance-*-with-dependencies.jar)
+          java -cp "${JAR[0]}" com.github.sevntu.checkstyle.JsonCli "../../Test.java" "../.."
+
+      - name: Configure Python for table printing
+        run: |
+          pip install tabulate
+
+      - name: Print JSON summary to console
+        run: |
+          echo ""
+          echo "Method call summary in JSON:"
+          echo "-------------------------------------"
+          python -m json.tool ./Test.java.json
+
+      - name: Print table summary to console
+        run: |
+          echo ""
+          echo "Method call summary in table:"
+          echo "-------------------------------------"
+          echo "Class Name:"
+          jq -r '.classDefinition.className' "Test.java.json"
+          echo ""
+          echo "Methods:"
+          jq -r '
+            .classDefinition.methods
+            | (.[0] | keys_unsorted) as $cols
+            | $cols,
+              (.[] | [ $cols[] as $c | (.[ $c ] | if . == null then "null" else . end) ])
+            | @tsv
+          ' "Test.java.json" | tabulate -f github -1
+          echo ""
+          echo "Resolved Calls:"
+          jq -r '
+            .resolvedCalls
+            | (.[0] | keys_unsorted) as $cols
+            | $cols,
+              (.[] | [ $cols[] as $c | (.[ $c ] | if . == null then "null" else . end) ])
+            | @tsv
+          ' "Test.java.json" | tabulate -f github -1
