@@ -539,11 +539,11 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     @Test
     public void testAliasList5() throws Exception {
         final String[] expected = {
-            "18: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 80, 83),
-            "28: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 96),
-            "28: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 80, 96),
-            "58: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 76),
-            "65: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 87),
+            "23: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 80, 83),
+            "33: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 96),
+            "33: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 80, 96),
+            "63: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 76),
+            "70: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 87),
         };
 
         verifyWithInlineConfigParser(
