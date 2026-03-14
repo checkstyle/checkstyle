@@ -146,7 +146,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputBooleanExpressionComplexityWhenExpression.java"),
+                getNonCompilablePath("InputBooleanExpressionComplexityWhenExpression.java"),
                 expected);
     }
 

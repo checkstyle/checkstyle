@@ -201,7 +201,7 @@ public class OperatorWrapCheckTest
             "82:38: " + getCheckMessage(MSG_LINE_NEW, "instanceof"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputOperatorWrapInstanceOfOperator.java"), expected);
+                getNonCompilablePath("InputOperatorWrapInstanceOfOperator.java"), expected);
     }
 
     @Test
@@ -214,7 +214,7 @@ public class OperatorWrapCheckTest
             "88:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "instanceof"),
         };
         verifyWithInlineConfigParser(
-                getPath(
+                getNonCompilablePath(
                         "InputOperatorWrapInstanceOfOperatorEndOfLine.java"), expected);
     }
 

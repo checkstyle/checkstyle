@@ -69,7 +69,7 @@ public class XpathRegressionWhenShouldBeUsedTest
     @Test
     public void testNested() throws Exception {
         final File fileToProcess =
-                new File(getPath(
+                new File(getNonCompilablePath(
                         "InputXpathWhenShouldBeUsedNested.java"));
 
         final DefaultConfiguration moduleConfig =
