@@ -190,6 +190,16 @@
           </tr>
           <tr>
             <td>
+              <a href="illegalsymbol.html#IllegalSymbol">
+                IllegalSymbol
+              </a>
+            </td>
+            <td>
+              Checks that specified symbols (by Unicode code points or ranges) are not used in code.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="illegalthrows.html#IllegalThrows">
                 IllegalThrows
               </a>
