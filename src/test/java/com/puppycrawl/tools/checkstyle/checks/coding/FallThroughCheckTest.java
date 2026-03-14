@@ -448,4 +448,10 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
                 getPath("InputFallThroughWithPatternMatchingCheckLastCase.java"),
                 expected);
     }
+
+    @Test
+    public void testInfiniteLoop() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughInfiniteLoop.java"));
+    }
 }
