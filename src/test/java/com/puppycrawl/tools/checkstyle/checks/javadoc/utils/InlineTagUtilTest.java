@@ -105,28 +105,26 @@ public class InlineTagUtilTest {
 
     @Test
     public void testBadInputExtractInlineTagsLineFeed() {
-        try {
-            InlineTagUtil.extractInlineTags("abc\ndef");
-            assertWithMessage("IllegalArgumentException expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Unexpected error message")
-                    .that(exc.getMessage())
-                    .contains("newline");
-        }
+        final IllegalArgumentException exc =
+                TestUtil.getExpectedThrowable(
+                    IllegalArgumentException.class, () -> {
+                        InlineTagUtil.extractInlineTags("abc\ndef");
+                    });
+        assertWithMessage("Unexpected error message")
+                .that(exc.getMessage())
+                .contains("newline");
     }
 
     @Test
     public void testBadInputExtractInlineTagsCarriageReturn() {
-        try {
-            InlineTagUtil.extractInlineTags("abc\rdef");
-            assertWithMessage("IllegalArgumentException expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid error message")
-                    .that(exc.getMessage())
-                    .contains("newline");
-        }
+        final IllegalArgumentException exc =
+                TestUtil.getExpectedThrowable(
+                    IllegalArgumentException.class, () -> {
+                        InlineTagUtil.extractInlineTags("abc\rdef");
+                    });
+        assertWithMessage("Invalid error message")
+                .that(exc.getMessage())
+                .contains("newline");
     }
 
     private static void assertTag(TagInfo tag, String name, String value, int line, int col) {
