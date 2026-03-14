@@ -41,6 +41,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
@@ -329,20 +330,19 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAcceptableTokensFail() throws Exception {
         final String path = getPath("InputAbstractJavadocTokensFail.java");
-        try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verifyWithInlineConfigParser(path, expected);
-            assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (IllegalStateException exc) {
-            final String expected = "Javadoc Token "
-                    + "\"RETURN_BLOCK_TAG\" was not found in "
-                    + "Acceptable javadoc tokens list in check "
-                    + TokenIsNotInAcceptablesCheck.class.getName();
-            assertWithMessage("Invalid exception, should start with: %s", expected)
-                    .that(exc.getMessage())
-                    .startsWith(expected);
-        }
+        final String[] expectedArr = CommonUtil.EMPTY_STRING_ARRAY;
+        final IllegalStateException exc =
+                TestUtil.getExpectedThrowable(
+                    IllegalStateException.class, () -> {
+                        verifyWithInlineConfigParser(path, expectedArr);
+                    });
+        final String expected = "Javadoc Token "
+                + "\"RETURN_BLOCK_TAG\" was not found in "
+                + "Acceptable javadoc tokens list in check "
+                + TokenIsNotInAcceptablesCheck.class.getName();
+        assertWithMessage("Invalid exception, should start with: %s", expected)
+                .that(exc.getMessage())
+                .startsWith(expected);
     }
 
     @Test
@@ -352,25 +352,24 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRequiredTokenIsNotInDefaultTokens() throws Exception {
+    public void testRequiredTokenIsNotInDefaultTokens() {
         final DefaultConfiguration checkConfig =
             createModuleConfig(RequiredTokenIsNotInDefaultsJavadocCheck.class);
         final String uniqueFileName = "empty_" + UUID.randomUUID() + ".java";
         final File pathToEmptyFile = new File(temporaryFolder, uniqueFileName);
 
-        try {
-            execute(checkConfig, pathToEmptyFile.toString());
-            assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (IllegalStateException exc) {
-            final String expected = "Javadoc Token \""
-                    + JavadocCommentsTokenTypes.RETURN_BLOCK_TAG + "\" from required"
-                    + " javadoc tokens was not found in default javadoc tokens list in check "
-                    + RequiredTokenIsNotInDefaultsJavadocCheck.class.getName();
-            assertWithMessage("Invalid exception, should start with: %s", expected)
-                    .that(exc.getMessage())
-                    .startsWith(expected);
-        }
+        final IllegalStateException exc =
+                TestUtil.getExpectedThrowable(
+                    IllegalStateException.class, () -> {
+                        execute(checkConfig, pathToEmptyFile.toString());
+                    });
+        final String expected = "Javadoc Token \""
+                + JavadocCommentsTokenTypes.RETURN_BLOCK_TAG + "\" from required"
+                + " javadoc tokens was not found in default javadoc tokens list in check "
+                + RequiredTokenIsNotInDefaultsJavadocCheck.class.getName();
+        assertWithMessage("Invalid exception, should start with: %s", expected)
+                .that(exc.getMessage())
+                .startsWith(expected);
     }
 
     @Test
