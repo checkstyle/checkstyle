@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.util.Collection;
@@ -79,7 +80,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testExcludedPackagesCommonPackagesWithEndingDot() throws Exception {
+    public void testExcludedPackagesCommonPackagesWithEndingDot() {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ClassFanOutComplexityCheck.class);
 
@@ -87,21 +88,18 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("excludedPackages",
             "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.");
 
-        try {
-            createChecker(checkConfig);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                    + "metrics.ClassFanOutComplexityCheck");
-            assertWithMessage("Invalid exception message,")
-                .that(exc.getCause().getCause().getCause().getCause().getMessage())
-                .isEqualTo("the following values are not valid identifiers: ["
-                            + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.]");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> createChecker(checkConfig));
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                + "metrics.ClassFanOutComplexityCheck");
+        assertWithMessage("Invalid exception message,")
+            .that(exc.getCause().getCause().getCause().getCause().getMessage())
+            .isEqualTo("the following values are not valid identifiers: ["
+                        + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.]");
     }
 
     @Test
