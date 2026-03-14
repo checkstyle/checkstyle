@@ -129,15 +129,14 @@ public class FinalClassCheckTest
         final DetailAstImpl badAst = new DetailAstImpl();
         final int unsupportedTokenByCheck = TokenTypes.COMPILATION_UNIT;
         badAst.setType(unsupportedTokenByCheck);
-        try {
-            finalClassCheck.visitToken(badAst);
-            assertWithMessage("IllegalStateException is expected").fail();
-        }
-        catch (IllegalStateException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo(badAst.toString());
-        }
+        final IllegalStateException exc =
+            TestUtil.getExpectedThrowable(
+                IllegalStateException.class, () -> {
+                    finalClassCheck.visitToken(badAst);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo(badAst.toString());
     }
 
     @Test
