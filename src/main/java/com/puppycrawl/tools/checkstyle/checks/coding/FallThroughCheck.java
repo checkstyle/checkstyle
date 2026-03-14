@@ -52,6 +52,12 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * Note: The check assumes that there is no unreachable code in the {@code case}.
  * </p>
  *
+ * <p>
+ * Note: The check handles {@code while (true)}, {@code do-while (true)},
+ * and {@code for (;;)} as infinite loops. It will not examine variables or
+ * complex expressions to determine if a loop is infinite.
+ * </p>
+ *
  * @since 3.4
  */
 @StatelessCheck
@@ -127,7 +133,8 @@ public class FallThroughCheck extends AbstractCheck {
         if (!isLastGroup || checkLastCaseGroup) {
             final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
-            if (slist != null && !CheckUtil.isTerminated(slist) && !hasFallThroughComment(ast)) {
+            if (slist != null && !CheckUtil.isTerminated(slist) && !hasFallThroughComment(ast)
+                    && !isTerminatedByInfiniteLoop(slist)) {
                 if (isLastGroup) {
                     log(ast, MSG_FALL_THROUGH_LAST);
                 }
@@ -197,4 +204,120 @@ public class FallThroughCheck extends AbstractCheck {
         return result;
     }
 
+    /**
+     * Checks if a statement list is terminated by an infinite loop.
+     *
+     * @param slist the SLIST AST node.
+     * @return true if the last statement is an infinite loop.
+     */
+    private static boolean isTerminatedByInfiniteLoop(DetailAST slist) {
+        DetailAST ast = slist.getLastChild();
+        boolean terminated = false;
+        while (ast != null) {
+            final int type = ast.getType();
+            if (type == TokenTypes.RCURLY
+                    || type == TokenTypes.LCURLY
+                    || type == TokenTypes.SINGLE_LINE_COMMENT
+                    || type == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                ast = ast.getPreviousSibling();
+            }
+            else if (type == TokenTypes.SLIST) {
+                terminated = isTerminatedByInfiniteLoop(ast);
+                break;
+            }
+            else {
+                terminated = isInfiniteLoop(ast);
+                break;
+            }
+        }
+        return terminated;
+    }
+
+    /**
+     * Checks if a given AST node represents an infinite loop.
+     *
+     * @param ast the AST node to check.
+     * @return true if it is an infinite loop (e.g., while(true), for(;;), do-while(true)).
+     */
+    private static boolean isInfiniteLoop(DetailAST ast) {
+        final int type = ast.getType();
+        boolean result = false;
+        if (type == TokenTypes.LITERAL_WHILE || type == TokenTypes.LITERAL_DO) {
+            final DetailAST expr = ast.findFirstToken(TokenTypes.EXPR);
+            result = isTrueExpression(expr) && !hasUnlabeledBreak(getLoopBody(ast));
+        }
+        else if (type == TokenTypes.LITERAL_FOR) {
+            final DetailAST condition = ast.findFirstToken(TokenTypes.FOR_CONDITION);
+            result = condition != null && condition.getChildCount() == 0
+                    && !hasUnlabeledBreak(ast.getLastChild());
+        }
+        return result;
+    }
+
+    /**
+     * Finds the body of a loop.
+     *
+     * @param loop the loop node.
+     * @return the body node.
+     */
+    private static DetailAST getLoopBody(DetailAST loop) {
+        final DetailAST body;
+        if (loop.getType() == TokenTypes.LITERAL_DO) {
+            body = loop.getFirstChild();
+        }
+        else {
+            body = loop.getLastChild();
+        }
+        return body;
+    }
+
+    /**
+     * Checks if an EXPR AST node evaluates to a literal 'true'.
+     *
+     * @param expr the EXPR AST node.
+     * @return true if it contains only a LITERAL_TRUE.
+     */
+    private static boolean isTrueExpression(DetailAST expr) {
+        return expr != null
+                && expr.getFirstChild() != null
+                && expr.getFirstChild().getType() == TokenTypes.LITERAL_TRUE;
+    }
+
+    /**
+     * Checks if an AST node is a loop or switch.
+     *
+     * @param type the token type.
+     * @return true if it is a loop or switch.
+     */
+    private static boolean isLoopOrSwitch(int type) {
+        return type == TokenTypes.LITERAL_FOR
+                || type == TokenTypes.LITERAL_WHILE
+                || type == TokenTypes.LITERAL_DO
+                || type == TokenTypes.LITERAL_SWITCH;
+    }
+
+    /**
+     * Checks if an AST node or its children contain an unlabeled break.
+     *
+     * @param ast the AST node to check.
+     * @return true if an unlabeled break is found.
+     */
+    private static boolean hasUnlabeledBreak(DetailAST ast) {
+        boolean result = false;
+        if (ast != null) {
+            final int type = ast.getType();
+            if (type == TokenTypes.LITERAL_BREAK
+                    && ast.findFirstToken(TokenTypes.IDENT) == null) {
+                result = true;
+            }
+            else if (!isLoopOrSwitch(type)) {
+                DetailAST child = ast.getFirstChild();
+                while (child != null && !result) {
+                    result = hasUnlabeledBreak(child);
+                    child = child.getNextSibling();
+                }
+            }
+        }
+        return result;
+    }
 }
