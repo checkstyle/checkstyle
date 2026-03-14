@@ -150,6 +150,7 @@ public class ImmutabilityTest {
         "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck.detector",
         "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck.detector",
         "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck.formatString",
+        "com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck.codePointRanges",
         "com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.tagRegExp",
         "com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.format",
         "com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.option"
