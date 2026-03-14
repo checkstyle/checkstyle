@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.IOException;
@@ -84,28 +85,22 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
 
     @Test
     public void testLoadFromMalformedUrl() {
-        try {
-            SuppressionsLoader.loadSuppressions("http");
-            assertWithMessage("exception expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid error message")
-                .that(exc.getMessage())
-                .isEqualTo("Unable to find: http");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> SuppressionsLoader.loadSuppressions("http"));
+        assertWithMessage("Invalid error message")
+            .that(exc.getMessage())
+            .isEqualTo("Unable to find: http");
     }
 
     @Test
     public void testLoadFromNonExistentUrl() {
-        try {
-            SuppressionsLoader.loadSuppressions("/non/existent/file.xml");
-            assertWithMessage("exception expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid error message")
-                .that(exc.getMessage())
-                .isEqualTo("Unable to find: /non/existent/file.xml");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> SuppressionsLoader.loadSuppressions("/non/existent/file.xml"));
+        assertWithMessage("Invalid error message")
+            .that(exc.getMessage())
+            .isEqualTo("Unable to find: /non/existent/file.xml");
     }
 
     @Test
@@ -137,57 +132,48 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
     @Test
     public void testNoFile() throws IOException {
         final String fn = getPath("InputSuppressionsLoaderNoFile.xml");
-        try {
-            SuppressionsLoader.loadSuppressions(fn);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            final String messageStart = "Unable to parse " + fn;
-            assertWithMessage("Exception message should start with: %s", messageStart)
-                    .that(exc.getMessage())
-                    .startsWith("Unable to parse " + fn);
-            assertWithMessage("Exception message should contain \"files\"")
-                    .that(exc.getMessage())
-                    .contains("\"files\"");
-            assertWithMessage("Exception message should contain \"suppress\"")
-                    .that(exc.getMessage())
-                    .contains("\"suppress\"");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> SuppressionsLoader.loadSuppressions(fn));
+        final String messageStart = "Unable to parse " + fn;
+        assertWithMessage("Exception message should start with: %s", messageStart)
+                .that(exc.getMessage())
+                .startsWith("Unable to parse " + fn);
+        assertWithMessage("Exception message should contain \"files\"")
+                .that(exc.getMessage())
+                .contains("\"files\"");
+        assertWithMessage("Exception message should contain \"suppress\"")
+                .that(exc.getMessage())
+                .contains("\"suppress\"");
     }
 
     @Test
     public void testNoCheck() throws IOException {
         final String fn = getPath("InputSuppressionsLoaderNoCheck.xml");
-        try {
-            SuppressionsLoader.loadSuppressions(fn);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            final String messageStart = "Unable to parse " + fn;
-            assertWithMessage("Exception message should start with: %s", messageStart)
-                    .that(exc.getMessage())
-                    .startsWith(messageStart);
-            assertWithMessage("Exception message should contain \"checks\"")
-                    .that(exc.getMessage())
-                    .contains("\"checks\"");
-            assertWithMessage("Exception message should contain \"suppress\"")
-                    .that(exc.getMessage())
-                    .contains("\"suppress\"");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> SuppressionsLoader.loadSuppressions(fn));
+        final String messageStart = "Unable to parse " + fn;
+        assertWithMessage("Exception message should start with: %s", messageStart)
+                .that(exc.getMessage())
+                .startsWith(messageStart);
+        assertWithMessage("Exception message should contain \"checks\"")
+                .that(exc.getMessage())
+                .contains("\"checks\"");
+        assertWithMessage("Exception message should contain \"suppress\"")
+                .that(exc.getMessage())
+                .contains("\"suppress\"");
     }
 
     @Test
     public void testBadInt() throws IOException {
         final String fn = getPath("InputSuppressionsLoaderBadInt.xml");
-        try {
-            SuppressionsLoader.loadSuppressions(fn);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage(exc.getMessage())
-                .that(exc.getMessage())
-                .startsWith("Number format exception " + fn + " - For input string: \"a\"");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> SuppressionsLoader.loadSuppressions(fn));
+        assertWithMessage(exc.getMessage())
+            .that(exc.getMessage())
+            .startsWith("Number format exception " + fn + " - For input string: \"a\"");
     }
 
     private static FilterSet loadFilterSet(String url) throws Exception {
@@ -235,52 +221,47 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
     @Test
     public void testUnableToFindSuppressions() {
         final String sourceName = "InputSuppressionsLoaderNone.xml";
-
-        try {
-            TestUtil.invokeVoidStaticMethod(SuppressionsLoader.class, "loadSuppressions",
-                    new InputSource(sourceName), sourceName);
-            assertWithMessage("InvocationTargetException is expected").fail();
-        }
-        catch (ReflectiveOperationException exc) {
-            assertWithMessage("Invalid exception cause message")
-                .that(exc)
-                    .hasCauseThat()
-                        .hasMessageThat()
-                        .isEqualTo("Unable to find: " + sourceName);
-        }
+        final ReflectiveOperationException exc =
+                getExpectedThrowable(ReflectiveOperationException.class,
+                        () -> {
+                            TestUtil.invokeVoidStaticMethod(SuppressionsLoader.class,
+                                    "loadSuppressions",
+                                    new InputSource(sourceName), sourceName);
+                        });
+        assertWithMessage("Invalid exception cause message")
+            .that(exc)
+                .hasCauseThat()
+                    .hasMessageThat()
+                    .isEqualTo("Unable to find: " + sourceName);
     }
 
     @Test
     public void testUnableToReadSuppressions() {
         final String sourceName = "InputSuppressionsLoaderNone.xml";
-
-        try {
-            TestUtil.invokeVoidStaticMethod(SuppressionsLoader.class, "loadSuppressions",
-                    new InputSource(), sourceName);
-            assertWithMessage("InvocationTargetException is expected").fail();
-        }
-        catch (ReflectiveOperationException exc) {
-            assertWithMessage("Invalid exception cause message")
-                .that(exc)
-                    .hasCauseThat()
-                        .hasMessageThat()
-                        .isEqualTo("Unable to read " + sourceName);
-        }
+        final ReflectiveOperationException exc =
+                getExpectedThrowable(ReflectiveOperationException.class,
+                        () -> {
+                            TestUtil.invokeVoidStaticMethod(SuppressionsLoader.class,
+                                    "loadSuppressions",
+                                    new InputSource(), sourceName);
+                        });
+        assertWithMessage("Invalid exception cause message")
+            .that(exc)
+                .hasCauseThat()
+                    .hasMessageThat()
+                    .isEqualTo("Unable to read " + sourceName);
     }
 
     @Test
     public void testNoCheckNoId() throws IOException {
         final String fn = getPath("InputSuppressionsLoaderNoCheckAndId.xml");
-        try {
-            SuppressionsLoader.loadSuppressions(fn);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid error message")
-                .that(exc.getMessage())
-                .isEqualTo("Unable to parse " + fn
-                        + " - missing checks or id or message attribute");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> SuppressionsLoader.loadSuppressions(fn));
+        assertWithMessage("Invalid error message")
+            .that(exc.getMessage())
+            .isEqualTo("Unable to parse " + fn
+                    + " - missing checks or id or message attribute");
     }
 
     @Test
@@ -296,16 +277,13 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
     @Test
     public void testInvalidFileFormat() throws IOException {
         final String fn = getPath("InputSuppressionsLoaderInvalidFile.xml");
-        try {
-            SuppressionsLoader.loadSuppressions(fn);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid error message")
-                .that(exc.getMessage())
-                .isEqualTo("Unable to parse " + fn
-                        + " - invalid files or checks or message format");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> SuppressionsLoader.loadSuppressions(fn));
+        assertWithMessage("Invalid error message")
+            .that(exc.getMessage())
+            .isEqualTo("Unable to parse " + fn
+                    + " - invalid files or checks or message format");
     }
 
     @Test
@@ -351,32 +329,26 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
     @Test
     public void testXpathInvalidFileFormat() throws IOException {
         final String fn = getPath("InputSuppressionsLoaderXpathInvalidFile.xml");
-        try {
-            SuppressionsLoader.loadXpathSuppressions(fn);
-            assertWithMessage("Exception should be thrown").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid error message")
-                .that(exc.getMessage())
-                .isEqualTo("Unable to parse " + fn
-                        + " - invalid files or checks or message format for suppress-xpath");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> SuppressionsLoader.loadXpathSuppressions(fn));
+        assertWithMessage("Invalid error message")
+            .that(exc.getMessage())
+            .isEqualTo("Unable to parse " + fn
+                    + " - invalid files or checks or message format for suppress-xpath");
     }
 
     @Test
     public void testXpathNoCheckNoId() throws IOException {
         final String fn =
                 getPath("InputSuppressionsLoaderXpathNoCheckAndId.xml");
-        try {
-            SuppressionsLoader.loadXpathSuppressions(fn);
-            assertWithMessage("Exception should be thrown").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid error message")
-                .that(exc.getMessage())
-                .isEqualTo("Unable to parse " + fn
-                        + " - missing checks or id or message attribute for suppress-xpath");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> SuppressionsLoader.loadXpathSuppressions(fn));
+        assertWithMessage("Invalid error message")
+            .that(exc.getMessage())
+            .isEqualTo("Unable to parse " + fn
+                    + " - missing checks or id or message attribute for suppress-xpath");
     }
 
     @Test
