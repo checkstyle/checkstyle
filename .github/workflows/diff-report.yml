@@ -86,6 +86,22 @@ jobs:
         run: |
           ./.ci/diff-report.sh parse-pr-description-text
 
+      - name: Download files
+        env:
+          NEW_MODULE_CONFIG_LINK: ${{ steps.parse.outputs.new_module_config_link }}
+          DIFF_CONFIG_LINK: ${{ steps.parse.outputs.config_link }}
+          PATCH_CONFIG_LINK: ${{ steps.parse.outputs.patch_config_link }}
+          DIFF_PROJECTS_LINK: ${{ steps.parse.outputs.projects_link }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ./.ci/diff-report.sh download-files
+
+      - name: Upload downloaded files as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-temp-files
+          path: .ci-temp/
+
       - name: Set branch
         id: branch
         run: |
@@ -107,30 +123,23 @@ jobs:
       message: ${{ steps.out.outputs.message }}
     steps:
 
-      - name: Download checkstyle
+      - name: Checkout checkstyle
         uses: actions/checkout@v6
 
-      - name: Download files
-        env:
-          NEW_MODULE_CONFIG_LINK: ${{ needs.parse_body.outputs.new_module_config_link }}
-          DIFF_CONFIG_LINK: ${{ needs.parse_body.outputs.config_link }}
-          PATCH_CONFIG_LINK: ${{ needs.parse_body.outputs.patch_config_link }}
-          DIFF_PROJECTS_LINK: ${{ needs.parse_body.outputs.projects_link }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          ./.ci/diff-report.sh download-files
+      - name: Create ci-temp
+        run: mkdir -p .ci-temp
 
-      # set main checkstyle repo as an upstream
-      # Diff report will be generated taking upstream's master branch as a base branch
-      - name: set upstream
-        run: |
-          bash
-          MAIN_REPO_GIT_URL="https://github.com/checkstyle/checkstyle.git"
-          git remote add upstream "$MAIN_REPO_GIT_URL"
-          git fetch upstream
-          FORK_REPO_GIT_URL="https://github.com/$USER_LOGIN/checkstyle.git"
-          git remote add forked "$FORK_REPO_GIT_URL"
-          git fetch forked
+      - name: Download ci-temp files
+        uses: actions/download-artifact@v4
+        with:
+          name: ci-temp-files
+          path: .ci-temp/
+
+      - name: Download contribution
+        uses: actions/checkout@v6
+        with:
+          repository: checkstyle/contribution
+          path: .ci-temp/contribution
 
       - name: Setup local maven cache
         uses: actions/cache@v5
@@ -144,11 +153,17 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Download contribution
-        uses: actions/checkout@v6
-        with:
-          repository: checkstyle/contribution
-          path: .ci-temp/contribution
+      # set main checkstyle repo as an upstream
+      # Diff report will be generated taking upstream's master branch as a base branch
+      - name: set upstream
+        run: |
+          bash
+          MAIN_REPO_GIT_URL="https://github.com/checkstyle/checkstyle.git"
+          git remote add upstream "$MAIN_REPO_GIT_URL"
+          git fetch upstream
+          FORK_REPO_GIT_URL="https://github.com/$USER_LOGIN/checkstyle.git"
+          git remote add forked "$FORK_REPO_GIT_URL"
+          git fetch forked
 
       - name: Prepare environment
         run: |
