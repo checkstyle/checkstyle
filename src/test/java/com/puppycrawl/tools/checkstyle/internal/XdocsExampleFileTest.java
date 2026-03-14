@@ -65,11 +65,6 @@ public class XdocsExampleFileTest {
                     "throwsIndent",
                     "arrayInitIndent",
                     "braceAdjustment"
-            )),
-            Map.entry("ClassMemberImpliedModifierCheck", Set.of(
-                    "violateImpliedStaticOnNestedEnum",
-                    "violateImpliedStaticOnNestedRecord",
-                    "violateImpliedStaticOnNestedInterface"
             ))
     );
 
