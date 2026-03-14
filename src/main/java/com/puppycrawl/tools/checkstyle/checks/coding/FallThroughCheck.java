@@ -52,6 +52,12 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * Note: The check assumes that there is no unreachable code in the {@code case}.
  * </p>
  *
+ * <p>
+ * Note: The check handles {@code while (true)}, {@code do-while (true)},
+ * and {@code for (;;)} as infinite loops. It will not examine variables or
+ * complex expressions to determine if a loop is infinite.
+ * </p>
+ *
  * @since 3.4
  */
 @StatelessCheck
@@ -127,7 +133,8 @@ public class FallThroughCheck extends AbstractCheck {
         if (!isLastGroup || checkLastCaseGroup) {
             final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
-            if (slist != null && !CheckUtil.isTerminated(slist) && !hasFallThroughComment(ast)) {
+            if (slist != null && !CheckUtil.isTerminated(slist) && !hasFallThroughComment(ast)
+                    && !isTerminatedByInfiniteLoop(slist)) {
                 if (isLastGroup) {
                     log(ast, MSG_FALL_THROUGH_LAST);
                 }
@@ -197,4 +204,109 @@ public class FallThroughCheck extends AbstractCheck {
         return result;
     }
 
+    /**
+     * Checks if a statement list is terminated by an infinite loop.
+     *
+     * @param slist the SLIST AST node.
+     * @return true if the last statement is an infinite loop.
+     */
+    private static boolean isTerminatedByInfiniteLoop(DetailAST slist) {
+        DetailAST ast = slist.getLastChild();
+        boolean terminated = false;
+        while (ast != null) {
+            final int type = ast.getType();
+            if (type == TokenTypes.RCURLY
+                    || type == TokenTypes.LCURLY
+                    || type == TokenTypes.SINGLE_LINE_COMMENT
+                    || type == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                ast = ast.getPreviousSibling();
+            }
+            else if (type == TokenTypes.SLIST) {
+                terminated = isTerminatedByInfiniteLoop(ast);
+                break;
+            }
+            else {
+                terminated = isInfiniteLoop(ast);
+                break;
+            }
+        }
+        return terminated;
+    }
+
+    /**
+     * Checks if a given AST node represents an infinite loop.
+     *
+     * @param ast the AST node to check.
+     * @return true if it is an infinite loop (e.g., while(true), for(;;), do-while(true)).
+     */
+    private static boolean isInfiniteLoop(DetailAST ast) {
+        final int type = ast.getType();
+        boolean result = false;
+        if (type == TokenTypes.LITERAL_WHILE || type == TokenTypes.LITERAL_DO) {
+            result = isTrueExpression(ast.findFirstToken(TokenTypes.EXPR))
+                    && !hasUnlabeledBreak(ast.findFirstToken(TokenTypes.SLIST));
+        }
+        else if (type == TokenTypes.LITERAL_FOR) {
+            final DetailAST forCondition = ast.findFirstToken(TokenTypes.FOR_CONDITION);
+            result = forCondition != null && forCondition.getChildCount() == 0
+                    && !hasUnlabeledBreak(ast.findFirstToken(TokenTypes.SLIST));
+        }
+        return result;
+    }
+
+    /**
+     * Checks if an EXPR AST node evaluates to a literal 'true'.
+     *
+     * @param expr the EXPR AST node.
+     * @return true if it contains only a LITERAL_TRUE.
+     */
+    private static boolean isTrueExpression(DetailAST expr) {
+        return expr != null
+                && expr.getFirstChild() != null
+                && expr.getFirstChild().getType() == TokenTypes.LITERAL_TRUE;
+    }
+
+    /**
+     * Checks if a statement list contains an unlabeled break
+     * that would exit the immediate loop.
+     *
+     * @param slist the SLIST AST node.
+     * @return true if an unlabeled break is found.
+     */
+    private static boolean hasUnlabeledBreak(DetailAST slist) {
+        boolean result = false;
+        if (slist != null) {
+            DetailAST child = slist.getFirstChild();
+            while (child != null && !result) {
+                result = isUnlabeledBreakOrContains(child);
+                child = child.getNextSibling();
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks if a node is an unlabeled break or contains one in its SLIST.
+     *
+     * @param ast the AST node to check.
+     * @return true if an unlabeled break is found.
+     */
+    private static boolean isUnlabeledBreakOrContains(DetailAST ast) {
+        final int type = ast.getType();
+        final boolean result;
+        if (type == TokenTypes.LITERAL_BREAK
+                && ast.findFirstToken(TokenTypes.IDENT) == null) {
+            result = true;
+        }
+        else if (type == TokenTypes.LITERAL_FOR
+                || type == TokenTypes.LITERAL_WHILE
+                || type == TokenTypes.LITERAL_DO
+                || type == TokenTypes.LITERAL_SWITCH) {
+            result = false;
+        }
+        else {
+            result = hasUnlabeledBreak(ast.findFirstToken(TokenTypes.SLIST));
+        }
+        return result;
+    }
 }
