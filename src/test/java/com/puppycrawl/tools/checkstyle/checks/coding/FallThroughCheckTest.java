@@ -448,4 +448,27 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
                 getPath("InputFallThroughWithPatternMatchingCheckLastCase.java"),
                 expected);
     }
+
+    @Test
+    public void testInfiniteLoop() throws Exception {
+        final String[] expected = {
+            "22:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "24:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "26:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "28:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "35:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "43:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "46:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "48:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "50:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "63:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "69:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "71:13: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputFallThroughInfiniteLoop.java"),
+            expected
+        );
+    }
 }
