@@ -57,6 +57,69 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * and/or functionalities which should be decomposed into smaller units.
  * </p>
  *
+ * <p>
+ * Here is a breakdown of what exactly is counted and not counted:
+ * </p>
+ * <div class="wrapper">
+ * <table>
+ * <caption>JavaNCSS metrics</caption>
+ * <thead><tr><th>Structure</th><th>NCSS Count</th><th>Notes</th></tr></thead>
+ * <tbody>
+ * <tr><td>Package declaration</td><td>1</td>
+ * <td>Counted at the terminating semicolon.</td></tr>
+ * <tr><td>Import declaration</td><td>1</td>
+ * <td>Each single, static, or wildcard import counts as 1.</td></tr>
+ * <tr><td>Class, Interface, Annotation ({@code @interface})</td><td>1</td>
+ * <td>Counted at the opening curly brace of the body.</td></tr>
+ * <tr><td>Method, Constructor</td><td>1</td>
+ * <td>Counted at the declaration.</td></tr>
+ * <tr><td>Static initializer, Instance initializer</td><td>1</td>
+ * <td>Both {@code static {}} and bare {@code {}} initializer blocks count as 1.</td></tr>
+ * <tr><td>Annotation type member</td><td>1</td>
+ * <td>Each method-like member declaration inside {@code @interface} counts as 1.
+ * A standalone {@code ;} inside {@code @interface} also counts as 1.</td></tr>
+ * <tr><td>Variable declaration</td><td>1</td>
+ * <td>1 per statement regardless of how many variables are declared on that line.
+ * {@code int x, y;} counts as 1.</td></tr>
+ * <tr><td>{@code if}</td><td>1</td>
+ * <td>The {@code if} keyword counts as 1.</td></tr>
+ * <tr><td>{@code else}, {@code else if}</td><td>1</td>
+ * <td>The {@code else} keyword counts as 1, separate from the {@code if} count.</td></tr>
+ * <tr><td>{@code while}, {@code do}, {@code for}</td><td>1</td>
+ * <td>The keyword header counts as 1.</td></tr>
+ * <tr><td>{@code switch}</td><td>1</td>
+ * <td>The {@code switch} keyword counts as 1.</td></tr>
+ * <tr><td>{@code case}, {@code default}</td><td>1</td>
+ * <td>Every case and default label adds 1.</td></tr>
+ * <tr><td>{@code try}</td><td>0</td>
+ * <td>The {@code try} keyword itself does not count.</td></tr>
+ * <tr><td>{@code catch}</td><td>1</td>
+ * <td>Each catch block counts as 1.</td></tr>
+ * <tr><td>{@code finally}</td><td>1</td>
+ * <td>The finally block counts as 1.</td></tr>
+ * <tr><td>{@code synchronized}</td><td>1</td>
+ * <td>The synchronized statement counts as 1.</td></tr>
+ * <tr><td>{@code return}, {@code break}, {@code continue}, {@code throw}</td><td>1</td>
+ * <td>Each counts as 1.</td></tr>
+ * <tr><td>{@code assert}</td><td>1</td>
+ * <td>Each assert statement counts as 1, with or without a message expression.</td></tr>
+ * <tr><td>Labeled statement</td><td>1</td>
+ * <td>{@code label: statement} counts as 1.</td></tr>
+ * <tr><td>Explicit constructor invocation</td><td>1</td>
+ * <td>{@code this()} or {@code super()} calls inside a constructor body
+ * each count as 1.</td></tr>
+ * <tr><td>Expression statements (assignments, method calls)</td><td>1</td>
+ * <td>Statement-level expressions terminated by {@code ;} count as 1.
+ * A method call inside a {@code return} does not add an extra count.</td></tr>
+ * <tr><td>Empty blocks {}</td><td>0</td>
+ * <td>Empty curly braces do not increase the count.</td></tr>
+ * <tr><td>Empty statements ;</td><td>0</td>
+ * <td>Standalone semicolons outside of {@code @interface} do not increase
+ * the count.</td></tr>
+ * </tbody>
+ * </table>
+ * </div>
+ *
  * @since 3.5
  */
 // -@cs[AbbreviationAsWordInName] We can not change it as,
