@@ -68,30 +68,72 @@ public class ConstantNameCheckTest
     }
 
     @Test
-    public void testDefault()
+    public void testDefaultPartA()
             throws Exception {
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
         final String[] expected = {
-            "31:29: " + getCheckMessage(MSG_INVALID_PATTERN, "badConstant", pattern),
-            "148:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
-        };
+            "34:29: " + getCheckMessage(MSG_INVALID_PATTERN, "badConstant", pattern),
+            };
         verifyWithInlineConfigParser(
-                getPath("InputConstantNameSimple1.java"), expected);
+            getPath("InputConstantNameSimple1a.java"), expected);
     }
 
     @Test
-    public void testAccessControlTuning()
+    public void testDefaultPartB()
+            throws Exception {
+
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(
+            getPath("InputConstantNameSimple1b.java"), expected);
+    }
+
+    @Test
+    public void testDefaultPartC()
             throws Exception {
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
         final String[] expected = {
-            "148:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
+            "26:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
         };
         verifyWithInlineConfigParser(
-                getPath("InputConstantNameSimple2.java"), expected);
+            getPath("InputConstantNameSimple1c.java"), expected);
+    }
+
+    @Test
+    public void testAccessControlTuningPartA()
+            throws Exception {
+
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(
+                getPath("InputConstantNameSimple2a.java"), expected);
+    }
+
+    @Test
+    public void testAccessControlTuningPartB()
+            throws Exception {
+
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(
+                getPath("InputConstantNameSimple2b.java"), expected);
+    }
+
+    @Test
+    public void testAccessControlTuningPartC()
+            throws Exception {
+
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+
+        final String[] expected = {
+            "26:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputConstantNameSimple2c.java"), expected);
     }
 
     @Test
