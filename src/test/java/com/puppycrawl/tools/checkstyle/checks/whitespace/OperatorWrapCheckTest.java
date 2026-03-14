@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.MSG_LINE_NEW;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.MSG_LINE_PREVIOUS;
 
@@ -160,22 +161,19 @@ public class OperatorWrapCheckTest
     }
 
     @Test
-    public void testInvalidOption() throws Exception {
+    public void testInvalidOption() {
 
-        try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-
-            verifyWithInlineConfigParser(
-                    getPath("InputOperatorWrap6.java"), expected);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                    + "whitespace.OperatorWrapCheck");
-        }
+        final CheckstyleException exc = getExpectedThrowable(CheckstyleException.class,
+                () -> {
+                    final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+                    verifyWithInlineConfigParser(
+                            getPath("InputOperatorWrap6.java"), expected);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                + "whitespace.OperatorWrapCheck");
     }
 
     @Test
