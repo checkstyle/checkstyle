@@ -30,6 +30,12 @@
         <p>
           Note: The check assumes that there is no unreachable code in the <code>case</code>.
         </p>
+
+        <p>
+          Note: The check handles <code>while (true)</code>, <code>do-while (true)</code>,
+          and <code>for (;;)</code> as infinite loops. It will not examine variables or
+          complex expressions to determine if a loop is infinite.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="FallThrough_Properties">
