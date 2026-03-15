@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
 
 public class FullIdentTest extends AbstractModuleTestSupport {
 
@@ -266,6 +267,23 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(getPath("InputFullIdentLiteralNewCondition.java"),
+                expected);
+    }
+
+    @Test
+    public void testCommentInFullIdent() throws Exception {
+        final String[] expected = {
+            "11:15: " + getCheckMessage(UnusedImportsCheck.class,
+                    UnusedImportsCheck.MSG_KEY, "java.io.File.createTempFile"),
+            "14:15: " + getCheckMessage(UnusedImportsCheck.class,
+                    UnusedImportsCheck.MSG_KEY, "java.io.File.listRoots"),
+            "17:8: " + getCheckMessage(UnusedImportsCheck.class,
+                    UnusedImportsCheck.MSG_KEY, "java.util.Date"),
+            "20:8: " + getCheckMessage(UnusedImportsCheck.class,
+                    UnusedImportsCheck.MSG_KEY, "java.util.Calendar"),
+        };
+
+        verifyWithInlineConfigParser(getPath("InputFullIdentCommentInFullIdent.java"),
                 expected);
     }
 }
