@@ -537,4 +537,15 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
                 getPath("InputMissingJavadocMethodAboveComments.java"),
                 expected);
     }
+
+    @Test
+    public void testIgnoreMethodsWithImplementation() throws Exception {
+        final String[] expected = {
+            "20:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "30:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "41:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMissingJavadocMethodIgnoreMethodsWithImplementation.java"), expected);
+    }
 }
