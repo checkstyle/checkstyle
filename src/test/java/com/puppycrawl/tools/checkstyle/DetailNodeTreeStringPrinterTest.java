@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_PARSE_RULE_ERROR;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
 import java.io.File;
@@ -79,37 +80,33 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     public void testNoViableAltException() throws Exception {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinterNoViableAltException.javadoc"));
-        try {
-            DetailNodeTreeStringPrinter.printFileAst(file);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
-                    "getParseErrorMessage", String.class,
-                    new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
-                            8, "no viable alternative at input 'see <'", "SEE_TAG"));
-            assertWithMessage("Generated and expected parse error messages don't match")
-                .that(exc.getMessage())
-                .isEqualTo(expected);
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    DetailNodeTreeStringPrinter.printFileAst(file);
+                }, "Exception is expected");
+        final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
+                "getParseErrorMessage", String.class,
+                new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
+                        8, "no viable alternative at input 'see <'", "SEE_TAG"));
+        assertWithMessage("Generated and expected parse error messages don't match")
+            .that(exc.getMessage())
+            .isEqualTo(expected);
     }
 
     @Test
     public void testHtmlTagCloseBeforeTagOpen() throws Exception {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinterHtmlTagCloseBeforeTagOpen.javadoc"));
-        try {
-            DetailNodeTreeStringPrinter.printFileAst(file);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
-                    "getParseErrorMessage", String.class,
-                    new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
-                            3, "no viable alternative at input '</'", "HTML_ELEMENT"));
-            assertWithMessage("Generated and expected parse error messages don't match")
-                .that(exc.getMessage())
-                .isEqualTo(expected);
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    DetailNodeTreeStringPrinter.printFileAst(file);
+                }, "Exception is expected");
+        final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
+                "getParseErrorMessage", String.class,
+                new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
+                        3, "no viable alternative at input '</'", "HTML_ELEMENT"));
+        assertWithMessage("Generated and expected parse error messages don't match")
+            .that(exc.getMessage())
+            .isEqualTo(expected);
     }
 }
