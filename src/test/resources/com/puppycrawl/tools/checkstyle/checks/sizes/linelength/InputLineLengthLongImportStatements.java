@@ -1,6 +1,6 @@
 /*
 LineLength
-fileExtensions = (default)null
+fileExtensions = (default)
 ignorePattern = (default)^(package|import) .*
 max = (default)80
 

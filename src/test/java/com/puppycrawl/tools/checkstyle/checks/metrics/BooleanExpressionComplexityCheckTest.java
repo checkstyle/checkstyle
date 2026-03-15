@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck.MSG_KEY;
-import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
@@ -77,12 +76,15 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
             new BooleanExpressionComplexityCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonToken(TokenTypes.INTERFACE_DEF, "interface"));
-        final IllegalArgumentException exc =
-                getExpectedThrowable(IllegalArgumentException.class,
-                        () -> booleanExpressionComplexityCheckObj.visitToken(ast));
-        assertWithMessage("Invalid exception message")
-            .that(exc.getMessage())
-            .isEqualTo("Unknown type: interface[0x-1]");
+        try {
+            booleanExpressionComplexityCheckObj.visitToken(ast);
+            assertWithMessage("exception expected").fail();
+        }
+        catch (IllegalArgumentException exc) {
+            assertWithMessage("Invalid exception message")
+                .that(exc.getMessage())
+                .isEqualTo("Unknown type: interface[0x-1]");
+        }
     }
 
     @Test

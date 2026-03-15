@@ -28,7 +28,6 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
@@ -280,14 +279,16 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
         final DetailAstImpl methodDef = new DetailAstImpl();
         methodDef.setType(TokenTypes.METHOD_DEF);
         methodDef.setText("methodStub");
-        final IllegalArgumentException exc =
-            TestUtil.getExpectedThrowable(
-                IllegalArgumentException.class, () -> {
-                    check.visitToken(methodDef);
-                });
-        assertWithMessage("Invalid exception message")
-            .that(exc.getMessage())
-            .isEqualTo("Unexpected token type: methodStub");
+        try {
+            check.visitToken(methodDef);
+            assertWithMessage("IllegalArgumentException should have been thrown!").fail();
+        }
+        catch (IllegalArgumentException exc) {
+            final String msg = exc.getMessage();
+            assertWithMessage("Invalid exception message")
+                .that(msg)
+                .isEqualTo("Unexpected token type: methodStub");
+        }
     }
 
     @Test

@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPad
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_NOT_FOLLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_PRECEDED;
-import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.Test;
 
@@ -318,20 +317,22 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testInvalidOption() {
+    public void testInvalidOption() throws Exception {
 
-        final CheckstyleException exc =
-            getExpectedThrowable(CheckstyleException.class, () -> {
-                final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        try {
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-                verifyWithInlineConfigParser(
-                        getPath("InputParenPadLeftRightAndNoSpace3.java"), expected);
-            });
-        assertWithMessage("Invalid exception message")
-            .that(exc.getMessage())
-            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                + "whitespace.ParenPadCheck");
+            verifyWithInlineConfigParser(
+                    getPath("InputParenPadLeftRightAndNoSpace3.java"), expected);
+            assertWithMessage("exception expected").fail();
+        }
+        catch (CheckstyleException exc) {
+            assertWithMessage("Invalid exception message")
+                .that(exc.getMessage())
+                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                    + "whitespace.ParenPadCheck");
+        }
     }
 
     @Test
