@@ -409,6 +409,11 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     @Override
+    public JavadocNodeImpl visitPackageClass(JavadocCommentsParser.PackageClassContext ctx) {
+        return buildImaginaryNode(JavadocCommentsTokenTypes.PACKAGE_CLASS, ctx);
+    }
+
+    @Override
     public JavadocNodeImpl visitQualifiedName(JavadocCommentsParser.QualifiedNameContext ctx) {
         return flattenedTree(ctx);
     }

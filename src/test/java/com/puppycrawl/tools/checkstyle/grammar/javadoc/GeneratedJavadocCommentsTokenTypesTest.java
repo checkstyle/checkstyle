@@ -63,6 +63,7 @@ public class GeneratedJavadocCommentsTokenTypesTest {
         "PROVIDES",
         "LITERAL",
         "CUSTOM_NAME",
+        "Reference_DOT",
         "Snippet_ATTRIBUTE",
         "See_TAG_OPEN",
         "ATTRIBUTE",
