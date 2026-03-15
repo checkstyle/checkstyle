@@ -110,6 +110,15 @@ public class NewlineAtEndOfFileCheck
      */
     public static final String MSG_KEY_WRONG_ENDING = "wrong.line.end";
 
+    /** Escape character representation for LF. */
+    private static final String ESCAPED_LF = "\\n";
+
+    /** Escape character representation for CRLF. */
+    private static final String ESCAPED_CRLF = "\\r\\n";
+
+    /** Escape character representation for CR. */
+    private static final String ESCAPED_CR = "\\r";
+
     /** Specify the type of line separator. */
     private LineSeparatorOption lineSeparator = LineSeparatorOption.LF_CR_CRLF;
 
@@ -152,7 +161,8 @@ public class NewlineAtEndOfFileCheck
                 log(1, MSG_KEY_WRONG_ENDING);
             }
             else if (!endsWithNewline(randomAccessFile, lineSeparator)) {
-                log(1, MSG_KEY_NO_NEWLINE_EOF);
+                log(1, MSG_KEY_NO_NEWLINE_EOF,
+                        getLineSeparatorEscapeChars(lineSeparator));
             }
         }
     }
@@ -186,6 +196,40 @@ public class NewlineAtEndOfFileCheck
                         + readBytes);
             }
             result = separator.matches(lastBytes);
+        }
+        return result;
+    }
+
+    /**
+     * Returns the escape character representation for the given line separator option.
+     *
+     * @param option the line separator option
+     * @return the escape character representation (e.g., "\\n", "\\r\\n")
+     * @noinspection SystemGetProperty
+     * @noinspectionreason SystemGetProperty - System.getProperty is used instead of
+     *     System.lineSeparator() because the latter caches its value at JVM startup
+     *     and does not reflect runtime changes via System.setProperty, which is
+     *     needed for testability.
+     */
+    private static String getLineSeparatorEscapeChars(LineSeparatorOption option) {
+        final String result;
+        if (option == LineSeparatorOption.LF) {
+            result = ESCAPED_LF;
+        }
+        else if (option == LineSeparatorOption.CRLF) {
+            result = ESCAPED_CRLF;
+        }
+        else if (option == LineSeparatorOption.CR) {
+            result = ESCAPED_CR;
+        }
+        else if (option == LineSeparatorOption.LF_CR_CRLF) {
+            result = ESCAPED_LF + "', '" + ESCAPED_CR
+                    + "' or '" + ESCAPED_CRLF;
+        }
+        else {
+            result = System.getProperty("line.separator")
+                    .replace("\r", ESCAPED_CR)
+                    .replace("\n", ESCAPED_LF);
         }
         return result;
     }
