@@ -25,11 +25,10 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
@@ -120,19 +119,16 @@ public class JavadocVariableCheck
         };
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @Override
-    @SuppressWarnings("deprecation")
     public void visitToken(DetailAST ast) {
-        if (shouldCheck(ast)) {
-            final FileContents contents = getFileContents();
-            final TextBlock textBlock =
-                contents.getJavadocBefore(ast.getLineNo());
-
-            if (textBlock == null) {
-                log(ast, MSG_JAVADOC_MISSING);
-            }
+        if (shouldCheck(ast) && !hasJavadocComment(ast)) {
+            log(ast, MSG_JAVADOC_MISSING);
         }
+    }
+
+    @Override
+    public boolean isCommentNodesRequired() {
+        return true;
     }
 
     /**
@@ -201,5 +197,108 @@ public class JavadocVariableCheck
         }
 
         return CheckUtil.getAccessModifierFromModifiersToken(selectedAst);
+    }
+
+    /**
+     * Checks whether the variable definition has a Javadoc comment.
+     * For {@code VARIABLE_DEF}, Javadoc is searched among children of
+     * the {@code MODIFIERS} node and the {@code TYPE} node.
+     * For {@code ENUM_CONSTANT_DEF}, Javadoc is searched among direct
+     * children of the constant definition.
+     *
+     * @param variableDefAst the AST of the variable definition to check.
+     * @return true if a Javadoc comment is found, false otherwise.
+     */
+    private static boolean hasJavadocComment(DetailAST variableDefAst) {
+        final boolean result;
+        if (variableDefAst.getType() == TokenTypes.VARIABLE_DEF) {
+            result = hasJavadocCommentOnVariable(variableDefAst);
+        }
+        else {
+            // ENUM_CONSTANT_DEF: Javadoc attaches as direct child or on annotations
+            result = hasBlockCommentJavadoc(variableDefAst.getFirstChild())
+                || hasJavadocCommentOnAnnotations(
+                        variableDefAst.findFirstToken(TokenTypes.ANNOTATIONS));
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether a {@code VARIABLE_DEF} has a Javadoc comment
+     * attached to its modifiers, annotations, or type.
+     * For a {@code VARIABLE_DEF}, Javadoc can be attached to the modifiers,
+     * annotations, or type.
+     * This method checks for Javadoc comments in all of these locations
+     * to ensure that the variable definition is properly documented.
+     *
+     * @param variableDefAst the AST of the variable definition to check.
+     * @return true if a Javadoc comment is found, false otherwise.
+     */
+    private static boolean hasJavadocCommentOnVariable(
+        DetailAST variableDefAst) {
+        final DetailAST modifiers =
+            variableDefAst.findFirstToken(TokenTypes.MODIFIERS);
+
+        boolean found = hasBlockCommentJavadoc(modifiers.getFirstChild());
+
+        if (!found) {
+            found = hasJavadocCommentOnAnnotations(modifiers);
+        }
+
+        if (!found) {
+            final DetailAST type =
+                variableDefAst.findFirstToken(TokenTypes.TYPE);
+            DetailAST firstChild = type.getFirstChild();
+            found = hasBlockCommentJavadoc(firstChild);
+
+            while (!found && firstChild.getType() == TokenTypes.DOT) {
+                firstChild = firstChild.getFirstChild();
+                found = hasBlockCommentJavadoc(firstChild);
+            }
+        }
+
+        return found;
+    }
+
+    /**
+     * Checks whether any annotation within the modifiers has a
+     * Javadoc comment as a child node.
+     *
+     * @param modifiers the MODIFIERS node.
+     * @return true if a Javadoc comment exists inside any annotation.
+     */
+    private static boolean hasJavadocCommentOnAnnotations(
+            DetailAST modifiers) {
+        boolean found = false;
+        for (DetailAST child = modifiers.getFirstChild();
+                child != null; child = child.getNextSibling()) {
+            if (hasBlockCommentJavadoc(child.getFirstChild())) {
+                found = true;
+                break;
+            }
+        }
+        return found;
+    }
+
+    /**
+     * Checks whether the given AST node or any of its siblings is a
+     * block comment that is a Javadoc comment.
+     *
+     * @param firstChild the first child of the node to check.
+     * @return true if a Javadoc block comment is found among the
+     *     siblings, false otherwise.
+     */
+    private static boolean hasBlockCommentJavadoc(DetailAST firstChild) {
+        boolean found = false;
+        for (DetailAST child = firstChild; child != null;
+                child = child.getNextSibling()) {
+            if (child.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                    && JavadocUtil.isJavadocComment(
+                        JavadocUtil.getBlockCommentContent(child))) {
+                found = true;
+                break;
+            }
+        }
+        return found;
     }
 }
