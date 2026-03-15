@@ -735,6 +735,7 @@ jtree
 junit
 junitpioneer
 jvm
+jvmargs
 jxr
 kailasam
 Kansara
@@ -811,6 +812,7 @@ mega
 membername
 meminitial
 metadata
+Metaspace
 methodcount
 methodlength
 methodname
