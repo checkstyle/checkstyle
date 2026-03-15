@@ -49,8 +49,8 @@ APPLET
 appveyor
 APRV
 Aqj
-ARCHITEW
 archunit
+args
 Arial
 arity
 Arquillian
@@ -77,7 +77,6 @@ autobuild
 autocomplete
 autoconfiguration
 autocrlf
-autofix
 Autoproxy
 Autowire
 Autowired
@@ -145,7 +144,6 @@ caciocavallosilano
 calledmethods
 camelcase
 casegroup
-casesensitive
 catchparametername
 cba
 cbeaff
@@ -163,6 +161,7 @@ charset
 CHDBEFIF
 checkchmod
 checkerframework
+checkmodule
 checksandfilessuppressionfilegeneratorauditlistener
 checkstyle
 checkstyleanttask
@@ -238,13 +237,10 @@ csv
 ctc
 ctor
 ctx
-CTYPE
 customimportorder
 CVS
 cyclomatic
 cyclomaticcomplexity
-cygpath
-cygwin
 cz
 dalvik
 Daniil
@@ -388,7 +384,6 @@ Eslint
 esslingen
 esversion
 etsy
-euf
 ev
 Evt
 exceptionoverrides
@@ -490,7 +485,7 @@ gav
 Gdrox
 generalform
 genericwhitespace
-getenv
+Getenv
 gg
 gh
 Ghj
@@ -567,7 +562,6 @@ HXKS
 hyperlink
 hz
 iae
-icm
 ico
 icu
 identifiernames
@@ -627,7 +621,6 @@ isindex
 isset
 issuecomment
 issuehunt
-Itemtype
 itemvalue
 ith
 itr
@@ -641,8 +634,6 @@ Jakub
 jarchitect
 javaastvisitor
 javac
-JAVACCMD
-JAVACMD
 javadoc
 javadocblocktaglocation
 javadoccontentlocation
@@ -829,7 +820,6 @@ mfussenegger
 MHTML
 Micha
 microsoft
-mingw
 minimalistic
 Mipmap
 misconfigured
@@ -848,7 +838,6 @@ mixin
 mkdir
 MKo
 mkordas
-mktemp
 MLINKCHECK
 MMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMM
@@ -879,10 +868,8 @@ multithreading
 mutableexception
 MVC
 mvn
-mvnd
 mvnrepository
 mvnw
-MWRAPPER
 Mycheckstyle
 mycompany
 mycompanychecks
@@ -955,7 +942,6 @@ nonrequiredjavadoc
 nonvalidating
 noparentfile
 NOPMD
-noprofile
 noreply
 noscript
 NOSONAR
@@ -985,7 +971,6 @@ numericliterals
 nutsandbolts
 nvim
 nvuillam
-nx
 OAuth
 objblock
 oburn
@@ -1092,7 +1077,6 @@ Pointcut
 POJO
 Popup
 Postgresql
-powershell
 prebuilts
 prefs
 PRESIZE
@@ -1108,8 +1092,6 @@ propertycachefile
 propkey
 protonpack
 Psevntu
-PSHOME
-PSMODULEP
 pullrequest
 puppycrawl
 pw
@@ -1146,7 +1128,6 @@ redundantmodifier
 refactor
 refactoring
 refaster
-refasterrules
 refid
 refreshenv
 regex
@@ -1161,7 +1142,6 @@ releasenotes
 RELi
 remkop
 reportyml
-REPOURL
 requireemptylinebeforeblocktaggroup
 requirethis
 resourceleak
@@ -1210,7 +1190,6 @@ Schneeberger
 scm
 scp
 screenshot
-Scriptblock
 Scss
 sdk
 sdkman
@@ -1225,7 +1204,6 @@ SERIALVERSIONUID
 servlet
 severitymatchfilter
 sevntu
-shasum
 shellcheck
 shengchen
 Shiell
@@ -1280,7 +1258,6 @@ stackoverflow
 stackoverflowerror
 stacktrace
 standalone
-staticanalysis
 staticvariablename
 stdin
 Stdlib
@@ -1368,7 +1345,6 @@ tidelift
 timeline
 timezone
 TKN
-Tls
 tmp
 tmpdir
 tngtech
@@ -1439,7 +1415,6 @@ upperell
 urandom
 uri
 url
-usebackq
 useenhancedswitch
 userguide
 username
@@ -1478,7 +1453,6 @@ Wakelock
 walkthrough
 Warni
 Weakento
-webclient
 Webflow
 webjar
 Weblogic
@@ -1568,7 +1542,6 @@ xwiki
 XXXX
 xxxxxx
 xy
-xzf
 xzvf
 yaml
 yamllint

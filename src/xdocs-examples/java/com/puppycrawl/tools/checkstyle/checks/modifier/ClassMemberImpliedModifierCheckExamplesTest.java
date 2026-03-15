@@ -43,4 +43,43 @@ public class ClassMemberImpliedModifierCheckExamplesTest extends AbstractExample
         verifyWithInlineConfigParser(
                 getPath("Example1.java"), expected);
     }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {
+            "17:3: " + getCheckMessage(MSG_KEY, "static"),
+            "24:3: " + getCheckMessage(MSG_KEY, "static"),
+            "30:3: " + getCheckMessage(MSG_KEY, "static"),
+            "35:5: " + getCheckMessage(MSG_KEY, "static"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("Example2.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "17:3: " + getCheckMessage(MSG_KEY, "static"),
+            "24:3: " + getCheckMessage(MSG_KEY, "static"),
+            "30:3: " + getCheckMessage(MSG_KEY, "static"),
+            "35:5: " + getCheckMessage(MSG_KEY, "static"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "17:3: " + getCheckMessage(MSG_KEY, "static"),
+            "24:3: " + getCheckMessage(MSG_KEY, "static"),
+            "30:3: " + getCheckMessage(MSG_KEY, "static"),
+            "35:5: " + getCheckMessage(MSG_KEY, "static"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("Example4.java"), expected);
+    }
 }

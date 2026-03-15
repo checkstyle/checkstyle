@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ConstantNameCheckTest
@@ -48,22 +49,22 @@ public class ConstantNameCheckTest
     }
 
     @Test
-    public void testIllegalRegexp()
-            throws Exception {
+    public void testIllegalRegexp() {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ConstantNameCheck.class);
         checkConfig.addProperty("format", "\\");
-        try {
-            createChecker(checkConfig);
-            assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                    + "naming.ConstantNameCheck");
-        }
+        final CheckstyleException exc =
+            TestUtil.getExpectedThrowable(
+                CheckstyleException.class, () -> {
+                    createChecker(checkConfig);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("cannot initialize module "
+                + "com.puppycrawl.tools.checkstyle.TreeWalker - "
+                + "cannot initialize module "
+                + "com.puppycrawl.tools.checkstyle.checks."
+                + "naming.ConstantNameCheck");
     }
 
     @Test

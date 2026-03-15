@@ -1574,17 +1574,13 @@ public class XdocsPagesTest {
      * @return String form of property's default value.
      */
     private static String getIntArrayPropertyValue(Object value) {
-        final IntStream stream;
-        if (value instanceof Collection<?> collection) {
-            stream = collection.stream()
+        // -@cs[MissingNullCaseInSwitch] until issue #19173
+        final IntStream stream = switch (value) {
+            case Collection<?> collection -> collection.stream()
                     .mapToInt(number -> (int) number);
-        }
-        else if (value instanceof BitSet set) {
-            stream = set.stream();
-        }
-        else {
-            stream = Arrays.stream((int[]) value);
-        }
+            case BitSet set -> set.stream();
+            default -> Arrays.stream((int[]) value);
+        };
         String result = stream
                 .mapToObj(TokenUtil::getTokenName)
                 .sorted()

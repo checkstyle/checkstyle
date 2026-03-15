@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
@@ -54,16 +55,14 @@ public class SeverityLevelTest {
             .that(severityLevel.getName())
             .isEqualTo("info");
 
-        try {
-            SeverityLevel.getInstance("unknown");
-            assertWithMessage("exception expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("No enum constant "
-                    + "com.puppycrawl.tools.checkstyle.api.SeverityLevel.UNKNOWN");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    SeverityLevel.getInstance("unknown");
+                }, "exception expected");
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("No enum constant "
+                + "com.puppycrawl.tools.checkstyle.api.SeverityLevel.UNKNOWN");
     }
 
     @Test
