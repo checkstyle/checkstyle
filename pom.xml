@@ -3690,6 +3690,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedPrivateFieldCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoArrayTrailingCommaCheck*</param>
@@ -3726,6 +3727,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedPrivateFieldCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoArrayTrailingCommaCheckTest</param>
@@ -5085,12 +5087,14 @@
                 <param>com.puppycrawl.tools.checkstyle.api.*</param>
                 <!-- 1% mutation in FullIdent -->
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedPrivateFieldCheckTest</param>
                 <!-- 1% mutation in CheckUtil -->
                 <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheckTest</param>
                 <param>org.checkstyle.suppressionxpathfilter.XpathRegressionUnusedLocalVariableTest</param>
+                <param>org.checkstyle.suppressionxpathfilter.XpathRegressionUnusedPrivateFieldTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheckTest</param>
                 <param>org.checkstyle.suppressionxpathfilter.javadoc.XpathRegressionJavadocMethodTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheckTest</param>
@@ -5305,6 +5309,7 @@
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest
+                  com.puppycrawl.tools.checkstyle.checks.coding.UnusedPrivateFieldCheckTest
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheckTest
