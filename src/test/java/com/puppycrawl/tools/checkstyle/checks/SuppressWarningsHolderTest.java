@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck.MSG_UNUSED_LOCAL_VARIABLE;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.util.List;
@@ -146,15 +147,13 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     public void testSetAliasListWrong() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
 
-        try {
-            holder.setAliasList("=SomeAlias");
-            assertWithMessage("Exception expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Error message is unexpected")
-                .that(exc.getMessage())
-                .isEqualTo("'=' expected in alias list item: =SomeAlias");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    holder.setAliasList("=SomeAlias");
+                }, "Exception expected");
+        assertWithMessage("Error message is unexpected")
+            .that(exc.getMessage())
+            .isEqualTo("'=' expected in alias list item: =SomeAlias");
     }
 
     @Test
@@ -297,21 +296,19 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         parent.addChild(lparen);
         parent.addChild(methodDef);
 
-        try {
-            TestUtil.invokeVoidMethod(holder, "getAllAnnotationValues", parent);
-            assertWithMessage("Exception expected").fail();
-        }
-        catch (ReflectiveOperationException exc) {
-            assertWithMessage("Error type is unexpected")
-                    .that(exc)
-                    .hasCauseThat()
-                    .isInstanceOf(IllegalArgumentException.class);
-            assertWithMessage("Error message is unexpected")
+        final ReflectiveOperationException exc =
+                getExpectedThrowable(ReflectiveOperationException.class, () -> {
+                    TestUtil.invokeVoidMethod(holder, "getAllAnnotationValues", parent);
+                }, "Exception expected");
+        assertWithMessage("Error type is unexpected")
                 .that(exc)
                 .hasCauseThat()
-                .hasMessageThat()
-                .isEqualTo("Unexpected AST: Method Def[0x0]");
-        }
+                .isInstanceOf(IllegalArgumentException.class);
+        assertWithMessage("Error message is unexpected")
+            .that(exc)
+            .hasCauseThat()
+            .hasMessageThat()
+            .isEqualTo("Unexpected AST: Method Def[0x0]");
     }
 
     @Test
@@ -324,22 +321,20 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         methodDef.setLineNo(0);
         methodDef.setColumnNo(0);
 
-        try {
-            TestUtil.invokeVoidMethod(holder, "getAnnotationValues", methodDef);
-            assertWithMessage("Exception expected").fail();
-        }
-        catch (ReflectiveOperationException exc) {
-            assertWithMessage("Error type is unexpected")
-                    .that(exc)
-                    .hasCauseThat()
-                    .isInstanceOf(IllegalArgumentException.class);
-            assertWithMessage("Error message is unexpected")
+        final ReflectiveOperationException exc =
+                getExpectedThrowable(ReflectiveOperationException.class, () -> {
+                    TestUtil.invokeVoidMethod(holder, "getAnnotationValues", methodDef);
+                }, "Exception expected");
+        assertWithMessage("Error type is unexpected")
                 .that(exc)
                 .hasCauseThat()
-                .hasMessageThat()
-                .isEqualTo("Expression or annotation array initializer AST expected: "
-                        + "Method Def[0x0]");
-        }
+                .isInstanceOf(IllegalArgumentException.class);
+        assertWithMessage("Error message is unexpected")
+            .that(exc)
+            .hasCauseThat()
+            .hasMessageThat()
+            .isEqualTo("Expression or annotation array initializer AST expected: "
+                    + "Method Def[0x0]");
     }
 
     @Test
@@ -357,21 +352,19 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         parent.setLineNo(0);
         parent.setColumnNo(0);
 
-        try {
-            TestUtil.invokeVoidMethod(holder, "getAnnotationTarget", methodDef);
-            assertWithMessage("Exception expected").fail();
-        }
-        catch (ReflectiveOperationException exc) {
-            assertWithMessage("Error type is unexpected")
-                    .that(exc)
-                    .hasCauseThat()
-                    .isInstanceOf(IllegalArgumentException.class);
-            assertWithMessage("Error message is unexpected")
+        final ReflectiveOperationException exc =
+                getExpectedThrowable(ReflectiveOperationException.class, () -> {
+                    TestUtil.invokeVoidMethod(holder, "getAnnotationTarget", methodDef);
+                }, "Exception expected");
+        assertWithMessage("Error type is unexpected")
                 .that(exc)
                 .hasCauseThat()
-                .hasMessageThat()
-                .isEqualTo("Unexpected container AST: Parent ast[0x0]");
-        }
+                .isInstanceOf(IllegalArgumentException.class);
+        assertWithMessage("Error message is unexpected")
+            .that(exc)
+            .hasCauseThat()
+            .hasMessageThat()
+            .isEqualTo("Unexpected container AST: Parent ast[0x0]");
     }
 
     @Test
@@ -380,15 +373,13 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final DetailAstImpl methodDef = new DetailAstImpl();
         methodDef.setType(TokenTypes.METHOD_DEF);
 
-        try {
-            holder.visitToken(methodDef);
-            assertWithMessage("Exception expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Error message is unexpected")
-                .that(exc.getMessage())
-                .isEqualTo("Identifier AST expected, but get null.");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    holder.visitToken(methodDef);
+                }, "Exception expected");
+        assertWithMessage("Error message is unexpected")
+            .that(exc.getMessage())
+            .isEqualTo("Identifier AST expected, but get null.");
     }
 
     @Test
