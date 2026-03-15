@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck.MSG_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck.MSG_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.Test;
 
@@ -114,25 +115,22 @@ public class EmptyForInitializerPadCheckTest
     }
 
     @Test
-    public void testInvalidOption() throws Exception {
+    public void testInvalidOption() {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(EmptyForInitializerPadCheck.class);
         checkConfig.addProperty("option", "invalid_option");
 
-        try {
+        final CheckstyleException exc = getExpectedThrowable(CheckstyleException.class, () -> {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
             verifyWithInlineConfigParser(
                     getPath("InputEmptyForInitializerPad2.java"), expected);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                    + "whitespace.EmptyForInitializerPadCheck");
-        }
+        });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                + "whitespace.EmptyForInitializerPadCheck");
     }
 
     @Test
