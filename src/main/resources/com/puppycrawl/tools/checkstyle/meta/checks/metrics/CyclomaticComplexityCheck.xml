@@ -23,7 +23,7 @@
  &lt;code&gt;?:&lt;/code&gt;, &lt;code&gt;catch&lt;/code&gt;, &lt;code&gt;switch&lt;/code&gt;, &lt;code&gt;case&lt;/code&gt; statements.
  &lt;/li&gt;
  &lt;li&gt;
-  Operators &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt; in the body of target.
+  Operators &lt;code&gt;&amp;&amp;&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt; in the body of target.
  &lt;/li&gt;
  &lt;li&gt;
   &lt;code&gt;when&lt;/code&gt; expression in case labels, also known as guards.
