@@ -450,15 +450,13 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setFileExtensions((String[]) null);
         checker.setFileExtensions(".java", "xml");
 
-        try {
+        final UnsupportedEncodingException exc =
+                getExpectedThrowable(UnsupportedEncodingException.class, () -> {
             checker.setCharset("UNKNOWN-CHARSET");
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (UnsupportedEncodingException exc) {
-            assertWithMessage("Error message is not expected")
-                .that(exc.getMessage())
-                .isEqualTo("unsupported charset: 'UNKNOWN-CHARSET'");
-        }
+        }, "Exception is expected");
+        assertWithMessage("Error message is not expected")
+            .that(exc.getMessage())
+            .isEqualTo("unsupported charset: 'UNKNOWN-CHARSET'");
     }
 
     @Test
@@ -472,16 +470,14 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testNoClassLoaderNoModuleFactory() {
         final Checker checker = new Checker();
 
-        try {
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
             checker.finishLocalSetup();
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Error message is not expected")
-                .that(exc.getMessage())
-                .isEqualTo("if no custom moduleFactory is set,"
-                    + " moduleClassLoader must be specified");
-        }
+        }, "Exception is expected");
+        assertWithMessage("Error message is not expected")
+            .that(exc.getMessage())
+            .isEqualTo("if no custom moduleFactory is set,"
+                + " moduleClassLoader must be specified");
     }
 
     @Test
@@ -538,31 +534,27 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleFactory(factory);
 
         final Configuration config = new DefaultConfiguration("java.lang.String");
-        try {
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
             checker.setupChild(config);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Error message is not expected")
-                .that(exc.getMessage())
-                .isEqualTo("java.lang.String is not allowed as a child in Checker");
-        }
+        }, "Exception is expected");
+        assertWithMessage("Error message is not expected")
+            .that(exc.getMessage())
+            .isEqualTo("java.lang.String is not allowed as a child in Checker");
     }
 
     @Test
     public void testSetupChildInvalidProperty() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
         checkConfig.addProperty("$$No such property", null);
-        try {
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
             createChecker(checkConfig);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Error message is not expected")
-                .that(exc.getMessage())
-                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker"
-                        + " - cannot initialize module " + checkConfig.getName());
-        }
+        }, "Exception is expected");
+        assertWithMessage("Error message is not expected")
+            .that(exc.getMessage())
+            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker"
+                    + " - cannot initialize module " + checkConfig.getName());
     }
 
     @Test
@@ -594,20 +586,18 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // The maximum file name length which is allowed in most UNIX, Windows file systems is 255.
         // See https://en.wikipedia.org/wiki/Filename;
         checker.setCacheFile(String.format(Locale.ENGLISH, "%0300d", 0));
-        try {
+        final IllegalStateException exc =
+                getExpectedThrowable(IllegalStateException.class, () -> {
             checker.destroy();
-            assertWithMessage("Exception did not happen").fail();
-        }
-        catch (IllegalStateException exc) {
-            assertWithMessage("Cause of exception differs from IOException")
-                    .that(exc.getCause())
-                    .isInstanceOf(IOException.class);
+        }, "Exception did not happen");
+        assertWithMessage("Cause of exception differs from IOException")
+                .that(exc.getCause())
+                .isInstanceOf(IOException.class);
 
-            assertWithMessage("Exception message differ")
-                    .that(exc.getMessage())
-                    .isEqualTo(getLocalizedMessage(
-                            "Checker.cacheFilesException"));
-        }
+        assertWithMessage("Exception message differ")
+                .that(exc.getMessage())
+                .isEqualTo(getLocalizedMessage(
+                        "Checker.cacheFilesException"));
     }
 
     /**
@@ -830,30 +820,26 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = new Checker();
         final List<File> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
-        try {
+        final Error error =
+                getExpectedThrowable(Error.class, () -> {
             checker.process(filesToProcess);
-            assertWithMessage("IOError is expected!").fail();
-        }
-        // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
-        catch (Error error) {
-            assertWithMessage("Error cause differs from IOError")
-                    .that(error.getCause())
-                    .isInstanceOf(IOError.class);
-            assertWithMessage("Error cause is not InternalError")
-                    .that(error.getCause().getCause())
-                    .isInstanceOf(InternalError.class);
-            assertWithMessage("Error message is not expected")
-                    .that(error)
-                    .hasCauseThat()
-                    .hasCauseThat()
-                    .hasMessageThat()
-                    .isEqualTo(errorMessage);
-            assertWithMessage("Error message differs")
-                    .that(error.getMessage())
-                    .isEqualTo(getLocalizedMessage(
-                            "Checker.error", mock.getPath()));
-
-        }
+        }, "IOError is expected!");
+        assertWithMessage("Error cause differs from IOError")
+                .that(error.getCause())
+                .isInstanceOf(IOError.class);
+        assertWithMessage("Error cause is not InternalError")
+                .that(error.getCause().getCause())
+                .isInstanceOf(InternalError.class);
+        assertWithMessage("Error message is not expected")
+                .that(error)
+                .hasCauseThat()
+                .hasCauseThat()
+                .hasMessageThat()
+                .isEqualTo(errorMessage);
+        assertWithMessage("Error message differs")
+                .that(error.getMessage())
+                .isEqualTo(getLocalizedMessage(
+                        "Checker.error", mock.getPath()));
     }
 
     /**
@@ -894,28 +880,25 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = new Checker();
         final List<File> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
-        try {
+        final Error error =
+                getExpectedThrowable(Error.class, () -> {
             checker.process(filesToProcess);
-            assertWithMessage("IOError is expected!").fail();
-        }
-        // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
-        catch (Error error) {
-            assertWithMessage("Error cause differs from IOError")
-                    .that(error)
-                    .hasCauseThat()
-                    .isInstanceOf(IOError.class);
-            assertWithMessage("Error cause is not InternalError")
-                    .that(error)
-                    .hasCauseThat()
-                    .hasCauseThat()
-                    .isInstanceOf(InternalError.class);
-            assertWithMessage("Error message is not expected")
-                    .that(error)
-                    .hasCauseThat()
-                    .hasCauseThat()
-                    .hasMessageThat()
-                    .isEqualTo(errorMessage);
-        }
+        }, "IOError is expected!");
+        assertWithMessage("Error cause differs from IOError")
+                .that(error)
+                .hasCauseThat()
+                .isInstanceOf(IOError.class);
+        assertWithMessage("Error cause is not InternalError")
+                .that(error)
+                .hasCauseThat()
+                .hasCauseThat()
+                .isInstanceOf(InternalError.class);
+        assertWithMessage("Error message is not expected")
+                .that(error)
+                .hasCauseThat()
+                .hasCauseThat()
+                .hasMessageThat()
+                .isEqualTo(errorMessage);
     }
 
     /**
@@ -1091,15 +1074,13 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(CheckWhichThrowsError.class);
         final String filePath = getPath("InputChecker.java");
-        try {
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
             execute(checkConfig, filePath);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Error message is not expected")
-                .that(exc.getMessage())
-                .isEqualTo("Exception was thrown while processing " + filePath);
-        }
+        }, "Exception is expected");
+        assertWithMessage("Error message is not expected")
+            .that(exc.getMessage())
+            .isEqualTo("Exception was thrown while processing " + filePath);
     }
 
     @Test
@@ -1121,30 +1102,28 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = createChecker(checkerConfig);
 
         final String filePath = getPath("InputChecker.java");
-        try {
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
             checker.process(Collections.singletonList(new File(filePath)));
-            assertWithMessage("Exception is expected").fail();
+        }, "Exception is expected");
+        assertWithMessage("Error message is not expected")
+            .that(exc.getMessage())
+            .isEqualTo("Exception was thrown while processing " + filePath);
+
+        // destroy is called by Main
+        checker.destroy();
+
+        final Properties cache = new Properties();
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+            cache.load(reader);
         }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Error message is not expected")
-                .that(exc.getMessage())
-                .isEqualTo("Exception was thrown while processing " + filePath);
 
-            // destroy is called by Main
-            checker.destroy();
-
-            final Properties cache = new Properties();
-            try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
-                cache.load(reader);
-            }
-
-            assertWithMessage("Cache has unexpected size")
-                .that(cache)
-                .hasSize(1);
-            assertWithMessage("testFile is not in cache")
-                .that(cache.getProperty(filePath))
-                .isNull();
-        }
+        assertWithMessage("Cache has unexpected size")
+            .that(cache)
+            .hasSize(1);
+        assertWithMessage("testFile is not in cache")
+            .that(cache.getProperty(filePath))
+            .isNull();
     }
 
     /**
@@ -1192,37 +1171,34 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.configure(checkerConfig);
         final List<File> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
-        try {
+        final Error error =
+                getExpectedThrowable(Error.class, () -> {
             checker.process(filesToProcess);
-            assertWithMessage("IOError is expected!").fail();
+        }, "IOError is expected!");
+        assertWithMessage("Error cause differs from IOError")
+                .that(error.getCause())
+                .isInstanceOf(IOError.class);
+        assertWithMessage("Error message is not expected")
+                .that(error)
+                .hasCauseThat()
+                .hasCauseThat()
+                .hasMessageThat()
+                .isEqualTo(errorMessage);
+
+        // destroy is called by Main
+        checker.destroy();
+
+        final Properties cache = new Properties();
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+            cache.load(reader);
         }
-        // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
-        catch (Error error) {
-            assertWithMessage("Error cause differs from IOError")
-                    .that(error.getCause())
-                    .isInstanceOf(IOError.class);
-            assertWithMessage("Error message is not expected")
-                    .that(error)
-                    .hasCauseThat()
-                    .hasCauseThat()
-                    .hasMessageThat()
-                    .isEqualTo(errorMessage);
 
-            // destroy is called by Main
-            checker.destroy();
-
-            final Properties cache = new Properties();
-            try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
-                cache.load(reader);
-            }
-
-            assertWithMessage("Cache has unexpected size")
-                    .that(cache)
-                    .hasSize(1);
-            assertWithMessage("testFile is not in cache")
-                .that(cache.getProperty("testFile"))
-                .isNull();
-        }
+        assertWithMessage("Cache has unexpected size")
+                .that(cache)
+                .hasSize(1);
+        assertWithMessage("testFile is not in cache")
+            .that(cache.getProperty("testFile"))
+            .isNull();
     }
 
     /**
@@ -1266,35 +1242,32 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.configure(checkerConfig);
         final List<File> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
-        try {
+        final Error error =
+                getExpectedThrowable(Error.class, () -> {
             checker.process(filesToProcess);
-            assertWithMessage("IOError is expected!").fail();
+        }, "IOError is expected!");
+        assertWithMessage("Error cause differs from IOError")
+                .that(error)
+                .hasCauseThat()
+                .isInstanceOf(IOError.class);
+        assertWithMessage("Error message is not expected")
+                .that(error)
+                .hasCauseThat()
+                .hasCauseThat()
+                .hasMessageThat()
+                .isEqualTo(errorMessage);
+
+        // destroy is called by Main
+        checker.destroy();
+
+        final Properties cache = new Properties();
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+            cache.load(reader);
         }
-        // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
-        catch (Error error) {
-            assertWithMessage("Error cause differs from IOError")
-                    .that(error)
-                    .hasCauseThat()
-                    .isInstanceOf(IOError.class);
-            assertWithMessage("Error message is not expected")
-                    .that(error)
-                    .hasCauseThat()
-                    .hasCauseThat()
-                    .hasMessageThat()
-                    .isEqualTo(errorMessage);
 
-            // destroy is called by Main
-            checker.destroy();
-
-            final Properties cache = new Properties();
-            try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
-                cache.load(reader);
-            }
-
-            assertWithMessage("Cache has unexpected size")
-                    .that(cache)
-                    .hasSize(1);
-        }
+        assertWithMessage("Cache has unexpected size")
+                .that(cache)
+                .hasSize(1);
     }
 
     /**
@@ -1329,21 +1302,19 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = new Checker();
         final List<File> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
-        try {
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
             checker.process(filesToProcess);
-            assertWithMessage("SecurityException is expected!").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Error cause differs from SecurityException")
-                    .that(exc)
-                    .hasCauseThat()
-                    .isInstanceOf(SecurityException.class);
-            assertWithMessage("Error message is not expected")
-                    .that(exc)
-                    .hasCauseThat()
-                    .hasMessageThat()
-                    .isEqualTo(errorMessage);
-        }
+        }, "SecurityException is expected!");
+        assertWithMessage("Error cause differs from SecurityException")
+                .that(exc)
+                .hasCauseThat()
+                .isInstanceOf(SecurityException.class);
+        assertWithMessage("Error message is not expected")
+                .that(exc)
+                .hasCauseThat()
+                .hasMessageThat()
+                .isEqualTo(errorMessage);
     }
 
     /**
@@ -1386,33 +1357,31 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.configure(checkerConfig);
         final List<File> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
-        try {
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
             checker.process(filesToProcess);
-            assertWithMessage("SecurityException is expected!").fail();
+        }, "SecurityException is expected!");
+        assertWithMessage("Error cause differs from SecurityException")
+                .that(exc)
+                .hasCauseThat()
+                .isInstanceOf(SecurityException.class);
+        assertWithMessage("Error message is not expected")
+                .that(exc)
+                .hasCauseThat()
+                .hasMessageThat()
+                .isEqualTo(errorMessage);
+
+        // destroy is called by Main
+        checker.destroy();
+
+        final Properties cache = new Properties();
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+            cache.load(reader);
         }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Error cause differs from SecurityException")
-                    .that(exc)
-                    .hasCauseThat()
-                    .isInstanceOf(SecurityException.class);
-            assertWithMessage("Error message is not expected")
-                    .that(exc)
-                    .hasCauseThat()
-                    .hasMessageThat()
-                    .isEqualTo(errorMessage);
 
-            // destroy is called by Main
-            checker.destroy();
-
-            final Properties cache = new Properties();
-            try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
-                cache.load(reader);
-            }
-
-            assertWithMessage("Cache has unexpected size")
-                    .that(cache)
-                    .hasSize(1);
-        }
+        assertWithMessage("Cache has unexpected size")
+                .that(cache)
+                .hasSize(1);
     }
 
     @Test
