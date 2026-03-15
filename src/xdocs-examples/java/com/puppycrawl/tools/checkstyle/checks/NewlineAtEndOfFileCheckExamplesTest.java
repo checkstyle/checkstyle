@@ -43,7 +43,7 @@ public class NewlineAtEndOfFileCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF, "\\n', '\\r' or '\\r\\n"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -61,7 +61,7 @@ public class NewlineAtEndOfFileCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF, "\\n', '\\r' or '\\r\\n"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.cpp"), expected);
@@ -70,7 +70,7 @@ public class NewlineAtEndOfFileCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF, "\\n', '\\r' or '\\r\\n"),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
