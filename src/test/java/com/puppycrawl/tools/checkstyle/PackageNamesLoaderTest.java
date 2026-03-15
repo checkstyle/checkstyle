@@ -163,16 +163,14 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
         final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(
                 new File(getPath("InputPackageNamesLoaderNotXml.java")).toURI().toURL()));
 
-        try {
-            PackageNamesLoader.getPackageNames(new TestUrlsClassLoader(enumeration));
-            assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception cause class")
-                    .that(exc)
-                    .hasCauseThat()
-                    .isInstanceOf(SAXException.class);
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    PackageNamesLoader.getPackageNames(new TestUrlsClassLoader(enumeration));
+                }, "CheckstyleException is expected");
+        assertWithMessage("Invalid exception cause class")
+                .that(exc)
+                .hasCauseThat()
+                .isInstanceOf(SAXException.class);
     }
 
     @Test
@@ -188,40 +186,36 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
         final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(url));
 
-        try {
-            PackageNamesLoader.getPackageNames(new TestUrlsClassLoader(enumeration));
-            assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception cause class")
-                    .that(exc)
-                    .hasCauseThat()
-                    .isInstanceOf(IOException.class);
-            assertWithMessage("Invalid exception message")
-                    .that(exc)
-                    .hasMessageThat()
-                    .isNotEqualTo("unable to get package file resources");
-            assertWithMessage("Exception message must contain URL")
-                    .that(exc.getMessage())
-                    .contains(url.toString());
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    PackageNamesLoader.getPackageNames(new TestUrlsClassLoader(enumeration));
+                }, "CheckstyleException is expected");
+        assertWithMessage("Invalid exception cause class")
+                .that(exc)
+                .hasCauseThat()
+                .isInstanceOf(IOException.class);
+        assertWithMessage("Invalid exception message")
+                .that(exc)
+                .hasMessageThat()
+                .isNotEqualTo("unable to get package file resources");
+        assertWithMessage("Exception message must contain URL")
+                .that(exc.getMessage())
+                .contains(url.toString());
     }
 
     @Test
     public void testPackagesWithIoExceptionGetResources() {
-        try {
-            PackageNamesLoader.getPackageNames(new TestIoExceptionClassLoader());
-            assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception cause class")
-                    .that(exc)
-                    .hasCauseThat()
-                    .isInstanceOf(IOException.class);
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("unable to get package file resources");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    PackageNamesLoader.getPackageNames(new TestIoExceptionClassLoader());
+                }, "CheckstyleException is expected");
+        assertWithMessage("Invalid exception cause class")
+                .that(exc)
+                .hasCauseThat()
+                .isInstanceOf(IOException.class);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("unable to get package file resources");
     }
 
     @Test
