@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -324,19 +325,17 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNullOutputStreamOptions() {
-        try {
+        final IllegalArgumentException exception =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
             final SarifLogger logger = new SarifLogger(outStream, (OutputStreamOptions) null);
             // assert required to calm down eclipse's 'The allocated object is never used' violation
             assertWithMessage("Null instance")
                 .that(logger)
                 .isNotNull();
-            assertWithMessage("Exception was expected").fail();
-        }
-        catch (IllegalArgumentException | IOException exception) {
-            assertWithMessage("Invalid error message")
-                .that(exception.getMessage())
-                .isEqualTo("Parameter outputStreamOptions can not be null");
-        }
+        }, "Exception was expected");
+        assertWithMessage("Invalid error message")
+            .that(exception.getMessage())
+            .isEqualTo("Parameter outputStreamOptions can not be null");
     }
 
     @Test
@@ -386,15 +385,13 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testReadResourceWithInvalidName() {
-        try {
+        final IOException exception =
+                getExpectedThrowable(IOException.class, () -> {
             SarifLogger.readResource("random");
-            assertWithMessage("Exception expected").fail();
-        }
-        catch (IOException exception) {
-            assertWithMessage("Exception message must match")
-                .that(exception.getMessage())
-                .isEqualTo("Cannot find the resource random");
-        }
+        }, "Exception expected");
+        assertWithMessage("Exception message must match")
+            .that(exception.getMessage())
+            .isEqualTo("Cannot find the resource random");
     }
 
     @Test
