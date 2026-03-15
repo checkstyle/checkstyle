@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
 import java.io.File;
@@ -104,16 +105,14 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
         final File input = new File(getPath("InputSuppressionsStringPrinter.java"));
         final String invalidLineAndColumnNumber = "abc-432";
         final int tabWidth = 2;
-        try {
-            SuppressionsStringPrinter.printSuppressions(input,
-                    invalidLineAndColumnNumber, tabWidth);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (IllegalStateException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("abc-432 does not match valid format 'line:column'.");
-        }
+        final IllegalStateException exc =
+                getExpectedThrowable(IllegalStateException.class, () -> {
+                    SuppressionsStringPrinter.printSuppressions(input,
+                            invalidLineAndColumnNumber, tabWidth);
+                }, "exception expected");
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("abc-432 does not match valid format 'line:column'.");
     }
 
     @Test
@@ -121,20 +120,18 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
         final File input = new File(getNonCompilablePath("InputSuppressionsStringPrinter.java"));
         final String lineAndColumnNumber = "2:3";
         final int tabWidth = 2;
-        try {
-            SuppressionsStringPrinter.printSuppressions(input,
-                    lineAndColumnNumber, tabWidth);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid class")
-                .that(exc.getCause())
-                .isInstanceOf(IllegalStateException.class);
-            assertWithMessage("Invalid exception message")
-                .that(exc.getCause().toString())
-                .isEqualTo(IllegalStateException.class.getName()
-                            + ": 2:0: no viable alternative at input 'classD'");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    SuppressionsStringPrinter.printSuppressions(input,
+                            lineAndColumnNumber, tabWidth);
+                }, "exception expected");
+        assertWithMessage("Invalid class")
+            .that(exc.getCause())
+            .isInstanceOf(IllegalStateException.class);
+        assertWithMessage("Invalid exception message")
+            .that(exc.getCause().toString())
+            .isEqualTo(IllegalStateException.class.getName()
+                        + ": 2:0: no viable alternative at input 'classD'");
     }
 
 }
