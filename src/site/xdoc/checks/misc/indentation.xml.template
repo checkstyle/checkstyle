@@ -88,6 +88,22 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example4.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the Check with arrayInitIndent:.
+        </p>
+        <macro name="example">
+          <param name="path"
+                     value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">
+           Example of compliant code with arrayInitIndent
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example5.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 

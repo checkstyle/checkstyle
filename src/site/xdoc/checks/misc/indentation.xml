@@ -341,6 +341,65 @@ class Example4 {
         }
     }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the Check with arrayInitIndent:.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"&gt;
+      &lt;property name="arrayInitIndent" value="2"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">
+           Example of compliant code with arrayInitIndent
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 {
+    String field = "example";                  // basicOffset
+    int[] values = {                           // basicOffset
+        10,
+        20,
+        30
+    };
+
+    void processValues() throws Exception {
+        handleValue("Test String", 42);          // basicOffset
+    }
+
+    void handleValue(String aFooString,
+                     int aFooInt) {             // indent:8 ; expected: &gt; 4;
+
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
+
+        if (cond1
+                || cond2) {
+            field = field.toUpperCase()
+                    .concat(" TASK");
+        }
+
+        if ((cond1 &amp;&amp; cond2)
+                || (cond3 &amp;&amp; cond4)          // ok, lineWrappingIndentation
+                || !(cond5 &amp;&amp; cond6)) {      // ok, lineWrappingIndentation
+            field.toUpperCase()
+                    .concat(" TASK")             // ok, lineWrappingIndentation
+                    .chars().forEach(c -&gt; {      // ok, lineWrappingIndentation
+                        System.out.println((char) c);
+                    });
+        }
+    }
+
+    void demonstrateSwitch() throws Exception {
+        switch (field) {
+            case "EXAMPLE": processValues();                        // caseIndent
+            case "COMPLETED": handleValue("Completed Case", 456);   // caseIndent
+        }
+    }
+}
 </code></pre></div>
       </subsection>
 

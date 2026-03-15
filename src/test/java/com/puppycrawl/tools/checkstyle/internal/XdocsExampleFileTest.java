@@ -63,7 +63,6 @@ public class XdocsExampleFileTest {
                     "basicOffset",
                     "lineWrappingIndentation",
                     "throwsIndent",
-                    "arrayInitIndent",
                     "braceAdjustment"
             ))
     );
