@@ -73,19 +73,7 @@
   <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]InlineConfigParser\.java"/>
   <!-- exception maybe thrown while executing the static block -->
   <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]XpathFileGeneratorAuditListenerTest\.java"/>
-    <!-- Uses non-ascii symbols intentionally for testing IllegalSymbolCheck -->
-  <suppress checks="AvoidEscapedUnicodeCharacters"
-            files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionIllegalSymbolTest.java"/>
-  <suppress id="checkASCII"
-            files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionIllegalSymbolTest.java"/>
-  <suppress checks="IllegalSymbol"
-            files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionIllegalSymbolTest.java"/>
-  <suppress checks="AvoidEscapedUnicodeCharacters"
-            files="[\\/]checks[\\/]coding[\\/]IllegalSymbolCheck(Examples)?Test\.java"/>
-  <suppress id="checkASCII"
-            files="[\\/]checks[\\/]coding[\\/]IllegalSymbolCheck(Examples)?Test\.java"/>
-  <suppress checks="IllegalSymbol"
-            files="[\\/]checks[\\/]coding[\\/]IllegalSymbolCheck(Examples)?Test\.java"/>
+
 
   <!-- we need that set of converters -->
   <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
@@ -188,6 +176,5 @@
   <!-- Remove suppression once all violations are fixed, tracked in #19176 -->
   <suppress checks="MatchXpath"
             id="MatchXpathForbidTryCatchFail"
-            files=".*[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/](?!utils|xpath|checks[\\/]coding|checks[\\/]design|checks[\\/]modifier|checks[\\/]naming|checks[\\/]annotation|checks[\\/]indentation|checks[\\/]metrics|checks[\\/]whitespace|checks[\\/]javadoc).*"/>
-
+            files=".*[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/](?!utils|xpath|checks[\\/]coding|checks[\\/]design|checks[\\/]modifier|checks[\\/]naming|checks[\\/]annotation|checks[\\/]indentation|checks[\\/]metrics|checks[\\/]whitespace|checks[\\/]javadoc|checks[\\/]NewlineAtEndOfFileCheckTest|checks[\\/]SuppressWarningsHolderTest|checks[\\/]UncommentedMainCheckTest).*"/>
 </suppressions>
