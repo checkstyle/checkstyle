@@ -1091,10 +1091,11 @@ public final class SiteUtil {
      *
      * @param value the value to get the int stream from.
      * @return the int stream.
+     * @throws IllegalArgumentException if parameter is null.
      */
     private static IntStream getIntStream(Object value) {
-        // -@cs[MissingNullCaseInSwitch] until issue #19173
         return switch (value) {
+            case null -> throw new IllegalArgumentException("value is null");
             case Collection<?> collection -> collection.stream()
                     .mapToInt(int.class::cast);
             case BitSet set -> set.stream();

@@ -1574,8 +1574,8 @@ public class XdocsPagesTest {
      * @return String form of property's default value.
      */
     private static String getIntArrayPropertyValue(Object value) {
-        // -@cs[MissingNullCaseInSwitch] until issue #19173
         final IntStream stream = switch (value) {
+            case null -> throw new IllegalArgumentException("value is null");
             case Collection<?> collection -> collection.stream()
                     .mapToInt(number -> (int) number);
             case BitSet set -> set.stream();
