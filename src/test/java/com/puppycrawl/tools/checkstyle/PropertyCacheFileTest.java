@@ -73,25 +73,21 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
 
     @Test
     public void testCtor() {
-        try {
-            final Object test = new PropertyCacheFile(null, "");
-            assertWithMessage("exception expected but got %s", test).fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("config can not be null");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    new PropertyCacheFile(null, "");
+                }, "exception expected");
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("config can not be null");
         final Configuration config = new DefaultConfiguration("myName");
-        try {
-            final Object test = new PropertyCacheFile(config, null);
-            assertWithMessage("exception expected but got %s", test).fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("fileName can not be null");
-        }
+        final IllegalArgumentException exc2 =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    new PropertyCacheFile(config, null);
+                }, "exception expected");
+        assertWithMessage("Invalid exception message")
+            .that(exc2.getMessage())
+            .isEqualTo("fileName can not be null");
     }
 
     @Test
