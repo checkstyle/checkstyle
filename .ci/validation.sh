@@ -517,7 +517,7 @@ checkstyle-and-sevntu)
 spotbugs-and-pmd)
   mkdir -p .ci-temp/spotbugs-and-pmd
   CHECKSTYLE_DIR=$(pwd)
-  export MAVEN_OPTS='-Xmx2g'
+  export MAVEN_OPTS='-Xmx6g'
   ./mvnw -e --no-transfer-progress clean pmd:check
   ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
   cd .ci-temp/spotbugs-and-pmd
