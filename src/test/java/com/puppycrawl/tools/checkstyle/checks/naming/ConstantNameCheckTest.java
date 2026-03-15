@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ConstantNameCheckTest
@@ -49,91 +48,49 @@ public class ConstantNameCheckTest
     }
 
     @Test
-    public void testIllegalRegexp() {
+    public void testIllegalRegexp()
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ConstantNameCheck.class);
         checkConfig.addProperty("format", "\\");
-        final CheckstyleException exc =
-            TestUtil.getExpectedThrowable(
-                CheckstyleException.class, () -> {
-                    createChecker(checkConfig);
-                });
-        assertWithMessage("Invalid exception message")
-            .that(exc.getMessage())
-            .isEqualTo("cannot initialize module "
-                + "com.puppycrawl.tools.checkstyle.TreeWalker - "
-                + "cannot initialize module "
-                + "com.puppycrawl.tools.checkstyle.checks."
-                + "naming.ConstantNameCheck");
+        try {
+            createChecker(checkConfig);
+            assertWithMessage("CheckstyleException is expected").fail();
+        }
+        catch (CheckstyleException exc) {
+            assertWithMessage("Invalid exception message")
+                .that(exc.getMessage())
+                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                    + "naming.ConstantNameCheck");
+        }
     }
 
     @Test
-    public void testDefaultPartA()
+    public void testDefault()
             throws Exception {
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
         final String[] expected = {
-            "34:29: " + getCheckMessage(MSG_INVALID_PATTERN, "badConstant", pattern),
-            };
-        verifyWithInlineConfigParser(
-            getPath("InputConstantNameSimple1a.java"), expected);
-    }
-
-    @Test
-    public void testDefaultPartB()
-            throws Exception {
-
-        final String[] expected = {};
-
-        verifyWithInlineConfigParser(
-            getPath("InputConstantNameSimple1b.java"), expected);
-    }
-
-    @Test
-    public void testDefaultPartC()
-            throws Exception {
-
-        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
-
-        final String[] expected = {
-            "26:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
+            "31:29: " + getCheckMessage(MSG_INVALID_PATTERN, "badConstant", pattern),
+            "148:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
         };
         verifyWithInlineConfigParser(
-            getPath("InputConstantNameSimple1c.java"), expected);
+                getPath("InputConstantNameSimple1.java"), expected);
     }
 
     @Test
-    public void testAccessControlTuningPartA()
-            throws Exception {
-
-        final String[] expected = {};
-
-        verifyWithInlineConfigParser(
-                getPath("InputConstantNameSimple2a.java"), expected);
-    }
-
-    @Test
-    public void testAccessControlTuningPartB()
-            throws Exception {
-
-        final String[] expected = {};
-
-        verifyWithInlineConfigParser(
-                getPath("InputConstantNameSimple2b.java"), expected);
-    }
-
-    @Test
-    public void testAccessControlTuningPartC()
+    public void testAccessControlTuning()
             throws Exception {
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
         final String[] expected = {
-            "26:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
+            "148:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
         };
         verifyWithInlineConfigParser(
-                getPath("InputConstantNameSimple2c.java"), expected);
+                getPath("InputConstantNameSimple2.java"), expected);
     }
 
     @Test

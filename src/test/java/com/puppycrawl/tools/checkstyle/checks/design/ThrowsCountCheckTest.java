@@ -28,7 +28,6 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
 
@@ -85,14 +84,15 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
         final ThrowsCountCheck obj = new ThrowsCountCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonToken(TokenTypes.CLASS_DEF, "class"));
-        final IllegalStateException exc =
-            TestUtil.getExpectedThrowable(
-                IllegalStateException.class, () -> {
-                    obj.visitToken(ast);
-                });
-        assertWithMessage("Invalid exception message")
-            .that(exc.getMessage())
-            .isEqualTo(ast.toString());
+        try {
+            obj.visitToken(ast);
+            assertWithMessage("IllegalStateException is expected").fail();
+        }
+        catch (IllegalStateException exc) {
+            assertWithMessage("Invalid exception message")
+                .that(exc.getMessage())
+                .isEqualTo(ast.toString());
+        }
     }
 
     @Test

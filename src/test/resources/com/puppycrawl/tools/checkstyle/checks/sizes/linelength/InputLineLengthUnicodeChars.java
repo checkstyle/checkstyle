@@ -1,9 +1,9 @@
 /*
 LineLength
-fileExtensions = (default)null
+fileExtensions = (default)""
 ignorePattern = (default)^(package|import) .*
 max = 100
-tabWidth = (default)0
+
 
 */
 

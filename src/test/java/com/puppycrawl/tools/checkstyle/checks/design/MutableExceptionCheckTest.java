@@ -34,7 +34,6 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
@@ -131,15 +130,17 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
         final MutableExceptionCheck obj = new MutableExceptionCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonToken(TokenTypes.INTERFACE_DEF, "interface"));
-        final IllegalStateException exc =
-            TestUtil.getExpectedThrowable(
-                IllegalStateException.class, () -> {
-                    obj.visitToken(ast);
-                });
-        // exception is expected
-        assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("interface[0x-1]");
+        try {
+            obj.visitToken(ast);
+            assertWithMessage("IllegalStateException is expected")
+                    .fail();
+        }
+        catch (IllegalStateException exc) {
+            // exception is expected
+            assertWithMessage("Invalid exception message")
+                    .that(exc.getMessage())
+                    .isEqualTo("interface[0x-1]");
+        }
     }
 
 }
