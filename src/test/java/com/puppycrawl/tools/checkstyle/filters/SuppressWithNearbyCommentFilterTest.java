@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 
 import java.io.File;
@@ -388,19 +389,17 @@ public class SuppressWithNearbyCommentFilterTest
         treeWalkerConfig.addChild(filterConfig);
         treeWalkerConfig.addChild(checkConfig);
 
-        try {
-            execute(treeWalkerConfig,
-                    getPath("InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"));
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc)
-                .hasCauseThat()
-                .hasMessageThat()
-                .isEqualTo("unable to parse influence"
-                        + " from 'SUPPRESS CHECKSTYLE MemberNameCheck' using a");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    execute(treeWalkerConfig,
+                            getPath("InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"));
+                }, "Exception is expected");
+        assertWithMessage("Invalid exception message")
+            .that(exc)
+            .hasCauseThat()
+            .hasMessageThat()
+            .isEqualTo("unable to parse influence"
+                    + " from 'SUPPRESS CHECKSTYLE MemberNameCheck' using a");
     }
 
     @Test
@@ -448,18 +447,16 @@ public class SuppressWithNearbyCommentFilterTest
         treeWalkerConfig.addChild(filterConfig);
         treeWalkerConfig.addChild(checkConfig);
 
-        try {
-            execute(treeWalkerConfig,
-                    getPath("InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"));
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-            assertWithMessage("Invalid exception message")
-                .that(cause)
-                .hasMessageThat()
-                .isEqualTo("unable to parse expanded comment a[l");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    execute(treeWalkerConfig,
+                            getPath("InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"));
+                }, "Exception is expected");
+        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
+        assertWithMessage("Invalid exception message")
+            .that(cause)
+            .hasMessageThat()
+            .isEqualTo("unable to parse expanded comment a[l");
     }
 
     @Test
