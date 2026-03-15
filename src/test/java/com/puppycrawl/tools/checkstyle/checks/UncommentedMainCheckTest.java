@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.util.List;
@@ -120,15 +121,12 @@ public class UncommentedMainCheckTest
         final UncommentedMainCheck check = new UncommentedMainCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonToken(TokenTypes.CTOR_DEF, "ctor"));
-        try {
-            check.visitToken(ast);
-            assertWithMessage("IllegalStateException is expected").fail();
-        }
-        catch (IllegalStateException exc) {
-            assertWithMessage("Error message is unexpected")
-                .that(exc.getMessage())
-                .isEqualTo(ast.toString());
-        }
+        final IllegalStateException exc = getExpectedThrowable(
+                IllegalStateException.class,
+                () -> check.visitToken(ast));
+        assertWithMessage("Error message is unexpected")
+            .that(exc.getMessage())
+            .isEqualTo(ast.toString());
     }
 
     @Test
