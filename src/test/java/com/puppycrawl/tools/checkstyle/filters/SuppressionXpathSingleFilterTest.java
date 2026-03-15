@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck.MSG_JAVADOC_MISSING;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -128,17 +129,16 @@ public class SuppressionXpathSingleFilterTest
     @Test
     public void testIncorrectQuery() {
         final String xpath = "1@#";
-        try {
-            final Object test = createSuppressionXpathSingleFilter(
-                    "InputSuppressionXpathSingleFilterComplexQuery", "Test",
-                    null, null, xpath);
-            assertWithMessage("Exception was expected but got %s", test).fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Message should be: Unexpected xpath query")
-                    .that(exc.getMessage())
-                    .contains("Incorrect xpath query");
-        }
+        final IllegalArgumentException exc = getExpectedThrowable(
+                IllegalArgumentException.class,
+                () -> {
+                    createSuppressionXpathSingleFilter(
+                            "InputSuppressionXpathSingleFilterComplexQuery", "Test",
+                            null, null, xpath);
+                });
+        assertWithMessage("Message should be: Unexpected xpath query")
+                .that(exc.getMessage())
+                .contains("Incorrect xpath query");
     }
 
     @Test
@@ -185,29 +185,27 @@ public class SuppressionXpathSingleFilterTest
     @Test
     public void testInvalidFileRegexp() {
         final SuppressionXpathSingleFilter filter = new SuppressionXpathSingleFilter();
-        try {
-            filter.setFiles("e[l");
-            assertWithMessage("PatternSyntaxException is expected").fail();
-        }
-        catch (PatternSyntaxException exc) {
-            assertWithMessage("Message should be: Unclosed character class")
-                    .that(exc.getMessage())
-                    .contains("Unclosed character class");
-        }
+        final PatternSyntaxException exc = getExpectedThrowable(
+                PatternSyntaxException.class,
+                () -> {
+                    filter.setFiles("e[l");
+                });
+        assertWithMessage("Message should be: Unclosed character class")
+                .that(exc.getMessage())
+                .contains("Unclosed character class");
     }
 
     @Test
     public void testInvalidCheckRegexp() {
         final SuppressionXpathSingleFilter filter = new SuppressionXpathSingleFilter();
-        try {
-            filter.setChecks("e[l");
-            assertWithMessage("PatternSyntaxException is expected").fail();
-        }
-        catch (PatternSyntaxException exc) {
-            assertWithMessage("Message should be: Unclosed character class")
-                    .that(exc.getMessage())
-                    .contains("Unclosed character class");
-        }
+        final PatternSyntaxException exc = getExpectedThrowable(
+                PatternSyntaxException.class,
+                () -> {
+                    filter.setChecks("e[l");
+                });
+        assertWithMessage("Message should be: Unclosed character class")
+                .that(exc.getMessage())
+                .contains("Unclosed character class");
     }
 
     @Test
@@ -318,15 +316,14 @@ public class SuppressionXpathSingleFilterTest
             StandardCharsets.UTF_8.name()));
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents,
                 "InputSuppressionXpathSingleFilterComplexQuery.java", message, null);
-        try {
-            filter.accept(ev);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (IllegalStateException exc) {
-            assertWithMessage("Exception message does not match expected one")
-                    .that(exc.getMessage())
-                    .contains("Cannot initialize context and evaluate query");
-        }
+        final IllegalStateException exc = getExpectedThrowable(
+                IllegalStateException.class,
+                () -> {
+                    filter.accept(ev);
+                });
+        assertWithMessage("Exception message does not match expected one")
+                .that(exc.getMessage())
+                .contains("Cannot initialize context and evaluate query");
     }
 
     @Test
