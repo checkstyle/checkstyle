@@ -27,6 +27,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -49,10 +50,14 @@ public class FileTextTest extends AbstractPathTestSupport {
         // just to make UT coverage 100%
         final String charsetName = "STRANGE_CHARSET";
         final File file = new File("any name");
+        final List<FileText> result = new ArrayList<>();
         final IllegalStateException exc =
                 getExpectedThrowable(IllegalStateException.class, () -> {
-                    new FileText(file, charsetName);
+                    result.add(new FileText(file, charsetName));
                 }, "UnsupportedEncodingException is expected");
+        assertWithMessage("Object should not be created")
+                .that(result)
+                .isEmpty();
         assertWithMessage("Invalid exception message")
                 .that(exc)
                 .hasMessageThat()
@@ -63,10 +68,14 @@ public class FileTextTest extends AbstractPathTestSupport {
     public void testFileNotFound() {
         final String charsetName = StandardCharsets.ISO_8859_1.name();
         final File file = new File("any name");
+        final List<FileText> result = new ArrayList<>();
         final FileNotFoundException exc =
                 getExpectedThrowable(FileNotFoundException.class, () -> {
-                    new FileText(file, charsetName);
+                    result.add(new FileText(file, charsetName));
                 }, "FileNotFoundException is expected");
+        assertWithMessage("Object should not be created")
+                .that(result)
+                .isEmpty();
         assertWithMessage("Invalid exception message")
                 .that(exc)
                 .hasMessageThat()
