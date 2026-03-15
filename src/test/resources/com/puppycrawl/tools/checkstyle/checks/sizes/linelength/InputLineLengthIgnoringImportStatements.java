@@ -1,9 +1,9 @@
 /*
 LineLength
-fileExtensions = (default)
+fileExtensions = (default)null
 ignorePattern = ^import.*
 max = 75
-
+tabWidth = (default)0
 
 */
 // Java17

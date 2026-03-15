@@ -1,10 +1,10 @@
 /*
 LineLength
-fileExtensions = (default)""
+fileExtensions = (default)null
 ignorePattern = ^.*is OK.*regexp.*$
 max = (default)80
 message.maxLineLen = {0},{1}
-
+tabWidth = (default)0
 
 */
 
