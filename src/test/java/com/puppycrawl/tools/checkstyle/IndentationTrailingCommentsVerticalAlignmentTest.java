@@ -25,12 +25,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class IndentationTrailingCommentsVerticalAlignmentTest {
@@ -38,17 +41,10 @@ public class IndentationTrailingCommentsVerticalAlignmentTest {
     private static final String INDENTATION_TEST_FILES_PATH =
         "com/puppycrawl/tools/checkstyle/checks/indentation/indentation";
 
-    private int tabWidth;
-
-    @BeforeEach
-    public void setUp() {
-        tabWidth = 4;
-    }
-
     @MethodSource("indentationTestFiles")
     @ParameterizedTest
-    public final void testTrailingCommentsAlignment(Path testFile) throws IOException {
-        final int currentTabWidth = tabWidth;
+    public final void testTrailingCommentsAlignment(Path testFile) throws Exception {
+        final int currentTabWidth = getTabWidth(testFile);
         final List<String> lines = Files.readAllLines(testFile);
         int expectedStartIndex = -1;
 
@@ -82,6 +78,63 @@ public class IndentationTrailingCommentsVerticalAlignmentTest {
                 }
             }
         }
+    }
+
+    private static int getTabWidth(Path testFile) throws Exception {
+        final Optional<Path> matchingConfig = findConfigForFile(testFile);
+        int result = 4;
+
+        if (matchingConfig.isPresent()) {
+            final Configuration config = ConfigurationLoader.loadConfiguration(
+                matchingConfig.get().toString(),
+                new PropertiesExpander(System.getProperties()));
+            result = extractTabWidthFromConfig(config);
+        }
+        return result;
+    }
+
+    private static Optional<Path> findConfigForFile(Path testFile) throws IOException {
+        final String fileName = testFile.getFileName().toString();
+        final Path configDir = Path.of("src", "test", "resources",
+            "com", "puppycrawl", "tools", "checkstyle",
+            "checks", "indentation", "indentation");
+        final Optional<Path> result;
+
+        try (Stream<Path> configs = Files.walk(configDir)) {
+            result = configs
+                .filter(path -> path.toString().endsWith(".xml"))
+                .filter(path -> isConfigFileContainingFileName(path, fileName))
+                .findFirst();
+        }
+        return result;
+    }
+
+    private static boolean isConfigFileContainingFileName(Path configPath, String fileName) {
+        boolean result;
+        try {
+            result = Files.readString(configPath).contains(fileName);
+        }
+        catch (IOException exception) {
+            result = false;
+        }
+        return result;
+    }
+
+    private static int extractTabWidthFromConfig(Configuration config) throws CheckstyleException {
+        int result = 4;
+        for (Configuration child : config.getChildren()) {
+            if ("TreeWalker".equals(child.getName())) {
+                for (Configuration module : child.getChildren()) {
+                    if ("IndentationCheck".equals(module.getName())
+                            || "Indentation".equals(module.getName())) {
+                        final IndentationCheck check = new IndentationCheck();
+                        check.configure(module);
+                        result = check.getIndentationTabWidth();
+                    }
+                }
+            }
+        }
+        return result;
     }
 
     private static Stream<Path> indentationTestFiles() {
