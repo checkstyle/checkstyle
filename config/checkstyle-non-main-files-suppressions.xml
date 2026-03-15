@@ -464,5 +464,4 @@
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]sizes[\\/]XpathRegressionRecordComponentNumberTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]whitespace[\\/]XpathRegressionEmptyForInitializerPadTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]whitespace[\\/]XpathRegressionEmptyForIteratorPadTest.java" />
-  <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]whitespace[\\/]XpathRegressionOperatorWrapTest.java" />
 </suppressions>
