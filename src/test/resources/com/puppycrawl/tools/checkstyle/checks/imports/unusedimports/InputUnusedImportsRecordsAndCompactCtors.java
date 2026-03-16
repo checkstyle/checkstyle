@@ -1,10 +1,10 @@
 /*
 UnusedImports
 processJavadoc = (default)true
+violateExecutionOnNonTightHtml = (default)false
 
 
 */
-
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
