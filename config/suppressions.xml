@@ -136,7 +136,6 @@
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocTypeCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocVariableCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocMethodCheck.java"/>
-  <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocTypeCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpSinglelineJavaCheck.java"/>
 
