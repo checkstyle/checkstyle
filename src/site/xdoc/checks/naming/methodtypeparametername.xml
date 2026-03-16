@@ -50,9 +50,9 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   public &lt;T&gt; void method1() {}
-  public &lt;a&gt; void method2() {} // violation
+  public &lt;a&gt; void method2() {} // violation 'Name 'a' must match pattern'
   public &lt;K, V&gt; void method3() {}
-  public &lt;k, V&gt; void method4() {} // violation
+  public &lt;k, V&gt; void method4() {} // violation 'Name 'k' must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
