@@ -4,12 +4,13 @@
     <module name="SummaryJavadoc">
       <property name="forbiddenSummaryFragments"
         value="^This method returns.*"/>
+      <property name="forbiddenInlineReturnFragments"
+        value="^@return the .*|^This method returns.*|^A [{]@code \\w+[}]( is a )"/>
     </module>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
-
 // xdoc section -- start
 class Example2 {
 
@@ -55,6 +56,5 @@ class Example2 {
   * </ul>}
   */
   public void m8() {}
-
 }
 // xdoc section -- end
