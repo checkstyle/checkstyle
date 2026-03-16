@@ -49,6 +49,14 @@
               <td>8.20</td>
             </tr>
             <tr>
+              <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
+     Tight-HTML Rules</a>.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.20</td>
+            </tr>
+            <tr>
               <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
@@ -75,6 +83,25 @@
                     ANNOTATION_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
                     RECORD_DEF</a>
+                  .
+              </td>
+              <td>8.20</td>
+            </tr>
+            <tr>
+              <td><a id="javadocTokens"/><a href="#javadocTokens">javadocTokens</a></td>
+              <td>javadoc tokens to check</td>
+              <td>subset of javadoc tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#JAVADOC_CONTENT">
+                    JAVADOC_CONTENT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#JAVADOC_BLOCK_TAG">
+                    JAVADOC_BLOCK_TAG</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#JAVADOC_CONTENT">
+                    JAVADOC_CONTENT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#JAVADOC_BLOCK_TAG">
+                    JAVADOC_BLOCK_TAG</a>
                   .
               </td>
               <td>8.20</td>
@@ -235,6 +262,16 @@ class Example5 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing%22">
               javadoc.missing
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+              javadoc.parse.rule.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+              javadoc.unclosedHtml
             </a>
           </li>
         </ul>
