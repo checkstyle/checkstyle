@@ -633,6 +633,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/illegalsymbol.html#IllegalSymbol">
+                IllegalSymbol
+              </a>
+            </td>
+            <td>
+              Checks that specified symbols (by Unicode code points or ranges) are not used in code.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/illegalthrows.html#IllegalThrows">
                 IllegalThrows
               </a>
@@ -2038,6 +2048,18 @@
             </td>
             <td>
               Checks that long constants are defined with an upper ell.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/useenhancedswitch.html#UseEnhancedSwitch">
+                UseEnhancedSwitch
+              </a>
+            </td>
+            <td>
+              Ensures that the enhanced switch (using <code>-&gt;</code> for case labels) is used
+              instead of the traditional switch (using <code>:</code> for case labels) where
+              possible.
             </td>
           </tr>
           <tr>

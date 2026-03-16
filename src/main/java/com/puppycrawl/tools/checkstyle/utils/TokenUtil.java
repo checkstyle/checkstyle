@@ -68,6 +68,30 @@ public final class TokenUtil {
     }
 
     /**
+     * Gets the IDENT token from the given AST node.
+     *
+     * <p>This method must only be used for AST types where the IDENT token
+     * is guaranteed to NEVER be null. The known types are:
+     * <ul>
+     * <li>{@link TokenTypes#METHOD_DEF}</li>
+     * <li>{@link TokenTypes#CLASS_DEF}</li>
+     * <li>{@link TokenTypes#VARIABLE_DEF}</li>
+     * <li>{@link TokenTypes#PARAMETER_DEF}, <b>but not receiver parameter</b>.</li>
+     * <li>{@link TokenTypes#INTERFACE_DEF}</li>
+     * <li>{@link TokenTypes#ENUM_DEF}</li>
+     * <li>{@link TokenTypes#ANNOTATION_DEF}</li>
+     * <li>{@link TokenTypes#RECORD_DEF}</li>
+     * <li>{@link TokenTypes#LITERAL_CATCH}</li>
+     * </ul>
+     *
+     * @param ast the AST node.
+     * @return the IDENT token (not null).
+     */
+    public static DetailAST getIdent(DetailAST ast) {
+        return NullUtil.notNull(ast.findFirstToken(TokenTypes.IDENT));
+    }
+
+    /**
      * Gets the value of a static or instance field of type int or of another primitive type
      * convertible to type int via a widening conversion. Does not throw any checked exceptions.
      *

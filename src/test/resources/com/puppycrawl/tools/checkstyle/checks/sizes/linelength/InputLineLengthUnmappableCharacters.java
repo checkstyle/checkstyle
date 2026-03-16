@@ -1,3 +1,10 @@
+/*
+LineLength
+max = 75
+ignorePattern = (default)^(package|import) .*
+tabWidth = (default)0
+fileExtensions = (default)null
+*/
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 
 public class InputLineLengthUnmappableCharacters {

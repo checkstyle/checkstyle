@@ -265,6 +265,13 @@
 
   <module name="TreeWalker">
     <property name="tabWidth" value="4"/>
+    <module name="MatchXpath">
+      <property name="id" value="MatchXpathForbidTryCatchFail"/>
+      <property name="query" value="//METHOD_CALL[./IDENT[@text='assertWithMessage']
+        and (./following-sibling::IDENT[@text='fail'])]"/>
+      <message key="matchxpath.match"
+               value="Exceptions should be validated by `getExpectedThrowable`."/>
+    </module>
 
     <!-- Annotations -->
     <module name="AnnotationLocation">
@@ -423,6 +430,12 @@
                        java.lang.Throwable,
                        java.lang.RuntimeException,
                        java.lang.NullPointerException"/>
+    </module>
+    <module name="IllegalSymbol">
+      <property name="symbolCodes"
+                value="0x2190-0x27BF, 0x1F600-0x1F64F, 0x1F680-0x1F6FF, 0x1F700-0x10FFFF"/>
+      <property name="tokens"
+                value="COMMENT_CONTENT,TEXT_BLOCK_CONTENT,IDENT,STRING_LITERAL,CHAR_LITERAL"/>
     </module>
     <module name="IllegalInstantiation">
       <property name="classes"
@@ -621,6 +634,7 @@
       <property name="severity" value="ignore"/>
     </module>
     <module name="UnusedLocalVariable"/>
+    <module name="UseEnhancedSwitch"/>
     <module name="VariableDeclarationUsageDistance"/>
     <module name="WhenShouldBeUsed"/>
 
@@ -859,6 +873,9 @@
     <module name="RecordTypeParameterName"/>
     <module name="RecordComponentName"/>
     <module name="ConstantName"/>
+    <module name="GoogleNonConstantFieldName">
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="InterfaceTypeParameterName"/>
     <module name="LocalFinalVariableName"/>
     <module name="LocalVariableName">

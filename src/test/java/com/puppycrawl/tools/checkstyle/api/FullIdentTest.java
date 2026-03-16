@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_ORDERING;
+import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_ORDERING_LEX;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -249,7 +249,9 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     public void testCreateFullIdentBelow2() throws Exception {
         final String[] expected = {
             "9:1: " + getCheckMessage(ImportOrderCheck.class,
-                    MSG_ORDERING, "java.util.HashMap"),
+                    MSG_ORDERING_LEX,
+                    "java.util.HashMap",
+                    "java.util.LinkedList"),
         };
 
         verifyWithInlineConfigParser(getPath("InputFullIdent.java"),

@@ -96,7 +96,10 @@
            In ArchUnitTest, ArchUnitSuperClassTest, ImmutabilityTest, ArchUnitCyclesCheckTest
            assertion calls are not required as they are called by the library.
            In MainTest PMD does not find asserts in lambdas called in the method
-             invokeAndWait. -->
+             invokeAndWait.
+           In FinalLocalVariableCheckTest, IllegalTypeCheckTest, MatchXpathCheckTest,
+             ReturnCountCheckTest PMD does not find asserts in getExpectedThrowable
+             utility method called from the test method. -->
       <!-- For AllCheckTest.testAllModulesAreReferencedInConfigFile,
            testAllCheckTokensAreReferencedInCheckstyleConfigFile,
            testAllCheckTokensAreReferencedInGoogleConfigFile,
@@ -130,7 +133,16 @@
                    | //ClassDeclaration[@SimpleName='SuppressionFilterTest']
                        //MethodDeclaration[starts-with(@Name, 'testUseCache')]
                    | //ClassDeclaration[@SimpleName='MainTest']
-                       //MethodDeclaration[starts-with(@Name, 'testMain')]"/>
+                       //MethodDeclaration[starts-with(@Name, 'testMain')]
+                   | //ClassDeclaration[@SimpleName='FinalLocalVariableCheckTest']
+                       //MethodDeclaration[@Name='testImproperToken']
+                   | //ClassDeclaration[@SimpleName='IllegalTypeCheckTest']
+                       //MethodDeclaration[@Name='testImproperToken']
+                   | //ClassDeclaration[@SimpleName='MatchXpathCheckTest']
+                       //MethodDeclaration[@Name='testInvalidQuery'
+                        or @Name='testEvaluationException']
+                   | //ClassDeclaration[@SimpleName='ReturnCountCheckTest']
+                       //MethodDeclaration[@Name='testImproperToken']"/>
     </properties>
   </rule>
 

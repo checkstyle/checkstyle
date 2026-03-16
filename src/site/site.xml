@@ -76,6 +76,7 @@
       <item name="Configuration" href="config.html">
         <item name="Property Types" href="property_types.html"/>
         <item name="System Properties" href="config_system_properties.html"/>
+        <item name="XPath" href="xpath.html"/>
       </item>
 
       <item name="Running" href="running.html">
@@ -140,6 +141,7 @@
           <item name="HiddenField" href="checks/coding/hiddenfield.html"/>
           <item name="IllegalCatch" href="checks/coding/illegalcatch.html"/>
           <item name="IllegalInstantiation" href="checks/coding/illegalinstantiation.html"/>
+          <item name="IllegalSymbol" href="checks/coding/illegalsymbol.html"/>
           <item name="IllegalThrows" href="checks/coding/illegalthrows.html"/>
           <item name="IllegalToken" href="checks/coding/illegaltoken.html"/>
           <item name="IllegalTokenText" href="checks/coding/illegaltokentext.html"/>
@@ -194,6 +196,8 @@
           <item name="UnusedLambdaParameterShouldBeUnnamed"
                 href="checks/coding/unusedlambdaparametershouldbeunnamed.html"/>
           <item name="UnusedLocalVariable" href="checks/coding/unusedlocalvariable.html"/>
+          <item name="UseEnhancedSwitch"
+                href="checks/coding/useenhancedswitch.html"/>
           <item name="VariableDeclarationUsageDistance"
                 href="checks/coding/variabledeclarationusagedistance.html"/>
           <item name="WhenShouldBeUsed"

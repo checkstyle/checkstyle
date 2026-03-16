@@ -245,14 +245,6 @@ public class XdocsPagesTest {
     private static final Set<String> OPENJDK_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigOpenJdkStyleModules());
 
-    /**
-     * Modules that are not included in checkstyle-checks.xml.
-     * These checks exist but are not activated in Checkstyle's internal configuration.
-     */
-    private static final Set<String> MODULES_NOT_IN_CHECKSTYLE_CONFIG = Set.of(
-        "GoogleNonConstantFieldName"
-    );
-
     private static final Set<String> NON_MODULE_XDOC = Set.of(
         "config_system_properties.xml",
         "sponsoring.xml",
@@ -276,7 +268,8 @@ public class XdocsPagesTest {
         "writingchecks.xml",
         "config.xml",
         "report_issue.xml",
-        "result_reports.xml"
+        "result_reports.xml",
+        "xpath.xml"
     );
 
     private static final String NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH =
@@ -1582,17 +1575,13 @@ public class XdocsPagesTest {
      * @return String form of property's default value.
      */
     private static String getIntArrayPropertyValue(Object value) {
-        final IntStream stream;
-        if (value instanceof Collection<?> collection) {
-            stream = collection.stream()
+        final IntStream stream = switch (value) {
+            case null -> throw new IllegalArgumentException("value is null");
+            case Collection<?> collection -> collection.stream()
                     .mapToInt(number -> (int) number);
-        }
-        else if (value instanceof BitSet set) {
-            stream = set.stream();
-        }
-        else {
-            stream = Arrays.stream((int[]) value);
-        }
+            case BitSet set -> set.stream();
+            default -> Arrays.stream((int[]) value);
+        };
         String result = stream
                 .mapToObj(TokenUtil::getTokenName)
                 .sorted()
@@ -1832,7 +1821,7 @@ public class XdocsPagesTest {
         }
 
         assertWithMessage("%s section '%s' should have a checkstyle section", fileName, sectionName)
-                .that(hasCheckstyle || MODULES_NOT_IN_CHECKSTYLE_CONFIG.contains(sectionName))
+                .that(hasCheckstyle)
                 .isTrue();
         assertWithMessage("%s section '%s' should have a google section since it is in it's config",
             fileName, sectionName)

@@ -238,6 +238,7 @@ EOF
   ;;
 
 no-error-pmd)
+  export MAVEN_OPTS="-XX:MaxRAMPercentage=75"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
@@ -288,7 +289,7 @@ EOF
   echo "Running Checkstyle on Apache-licensed modules..."
   readarray -t apache_files < <(find "${APACHE_SOURCES[@]}" \
     -name '*.java' ! -name 'module-info.java')
-  java -jar ../../target/checkstyle-"${CS_POM_VERSION}"-all.jar \
+  java -Xmx3g -jar ../../target/checkstyle-"${CS_POM_VERSION}"-all.jar \
     -c checkstyle/checkstyle.xml \
     -p checkstyle-apache.properties \
     "${apache_files[@]}"
@@ -309,7 +310,7 @@ EOF
   echo "Running Checkstyle on Community-licensed modules (hazelcast-sql)..."
   readarray -t community_files < <(find "${COMMUNITY_SOURCES[@]}" \
     -name '*.java' ! -name 'module-info.java')
-  java -jar ../../target/checkstyle-"${CS_POM_VERSION}"-all.jar \
+  java -Xmx3g -jar ../../target/checkstyle-"${CS_POM_VERSION}"-all.jar \
     -c checkstyle/checkstyle.xml \
     -p checkstyle-community.properties \
     "${community_files[@]}"
@@ -517,7 +518,7 @@ checkstyle-and-sevntu)
 spotbugs-and-pmd)
   mkdir -p .ci-temp/spotbugs-and-pmd
   CHECKSTYLE_DIR=$(pwd)
-  export MAVEN_OPTS='-Xmx2g'
+  export MAVEN_OPTS="-Xmx4g"
   ./mvnw -e --no-transfer-progress clean pmd:check
   ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
   cd .ci-temp/spotbugs-and-pmd
@@ -771,6 +772,7 @@ javac25)
   ;;
 
 package-site)
+  export MAVEN_OPTS="-Xmx5g"
   ./mvnw -e --no-transfer-progress package -Passembly,no-validations
   ./mvnw -e --no-transfer-progress site -Dlinkcheck.skip=true
   ;;
@@ -814,7 +816,9 @@ no-error-pgjdbc)
   checkout_from https://github.com/pgjdbc/pgjdbc.git
   cd .ci-temp/pgjdbc
   ./gradlew --no-parallel --no-daemon checkstyleAll \
-            -PenableMavenLocal -Pcheckstyle.version="${CS_POM_VERSION}"
+            -PenableMavenLocal -Pcheckstyle.version="${CS_POM_VERSION}" \
+            -Dorg.gradle.daemon=false \
+            -Dorg.gradle.jvmargs="-Xmx2g -XX:MaxMetaspaceSize=512m -Xms1g"
   cd ../
   removeFolderWithProtectedFiles pgjdbc
   ;;
@@ -1161,6 +1165,7 @@ no-exception-spring-framework)
   ;;
 
 no-exception-hbase)
+  export MAVEN_OPTS="-Xmx4g"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -1177,6 +1182,7 @@ no-exception-hbase)
   ;;
 
 no-exception-Pmd-elasticsearch-lombok-ast)
+  export MAVEN_OPTS="-Xmx4g"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
@@ -1195,6 +1201,7 @@ no-exception-Pmd-elasticsearch-lombok-ast)
   ;;
 
 no-exception-alot-of-projects)
+  export MAVEN_OPTS="-Xmx4g"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)

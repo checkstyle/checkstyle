@@ -11,17 +11,14 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 // xdoc section -- start
 import java.io.IOException;
 import java.net.URL;
-
-import java.io.IOException;
-// 2 violations above:
-//  'Extra separation in import group before 'java.io.IOException''
-//  'Wrong order for 'java.io.IOException' import.'
-import javax.net.ssl.TrustManager; // violation, extra separation due to above comment
+// violation below 'Extra separation in import group before 'java.io.IOException''
+import java.io.IOException; // violation 'Wrong lexicographical order for 'java.io.IOException' import. Should be before 'java.net.URL'.'
+import javax.net.ssl.TrustManager;
 import javax.swing.JComponent;
 import org.w3c.dom.Document;
-import java.util.Set; // violation, wrong order, 'java' should not come after 'org' imports
-import java.util.Map; // violation, wrong order, 'java' should not come after 'org' imports
-import com.sun.security.auth.UserPrincipal; // violation, wrong order
+import java.util.Set; // violation 'Wrong lexicographical order for 'java.util.Set' import. Should be before 'org.w3c.dom.Document'.'
+import java.util.Map; // violation 'Wrong lexicographical order for 'java.util.Map' import. Should be before 'java.util.Set'.'
+import com.sun.security.auth.UserPrincipal; // violation 'Wrong lexicographical order for 'com.sun.security.auth.UserPrincipal' import. Should be before 'java.util.Map'.'
 import com.sun.source.tree.Tree;
 // xdoc section -- end
 

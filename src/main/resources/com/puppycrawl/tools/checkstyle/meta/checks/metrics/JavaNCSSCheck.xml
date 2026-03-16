@@ -31,7 +31,70 @@
  Rationale: Too large methods and classes are hard to read and costly to maintain.
  A large NCSS number often means that a method or class has too many responsibilities
  and/or functionalities which should be decomposed into smaller units.
- &lt;/p&gt;</description>
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Here is a breakdown of what exactly is counted and not counted:
+ &lt;/p&gt;
+ &lt;div class="wrapper"&gt;
+ &lt;table&gt;
+ &lt;caption&gt;JavaNCSS metrics&lt;/caption&gt;
+ &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Structure&lt;/th&gt;&lt;th&gt;NCSS Count&lt;/th&gt;&lt;th&gt;Notes&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;&lt;td&gt;Package declaration&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;Counted at the terminating semicolon.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;Import declaration&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;Each single, static, or wildcard import counts as 1.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;Class, Interface, Annotation (&lt;code&gt;@interface&lt;/code&gt;)&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;Counted at the opening curly brace of the body.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;Method, Constructor&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;Counted at the declaration.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;Static initializer, Instance initializer&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;Both &lt;code&gt;static {}&lt;/code&gt; and bare &lt;code&gt;{}&lt;/code&gt; initializer blocks count as 1.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;Annotation type member&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;Each method-like member declaration inside &lt;code&gt;@interface&lt;/code&gt; counts as 1.
+ A standalone &lt;code&gt;;&lt;/code&gt; inside &lt;code&gt;@interface&lt;/code&gt; also counts as 1.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;Variable declaration&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;1 per statement regardless of how many variables are declared on that line.
+ &lt;code&gt;int x, y;&lt;/code&gt; counts as 1.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;&lt;code&gt;if&lt;/code&gt;&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;The &lt;code&gt;if&lt;/code&gt; keyword counts as 1.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;&lt;code&gt;else&lt;/code&gt;, &lt;code&gt;else if&lt;/code&gt;&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;The &lt;code&gt;else&lt;/code&gt; keyword counts as 1, separate from the &lt;code&gt;if&lt;/code&gt; count.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;&lt;code&gt;while&lt;/code&gt;, &lt;code&gt;do&lt;/code&gt;, &lt;code&gt;for&lt;/code&gt;&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;The keyword header counts as 1.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;&lt;code&gt;switch&lt;/code&gt;&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;The &lt;code&gt;switch&lt;/code&gt; keyword counts as 1.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;&lt;code&gt;case&lt;/code&gt;, &lt;code&gt;default&lt;/code&gt;&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;Every case and default label adds 1.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;&lt;code&gt;try&lt;/code&gt;&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;
+ &lt;td&gt;The &lt;code&gt;try&lt;/code&gt; keyword itself does not count.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;&lt;code&gt;catch&lt;/code&gt;&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;Each catch block counts as 1.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;&lt;code&gt;finally&lt;/code&gt;&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;The finally block counts as 1.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;&lt;code&gt;synchronized&lt;/code&gt;&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;The synchronized statement counts as 1.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;&lt;code&gt;return&lt;/code&gt;, &lt;code&gt;break&lt;/code&gt;, &lt;code&gt;continue&lt;/code&gt;, &lt;code&gt;throw&lt;/code&gt;&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;Each counts as 1.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;&lt;code&gt;assert&lt;/code&gt;&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;Each assert statement counts as 1, with or without a message expression.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;Labeled statement&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;label: statement&lt;/code&gt; counts as 1.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;Explicit constructor invocation&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;this()&lt;/code&gt; or &lt;code&gt;super()&lt;/code&gt; calls inside a constructor body
+ each count as 1.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;Expression statements (assignments, method calls)&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;Statement-level expressions terminated by &lt;code&gt;;&lt;/code&gt; count as 1.
+ A method call inside a &lt;code&gt;return&lt;/code&gt; does not add an extra count.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;Empty blocks {}&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;
+ &lt;td&gt;Empty curly braces do not increase the count.&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;Empty statements ;&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;
+ &lt;td&gt;Standalone semicolons outside of &lt;code&gt;@interface&lt;/code&gt; do not increase
+ the count.&lt;/td&gt;&lt;/tr&gt;
+ &lt;/tbody&gt;
+ &lt;/table&gt;
+ &lt;/div&gt;</description>
          <properties>
             <property default-value="1500" name="classMaximum" type="int">
                <description>Specify the maximum allowed number of non commenting lines in a class.</description>

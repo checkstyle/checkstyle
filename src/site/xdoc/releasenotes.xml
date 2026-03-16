@@ -10,6 +10,198 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 13.3.0">
+      <div class="releaseDate">28.02.2026</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Clean up grammar for discontinued preview feature (pattern matching for switch).
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/18146">#18146</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            NewCheck: UseEnhancedSwitch.
+            Author: Octavia Togami
+            <a href="https://github.com/checkstyle/checkstyle/issues/15180">#15180</a>
+          </li>
+          <li>
+            New Check: GoogleNonConstantFieldNameCheck to enforce Google Java Style Guide member
+            naming.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/18494">#18494</a>
+          </li>
+          <li>
+            new Check: LineEnding.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/18109">#18109</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Indentation check regression with &quot;new&quot;.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/9719">#9719</a>
+          </li>
+          <li>
+            Empty line separator is not enforced in `package-info.java` file.
+            Author: MonuChaudhary14
+            <a href="https://github.com/checkstyle/checkstyle/issues/17541">#17541</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Enforce file size on Java inputs.
+            Author: AsthaDhapodkar, Adam Gamil
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Re-enable inspections that were temporarily suppressed for Qodana.
+            Author: vivek-0509, ayushactiveat, Youssef Alaa
+            <a href="https://github.com/checkstyle/checkstyle/issues/18926">#18926</a>
+          </li>
+          <li>
+            Fix  PMD 7.1.0 Violations.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/14870">#14870</a>
+          </li>
+          <li>
+            Add missing property examples to XDocs for Checkstyle Checks.
+            Author: Tasneemmhammed0, Krish-876, Adam Gamil
+            <a href="https://github.com/checkstyle/checkstyle/issues/17449">#17449</a>
+          </li>
+          <li>
+            Pitest: examine and try to remove infinite loop mutations.
+            Author: Parthib Basu
+            <a href="https://github.com/checkstyle/checkstyle/issues/5673">#5673</a>
+          </li>
+          <li>
+            Remove from whitelist file odd words that came from test imput files.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/5741">#5741</a>
+          </li>
+          <li>
+            Fix xdocs Examples AST Consistency Test (Reduce suppressions list).
+            Author: avadhutmali, Isha Singh
+            <a href="https://github.com/checkstyle/checkstyle/issues/18435">#18435</a>
+          </li>
+          <li>
+            Resolve violation from RegExpDuplicateCharacterInClass inspection.
+            Author: Youssef Alaa
+            <a href="https://github.com/checkstyle/checkstyle/issues/11590">#11590</a>
+          </li>
+          <li>
+            SarifLoggerTest.java to use verifyWithInlineConfigParserAndLogger.
+            Author: Tasneemmhammed0, avadhutmali
+            <a href="https://github.com/checkstyle/checkstyle/issues/16361">#16361</a>
+          </li>
+          <li>
+            Resolve Pitest Suppressions - java-ast-visitor.
+            Author: Youssef Alaa
+            <a href="https://github.com/checkstyle/checkstyle/issues/18031">#18031</a>
+          </li>
+          <li>
+            Conver test from XpathFilterElementTest to SuppressionXpathSingleFilterTest to use
+            inlined config in Input files.
+            Author: daksh
+            <a href="https://github.com/checkstyle/checkstyle/issues/11440">#11440</a>
+          </li>
+          <li>
+            Update `JavadocCommentsTokenTypes.java` to new format of AST print.
+            Author: avadhutmali, Eric Tao
+            <a href="https://github.com/checkstyle/checkstyle/issues/17882">#17882</a>
+          </li>
+          <li>
+            Expand &quot;Writing Check&quot; to include XPath support.
+            Author: ayushactiveat
+            <a href="https://github.com/checkstyle/checkstyle/issues/5978">#5978</a>
+          </li>
+          <li>
+            Top comment should &#39;Compilable with Java22&#39;.
+            Author: ayushactiveat
+            <a href="https://github.com/checkstyle/checkstyle/issues/18939">#18939</a>
+          </li>
+          <li>
+            False positive: indentation inside of constructor parameters inside try block.
+            Author: Parthib Basu
+            <a href="https://github.com/checkstyle/checkstyle/issues/18614">#18614</a>
+          </li>
+          <li>
+            Updating properties in Input files to mention all default properties,.
+            Author: Tasneemmhammed0, Adam Gamil
+            <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>
+          </li>
+          <li>
+            Resolve error-prone violations.
+            Author: Youssef Alaa, Daniel Gao
+            <a href="https://github.com/checkstyle/checkstyle/issues/18599">#18599</a>
+          </li>
+          <li>
+            Organize openrewrite staticanalysis composite recipes by groups as it is done on
+            openrewrite website.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/18673">#18673</a>
+          </li>
+          <li>
+            Define violation messages for all violations.
+            Author: MostafaAbdulazziz
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            Find way to keep qodana yml in config folder.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/18882">#18882</a>
+          </li>
+          <li>
+            Fix typos and improve grammer in testing techniques guide.
+            Author: Anushree Bondia
+            <a href="https://github.com/checkstyle/checkstyle/issues/18518">#18518</a>
+          </li>
+          <li>
+            doc: Add DESCRIPTION token example with AST tree - Issue #17882.
+            Author: vivek-bandi
+          </li>
+          <li>
+            Clone `SpongePowered/Configurate` once SpongePowered/Configurate#617 is merged.
+            Author: Zaheer Ahmad
+            <a href="https://github.com/checkstyle/checkstyle/issues/18327">#18327</a>
+          </li>
+          <li>
+            Documentation examples for RegexpHeader and Header does not have any header.
+            Author: Anushree Bondia
+            <a href="https://github.com/checkstyle/checkstyle/issues/18868">#18868</a>
+          </li>
+          <li>
+            Activate Java 21 migration recipes in OpenRewrite CI.
+            Author: ayushactiveat
+            <a href="https://github.com/checkstyle/checkstyle/issues/18789">#18789</a>
+          </li>
+          <li>
+            Consolidate `no_output_timeout`.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/18889">#18889</a>
+          </li>
+          <li>
+            Resolve CheckerFramework violations.
+            Author: Daniel Gao
+            <a href="https://github.com/checkstyle/checkstyle/issues/14084">#14084</a>
+          </li>
+          <li>
+            migrate IDEA inpection in CI to most recent version.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17104">#17104</a>
+          </li>
+          <li>
+            Fix comment.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/18880">#18880</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 13.2.0">
       <div class="releaseDate">05.02.2026</div>
       <p>New:</p>

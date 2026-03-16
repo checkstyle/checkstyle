@@ -396,7 +396,7 @@ public class PackageObjectFactoryTest {
                 .isFalse();
         final Optional<String> optional2 = canonicalNames.stream().filter(canonicalName -> {
             return classes.stream().map(Class::getCanonicalName)
-                    .noneMatch(clssCanonicalName -> clssCanonicalName.equals(canonicalName));
+                    .noneMatch(classCanonicalName -> classCanonicalName.equals(canonicalName));
         }).findFirst();
         assertWithMessage("Invalid class: %s", optional2)
                 .that(optional2.isPresent())

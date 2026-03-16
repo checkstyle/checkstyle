@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
@@ -96,7 +97,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testExcludedPackageWithEndingDot() throws Exception {
+    public void testExcludedPackageWithEndingDot() {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
@@ -104,21 +105,18 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
         checkConfig.addProperty("excludedPackages",
             "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.");
 
-        try {
-            createChecker(checkConfig);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                    + "metrics.ClassDataAbstractionCouplingCheck");
-            assertWithMessage("Invalid exception message,")
-                .that(exc.getCause().getCause().getCause().getCause().getMessage())
-                .isEqualTo("the following values are not valid identifiers: ["
-                    + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.]");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> createChecker(checkConfig));
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                + "metrics.ClassDataAbstractionCouplingCheck");
+        assertWithMessage("Invalid exception message,")
+            .that(exc.getCause().getCause().getCause().getCause().getMessage())
+            .isEqualTo("the following values are not valid identifiers: ["
+                + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.]");
     }
 
     @Test
@@ -147,15 +145,12 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
             new ClassDataAbstractionCouplingCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonToken(TokenTypes.CTOR_DEF, "ctor"));
-        try {
-            classDataAbstractionCouplingCheckObj.visitToken(ast);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Unknown type: ctor[0x-1]");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> classDataAbstractionCouplingCheckObj.visitToken(ast));
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Unknown type: ctor[0x-1]");
     }
 
     @Test

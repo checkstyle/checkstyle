@@ -12,7 +12,7 @@
         <div>
           Checks for over-complicated boolean expressions. Currently, it finds code like
           <code>if (b == true)</code>, <code>b || true</code>, <code>!false</code>,
-          <code>boolean a = q > 12 ? true : false</code>,
+          <code>boolean a = q &gt; 12 ? true : false</code>,
           etc.
         </div>
 
