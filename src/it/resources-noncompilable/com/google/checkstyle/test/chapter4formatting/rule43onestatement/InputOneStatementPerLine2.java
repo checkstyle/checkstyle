@@ -40,6 +40,7 @@ public class InputOneStatementPerLine2 {
     // 2 violations above:
     //  ''{' at column 28 should have line break after.'
     //  ''{' at column 59 should have line break after.'
+
     ints.stream().map(t -> { int m = t * 2; return m; });
     // 2 violations above:
     //  ''{' at column 28 should have line break after.'

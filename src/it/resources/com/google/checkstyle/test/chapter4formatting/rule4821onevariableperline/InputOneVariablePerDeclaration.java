@@ -21,11 +21,13 @@ public class InputOneVariablePerDeclaration {
   // violation below 'Only one variable definition per line allowed.'
   java.lang.String string; java.lang.String[]
       strings;
+  // violation above 'Only one statement per line allowed.'
   // both definitions are wrapped
   // violation below 'Only one variable definition per line allowed.'
   java.lang
               .String string1; java.lang.String[]
                   strings1;
+  // violation above 'Only one statement per line allowed.'
 
   void method2() {
     for (int i = 0, j = 0; i < 10; i++, j--) { // ok
@@ -55,11 +57,14 @@ public class InputOneVariablePerDeclaration {
     // violation below 'Only one variable definition per line allowed.'
     java.lang.String string; java.lang.String[]
         strings;
+    // violation above 'Only one statement per line allowed.'
+
     // both definitions are wrapped
     // violation below 'Only one variable definition per line allowed.'
     java.lang
                 .String string1; java.lang.String[]
                     strings1;
+    // violation above 'Only one statement per line allowed.'
 
     void method2() {
       for (int i = 0, j = 0; i < 10; i++, j--) { // ok
@@ -90,12 +95,15 @@ public class InputOneVariablePerDeclaration {
               // violation below 'Only one variable definition per line allowed.'
               java.lang.String string; java.lang.String[]
                   strings;
+              // violation above 'Only one statement per line allowed.'
+
               // both definitions are wrapped
               // violation below 'Only one variable definition per line allowed.'
               java.lang
                   .String string1; java.lang.String[]
                       strings1;
               // violation 2 lines above '.* incorrect indentation .*, expected .*: 10, 12, 14.'
+              // violation 2 lines above 'Only one statement per line allowed.'
 
               void method2() {
                 for (int i = 0, j = 0; i < 10; i++, j--) { // ok
