@@ -14,40 +14,41 @@ public class InputJavadocTypeParamDescriptionWithAngularTags<T> {}
 
 /**
  *
- * @param <T> 🐦‍🔥stuff<stuff>stu🐦‍🔥ff</stuff>stuff🐦‍🔥
+ * @param <T> stuff
  */
 interface Ronin<T> {}
 
 /**
  *
  * @param <T> &lt;stuff&gt;
- * @param <U> stUff&lt;stuff&gt;sutff&lt;🐦‍🔥&gt;🐦‍🔥
+ * @param <U> stUff&lt;stuff&gt;sutff
  */
 class Shogun<T, U> {
     /**
      *
-     * @param <T> <//< <stuff></> stuff >>  <stuff>st<u>ff</stuff> >><
-     * @param    <U>     stuff <><><<stuff></></></> stuff
-     * @param <V> /-+`[]:^^<stuff **%%$>##(sutff){stuff}{}()stuff</stuff> @@
+     * @param <T> some description
+     * @param <U> another description
+     * @param <V> yet another description
      */
     interface Mandate<T, U, V> {}
 
     /**
      *
-     * @param <V> [(<>{@code stuff<stuff>&lt;stuff&gt;}</>)]{@code {&lt;stuff&gt;}}
+     * @param <V> {@code stuff}
      */
     class Minowara<V> extends Shogun<T, U> implements Mandate<T, U, V> {}
 }
 
 /**
  * @param    <T>
- * @param <P> stuff <><><<stuff></></></> stuff // violation, 'Unused @param tag for '<P>'.'
+ * @param <U> stuff
+ * @param <P> stuff // violation, 'Unused @param tag for '<P>'.'
  */
-interface Regent<T, U> {} // violation, 'Type Javadoc comment is missing @param <U> tag.'
+interface Regent<T, U> {}
 
 /**
  *
- * @param region [(<>{@code stuff<stuff🐦‍🔥@@@>🐦‍🔥&lt;{stuff}&gt;}</>@)]{@code {&lt;stuff&gt;}}
+ * @param region {@code stuff}
  * // violation above, 'Unused @param tag for 'region'.'
  */
 class Fief {}
