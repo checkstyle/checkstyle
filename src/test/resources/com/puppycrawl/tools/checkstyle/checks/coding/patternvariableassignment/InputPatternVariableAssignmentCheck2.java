@@ -63,7 +63,8 @@ public class InputPatternVariableAssignmentCheck2 {
         if (!(s instanceof Triangle r)) {
             return false;
         }
-        r = null; // ok until #17203
+        // violation below, "Assignment of pattern variable 'r' is not allowed."
+        r = null;
         return true;
      }
 
@@ -88,4 +89,19 @@ public class InputPatternVariableAssignmentCheck2 {
              return new StringHolder();
          }
      }
+
+     void method(Object obj) {
+        // Pattern variable definition (PATTERN_VARIABLE_DEF token)
+        if (obj instanceof String s) {
+            System.out.println(s); // Just using it, not assigning
+        }
+
+        // Variable definition (VARIABLE_DEF token)
+        int x = 5;
+
+        // SLIST token (block scope)
+        {
+            int y = 10;
+        }
+    }
 }
