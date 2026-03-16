@@ -396,8 +396,8 @@ class Example5 {
                         || (cond3 &amp;&amp; cond4)          // ok, lineWrappingIndentation
                         || !(cond5 &amp;&amp; cond6)) {      // ok, lineWrappingIndentation
                         field.toUpperCase()
-                                .concat(" TASK")             // ok, lineWrappingIndentation
-                                .chars().forEach(c -&gt; {      // ok, lineWrappingIndentation
+                                .concat(" TASK")             // ok,
+                                .chars().forEach(c -&gt; {      // ok,
                                         System.out.println((char) c);
                                 });
                 }
@@ -406,7 +406,7 @@ class Example5 {
         void demonstrateSwitch() throws Exception {
                 switch (field) {
                     case "EXAMPLE": processValues();                        // caseIndent
-                    case "COMPLETED": handleValue("Completed Case", 456);   // caseIndent
+                    case "COMPLETED": handleValue("Completed Case", 456);
                 }
         }
 }
