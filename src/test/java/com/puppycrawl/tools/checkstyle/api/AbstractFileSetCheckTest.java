@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -114,17 +115,13 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         final File firstFile = new File("inputAbstractFileSetCheck.tmp");
 
         final FileText fileText = new FileText(firstFile, Collections.emptyList());
-        try {
-            check.process(firstFile, fileText);
-            assertWithMessage("Exception is expected")
-                    .fail();
-        }
-        catch (IllegalArgumentException exc) {
-            // exception is expected
-            assertWithMessage("Invalid exception message")
-                    .that(exc.getMessage())
-                    .isEqualTo("Test");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    check.process(firstFile, fileText);
+                }, "Exception is expected");
+        assertWithMessage("Invalid exception message")
+                .that(exc.getMessage())
+                .isEqualTo("Test");
 
         final SortedSet<Violation> internalViolations =
                 check.getViolations();
@@ -135,17 +132,13 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         // again to prove only 1 violation exists
         final File secondFile = new File("inputAbstractFileSetCheck.tmp");
         final FileText fileText2 = new FileText(secondFile, Collections.emptyList());
-        try {
-            check.process(secondFile, fileText2);
-            assertWithMessage("Exception is expected")
-                .fail();
-        }
-        catch (IllegalArgumentException exc) {
-            // exception is expected
-            assertWithMessage("Invalid exception message")
-                    .that(exc.getMessage())
-                    .isEqualTo("Test");
-        }
+        final IllegalArgumentException exc2 =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    check.process(secondFile, fileText2);
+                }, "Exception is expected");
+        assertWithMessage("Invalid exception message")
+                .that(exc2.getMessage())
+                .isEqualTo("Test");
 
         final SortedSet<Violation> internalViolations2 =
             check.getViolations();
@@ -171,16 +164,13 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSetExtensionThrowsExceptionWhenTheyAreNull() {
         final DummyFileSetCheck check = new DummyFileSetCheck();
-        try {
-            check.setFileExtensions((String[]) null);
-            assertWithMessage("Expected exception.")
-                .fail();
-        }
-        catch (IllegalArgumentException exception) {
-            assertWithMessage("Invalid exception message")
-                    .that(exception.getMessage())
-                    .isEqualTo("Extensions array can not be null");
-        }
+        final IllegalArgumentException exception =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    check.setFileExtensions((String[]) null);
+                }, "Expected exception.");
+        assertWithMessage("Invalid exception message")
+                .that(exception.getMessage())
+                .isEqualTo("Extensions array can not be null");
     }
 
     @Test

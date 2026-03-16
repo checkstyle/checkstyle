@@ -31,6 +31,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import de.thetaphi.forbiddenapis.SuppressForbidden;
 
@@ -327,17 +328,18 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetOption() {
         final AnnotationUseStyleCheck check = new AnnotationUseStyleCheck();
-        try {
-            check.setElementStyle("SHOULD_PRODUCE_ERROR");
-            assertWithMessage("ConversionException is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            final String messageStart = "unable to parse";
+        final IllegalArgumentException exc =
+            TestUtil.getExpectedThrowable(
+                IllegalArgumentException.class, () -> {
+                    check.setElementStyle(
+                        "SHOULD_PRODUCE_ERROR");
+                });
+        final String messageStart = "unable to parse";
 
-            assertWithMessage("Invalid exception message, should start with: " + messageStart)
-                    .that(exc.getMessage())
-                    .startsWith(messageStart);
-        }
+        assertWithMessage("Invalid exception message, "
+                + "should start with: " + messageStart)
+                .that(exc.getMessage())
+                .startsWith(messageStart);
     }
 
     @Test

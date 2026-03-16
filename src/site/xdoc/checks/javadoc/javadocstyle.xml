@@ -621,7 +621,72 @@ public class Example7 {
   // violation 4 lines above 'Javadoc has empty description section'
 }
 </code></pre></div>
-      </subsection>
+
+        <hr class="example-separator"/>
+              <p id="Example8-config">
+                To configure the Check to use custom end of sentence format:
+              </p>
+              <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocStyle"&gt;
+      &lt;property name="endOfSentenceFormat"
+        value="([.。][ \t\n\r\f&amp;lt;])|([.。]$)"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+              <p id="Example8-code">Example8:</p>
+              <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+ * Some description here。
+ */
+public class Example8 {
+  Example8() {}
+  /**
+   * Some description here.
+   */
+  private void testMethod1() {}
+  /**
+   * Some description here。
+   */
+  private boolean testMethod2() {
+    return true;
+  }
+  /**
+   * Some description here?
+   */
+  private void testMethod3() {
+    // violation 4 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here!
+   */
+  public void testMethod4() {
+    // violation 4 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here
+   * Second line of description
+   */
+  private void testMethod5() {
+    // violation 5 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here
+   * &lt;p
+   */
+  private void testMethod6() { // violation 4 lines above 'should end with a period'
+    // violation 3 lines above 'Incomplete HTML tag found'
+  }
+  /**
+   *
+   */
+  private void testEmptyMethod() {}
+}
+</code></pre></div>
+              </subsection>
 
       <subsection name="Example of Usage" id="JavadocStyle_Example_of_Usage">
         <ul>

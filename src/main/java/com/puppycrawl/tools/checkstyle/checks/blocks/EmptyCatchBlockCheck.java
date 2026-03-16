@@ -25,6 +25,8 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
@@ -208,8 +210,9 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
      * @return Variable's name associated with exception.
      */
     private static String getExceptionVariableName(DetailAST catchAst) {
-        final DetailAST parameterDef = catchAst.findFirstToken(TokenTypes.PARAMETER_DEF);
-        final DetailAST variableName = parameterDef.findFirstToken(TokenTypes.IDENT);
+        final DetailAST parameterDef = NullUtil.notNull(
+                catchAst.findFirstToken(TokenTypes.PARAMETER_DEF));
+        final DetailAST variableName = TokenUtil.getIdent(parameterDef);
         return variableName.getText();
     }
 

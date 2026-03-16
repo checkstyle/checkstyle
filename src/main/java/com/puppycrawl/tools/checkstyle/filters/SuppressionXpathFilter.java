@@ -183,7 +183,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </p>
  *
  * <p>
- * A <a href="/dtds/suppressions_1_2_xpath_experimental.dtd"><em>suppressions XML
+ * A <a href="/dtds/suppressions_1_2_xpath.dtd"><em>suppressions XML
  * document</em></a> contains a set
  * of {@code suppress} and {@code suppress-xpath} elements, where
  * each {@code suppress-xpath} element can have the

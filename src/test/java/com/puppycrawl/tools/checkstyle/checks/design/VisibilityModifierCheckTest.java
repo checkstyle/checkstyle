@@ -368,15 +368,14 @@ public class VisibilityModifierCheckTest
         final VisibilityModifierCheck obj = new VisibilityModifierCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonToken(TokenTypes.CLASS_DEF, "class"));
-        try {
-            obj.visitToken(ast);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Unexpected token type: class");
-        }
+        final IllegalArgumentException exc =
+            TestUtil.getExpectedThrowable(
+                IllegalArgumentException.class, () -> {
+                    obj.visitToken(ast);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Unexpected token type: class");
     }
 
     @Test

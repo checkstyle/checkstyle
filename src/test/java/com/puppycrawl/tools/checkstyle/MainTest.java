@@ -109,23 +109,23 @@ public class MainTest {
                   + "DefaultLogger respectively. Defaults to%n"
                   + "                              plain.%n"
                   + "  -g, --generate-xpath-suppression%n"
-                  + "                            Generates to output a xpath suppression xml to use"
+                  + "                            Generates an output xpath suppression XML to use"
                   + " to suppress all%n"
                   + "                              violations from user's config. Instead of"
                   + " printing every violation,%n"
-                  + "                              all violations will be catched and single"
+                  + "                              all violations will be caught and single"
                   + " suppressions xml file will%n"
                   + "                              be printed out. Used only with -c option. Output"
                   + " location can be%n"
                   + "                              specified with -o option.%n"
                   + "  -G, --generate-checks-and-files-suppression%n"
-                  + "                            Generates to output a suppression xml that will"
+                  + "                            Generates an output suppression XML that will"
                   + " have suppress elements%n"
                   + "                              with \"checks\" and \"files\" attributes only to"
                   + " use to suppress all%n"
                   + "                              violations from user's config. Instead of"
                   + " printing every violation,%n"
-                  + "                              all violations will be catched and single"
+                  + "                              all violations will be caught and single"
                   + " suppressions xml file will%n"
                   + "                              be printed out. Used only with -c option. Output"
                   + " location can be%n"
@@ -1393,9 +1393,9 @@ public class MainTest {
         final String expected = addEndOfLine(
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
                 "<!DOCTYPE suppressions PUBLIC",
-                "    \"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2"
+                "    \"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2"
                     + "//EN\"",
-                "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">",
+                "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd\">",
                 "<suppressions>",
                 "  <suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
@@ -1427,9 +1427,9 @@ public class MainTest {
         final String expected = addEndOfLine(
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
             "<!DOCTYPE suppressions PUBLIC",
-            "    \"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2"
+            "    \"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2"
                 + "//EN\"",
-            "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">",
+            "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd\">",
             "<suppressions>",
             "  <suppress-xpath",
             "       files=\"InputMainGenerateXpathSuppressions.java\"",
@@ -1485,9 +1485,9 @@ public class MainTest {
         final String expected = addEndOfLine(
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
                 "<!DOCTYPE suppressions PUBLIC",
-                "    \"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2"
+                "    \"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2"
                     + "//EN\"",
-                "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">",
+                "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd\">",
                 "<suppressions>",
                 "  <suppress-xpath",
                 "       files=\"InputMainGenerateXpathSuppressionsTabWidth.java\"",
@@ -1517,9 +1517,9 @@ public class MainTest {
         final String expected = addEndOfLine(
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
                 "<!DOCTYPE suppressions PUBLIC",
-                "    \"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2"
+                "    \"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2"
                     + "//EN\"",
-                "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">",
+                "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd\">",
                 "<suppressions>",
                 "  <suppress-xpath",
                 "       files=\"InputMainGenerateXpathSuppressionsTabWidth.java\"",

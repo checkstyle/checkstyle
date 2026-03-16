@@ -268,7 +268,8 @@ public class XdocsPagesTest {
         "writingchecks.xml",
         "config.xml",
         "report_issue.xml",
-        "result_reports.xml"
+        "result_reports.xml",
+        "xpath.xml"
     );
 
     private static final String NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH =
@@ -1574,17 +1575,13 @@ public class XdocsPagesTest {
      * @return String form of property's default value.
      */
     private static String getIntArrayPropertyValue(Object value) {
-        final IntStream stream;
-        if (value instanceof Collection<?> collection) {
-            stream = collection.stream()
+        final IntStream stream = switch (value) {
+            case null -> throw new IllegalArgumentException("value is null");
+            case Collection<?> collection -> collection.stream()
                     .mapToInt(number -> (int) number);
-        }
-        else if (value instanceof BitSet set) {
-            stream = set.stream();
-        }
-        else {
-            stream = Arrays.stream((int[]) value);
-        }
+            case BitSet set -> set.stream();
+            default -> Arrays.stream((int[]) value);
+        };
         String result = stream
                 .mapToObj(TokenUtil::getTokenName)
                 .sorted()
