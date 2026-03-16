@@ -294,4 +294,50 @@ public class SuppressFilterElementTest {
                 .isTrue();
     }
 
+    /**
+     * We cannot use standard Input files for this test because we need to explicitly
+     * simulate a Windows path separator ('\') to verify the fallback logic. If we used
+     * real Input files, the path separator would be '/' when tests run on Linux CI.
+     */
+    @Test
+    public void testWindowsPathSeparatorFallback() {
+        final SuppressFilterElement testFilter = new SuppressFilterElement(
+                "/src/main/java/MyClass\\.java", null, null, null, null, null);
+
+        final Violation violation = new Violation(1, 0, "", "", null, null, getClass(), null);
+        final AuditEvent event = new AuditEvent(this,
+                "C:\\src\\main\\java\\MyClass.java", violation);
+
+        assertWithMessage("Windows file path should match Unix-style regex")
+                .that(testFilter.accept(event))
+                .isFalse();
+    }
+
+    @Test
+    public void testWindowsPathSeparatorFallbackNoMatch() {
+        final SuppressFilterElement testFilter = new SuppressFilterElement(
+                "/src/main/java/MyClass\\.java", null, null, null, null, null);
+
+        final Violation violation = new Violation(1, 0, "", "", null, null, getClass(), null);
+        final AuditEvent event = new AuditEvent(this,
+                "C:\\src\\main\\java\\OtherClass.java", violation);
+
+        assertWithMessage("Windows file path should not match regex for different file")
+                .that(testFilter.accept(event))
+                .isTrue();
+    }
+
+    @Test
+    public void testWindowsPathSeparatorFallbackWithBackslashesInRegex() {
+        final SuppressFilterElement testFilter = new SuppressFilterElement(
+                "\\\\MyClass\\.java", null, null, null, null, null);
+
+        final Violation violation = new Violation(1, 0, "", "", null, null, getClass(), null);
+        final AuditEvent event = new AuditEvent(this,
+                "\\MyClass.java", violation);
+
+        assertWithMessage("Path with backslash should match regex with backslash")
+                .that(testFilter.accept(event))
+                .isFalse();
+    }
 }
