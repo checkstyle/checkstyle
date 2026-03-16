@@ -5,6 +5,7 @@ scope = (default)public
 skipAnnotations = SomeAnnotation, InputMissingJavadocTypeQualifiedAnnotation5.SomeAnnotation, \
     com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype.\
     InputMissingJavadocTypeQualifiedAnnotation5.SomeAnnotation
+violateExecutionOnNonTightHtml = (default)false
 tokens = INTERFACE_DEF
 
 
