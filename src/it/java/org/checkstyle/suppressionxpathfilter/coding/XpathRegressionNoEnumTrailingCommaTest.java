@@ -86,4 +86,27 @@ public class XpathRegressionNoEnumTrailingCommaTest extends AbstractXpathTestSup
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
+    @Test
+    public void testInnerClass() throws Exception {
+        final File fileToProcess = new File(getPath(
+                "InputXpathNoEnumTrailingCommaInnerClass.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(NoEnumTrailingCommaCheck.class);
+
+        final String[] expectedViolation = {
+            "7:16: " + getCheckMessage(NoEnumTrailingCommaCheck.class,
+                    NoEnumTrailingCommaCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputXpathNoEnumTrailingCommaInnerClass']]"
+                    + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]/OBJBLOCK/ENUM_DEF"
+                    + "[./IDENT[@text='Foo']]/OBJBLOCK/COMMA[2]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
 }
