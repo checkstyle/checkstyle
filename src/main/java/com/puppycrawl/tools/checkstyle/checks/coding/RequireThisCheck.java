@@ -261,18 +261,9 @@ public class RequireThisCheck extends AbstractCheck {
      * @param ast IDENT to check.
      */
     private void processIdent(DetailAST ast) {
-        int parentType = ast.getParent().getType();
-        if (parentType == TokenTypes.EXPR
-                && ast.getParent().getParent().getParent().getType()
-                    == TokenTypes.ANNOTATION_FIELD_DEF) {
-            parentType = TokenTypes.ANNOTATION_FIELD_DEF;
-        }
-        switch (parentType) {
-            case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR, TokenTypes.ANNOTATION,
-                 TokenTypes.ANNOTATION_FIELD_DEF -> {
-                // no need to check annotations content
-            }
-            case TokenTypes.METHOD_CALL -> {
+        if (!isInsideAnnotation(ast)) {
+            final int parentType = ast.getParent().getType();
+            if (parentType == TokenTypes.METHOD_CALL) {
                 if (checkMethods) {
                     final AbstractFrame frame = getMethodWithoutThis(ast);
                     if (frame != null) {
@@ -280,7 +271,7 @@ public class RequireThisCheck extends AbstractCheck {
                     }
                 }
             }
-            default -> {
+            else {
                 if (checkFields) {
                     final AbstractFrame frame = getFieldWithoutThis(ast, parentType);
                     final boolean canUseThis = !isInCompactConstructor(ast);
@@ -290,6 +281,37 @@ public class RequireThisCheck extends AbstractCheck {
                 }
             }
         }
+    }
+
+    /**
+     * Checks whether the given IDENT is inside an annotation.
+     *
+     * @param ast IDENT token
+     * @return true if IDENT is inside annotation definition or its default value
+     */
+    private static boolean isInsideAnnotation(DetailAST ast) {
+        DetailAST current = ast;
+        boolean insideAnnotation = false;
+        while (current != null) {
+            if (isAnnotationToken(current.getType())) {
+                insideAnnotation = true;
+                break;
+            }
+            current = current.getParent();
+        }
+        return insideAnnotation;
+    }
+
+    /**
+     * Checks if the token is an annotation-related token.
+     *
+     * @param type the token type
+     * @return true if the token is an annotation-related token
+     */
+    private static boolean isAnnotationToken(int type) {
+        return type == TokenTypes.ANNOTATION
+                || type == TokenTypes.ANNOTATION_FIELD_DEF
+                || type == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR;
     }
 
     /**
@@ -447,6 +469,7 @@ public class RequireThisCheck extends AbstractCheck {
             final DetailAST mods =
                     ast.findFirstToken(TokenTypes.MODIFIERS);
             if (ScopeUtil.isInInterfaceBlock(ast)
+                    || ScopeUtil.isInAnnotationBlock(ast)
                     || mods.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
                 ((ClassFrame) frame).addStaticMember(ident);
             }
