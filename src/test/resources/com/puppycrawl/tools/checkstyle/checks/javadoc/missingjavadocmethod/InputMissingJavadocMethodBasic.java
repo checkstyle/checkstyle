@@ -1,5 +1,6 @@
 /*
 MissingJavadocMethod
+ignoreMethodsWithImplementation = (default)false
 minLineCount = (default)-1
 allowedAnnotations = (default)Override
 scope = (default)public
