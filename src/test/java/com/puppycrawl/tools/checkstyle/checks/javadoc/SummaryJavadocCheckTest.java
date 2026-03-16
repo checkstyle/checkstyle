@@ -201,11 +201,10 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "57:8: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "64:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "74:8: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            // Until https://github.com/checkstyle/checkstyle/issues/11425
-            "82:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "93:8: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "103:8: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "110:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "81:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "92:8: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "102:8: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "109:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
         };
 
         verifyWithInlineConfigParser(
@@ -409,10 +408,9 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSummaryJavadocLargeJavaDoc() throws Exception {
         final String[] expected = {
-            "13:4: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "27:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "41:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "61:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "26:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "40:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "60:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
         };
 
         verifyWithInlineConfigParser(
@@ -427,5 +425,20 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocForbiddenFragmentsTabFormatted.java"), expected);
+    }
+
+    @Test
+    public void testNestedHtmlSummary() throws Exception {
+        final String[] expected = {
+            "38:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "44:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "50:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "56:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "62:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "85:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocNestedHtml.java"), expected);
     }
 }

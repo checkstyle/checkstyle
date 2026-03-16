@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -90,6 +91,16 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     /** Default period literal. */
     private static final String DEFAULT_PERIOD = ".";
+
+    /**
+     * Set of inline and formatting HTML tags that can legitimately wrap Javadoc summary text.
+     * Block-level tags like {@code pre}, {@code ul}, {@code ol}, {@code li}, {@code table},
+     * {@code div}, and {@code blockquote} are excluded as they do not represent summary content.
+     */
+    private static final Set<String> INLINE_HTML_TAGS = Set.of(
+        "p", "b", "strong", "i", "em", "code",
+        "a", "span", "u", "sub", "sup", "small", "big"
+    );
 
     /**
      * Specify the regexp for forbidden summary fragments.
@@ -462,6 +473,19 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             while (tempNode != null) {
                 if (tempNode.getType() == JavadocCommentsTokenTypes.TEXT) {
                     contents.append(tempNode.getText());
+                }
+                else {
+                    final DetailNode htmlTagStart = JavadocUtil.findFirstToken(
+                            tempNode, JavadocCommentsTokenTypes.HTML_TAG_START);
+                    if (htmlTagStart != null) {
+                        final DetailNode tagName = JavadocUtil.findFirstToken(
+                                htmlTagStart, JavadocCommentsTokenTypes.TAG_NAME);
+                        if (INLINE_HTML_TAGS.contains(tagName.getText())) {
+                            final DetailNode htmlContentToken = JavadocUtil.findFirstToken(
+                                    tempNode, JavadocCommentsTokenTypes.HTML_CONTENT);
+                            contents.append(getStringInsideHtmlTag("", htmlContentToken));
+                        }
+                    }
                 }
                 tempNode = tempNode.getNextSibling();
             }
