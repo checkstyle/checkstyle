@@ -56,6 +56,11 @@
             <property name="ignoreMethodNamesRegex" type="java.util.regex.Pattern">
                <description>Ignore method whose names are matching specified regex.</description>
             </property>
+            <property default-value="false"
+                      name="ignoreMethodsWithImplementation"
+                      type="boolean">
+               <description>Control whether to ignore methods with implementation.</description>
+            </property>
             <property default-value="-1" name="minLineCount" type="int">
                <description>Control the minimal amount of lines in method to allow no documentation.</description>
             </property>
