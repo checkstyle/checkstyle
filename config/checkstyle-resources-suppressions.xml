@@ -505,6 +505,10 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]java14[\\/]InputJava14SwitchExpression\.java"/>
   <suppress checks="FileLength"
+    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppresswarningsfilter[\\/]InputSuppressWarningsFilter\.java"/>
+  <suppress checks="FileLength"
+    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppresswarningsfilter[\\/]InputSuppressWarningsFilterWithoutFilter\.java"/>
+  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]java14[\\/]InputJava14InstanceofWithPatternMatching\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]java14[\\/]InputJava14Records\.java"/>
