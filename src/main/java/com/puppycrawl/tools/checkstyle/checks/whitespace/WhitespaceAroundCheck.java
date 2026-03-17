@@ -333,8 +333,8 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         final int currentType = ast.getType();
         if (!isNotRelevantSituation(ast, currentType)) {
             final int[] line = getLineCodePoints(ast.getLineNo() - 1);
-            final int before = ast.getColumnNo() - 1;
-            final int after = ast.getColumnNo() + ast.getText().length();
+            final int before = ast.getColumnNo() - 2;
+            final int after = ast.getColumnNo() - 1 + ast.getText().length();
 
             if (before >= 0 && shouldCheckSeparationFromPreviousToken(ast)
                         && !CommonUtil.isCodePointWhitespace(line, before)) {

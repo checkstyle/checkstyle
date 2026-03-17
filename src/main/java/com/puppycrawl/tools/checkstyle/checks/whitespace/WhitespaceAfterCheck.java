@@ -150,7 +150,7 @@ public class WhitespaceAfterCheck
      */
     private static boolean isFollowedByWhitespace(DetailAST targetAST, int... line) {
         final int after =
-            targetAST.getColumnNo() + targetAST.getText().length();
+            targetAST.getColumnNo() - 1 + targetAST.getText().length();
         boolean followedByWhitespace = true;
 
         if (after < line.length) {
