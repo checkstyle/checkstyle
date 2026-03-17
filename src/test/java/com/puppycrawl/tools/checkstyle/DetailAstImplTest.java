@@ -123,7 +123,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
             .isEqualTo(2);
         assertWithMessage("Invalid column number")
             .that(ast.getColumnNo())
-            .isEqualTo(3);
+            .isEqualTo(4);
     }
 
     @Test

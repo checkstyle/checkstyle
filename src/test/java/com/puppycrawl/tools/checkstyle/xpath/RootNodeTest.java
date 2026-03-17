@@ -107,7 +107,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testGetColumnNumber() {
         assertWithMessage("Invalid column number")
             .that(rootNode.getColumnNumber())
-            .isEqualTo(0);
+            .isEqualTo(1);
     }
 
     /*
