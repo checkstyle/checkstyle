@@ -107,13 +107,12 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testGetColumnNumber() {
         assertWithMessage("Invalid column number")
             .that(rootNode.getColumnNumber())
-            .isEqualTo(0);
+            .isEqualTo(1);
     }
 
     /*
      * This test exists to cover pitest mutation.
-     * It is impossible to create RootNode that does not have column as 0.
-     * Test exists until https://github.com/checkstyle/checkstyle/issues/4997
+     * It is impossible to create RootNode that does not have column as 1.
      */
     @Test
     public void testNonRealGetColumnNumber() {
