@@ -1,7 +1,9 @@
 /*
 LocalVariableName
+
 format = ^[a-z]{2,}[a-zA-Z0-9]*$
 allowOneCharVarInForLoop = true
+tokens = (default)VARIABLE_DEF
 
 
 */
