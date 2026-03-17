@@ -96,4 +96,32 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
 
+    @Test
+    public void testInnerClassFields() throws Exception {
+        final File fileToProcess = new File(
+            getPath("InputXpathAvoidDoubleBraceInitializationInnerClassFields.java"));
+
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
+
+        final String[] expectedViolation = {
+            "9:76: " + getCheckMessage(CLAZZ, AvoidDoubleBraceInitializationCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathAvoidDoubleBraceInitializationInnerClassFields']]/"
+                + "OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/METHOD_DEF"
+                + "[./IDENT[@text='doInitialize']]/SLIST/EXPR/LITERAL_NEW[./IDENT"
+                + "[@text='InputXpathAvoidDoubleBraceInitializationInnerClassFields']]/OBJBLOCK",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathAvoidDoubleBraceInitializationInnerClassFields']]/"
+                + "OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
+                + "METHOD_DEF[./IDENT[@text='doInitialize']]/SLIST/EXPR/LITERAL_NEW"
+                + "[./IDENT[@text='InputXpathAvoidDoubleBraceInitializationInnerClassFields']]"
+                + "/OBJBLOCK/LCURLY"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
+
 }
