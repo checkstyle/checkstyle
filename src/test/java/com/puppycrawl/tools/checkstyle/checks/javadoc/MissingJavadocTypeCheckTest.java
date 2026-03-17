@@ -38,6 +38,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final MissingJavadocTypeCheck missingJavadocTypeCheck = new MissingJavadocTypeCheck();
+        missingJavadocTypeCheck.visitJavadocToken(null);
         assertWithMessage(
                 "MissingJavadocTypeCheck#getRequiredTokens should return empty array by default")
                         .that(missingJavadocTypeCheck.getRequiredTokens())
@@ -440,7 +441,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testMissingJavadocTypeAboveComments() throws Exception {
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "27:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "28:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
             getPath("InputMissingJavadocTypeAboveComments.java"),
