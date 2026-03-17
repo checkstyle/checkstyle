@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.site;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Set;
 
 import org.apache.maven.doxia.macro.AbstractMacro;
@@ -110,15 +112,17 @@ public class ViolationMessagesMacro extends AbstractMacro {
     /**
      * Constructs a URL to GitHub that searches for the message key.
      *
-     * @param clss the class of the module.
+     * @param cls the class of the module.
      * @param messageKey the message key.
      * @return the URL to GitHub.
      */
-    private static String constructMessageKeyUrl(Class<?> clss, String messageKey) {
+    private static String constructMessageKeyUrl(Class<?> cls, String messageKey) {
+        final String query = "path:src/main/resources/"
+                + cls.getPackage().getName().replace('.', '/')
+                + " path:**/messages*.properties repo:checkstyle/checkstyle \""
+                + messageKey + "\"";
+
         return "https://github.com/search?q="
-                + "path%3Asrc%2Fmain%2Fresources%2F"
-                + clss.getPackage().getName().replace(".", "%2F")
-                + "%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2F"
-                + "checkstyle+%22" + messageKey + "%22";
+                + URLEncoder.encode(query, StandardCharsets.UTF_8);
     }
 }
