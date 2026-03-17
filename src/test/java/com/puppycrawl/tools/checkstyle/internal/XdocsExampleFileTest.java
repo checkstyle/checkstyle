@@ -55,7 +55,6 @@ public class XdocsExampleFileTest {
         "violateExecutionOnNonTightHtml"
     );
 
-    // This list is temporarily suppressed.
     // Until: https://github.com/checkstyle/checkstyle/issues/17449
     private static final Map<String, Set<String>> SUPPRESSED_PROPERTIES_BY_CHECK = Map.ofEntries(
             Map.entry("SuppressWarningsHolder", Set.of("aliasList")),
