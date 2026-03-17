@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.util.Collection;
@@ -152,15 +153,12 @@ public class IllegalInstantiationCheckTest
         lambdaAst.setType(TokenTypes.LAMBDA);
         lambdaAst.setText("LAMBDA");
 
-        try {
-            check.visitToken(lambdaAst);
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Message must include token name")
-                .that(exc.getMessage())
-                .contains("LAMBDA");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> check.visitToken(lambdaAst));
+        assertWithMessage("Message must include token name")
+            .that(exc.getMessage())
+            .contains("LAMBDA");
     }
 
     /**

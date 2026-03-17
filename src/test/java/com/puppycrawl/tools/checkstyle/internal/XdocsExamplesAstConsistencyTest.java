@@ -96,11 +96,13 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/blocks/needbraces/Example6",
             "checks/coding/illegaltokentext/Example3",
             "checks/coding/illegaltokentext/Example4",
+            "checks/coding/illegalsymbol/Example4",
             "checks/coding/illegaltokentext/Example5",
             "checks/coding/matchxpath/Example2",
             "checks/coding/matchxpath/Example3",
             "checks/coding/matchxpath/Example4",
             "checks/coding/matchxpath/Example5",
+            "checks/coding/matchxpath/Example6",
             "checks/coding/packagedeclaration/Example2",
             "checks/coding/requirethis/Example5",
             "checks/coding/requirethis/Example6",
@@ -295,10 +297,13 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithnearbytextfilter/Example8",
             "filters/suppresswithnearbytextfilter/Example9",
             "filters/suppresswithplaintextcommentfilter/Example5",
+issue-18435
             "filters/suppresswithplaintextcommentfilter/Example9",
             // No properties in module, multiple very different examples to ease reading
             "checks/annotation/missingoverrideonrecordaccessor/Example2",
             "checks/coding/illegaltoken/Example2"
+            "filters/suppresswithplaintextcommentfilter/Example9"
+ master
             );
 
     /**

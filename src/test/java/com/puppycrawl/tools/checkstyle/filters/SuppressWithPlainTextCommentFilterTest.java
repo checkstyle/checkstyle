@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_CONTAINS_TAB;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_FILE_CONTAINS_TAB;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -205,7 +206,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testInvalidCheckFormat() throws Exception {
+    public void testInvalidCheckFormat() {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
         filterCfg.addProperty("checkFormat", "e[l");
@@ -223,25 +224,24 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
             "10:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
-        try {
-            verifySuppressed(
-                "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
-                removeSuppressed(violationMessages, suppressed),
-                filterCfg, checkCfg
-            );
-            assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-            assertWithMessage("Invalid exception message")
-                .that(cause)
-                .hasMessageThat()
-                .isEqualTo("unable to parse expanded comment e[l");
-        }
+        final CheckstyleException exc = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> {
+                    verifySuppressed(
+                        "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
+                        removeSuppressed(violationMessages, suppressed),
+                        filterCfg, checkCfg
+                    );
+                });
+        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
+        assertWithMessage("Invalid exception message")
+            .that(cause)
+            .hasMessageThat()
+            .isEqualTo("unable to parse expanded comment e[l");
     }
 
     @Test
-    public void testInvalidIdFormat() throws Exception {
+    public void testInvalidIdFormat() {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
         filterCfg.addProperty("idFormat", "e[l");
@@ -251,24 +251,23 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         final DefaultConfiguration checkCfg = createModuleConfig(FileTabCharacterCheck.class);
         checkCfg.addProperty("eachLine", "true");
 
-        try {
-            verifySuppressed(
-                "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
-                CommonUtil.EMPTY_STRING_ARRAY, filterCfg, checkCfg
-            );
-            assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-            assertWithMessage("Invalid exception message")
-                .that(cause)
-                .hasMessageThat()
-                .isEqualTo("unable to parse expanded comment e[l");
-        }
+        final CheckstyleException exc = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> {
+                    verifySuppressed(
+                        "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
+                        CommonUtil.EMPTY_STRING_ARRAY, filterCfg, checkCfg
+                    );
+                });
+        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
+        assertWithMessage("Invalid exception message")
+            .that(cause)
+            .hasMessageThat()
+            .isEqualTo("unable to parse expanded comment e[l");
     }
 
     @Test
-    public void testInvalidMessageFormat() throws Exception {
+    public void testInvalidMessageFormat() {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
         filterCfg.addProperty("messageFormat", "e[l");
@@ -286,25 +285,24 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
             "10:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
-        try {
-            verifySuppressed(
-                "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
-                removeSuppressed(violationMessages, suppressed),
-                filterCfg, checkCfg
-            );
-            assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-            assertWithMessage("Invalid exception message")
-                .that(cause)
-                .hasMessageThat()
-                .isEqualTo("unable to parse expanded comment e[l");
-        }
+        final CheckstyleException exc = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> {
+                    verifySuppressed(
+                        "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
+                        removeSuppressed(violationMessages, suppressed),
+                        filterCfg, checkCfg
+                    );
+                });
+        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
+        assertWithMessage("Invalid exception message")
+            .that(cause)
+            .hasMessageThat()
+            .isEqualTo("unable to parse expanded comment e[l");
     }
 
     @Test
-    public void testInvalidMessageFormatInSqlFile() throws Exception {
+    public void testInvalidMessageFormatInSqlFile() {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
         filterCfg.addProperty("onCommentFormat", "CSON (\\w+)");
@@ -320,21 +318,20 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
                     "^.*COUNT\\(\\*\\).*$"),
         };
 
-        try {
-            verifySuppressed(
-                "InputSuppressWithPlainTextCommentFilterWithCustomOnComment.sql",
-                removeSuppressed(violationMessages, suppressed),
-                filterCfg, checkCfg
-            );
-            assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-            assertWithMessage("Invalid exception message")
-                .that(cause)
-                .hasMessageThat()
-                .isEqualTo("unable to parse expanded comment e[l");
-        }
+        final CheckstyleException exc = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> {
+                    verifySuppressed(
+                        "InputSuppressWithPlainTextCommentFilterWithCustomOnComment.sql",
+                        removeSuppressed(violationMessages, suppressed),
+                        filterCfg, checkCfg
+                    );
+                });
+        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
+        assertWithMessage("Invalid exception message")
+            .that(cause)
+            .hasMessageThat()
+            .isEqualTo("unable to parse expanded comment e[l");
     }
 
     @Test
@@ -613,24 +610,23 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
         final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
 
-        try {
-            filter.accept(auditEvent);
-            assertWithMessage("%s is expected", IllegalStateException.class.getSimpleName()).fail();
-        }
-        catch (IllegalStateException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Cannot read source file: " + fileName);
+        final IllegalStateException exc = getExpectedThrowable(
+                IllegalStateException.class,
+                () -> {
+                    filter.accept(auditEvent);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Cannot read source file: " + fileName);
 
-            final Throwable cause = exc.getCause();
-            assertWithMessage("Exception cause has invalid type")
-                    .that(cause)
-                    .isInstanceOf(FileNotFoundException.class);
-            assertWithMessage("Invalid exception message")
+        final Throwable cause = exc.getCause();
+        assertWithMessage("Exception cause has invalid type")
                 .that(cause)
-                .hasMessageThat()
-                .isEqualTo(fileName + " (No such file or directory)");
-        }
+                .isInstanceOf(FileNotFoundException.class);
+        assertWithMessage("Invalid exception message")
+            .that(cause)
+            .hasMessageThat()
+            .isEqualTo(fileName + " (No such file or directory)");
     }
 
     @Test
