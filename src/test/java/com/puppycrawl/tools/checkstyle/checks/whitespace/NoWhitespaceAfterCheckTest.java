@@ -238,7 +238,7 @@ public class NoWhitespaceAfterCheckTest
             });
         assertWithMessage("Invalid exception message")
             .that(exc.getMessage())
-            .isEqualTo("unexpected ast syntax import[0x-1]");
+            .isEqualTo("unexpected ast syntax import[0x0]");
     }
 
     @Test
