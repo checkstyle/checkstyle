@@ -116,7 +116,7 @@ public class JavadocDetailNodeParser {
 
         try {
             final JavadocCommentsParser.JavadocContext javadoc = parser.javadoc();
-            final int javadocColumnNumber = javadocCommentAst.getColumnNo()
+            final int javadocColumnNumber = javadocCommentAst.getColumnNo() - 1
                             + JAVADOC_START.length();
 
             final JavadocCommentsAstVisitor visitor = new JavadocCommentsAstVisitor(
