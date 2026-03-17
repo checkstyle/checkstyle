@@ -51,6 +51,9 @@ import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
 // -@cs[ClassDataAbstractionCoupling] No way to split up class usage.
 public final class JavaParser {
 
+    /** Text for single-line comments. */
+    private static final String SINGLE_LINE_COMMENT_TEXT = "//";
+
     /**
      * Enum to be used for test if comments should be used.
      */
@@ -224,16 +227,17 @@ public final class JavaParser {
     private static DetailAST createSlCommentNode(Token token) {
         final DetailAstImpl slComment = new DetailAstImpl();
         slComment.setType(TokenTypes.SINGLE_LINE_COMMENT);
-        slComment.setText("//");
+        slComment.setText(SINGLE_LINE_COMMENT_TEXT);
 
-        slComment.setColumnNo(token.getCharPositionInLine());
+        slComment.setColumnNo(token.getCharPositionInLine() + 1);
         slComment.setLineNo(token.getLine());
 
         final DetailAstImpl slCommentContent = new DetailAstImpl();
         slCommentContent.setType(TokenTypes.COMMENT_CONTENT);
 
         // plus length of '//'
-        slCommentContent.setColumnNo(token.getCharPositionInLine() + 2);
+        slCommentContent.setColumnNo(token.getCharPositionInLine()
+                + SINGLE_LINE_COMMENT_TEXT.length() + 1);
         slCommentContent.setLineNo(token.getLine());
         slCommentContent.setText(token.getText());
 

@@ -383,7 +383,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
                 .isEqualTo(1);
         assertWithMessage("expected column")
                 .that(firstViolation.getColumnNo())
-                .isEqualTo(5);
+                .isEqualTo(4);
         assertWithMessage("expected severity level")
                 .that(firstViolation.getSeverityLevel())
                 .isEqualTo(SeverityLevel.ERROR);

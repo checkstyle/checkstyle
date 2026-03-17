@@ -171,7 +171,7 @@ public class EmptyBlockCheck
         if (slistLineNo == rcurlyLineNo) {
             // Handle braces on the same line
             final int[] txt = Arrays.copyOfRange(getLineCodePoints(slistLineNo - 1),
-                    slistColNo + 1, rcurlyColNo);
+                    slistColNo, rcurlyColNo - 1);
 
             if (!CodePointUtil.isBlank(txt)) {
                 returnValue = true;
@@ -180,9 +180,9 @@ public class EmptyBlockCheck
         else {
             final int[] codePointsFirstLine = getLineCodePoints(slistLineNo - 1);
             final int[] firstLine = Arrays.copyOfRange(codePointsFirstLine,
-                    slistColNo + 1, codePointsFirstLine.length);
+                    slistColNo, codePointsFirstLine.length);
             final int[] codePointsLastLine = getLineCodePoints(rcurlyLineNo - 1);
-            final int[] lastLine = Arrays.copyOfRange(codePointsLastLine, 0, rcurlyColNo);
+            final int[] lastLine = Arrays.copyOfRange(codePointsLastLine, 0, rcurlyColNo - 1);
             // check if all lines are also only whitespace
             returnValue = !(CodePointUtil.isBlank(firstLine) && CodePointUtil.isBlank(lastLine))
                     || !checkIsAllLinesAreWhitespace(slistLineNo, rcurlyLineNo);
