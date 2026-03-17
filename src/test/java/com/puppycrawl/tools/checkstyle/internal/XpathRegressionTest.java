@@ -263,7 +263,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                     new int[] {TokenTypes.BLOCK_COMMENT_BEGIN});
         }
         catch (ReflectiveOperationException exc) {
-            throw new IllegalStateException(exc);
+            throw new IllegalStateException("Reflection operation problem for " + check, exc);
         }
     }
 
