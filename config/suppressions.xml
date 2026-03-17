@@ -129,17 +129,6 @@
   <suppress id="noConsecutiveLines" files="[\\/]emptylineseparator.xml"/>
   <suppress id="noConsecutiveLines" files="[\\/]javadocparagraph.xml"/>
 
-  <!-- these are legacy use cases until #11166 -->
-  <suppress id="noUsageOfGetFileContentsMethod" files="UnusedImportsCheck.java"/>
-  <suppress id="noUsageOfGetFileContentsMethod" files="JavadocMethodCheck.java"/>
-  <suppress id="noUsageOfGetFileContentsMethod" files="JavadocStyleCheck.java"/>
-  <suppress id="noUsageOfGetFileContentsMethod" files="JavadocTypeCheck.java"/>
-  <suppress id="noUsageOfGetFileContentsMethod" files="JavadocVariableCheck.java"/>
-  <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocMethodCheck.java"/>
-  <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocTypeCheck.java"/>
-  <suppress id="noUsageOfGetFileContentsMethod" files="RegexpCheck.java"/>
-  <suppress id="noUsageOfGetFileContentsMethod" files="RegexpSinglelineJavaCheck.java"/>
-
   <!-- until https://github.com/checkstyle/checkstyle/issues/5234 -->
   <suppress id="MatchXPathBranchContains" files="[\\/]DetailAstImplTest.java"/>
 
