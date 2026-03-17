@@ -132,7 +132,7 @@ public class RightCurlyCheck extends AbstractCheck {
         if (rcurly != null) {
             final String violation = validate(details);
             if (!violation.isEmpty()) {
-                log(rcurly, violation, "}", rcurly.getColumnNo() + 1);
+                log(rcurly, violation, "}", rcurly.getColumnNo());
             }
         }
     }
@@ -241,7 +241,7 @@ public class RightCurlyCheck extends AbstractCheck {
         final DetailAST nextToken = details.nextToken();
         return (nextToken == null || !TokenUtil.areOnSameLine(rcurly, nextToken)
             || skipDoubleBraceInstInit(details))
-            && CommonUtil.hasWhitespaceBefore(details.rcurly().getColumnNo(),
+            && CommonUtil.hasWhitespaceBefore(details.rcurly().getColumnNo() - 1,
                targetSrcLine);
     }
 
