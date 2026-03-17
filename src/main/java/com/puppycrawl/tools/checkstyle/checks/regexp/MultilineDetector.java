@@ -29,29 +29,6 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
  */
 public class MultilineDetector {
 
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_REGEXP_EXCEEDED = "regexp.exceeded";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_REGEXP_MINIMUM = "regexp.minimum";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_EMPTY = "regexp.empty";
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_STACKOVERFLOW = "regexp.StackOverflowError";
-
     /** The detection options to use. */
     private final DetectorOptions options;
     /** Tracks the number of matches. */
@@ -81,7 +58,7 @@ public class MultilineDetector {
 
         final String format = options.getFormat();
         if (format == null || format.isEmpty()) {
-            options.getReporter().log(1, MSG_EMPTY);
+            options.getReporter().log(1, RegexpMultilineCheck.MSG_EMPTY);
         }
         else {
             matcher = options.getPattern().matcher(fileText.getFullText());
@@ -101,7 +78,8 @@ public class MultilineDetector {
                     final LineColumn start = text.lineColumn(matcher.start());
                     if (options.getMessage().isEmpty()) {
                         options.getReporter().log(start.getLine(),
-                                MSG_REGEXP_EXCEEDED, matcher.pattern().toString());
+                                RegexpMultilineCheck.MSG_REGEXP_EXCEEDED,
+                                        matcher.pattern().toString());
                     }
                     else {
                         options.getReporter()
@@ -116,7 +94,8 @@ public class MultilineDetector {
             // ok http://blog.igorminar.com/2008/05/catching-stackoverflowerror-and-bug-in.html
             // http://programmers.stackexchange.com/questions/
             //        209099/is-it-ever-okay-to-catch-stackoverflowerror-in-java
-            options.getReporter().log(1, MSG_STACKOVERFLOW, matcher.pattern().toString());
+            options.getReporter().log(1, RegexpMultilineCheck.MSG_STACKOVERFLOW,
+                        matcher.pattern().toString());
         }
     }
 
@@ -124,7 +103,7 @@ public class MultilineDetector {
     private void finish() {
         if (currentMatches < options.getMinimum()) {
             if (options.getMessage().isEmpty()) {
-                options.getReporter().log(1, MSG_REGEXP_MINIMUM,
+                options.getReporter().log(1, RegexpMultilineCheck.MSG_REGEXP_MINIMUM,
                         options.getMinimum(), options.getFormat());
             }
             else {
