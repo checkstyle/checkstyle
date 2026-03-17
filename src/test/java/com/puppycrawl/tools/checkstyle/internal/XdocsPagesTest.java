@@ -31,6 +31,8 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.net.URI;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -1725,11 +1727,12 @@ public class XdocsPagesTest {
                     expectedUrl = "../../config.html#Custom_messages";
                 }
                 else {
+                    final String query = "path:src/main/resources/"
+                            + clss.getPackage().getName().replace('.', '/')
+                            + " path:**/messages*.properties repo:checkstyle/checkstyle \""
+                            + linkText + "\"";
                     expectedUrl = "https://github.com/search?q="
-                            + "path%3Asrc%2Fmain%2Fresources%2F"
-                            + clss.getPackage().getName().replace(".", "%2F")
-                            + "%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2F"
-                            + "checkstyle+%22" + linkText + "%22";
+                            + URLEncoder.encode(query, StandardCharsets.UTF_8);
                 }
 
                 assertWithMessage("%s section '%s' should have matching url for '%s'", fileName,
