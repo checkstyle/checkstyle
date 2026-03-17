@@ -20,8 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_EXCEEDED;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_MINIMUM;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck.MSG_REGEXP_EXCEEDED;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck.MSG_REGEXP_MINIMUM;
 
 import org.junit.jupiter.api.Test;
 
