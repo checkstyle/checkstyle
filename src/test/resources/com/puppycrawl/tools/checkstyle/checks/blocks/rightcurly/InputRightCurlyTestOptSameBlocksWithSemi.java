@@ -18,7 +18,7 @@ public class InputRightCurlyTestOptSameBlocksWithSemi {
     public class TestClass {};
 
     public class TestClass1 {
-    }; // violation ''}' at column 5 should be alone on a line'
+    };
 
     public class TestClass2 {
         public TestClass2() {};
@@ -38,10 +38,10 @@ public class InputRightCurlyTestOptSameBlocksWithSemi {
 
     public @interface TestAnnotation7 {
         String someValue();
-    }; // violation ''}' at column 5 should be alone on a line'
+    };
 
     public @interface TestAnnotation8 { String someValue();
-    }; // violation ''}' at column 5 should be alone on a line'
+    };
 
     public @interface TestAnnotation9 { String someValue(); };
 
@@ -54,10 +54,10 @@ public class InputRightCurlyTestOptSameBlocksWithSemi {
 
     enum TestEnum3{
         SOME_VALUE;
-    }; // violation ''}' at column 5 should be alone on a line'
+    };
 
     enum TestEnum4{ SOME_VALUE;
-    }; // violation ''}' at column 5 should be alone on a line'
+    };
 
     interface Interface1
     {
@@ -71,9 +71,9 @@ public class InputRightCurlyTestOptSameBlocksWithSemi {
         void display();
         interface Interface4 {
             void myMethod();
-        };}; // 2 violations
+        };}; // violation ''}' at column 11 should have line break before'
 
     interface InterfaceEndingWithSemiColon2 {
         public void fooEmpty();
-    }; // violation ''}' at column 5 should be alone on a line'
+    };
 }
