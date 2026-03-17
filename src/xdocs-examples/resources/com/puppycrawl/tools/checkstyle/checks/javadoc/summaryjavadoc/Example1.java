@@ -37,20 +37,19 @@ class Example1 {
    * This method returns nothing.
    */
   void m6() {}
-
   /**
-  * {@summary This is a java doc with period symbol。}
-  */
+   * {@summary This is a java doc with period symbol。}
+   */
   public void m7() {}
-  // violation 3 lines above 'Summary of Javadoc is missing an ending period'
+   // violation 3 lines above 'Summary of Javadoc is missing an ending period'
   /**
-  * {@summary First sentence is normally the summary.
-  * Use of html tags:
-  * <ul>
-  * <li>Item one.</li>
-  * <li>Item two.</li>
-  * </ul>}
-  */
+   * {@summary First sentence is normally the summary.
+   * Use of html tags:
+   * <ul>
+   * <li>Item one.</li>
+   * <li>Item two.</li>
+   * </ul>}
+   */
   public void m8() {}
 
 }

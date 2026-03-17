@@ -53,7 +53,6 @@ public class SummaryJavadocCheckExamplesTest extends AbstractExamplesModuleTestS
             "25:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "30:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "39:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-            "45:5: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -67,7 +66,6 @@ public class SummaryJavadocCheckExamplesTest extends AbstractExamplesModuleTestS
             "29:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "34:6: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "38:6: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "49:5: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);

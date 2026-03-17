@@ -90,6 +90,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     /** Default period literal. */
     private static final String DEFAULT_PERIOD = ".";
+    private static final String CHINESE_PERIOD = "。";
 
     /**
      * Specify the regexp for forbidden summary fragments.
@@ -280,13 +281,17 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                     MSG_SUMMARY_JAVADOC_MISSING);
         }
         else if (!period.isEmpty()) {
-            final boolean isPeriodNotAtEnd =
-                    summaryVisible.lastIndexOf(period) != summaryVisible.length() - 1;
-            if (isPeriodNotAtEnd) {
+            Optional<String> firstSentence = getFirstSentence(descriptionNode, period);
+
+            if (DEFAULT_PERIOD.equals(period) && firstSentence.isEmpty()) {
+                firstSentence = getFirstSentence(descriptionNode, CHINESE_PERIOD);
+            }
+
+            if (firstSentence.isEmpty()) {
                 log(inlineSummaryTag.getLineNumber(), inlineSummaryTag.getColumnNumber(),
                         MSG_SUMMARY_MISSING_PERIOD);
             }
-            else if (containsForbiddenFragment(inlineSummary)) {
+            else if (containsForbiddenFragment(firstSentence.get())) {
                 log(inlineSummaryTag.getLineNumber(), inlineSummaryTag.getColumnNumber(),
                         MSG_SUMMARY_JAVADOC);
             }
@@ -534,9 +539,11 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
             // Handle western period separately as it is only the end of a sentence if followed
             // by whitespace. Other period characters often include whitespace in the character.
-            if (!DEFAULT_PERIOD.equals(period)
+            if ((!DEFAULT_PERIOD.equals(period))
                 || afterPeriodIndex >= text.length()
-                || Character.isWhitespace(text.charAt(afterPeriodIndex))) {
+                || Character.isWhitespace(text.charAt(afterPeriodIndex))
+                || (DEFAULT_PERIOD.equals(period)
+                    && text.charAt(periodIndex) == CHINESE_PERIOD.charAt(0))) {
                 final String resultStr = text.substring(0, periodIndex);
                 result = Optional.of(resultStr);
                 break;

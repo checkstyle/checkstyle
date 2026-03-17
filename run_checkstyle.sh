@@ -1,0 +1,2 @@
+mvn checkstyle:check -Dcheckstyle.includes="src/main/java/com/puppycrawl/tools/checkstyle/checks/RegexpCheck.java,src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraperUtil.java,src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java,src/main/resources/com/puppycrawl/tools/checkstyle/meta/checks/coding/SimplifyBooleanExpressionCheck.xml,src/main/resources/com/puppycrawl/tools/checkstyle/meta/checks/coding/UseEnhancedSwitchCheck.xml"
+
