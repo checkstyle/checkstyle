@@ -182,7 +182,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
 
         // If the right parenthesis is at the start of a line;
         // include line wrapping in suggested indent level.
-        if (getLineStart(rparen) == rparen.getColumnNo()) {
+        if (getLineStart(rparen) == rparen.getColumnNo() - 1) {
             suggestedLevel = IndentLevel.addAcceptable(suggestedLevel, new IndentLevel(
                     getParent().getSuggestedChildIndent(this),
                     getIndentCheck().getLineWrappingIndentation()

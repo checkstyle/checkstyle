@@ -64,7 +64,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathFilterElementSuppressByXpath']]";
         final XpathFilterElement filter = new XpathFilterElement(
                 "InputXpathFilterElementSuppressByXpath", "Test", null, null, xpath);
-        final TreeWalkerAuditEvent ev = getEvent(3, 0,
+        final TreeWalkerAuditEvent ev = getEvent(3, 1,
                 TokenTypes.CLASS_DEF);
         assertWithMessage("Event should be rejected")
                 .that(filter.accept(ev))
@@ -114,11 +114,11 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                 + "| //VARIABLE_DEF[./IDENT[@text='someVariable'] and ../../IDENT[@text='sum']]";
         final XpathFilterElement filter = new XpathFilterElement(
                 "InputXpathFilterElementSuppressByXpath", "Test", null, null, xpath);
-        final TreeWalkerAuditEvent eventOne = getEvent(5, 8,
+        final TreeWalkerAuditEvent eventOne = getEvent(5, 9,
                 TokenTypes.VARIABLE_DEF);
         final TreeWalkerAuditEvent eventTwo = getEvent(10, 4,
                 TokenTypes.VARIABLE_DEF);
-        final TreeWalkerAuditEvent eventThree = getEvent(15, 8,
+        final TreeWalkerAuditEvent eventThree = getEvent(15, 9,
                 TokenTypes.VARIABLE_DEF);
         assertWithMessage("Event should be rejected")
                 .that(filter.accept(eventOne))
@@ -187,7 +187,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
     public void testNonMatchingFileRegexp() throws Exception {
         final XpathFilterElement filter =
                 new XpathFilterElement("NonMatchingRegexp", "Test", null, null, null);
-        final TreeWalkerAuditEvent ev = getEvent(3, 0,
+        final TreeWalkerAuditEvent ev = getEvent(3, 1,
                 TokenTypes.CLASS_DEF);
         assertWithMessage("Event should be accepted")
                 .that(filter.accept(ev))
@@ -199,7 +199,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         final Pattern pattern = Pattern.compile("NonMatchingRegexp");
         final XpathFilterElement filter =
                 new XpathFilterElement(pattern, null, null, null, null);
-        final TreeWalkerAuditEvent ev = getEvent(3, 0,
+        final TreeWalkerAuditEvent ev = getEvent(3, 1,
                 TokenTypes.CLASS_DEF);
         assertWithMessage("Event should be accepted")
                 .that(filter.accept(ev))
@@ -211,7 +211,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         final Pattern pattern = Pattern.compile("NonMatchingRegexp");
         final XpathFilterElement filter =
                 new XpathFilterElement(null, pattern, null, null, null);
-        final TreeWalkerAuditEvent ev = getEvent(3, 0,
+        final TreeWalkerAuditEvent ev = getEvent(3, 1,
                 TokenTypes.CLASS_DEF);
         assertWithMessage("Event should be accepted")
                 .that(filter.accept(ev))
@@ -234,7 +234,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         final XpathFilterElement filter = new XpathFilterElement(
                 "InputXpathFilterElementSuppressByXpath", "Test", null, "id19", null);
         final Violation message =
-                new Violation(3, 0, TokenTypes.CLASS_DEF, "", "", null, null, "id20",
+                new Violation(3, 1, TokenTypes.CLASS_DEF, "", "", null, null, "id20",
                         getClass(), null);
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents, file.getName(),
                 message, JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
@@ -249,7 +249,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         final XpathFilterElement filter = new XpathFilterElement(
                 "InputXpathFilterElementSuppressByXpath", "Test", null, "id19", xpath);
         final Violation message =
-                new Violation(3, 0, TokenTypes.CLASS_DEF, "", "", null, null, "id19",
+                new Violation(3, 1, TokenTypes.CLASS_DEF, "", "", null, null, "id19",
                         getClass(), null);
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents, file.getName(),
                 message, JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
@@ -264,7 +264,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         final XpathFilterElement filter = new XpathFilterElement(
                 "InputXpathFilterElementSuppressByXpath", "NonMatchingRegexp", null, "id19", xpath);
         final Violation message =
-                new Violation(3, 0, TokenTypes.CLASS_DEF, "", "", null, null, "id19",
+                new Violation(3, 1, TokenTypes.CLASS_DEF, "", "", null, null, "id19",
                         getClass(), null);
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents, file.getName(),
                 message, JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
@@ -278,7 +278,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         final String xpath = "NON_MATCHING_QUERY";
         final XpathFilterElement filter = new XpathFilterElement(
                 "InputXpathFilterElementSuppressByXpath", null, null, null, xpath);
-        final TreeWalkerAuditEvent ev = getEvent(3, 0,
+        final TreeWalkerAuditEvent ev = getEvent(3, 1,
                 TokenTypes.CLASS_DEF);
         assertWithMessage("Event should be accepted")
                 .that(filter.accept(ev))
@@ -290,7 +290,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         final String xpath = "NON_MATCHING_QUERY";
         final XpathFilterElement filter = new XpathFilterElement(
                 "InputXpathFilterElementSuppressByXpath", "NonMatchingRegexp", null, null, xpath);
-        final TreeWalkerAuditEvent ev = getEvent(3, 0,
+        final TreeWalkerAuditEvent ev = getEvent(3, 1,
                 TokenTypes.CLASS_DEF);
         assertWithMessage("Event should be accepted")
                 .that(filter.accept(ev))
@@ -319,7 +319,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         final XpathFilterElement filter = new XpathFilterElement(
                 "InputXpathFilterElementSuppressByXpath", "Test", null, null, xpath);
         final Violation message =
-                new Violation(3, 0, TokenTypes.CLASS_DEF, "", "", null, null, "id19",
+                new Violation(3, 1, TokenTypes.CLASS_DEF, "", "", null, null, "id19",
                         getClass(), null);
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents,
                 file.getName(), message, null);
