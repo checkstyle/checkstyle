@@ -16,6 +16,7 @@ public class InputMissingJavadocTypeAboveComments { // violation, 'Missing a Jav
      *
      */
     /* */
+    //
     public class InputMissingJavadocTypeAboveComments2 {
     }
 
