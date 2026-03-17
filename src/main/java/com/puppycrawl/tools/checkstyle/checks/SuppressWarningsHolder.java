@@ -300,7 +300,7 @@ public class SuppressWarningsHolder
     private static void addSuppressions(List<String> values, DetailAST targetAST) {
         // get text range of target
         final int firstLine = targetAST.getLineNo();
-        final int firstColumn = targetAST.getColumnNo();
+        final int firstColumn = targetAST.getColumnNo() - 1;
         final DetailAST nextAST = targetAST.getNextSibling();
         final int lastLine;
         final int lastColumn;
@@ -310,7 +310,7 @@ public class SuppressWarningsHolder
         }
         else {
             lastLine = nextAST.getLineNo();
-            lastColumn = nextAST.getColumnNo();
+            lastColumn = nextAST.getColumnNo() - 1;
         }
 
         final List<Entry> entries = ENTRIES.get();

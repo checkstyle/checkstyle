@@ -286,7 +286,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
             .isEqualTo(6);
         assertWithMessage("Class name should start from column 6")
             .that(column)
-            .isEqualTo(6);
+            .isEqualTo(7);
         assertWithMessage("Wrong class name")
             .that(text)
             .isEqualTo("InputParseTreeTablePresentation");
