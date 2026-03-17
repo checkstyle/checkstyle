@@ -139,7 +139,7 @@ public class ExecutableStatementCountCheckTest
         catch (IllegalStateException exc) {
             assertWithMessage("Invalid exception message")
                 .that(exc.getMessage())
-                .isEqualTo("ENUM[0x-1]");
+                .isEqualTo("ENUM[0x0]");
         }
     }
 
@@ -157,7 +157,7 @@ public class ExecutableStatementCountCheckTest
         catch (IllegalStateException exc) {
             assertWithMessage("Invalid exception message")
                 .that(exc.getMessage())
-                .isEqualTo("ENUM[0x-1]");
+                .isEqualTo("ENUM[0x0]");
         }
     }
 

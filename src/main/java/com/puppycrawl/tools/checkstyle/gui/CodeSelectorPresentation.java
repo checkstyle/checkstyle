@@ -103,7 +103,7 @@ public class CodeSelectorPresentation {
      * @param ast DetailAST node for which selection finds
      */
     private void findSelectionPositions(DetailAST ast) {
-        selectionStart = lines2position.get(ast.getLineNo()) + ast.getColumnNo();
+        selectionStart = lines2position.get(ast.getLineNo()) + ast.getColumnNo() - 1;
 
         if (ast.hasChildren() || !TokenUtil.getTokenName(ast.getType()).equals(ast.getText())) {
             selectionEnd = findLastPosition(ast);
@@ -137,7 +137,7 @@ public class CodeSelectorPresentation {
             lastPosition = findLastPosition(astNode.getLastChild());
         }
         else {
-            lastPosition = lines2position.get(astNode.getLineNo()) + astNode.getColumnNo()
+            lastPosition = lines2position.get(astNode.getLineNo()) + astNode.getColumnNo() - 1
                     + astNode.getText().length();
         }
         return lastPosition;
