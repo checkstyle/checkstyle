@@ -256,4 +256,5 @@ public class MethodParamPadCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputMethodParamPadCheckRecordPattern2.java"), expected);
     }
+
 }
