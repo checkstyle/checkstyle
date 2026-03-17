@@ -1,6 +1,9 @@
 /*
 LocalVariableName
-
+format = (default)^([a-z][a-zA-Z0-9]*|_)$
+allowOneCharVarInForLoop = (default)false
+tokens = (default)VARIABLE_DEF
+severity = (default)error
 */
 
 // Java21
@@ -18,15 +21,15 @@ public class InputLocalVariableNameUnnamedVariables {
         q.add(1);
         q.add(2);
         for (Integer element : q) {
-            var _ = q.poll();   // ok, unnamed variable
-            var _ = q.poll();
+            var x1 = q.poll();   // ok, unnamed variable
+            var x2 = q.poll();
         }
     }
 
     public void testLocalVariablesInForLoops() {
         Queue<Integer> q = new PriorityQueue<>();
 
-        for (Integer _ : q) {
+        for (Integer x : q) {
             var x1 = q.poll();
             var x2 = q.poll();
         }
@@ -35,6 +38,6 @@ public class InputLocalVariableNameUnnamedVariables {
             var x2 = q.poll();
         }
 
-        for (int ab = 0, _ = Integer.valueOf(1); ab < 3; ab++) { }
+        for (int ab = 0, x = 1; ab < 3; ab++) { }
     }
 }
