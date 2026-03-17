@@ -105,20 +105,19 @@ class Example1 {
    * This method returns nothing.
    */
   void m6() {}
-
   /**
-  * {@summary This is a java doc with period symbol。}
-  */
+   * {@summary This is a java doc with period symbol。}
+   */
   public void m7() {}
-  // violation 3 lines above 'Summary of Javadoc is missing an ending period'
+   // violation 3 lines above 'Summary of Javadoc is missing an ending period'
   /**
-  * {@summary First sentence is normally the summary.
-  * Use of html tags:
-  * &lt;ul&gt;
-  * &lt;li&gt;Item one.&lt;/li&gt;
-  * &lt;li&gt;Item two.&lt;/li&gt;
-  * &lt;/ul&gt;}
-  */
+   * {@summary First sentence is normally the summary.
+   * Use of html tags:
+   * &lt;ul&gt;
+   * &lt;li&gt;Item one.&lt;/li&gt;
+   * &lt;li&gt;Item two.&lt;/li&gt;
+   * &lt;/ul&gt;}
+   */
   public void m8() {}
 
 }
@@ -173,7 +172,6 @@ class Example2 {
   * {@summary This is a java doc with period symbol。}
   */
   public void m7() {}
-  // violation 3 lines above 'Summary of Javadoc is missing an ending period'
   /**
   * {@summary First sentence is normally the summary.
   * Use of html tags:

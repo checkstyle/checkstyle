@@ -45,7 +45,6 @@ class Example2 {
   * {@summary This is a java doc with period symbol。}
   */
   public void m7() {}
-  // violation 3 lines above 'Summary of Javadoc is missing an ending period'
   /**
   * {@summary First sentence is normally the summary.
   * Use of html tags:
