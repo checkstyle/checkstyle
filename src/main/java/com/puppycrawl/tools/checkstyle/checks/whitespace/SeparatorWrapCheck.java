@@ -98,7 +98,7 @@ public class SeparatorWrapCheck
     @Override
     public void visitToken(DetailAST ast) {
         final String text = ast.getText();
-        final int colNo = ast.getColumnNo();
+        final int colNo = ast.getColumnNo() - 1;
         final int lineNo = ast.getLineNo();
         final int[] currentLine = getLineCodePoints(lineNo - 1);
         final boolean isLineEmptyAfterToken = CodePointUtil.isBlank(
