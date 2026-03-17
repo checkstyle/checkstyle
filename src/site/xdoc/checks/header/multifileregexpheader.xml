@@ -185,12 +185,12 @@ public class Example4 { }
       <subsection name="Violation Messages" id="MultiFileRegexpHeader_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multi.file.regexp.header.mismatch%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multi.file.regexp.header.mismatch%22">
               multi.file.regexp.header.mismatch
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multi.file.regexp.header.missing%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multi.file.regexp.header.missing%22">
               multi.file.regexp.header.missing
             </a>
           </li>
