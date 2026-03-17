@@ -175,7 +175,7 @@ public class TrailingCommentCheck extends AbstractCheck {
         final int lineNo = ast.getLineNo();
         final String comment = ast.getFirstChild().getText();
         final int[] lineBeforeCodePoints =
-                Arrays.copyOfRange(getLineCodePoints(lineNo - 1), 0, ast.getColumnNo());
+                Arrays.copyOfRange(getLineCodePoints(lineNo - 1), 0, ast.getColumnNo() - 1);
         final String lineBefore = new String(lineBeforeCodePoints, 0, lineBeforeCodePoints.length);
 
         if (!format.matcher(lineBefore).find() && !isLegalCommentContent(comment)) {
@@ -195,16 +195,16 @@ public class TrailingCommentCheck extends AbstractCheck {
         final String comment = firstChild.getText();
         int[] lineCodePoints = getLineCodePoints(lineNo - 1);
 
-        if (lineCodePoints.length > lastChild.getColumnNo() + 1) {
+        if (lineCodePoints.length > lastChild.getColumnNo()) {
             lineCodePoints = Arrays.copyOfRange(lineCodePoints,
-                    lastChild.getColumnNo() + 2, lineCodePoints.length);
+                    lastChild.getColumnNo() + 1, lineCodePoints.length);
         }
 
         String line = new String(lineCodePoints, 0, lineCodePoints.length);
         line = FORMAT_LINE.matcher(line).replaceAll("");
 
         final int[] lineBeforeCodePoints =
-                Arrays.copyOfRange(getLineCodePoints(lineNo - 1), 0, ast.getColumnNo());
+                Arrays.copyOfRange(getLineCodePoints(lineNo - 1), 0, ast.getColumnNo() - 1);
         final String lineBefore = new String(lineBeforeCodePoints, 0, lineBeforeCodePoints.length);
         final boolean isCommentAtEndOfLine = ast.getLineNo() != lastChild.getLineNo()
                 || CommonUtil.isBlank(line);

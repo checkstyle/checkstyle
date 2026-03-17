@@ -77,7 +77,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .isEqualTo(3);
         assertWithMessage("Unexpected column number")
             .that(comment.getColumnNo())
-            .isEqualTo(0);
+            .isEqualTo(1);
         assertWithMessage("Unexpected comment content")
             .that(comment.getText())
             .isEqualTo("/*");
@@ -90,13 +90,13 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .isEqualTo(3);
         assertWithMessage("Unexpected column number")
             .that(commentContent.getColumnNo())
-            .isEqualTo(2);
+            .isEqualTo(3);
         assertWithMessage("Unexpected line number")
             .that(commentEnd.getLineNo())
             .isEqualTo(9);
         assertWithMessage("Unexpected column number")
             .that(commentEnd.getColumnNo())
-            .isEqualTo(1);
+            .isEqualTo(2);
     }
 
     @Test
@@ -118,7 +118,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .isEqualTo(13);
         assertWithMessage("Unexpected column number")
             .that(comment.getColumnNo())
-            .isEqualTo(0);
+            .isEqualTo(1);
         assertWithMessage("Unexpected comment content")
             .that(comment.getText())
             .isEqualTo("//");
@@ -133,7 +133,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .isEqualTo(13);
         assertWithMessage("Unexpected column number")
             .that(commentContent.getColumnNo())
-            .isEqualTo(2);
+            .isEqualTo(3);
         assertWithMessage("Unexpected comment content")
                 .that(commentContent.getText())
                 .startsWith(" inline comment");
@@ -158,7 +158,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .isEqualTo(1);
         assertWithMessage("Unexpected column number")
             .that(comment.getColumnNo())
-            .isEqualTo(4);
+            .isEqualTo(5);
         assertWithMessage("Unexpected comment content")
             .that(comment.getText())
             .isEqualTo("//");
@@ -173,7 +173,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .isEqualTo(1);
         assertWithMessage("Unexpected column number")
             .that(commentContent.getColumnNo())
-            .isEqualTo(6);
+            .isEqualTo(7);
         assertWithMessage("Unexpected comment content")
                 .that(commentContent.getText())
                 .startsWith(" indented comment");
@@ -224,10 +224,10 @@ public class JavaParserTest extends AbstractModuleTestSupport {
 
         assertWithMessage("Invalid line comments")
             .that(counter.lineComments)
-            .isEqualTo(Arrays.asList("1,4", "6,4", "9,0"));
+            .isEqualTo(Arrays.asList("1,5", "6,5", "9,1"));
         assertWithMessage("Invalid block comments")
             .that(counter.blockComments)
-            .isEqualTo(Arrays.asList("5,4", "8,0"));
+            .isEqualTo(Arrays.asList("5,5", "8,1"));
     }
 
     @Test
@@ -252,7 +252,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .isEqualTo(5);
         assertWithMessage("Unexpected column number")
             .that(content.getColumnNo())
-            .isEqualTo(32);
+            .isEqualTo(33);
         assertWithMessage("Unexpected text block content")
             .that(content.getText())
             .isEqualTo(expectedContents);
