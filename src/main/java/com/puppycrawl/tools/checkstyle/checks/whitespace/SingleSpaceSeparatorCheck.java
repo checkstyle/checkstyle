@@ -117,7 +117,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
         DetailAST currentNode = node;
 
         do {
-            final int columnNo = currentNode.getColumnNo() - 1;
+            final int columnNo = currentNode.getColumnNo() - 2;
 
             // in such expression: "j  =123", placed at the start of the string index of the second
             // space character will be: 2 = 0(j) + 1(whitespace) + 1(whitespace). It is a minimal
