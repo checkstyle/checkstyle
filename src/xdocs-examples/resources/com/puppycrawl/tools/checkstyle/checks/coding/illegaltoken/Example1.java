@@ -9,9 +9,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
 // xdoc section -- start
 class Example1 {
-  native void InvalidExample();
 
-  void anotherMethod() {
+  void InvalidExample() {
+
     outer: // violation, 'Using 'outer:' is not allowed'
     for (int i = 0; i < 5; i++) {
       if (i == 1) {
