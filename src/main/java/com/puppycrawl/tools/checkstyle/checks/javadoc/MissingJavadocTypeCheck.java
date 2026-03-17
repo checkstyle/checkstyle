@@ -52,13 +52,12 @@ public final class MissingJavadocTypeCheck extends AbstractJavadocCheck {
      */
     public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
 
+    /** Specify the visibility of Javadoc Comments present or not present. */
+    private final List<DetailAST> javadocComments = new ArrayList<>();
     /** Specify the visibility scope where Javadoc comments are checked. */
     private Scope scope = Scope.PUBLIC;
     /** Specify the visibility scope where Javadoc comments are not checked. */
     private Scope excludeScope;
-
-    /** Specify the visibility of Javadoc Comments present or not present. */
-    private final List<DetailAST> javadocComments = new ArrayList<>();
 
     /**
      * Specify annotations that allow missed documentation.
