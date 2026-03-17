@@ -145,7 +145,16 @@
       <property name="id" value="RightCurlyAlone"/>
       <property name="query" value="//RCURLY[parent::SLIST[count(./*)=1
                                and not(parent::LITERAL_CATCH)]
-                               or (preceding-sibling::*[last()][self::LCURLY]
+                               or parent::OBJBLOCK[
+                               count(*[not(self::LCURLY or self::RCURLY or self::SEMI
+                               or self::SINGLE_LINE_COMMENT
+                               or self::BLOCK_COMMENT_BEGIN)])=0
+                               and not(*[self::SINGLE_LINE_COMMENT
+                               or self::BLOCK_COMMENT_BEGIN][following-sibling::RCURLY])]
+                               or (parent::OBJBLOCK and preceding-sibling::*[1]
+                               [self::ENUM_CONSTANT_DEF or self::METHOD_DEF
+                               or self::CTOR_DEF or self::COMPACT_CTOR_DEF])
+                               or (preceding-sibling::*[last()][self::LCURLY] and parent::SLIST
                                and not(parent::SLIST/parent::LITERAL_CATCH))
                                or (parent::SLIST/parent::LITERAL_CATCH
                                and parent::SLIST/parent::LITERAL_CATCH/following-sibling::*)]"/>
