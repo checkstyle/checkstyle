@@ -112,7 +112,7 @@ public class MethodParamPadCheck
 
         if (parenAST != null) {
             final int[] line = getLineCodePoints(parenAST.getLineNo() - 1);
-            if (CodePointUtil.hasWhitespaceBefore(parenAST.getColumnNo() - 2, line)) {
+            if (CodePointUtil.hasWhitespaceBefore(parenAST.getColumnNo() - 1, line)) {
                 if (!allowLineBreaks) {
                     log(parenAST, MSG_LINE_PREVIOUS, parenAST.getText());
                 }
