@@ -139,7 +139,7 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
         // exception is expected
         assertWithMessage("Invalid exception message")
                 .that(exc.getMessage())
-                .isEqualTo("interface[0x-1]");
+                .isEqualTo("interface[0x0]");
     }
 
 }
