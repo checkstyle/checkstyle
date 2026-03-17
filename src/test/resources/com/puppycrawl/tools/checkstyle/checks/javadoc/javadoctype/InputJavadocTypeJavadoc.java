@@ -7,7 +7,7 @@ versionFormat = (default)null
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
-tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+tokens = (default)BLOCK_COMMENT_BEGIN
 
 
 */
@@ -16,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 /**
  * Testing author and version tag patterns
- ****    @author Oliver Burn
+ * @author Oliver Burn
  * @version 1.0
  */
 class InputJavadocTypeJavadoc
@@ -52,7 +52,7 @@ class InputJavadocType
 
 /**
  * Testing author and version tag patterns
- ****    @author Oliver Burn
+ * @author Oliver Burn
  * @version 1.0
  */
 enum InputJavadocTypeEnum
@@ -88,7 +88,7 @@ enum InputJavadocTypeEnum2
 
 /**
  * Testing author and version tag patterns
- ****    @author Oliver Burn
+ * @author Oliver Burn
  * @version 1.0
  */
 @interface InputJavadocInterface
