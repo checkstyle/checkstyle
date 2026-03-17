@@ -297,7 +297,13 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithnearbytextfilter/Example8",
             "filters/suppresswithnearbytextfilter/Example9",
             "filters/suppresswithplaintextcommentfilter/Example5",
+issue-18435
+            "filters/suppresswithplaintextcommentfilter/Example9",
+            // No properties in module, multiple very different examples to ease reading
+            "checks/annotation/missingoverrideonrecordaccessor/Example2",
+            "checks/coding/illegaltoken/Example2"
             "filters/suppresswithplaintextcommentfilter/Example9"
+ master
             );
 
     /**
