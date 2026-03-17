@@ -1,8 +1,7 @@
 /*
 LocalVariableName
-
 format = (default)^([a-z][a-zA-Z0-9]*|_)$
-tokens = (default)VARIABLE_DEF
+allowOneCharVarInForLoop = (default)false
 
 
 */
