@@ -112,13 +112,13 @@ public class MethodParamPadCheck
 
         if (parenAST != null) {
             final int[] line = getLineCodePoints(parenAST.getLineNo() - 1);
-            if (CodePointUtil.hasWhitespaceBefore(parenAST.getColumnNo(), line)) {
+            if (CodePointUtil.hasWhitespaceBefore(parenAST.getColumnNo() - 1, line)) {
                 if (!allowLineBreaks) {
                     log(parenAST, MSG_LINE_PREVIOUS, parenAST.getText());
                 }
             }
             else {
-                final int before = parenAST.getColumnNo() - 1;
+                final int before = parenAST.getColumnNo() - 2;
                 if (option == PadOption.NOSPACE
                     && CommonUtil.isCodePointWhitespace(line, before)) {
                     log(parenAST, MSG_WS_PRECEDED, parenAST.getText());

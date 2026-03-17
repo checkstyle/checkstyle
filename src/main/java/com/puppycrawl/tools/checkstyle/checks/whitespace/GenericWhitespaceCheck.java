@@ -143,8 +143,8 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      */
     private void processEnd(DetailAST ast) {
         final int[] line = getLineCodePoints(ast.getLineNo() - 1);
-        final int before = ast.getColumnNo() - 1;
-        final int after = ast.getColumnNo() + 1;
+        final int before = ast.getColumnNo() - 2;
+        final int after = ast.getColumnNo();
 
         if (before >= 0 && CommonUtil.isCodePointWhitespace(line, before)
                 && !containsWhitespaceBefore(before, line)) {
@@ -298,8 +298,8 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      */
     private void processStart(DetailAST ast) {
         final int[] line = getLineCodePoints(ast.getLineNo() - 1);
-        final int before = ast.getColumnNo() - 1;
-        final int after = ast.getColumnNo() + 1;
+        final int before = ast.getColumnNo() - 2;
+        final int after = ast.getColumnNo();
 
         // Checks if generic needs to be preceded by a whitespace or not.
         // Handles 3 cases as in:
