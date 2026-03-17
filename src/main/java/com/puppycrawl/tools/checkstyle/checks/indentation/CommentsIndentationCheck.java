@@ -127,7 +127,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
             else if (nextStmt != null && !areSameLevelIndented(comment, nextStmt, nextStmt)
                     && !areInSameMethodCallWithSameIndent(comment)) {
                 log(comment, getMessageKey(comment), nextStmt.getLineNo(),
-                    comment.getColumnNo(), nextStmt.getColumnNo());
+                    comment.getColumnNo() - 1, nextStmt.getColumnNo() - 1);
             }
         }
     }
@@ -486,7 +486,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
                     || prevStmt.getType() == TokenTypes.LITERAL_DEFAULT) {
                 if (comment.getColumnNo() < nextStmt.getColumnNo()) {
                     log(comment, getMessageKey(comment), nextStmt.getLineNo(),
-                        comment.getColumnNo(), nextStmt.getColumnNo());
+                        comment.getColumnNo() - 1, nextStmt.getColumnNo() - 1);
                 }
             }
             else if (isCommentForMultiblock(nextStmt)) {
@@ -497,7 +497,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
             else if (!areSameLevelIndented(comment, prevStmt, prevStmt)) {
                 final int prevStmtLineNo = prevStmt.getLineNo();
                 log(comment, getMessageKey(comment), prevStmtLineNo,
-                        comment.getColumnNo(), getLineStart(prevStmtLineNo));
+                        comment.getColumnNo() - 1, getLineStart(prevStmtLineNo));
             }
         }
     }
@@ -542,7 +542,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     private void handleCommentInEmptyCodeBlock(DetailAST comment, DetailAST nextStmt) {
         if (comment.getColumnNo() < nextStmt.getColumnNo()) {
             log(comment, getMessageKey(comment), nextStmt.getLineNo(),
-                comment.getColumnNo(), nextStmt.getColumnNo());
+                comment.getColumnNo() - 1, nextStmt.getColumnNo() - 1);
         }
     }
 
@@ -741,7 +741,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
         final String multilineNoTemplate = "%d, %d";
         log(comment, getMessageKey(comment),
             String.format(Locale.getDefault(), multilineNoTemplate, prevStmt.getLineNo(),
-                nextStmt.getLineNo()), comment.getColumnNo(),
+                nextStmt.getLineNo()), comment.getColumnNo() - 1,
             String.format(Locale.getDefault(), multilineNoTemplate,
                     getLineStart(prevStmt.getLineNo()), getLineStart(nextStmt.getLineNo())));
     }
@@ -857,8 +857,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private boolean areSameLevelIndented(DetailAST comment, DetailAST prevStmt,
                                                 DetailAST nextStmt) {
-        return comment.getColumnNo() == getLineStart(nextStmt.getLineNo())
-            || comment.getColumnNo() == getLineStart(prevStmt.getLineNo());
+        return comment.getColumnNo() - 1 == getLineStart(nextStmt.getLineNo())
+            || comment.getColumnNo() - 1 == getLineStart(prevStmt.getLineNo());
     }
 
     /**
@@ -908,7 +908,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     private boolean isTrailingSingleLineComment(DetailAST singleLineComment) {
         final String targetSourceLine = getLine(singleLineComment.getLineNo() - 1);
         final int commentColumnNo = singleLineComment.getColumnNo();
-        return !CommonUtil.hasWhitespaceBefore(commentColumnNo, targetSourceLine);
+        return !CommonUtil.hasWhitespaceBefore(commentColumnNo - 1, targetSourceLine);
     }
 
     /**
@@ -928,7 +928,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
         final String commentLine = getLine(blockComment.getLineNo() - 1);
         final int commentColumnNo = blockComment.getColumnNo();
         final DetailAST nextSibling = blockComment.getNextSibling();
-        return !CommonUtil.hasWhitespaceBefore(commentColumnNo, commentLine)
+        return !CommonUtil.hasWhitespaceBefore(commentColumnNo - 1, commentLine)
             || nextSibling != null && TokenUtil.areOnSameLine(nextSibling, blockComment);
     }
 
