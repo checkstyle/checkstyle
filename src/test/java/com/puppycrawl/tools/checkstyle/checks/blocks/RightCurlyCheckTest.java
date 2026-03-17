@@ -993,4 +993,13 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         final String fileName = "InputRightCurlySwitchWhen.java";
         verifyWithInlineConfigParser(getPath(fileName), expected);
     }
+
+    @Test
+    public void testAnnotationAndEnum() throws Exception {
+        final String[] expected = {
+            "18:33: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 33),
+            "28:25: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 25),
+        };
+        verifyWithInlineConfigParser(getPath("InputRightCurlyAnnotationAndEnum.java"), expected);
+    }
 }
