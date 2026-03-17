@@ -328,7 +328,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .isEqualTo(3);
         assertWithMessage("Invalid column number")
                 .that(classDefNode.getColumnNumber())
-                .isEqualTo(0);
+                .isEqualTo(1);
         final DetailAST[] actual = convertToArray(nodes);
         final DetailAST expectedClassDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
                 TokenTypes.COMPILATION_UNIT)

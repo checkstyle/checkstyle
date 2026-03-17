@@ -273,7 +273,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
         // is increased by one.
 
         final int col = 1 + CommonUtil.lengthExpandedTabs(
-                getLines()[ast.getLineNo() - 1], ast.getColumnNo(), tabWidth);
+                getLines()[ast.getLineNo() - 1], ast.getColumnNo() - 1, tabWidth);
         context.get().violations.add(
                 new Violation(
                         ast.getLineNo(),
