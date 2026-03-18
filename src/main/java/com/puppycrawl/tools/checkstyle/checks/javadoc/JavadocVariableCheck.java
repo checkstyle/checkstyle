@@ -120,7 +120,7 @@ public class JavadocVariableCheck
         };
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/19147
     @Override
     @SuppressWarnings("deprecation")
     public void visitToken(DetailAST ast) {
