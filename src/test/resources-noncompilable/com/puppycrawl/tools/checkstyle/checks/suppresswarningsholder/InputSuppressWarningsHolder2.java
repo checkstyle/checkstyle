@@ -9,6 +9,9 @@ allowUnnamedVariables = false
 
 com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck
 format = ^[a-z][_a-zA-Z0-9]{2,}$
+allowOneCharVarInForLoop = true
+tokens = (default)VARIABLE_DEF
+
 
 */
 
@@ -34,11 +37,11 @@ public class InputSuppressWarningsHolder2 {
 
     void test1() {
         @SuppressWarnings(InputSuppressWarningsHolder2.localVariableNameCheck)
-        int a; // violation 'Unused local variable 'a''
+        int a;// violation, 'Unused local variable 'a''
     }
 
     void test4() {
         @SuppressWarnings(localVariableNameCheck)
-        int a; // violation 'Unused local variable 'a''
+        int a;// violation, 'Unused local variable 'a''
     }
 }
