@@ -319,7 +319,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      * @param ast the AST to process. Guaranteed to not be PACKAGE_DEF or
      *             IMPORT tokens.
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/19144
     @SuppressWarnings("deprecation")
     private void processAST(DetailAST ast) {
         if (shouldCheck(ast)) {
