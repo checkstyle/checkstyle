@@ -3,7 +3,7 @@ CyclomaticComplexity
 max = (default)10
 switchBlockAsSingleDecisionPoint = (default)false
 tokens = (default)LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_SWITCH, \
-         LITERAL_CASE, LITERAL_CATCH, QUESTION, LAND, LOR
+         LITERAL_CASE, LITERAL_CATCH, QUESTION, LAND, LOR, LITERAL_WHEN
 
 
 */
