@@ -55,11 +55,11 @@ public class PatternVariableNameCheckTest
             "28:34: " + getCheckMessage(MSG_INVALID_PATTERN, "Count", pattern),
             "43:36: " + getCheckMessage(MSG_INVALID_PATTERN, "S", pattern),
             "44:42: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", pattern),
-            "47:34: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", pattern),
-            "48:43: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", pattern),
-            "60:37: " + getCheckMessage(MSG_INVALID_PATTERN, "INTEGER", pattern),
-            "66:43: " + getCheckMessage(MSG_INVALID_PATTERN, "Thing1", pattern),
-            "70:41: " + getCheckMessage(MSG_INVALID_PATTERN, "Thing2", pattern),
+            "48:34: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", pattern),
+            "49:43: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", pattern),
+            "62:37: " + getCheckMessage(MSG_INVALID_PATTERN, "INTEGER", pattern),
+            "68:43: " + getCheckMessage(MSG_INVALID_PATTERN, "Thing1", pattern),
+            "72:41: " + getCheckMessage(MSG_INVALID_PATTERN, "Thing2", pattern),
         };
         verifyWithInlineConfigParser(
                 getPath(
@@ -78,23 +78,22 @@ public class PatternVariableNameCheckTest
             "28:34: " + getCheckMessage(MSG_INVALID_PATTERN, "Count", pattern),
             "43:36: " + getCheckMessage(MSG_INVALID_PATTERN, "S", pattern),
             "44:42: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", pattern),
-            "46:34: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", pattern),
-            "47:43: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", pattern),
-            "49:57: " + getCheckMessage(MSG_INVALID_PATTERN, "s", pattern),
-            "56:48: " + getCheckMessage(MSG_INVALID_PATTERN, "a", pattern),
-            "57:39: " + getCheckMessage(MSG_INVALID_PATTERN, "x", pattern),
-            "58:43: " + getCheckMessage(MSG_INVALID_PATTERN, "y", pattern),
-            "60:37: " + getCheckMessage(MSG_INVALID_PATTERN, "INTEGER", pattern),
-            "65:43: " + getCheckMessage(MSG_INVALID_PATTERN, "Thing1", pattern),
-            "69:41: " + getCheckMessage(MSG_INVALID_PATTERN, "Thing2", pattern),
-            "74:38: " + getCheckMessage(MSG_INVALID_PATTERN, "j", pattern),
-            "75:36: " + getCheckMessage(MSG_INVALID_PATTERN, "j", pattern),
-            "76:37: " + getCheckMessage(MSG_INVALID_PATTERN, "j", pattern),
-            "83:41: " + getCheckMessage(MSG_INVALID_PATTERN, "s", pattern),
+            "47:34: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", pattern),
+            "48:43: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", pattern),
+            "51:57: " + getCheckMessage(MSG_INVALID_PATTERN, "s", pattern),
+            "59:48: " + getCheckMessage(MSG_INVALID_PATTERN, "a", pattern),
+            "60:39: " + getCheckMessage(MSG_INVALID_PATTERN, "x", pattern),
+            "61:43: " + getCheckMessage(MSG_INVALID_PATTERN, "y", pattern),
+            "63:37: " + getCheckMessage(MSG_INVALID_PATTERN, "INTEGER", pattern),
+            "68:43: " + getCheckMessage(MSG_INVALID_PATTERN, "Thing1", pattern),
+            "72:41: " + getCheckMessage(MSG_INVALID_PATTERN, "Thing2", pattern),
+            "77:36: " + getCheckMessage(MSG_INVALID_PATTERN, "j", pattern),
+            "78:34: " + getCheckMessage(MSG_INVALID_PATTERN, "j", pattern),
+            "79:37: " + getCheckMessage(MSG_INVALID_PATTERN, "j", pattern),
+            "86:41: " + getCheckMessage(MSG_INVALID_PATTERN, "s", pattern),
         };
-
         verifyWithInlineConfigParser(
-                 getPath(
+                getPath(
                         "InputPatternVariableNameEnhancedInstanceofNoSingleChar.java"),
                 expected);
     }
