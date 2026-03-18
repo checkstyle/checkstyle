@@ -85,4 +85,24 @@ public class XpathRegressionAvoidStarImportTest
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
 
+    @Test
+    public void testThree() throws Exception {
+        final File fileToProcess = new File(getNonCompilablePath(
+            "InputXpathAvoidStarImportThree.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(CLASS);
+
+        final String[] expectedViolation = {
+            "3:12: " + getCheckMessage(CLASS,
+                AvoidStarImportCheck.MSG_KEY, "java.*"),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/COMPILATION_UNIT/IMPORT/DOT[./IDENT[@text='java']]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
+
 }
