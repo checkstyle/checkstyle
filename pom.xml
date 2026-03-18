@@ -202,21 +202,21 @@
     <surefire.options />
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.13.2</antlr4.version>
-    <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
-    <maven.spotbugs.plugin.version>4.9.8.2</maven.spotbugs.plugin.version>
-    <maven.pmd.plugin.version>3.28.0</maven.pmd.plugin.version>
+    <site.plugin.version>3.21.0</site.plugin.version>
+    <spotbugs.plugin.version>4.9.8.2</spotbugs.plugin.version>
+    <pmd.plugin.version>3.28.0</pmd.plugin.version>
     <pmd.version>7.22.0</pmd.version>
-    <maven.jacoco.plugin.version>0.8.14</maven.jacoco.plugin.version>
+    <jacoco.plugin.version>0.8.14</jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
     <slf4j.version>2.0.17</slf4j.version>
     <saxon.version>12.9</saxon.version>
-    <maven.checkstyle.plugin.version>3.6.0</maven.checkstyle.plugin.version>
-    <maven.sevntu.checkstyle.plugin.version>1.44.1</maven.sevntu.checkstyle.plugin.version>
-    <maven.sevntu-checkstyle-check.checkstyle.version>
+    <checkstyle.plugin.version>3.6.0</checkstyle.plugin.version>
+    <sevntu.checkstyle.plugin.version>1.44.1</sevntu.checkstyle.plugin.version>
+    <sevntu-checkstyle-check.checkstyle.version>
       10.4
-    </maven.sevntu-checkstyle-check.checkstyle.version>
-    <maven.versions.plugin.version>2.21.0</maven.versions.plugin.version>
-    <maven.compiler.plugin.version>3.15.0</maven.compiler.plugin.version>
+    </sevntu-checkstyle-check.checkstyle.version>
+    <versions.plugin.version>2.21.0</versions.plugin.version>
+    <compiler.plugin.version>3.15.0</compiler.plugin.version>
     <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
     <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
     <java.version>21</java.version>
@@ -455,7 +455,7 @@
     <dependency>
       <groupId>org.jacoco</groupId>
       <artifactId>org.jacoco.agent</artifactId>
-      <version>${maven.jacoco.plugin.version}</version>
+      <version>${jacoco.plugin.version}</version>
       <classifier>runtime</classifier>
       <scope>test</scope>
     </dependency>
@@ -705,7 +705,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-pmd-plugin</artifactId>
-          <version>${maven.pmd.plugin.version}</version>
+          <version>${pmd.plugin.version}</version>
           <configuration>
             <analysisCache>true</analysisCache>
             <targetJdk>${java.version}</targetJdk>
@@ -754,7 +754,7 @@
         <plugin>
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>${maven.spotbugs.plugin.version}</version>
+          <version>${spotbugs.plugin.version}</version>
           <configuration>
             <effort>Max</effort>
             <threshold>Low</threshold>
@@ -978,7 +978,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>${maven.compiler.plugin.version}</version>
+        <version>${compiler.plugin.version}</version>
         <configuration>
           <compilerArgs>
             <arg>-Xpkginfo:always</arg>
@@ -1026,7 +1026,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>
-        <version>${maven.versions.plugin.version}</version>
+        <version>${versions.plugin.version}</version>
         <configuration>
           <generateBackupPoms>false</generateBackupPoms>
           <rulesUri>file://${project.basedir}/config/version-number-rules.xml</rulesUri>
@@ -1040,7 +1040,7 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>${maven.jacoco.plugin.version}</version>
+        <version>${jacoco.plugin.version}</version>
         <executions>
           <execution>
             <id>default-instrument</id>
@@ -1610,7 +1610,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <version>${maven.site.plugin.version}</version>
+        <version>${site.plugin.version}</version>
         <configuration>
           <validate>true</validate>
         </configuration>
@@ -2296,7 +2296,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
-        <version>${maven.pmd.plugin.version}</version>
+        <version>${pmd.plugin.version}</version>
         <reportSets>
           <reportSet>
             <reports>
@@ -2309,13 +2309,13 @@
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>${maven.spotbugs.plugin.version}</version>
+        <version>${spotbugs.plugin.version}</version>
       </plugin>
 
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>
-        <version>${maven.versions.plugin.version}</version>
+        <version>${versions.plugin.version}</version>
         <reportSets>
           <reportSet>
             <reports>
@@ -2569,12 +2569,12 @@
               <dependency>
                 <groupId>com.puppycrawl.tools</groupId>
                 <artifactId>checkstyle</artifactId>
-                <version>${maven.sevntu-checkstyle-check.checkstyle.version}</version>
+                <version>${sevntu-checkstyle-check.checkstyle.version}</version>
               </dependency>
               <dependency>
                 <groupId>com.github.sevntu-checkstyle</groupId>
                 <artifactId>sevntu-checks</artifactId>
-                <version>${maven.sevntu.checkstyle.plugin.version}</version>
+                <version>${sevntu.checkstyle.plugin.version}</version>
               </dependency>
             </dependencies>
           </plugin>
@@ -2597,7 +2597,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-site-plugin</artifactId>
-            <version>${maven.site.plugin.version}</version>
+            <version>${site.plugin.version}</version>
             <executions>
               <execution>
                 <id>gen-site</id>
@@ -2700,7 +2700,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven.compiler.plugin.version}</version>
+            <version>${compiler.plugin.version}</version>
             <executions>
               <!-- Skip the default-compile execution as we don't want to execute the compile goal twice -->
               <execution>
@@ -2757,7 +2757,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven.compiler.plugin.version}</version>
+            <version>${compiler.plugin.version}</version>
             <executions>
               <!-- Skip the default-testCompile execution as we don't want to execute the testCompile goal twice -->
               <execution>
@@ -2837,7 +2837,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven.compiler.plugin.version}</version>
+            <version>${compiler.plugin.version}</version>
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
@@ -2898,7 +2898,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven.compiler.plugin.version}</version>
+            <version>${compiler.plugin.version}</version>
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
@@ -2959,7 +2959,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven.compiler.plugin.version}</version>
+            <version>${compiler.plugin.version}</version>
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
@@ -3019,7 +3019,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven.compiler.plugin.version}</version>
+            <version>${compiler.plugin.version}</version>
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
@@ -3078,7 +3078,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven.compiler.plugin.version}</version>
+            <version>${compiler.plugin.version}</version>
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
@@ -3140,7 +3140,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven.compiler.plugin.version}</version>
+            <version>${compiler.plugin.version}</version>
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
@@ -3202,7 +3202,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven.compiler.plugin.version}</version>
+            <version>${compiler.plugin.version}</version>
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
