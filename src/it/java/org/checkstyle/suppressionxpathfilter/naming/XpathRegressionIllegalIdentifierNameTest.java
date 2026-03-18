@@ -94,4 +94,31 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
             expectedXpathQueries);
     }
+
+    @Test
+    public void testInnerClass() throws Exception {
+        final File fileToProcess = new File(getPath(
+            "InputXpathIllegalIdentifierNameInnerClass.java"));
+
+        final DefaultConfiguration moduleConfig =
+            createModuleConfig(IllegalIdentifierNameCheck.class);
+
+        final String format = "^(?!var$|\\S*\\$)\\S+$";
+
+        final String[] expectedViolation = {
+            "10:23: " + getCheckMessage(IllegalIdentifierNameCheck.class,
+                AbstractNameCheck.MSG_INVALID_PATTERN, "var", format),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathIllegalIdentifierNameInnerClass']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/PARAMETERS/PARAMETER_DEF"
+                + "/IDENT[@text='var']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+            expectedXpathQueries);
+    }
 }
