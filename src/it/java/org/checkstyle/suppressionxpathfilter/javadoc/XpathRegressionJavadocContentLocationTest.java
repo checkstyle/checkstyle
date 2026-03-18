@@ -93,4 +93,29 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testField() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathJavadocContentLocationField.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(JavadocContentLocationCheck.class);
+
+        final String[] expectedViolation = {
+            "5:5: " + getCheckMessage(JavadocContentLocationCheck.class,
+                    JavadocContentLocationCheck.MSG_JAVADOC_CONTENT_SECOND_LINE),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathJavadocContentLocationField']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='field']]/TYPE"
+                + "/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT[@text='* Text."
+                + " // warn\\n     ']]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
 }
