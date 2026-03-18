@@ -94,4 +94,27 @@ public class XpathRegressionWhenShouldBeUsedTest
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
+    @Test
+    public void testStaticInit() throws Exception {
+        final File fileToProcess =
+                new File(getPath(
+                        "InputXpathWhenShouldBeUsedStaticInit.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(WhenShouldBeUsedCheck.class);
+        final String[] expectedViolation = {
+            "8:13: " + getCheckMessage(WhenShouldBeUsedCheck.class,
+                    WhenShouldBeUsedCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathWhenShouldBeUsedStaticInit']]"
+                + "/OBJBLOCK/STATIC_INIT/SLIST/LITERAL_SWITCH/SWITCH_RULE"
+                + "[./LITERAL_CASE/PATTERN_VARIABLE_DEF/IDENT[@text='i']]",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathWhenShouldBeUsedStaticInit']]"
+                + "/OBJBLOCK/STATIC_INIT/SLIST/LITERAL_SWITCH/SWITCH_RULE/LITERAL_CASE"
+        );
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
 }
