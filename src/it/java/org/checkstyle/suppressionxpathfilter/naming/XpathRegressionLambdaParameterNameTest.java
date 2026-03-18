@@ -120,4 +120,29 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testField() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathLambdaParameterNameField.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(LambdaParameterNameCheck.class);
+        final String defaultPattern = "^([a-z][a-zA-Z0-9]*|_)$";
+
+        final String[] expectedViolation = {
+            "6:40: " + getCheckMessage(LambdaParameterNameCheck.class,
+                    AbstractNameCheck.MSG_INVALID_PATTERN, "S", defaultPattern),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+               "/COMPILATION_UNIT/CLASS_DEF"
+                       + "[./IDENT[@text='InputXpathLambdaParameterNameField']]"
+                       + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='trimmer']]"
+                       + "/ASSIGN/LAMBDA/IDENT[@text='S']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
