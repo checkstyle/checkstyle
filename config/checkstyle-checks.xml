@@ -1023,6 +1023,7 @@
       <property name="validateComments" value="false"/>
     </module>
     <module name="TypecastParenPad"/>
+    <module name="TypeBodyPadding"/>
     <module name="WhitespaceAfter">
       <property name="tokens"
                value="COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_RETURN,

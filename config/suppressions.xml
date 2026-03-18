@@ -129,6 +129,7 @@
   <suppress id="noConsecutiveLines" files="[\\/]emptylineseparator.xml"/>
   <suppress id="noConsecutiveLines" files="[\\/]javadocparagraph.xml"/>
 
+
   <!-- these are legacy use cases until #11166 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="UnusedImportsCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocMethodCheck.java"/>
@@ -188,5 +189,8 @@
   <suppress checks="MatchXpath"
             id="MatchXpathForbidTryCatchFail"
             files=".*[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/](?!utils|xpath|checks[\\/]coding|checks[\\/]design|checks[\\/]modifier|checks[\\/]naming|checks[\\/]annotation|checks[\\/]indentation|checks[\\/]metrics|checks[\\/]whitespace|checks[\\/]javadoc|checks[\\/]NewlineAtEndOfFileCheckTest|checks[\\/]SuppressWarningsHolderTest|checks[\\/]UncommentedMainCheckTest).*"/>
+
+  <!-- Remove suppression once all violations are fixed, will do an issue for it -->
+  <suppress checks="TypeBodyPadding" files=".*"/>
 
 </suppressions>
