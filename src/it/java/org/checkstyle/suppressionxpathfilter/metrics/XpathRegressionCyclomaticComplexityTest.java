@@ -103,4 +103,38 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testInnerClassLoops() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathCyclomaticComplexityInnerClassLoops.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(CyclomaticComplexityCheck.class);
+        moduleConfig.addProperty("max", "0");
+
+        final String[] expectedViolation = {
+            "5:9: " + getCheckMessage(CyclomaticComplexityCheck.class,
+                    CyclomaticComplexityCheck.MSG_KEY, 3, 0),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathCyclomaticComplexityInnerClassLoops']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='loops']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathCyclomaticComplexityInnerClassLoops']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='loops']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathCyclomaticComplexityInnerClassLoops']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='loops']]/MODIFIERS/LITERAL_PUBLIC"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
 }
