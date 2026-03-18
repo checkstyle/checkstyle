@@ -414,6 +414,7 @@
       <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF,
                                    COMPACT_CTOR_DEF"/>
     </module>
+    <module name="JavadocParamOrder" />
     <module name="SuppressionXpathSingleFilter">
       <property name="checks" value="MissingJavadocMethod"/>
       <property name="query" value="//*[self::METHOD_DEF or self::CTOR_DEF

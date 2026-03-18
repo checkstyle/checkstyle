@@ -105,6 +105,7 @@
     <module name="JavadocVariable"/>
     <module name="JavadocStyle"/>
     <module name="MissingJavadocMethod"/>
+    <module name="JavadocParamOrder" />
 
     <!-- Checks for Naming Conventions.                  -->
     <!-- See https://checkstyle.org/checks/naming/index.html -->
