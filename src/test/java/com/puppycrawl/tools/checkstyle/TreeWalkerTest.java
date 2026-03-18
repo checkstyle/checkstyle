@@ -101,7 +101,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testProperFileExtension() throws Exception {
         final String path = getPath("InputTreeWalkerProperFileExtension.java");
         final String[] expected = {
-            "10:27: " + getCheckMessage(ConstantNameCheck.class,
+            "15:27: " + getCheckMessage(ConstantNameCheck.class,
                         MSG_INVALID_PATTERN, "k", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
         };
         verifyWithInlineConfigParserTwice(path, expected);
@@ -737,7 +737,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final Map<String, List<String>> expectedViolation = new HashMap<>();
         expectedViolation.put(getPath("InputTreeWalkerProperFileExtension.java"),
                 Collections.singletonList(
-                        "10:27: " + getCheckMessage(ConstantNameCheck.class,
+                        "15:27: " + getCheckMessage(ConstantNameCheck.class,
                         MSG_INVALID_PATTERN, "k", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$")));
         verify(checker, files, expectedViolation);
     }
