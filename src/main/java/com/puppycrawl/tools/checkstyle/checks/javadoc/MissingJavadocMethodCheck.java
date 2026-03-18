@@ -198,7 +198,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
         };
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/19148
     @Override
     @SuppressWarnings("deprecation")
     public final void visitToken(DetailAST ast) {
