@@ -129,14 +129,19 @@
   <suppress id="noConsecutiveLines" files="[\\/]emptylineseparator.xml"/>
   <suppress id="noConsecutiveLines" files="[\\/]javadocparagraph.xml"/>
 
-  <!-- these are legacy use cases until #11166 -->
-  <suppress id="noUsageOfGetFileContentsMethod" files="UnusedImportsCheck.java"/>
+  <!-- until #19144 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocMethodCheck.java"/>
+  <!-- until #19145 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocStyleCheck.java"/>
+  <!-- until #19146 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocTypeCheck.java"/>
+  <!-- until #19147 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocVariableCheck.java"/>
+  <!-- until #19148 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocMethodCheck.java"/>
+  <!-- until #19149 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocTypeCheck.java"/>
+  <!-- permanent suppression to allow regexp on content of the line -->
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpSinglelineJavaCheck.java"/>
 
