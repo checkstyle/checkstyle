@@ -442,7 +442,6 @@
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]metrics[\\/]XpathRegressionNPathComplexityTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]modifier[\\/]XpathRegressionClassMemberImpliedModifierTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]naming[\\/]XpathRegressionIllegalIdentifierNameTest.java" />
-  <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]naming[\\/]XpathRegressionLambdaParameterNameTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]naming[\\/]XpathRegressionMemberNameTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]naming[\\/]XpathRegressionRecordComponentNameTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]naming[\\/]XpathRegressionRecordTypeParameterNameTest.java" />
