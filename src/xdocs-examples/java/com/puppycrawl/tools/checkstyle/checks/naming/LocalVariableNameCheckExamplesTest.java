@@ -36,7 +36,7 @@ public class LocalVariableNameCheckExamplesTest extends AbstractExamplesModuleTe
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
         final String[] expected = {
             "15:14: " + getCheckMessage(MSG_INVALID_PATTERN, "VAR", pattern),
-            "17:14: " + getCheckMessage(MSG_INVALID_PATTERN, "var_1", pattern),
+            "18:14: " + getCheckMessage(MSG_INVALID_PATTERN, "var_1", pattern),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
