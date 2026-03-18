@@ -90,4 +90,31 @@ public class XpathRegressionPackageDeclarationTest extends AbstractXpathTestSupp
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testMissingPackageWithInnerClass() throws Exception {
+        final File fileToProcess =
+                new File(getNonCompilablePath("InputXpathPackageDeclarationInnerClass.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(PackageDeclarationCheck.class);
+
+        final String[] expectedViolation = {
+            "3:1: " + getCheckMessage(PackageDeclarationCheck.class,
+                    PackageDeclarationCheck.MSG_KEY_MISSING),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathPackageDeclarationInnerClass']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathPackageDeclarationInnerClass']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathPackageDeclarationInnerClass']]"
+                + "/MODIFIERS/LITERAL_PUBLIC"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
 }
