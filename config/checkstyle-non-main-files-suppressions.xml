@@ -425,7 +425,6 @@
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionOverloadMethodsDeclarationOrderTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionPackageDeclarationTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest.java" />
-  <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionUnnecessarySemicolonInEnumerationTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionUnusedCatchParameterShouldBeUnnamedTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionVariableDeclarationUsageDistanceTest.java" />
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionWhenShouldBeUsedTest.java" />
