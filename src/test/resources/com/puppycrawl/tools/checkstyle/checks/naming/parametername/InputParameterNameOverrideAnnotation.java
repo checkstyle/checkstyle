@@ -17,24 +17,33 @@ public class InputParameterNameOverrideAnnotation {
     }
 
     @SuppressWarnings("")
-    public void foo(Object object) { // violation
+    public void foo(Object object) {
+    // violation above, ''object'' must match pattern ''^h$''
 
     }
 
-    public void foo2(Integer data) {} // violation
+    public void foo2(Integer data) {}
+    // violation above, ''data'' must match pattern ''^h$''
 
     void foo3() {} // No NPE here!
 
-    void foo4(int abc, int bd) {} // 2 violations
+    void foo4(int abc, int bd) {}
+    // 2 violations above:
+    //    ''abc'' must match pattern ''^h$''
+    //    ''bd'' must match pattern ''^h$''
 
-    int foo5(int abc) {return 1;} // violation
+    int foo5(int abc) {return 1;}
+    // violation above, ''abc'' must match pattern ''^h$''
 
     private int field;
     private java.util.Set<String> packageNames;
 
     InputParameterNameOverrideAnnotation() {} // No NPE here!
 
-    InputParameterNameOverrideAnnotation(int fie, java.util.Set<String> pkgNames) {} // 2 violations
+    InputParameterNameOverrideAnnotation(int fie, java.util.Set<String> pkgNames) {}
+    // 2 violations above:
+    //    ''fie'' must match pattern ''^h$''
+    //    ''pkgNames'' must match pattern ''^h$''
 
 
 }
