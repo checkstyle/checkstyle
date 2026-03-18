@@ -357,7 +357,8 @@ elif
 elist
 Ellipsize
 emacs
-Emoji
+emoji
+Emoticons
 emptyblock
 emptycatchblock
 emptyforinitializerpad
@@ -577,6 +578,7 @@ illegalex
 illegalidentifiername
 illegalimport
 illegalinstantiation
+illegalsymbol
 illegalthrows
 illegaltoken
 illegaltokentext
@@ -733,6 +735,7 @@ jtree
 junit
 junitpioneer
 jvm
+jvmargs
 jxr
 kailasam
 Kansara
@@ -809,6 +812,7 @@ mega
 membername
 meminitial
 metadata
+Metaspace
 methodcount
 methodlength
 methodname

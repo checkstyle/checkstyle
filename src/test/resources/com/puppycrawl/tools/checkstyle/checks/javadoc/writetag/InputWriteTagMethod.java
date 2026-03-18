@@ -2,6 +2,7 @@
 WriteTag
 tag = @todo
 tagFormat = \\S
+tagSeverity = (default)info
 tokens = INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF
 severity = ignore
 

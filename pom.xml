@@ -221,7 +221,7 @@
     <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
     <java.version>21</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
-    <pitest.plugin.version>1.22.1</pitest.plugin.version>
+    <pitest.plugin.version>1.23.0</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
@@ -3673,6 +3673,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck*</param>
@@ -3720,6 +3721,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheckTest</param>

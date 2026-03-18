@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -132,31 +133,32 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
 
     @Test
     public void testInvalidCheckRegexp() {
-        try {
-            final Object test = new XpathFilterElement(
-                    ".*", "e[l", ".*", "moduleId", "query");
-            assertWithMessage("Exception is expected but got %s", test).fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Message should be: Failed to initialise regular expression")
-                    .that(exc.getMessage())
-                    .contains("Failed to initialise regular expression");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> {
+                            final Object test = new XpathFilterElement(
+                                    ".*", "e[l", ".*", "moduleId", "query");
+                            assertWithMessage("Exception is expected but got %s", test).fail();
+                        });
+        assertWithMessage("Message should be: Failed to initialise regular expression")
+                .that(exc.getMessage())
+                .contains("Failed to initialise regular expression");
     }
 
     @Test
     public void testIncorrectQuery() {
         final String xpath = "1@#";
-        try {
-            final Object test = new XpathFilterElement("InputXpathFilterElementSuppressByXpath",
-                    "Test", null, null, xpath);
-            assertWithMessage("Exception is expected but got %s", test).fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Message should be: Incorrect xpath query")
-                    .that(exc.getMessage())
-                    .contains("Incorrect xpath query");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> {
+                            final Object test = new XpathFilterElement(
+                                    "InputXpathFilterElementSuppressByXpath",
+                                    "Test", null, null, xpath);
+                            assertWithMessage("Exception is expected but got %s", test).fail();
+                        });
+        assertWithMessage("Message should be: Incorrect xpath query")
+                .that(exc.getMessage())
+                .contains("Incorrect xpath query");
     }
 
     @Test
@@ -321,15 +323,12 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                         getClass(), null);
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents,
                 file.getName(), message, null);
-        try {
-            filter.accept(ev);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (IllegalStateException exc) {
-            assertWithMessage("Exception message does not match expected one")
-                    .that(exc.getMessage())
-                    .contains("Cannot initialize context and evaluate query");
-        }
+        final IllegalStateException exc =
+                getExpectedThrowable(IllegalStateException.class,
+                        () -> filter.accept(ev));
+        assertWithMessage("Exception message does not match expected one")
+                .that(exc.getMessage())
+                .contains("Cannot initialize context and evaluate query");
     }
 
     @Test
