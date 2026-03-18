@@ -257,7 +257,6 @@ public class RegexpCheck extends AbstractCheck {
      * Processes the regexp matches and logs the number of errors in the file.
      *
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @SuppressWarnings("deprecation")
     private void processRegexpMatches() {
         final Matcher matcher = format.matcher(getFileContents().getText().getFullText());
@@ -293,7 +292,6 @@ public class RegexpCheck extends AbstractCheck {
      * @param matcher The matcher
      * @return true is that need to be ignored
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @SuppressWarnings("deprecation")
     private boolean isIgnore(int startLine, FileText text, LineColumn start, Matcher matcher) {
         final LineColumn end;
