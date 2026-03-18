@@ -194,4 +194,12 @@
             id="MatchXpathForbidTryCatchFail"
             files=".*[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/](?!utils|xpath|checks[\\/]coding|checks[\\/]design|checks[\\/]modifier|checks[\\/]naming|checks[\\/]annotation|checks[\\/]indentation|checks[\\/]metrics|checks[\\/]whitespace|checks[\\/]javadoc|checks[\\/]NewlineAtEndOfFileCheckTest|checks[\\/]SuppressWarningsHolderTest|checks[\\/]UncommentedMainCheckTest).*"/>
 
+  <!-- Fields used via reflection or regex patterns, not detectable by AST analysis -->
+  <suppress checks="UnusedPrivateField"
+            files="AbstractIndentationTestSupport\.java|AbstractItModuleTestSupport\.java|AbstractXpathTestSupport\.java|XpathRegressionUncommentedMainTest\.java|AbstractAutomaticBean\.java|AstTreeStringPrinter\.java"/>
+
+  <!-- Fields used via reflection or are part of internal API -->
+  <suppress checks="UnusedPrivateField"
+            files="ConfigurationLoader\.java|CheckstyleAntTask\.java|MultiFileRegexpHeaderCheck\.java|AbstractClassCouplingCheck\.java|DetectorOptions\.java|XdocsJavaDocsTest\.java"/>
+
 </suppressions>

@@ -410,6 +410,9 @@
   <suppress id="violationMessagesModuleMacroMustExist"
             files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+\.xml"/>
 
+  <suppress id="propertiesMacroMustExist"
+          files=".*[\\/]unusedprivatefield\.xml\.template"/>
+
 <!-- until https://github.com/checkstyle/checkstyle/issues/19064 -->
 
   <suppress id="numberOfTestCasesInXpath" files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionOuterTypeFilenameTest.java" />
