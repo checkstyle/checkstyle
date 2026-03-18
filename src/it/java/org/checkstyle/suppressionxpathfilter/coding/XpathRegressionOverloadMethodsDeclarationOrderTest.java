@@ -106,4 +106,32 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
 
+    @Test
+    public void testEnum() throws Exception {
+        final File fileToProcess = new File(
+                getPath("InputXpathOverloadMethodsDeclarationOrderEnum.java"));
+
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
+
+        final String[] expectedViolation = {
+            "15:5: " + getCheckMessage(CLAZZ,
+                        OverloadMethodsDeclarationOrderCheck.MSG_KEY, "7"),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/ENUM_DEF[./IDENT"
+                        + "[@text='InputXpathOverloadMethodsDeclarationOrderEnum']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]",
+                "/COMPILATION_UNIT/ENUM_DEF[./IDENT"
+                        + "[@text='InputXpathOverloadMethodsDeclarationOrderEnum']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]/MODIFIERS",
+                "/COMPILATION_UNIT/ENUM_DEF[./IDENT"
+                        + "[@text='InputXpathOverloadMethodsDeclarationOrderEnum']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]"
+                        + "/MODIFIERS/LITERAL_PUBLIC"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
+
 }
