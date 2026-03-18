@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>TypeBodyPaddingCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.TypeBodyPaddingCheck</mutatedClass>
+    <mutatedMethod>hasEndViolation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>final DetailAST leftCurly = objBlock.findFirstToken(TokenTypes.LCURLY);</lineContent>
+  </mutation>
+  <mutation unstable="false">
+    <sourceFile>TypeBodyPaddingCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.TypeBodyPaddingCheck</mutatedClass>
+    <mutatedMethod>hasStartViolation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>final DetailAST leftCurly = objBlock.findFirstToken(TokenTypes.LCURLY);</lineContent>
+  </mutation>
+  <mutation unstable="false">
+    <sourceFile>TypeBodyPaddingCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.TypeBodyPaddingCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>final DetailAST leftCurly = objBlock.findFirstToken(TokenTypes.LCURLY);</lineContent>
+  </mutation>
+</suppressedMutations>
