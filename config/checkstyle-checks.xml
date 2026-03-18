@@ -41,6 +41,16 @@
     <property name="checks" value="JavadocPackage"/>
     <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
   </module>
+  <!-- External repos checked by no-error-* CI jobs are not required to comply -->
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="JavadocUtilizingTrailingSpace"/>
+    <property name="files" value="[\\/]\.ci-temp[\\/]"/>
+  </module>
+  <!-- Own main source Javadocs are not required to comply yet -->
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="JavadocUtilizingTrailingSpace"/>
+    <property name="files" value=".*[\\/]src[\\/]main[\\/]java[\\/]"/>
+  </module>
   <module name="SuppressionSingleFilter">
     <property name="checks" value="JavadocMethod"/>
     <property name="files"
@@ -752,6 +762,7 @@
       <property name="scope" value="public"/>
     </module>
     <module name="JavadocTagContinuationIndentation"/>
+    <module name="JavadocUtilizingTrailingSpace"/>
     <module name="JavadocType">
       <!-- avoid errors on tag '@noinspection' -->
       <property name="allowUnknownTags" value="true"/>
