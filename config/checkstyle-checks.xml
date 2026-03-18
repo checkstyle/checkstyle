@@ -1023,6 +1023,7 @@
       <property name="validateComments" value="false"/>
     </module>
     <module name="TypecastParenPad"/>
+    <module name="TypeBodyPadding"/>
     <module name="WhitespaceAfter">
       <property name="tokens"
                value="COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_RETURN,
@@ -1032,6 +1033,12 @@
     </module>
     <module name="WhitespaceAround"/>
 
+  </module>
+
+  <!-- Temporary suppression for validation of contribution repo -->
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="TypeBodyPadding"/>
+    <property name="files" value=".*[\\/]contribution[\\/].*"/>
   </module>
 
 </module>
