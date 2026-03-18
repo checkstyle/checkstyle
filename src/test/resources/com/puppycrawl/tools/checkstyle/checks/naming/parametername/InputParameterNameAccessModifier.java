@@ -11,11 +11,13 @@ package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
 
 public class InputParameterNameAccessModifier {
 
-    public InputParameterNameAccessModifier(int constructorParam) {} // violation
+    public InputParameterNameAccessModifier(int constructorParam) {}
+    // violation above, ''constructorParam'' must match pattern ''^h$''
 
     public void v1(int h) {
         new Object () {
-            public void i(int inner) {} // violation
+            public void i(int inner) {}
+            // violation above, ''inner'' must match pattern ''^h$''
         };
     }
 
@@ -25,7 +27,8 @@ public class InputParameterNameAccessModifier {
 
     private void v3(int h) {}
 
-    public void i1(int publicParam) {} // violation
+    public void i1(int publicParam) {}
+    // violation above, ''publicParam'' must match pattern ''^h$''
 
     protected void i4(int pubprot) {}
 
@@ -36,7 +39,8 @@ public class InputParameterNameAccessModifier {
     public interface InterfaceScope {
         void v1(int h);
 
-        void i1(int interfaceParam); // violation
+        void i1(int interfaceParam);
+        // violation above, ''interfaceParam'' must match pattern ''^h$''
     }
 }
 
@@ -50,7 +54,8 @@ class PrivateScope {
 
     private void v3(int h) {}
 
-    public void i1(int packageParam) {} // violation
+    public void i1(int packageParam) {}
+    // violation above, ''packageParam'' must match pattern ''^h$''
 
     protected void i4(int packprot) {}
 
@@ -66,7 +71,8 @@ class PrivateScope {
     interface InterfaceScope {
         void v1(int h);
 
-        void i1(int paramName); // violation
+        void i1(int paramName);
+        // violation above, ''paramName'' must match pattern ''^h$''
     }
 
     interface FuncIfc {
