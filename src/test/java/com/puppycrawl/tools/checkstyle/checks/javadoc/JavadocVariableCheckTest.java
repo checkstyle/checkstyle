@@ -428,4 +428,74 @@ public class JavadocVariableCheckTest
             getPath("InputJavadocVariableAboveComment.java"),
             expected);
     }
+
+    @Test
+    public void testJavadocOnAnnotatedField() throws Exception {
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "24:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "30:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocVariableOnAnnotatedField.java"),
+            expected);
+    }
+
+    @Test
+    public void testJavadocOnPrivateEnumConstants() throws Exception {
+        final String[] expected = {
+            "21:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocVariableOnPrivateEnumConstants.java"),
+            expected);
+    }
+
+    @Test
+    public void testJavadocOnType() throws Exception {
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "17:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocVariableJavadocOnType.java"),
+            expected);
+    }
+
+    @Test
+    public void testMultipleAnnotations() throws Exception {
+        final String[] expected = {
+            "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "30:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocVariableMultipleAnnotations.java"),
+            expected);
+    }
+
+    @Test
+    public void testEnumsWithAnnotations() throws Exception {
+        final String[] expected = {
+            "25:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocVariableEnumsWithAnnotations.java"),
+            expected);
+    }
+
+    @Test
+    public void testJavadocOnPackagePrivate() throws Exception {
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "21:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "32:14: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "34:14: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "39:14: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "43:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "48:18: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocVariablePackagePrivate.java"), expected);
+    }
 }

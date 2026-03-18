@@ -6326,8 +6326,29 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocVariableCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference annotations</message>
+    <lineContent>result = hasJavadocCommentOnAnnotations(annotations)</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.IDENT)</message>
     <lineContent>final String name = ast.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference modifiers</message>
+    <lineContent>boolean found = hasBlockCommentJavadoc(modifiers.getFirstChild());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference type</message>
+    <lineContent>DetailAST firstChild = type.getFirstChild();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
