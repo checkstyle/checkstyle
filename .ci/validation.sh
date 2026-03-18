@@ -1049,7 +1049,6 @@ no-exception-struts)
 
 
 no-exception-checkstyle-sevntu)
-  export MAVEN_OPTS="-Xmx4g"
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -1087,7 +1086,6 @@ no-exception-checkstyle-sevntu-javadoc)
 
 
 no-exception-guava)
-  export MAVEN_OPTS="-Xmx4g"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -1104,7 +1102,6 @@ no-exception-guava)
   ;;
 
 no-exception-hibernate-orm)
-  export MAVEN_OPTS="-Xmx4g"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -1121,7 +1118,6 @@ no-exception-hibernate-orm)
   ;;
 
 no-exception-spotbugs)
-  export MAVEN_OPTS="-Xmx4g"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
@@ -1138,7 +1134,6 @@ no-exception-spotbugs)
   ;;
 
 no-exception-spoon)
-  export MAVEN_OPTS="-Xmx4g"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
@@ -1155,7 +1150,6 @@ no-exception-spoon)
   ;;
 
 no-exception-spring-framework)
-  export MAVEN_OPTS="-Xmx4g"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
@@ -1230,7 +1224,6 @@ no-exception-alot-of-projects)
   ;;
 
 no-warning-imports-guava)
-  export MAVEN_OPTS="-Xmx4g"
   PROJECTS=checks-import-order/projects-to-test-imports-guava.properties
   CONFIG=checks-import-order/checks-imports-error-guava.xml
   REPORT=reports/guava/site/index.html
