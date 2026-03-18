@@ -289,12 +289,12 @@ public class Example8 {
       <subsection name="Violation Messages" id="CommentsIndentation_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22comments.indentation.block%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22comments.indentation.block%22">
               comments.indentation.block
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22comments.indentation.single%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22comments.indentation.single%22">
               comments.indentation.single
             </a>
           </li>
