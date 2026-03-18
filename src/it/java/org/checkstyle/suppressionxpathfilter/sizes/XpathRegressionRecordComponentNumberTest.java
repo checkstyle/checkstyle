@@ -97,4 +97,38 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testInnerClass() throws Exception {
+        final File fileToProcess = new File(getPath(
+            "InputXpathRecordComponentNumberInnerClass.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(RecordComponentNumberCheck.class);
+
+        final String[] expectedViolation = {
+            "10:9: " + getCheckMessage(RecordComponentNumberCheck.class,
+                    RecordComponentNumberCheck.MSG_KEY,
+                    13, 8),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathRecordComponentNumberInnerClass']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
+                + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathRecordComponentNumberInnerClass']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
+                + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathRecordComponentNumberInnerClass']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
+                + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]/MODIFIERS"
+                + "/LITERAL_PUBLIC"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
