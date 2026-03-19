@@ -53,9 +53,9 @@ public class LocalVariableNameCheckTest
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expected = {
-            "39:13: " + getCheckMessage(MSG_INVALID_PATTERN, "ABC", pattern),
-            "50:18: " + getCheckMessage(MSG_INVALID_PATTERN, "I", pattern),
-            "52:20: " + getCheckMessage(MSG_INVALID_PATTERN, "InnerBlockVariable", pattern),
+            "40:13: " + getCheckMessage(MSG_INVALID_PATTERN, "ABC", pattern),
+            "51:18: " + getCheckMessage(MSG_INVALID_PATTERN, "I", pattern),
+            "53:20: " + getCheckMessage(MSG_INVALID_PATTERN, "InnerBlockVariable", pattern),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLocalVariableName1two.java"), expected);
@@ -68,7 +68,7 @@ public class LocalVariableNameCheckTest
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expected = {
-            "27:21: " + getCheckMessage(MSG_INVALID_PATTERN, "O", pattern),
+            "28:21: " + getCheckMessage(MSG_INVALID_PATTERN, "O", pattern),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLocalVariableName2one.java"), expected);
@@ -89,12 +89,12 @@ public class LocalVariableNameCheckTest
         final String pattern = "^[a-z]{2,}[a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "19:29: " + getCheckMessage(MSG_INVALID_PATTERN, "j", pattern),
-            "22:17: " + getCheckMessage(MSG_INVALID_PATTERN, "A", pattern),
-            "24:21: " + getCheckMessage(MSG_INVALID_PATTERN, "i", pattern),
-            "30:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Index", pattern),
-            "47:32: " + getCheckMessage(MSG_INVALID_PATTERN, "a", pattern),
-            "50:32: " + getCheckMessage(MSG_INVALID_PATTERN, "B", pattern),
+            "20:29: " + getCheckMessage(MSG_INVALID_PATTERN, "j", pattern),
+            "23:17: " + getCheckMessage(MSG_INVALID_PATTERN, "A", pattern),
+            "25:21: " + getCheckMessage(MSG_INVALID_PATTERN, "i", pattern),
+            "31:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Index", pattern),
+            "48:32: " + getCheckMessage(MSG_INVALID_PATTERN, "a", pattern),
+            "51:32: " + getCheckMessage(MSG_INVALID_PATTERN, "B", pattern),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLocalVariableNameOneCharInitVarName.java"), expected);
@@ -105,9 +105,9 @@ public class LocalVariableNameCheckTest
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expected = {
-            "16:13: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
-            "17:13: " + getCheckMessage(MSG_INVALID_PATTERN, "_result", pattern),
-            "33:22: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "20:13: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "21:13: " + getCheckMessage(MSG_INVALID_PATTERN, "_result", pattern),
+            "37:22: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLocalVariableNameUnnamedVariables.java"), expected);
