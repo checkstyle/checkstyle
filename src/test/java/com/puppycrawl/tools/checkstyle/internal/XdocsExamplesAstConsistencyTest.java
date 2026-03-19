@@ -298,8 +298,7 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithnearbytextfilter/Example9",
             "filters/suppresswithplaintextcommentfilter/Example5",
             "filters/suppresswithplaintextcommentfilter/Example9"
-            );
-
+           );
     /**
      * Tests that examples with the same code structure maintain consistency.
      * Examples not marked as independent must have identical AST structure.
