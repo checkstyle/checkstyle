@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassCons
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -83,6 +84,28 @@ public class XpathRegressionHideUtilityClassConstructorTest extends AbstractXpat
                     + "InputXpathHideUtilityClassConstructorPublic']]/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
                     + "InputXpathHideUtilityClassConstructorPublic']]/MODIFIERS/LITERAL_PUBLIC"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
+    @Test
+    public void testPackagePrivate() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathHideUtilityClassConstructorPackagePrivate.java"));
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(HideUtilityClassConstructorCheck.class);
+        final String[] expectedViolation = {
+            "3:1: " + getCheckMessage(HideUtilityClassConstructorCheck.class, MSG_KEY),
+        };
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
+                    + "InputXpathHideUtilityClassConstructorPackagePrivate']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
+                    + "InputXpathHideUtilityClassConstructorPackagePrivate']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
+                    + "InputXpathHideUtilityClassConstructorPackagePrivate']]/LITERAL_CLASS"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
