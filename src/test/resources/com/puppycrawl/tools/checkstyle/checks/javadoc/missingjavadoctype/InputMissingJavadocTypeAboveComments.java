@@ -13,16 +13,21 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 public class InputMissingJavadocTypeAboveComments { // violation, 'Missing a Javadoc comment.'
 
     /**
-     *
+     * java doc comment
      */
     /* */
+    //
     public class InputMissingJavadocTypeAboveComments2 {
     }
 
     /**
      *
      */
+
     public class Myclass { } /* My class */
 
-    public class Myclass2 { } // violation, 'Missing a Javadoc comment.'
+    /**
+     *
+     */ public class Myclass2 { } // violation, 'Missing a Javadoc comment.'
+
 }
