@@ -34,7 +34,9 @@ public class InputParameterNameOverrideAnnotationOne {
 
     InputParameterNameOverrideAnnotationOne() {} // No NPE here!
 
-    InputParameterNameOverrideAnnotationOne(int fie, java.util.Set<String> pkgNames) {} // violation 'Name 'fie' must match pattern'
-    // violation above 'Name 'pkgNames' must match pattern'
+    InputParameterNameOverrideAnnotationOne(int fie, java.util.Set<String> pkgNames) {}
+    // 2 violations above:
+    //  'Name 'fie' must match pattern'
+    //  'Name 'pkgNames' must match pattern'
 
 }
