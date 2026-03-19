@@ -287,14 +287,14 @@ FieldType_WS
     ;
 
 FIELD_TYPE
-    : ([a-zA-Z0-9_$] | '.' | '[' | ']')+ -> mode(DEFAULT_MODE)
+    : (LetterOrDigit | '.' | '[' | ']')+ -> mode(DEFAULT_MODE)
     ;
 
 // --- QUALIFIED_IDENTIFIER ---
 mode QUALIFIED_IDENTIFIER;
 
 DOTTED_IDENTIFIER
-    : ([a-zA-Z0-9_$] | '.')+ -> type(IDENTIFIER), mode(DEFAULT_MODE)
+    : (LetterOrDigit | '.')+ -> type(IDENTIFIER), mode(DEFAULT_MODE)
     ;
 
 DottedIdentifier_NEWLINE
@@ -314,7 +314,7 @@ DottedIdentifier_LEADING_ASTERISK
 mode EXCEPTION_NAME_MODE;
 
 EXCEPTION_NAME
-    : ([a-zA-Z0-9_$] | '.')+ -> type(IDENTIFIER), mode(DEFAULT_MODE)
+    : (LetterOrDigit | '.')+ -> type(IDENTIFIER), mode(DEFAULT_MODE)
     ;
 
 ExceptionName_NEWLINE
@@ -483,7 +483,7 @@ EXTENDS: 'extends';
 SUPER: 'super';
 
 IDENTIFIER
-    : ({inFragmentReference}? ~[ \t\r\n}]+ | ([a-zA-Z0-9_$] | '.')+)
+    : ({inFragmentReference}? ~[ \t\r\n}]+ | (LetterOrDigit | '.')+)
       {
           inFragmentReference = false;
           switchFromReferenceModeOnWhitespace();
@@ -545,8 +545,18 @@ See_TAG_OPEN
       -> skip, mode(DEFAULT_MODE)
     ;
 
-fragment LetterOrDigit: Letter | [0-9];
-fragment Letter: [a-zA-Z$_];
+fragment LetterOrDigit
+    : Letter
+    | [0-9]
+    ;
+fragment Letter
+    // these are the "java letters" below 0x7F
+    : [a-zA-Z$_]
+    // covers all characters above 0x7F which are not a surrogate
+    | ~[\u0000-\u007F\uD800-\uDBFF]
+    // covers UTF-16 surrogate pairs encodings for U+10000 to U+10FFFF
+    | [\uD800-\uDBFF] [\uDC00-\uDFFF]
+    ;
 
 // --- LINK_TAG_DESCRIPTION ---
 mode LINK_TAG_DESCRIPTION;
@@ -606,7 +616,7 @@ ParameterList_LEADING_ASTERISK
     ;
 
 fragment PARAMETER_TYPE_CHAR
-    : [a-zA-Z0-9_$.<>[\]?]
+    : LetterOrDigit | [.<>[\]?]
     ;
 
 PARAMETER_TYPE
@@ -631,7 +641,7 @@ RPAREN
 mode VALUE_MODE;
 
 Value_IDENTIFIER
-    : ([a-zA-Z0-9_$] | '.' | '-')+ -> type(IDENTIFIER)
+    : (LetterOrDigit | '.' | '-')+ -> type(IDENTIFIER)
     ;
 
 FORMAT_SPECIFIER
