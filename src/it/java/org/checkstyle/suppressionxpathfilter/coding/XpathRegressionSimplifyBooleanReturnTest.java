@@ -91,4 +91,29 @@ public class XpathRegressionSimplifyBooleanReturnTest extends AbstractXpathTestS
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
             expectedXpathQueries);
     }
+
+    @Test
+    public void testAnonymousInnerClass() throws Exception {
+        final File fileToProcess = new File(
+            getPath(
+                "InputXpathSimplifyBooleanReturnAnonymousInnerClass.java"
+            ));
+
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
+
+        final String[] expectedViolation = {
+            "12:17: " + getCheckMessage(CLASS, MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
+                + "'InputXpathSimplifyBooleanReturnAnonymousInnerClass']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getChecker']]"
+                + "/SLIST/LITERAL_RETURN/EXPR/LITERAL_NEW[./IDENT[@text='Checker']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='check']]/SLIST/LITERAL_IF"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+            expectedXpathQueries);
+    }
 }

@@ -12,9 +12,11 @@ package com.puppycrawl.tools.checkstyle.checks.naming.patternvariablename;
 // xdoc section -- start
 class Example1 {
   void foo(Object o1){
-    if (o1 instanceof String STRING) {} // violation
+    if (o1 instanceof String STRING) {}
+    // violation above, 'Name 'STRING' must match pattern*.'
     if (o1 instanceof Integer num) {}
-    if (o1 instanceof Integer num_1) {} // violation
+    if (o1 instanceof Integer num_1) {}
+    // violation above, 'Name 'num_1' must match pattern*.'
     if (o1 instanceof Integer n) {}
   }
 }

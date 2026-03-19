@@ -38,7 +38,7 @@ public class PatternVariableNameCheckExamplesTest extends AbstractExamplesModule
 
         final String[] expected = {
             "15:30: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", pattern),
-            "17:31: " + getCheckMessage(MSG_INVALID_PATTERN, "num_1", pattern),
+            "18:31: " + getCheckMessage(MSG_INVALID_PATTERN, "num_1", pattern),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -63,7 +63,7 @@ public class PatternVariableNameCheckExamplesTest extends AbstractExamplesModule
 
         final String[] expected = {
             "17:30: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", pattern),
-            "20:31: " + getCheckMessage(MSG_INVALID_PATTERN, "n", pattern),
+            "21:31: " + getCheckMessage(MSG_INVALID_PATTERN, "n", pattern),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -80,3 +80,4 @@ public class PatternVariableNameCheckExamplesTest extends AbstractExamplesModule
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }
+
