@@ -79,6 +79,44 @@ options { tokenVocab=JavaLanguageLexer; }
 
 compilationUnit
     : packageDeclaration? importDeclaration* typeDeclaration* EOF
+    | compactCompilationUnit EOF
+    ;
+
+// JEP 512 - Compact Source Files (JDK 25)
+// https://openjdk.org/jeps/512
+// CompactCompilationUnit:
+//     {ImportDeclaration} {ClassMemberDeclarationNoMethod}
+//     MethodDeclaration {ClassMemberDeclaration}
+compactCompilationUnit
+    : importDeclaration*
+      compactMemberBeforeMethod*
+      compactFirstMethod
+      compactMemberAfterMethod*
+    ;
+
+compactMemberBeforeMethod
+    : mods+=modifier* type=compactMemberNoMethod[$ctx.mods]
+    | semi+=SEMI+
+    ;
+
+compactFirstMethod
+    : mods+=modifier* methodDeclaration[$ctx.mods]
+    ;
+
+compactMemberAfterMethod
+    : mods+=modifier* type=compactMember[$ctx.mods]
+    | semi+=SEMI+
+    ;
+
+compactMemberNoMethod[List<ModifierContext> mods]
+    : fieldDeclaration[mods]
+    | types[mods]
+    ;
+
+compactMember[List<ModifierContext> mods]
+    : methodDeclaration[mods]
+    | fieldDeclaration[mods]
+    | types[mods]
     ;
 
 packageDeclaration
