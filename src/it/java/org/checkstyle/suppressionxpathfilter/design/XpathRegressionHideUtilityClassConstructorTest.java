@@ -88,4 +88,26 @@ public class XpathRegressionHideUtilityClassConstructorTest extends AbstractXpat
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testFinalClass() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathHideUtilityClassConstructorFinal.java"));
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(HideUtilityClassConstructorCheck.class);
+        final String[] expectedViolation = {
+            "3:1: " + getCheckMessage(HideUtilityClassConstructorCheck.class, MSG_KEY),
+        };
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
+                    + "InputXpathHideUtilityClassConstructorFinal']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
+                    + "InputXpathHideUtilityClassConstructorFinal']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
+                    + "InputXpathHideUtilityClassConstructorFinal']]/MODIFIERS/FINAL"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
