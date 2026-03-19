@@ -59,6 +59,9 @@ recipeList:
       exclude:
         # all suppressions until https://github.com/checkstyle/checkstyle/issues/18952
         - org.openrewrite.staticanalysis.DefaultComesLast
+        # Kept excluded: OpenRewrite's EmptyBlock removes blocks entirely,
+        # which conflicts with Checkstyle's EmptyBlockCheck that requires
+        # blocks to have statements or text. Automatic deletion is too aggressive.
         - org.openrewrite.staticanalysis.EmptyBlock
         - org.openrewrite.staticanalysis.FinalizePrivateFields
         - org.openrewrite.staticanalysis.ForLoopControlVariablePostfixOperators
@@ -67,8 +70,16 @@ recipeList:
         - org.openrewrite.java.format.NoWhitespaceBefore
         - org.openrewrite.staticanalysis.TypecastParenPad
         - org.openrewrite.staticanalysis.ExplicitInitialization
+        # Kept excluded: OpenRewrite's FallThrough always adds break statements,
+        # ignoring Checkstyle's FallThroughCheck which allows configurable relief
+        # comments via `reliefPattern` and can optionally skip checking the last
+        # case group with `checkLastCaseGroup`
         - org.openrewrite.staticanalysis.FallThrough
         - org.openrewrite.staticanalysis.HideUtilityClassConstructor
+        # Kept excluded: OpenRewrite's NeedBraces always adds braces, overriding
+        # Checkstyle's NeedBracesCheck which allows configuration for single-line
+        # statements and empty loop bodies via `allowSingleLineStatement` and
+        # `allowEmptyLoopBody` options.
         - org.openrewrite.staticanalysis.NeedBraces
         - org.openrewrite.staticanalysis.OperatorWrap
         - org.openrewrite.staticanalysis.ReplaceThreadRunWithThreadStart
