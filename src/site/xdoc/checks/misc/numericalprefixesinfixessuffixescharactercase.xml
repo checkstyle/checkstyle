@@ -88,17 +88,17 @@ public class Example1 {
         id="NumericalPrefixesInfixesSuffixesCharacterCase_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22numerical.literal.infix%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22numerical.literal.infix%22">
               numerical.literal.infix
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22numerical.literal.prefix%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22numerical.literal.prefix%22">
               numerical.literal.prefix
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22numerical.literal.suffix%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22numerical.literal.suffix%22">
               numerical.literal.suffix
             </a>
           </li>
