@@ -737,6 +737,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.javadoc.SummaryJavadocCheck");
         NAME_TO_FULL_MODULE_NAME.put("WriteTagCheck",
                 BASE_PACKAGE + ".checks.javadoc.WriteTagCheck");
+        NAME_TO_FULL_MODULE_NAME.put("JavadocParamOrderCheck",
+                BASE_PACKAGE + ".checks.javadoc.JavadocParamOrderCheck");
     }
 
     /**

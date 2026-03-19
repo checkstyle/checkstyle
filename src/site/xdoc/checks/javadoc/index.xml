@@ -117,6 +117,17 @@
           </tr>
           <tr>
             <td>
+              <a href="javadocparamorder.html#JavadocParamOrder">
+                JavadocParamOrder
+              </a>
+            </td>
+            <td>
+              Checks that the order of <code>@param</code> tags in a Javadoc comment matches the
+              order of the corresponding parameters in the method or constructor declaration.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="javadocstyle.html#JavadocStyle">
                 JavadocStyle
               </a>

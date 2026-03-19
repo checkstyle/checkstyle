@@ -769,6 +769,7 @@
     <module name="WriteTag"/>
     <module name="SummaryJavadoc"/>
     <module name="RequireEmptyLineBeforeBlockTagGroup"/>
+    <module name="JavadocParamOrder"/>
 
     <!-- Metrics -->
     <module name="BooleanExpressionComplexity">
