@@ -133,17 +133,47 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     @Override
     public DetailAstImpl visitCompilationUnit(JavaLanguageParser.CompilationUnitContext ctx) {
         final DetailAstImpl compilationUnit;
-        // 'EOF' token is always present; therefore if we only have one child, we have an empty file
-        final boolean isEmptyFile = ctx.children.size() == 1;
-        if (isEmptyFile) {
-            compilationUnit = null;
+        if (ctx.compactCompilationUnit() != null) {
+            compilationUnit = visit(ctx.compactCompilationUnit());
         }
         else {
-            compilationUnit = createImaginary(TokenTypes.COMPILATION_UNIT);
-            // last child is 'EOF', we do not include this token in AST
-            processChildren(compilationUnit, ctx.children.subList(0, ctx.children.size() - 1));
+            // 'EOF' token is always present; therefore if we only have one
+            // child, we have an empty file
+            final boolean isEmptyFile = ctx.children.size() == 1;
+            if (isEmptyFile) {
+                compilationUnit = null;
+            }
+            else {
+                compilationUnit = createImaginary(TokenTypes.COMPILATION_UNIT);
+                // last child is 'EOF', we do not include this token in AST
+                processChildren(compilationUnit,
+                        ctx.children.subList(0, ctx.children.size() - 1));
+            }
         }
         return compilationUnit;
+    }
+
+    @Override
+    public DetailAstImpl visitCompactCompilationUnit(
+            JavaLanguageParser.CompactCompilationUnitContext ctx) {
+        final DetailAstImpl compilationUnit = createImaginary(TokenTypes.COMPILATION_UNIT);
+        processChildren(compilationUnit, ctx.children);
+        return compilationUnit;
+    }
+
+    @Override
+    public DetailAstImpl visitCompactMemberDeclaration(
+            JavaLanguageParser.CompactMemberDeclarationContext ctx) {
+        final DetailAstImpl member;
+        if (ctx.type == null) {
+            member = create(ctx.semi.getFirst());
+            ctx.semi.subList(1, ctx.semi.size())
+                    .forEach(semi -> addLastSibling(member, create(semi)));
+        }
+        else {
+            member = visit(ctx.type);
+        }
+        return member;
     }
 
     @Override

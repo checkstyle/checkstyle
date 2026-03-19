@@ -77,8 +77,31 @@ options { tokenVocab=JavaLanguageLexer; }
     }
 }
 
+// compilationUnit is the root rule for any Java source file.
+// It supports two forms as defined in JLS §7.3:
+//   OrdinaryCompilationUnit: [PackageDeclaration] {ImportDeclaration} {TypeDeclaration}
+//   CompactCompilationUnit (JEP 512, JDK 25): {ImportDeclaration} {ClassMemberDeclaration}
+// See: https://openjdk.org/jeps/512
+// The mandatory MethodDeclaration constraint of CompactCompilationUnit is enforced
+// by the Java compiler, not the grammar.
 compilationUnit
     : packageDeclaration? importDeclaration* typeDeclaration* EOF
+    | compactCompilationUnit EOF
+    ;
+
+compactCompilationUnit
+    : importDeclaration* compactMemberDeclaration*
+    ;
+
+compactMemberDeclaration
+    : mods+=modifier* type=compactMember[$ctx.mods]
+    | semi+=SEMI+
+    ;
+
+compactMember[List<ModifierContext> mods]
+    : types[mods]
+    | fieldDeclaration[mods]
+    | methodDeclaration[mods]
     ;
 
 packageDeclaration
