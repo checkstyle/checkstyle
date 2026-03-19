@@ -298,18 +298,13 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithnearbytextfilter/Example9",
             "filters/suppresswithplaintextcommentfilter/Example5",
             "filters/suppresswithplaintextcommentfilter/Example9",
-            // No properties in module, multiple very different examples to ease reading
-            "checks/annotation/missingoverrideannotation/Example2",
-            "checks/coding/illegaltoken/Example2"
            );
-
     /**
      * Tests that examples with the same code structure maintain consistency.
      * Examples not marked as independent must have identical AST structure.
      *
      * @throws IOException if an I/O error occurs
      */
-
     @Test
     public void testExamplesDifferOnlyByComments() throws IOException {
         final List<String> violations = new ArrayList<>();
