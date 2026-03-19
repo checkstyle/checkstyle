@@ -149,9 +149,7 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testInputFinalLocalVariable2Three() throws Exception {
 
-        final String[] excepted = {
-
-        };
+        final String[] excepted = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariable2Three.java"), excepted);
     }
@@ -159,9 +157,7 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testInputFinalLocalVariable2Four() throws Exception {
 
-        final String[] excepted = {
-
-        };
+        final String[] excepted = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariable2Four.java"), excepted);
     }
@@ -169,9 +165,7 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testInputFinalLocalVariable2Five() throws Exception {
 
-        final String[] excepted = {
-
-        };
+        final String[] excepted = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariable2Five.java"), excepted);
     }
@@ -222,8 +216,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void testLambda()
-            throws Exception {
+    public void testLambda() throws Exception {
         final String[] expected = {
             "43:16: " + getCheckMessage(MSG_KEY, "result"),
         };
@@ -233,8 +226,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void testVariableNameShadowing()
-            throws Exception {
+    public void testVariableNameShadowing() throws Exception {
 
         final String[] expected = {
             "12:28: " + getCheckMessage(MSG_KEY, "text"),
