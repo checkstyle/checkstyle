@@ -81,6 +81,7 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
             "visitClassDef",
             "visitInterfaceMemberDeclaration",
             "visitMemberDeclaration",
+            "visitCompactMember",
             "visitLiteralPrimary",
             "visitPatternDefinition",
             "visitLocalType",
