@@ -1017,6 +1017,7 @@ overloadsplit
 overridable
 overridealwaysused
 OVERRIDERS
+owasp
 packageannotation
 packagecomment
 packagedeclaration
@@ -1543,6 +1544,7 @@ xslt
 xsltproc
 XSO
 xwiki
+XXE
 XXXX
 xxxxxx
 xy
