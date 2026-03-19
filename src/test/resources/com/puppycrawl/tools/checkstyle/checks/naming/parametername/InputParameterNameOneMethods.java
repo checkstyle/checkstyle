@@ -23,12 +23,10 @@ public final class InputParameterNameOneMethods
      * @param badFormat3 bad format
      * @throws java.lang.Exception abc
      **/
-    int test1(int badFormat1,int badFormat2,
-              final int badFormat3)
-        // 2 violations above:
-        //    ''badFormat1'' must match pattern ''^a[A-Z][a-zA-Z0-9]*$''
-        //    ''badFormat2'' must match pattern ''^a[A-Z][a-zA-Z0-9]*$''
-        // violation above, ''badFormat3'' must match pattern ''^a[A-Z][a-zA-Z0-9]*$''
+    int test1(int badFormat1,int badFormat2, // 2 violations
+              final int badFormat3) // violation 'Name 'badFormat3' must match pattern'
+        //    'Name 'badFormat1' must match pattern'
+        //    'Name 'badFormat2' must match pattern'
         throws java.lang.Exception
     {
         return 0;
