@@ -4,7 +4,7 @@ tag = @todo2
 tagFormat = \\S
 tagSeverity = (default)info
 severity = ignore
-tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, BLOCK_COMMENT_BEGIN
 
 
 */
