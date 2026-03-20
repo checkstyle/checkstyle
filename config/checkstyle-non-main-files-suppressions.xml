@@ -306,8 +306,6 @@
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]design[\\/]onetoplevelclass.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]design[\\/]sealedshouldhavepermitslist.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]imports[\\/]redundantimport.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]javadoc[\\/]invalidjavadocposition.xml.template"/>
