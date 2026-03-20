@@ -85,4 +85,26 @@ public class XpathRegressionOuterTypeNumberTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testThree() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathOuterTypeNumberThree.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(OuterTypeNumberCheck.class);
+        moduleConfig.addProperty("max", "2");
+
+        final String[] expectedViolation = {
+            "1:1: " + getCheckMessage(OuterTypeNumberCheck.class,
+                    OuterTypeNumberCheck.MSG_KEY, 3, 2),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
