@@ -88,8 +88,7 @@ public class InputVariableDeclarationUsageDistanceGeneral3 {
     }
 
     public void method7() {
-        // the below distance is 1 (expected 3),
-        // until https://github.com/checkstyle/checkstyle/issues/19156
+        // violation below 'Distance .* is 3.'
         Integer t = 5;
         nothing();
         System.out.println();
