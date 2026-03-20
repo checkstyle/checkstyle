@@ -1068,6 +1068,7 @@ no-exception-checkstyle-sevntu)
   ;;
 
 no-exception-checkstyle-sevntu-javadoc)
+  export MAVEN_OPTS="-Xmx4g"
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
