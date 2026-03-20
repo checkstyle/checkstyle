@@ -92,6 +92,11 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
     }
 
     @Override
+    protected IndentLevel getExpectedIndentForTextBlockEnd() {
+        return getChildrenExpectedIndent();
+    }
+
+    @Override
     protected IndentLevel getChildrenExpectedIndent() {
         IndentLevel expectedIndent =
             new IndentLevel(getIndent(), getArrayInitIndentation(), getLineWrappingIndentation());
