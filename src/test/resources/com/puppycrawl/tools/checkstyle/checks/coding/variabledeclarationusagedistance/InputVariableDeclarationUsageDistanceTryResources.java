@@ -16,8 +16,8 @@ import java.util.*;
 
 public class InputVariableDeclarationUsageDistanceTryResources {
     public int methodTry() {
-        String a = ""; // violation 'Distance .* is 2.'
-        String b = "abc"; // violation 'Distance .* is 2.'
+        String a = "";
+        String b = "abc";
         System.out.println();
         try (AutoCloseable j = new java.io.StringReader(b);
              final AutoCloseable i = new java.io.StringReader(a);
