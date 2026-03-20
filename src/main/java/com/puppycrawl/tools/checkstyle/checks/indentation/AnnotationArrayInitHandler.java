@@ -92,6 +92,28 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
     }
 
     @Override
+    protected IndentLevel getExpectedIndentForTextBlockEnd() {
+        IndentLevel expectedIndent = getChildrenExpectedIndent();
+
+        // When { is inline (not at the start of its line) and nothing follows { on the same
+        // line, text block content is typically indented to the actual first child's column.
+        // Accept that column for the text block end delimiter specifically.
+        final DetailAST leftCurly = getLeftCurly();
+        final int firstLine = getFirstLine(getListChild());
+        final int lcurlyPos = expandedTabsColumnNo(leftCurly);
+        final int firstChildPos =
+            getNextFirstNonBlankOnLineAfter(firstLine, lcurlyPos);
+
+        if (firstChildPos == NOT_EXIST) {
+            final DetailAST firstChild = leftCurly.getFirstChild();
+            final int firstChildColumn = expandedTabsColumnNo(firstChild);
+            expectedIndent = IndentLevel.addAcceptable(expectedIndent, firstChildColumn);
+        }
+
+        return expectedIndent;
+    }
+
+    @Override
     protected IndentLevel getChildrenExpectedIndent() {
         IndentLevel expectedIndent =
             new IndentLevel(getIndent(), getArrayInitIndentation(), getLineWrappingIndentation());
@@ -109,12 +131,35 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
                         lcurlyPos + getLineWrappingIndentation());
         }
 
+        // When { is inline and nothing follows it on the same line, and the first
+        // child is a text block, accept the text block's actual indent column.
+        // This handles TEXT_BLOCK_LITERAL_BEGIN being checked as a child EXPR.
+        if (firstChildPos == NOT_EXIST && lcurlyPos != getLineStart(leftCurly)) {
+            final DetailAST firstChild = leftCurly.getFirstChild();
+            if (isTextBlockExpr(firstChild)) {
+                final int firstChildColumn = expandedTabsColumnNo(firstChild);
+                expectedIndent = IndentLevel.addAcceptable(expectedIndent, firstChildColumn);
+            }
+        }
+
         if (firstChildPos != NOT_EXIST) {
             expectedIndent = IndentLevel.addAcceptable(expectedIndent, firstChildPos, lcurlyPos
                     + getLineWrappingIndentation());
         }
 
         return expectedIndent;
+    }
+
+    /**
+     * Returns true if the given AST is an EXPR node whose first child is a
+     * {@code TEXT_BLOCK_LITERAL_BEGIN} token.
+     *
+     * @param ast the AST to check
+     * @return true if it is a text-block-containing EXPR
+     */
+    private static boolean isTextBlockExpr(DetailAST ast) {
+        return ast.getType() == TokenTypes.EXPR
+            && ast.getFirstChild().getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN;
     }
 
     /**
