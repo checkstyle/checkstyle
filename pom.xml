@@ -3572,6 +3572,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedCatchParameterShouldBeUnnamedCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLambdaParameterShouldBeUnnamedCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedTryResourceShouldBeUnnamedCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck*</param>
               </targetClasses>
@@ -3604,6 +3605,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedCatchParameterShouldBeUnnamedCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLambdaParameterShouldBeUnnamedCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedTryResourceShouldBeUnnamedCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheckTest</param>
               </targetTests>
