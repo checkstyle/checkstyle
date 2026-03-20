@@ -139,6 +139,24 @@ public class NewHandler extends AbstractExpressionHandler {
                 }
             }
         }
+        else if (getLineStart(mainAst) == expandedTabsColumnNo(mainAst)) {
+            result = super.getIndentImpl();
+
+            final boolean isLineWrappedNew = TokenUtil.isOfType(mainAst.getParent().getParent(),
+                    LINE_WRAP_NEW_PARENT_TYPES);
+
+            final int ternaryLevel = getTernaryNestingLevel();
+
+            if (isLineWrappedNew || doesNewNeedLineWrappingIndent()) {
+                result = new IndentLevel(result, getLineWrappingIndent());
+            }
+
+            if (ternaryLevel >= 2) {
+                for (int idx = 1; idx < ternaryLevel; idx++) {
+                    result = new IndentLevel(result, getLineWrappingIndent());
+                }
+            }
+        }
         else {
             result = new IndentLevel(getLineStart(mainAst));
         }
