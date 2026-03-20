@@ -275,6 +275,7 @@ delims
 DENORMALIZER
 Depedency
 dependabot
+deps
 deque
 descendanttoken
 descr
@@ -870,6 +871,7 @@ multiplevariabledeclarations
 Multiset
 multithreading
 mutableexception
+mutationtest
 MVC
 mvn
 mvnrepository
@@ -1377,6 +1379,7 @@ tta
 ttf
 tvf
 tw
+typebodypadding
 typecastparenpad
 typename
 typevariablenames
