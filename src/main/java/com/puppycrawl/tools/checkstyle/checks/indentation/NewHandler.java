@@ -119,13 +119,30 @@ public class NewHandler extends AbstractExpressionHandler {
     @Override
     protected IndentLevel getIndentImpl() {
         IndentLevel result;
-        // if our expression isn't first on the line, just use the start
-        // of the line
+
         if (getLineStart(mainAst) == mainAst.getColumnNo()) {
             result = super.getIndentImpl();
 
             final boolean isLineWrappedNew = TokenUtil.isOfType(mainAst.getParent().getParent(),
                 LINE_WRAP_NEW_PARENT_TYPES);
+
+            final int ternaryLevel = getTernaryNestingLevel();
+
+            if (isLineWrappedNew || doesNewNeedLineWrappingIndent()) {
+                result = new IndentLevel(result, getLineWrappingIndent());
+            }
+
+            if (ternaryLevel >= 2) {
+                for (int idx = 1; idx < ternaryLevel; idx++) {
+                    result = new IndentLevel(result, getLineWrappingIndent());
+                }
+            }
+        }
+        else if (getLineStart(mainAst) == expandedTabsColumnNo(mainAst)) {
+            result = super.getIndentImpl();
+
+            final boolean isLineWrappedNew = TokenUtil.isOfType(mainAst.getParent().getParent(),
+                    LINE_WRAP_NEW_PARENT_TYPES);
 
             final int ternaryLevel = getTernaryNestingLevel();
 
