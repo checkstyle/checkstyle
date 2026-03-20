@@ -344,6 +344,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     public void testGeneralClass3() throws Exception {
         final String[] expected = {
             "46:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "92:9: " + getCheckMessage(MSG_KEY, "t", 3, 1),
         };
 
         verifyWithInlineConfigParser(
@@ -363,8 +364,8 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     @Test
     public void testVariableDeclarationUsageDistanceTryResources() throws Exception {
         final String[] expected = {
-            "19:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
             "20:9: " + getCheckMessage(MSG_KEY, "b", 2, 1),
+            "91:9: " + getCheckMessage(MSG_KEY, "a", 3, 1),
         };
 
         verifyWithInlineConfigParser(
@@ -440,4 +441,115 @@ public class VariableDeclarationUsageDistanceCheckTest extends
                 getPath("InputVariableDeclarationUsageDistanceMethodDef.java"), expected);
     }
 
+    @Test
+    public void testInitializationSequence1() throws Exception {
+        final String[] expected = {
+            "25:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "40:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "49:9: " + getCheckMessage(MSG_KEY, "list", 2, 1),
+            "55:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "69:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "83:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "91:9: " + getCheckMessage(MSG_KEY, "list", 2, 1),
+            "97:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath(
+                "InputVariableDeclarationUsageDistanceInitializationSequence1.java"),
+            expected);
+    }
+
+    @Test
+    public void testInitializationSequence2() throws Exception {
+        final String[] expected = {
+            "25:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "33:9: " + getCheckMessage(MSG_KEY, "list", 2, 1),
+            "40:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "53:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "61:9: " + getCheckMessage(MSG_KEY, "list", 2, 1),
+            "68:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "82:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "90:9: " + getCheckMessage(MSG_KEY, "list", 2, 1),
+            "94:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "101:9: " + getCheckMessage(MSG_KEY, "list", 2, 1),
+            "105:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath(
+                "InputVariableDeclarationUsageDistanceInitializationSequence2.java"),
+            expected);
+    }
+
+    @Test
+    public void testInitializationSequence3() throws Exception {
+        final String[] expected = {
+            "24:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "38:9: " + getCheckMessage(MSG_KEY, "list2", 3, 1),
+            "51:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "70:9: " + getCheckMessage(MSG_KEY, "list", 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath(
+                "InputVariableDeclarationUsageDistanceInitializationSequence3.java"),
+            expected);
+    }
+
+    @Test
+    public void testInitializationSequence4() throws Exception {
+        final String[] expected = {
+            "25:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "40:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "57:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "67:9: " + getCheckMessage(MSG_KEY, "list", 2, 1),
+            "74:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath(
+                "InputVariableDeclarationUsageDistanceInitializationSequence4.java"),
+            expected);
+    }
+
+    @Test
+    public void testInitializationSequence5() throws Exception {
+        final String[] expected = {
+            "27:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "44:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+            "60:9: " + getCheckMessage(MSG_KEY, "list2", 3, 1),
+            "80:9: " + getCheckMessage(MSG_KEY, "list2", 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath(
+                "InputVariableDeclarationUsageDistanceInitializationSequence5.java"),
+            expected);
+    }
+
+    @Test
+    public void testFalsePositive1() throws Exception {
+        final String[] expected = {
+            "33:17: " + getCheckMessage(MSG_KEY, "localMap", 5, 3),
+            "35:17: " + getCheckMessage(MSG_KEY, "nl", 5, 3),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath(
+                "InputVariableDeclarationUsageDistanceInitializationFalsePositive1.java"),
+            expected);
+    }
+
+    @Test
+    public void testReturn() throws Exception {
+        final String[] expected = {
+            "47:9: " + getCheckMessage(MSG_KEY, "function", 5, 3),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath(
+                "InputVariableDeclarationUsageDistanceInitializationReturn.java"),
+            expected);
+    }
 }

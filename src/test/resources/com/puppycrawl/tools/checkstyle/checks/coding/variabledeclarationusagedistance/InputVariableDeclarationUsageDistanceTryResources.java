@@ -16,7 +16,7 @@ import java.util.*;
 
 public class InputVariableDeclarationUsageDistanceTryResources {
     public int methodTry() {
-        String a = ""; // violation 'Distance .* is 2.'
+        String a = "";
         String b = "abc"; // violation 'Distance .* is 2.'
         System.out.println();
         try (AutoCloseable j = new java.io.StringReader(b);
@@ -88,7 +88,7 @@ public class InputVariableDeclarationUsageDistanceTryResources {
     }
     void method4() throws Exception {
         String b = "abc";
-        myClass a = new myClass("", b);
+        myClass a = new myClass("", b);  // violation 'Distance .* is 3.'
         Scanner scanner = new Scanner(System.in);
         scanner.nextBigInteger(100);
         try (final AutoCloseable t = a.getAutoCloseable(3);) {
