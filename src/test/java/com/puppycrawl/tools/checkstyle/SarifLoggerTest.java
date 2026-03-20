@@ -170,6 +170,11 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         );
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParserAndLogger, because this test
+     * requires exception logging through addException(). This behavior is not
+     * covered by the current Checker flow used by the helper.
+     */
     @Test
     public void testAddExceptions() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
@@ -240,6 +245,12 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
                 getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParserAndLogger, because this test
+     * verifies logger behavior with a manually created AuditEvent and a
+     * synthetic relative Linux path. This scenario is not produced through
+     * the current Checker flow used by the helper.
+     */
     @Test
     public void testAddErrorWithRelativeLinuxPath() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
@@ -257,6 +268,12 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         verifyContent(getPath("ExpectedSarifLoggerRelativeLinuxPath.sarif"), outStream);
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParserAndLogger, because this test
+     * verifies logger behavior with a manually created AuditEvent and a
+     * synthetic absolute Windows path. This scenario is not produced through
+     * the current Checker flow used by the helper.
+     */
     @Test
     public void testAddErrorWithAbsoluteWindowsPath() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
@@ -275,6 +292,12 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         verifyContent(getPath("ExpectedSarifLoggerAbsoluteWindowsPath.sarif"), outStream);
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParserAndLogger, because this test
+     * verifies logger behavior with a manually created AuditEvent and a
+     * synthetic relative Windows path. This scenario is not produced through
+     * the current Checker flow used by the helper.
+     */
     @Test
     public void testAddErrorWithRelativeWindowsPath() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
@@ -442,10 +465,9 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Tests {@code ClassNotFoundException} handling in {@code getMessages} method.
-     * Uses reflection to inject fake module metadata with non-existent class
-     * to trigger the exception. Real checkstyle modules cannot be used as
-     * all are on the classpath during testing.
+     * Cannot use verifyWithInlineConfigParserAndLogger, because this test
+     * relies on reflection to inject fake module metadata and trigger
+     * ClassNotFoundException handling. This is not a normal Checker flow.
      */
     @Test
     public void testGetMessagesWithClassNotFoundException() throws Exception {
@@ -471,10 +493,9 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Tests {@code MissingResourceException} handling in {@code getMessages} method.
-     * Uses reflection to inject fake module metadata pointing to a test class
-     * without messages.properties to trigger the exception. Real checkstyle modules
-     * cannot be used as all have proper resource bundles during testing.
+     * Cannot use verifyWithInlineConfigParserAndLogger, because this test
+     * relies on reflection to inject fake module metadata and trigger
+     * MissingResourceException handling. This is not a normal Checker flow.
      */
     @Test
     public void testGetMessagesWithMissingResourceException() throws Exception {
