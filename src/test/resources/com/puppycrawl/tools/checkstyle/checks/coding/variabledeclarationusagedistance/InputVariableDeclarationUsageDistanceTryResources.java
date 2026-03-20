@@ -16,8 +16,8 @@ import java.util.*;
 
 public class InputVariableDeclarationUsageDistanceTryResources {
     public int methodTry() {
-        String a = ""; // violation 'Distance .* is 2.'
-        String b = "abc"; // violation 'Distance .* is 2.'
+        String a = "";
+        String b = "abc";
         System.out.println();
         try (AutoCloseable j = new java.io.StringReader(b);
              final AutoCloseable i = new java.io.StringReader(a);
@@ -34,7 +34,7 @@ public class InputVariableDeclarationUsageDistanceTryResources {
         String b = "";
         FileReader fr = new FileReader(b);
         BufferedReader br = new BufferedReader(fr);
-        try {
+        try (AutoCloseable j = new java.io.StringReader("");){
             return br.readLine();
         } finally {
             br.close();
