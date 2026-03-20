@@ -92,6 +92,11 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
     }
 
     @Override
+    protected IndentLevel getExpectedIndentForTextBlockEnd() {
+        return getChildrenExpectedIndent();
+    }
+
+    @Override
     protected IndentLevel getChildrenExpectedIndent() {
         IndentLevel expectedIndent =
             new IndentLevel(getIndent(), getArrayInitIndentation(), getLineWrappingIndentation());
@@ -107,6 +112,17 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
         if (firstChildPos == NOT_EXIST && lcurlyPos == getLineStart(leftCurly)) {
             expectedIndent = IndentLevel.addAcceptable(expectedIndent,
                         lcurlyPos + getLineWrappingIndentation());
+        }
+
+        // If { is inline and has no text on the same line, the first child's
+        // actual indent is accepted provided it is at or above the minimum.
+        if (firstChildPos == NOT_EXIST && lcurlyPos != getLineStart(leftCurly)) {
+            final DetailAST firstChild = leftCurly.getFirstChild();
+            if (firstChild.getType() != TokenTypes.RCURLY) {
+                final int firstChildColumn = expandedTabsColumnNo(firstChild);
+                expectedIndent = IndentLevel.addAcceptable(expectedIndent,
+                        Math.max(firstChildColumn, expectedIndent.getFirstIndentLevel()));
+            }
         }
 
         if (firstChildPos != NOT_EXIST) {
