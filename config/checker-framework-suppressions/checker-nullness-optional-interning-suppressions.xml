@@ -3809,8 +3809,8 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/VariableDeclarationUsageDistanceCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference currentSiblingAst.findFirstToken(TokenTypes.IDENT)</message>
-    <lineContent>currentSiblingAst.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+    <message>dereference of possibly-null reference currentAst.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>currentAst.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
