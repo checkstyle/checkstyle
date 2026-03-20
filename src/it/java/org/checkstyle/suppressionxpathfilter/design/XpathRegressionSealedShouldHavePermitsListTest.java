@@ -99,4 +99,38 @@ public class XpathRegressionSealedShouldHavePermitsListTest extends AbstractXpat
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testLocalClass() throws Exception {
+        final File fileToProcess =
+                new File(getPath(
+                        "InputXpathSealedShouldHavePermitsListLocalClass.java"));
+
+        final DefaultConfiguration moduleConfig =
+            createModuleConfig(SealedShouldHavePermitsListCheck.class);
+
+        final String[] expectedViolation = {
+            "5:5: " + getCheckMessage(SealedShouldHavePermitsListCheck.class,
+                SealedShouldHavePermitsListCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                        + "[@text='InputXpathSealedShouldHavePermitsListLocalClass']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
+                        + "/SLIST/CLASS_DEF[./IDENT[@text='A']]",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                        + "[@text='InputXpathSealedShouldHavePermitsListLocalClass']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
+                        + "/SLIST/CLASS_DEF[./IDENT[@text='A']]/MODIFIERS",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                        + "[@text='InputXpathSealedShouldHavePermitsListLocalClass']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
+                        + "/SLIST/CLASS_DEF[./IDENT[@text='A']]"
+                        + "/MODIFIERS/LITERAL_SEALED"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
