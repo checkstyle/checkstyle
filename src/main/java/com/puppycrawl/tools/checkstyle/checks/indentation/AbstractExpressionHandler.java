@@ -499,7 +499,17 @@ public abstract class AbstractExpressionHandler {
      */
     protected final void findSubtreeAst(DetailAstSet astSet, DetailAST tree,
         boolean allowNesting) {
-        if (!indentCheck.getHandlerFactory().isHandledType(tree.getType())) {
+        // For TEXT_BLOCK_LITERAL_END in annotation array context, check if it aligns
+        // with the expected child indentation of the annotation array init handler
+        // instead of using default indentation rules.
+        final boolean isTextBlockLiteralEnd = tree.getType() == TokenTypes.TEXT_BLOCK_LITERAL_END;
+        final AnnotationArrayInitHandler annotationArrayHandler =
+                getAnnotationArrayInitHandler();
+
+        if (isTextBlockLiteralEnd && annotationArrayHandler != null) {
+            checkTextBlockEndAlignment(tree, annotationArrayHandler);
+        }
+        else if (!indentCheck.getHandlerFactory().isHandledType(tree.getType())) {
             final int lineNum = tree.getLineNo();
             final Integer colNum = astSet.getStartColumn(lineNum);
 
@@ -515,6 +525,43 @@ public abstract class AbstractExpressionHandler {
                 findSubtreeAst(astSet, node, allowNesting);
             }
         }
+    }
+
+    /**
+     * Checks if the text block end delimiter aligns with the expected child indentation
+     * of the annotation array initialization context, rather than the actual position
+     * of the opening delimiter (which may itself be incorrectly indented).
+     *
+     * @param textBlockEnd           the TEXT_BLOCK_LITERAL_END node to check
+     * @param annotationArrayHandler the enclosing annotation array init handler
+     */
+    private void checkTextBlockEndAlignment(DetailAST textBlockEnd,
+            AnnotationArrayInitHandler annotationArrayHandler) {
+        final IndentLevel expectedIndent = annotationArrayHandler.getChildrenExpectedIndent();
+        final int endIndent = expandedTabsColumnNo(textBlockEnd);
+
+        if (!expectedIndent.isAcceptable(endIndent) && isOnStartOfLine(textBlockEnd)) {
+            logError(textBlockEnd, "text block end", endIndent, expectedIndent);
+        }
+    }
+
+    /**
+     * Walks up the handler parent chain to find the nearest
+     * {@link AnnotationArrayInitHandler}, or {@code null} if not in one.
+     *
+     * @return the nearest enclosing {@link AnnotationArrayInitHandler}, or {@code null}
+     */
+    private AnnotationArrayInitHandler getAnnotationArrayInitHandler() {
+        AbstractExpressionHandler handler = this;
+        AnnotationArrayInitHandler result = null;
+        while (handler != null) {
+            if (handler instanceof AnnotationArrayInitHandler) {
+                result = (AnnotationArrayInitHandler) handler;
+                break;
+            }
+            handler = handler.parent;
+        }
+        return result;
     }
 
     /**
