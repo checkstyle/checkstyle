@@ -298,6 +298,8 @@
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]unusedlocalvariable.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]unusedtryresourceshouldbeunnamed.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]design[\\/]finalclass.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]design[\\/]hideutilityclassconstructor.xml.template"/>
