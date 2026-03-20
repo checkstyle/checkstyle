@@ -2042,6 +2042,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/unusedtryresourceshouldbeunnamed.html#UnusedTryResourceShouldBeUnnamed">
+                UnusedTryResourceShouldBeUnnamed
+              </a>
+            </td>
+            <td>
+              Ensures that try-with-resources resource variables that are not used are declared as
+              an unnamed variable.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/misc/upperell.html#UpperEll">
                 UpperEll
               </a>
