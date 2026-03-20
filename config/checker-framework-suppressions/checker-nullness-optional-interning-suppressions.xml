@@ -5667,11 +5667,44 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/MethodCallHandler.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter tree of AbstractExpressionHandler.checkExpressionSubtree.</message>
-    <lineContent>getMainAst().findFirstToken(TokenTypes.ELIST),</lineContent>
+    <message>incompatible argument for parameter ast2 of TokenUtil.areOnSameLine.</message>
+    <lineContent>nestedCall.findFirstToken(TokenTypes.RPAREN))) {</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
       required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/MethodCallHandler.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast2 of TokenUtil.areOnSameLine.</message>
+    <lineContent>nestedCall.findFirstToken(TokenTypes.RPAREN));</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/MethodCallHandler.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter elist of MethodCallHandler.containsNestedMethodCallOnNewLine.</message>
+    <lineContent>containsNestedMethodCallOnNewLine(elist, getMainAst());</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/MethodCallHandler.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return result;</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable DetailAST
+      method return type: @Initialized @NonNull DetailAST
     </details>
   </checkerFrameworkError>
 
