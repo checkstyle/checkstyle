@@ -878,6 +878,39 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAnnotationArrayInitWithTextBlockAfterLeftCurly() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+
+        final String[] expected = {
+            "31:13: " + getCheckMessage(MSG_ERROR_MULTI,
+                "annotation array initialization text block end", 12, "8, 26, 68"),
+            "44:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "8, 26, 68"),
+            "53:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "8, 26, 68"),
+            "55:5: " + getCheckMessage(MSG_ERROR_MULTI,
+                "annotation array initialization text block end", 4, "8, 26, 68"),
+            "77:17: " + getCheckMessage(MSG_ERROR_MULTI,
+                "annotation array initialization text block end", 16, "8, 12, 68"),
+            "85:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "8, 12, 68"),
+            "87:5: " + getCheckMessage(MSG_ERROR_MULTI,
+                "annotation array initialization text block end", 4, "8, 12, 68"),
+            "95:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "8, 12, 68"),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationAnnArrInitTextBlock.java"), expected);
+    }
+
+    @Test
     public void testInvalidLabel() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 

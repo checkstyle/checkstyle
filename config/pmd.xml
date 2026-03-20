@@ -181,6 +181,8 @@
       <!--
        Can not change the API.
        AbstractRootNode is what a root node is.
+       AbstractExpressionHandler.getExpectedIndentForTextBlockEnd is a hook method
+       that returns null by default; only AnnotationArrayInitHandler overrides it.
       -->
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='AbstractFileSetCheck'
@@ -188,7 +190,9 @@
         or @SimpleName='AbstractNode'
         or @SimpleName='AbstractViolationReporter']
         | //ClassDeclaration[@SimpleName='AbstractRootNode']
-          //MethodDeclaration[@Name='getParent' or @Name='getDepth']"/>
+          //MethodDeclaration[@Name='getParent' or @Name='getDepth']
+        | //ClassDeclaration[@SimpleName='AbstractExpressionHandler']
+          //MethodDeclaration[@Name='getExpectedIndentForTextBlockEnd']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/UseUnderscoresInNumericLiterals">
@@ -400,10 +404,12 @@
     <properties>
       <!-- Should match the property 'maxTotal' of `MethodCount` check. -->
       <property name="maxmethods" value="34"/>
-      <!-- JavaAstVisitor is a visitor class with methods for the entire Java grammar. -->
+      <!-- JavaAstVisitor is a visitor class with methods for the entire Java grammar.
+           AbstractExpressionHandler has helper methods for text block indentation. -->
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='JavaAstVisitor' 
-                    or @SimpleName='SiteUtil' or @SimpleName='JavadocCommentsAstVisitor']"/>
+                    or @SimpleName='SiteUtil' or @SimpleName='JavadocCommentsAstVisitor'
+                    or @SimpleName='AbstractExpressionHandler']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">
