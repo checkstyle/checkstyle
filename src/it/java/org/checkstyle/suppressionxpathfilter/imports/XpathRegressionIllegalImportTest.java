@@ -83,4 +83,23 @@ public class XpathRegressionIllegalImportTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testClass() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathIllegalImportClass.java"));
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(IllegalImportCheck.class);
+        moduleConfig.addProperty("illegalClasses", "java.util.List");
+        final String[] expectedViolation = {
+            "4:1: " + getCheckMessage(IllegalImportCheck.class,
+                        IllegalImportCheck.MSG_KEY, "java.util.List"),
+        };
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='List']]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
