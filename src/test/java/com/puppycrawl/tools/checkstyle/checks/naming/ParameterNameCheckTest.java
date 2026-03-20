@@ -199,12 +199,12 @@ public class ParameterNameCheckTest
         final String pattern = "^h$";
 
         final String[] expected = {
-            "14:49: " + getCheckMessage(MSG_INVALID_PATTERN, "constructorParam", pattern),
-            "18:31: " + getCheckMessage(MSG_INVALID_PATTERN, "inner", pattern),
-            "28:24: " + getCheckMessage(MSG_INVALID_PATTERN, "publicParam", pattern),
-            "39:21: " + getCheckMessage(MSG_INVALID_PATTERN, "interfaceParam", pattern),
-            "53:24: " + getCheckMessage(MSG_INVALID_PATTERN, "packageParam", pattern),
-            "69:21: " + getCheckMessage(MSG_INVALID_PATTERN, "paramName", pattern),
+            "15:49: " + getCheckMessage(MSG_INVALID_PATTERN, "constructorParam", pattern),
+            "19:31: " + getCheckMessage(MSG_INVALID_PATTERN, "inner", pattern),
+            "30:24: " + getCheckMessage(MSG_INVALID_PATTERN, "publicParam", pattern),
+            "42:21: " + getCheckMessage(MSG_INVALID_PATTERN, "interfaceParam", pattern),
+            "57:24: " + getCheckMessage(MSG_INVALID_PATTERN, "packageParam", pattern),
+            "74:21: " + getCheckMessage(MSG_INVALID_PATTERN, "paramName", pattern),
             };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameAccessModifier.java"), expected);
