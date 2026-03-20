@@ -278,6 +278,7 @@ Denforcer
 DENORMALIZER
 Depedency
 dependabot
+deps
 deque
 descendanttoken
 descr
@@ -1420,6 +1421,7 @@ unusedcatchparametershouldbeunnamed
 unusedimports
 unusedlambdaparametershouldbeunnamed
 unusedlocalvariable
+unusedtryresourceshouldbeunnamed
 upperell
 urandom
 uri
