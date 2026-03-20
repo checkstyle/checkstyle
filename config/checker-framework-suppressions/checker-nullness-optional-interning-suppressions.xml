@@ -3809,8 +3809,8 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/VariableDeclarationUsageDistanceCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference currentSiblingAst.findFirstToken(TokenTypes.IDENT)</message>
-    <lineContent>currentSiblingAst.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+    <message>dereference of possibly-null reference currentAst.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>currentAst.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -3928,6 +3928,13 @@
       inference type: java.util.AbstractMap.SimpleEntry&lt;K,V&gt; -&gt; @Initialized @NonNull Entry&lt;@Initialized @NonNull DetailAST, @Initialized @NonNull Integer&gt;
       From: Constraint between method call type and target type for method call:new SimpleEntry&lt;&gt;(variableUsageAst, dist)
     </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/VariableDeclarationUsageDistanceCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference variable</message>
+    <lineContent>if (isChild(catchOrFinallyBlock, variable)) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
