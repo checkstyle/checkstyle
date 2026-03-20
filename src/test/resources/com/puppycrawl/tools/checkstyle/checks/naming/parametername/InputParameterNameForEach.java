@@ -1,6 +1,6 @@
 /*
 ParameterName
-format = ^[a-z][a-zA-Z0-9]*$
+format = (default)^[a-z][a-zA-Z0-9]*$
 ignoreOverridden = (default)false
 accessModifiers = (default)public, protected, package, private
 
