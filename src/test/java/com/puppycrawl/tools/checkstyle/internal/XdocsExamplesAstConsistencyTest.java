@@ -188,7 +188,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/naming/abbreviationaswordinname/Example5",
             "checks/naming/abbreviationaswordinname/Example6",
             "checks/naming/abbreviationaswordinname/Example7",
-            "checks/naming/interfacetypeparametername/Example2",
             "checks/naming/lambdaparametername/Example2",
             "checks/naming/localfinalvariablename/Example3",
             "checks/naming/localvariablename/Example3",
