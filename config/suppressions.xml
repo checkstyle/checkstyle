@@ -195,4 +195,9 @@
   <!-- JavadocStyle incorrectly parses HTML tags inside {@literal}, {@code} blocks as real HTML,
           until #19145 -->
   <suppress checks="JavadocStyle" files="JavadocParagraphCheck\.java"/>
+
+  <!-- files aren't meant to comply unless noted by maintainer -->
+  <suppress checks="UnusedTryResourceShouldBeUnnamed"
+            files="[\\/]src[\\/](test|main)[\\/]"/>
+
 </suppressions>
