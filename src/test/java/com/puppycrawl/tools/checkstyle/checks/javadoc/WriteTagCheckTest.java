@@ -70,7 +70,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTag() throws Exception {
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
+            "16: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
         };
         verifyWithInlineConfigParserTwice(getPath("InputWriteTag.java"), expected);
     }
@@ -78,7 +78,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMissingFormat() throws Exception {
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
+            "16: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
         };
         verifyWithInlineConfigParserTwice(
                 getPath("InputWriteTagMissingFormat.java"), expected);
@@ -87,7 +87,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTagIncomplete() throws Exception {
         final String[] expected = {
-            "16: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+            "17: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                 "This class needs more code..."),
         };
         verifyWithInlineConfigParserTwice(
@@ -97,8 +97,8 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDoubleTag() throws Exception {
         final String[] expected = {
-            "18: " + getCheckMessage(MSG_WRITE_TAG, "@doubletag", "first text"),
-            "19: " + getCheckMessage(MSG_WRITE_TAG, "@doubletag", "second text"),
+            "19: " + getCheckMessage(MSG_WRITE_TAG, "@doubletag", "first text"),
+            "20: " + getCheckMessage(MSG_WRITE_TAG, "@doubletag", "second text"),
         };
         verifyWithInlineConfigParserTwice(
                 getPath("InputWriteTagDoubleTag.java"), expected);
@@ -107,7 +107,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testEmptyTag() throws Exception {
         final String[] expected = {
-            "20: " + getCheckMessage(MSG_WRITE_TAG, "@emptytag", ""),
+            "21: " + getCheckMessage(MSG_WRITE_TAG, "@emptytag", ""),
         };
         verifyWithInlineConfigParserTwice(
                 getPath("InputWriteTagEmptyTag.java"), expected);
@@ -116,7 +116,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMissingTag() throws Exception {
         final String[] expected = {
-            "20: " + getCheckMessage(MSG_MISSING_TAG, "@missingtag"),
+            "21: " + getCheckMessage(MSG_MISSING_TAG, "@missingtag"),
         };
         verifyWithInlineConfigParserTwice(
                 getPath("InputWriteTagMissingTag.java"), expected);
@@ -125,7 +125,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testInterface() throws Exception {
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
+            "16: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
         };
         verifyWithInlineConfigParserTwice(
                 getPath("InputWriteTagInterface.java"), expected
@@ -154,7 +154,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSeverity() throws Exception {
         final String[] expected = {
-            "16: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
+            "17: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
         };
         verifyWithInlineConfigParserTwice(
                 getPath("InputWriteTagSeverity.java"), expected);
@@ -247,7 +247,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRegularEx() throws Exception {
         final String[] expected = {
-            "16: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
+            "17: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
         };
 
         verifyWithInlineConfigParserTwice(
@@ -257,7 +257,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRegularExError() throws Exception {
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "16: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
         };
         verifyWithInlineConfigParserTwice(
                 getPath("InputWriteTagExpressionError.java"), expected);
@@ -301,6 +301,103 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParserTwice(
             getPath("InputWriteTagRecordsAndCompactCtors.java"), expected);
+    }
+
+    @Test
+    public void testTagTypeAuthor() throws Exception {
+        final String[] expected = {
+            "16: " + getCheckMessage(MSG_WRITE_TAG, "@author",
+                "<p>Jane Doe</p>     {@summary a concise summary}"),
+        };
+        verifyWithInlineConfigParserTwice(
+            getPath("InputWriteTagTypeAuthor.java"), expected);
+    }
+
+    @Test
+    public void testTagTypeCustom() throws Exception {
+        final String[] expected = {
+            "16: " + getCheckMessage(MSG_WRITE_TAG, "@customBlock",
+                "{@customInline {@nested <br>}}"),
+        };
+        verifyWithInlineConfigParserTwice(
+            getPath("InputWriteTagTypeCustom.java"), expected);
+    }
+
+    @Test
+    public void testTagTypeDeprecated() throws Exception {
+        final String[] expected = {
+            "16: " + getCheckMessage(MSG_WRITE_TAG, "@deprecated",
+                "{@systemProperty x}"),
+        };
+        verifyWithInlineConfigParserTwice(
+            getPath("InputWriteTagTypeDeprecated.java"), expected);
+    }
+
+    @Test
+    public void testTagTypeParam() throws Exception {
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_WRITE_TAG, "@param",
+                "<T> type {@index i}   {@linkplain java.lang.String#trim() link}"),
+            "18: " + getCheckMessage(MSG_WRITE_TAG, "@param",
+                "var1 <p><i>html</i></p> <h2>title</h2>"),
+            "19: " + getCheckMessage(MSG_WRITE_TAG, "@param",
+                "var2 see {@link java.lang.String#trim() variable} <!-- @@ -->"),
+            "20: " + getCheckMessage(MSG_WRITE_TAG, "@param",
+                "var3 {@return {@code null} or {@literal \"x\"}}"),
+        };
+        verifyWithInlineConfigParserTwice(
+            getPath("InputWriteTagTypeParam.java"), expected);
+    }
+
+    @Test
+    public void testTagTypeReturn() throws Exception {
+        final String[] expected = {
+            "16: " + getCheckMessage(MSG_WRITE_TAG, "@return",
+                "value of type {@code String}"),
+        };
+        verifyWithInlineConfigParserTwice(
+            getPath("InputWriteTagTypeReturn.java"), expected);
+    }
+
+    @Test
+    public void testTagTypeSee() throws Exception {
+        final String[] expected = {
+            "18: " + getCheckMessage(MSG_WRITE_TAG, "@see",
+                "java.io.Closeable#close()"),
+            "19: " + getCheckMessage(MSG_WRITE_TAG, "@see",
+                "<a href=\"https://docs.oracle.com/en/java/\">ref</a>"),
+            "20: " + getCheckMessage(MSG_WRITE_TAG, "@see",
+                "\"text\""),
+        };
+        verifyWithInlineConfigParserTwice(
+            getPath("InputWriteTagTypeSee.java"), expected);
+    }
+
+    @Test
+    public void testTagTypeSince() throws Exception {
+        final String[] expected = {
+            "18: " + getCheckMessage(MSG_WRITE_TAG, "@since",
+                "2.2.2 (2019-12-31)"),
+        };
+        verifyWithInlineConfigParserTwice(
+            getPath("InputWriteTagTypeSince.java"), expected);
+    }
+
+    @Test
+    public void testTagTypeThrows() throws Exception {
+        final String[] expected = {
+            "19: " + getCheckMessage(MSG_WRITE_TAG, "@throws",
+                "IOException   when {@code i} is {@value Integer#MAX_VALUE}"),
+        };
+        verifyWithInlineConfigParserTwice(
+            getPath("InputWriteTagTypeThrows.java"), expected);
+    }
+
+    @Test
+    public void testPackageInfo() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getPath("package-info.java"), expected);
     }
 
     @Override
