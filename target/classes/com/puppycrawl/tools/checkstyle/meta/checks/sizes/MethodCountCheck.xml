@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck"
+             name="MethodCount"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks the number of methods declared in each type declaration by access modifier
+ or total count.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ This check can be configured to flag classes that define too many methods
+ to prevent the class from getting too complex. Counting can be customized
+ to prevent too many total methods in a type definition (&lt;code&gt;maxTotal&lt;/code&gt;),
+ or to prevent too many methods of a specific access modifier (&lt;code&gt;private&lt;/code&gt;,
+ &lt;code&gt;package&lt;/code&gt;, &lt;code&gt;protected&lt;/code&gt; or &lt;code&gt;public&lt;/code&gt;). Each count is completely
+ separated to customize how many methods of each you want to allow. For example,
+ specifying a &lt;code&gt;maxTotal&lt;/code&gt; of 10, still means you can prevent more than 0
+ &lt;code&gt;maxPackage&lt;/code&gt; methods. A violation won't appear for 8 public methods,
+ but one will appear if there is also 3 private methods or any package-private methods.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Methods defined in anonymous classes are not counted towards any totals.
+ Counts only go towards the main type declaration parent, and are kept separate
+ from it's children's inner types.
+ &lt;/p&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ public class ExampleClass {
+   public enum Colors {
+     RED, GREEN, YELLOW;
+
+     public String getRGB() { ... } // NOT counted towards ExampleClass
+   }
+
+   public void example() { // counted towards ExampleClass
+     Runnable r = (new Runnable() {
+       public void run() { ... } // NOT counted towards ExampleClass, won't produce any violations
+     });
+   }
+
+   public static class InnerExampleClass {
+     protected void example2() { ... } // NOT counted towards ExampleClass,
+                                    // but counted towards InnerExampleClass
+   }
+ }
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+         <properties>
+            <property default-value="100" name="maxPackage" type="int">
+               <description>Specify the maximum number of &lt;code&gt;package&lt;/code&gt; methods allowed.</description>
+            </property>
+            <property default-value="100" name="maxPrivate" type="int">
+               <description>Specify the maximum number of &lt;code&gt;private&lt;/code&gt; methods allowed.</description>
+            </property>
+            <property default-value="100" name="maxProtected" type="int">
+               <description>Specify the maximum number of &lt;code&gt;protected&lt;/code&gt; methods allowed.</description>
+            </property>
+            <property default-value="100" name="maxPublic" type="int">
+               <description>Specify the maximum number of &lt;code&gt;public&lt;/code&gt; methods allowed.</description>
+            </property>
+            <property default-value="100" name="maxTotal" type="int">
+               <description>Specify the maximum number of methods allowed at all scope levels.</description>
+            </property>
+            <property default-value="CLASS_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,INTERFACE_DEF,ANNOTATION_DEF,RECORD_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="too.many.methods"/>
+            <message-key key="too.many.packageMethods"/>
+            <message-key key="too.many.privateMethods"/>
+            <message-key key="too.many.protectedMethods"/>
+            <message-key key="too.many.publicMethods"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

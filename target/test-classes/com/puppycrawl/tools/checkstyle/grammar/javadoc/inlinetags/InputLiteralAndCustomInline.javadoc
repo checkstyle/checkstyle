@@ -1,0 +1,18 @@
+* {@literal @Override}
+* {@literal <p>}
+* <ul>
+* <li> <i>{@literal <crypto_service>.<algorithm_or_type>}</i>
+* </ul>
+* {@literal java.sql}
+* {@literal {@code code}}
+* {@literal { <p> }}
+* Processes the incoming data stream and applies configured rules.
+*
+* {@highlight This method is critical for pipeline integrity.
+* It ensures <b>data validation</b> and transformation.}
+*
+* {@linkToTicket DEV-1452} – Tracks the issue related to pipeline stalls.
+*
+* {@apiNote Designed to be used with {@secure authenticated sources only}.}
+*
+* {@todo Refactor to support {@highlight streaming mode} for large datasets.}

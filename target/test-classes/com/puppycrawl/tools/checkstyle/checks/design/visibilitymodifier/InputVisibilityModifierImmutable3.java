@@ -1,0 +1,79 @@
+/*
+VisibilityModifier
+packageAllowed = (default)false
+protectedAllowed = (default)false
+publicMemberPattern = (default)^serialVersionUID$
+allowPublicFinalFields = (default)false
+allowPublicImmutableFields = (default)false
+immutableClassCanonicalNames = (default)java.io.File, java.lang.Boolean, java.lang.Byte, \
+                               java.lang.Character, java.lang.Double, java.lang.Float, \
+                               java.lang.Integer, java.lang.Long, java.lang.Short, \
+                               java.lang.StackTraceElement, java.lang.String, \
+                               java.math.BigDecimal, java.math.BigInteger, \
+                               java.net.Inet4Address, java.net.Inet6Address, \
+                               java.net.InetSocketAddress, java.net.URI, java.net.URL, \
+                               java.util.Locale, java.util.UUID
+ignoreAnnotationCanonicalNames = (default)com.google.common.annotations.VisibleForTesting, \
+                                 org.junit.ClassRule, org.junit.Rule
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
+
+import com.google.common.collect.ImmutableSet;
+
+import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.List;
+
+public final class InputVisibilityModifierImmutable3
+{
+    public final int someIntValue;
+    // violation above 'Variable 'someIntValue' must be private and have accessor methods.'
+    public final ImmutableSet<String> includes;
+    // violation above 'Variable 'includes' must be private and have accessor methods.'
+    public final ImmutableSet<String> excludes;
+    // violation above 'Variable 'excludes' must be private and have accessor methods.'
+    public final String notes;
+    // violation above 'Variable 'notes' must be private and have accessor methods.'
+    public final BigDecimal money;
+    // violation above 'Variable 'money' must be private and have accessor methods.'
+    public final List list;
+    // violation above 'Variable 'list' must be private and have accessor methods.'
+
+    public InputVisibilityModifierImmutable3(Collection<String> includes,
+           Collection<String> excludes, BigDecimal value, String notes, int someValue, List l) {
+        this.includes = ImmutableSet.copyOf(includes);
+        this.excludes = ImmutableSet.copyOf(excludes);
+        this.money = value;
+        this.notes = notes;
+        this.someIntValue = someValue;
+        this.list = l;
+    }
+
+    final class Immutable
+    {
+        public final float f = 4;
+        // violation above 'Variable 'f' must be private and have accessor methods.'
+        public final boolean bool = false;
+        // violation above 'Variable 'bool' must be private and have accessor methods.'
+        public final java.net.URI uri = null;
+        // violation above 'Variable 'uri' must be private and have accessor methods.'
+        public final java.io.File file = null;
+        // violation above 'Variable 'file' must be private and have accessor methods.'
+        public int value = 42;
+        // violation above 'Variable 'value' must be private and have accessor methods.'
+        public final java.net.URL url = null;
+        // violation above 'Variable 'url' must be private and have accessor methods.'
+        public boolean rate = false;
+        // violation above 'Variable 'rate' must be private and have accessor methods.'
+        public Long id = 1L;
+        // violation above 'Variable 'id' must be private and have accessor methods.'
+    }
+
+    class Example {
+        final int C_D_E = 0;
+        // violation above 'Variable 'C_D_E' must be private and have accessor methods.'
+    }
+}

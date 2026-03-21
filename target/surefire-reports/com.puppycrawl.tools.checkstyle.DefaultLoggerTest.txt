@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.puppycrawl.tools.checkstyle.DefaultLoggerTest
+-------------------------------------------------------------------------------
+Tests run: 17, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.093 s -- in com.puppycrawl.tools.checkstyle.DefaultLoggerTest

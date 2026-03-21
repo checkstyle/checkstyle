@@ -1,0 +1,38 @@
+* <P   >
+*     This is <b>bold</b>, <i>italic</i>, and <strong>also bold</strong> with
+*     <em>emphasis</em> and a <a href=https://example.com>link</a>.
+*
+*     Now, here's a nested list:
+*     <ul>
+*         <li>Item 1
+*         <li>Item 2
+*             <ul>
+*                 <li><code>Nested Code Item</code>
+*             </ul>
+*         <li>Item 3
+*     </ul>
+*
+*     Definitions:
+*     <DL>
+*         <dt>HTML
+*         <dd>HyperText Markup Language
+*         <dt>CSS
+*         <dd>Cascading Style Sheets
+*     </DL>
+*
+*     Mixed content: <code>Map&lt;String, List&lt;Integer&gt;&gt;</code>
+*
+*     Now some inline tags inside HTML:
+*     <p>Example: {@code int x = 42;} and {@link java.util.List}</p>
+*
+*     Mixed quote types: <a href='https://example.org' target="_blank">Another link</a>
+*
+*     Unicode test: π, ∑, ©, ™
+*
+*     JavaScript-like content inside code: <code>if (x > 0) alert("✔️");</code>
+*
+*     Optional tags and nesting: <ul><li><p>Item with paragraph</ul>
+*
+*     <!-- A comment to ignore -->
+*
+*     <p>Final paragraph with unmatched { brace in text.

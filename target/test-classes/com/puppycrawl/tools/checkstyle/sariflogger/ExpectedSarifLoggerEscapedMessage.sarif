@@ -1,0 +1,59 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "downloadUri": "https://github.com/checkstyle/checkstyle/releases/",
+          "fullName": "Checkstyle",
+          "informationUri": "https://checkstyle.org/",
+          "language": "en",
+          "name": "Checkstyle",
+          "organization": "Checkstyle",
+          "rules": [
+            {
+              "id": "com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck",
+              "messageStrings": {
+                "missing.switch.default": {
+                  "text": "switch without \"default\" clause."
+                }
+              },
+              "shortDescription": {
+                "text": "MissingSwitchDefault"
+              },
+              "fullDescription": {
+                "text": "<div>\n Checks that switch statement has a <code>default<\/code> clause.\n <\/div>\n\n <p>\n Rationale: It's usually a good idea to introduce a\n default case in every switch statement. Even if\n the developer is sure that all currently possible\n cases are covered, this should be expressed in the\n default branch, e.g. by using an assertion. This way\n the code is protected against later changes, e.g.\n introduction of new types in an enumeration type.\n <\/p>\n\n <p>\n This check does not validate any switch expressions. Rationale:\n The compiler requires switch expressions to be exhaustive. This means\n that all possible inputs must be covered.\n <\/p>\n\n <p>\n This check does not validate switch statements that use pattern or null\n labels. Rationale: Switch statements that use pattern or null labels are\n checked by the compiler for exhaustiveness. This means that all possible\n inputs must be covered.\n <\/p>\n\n <p>\n See the <a href=\"https:\/\/docs.oracle.com\/javase\/specs\/jls\/se22\/html\/jls-15.html#jls-15.28\">\n     Java Language Specification<\/a> for more information about switch statements\n     and expressions.\n <\/p>\n\n <p>\n See the <a href=\"https:\/\/docs.oracle.com\/javase\/specs\/jls\/se22\/html\/jls-14.html#jls-14.30\">\n     Java Language Specification<\/a> for more information about patterns.\n <\/p>"
+              }
+            }
+          ],
+          "semanticVersion": "null",
+          "version": "null"
+        }
+      },
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapedMessage.java"
+                },
+                "region": {
+                  "startColumn": 9,
+                  "startLine": 13
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "missing.switch.default",
+            "text": "switch without \"default\" clause."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck"
+        }
+      ]
+    }
+  ]
+}

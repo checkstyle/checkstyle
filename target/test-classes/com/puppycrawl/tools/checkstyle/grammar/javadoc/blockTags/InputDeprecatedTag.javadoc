@@ -1,0 +1,8 @@
+* Usage of deprecated block tag.
+* @deprecated This method is obsolete.
+* @deprecated
+*     Use the new method instead.
+* @deprecated Don't use.
+* @deprecated This method is outdated.
+*     Use {@link #newMethod()} for better performance and flexibility.
+* @deprecated

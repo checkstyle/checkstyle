@@ -1,0 +1,108 @@
+/*
+AbbreviationAsWordInName
+allowedAbbreviationLength = 4
+allowedAbbreviations = CLASS, FACTORY
+ignoreFinal = (default)true
+ignoreStatic = (default)true
+ignoreStaticFinal = (default)true
+ignoreOverriddenMethods = (default)true
+tokens = CLASS_DEF
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
+
+abstract class InputAbbreviationAsWordInNameType3 {
+}
+
+abstract class NonAAAAbstractClassName3 {
+}
+
+abstract class FactoryWithHARDName3 {
+}
+
+abstract class AbstractCLASSName3 {
+    abstract class NonAbstractInnerClass {
+    }
+}
+
+abstract class ClassFactory13 {
+    abstract class WellNamedFactory {
+    }
+}
+
+class NonAbstractClass13 {
+}
+
+class AbstractClass13 {
+}
+
+class Class1Factory13 {
+}
+
+abstract class AbstractClassName33 {
+    class AbstractINNERSClass { // violation
+    }
+}
+
+abstract class Class3Factory3 {
+    class WellNamedFACTORY {
+        public void systematicMETHODName() {
+            int systematicVARIABLEName = 2;
+            int SYSTEMATICVariableName = 1;
+        }
+    }
+}
+
+interface Directions3 {
+  int RIGHT=1;
+  int LEFT=2;
+  int UP=3;
+  int DOWN=4;
+}
+
+interface BadNameForInterface3
+{
+   void interfaceMethod();
+}
+
+abstract class NonAAAAbstractClassName23 {
+    public int serialNUMBER = 6;
+    public final int s1erialNUMBER = 6;
+    private static int s2erialNUMBER = 6;
+    private static final int s3erialNUMBER = 6;
+}
+
+interface Interface13 {
+
+    String VALUELONG = "value"; // in interface this is final/static
+
+}
+
+interface Interface23 {
+
+    static String VALUELONG = "value"; // in interface this is final/static
+
+}
+
+interface Interface33 {
+
+    final String VALUELONG = "value"; // in interface this is final/static
+
+}
+
+interface Interface43 {
+
+    final static String VALUELONG = "value"; // in interface this is final/static
+
+}
+
+class FIleNameFormatException3 extends Exception {
+
+    private static final long serialVersionUID = 1L;
+
+    public FIleNameFormatException3(Exception e) {
+        super(e);
+    }
+}

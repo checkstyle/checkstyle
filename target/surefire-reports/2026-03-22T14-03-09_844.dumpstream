@@ -1,0 +1,5 @@
+# Created at 2026-03-22T14:03:10.362
+Boot Manifest-JAR contains absolute paths in classpath 'src\test\resources-noncompilable'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' is different type of Path
+

@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="eebdec9b-b94e-4dda-95be-acd21c5affae" name="Changes" comment="Issue #19188: Move Intputs to non-compiled folders to let Idea to run test without compilation error" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/Users/brije/checkstyle" value="37h61uO5Ye2nk99vIYcQLN3bjYi" />
+    </persistenceIdMap>
+  </component>
+  <component name="CopilotUserSelectedModel">
+    <selectedModels>
+      <entry key="edit-panel" value="Grok Code Fast 1" />
+      <entry key="chat-panel" value="GPT-5.3-Codex" />
+      <entry key="agent-panel" value="GPT-5.3-Codex" />
+    </selectedModels>
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {}
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Brijeshthummar02/checkstyle.git&quot;,
+    &quot;accountId&quot;: &quot;aa6744f2-5b1d-4e67-a0dd-1fb723a372a9&quot;
+  },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;Brijeshthummar02&quot;,
+    &quot;repository&quot;: &quot;checkstyle&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="37h61uO5Ye2nk99vIYcQLN3bjYi" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+    <option name="sortByType" value="true" />
+    <option name="sortKey" value="BY_TYPE" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.JavadocStyleCheckExamplesTest.testExample8.executor": "Run",
+    "Maven.checkstyle [clean,verify].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHELLCHECK.PATH": "C:\\Users\\brije\\AppData\\Roaming\\JetBrains\\IntelliJIdea2024.2\\plugins\\Shell Script\\shellcheck.exe",
+    "git-widget-placeholder": "movedoc",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/brije/checkstyle",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "settings.sync",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\brije\checkstyle" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean verify" />
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="JavadocStyleCheckExamplesTest.testExample8" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="checkstyle" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.puppycrawl.tools.checkstyle.checks.javadoc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.puppycrawl.tools.checkstyle.checks.javadoc" />
+      <option name="MAIN_CLASS_NAME" value="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheckExamplesTest" />
+      <option name="METHOD_NAME" value="testExample8" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.JavadocStyleCheckExamplesTest.testExample8" />
+        <item itemvalue="JUnit.JavadocStyleCheckExamplesTest.testExample8" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-cffe25b9f5b3-intellij.indexing.shared.core-IU-253.28294.334" />
+        <option value="bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-IU-253.28294.334" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="eebdec9b-b94e-4dda-95be-acd21c5affae" name="Changes" comment="" />
+      <created>1767342746814</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1767342746814</updated>
+      <workItem from="1767342750840" duration="227000" />
+      <workItem from="1767499625467" duration="9533000" />
+      <workItem from="1767619466425" duration="13767000" />
+      <workItem from="1767672218054" duration="620000" />
+      <workItem from="1767673052997" duration="9301000" />
+      <workItem from="1767708828250" duration="7000" />
+      <workItem from="1767708883526" duration="6286000" />
+      <workItem from="1767797488803" duration="220000" />
+      <workItem from="1767797753940" duration="7205000" />
+      <workItem from="1767844815097" duration="235000" />
+      <workItem from="1767845377278" duration="8734000" />
+      <workItem from="1767857000109" duration="4221000" />
+      <workItem from="1767878526650" duration="3209000" />
+      <workItem from="1767883760926" duration="8783000" />
+      <workItem from="1767930701634" duration="9452000" />
+      <workItem from="1767945678408" duration="58000" />
+      <workItem from="1767961173409" duration="4360000" />
+      <workItem from="1767969098620" duration="3116000" />
+      <workItem from="1767977206239" duration="2838000" />
+      <workItem from="1768018553527" duration="8626000" />
+      <workItem from="1768032797471" duration="174000" />
+      <workItem from="1768106138058" duration="7428000" />
+      <workItem from="1768118226577" duration="69000" />
+      <workItem from="1768193474286" duration="4859000" />
+      <workItem from="1768234114798" duration="5500000" />
+      <workItem from="1768316004138" duration="1929000" />
+      <workItem from="1768538724729" duration="6705000" />
+      <workItem from="1768549289750" duration="1194000" />
+      <workItem from="1768567473937" duration="2620000" />
+      <workItem from="1768575723249" duration="4905000" />
+      <workItem from="1768624208261" duration="747000" />
+      <workItem from="1768710317815" duration="1331000" />
+      <workItem from="1768724299881" duration="1053000" />
+      <workItem from="1768737789602" duration="2736000" />
+      <workItem from="1768920983640" duration="785000" />
+      <workItem from="1769094330419" duration="6925000" />
+      <workItem from="1769178030046" duration="2643000" />
+      <workItem from="1769187051743" duration="665000" />
+      <workItem from="1769225561256" duration="2270000" />
+      <workItem from="1769400752414" duration="8618000" />
+      <workItem from="1769578185955" duration="3783000" />
+      <workItem from="1769586013498" duration="1242000" />
+      <workItem from="1769702147177" duration="730000" />
+      <workItem from="1769784060886" duration="1457000" />
+      <workItem from="1769785811331" duration="1185000" />
+      <workItem from="1769790265489" duration="2882000" />
+      <workItem from="1770045726538" duration="1922000" />
+      <workItem from="1770217160532" duration="7283000" />
+      <workItem from="1770264606991" duration="11715000" />
+      <workItem from="1770291865695" duration="7047000" />
+      <workItem from="1770436160021" duration="14819000" />
+      <workItem from="1770455452597" duration="63000" />
+      <workItem from="1770476988044" duration="8322000" />
+      <workItem from="1770521918654" duration="10153000" />
+      <workItem from="1770536372772" duration="3956000" />
+      <workItem from="1770644557992" duration="1585000" />
+      <workItem from="1770822704237" duration="761000" />
+      <workItem from="1770823531919" duration="4958000" />
+      <workItem from="1770829608826" duration="1478000" />
+      <workItem from="1771041330025" duration="5503000" />
+      <workItem from="1771165205448" duration="1829000" />
+      <workItem from="1771222308879" duration="2611000" />
+      <workItem from="1771328043898" duration="1104000" />
+      <workItem from="1771340532063" duration="3338000" />
+      <workItem from="1771518889630" duration="2425000" />
+      <workItem from="1771660172756" duration="4197000" />
+      <workItem from="1771747812581" duration="5688000" />
+      <workItem from="1771759853894" duration="8824000" />
+      <workItem from="1771771417900" duration="6143000" />
+      <workItem from="1771858829496" duration="7318000" />
+      <workItem from="1771943521832" duration="8504000" />
+      <workItem from="1771988361375" duration="13070000" />
+      <workItem from="1772006389354" duration="2773000" />
+      <workItem from="1772027005810" duration="1417000" />
+      <workItem from="1772030323898" duration="8203000" />
+      <workItem from="1772111238831" duration="11359000" />
+      <workItem from="1772212101568" duration="1817000" />
+      <workItem from="1772251804433" duration="6494000" />
+      <workItem from="1772338739534" duration="3984000" />
+      <workItem from="1772351430731" duration="1402000" />
+      <workItem from="1772354879295" duration="735000" />
+      <workItem from="1772376116658" duration="3320000" />
+      <workItem from="1772384087390" duration="271000" />
+      <workItem from="1772509135464" duration="9879000" />
+      <workItem from="1772522562131" duration="5595000" />
+      <workItem from="1772549816449" duration="945000" />
+      <workItem from="1772553946794" duration="4544000" />
+      <workItem from="1772597499403" duration="3704000" />
+      <workItem from="1772616195279" duration="4529000" />
+      <workItem from="1772629450549" duration="3752000" />
+      <workItem from="1772635525174" duration="7579000" />
+      <workItem from="1772722749762" duration="2979000" />
+      <workItem from="1772864265217" duration="2184000" />
+      <workItem from="1772869014816" duration="2791000" />
+      <workItem from="1772894834184" duration="3365000" />
+      <workItem from="1772942199202" duration="9305000" />
+      <workItem from="1772964571849" duration="10296000" />
+      <workItem from="1772984953700" duration="3079000" />
+      <workItem from="1773112816486" duration="7367000" />
+      <workItem from="1773124642432" duration="613000" />
+      <workItem from="1773128477027" duration="3326000" />
+      <workItem from="1773149057657" duration="2210000" />
+      <workItem from="1773153319707" duration="10875000" />
+      <workItem from="1773200531288" duration="6158000" />
+      <workItem from="1774064963556" duration="9688000" />
+      <workItem from="1774077479339" duration="5127000" />
+      <workItem from="1774103117975" duration="7531000" />
+      <workItem from="1774112571798" duration="3182000" />
+      <workItem from="1774150879313" duration="15042000" />
+    </task>
+    <task id="LOCAL-00001" summary="Issue #11163: Enforce file size on VariableDeclarationUsageDistanceCheckSwitchExpressions">
+      <option name="closed" value="true" />
+      <created>1767507766439</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1767507766439</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Issue #18027: Pitest Supression ant version">
+      <option name="closed" value="true" />
+      <created>1767715551232</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1767715551233</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Issue #17269: Upgrade all scripts to newest groovy">
+      <option name="closed" value="true" />
+      <created>1767851367369</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1767851367370</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Issue #17269: Upgrade all scripts to newest groovy">
+      <option name="closed" value="true" />
+      <created>1767858651048</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1767858651048</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Issue #18599: Resolve error-prone violations">
+      <option name="closed" value="true" />
+      <created>1768239836512</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1768239836512</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Issue #18599: Resolve error-prone violations">
+      <option name="closed" value="true" />
+      <created>1768240459650</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1768240459650</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Issue #18599: Resolve error-prone violations">
+      <option name="closed" value="true" />
+      <created>1768540736089</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1768540736089</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Issue #18673: Organize openrewrite staticanalysis composite recipes by groups as it is done on openrewrite website">
+      <option name="closed" value="true" />
+      <created>1768711269634</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1768711269634</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Issue #18599: Resolve error-prone violations">
+      <option name="closed" value="true" />
+      <created>1769408812819</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1769408812819</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Issue #18673: Organize openrewrite staticanalysis composite recipes by groups as it is done on openrewrite website">
+      <option name="closed" value="true" />
+      <created>1769785965504</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1769785965504</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Issue #18673: Organize openrewrite staticanalysis composite recipes by groups as it is done on openrewrite website">
+      <option name="closed" value="true" />
+      <created>1769792052391</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1769792052391</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Issue #18599: Disable InlineMeSuggester as Error Prone annotations are forbidden in main sources">
+      <option name="closed" value="true" />
+      <created>1770221897917</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1770221897917</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Issue #273: Small cleanup in diff-report workflow to prepare for CLI migration">
+      <option name="closed" value="true" />
+      <created>1770299224908</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1770299224908</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Issue #18882: Move Qodana config into config folder and update CI">
+      <option name="closed" value="true" />
+      <created>1770439687529</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1770439687529</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Issue #18599: Resolve error-prone violations">
+      <option name="closed" value="true" />
+      <created>1771049413822</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1771049413822</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Issue #5741: Remove test generated nonsense words from spellchecker whitelist">
+      <option name="closed" value="true" />
+      <created>1771765921191</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1771765921191</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Issue #18999: update XdocsExamplesAstConsistencyTest to skip modules with no properties">
+      <option name="closed" value="true" />
+      <created>1771865175332</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1771865175333</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Issue #5741: Remove test generated nonsense words from spellchecker whitelist">
+      <option name="closed" value="true" />
+      <created>1771989943549</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1771989943550</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Issue #18999: update XdocsExamplesAstConsistencyTest to skip modules with no properties">
+      <option name="closed" value="true" />
+      <created>1772379171318</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1772379171318</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Issue #18999: update XdocsExamplesAstConsistencyTest to skip modules with no properties">
+      <option name="closed" value="true" />
+      <created>1772379516544</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1772379516544</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Issue #18999: update XdocsExamplesAstConsistencyTest to skip modules with no properties">
+      <option name="closed" value="true" />
+      <created>1772384317031</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1772384317031</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Issue #5741: Remove test generated nonsense words from spellchecker whitelist">
+      <option name="closed" value="true" />
+      <created>1772528964420</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1772528964421</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Issue #5741: Remove test generated nonsense words from spellchecker whitelist">
+      <option name="closed" value="true" />
+      <created>1772640981889</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1772640981890</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Issue #19154: Add format property to JavadocStyle to control allowed Javadoc comment formats">
+      <option name="closed" value="true" />
+      <created>1773167860032</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1773167860033</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Issue #19188: Move Intputs to non-compiled folders to let Idea to run test without compilation error">
+      <option name="closed" value="true" />
+      <created>1774111837512</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1774111837512</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Issue #11163: Enforce file size on VariableDeclarationUsageDistanceCheckSwitchExpressions" />
+    <MESSAGE value="Issue #18027: Pitest Supression ant version" />
+    <MESSAGE value="Issue #17269: Upgrade all scripts to newest groovy" />
+    <MESSAGE value="Issue #18673: Organize openrewrite staticanalysis composite recipes by groups as it is done on openrewrite website" />
+    <MESSAGE value="Issue #18599: Disable InlineMeSuggester as Error Prone annotations are forbidden in main sources" />
+    <MESSAGE value="Issue #273: Small cleanup in diff-report workflow to prepare for CLI migration" />
+    <MESSAGE value="Issue #18882: Move Qodana config into config folder and update CI" />
+    <MESSAGE value="Issue #18599: Resolve error-prone violations" />
+    <MESSAGE value="Issue #18999: update XdocsExamplesAstConsistencyTest to skip modules with no properties" />
+    <MESSAGE value="Issue #5741: Remove test generated nonsense words from spellchecker whitelist" />
+    <MESSAGE value="Issue #19154: Add format property to JavadocStyle to control allowed Javadoc comment formats" />
+    <MESSAGE value="Issue #19188: Move Intputs to non-compiled folders to let Idea to run test without compilation error" />
+    <option name="LAST_COMMIT_MESSAGE" value="Issue #19188: Move Intputs to non-compiled folders to let Idea to run test without compilation error" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>

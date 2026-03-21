@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.AvoidInlineConditionalsCheck"
+             name="AvoidInlineConditionals"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Detects inline conditionals. Here is one example of an inline conditional:
+ &lt;/div&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ String a = getParameter("a");
+ String b = (a==null || a.length()&amp;lt;1) ? null : a.substring(1);
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+ &lt;p&gt;
+ Rationale: Some developers find inline conditionals hard to read, so
+ their employer's coding standards forbid them.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="inline.conditional.avoid"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

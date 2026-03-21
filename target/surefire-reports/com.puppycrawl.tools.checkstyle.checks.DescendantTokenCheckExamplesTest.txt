@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheckExamplesTest
+-------------------------------------------------------------------------------
+Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.130 s -- in com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheckExamplesTest

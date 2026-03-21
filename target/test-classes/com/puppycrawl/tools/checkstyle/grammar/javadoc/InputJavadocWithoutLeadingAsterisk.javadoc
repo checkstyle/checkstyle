@@ -1,0 +1,17 @@
+javadoc without leading asterisk
+{@code what
+is this}
+{@code what
+        is this}
+<a href="myUrl" abcd
+def>myText</a>
+<a href="myUrl" abcd
+    def>myText</a>
+@param a This is my
+parameter.
+@param a This is my
+        parameter.
+* <p>For example, you could use {@code -Djava.lang.ScopedValue.cacheSize=8}.
+
+* @param <T> the type of the value
+* @since 21

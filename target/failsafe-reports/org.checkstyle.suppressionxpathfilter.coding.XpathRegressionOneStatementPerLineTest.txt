@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.checkstyle.suppressionxpathfilter.coding.XpathRegressionOneStatementPerLineTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.064 s -- in org.checkstyle.suppressionxpathfilter.coding.XpathRegressionOneStatementPerLineTest

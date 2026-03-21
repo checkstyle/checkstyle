@@ -1,0 +1,39 @@
+* Link1:
+* {@link java.base/java.util.Optional#ifPresentOrElse(Consumer, Runnable)
+* executes {@code ifPresentOrElse} with a {@code Consumer} if present, otherwise}
+* Tests: module prefix, inline tags in label, simple method with reference types.
+*
+* Link2:
+* See {@link java.base/java.util.List#Test() the {@code List} interface}
+* Tests: module prefix, constructor method, inline {@code} label.
+*
+* Link3:
+* {@link #equals(Object) Override {@code equals()} carefully}
+* Tests: relative member reference with single parameter, inline {@code} in label.
+*
+* Link4:
+* {@link java.util.Arrays#copyOf(int[], int, java.util.Array) copies part of an array}
+* Tests: array types in parameter list.
+*
+* Link5:
+* {@link java.base/java.lang.String#substring(int, int) extract a substring from a string}
+* Tests: module prefix, primitive parameters.
+*
+* Link6:
+* {@link java.logging/java.util.logging.Logger#getLogger(String) get an instance via {@code getLogger}}
+* Tests: module prefix, inline tag in label, fully qualified class.
+*
+* Link7:
+* {@link java.base/java.util.function.Function#apply(java.util.List[][]) apply function to 2D list}
+* Tests: multi-dimensional array as parameter, module prefix.
+*
+* Link8:
+* {@link java.base/java.util.stream.Stream#map(java.util.function.Function) transform stream elements}
+* Tests: fully qualified single parameter, module prefix.
+*
+* Link9:
+* {@link java.util.Map.Entry#getKey() retrieve {@code key} from entry}
+* Tests: nested class reference, inline tag in label.
+*
+* Link10:
+* {@link java.util.Arrays array}

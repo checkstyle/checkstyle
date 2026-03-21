@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheckTest
+-------------------------------------------------------------------------------
+Tests run: 20, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.186 s -- in com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheckTest

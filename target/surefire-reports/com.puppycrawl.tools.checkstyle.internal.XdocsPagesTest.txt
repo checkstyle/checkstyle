@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.puppycrawl.tools.checkstyle.internal.XdocsPagesTest
+-------------------------------------------------------------------------------
+Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 45.78 s -- in com.puppycrawl.tools.checkstyle.internal.XdocsPagesTest

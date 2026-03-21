@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.NumericalPrefixesInfixesSuffixesCharacterCaseCheck"
+             name="NumericalPrefixesInfixesSuffixesCharacterCase"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that all numerical literal prefixes, infixes, and suffixes are written
+ using lowercase letters (for example prefixes : &lt;code&gt;0x, 0b&lt;/code&gt;,
+ infixes : &lt;code&gt;e, p&lt;/code&gt;, suffixes : &lt;code&gt;f, d&lt;/code&gt;).
+ This convention follows the
+ &lt;a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-literals"&gt;
+ OpenJDK Style Guide&lt;/a&gt;.
+ &lt;/div&gt;
+
+ &lt;p&gt;&lt;b&gt;ATTENTION:&lt;/b&gt;&lt;/p&gt;
+
+ &lt;p&gt;This check ignores the &lt;code&gt;L&lt;/code&gt; suffix for long literals,
+ as using an uppercase &lt;code&gt;L&lt;/code&gt; is a widely accepted and recommended
+ practice to avoid confusion with the digit &lt;code&gt;1&lt;/code&gt;.&lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="numerical.literal.infix"/>
+            <message-key key="numerical.literal.prefix"/>
+            <message-key key="numerical.literal.suffix"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
