@@ -138,6 +138,7 @@ workflows:
       - validate-with-maven-script:
           name: no-exception-checkstyle-sevntu-javadoc
           image-name: *cs_img
+          resource_class: medium+
           command: ./.ci/validation.sh no-exception-checkstyle-sevntu-javadoc
       - validate-with-maven-script:
           name: no-exception-guava
