@@ -65,8 +65,20 @@ recipeList:
         - org.openrewrite.staticanalysis.EmptyBlock
         - org.openrewrite.staticanalysis.FinalizePrivateFields
         - org.openrewrite.staticanalysis.ForLoopControlVariablePostfixOperators
+        # Kept excluded: Checkstyle's MethodParamPadCheck fully enforces project-specific padding rules,
+        # with extensive configuration for space/nospace, per-token checks, and linebreak handling.
+        # OpenRewrite recipe would add/removes spaces in a rigid fashion, ignoring project style,
+        # and risk overwriting team-specific configurations and causing noisy diffs.
         - org.openrewrite.java.format.MethodParamPad
+        # Kept excluded: OpenRewrite's NoWhitespaceAfter removes whitespace after all
+        # configured tokens with no flexibility, while Checkstyle's NoWhitespaceAfterCheck
+        # allows projects to customize which tokens are checked via the `tokens` property
+        # and whether line breaks are allowed via `allowLineBreaks`.
         - org.openrewrite.java.format.NoWhitespaceAfter
+        # Kept excluded: OpenRewrite's NoWhitespaceBefore removes whitespace before all
+        # configured tokens with no flexibility, while Checkstyle's NoWhitespaceBeforeCheck
+        # allows projects to customize which tokens are checked via the `tokens` property
+        # and whether line breaks are allowed via `allowLineBreaks`.
         - org.openrewrite.java.format.NoWhitespaceBefore
         - org.openrewrite.staticanalysis.TypecastParenPad
         - org.openrewrite.staticanalysis.ExplicitInitialization
