@@ -4,6 +4,11 @@ OneTopLevelClass
 
 */
 
+/*
+OneTopLevelClassCheck
+( no priorities )
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.onetoplevelclass;
 
 public class InputOneTopLevelClass
