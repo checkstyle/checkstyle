@@ -1,7 +1,13 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="Indentation"/>
+    <module name="Indentation">
+      <property name="basicOffset" value="4"/>
+      <property name="braceAdjustment" value="0"/>
+      <property name="lineWrappingIndentation" value="4"/>
+      <property name="throwsIndent" value="4"/>
+      <property name="arrayInitIndent" value="4"/>
+    </module>
   </module>
 </module>
 */
@@ -52,4 +58,3 @@ class Example1 {
     }
 }
 // xdoc section -- end
-
