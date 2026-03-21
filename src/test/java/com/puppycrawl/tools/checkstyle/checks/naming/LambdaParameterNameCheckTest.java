@@ -73,7 +73,7 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
             "26:21: " + getCheckMessage(MSG_INVALID_PATTERN, "s", pattern),
         };
         verifyWithInlineConfigParser(
-                getPath("InputLambdaParameterName.java"), expected);
+                getNonCompilablePath("InputLambdaParameterName.java"), expected);
     }
 
     @Test
@@ -106,8 +106,9 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputLambdaParameterNameUnnamed.java"),
+                getNonCompilablePath("InputLambdaParameterNameUnnamed.java"),
             expected);
     }
 
 }
+

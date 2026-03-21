@@ -369,7 +369,7 @@ public class NoWhitespaceAfterCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceAfterUnnamedPattern.java"),
+                getNonCompilablePath("InputNoWhitespaceAfterUnnamedPattern.java"),
                 expected);
     }
 
@@ -387,3 +387,4 @@ public class NoWhitespaceAfterCheckTest
     }
 
 }
+
