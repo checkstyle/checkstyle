@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.puppycrawl.tools.checkstyle.filters.SuppressionsLoaderTest
+-------------------------------------------------------------------------------
+Tests run: 23, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.201 s -- in com.puppycrawl.tools.checkstyle.filters.SuppressionsLoaderTest

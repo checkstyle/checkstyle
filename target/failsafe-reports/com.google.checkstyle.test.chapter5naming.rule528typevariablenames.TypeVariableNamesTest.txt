@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.google.checkstyle.test.chapter5naming.rule528typevariablenames.TypeVariableNamesTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.347 s -- in com.google.checkstyle.test.chapter5naming.rule528typevariablenames.TypeVariableNamesTest

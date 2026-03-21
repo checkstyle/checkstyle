@@ -1,0 +1,66 @@
+* Demonstration of "snippet" tag usage in various forms.
+*
+* ✅ 1. Basic usage – external file:
+* {@snippet file="Example.java"}
+*
+* ✅ 2. Inline code body :
+* {@snippet :
+*     System.out.println("Hello, world!");
+* }
+*
+* ✅ 3. With multiple attributes:
+* {@snippet lang=java class=highlighted :
+*     int result = Math.addExact(1, 2);
+* }
+*
+* ✅ 4. File with region attribute (external code block):
+* {@snippet file="Calculator.java" region=addMethod}
+*
+* ✅ 5. Real usage from OpenJDK – file-based snippet:
+* {@snippet file="doc-files/BitSetSample.java" region=DocGet}
+*
+* ✅ 6. Real usage from OpenJDK – inline try-with-resources:
+* {@snippet lang=java :
+*   try (InputStream in = new FileInputStream("file.txt")) {
+*       // read from file
+*   }
+* }
+* ==========
+* {@snippet id="entry-point" lang=java :
+*    public boolean run(DocletEnvironment environment) // @highlight substring="run"
+* }
+* =====
+* {@snippet :
+* package com.example;
+*
+* @Name("example.LogMessage")
+* @Label("Log Message")
+* @StackFilter("com.example.Logger::log")
+* class LogMessage extends Event {
+*     @Label("Message")
+*     String message;
+* }
+*
+* public class Logger {
+*
+*     public static void log(String message) {
+*         System.out.print(Instant.now() + " : " + message);
+*         LogMessage event = new LogMessage();
+*         event.message = message;
+*         event.commit();
+*     }
+* }
+* }
+*
+* {@snippet file="Example.java"}
+* {@snippet :
+*   {@snippet lang=java : System.out.println("nested?"); }
+* }
+*
+* {@snippet :
+*   /**
+*    * {@link Object}
+*    * {@code int x = 5;}
+*    *\/
+* }
+* {@snippet lang="java": code}

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilterExamplesTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.334 s -- in com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilterExamplesTest

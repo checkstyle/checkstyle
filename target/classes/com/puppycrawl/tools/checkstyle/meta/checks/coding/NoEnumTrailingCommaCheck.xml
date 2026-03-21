@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NoEnumTrailingCommaCheck"
+             name="NoEnumTrailingComma"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+  Checks that enum definition does not contain a trailing comma.
+  Rationale: JLS allows trailing commas in arrays and enumerations, but does not allow
+  them in other locations. To unify the coding style, the use of trailing commas should
+  be prohibited.
+ &lt;/div&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ enum Foo1 {
+   FOO,
+   BAR;
+ }
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+ &lt;p&gt;
+  The check demands that there should not be any comma after last constant in
+  enum definition.
+ &lt;/p&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ enum Foo1 {
+   FOO,
+   BAR, // violation
+ }
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+         <message-keys>
+            <message-key key="no.enum.trailing.comma"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

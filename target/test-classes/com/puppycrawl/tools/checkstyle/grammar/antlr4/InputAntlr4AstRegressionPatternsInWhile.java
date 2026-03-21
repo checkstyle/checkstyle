@@ -1,0 +1,19 @@
+package com.puppycrawl.tools.checkstyle.grammar.antlr4;
+
+public class InputAntlr4AstRegressionPatternsInWhile {
+    void m1(Object o) {
+        while (o instanceof String s && s.length() > 4) { // type pattern, no `PATTERN_DEF`
+
+        }
+        while (o instanceof String s) { // type pattern, no `PATTERN_DEF`
+
+        }
+
+        do {
+            // type pattern, no `PATTERN_DEF`
+        } while (o instanceof String s && s.length() > 4);
+        do {
+            // type pattern, no `PATTERN_DEF`
+        } while (o instanceof String s);
+    }
+}

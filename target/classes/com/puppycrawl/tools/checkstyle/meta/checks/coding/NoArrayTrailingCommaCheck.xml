@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NoArrayTrailingCommaCheck"
+             name="NoArrayTrailingComma"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that array initialization do not contain a trailing comma.
+ Rationale: JLS allows trailing commas in arrays and enumerations, but does not allow
+ them in other locations. To unify the coding style, the use of trailing commas should
+ be prohibited.
+ &lt;/div&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ int[] foo = new int[] {
+   1,
+   2
+ };
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+ &lt;p&gt;
+ The check demands that there should not be any comma after the last element of an array.
+ &lt;/p&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ String[] foo = new String[] {
+   "FOO",
+   "BAR", // violation
+ }
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+         <message-keys>
+            <message-key key="no.array.trailing.comma"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

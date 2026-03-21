@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheckTest
+-------------------------------------------------------------------------------
+Tests run: 48, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.423 s -- in com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheckTest

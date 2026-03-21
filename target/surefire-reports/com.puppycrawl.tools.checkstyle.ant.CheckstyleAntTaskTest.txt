@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTaskTest
+-------------------------------------------------------------------------------
+Tests run: 51, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.82 s -- in com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTaskTest

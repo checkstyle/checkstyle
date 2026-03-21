@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.google.checkstyle.test.chapter3filestructure.rule332nolinewrap.NoLineWrappingTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.245 s -- in com.google.checkstyle.test.chapter3filestructure.rule332nolinewrap.NoLineWrappingTest

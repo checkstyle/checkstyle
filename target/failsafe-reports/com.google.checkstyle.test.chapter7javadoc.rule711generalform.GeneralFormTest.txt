@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.google.checkstyle.test.chapter7javadoc.rule711generalform.GeneralFormTest
+-------------------------------------------------------------------------------
+Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.379 s -- in com.google.checkstyle.test.chapter7javadoc.rule711generalform.GeneralFormTest

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+<suppressions>
+  <suppress files="file0" checks="check0"/>
+  <suppress files="file1" checks="check1" lines="1,2-3"/>
+  <suppress files="file2" checks="check2" columns="1,2-3"/>
+  <suppress files="file3" checks="check3" lines="1,2-3" columns="1,2-3"/>
+  <suppress message="message0"/>
+</suppressions>

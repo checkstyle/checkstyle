@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"
+             name="Translation"
+             parent="com.puppycrawl.tools.checkstyle.Checker">
+         <description>&lt;div&gt;
+ Ensures the correct translation of code by checking property files for consistency
+ regarding their keys. Two property files describing one and the same context
+ are consistent if they contain the same keys. TranslationCheck also can check
+ an existence of required translations which must exist in project, if
+ &lt;code&gt;requiredTranslations&lt;/code&gt; option is used.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Language code for the property &lt;code&gt;requiredTranslations&lt;/code&gt; is composed of
+ the lowercase, two-letter codes as defined by
+ &lt;a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"&gt;ISO 639-1&lt;/a&gt;.
+ Default value is empty String Set which means that only the existence of default
+ translation is checked. Note, if you specify language codes (or just one
+ language code) of required translations the check will also check for existence
+ of default translation files in project.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Note: If your project uses preprocessed translation files and the original files do not have the
+ &lt;code&gt;properties&lt;/code&gt; extension, you can specify additional file extensions
+ via the &lt;code&gt;fileExtensions&lt;/code&gt; property.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Attention: the check will perform the validation of ISO codes if the option
+ is used. So, if you specify, for example, "mm" for language code,
+ TranslationCheck will rise violation that the language code is incorrect.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Attention: this Check could produce false-positives if it is used with
+ &lt;a href="https://checkstyle.org/config.html#Checker"&gt;Checker&lt;/a&gt; that use cache
+ (property "cacheFile") This is known design problem, will be addressed at
+ &lt;a href="https://github.com/checkstyle/checkstyle/issues/3539"&gt;issue&lt;/a&gt;.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="^messages.*$"
+                      name="baseName"
+                      type="java.util.regex.Pattern">
+               <description>Specify
+ &lt;a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ResourceBundle.html"&gt;
+ Base name&lt;/a&gt; of resource bundles which contain message resources.
+ It helps the check to distinguish config and localization resources.</description>
+            </property>
+            <property default-value=".properties"
+                      name="fileExtensions"
+                      type="java.lang.String[]">
+               <description>Specify the file extensions of the files to process.</description>
+            </property>
+            <property default-value=""
+                      name="requiredTranslations"
+                      type="java.lang.String[]">
+               <description>Specify language codes of required translations which must exist in project.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="translation.missingKey"/>
+            <message-key key="translation.missingTranslationFile"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.google.checkstyle.test.chapter4formatting.rule4841indentation.IndentationTest
+-------------------------------------------------------------------------------
+Tests run: 33, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.242 s -- in com.google.checkstyle.test.chapter4formatting.rule4841indentation.IndentationTest

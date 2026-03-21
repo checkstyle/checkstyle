@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.google.checkstyle.test.chapter4formatting.rule413emptyblocks.EmptyBlocksMayBeConciseTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.366 s -- in com.google.checkstyle.test.chapter4formatting.rule413emptyblocks.EmptyBlocksMayBeConciseTest
