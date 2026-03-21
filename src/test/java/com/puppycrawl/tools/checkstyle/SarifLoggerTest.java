@@ -171,9 +171,11 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Cannot use verifyWithInlineConfigParserAndLogger, because this test
-     * requires exception logging through addException(). This behavior is not
-     * covered by the current Checker flow used by the helper.
+     * verifyWithInlineConfigParserAndLogger uses Checker.process(...) and reaches
+     * logger callbacks through Checker.fireErrors(...), which triggers addError(AuditEvent).
+     * This test must call addException(AuditEvent, Throwable) directly with controlled events,
+     * including one event with a null fileName, because that exception path is not produced by
+     * the normal Checker.process(...) file-auditing flow.
      */
     @Test
     public void testAddExceptions() throws IOException {
@@ -246,10 +248,11 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Cannot use verifyWithInlineConfigParserAndLogger, because this test
-     * verifies logger behavior with a manually created AuditEvent and a
-     * synthetic relative Linux path. This scenario is not produced through
-     * the current Checker flow used by the helper.
+     * verifyWithInlineConfigParserAndLogger goes through Checker.process(...), where
+     * Checker.fireErrors(...) creates AuditEvent file names from real File objects and then
+     * normalizes them via relativizePathWithCatch(...), which delegates to
+     * CommonUtil.relativizePath(...). That flow does not produce synthetic "./Test.java",
+     * so this test keeps manual AuditEvent construction.
      */
     @Test
     public void testAddErrorWithRelativeLinuxPath() throws IOException {
@@ -269,10 +272,10 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Cannot use verifyWithInlineConfigParserAndLogger, because this test
-     * verifies logger behavior with a manually created AuditEvent and a
-     * synthetic absolute Windows path. This scenario is not produced through
-     * the current Checker flow used by the helper.
+     * Checker.process(...) obtains file paths from the current runtime File API, and
+     * Checker.fireErrors(...) passes those paths through relativizePathWithCatch(...)
+     * / CommonUtil.relativizePath(...). On Linux CI, File.getAbsolutePath() cannot produce
+     * a native "C:\\..." Windows absolute path, so this Windows-specific case is manual.
      */
     @Test
     public void testAddErrorWithAbsoluteWindowsPath() throws IOException {
@@ -293,10 +296,10 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Cannot use verifyWithInlineConfigParserAndLogger, because this test
-     * verifies logger behavior with a manually created AuditEvent and a
-     * synthetic relative Windows path. This scenario is not produced through
-     * the current Checker flow used by the helper.
+     * verifyWithInlineConfigParserAndLogger relies on Checker.process(...), where path strings
+     * are OS-dependent and produced from File semantics before Checker.fireErrors(...) calls
+     * relativizePathWithCatch(...) / CommonUtil.relativizePath(...). A Linux run will not emit
+     * ".\\Test.java", so this test must construct the AuditEvent manually.
      */
     @Test
     public void testAddErrorWithRelativeWindowsPath() throws IOException {
@@ -465,9 +468,9 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Cannot use verifyWithInlineConfigParserAndLogger, because this test
-     * relies on reflection to inject fake module metadata and trigger
-     * ClassNotFoundException handling. This is not a normal Checker flow.
+     * This test injects ruleMetadata via reflection to force ClassNotFoundException handling
+     * during logger.auditFinished(...). That reflective state mutation is outside the normal
+     * Checker.process(...) and Checker.fireErrors(...) helper flow.
      */
     @Test
     public void testGetMessagesWithClassNotFoundException() throws Exception {
@@ -493,9 +496,9 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Cannot use verifyWithInlineConfigParserAndLogger, because this test
-     * relies on reflection to inject fake module metadata and trigger
-     * MissingResourceException handling. This is not a normal Checker flow.
+     * This test uses reflection to inject ruleMetadata and trigger MissingResourceException
+     * handling in logger.auditFinished(...). That reflective path is not reachable through
+     * the standard Checker.process(...) / Checker.fireErrors(...) execution.
      */
     @Test
     public void testGetMessagesWithMissingResourceException() throws Exception {
