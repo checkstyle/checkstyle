@@ -119,9 +119,9 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     private int minLineCount = DEFAULT_MIN_LINE_COUNT;
 
     /**
-     * Control whether to allow missing Javadoc on accessor methods for
-     * properties (setters and getters).
+     * Control whether to allow missing Javadoc on accessor methods for properties (setters and getters).
      */
+
     private boolean allowMissingPropertyJavadoc;
 
     /** Ignore method whose names are matching specified regex. */
