@@ -3782,6 +3782,45 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedTryResourceShouldBeUnnamedCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter root of TokenUtil.forEachChild.</message>
+    <lineContent>TokenUtil.forEachChild(resourcesNode, TokenTypes.RESOURCE, child -&gt; {</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedTryResourceShouldBeUnnamedCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ident</message>
+    <lineContent>if (!UNNAMED_VARIABLE_IDENTIFIER.equals(ident.getText())) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedTryResourceShouldBeUnnamedCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference paramDef</message>
+    <lineContent>paramDef.findFirstToken(TokenTypes.IDENT);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedTryResourceShouldBeUnnamedCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference paramIdent</message>
+    <lineContent>return paramIdent.getText().equals(identAst.getText());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedTryResourceShouldBeUnnamedCheck.java</fileName>
+    <specifier>iterating.over.nullable</specifier>
+    <message>iterating over possibly-null reference resources</message>
+    <lineContent>for (TryResourceDetails resource : resources) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UseEnhancedSwitchCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter ast of CheckUtil.isTerminated.</message>
