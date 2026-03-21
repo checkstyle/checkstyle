@@ -633,6 +633,17 @@
           </tr>
           <tr>
             <td>
+              <a href="unusedtryresourceshouldbeunnamed.html#UnusedTryResourceShouldBeUnnamed">
+                UnusedTryResourceShouldBeUnnamed
+              </a>
+            </td>
+            <td>
+              Ensures that try-with-resources resource variables that are not used are declared as
+              an unnamed variable.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="useenhancedswitch.html#UseEnhancedSwitch">
                 UseEnhancedSwitch
               </a>
