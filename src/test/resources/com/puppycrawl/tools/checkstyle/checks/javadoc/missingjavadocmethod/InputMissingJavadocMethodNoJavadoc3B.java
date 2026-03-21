@@ -17,56 +17,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
  * scope = "private"
  * excludeScope = "protected"
  */
-public class InputMissingJavadocMethodNoJavadoc3 //comment test
-{
-    public int i1;
-    protected int i2;
-    int i3;
-    private int i4;
-
-    public void foo1() {} // violation
-    protected void foo2() {}
-    void foo3() {} // violation
-    private void foo4() {} // violation
-
-    protected class ProtectedInner {
-        public int i1;
-        protected int i2;
-        int i3;
-        private int i4;
-
-        public void foo1() {}
-        protected void foo2() {}
-        void foo3() {}
-        private void foo4() {}
-    }
-
-    class PackageInner {
-        public int i1;
-        protected int i2;
-        int i3;
-        private int i4;
-
-        public void foo1() {} // violation
-        protected void foo2() {}
-        void foo3() {} // violation
-        private void foo4() {} // violation
-    }
-
-    private class PrivateInner {
-        public int i1;
-        protected int i2;
-        int i3;
-        private int i4;
-
-        public void foo1() {} // violation
-        protected void foo2() {}
-        void foo3() {} // violation
-        private void foo4() {} // violation
-    }
-}
-
-class PackageClass3 {
+class InputMissingJavadocMethodNoJavadoc3B {
     public int i1;
     protected int i2;
     int i3;
