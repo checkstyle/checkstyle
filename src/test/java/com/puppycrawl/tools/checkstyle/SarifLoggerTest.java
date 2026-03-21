@@ -171,7 +171,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * verifyWithInlineConfigParserAndLogger uses Checker.process(...) and reaches
+     * VerifyWithInlineConfigParserAndLogger uses Checker.process(...) and reaches
      * logger callbacks through Checker.fireErrors(...), which triggers addError(AuditEvent).
      * This test must call addException(AuditEvent, Throwable) directly with controlled events,
      * including one event with a null fileName, because that exception path is not produced by
@@ -248,7 +248,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * verifyWithInlineConfigParserAndLogger goes through Checker.process(...), where
+     * VerifyWithInlineConfigParserAndLogger goes through Checker.process(...), where
      * Checker.fireErrors(...) creates AuditEvent file names from real File objects and then
      * normalizes them via relativizePathWithCatch(...), which delegates to
      * CommonUtil.relativizePath(...). That flow does not produce synthetic "./Test.java",
@@ -296,7 +296,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * verifyWithInlineConfigParserAndLogger relies on Checker.process(...), where path strings
+     * VerifyWithInlineConfigParserAndLogger relies on Checker.process(...), where path strings
      * are OS-dependent and produced from File semantics before Checker.fireErrors(...) calls
      * relativizePathWithCatch(...) / CommonUtil.relativizePath(...). A Linux run will not emit
      * ".\\Test.java", so this test must construct the AuditEvent manually.
