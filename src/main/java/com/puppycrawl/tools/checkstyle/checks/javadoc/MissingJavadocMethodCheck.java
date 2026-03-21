@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,7 +27,8 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -85,16 +87,27 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     private static final int SETTER_GETTER_MAX_CHILDREN = 7;
 
     /** Pattern matching names of getter methods. */
-    private static final Pattern GETTER_PATTERN = Pattern.compile("^(is|get)[A-Z].*");
+    private static final Pattern GETTER_PATTERN =
+            Pattern.compile("^(is|get)[A-Z].*");
 
     /** Pattern matching names of setter methods. */
-    private static final Pattern SETTER_PATTERN = Pattern.compile("^set[A-Z].*");
+    private static final Pattern SETTER_PATTERN =
+            Pattern.compile("^set[A-Z].*");
 
     /** Maximum nodes allowed in a body of setter. */
     private static final int SETTER_BODY_SIZE = 3;
 
-    /** Default value of minimal amount of lines in method to allow no documentation.*/
+    /** Default value of minimal amount of lines in method to allow no documentation. */
     private static final int DEFAULT_MIN_LINE_COUNT = -1;
+
+    /**
+     * Tracks line numbers of methods/ctors whose Javadoc contains
+     * {@code {@inheritDoc}}, populated by the inner Javadoc check.
+     */
+    private final Set<Integer> methodsWithInheritDoc = new HashSet<>();
+
+    /** The inner check that reads the Javadoc AST. */
+    private final InnerJavadocCheck innerJavadocCheck = new InnerJavadocCheck();
 
     /** Specify the visibility scope where Javadoc comments are checked. */
     private Scope scope = Scope.PUBLIC;
@@ -102,7 +115,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     /** Specify the visibility scope where Javadoc comments are not checked. */
     private Scope excludeScope;
 
-    /** Control the minimal amount of lines in method to allow no documentation.*/
+    /** Control the minimal amount of lines in method to allow no documentation. */
     private int minLineCount = DEFAULT_MIN_LINE_COUNT;
 
     /**
@@ -148,8 +161,8 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to control whether to allow missing Javadoc on accessor methods for properties
-     * (setters and getters).
+     * Setter to control whether to allow missing Javadoc on accessor methods for
+     * properties (setters and getters).
      *
      * @param flag a {@code Boolean} value
      * @since 8.21
@@ -179,11 +192,6 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     }
 
     @Override
-    public final int[] getRequiredTokens() {
-        return CommonUtil.EMPTY_INT_ARRAY;
-    }
-
-    @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
     }
@@ -191,26 +199,44 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.ANNOTATION_FIELD_DEF,
-            TokenTypes.COMPACT_CTOR_DEF,
+                TokenTypes.METHOD_DEF,
+                TokenTypes.CTOR_DEF,
+                TokenTypes.ANNOTATION_FIELD_DEF,
+                TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/19148
-    @Override
-    @SuppressWarnings("deprecation")
-    public final void visitToken(DetailAST ast) {
-        final Scope theScope = ScopeUtil.getScope(ast);
-        if (shouldCheck(ast, theScope)) {
-            final FileContents contents = getFileContents();
-            final TextBlock textBlock = contents.getJavadocBefore(ast.getLineNo());
 
-            if (textBlock == null && !isMissingJavadocAllowed(ast)) {
-                log(ast, MSG_JAVADOC_MISSING);
-            }
+    @Override
+    public int[] getRequiredTokens() {
+        return CommonUtil.EMPTY_INT_ARRAY;
+    }
+
+    @Override
+    public void beginTree(DetailAST rootAST) {
+        methodsWithInheritDoc.clear();
+        innerJavadocCheck.setFileContents(getFileContents());
+        innerJavadocCheck.beginTree(rootAST);
+    }
+
+    @Override
+    public void visitToken(DetailAST ast) {
+        final Scope theScope = ScopeUtil.getScope(ast);
+        if (!shouldCheck(ast, theScope)) {
+            return;
         }
+
+        final TextBlock javadoc =
+                getFileContents().getJavadocBefore(ast.getLineNo());
+
+        if (javadoc == null && !isMissingJavadocAllowed(ast)) {
+            log(ast, MSG_JAVADOC_MISSING);
+        }
+    }
+
+    @Override
+    public void finishTree(DetailAST rootAST) {
+        innerJavadocCheck.finishTree(rootAST);
     }
 
     /**
@@ -242,8 +268,8 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     private boolean isMissingJavadocAllowed(final DetailAST ast) {
         return allowMissingPropertyJavadoc
                 && (isSetterMethod(ast) || isGetterMethod(ast))
-            || matchesSkipRegex(ast)
-            || isContentsAllowMissingJavadoc(ast);
+                || matchesSkipRegex(ast)
+                || isContentsAllowMissingJavadoc(ast);
     }
 
     /**
@@ -256,12 +282,12 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     private boolean isContentsAllowMissingJavadoc(DetailAST ast) {
         return ast.getType() != TokenTypes.ANNOTATION_FIELD_DEF
                 && (getMethodsNumberOfLine(ast) <= minLineCount
-                    || AnnotationUtil.containsAnnotation(ast, allowedAnnotations));
+                || AnnotationUtil.containsAnnotation(ast, allowedAnnotations));
     }
 
     /**
      * Checks if the given method name matches the regex. In that case
-     * we skip enforcement of javadoc for this method
+     * we skip enforcement of javadoc for this method.
      *
      * @param methodDef {@link TokenTypes#METHOD_DEF METHOD_DEF}
      * @return true if given method name matches the regex.
@@ -271,7 +297,6 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
         if (ignoreMethodNamesRegex != null) {
             final DetailAST ident = methodDef.findFirstToken(TokenTypes.IDENT);
             final String methodName = ident.getText();
-
             final Matcher matcher = ignoreMethodNamesRegex.matcher(methodName);
             if (matcher.matches()) {
                 result = true;
@@ -289,13 +314,12 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      */
     private boolean shouldCheck(final DetailAST ast, final Scope nodeScope) {
         return ScopeUtil.getSurroundingScope(ast)
-            .map(surroundingScope -> {
-                return nodeScope != excludeScope
-                    && surroundingScope != excludeScope
-                    && nodeScope.isIn(scope)
-                    && surroundingScope.isIn(scope);
-            })
-            .orElse(Boolean.FALSE);
+                .map(surroundingScope ->
+                        nodeScope != excludeScope
+                                && surroundingScope != excludeScope
+                                && nodeScope.isIn(scope)
+                                && surroundingScope.isIn(scope))
+                .orElse(Boolean.FALSE);
     }
 
     /**
@@ -307,24 +331,19 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     public static boolean isGetterMethod(final DetailAST ast) {
         boolean getterMethod = false;
 
-        // Check have a method with exactly 7 children which are all that
-        // is allowed in a proper getter method which does not throw any
-        // exceptions.
         if (ast.getType() == TokenTypes.METHOD_DEF
                 && ast.getChildCount() == SETTER_GETTER_MAX_CHILDREN) {
             final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
             final String name = type.getNextSibling().getText();
-            final boolean matchesGetterFormat = GETTER_PATTERN.matcher(name).matches();
+            final boolean matchesGetterFormat =
+                    GETTER_PATTERN.matcher(name).matches();
 
             final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-            final boolean noParams = params.getChildCount(TokenTypes.PARAMETER_DEF) == 0;
+            final boolean noParams =
+                    params.getChildCount(TokenTypes.PARAMETER_DEF) == 0;
 
             if (matchesGetterFormat && noParams) {
-                // Now verify that the body consists of:
-                // SLIST -> RETURN
-                // RCURLY
                 final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
-
                 if (slist != null) {
                     final DetailAST expr = slist.getFirstChild();
                     getterMethod = expr.getType() == TokenTypes.LITERAL_RETURN;
@@ -343,31 +362,82 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     public static boolean isSetterMethod(final DetailAST ast) {
         boolean setterMethod = false;
 
-        // Check have a method with exactly 7 children which are all that
-        // is allowed in a proper setter method which does not throw any
-        // exceptions.
         if (ast.getType() == TokenTypes.METHOD_DEF
                 && ast.getChildCount() == SETTER_GETTER_MAX_CHILDREN) {
             final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
             final String name = type.getNextSibling().getText();
-            final boolean matchesSetterFormat = SETTER_PATTERN.matcher(name).matches();
+            final boolean matchesSetterFormat =
+                    SETTER_PATTERN.matcher(name).matches();
 
             final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-            final boolean singleParam = params.getChildCount(TokenTypes.PARAMETER_DEF) == 1;
+            final boolean singleParam =
+                    params.getChildCount(TokenTypes.PARAMETER_DEF) == 1;
 
             if (matchesSetterFormat && singleParam) {
-                // Now verify that the body consists of:
-                // SLIST -> EXPR -> ASSIGN
-                // SEMI
-                // RCURLY
                 final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
-
                 if (slist != null && slist.getChildCount() == SETTER_BODY_SIZE) {
                     final DetailAST expr = slist.getFirstChild();
-                    setterMethod = expr.getFirstChild().getType() == TokenTypes.ASSIGN;
+                    setterMethod =
+                            expr.getFirstChild().getType() == TokenTypes.ASSIGN;
                 }
             }
         }
         return setterMethod;
+    }
+
+    /**
+     * Inner check that extends {@link AbstractJavadocCheck} to read the Javadoc AST
+     * using {@link JavadocCommentsTokenTypes} and detect {@code {@inheritDoc}} tags.
+     * When found, the enclosing method's line number is recorded so the outer check
+     * can suppress false "missing javadoc" violations.
+     */
+    private final class InnerJavadocCheck extends AbstractJavadocCheck {
+
+        @Override
+        public int[] getDefaultJavadocTokens() {
+            return new int[] {
+                    JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG,
+            };
+        }
+
+        @Override
+        public int[] getRequiredJavadocTokens() {
+            return getDefaultJavadocTokens();
+        }
+
+        @Override
+        public void visitJavadocToken(DetailNode ast) {
+            if (hasInheritDocChild(ast)) {
+                final DetailAST blockComment = getBlockCommentAst();
+                if (blockComment != null) {
+                    final DetailAST parent = blockComment.getParent();
+                    if (parent != null) {
+                        methodsWithInheritDoc.add(parent.getLineNo());
+                    }
+                }
+            }
+        }
+
+        /**
+         * Returns true if the given {@code JAVADOC_INLINE_TAG} node contains
+         * an {@code INHERIT_DOC_INLINE_TAG} child, meaning it is
+         * {@code {@inheritDoc}}.
+         *
+         * @param inlineTag a JAVADOC_INLINE_TAG DetailNode.
+         * @return true if this inline tag is {@code {@inheritDoc}}.
+         */
+        private boolean hasInheritDocChild(DetailNode inlineTag) {
+            boolean found = false;
+            DetailNode child = inlineTag.getFirstChild();
+            while (child != null) {
+                if (child.getType()
+                        == JavadocCommentsTokenTypes.INHERIT_DOC_INLINE_TAG) {
+                    found = true;
+                    break;
+                }
+                child = child.getNextSibling();
+            }
+            return found;
+        }
     }
 }
