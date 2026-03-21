@@ -19,18 +19,21 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import java.util.regex.Matcher;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Set;
 import java.util.regex.Pattern;
-
-import javax.annotation.Nullable;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
@@ -43,8 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * @since 4.2
  */
 @StatelessCheck
-public class WriteTagCheck
-    extends AbstractCheck {
+public class WriteTagCheck extends AbstractJavadocCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -64,16 +66,12 @@ public class WriteTagCheck
      */
     public static final String MSG_TAG_FORMAT = "type.tagFormat";
 
-    /** Line split pattern. */
-    private static final Pattern LINE_SPLIT_PATTERN = Pattern.compile("\\R");
-
-    /** Compiled regexp to match tag. */
-    private Pattern tagRegExp;
     /** Specify the regexp to match tag content. */
     private Pattern tagFormat;
 
     /** Specify the name of tag. */
     private String tag;
+
     /** Specify the severity level when tag is found and printed. */
     private SeverityLevel tagSeverity = SeverityLevel.INFO;
 
@@ -85,7 +83,6 @@ public class WriteTagCheck
      */
     public void setTag(String tag) {
         this.tag = tag;
-        tagRegExp = CommonUtil.createPattern(tag + "\\s*(.*$)");
     }
 
     /**
@@ -109,6 +106,21 @@ public class WriteTagCheck
         tagSeverity = severity;
     }
 
+    /**
+     * Setter to control when to print violations if the Javadoc being examined by this check
+     * violates the tight html rules defined at
+     * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+     *     Tight-HTML Rules</a>.
+     *
+     * @param shouldReportViolation value to which the field shall be set to
+     * @since 8.3
+     * @propertySince 13.4.0
+     */
+    @Override
+    public void setViolateExecutionOnNonTightHtml(boolean shouldReportViolation) {
+        super.setViolateExecutionOnNonTightHtml(shouldReportViolation);
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
@@ -117,6 +129,7 @@ public class WriteTagCheck
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
     }
 
@@ -133,113 +146,150 @@ public class WriteTagCheck
             TokenTypes.ANNOTATION_FIELD_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
     }
 
     @Override
-    public boolean isCommentNodesRequired() {
-        return true;
+    public int[] getDefaultJavadocTokens() {
+        return new int[] {
+            JavadocCommentsTokenTypes.JAVADOC_CONTENT,
+        };
     }
 
     @Override
-    public int[] getRequiredTokens() {
-        return CommonUtil.EMPTY_INT_ARRAY;
+    public int[] getRequiredJavadocTokens() {
+        return getAcceptableJavadocTokens();
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        final DetailAST javadoc = getJavadoc(ast);
+        super.visitToken(ast);
+    }
 
-        if (javadoc != null) {
-            final String[] cmtLines = LINE_SPLIT_PATTERN
-                    .split(JavadocUtil.getJavadocCommentContent(javadoc));
+    @Override
+    public void visitJavadocToken(DetailNode ast) {
+        final DetailAST parent = getParent(getBlockCommentAst());
 
-            checkTag(javadoc.getLineNo(),
-                    javadoc.getLineNo() + countCommentLines(javadoc),
-                    cmtLines);
+        if (tag != null
+            && getParentTokenNamesToCheck().contains(TokenUtil.getTokenName(parent.getType()))) {
+            checkTag(ast, parent.getLineNo());
         }
     }
 
     /**
-     * Retrieves the Javadoc comment associated with a given AST node.
+     * Returns a set of token names to check their Javadoc tags.
      *
-     * @param ast the AST node (e.g., class, method, constructor) to search above.
-     * @return the {@code DetailAST} representing the Javadoc comment if found and
-     *          valid; {@code null} otherwise.
+     * @return Custom token names if specified by user; default token names otherwise.
      */
-    @Nullable
-    private static DetailAST getJavadoc(DetailAST ast) {
-        // Prefer Javadoc directly above the node
-        DetailAST cmt = ast.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
-        if (cmt == null) {
-            // Check MODIFIERS and TYPE block for comments
-            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-            final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-
-            cmt = modifiers.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
-            if (cmt == null && type != null) {
-                cmt = type.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
-            }
+    private Set<String> getParentTokenNamesToCheck() {
+        Set<String> checkTokens = getTokenNames();
+        if (checkTokens.isEmpty()) {
+            checkTokens = IntStream.of(getDefaultTokens())
+                .mapToObj(TokenUtil::getTokenName)
+                .collect(Collectors.toUnmodifiableSet());
         }
-
-        final DetailAST javadoc;
-        if (cmt != null && JavadocUtil.isJavadocComment(cmt)) {
-            javadoc = cmt;
-        }
-        else {
-            javadoc = null;
-        }
-
-        return javadoc;
+        return checkTokens;
     }
 
     /**
-     * Counts the number of lines in a block comment.
+     * Returns the parent node of a block comment.
      *
-     * @param blockComment the AST node representing the block comment.
-     * @return the number of lines in the comment.
+     * @param commentBlock The block comment.
+     * @return The parent node.
      */
-    private static int countCommentLines(DetailAST blockComment) {
-        final String content = JavadocUtil.getBlockCommentContent(blockComment);
-        return LINE_SPLIT_PATTERN.split(content).length;
+    private static DetailAST getParent(DetailAST commentBlock) {
+        final DetailAST parentNode = commentBlock.getParent();
+        DetailAST result = parentNode;
+        if (result.getType() == TokenTypes.TYPE || result.getType() == TokenTypes.MODIFIERS) {
+            result = parentNode.getParent();
+        }
+        else if (parentNode.getParent() != null
+            && parentNode.getParent().getType() == TokenTypes.MODIFIERS) {
+            result = parentNode.getParent().getParent();
+        }
+        return result;
     }
 
     /**
      * Validates the Javadoc comment against the configured requirements.
      *
-     * @param astLineNo the line number of the type definition.
-     * @param javadocLineNo the starting line number of the Javadoc comment block.
-     * @param comment the lines of the Javadoc comment block.
+     * @param javadoc Javadoc root node to check.
+     * @param parentLineNo The line number of the parent of the Javadoc.
      */
-    private void checkTag(int astLineNo, int javadocLineNo, String... comment) {
-        if (tagRegExp != null) {
-            boolean hasTag = false;
-            for (int i = 0; i < comment.length; i++) {
-                final String commentValue = comment[i];
-                final Matcher matcher = tagRegExp.matcher(commentValue);
-                if (matcher.find()) {
+    private void checkTag(DetailNode javadoc, int parentLineNo) {
+        boolean hasTag = false;
+        DetailNode node = javadoc.getFirstChild();
+
+        while (node != null) {
+            if (node.getType() == JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG) {
+                final String tagText = "@" + JavadocUtil.getTagName(node);
+                if (tagText.equals(tag)) {
                     hasTag = true;
-                    final int contentStart = matcher.start(1);
-                    final String content = commentValue.substring(contentStart);
+                    final String content = getTagContent(node);
+
                     if (tagFormat == null || tagFormat.matcher(content).find()) {
-                        logTag(astLineNo + i, tag, content);
+                        logTag(node.getLineNumber(), tag, content);
                     }
                     else {
-                        log(astLineNo + i, MSG_TAG_FORMAT, tag, tagFormat.pattern());
+                        log(node.getLineNumber(), MSG_TAG_FORMAT, tag, tagFormat.pattern());
                     }
                 }
             }
-            if (!hasTag) {
-                log(javadocLineNo, MSG_MISSING_TAG, tag);
+            node = node.getNextSibling();
+        }
+        if (!hasTag) {
+            log(parentLineNo, MSG_MISSING_TAG, tag);
+        }
+    }
+
+    /**
+     * Returns the raw content of the tag.
+     *
+     * @param javadocBlockTagNode The node representing a Javadoc block tag.
+     *       This node must be of type {@link JavadocCommentsTokenTypes#JAVADOC_BLOCK_TAG}
+     * @return The raw content of the tag.
+     */
+    private static String getTagContent(DetailNode javadocBlockTagNode) {
+        final DetailNode tagNodeNextSibling = JavadocUtil.findFirstToken(
+            javadocBlockTagNode.getFirstChild(),
+            JavadocCommentsTokenTypes.TAG_NAME).getNextSibling();
+
+        final int stringBuilderCapacity = 128;
+        final StringBuilder rawTextBuilder = new StringBuilder(stringBuilderCapacity);
+        if (tagNodeNextSibling != null) {
+            // DFS to extract texts of all leaf nodes
+            final Deque<DetailNode> stack = new ArrayDeque<>();
+            stack.push(tagNodeNextSibling);
+
+            while (!stack.isEmpty()) {
+                final DetailNode currentNode = stack.pop();
+
+                // append text if node is a leaf
+                if (currentNode.getFirstChild() == null) {
+                    rawTextBuilder.append(currentNode.getText());
+                }
+
+                final DetailNode nextSibling = currentNode.getNextSibling();
+                final DetailNode firstChild = currentNode.getFirstChild();
+
+                if (nextSibling != null) {
+                    stack.push(nextSibling);
+                }
+                if (firstChild != null) {
+                    stack.push(firstChild);
+                }
             }
         }
+
+        return rawTextBuilder.toString().stripLeading();
     }
 
     /**
      * Log a message.
      *
      * @param line the line number where the violation was found
-     * @param tagName the javadoc tag to be logged
+     * @param tagName the Javadoc tag to be logged
      * @param tagValue the contents of the tag
      *
      * @see java.text.MessageFormat
