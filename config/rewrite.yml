@@ -68,7 +68,16 @@ recipeList:
         - org.openrewrite.java.format.MethodParamPad
         - org.openrewrite.java.format.NoWhitespaceAfter
         - org.openrewrite.java.format.NoWhitespaceBefore
+        # Kept excluded: OpenRewrite's TypecastParenPad always removes spaces around
+        # typecast parentheses, while Checkstyle's TypecastParenPadCheck allows
+        # configuration via the `option` property (`space` or `nospace`).
         - org.openrewrite.staticanalysis.TypecastParenPad
+        # Kept excluded: OpenRewrite's ExplicitInitialization automatically removes
+        # explicit initializations to default values (null, 0, false), while
+        # Checkstyle's ExplicitInitializationCheck only reports violations,
+        # allowing developers to decide whether to keep them for clarity.
+        # Checkstyle also provides the `onlyObjectReferences` option to limit
+        # checks to object references only.
         - org.openrewrite.staticanalysis.ExplicitInitialization
         # Kept excluded: OpenRewrite's FallThrough always adds break statements,
         # ignoring Checkstyle's FallThroughCheck which allows configurable relief
@@ -81,6 +90,10 @@ recipeList:
         # statements and empty loop bodies via `allowSingleLineStatement` and
         # `allowEmptyLoopBody` options.
         - org.openrewrite.staticanalysis.NeedBraces
+        # Kept excluded: OpenRewrite's OperatorWrap forces operators to the end of
+        # the line with no configuration, while Checkstyle's OperatorWrapCheck
+        # allows projects to choose between `nl` (new line) and `eol` (end of line)
+        # via the `option` property, and can limit checks to specific tokens.
         - org.openrewrite.staticanalysis.OperatorWrap
         - org.openrewrite.staticanalysis.ReplaceThreadRunWithThreadStart
         - org.openrewrite.staticanalysis.ChainStringBuilderAppendCalls
