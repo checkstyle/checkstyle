@@ -115,7 +115,7 @@ public class PatternVariableNameCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getPath(
+                getNonCompilablePath(
                         "InputPatternVariableNameUnnamed.java"),
                 expected);
     }
@@ -135,7 +135,7 @@ public class PatternVariableNameCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getPath(
+                getNonCompilablePath(
                         "InputPatternVariableNameRecordPattern.java"),
                 expected);
     }
