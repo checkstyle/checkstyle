@@ -280,6 +280,8 @@
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]parameterassignment.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]sayhello.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]simplifybooleanexpression.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]simplifybooleanreturn.xml.template"/>
