@@ -1042,6 +1042,26 @@
         hierarchy of modules and their properties.
       </p>
 
+      <p>
+  The following example shows a minimal Checkstyle configuration.
+  It defines the root <code>Checker</code> module and a
+  <code>TreeWalker</code> module with one check.
+  This configuration runs the <code>MethodLength</code> check,
+  which verifies that methods do not exceed the allowed number of lines.
+</p>
+
+<div class="wrapper">
+  <pre class="prettyprint">
+    <code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodLength"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+    </code>
+  </pre>
+</div>
+
       <p id="Example-config31">
         Checkstyle validates the configuration XML document structure when it loads
         the document. To validate against the
