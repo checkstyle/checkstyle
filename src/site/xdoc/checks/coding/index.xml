@@ -479,6 +479,16 @@
           </tr>
           <tr>
             <td>
+              <a href="sayhello.html#SayHello">
+                SayHello
+              </a>
+            </td>
+            <td>
+              Say hello.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="simplifybooleanexpression.html#SimplifyBooleanExpression">
                 SimplifyBooleanExpression
               </a>
