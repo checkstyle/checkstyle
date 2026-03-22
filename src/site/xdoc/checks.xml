@@ -1724,6 +1724,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/sayhello.html#SayHello">
+                SayHello
+              </a>
+            </td>
+            <td>
+              Say hello.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/design/sealedshouldhavepermitslist.html#SealedShouldHavePermitsList">
                 SealedShouldHavePermitsList
               </a>

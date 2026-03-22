@@ -575,6 +575,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.RequireThisCheck");
         NAME_TO_FULL_MODULE_NAME.put("ReturnCountCheck",
                 BASE_PACKAGE + ".checks.coding.ReturnCountCheck");
+        NAME_TO_FULL_MODULE_NAME.put("SayHelloCheck",
+                BASE_PACKAGE + ".checks.coding.SayHelloCheck");
         NAME_TO_FULL_MODULE_NAME.put("SimplifyBooleanExpressionCheck",
                 BASE_PACKAGE + ".checks.coding.SimplifyBooleanExpressionCheck");
         NAME_TO_FULL_MODULE_NAME.put("SimplifyBooleanReturnCheck",
