@@ -478,7 +478,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "83:18: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTypeWithRecordPattern.java"),
+                getNonCompilablePath("InputIllegalTypeWithRecordPattern.java"),
                 expected);
     }
 
@@ -495,3 +495,4 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 }
+
