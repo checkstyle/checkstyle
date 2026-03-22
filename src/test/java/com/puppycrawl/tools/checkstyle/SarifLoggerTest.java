@@ -170,6 +170,13 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         );
     }
 
+    /**
+     * VerifyWithInlineConfigParserAndLogger uses Checker.process(...) and reaches
+     * logger callbacks through Checker.fireErrors(...), which triggers addError(AuditEvent).
+     * This test must call addException(AuditEvent, Throwable) directly with controlled events,
+     * including one event with a null fileName, because that exception path is not produced by
+     * the normal Checker.process(...) file-auditing flow.
+     */
     @Test
     public void testAddExceptions() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
@@ -240,6 +247,13 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
                 getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
+    /**
+     * VerifyWithInlineConfigParserAndLogger goes through Checker.process(...), where
+     * Checker.fireErrors(...) creates AuditEvent file names from real File objects and then
+     * normalizes them via relativizePathWithCatch(...), which delegates to
+     * CommonUtil.relativizePath(...). That flow does not produce synthetic "./Test.java",
+     * so this test keeps manual AuditEvent construction.
+     */
     @Test
     public void testAddErrorWithRelativeLinuxPath() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
@@ -257,6 +271,12 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         verifyContent(getPath("ExpectedSarifLoggerRelativeLinuxPath.sarif"), outStream);
     }
 
+    /**
+     * Checker.process(...) obtains file paths from the current runtime File API, and
+     * Checker.fireErrors(...) passes those paths through relativizePathWithCatch(...)
+     * / CommonUtil.relativizePath(...). On Linux CI, File.getAbsolutePath() cannot produce
+     * a native "C:\\..." Windows absolute path, so this Windows-specific case is manual.
+     */
     @Test
     public void testAddErrorWithAbsoluteWindowsPath() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
@@ -275,6 +295,12 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         verifyContent(getPath("ExpectedSarifLoggerAbsoluteWindowsPath.sarif"), outStream);
     }
 
+    /**
+     * VerifyWithInlineConfigParserAndLogger relies on Checker.process(...), where path strings
+     * are OS-dependent and produced from File semantics before Checker.fireErrors(...) calls
+     * relativizePathWithCatch(...) / CommonUtil.relativizePath(...). A Linux run will not emit
+     * ".\\Test.java", so this test must construct the AuditEvent manually.
+     */
     @Test
     public void testAddErrorWithRelativeWindowsPath() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
@@ -442,10 +468,9 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Tests {@code ClassNotFoundException} handling in {@code getMessages} method.
-     * Uses reflection to inject fake module metadata with non-existent class
-     * to trigger the exception. Real checkstyle modules cannot be used as
-     * all are on the classpath during testing.
+     * This test injects ruleMetadata via reflection to force ClassNotFoundException handling
+     * during logger.auditFinished(...). That reflective state mutation is outside the normal
+     * Checker.process(...) and Checker.fireErrors(...) helper flow.
      */
     @Test
     public void testGetMessagesWithClassNotFoundException() throws Exception {
@@ -471,10 +496,9 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Tests {@code MissingResourceException} handling in {@code getMessages} method.
-     * Uses reflection to inject fake module metadata pointing to a test class
-     * without messages.properties to trigger the exception. Real checkstyle modules
-     * cannot be used as all have proper resource bundles during testing.
+     * This test uses reflection to inject ruleMetadata and trigger MissingResourceException
+     * handling in logger.auditFinished(...). That reflective path is not reachable through
+     * the standard Checker.process(...) / Checker.fireErrors(...) execution.
      */
     @Test
     public void testGetMessagesWithMissingResourceException() throws Exception {
