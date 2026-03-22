@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck"
+             name="MethodParamPad"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks the padding between the identifier of a method definition,
+ constructor definition, method call, constructor invocation, record, or record pattern;
+ and the left parenthesis of the parameter list.
+ That is, if the identifier and left parenthesis are on the same line,
+ checks whether a space is required immediately after the identifier or
+ such a space is forbidden.
+ If they are not on the same line, reports a violation, unless configured to
+ allow line breaks. To allow linebreaks after the identifier, set property
+ &lt;code&gt;allowLineBreaks&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt;.
+ &lt;/div&gt;</description>
+         <properties>
+            <property default-value="false" name="allowLineBreaks" type="boolean">
+               <description>Allow a line break between the identifier and left parenthesis.</description>
+            </property>
+            <property default-value="nospace"
+                      name="option"
+                      type="com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption">
+               <description>Specify policy on how to pad method parameter.</description>
+            </property>
+            <property default-value="CTOR_DEF,CTOR_CALL,LITERAL_NEW,METHOD_CALL,METHOD_DEF,SUPER_CTOR_CALL,ENUM_CONSTANT_DEF,RECORD_DEF,RECORD_PATTERN_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="line.previous"/>
+            <message-key key="ws.notPreceded"/>
+            <message-key key="ws.preceded"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

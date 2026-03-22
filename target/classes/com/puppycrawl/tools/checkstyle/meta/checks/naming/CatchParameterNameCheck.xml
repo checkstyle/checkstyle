@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck"
+             name="CatchParameterName"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that &lt;code&gt;catch&lt;/code&gt; parameter names conform to a specified pattern.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Default pattern has the following characteristic:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;allows names beginning with two lowercase letters followed by at least one uppercase or
+ lowercase letter&lt;/li&gt;
+ &lt;li&gt;allows &lt;code&gt;e&lt;/code&gt; abbreviation (suitable for exceptions end errors)&lt;/li&gt;
+ &lt;li&gt;allows &lt;code&gt;ex&lt;/code&gt; abbreviation (suitable for exceptions)&lt;/li&gt;
+ &lt;li&gt;allows &lt;code&gt;t&lt;/code&gt; abbreviation (suitable for throwables)&lt;/li&gt;
+ &lt;li&gt;allows &lt;code&gt;_&lt;/code&gt; for unnamed catch parameters&lt;/li&gt;
+ &lt;li&gt;prohibits numbered abbreviations like &lt;code&gt;e1&lt;/code&gt; or &lt;code&gt;t2&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;prohibits one letter prefixes like &lt;code&gt;pException&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;prohibits two letter abbreviations like &lt;code&gt;ie&lt;/code&gt; or &lt;code&gt;ee&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;prohibits any other characters than letters&lt;/li&gt;
+ &lt;/ul&gt;</description>
+         <properties>
+            <property default-value="^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$"
+                      name="format"
+                      type="java.util.regex.Pattern">
+               <description>Sets the pattern to match valid identifiers.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="name.invalidPattern"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

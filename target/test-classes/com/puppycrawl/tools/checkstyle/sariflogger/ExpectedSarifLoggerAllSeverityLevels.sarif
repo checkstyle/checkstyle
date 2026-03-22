@@ -1,0 +1,118 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "downloadUri": "https://github.com/checkstyle/checkstyle/releases/",
+          "fullName": "Checkstyle",
+          "informationUri": "https://checkstyle.org/",
+          "language": "en",
+          "name": "Checkstyle",
+          "organization": "Checkstyle",
+          "rules": [
+            {
+              "id": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck",
+              "messageStrings": {
+                "illegal.token.text": {
+                  "text": "Token text matches the illegal pattern ''{0}''."
+                }
+              },
+              "shortDescription": {
+                "text": "IllegalTokenText"
+              },
+              "fullDescription": {
+                "text": "<div>\n Checks specified tokens text for matching an illegal pattern.\n By default, no tokens are specified.\n <\/div>"
+              }
+            }
+          ],
+          "semanticVersion": "null",
+          "version": "null"
+        }
+      },
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerAllSeverityLevels.java"
+                },
+                "region": {
+                  "startColumn": 17,
+                  "startLine": 36
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Error level violation"
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerAllSeverityLevels.java"
+                },
+                "region": {
+                  "startColumn": 19,
+                  "startLine": 37
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Warning level violation"
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerAllSeverityLevels.java"
+                },
+                "region": {
+                  "startColumn": 16,
+                  "startLine": 38
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Info level violation"
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
+        },
+        {
+          "level": "none",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerAllSeverityLevels.java"
+                },
+                "region": {
+                  "startColumn": 18,
+                  "startLine": 39
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Ignore level violation"
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
+        }
+      ]
+    }
+  ]
+}

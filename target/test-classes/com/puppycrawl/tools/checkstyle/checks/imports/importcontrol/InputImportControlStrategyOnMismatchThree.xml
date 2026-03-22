@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE import-control PUBLIC
+    "-//Checkstyle//DTD ImportControl Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/import_control_1_3.dtd">
+
+<import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports" strategyOnMismatch="allowed">
+  <subpackage name="importcontrol" strategyOnMismatch="delegateToParent">
+    <disallow class="java\..*\.Image" local-only="true" regex="true"/>
+  </subpackage>
+</import-control>

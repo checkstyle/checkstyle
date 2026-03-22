@@ -608,7 +608,7 @@ public class ParenPadCheckTest
             "61:64: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputParenPadForRecordPattern.java"), expected);
+                getNonCompilablePath("InputParenPadForRecordPattern.java"), expected);
     }
 
     @Test
@@ -629,8 +629,9 @@ public class ParenPadCheckTest
             "45:37: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputParenPadForRecordPatternWithSpaceOption.java"),
+                getNonCompilablePath("InputParenPadForRecordPatternWithSpaceOption.java"),
                 expected);
     }
 
 }
+

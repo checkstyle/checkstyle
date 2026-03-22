@@ -1,0 +1,1 @@
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; public class InputEmptyLineSeparatorOneLine { void myMethod() {} } // violation "'CLASS_DEF' should be separated from previous line"

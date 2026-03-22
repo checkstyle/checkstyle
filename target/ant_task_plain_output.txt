@@ -1,0 +1,5 @@
+Starting audit...
+[WARN] C:\Users\brije\checkstyle\src\test\resources\com\puppycrawl\tools\checkstyle\ant\checkstyleanttask\InputCheckstyleAntTaskError.java:4: Javadoc tag @incomplete=Some javadoc [WriteTag]
+[ERROR] C:\Users\brije\checkstyle\src\test\resources\com\puppycrawl\tools\checkstyle\ant\checkstyleanttask\InputCheckstyleAntTaskError.java:7: Line is longer than 70 characters (found 80). [LineLength]
+[ERROR] C:\Users\brije\checkstyle\src\test\resources\com\puppycrawl\tools\checkstyle\ant\checkstyleanttask\InputCheckstyleAntTaskError.java:9: Line is longer than 70 characters (found 81). [LineLength]
+Audit done.

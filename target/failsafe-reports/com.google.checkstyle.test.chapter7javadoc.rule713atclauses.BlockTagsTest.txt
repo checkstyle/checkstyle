@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.google.checkstyle.test.chapter7javadoc.rule713atclauses.BlockTagsTest
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.261 s -- in com.google.checkstyle.test.chapter7javadoc.rule713atclauses.BlockTagsTest

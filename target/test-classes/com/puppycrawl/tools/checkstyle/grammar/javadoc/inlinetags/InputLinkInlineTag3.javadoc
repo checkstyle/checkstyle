@@ -1,0 +1,10 @@
+* {@linkplain java.util.Map<String, List>#put(String, List) map string to list}
+* Refer to {@link java.util.function.Function<T, R> generic function type}.
+* {@link java.util.Map<String, Map<String, List<Double>>> complex nested map structure}
+* {@link com.example.MyBox<T> a container class for T}
+* {@linkplain java.util.concurrent.CompletableFuture<T>#thenApply(Function) chain async result}
+* {@link java.util.List<Integer> a list of unknown type}
+* {@link java.util.List<?> a list of unknown type}
+* {@link java.util.List<? extends Number> list of any subtype of Number}
+* {@link java.util.List<? super Integer> list of any supertype of Integer}
+* {@link java.util.Map<String, ? extends Number> map from string to numbers}

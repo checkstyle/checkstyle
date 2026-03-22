@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.puppycrawl.tools.checkstyle.xpath.XpathMapperTest
+-------------------------------------------------------------------------------
+Tests run: 71, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 168.1 s -- in com.puppycrawl.tools.checkstyle.xpath.XpathMapperTest

@@ -1,0 +1,82 @@
+WWWWWW -> NOT FOUND IN SRC
+WWWWWWWWWWWWWWWWWWWWWWWWWWWW -> NOT FOUND IN SRC
+XXXX -> src\site\xdoc\releasenotes_old_6-0_7-8.xml
+XXXX -> src\site\xdoc\releasenotes_old_8-0_8-34.xml
+XXXX -> src\site\xdoc\releasenotes_old_8-35_10-26.xml
+xxxxxx -> src\site\xdoc\releasenotes_old_6-0_7-8.xml
+xxxxxx -> src\site\xdoc\releasenotes_old_8-35_10-26.xml
+xxxxxx -> src\test\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\abstractjavadoc\InputAbstractJavadocPositionWithSinglelineCommentsThree.java
+DEADBEEF -> src\site\xdoc\checks\misc\hexliteralcase.xml
+DEADBEEF -> src\test\resources\com\puppycrawl\tools\checkstyle\checks\coding\fallthrough\InputFallThrough2.java
+DEADBEEF -> src\test\resources\com\puppycrawl\tools\checkstyle\checks\hexliteralcase\InputHexLiteralCaseCheck.java
+CHDBEFIF -> src\main\java\com\puppycrawl\tools\checkstyle\checks\javadoc\AtclauseOrderCheck.java
+CHDBEFIF -> src\main\java\com\puppycrawl\tools\checkstyle\checks\javadoc\SingleLineJavadocCheck.java
+CHDBEFIF -> src\main\resources\com\puppycrawl\tools\checkstyle\meta\checks\javadoc\AtclauseOrderCheck.xml
+HEXCHARS -> src\test\resources\com\puppycrawl\tools\checkstyle\checks\coding\declarationorder\InputDeclarationOrderDefault3.java
+HEXCHARS -> src\test\resources\com\puppycrawl\tools\checkstyle\checks\indentation\indentation\InputIndentationInvalidArrayInitIndent1.java
+HEXCHARS -> src\test\resources\com\puppycrawl\tools\checkstyle\checks\indentation\indentation\InputIndentationValidArrayInitDefaultIndent.java
+HASHTAG -> src\main\java\com\puppycrawl\tools\checkstyle\site\PropertiesMacro.java
+HXKS -> NOT FOUND IN SRC
+FCBL -> NOT FOUND IN SRC
+FCCD -> src\test\resources\com\puppycrawl\tools\checkstyle\checks\avoidescapedunicodecharacters\InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java
+FDCF -> src\test\resources\com\puppycrawl\tools\checkstyle\checks\avoidescapedunicodecharacters\InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java
+FFFA -> src\test\java\com\puppycrawl\tools\checkstyle\checks\AvoidEscapedUnicodeCharactersCheckTest.java
+FFFA -> src\test\resources\com\puppycrawl\tools\checkstyle\checks\avoidescapedunicodecharacters\InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java
+FFFA -> src\test\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegaltokentext\InputIllegalTokenTextTextBlocks.java
+FFFB -> src\test\java\com\puppycrawl\tools\checkstyle\checks\AvoidEscapedUnicodeCharactersCheckTest.java
+FFFB -> src\test\resources\com\puppycrawl\tools\checkstyle\checks\avoidescapedunicodecharacters\InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java
+FFFD -> src\test\resources\com\puppycrawl\tools\checkstyle\checks\avoidescapedunicodecharacters\InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java
+FFFFL -> src\site\xdoc\checks\misc\hexliteralcase.xml
+FFFFL -> src\test\java\com\puppycrawl\tools\checkstyle\checks\coding\MagicNumberCheckTest.java
+FFFFL -> src\test\resources\com\puppycrawl\tools\checkstyle\checks\coding\magicnumber\InputMagicNumberDefault2.java
+IGNORETHIS -> NOT FOUND IN SRC
+DENORMALIZER -> src\test\java\com\puppycrawl\tools\checkstyle\utils\CommonUtilTest.java
+DECCHARS -> NOT FOUND IN SRC
+DDDL -> src\site\xdoc\checks\misc\hexliteralcase.xml
+DDDL -> src\test\resources\com\puppycrawl\tools\checkstyle\checks\hexliteralcase\InputHexLiteralCaseCheck.java
+DDDL -> src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\hexliteralcase\Example1.java
+ACEM -> src\it\java\org\checkstyle\suppressionxpathfilter\modifier\XpathRegressionInterfaceMemberImpliedModifierTest.java
+ACEM -> src\it\resources\com\google\checkstyle\test\chapter4formatting\rule42blockindentation\InputFastMatcher.java
+ACEM -> src\it\resources\com\google\checkstyle\test\chapter4formatting\rule42blockindentation\InputIndentationCorrect.java
+AFBR -> NOT FOUND IN SRC
+ARCHITEW -> NOT FOUND IN SRC
+BXOR -> src\main\java\com\puppycrawl\tools\checkstyle\api\TokenTypes.java
+BXOR -> src\main\java\com\puppycrawl\tools\checkstyle\checks\coding\FinalLocalVariableCheck.java
+BXOR -> src\main\java\com\puppycrawl\tools\checkstyle\checks\coding\InnerAssignmentCheck.java
+BNOT -> src\main\java\com\puppycrawl\tools\checkstyle\api\TokenTypes.java
+BNOT -> src\main\java\com\puppycrawl\tools\checkstyle\checks\coding\MagicNumberCheck.java
+BNOT -> src\main\java\com\puppycrawl\tools\checkstyle\checks\coding\UnnecessaryParenthesesCheck.java
+DOTALL -> src\main\java\com\puppycrawl\tools\checkstyle\checks\javadoc\utils\InlineTagUtil.java
+DOTALL -> src\main\java\com\puppycrawl\tools\checkstyle\checks\regexp\RegexpMultilineCheck.java
+DOTALL -> src\main\java\com\puppycrawl\tools\checkstyle\site\AllCheckSummaries.java
+NONFORMATTED -> NOT FOUND IN SRC
+NONGROUP -> src\it\java\org\checkstyle\suppressionxpathfilter\imports\XpathRegressionCustomImportOrderTest.java
+NONGROUP -> src\main\java\com\puppycrawl\tools\checkstyle\checks\imports\CustomImportOrderCheck.java
+NONGROUP -> src\main\resources\com\puppycrawl\tools\checkstyle\meta\checks\imports\CustomImportOrderCheck.xml
+NONJAVA -> src\site\xdoc\releasenotes_old_8-35_10-26.xml
+NONJAVA -> src\test\java\com\puppycrawl\tools\checkstyle\checks\javadoc\JavadocPackageCheckTest.java
+NONJAVA -> src\test\java\com\puppycrawl\tools\checkstyle\gui\MainFrameModelTest.java
+NOTNULL -> src\it\resources\com\google\checkstyle\test\chapter4formatting\rule42blockindentation\InputIndentationCorrect.java
+NOTNULL -> src\it\resources\com\google\checkstyle\test\chapter4formatting\rule452indentcontinuationlines\InputIndentationCorrect.java
+NOTNULL -> src\it\resources\com\google\checkstyle\test\chapter4formatting\rule4841indentation\InputIndentationCorrect.java
+NODESET -> NOT FOUND IN SRC
+NAMEFILE -> NOT FOUND IN SRC
+NEGS -> NOT FOUND IN SRC
+NMCS -> NOT FOUND IN SRC
+PLHM -> src\site\xdoc\beginning_development.xml
+PRMC -> NOT FOUND IN SRC
+VALUELONG -> src\test\java\com\puppycrawl\tools\checkstyle\checks\naming\AbbreviationAsWordInNameCheckTest.java
+VALUELONG -> src\test\resources\com\puppycrawl\tools\checkstyle\checks\naming\abbreviationaswordinname\InputAbbreviationAsWordInNameIgnore.java
+VALUELONG -> src\test\resources\com\puppycrawl\tools\checkstyle\checks\naming\abbreviationaswordinname\InputAbbreviationAsWordInNameIgnoreFinal.java
+EBNF -> NOT FOUND IN SRC
+LBRACE -> src\it\java\com\google\checkstyle\test\chapter4formatting\rule411optionalbracesusage\UseOfOptionalBracesTest.java
+LBRACE -> src\it\resources\com\google\checkstyle\test\chapter4formatting\rule411optionalbracesusage\InputUseOfOptionalBraces.java
+LBRACE -> src\site\xdoc\google_style.xml
+RBRACE -> src\test\java\com\puppycrawl\tools\checkstyle\checks\whitespace\WhitespaceAfterCheckTest.java
+RBRACE -> src\test\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadoctype\InputJavadocTypeAnnotationsInCodeBlock2.java
+RBRACE -> src\test\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\whitespaceafter\InputWhitespaceAfterBraces.java
+LBRACK -> src\main\java\com\puppycrawl\tools\checkstyle\JavaAstVisitor.java
+LBRACK -> src\test\java\com\puppycrawl\tools\checkstyle\grammar\GeneratedJavaTokenTypesTest.java
+RBRACK -> src\main\java\com\puppycrawl\tools\checkstyle\api\TokenTypes.java
+RBRACK -> src\main\java\com\puppycrawl\tools\checkstyle\checks\indentation\LineWrappingHandler.java
+RBRACK -> src\main\java\com\puppycrawl\tools\checkstyle\checks\whitespace\NoWhitespaceAfterCheck.java

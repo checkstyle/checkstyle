@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.checkstyle.suppressionxpathfilter.blocks.XpathRegressionAvoidNestedBlocksTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.170 s -- in org.checkstyle.suppressionxpathfilter.blocks.XpathRegressionAvoidNestedBlocksTest
