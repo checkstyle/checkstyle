@@ -72,8 +72,8 @@ final class InputParameterNumberSimple2
      * @param badFormat3 bad format
      * @throws java.lang.Exception abc
      **/
-    int test1(int badFormat1,int badFormat2, // violation
-              final int badFormat3)
+    int test1(int badFormat1,int badFormat2,
+              final int badFormat3) // violation above, 'More than 2 parameters (found 3).'
         throws java.lang.Exception
     {
         return 0;
@@ -195,10 +195,10 @@ final class InputParameterNumberSimple2
     /**
      * @see to lazy to document all args. Testing excessive # args
      **/
-    void toManyArgs(int aArg1, int aArg2, int aArg3, int aArg4, int aArg5, // violation
+    void toManyArgs(int aArg1, int aArg2, int aArg3, int aArg4, int aArg5,
                     int aArg6, int aArg7, int aArg8, int aArg9)
     {
-    }
+    } // violation 3 lines above 'More than 2 parameters (found 9).'
 }
 
 /** Test class for variable naming in for each clause. */
