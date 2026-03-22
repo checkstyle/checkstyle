@@ -11,13 +11,13 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.parameternumber;
 
 class InputParameterNumberCheckBase
 {
-    // method with many parameters
-    void myMethod(int a, int b, int c, int d, int e, int f, int g, int h) { // violation
+    // violation below, 'More than 7 parameters (found 8).'
+    void myMethod(int a, int b, int c, int d, int e, int f, int g, int h) {
 
     }
 
-    // method with many parameters
-    void myMethod2(int a, int b, int c, int d, int e, int f, int g, int h) { // violation
+    // violation below, 'More than 7 parameters (found 8).'
+    void myMethod2(int a, int b, int c, int d, int e, int f, int g, int h) {
 
     }
 }

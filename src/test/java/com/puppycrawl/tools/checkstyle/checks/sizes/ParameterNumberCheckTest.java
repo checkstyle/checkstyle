@@ -109,7 +109,7 @@ public class ParameterNumberCheckTest
     public void shouldLogActualParameterNumber()
             throws Exception {
         final String[] expected = {
-            "199:10: 7,9",
+            "198:10: " + getCheckMessage(MSG_KEY, 7, 9),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNumberSimple4.java"), expected);
