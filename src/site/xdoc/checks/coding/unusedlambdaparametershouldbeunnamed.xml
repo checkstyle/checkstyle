@@ -96,11 +96,13 @@ public class Example1 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="UnusedLambdaParameterShouldBeUnnamed_Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
-        </p>
-      </subsection>
+  <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+    <p>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLambdaParameterShouldBeUnnamedCheck</p>
+    <p>
+        Use this fully qualified class name in configuration when an exact class reference is
+        required.
+    </p>
+  </subsection>
 
       <subsection name="Parent Module" id="UnusedLambdaParameterShouldBeUnnamed_Parent_Module">
         <p>
