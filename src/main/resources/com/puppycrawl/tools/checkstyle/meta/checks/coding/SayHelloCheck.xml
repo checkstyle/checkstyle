@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.SayHelloCheck"
+             name="SayHello"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Say hello.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Parent is &lt;code&gt;com.puppycrawl.tools.checkstyle.TreeWalker&lt;/code&gt;
+ &lt;/p&gt;
+ &lt;p&gt;
+ Violation Message Keys:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ &lt;code&gt;say.hello&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;/ul&gt;</description>
+         <message-keys>
+            <message-key key="say.hello"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
