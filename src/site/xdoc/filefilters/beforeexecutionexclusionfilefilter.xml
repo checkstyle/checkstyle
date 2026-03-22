@@ -196,8 +196,13 @@
           </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="BeforeExecutionExclusionFileFilter_Package">
-        <p> com.puppycrawl.tools.checkstyle.filefilters </p>
+
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter </p>
+        <p>
+            This is the fully qualified class name of the module.
+            Use this name in configuration when an exact class reference is required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="BeforeExecutionExclusionFileFilter_Parent_Module">

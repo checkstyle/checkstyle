@@ -508,8 +508,8 @@
         </ul>
       </subsection>
 
-      <subsection name="Package" id="Checker_Package">
-        <p> com.puppycrawl.tools.checkstyle </p>
+      <subsection name="Fully Qualified Name" id="Checker_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.Checker </p>
       </subsection>
     </section>
 
@@ -676,8 +676,8 @@
         </ul>
       </subsection>
 
-      <subsection name="Package" id="TreeWalker_Package">
-        <p> com.puppycrawl.tools.checkstyle </p>
+      <subsection name="Fully Qualified Name" id="TreeWalker_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.TreeWalker </p>
       </subsection>
 
       <subsection name="Parent Module" id="TreeWalker_Parent_Module">
