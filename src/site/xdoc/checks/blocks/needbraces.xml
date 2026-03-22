@@ -425,8 +425,12 @@ class CustomCompletableFuture&lt;T&gt; {
         </p>
       </subsection>
 
-      <subsection name="Package" id="NeedBraces_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="NeedBraces_Parent_Module">
