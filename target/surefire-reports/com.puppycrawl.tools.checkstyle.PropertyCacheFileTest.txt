@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.puppycrawl.tools.checkstyle.PropertyCacheFileTest
+-------------------------------------------------------------------------------
+Tests run: 19, Failures: 0, Errors: 0, Skipped: 4, Time elapsed: 0.319 s -- in com.puppycrawl.tools.checkstyle.PropertyCacheFileTest

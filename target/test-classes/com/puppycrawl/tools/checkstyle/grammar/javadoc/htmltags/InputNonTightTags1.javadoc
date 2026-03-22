@@ -1,0 +1,20 @@
+* Demonstrates complex HTML cases in Javadoc.
+*
+* <ul>
+*   <li>Feature A
+*   <li>Feature B
+*   <li> Text <p>Feature C with paragraph inside list
+*   <li>Feature D <br> with a line break and an <img src="icon.png" alt="icon"/> icon
+*   <li>Feature E with nesting
+*       <ul>
+*         <li>Subfeature 1
+*         <li>Subfeature 2</li>
+*       </ul>
+* </ul>
+* <table>
+*   <tr>
+*     <td>Row 1 Col 1
+*     <td>Row 1 Col 2
+*   <tr>
+*     <td>Row 2 Col 1<td>Row 2 Col 2
+* </table>

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest
+-------------------------------------------------------------------------------
+Tests run: 196, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.844 s -- in com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest

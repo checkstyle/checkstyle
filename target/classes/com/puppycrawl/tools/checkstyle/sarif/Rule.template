@@ -1,0 +1,12 @@
+            {
+              "id": "${ruleId}",
+              "messageStrings": {
+${messageStrings}
+              },
+              "shortDescription": {
+                "text": "${shortDescription}"
+              },
+              "fullDescription": {
+                "text": "${fullDescription}"
+              }
+            }

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter"
+              name="SuppressionXpathFilter"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Filter &lt;code&gt;SuppressionXpathFilter&lt;/code&gt; works as
+ &lt;a href="https://checkstyle.org/filters/suppressionfilter.html"&gt;
+ SuppressionFilter&lt;/a&gt;, but also processes &lt;code&gt;suppress-xpath&lt;/code&gt; elements,
+ which contain xpath-expressions. Xpath-expressions are queries for
+ suppressed nodes inside the AST tree.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Currently, filter does not support the following checks:
+ &lt;/p&gt;
+ &lt;ul id="IncompatibleChecks"&gt;
+ &lt;li&gt;
+ NoCodeInFile (reason is that AST is not generated for a file not containing code)
+ &lt;/li&gt;
+ &lt;li&gt;
+ Regexp (reason is at
+ &lt;a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"&gt; #7759&lt;/a&gt;)
+ &lt;/li&gt;
+ &lt;li&gt;
+ RegexpSinglelineJava (reason is at
+ &lt;a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"&gt; #7759&lt;/a&gt;)
+ &lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;
+ Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:
+ &lt;/p&gt;
+ &lt;ul id="JavadocChecks"&gt;
+ &lt;li&gt;
+ AtclauseOrder
+ &lt;/li&gt;
+ &lt;li&gt;
+ JavadocBlockTagLocation
+ &lt;/li&gt;
+ &lt;li&gt;
+ JavadocMethod
+ &lt;/li&gt;
+ &lt;li&gt;
+ JavadocMissingLeadingAsterisk
+ &lt;/li&gt;
+ &lt;li&gt;
+ JavadocMissingWhitespaceAfterAsterisk
+ &lt;/li&gt;
+ &lt;li&gt;
+ JavadocParagraph
+ &lt;/li&gt;
+ &lt;li&gt;
+ JavadocStyle
+ &lt;/li&gt;
+ &lt;li&gt;
+ JavadocTagContinuationIndentation
+ &lt;/li&gt;
+ &lt;li&gt;
+ JavadocType
+ &lt;/li&gt;
+ &lt;li&gt;
+ MissingDeprecated
+ &lt;/li&gt;
+ &lt;li&gt;
+ NonEmptyAtclauseDescription
+ &lt;/li&gt;
+ &lt;li&gt;
+ RequireEmptyLineBeforeBlockTagGroup
+ &lt;/li&gt;
+ &lt;li&gt;
+ SingleLineJavadoc
+ &lt;/li&gt;
+ &lt;li&gt;
+ SummaryJavadoc
+ &lt;/li&gt;
+ &lt;li&gt;
+ WriteTag
+ &lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;
+ Note, that support for these Checks will be available after resolving issue
+ &lt;a href="https://github.com/checkstyle/checkstyle/issues/5770"&gt;#5770&lt;/a&gt;.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Currently, filter supports the following xpath axes:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ ancestor
+ &lt;/li&gt;
+ &lt;li&gt;
+ ancestor-or-self
+ &lt;/li&gt;
+ &lt;li&gt;
+ attribute
+ &lt;/li&gt;
+ &lt;li&gt;
+ child
+ &lt;/li&gt;
+ &lt;li&gt;
+ descendant
+ &lt;/li&gt;
+ &lt;li&gt;
+ descendant-or-self
+ &lt;/li&gt;
+ &lt;li&gt;
+ following
+ &lt;/li&gt;
+ &lt;li&gt;
+ following-sibling
+ &lt;/li&gt;
+ &lt;li&gt;
+ parent
+ &lt;/li&gt;
+ &lt;li&gt;
+ preceding
+ &lt;/li&gt;
+ &lt;li&gt;
+ preceding-sibling
+ &lt;/li&gt;
+ &lt;li&gt;
+ self
+ &lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;
+ You can use the command line helper tool to generate xpath suppressions based on your
+ configuration file and input files. See &lt;a href="https://checkstyle.org/cmdline.html"&gt;here&lt;/a&gt;
+ for more details.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ The suppression file location is checked in following order:
+ &lt;/p&gt;
+ &lt;ol&gt;
+ &lt;li&gt;
+ as a filesystem location
+ &lt;/li&gt;
+ &lt;li&gt;
+ if no file found, and the location starts with either &lt;code&gt;http://&lt;/code&gt; or &lt;code&gt;https://&lt;/code&gt;,
+ then it is interpreted as a URL
+ &lt;/li&gt;
+ &lt;li&gt;
+ if no file found, then passed to the &lt;code&gt;ClassLoader.getResource()&lt;/code&gt; method.
+ &lt;/li&gt;
+ &lt;/ol&gt;
+
+ &lt;p&gt;
+ SuppressionXpathFilter can suppress Checks that have Treewalker as parent module.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ A &lt;a href="/dtds/suppressions_1_2_xpath.dtd"&gt;&lt;em&gt;suppressions XML
+ document&lt;/em&gt;&lt;/a&gt; contains a set
+ of &lt;code&gt;suppress&lt;/code&gt; and &lt;code&gt;suppress-xpath&lt;/code&gt; elements, where
+ each &lt;code&gt;suppress-xpath&lt;/code&gt; element can have the
+ following attributes:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ &lt;code&gt;files&lt;/code&gt; -
+ a &lt;a href="../property_types.html#Pattern"&gt;Pattern&lt;/a&gt;
+ matched against the file name associated with an audit
+ event. It is optional.
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;code&gt;checks&lt;/code&gt; -
+ a &lt;a href="../property_types.html#Pattern"&gt;Pattern&lt;/a&gt;
+ matched against the name of the check associated with an audit
+ event. Optional as long as &lt;code&gt;id&lt;/code&gt; or &lt;code&gt;message&lt;/code&gt; is specified.
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;code&gt;message&lt;/code&gt; -
+ a &lt;a href="../property_types.html#Pattern"&gt;Pattern&lt;/a&gt;
+ matched against the message of the check associated with an audit
+ event. Optional as long as &lt;code&gt;checks&lt;/code&gt; or &lt;code&gt;id&lt;/code&gt; is specified.
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;code&gt;id&lt;/code&gt; -
+ a &lt;a href="../property_types.html#String"&gt;String&lt;/a&gt;
+ matched against the ID of the check associated with an audit
+ event. Optional as long as &lt;code&gt;checks&lt;/code&gt; or &lt;code&gt;message&lt;/code&gt; is specified.
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;code&gt;query&lt;/code&gt; -
+ a &lt;a href="../property_types.html#String"&gt;String&lt;/a&gt;
+ xpath query. It is optional.
+ &lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;
+ Each audit event is checked against
+ each &lt;code&gt;suppress&lt;/code&gt; and &lt;code&gt;suppress-xpath&lt;/code&gt; element. It is
+ suppressed if all specified attributes match against the audit
+ event.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ ATTENTION: filtering by message is dependent on runtime locale. If project is running
+ in different languages it is better to avoid filtering by message.
+ &lt;/p&gt;</description>
+         <properties>
+            <property name="file" type="java.lang.String">
+               <description>Specify the location of the &lt;em&gt;suppressions XML document&lt;/em&gt; file.</description>
+            </property>
+            <property default-value="false" name="optional" type="boolean">
+               <description>Control what to do when the file is not existing.
+ If optional is set to false the file must exist, or else it ends with error.
+ On the other hand if optional is true and file is not found,
+ the filter accepts all audit events.</description>
+            </property>
+         </properties>
+      </filter>
+   </module>
+</checkstyle-metadata>

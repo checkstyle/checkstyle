@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.google.checkstyle.test.chapter4formatting.rule4853methodsandconstructorsannotations.MethodsAndConstructorsAnnotationsTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.150 s -- in com.google.checkstyle.test.chapter4formatting.rule4853methodsandconstructorsannotations.MethodsAndConstructorsAnnotationsTest

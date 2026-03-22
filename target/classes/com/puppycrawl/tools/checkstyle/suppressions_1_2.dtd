@@ -1,0 +1,16 @@
+<!-- Add the following to any file that is to be validated against this DTD:
+
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+-->
+
+<!ELEMENT suppressions (suppress*)>
+
+<!ELEMENT suppress EMPTY>
+<!ATTLIST suppress files CDATA #IMPLIED
+                   checks CDATA #IMPLIED
+                   message CDATA #IMPLIED
+                   id CDATA #IMPLIED
+                   lines CDATA #IMPLIED
+                   columns CDATA #IMPLIED>

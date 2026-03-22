@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="maven-antrun-" default="main">
+  <target name="main">
+    <property name="mvn.project.build.directory" value="C:\Users\brije\checkstyle\target" />
+    <property name="mvn.runtime_classpath" refid="maven.runtime.classpath" />
+    <property name="mvn.java.version" value="21" />
+    <ant antfile="config/ant-phase-verify.xml" />
+  </target>
+</project>

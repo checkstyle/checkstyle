@@ -1,0 +1,6 @@
+* @return the user's age
+* @return  {@code true} if the file was successfully saved, {@code false} otherwise.
+* @return  {@code true} if the file was successfully saved
+*       {@code false} otherwise.
+* @return
+* @author John Doe

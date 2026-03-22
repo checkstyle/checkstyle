@@ -1,0 +1,1569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="null">
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources-noncompilable\com\puppycrawl\tools\checkstyle\checks\annotation\packageannotation\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources-noncompilable\com\puppycrawl\tools\checkstyle\checks\imports\illegalimport\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources-noncompilable\com\puppycrawl\tools\checkstyle\checks\imports\importcontrol\Example13.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources-noncompilable\com\puppycrawl\tools\checkstyle\checks\imports\importcontrol\Example14.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources-noncompilable\com\puppycrawl\tools\checkstyle\checks\imports\redundantimport\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources-noncompilable\com\puppycrawl\tools\checkstyle\filefilters\beforeexecutionexclusionfilefilter\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources-noncompilable\com\puppycrawl\tools\checkstyle\filefilters\beforeexecutionexclusionfilefilter\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources-noncompilable\com\puppycrawl\tools\checkstyle\filefilters\beforeexecutionexclusionfilefilter\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources-noncompilable\com\puppycrawl\tools\checkstyle\filefilters\beforeexecutionexclusionfilefilter\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources-noncompilable\com\puppycrawl\tools\checkstyle\filefilters\beforeexecutionexclusionfilefilter\test\MockPaymentRemote.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources-noncompilable\com\puppycrawl\tools\checkstyle\filefilters\beforeexecutionexclusionfilefilter\test\generated_StubBankRemote.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources-noncompilable\com\puppycrawl\tools\checkstyle\filefilters\beforeexecutionexclusionfilefilter\test\generated_TestCase1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\annotationlocation\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\annotationlocation\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\annotationlocation\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\annotationlocation\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\annotationonsameline\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\annotationonsameline\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\annotationusestyle\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\annotationusestyle\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\annotationusestyle\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\annotationusestyle\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\missingdeprecated\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\missingdeprecated\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\missingoverride\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\missingoverride\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\missingoverrideonrecordaccessor\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\missingoverrideonrecordaccessor\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\packageannotation\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\packageannotation\example3\package-info.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\suppresswarnings\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\suppresswarnings\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\suppresswarningsholder\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\suppresswarningsholder\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\suppresswarningsholder\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\annotation\suppresswarningsholder\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\arraytypestyle\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\arraytypestyle\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\avoidescapedunicodecharacters\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\avoidescapedunicodecharacters\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\avoidescapedunicodecharacters\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\avoidescapedunicodecharacters\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\avoidescapedunicodecharacters\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\avoidnestedblocks\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\avoidnestedblocks\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\emptyblock\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\emptyblock\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\emptyblock\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\emptycatchblock\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\emptycatchblock\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\emptycatchblock\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\emptycatchblock\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\emptycatchblock\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\leftcurly\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\leftcurly\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\leftcurly\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\leftcurly\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\needbraces\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\needbraces\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\needbraces\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\needbraces\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\needbraces\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\needbraces\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\rightcurly\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\rightcurly\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\rightcurly\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\rightcurly\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\blocks\rightcurly\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\arraytrailingcomma\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\arraytrailingcomma\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\avoiddoublebraceinitialization\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\avoidinlineconditionals\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\avoidnoargumentsuperconstructorcall\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\constructorsdeclarationgrouping\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\constructorsdeclarationgrouping\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\covariantequals\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\covariantequals\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\declarationorder\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\declarationorder\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\declarationorder\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\defaultcomeslast\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\defaultcomeslast\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\emptystatement\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\equalsavoidnull\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\equalsavoidnull\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\equalshashcode\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\explicitinitialization\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\explicitinitialization\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\fallthrough\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\fallthrough\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\fallthrough\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\finallocalvariable\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\finallocalvariable\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\finallocalvariable\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\finallocalvariable\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\finallocalvariable\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\hiddenfield\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\hiddenfield\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\hiddenfield\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\hiddenfield\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\hiddenfield\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\hiddenfield\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\hiddenfield\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegalcatch\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegalcatch\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegalinstantiation\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegalinstantiation\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegalinstantiation\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegalsymbol\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegalsymbol\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegalsymbol\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegalsymbol\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegalsymbol\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegalthrows\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegalthrows\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegalthrows\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegalthrows\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegaltoken\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegaltoken\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegaltokentext\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegaltokentext\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegaltokentext\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegaltokentext\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegaltokentext\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegaltype\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegaltype\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegaltype\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegaltype\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegaltype\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegaltype\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegaltype\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegaltype\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\illegaltype\Example9.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\innerassignment\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\innerassignment\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\magicnumber\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\magicnumber\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\magicnumber\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\magicnumber\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\magicnumber\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\magicnumber\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\matchxpath\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\matchxpath\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\matchxpath\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\matchxpath\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\matchxpath\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\matchxpath\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\missingctor\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\missingnullcaseinswitch\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\missingswitchdefault\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\missingswitchdefault\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\missingswitchdefault\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\modifiedcontrolvariable\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\modifiedcontrolvariable\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\multiplestringliterals\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\multiplestringliterals\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\multiplestringliterals\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\multiplestringliterals\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\multiplevariabledeclarations\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\nestedfordepth\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\nestedfordepth\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\nestedifdepth\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\nestedifdepth\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\nestedtrydepth\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\nestedtrydepth\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\noarraytrailingcomma\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\noclone\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\noenumtrailingcomma\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\nofinalizer\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\onestatementperline\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\onestatementperline\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\overloadmethodsdeclarationorder\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\packagedeclaration\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\packagedeclaration\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\parameterassignment\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\patternvariableassignment\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\requirethis\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\requirethis\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\requirethis\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\requirethis\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\requirethis\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\requirethis\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\returncount\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\returncount\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\returncount\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\returncount\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\returncount\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\simplifybooleanexpression\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\simplifybooleanreturn\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\stringliteralequality\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\superclone\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\superfinalize\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\textblockgooglestyleformatting\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\textblockgooglestyleformatting\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\textblockgooglestyleformatting\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\textblockgooglestyleformatting\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\unnecessarynullcheckwithinstanceof\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\unnecessaryparentheses\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\unnecessaryparentheses\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\unnecessaryparentheses\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\unnecessarysemicolonafteroutertypedeclaration\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\unnecessarysemicolonafteroutertypedeclaration\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\unnecessarysemicolonaftertypememberdeclaration\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\unnecessarysemicoloninenumeration\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\unnecessarysemicoloninenumeration\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\unnecessarysemicolonintrywithresources\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\unnecessarysemicolonintrywithresources\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\unusedcatchparametershouldbeunnamed\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\unusedlambdaparametershouldbeunnamed\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\unusedlocalvariable\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\unusedlocalvariable\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\useenhancedswitch\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\useenhancedswitch\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\variabledeclarationusagedistance\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\variabledeclarationusagedistance\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\variabledeclarationusagedistance\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\variabledeclarationusagedistance\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\variabledeclarationusagedistance\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\variabledeclarationusagedistance\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\coding\whenshouldbeused\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\descendanttoken\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\descendanttoken\Example10.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\descendanttoken\Example11.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\descendanttoken\Example12.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\descendanttoken\Example13.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\descendanttoken\Example14.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\descendanttoken\Example15.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\descendanttoken\Example16.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\descendanttoken\Example17.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\descendanttoken\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\descendanttoken\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\descendanttoken\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\descendanttoken\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\descendanttoken\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\descendanttoken\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\descendanttoken\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\descendanttoken\Example9.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\designforextension\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\designforextension\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\designforextension\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\designforextension\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\finalclass\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\hideutilityclassconstructor\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\hideutilityclassconstructor\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\innertypelast\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\interfaceistype\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\interfaceistype\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\mutableexception\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\mutableexception\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\mutableexception\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\onetoplevelclass\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\onetoplevelclass\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\onetoplevelclass\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\sealedshouldhavepermitslist\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\throwscount\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\throwscount\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\throwscount\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\visibilitymodifier\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\visibilitymodifier\Example10.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\visibilitymodifier\Example11.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\visibilitymodifier\Example12.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\visibilitymodifier\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\visibilitymodifier\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\visibilitymodifier\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\visibilitymodifier\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\visibilitymodifier\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\visibilitymodifier\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\visibilitymodifier\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\design\visibilitymodifier\Example9.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\finalparameters\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\finalparameters\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\finalparameters\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\finalparameters\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\header\header\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\header\header\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\header\header\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\header\header\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\header\multifileregexpheader\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\header\multifileregexpheader\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\header\multifileregexpheader\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\header\multifileregexpheader\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\header\regexpheader\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\header\regexpheader\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\header\regexpheader\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\header\regexpheader\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\hexliteralcase\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\avoidstarimport\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\avoidstarimport\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\avoidstarimport\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\avoidstarimport\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\avoidstarimport\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\avoidstarimport\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\avoidstaticimport\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\avoidstaticimport\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\customimportorder\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\customimportorder\Example10.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\customimportorder\Example11.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\customimportorder\Example12.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\customimportorder\Example13.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\customimportorder\Example14.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\customimportorder\Example15.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\customimportorder\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\customimportorder\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\customimportorder\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\customimportorder\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\customimportorder\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\customimportorder\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\customimportorder\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\customimportorder\Example9.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\illegalimport\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\illegalimport\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\illegalimport\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\illegalimport\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\illegalimport\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importcontrol\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importcontrol\Example12.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importcontrol\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importcontrol\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importcontrol\filters\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importcontrol\filters\Example9.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importcontrol\gui\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importcontrol\newdomain\dao\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importcontrol\someImports\Example10.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importcontrol\someImports\Example11.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importcontrol\someImports\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importcontrol\someImports\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importorder\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importorder\Example10.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importorder\Example11.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importorder\Example12.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importorder\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importorder\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importorder\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importorder\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importorder\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importorder\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importorder\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\importorder\Example9.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\redundantimport\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\unusedimports\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\imports\unusedimports\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\indentation\commentsindentation\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\indentation\commentsindentation\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\indentation\commentsindentation\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\indentation\commentsindentation\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\indentation\commentsindentation\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\indentation\commentsindentation\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\indentation\commentsindentation\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\indentation\commentsindentation\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\indentation\indentation\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\indentation\indentation\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\indentation\indentation\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\indentation\indentation\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\atclauseorder\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\atclauseorder\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\atclauseorder\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\invalidjavadocposition\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocblocktaglocation\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocblocktaglocation\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocblocktaglocation\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadoccontentlocation\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadoccontentlocation\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocleadingasteriskalign\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocleadingasteriskalign\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocleadingasteriskalign\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocmethod\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocmethod\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocmethod\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocmethod\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocmethod\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocmethod\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocmethod\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocmethod\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocmissingleadingasterisk\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocmissingwhitespaceafterasterisk\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocpackage\legacy\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocpackage\legacywithboth\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocpackage\legacywithboth\package-info.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocpackage\nonlegacy\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocparagraph\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocparagraph\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocstyle\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocstyle\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocstyle\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocstyle\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocstyle\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocstyle\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocstyle\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocstyle\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadoctagcontinuationindentation\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadoctagcontinuationindentation\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadoctagcontinuationindentation\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadoctype\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadoctype\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadoctype\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadoctype\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadoctype\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadoctype\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadoctype\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadoctype\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocvariable\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocvariable\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocvariable\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocvariable\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\javadocvariable\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\missingjavadocmethod\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\missingjavadocmethod\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\missingjavadocmethod\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\missingjavadocmethod\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\missingjavadocmethod\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\missingjavadocmethod\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\missingjavadocmethod\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\missingjavadocpackage\javadoc\package-info.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\missingjavadocpackage\nojavadoc\package-info.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\missingjavadoctype\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\missingjavadoctype\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\missingjavadoctype\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\missingjavadoctype\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\missingjavadoctype\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\nonemptyatclausedescription\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\nonemptyatclausedescription\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\requireemptylinebeforeblocktaggroup\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\singlelinejavadoc\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\singlelinejavadoc\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\singlelinejavadoc\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\singlelinejavadoc\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\summaryjavadoc\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\summaryjavadoc\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\summaryjavadoc\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\writetag\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\writetag\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\writetag\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\writetag\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\javadoc\writetag\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\lineending\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\lineending\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\lineending\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\booleanexpressioncomplexity\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\booleanexpressioncomplexity\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\booleanexpressioncomplexity\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\classdataabstractioncoupling\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\classdataabstractioncoupling\Example11.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\classdataabstractioncoupling\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\classdataabstractioncoupling\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\classdataabstractioncoupling\ignore\Example10.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\classdataabstractioncoupling\ignore\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\classdataabstractioncoupling\ignore\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\classdataabstractioncoupling\ignore\Example9.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\classdataabstractioncoupling\ignore\deeper\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\classdataabstractioncoupling\ignore\deeper\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\classdataabstractioncoupling\ignore\deeper\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\classfanoutcomplexity\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\classfanoutcomplexity\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\classfanoutcomplexity\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\classfanoutcomplexity\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\classfanoutcomplexity\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\classfanoutcomplexity\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\cyclomaticcomplexity\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\cyclomaticcomplexity\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\cyclomaticcomplexity\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\javancss\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\javancss\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\javancss\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\javancss\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\javancss\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\npathcomplexity\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\metrics\npathcomplexity\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\modifier\classmemberimpliedmodifier\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\modifier\classmemberimpliedmodifier\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\modifier\classmemberimpliedmodifier\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\modifier\classmemberimpliedmodifier\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\modifier\interfacememberimpliedmodifier\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\modifier\interfacememberimpliedmodifier\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\modifier\interfacememberimpliedmodifier\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\modifier\interfacememberimpliedmodifier\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\modifier\modifierorder\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\modifier\redundantmodifier\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\modifier\redundantmodifier\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\modifier\redundantmodifier\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\abbreviationaswordinname\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\abbreviationaswordinname\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\abbreviationaswordinname\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\abbreviationaswordinname\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\abbreviationaswordinname\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\abbreviationaswordinname\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\abbreviationaswordinname\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\abbreviationaswordinname\SuperClass.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\abstractclassname\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\abstractclassname\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\abstractclassname\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\abstractclassname\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\catchparametername\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\catchparametername\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\classtypeparametername\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\classtypeparametername\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\classtypeparametername\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\constantname\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\constantname\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\constantname\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\constantname\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\constantname\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\googlenonconstantfieldname\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\illegalidentifiername\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\illegalidentifiername\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\interfacetypeparametername\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\interfacetypeparametername\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\lambdaparametername\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\lambdaparametername\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\localfinalvariablename\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\localfinalvariablename\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\localfinalvariablename\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\localvariablename\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\localvariablename\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\localvariablename\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\localvariablename\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\localvariablename\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\membername\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\membername\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\membername\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\methodname\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\methodname\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\methodname\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\methodname\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\methodname\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\methodname\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\methodname\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\methodtypeparametername\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\methodtypeparametername\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\packagename\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\packagename\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\parametername\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\parametername\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\parametername\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\parametername\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\parametername\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\patternvariablename\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\patternvariablename\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\patternvariablename\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\patternvariablename\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\recordcomponentname\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\recordcomponentname\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\recordtypeparametername\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\recordtypeparametername\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\staticvariablename\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\staticvariablename\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\staticvariablename\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\typename\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\typename\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\typename\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\naming\typename\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\newlineatendoffile\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\newlineatendoffile\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\newlineatendoffile\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\newlineatendoffile\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\nocodeinfile\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\nocodeinfile\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\numericalprefixesinfixessuffixescharactercase\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\orderedproperties\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\outertypefilename\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\outertypefilename\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\outertypefilename\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\outertypefilename\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\outertypefilename\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexp\Example0.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexp\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexp\Example10.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexp\Example11.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexp\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexp\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexp\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexp\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexp\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexp\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexp\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexp\Example9.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexpmultiline\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexpmultiline\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexpmultiline\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexpmultiline\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexpmultiline\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexponfilename\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexponfilename\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexponfilename\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexponfilename\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexponfilename\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexpsingleline\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexpsingleline\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexpsingleline\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexpsingleline\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexpsingleline\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexpsingleline\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexpsinglelinejava\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexpsinglelinejava\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexpsinglelinejava\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexpsinglelinejava\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexpsinglelinejava\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexpsinglelinejava\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\regexp\regexpsinglelinejava\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\anoninnerlength\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\anoninnerlength\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\executablestatementcount\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\executablestatementcount\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\executablestatementcount\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\filelength\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\filelength\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\filelength\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\lambdabodylength\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\lambdabodylength\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\linelength\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\linelength\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\linelength\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\linelength\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\linelength\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\linelength\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\methodcount\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\methodcount\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\methodcount\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\methodcount\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\methodcount\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\methodcount\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\methodlength\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\methodlength\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\methodlength\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\outertypenumber\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\outertypenumber\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\parameternumber\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\parameternumber\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\parameternumber\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\parameternumber\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\recordcomponentnumber\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\recordcomponentnumber\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\sizes\recordcomponentnumber\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\todocomment\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\todocomment\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\trailingcomment\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\trailingcomment\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\trailingcomment\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\trailingcomment\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\trailingcomment\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\trailingcomment\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\translation\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\translation\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\translation\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\uncommentedmain\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\uncommentedmain\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\uniqueproperties\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\uniqueproperties\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\upperell\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\emptyforinitializerpad\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\emptyforinitializerpad\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\emptyforiteratorpad\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\emptyforiteratorpad\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\emptylineseparator\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\emptylineseparator\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\emptylineseparator\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\emptylineseparator\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\emptylineseparator\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\emptylineseparator\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\emptylineseparator\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\emptylineseparator\packageinfo\example10\package-info.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\emptylineseparator\packageinfo\example11\package-info.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\emptylineseparator\packageinfo\example12\package-info.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\emptylineseparator\packageinfo\example8\package-info.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\emptylineseparator\packageinfo\example9\package-info.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\filetabcharacter\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\filetabcharacter\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\filetabcharacter\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\genericwhitespace\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\genericwhitespace\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\methodparampad\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\methodparampad\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\nolinewrap\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\nolinewrap\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\nolinewrap\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\nolinewrap\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\nolinewrap\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\nowhitespaceafter\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\nowhitespaceafter\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\nowhitespacebefore\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\nowhitespacebefore\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\nowhitespacebefore\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\nowhitespacebefore\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\nowhitespacebeforecasedefaultcolon\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\operatorwrap\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\operatorwrap\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\parenpad\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\parenpad\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\separatorwrap\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\separatorwrap\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\separatorwrap\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\singlespaceseparator\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\singlespaceseparator\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\typecastparenpad\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\typecastparenpad\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\whitespaceafter\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\whitespaceafter\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\whitespacearound\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\whitespacearound\Example10.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\whitespacearound\Example11.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\whitespacearound\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\whitespacearound\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\whitespacearound\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\whitespacearound\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\whitespacearound\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\whitespacearound\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\whitespacearound\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\checks\whitespace\whitespacearound\Example9.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\severitymatchfilter\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressioncommentfilter\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressioncommentfilter\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressioncommentfilter\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressioncommentfilter\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressioncommentfilter\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressioncommentfilter\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressioncommentfilter\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressioncommentfilter\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionfilter\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionfilter\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionfilter\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionfilter\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionsinglefilter\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionsinglefilter\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionsinglefilter\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionsinglefilter\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathfilter\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathfilter\Example10.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathfilter\Example11.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathfilter\Example12.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathfilter\Example13.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathfilter\Example14.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathfilter\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathfilter\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathfilter\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathfilter\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathfilter\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathfilter\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathfilter\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathfilter\Example9.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathsinglefilter\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathsinglefilter\Example10.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathsinglefilter\Example11.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathsinglefilter\Example12.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathsinglefilter\Example13.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathsinglefilter\Example14.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathsinglefilter\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathsinglefilter\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathsinglefilter\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathsinglefilter\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathsinglefilter\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathsinglefilter\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathsinglefilter\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathsinglefilter\Example9.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathsinglefilter\src\myApplication.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathsinglefilter\src\myApplicationTests.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppressionxpathsinglefilter\src\test\java\insidePackage.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswarningsfilter\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswarningsfilter\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithnearbycommentfilter\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithnearbycommentfilter\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithnearbycommentfilter\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithnearbycommentfilter\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithnearbycommentfilter\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithnearbycommentfilter\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithnearbycommentfilter\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithnearbycommentfilter\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithnearbytextfilter\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithnearbytextfilter\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithnearbytextfilter\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithnearbytextfilter\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithnearbytextfilter\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithnearbytextfilter\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithnearbytextfilter\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithnearbytextfilter\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithnearbytextfilter\Example9.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithplaintextcommentfilter\Example1.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithplaintextcommentfilter\Example2.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithplaintextcommentfilter\Example3.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithplaintextcommentfilter\Example4.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithplaintextcommentfilter\Example5.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithplaintextcommentfilter\Example6.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithplaintextcommentfilter\Example7.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithplaintextcommentfilter\Example8.java">
+</file>
+<file name="C:\Users\brije\checkstyle\src\xdocs-examples\resources\com\puppycrawl\tools\checkstyle\filters\suppresswithplaintextcommentfilter\Example9.java">
+</file>
+</checkstyle>

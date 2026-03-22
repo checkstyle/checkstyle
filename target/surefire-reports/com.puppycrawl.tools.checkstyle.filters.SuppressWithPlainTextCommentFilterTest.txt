@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilterTest
+-------------------------------------------------------------------------------
+Tests run: 25, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.263 s -- in com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilterTest
