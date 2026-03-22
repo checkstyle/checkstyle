@@ -172,6 +172,7 @@
                 href="checks/coding/patternvariableassignment.html"/>
           <item name="RequireThis" href="checks/coding/requirethis.html"/>
           <item name="ReturnCount" href="checks/coding/returncount.html"/>
+          <item name="SayHello" href="checks/coding/sayhello.html"/>
           <item name="SimplifyBooleanExpression"
                 href="checks/coding/simplifybooleanexpression.html"/>
           <item name="SimplifyBooleanReturn" href="checks/coding/simplifybooleanreturn.html"/>
