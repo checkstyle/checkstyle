@@ -2451,6 +2451,10 @@
             <excludedLink>https://www.manning.com/books/java-development-with-ant</excludedLink>
             <!-- permanent 403, but it works fine out of plugin execution -->
             <excludedLink>https://opencollective.com/*</excludedLink>
+            <!-- 403 forbidden for linkcheck, works in the browser -->
+            <excludedLink>
+              https://owasp.org/www-community/vulnerabilities/XML_External_Entity_(XXE)_Processing
+            </excludedLink>
             <!-- 405 Not Allowed, link present in generated website only -->
             <excludedLink>https://oss.sonatype.org/service/local/staging/deploy/maven2/</excludedLink>
             <!-- site works fine in browser but for plugin always return 500  -->
