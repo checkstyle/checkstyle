@@ -516,9 +516,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testMultiCheckOfSameTypeNoIdResultsInOrderingByHash() throws Exception {
 
         final String[] expected = {
-            "15:28: " + getCheckMessage(ParameterNameCheck.class,
+            "17:28: " + getCheckMessage(ParameterNameCheck.class,
                     "name.invalidPattern", "V2", "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"),
-            "17:25: " + getCheckMessage(ParameterNameCheck.class,
+            "19:25: " + getCheckMessage(ParameterNameCheck.class,
                     "name.invalidPattern", "b", "^[a-z][a-z0-9][a-zA-Z0-9]*$"),
         };
 
