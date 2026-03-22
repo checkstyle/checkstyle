@@ -111,6 +111,7 @@
     <allow class="com.puppycrawl.tools.checkstyle.utils.TokenUtil" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.utils.NullUtil" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.PropertyType"/>
+    <allow pkg="org.jsoup" local-only="true"/>
   </subpackage>
 
   <subpackage name="utils">

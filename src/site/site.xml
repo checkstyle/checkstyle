@@ -59,8 +59,12 @@
                 src="$relativePath/js/copy-clipboard.js" defer async></script>
         <link rel="icon" href="$relativePath/images/favicon.png" type="image/x-icon" />
         <link rel="shortcut icon" href="$relativePath/images/favicon.ico" type="image/ico" />
+        <link rel="stylesheet" href="$relativePath/css/search.css"/>
+        <script type="text/javascript"
+                src="$relativePath/js/search.js" defer="defer"></script>
       ]]>
     </head>
+
     <links>
       <item name="toTop"/>
     </links>

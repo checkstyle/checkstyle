@@ -1,0 +1,144 @@
+#cs-search-wrapper {
+    position: relative;
+    padding: 8px 8px 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 6px;
+}
+
+#cs-search-box {
+    position: relative;
+}
+
+#cs-search-input {
+    width: 100%;
+    padding: 5px 26px 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: #fff;
+    color: #333;
+    font-size: 13px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+#cs-search-input:focus {
+    border-color: #08c;
+    box-shadow: 0 0 4px rgba(0, 136, 204, .25);
+}
+
+#cs-search-input::placeholder {
+    color: #999;
+}
+
+#cs-search-spinner {
+    position: absolute;
+    right: 7px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 13px;
+    height: 13px;
+    border: 2px solid #ddd;
+    border-top-color: #08c;
+    border-radius: 50%;
+    display: none;
+}
+
+#cs-search-spinner.visible {
+    display: block;
+    animation: cs-spin 0.7s linear infinite;
+}
+
+@keyframes cs-spin {
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+#cs-search-results {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    width: 320px;
+    max-height: 65vh;
+    overflow-y: auto;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .15);
+    z-index: 9999;
+    font-size: 13px;
+}
+
+.cs-group-label {
+    padding: 6px 10px 4px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: #888;
+    background: #f8f8f8;
+    border-bottom: 1px solid #eee;
+}
+
+.cs-group-label:first-child {
+    border-top: none;
+}
+
+.cs-result-item {
+    display: block;
+    padding: 7px 10px;
+    text-decoration: none;
+    color: #333;
+    border-left: 3px solid transparent;
+    transition: background .1s;
+    outline: none;
+}
+
+.cs-result-item:hover,
+.cs-result-item:focus {
+    background: #f0f7ff;
+    border-left-color: #d9534f;
+    color: #333;
+    text-decoration: none;
+}
+
+.cs-result-title {
+    display: block;
+    font-weight: bold;
+    color: #222;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cs-result-page {
+    display: block;
+    font-size: 11px;
+    color: #888;
+    margin-top: 1px;
+}
+
+.cs-result-snippet {
+    display: block;
+    font-size: 12px;
+    color: #555;
+    margin-top: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cs-result-item mark {
+    background: #fff3cd;
+    color: inherit;
+    padding: 0;
+    border-radius: 1px;
+}
+
+.cs-no-results {
+    padding: 10px 12px;
+    color: #888;
+    font-style: italic;
+}
