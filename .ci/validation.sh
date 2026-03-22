@@ -238,7 +238,7 @@ EOF
   ;;
 
 no-error-pmd)
-  export MAVEN_OPTS="-XX:MaxRAMPercentage=75"
+  export MAVEN_OPTS="-XX:MaxRAMPercentage=90"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
