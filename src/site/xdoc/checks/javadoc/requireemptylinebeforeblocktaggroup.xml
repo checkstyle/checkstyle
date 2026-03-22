@@ -111,11 +111,13 @@ class Example1 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="RequireEmptyLineBeforeBlockTagGroup_Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
-        </p>
-      </subsection>
+  <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+    <p>com.puppycrawl.tools.checkstyle.checks.javadoc.RequireEmptyLineBeforeBlockTagGroupCheck</p>
+    <p>
+       Use this fully qualified class name in configuration when an exact class reference is
+       required.
+    </p>
+  </subsection>
 
       <subsection name="Parent Module" id="RequireEmptyLineBeforeBlockTagGroup_Parent_Module">
         <p>

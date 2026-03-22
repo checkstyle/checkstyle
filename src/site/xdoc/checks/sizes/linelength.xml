@@ -319,9 +319,11 @@ public class Example6 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="LineLength_Package">
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.sizes
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 
