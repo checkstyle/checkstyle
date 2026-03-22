@@ -100,10 +100,15 @@ public class RequireThisCheck extends AbstractCheck {
         TokenTypes.RECORD_COMPONENT_DEF,
         TokenTypes.RESOURCE
     );
-    /** Set of all assign tokens. */
+    /**
+     * Set of all assignment tokens.
+     * This includes simple assignment and all compound assignment operators
+     * such as +=, -=, *=, /=, etc.
+     */
     private static final BitSet ASSIGN_TOKENS = TokenUtil.asBitSet(
         TokenTypes.ASSIGN,
         TokenTypes.PLUS_ASSIGN,
+        TokenTypes.MINUS_ASSIGN,
         TokenTypes.STAR_ASSIGN,
         TokenTypes.DIV_ASSIGN,
         TokenTypes.MOD_ASSIGN,
@@ -111,11 +116,17 @@ public class RequireThisCheck extends AbstractCheck {
         TokenTypes.BSR_ASSIGN,
         TokenTypes.SL_ASSIGN,
         TokenTypes.BAND_ASSIGN,
-        TokenTypes.BXOR_ASSIGN
+        TokenTypes.BXOR_ASSIGN,
+        TokenTypes.BOR_ASSIGN
+
     );
-    /** Set of all compound assign tokens. */
+    /**
+     * Set of all compound assignment tokens.
+     * These tokens represent operations like +=, -=, *=, /= and similar.
+     */
     private static final BitSet COMPOUND_ASSIGN_TOKENS = TokenUtil.asBitSet(
         TokenTypes.PLUS_ASSIGN,
+        TokenTypes.MINUS_ASSIGN,
         TokenTypes.STAR_ASSIGN,
         TokenTypes.DIV_ASSIGN,
         TokenTypes.MOD_ASSIGN,
@@ -123,6 +134,7 @@ public class RequireThisCheck extends AbstractCheck {
         TokenTypes.BSR_ASSIGN,
         TokenTypes.SL_ASSIGN,
         TokenTypes.BAND_ASSIGN,
+        TokenTypes.BOR_ASSIGN,
         TokenTypes.BXOR_ASSIGN
     );
 
