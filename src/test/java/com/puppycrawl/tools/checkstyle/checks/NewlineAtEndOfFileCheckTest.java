@@ -101,11 +101,71 @@ public class NewlineAtEndOfFileCheckTest
     @Test
     public void testNoNewlineLfAtEndOfFile() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF, "\\n"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNewlineAtEndOfFileNoNewline.java"),
             expected);
+    }
+
+    /**
+     * Cannot use verifyWithInlineConfigParserSeparateConfigAndTarget because the
+     * shared no-newline input file must remain without a trailing line separator,
+     * and its embedded violation comment is fixed to the LF expectation used by
+     * the inline-config test variant.
+     */
+    @Test
+    public void testNoNewlineCrAtEndOfFile() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addProperty("lineSeparator", LineSeparatorOption.CR.toString());
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF, "\\r"),
+        };
+        verify(
+                checkConfig,
+                getPath("InputNewlineAtEndOfFileNoNewline.java"),
+                expected);
+    }
+
+    /**
+     * Cannot use verifyWithInlineConfigParserSeparateConfigAndTarget because the
+     * shared no-newline input file must remain without a trailing line separator,
+     * and its embedded violation comment is fixed to the LF expectation used by
+     * the inline-config test variant.
+     */
+    @Test
+    public void testNoNewlineCrlfAtEndOfFile() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addProperty("lineSeparator", LineSeparatorOption.CRLF.toString());
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF, "\\r\\n"),
+        };
+        verify(
+                checkConfig,
+                getPath("InputNewlineAtEndOfFileNoNewline.java"),
+                expected);
+    }
+
+    /**
+     * Cannot use verifyWithInlineConfigParserSeparateConfigAndTarget because the
+     * shared no-newline input file must remain without a trailing line separator,
+     * and its embedded violation comment is fixed to the LF expectation used by
+     * the inline-config test variant.
+     */
+    @Test
+    public void testNoNewlineLfCrCrlfAtEndOfFile() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF, "\\n', '\\r' or '\\r\\n"),
+        };
+        verify(
+                checkConfig,
+                getPath("InputNewlineAtEndOfFileNoNewline.java"),
+                expected);
     }
 
     @Test
@@ -117,6 +177,104 @@ public class NewlineAtEndOfFileCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputNewlineAtEndOfFileNoNewline2.java"),
             expected);
+    }
+
+    /**
+     * Cannot use verifyWithInlineConfigParserSeparateConfigAndTarget because the
+     * shared no-newline input file must remain without a trailing line separator,
+     * and this test needs a runtime SYSTEM expectation instead of the LF-specific
+     * inline violation embedded in that file.
+     */
+    @Test
+    public void testNoNewlineSystemAtEndOfFile() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addProperty("lineSeparator", LineSeparatorOption.SYSTEM.toString());
+        final String expectedEscapeChars = System.lineSeparator()
+                .replace("\r", "\\r")
+                .replace("\n", "\\n");
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF, expectedEscapeChars),
+        };
+        verify(
+                checkConfig,
+                getPath("InputNewlineAtEndOfFileNoNewline.java"),
+                expected);
+    }
+
+    /**
+     * Covers the SYSTEM branch in getLineSeparatorEscapeChars.
+     *
+     * <p>Overriding the system property to CRLF forces both replace calls in the
+     * SYSTEM branch to execute, which kills the Pitest NakedReceiverMutator
+     * survivor on that chain.</p>
+     *
+     * @noinspection SystemGetProperty
+     * @noinspectionreason SystemGetProperty - System.getProperty is used instead of
+     *     System.lineSeparator() because the latter caches its value at JVM startup
+     *     and does not reflect runtime changes via System.setProperty, which is
+     *     needed to test the CRLF case on Linux CI.
+     */
+    @Test
+    public void testSystemOptionUsesCurrentSystemProperty() throws Exception {
+        final String originalLineSeparator = System.getProperty("line.separator");
+        try {
+            System.setProperty("line.separator", "\r\n");
+            final String systemResult = TestUtil.invokeStaticMethod(
+                    NewlineAtEndOfFileCheck.class,
+                    "getLineSeparatorEscapeChars",
+                    String.class,
+                    LineSeparatorOption.SYSTEM);
+            assertWithMessage("Unexpected escape chars for system CRLF")
+                    .that(systemResult)
+                    .isEqualTo("\\r\\n");
+        }
+        finally {
+            if (originalLineSeparator == null) {
+                System.clearProperty("line.separator");
+            }
+            else {
+                System.setProperty("line.separator", originalLineSeparator);
+            }
+        }
+    }
+
+    /**
+     * Covers the explicit LF branch in getLineSeparatorEscapeChars.
+     *
+     * <p>Overriding the system property to CRLF ensures the LF branch still
+     * returns "\\n" and kills the Pitest RemoveConditionalMutator_EQUAL_ELSE
+     * survivor that would otherwise fall through to the SYSTEM branch.</p>
+     *
+     * @noinspection SystemGetProperty
+     * @noinspectionreason SystemGetProperty - System.getProperty is used instead of
+     *     System.lineSeparator() because the latter caches its value at JVM startup
+     *     and does not reflect runtime changes via System.setProperty, which is
+     *     needed to test the CRLF case on Linux CI.
+     */
+    @Test
+    public void testLfOptionIgnoresCurrentSystemProperty() throws Exception {
+        final String originalLineSeparator = System.getProperty("line.separator");
+        try {
+            System.setProperty("line.separator", "\r\n");
+            final String lfResult = TestUtil.invokeStaticMethod(
+                    NewlineAtEndOfFileCheck.class,
+                    "getLineSeparatorEscapeChars",
+                    String.class,
+                    LineSeparatorOption.LF);
+            assertWithMessage("LF option must return LF escape chars"
+                    + " regardless of system separator")
+                    .that(lfResult)
+                    .isEqualTo("\\n");
+        }
+        finally {
+            if (originalLineSeparator == null) {
+                System.clearProperty("line.separator");
+            }
+            else {
+                System.setProperty("line.separator", originalLineSeparator);
+            }
+        }
     }
 
     @Test
@@ -140,35 +298,27 @@ public class NewlineAtEndOfFileCheckTest
 
     @Test
     public void testEmptyFileFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NewlineAtEndOfFileCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileEmptyFile.txt"),
-            expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputNewlineAtEndOfFileConfigDefault.java"),
+                getPath("InputNewlineAtEndOfFileEmptyFile.txt"),
+                expected);
     }
 
     @Test
     public void testFileWithEmptyLineOnly() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(
-                checkConfig,
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputNewlineAtEndOfFileLf.java"),
                 getPath("InputNewlineAtEndOfFileNewlineAtEnd.txt"),
                 expected);
     }
 
     @Test
     public void testFileWithEmptyLineOnlyWithLfCrCrlf() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(
-                checkConfig,
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputNewlineAtEndOfFileConfigLfCrCrlf.java"),
                 getPath("InputNewlineAtEndOfFileNewlineAtEndLf.txt"),
                 expected);
     }
@@ -207,6 +357,25 @@ public class NewlineAtEndOfFileCheckTest
                         .hasMessageThat()
                         .isEqualTo("Unable to read 1 bytes, got 0");
         }
+    }
+
+    /**
+     * Cannot use verifyWithInlineConfigParserSeparateConfigAndTarget because this
+     * branch-coverage case relies on a one-byte committed text file and a runtime
+     * expectation, with no room for inline violation metadata in the target file.
+     */
+    @Test
+    public void testFileLengthLessThanSeparatorLength() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addProperty("lineSeparator", LineSeparatorOption.CRLF.toString());
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF, "\\r\\n"),
+        };
+        verify(
+                checkConfig,
+                getPath("InputNewlineAtEndOfFileOneByte.txt"),
+                expected);
     }
 
     @Test
