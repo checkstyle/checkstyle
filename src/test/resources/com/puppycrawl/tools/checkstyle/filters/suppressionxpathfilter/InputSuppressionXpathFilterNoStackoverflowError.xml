@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+    "com/puppycrawl/tools/checkstyle/suppressions_1_2_xpath.dtd">
+<suppressions>
+</suppressions>
