@@ -381,6 +381,26 @@
       <property name="tokens" value="INTERFACE_DEF"/>
       <property name="option" value="alone_or_singleline"/>
     </module>
+    <module name="RightCurlyAloneOrEmpty">
+      <property name="tokens" value="METHOD_DEF"/>
+      <property name="tokens" value="CTOR_DEF"/>
+      <property name="tokens" value="CLASS_DEF"/>
+      <property name="tokens" value="INSTANCE_INIT"/>
+      <property name="tokens" value="LITERAL_FOR"/>
+      <property name="tokens" value="STATIC_INIT"/>
+      <property name="tokens" value="LITERAL_WHILE"/>
+      <property name="tokens" value="LITERAL_CATCH"/>
+      <property name="tokens" value="LITERAL_ELSE"/>
+      <property name="tokens" value="LITERAL_FINALLY"/>
+      <property name="tokens" value="LITERAL_IF"/>
+      <property name="tokens" value="LITERAL_TRY"/>
+      <property name="tokens" value="LITERAL_SWITCH"/>
+      <property name="tokens" value="ANNOTATION_DEF"/>
+      <property name="tokens" value="ENUM_DEF"/>
+      <property name="tokens" value="RECORD_DEF"/>
+      <property name="tokens" value="COMPACT_CTOR_DEF"/>
+      <property name="tokens" value="LITERAL_CASE"/>
+    </module>
 
     <!-- Class Design -->
     <module name="DesignForExtension">
