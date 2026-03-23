@@ -468,9 +468,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     @Test
     public void testAliasList() throws Exception {
         final String[] expected = {
-            "16:17: " + getCheckMessage(ParameterNumberCheck.class,
+            "19:17: " + getCheckMessage(ParameterNumberCheck.class,
                     ParameterNumberCheck.MSG_KEY, 7, 8),
-            "28:17: " + getCheckMessage(ParameterNumberCheck.class,
+            "31:17: " + getCheckMessage(ParameterNumberCheck.class,
                     ParameterNumberCheck.MSG_KEY, 7, 8),
         };
         verifyWithInlineConfigParser(
@@ -496,9 +496,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     @Test
     public void testAliasList3() throws Exception {
         final String[] expected = {
-            "16:17: " + getCheckMessage(ParameterNumberCheck.class,
+            "18:17: " + getCheckMessage(ParameterNumberCheck.class,
                     ParameterNumberCheck.MSG_KEY, 7, 8),
-            "28:17: " + getCheckMessage(ParameterNumberCheck.class,
+            "30:17: " + getCheckMessage(ParameterNumberCheck.class,
                     ParameterNumberCheck.MSG_KEY, 7, 8),
         };
 
