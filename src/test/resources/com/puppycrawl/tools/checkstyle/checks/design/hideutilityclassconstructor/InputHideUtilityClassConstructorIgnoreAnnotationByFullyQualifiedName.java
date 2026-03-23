@@ -6,8 +6,8 @@ ignoreAnnotatedBy = java.lang.Deprecated
 
 package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
-@Deprecated // violation, should not have a public or default constructor
-public class InputHideUtilityClassConstructorIgnoreAnnotationByFullyQualifiedName {
+@Deprecated
+public class InputHideUtilityClassConstructorIgnoreAnnotationByFullyQualifiedName { // violation, 'Utility classes should not have a public or default constructor.'
   public static void func() {}
 }
 
