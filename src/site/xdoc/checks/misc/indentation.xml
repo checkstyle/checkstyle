@@ -131,46 +131,23 @@ if ((condition1 &amp;&amp; condition2)
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-    String field = "example";                  // basicOffset
-    int[] values = {                           // basicOffset
-        10,
-        20,
-        30
+    int a;                      // ok, basicOffset = 4
+
+    void method() {
+        int b = 0;              // ok, basicOffset = 4
+    }
+
+    void method2()
+            throws Exception {  // ok, throwsIndent = 4
+        switch (a) {
+            case 1:             // ok, caseIndent = 4
+                break;
+        }
+    }
+
+    int[] values = {
+        1, 2, 3                 // ok, arrayInitIndent = 4
     };
-
-    void processValues() throws Exception {
-        handleValue("Test String", 42);          // basicOffset
-    }
-
-    void handleValue(String aFooString,
-                     int aFooInt) {             // indent:8 ; expected: &gt; 4;
-
-        boolean cond1,cond2,cond3,cond4,cond5,cond6;
-        cond1=cond2=cond3=cond4=cond5=cond6=false;
-
-        if (cond1
-            || cond2) {
-            field = field.toUpperCase()
-                .concat(" TASK");
-        }
-
-        if ((cond1 &amp;&amp; cond2)
-                || (cond3 &amp;&amp; cond4)          // ok, lineWrappingIndentation
-                || !(cond5 &amp;&amp; cond6)) {      // ok, lineWrappingIndentation
-            field.toUpperCase()
-                 .concat(" TASK")             // ok, lineWrappingIndentation
-                 .chars().forEach(c -&gt; {      // ok, lineWrappingIndentation
-                     System.out.println((char) c);
-                 });
-        }
-    }
-
-    void demonstrateSwitch() throws Exception {
-        switch (field) {
-            case "EXAMPLE": processValues();                        // caseIndent
-            case "COMPLETED": handleValue("Completed Case", 456);   // caseIndent
-        }
-    }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -193,44 +170,14 @@ class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-    String field = "example";                  // basicOffset
-    int[] values = {                           // basicOffset
-        10,
-        20,
-        30
-    };
-
-    void processValues() throws Exception {
-        handleValue("Test String", 42);          // basicOffset
-    }
-
-    void handleValue(String aFooString,
-                     int aFooInt) {
-
-        boolean cond1,cond2,cond3,cond4,cond5,cond6;
-        cond1=cond2=cond3=cond4=cond5=cond6=false;
-
-        if (cond1
-            || cond2) {
-            field = field.toUpperCase()
-                .concat(" TASK");
-        }
-
-        if ((cond1 &amp;&amp; cond2)
-                || (cond3 &amp;&amp; cond4)           // ok, lineWrappingIndentation
-                || !(cond5 &amp;&amp; cond6)) {       // ok, lineWrappingIndentation
-            field.toUpperCase()
-                 .concat(" TASK")             // ok, lineWrappingIndentation
-                 .chars().forEach(c -&gt; {      // ok, lineWrappingIndentation
-                     System.out.println((char) c);
-                 });
-        }
-    }
-
-    void demonstrateSwitch() throws Exception {
-        switch (field) {
-        case "EXAMPLE": processValues();                            // caseIndent
-        case "COMPLETED": handleValue("Completed Case", 456);       // caseIndent
+    void method(int x) {
+        switch (x) {
+        case 1:             // ok, caseIndent = 0 (same level as switch body)
+            break;
+        case 2:             // ok
+            break;
+            case 3:         // violation, 'level 12, expected level should be 8'
+            break;
         }
     }
 }
@@ -253,44 +200,21 @@ class Example2 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
-    String field = "example";                  // basicOffset
-    int[] values = {                           // basicOffset
-        10,
-        20,
-        30
-    };
+    boolean x, y;
 
-    void processValues() throws Exception {
-        handleValue("Test String", 42);
-    }
-
-    void handleValue(String aFooString,
-                     int aFooInt) {      // violation, "incorrect indentation"
-
-        boolean cond1,cond2,cond3,cond4,cond5,cond6;
-        cond1=cond2=cond3=cond4=cond5=cond6=false;
-
-        if (cond1
-            || cond2) {
-            field = field.toUpperCase()
-                .concat(" TASK");
-        }
-
-        if ((cond1 &amp;&amp; cond2)
-                || (cond3 &amp;&amp; cond4)        // violation, "incorrect indentation"
-                || !(cond5 &amp;&amp; cond6)) {    // violation, "incorrect indentation"
-            field.toUpperCase()
-                 .concat(" TASK")           // violation, "incorrect indentation"
-                 .chars().forEach(c -&gt; {    // violation, "incorrect indentation"
-                     System.out.println((char) c);
-                 });
+    void method(int a,
+        int b) {            // ok, lineWrappingIndentation=4 from method
+        if (x
+            &amp;&amp; y) {         // ok, lineWrappingIndentation=4 from 'if'
+            method(a, b);
         }
     }
 
-    void demonstrateSwitch() throws Exception {
-        switch (field) {
-            case "EXAMPLE": processValues();                            // caseIndent
-            case "COMPLETED": handleValue("Completed Case", 456);       // caseIndent
+    void method2(int a,
+                 int b) {   // violation, 'level 17, expected level should be 8'
+        if (x
+                &amp;&amp; y) {     // violation, 'level 16, expected level should be 12'
+            method2(a, b);
         }
     }
 }
@@ -300,44 +224,70 @@ class Example3 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
-    String field = "example";                   // basicOffset
-    int[] values = {                            // basicOffset
-        10,
-        20,
-        30
-    };
+      int a;               // violation, 'level 6, expected level should be 4'
 
-    void processValues() throws Exception {
-        handleValue("Test String", 42);
+    void method() {
+        int b = 0;         // ok
+          int c = 1;       // violation, 'level 10, expected level should be 8'
+    }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check with custom basicOffset (2 spaces instead of default 4):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"&gt;
+      &lt;property name="basicOffset" value="2"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">
+          Example of code with basicOffset set to 2:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 {
+  int a;                  // ok, basicOffset = 2
+
+  void method() {
+    int b = 0;            // ok, basicOffset = 2
+      int c = 1;          // violation, 'level 6, expected level should be 4'
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example6-config">
+          To configure the check with custom lineWrappingIndentation
+          (8 spaces instead of default 4):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"&gt;
+      &lt;property name="lineWrappingIndentation" value="8"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">
+          Example of code with lineWrappingIndentation set to 8:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example6 {
+    boolean x, y;
+
+    void method(int a,
+            int b) {        // ok, lineWrappingIndentation = 8
+        if (x
+                &amp;&amp; y) {     // ok, lineWrappingIndentation = 8
+        }
     }
 
-    void handleValue(String aFooString,
-                     int aFooInt) {            // indent:8 ; expected: &gt; 4
-
-        boolean cond1,cond2,cond3,cond4,cond5,cond6;
-        cond1=cond2=cond3=cond4=cond5=cond6=false;
-
-        if (cond1
-            || cond2) {
-            field = field.toUpperCase()
-                .concat(" TASK");
-        }
-
-        if ((cond1 &amp;&amp; cond2)
-                || (cond3 &amp;&amp; cond4)          // ok, lineWrappingIndentation
-                || !(cond5 &amp;&amp; cond6)) {      // ok, lineWrappingIndentation
-            field.toUpperCase()
-                 .concat(" TASK")            // ok, lineWrappingIndentation
-                 .chars().forEach(c -&gt; {     // ok, lineWrappingIndentation
-                     System.out.println((char) c);
-                 });
-        }
-    }
-
-    void demonstrateSwitch() throws Exception {
-        switch (field) {
-            case "EXAMPLE": processValues();                            // caseIndent
-            case "COMPLETED": handleValue("Completed Case", 456);       // caseIndent
+    void method2(int a,
+        int b) {            // violation, 'level 8, expected level should be 12'
+        if (x
+            &amp;&amp; y) {         // violation, 'level 12, expected level should be 16'
         }
     }
 }
@@ -404,6 +354,60 @@ class Example7 {
             case "COMPLETED": handleValue("Completed Case", 456);   // caseIndent
         }
     }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the check with custom arrayInitIndent (2 spaces instead of default 4):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"&gt;
+      &lt;property name="arrayInitIndent" value="2"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">
+          Example of code with arrayInitIndent set to 2:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example8 {
+    int[] values1 = {
+      10,                 // ok, arrayInitIndent = 2 (col 6 = array col 4 + 2)
+      20,
+      30
+    };
+
+    int[] values2 = {
+  10                      // violation, 'level 2, expected level should be one of'
+    };
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example9-config">
+          To configure the check with custom braceAdjustment (2 spaces instead of default 0):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"&gt;
+      &lt;property name="braceAdjustment" value="2"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example9-code">
+          Example of code with braceAdjustment set to 2:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example9 {
+    void method()
+      {               // ok, braceAdjustment = 2 (col 6 = method col 4 + braceAdj 2)
+      }               // ok, closing brace at col 6
+
+    void method2()
+    {                 // violation, 'level 4, expected level should be 6'
+    }                 // violation, 'level 4, expected level should be 6'
 }
 </code></pre></div>
       </subsection>
