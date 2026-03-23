@@ -12,45 +12,14 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;
 
 // xdoc section -- start
 class Example8 {
-    String field = "example";                  // basicOffset
-    int[] values = {                           // basicOffset
-      10,                                      // ok, arrayInitIndent
+    int[] values1 = {
+      10,                 // ok, arrayInitIndent = 2 (col 6 = array col 4 + 2)
       20,
       30
     };
 
-    void processValues() throws Exception {
-        handleValue("Test String", 42);          // basicOffset
-    }
-
-    void handleValue(String aFooString,
-                     int aFooInt) {             // indent:8 ; expected: > 4;
-
-        boolean cond1,cond2,cond3,cond4,cond5,cond6;
-        cond1=cond2=cond3=cond4=cond5=cond6=false;
-
-        if (cond1
-            || cond2) {
-            field = field.toUpperCase()
-                .concat(" TASK");
-        }
-
-        if ((cond1 && cond2)
-                || (cond3 && cond4)          // ok, lineWrappingIndentation
-                || !(cond5 && cond6)) {      // ok, lineWrappingIndentation
-            field.toUpperCase()
-                 .concat(" TASK")             // ok, lineWrappingIndentation
-                 .chars().forEach(c -> {      // ok, lineWrappingIndentation
-                     System.out.println((char) c);
-                 });
-        }
-    }
-
-    void demonstrateSwitch() throws Exception {
-        switch (field) {
-            case "EXAMPLE": processValues();                        // caseIndent
-            case "COMPLETED": handleValue("Completed Case", 456);   // caseIndent
-        }
-    }
+    int[] values2 = {
+  10                      // violation, 'level 2, expected level should be one of'
+    };
 }
 // xdoc section -- end

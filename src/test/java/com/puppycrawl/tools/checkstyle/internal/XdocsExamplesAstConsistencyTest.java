@@ -293,7 +293,15 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithnearbytextfilter/Example8",
             "filters/suppresswithnearbytextfilter/Example9",
             "filters/suppresswithplaintextcommentfilter/Example5",
-            "filters/suppresswithplaintextcommentfilter/Example9"
+            "filters/suppresswithplaintextcommentfilter/Example9",
+            "checks/indentation/indentation/Example2",
+            "checks/indentation/indentation/Example3",
+            "checks/indentation/indentation/Example4",
+            "checks/indentation/indentation/Example5",
+            "checks/indentation/indentation/Example6",
+            "checks/indentation/indentation/Example7",
+            "checks/indentation/indentation/Example8",
+            "checks/indentation/indentation/Example9"
             );
 
     /**
