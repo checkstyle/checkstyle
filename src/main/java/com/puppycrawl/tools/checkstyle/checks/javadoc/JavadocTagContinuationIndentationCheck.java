@@ -82,6 +82,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         return new int[] {
             JavadocCommentsTokenTypes.HTML_ELEMENT,
             JavadocCommentsTokenTypes.DESCRIPTION,
+            JavadocCommentsTokenTypes.SEE_BLOCK_TAG,
         };
     }
 
@@ -111,12 +112,32 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * @return list of targeted text nodes
      */
     private static List<DetailNode> getTargetedTextNodes(DetailNode ast) {
-        final List<DetailNode> textNodes;
+        final List<DetailNode> textNodes = new ArrayList<>();
+
         if (ast.getType() == JavadocCommentsTokenTypes.DESCRIPTION) {
-            textNodes = getTargetedTextNodesInsideDescription(ast);
+            textNodes.addAll(getTargetedTextNodesInsideDescription(ast));
+        }
+        else if (ast.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT) {
+            textNodes.addAll(getTargetedTextNodesInsideHtmlElement(ast));
         }
         else {
-            textNodes = getTargetedTextNodesInsideHtmlElement(ast);
+            DetailNode child = ast.getFirstChild();
+            while (child != null) {
+                if (child.getType() == JavadocCommentsTokenTypes.DESCRIPTION
+                        || child.getType() == JavadocCommentsTokenTypes.HTML_CONTENT) {
+                    textNodes.addAll(getTargetedTextNodesInsideDescription(child));
+                }
+                else if (child.getType() == JavadocCommentsTokenTypes.HTML_TAG_START) {
+                    textNodes.addAll(getTargetedTextNodesInsideHtmlElement(child));
+                }
+                else if (child.getType() == JavadocCommentsTokenTypes.HTML_TAG_END) {
+                    final DetailNode prevSibling = child.getPreviousSibling();
+                    if (isTargetTextNode(prevSibling)) {
+                        textNodes.add(prevSibling);
+                    }
+                }
+                child = child.getNextSibling();
+            }
         }
         return textNodes;
     }
