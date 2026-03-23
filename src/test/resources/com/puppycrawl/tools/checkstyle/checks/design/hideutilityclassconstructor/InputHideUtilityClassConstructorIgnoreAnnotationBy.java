@@ -27,7 +27,7 @@ class ToolClass3 {
   public static void func() {}
 }
 
-@CommonAnnot // violation, should not have a public or default constructor
+@CommonAnnot // violation, 'Utility classes should not have a public or default constructor.'
 class ToolClass4 {
   public static void func() {}
 }
