@@ -11,7 +11,7 @@ tokens = (default)LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_SW
 package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
 public class InputCyclomaticComplexitySwitchBlocks5 {
-    public void foo2() { // violation 'Cyclomatic Complexity is 12 (max allowed is 10)'
+    public void foo2() { // violation, 'Cyclomatic Complexity is 12 (max allowed is 10).'
         String programmingLanguage = "Java";
         switch (programmingLanguage) {
             case "Java":

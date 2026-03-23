@@ -12,13 +12,13 @@ package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
 public class InputCyclomaticComplexityWhenExpression {
 
-   // violation below, 'Cyclomatic Complexity is 5 (max allowed is 0)'
+   // violation below, 'Cyclomatic Complexity is 5 (max allowed is 0).'
    void testIf(Object o) {   // 1, function declaration
       if (o instanceof Integer i && i == 9) {}  // 2, if - 3, &&
       else if (o instanceof String s && s.length() == 9) {} // 4, if - 5, &&
    }
 
-   // violation below, 'Cyclomatic Complexity is 5 (max allowed is 0)'
+   // violation below, 'Cyclomatic Complexity is 5 (max allowed is 0).'
    void testSwitch(Object o) {   // 1, function declaration
       switch (o) {
          case Integer i when i == 9 -> {} // 2, case - 3, when
@@ -27,7 +27,7 @@ public class InputCyclomaticComplexityWhenExpression {
       }
    }
 
-   // violation below, 'Cyclomatic Complexity is 7 (max allowed is 0)'
+   // violation below, 'Cyclomatic Complexity is 7 (max allowed is 0).'
    void testSwitch2(Object o) {  // 1, function declaration
      switch (o) {
          case Integer i -> {}  // 2, case
