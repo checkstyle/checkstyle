@@ -339,15 +339,33 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void testFinalLocalVariableSwitchExpressions() throws Exception {
+    public void testFinalLocalVariableSwitchExpressionsA() throws Exception {
         final String[] expected = {
             "15:19: " + getCheckMessage(MSG_KEY, "e"),
             "53:19: " + getCheckMessage(MSG_KEY, "e"),
-            "91:19: " + getCheckMessage(MSG_KEY, "e"),
-            "125:19: " + getCheckMessage(MSG_KEY, "e"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressions.java"),
+                getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressionsA.java"),
+            expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableSwitchExpressionsB() throws Exception {
+        final String[] expected = {
+            "16:19: " + getCheckMessage(MSG_KEY, "e"),
+            "50:19: " + getCheckMessage(MSG_KEY, "e"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressionsB.java"),
+            expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableSwitchExpressionsC() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressionsC.java"),
             expected);
     }
 
