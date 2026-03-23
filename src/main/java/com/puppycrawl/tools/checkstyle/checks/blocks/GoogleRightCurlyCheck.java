@@ -1,0 +1,320 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks.blocks;
+
+import javax.annotation.Nullable;
+
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+
+/**
+ * <div>
+ * Checks the placement of right curly braces (<code>'}'</code>) for code blocks, following
+ * the <a href="https://google.github.io/styleguide/javaguide.html#s4.1-braces">
+ *     Google Java Style Guide </a>.
+ * <p>
+ * For nonempty blocks the right curly brace must begin its own line,
+ * unless it is followed by {@code else}, {@code catch}, {@code finally}, or a comma,
+ * in which case no line break follows it.
+ * </p>
+ * <p>
+ * For empty blocks, either K&amp;R style or the concise {@code {}} form is
+ * allowed, except within a multi-block statement ({@code if/else}, {@code try/catch/finally}).
+ * </p>
+ * </div>
+ *
+ * @since 13.9.0
+ */
+@StatelessCheck
+public class GoogleRightCurlyCheck extends AbstractCheck {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_LINE_ALONE = "line.alone";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_LINE_BREAK_BEFORE = "line.break.before";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_LINE_SAME = "line.same";
+
+    /**
+     * Creates a new {@code GoogleRightCurlyCheck} instance.
+     */
+    public GoogleRightCurlyCheck() {
+        // no code by default
+    }
+
+    @Override
+    public int[] getDefaultTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return new int[] {
+            TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_ELSE,
+            TokenTypes.LITERAL_TRY,
+            TokenTypes.LITERAL_CATCH,
+            TokenTypes.LITERAL_FINALLY,
+            TokenTypes.LITERAL_DO,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.LITERAL_WHILE,
+            TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_CASE,
+            TokenTypes.LITERAL_DEFAULT,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.LITERAL_SYNCHRONIZED,
+            TokenTypes.OBJBLOCK,
+        };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return CommonUtil.EMPTY_INT_ARRAY;
+    }
+
+    @Override
+    public void visitToken(DetailAST ast) {
+        DetailAST rightCurly = null;
+        switch (ast.getType()) {
+            case TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF,
+                 TokenTypes.ANNOTATION_DEF, TokenTypes.RECORD_DEF -> {
+                final DetailAST child =
+                        NullUtil.notNull(ast.findFirstToken(TokenTypes.OBJBLOCK));
+                rightCurly = NullUtil.notNull(child.getLastChild());
+            }
+
+            case TokenTypes.OBJBLOCK -> {
+                if (ast.getParent().getType() == TokenTypes.LITERAL_NEW) {
+                    rightCurly = NullUtil.notNull(ast.getLastChild());
+                }
+            }
+
+            case TokenTypes.LITERAL_SWITCH -> rightCurly = ast.getLastChild();
+
+            case TokenTypes.LITERAL_CASE, TokenTypes.LITERAL_DEFAULT -> handleCaseAndDefault(ast);
+
+            default -> {
+                final DetailAST child = ast.findFirstToken(TokenTypes.SLIST);
+                if (child != null) {
+                    rightCurly = child.getLastChild();
+                }
+            }
+        }
+        if (rightCurly != null) {
+            checkRightBrace(ast, rightCurly);
+        }
+    }
+
+    /**
+     * Checks that a right curly brace is placed correctly, per K&amp;R style.
+     *
+     * <p>If the block is part of a multi-block statement (e.g. {@code if/else},
+     * {@code try/catch/finally}, or {@code do/while}), the closing brace must be
+     * on the same line as the next block's starting keyword. Otherwise, the
+     * brace must be alone on its own line, unless the block is empty, in which
+     * case the concise {@code {}} form is allowed.
+     *
+     * @param currentBlock the block whose right curly brace is being checked
+     * @param brace the right curly brace token
+     */
+    private void checkRightBrace(DetailAST currentBlock, DetailAST brace) {
+        final DetailAST nextBlock = getNextToken(brace);
+        if (nextBlock != null && isPartOfMultiBlock(currentBlock, nextBlock)) {
+            checkMultiBlockStatement(currentBlock, brace, nextBlock);
+        }
+        else if (hasContentOnRightSide(currentBlock, brace, nextBlock)
+                || hasContentOnLeftSide(brace)) {
+            log(brace, MSG_KEY_LINE_ALONE, brace.getText(), brace.getColumnNo() + 1);
+        }
+        else if (TokenUtil.areOnSameLine(currentBlock, brace)
+                && (currentBlock.getType() == TokenTypes.LITERAL_ELSE
+                || currentBlock.getType() == TokenTypes.LITERAL_CATCH
+                || currentBlock.getType() == TokenTypes.LITERAL_FINALLY)) {
+            log(brace, MSG_KEY_LINE_BREAK_BEFORE, brace.getText(),
+                    brace.getColumnNo() + 1);
+        }
+    }
+
+    /**
+     * Checks that the right curly brace of a multi-block statement (e.g. {@code if/else},
+     * {@code try/catch/finally}, {@code do/while}) is placed correctly relative to the next block.
+     *
+     * @param currentBlock the current block
+     * @param brace the right curly brace
+     * @param nextBlock the next block in multi-block statement
+     */
+    private void checkMultiBlockStatement(DetailAST currentBlock, DetailAST brace,
+            DetailAST nextBlock) {
+        if (TokenUtil.areOnSameLine(brace, nextBlock)) {
+            if (currentBlock.getType() != TokenTypes.LITERAL_DO
+                    && TokenUtil.areOnSameLine(currentBlock, brace)
+                    || hasContentOnLeftSide(brace)) {
+                log(brace, MSG_KEY_LINE_BREAK_BEFORE, brace.getText(),
+                        brace.getColumnNo() + 1);
+            }
+        }
+        else {
+            log(brace, MSG_KEY_LINE_SAME, brace.getText(), brace.getColumnNo() + 1);
+        }
+    }
+
+    /**
+     * Checks the right curly brace placement for {@code case} and
+     * {@code default} blocks, covering both old style {@code case X:}
+     * and new style {@code case X ->} switch syntax.
+     *
+     * <p>For old-style syntax, a case label may be followed by multiple
+     * {@code {}} blocks in sequence, and each such block's right curly
+     * brace is checked. For new-style syntax, the block following the
+     * arrow (e.g. {@code case X -> { ... }}) is checked,
+     * expression with no block (e.g. {@code case X -> expr;}) is skipped.
+     *
+     * @param ast the {@code case} or {@code default} token
+     */
+    private void handleCaseAndDefault(DetailAST ast) {
+        DetailAST sibling = ast;
+        boolean lambdaPresent = false;
+        while (sibling != null && sibling.getType() != TokenTypes.SLIST) {
+            if (sibling.getType() == TokenTypes.LAMBDA) {
+                lambdaPresent = true;
+            }
+            sibling = sibling.getNextSibling();
+        }
+
+        if (sibling != null) {
+            if (!lambdaPresent) {
+                sibling = sibling.getFirstChild();
+            }
+
+            for (DetailAST child = sibling; child != null;
+                 child = child.getNextSibling()) {
+                if (child.getType() == TokenTypes.SLIST) {
+                    final DetailAST rightBrace = NullUtil
+                            .notNull(child.findFirstToken(TokenTypes.RCURLY));
+                    checkRightBrace(ast, rightBrace);
+                }
+            }
+        }
+    }
+
+    /**
+     * Checks whether the current block and next block is part
+     * of a multi-block statement ({@code if/else},
+     * {@code try/catch/finally}, or {@code do/while}).
+     *
+     * @param currentBlock the current block
+     * @param nextBlock the block following {@code ast}
+     * @return {@code true} if {@code ast} and {@code nextBlock} belong to
+     *         the same multi-block statement
+     */
+    private boolean isPartOfMultiBlock(DetailAST currentBlock, DetailAST nextBlock) {
+        return switch (currentBlock.getType()) {
+            case TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE ->
+                nextBlock.getType() == TokenTypes.LITERAL_ELSE;
+            case TokenTypes.LITERAL_TRY, TokenTypes.LITERAL_CATCH ->
+                nextBlock.getType() == TokenTypes.LITERAL_CATCH
+                    || nextBlock.getType() == TokenTypes.LITERAL_FINALLY;
+            case TokenTypes.LITERAL_DO -> true;
+            default -> false;
+        };
+    }
+
+    /**
+     * Checks if the block is not concise and has content on left side of right brace.
+     *
+     * @param brace the right curly brace token
+     * @return {@code true} if the brace has content on left.
+     */
+    private static boolean hasContentOnLeftSide(DetailAST brace) {
+        DetailAST previousToken = brace.getPreviousSibling();
+        if (previousToken == null) {
+            previousToken = brace.getParent();
+        }
+        if (previousToken.getType() != TokenTypes.SLIST) {
+            while (previousToken.hasChildren()) {
+                previousToken = previousToken.getLastChild();
+            }
+        }
+        return previousToken.getType() != TokenTypes.LCURLY
+                && previousToken.getType() != TokenTypes.SLIST
+                && TokenUtil.areOnSameLine(brace, previousToken);
+    }
+
+    /**
+     * Checks if the right curly brace is part multi-block statement or no
+     * content on right side of right brace.
+     *
+     * @param block the current block
+     * @param brace the right curly brace token
+     * @param nextToken the next token of right curly.
+     * @return {@code true} if the brace is on the same line as the previous sibling
+     *     or parent if no sibling exists
+     */
+    private static boolean hasContentOnRightSide(DetailAST block, DetailAST brace,
+            DetailAST nextToken) {
+        return nextToken != null
+            && TokenUtil.areOnSameLine(brace, nextToken)
+            && !(nextToken.getType() == TokenTypes.SEMI
+            && (block.getType() == TokenTypes.OBJBLOCK
+                || nextToken.getParent().getType() == TokenTypes.SLIST));
+    }
+
+    /**
+     * Traverses up the AST to find the next sibling token after the right curly brace.
+     *
+     * @param rightBrace the right curly brace token
+     * @return the next sibling token, or {@code null} if none exists
+     */
+    @Nullable
+    private static DetailAST getNextToken(DetailAST rightBrace) {
+        DetailAST current = rightBrace;
+        DetailAST nextToken = null;
+        while (current != null && nextToken == null) {
+            nextToken = current.getNextSibling();
+            current = current.getParent();
+        }
+        return nextToken;
+    }
+
+}
