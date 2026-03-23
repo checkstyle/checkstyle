@@ -585,6 +585,18 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/blocks/googlerightcurly.html#GoogleRightCurly">
+                GoogleRightCurly
+              </a>
+            </td>
+            <td>
+              Checks the placement of right curly braces (<code>'}'</code>) for code blocks,
+              following the <a href="https://google.github.io/styleguide/javaguide.html#s4.1-braces">
+              Google Java Style Guide </a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/header/header.html#Header">
                 Header
               </a>
