@@ -41,10 +41,10 @@ class Example2 {
    * Writes the object using a
    * <a href="{@docRoot}/serialized-form.html#java.time.Ser">dedicated form</a>.
    * @serialData
-   * <code> // violation
-   * out.writeByte(1); // violation
-   * out.writeInt(nanos); // violation
-   * </code> // violation
+   * <code> // violation 'Line continuation .* expected level should be 2'
+   * out.writeByte(1); // violation 'Line continuation .* expected level should be 2'
+   * out.writeInt(nanos); // violation 'Line continuation .* expected level should be 2'
+   * </code> // violation 'Line continuation .* expected level should be 2'
    */
   public void testMethodCode(String input) {}
 
