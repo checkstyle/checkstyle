@@ -69,6 +69,13 @@ public final class TestUtil {
      */
     private static final int MINIMAL_STACK_SIZE = 147456;
 
+    /**
+     * The stack size used in {@link TestUtil#getResultWithLimitedXpathResources}.
+     * This value must be large enough for Saxon's XPath engine to initialize, but
+     * small enough to detect stack overflows in deep AST XPath traversal.
+     */
+    private static final int MINIMAL_XPATH_STACK_SIZE = 1_048_576;
+
     private TestUtil() {
     }
 
@@ -288,6 +295,27 @@ public final class TestUtil {
         final FutureTask<V> futureTask = new FutureTask<>(callable);
         final Thread thread = new Thread(null, futureTask,
                 "LimitedStackSizeThread", MINIMAL_STACK_SIZE);
+        thread.start();
+        return futureTask.get(10, TimeUnit.SECONDS);
+    }
+
+    /**
+     * Runs a given task with limited stack size suitable for XPath-based checks, then
+     * returns the result. The stack size is larger than
+     * {@link TestUtil#getResultWithLimitedResources} to allow Saxon's XPath engine
+     * to initialize, but still small enough to detect stack overflows in deep AST
+     * XPath traversal.
+     *
+     * @param callable the task to execute
+     * @param <V> return type of task - {@code Void} if task does not return result
+     * @return result
+     * @throws Exception if getting result fails
+     */
+    public static <V> V getResultWithLimitedXpathResources(Callable<V> callable)
+            throws Exception {
+        final FutureTask<V> futureTask = new FutureTask<>(callable);
+        final Thread thread = new Thread(null, futureTask,
+                "LimitedXpathStackSizeThread", MINIMAL_XPATH_STACK_SIZE);
         thread.start();
         return futureTask.get(10, TimeUnit.SECONDS);
     }
