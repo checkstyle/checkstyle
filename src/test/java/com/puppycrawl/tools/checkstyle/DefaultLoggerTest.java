@@ -251,16 +251,21 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFinishLocalSetup() {
-        final OutputStream infoStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream,
-                OutputStreamOptions.CLOSE);
-        dl.finishLocalSetup();
-        dl.auditStarted(null);
-        dl.auditFinished(null);
-        assertWithMessage("instance should not be null")
-            .that(dl)
-            .isNotNull();
+    public void testFinishLocalSetup() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestSingleError.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestSingleError.txt";
+
+        final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
+        final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+                errorStream, OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndDefaultLogger(
+                getPath(inputFile),
+                getPath(expectedInfoFile),
+                getPath(expectedErrorFile),
+                dl, infoStream, errorStream);
     }
 
     /**
