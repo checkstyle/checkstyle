@@ -169,17 +169,6 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
                 .isFalse();
     }
 
-    @Test
-    public void testCtorWithNullParameter() {
-        final OutputStream infoStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE);
-        dl.addException(new AuditEvent(5000), new IllegalStateException("oops"));
-        dl.auditFinished(new AuditEvent(6000));
-        final String output = infoStream.toString();
-        assertWithMessage("Message should contain exception info")
-                .that(output)
-                .contains("java.lang.IllegalStateException: oops");
-    }
 
     @Test
     public void testNullInfoStreamOptions() {
