@@ -6,7 +6,8 @@ ignoreAnnotatedBy = (default)
 
 package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
-public class InputHideUtilityClassConstructorPublic { // violation
+// violation below
+public class InputHideUtilityClassConstructorPublic {
     public InputHideUtilityClassConstructorPublic() {}
 
     private static int value = 0;
