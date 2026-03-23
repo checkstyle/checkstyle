@@ -55,19 +55,6 @@ public class XdocsExampleFileTest {
         "violateExecutionOnNonTightHtml"
     );
 
-    // This list is temporarily suppressed.
-    // Until: https://github.com/checkstyle/checkstyle/issues/17449
-    private static final Map<String, Set<String>> SUPPRESSED_PROPERTIES_BY_CHECK = Map.ofEntries(
-            Map.entry("SuppressWarningsHolder", Set.of("aliasList")),
-            Map.entry("IndentationCheck", Set.of(
-                    "basicOffset",
-                    "lineWrappingIndentation",
-                    "throwsIndent",
-                    "arrayInitIndent",
-                    "braceAdjustment"
-            ))
-    );
-
     @Test
     public void testAllCheckPropertiesAreUsedInXdocsExamples() throws Exception {
         final Map<String, Set<String>> usedPropertiesByCheck =
@@ -87,13 +74,8 @@ public class XdocsExampleFileTest {
             final Set<String> usedProperties =
                 usedPropertiesByCheck.getOrDefault(checkSimpleName, Collections.emptySet());
 
-            final Set<String> suppressedProps =
-                SUPPRESSED_PROPERTIES_BY_CHECK.getOrDefault(
-                    checkSimpleName, Collections.emptySet());
-
             for (String property : definedProperties) {
-                if (!usedProperties.contains(property)
-                        && !suppressedProps.contains(property)) {
+                if (!usedProperties.contains(property)) {
                     failures.add("Missing property in xdoc: '"
                             + property + "' of " + checkSimpleName);
                 }
