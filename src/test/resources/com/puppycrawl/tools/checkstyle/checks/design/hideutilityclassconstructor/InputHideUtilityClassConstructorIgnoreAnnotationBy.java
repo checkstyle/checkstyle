@@ -28,8 +28,8 @@ class ToolClass3 {
 }
 
 @CommonAnnot
-// violation, 'Utility classes should not have a public or default '
-// 'constructor.'
+// violation, 'Utility classes should not have a public or default constructor.'
+
 class ToolClass4 {
   public static void func() {}
 }

@@ -6,8 +6,8 @@ ignoreAnnotatedBy = (default)
 
 package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
-// violation 'Utility classes should not have a public or default '
-// 'constructor.'
+// violation, 'Utility classes should not have a public or default constructor.'
+
 public class InputHideUtilityClassConstructorPublic {
     public InputHideUtilityClassConstructorPublic() {}
 
