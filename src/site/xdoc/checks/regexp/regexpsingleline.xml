@@ -247,11 +247,13 @@ CREATE DATABASE MyDB;
         </p>
       </subsection>
 
-      <subsection name="Package" id="RegexpSingleline_Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.regexp
-        </p>
-      </subsection>
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+         <p> com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck</p>
+         <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+          </p>
+       </subsection>
 
       <subsection name="Parent Module" id="RegexpSingleline_Parent_Module">
         <p>

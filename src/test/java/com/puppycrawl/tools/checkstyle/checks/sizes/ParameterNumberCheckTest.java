@@ -80,7 +80,7 @@ public class ParameterNumberCheckTest
     public void testDefaultThree()
             throws Exception {
         final String[] expected = {
-            "47:10: " + getCheckMessage(MSG_KEY, 7, 9),
+            "48:10: " + getCheckMessage(MSG_KEY, 7, 9),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNumberSimpleThree.java"), expected);
@@ -90,8 +90,8 @@ public class ParameterNumberCheckTest
     public void testNum()
             throws Exception {
         final String[] expected = {
-            "75:9: " + getCheckMessage(MSG_KEY, 2, 3),
-            "198:10: " + getCheckMessage(MSG_KEY, 2, 9),
+            "76:9: " + getCheckMessage(MSG_KEY, 2, 3),
+            "199:10: " + getCheckMessage(MSG_KEY, 2, 9),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNumberSimple2.java"), expected);
@@ -109,7 +109,7 @@ public class ParameterNumberCheckTest
     public void shouldLogActualParameterNumber()
             throws Exception {
         final String[] expected = {
-            "198:10: " + getCheckMessage(MSG_KEY, 7, 9),
+            "199:10: " + getCheckMessage(MSG_KEY, 7, 9),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNumberSimple4.java"), expected);
@@ -119,8 +119,8 @@ public class ParameterNumberCheckTest
     public void testIgnoreOverriddenMethods()
             throws Exception {
         final String[] expected = {
-            "15:10: " + getCheckMessage(MSG_KEY, 7, 8),
-            "20:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "16:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "21:10: " + getCheckMessage(MSG_KEY, 7, 8),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNumber.java"), expected);
@@ -130,10 +130,10 @@ public class ParameterNumberCheckTest
     public void testIgnoreOverriddenMethodsFalse()
             throws Exception {
         final String[] expected = {
-            "15:10: " + getCheckMessage(MSG_KEY, 7, 8),
-            "20:10: " + getCheckMessage(MSG_KEY, 7, 8),
-            "28:10: " + getCheckMessage(MSG_KEY, 7, 8),
-            "33:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "16:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "21:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "29:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "34:10: " + getCheckMessage(MSG_KEY, 7, 8),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNumber2.java"), expected);
@@ -142,15 +142,15 @@ public class ParameterNumberCheckTest
     @Test
     public void testIgnoreAnnotatedBy() throws Exception {
         final String[] expected = {
-            "23:10: " + getCheckMessage(MSG_KEY, 2, 3),
-            "30:10: " + getCheckMessage(MSG_KEY, 2, 4),
-            "35:14: " + getCheckMessage(MSG_KEY, 2, 3),
-            "43:9: " + getCheckMessage(MSG_KEY, 2, 4),
-            "58:30: " + getCheckMessage(MSG_KEY, 2, 3),
-            "62:29: " + getCheckMessage(MSG_KEY, 2, 3),
-            "77:34: " + getCheckMessage(MSG_KEY, 2, 4),
-            "97:10: " + getCheckMessage(MSG_KEY, 2, 3),
-            "106:14: " + getCheckMessage(MSG_KEY, 2, 3),
+            "26:10: " + getCheckMessage(MSG_KEY, 2, 3),
+            "33:10: " + getCheckMessage(MSG_KEY, 2, 4),
+            "38:14: " + getCheckMessage(MSG_KEY, 2, 3),
+            "46:9: " + getCheckMessage(MSG_KEY, 2, 4),
+            "61:30: " + getCheckMessage(MSG_KEY, 2, 3),
+            "65:29: " + getCheckMessage(MSG_KEY, 2, 3),
+            "80:34: " + getCheckMessage(MSG_KEY, 2, 4),
+            "100:10: " + getCheckMessage(MSG_KEY, 2, 3),
+            "109:14: " + getCheckMessage(MSG_KEY, 2, 3),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNumberIgnoreAnnotatedBy.java"), expected);
@@ -159,12 +159,12 @@ public class ParameterNumberCheckTest
     @Test
     public void testIgnoreAnnotatedByFullyQualifiedClassName() throws Exception {
         final String[] expected = {
-            "15:10: " + getCheckMessage(MSG_KEY, 2, 3),
-            "17:10: " + getCheckMessage(MSG_KEY, 2, 3),
-            "23:10: " + getCheckMessage(MSG_KEY, 2, 3),
-            "27:10: " + getCheckMessage(MSG_KEY, 2, 3),
-            "41:14: " + getCheckMessage(MSG_KEY, 2, 3),
-            "45:14: " + getCheckMessage(MSG_KEY, 2, 3),
+            "18:10: " + getCheckMessage(MSG_KEY, 2, 3),
+            "20:10: " + getCheckMessage(MSG_KEY, 2, 3),
+            "26:10: " + getCheckMessage(MSG_KEY, 2, 3),
+            "30:10: " + getCheckMessage(MSG_KEY, 2, 3),
+            "44:14: " + getCheckMessage(MSG_KEY, 2, 3),
+            "48:14: " + getCheckMessage(MSG_KEY, 2, 3),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNumberIgnoreAnnotatedByFullyQualifiedClassName.java"),

@@ -12,12 +12,12 @@ package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
 public class InputCyclomaticComplexity {
     // NP = 2
-    public void foo() { // violation
+    public void foo() { // violation, 'Cyclomatic Complexity is 2 (max allowed is 0).'
         //NP(while-statement) = (while-range=1) + (expr=0) + 1 = 2
         while (true) {
             Runnable runnable = new Runnable() {
                // NP = 2
-                public void run() { // violation
+                public void run() { // violation, 'Cyclomatic Complexity is 2 (max allowed is 0).'
                     // NP(while-statement) = (while-range=1) + (expr=0) + 1 = 2
                     while (true) {
                     }
@@ -29,7 +29,7 @@ public class InputCyclomaticComplexity {
     }
 
     // NP = 10
-    public void bar() { // violation
+    public void bar() { // violation, 'Cyclomatic Complexity is 6 (max allowed is 0).'
         // NP = (if-range=3*3) + (expr=0) + 1 = 10
         if (System.currentTimeMillis() == 0) {
             //NP = (if-range=1) + 1 + (expr=1) = 3
@@ -42,7 +42,7 @@ public class InputCyclomaticComplexity {
     }
 
     // NP = 3
-    public void simpleElseIf() { // violation
+    public void simpleElseIf() { // violation, 'Cyclomatic Complexity is 3 (max allowed is 0).'
         // NP = (if-range=1) + (else-range=2) + 0 = 3
         if (System.currentTimeMillis() == 0) {
         // NP(else-range) = (if-range=1) + (else-range=1) + (expr=0) = 2
@@ -52,7 +52,7 @@ public class InputCyclomaticComplexity {
     }
 
     // NP = 7
-    public void stupidElseIf() { // violation
+    public void stupidElseIf() { // violation, 'Cyclomatic Complexity is 5 (max allowed is 0).'
         // NP = (if-range=1) + (else-range=3*2) + (expr=0) = 7
         if (System.currentTimeMillis() == 0) {
         } else {
@@ -70,7 +70,8 @@ public class InputCyclomaticComplexity {
     }
 
     // NP = 3
-    public InputCyclomaticComplexity() // violation
+    // violation below, 'Cyclomatic Complexity is 3 (max allowed is 0).'
+    public InputCyclomaticComplexity()
     {
         int i = 1;
         // NP = (if-range=1) + (else-range=2) + 0 = 3
@@ -83,7 +84,7 @@ public class InputCyclomaticComplexity {
 
     // STATIC_INIT
     // NP = 3
-    static { // violation
+    static { // violation, 'Cyclomatic Complexity is 3 (max allowed is 0).'
         int i = 1;
         // NP = (if-range=1) + (else-range=2) + 0 = 3
         if (System.currentTimeMillis() == 0) {
@@ -95,7 +96,7 @@ public class InputCyclomaticComplexity {
 
     // INSTANCE_INIT
     // NP = 3
-    { // violation
+    { // violation, 'Cyclomatic Complexity is 3 (max allowed is 0).'
         int i = 1;
         // NP = (if-range=1) + (else-range=2) + 0 = 3
         if (System.currentTimeMillis() == 0) {
@@ -107,11 +108,12 @@ public class InputCyclomaticComplexity {
 
     /** Inner */
     // NP = 0
-    public InputCyclomaticComplexity(int aParam) // violation
+    // violation below, 'Cyclomatic Complexity is 1 (max allowed is 0).'
+    public InputCyclomaticComplexity(int aParam)
     {
         Runnable runnable = new Runnable() {
             // NP = 2
-            public void run() { // violation
+            public void run() { // violation, 'Cyclomatic Complexity is 2 (max allowed is 0).'
                 // NP(while-statement) = (while-range=1) + (expr=0) + 1 = 2
                 while (true) {
                 }

@@ -76,11 +76,11 @@ public class CyclomaticComplexityCheckTest
             "32:5: " + getCheckMessage(MSG_KEY, 6, 0),
             "45:5: " + getCheckMessage(MSG_KEY, 3, 0),
             "55:5: " + getCheckMessage(MSG_KEY, 5, 0),
-            "73:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "86:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "98:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "110:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "114:13: " + getCheckMessage(MSG_KEY, 2, 0),
+            "74:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "87:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "99:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "112:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "116:13: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
         verifyWithInlineConfigParser(
@@ -93,11 +93,11 @@ public class CyclomaticComplexityCheckTest
         final int max = 0;
 
         final String[] expected = {
-            "17:9: " + getCheckMessage(MSG_KEY, 11, max),
-            "48:9: " + getCheckMessage(MSG_KEY, 11, max),
-            "83:5: " + getCheckMessage(MSG_KEY, 11, max),
-            "115:5: " + getCheckMessage(MSG_KEY, 11, max),
-            "148:5: " + getCheckMessage(MSG_KEY, 11, max),
+            "18:9: " + getCheckMessage(MSG_KEY, 11, max),
+            "49:9: " + getCheckMessage(MSG_KEY, 11, max),
+            "84:5: " + getCheckMessage(MSG_KEY, 11, max),
+            "116:5: " + getCheckMessage(MSG_KEY, 11, max),
+            "149:5: " + getCheckMessage(MSG_KEY, 11, max),
         };
 
         verifyWithInlineConfigParser(

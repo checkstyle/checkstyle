@@ -14,7 +14,8 @@ package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 public class InputCyclomaticComplexityRecords {
 
     public record MyRecord1(String str, Record record) {
-        public MyRecord1 (String str) { // violation
+        // violation below, 'Cyclomatic Complexity is 11 (max allowed is 0).'
+        public MyRecord1 (String str) {
             this("my record", new MyRecord3(true, false));
             int a = 1;
             int b = 1;
@@ -45,7 +46,7 @@ public class InputCyclomaticComplexityRecords {
             d = a < 0 ? -1 : 1; // 11, ternary operator
         }
 
-        public void foo() { // violation
+        public void foo() { // violation, 'Cyclomatic Complexity is 11 (max allowed is 0).'
             int a = 1;
             int b = 1;
             int c = 1;
@@ -80,7 +81,7 @@ public class InputCyclomaticComplexityRecords {
 
 
 record MyRecord2(boolean t, boolean f) {
-    public MyRecord2 { // violation
+    public MyRecord2 { // violation, 'Cyclomatic Complexity is 11 (max allowed is 0).'
         int a = 1;
         int b = 1;
         int c = 1;
@@ -112,7 +113,7 @@ record MyRecord2(boolean t, boolean f) {
 }
 
 record MyRecord3(boolean a, boolean b) {
-    MyRecord3(String str) { // violation
+    MyRecord3(String str) { // violation, 'Cyclomatic Complexity is 11 (max allowed is 0).'
         this(true, true);
         int a = 1;
         int b = 1;
@@ -145,7 +146,7 @@ record MyRecord3(boolean a, boolean b) {
 }
 
 record MyRecord4(boolean a, boolean b) {
-    public Record foo() { // violation
+    public Record foo() { // violation, 'Cyclomatic Complexity is 11 (max allowed is 0).'
         int a = 1;
         int b = 1;
         int c = 1;

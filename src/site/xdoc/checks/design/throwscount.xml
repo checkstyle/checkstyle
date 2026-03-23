@@ -219,9 +219,11 @@ public class Example3 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="ThrowsCount_Package">
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.design
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

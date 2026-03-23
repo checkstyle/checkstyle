@@ -250,7 +250,6 @@ public final class InlineConfigParser {
                     + ".JavadocTagContinuationIndentationCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc"
                     + ".RequireEmptyLineBeforeBlockTagGroupCheck",
@@ -258,7 +257,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck",
             "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck",
             "com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck",
             "com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck",
             "com.puppycrawl.tools.checkstyle.checks.modifier.ClassMemberImpliedModifierCheck",
             "com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck",
@@ -323,7 +321,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck",
