@@ -273,4 +273,11 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
                                            ALL_MESSAGES,
                                            removeSuppressed(ALL_MESSAGES, suppressed));
     }
+
+    @Test
+    public void testNoStackoverflowError() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithLimitedXpathResources(
+                getPath("InputSuppressionXpathFilterNoStackoverflowError.java"), expected);
+    }
 }
