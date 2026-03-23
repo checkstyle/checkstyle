@@ -93,8 +93,8 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRequiredNoDuplicatesFail() throws Exception {
         final String[] expected = {
-            "27: " + getCheckMessage(MSG_DUPLICATE_REGEXP, "Boolean x = new Boolean"),
             "32: " + getCheckMessage(MSG_DUPLICATE_REGEXP, "Boolean x = new Boolean"),
+            "37: " + getCheckMessage(MSG_DUPLICATE_REGEXP, "Boolean x = new Boolean"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic5.java"), expected);
@@ -294,10 +294,10 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         final String file1 = getPath("InputRegexpCheckB2.java");
         final String file2 = getPath("InputRegexpCheckB1.java");
         final List<String> expectedFromFile1 = List.of(
-            "12: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import")
+            "15: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import")
         );
         final List<String> expectedFromFile2 = List.of(
-            "12: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import")
+            "15: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import")
         );
         verifyWithInlineConfigParser(file1, file2, expectedFromFile1, expectedFromFile2);
     }
