@@ -68,7 +68,7 @@ public class CyclomaticComplexityCheckTest
     }
 
     @Test
-    public void test() throws Exception {
+    public void test1() throws Exception {
 
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -76,32 +76,54 @@ public class CyclomaticComplexityCheckTest
             "32:5: " + getCheckMessage(MSG_KEY, 6, 0),
             "45:5: " + getCheckMessage(MSG_KEY, 3, 0),
             "55:5: " + getCheckMessage(MSG_KEY, 5, 0),
-            "74:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "87:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "99:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "112:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "116:13: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputCyclomaticComplexity.java"), expected);
+                getPath("InputCyclomaticComplexity1.java"), expected);
     }
 
     @Test
-    public void testCyclomaticComplexityRecords() throws Exception {
+    public void test2() throws Exception {
+
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "29:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "41:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "54:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "58:13: " + getCheckMessage(MSG_KEY, 2, 0),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputCyclomaticComplexity2.java"), expected);
+    }
+
+    @Test
+    public void testCyclomaticComplexityRecords1() throws Exception {
 
         final int max = 0;
 
         final String[] expected = {
             "18:9: " + getCheckMessage(MSG_KEY, 11, max),
             "49:9: " + getCheckMessage(MSG_KEY, 11, max),
-            "84:5: " + getCheckMessage(MSG_KEY, 11, max),
-            "116:5: " + getCheckMessage(MSG_KEY, 11, max),
-            "149:5: " + getCheckMessage(MSG_KEY, 11, max),
+            "81:9: " + getCheckMessage(MSG_KEY, 11, max),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputCyclomaticComplexityRecords.java"), expected);
+                getPath("InputCyclomaticComplexityRecords1.java"), expected);
+    }
+
+    @Test
+    public void testCyclomaticComplexityRecords2() throws Exception {
+
+        final int max = 0;
+
+        final String[] expected = {
+            "17:9: " + getCheckMessage(MSG_KEY, 11, max),
+            "49:9: " + getCheckMessage(MSG_KEY, 11, max),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputCyclomaticComplexityRecords2.java"), expected);
     }
 
     @Test
