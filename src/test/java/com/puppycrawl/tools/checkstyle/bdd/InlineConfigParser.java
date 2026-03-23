@@ -254,7 +254,6 @@ public final class InlineConfigParser {
                     + ".RequireEmptyLineBeforeBlockTagGroupCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck",
             "com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck",
             "com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck",
             "com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck",
             "com.puppycrawl.tools.checkstyle.checks.modifier.ClassMemberImpliedModifierCheck",
