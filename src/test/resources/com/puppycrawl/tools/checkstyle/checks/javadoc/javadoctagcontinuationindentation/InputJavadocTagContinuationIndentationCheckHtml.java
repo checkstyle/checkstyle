@@ -107,4 +107,12 @@ public class InputJavadocTagContinuationIndentationCheckHtml {
      */
     static class Test7 {}
 
+
+    /**
+     * @see <a href="https://checkstyle.org">
+     *     JavadocTagContinuationIndentation
+     *     </a>
+     */
+    void testSeparateClosingTagValid() {
+    }
 }
