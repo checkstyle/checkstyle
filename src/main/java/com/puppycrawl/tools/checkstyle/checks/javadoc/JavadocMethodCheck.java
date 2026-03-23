@@ -939,7 +939,7 @@ public class JavadocMethodCheck extends AbstractCheck {
                     final Token token = exceptionInfo.getName();
                     log(exceptionInfo.getAst(),
                         MSG_EXPECTED_TAG,
-                        JavadocTagInfo.THROWS.getText(), token.text());
+                        JavadocTagInfo.THROWS.getText(), token.getText());
                 });
         }
     }
@@ -953,7 +953,7 @@ public class JavadocMethodCheck extends AbstractCheck {
     private static void processThrows(Iterable<ExceptionInfo> throwsIterable,
                                       String documentedClassName) {
         for (ExceptionInfo exceptionInfo : throwsIterable) {
-            if (isClassNamesSame(exceptionInfo.getName().text(),
+            if (isClassNamesSame(exceptionInfo.getName().getText(),
                     documentedClassName)) {
                 exceptionInfo.setFound();
                 break;
@@ -969,8 +969,8 @@ public class JavadocMethodCheck extends AbstractCheck {
      * @return true is ExceptionInfo object have the same name
      */
     private static boolean isExceptionInfoSame(ExceptionInfo info1, ExceptionInfo info2) {
-        return isClassNamesSame(info1.getName().text(),
-                                    info2.getName().text());
+        return isClassNamesSame(info1.getName().getText(),
+                                    info2.getName().getText());
     }
 
     /**
@@ -1002,7 +1002,19 @@ public class JavadocMethodCheck extends AbstractCheck {
      *
      * @param text Token's text.
      */
-    private record Token(String text) {
+    private static final class Token {
+
+        /** Token text. */
+        private final String text;
+
+        /**
+         * Creates token from plain text.
+         *
+         * @param text token text
+         */
+        private Token(String text) {
+            this.text = text;
+        }
 
         /**
          * Converts FullIdent to Token.
@@ -1011,6 +1023,15 @@ public class JavadocMethodCheck extends AbstractCheck {
          */
         private Token(FullIdent fullIdent) {
             this(fullIdent.getText());
+        }
+
+        /**
+         * Returns token text.
+         *
+         * @return token text
+         */
+        private String getText() {
+            return text;
         }
     }
 

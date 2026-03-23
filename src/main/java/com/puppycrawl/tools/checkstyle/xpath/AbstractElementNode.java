@@ -230,7 +230,7 @@ public abstract class AbstractElementNode extends AbstractNode {
             case AxisInfo.PRECEDING_SIBLING -> getPrecedingSiblingsIterator();
             case AxisInfo.FOLLOWING -> new FollowingIterator(this);
             case AxisInfo.PRECEDING -> new PrecedingIterator(this);
-            default -> throw throwUnsupportedOperationException();
+            default -> throwUnsupportedOperationException();
         };
     }
 
@@ -311,12 +311,4 @@ public abstract class AbstractElementNode extends AbstractNode {
         return attributeNode;
     }
 
-    /**
-     * Returns UnsupportedOperationException exception.
-     *
-     * @return UnsupportedOperationException exception
-     */
-    private static UnsupportedOperationException throwUnsupportedOperationException() {
-        return new UnsupportedOperationException("Operation is not supported");
-    }
 }

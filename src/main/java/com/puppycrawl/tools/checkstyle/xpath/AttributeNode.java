@@ -59,7 +59,7 @@ public class AttributeNode extends AbstractNode {
      */
     @Override
     public int compareOrder(NodeInfo nodeInfo) {
-        throw throwUnsupportedOperationException();
+        return throwUnsupportedOperationException();
     }
 
     /**
@@ -72,7 +72,7 @@ public class AttributeNode extends AbstractNode {
      */
     @Override
     public String getAttributeValue(NamespaceUri namespace, String localPart) {
-        throw throwUnsupportedOperationException();
+        return throwUnsupportedOperationException();
     }
 
     /**
@@ -104,7 +104,7 @@ public class AttributeNode extends AbstractNode {
      */
     @Override
     public NodeInfo getParent() {
-        throw throwUnsupportedOperationException();
+        return throwUnsupportedOperationException();
     }
 
     /**
@@ -115,7 +115,7 @@ public class AttributeNode extends AbstractNode {
      */
     @Override
     public NodeInfo getRoot() {
-        throw throwUnsupportedOperationException();
+        return throwUnsupportedOperationException();
     }
 
     /**
@@ -137,7 +137,7 @@ public class AttributeNode extends AbstractNode {
      */
     @Override
     public AxisIterator iterateAxis(int axisNumber) {
-        throw throwUnsupportedOperationException();
+        return throwUnsupportedOperationException();
     }
 
     /**
@@ -148,7 +148,7 @@ public class AttributeNode extends AbstractNode {
      */
     @Override
     public int getLineNumber() {
-        throw throwUnsupportedOperationException();
+        return throwUnsupportedOperationException();
     }
 
     /**
@@ -159,7 +159,7 @@ public class AttributeNode extends AbstractNode {
      */
     @Override
     public int getColumnNumber() {
-        throw throwUnsupportedOperationException();
+        return throwUnsupportedOperationException();
     }
 
     /**
@@ -170,7 +170,7 @@ public class AttributeNode extends AbstractNode {
      */
     @Override
     public int getTokenType() {
-        throw throwUnsupportedOperationException();
+        return throwUnsupportedOperationException();
     }
 
     /**
@@ -181,7 +181,7 @@ public class AttributeNode extends AbstractNode {
      */
     @Override
     public Object getUnderlyingNode() {
-        throw throwUnsupportedOperationException();
+        return throwUnsupportedOperationException();
     }
 
     /**
@@ -192,7 +192,7 @@ public class AttributeNode extends AbstractNode {
      */
     @Override
     public int getDepth() {
-        throw throwUnsupportedOperationException();
+        return throwUnsupportedOperationException();
     }
 
     /**
@@ -203,7 +203,7 @@ public class AttributeNode extends AbstractNode {
      */
     @Override
     protected List<AbstractNode> createChildren() {
-        throw throwUnsupportedOperationException();
+        return throwUnsupportedOperationException();
     }
 
     /**
@@ -214,15 +214,6 @@ public class AttributeNode extends AbstractNode {
     @Override
     public boolean hasChildNodes() {
         return false;
-    }
-
-    /**
-     * Returns UnsupportedOperationException exception.
-     *
-     * @return UnsupportedOperationException exception
-     */
-    private static UnsupportedOperationException throwUnsupportedOperationException() {
-        return new UnsupportedOperationException("Operation is not supported");
     }
 
 }

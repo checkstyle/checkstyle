@@ -58,7 +58,7 @@ public abstract class AbstractRootNode extends AbstractNode {
      */
     @Override
     public int compareOrder(NodeInfo nodeInfo) {
-        throw throwUnsupportedOperationException();
+        return throwUnsupportedOperationException();
     }
 
     /**
@@ -71,7 +71,7 @@ public abstract class AbstractRootNode extends AbstractNode {
      */
     @Override
     public String getAttributeValue(NamespaceUri namespace, String localPart) {
-        throw throwUnsupportedOperationException();
+        return throwUnsupportedOperationException();
     }
 
     /**
@@ -152,7 +152,7 @@ public abstract class AbstractRootNode extends AbstractNode {
             case AxisInfo.DESCENDANT_OR_SELF ->
                 new DescendantIterator(this, DescendantIterator.StartWith.CURRENT_NODE);
 
-            default -> throw throwUnsupportedOperationException();
+            default -> throwUnsupportedOperationException();
         };
     }
 
@@ -164,15 +164,6 @@ public abstract class AbstractRootNode extends AbstractNode {
     @Override
     public int getDepth() {
         return 0;
-    }
-
-    /**
-     * Returns UnsupportedOperationException exception.
-     *
-     * @return UnsupportedOperationException exception
-     */
-    private static UnsupportedOperationException throwUnsupportedOperationException() {
-        return new UnsupportedOperationException("Operation is not supported");
     }
 
 }
