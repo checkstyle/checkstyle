@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyAloneOrEmptyCheck"
+             name="RightCurlyAloneOrEmpty"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks the placement of right curly braces (&lt;code&gt;'}'&lt;/code&gt;) for code blocks.
+ The right curly brace must be alone on a line. Empty blocks must follow
+ K&amp;amp;R style or use &lt;code&gt;{}&lt;/code&gt; immediately, except in multi-block statements
+ (&lt;code&gt;if/else&lt;/code&gt;, &lt;code&gt;try/catch/finally&lt;/code&gt;) where &lt;code&gt;{}&lt;/code&gt; is not allowed.
+
+ Follows &lt;a href="https://google.github.io/styleguide/javaguide.html#s4.1-braces"&gt;
+ Google Java Style Guide&lt;/a&gt;.
+ &lt;/div&gt;</description>
+         <properties>
+            <property default-value="false" name="allowMultiBlock" type="boolean">
+               <description>Allow RCURLY on the same line as the start of a multiblock statement.</description>
+            </property>
+            <property default-value="LITERAL_TRY,LITERAL_CATCH,LITERAL_FINALLY,LITERAL_IF,LITERAL_ELSE"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="alone.or.empty"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

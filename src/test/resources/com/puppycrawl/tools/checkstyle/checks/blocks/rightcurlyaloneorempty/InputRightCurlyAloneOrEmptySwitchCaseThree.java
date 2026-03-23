@@ -1,0 +1,117 @@
+/*
+RightCurlyAloneOrEmpty
+tokens = LITERAL_SWITCH, LITERAL_CASE
+allowMultiBlock = (default)false
+
+*/
+package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurlyaloneorempty;
+
+public class InputRightCurlyAloneOrEmptySwitchCaseThree {
+    public static void test9() {
+        int mode = 0;
+        switch (mode) {
+            case 0: int x = 1;
+            case 1: x = 1; break;
+            case 2: {
+                x =
+            1;} default : x = 5;
+            // violation above ''}' at column 15 should be alone on a line'
+        }
+    }
+
+    public static void test10() {
+        int mode = 0;
+        // violation 4 lines below ''}' at column 13 should be alone on a line'
+        switch (mode) {
+            case 0: {
+
+            } case 1: int x = 1; break;
+            case 2: {
+
+            }
+            default : x = 5;
+        }
+    }
+     public static void test11() {
+        int mode = 0;
+         // violation 4 lines below ''}' at column 13 should be alone on a line'
+        switch (mode) {
+            case 0: {
+
+            } case 1: int x = 1; break;
+            case 2: {
+
+            } default : x = 5;
+            // violation above ''}' at column 13 should be alone on a line'
+        }
+    }
+
+    public static void test13() {
+        int mode = 0;
+        // violation 4 lines below ''}' at column 13 should be alone on a line'
+        switch (mode) {
+            case 0: { int x = 1;
+
+            } case 1: {
+
+            }
+            default : break;
+        }
+    }
+    public static void test14() {
+        int mode = 0;
+        switch (mode) {
+            case 0: {
+
+            }
+            case 1: {  }
+            default : {break;}
+        }
+    }
+
+    public static void test16() {
+        int mode = 0;
+        switch (mode) {
+            case 0: int x = 1; { } break;
+            // violation above ''}' at column 34 should be alone on a line'
+            case 1: { } int y = 1; break;
+            // violation above ''}' at column 23 should be alone on a line'
+            case 2: int t = 1; { };
+            // violation above ''}' at column 34 should be alone on a line'
+        }
+    }
+
+    public static void test17() {
+        int mode = 0;
+        switch (mode) {
+            case 0:
+            int x = 1;
+            {  }
+            case 1:
+            mode++;
+            {
+
+            } int y; // violation ''}' at column 13 should be alone on a line'
+            case 3:
+            {
+
+            } int z = 1;
+            // violation above ''}' at column 13 should be alone on a line'
+        }
+    }
+
+    public static void test18() {
+        int mode = 0;
+        switch (mode) {
+            case 0: {
+            }
+            int x;
+            case 1:
+            int z;
+            {
+
+            }break; default: break;
+            // violation above ''}' at column 13 should be alone on a line'
+        }
+    }
+}
