@@ -92,6 +92,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/blocks/emptyblock/Example3",
             "checks/blocks/emptycatchblock/Example4",
             "checks/blocks/emptycatchblock/Example5",
+            "checks/blocks/rightcurlyaloneorempty/Example2",
             "checks/blocks/needbraces/Example6",
             "checks/coding/illegaltokentext/Example3",
             "checks/coding/illegaltokentext/Example4",
