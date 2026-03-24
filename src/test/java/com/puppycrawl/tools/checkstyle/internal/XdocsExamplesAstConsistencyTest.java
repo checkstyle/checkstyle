@@ -188,7 +188,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/naming/abbreviationaswordinname/Example5",
             "checks/naming/abbreviationaswordinname/Example6",
             "checks/naming/abbreviationaswordinname/Example7",
-            "checks/naming/interfacetypeparametername/Example2",
             "checks/naming/lambdaparametername/Example2",
             "checks/naming/localfinalvariablename/Example3",
             "checks/naming/localvariablename/Example3",
@@ -298,7 +297,8 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithnearbytextfilter/Example9",
             "filters/suppresswithplaintextcommentfilter/Example5",
             "filters/suppresswithplaintextcommentfilter/Example9"
-           );
+            );
+
     /**
      * Tests that examples with the same code structure maintain consistency.
      * Examples not marked as independent must have identical AST structure.
