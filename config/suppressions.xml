@@ -194,4 +194,15 @@
             id="MatchXpathForbidTryCatchFail"
             files=".*[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/](?!utils|xpath|checks[\\/]coding|checks[\\/]design|checks[\\/]modifier|checks[\\/]naming|checks[\\/]annotation|checks[\\/]indentation|checks[\\/]metrics|checks[\\/]whitespace|checks[\\/]javadoc|checks[\\/]NewlineAtEndOfFileCheckTest|checks[\\/]SuppressWarningsHolderTest|checks[\\/]UncommentedMainCheckTest|CheckerTest|ConfigurationLoaderTest|DetailNodeTreeStringPrinterTest|JavadocPropertiesGeneratorTest|MainTest|PackageNamesLoaderTest|SarifLoggerTest|SuppressionsStringPrinterTest|ThreadModeSettingsTest|TreeWalkerTest).*"/>
 
+
+  <!-- Suppress PreferJavadocInlineTags for all files -->
+  <suppress checks="PreferJavadocInlineTags"/>
+
+  <!-- JavadocStyle incorrectly parses HTML tags inside {@code} blocks -->
+  <suppress checks="JavadocStyle"
+            files="PreferJavadocInlineTagsCheck\.java"/>
+
+  <!-- EscapedEntity is an error-prone warning, needs @SuppressWarnings to suppress -->
+  <suppress checks="SuppressWarnings"
+            files="PreferJavadocInlineTagsCheck\.java"/>
 </suppressions>
