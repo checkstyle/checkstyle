@@ -303,7 +303,7 @@ public class RequireThisCheck extends AbstractCheck {
         if (frame.getFrameName().equals(getNearestClassFrameName())) {
             log(ast, msgKey, ast.getText(), "");
         }
-        else if (!(frame instanceof AnonymousClassFrame)) {
+        else {
             log(ast, msgKey, ast.getText(), frame.getFrameName() + '.');
         }
     }
@@ -1404,7 +1404,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param methodToFind the AST of the method to find.
          * @return true, if a method with the same name and number of parameters is found.
          */
-        private boolean containsMethod(DetailAST methodToFind) {
+        boolean containsMethod(DetailAST methodToFind) {
             return containsMethodDef(instanceMethods, methodToFind)
                 || containsMethodDef(staticMethods, methodToFind);
         }
@@ -1473,6 +1473,16 @@ public class RequireThisCheck extends AbstractCheck {
         @Override
         protected String getFrameName() {
             return frameName;
+        }
+
+        @Override
+        protected AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
+            AbstractFrame frame = null;
+            if (containsMethod(identToFind)
+                || containsFieldOrVariable(identToFind)) {
+                frame = this;
+            }
+            return frame;
         }
 
     }
