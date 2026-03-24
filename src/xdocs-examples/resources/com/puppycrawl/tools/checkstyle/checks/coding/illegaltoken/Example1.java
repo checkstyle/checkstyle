@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 // xdoc section -- start
 class Example1 {
   native void InvalidExample();
-
+   
   void anotherMethod() {
     outer: // violation, 'Using 'outer:' is not allowed'
     for (int i = 0; i < 5; i++) {
@@ -21,3 +21,5 @@ class Example1 {
   }
 }
 // xdoc section -- end
+
+
