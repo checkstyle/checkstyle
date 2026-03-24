@@ -30,7 +30,7 @@ public class InputRequireThisAnonymousEmpty {
             }
 
             public int doSideEffect() {
-                return bar; // violation '.* 'bar' needs "InputRequireThisAnonymousEmpty.this.".'
+                return bar; // ok, field may be inherited from anonymous class parent
             }
         };
 

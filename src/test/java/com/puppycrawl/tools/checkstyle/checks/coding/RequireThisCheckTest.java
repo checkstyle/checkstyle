@@ -172,18 +172,6 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithAnonymousClass() throws Exception {
-        final String[] expected = {
-            "29:25: " + getCheckMessage(MSG_METHOD, "doSideEffect", ""),
-            "33:24: " + getCheckMessage(MSG_VARIABLE, "bar", "InputRequireThisAnonymousEmpty."),
-            "56:17: " + getCheckMessage(MSG_VARIABLE, "foobar", ""),
-        };
-        verifyWithInlineConfigParser(
-                getPath("InputRequireThisAnonymousEmpty.java"),
-                expected);
-    }
-
-    @Test
     public void testDefaultSwitch() {
         final RequireThisCheck check = new RequireThisCheck();
 
@@ -577,4 +565,42 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    @Test
+    public void testWithAnonymousClass() throws Exception {
+        final String[] expected = {
+            "29:25: " + getCheckMessage(MSG_METHOD, "doSideEffect", ""),
+            "56:17: " + getCheckMessage(MSG_VARIABLE, "foobar", ""),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputRequireThisAnonymousEmpty.java"),
+            expected);
+    }
+
+    @Test
+    public void testAnonymousClassParentField() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnonymousClassParentField.java"), expected);
+    }
+
+    @Test
+    public void testAnonymousClassWithThis() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnonymousClassWithThis.java"), expected);
+    }
+
+    @Test
+    public void testInnerClassOuterField() throws Exception {
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_VARIABLE, "field",
+                    "InputRequireThisInnerClassOuterField."),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisInnerClassOuterField.java"), expected);
+    }
 }
