@@ -1,0 +1,8 @@
+steps:
+  - label: ":maven: verify"
+    command:
+      - "apt-get update && apt-get install -y libxext6 libxrender1 libxtst6 libxi6 xvfb"
+      - "mvn -e --no-transfer-progress verify -Dsurefire.excludes=**/MainTest.java"
+    plugins:
+      - docker#v5.0.0:
+          image: "maven:3.9-eclipse-temurin-21"
