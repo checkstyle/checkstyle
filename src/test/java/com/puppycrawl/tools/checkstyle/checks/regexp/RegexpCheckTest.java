@@ -294,10 +294,10 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         final String file1 = getPath("InputRegexpCheckB2.java");
         final String file2 = getPath("InputRegexpCheckB1.java");
         final List<String> expectedFromFile1 = List.of(
-            "12: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import")
+            "15: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import")
         );
         final List<String> expectedFromFile2 = List.of(
-            "12: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import")
+            "15: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import")
         );
         verifyWithInlineConfigParser(file1, file2, expectedFromFile1, expectedFromFile2);
     }

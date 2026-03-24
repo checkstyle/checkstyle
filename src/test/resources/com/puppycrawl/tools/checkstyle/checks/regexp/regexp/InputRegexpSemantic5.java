@@ -3,7 +3,7 @@ Regexp
 format = Boolean x = new Boolean
 message = (default)null
 illegalPattern = (default)false
-duplicateLimit = 0
+duplicateLimit = (default)0
 errorLimit = (default)100
 ignoreComments = (default)false
 
