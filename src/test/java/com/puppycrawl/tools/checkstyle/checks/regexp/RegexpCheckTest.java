@@ -93,8 +93,8 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRequiredNoDuplicatesFail() throws Exception {
         final String[] expected = {
-            "28: " + getCheckMessage(MSG_DUPLICATE_REGEXP, "Boolean x = new Boolean"),
-            "33: " + getCheckMessage(MSG_DUPLICATE_REGEXP, "Boolean x = new Boolean"),
+            "27: " + getCheckMessage(MSG_DUPLICATE_REGEXP, "Boolean x = new Boolean"),
+            "32: " + getCheckMessage(MSG_DUPLICATE_REGEXP, "Boolean x = new Boolean"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic5.java"), expected);
