@@ -1032,6 +1032,7 @@ no-error-trino)
   ;;
 
 no-exception-struts)
+  export MAVEN_OPTS="-XX:MaxRAMPercentage=90"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
