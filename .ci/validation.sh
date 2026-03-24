@@ -196,15 +196,23 @@ test-al)
 versions)
   ./mvnw -e --no-transfer-progress clean versions:dependency-updates-report \
     versions:plugin-updates-report
-  if [ "$(grep "<nextVersion>" target/*-updates-report.xml | cat | wc -l)" -gt 0 ]; then
-    echo "Version reports (dependency-updates-report.xml):"
-    cat target/dependency-updates-report.xml
-    echo "Version reports (plugin-updates-report.xml):"
-    cat target/plugin-updates-report.xml
+  DEP_UPDATES=$(xmlstarlet sel \
+    -N d="https://www.mojohaus.org/VERSIONS/DEPENDENCY-UPDATES-REPORT/2.0.0" \
+    -t -m "//d:dependency[d:status!='no new available']" \
+    -v "d:groupId" -o ":" -v "d:artifactId" -o " " \
+    -v "d:currentVersion" -o " -> " -v "d:lastVersion" -n \
+    target/dependency-updates-report.xml)
+  PLUGIN_UPDATES=$(xmlstarlet sel \
+    -N p="https://www.mojohaus.org/VERSIONS/PLUGIN-UPDATES-REPORT/2.0.0" \
+    -t -m "//p:plugin[p:status!='no new available']" \
+    -v "p:groupId" -o ":" -v "p:artifactId" -o " " \
+    -v "p:currentVersion" -o " -> " -v "p:lastVersion" -n \
+    target/plugin-updates-report.xml)
+  if [ -n "${DEP_UPDATES}" ] || [ -n "${PLUGIN_UPDATES}" ]; then
     echo "New dependency versions:"
-    grep -B 7 -A 7 "<nextVersion>" target/dependency-updates-report.xml | cat
+    echo "${DEP_UPDATES}"
     echo "New plugin versions:"
-    grep -B 4 -A 7 "<nextVersion>" target/plugin-updates-report.xml | cat
+    echo "${PLUGIN_UPDATES}"
     echo "Verification is failed."
     false
   else
