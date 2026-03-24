@@ -2466,6 +2466,30 @@ public class XdocsPagesTest {
     }
 
     @Test
+    public void testResetStylingHasNullChecks() throws Exception {
+        final String checkstyleJsContent = Files.readString(CHECKSTYLE_JS_PATH);
+        final String[] requiredNullChecks = {
+            "const leftColumn = document.querySelector(\"#leftColumn\")",
+            "const body = document.querySelector(\"body\")",
+            "const bodyColumn = document.querySelector(\"#bodyColumn\")",
+            "const hamburger = document.querySelector(\"#hamburger\")",
+            "const xright = document.querySelector(\".xright\")",
+            "if (leftColumn)",
+            "if (body)",
+            "if (bodyColumn)",
+            "if (hamburger)",
+            "if (xright && xright.lastChild)",
+        };
+        for (String nullCheck : requiredNullChecks) {
+            assertWithMessage(
+                    "resetStyling() in %s is missing null check: '%s'",
+                    CHECKSTYLE_JS_PATH, nullCheck)
+                .that(checkstyleJsContent)
+                .contains(nullCheck);
+        }
+    }
+
+    @Test
     public void testAllXdocsModulesTemplatesHaveSinceMacroAtTheBeginning() throws Exception {
         for (Path path : XdocUtil.getXdocsTemplatesFilePaths()) {
             final String fileName = path.getFileName().toString();
