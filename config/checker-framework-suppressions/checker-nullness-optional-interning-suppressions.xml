@@ -3417,6 +3417,17 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
+    <lineContent>return frame;</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable AbstractFrame
+      method return type: @Initialized @NonNull AbstractFrame
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
     <lineContent>return frameWhereViolationIsFound;</lineContent>
     <details>
       type of expression: @Initialized @Nullable AbstractFrame

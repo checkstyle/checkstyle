@@ -172,18 +172,6 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithAnonymousClass() throws Exception {
-        final String[] expected = {
-            "29:25: " + getCheckMessage(MSG_METHOD, "doSideEffect", ""),
-            "33:24: " + getCheckMessage(MSG_VARIABLE, "bar", "InputRequireThisAnonymousEmpty."),
-            "56:17: " + getCheckMessage(MSG_VARIABLE, "foobar", ""),
-        };
-        verifyWithInlineConfigParser(
-                getPath("InputRequireThisAnonymousEmpty.java"),
-                expected);
-    }
-
-    @Test
     public void testDefaultSwitch() {
         final RequireThisCheck check = new RequireThisCheck();
 
@@ -577,4 +565,64 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    @Test
+    public void testWithAnonymousClass() throws Exception {
+        final String[] expected = {
+            "29:25: " + getCheckMessage(MSG_METHOD, "doSideEffect", ""),
+            "56:17: " + getCheckMessage(MSG_VARIABLE, "foobar", ""),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputRequireThisAnonymousEmpty.java"),
+            expected);
+    }
+
+    @Test
+    public void testAnonymousClassParentField() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnonymousClassParentField.java"), expected);
+    }
+
+    @Test
+    public void testInnerClassOuterField() throws Exception {
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_VARIABLE, "field",
+                    "InputRequireThisInnerClassOuterField."),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisInnerClassOuterField.java"), expected);
+    }
+
+    @Test
+    public void testAnonymousClassMemberLookup() throws Exception {
+        final String[] expected = {
+            "24:17: " + getCheckMessage(MSG_VARIABLE, "field", ""),
+            "25:17: " + getCheckMessage(MSG_METHOD, "bar", ""),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnonymousClassMemberLookup.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationMemberValue() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnnotationMemberValue.java"), expected);
+    }
+
+    @Test
+    public void testThreeLevelNesting() throws Exception {
+        final String[] expected = {
+            "18:17: " + getCheckMessage(MSG_VARIABLE, "field",
+                    "InputRequireThisThreeLevelNesting."),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisThreeLevelNesting.java"), expected);
+    }
 }

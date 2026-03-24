@@ -262,10 +262,15 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private void processIdent(DetailAST ast) {
         int parentType = ast.getParent().getType();
-        if (parentType == TokenTypes.EXPR
-                && ast.getParent().getParent().getParent().getType()
+        if (parentType == TokenTypes.EXPR) {
+            final int grandParentType = ast.getParent().getParent().getType();
+            if (grandParentType == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
+                parentType = TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR;
+            }
+            else if (ast.getParent().getParent().getParent().getType()
                     == TokenTypes.ANNOTATION_FIELD_DEF) {
-            parentType = TokenTypes.ANNOTATION_FIELD_DEF;
+                parentType = TokenTypes.ANNOTATION_FIELD_DEF;
+            }
         }
         switch (parentType) {
             case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR, TokenTypes.ANNOTATION,
@@ -303,7 +308,7 @@ public class RequireThisCheck extends AbstractCheck {
         if (frame.getFrameName().equals(getNearestClassFrameName())) {
             log(ast, msgKey, ast.getText(), "");
         }
-        else if (!(frame instanceof AnonymousClassFrame)) {
+        else {
             log(ast, msgKey, ast.getText(), frame.getFrameName() + '.');
         }
     }
@@ -419,7 +424,7 @@ public class RequireThisCheck extends AbstractCheck {
 
             case TokenTypes.LITERAL_NEW -> {
                 if (isAnonymousClassDef(ast)) {
-                    frameStack.addFirst(new AnonymousClassFrame(frame, ast.toString()));
+                    frameStack.addFirst(new AnonymousClassFrame(frame));
                 }
             }
 
@@ -1126,7 +1131,14 @@ public class RequireThisCheck extends AbstractCheck {
          * @return the name identifier text
          */
         /* package */ String getFrameName() {
-            return frameNameIdent.getText();
+            final String result;
+            if (frameNameIdent == null) {
+                result = "";
+            }
+            else {
+                result = frameNameIdent.getText();
+            }
+            return result;
         }
 
         /**
@@ -1404,7 +1416,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param methodToFind the AST of the method to find.
          * @return true, if a method with the same name and number of parameters is found.
          */
-        private boolean containsMethod(DetailAST methodToFind) {
+        /* package */ boolean containsMethod(DetailAST methodToFind) {
             return containsMethodDef(instanceMethods, methodToFind)
                 || containsMethodDef(staticMethods, methodToFind);
         }
@@ -1456,23 +1468,23 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private static class AnonymousClassFrame extends ClassFrame {
 
-        /** The name of the frame. */
-        private final String frameName;
-
         /**
          * Creates anonymous class frame.
          *
          * @param parent parent frame.
-         * @param frameName name of the frame.
          */
-        /* package */ AnonymousClassFrame(AbstractFrame parent, String frameName) {
+        /* package */ AnonymousClassFrame(AbstractFrame parent) {
             super(parent, null);
-            this.frameName = frameName;
         }
 
         @Override
-        protected String getFrameName() {
-            return frameName;
+        protected AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
+            AbstractFrame frame = null;
+            if (containsMethod(identToFind)
+                || containsFieldOrVariable(identToFind)) {
+                frame = this;
+            }
+            return frame;
         }
 
     }
