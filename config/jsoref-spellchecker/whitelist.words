@@ -761,6 +761,10 @@ lgpl
 LHSOf
 libcore
 liberapay
+libxext
+libxi
+libxrender
+libxtst
 lifecycle
 linebreak
 linecolumn
@@ -1539,6 +1543,7 @@ xsl
 xslt
 xsltproc
 XSO
+xvfb
 xwiki
 XXE
 XXXX
