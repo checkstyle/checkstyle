@@ -268,13 +268,50 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testInlineReturnForbidden() throws Exception {
         final String[] expected = {
-            "14:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-            "21:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-            "28:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "15:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "22:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "29:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
         };
 
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocInlineReturnForbidden.java"), expected);
+    }
+
+    @Test
+    public void testInlineReturnGoogle() throws Exception {
+        final String[] expected = {
+            "25:9: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "35:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturnGoogle.java"), expected);
+    }
+
+    @Test
+    public void testInlineReturnGoogleAltPattern() throws Exception {
+        final String[] expected = {
+            "23:9: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturnGoogleAltPattern.java"), expected);
+    }
+
+    @Test
+    public void testInlineReturnOnlyLowercase() throws Exception {
+        final String[] expected = {
+            "22:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturnOnlyLowercase.java"), expected);
+    }
+
+    @Test
+    public void testInlineReturnDefault() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturnDefault.java"));
     }
 
     @Test
