@@ -149,6 +149,16 @@
           </tr>
           <tr>
             <td>
+              <a href="singlelinecommentspacing.html#SingleLineCommentSpacing">
+                SingleLineCommentSpacing
+              </a>
+            </td>
+            <td>
+              Checks spacing around single-line comments.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="singlespaceseparator.html#SingleSpaceSeparator">
                 SingleSpaceSeparator
               </a>
