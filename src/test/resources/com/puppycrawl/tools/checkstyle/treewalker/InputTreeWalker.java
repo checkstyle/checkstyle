@@ -1,6 +1,6 @@
 /*
 com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck
-
+default property: max = 1
 */
 package com.puppycrawl.tools.checkstyle.treewalker;
 /*comment*/
