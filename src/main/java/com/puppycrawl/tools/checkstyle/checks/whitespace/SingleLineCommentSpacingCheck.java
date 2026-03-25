@@ -69,15 +69,16 @@ public class SingleLineCommentSpacingCheck extends AbstractCheck {
         final String line = getLine(ast.getLineNo() - 1);
         final int commentColumnNo = ast.getColumnNo();
         final String textBeforeComment = line.substring(0, commentColumnNo);
+        final boolean isTrailingComment = !textBeforeComment.isBlank();
 
-        if (!textBeforeComment.isBlank() && !isSpacingExempt(line, commentColumnNo)) {
+        if (isTrailingComment && !isSpacingExempt(line, commentColumnNo)) {
             if (!Character.isWhitespace(line.charAt(commentColumnNo - 1))) {
                 log(ast, MSG_KEY_BEFORE);
             }
+        }
 
-            if (hasMissingWhitespaceAfterCommentMarker(line, commentColumnNo)) {
-                log(ast.getLineNo(), commentColumnNo + 3, MSG_KEY_AFTER);
-            }
+        if (hasMissingWhitespaceAfterCommentMarker(line, commentColumnNo)) {
+            log(ast.getLineNo(), commentColumnNo + 3, MSG_KEY_AFTER);
         }
     }
 

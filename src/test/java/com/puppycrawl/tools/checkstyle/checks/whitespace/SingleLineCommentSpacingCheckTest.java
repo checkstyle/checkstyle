@@ -70,6 +70,7 @@ public class SingleLineCommentSpacingCheckTest extends AbstractModuleTestSupport
         final DefaultConfiguration checkConfig =
                 createModuleConfig(SingleLineCommentSpacingCheck.class);
         final String[] expected = {
+            "8:12: " + getCheckMessage(MSG_KEY_AFTER),
             "12:22: " + getCheckMessage(MSG_KEY_BEFORE),
             "12:25: " + getCheckMessage(MSG_KEY_AFTER),
             "13:31: " + getCheckMessage(MSG_KEY_AFTER),

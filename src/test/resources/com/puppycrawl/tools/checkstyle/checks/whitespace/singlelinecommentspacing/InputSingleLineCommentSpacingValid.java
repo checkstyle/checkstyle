@@ -8,7 +8,7 @@ public class InputSingleLineCommentSpacingValid {
         int oddCase = 3; ///odd case
         int bareComment = 4; //
 
-        //comment-only line
+        // comment-only line
         ///
         //////
     }
