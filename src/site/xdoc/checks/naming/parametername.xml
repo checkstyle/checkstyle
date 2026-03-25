@@ -79,6 +79,10 @@
 class Example1 {
   void method1(int v1) {}
   void method2(int V2) {} // violation 'Name 'V2' must match pattern'
+  @Override
+  public boolean equals(Object v3) {
+    return true;
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -99,7 +103,10 @@ class Example1 {
 class Example2 {
   void method1(int v1) {}
   void method2(int v_2) {}
-  void method3(int V3) {} // violation 'Name 'V3' must match pattern'
+  @Override
+  public boolean equals(Object V3) { // violation 'Name 'V3' must match pattern'
+    return true;
+  }
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -145,7 +152,10 @@ class Example3 {
 class Example4 {
   void method1(int v1) {}
   void method2(int v_2) {} // violation 'Name 'v_2' must match pattern'
-  void method3(int V3) {} // violation 'Name 'V3' must match pattern'
+  @Override
+  public boolean equals(Object V3) { // violation 'Name 'V3' must match pattern'
+    return true;
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
