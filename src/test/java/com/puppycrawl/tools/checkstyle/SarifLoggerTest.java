@@ -400,15 +400,16 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFinishLocalSetup() throws IOException {
+    public void testFinishLocalSetup() throws Exception {
+        final String inputFile = "InputSarifLoggerEmpty.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEmpty.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
+
         logger.finishLocalSetup();
-        logger.auditStarted(null);
-        logger.auditFinished(null);
-        assertWithMessage("instance should not be null")
-            .that(logger)
-            .isNotNull();
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
     @Test
