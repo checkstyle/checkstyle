@@ -54,6 +54,3 @@ class Example2 {
     }
 }
 // xdoc section -- end
-
-
-
