@@ -52,6 +52,14 @@
     <property name="eachLine" value="true"/>
   </module>
 
+  <module name="RegexpSingleline">
+    <property name="id" value="noTrailingWhitespace"/>
+    <property name="format" value="\s+$"/>
+    <property name="minimum" value="0"/>
+    <property name="maximum" value="0"/>
+    <property name="message" value="Trailing whitespace is not allowed"/>
+  </module>
+
   <module name="LineLength">
     <property name="fileExtensions" value="java"/>
     <property name="max" value="100"/>
