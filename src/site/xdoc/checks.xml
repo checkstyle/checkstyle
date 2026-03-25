@@ -1764,6 +1764,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/whitespace/singlelinecommentspacing.html#SingleLineCommentSpacing">
+                SingleLineCommentSpacing
+              </a>
+            </td>
+            <td>
+              Checks spacing around single-line comments.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/javadoc/singlelinejavadoc.html#SingleLineJavadoc">
                 SingleLineJavadoc
               </a>
