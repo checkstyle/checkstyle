@@ -130,11 +130,11 @@
   <suppress id="noConsecutiveLines" files="[\\/]javadocparagraph.xml"/>
 
   <!-- until #19144 -->
-  <suppress id="noUsageOfGetFileContentsMethod" files="JavadocMethodCheck.java"/>
+  <suppress id="noUsageOfGetFileContentsMethod" files="UnusedImportsCheck.java"/>
   <!-- until #19145 -->
-  <suppress id="noUsageOfGetFileContentsMethod" files="JavadocStyleCheck.java"/>
+  <suppress id="noUsageOfGetFileContentsMethod" files="JavadocMethodCheck.java"/>
   <!-- until #19146 -->
-  <suppress id="noUsageOfGetFileContentsMethod" files="JavadocTypeCheck.java"/>
+  <suppress id="noUsageOfGetFileContentsMethod" files="JavadocStyleCheck.java"/>
   <!-- until #19147 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocVariableCheck.java"/>
   <!-- until #19148 -->
