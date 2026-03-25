@@ -5,8 +5,9 @@ final class InputWhitespaceCharacters {
   // Contains a tab ->	<- // violation 'Line contains a tab character.'
   // Contains trailing whitespace ->
 
+  // violation 2 lines below 'Trailing whitespace is not allowed'
   /**
-   * Some javadoc.
+   * Some javadoc.  
    *
    * @param badFormat1 bad format
    * @param badFormat2 bad format
@@ -17,7 +18,8 @@ final class InputWhitespaceCharacters {
   int test1(int badFormat1, int badFormat2,
   		final int badFormat3) // violation 'Line contains a tab character.'
       throws java.lang.Exception {
-    return 0;
+    // violation below 'Trailing whitespace is not allowed'
+    return 0;  
   }
 
   // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
