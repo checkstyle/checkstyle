@@ -79,6 +79,7 @@
 class Example1 {
   void method1(int v1) {}
   void method2(int V2) {} // violation 'Name 'V2' must match pattern'
+  void method3(int v3) {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
