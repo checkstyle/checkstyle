@@ -403,16 +403,19 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private void logViolations(DetailAST scopeAst, Deque<VariableDesc> variablesStack) {
         while (!variablesStack.isEmpty() && variablesStack.peek().getScope() == scopeAst) {
             final VariableDesc variableDesc = variablesStack.pop();
-            DetailAST varAst = variableDesc.getTypeAst().getParent();
-            DetailAST assignNode = varAst.findFirstToken(TokenTypes.ASSIGN);
-            
-            if (!variableDesc.isUsed()
+            final DetailAST typeAst = variableDesc.getTypeAst();
+            if(typeAst !=null){
+                final DetailAST varAst = typeAst.getParent();
+                final DetailAST assignNode = varAst.findFirstToken(TokenTypes.ASSIGN);
+                if (!variableDesc.isUsed()
                     && !variableDesc.isInstVarOrClassVar() && !checkSideEffect(assignNode)) {
-                final DetailAST typeAst = variableDesc.getTypeAst();
                 if (allowUnnamedVariables) {
                     log(typeAst, MSG_UNUSED_NAMED_LOCAL_VARIABLE, variableDesc.getName());
-                } else {
+                }
+            
+                else {
                     log(typeAst, MSG_UNUSED_LOCAL_VARIABLE, variableDesc.getName());
+                    }
                 }
             }
         }
@@ -422,7 +425,10 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * This method is implemented to check if an AST node has a side effect.
      * Side effect=Calling a method (METHOD_CALL),Constructor (LITERAL_NEW)
      */
-    private boolean checkSideEffect(DetailAST ast) {
+    // @param ast the AST node to process
+    // @return true if condition satisfied else false
+    private static boolean checkSideEffect(DetailAST ast) {
+        
         // Condition:No value assigned, No constructor,No method
 
         if (ast == null) {
@@ -434,10 +440,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
                 || ast.getType() == TokenTypes.LITERAL_NEW) {
             return true;
         }
-        // Representation of side effects
-        // Set<Integer> SIDE_EFFECT_TOKENS = Set.of(TokenTypes.METHOD_CALL,
-        // TokenTypes.LITERAL_NEW);
-        // if (SIDE_EFFECT_TOKENS.contains(ast.getType())) return true;
+        
 
         int[] Side_Effect = { TokenTypes.METHOD_CALL, TokenTypes.LITERAL_NEW };
         for (int i = 0; i < Side_Effect.length; i++) {
@@ -823,14 +826,17 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param dotAst dotAst
      * @return true if ident nested under dotAst should be checked
      */
+
+    private static final int[] UNACCEPTABLE_CURRENT_OF_DOT = {
+    TokenTypes.METHOD_CALL,
+    TokenTypes.LITERAL_NEW
+};
+
     private static boolean shouldCheckIdentTokenNestedUnderDot(DetailAST dotAst) {
 
-        return TokenUtil.findFirstTokenByPredicate(dotAst,
-                currentAst -> {
-                    return TokenUtil.isOfType(currentAst,
-                            UNACCEPTABLE_current_OF_DOT);
-                })
-                .isEmpty();
+    return TokenUtil.findFirstTokenByPredicate(dotAst,
+    currentAst -> TokenUtil.isOfType(currentAst, TokenTypes.METHOD_CALL)
+    || TokenUtil.isOfType(currentAst, TokenTypes.LITERAL_NEW)) == null;
     }
 
     /**
