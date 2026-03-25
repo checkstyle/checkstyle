@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.SingleLineCommentSpacingCheck.MSG_KEY_AFTER;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.SingleLineCommentSpacingCheck.MSG_KEY_BEFORE;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,11 +34,9 @@ public class SingleLineCommentSpacingExamplesTest extends AbstractExamplesModule
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "18:18: " + getCheckMessage(MSG_KEY_BEFORE),
-            "18:21: " + getCheckMessage(MSG_KEY_AFTER),
-            "19:27: " + getCheckMessage(MSG_KEY_AFTER),
-            "20:24: " + getCheckMessage(MSG_KEY_BEFORE),
-            "23:8: " + getCheckMessage(MSG_KEY_AFTER),
+            "18:18: " + getCheckMessage(MSG_KEY_AFTER),
+            "19:24: " + getCheckMessage(MSG_KEY_AFTER),
+            "22:5: " + getCheckMessage(MSG_KEY_AFTER),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);

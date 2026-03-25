@@ -10,7 +10,7 @@
       <p>Since Checkstyle 12.2</p>
       <subsection name="Description" id="SingleLineCommentSpacing_Description">
         <div>
-          Checks spacing around single-line comments.
+          Checks spacing after single-line comment markers.
         </div>
       </subsection>
 
@@ -31,9 +31,8 @@ class Example1 {
   void method() {
     int ok = 1; // ok
 
-    int both = 1;//bad // 2 violations
+    int both = 1;//bad // violation 'should be followed by whitespace before comment text.'
     int afterOnly = 2; //bad // violation 'should be followed by whitespace before comment text.'
-    int beforeOnly = 3;// bad // violation 'should be preceded by whitespace when trailing code.'
     int bareComment = 4;//
 
     //comment-only line // violation 'should be followed by whitespace before comment text.'
@@ -59,11 +58,6 @@ class Example1 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22single.line.comment.spacing.after%22">
               single.line.comment.spacing.after
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22single.line.comment.spacing.before%22">
-              single.line.comment.spacing.before
             </a>
           </li>
         </ul>

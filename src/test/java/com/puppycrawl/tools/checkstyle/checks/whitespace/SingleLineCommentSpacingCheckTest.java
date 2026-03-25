@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.SingleLineCommentSpacingCheck.MSG_KEY_AFTER;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.SingleLineCommentSpacingCheck.MSG_KEY_BEFORE;
 
 import org.junit.jupiter.api.Test;
 
@@ -70,11 +69,9 @@ public class SingleLineCommentSpacingCheckTest extends AbstractModuleTestSupport
         final DefaultConfiguration checkConfig =
                 createModuleConfig(SingleLineCommentSpacingCheck.class);
         final String[] expected = {
-            "8:12: " + getCheckMessage(MSG_KEY_AFTER),
-            "12:22: " + getCheckMessage(MSG_KEY_BEFORE),
-            "12:25: " + getCheckMessage(MSG_KEY_AFTER),
-            "13:31: " + getCheckMessage(MSG_KEY_AFTER),
-            "14:28: " + getCheckMessage(MSG_KEY_BEFORE),
+            "8:9: " + getCheckMessage(MSG_KEY_AFTER),
+            "12:22: " + getCheckMessage(MSG_KEY_AFTER),
+            "13:28: " + getCheckMessage(MSG_KEY_AFTER),
         };
 
         verify(checkConfig, getPath("InputSingleLineCommentSpacingInvalid.java"), expected);

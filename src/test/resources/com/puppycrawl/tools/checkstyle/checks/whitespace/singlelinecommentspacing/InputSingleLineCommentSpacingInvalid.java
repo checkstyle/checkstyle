@@ -11,7 +11,6 @@ public class InputSingleLineCommentSpacingInvalid {
 
         int both = 1;//bad
         int afterOnly = 2; //bad
-        int beforeOnly = 3;// bad
         int bareComment = 4;//
     }
 }

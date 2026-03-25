@@ -5,11 +5,10 @@
              name="SingleLineCommentSpacing"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks spacing around single-line comments.
+ Checks spacing after single-line comment markers.
  &lt;/div&gt;</description>
          <message-keys>
             <message-key key="single.line.comment.spacing.after"/>
-            <message-key key="single.line.comment.spacing.before"/>
          </message-keys>
       </check>
    </module>

@@ -26,18 +26,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <div>
- * Checks spacing around trailing single-line comments.
+ * Checks spacing after single-line comment markers.
  * </div>
  *
  * @since 12.2
  */
 @StatelessCheck
 public class SingleLineCommentSpacingCheck extends AbstractCheck {
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties" file.
-     */
-    public static final String MSG_KEY_BEFORE = "single.line.comment.spacing.before";
 
     /**
      * A key is pointing to the warning message text in "messages.properties" file.
@@ -68,17 +63,9 @@ public class SingleLineCommentSpacingCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final String line = getLine(ast.getLineNo() - 1);
         final int commentColumnNo = ast.getColumnNo();
-        final String textBeforeComment = line.substring(0, commentColumnNo);
-        final boolean isTrailingComment = !textBeforeComment.isBlank();
-
-        if (isTrailingComment && !isSpacingExempt(line, commentColumnNo)) {
-            if (!Character.isWhitespace(line.charAt(commentColumnNo - 1))) {
-                log(ast, MSG_KEY_BEFORE);
-            }
-        }
 
         if (hasMissingWhitespaceAfterCommentMarker(line, commentColumnNo)) {
-            log(ast.getLineNo(), commentColumnNo + 3, MSG_KEY_AFTER);
+            log(ast, MSG_KEY_AFTER);
         }
     }
 
@@ -97,16 +84,4 @@ public class SingleLineCommentSpacingCheck extends AbstractCheck {
                 && !Character.isWhitespace(textAfterCommentMarker.charAt(0));
     }
 
-    /**
-     * Checks whether the comment should be ignored for this prototype.
-     *
-     * @param line source line that contains the comment
-     * @param commentColumnNo zero-based column of the {@code //} token
-     * @return true when the comment is bare or starts with slash-only content
-     */
-    private static boolean isSpacingExempt(String line, int commentColumnNo) {
-        final String textAfterCommentMarker = line.substring(commentColumnNo + 2);
-        final String trimmedCommentText = textAfterCommentMarker.trim();
-        return trimmedCommentText.isEmpty() || trimmedCommentText.charAt(0) == '/';
-    }
 }
