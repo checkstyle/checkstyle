@@ -2654,7 +2654,7 @@
                    enabled_by_default="true"/>
   <inspection_tool class="IteratorNextDoesNotThrowNoSuchElementException" enabled="true"
                    level="WARNING" enabled_by_default="true"/>
-  <!-- disabled until https://github.com/checkstyle/checkstyle/issues/17298 -->
+  <!-- disabled until https://youtrack.jetbrains.com/issue/IDEA-387427 -->
   <inspection_tool class="JavadocBlankLines" enabled="false" level="WARNING"
                    enabled_by_default="false"/>
   <inspection_tool class="JBoss" enabled="false" level="ERROR" enabled_by_default="false"/>
