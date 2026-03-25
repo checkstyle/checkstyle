@@ -195,6 +195,9 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/naming/localvariablename/Example5",
             "checks/naming/membername/Example2",
             "checks/naming/membername/Example3",
+            "checks/naming/parametername/Example2",
+            "checks/naming/parametername/Example3",
+            "checks/naming/parametername/Example4",
             "checks/naming/parametername/Example5",
             "checks/naming/patternvariablename/Example4",
             "checks/naming/typename/Example2",
@@ -808,8 +811,10 @@ public class XdocsExamplesAstConsistencyTest {
             result = null;
         }
         else {
-            final StructuralAstNode node = new StructuralAstNode(ast.getType(), ast.getText(),
-                    isClassOrConstructorName(ast));
+            final StructuralAstNode node = new StructuralAstNode(
+                    ast.getType(), ast.getText(), isClassOrConstructorName(ast),
+                    shouldCompareTokenText(ast)
+            );
 
             for (DetailAST child = ast.getFirstChild();
                  child != null;
@@ -853,42 +858,81 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
+     * Checks if token text should be compared for the AST node.
+     *
+     * @param ast the AST node to check
+     * @return true if token text should be compared
+     */
+    private static boolean shouldCompareTokenText(DetailAST ast) {
+        return isLiteralToken(ast.getType()) || isParameterName(ast);
+    }
+
+    /**
+     * Checks if a token type represents a literal that should have its text compared.
+     *
+     * @param tokenType the token type
+     * @return true if the token represents a literal with semantic value
+     */
+    private static boolean isLiteralToken(int tokenType) {
+        return switch (tokenType) {
+            case TokenTypes.NUM_INT, TokenTypes.NUM_LONG, TokenTypes.NUM_FLOAT,
+                 TokenTypes.NUM_DOUBLE, TokenTypes.STRING_LITERAL,
+                 TokenTypes.CHAR_LITERAL, TokenTypes.LITERAL_TRUE,
+                 TokenTypes.LITERAL_FALSE, TokenTypes.LITERAL_NULL -> true;
+            default -> false;
+        };
+    }
+
+    /**
+     * Checks if an AST node is an identifier representing parameter name.
+     *
+     * @param ast the AST node to check
+     * @return true if the node is a parameter name identifier
+     */
+    private static boolean isParameterName(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        final DetailAST parameters;
+        if (parent == null) {
+            parameters = null;
+        }
+        else {
+            parameters = parent.getParent();
+        }
+        final DetailAST methodDef;
+        if (parameters == null) {
+            methodDef = null;
+        }
+        else {
+            methodDef = parameters.getParent();
+        }
+        return parent != null
+                && ast.getType() == TokenTypes.IDENT
+                && parent.getType() == TokenTypes.PARAMETER_DEF
+                && parameters != null
+                && parameters.getType() == TokenTypes.PARAMETERS
+                && methodDef != null
+                && methodDef.getType() == TokenTypes.METHOD_DEF;
+    }
+
+    /**
      * Represents a structural AST node without comments or source positions.
      * This allows for pure structural comparison between example files.
-     * Now includes literal text values for semantic comparison.
+     * Includes selected token text to detect semantic code differences.
      */
     private static final class StructuralAstNode {
         private final int type;
         private final String text;
         private final List<StructuralAstNode> children = new ArrayList<>();
 
-        private StructuralAstNode(int type, String text, boolean ignoreText) {
+        private StructuralAstNode(int type, String text, boolean ignoreText,
+                boolean compareText) {
             this.type = type;
-            if (ignoreText) {
+            if (ignoreText || !compareText) {
                 this.text = null;
-            }
-            else if (isLiteralToken(type)) {
-                this.text = text;
             }
             else {
-                this.text = null;
+                this.text = text;
             }
-        }
-
-        /**
-         * Checks if a token type represents a literal that should have its text compared.
-         *
-         * @param tokenType the token type
-         * @return true if the token represents a literal with semantic value
-         */
-        private static boolean isLiteralToken(int tokenType) {
-            return switch (tokenType) {
-                case TokenTypes.NUM_INT, TokenTypes.NUM_LONG, TokenTypes.NUM_FLOAT,
-                     TokenTypes.NUM_DOUBLE, TokenTypes.STRING_LITERAL,
-                     TokenTypes.CHAR_LITERAL, TokenTypes.LITERAL_TRUE,
-                     TokenTypes.LITERAL_FALSE, TokenTypes.LITERAL_NULL -> true;
-                default -> false;
-            };
         }
 
         private void addChild(StructuralAstNode child) {
