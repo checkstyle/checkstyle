@@ -312,7 +312,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck",
             "com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder",
