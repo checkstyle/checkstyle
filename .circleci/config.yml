@@ -1,7 +1,6 @@
 version: 2.1
 
 jobs:
-
   validate-with-maven-script:
     description: Runs a maven script using the job name as the argument.
     parameters: &script_parameters
@@ -124,7 +123,7 @@ workflows:
       - validate-with-maven-script:
           name: no-error-pmd
           image-name: *cs_img
-          resource_class: medium+
+          resource_class: large
           command: ./.ci/validation.sh no-error-pmd
       - validate-with-maven-script:
           name: no-exception-struts
