@@ -229,8 +229,8 @@ class Example2 {
 
     void demonstrateSwitch() throws Exception {
         switch (field) {
-        case "EXAMPLE": processValues();                            // caseIndent
-        case "COMPLETED": handleValue("Completed Case", 456);       // caseIndent
+        case "EXAMPLE": processValues();                            // caseIndent=0
+        case "COMPLETED": handleValue("Completed Case", 456);       // caseIndent=0
         }
     }
 }
@@ -265,7 +265,7 @@ class Example3 {
     }
 
     void handleValue(String aFooString,
-                     int aFooInt) {      // violation, "incorrect indentation"
+                     int aFooInt) {      // violation, forceStrictCondition=true
 
         boolean cond1,cond2,cond3,cond4,cond5,cond6;
         cond1=cond2=cond3=cond4=cond5=cond6=false;
@@ -277,11 +277,11 @@ class Example3 {
         }
 
         if ((cond1 &amp;&amp; cond2)
-                || (cond3 &amp;&amp; cond4)        // violation, "incorrect indentation"
-                || !(cond5 &amp;&amp; cond6)) {    // violation, "incorrect indentation"
+                || (cond3 &amp;&amp; cond4)        // violation, forceStrictCondition=true
+                || !(cond5 &amp;&amp; cond6)) {    // violation, forceStrictCondition=true
             field.toUpperCase()
-                 .concat(" TASK")           // violation, "incorrect indentation"
-                 .chars().forEach(c -&gt; {    // violation, "incorrect indentation"
+                 .concat(" TASK")           // violation, forceStrictCondition=true
+                 .chars().forEach(c -&gt; {    // violation, forceStrictCondition=true
                      System.out.println((char) c);
                  });
         }
