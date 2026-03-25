@@ -399,6 +399,12 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
             .isEqualTo(1);
     }
 
+    /**
+     * This test verifies that finishLocalSetup() can be called without errors
+     * and that auditStarted/auditFinished work with null AuditListener.
+     * It cannot use verifyWithInlineConfigParserAndLogger because it tests
+     * the lifecycle methods directly rather than through Checker processing.
+     */
     @Test
     public void testFinishLocalSetup() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
