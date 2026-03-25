@@ -47,6 +47,16 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+public void testSideEffectInitializer() throws Exception {
+    verifyWithInlineConfigParser(
+        getPath("InputUnusedLocalVariableSideEffect.java"),
+        new String[] {
+            // no violations expected
+        }
+    );
+}
+
+    @Test
     public void testGetRequiredTokens() {
         final UnusedLocalVariableCheck checkObj =
                 new UnusedLocalVariableCheck();
