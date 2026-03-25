@@ -5,19 +5,14 @@ excludeScope = (default)null
 authorFormat = (default)null
 versionFormat = (default)null
 allowMissingParamTags = (default)false
-allowUnknownTags = true
+allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
 tokens = (default)BLOCK_COMMENT_BEGIN
 
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
-
 /**
- * The following is a bad tag.
- * @mytag Hello
+ * Javadoc for package-info to test null grandparent coverage.
  */
-public class InputJavadocTypeBadTag_1
-{
-}
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
