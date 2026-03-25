@@ -311,7 +311,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck",
             "com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck",
 
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck",
