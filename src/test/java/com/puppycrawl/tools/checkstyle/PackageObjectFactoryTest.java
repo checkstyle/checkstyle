@@ -56,6 +56,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.SingleLineCommentSpacingCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
@@ -354,6 +355,16 @@ public class PackageObjectFactoryTest {
         assertWithMessage("Check should not be null when creating module from name")
             .that(check)
             .isNotNull();
+    }
+
+    @Test
+    public void testCreateSingleLineCommentSpacingCheckByShortName() throws Exception {
+        final SingleLineCommentSpacingCheck check =
+                (SingleLineCommentSpacingCheck) factory.createModule("SingleLineCommentSpacing");
+
+        assertWithMessage("Check should not be null when creating module from short name")
+                .that(check)
+                .isNotNull();
     }
 
     @Test
