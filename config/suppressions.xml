@@ -133,8 +133,6 @@
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocMethodCheck.java"/>
   <!-- until #19145 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocStyleCheck.java"/>
-  <!-- until #19146 -->
-  <suppress id="noUsageOfGetFileContentsMethod" files="JavadocTypeCheck.java"/>
   <!-- until #19147 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocVariableCheck.java"/>
   <!-- until #19148 -->

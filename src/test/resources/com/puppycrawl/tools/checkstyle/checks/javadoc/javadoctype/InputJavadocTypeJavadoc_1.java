@@ -7,7 +7,7 @@ versionFormat = (default)null
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
-tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+tokens = (default)BLOCK_COMMENT_BEGIN
 
 
 */
@@ -19,7 +19,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
  ****    @author Oliver Burn
  * @version 1.0
  */
-class InputJavadocTypeJavadoc_1 // violation 'tag @author must match pattern 'ABC'.'
+class InputJavadocTypeJavadoc_1 // violation 'missing @author tag.'
 {
 }
 
@@ -51,11 +51,18 @@ class InputJavadocType_1
 }
 
 /**
+ * @author
+ */
+class InputJavadocTypeNoDesc // violation 'tag @author must match pattern 'ABC'.'
+{
+}
+
+/**
  * Testing author and version tag patterns
  ****    @author Oliver Burn
  * @version 1.0
  */
-enum InputJavadocTypeEnum_1 // violation 'tag @author must match pattern 'ABC'.'
+enum InputJavadocTypeEnum_1 // violation 'missing @author tag.'
 {
 }
 
@@ -91,7 +98,7 @@ enum InputJavadocTypeEnum_21 // violation 'tag @author must match pattern 'ABC'.
  ****    @author Oliver Burn
  * @version 1.0
  */
-@interface InputJavadocInterface_1 // violation 'tag @author must match pattern 'ABC'.'
+@interface InputJavadocInterface_1 // violation 'missing @author tag.'
 {
 }
 
