@@ -1,0 +1,7 @@
+steps:
+  - label: ":maven: verify"
+    command:
+      - "mvn -e --no-transfer-progress verify"
+    plugins:
+      - docker#v5.0.0:
+          image: "maven:3.9-eclipse-temurin-21"
