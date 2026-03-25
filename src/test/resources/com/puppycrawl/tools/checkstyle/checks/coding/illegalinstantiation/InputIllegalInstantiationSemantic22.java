@@ -1,6 +1,7 @@
 /*
 IllegalInstantiation
-classes = (default)
+classes = java.lang.Boolean,com.puppycrawl.tools.checkstyle.checks.coding.illegalinstantiation.\
+          InputModifier,java.io.File,java.awt.Color
 tokens = (default)CLASS_DEF
 
 
@@ -11,12 +12,12 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegalinstantiation;
 import java.io.*; // star import for instantiation tests
 import java.awt.Dimension; // explicit import for instantiation tests
 import java.awt.Color;
-
+import java.util.*;
 /**
  * Test case for detecting simple semantic violations.
  * @author Lars Kühne
  **/
-public class InputIllegalInstantiationSemantic2
+public class InputIllegalInstantiationSemantic22
 {
     public void triggerEmptyBlockWithoutBlock()
     {
@@ -51,5 +52,15 @@ public class InputIllegalInstantiationSemantic2
 
     private class InputModifier {
 
+    }
+
+    private void method() {
+        Boolean[] array = new Boolean[3];
+        Object object = new @Interned Object();
+        Map<Class<?>, Boolean> x = new HashMap<Class<?>, Boolean>();
+    }
+
+    @java.lang.annotation.Target(java.lang.annotation.ElementType.TYPE_USE)
+    @interface Interned {
     }
 }
