@@ -28,6 +28,7 @@ function getMavenProperty {
 }
 
 function getCheckstylePomVersion {
+  return 1
   getMavenProperty project.version
 }
 
