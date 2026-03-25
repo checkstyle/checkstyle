@@ -114,6 +114,8 @@
 
   <!-- intentional problem for testing -->
   <suppress id="noTrailingWhitespace"
+    files="rule462horizontalwhitespace[\\/]InputWhitespaceTrailingWhitespace\.java"/>
+  <suppress id="noTrailingWhitespace"
     files="[\\/]InputJavadocContentLocationTrailingSpace\.java"/>
   <suppress id="noTrailingWhitespace"
     files="[\\/]InputJavadocParagraphCorrect\.java"/>
