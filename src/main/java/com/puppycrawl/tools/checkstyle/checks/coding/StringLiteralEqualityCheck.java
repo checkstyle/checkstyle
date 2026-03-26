@@ -26,9 +26,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <div>
- * Checks that string literals are not used with <code>==</code> or <code>&#33;=</code>.
- * Since <code>==</code> will compare the object references, not the actual value of the strings,
- * <code>String.equals()</code> should be used.
+ * Checks that string literals are not used with {@code ==} or {@code !=}.
+ * Since {@code ==} will compare the object references, not the actual value of the strings,
+ * {@code String.equals()} should be used.
  * More information can be found
  * <a href="https://stackoverflow.com/questions/513832/how-do-i-compare-strings-in-java/">
  * in this article</a>.
@@ -49,9 +49,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </code></pre></div>
  *
  * @since 3.2
- * @noinspection HtmlTagCanBeJavadocTag
- * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded
- *      when replaced with Javadoc tag
  */
 @StatelessCheck
 public class StringLiteralEqualityCheck extends AbstractCheck {

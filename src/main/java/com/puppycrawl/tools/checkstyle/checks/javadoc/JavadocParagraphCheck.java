@@ -39,16 +39,17 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </p>
  * <ul>
  * <li>There is one blank line between each of two paragraphs.</li>
- * <li>Each paragraph but the first has &lt;p&gt; immediately
+ * <li>Each paragraph but the first has {@literal <p>} immediately
  * before the first word, with no space after.</li>
  * <li>The outer most paragraph tags should not precede
  * <a href="https://www.w3schools.com/html/html_blocks.asp">HTML block-tag</a>.
  * Nested paragraph tags are allowed to do that. This check only supports following block-tags:
- * &lt;address&gt;,&lt;blockquote&gt;
- * ,&lt;div&gt;,&lt;dl&gt;
- * ,&lt;h1&gt;,&lt;h2&gt;,&lt;h3&gt;,&lt;h4&gt;,&lt;h5&gt;,&lt;h6&gt;,&lt;hr&gt;
- * ,&lt;ol&gt;,&lt;p&gt;,&lt;pre&gt;
- * ,&lt;table&gt;,&lt;ul&gt;.
+ * {@literal <address>},{@literal <blockquote>}
+ * ,{@literal <div>},{@literal <dl>}
+ * ,{@literal <h1>},{@literal <h2>},{@literal <h3>},{@literal <h4>},{@literal <h5>},
+ * {@literal <h6>},{@literal <hr>}
+ * ,{@literal <ol>},{@literal <p>},{@literal <pre>}
+ * ,{@literal <table>},{@literal <ul>}.
  * </li>
  * </ul>
  *
@@ -109,12 +110,12 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
                    "ol", PARAGRAPH_TAG, "pre", "table", "ul");
 
     /**
-     * Control whether the &lt;p&gt; tag should be placed immediately before the first word.
+     * Control whether the {@literal <p>} tag should be placed immediately before the first word.
      */
     private boolean allowNewlineParagraph = true;
 
     /**
-     * Setter to control whether the &lt;p&gt; tag should be placed
+     * Setter to control whether the {@literal <p>} tag should be placed
      * immediately before the first word.
      *
      * @param value value to set.
