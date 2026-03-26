@@ -106,7 +106,7 @@ public final class DetailAstImpl implements DetailAST {
         text = token.getText();
         type = token.getType();
         lineNo = token.getLine();
-        columnNo = token.getCharPositionInLine();
+        columnNo = token.getCharPositionInLine() + 1;
     }
 
     /**
