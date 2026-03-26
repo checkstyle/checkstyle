@@ -138,7 +138,7 @@ public class ExecutableStatementCountCheckTest
                         () -> checkObj.visitToken(ast));
         assertWithMessage("Invalid exception message")
             .that(visit.getMessage())
-            .isEqualTo("ENUM[0x-1]");
+            .isEqualTo("ENUM[0x0]");
     }
 
     @Test
@@ -153,7 +153,7 @@ public class ExecutableStatementCountCheckTest
                         () -> checkObj.leaveToken(ast));
         assertWithMessage("Invalid exception message")
             .that(leave.getMessage())
-            .isEqualTo("ENUM[0x-1]");
+            .isEqualTo("ENUM[0x0]");
     }
 
     @Test

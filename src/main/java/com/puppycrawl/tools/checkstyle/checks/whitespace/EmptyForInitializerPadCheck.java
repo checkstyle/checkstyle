@@ -94,9 +94,9 @@ public class EmptyForInitializerPadCheck
         if (!ast.hasChildren()) {
             final int lineIdx = ast.getLineNo() - 1;
             final int[] line = getLineCodePoints(lineIdx);
-            final int before = ast.getColumnNo() - 1;
+            final int before = ast.getColumnNo() - 2;
             // don't check if semi at beginning of line
-            if (ast.getColumnNo() > 0 && !CodePointUtil.hasWhitespaceBefore(before, line)) {
+            if (ast.getColumnNo() > 1 && !CodePointUtil.hasWhitespaceBefore(before, line)) {
                 if (option == PadOption.NOSPACE
                     && CommonUtil.isCodePointWhitespace(line, before)) {
                     log(ast, MSG_PRECEDED, SEMICOLON);
