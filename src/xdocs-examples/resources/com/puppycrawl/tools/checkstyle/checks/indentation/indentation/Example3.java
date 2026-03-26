@@ -24,7 +24,7 @@ class Example3 {
     }
 
     void handleValue(String aFooString,
-                     int aFooInt) {      // violation, "incorrect indentation"
+                     int aFooInt) {      // violation, forceStrictCondition=true
 
         boolean cond1,cond2,cond3,cond4,cond5,cond6;
         cond1=cond2=cond3=cond4=cond5=cond6=false;
@@ -36,11 +36,11 @@ class Example3 {
         }
 
         if ((cond1 && cond2)
-                || (cond3 && cond4)        // violation, "incorrect indentation"
-                || !(cond5 && cond6)) {    // violation, "incorrect indentation"
+                || (cond3 && cond4)        // violation, forceStrictCondition=true
+                || !(cond5 && cond6)) {    // violation, forceStrictCondition=true
             field.toUpperCase()
-                 .concat(" TASK")           // violation, "incorrect indentation"
-                 .chars().forEach(c -> {    // violation, "incorrect indentation"
+                 .concat(" TASK")           // violation, forceStrictCondition=true
+                 .chars().forEach(c -> {    // violation, forceStrictCondition=true
                      System.out.println((char) c);
                  });
         }
@@ -53,6 +53,4 @@ class Example3 {
         }
     }
 }
-
-
 // xdoc section -- end

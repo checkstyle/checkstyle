@@ -48,12 +48,9 @@ class Example2 {
 
     void demonstrateSwitch() throws Exception {
         switch (field) {
-        case "EXAMPLE": processValues();                            // caseIndent
-        case "COMPLETED": handleValue("Completed Case", 456);       // caseIndent
+        case "EXAMPLE": processValues();                            // caseIndent=0
+        case "COMPLETED": handleValue("Completed Case", 456);       // caseIndent=0
         }
     }
 }
 // xdoc section -- end
-
-
-
