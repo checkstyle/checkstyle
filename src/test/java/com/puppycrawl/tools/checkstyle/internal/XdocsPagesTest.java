@@ -1911,6 +1911,7 @@ public class XdocsPagesTest {
                     checks.removeAll(IGNORED_SUN_MODULES);
                     yield checks;
                 }
+                case "oracle-javadpc" -> new HashSet<>(GOOGLE_MODULES);
                 case null -> {
                     assertWithMessage("Style name is unexpectedly null")
                             .fail();
