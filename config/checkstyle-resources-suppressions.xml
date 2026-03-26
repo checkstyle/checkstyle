@@ -596,5 +596,9 @@
     files=".*[\\/]sariflogger[\\/]InputSarifLogger Space\.java"/>
   <suppress id="resourceFileName"
     files=".*[\\/]sariflogger[\\/]InputSarifLogger Space\.java"/>
+  <suppress checks="FileLength"
+    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]indentation[\\/]InputIndentationNestedMethodCalls\.java"/>
+  <suppress checks="FileLength"
+    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]indentation[\\/]InputIndentationNestedMethodCallsInvalid\.java"/>
 
 </suppressions>
