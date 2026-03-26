@@ -78,6 +78,18 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         logger.auditFinished(null);
     }
 
+    /**
+     * This test directly exercises the escape method with all special characters
+     * that require escaping in JSON/SARIF output.
+     *
+     * <p>XML 1.0 forbids most control characters (&#x8;, &#xC;, &#x10;, &#x1E;, &#x1F;)
+     * even as numeric character references. XML spec 3.3.3 also normalizes
+     * newline/carriage return (&#xA;, &#xD;) to spaces in attribute values.
+     * Only tab (&#x9;) is valid in XML attributes.</p>
+     *
+     * <p>Therefore, this test cannot use verifyWithInlineConfigParserAndLogger
+     * and must verify escape() directly.</p>
+     */
     @Test
     public void testEscape() {
         final String[][] encodings = {
