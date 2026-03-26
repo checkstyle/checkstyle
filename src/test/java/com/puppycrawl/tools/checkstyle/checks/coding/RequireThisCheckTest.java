@@ -577,4 +577,24 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    /**
+     * Verifies that pattern variables in scope are not treated as instance fields,
+     * while actual instance field references are still reported.
+     *
+     * @throws Exception when code tested throws exception
+    */
+    @Test
+    public void testPatternVariables() throws Exception {
+        final String[] expected = {
+            "23:60: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "24:13: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "28:13: " + getCheckMessage(MSG_VARIABLE, "s", ""),
+            "29:13: " + getCheckMessage(MSG_VARIABLE, "n", ""),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisPatternVariables.java"),
+                expected);
+    }
+
 }
