@@ -811,9 +811,10 @@ public class XdocsExamplesAstConsistencyTest {
             result = null;
         }
         else {
+            final boolean ignoreText = isClassOrConstructorName(ast)
+                    || !shouldCompareTokenText(ast);
             final StructuralAstNode node = new StructuralAstNode(
-                    ast.getType(), ast.getText(), isClassOrConstructorName(ast),
-                    shouldCompareTokenText(ast)
+                    ast.getType(), ast.getText(), ignoreText
             );
 
             for (DetailAST child = ast.getFirstChild();
@@ -924,10 +925,9 @@ public class XdocsExamplesAstConsistencyTest {
         private final String text;
         private final List<StructuralAstNode> children = new ArrayList<>();
 
-        private StructuralAstNode(int type, String text, boolean ignoreText,
-                boolean compareText) {
+        private StructuralAstNode(int type, String text, boolean ignoreText) {
             this.type = type;
-            if (ignoreText || !compareText) {
+            if (ignoreText) {
                 this.text = null;
             }
             else {
