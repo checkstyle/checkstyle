@@ -328,20 +328,30 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStreamsNotClosedByLogger() throws IOException {
-        try (MockByteArrayOutputStream infoStream = new MockByteArrayOutputStream();
-             MockByteArrayOutputStream errorStream = new MockByteArrayOutputStream()) {
-            final DefaultLogger defaultLogger = new DefaultLogger(
-                infoStream, OutputStreamOptions.NONE,
-                errorStream, OutputStreamOptions.NONE);
-            defaultLogger.auditStarted(null);
-            defaultLogger.auditFinished(null);
-            assertWithMessage("Info stream should be open")
-                .that(infoStream.closedCount)
-                .isEqualTo(0);
-            assertWithMessage("Error stream should be open")
-                .that(errorStream.closedCount)
-                .isEqualTo(0);
+    public void testStreamsNotClosedByLogger() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestSingleError.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestSingleError.txt";
+
+        try (ByteArrayOutputStream infoStream = new ModifiedByteArrayOutputStream();
+            ByteArrayOutputStream errorStream = new ModifiedByteArrayOutputStream()) {
+            final DefaultLogger dl = new DefaultLogger(
+                    infoStream, OutputStreamOptions.NONE,
+                    errorStream, OutputStreamOptions.NONE);
+
+            verifyWithInlineConfigParserAndDefaultLogger(
+                    getPath(inputFile),
+                    getPath(expectedInfoFile),
+                    getPath(expectedErrorFile),
+                    dl, infoStream, errorStream);
+        }
+    }
+
+    private static final class ModifiedByteArrayOutputStream extends ByteArrayOutputStream {
+        @Override
+        public void close() throws IOException {
+            reset();
+            super.close();
         }
     }
 
