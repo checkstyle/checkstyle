@@ -94,7 +94,7 @@ public class HtmlTag {
     }
 
     /**
-     * Indicates if this tag is incomplete (has no close &gt;).
+     * Indicates if this tag is incomplete (has no close {@literal >}).
      *
      * @return {@code true} if the tag is incomplete.
      */
