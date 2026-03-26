@@ -1866,7 +1866,7 @@ public final class TokenTypes {
      **/
     public static final int IDENT = JavaLanguageLexer.IDENT;
     /**
-     * The <code>&#46;</code> (dot) operator.
+     * The {@code .} (dot) operator.
      *
      * <p>For example:</p>
      * <pre>
@@ -3680,7 +3680,7 @@ public final class TokenTypes {
      **/
     public static final int BOR_ASSIGN = JavaLanguageLexer.BOR_ASSIGN;
     /**
-     * The <code>&#63;</code> (conditional) operator.  Technically,
+     * The {@code ?} (conditional) operator.  Technically,
      * the colon is also part of this operator, but it appears as a
      * separate token.
      *
@@ -3838,7 +3838,7 @@ public final class TokenTypes {
      **/
     public static final int BAND = JavaLanguageLexer.BAND;
     /**
-     * The <code>&#33;=</code> (not equal) operator.
+     * The {@code !=} (not equal) operator.
      *
      * <p>For example:</p>
      * <pre>
@@ -4272,7 +4272,7 @@ public final class TokenTypes {
      **/
     public static final int BNOT = JavaLanguageLexer.BNOT;
     /**
-     * The <code>&#33;</code> (logical complement) operator.
+     * The {@code !} (logical complement) operator.
      *
      * <p>For example:</p>
      * <pre>
