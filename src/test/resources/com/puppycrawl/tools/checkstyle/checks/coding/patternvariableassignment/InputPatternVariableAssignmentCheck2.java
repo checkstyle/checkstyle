@@ -63,7 +63,7 @@ public class InputPatternVariableAssignmentCheck2 {
         if (!(s instanceof Triangle r)) {
             return false;
         }
-        r = null; // ok until #17203
+        r = null; // violation "Assignment of pattern variable 'r' is not allowed."
         return true;
      }
 
