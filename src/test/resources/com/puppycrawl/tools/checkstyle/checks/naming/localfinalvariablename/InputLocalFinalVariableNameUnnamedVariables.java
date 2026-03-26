@@ -1,12 +1,18 @@
 /*
 LocalFinalVariableName
+format = (default)^([a-z][a-zA-Z0-9]*|_)$
+tokens = (default)VARIABLE_DEF, PARAMETER_DEF, RESOURCE
 
 */
 
 // Java21
-package com.puppycrawl.tools.checkstyle.checks.naming.localfinalvariablename;
+package com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableName
+format = (default)^([a-z][a-zA-Z0-9]*|_)$
+tokens = (default)VARIABLE_DEF, PARAMETER_DEF, RESOURCE;
 
-public class InputLocalFinalVariableNameUnnamedVariables {
+public class InputLocalFinalVariableName
+format = (default)^([a-z][a-zA-Z0-9]*|_)$
+tokens = (default)VARIABLE_DEF, PARAMETER_DEF, RESOURCEUnnamedVariables {
 
     void testTryWithResource(Object obj) {
         try (var _ = lock()) {
