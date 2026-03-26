@@ -20,7 +20,8 @@
  Nested paragraph tags are allowed to do that. This check only supports following block-tags:
  &amp;lt;address&amp;gt;,&amp;lt;blockquote&amp;gt;
  ,&amp;lt;div&amp;gt;,&amp;lt;dl&amp;gt;
- ,&amp;lt;h1&amp;gt;,&amp;lt;h2&amp;gt;,&amp;lt;h3&amp;gt;,&amp;lt;h4&amp;gt;,&amp;lt;h5&amp;gt;,&amp;lt;h6&amp;gt;,&amp;lt;hr&amp;gt;
+ ,&amp;lt;h1&amp;gt;,&amp;lt;h2&amp;gt;,&amp;lt;h3&amp;gt;,&amp;lt;h4&amp;gt;,&amp;lt;h5&amp;gt;,
+ &amp;lt;h6&amp;gt;,&amp;lt;hr&amp;gt;
  ,&amp;lt;ol&amp;gt;,&amp;lt;p&amp;gt;,&amp;lt;pre&amp;gt;
  ,&amp;lt;table&amp;gt;,&amp;lt;ul&amp;gt;.
  &lt;/li&gt;
