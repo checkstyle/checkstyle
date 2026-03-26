@@ -5635,7 +5635,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/MethodCallHandler.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter ast of AbstractExpressionHandler.getLineStart.</message>
-    <lineContent>if (getLineStart(rparen) == rparen.getColumnNo()) {</lineContent>
+    <lineContent>if (getLineStart(rparen) == rparen.getColumnNo() - 1) {</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
       required: @Initialized @NonNull DetailAST
@@ -7128,7 +7128,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoWhitespaceAfterCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference endOfParams</message>
-    <lineContent>after = endOfParams.getColumnNo() + 1;</lineContent>
+    <lineContent>after = endOfParams.getColumnNo();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

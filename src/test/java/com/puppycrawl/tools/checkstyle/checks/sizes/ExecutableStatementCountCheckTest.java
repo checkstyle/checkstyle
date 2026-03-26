@@ -133,12 +133,24 @@ public class ExecutableStatementCountCheckTest
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(
             new CommonToken(TokenTypes.ENUM, "ENUM"));
+<<<<<<< HEAD
         final IllegalStateException visit =
                 getExpectedThrowable(IllegalStateException.class,
                         () -> checkObj.visitToken(ast));
         assertWithMessage("Invalid exception message")
             .that(visit.getMessage())
             .isEqualTo("ENUM[0x-1]");
+=======
+        try {
+            checkObj.visitToken(ast);
+            assertWithMessage("exception expected").fail();
+        }
+        catch (IllegalStateException exc) {
+            assertWithMessage("Invalid exception message")
+                .that(exc.getMessage())
+                .isEqualTo("ENUM[0x0]");
+        }
+>>>>>>> 32de9de387 (Issue #4997: Column number in DetailAST should start with 1)
     }
 
     @Test
@@ -148,12 +160,24 @@ public class ExecutableStatementCountCheckTest
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(
             new CommonToken(TokenTypes.ENUM, "ENUM"));
+<<<<<<< HEAD
         final IllegalStateException leave =
                 getExpectedThrowable(IllegalStateException.class,
                         () -> checkObj.leaveToken(ast));
         assertWithMessage("Invalid exception message")
             .that(leave.getMessage())
             .isEqualTo("ENUM[0x-1]");
+=======
+        try {
+            checkObj.leaveToken(ast);
+            assertWithMessage("exception expected").fail();
+        }
+        catch (IllegalStateException exc) {
+            assertWithMessage("Invalid exception message")
+                .that(exc.getMessage())
+                .isEqualTo("ENUM[0x0]");
+        }
+>>>>>>> 32de9de387 (Issue #4997: Column number in DetailAST should start with 1)
     }
 
     @Test
