@@ -75,8 +75,15 @@ public class SlistHandler extends BlockParentHandler {
         //  preceded by a switch
 
         final IndentLevel result;
+        if (isDoubleBraceInstanceInit()) {
+            // For double-brace initialization like new HashMap<>() {{ put(...); }},
+            // the instance initializer's SLIST shares the same scope level as the
+            // OBJBLOCK curly. Use the OBJBLOCK's own indent so children are indented
+            // one level from the anonymous class, not two.
+            result = getParent().getIndent();
+        }
         // if our parent is a block handler we want to be transparent
-        if (getParent() instanceof BlockParentHandler
+        else if (getParent() instanceof BlockParentHandler
                 && !(getParent() instanceof SlistHandler)
             || child instanceof SlistHandler
                 && getParent() instanceof CaseHandler) {
@@ -84,6 +91,31 @@ public class SlistHandler extends BlockParentHandler {
         }
         else {
             result = super.getSuggestedChildIndent(child);
+        }
+        return result;
+    }
+
+    /**
+     * Checks if this handler represents an instance initializer in a double-brace
+     * initialization pattern. A double-brace initialization is when an anonymous class
+     * has an instance initializer whose opening brace is on the same line as the
+     * anonymous class opening brace, e.g. {@code new HashMap<>() {{ put(...); }}}.
+     *
+     * @return true if this is a double-brace instance initializer
+     */
+    private boolean isDoubleBraceInstanceInit() {
+        boolean result = false;
+        if (getMainAst().getType() == TokenTypes.INSTANCE_INIT) {
+            final DetailAST parentAst = getMainAst().getParent();
+            if (parentAst.getType() == TokenTypes.OBJBLOCK
+                    && parentAst.getParent().getType() == TokenTypes.LITERAL_NEW) {
+                final DetailAST objBlockLcurly =
+                        parentAst.findFirstToken(TokenTypes.LCURLY);
+                final DetailAST slist =
+                        getMainAst().findFirstToken(TokenTypes.SLIST);
+                result = objBlockLcurly != null && slist != null
+                        && objBlockLcurly.getLineNo() == slist.getLineNo();
+            }
         }
         return result;
     }
