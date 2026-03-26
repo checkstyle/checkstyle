@@ -337,7 +337,7 @@ public class XpathQueryGenerator {
     }
 
     /**
-     * Escape &lt;, &gt;, &amp;, &#39; and &quot; as their entities.
+     * Escape {@literal <}, {@literal >}, &amp;, &#39; and &quot; as their entities.
      * Custom method for Xpath generation to maintain compatibility
      * with Saxon and encoding outside Ascii range characters.
      *
