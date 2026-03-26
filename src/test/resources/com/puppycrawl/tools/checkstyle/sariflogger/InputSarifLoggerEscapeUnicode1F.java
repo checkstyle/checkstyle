@@ -4,13 +4,13 @@
     <module name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck">
       <property name="tokens" value="NUM_INT"/>
       <property name="format" value="1"/>
-      <property name="message" value="&quot;\\ \b\f\n\r\t/ \u0010\u001E\u001F bar1234"/>
+      <property name="message" value="\u001F"/>
     </module>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.sariflogger;
 
-public class InputSarifLoggerEscapedMessage {
+public class InputSarifLoggerEscapeUnicode1F {
     int x = 1;
 }

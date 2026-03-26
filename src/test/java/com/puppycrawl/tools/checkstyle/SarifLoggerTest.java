@@ -79,28 +79,157 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEscape() {
-        final String[][] encodings = {
-            {"\"", "\\\""},
-            {"\\", "\\\\"},
-            {"\b", "\\b"},
-            {"\f", "\\f"},
-            {"\n", "\\n"},
-            {"\r", "\\r"},
-            {"\t", "\\t"},
-            {"/", "\\/"},
-            {"\u0010", "\\u0010"},
-            {"\u001E", "\\u001E"},
-            {"\u001F", "\\u001F"},
-            {" ", " "},
-            {"bar1234", "bar1234"},
-        };
-        for (String[] encoding : encodings) {
-            final String encoded = SarifLogger.escape(encoding[0]);
-            assertWithMessage("\"%s\"", encoding[0])
-                .that(encoded)
-                .isEqualTo(encoding[1]);
-        }
+    public void testEscape() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapedMessage.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapedMessage.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapeQuote() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeQuote.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeQuote.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapeBackslash() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeBackslash.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeBackslash.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapeBell() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeBell.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeBell.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapeFormFeed() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeFormFeed.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeFormFeed.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapeNewline() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeNewline.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeNewline.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapeCarriageReturn() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeCarriageReturn.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeCarriageReturn.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapeTab() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeTab.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeTab.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapeUnicode10() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeUnicode10.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeUnicode10.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapeUnicode1E() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeUnicode1E.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeUnicode1E.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapeUnicode1F() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeUnicode1F.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeUnicode1F.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapeSpace() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeSpace.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeSpace.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapeNormal() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeNormal.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeNormal.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapeSlash() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeSlash.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeSlash.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
     @Test

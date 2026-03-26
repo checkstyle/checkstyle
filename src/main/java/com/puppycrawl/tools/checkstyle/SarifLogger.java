@@ -482,9 +482,12 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
                 case '/' -> "\\/";
                 default -> {
                     if (chr <= UNICODE_ESCAPE_UPPER_LIMIT) {
+                        System.out.println("#################UNICODE ESCAPED#######################");
                         yield escapeUnicode1F(chr);
                     }
+                    System.out.println("#################IF NOT ENTRED #######################");
                     yield Character.toString(chr);
+                    
                 }
             };
             sb.append(replacement);

@@ -38,7 +38,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapedMessage.java"
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeBell.java"
                 },
                 "region": {
                   "startColumn": 13,
@@ -48,7 +48,7 @@
             }
           ],
           "message": {
-            "text": "\"\\\\ \\b\\f\\n\\r\\t\/ \\u0010\\u001E\\u001F bar1234"
+            "text": "\\b"
           },
           "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
         }
