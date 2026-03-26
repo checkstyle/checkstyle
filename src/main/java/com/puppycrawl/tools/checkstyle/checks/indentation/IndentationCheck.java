@@ -273,6 +273,20 @@ public class IndentationCheck extends AbstractCheck {
 
     /**
      * Setter to specify how far an array initialization should be indented when on next line.
+     * <p>
+     * Example:
+     * </p>
+     * <pre>
+     * int[] array = {
+     *     1, // arrayInitIndent = 4 (default)
+     *     2
+     * };
+     *
+     * int[] array = {
+     *         1, // arrayInitIndent = 8
+     *         2
+     * };
+     * </pre>
      *
      * @param arrayInitIndent the array initialization indentation level
      * @since 5.8
