@@ -2,8 +2,9 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="FinalParameters">
-      <property name="tokens" value="FOR_EACH_CLAUSE, LITERAL_CATCH"/>
+      <property name="ignorePrimitiveTypes" value="false"/>
       <property name="ignoreUnnamedParameters" value="true"/>
+      <property name="tokens" value="FOR_EACH_CLAUSE, LITERAL_CATCH"/>
     </module>
   </module>
 </module>

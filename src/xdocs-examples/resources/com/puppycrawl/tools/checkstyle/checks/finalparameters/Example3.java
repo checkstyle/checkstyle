@@ -3,6 +3,8 @@
   <module name="TreeWalker">
     <module name="FinalParameters">
       <property name="ignorePrimitiveTypes" value="true"/>
+      <property name="ignoreUnnamedParameters" value="true"/>
+      <property name="tokens" value="METHOD_DEF, CTOR_DEF"/>
     </module>
   </module>
 </module>
