@@ -412,6 +412,13 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
                 getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
+    /**
+     * SarifLogger.readResource(String) is a static utility method that loads
+     * classpath resources directly. Passing an invalid name triggers an IOException
+     * that is not reachable through the normal Checker.process(...) and
+     * Checker.fireErrors(...) execution flow, so this test must call the method
+     * directly rather than using verifyWithInlineConfigParserAndLogger.
+     */
     @Test
     public void testReadResourceWithInvalidName() {
         final IOException exception =
