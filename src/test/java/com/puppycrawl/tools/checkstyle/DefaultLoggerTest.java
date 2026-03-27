@@ -308,6 +308,14 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
         }
     }
 
+    /**
+     * Direct invocation of {@code addException} is necessary because
+     * {@code Checker} implementation does not call {@code addException}
+     * during normal file processing flow, leaving mutations on lines 179-183
+     * ({@code PrintWriter::println}, {@code getLocalizedMessage},
+     * {@code AuditEvent::getFileName}, {@code Throwable::printStackTrace})
+     * with no coverage if tested only through {@code verifyWithInlineConfigParserAndDefaultLogger}.
+     */
     @Test
     public void testAddException() throws Exception {
         try (MockByteArrayOutputStream errorStream = new MockByteArrayOutputStream()) {
