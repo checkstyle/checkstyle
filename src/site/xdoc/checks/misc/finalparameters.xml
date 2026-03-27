@@ -85,7 +85,11 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="FinalParameters"/&gt;
+    &lt;module name="FinalParameters"&gt;
+      &lt;property name="ignorePrimitiveTypes" value="false"/&gt;
+      &lt;property name="ignoreUnnamedParameters" value="true"/&gt;
+      &lt;property name="tokens" value="METHOD_DEF, CTOR_DEF"/&gt;
+    &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -96,7 +100,7 @@
 public class Example1 {
   public Example1() { }
   public Example1(final int m) { }
-  public Example1(final int m, int n) { } // violation, 'n should be final'
+  public Example1(final int m, int n) { } // violation, 'n should be final:'
   public void methodOne(final int x) { }
   public void methodTwo(int x) { } // violation, 'x should be final'
   public static void main(String[] args) { } // violation, 'args should be final'
@@ -110,6 +114,8 @@ public class Example1 {
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="FinalParameters"&gt;
+      &lt;property name="ignorePrimitiveTypes" value="false"/&gt;
+      &lt;property name="ignoreUnnamedParameters" value="true"/&gt;
       &lt;property name="tokens" value="CTOR_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
@@ -138,6 +144,8 @@ public class Example2 {
   &lt;module name="TreeWalker"&gt;
     &lt;module name="FinalParameters"&gt;
       &lt;property name="ignorePrimitiveTypes" value="true"/&gt;
+      &lt;property name="ignoreUnnamedParameters" value="true"/&gt;
+      &lt;property name="tokens" value="METHOD_DEF, CTOR_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -163,8 +171,9 @@ public class Example3 {
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="FinalParameters"&gt;
-      &lt;property name="tokens" value="FOR_EACH_CLAUSE, LITERAL_CATCH"/&gt;
+      &lt;property name="ignorePrimitiveTypes" value="false"/&gt;
       &lt;property name="ignoreUnnamedParameters" value="true"/&gt;
+      &lt;property name="tokens" value="FOR_EACH_CLAUSE, LITERAL_CATCH"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;

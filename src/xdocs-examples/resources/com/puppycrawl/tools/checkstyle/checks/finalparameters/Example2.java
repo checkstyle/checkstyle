@@ -2,6 +2,8 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="FinalParameters">
+      <property name="ignorePrimitiveTypes" value="false"/>
+      <property name="ignoreUnnamedParameters" value="true"/>
       <property name="tokens" value="CTOR_DEF"/>
     </module>
   </module>
