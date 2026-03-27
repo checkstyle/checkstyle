@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0
+                              https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Oracle Javadoc Style</title>
+  </head>
+
+  <body>
+    <section name="Oracle Javadoc Style Checkstyle Coverage ">
+      <subsection name="Useful information" id="Oracle_Useful_information">
+        <p>
+          This coverage report was created for
+          <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html">
+            Oracle Javadoc Style</a>(
+        </p>
+        <p>
+            Checkstyle configuration for 'Oracle Javadoc Style'
+        </p>
+      </subsection>
+
+      <subsection name="Legend" id="Oracle_Legend">
+        <p>
+          "???" - Report is incomplete in this line.
+          <br />
+          "--" - There is no rule in this paragraph.
+          <br />
+          "↓" - This paragraph is the high-level point of some group.
+          <br />
+          <span class="wrapper inline">
+            <img
+                src="images/ok_green.png"
+                alt="" />
+          </span>
+          - Existing Check covers all requirements from Google.
+          <br />
+          <span class="wrapper inline">
+            <img
+                src="images/ok_blue.png"
+                alt="" />
+          </span>
+          - Existing Check covers some part of requirements from Google.
+          <br />
+          <span class="wrapper inline">
+            <img
+                src="images/ban_red.png"
+                alt="" />
+          </span>
+          - Requirements are not possible to check by Checkstyle at all.
+          <br />
+        </p>
+      </subsection>
+
+      <subsection name="Coverage table" id="Oracle_Coverage_table">
+        <p>
+          <b>ATTENTION:</b>
+          This table reflects Checkstyle coverage for Oracle Javadoc guidelines.
+        </p>
+
+        <div class="wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th/>
+                <th>Oracle Javadoc Rule</th>
+                <th>Checkstyle Checks Used</th>
+                <th>Sample files</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <!-- 1 INTRODUCTION -->
+              <tr>
+                <td><a name="a1"/><a href="#1"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td><strong>1 Introduction</strong></td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a1.1"/><a href="#1.1"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>1.1 Principles</td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a1.2"/><a href="#1.2"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>1.2 Terminology</td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a1.3"/><a href="#1.3"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>1.3 Source Files</td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <!-- 2 WRITING DOC COMMENTS -->
+              <tr>
+                <td><a name="a2"/><a href="#2"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td><strong>2 Writing Doc Comments</strong></td>
+                <td>↓</td>
+                <td/>
+              </tr>
+
+              <!-- FORMAT -->
+              <tr>
+                <td><a name="a2.1"/><a href="#2.1"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>2.1 Format of a Doc Comment</td>
+                <td>↓</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.1.1"/><a href="#2.1.1"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Doc comment precedes declaration</td>
+                <td>
+                  <span class="wrapper inline"><img src="images/ok_blue.png" alt=""/></span>
+                  <a href="checks/javadoc/invalidjavadocposition.html#InvalidJavadocPosition">InvalidJavadocPosition</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline"><img src="images/ok_blue.png" alt=""/></span>
+                  <a href="checks/javadoc/missingjavadocmethod.html#MissingJavadocMethod">MissingJavadocMethod</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline"><img src="images/ok_blue.png" alt=""/></span>
+                  <a href="checks/javadoc/missingjavadoctype.html#MissingJavadocType">MissingJavadocType</a>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.1.2"/><a href="#2.1.2"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Indentation and alignment</td>
+                <td>
+                  <span class="wrapper inline"><img src="images/ok_blue.png" alt=""/></span>
+                  <a href="checks/misc/commentsindentation.html#CommentsIndentation">CommentsIndentation</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline"><img src="images/ok_blue.png" alt=""/></span>
+                  <a href="checks/javadoc/javadocleadingasteriskalign.html#JavadocLeadingAsteriskAlign">JavadocLeadingAsteriskAlign</a>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.1.3"/><a href="#2.1.3"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Empty line before tags</td>
+                <td>
+                  <span class="wrapper inline"><img src="images/ok_green.png" alt=""/></span>
+                  <a href="checks/javadoc/requireemptylinebeforeblocktaggroup.html#RequireEmptyLineBeforeBlockTagGroup">
+                    RequireEmptyLineBeforeBlockTagGroup</a>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.1.4"/><a href="#2.1.4"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Single description block</td>
+                <td>
+                  <span class="wrapper inline"><img src="images/ok_blue.png" alt=""/></span>
+                  <a href="checks/javadoc/javadoctagcontinuationindentation.html#JavadocTagContinuationIndentation">
+                    JavadocTagContinuationIndentation</a>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.1.5"/><a href="#2.1.5"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Closing delimiter</td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.1.6"/><a href="#2.1.6"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Line length</td>
+                <td>
+                  <span class="wrapper inline"><img src="images/ok_green.png" alt=""/></span>
+                  <a href="checks/sizes/linelength.html#LineLength">LineLength</a>
+                </td>
+                <td/>
+              </tr>
+
+              <!-- DOC TOOL -->
+              <tr>
+                <td><a name="a2.2"/><a href="#2.2"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>2.2 Doc Comment Checking Tool</td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <!-- DESCRIPTIONS -->
+              <tr>
+                <td><a name="a2.3"/><a href="#2.3"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>2.3 Descriptions</td>
+                <td>↓</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.3.1"/><a href="#2.3.1"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Summary sentence</td>
+                <td>
+                  <span class="wrapper inline"><img src="images/ok_green.png" alt=""/></span>
+                  <a href="checks/javadoc/summaryjavadoc.html#SummaryJavadoc">SummaryJavadoc</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline"><img src="images/ok_green.png" alt=""/></span>
+                  <a href="checks/javadoc/javadocstyle.html#JavadocStyle">JavadocStyle</a>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.3.2"/><a href="#2.3.2"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Inherited documentation for overridden methods</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Violations of this guideline cannot be detected by Checkstyle due to its
+                  <a href="writingchecks.html#Limitations">
+                    limitation</a>, multiple file checking is not supported.
+                </td>
+                <td/>
+              </tr>
+
+              <!-- STYLE GUIDE -->
+              <tr>
+                <td><a name="a2.4"/><a href="#2.4"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>2.4 A Style Guide</td>
+                <td>↓</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.4.1"/><a href="#3.1"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Only link the first occurrence of each API name in the doc comment</td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.4.2"/><a href="#3.2"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Method descriptions don’t begin with “This method”</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/summaryjavadoc.html#SummaryJavadoc">
+                    SummaryJavadoc</a>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.4.3"/><a href="#3.3"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Class/interface/field descriptions don’t begin with “This class/interface/field”</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/summaryjavadoc.html#SummaryJavadoc">
+                    SummaryJavadoc</a>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.4.4"/><a href="#3.4"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Avoid Latin</td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <!-- TAGS -->
+              <tr>
+                <td><a name="a2.5"/><a href="#2.5"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>2.5 Tag Conventions</td>
+                <td>↓</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.5.1"/><a href="#2.5.1"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Order of tags</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/atclauseorder.html#AtclauseOrder">
+                    AtclauseOrder</a>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.5.2"/><a href="#2.5.2"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Multiple @param tags listed in argument order</td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.5.3"/><a href="#2.5.3"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Multiple @throws tags listed alphabetically</td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.5.4"/><a href="#2.5.4"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Multiple @see tags ordered as searched by Javadoc</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Violations of this guideline cannot be detected by Checkstyle due to its
+                  <a href="writingchecks.html#Limitations">
+                    limitation</a>, multiple file checking is not supported.
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.5.5"/><a href="#2.5.5"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>@param tag required for every parameter</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/javadocmethod.html#JavadocMethod">
+                    JavadocMethod</a>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.5.6"/><a href="#2.5.6"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>@param tag must have description</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/nonemptyatclausedescription.html#NonEmptyAtclauseDescription">
+                    NonEmptyAtclauseDescription</a>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.5.7"/><a href="#2.5.7"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>@param format: name followed by description</td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.5.8"/><a href="#2.5.8"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Include @return tag for non-void methods</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/javadocmethod.html#JavadocMethod">
+                    JavadocMethod</a>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.5.9"/><a href="#2.5.9"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>@deprecated must specify replacement</td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.5.10"/><a href="#2.5.10"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>@throws required for declared exceptions</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/javadocmethod.html#JavadocMethod">
+                    JavadocMethod</a>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="a2.5.11"/><a href="#2.5.11"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Use @Deprecated annotation and @deprecated tag</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/annotation/missingdeprecated.html#MissingDeprecated">
+                    MissingDeprecated</a>
+                </td>
+                <td/>
+              </tr>
+
+              <!-- DEFAULT CONTRUCTORS -->
+              <tr>
+                <td><a name="a2.6"/><a href="#2.6"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Documenting Default Constructors</td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <!-- EXCEPTIONS -->
+              <tr>
+                <td><a name="a2.7"/><a href="#2.7"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Documenting Exceptions with @throws Tag</td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <!-- PACKAGE -->
+              <tr>
+                <td><a name="a2.8"/><a href="#2.8"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Package-Level Comments</td>
+                <td>
+                  <span class="wrapper inline"><img src="images/ok_green.png" alt=""/></span>
+                  <a href="checks/javadoc/missingjavadocpackage.html#MissingJavadocPackage">
+                    MissingJavadocPackage</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline"><img src="images/ok_green.png" alt=""/></span>
+                  <a href="checks/javadoc/javadocpackage.html#JavadocPackage">JavadocPackage</a>
+                </td>
+                <td/>
+              </tr>
+
+              <!-- ANONYMOUS INNER CLASSES -->
+              <tr>
+                <td><a name="a2.9"/><a href="#2.9"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Documenting Anonymous Inner Classes</td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <!-- IMAGES -->
+              <tr>
+                <td><a name="a2.10"/><a href="#2.10"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Including Images</td>
+                <td>↓</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="a2.10.1"/><a href="#2.10.1"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Name images &lt;class&gt;-1.gif, incrementing for subsequent images</td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="a2.10.2"/><a href="#2.10.2"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Store doc images in "doc-files" directory within package</td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <!-- EXAMPLES -->
+              <tr>
+                <td><a name="a2.9"/><a href="#2.9"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Examples of Doc Comments</td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <!-- MICROSOFT WORD -->
+              <tr>
+                <td><a name="a2.9"/><a href="#2.9"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>Troubleshooting Curly Quotes (Microsoft Word)</td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </subsection>
+
+    </section>
+  </body>
+</document>
