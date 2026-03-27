@@ -88,6 +88,25 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example4.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check with custom throwsIndent (8 spaces instead of default 4):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">
+          Example of code with throwsIndent set to 8.
+          Method 'processValues' has throws on a new line with only 4-space indent,
+          which violates the configured 8-space throwsIndent.
+          Method 'demonstrateSwitch' has throws on a new line with correct 8-space indent:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example7.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
