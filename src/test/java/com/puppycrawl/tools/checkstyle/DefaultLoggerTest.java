@@ -308,6 +308,12 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
         }
     }
 
+    /**
+     * VerifyWithInlineConfigParserAndDefaultLogger closes the output streams upon completion
+     * when {@code OutputStreamOptions.CLOSE} is used, making it impossible to capture
+     * the output of {@code addException} after the verification method returns.
+     * This test uses a dedicated logger instance to directly verify the exception output.
+     */
     @Test
     public void testAddException() throws Exception {
         try (MockByteArrayOutputStream errorStream = new MockByteArrayOutputStream()) {
