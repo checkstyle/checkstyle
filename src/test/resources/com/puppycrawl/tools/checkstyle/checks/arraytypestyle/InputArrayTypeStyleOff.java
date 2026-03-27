@@ -1,6 +1,9 @@
+
+
+
 /*
 ArrayTypeStyle
-javaStyle = (default)true
+javaStyle = true
 */
 
 package com.puppycrawl.tools.checkstyle.checks.arraytypestyle;
