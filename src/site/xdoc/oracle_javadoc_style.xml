@@ -129,8 +129,14 @@
                 <td>Doc comment precedes declaration</td>
                 <td>
                   <span class="wrapper inline"><img src="images/ok_blue.png" alt=""/></span>
-                  <a href="checks/javadoc/invalidjavadocposition.html#InvalidJavadocPosition">InvalidJavadocPosition</a>,
-                  <a href="checks/javadoc/missingjavadocmethod.html#MissingJavadocMethod">MissingJavadocMethod</a>,
+                  <a href="checks/javadoc/invalidjavadocposition.html#InvalidJavadocPosition">InvalidJavadocPosition</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline"><img src="images/ok_blue.png" alt=""/></span>
+                  <a href="checks/javadoc/missingjavadocmethod.html#MissingJavadocMethod">MissingJavadocMethod</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline"><img src="images/ok_blue.png" alt=""/></span>
                   <a href="checks/javadoc/missingjavadoctype.html#MissingJavadocType">MissingJavadocType</a>
                 </td>
                 <td/>
@@ -142,7 +148,10 @@
                 <td>Indentation and alignment</td>
                 <td>
                   <span class="wrapper inline"><img src="images/ok_blue.png" alt=""/></span>
-                  <a href="checks/misc/commentsindentation.html#CommentsIndentation">CommentsIndentation</a>,
+                  <a href="checks/misc/commentsindentation.html#CommentsIndentation">CommentsIndentation</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline"><img src="images/ok_blue.png" alt=""/></span>
                   <a href="checks/javadoc/javadocleadingasteriskalign.html#JavadocLeadingAsteriskAlign">JavadocLeadingAsteriskAlign</a>
                 </td>
                 <td/>
@@ -216,6 +225,10 @@
                 <td>
                   <span class="wrapper inline"><img src="images/ok_green.png" alt=""/></span>
                   <a href="checks/javadoc/summaryjavadoc.html#SummaryJavadoc">SummaryJavadoc</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline"><img src="images/ok_green.png" alt=""/></span>
+                  <a href="checks/javadoc/javadocstyle.html#JavadocStyle">JavadocStyle</a>
                 </td>
                 <td/>
               </tr>
@@ -228,6 +241,9 @@
                   <span class="wrapper inline">
                     <img src="images/ban_red.png" alt=""/>
                   </span>
+                  Violations of this guideline cannot be detected by Checkstyle due to its
+                  <a href="writingchecks.html#Limitations">
+                    limitation</a>, multiple file checking is not supported.
                 </td>
                 <td/>
               </tr>
@@ -332,6 +348,9 @@
                   <span class="wrapper inline">
                     <img src="images/ban_red.png" alt=""/>
                   </span>
+                  Violations of this guideline cannot be detected by Checkstyle due to its
+                  <a href="writingchecks.html#Limitations">
+                    limitation</a>, multiple file checking is not supported.
                 </td>
                 <td/>
               </tr>
@@ -449,11 +468,10 @@
                   <span class="wrapper inline"><img src="images/ok_green.png" alt=""/></span>
                   <a href="checks/javadoc/missingjavadocpackage.html#MissingJavadocPackage">
                     MissingJavadocPackage</a>
-                </td>
-                <td>
+                  <br />
+                  <br />
                   <span class="wrapper inline"><img src="images/ok_green.png" alt=""/></span>
-                  <a href="checks/javadoc/javadocpackage.html#JavadocPackage">
-                    MissingJavadocPackage</a>
+                  <a href="checks/javadoc/javadocpackage.html#JavadocPackage">JavadocPackage</a>
                 </td>
                 <td/>
               </tr>
