@@ -52,6 +52,7 @@
 
   <!-- Fixing these cases will decrease code readability -->
   <suppress checks="MultipleStringLiterals" files="JavadocStyleCheck\.java|XMLLogger\.java"/>
+  <suppress checks="MultipleStringLiterals" files=".*[\\/]MissingJavadocTypeCheck\.java"/>
 
   <!-- For test cases need larger file length -->
   <suppress checks="FileLength" files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]MainTest.java" />
@@ -139,8 +140,6 @@
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocVariableCheck.java"/>
   <!-- until #19148 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocMethodCheck.java"/>
-  <!-- until #19149 -->
-  <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocTypeCheck.java"/>
   <!-- permanent suppression to allow regexp on content of the line -->
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpSinglelineJavaCheck.java"/>

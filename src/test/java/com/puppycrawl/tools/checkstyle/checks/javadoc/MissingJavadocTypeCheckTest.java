@@ -22,10 +22,14 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck.MSG_JAVADOC_MISSING;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
@@ -38,6 +42,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final MissingJavadocTypeCheck missingJavadocTypeCheck = new MissingJavadocTypeCheck();
+        missingJavadocTypeCheck.visitJavadocToken(null);
         assertWithMessage(
                 "MissingJavadocTypeCheck#getRequiredTokens should return empty array by default")
                         .that(missingJavadocTypeCheck.getRequiredTokens())
@@ -440,11 +445,35 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testMissingJavadocTypeAboveComments() throws Exception {
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "27:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
             getPath("InputMissingJavadocTypeAboveComments.java"),
             expected);
+    }
+
+    @Test
+    public void testNonJavadocBlockCommentDoesNotSatisfyJavadoc() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMissingJavadocTypeNonJavadocOnly.java"),
+                expected);
+    }
+
+    @Test
+    public void testClearJavadocComments() {
+        final MissingJavadocTypeCheck check = new MissingJavadocTypeCheck();
+        final List<Object> mockList = new ArrayList<>();
+        mockList.add(new Object());
+        TestUtil.setInternalState(check, "javadocComments", mockList);
+        check.beginTree(null);
+        final List<?> javadocComments =
+                (List<?>) TestUtil.getInternalState(check, "javadocComments", List.class);
+        assertWithMessage("javadocComments state is not cleared on beginTree")
+                .that(javadocComments)
+                .isEmpty();
     }
 
 }
