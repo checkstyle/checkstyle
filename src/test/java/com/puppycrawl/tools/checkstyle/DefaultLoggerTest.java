@@ -26,7 +26,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
-import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -284,47 +283,53 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNewCtor() throws Exception {
-        final ResourceBundle bundle = ResourceBundle.getBundle(
-                Definitions.CHECKSTYLE_BUNDLE, Locale.ENGLISH);
-        final String auditStartedMessage = bundle.getString(DefaultLogger.AUDIT_STARTED_MESSAGE);
-        final String auditFinishedMessage = bundle.getString(DefaultLogger.AUDIT_FINISHED_MESSAGE);
-        final String addExceptionMessage = new MessageFormat(bundle.getString(
-                DefaultLogger.ADD_EXCEPTION_MESSAGE), Locale.ENGLISH).format(new String[] {"myfile"}
-        );
-        final String infoOutput;
-        final String errorOutput;
-        try (MockByteArrayOutputStream infoStream = new MockByteArrayOutputStream()) {
-            try (MockByteArrayOutputStream errorStream = new MockByteArrayOutputStream()) {
-                final DefaultLogger dl = new DefaultLogger(
-                        infoStream, OutputStreamOptions.CLOSE,
-                        errorStream, OutputStreamOptions.CLOSE);
-                dl.auditStarted(null);
-                dl.addException(new AuditEvent(5000, "myfile"),
-                        new IllegalStateException("oops"));
-                dl.auditFinished(new AuditEvent(6000, "myfile"));
-                infoOutput = infoStream.toString(StandardCharsets.UTF_8);
-                errorOutput = errorStream.toString(StandardCharsets.UTF_8);
+        final String inputFile = "InputDefaultLoggerTestException.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestException.txt";
 
-                assertWithMessage("Info stream should be closed")
-                        .that(infoStream.closedCount)
-                        .isGreaterThan(0);
-                assertWithMessage("Error stream should be closed")
-                        .that(errorStream.closedCount)
-                        .isGreaterThan(0);
-            }
+        try (MockByteArrayOutputStream infoStream = new MockByteArrayOutputStream();
+             MockByteArrayOutputStream errorStream = new MockByteArrayOutputStream()) {
+            final DefaultLogger dl = new DefaultLogger(
+                    infoStream, OutputStreamOptions.CLOSE,
+                    errorStream, OutputStreamOptions.CLOSE);
+
+            verifyWithInlineConfigParserAndDefaultLogger(
+                    getNonCompilablePath(inputFile),
+                    getPath(expectedInfoFile),
+                    getPath(expectedErrorFile),
+                    dl, infoStream, errorStream);
+
+            assertWithMessage("Info stream should be closed")
+                    .that(infoStream.closedCount)
+                    .isGreaterThan(0);
+            assertWithMessage("Error stream should be closed")
+                    .that(errorStream.closedCount)
+                    .isGreaterThan(0);
         }
-        assertWithMessage("Violation should contain message `audit started`")
-                .that(infoOutput)
-                .contains(auditStartedMessage);
-        assertWithMessage("Violation should contain message `audit finished`")
-                .that(infoOutput)
-                .contains(auditFinishedMessage);
-        assertWithMessage("Violation should contain exception info")
-                .that(errorOutput)
-                .contains(addExceptionMessage);
-        assertWithMessage("Violation should contain exception message")
-                .that(errorOutput)
-                .contains("java.lang.IllegalStateException: oops");
+    }
+
+    @Test
+    public void testAddException() throws Exception {
+        try (MockByteArrayOutputStream errorStream = new MockByteArrayOutputStream()) {
+            final DefaultLogger dl = new DefaultLogger(
+                    new ByteArrayOutputStream(), OutputStreamOptions.CLOSE,
+                    errorStream, OutputStreamOptions.CLOSE);
+
+            dl.addException(new AuditEvent(5000, "myfile"),
+                    new IllegalStateException("oops"));
+
+            final String errorOutput = errorStream.toString(StandardCharsets.UTF_8);
+
+            assertWithMessage("Exception output should contain filename")
+                    .that(errorOutput)
+                    .contains("myfile");
+            assertWithMessage("Exception output should contain exception type")
+                    .that(errorOutput)
+                    .contains("java.lang.IllegalStateException");
+            assertWithMessage("Exception output should contain exception message")
+                    .that(errorOutput)
+                    .contains("oops");
+        }
     }
 
     @Test
