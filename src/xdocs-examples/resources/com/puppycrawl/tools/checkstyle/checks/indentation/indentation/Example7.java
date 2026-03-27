@@ -20,7 +20,7 @@ class Example7 {
     };
 
     void processValues()
-            throws Exception {                 // ok, throwsIndent
+        throws Exception { // violation, ''throws' has incorrect indentation'
         handleValue("Test String", 42);          // basicOffset
     }
 
@@ -48,7 +48,7 @@ class Example7 {
     }
 
     void demonstrateSwitch()
-            throws Exception {               // ok, throwsIndent
+            throws Exception {               // ok, throwsIndent is 8
         switch (field) {
             case "EXAMPLE": processValues();                        // caseIndent
             case "COMPLETED": handleValue("Completed Case", 456);   // caseIndent
