@@ -126,7 +126,7 @@
               <tr>
                 <td><a name="a2.1.1"/><a href="#2.1.1"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Doc comment precedes declaration</td>
+                <td>2.1.1 Doc comment precedes declaration</td>
                 <td>
                   <span class="wrapper inline"><img src="images/ok_blue.png" alt=""/></span>
                   <a href="checks/javadoc/invalidjavadocposition.html#InvalidJavadocPosition">InvalidJavadocPosition</a>
@@ -145,7 +145,7 @@
               <tr>
                 <td><a name="a2.1.2"/><a href="#2.1.2"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Indentation and alignment</td>
+                <td>2.1.2 Indentation and alignment</td>
                 <td>
                   <span class="wrapper inline"><img src="images/ok_blue.png" alt=""/></span>
                   <a href="checks/misc/commentsindentation.html#CommentsIndentation">CommentsIndentation</a>
@@ -160,7 +160,7 @@
               <tr>
                 <td><a name="a2.1.3"/><a href="#2.1.3"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Empty line before tags</td>
+                <td>2.1.3 Empty line before tags</td>
                 <td>
                   <span class="wrapper inline"><img src="images/ok_green.png" alt=""/></span>
                   <a href="checks/javadoc/requireemptylinebeforeblocktaggroup.html#RequireEmptyLineBeforeBlockTagGroup">
@@ -172,7 +172,7 @@
               <tr>
                 <td><a name="a2.1.4"/><a href="#2.1.4"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Single description block</td>
+                <td>2.1.4 Single description block</td>
                 <td>
                   <span class="wrapper inline"><img src="images/ok_blue.png" alt=""/></span>
                   <a href="checks/javadoc/javadoctagcontinuationindentation.html#JavadocTagContinuationIndentation">
@@ -184,7 +184,7 @@
               <tr>
                 <td><a name="a2.1.5"/><a href="#2.1.5"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Closing delimiter</td>
+                <td>2.1.5 Closing delimiter</td>
                 <td>???</td>
                 <td/>
               </tr>
@@ -192,7 +192,7 @@
               <tr>
                 <td><a name="a2.1.6"/><a href="#2.1.6"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Line length</td>
+                <td>2.1.6 Line length</td>
                 <td>
                   <span class="wrapper inline"><img src="images/ok_green.png" alt=""/></span>
                   <a href="checks/sizes/linelength.html#LineLength">LineLength</a>
@@ -221,7 +221,7 @@
               <tr>
                 <td><a name="a2.3.1"/><a href="#2.3.1"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Summary sentence</td>
+                <td>2.3.1 Summary sentence</td>
                 <td>
                   <span class="wrapper inline"><img src="images/ok_green.png" alt=""/></span>
                   <a href="checks/javadoc/summaryjavadoc.html#SummaryJavadoc">SummaryJavadoc</a>
@@ -236,7 +236,7 @@
               <tr>
                 <td><a name="a2.3.2"/><a href="#2.3.2"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Inherited documentation for overridden methods</td>
+                <td>2.3.2 Inherited documentation for overridden methods</td>
                 <td>
                   <span class="wrapper inline">
                     <img src="images/ban_red.png" alt=""/>
@@ -260,7 +260,7 @@
               <tr>
                 <td><a name="a2.4.1"/><a href="#3.1"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Only link the first occurrence of each API name in the doc comment</td>
+                <td>2.4.1 Only link the first occurrence of each API name in the doc comment</td>
                 <td>???</td>
                 <td/>
               </tr>
@@ -268,7 +268,7 @@
               <tr>
                 <td><a name="a2.4.2"/><a href="#3.2"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Method descriptions don’t begin with “This method”</td>
+                <td>2.4.2 Method descriptions don’t begin with “This method”</td>
                 <td>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt=""/>
@@ -282,7 +282,7 @@
               <tr>
                 <td><a name="a2.4.3"/><a href="#3.3"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Class/interface/field descriptions don’t begin with “This class/interface/field”</td>
+                <td>2.4.3 Class/interface/field descriptions don’t begin with “This class/interface/field”</td>
                 <td>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt=""/>
@@ -296,7 +296,7 @@
               <tr>
                 <td><a name="a2.4.4"/><a href="#3.4"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Avoid Latin</td>
+                <td>2.4.4 Avoid Latin</td>
                 <td>???</td>
                 <td/>
               </tr>
@@ -313,7 +313,7 @@
               <tr>
                 <td><a name="a2.5.1"/><a href="#2.5.1"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Order of tags</td>
+                <td>2.5.1 Order of tags</td>
                 <td>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt=""/>
@@ -327,7 +327,7 @@
               <tr>
                 <td><a name="a2.5.2"/><a href="#2.5.2"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Multiple @param tags listed in argument order</td>
+                <td>2.5.2 Multiple @param tags listed in argument order</td>
                 <td>???</td>
                 <td/>
               </tr>
@@ -335,7 +335,7 @@
               <tr>
                 <td><a name="a2.5.3"/><a href="#2.5.3"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Multiple @throws tags listed alphabetically</td>
+                <td>2.5.3 Multiple @throws tags listed alphabetically</td>
                 <td>???</td>
                 <td/>
               </tr>
@@ -343,7 +343,7 @@
               <tr>
                 <td><a name="a2.5.4"/><a href="#2.5.4"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Multiple @see tags ordered as searched by Javadoc</td>
+                <td>2.5.4 Multiple @see tags ordered as searched by Javadoc</td>
                 <td>
                   <span class="wrapper inline">
                     <img src="images/ban_red.png" alt=""/>
@@ -358,7 +358,7 @@
               <tr>
                 <td><a name="a2.5.5"/><a href="#2.5.5"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>@param tag required for every parameter</td>
+                <td>2.5.5 @param tag required for every parameter</td>
                 <td>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt=""/>
@@ -372,7 +372,7 @@
               <tr>
                 <td><a name="a2.5.6"/><a href="#2.5.6"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>@param tag must have description</td>
+                <td>2.5.6 @param tag must have description</td>
                 <td>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt=""/>
@@ -386,7 +386,7 @@
               <tr>
                 <td><a name="a2.5.7"/><a href="#2.5.7"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>@param format: name followed by description</td>
+                <td>2.5.7 @param format: name followed by description</td>
                 <td>???</td>
                 <td/>
               </tr>
@@ -394,7 +394,7 @@
               <tr>
                 <td><a name="a2.5.8"/><a href="#2.5.8"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Include @return tag for non-void methods</td>
+                <td>2.5.8 Include @return tag for non-void methods</td>
                 <td>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt=""/>
@@ -408,7 +408,7 @@
               <tr>
                 <td><a name="a2.5.9"/><a href="#2.5.9"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>@deprecated must specify replacement</td>
+                <td>2.5.9 @deprecated must specify replacement</td>
                 <td>???</td>
                 <td/>
               </tr>
@@ -416,7 +416,7 @@
               <tr>
                 <td><a name="a2.5.10"/><a href="#2.5.10"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>@throws required for declared exceptions</td>
+                <td>2.5.10 @throws required for declared exceptions</td>
                 <td>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt=""/>
@@ -430,7 +430,7 @@
               <tr>
                 <td><a name="a2.5.11"/><a href="#2.5.11"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Use @Deprecated annotation and @deprecated tag</td>
+                <td>2.5.11 Use @Deprecated annotation and @deprecated tag</td>
                 <td>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt=""/>
@@ -445,7 +445,7 @@
               <tr>
                 <td><a name="a2.6"/><a href="#2.6"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Documenting Default Constructors</td>
+                <td>2.6 Documenting Default Constructors</td>
                 <td>--</td>
                 <td/>
               </tr>
@@ -454,7 +454,7 @@
               <tr>
                 <td><a name="a2.7"/><a href="#2.7"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Documenting Exceptions with @throws Tag</td>
+                <td>2.7 Documenting Exceptions with @throws Tag</td>
                 <td>--</td>
                 <td/>
               </tr>
@@ -463,7 +463,7 @@
               <tr>
                 <td><a name="a2.8"/><a href="#2.8"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Package-Level Comments</td>
+                <td>2.8 Package-Level Comments</td>
                 <td>
                   <span class="wrapper inline"><img src="images/ok_green.png" alt=""/></span>
                   <a href="checks/javadoc/missingjavadocpackage.html#MissingJavadocPackage">
@@ -480,7 +480,7 @@
               <tr>
                 <td><a name="a2.9"/><a href="#2.9"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Documenting Anonymous Inner Classes</td>
+                <td>2.9 Documenting Anonymous Inner Classes</td>
                 <td>--</td>
                 <td/>
               </tr>
@@ -489,39 +489,39 @@
               <tr>
                 <td><a name="a2.10"/><a href="#2.10"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Including Images</td>
+                <td>2.10 Including Images</td>
                 <td>↓</td>
                 <td/>
               </tr>
               <tr>
                 <td><a name="a2.10.1"/><a href="#2.10.1"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Name images &lt;class&gt;-1.gif, incrementing for subsequent images</td>
+                <td>2.10.1 Name images &lt;class&gt;-1.gif, incrementing for subsequent images</td>
                 <td>???</td>
                 <td/>
               </tr>
               <tr>
                 <td><a name="a2.10.2"/><a href="#2.10.2"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Store doc images in "doc-files" directory within package</td>
+                <td>2.10.2 Store doc images in "doc-files" directory within package</td>
                 <td>???</td>
                 <td/>
               </tr>
 
               <!-- EXAMPLES -->
               <tr>
-                <td><a name="a2.9"/><a href="#2.9"><span class="wrapper inline">
+                <td><a name="a2.11"/><a href="#2.11"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Examples of Doc Comments</td>
+                <td>2.11 Examples of Doc Comments</td>
                 <td>--</td>
                 <td/>
               </tr>
 
               <!-- MICROSOFT WORD -->
               <tr>
-                <td><a name="a2.9"/><a href="#2.9"><span class="wrapper inline">
+                <td><a name="a2.12"/><a href="#2.12"><span class="wrapper inline">
                   <img src="images/anchor.png" alt=""/></span></a></td>
-                <td>Troubleshooting Curly Quotes (Microsoft Word)</td>
+                <td>2.12 Troubleshooting Curly Quotes (Microsoft Word)</td>
                 <td>--</td>
                 <td/>
               </tr>
