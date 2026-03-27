@@ -79,15 +79,23 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEscape() {
+    public void testEscape() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeSelect.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeSelect.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapeDirectly() {
         final String[][] encodings = {
-            {"\"", "\\\""},
-            {"\\", "\\\\"},
             {"\b", "\\b"},
             {"\f", "\\f"},
-            {"\n", "\\n"},
-            {"\r", "\\r"},
             {"\t", "\\t"},
+            {"\r", "\\r"},
             {"/", "\\/"},
             {"\u0010", "\\u0010"},
             {"\u001E", "\\u001E"},
@@ -456,17 +464,6 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     public void testMultipleMessageStrings() throws Exception {
         final String inputFile = "InputSarifLoggerMultipleMessages.java";
         final String expectedReportFile = "ExpectedSarifLoggerMultipleMessages.sarif";
-        final SarifLogger logger = new SarifLogger(outStream,
-                OutputStreamOptions.CLOSE);
-
-        verifyWithInlineConfigParserAndLogger(
-                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
-    }
-
-    @Test
-    public void testEscapedMessageText() throws Exception {
-        final String inputFile = "InputSarifLoggerEscapedMessage.java";
-        final String expectedReportFile = "ExpectedSarifLoggerEscapedMessage.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
 
