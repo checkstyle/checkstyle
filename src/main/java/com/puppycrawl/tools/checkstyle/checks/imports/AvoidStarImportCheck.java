@@ -79,6 +79,16 @@ public class AvoidStarImportCheck
      */
     private boolean allowStaticMemberImports;
 
+    /**
+     * Max amount of allowed star imports to be present in the file.
+     */
+    private int maxAllowed = 1;
+
+    /**
+     * Counter tracking amount of allowed star imports there are in the file.
+     */
+    private int starImportCounter = 0;
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -144,32 +154,53 @@ public class AvoidStarImportCheck
         allowStaticMemberImports = allow;
     }
 
+    /**
+     * Setter to set the max amount of allowed star imports to be present in the file.
+     *
+     * @param maxAllowedNumber max amount of allowed star imports
+     * @since 13.3
+     */
+    public void setMaxAllowed(int maxAllowedNumber) {
+        maxAllowed = maxAllowedNumber;
+    }
+
     @Override
     public void visitToken(final DetailAST ast) {
+        final DetailAST startingDot;
+
         if (ast.getType() == TokenTypes.IMPORT) {
-            if (!allowClassImports) {
-                final DetailAST startingDot = ast.getFirstChild();
-                logsStarredImportViolation(startingDot);
-            }
+            startingDot = ast.getFirstChild();
+            logsStarredImportViolation(startingDot, allowClassImports);
         }
-        else if (!allowStaticMemberImports) {
-            // must navigate past the static keyword
-            final DetailAST startingDot = ast.getFirstChild().getNextSibling();
-            logsStarredImportViolation(startingDot);
+        else if (ast.getType() == TokenTypes.STATIC_IMPORT) {
+            startingDot = ast.getFirstChild().getNextSibling();
+            logsStarredImportViolation(startingDot, allowStaticMemberImports);
         }
+
     }
 
     /**
-     * Gets the full import identifier.  If the import is a starred import and
-     * it's not excluded then a violation is logged.
+     * Gets the full import identifier. If the import is a starred import and
+     * it's not excluded or exceeds the limit then a violation is logged.
      *
      * @param startingDot the starting dot for the import statement
      */
-    private void logsStarredImportViolation(DetailAST startingDot) {
+    private void logsStarredImportViolation(DetailAST startingDot, boolean importTypeAllowed) {
         final FullIdent name = FullIdent.createFullIdent(startingDot);
         final String importText = name.getText();
-        if (importText.endsWith(STAR_IMPORT_SUFFIX) && !excludes.contains(importText)) {
-            log(startingDot, MSG_KEY, importText);
+
+        if (importText.endsWith(STAR_IMPORT_SUFFIX)) {
+
+            if (!importTypeAllowed && !excludes.contains(importText)) {
+                log(startingDot, MSG_KEY, importText);
+            }
+            else {
+                starImportCounter ++;
+
+                if (starImportCounter > maxAllowed) {
+                    log(startingDot, MSG_KEY, importText);
+                }
+            }
         }
     }
 
