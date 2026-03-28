@@ -1,5 +1,6 @@
 /*
 OneTopLevelClass
+violatingClassName = (default)null
 
 
 */
@@ -15,3 +16,4 @@ class InputOneTopLevelClassNoPublic2 // violation
 {
 
 }
+
