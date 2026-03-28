@@ -13,9 +13,9 @@ fileExtensions = (default)""
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpmultiline;
 
-import java.awt.*; // violation
-import java.io.ByteArrayOutputStream; // violation
-import java.io.File; // violation
+import java.awt.*; // violation, Line matches the illegal pattern
+import java.io.ByteArrayOutputStream; // violation, Line matches the illegal pattern
+import java.io.File; // violation, Line matches the illegal pattern
 
 /**
  * Test case for detecting simple semantic violations.

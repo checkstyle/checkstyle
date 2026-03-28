@@ -19,9 +19,9 @@ package com.puppycrawl.tools.checkstyle.checks.regexp.regexpmultiline;
  */
 public class InputRegexpMultilineMultilineSupport2 {
     void method() {
-// abc // violation
+// abc // violation, Line matches the illegal pattern
 // def
-// abc // violation
+// abc // violation, Line matches the illegal pattern
     }
 
     void method2() {
