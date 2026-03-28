@@ -5,12 +5,11 @@
   </module>
 </module>
 */
-
 package com.puppycrawl.tools.checkstyle.sariflogger;
 
-public class InputSarifLoggerEscapedMessage {
+public class InputSarifLoggerEscapeMessageKey {
     void test(int x) {
-        switch (x) { // violation 'switch without "default" clause.'
+        switch (x) {
             case 1:
                 break;
         }

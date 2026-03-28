@@ -79,15 +79,40 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEscape() {
+    public void testEscape() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeSelect.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeSelect.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapeWithMessageKey() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeMessageKey.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeMessageKey.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    /**
+     * This test cannot use verifyWithInlineConfigParserAndLogger because
+     * XML 1.0 forbids most control characters (&#x8;, &#xC;, &#xD;, &#x9;, etc.)
+     * even as numeric character references in attribute values. These characters
+     * require direct unit testing of the escape() method.
+     */
+    @Test
+    public void testEscapeDirectly() {
         final String[][] encodings = {
-            {"\"", "\\\""},
-            {"\\", "\\\\"},
             {"\b", "\\b"},
             {"\f", "\\f"},
-            {"\n", "\\n"},
-            {"\r", "\\r"},
             {"\t", "\\t"},
+            {"\r", "\\r"},
             {"/", "\\/"},
             {"\u0010", "\\u0010"},
             {"\u001E", "\\u001E"},
@@ -456,17 +481,6 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     public void testMultipleMessageStrings() throws Exception {
         final String inputFile = "InputSarifLoggerMultipleMessages.java";
         final String expectedReportFile = "ExpectedSarifLoggerMultipleMessages.sarif";
-        final SarifLogger logger = new SarifLogger(outStream,
-                OutputStreamOptions.CLOSE);
-
-        verifyWithInlineConfigParserAndLogger(
-                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
-    }
-
-    @Test
-    public void testEscapedMessageText() throws Exception {
-        final String inputFile = "InputSarifLoggerEscapedMessage.java";
-        final String expectedReportFile = "ExpectedSarifLoggerEscapedMessage.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
 

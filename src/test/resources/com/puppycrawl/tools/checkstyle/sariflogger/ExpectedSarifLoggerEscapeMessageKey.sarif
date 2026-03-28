@@ -38,11 +38,11 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapedMessage.java"
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeMessageKey.java"
                 },
                 "region": {
                   "startColumn": 9,
-                  "startLine": 13
+                  "startLine": 12
                 }
               }
             }
