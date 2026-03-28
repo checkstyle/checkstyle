@@ -1,5 +1,6 @@
 /*
 OneTopLevelClass
+violatingClassName = (default)null
 
 
 */
@@ -54,3 +55,5 @@ class AnotherClass { // violation
 class NativeTest { // violation
     public native Object clone();
 }
+
+
