@@ -182,23 +182,41 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNullErrorStreamOptions() {
-        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    public void testNullErrorStreamOptions() throws Exception {
+        final String inputFile = "InputDefaultLoggerNullErrorStreamOptions.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsNullErrorStreamOptions.txt";
+
+        final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
+        final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+                errorStream, OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndDefaultLogger(
+                getPath(inputFile),
+                getPath(expectedInfoFile),
+                getPath(expectedErrorFile),
+                dl, infoStream, errorStream);
+    }
+
+    @Test
+    public void testConstructorWithNullErrorStreamOptions() {
+        final OutputStream infoStream = new ByteArrayOutputStream();
+        final OutputStream errorStream = new ByteArrayOutputStream();
+
         final IllegalArgumentException ex =
                 TestUtil.getExpectedThrowable(IllegalArgumentException.class, () -> {
-                    final DefaultLogger defaultLogger = new DefaultLogger(outputStream,
-                            OutputStreamOptions.CLOSE, outputStream, null);
-
-                    // Workaround for Eclipse error "The allocated object is never used"
+                    final DefaultLogger defaultLogger = new DefaultLogger(infoStream,
+                            OutputStreamOptions.CLOSE, errorStream, null);
                     assertWithMessage("defaultLogger should be non-null")
                             .that(defaultLogger)
                             .isNotNull();
-                },
-                "IllegalArgumentException expected");
+                }, "IllegalArgumentException expected");
+
         assertWithMessage("Invalid error message")
                 .that(ex)
                 .hasMessageThat()
-                        .isEqualTo("Parameter errorStreamOptions can not be null");
+                .isEqualTo("Parameter errorStreamOptions can not be null");
     }
 
     @Test
