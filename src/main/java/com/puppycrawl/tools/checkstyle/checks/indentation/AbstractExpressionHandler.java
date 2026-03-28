@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Abstract base class for all handlers.
  *
  */
+// -@cs[MethodCount] Helper methods for text block indentation handling push count to 35.
 public abstract class AbstractExpressionHandler {
 
     /**
@@ -499,7 +500,19 @@ public abstract class AbstractExpressionHandler {
      */
     protected final void findSubtreeAst(DetailAstSet astSet, DetailAST tree,
         boolean allowNesting) {
-        if (!indentCheck.getHandlerFactory().isHandledType(tree.getType())) {
+        // For TEXT_BLOCK_LITERAL_END in annotation array context, check if it aligns
+        // with the expected child indentation of the annotation array init handler
+        // instead of using default indentation rules.
+        final boolean isTextBlockLiteralEnd = tree.getType() == TokenTypes.TEXT_BLOCK_LITERAL_END;
+        IndentLevel textBlockEndIndent = null;
+        if (isTextBlockLiteralEnd) {
+            textBlockEndIndent = getTextBlockEndExpectedIndent();
+        }
+
+        if (isTextBlockLiteralEnd && textBlockEndIndent != null) {
+            checkTextBlockEndAlignment(tree, textBlockEndIndent);
+        }
+        else if (!indentCheck.getHandlerFactory().isHandledType(tree.getType())) {
             final int lineNum = tree.getLineNo();
             final Integer colNum = astSet.getStartColumn(lineNum);
 
@@ -515,6 +528,57 @@ public abstract class AbstractExpressionHandler {
                 findSubtreeAst(astSet, node, allowNesting);
             }
         }
+    }
+
+    /**
+     * Returns the expected indentation for a TEXT_BLOCK_LITERAL_END token
+     * when it appears within this handler's context. Returns {@code null}
+     * by default, indicating no special handling is needed.
+     * Subclasses can override this to provide context-specific indentation.
+     *
+     * @return the expected indent level, or {@code null} if not applicable
+     */
+
+    protected IndentLevel getExpectedIndentForTextBlockEnd() {
+        return null;
+    }
+
+    /**
+     * Checks if the text block end delimiter aligns with the expected indentation,
+     * rather than the actual position of the opening delimiter (which may itself
+     * be incorrectly indented).
+     *
+     * @param textBlockEnd   the TEXT_BLOCK_LITERAL_END node to check
+     * @param expectedIndent the expected indentation level
+     */
+    private void checkTextBlockEndAlignment(DetailAST textBlockEnd,
+            IndentLevel expectedIndent) {
+        final int endIndent = expandedTabsColumnNo(textBlockEnd);
+
+        if (!expectedIndent.isAcceptable(endIndent) && isOnStartOfLine(textBlockEnd)) {
+            logError(textBlockEnd, "text block end", endIndent, expectedIndent);
+        }
+    }
+
+    /**
+     * Walks up the handler parent chain to find the expected indentation
+     * for a TEXT_BLOCK_LITERAL_END token, or {@code null} if no handler
+     * in the chain provides one.
+     *
+     * @return the expected indent level from the nearest applicable handler,
+     *         or {@code null}
+     */
+    private IndentLevel getTextBlockEndExpectedIndent() {
+        AbstractExpressionHandler handler = this;
+        IndentLevel result = null;
+        while (handler != null) {
+            result = handler.getExpectedIndentForTextBlockEnd();
+            if (result != null) {
+                break;
+            }
+            handler = handler.parent;
+        }
+        return result;
     }
 
     /**
