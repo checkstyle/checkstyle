@@ -105,6 +105,42 @@ public class ClassDefHandler extends BlockParentHandler {
         };
     }
 
+    @Override
+    protected void checkModifiers() {
+        if (getMainAst().getType() == TokenTypes.ANNOTATION_DEF) {
+            checkAnnotationDefModifiers();
+        }
+        else {
+            checkClassDefModifiers();
+        }
+    }
+
+    /**
+     * Checks modifiers for annotation definitions using parent implementation.
+     */
+    private void checkAnnotationDefModifiers() {
+        super.checkModifiers();
+    }
+
+    /**
+     * Checks modifiers for class definitions, skipping wrapped modifiers
+     * that appear on lines after the first modifier line.
+     */
+    private void checkClassDefModifiers() {
+        final DetailAST modifiers = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST firstModifier = modifiers.getFirstChild();
+        final int firstModifierLine = firstModifier.getLineNo();
+        for (DetailAST modifier = firstModifier;
+             modifier != null;
+             modifier = modifier.getNextSibling()) {
+            if (modifier.getLineNo() == firstModifierLine
+                    && isOnStartOfLine(modifier)
+                    && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
+                logError(modifier, "modifier", expandedTabsColumnNo(modifier));
+            }
+        }
+    }
+
     /**
      * Creates a handler name for this class according to ast type.
      *
