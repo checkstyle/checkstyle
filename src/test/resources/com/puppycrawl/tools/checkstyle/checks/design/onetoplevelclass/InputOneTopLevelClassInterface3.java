@@ -1,6 +1,6 @@
 /*
 OneTopLevelClass
-
+violatingClassName = (default)null
 
 */
 
@@ -17,3 +17,4 @@ public interface InputOneTopLevelClassInterface3 {
 interface InputOneTopLevelClassInterface3inner2 { // violation
     int foo();
 }
+
