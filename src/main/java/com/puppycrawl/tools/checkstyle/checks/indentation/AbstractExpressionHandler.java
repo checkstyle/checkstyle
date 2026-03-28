@@ -526,8 +526,7 @@ public abstract class AbstractExpressionHandler {
         for (DetailAST modifier = modifiers.getFirstChild();
              modifier != null;
              modifier = modifier.getNextSibling()) {
-            if (isOnStartOfLine(modifier)
-                && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
+            if (!getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
                 logError(modifier, "modifier",
                     expandedTabsColumnNo(modifier));
             }
