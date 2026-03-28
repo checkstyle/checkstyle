@@ -1,6 +1,6 @@
 /*
 OneTopLevelClass
-
+violatingClassName = (default)null
 
 */
 
@@ -85,3 +85,4 @@ public class InputOneTopLevelClass
     // violation : member variables should be before methods or ctors
     private int mFoo = 0;
 }
+
