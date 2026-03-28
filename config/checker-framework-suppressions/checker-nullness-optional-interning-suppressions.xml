@@ -4879,7 +4879,14 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/ClassDefHandler.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference modifiers</message>
-    <lineContent>if (modifiers.hasChildren()) {</lineContent>
+    <lineContent>final DetailAST firstModifier = modifiers.getFirstChild();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/ClassDefHandler.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference getMainAst().findFirstToken(TokenTypes.OBJBLOCK)</message>
+    <lineContent>return getMainAst().findFirstToken(TokenTypes.OBJBLOCK)</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

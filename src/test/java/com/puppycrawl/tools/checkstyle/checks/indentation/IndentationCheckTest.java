@@ -4107,6 +4107,27 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testClassDefWrappedModifiers() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("arrayInitIndent", "2");
+        final String fileName =
+                getPath("InputIndentationClassDefWrappedModifiers.java");
+        final String[] expected = {
+            "6:3: " + getCheckMessage(MSG_ERROR, "class", 2, 6),
+            "8:3: " + getCheckMessage(MSG_ERROR, "static", 2, 6),
+            "12:3: " + getCheckMessage(MSG_ERROR, "static", 2, 6),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testTryResourcesLparenViolation() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("basicOffset", "4");
