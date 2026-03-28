@@ -182,23 +182,21 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNullErrorStreamOptions() {
-        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final IllegalArgumentException ex =
-                TestUtil.getExpectedThrowable(IllegalArgumentException.class, () -> {
-                    final DefaultLogger defaultLogger = new DefaultLogger(outputStream,
-                            OutputStreamOptions.CLOSE, outputStream, null);
+    public void testNullErrorStreamOptions() throws Exception {
+        final String inputFile = "InputDefaultLoggerNullErrorStreamOptions.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsNullErrorStreamOptions.txt";
 
-                    // Workaround for Eclipse error "The allocated object is never used"
-                    assertWithMessage("defaultLogger should be non-null")
-                            .that(defaultLogger)
-                            .isNotNull();
-                },
-                "IllegalArgumentException expected");
-        assertWithMessage("Invalid error message")
-                .that(ex)
-                .hasMessageThat()
-                        .isEqualTo("Parameter errorStreamOptions can not be null");
+        final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
+        final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+                errorStream, OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndDefaultLogger(
+                getPath(inputFile),
+                getPath(expectedInfoFile),
+                getPath(expectedErrorFile),
+                dl, infoStream, errorStream);
     }
 
     @Test
