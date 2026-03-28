@@ -1,6 +1,6 @@
 /*
 OneTopLevelClass
-
+violatingClassName = (default)null
 
 */
 
@@ -17,3 +17,4 @@ public enum InputOneTopLevelClassEnum2 {
 enum InputOneTopLevelClassEnum2inner2 { // violation
     VALUE1, VALUE2;
 }
+
