@@ -77,35 +77,59 @@ public class StringLiteralEqualityCheck extends AbstractCheck {
         return new int[] {TokenTypes.EQUAL, TokenTypes.NOT_EQUAL};
     }
 
-    @Override
-    public void visitToken(DetailAST ast) {
-        final boolean hasStringLiteralChild = hasStringLiteralChild(ast);
-
-        if (hasStringLiteralChild) {
-            log(ast, MSG_KEY, ast.getText());
-        }
+      private static boolean containsStringLiteral(DetailAST ast) {
+    if (ast == null) {
+        return false;
     }
 
+    if (ast.getType() == TokenTypes.STRING_LITERAL) {
+        return true;
+    }
+
+    DetailAST child = ast.getFirstChild();
+    while (child != null) {
+        if (containsStringLiteral(child)) {
+            return true;
+        }
+        child = child.getNextSibling();
+    }
+
+    return false;
+}
+   
+
+   
+    
     /**
      * Checks whether string literal or text block literals are concatenated.
      *
      * @param ast ast
      * @return {@code true} if string literal or text block literals are concatenated
      */
-    private static boolean hasStringLiteralChild(DetailAST ast) {
-        DetailAST currentAst = ast;
-        boolean result = false;
-        while (currentAst != null) {
-            if (currentAst.findFirstToken(TokenTypes.STRING_LITERAL) == null
-                    && currentAst.findFirstToken(TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) == null) {
-                currentAst = currentAst.findFirstToken(TokenTypes.PLUS);
-            }
-            else {
-                result = true;
-                break;
-            }
-        }
-        return result;
+   private static boolean isStringLiteralExpression(DetailAST ast) {
+    if (ast == null) {
+        return false;
     }
 
+    final int type = ast.getType();
+
+    // direct literal
+    if (type == TokenTypes.STRING_LITERAL
+            || type == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
+        return true;
+    }
+
+    // concatenation: BOTH sides must be literals
+    if (type == TokenTypes.PLUS) {
+        final DetailAST left = ast.getFirstChild();
+        final DetailAST right = left.getNextSibling();
+
+        return isStringLiteralExpression(left)
+                && isStringLiteralExpression(right);
+    }
+
+    return false;
+}
+
+   
 }
