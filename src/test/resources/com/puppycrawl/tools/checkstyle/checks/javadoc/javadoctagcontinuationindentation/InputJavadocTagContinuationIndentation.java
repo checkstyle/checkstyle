@@ -52,7 +52,7 @@ class InputJavadocTagContinuationIndentation implements Serializable
      * @return Some text.
      * @serialData Some javadoc.
      * @see Some text.
-     *    Some javadoc. // violation
+     *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
      * @throws Exception Some text.
      */
     String method(String aString) throws Exception
@@ -114,10 +114,10 @@ class InputJavadocTagContinuationIndentation implements Serializable
      * Some text.
      * @param aString Some text.
      * @return Some text.
-     *    Some javadoc. // violation
+     *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
      * @serialData Some javadoc.
      * @param aInt Some text.
-     *    Some javadoc. // violation
+     *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
      * @throws Exception Some text.
      * @param aBoolean Some text.
      * @see Some text.
@@ -208,10 +208,10 @@ class InputJavadocTagContinuationIndentation implements Serializable
          * @param aString Some text.
          * @return Some text.
          * @param aInt Some text.
-         *    Some javadoc. // violation
+         *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
          * @throws Exception Some text.
          * @param aBoolean Some text.
-         *    Some javadoc. // violation
+         *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
          * @see Some text.
          */
         String method6(String aString, int aInt, boolean aBoolean) throws Exception
@@ -226,9 +226,9 @@ class InputJavadocTagContinuationIndentation implements Serializable
          * Some text.
          * @throws Exception Some text.
          * @param aString Some text.
-         *   Some javadoc. // violation
+         *   Some javadoc. // violation, 'Line continuation .* expected level should be 4'
          * @serialData Some javadoc.
-         *    Some javadoc. // violation
+         *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
          * @see Some text.
          * @return Some text.
          */
@@ -290,12 +290,12 @@ class InputJavadocTagContinuationIndentation implements Serializable
          * Some text.
          *       Some javadoc.
          * @param aString Some text.
-         *    Some javadoc. // violation
+         *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
          * @return Some text.
          * @param aInt Some text.
-         *    Some javadoc. // violation
+         *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
          * @throws Exception Some text.
-         *    Some javadoc. // violation
+         *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
          * @param aBoolean Some text.
          * @see Some text.
          */
@@ -315,7 +315,7 @@ class InputJavadocTagContinuationIndentation implements Serializable
  *     Some javadoc.
  *     Some javadoc.
  * @see Some javadoc.
- *    Some javadoc. // violation
+ *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
  * @author max
  */
 enum Foo1 {}
@@ -327,9 +327,9 @@ enum Foo1 {}
  * @since Some javadoc.
  *     Some javadoc.
  * @serialData Some javadoc.
- *   Line below is empty on purpose. // violation
- * @see Some Text.
- * L. // violation
+ *   Line below is empty on purpose.
+ * @see Some Text. // violation above 'Line continuation .* expected level should be 4'
+ * L. // violation, 'Line continuation .* expected level should be 4'
  *
  * @author max
  * @customTag {@link com.puppycrawl.tools.checkstyle.AllChecksPresentOnAvailableChecksPageTest
@@ -347,7 +347,7 @@ class ShortNextLine {
      * Test.
      *
      * @return Test
-     * tt <code>null</code>. // violation
+     * tt <code>null</code>. // violation, 'Line continuation .* expected level should be 4'
      */
     public void example() {
     }
