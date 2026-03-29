@@ -2,10 +2,9 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="NoWhitespaceBefore"/>
+    </module>
   </module>
 </module>
-
-
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebefore;
