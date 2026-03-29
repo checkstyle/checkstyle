@@ -16,16 +16,17 @@ tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, B
          NOT_EQUAL, PLUS, PLUS_ASSIGN, QUESTION, RCURLY, SL, SLIST, SL_ASSIGN, SR, \
          SR_ASSIGN, STAR, STAR_ASSIGN, LITERAL_ASSERT, TYPE_EXTENSION_AND, LITERAL_WHEN
 
-
 com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck
+tokens = (default)COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_WHILE, \
+         LITERAL_DO, LITERAL_FOR, LITERAL_FINALLY, LITERAL_RETURN, LITERAL_YIELD, \
+         LITERAL_CATCH, DO_WHILE, ELLIPSIS, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, \
+         LITERAL_TRY, LITERAL_CASE, LAMBDA, LITERAL_WHEN
 
 */
 package com.puppycrawl.tools.checkstyle.treewalker;
-
 public class InputTreeWalkerMultiCheckOrder {
     public void method() {
-        boolean test = true;
-        if(test) {  // 2 violations
+        if(true) {  // 2 violations
 
         }
     }
