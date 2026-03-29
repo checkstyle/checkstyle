@@ -101,10 +101,10 @@ class Example1 {
    * Writes the object using a
    * &lt;a href="{@docRoot}/serialized-form.html#java.time.Ser"&gt;dedicated form&lt;/a&gt;.
    * @serialData
-   * &lt;code&gt; // violation
-   * out.writeByte(1); // violation
-   * out.writeInt(nanos); // violation
-   * &lt;/code&gt; // violation
+   * &lt;code&gt; // violation 'expected level should be 4'
+   * out.writeByte(1); // violation 'expected level should be 4'
+   * out.writeInt(nanos); // violation 'expected level should be 4'
+   * &lt;/code&gt; // violation 'expected level should be 4'
    */
   public void testMethodCode(String input) {}
 
@@ -164,10 +164,10 @@ class Example2 {
    * Writes the object using a
    * &lt;a href="{@docRoot}/serialized-form.html#java.time.Ser"&gt;dedicated form&lt;/a&gt;.
    * @serialData
-   * &lt;code&gt; // violation
-   * out.writeByte(1); // violation
-   * out.writeInt(nanos); // violation
-   * &lt;/code&gt; // violation
+   * &lt;code&gt; // violation 'expected level should be 2'
+   * out.writeByte(1); // violation 'expected level should be 2'
+   * out.writeInt(nanos); // violation 'expected level should be 2'
+   * &lt;/code&gt; // violation 'expected level should be 2'
    */
   public void testMethodCode(String input) {}
 
@@ -228,10 +228,10 @@ class Example3 {
    * Writes the object using a
    * &lt;a href="{@docRoot}/serialized-form.html#java.time.Ser"&gt;dedicated form&lt;/a&gt;.
    * @serialData
-   * &lt;code&gt; // violation
-   * out.writeByte(1); // violation
-   * out.writeInt(nanos); // violation
-   * &lt;/code&gt; // violation
+   * &lt;code&gt; // violation 'expected level should be 4'
+   * out.writeByte(1); // violation 'expected level should be 4'
+   * out.writeInt(nanos); // violation 'expected level should be 4'
+   * &lt;/code&gt; // violation 'expected level should be 4'
    */
   public void testMethodCode(String input) {}
 
@@ -263,17 +263,17 @@ class Example3 {
             id="JavadocTagContinuationIndentation_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
               javadoc.parse.rule.error
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
               javadoc.unclosedHtml
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22tag.continuation.indent%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22tag.continuation.indent%22">
               tag.continuation.indent
             </a>
           </li>
@@ -285,9 +285,11 @@ class Example3 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="JavadocTagContinuationIndentation_Package">
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

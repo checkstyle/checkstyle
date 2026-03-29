@@ -93,7 +93,7 @@ public class Example1 {
             id="UnnecessaryNullCheckWithInstanceOf_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.nullcheck.with.instanceof%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.nullcheck.with.instanceof%22">
               unnecessary.nullcheck.with.instanceof
             </a>
           </li>
@@ -105,9 +105,11 @@ public class Example1 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="UnnecessaryNullCheckWithInstanceOf_Package">
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryNullCheckWithInstanceOfCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+           Use this fully qualified class name in configuration when an exact class reference is
+           required.
         </p>
       </subsection>
 

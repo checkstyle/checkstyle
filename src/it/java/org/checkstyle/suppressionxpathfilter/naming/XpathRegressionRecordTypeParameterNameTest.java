@@ -99,4 +99,36 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testNested() throws Exception {
+        final File fileToProcess = new File(getPath(
+                "InputXpathRecordTypeParameterNameNested.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(RecordTypeParameterNameCheck.class);
+
+        final String pattern = "^[A-Z]$";
+
+        final String[] expectedViolation = {
+            "6:25: " + getCheckMessage(RecordTypeParameterNameCheck.class,
+                    AbstractNameCheck.MSG_INVALID_PATTERN, "abc", pattern),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathRecordTypeParameterNameNested']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
+                + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]"
+                + "/TYPE_PARAMETERS/TYPE_PARAMETER[./IDENT[@text='abc']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathRecordTypeParameterNameNested']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
+                + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]"
+                + "/TYPE_PARAMETERS/TYPE_PARAMETER/IDENT[@text='abc']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

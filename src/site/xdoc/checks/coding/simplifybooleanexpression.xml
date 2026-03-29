@@ -12,7 +12,7 @@
         <div>
           Checks for over-complicated boolean expressions. Currently, it finds code like
           <code>if (b == true)</code>, <code>b || true</code>, <code>!false</code>,
-          <code>boolean a = q > 12 ? true : false</code>,
+          <code>boolean a = q &gt; 12 ? true : false</code>,
           etc.
         </div>
 
@@ -73,7 +73,7 @@ class Example1 {
       <subsection name="Violation Messages" id="SimplifyBooleanExpression_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22simplify.expression%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22simplify.expression%22">
               simplify.expression
             </a>
           </li>
@@ -85,9 +85,11 @@ class Example1 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="SimplifyBooleanExpression_Package">
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+             Use this fully qualified class name in configuration when an exact class reference is
+             required.
         </p>
       </subsection>
 

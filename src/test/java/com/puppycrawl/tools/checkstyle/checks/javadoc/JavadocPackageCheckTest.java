@@ -31,6 +31,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocPackageCheckTest
@@ -86,7 +87,7 @@ public class JavadocPackageCheckTest
             "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
         verifyWithInlineConfigParser(
-            getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored.java"),
+            getPath("packagehtml" + File.separator + "InputJavadocPackageHtmlIgnored.java"),
             expected);
     }
 
@@ -94,7 +95,7 @@ public class JavadocPackageCheckTest
     public void testHtmlAllowed() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-            getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored2.java"),
+            getPath("packagehtml" + File.separator + "InputJavadocPackageHtmlIgnored2.java"),
             getPath("noparentfile" + File.separator + "package-info.java"),
             expected);
     }
@@ -118,15 +119,17 @@ public class JavadocPackageCheckTest
         final FileText mockFileText = new FileText(fileWithInvalidPath, Collections.emptyList());
         final String expectedExceptionMessage =
                 "Exception while getting canonical path to file " + fileWithInvalidPath.getPath();
-        try {
-            check.processFiltered(fileWithInvalidPath, mockFileText);
-            assertWithMessage("CheckstyleException expected to be thrown").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message. Expected: %s", expectedExceptionMessage)
-                .that(exc.getMessage())
-                .isEqualTo(expectedExceptionMessage);
-        }
+        final CheckstyleException exc =
+                TestUtil.getExpectedThrowable(
+                    CheckstyleException.class, () -> {
+                        check.processFiltered(
+                            fileWithInvalidPath, mockFileText);
+                    });
+        assertWithMessage(
+                "Invalid exception message. Expected: %s",
+                expectedExceptionMessage)
+            .that(exc.getMessage())
+            .isEqualTo(expectedExceptionMessage);
     }
 
     @Test

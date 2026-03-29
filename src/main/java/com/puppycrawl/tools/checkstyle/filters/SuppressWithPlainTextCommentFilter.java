@@ -42,18 +42,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * <div>
  * Filter {@code SuppressWithPlainTextCommentFilter} uses plain text to suppress
- * audit events. The filter can be used only to suppress audit events received
- * from the checks which implement FileSetCheck interface. In other words, the
- * checks which have Checker as a parent module. The filter knows nothing about
- * AST, it treats only plain text comments and extracts the information required
- * for suppression from the plain text comments. Currently, the filter supports
- * only single-line comments.
+ * audit events. The filter knows nothing about AST, it treats only plain text
+ * comments and extracts the information required for suppression from the plain
+ * text comments. Currently, the filter supports only single-line comments.
  * </div>
  *
  * <p>
  * Please, be aware of the fact that, it is not recommended to use the filter
- * for Java code anymore, however you still are able to use it to suppress audit
- * events received from the checks which implement FileSetCheck interface.
+ * for Java code anymore.
  * </p>
  *
  * <p>
@@ -78,7 +74,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  *
  * <p>
- * SuppressionWithPlainTextCommentFilter can suppress Checks that have Treewalker or
+ * SuppressWithPlainTextCommentFilter can suppress Checks that have Treewalker or
  * Checker as parent module.
  * </p>
  *

@@ -367,21 +367,17 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setConfig(getPath("InputCheckstyleAntTaskPackagePrefix.xml"));
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
 
-        try {
-            antTask.execute();
-            assertWithMessage("Should throw BuildException for non-existent module.")
-                    .fail();
-        }
-        catch (final BuildException exception) {
-            final Throwable cause = exception.getCause();
+        final BuildException exception = getExpectedThrowable(BuildException.class,
+                antTask::execute,
+                "Should throw BuildException for non-existent module.");
+        final Throwable cause = exception.getCause();
 
-            assertWithMessage("BuildException should have a cause")
-                    .that(cause)
-                    .isNotNull();
-            assertWithMessage("Error message should contain the correct package prefix")
-                    .that(cause.getMessage())
-                    .contains("com.puppycrawl.tools.checkstyle");
-        }
+        assertWithMessage("BuildException should have a cause")
+                .that(cause)
+                .isNotNull();
+        assertWithMessage("Error message should contain the correct package prefix")
+                .that(cause.getMessage())
+                .contains("com.puppycrawl.tools.checkstyle");
     }
 
     @Test

@@ -1,9 +1,9 @@
 /*
 LineLength
-fileExtensions = (default)""
+fileExtensions = (default)null
 ignorePattern = ^.*is OK.*regexp.*$
 max = (default)80
-
+tabWidth = (default)0
 
 */
 
