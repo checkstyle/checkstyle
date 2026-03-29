@@ -1,9 +1,12 @@
 /*
 MagicNumber
 ignoreNumbers = -2, -1, 0, 1, 2, 100
-ignoreAnnotation = false
+ignoreAnnotation = (default)false
 ignoreFieldDeclaration = true
 constantWaiverParentToken = ARRAY_INIT, ASSIGN, ELIST
+ignoreHashCodeMethod = (default)false
+ignoreAnnotationElementDefaults = (default)true
+tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;

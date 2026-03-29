@@ -84,4 +84,25 @@ public class XpathRegressionMissingJavadocPackageTest extends AbstractXpathTestS
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testAnnotationWithoutJavadoc() throws Exception {
+        final File fileToProcess = new File(getPath(
+                "annotationwithoutjavadoc/package-info.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(MissingJavadocPackageCheck.class);
+
+        final String[] expectedViolation = {
+            "2:1: " + getCheckMessage(MissingJavadocPackageCheck.class,
+                MissingJavadocPackageCheck.MSG_PKG_JAVADOC_MISSING),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
 }

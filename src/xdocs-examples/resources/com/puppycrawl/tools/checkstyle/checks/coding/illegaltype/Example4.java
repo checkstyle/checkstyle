@@ -19,7 +19,8 @@ public class Example4 extends TreeSet {
   // violation below 'Usage of type 'java.util.HashSet' is not allowed'
   public <T extends java.util.HashSet> void method() {
     // violation below 'Usage of type 'LinkedHashMap' is not allowed'
-    LinkedHashMap<Integer, String> lhmap = new LinkedHashMap<Integer, String>();
+    LinkedHashMap<Integer, String> linkedHashMap =
+        new LinkedHashMap<Integer, String>();
     // violation below 'Usage of type 'TreeMap' is not allowed'
     TreeMap<Integer, String> treemap = new TreeMap<Integer, String>();
     java.lang.IllegalArgumentException illegalex;

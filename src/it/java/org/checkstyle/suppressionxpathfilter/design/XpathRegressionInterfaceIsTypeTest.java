@@ -98,4 +98,34 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testNested() throws Exception {
+        final File fileToProcess = new File(getPath(
+                "InputXpathInterfaceIsTypeNested.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(InterfaceIsTypeCheck.class);
+
+        final String[] expectedViolation = {
+            "4:5: " + getCheckMessage(InterfaceIsTypeCheck.class,
+                    InterfaceIsTypeCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                    + "@text='InputXpathInterfaceIsTypeNested']]"
+                    + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Foo']]",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                    + "@text='InputXpathInterfaceIsTypeNested']]"
+                    + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Foo']]/MODIFIERS",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                    + "@text='InputXpathInterfaceIsTypeNested']]"
+                    + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Foo']]"
+                    + "/MODIFIERS/LITERAL_PUBLIC"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

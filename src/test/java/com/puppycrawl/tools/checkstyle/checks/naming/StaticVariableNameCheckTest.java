@@ -46,7 +46,7 @@ public class StaticVariableNameCheckTest
     }
 
     @Test
-    public void testSpecified()
+    public void testSpecifiedA()
             throws Exception {
 
         final String pattern = "^s[A-Z][a-zA-Z0-9]*$";
@@ -55,15 +55,51 @@ public class StaticVariableNameCheckTest
             "36:24: " + getCheckMessage(MSG_INVALID_PATTERN, "badStatic", pattern),
         };
         verifyWithInlineConfigParser(
-                getPath("InputStaticVariableName1.java"), expected);
+                getPath("InputStaticVariableName1A.java"), expected);
     }
 
     @Test
-    public void testAccessTuning()
+    public void testSpecifiedB()
+            throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputStaticVariableName1B.java"), expected);
+    }
+
+    @Test
+    public void testSpecifiedC()
+            throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputStaticVariableName1C.java"), expected);
+    }
+
+    @Test
+    public void testAccessTuningA()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputStaticVariableName2.java"), expected);
+                getPath("InputStaticVariableName2A.java"), expected);
+    }
+
+    @Test
+    public void testAccessTuningB()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputStaticVariableName2B.java"), expected);
+    }
+
+    @Test
+    public void testAccessTuningC()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputStaticVariableName2C.java"), expected);
     }
 
     @Test

@@ -419,13 +419,8 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         final DetailAstImpl classDefAst = new DetailAstImpl();
         classDefAst.setType(TokenTypes.DOT);
 
-        try {
-            check.visitToken(classDefAst);
-            assertWithMessage("IllegalStateException is expected").fail();
-        }
-        catch (IllegalStateException exc) {
-            // it is OK
-        }
+        getExpectedThrowable(IllegalStateException.class,
+                () -> check.visitToken(classDefAst));
     }
 
     /**

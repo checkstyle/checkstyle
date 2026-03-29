@@ -90,4 +90,31 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testThrowable() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathIllegalThrowsThrowable.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(IllegalThrowsCheck.class);
+
+        final String[] expectedViolation = {
+            "6:35: " + getCheckMessage(IllegalThrowsCheck.class,
+                IllegalThrowsCheck.MSG_KEY, "Throwable"),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+               + "[./IDENT[@text='InputXpathIllegalThrowsThrowable']]/OBJBLOCK"
+               + "/VARIABLE_DEF[./IDENT[@text='obj']]"
+               + "/ASSIGN/EXPR/LITERAL_NEW[./IDENT[@text='Object']]"
+               + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
+               + "/LITERAL_THROWS/IDENT[@text='Throwable']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess,
+                expectedViolation, expectedXpathQueries);
+    }
+
 }

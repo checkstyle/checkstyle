@@ -871,7 +871,7 @@ public final class SiteUtil {
     }
 
     /**
-     * Returns {@code true} if {@code actualVersion} ≥ {@code requiredVersion}.
+     * Returns {@code true} if {@code actualVersion} >= {@code requiredVersion}.
      * Both versions have any trailing "-SNAPSHOT" stripped before comparison.
      *
      * @param actualVersion   e.g. "8.3" or "8.3-SNAPSHOT"
@@ -1091,23 +1091,16 @@ public final class SiteUtil {
      *
      * @param value the value to get the int stream from.
      * @return the int stream.
-     * @noinspection ChainOfInstanceofChecks
-     * @noinspectionreason ChainOfInstanceofChecks - We will deal with this at
-     *                     <a href="https://github.com/checkstyle/checkstyle/issues/13500">13500</a>
+     * @throws IllegalArgumentException if parameter is null.
      */
     private static IntStream getIntStream(Object value) {
-        final IntStream stream;
-        if (value instanceof Collection<?> collection) {
-            stream = collection.stream()
+        return switch (value) {
+            case null -> throw new IllegalArgumentException("value is null");
+            case Collection<?> collection -> collection.stream()
                     .mapToInt(int.class::cast);
-        }
-        else if (value instanceof BitSet set) {
-            stream = set.stream();
-        }
-        else {
-            stream = Arrays.stream((int[]) value);
-        }
-        return stream;
+            case BitSet set -> set.stream();
+            default -> Arrays.stream((int[]) value);
+        };
     }
 
     /**
@@ -1329,6 +1322,7 @@ public final class SiteUtil {
     private static String getDescriptionFromJavadocForXdoc(DetailNode javadoc, String moduleName)
             throws MacroExecutionException {
         boolean isInCodeLiteral = false;
+        boolean isInLiteralTag = false;
         boolean isInHtmlElement = false;
         boolean isInHrefAttribute = false;
         final StringBuilder description = new StringBuilder(128);
@@ -1362,13 +1356,12 @@ public final class SiteUtil {
                     description.append(node.getText());
                     isInHtmlElement = false;
                 }
-                if (node.getType() == JavadocCommentsTokenTypes.TEXT
-                        // If a node has children, its text is not part of the description
-                        || isInHtmlElement && node.getFirstChild() == null
-                            // Some HTML elements span multiple lines, so we avoid the asterisk
-                            && node.getType() != JavadocCommentsTokenTypes.LEADING_ASTERISK) {
-                    if (isInCodeLiteral) {
-                        description.append(node.getText().trim());
+                if (isTextContent(node, isInHtmlElement)) {
+                    if (isInCodeLiteral || isInLiteralTag) {
+                        description.append(node.getText().trim()
+                            .replace("&", "&amp;")
+                            .replace("<", "&lt;")
+                            .replace(">", "&gt;"));
                     }
                     else {
                         description.append(node.getText());
@@ -1385,6 +1378,15 @@ public final class SiteUtil {
                     isInCodeLiteral = false;
                     description.append("</code>");
                 }
+                if (node.getType() == JavadocCommentsTokenTypes.TAG_NAME
+                        && node.getParent().getType()
+                        == JavadocCommentsTokenTypes.LITERAL_INLINE_TAG) {
+                    isInLiteralTag = true;
+                }
+                if (isInLiteralTag
+                        && node.getType() == JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END) {
+                    isInLiteralTag = false;
+                }
 
             }
 
@@ -1398,6 +1400,19 @@ public final class SiteUtil {
         }
 
         return description.toString().trim();
+    }
+
+    /**
+     * Checks whether the node contains text content that should be written to the description.
+     *
+     * @param node the node to check.
+     * @param isInHtmlElement whether we are inside an HTML element.
+     * @return true if the node contains text content to write.
+     */
+    private static boolean isTextContent(DetailNode node, boolean isInHtmlElement) {
+        return node.getType() == JavadocCommentsTokenTypes.TEXT
+                || isInHtmlElement && node.getFirstChild() == null
+                    && node.getType() != JavadocCommentsTokenTypes.LEADING_ASTERISK;
     }
 
     /**

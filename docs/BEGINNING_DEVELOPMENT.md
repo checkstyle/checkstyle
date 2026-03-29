@@ -7,6 +7,127 @@
 **This guide is for developers who want to contribute to Checkstyle. It will guide you through
 everything you need to do to complete your first pull request.**
 
+## Contents
+
+- [Before Development](#before-development)
+- [Starting Development](#starting-development)
+
+## Before Development
+
+- Ensure that Git and Java JDK >= 21 are installed.
+
+You can find information about development environment preparation here:
+[Prepare development environment in Ubuntu](https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki/Prepare-Development-Environment-in-Ubuntu-12.04)
+
+Note: JDK 25 is currently not supported.
+Some test dependencies (cacio-tta, Mockito/ByteBuddy)
+are incompatible with JDK 25. Please use JDK 21 (LTS)
+for development until this issue is resolved.
+See [issue #18361](https://github.com/checkstyle/checkstyle/issues/18361)
+for more details.
+
+- Fork Checkstyle upstream project. As it is described [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
+
+- Clone your forked repository to your computer:
+
+```bash
+git clone git@github.com:your_user_name/checkstyle.git
+```
+
+- Before opening project in IDE, build the project in your terminal to download
+
+all needed artifacts. From the repository root folder, run:
+
+```bash
+./mvnw install
+```
+
+## Starting Development
+
+Here you can find instructions about importing and debugging the project for IDEs:
+[Eclipse IDE](https://checkstyle.sourceforge.io/eclipse.html),
+[NetBeans IDE](https://checkstyle.sourceforge.io/netbeans.html),
+[IntelliJ IDEA IDE](https://checkstyle.sourceforge.io/idea.html)
+
+Community video walk throughs of these instructions are available in SteLeo1602's
+[playlist on YouTube](https://www.youtube.com/playlist?list=PLHM9s_lN4X0hzOQ0sUmGdroxW0HfREAqj)
+
+Follow these instructions of Git usage and creating a Pull Request:
+1) Configure remotes by pointing to the official checkstyle repository,
+   naming it "upstream":
+
+```bash
+git remote add upstream https://github.com/checkstyle/checkstyle
+```
+
+2) Create a branch for a new check:
+
+```bash
+git checkout -b my-new-check
+```
+
+3) Commit changes to my-new-check branch:
+
+```bash
+git add .
+git commit -m "commit message"
+```
+
+4) Push branch to GitHub, to allow your mentor to review your code:
+
+```bash
+git push origin my-new-check
+```
+
+5) Repeat steps 3-4 till development is complete
+All additional commits, please [squash to first](https://davidwalsh.name/squash-commits-git)
+Please read all rules for PullRequest at our
+[wiki](https://github.com/checkstyle/checkstyle/wiki/PR-rules).
+
+```bash
+git rebase -i master
+git push --force origin my-new-check
+```
+
+6) Update current branch and local master by pulling changes that were done
+by other contributors:
+
+```bash
+git checkout master
+git pull upstream master
+git push origin master
+```
+
+7) Rebase your branch on your updated master:
+
+```bash
+git checkout my-new-check
+git rebase master
+```
+
+8) In the process of the rebase, it may discover conflicts.
+In that case it will stop and allow you to fix the conflicts.
+After fixing conflicts, use
+
+```bash
+git add .
+```
+
+to update the index with those contents, and then just run:
+
+```bash
+git rebase --continue
+```
+
+9) Push branch to GitHub (with all your final changes and actual code of Checkstyle):
+
+```bash
+git push --force origin my-new-check
+```
+
+10) Only after all content is finished and testing is done - send a
+[Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
+
 ## Prerequisites
 
 This guide assumes that you have some basic knowledge of

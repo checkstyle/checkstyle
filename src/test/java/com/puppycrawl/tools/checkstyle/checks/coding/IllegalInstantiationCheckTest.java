@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.util.Collection;
@@ -48,10 +49,17 @@ public class IllegalInstantiationCheckTest
     }
 
     @Test
-    public void testDefault() throws Exception {
+    public void testDefault1() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputIllegalInstantiationSemantic.java"), expected);
+                getPath("InputIllegalInstantiationSemantic1.java"), expected);
+    }
+
+    @Test
+    public void testDefault2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalInstantiationSemantic2.java"), expected);
     }
 
     @Test
@@ -67,7 +75,16 @@ public class IllegalInstantiationCheckTest
             "49:21: " + getCheckMessage(MSG_KEY, "java.awt.Color"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalInstantiationSemantic2.java"), expected);
+                getPath("InputIllegalInstantiationSemantic21.java"), expected);
+    }
+
+    @Test
+    public void testClasses2() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalInstantiationSemantic22.java"), expected);
     }
 
     @Test
@@ -152,15 +169,12 @@ public class IllegalInstantiationCheckTest
         lambdaAst.setType(TokenTypes.LAMBDA);
         lambdaAst.setText("LAMBDA");
 
-        try {
-            check.visitToken(lambdaAst);
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Message must include token name")
-                .that(exc.getMessage())
-                .contains("LAMBDA");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> check.visitToken(lambdaAst));
+        assertWithMessage("Message must include token name")
+            .that(exc.getMessage())
+            .contains("LAMBDA");
     }
 
     /**
@@ -172,10 +186,10 @@ public class IllegalInstantiationCheckTest
      */
     @SuppressWarnings("unchecked")
     @Test
-    public void testClearStateClassNames() throws Exception {
+    public void testClearStateClassNames1() throws Exception {
         final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
         final DetailAST root = JavaParser.parseFile(
-                new File(getPath("InputIllegalInstantiationSemantic.java")),
+                new File(getPath("InputIllegalInstantiationSemantic1.java")),
                 JavaParser.Options.WITHOUT_COMMENTS);
         final Optional<DetailAST> classDef = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.CLASS_DEF);
@@ -197,10 +211,61 @@ public class IllegalInstantiationCheckTest
      * @throws Exception when code tested throws exception
      */
     @Test
-    public void testClearStateImports() throws Exception {
+    public void testClearStateImports1() throws Exception {
         final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
         final DetailAST root = JavaParser.parseFile(new File(
-                getPath("InputIllegalInstantiationSemantic.java")),
+                getPath("InputIllegalInstantiationSemantic1.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final Optional<DetailAST> importDef = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.IMPORT);
+
+        assertWithMessage("Ast should contain IMPORT_DEF")
+                .that(importDef.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, importDef.orElseThrow(),
+                    "imports", imports -> ((Collection<?>) imports).isEmpty()))
+            .isTrue();
+    }
+
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testClearStateClassNames2() throws Exception {
+        final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputIllegalInstantiationSemantic2.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final Optional<DetailAST> classDef = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.CLASS_DEF);
+
+        assertWithMessage("Ast should contain CLASS_DEF")
+                .that(classDef.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.orElseThrow(),
+                    "classNames", classNames -> ((Collection<String>) classNames).isEmpty()))
+            .isTrue();
+    }
+
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testClearStateImports2() throws Exception {
+        final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
+        final DetailAST root = JavaParser.parseFile(new File(
+                getPath("InputIllegalInstantiationSemantic2.java")),
                 JavaParser.Options.WITHOUT_COMMENTS);
         final Optional<DetailAST> importDef = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.IMPORT);

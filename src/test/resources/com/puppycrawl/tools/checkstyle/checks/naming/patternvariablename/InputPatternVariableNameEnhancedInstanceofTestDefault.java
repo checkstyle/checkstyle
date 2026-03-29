@@ -15,8 +15,8 @@ public class InputPatternVariableNameEnhancedInstanceofTestDefault {
     private Object obj;
 
     static boolean doStuff(Object obj) {
-        return obj instanceof Integer OTHER && OTHER > 0; // violation
-    }
+        return obj instanceof Integer OTHER && OTHER > 0;
+    } // violation above, 'Name 'OTHER' must match pattern*.'
 
     static {
         Object o = "";
@@ -25,7 +25,7 @@ public class InputPatternVariableNameEnhancedInstanceofTestDefault {
             boolean stringCheck = "test".equals(s);
         }
 
-        if (o instanceof Integer Count) { // violation
+        if (o instanceof Integer Count) { // violation, 'Name 'Count' must match pattern*.'
             int value = Count.byteValue();
             if (Count.equals(value)) {
                 value = 25;
@@ -40,12 +40,14 @@ public class InputPatternVariableNameEnhancedInstanceofTestDefault {
     public void t(Object o1, Object o2) {
         Object b;
         Object c;
-        if (!(o1 instanceof String S) // violation
-                && (o2 instanceof String STRING)) { // violation
+        if (!(o1 instanceof String S) // violation, 'Name 'S' must match pattern*.'
+                && (o2 instanceof String STRING)) {
+            // violation above, 'Name 'STRING' must match pattern*.'
         }
 
-        if (o1 instanceof String STRING // violation
-                || !(o2 instanceof String STRING)) { // violation
+        if (o1 instanceof String STRING // violation, 'Name 'STRING' must match pattern*.'
+                || !(o2 instanceof String STRING)) {
+            // violation above, 'Name 'STRING' must match pattern*.'
         }
         b = ((VoidPredicate) () -> o1 instanceof String s).get();
 
@@ -57,17 +59,17 @@ public class InputPatternVariableNameEnhancedInstanceofTestDefault {
         boolean result = (o1 instanceof String a) ?
                 (o1 instanceof String x) : (!(o1 instanceof String y));
 
-        if (!(o1 instanceof Integer INTEGER) ? // violation
+        if (!(o1 instanceof Integer INTEGER) ? // violation, 'Name 'INTEGER' must match pattern*.'
                 false : INTEGER > 0) {
             System.out.println("done");
         }
 
         {
-            while (!(o1 instanceof String Thing1)) { // violation
-                L3:
+            while (!(o1 instanceof String Thing1)) {
+                L3: // violation above, 'Name 'Thing1' must match pattern*.'
                 break L3;
             }
-            while (o1 instanceof String Thing2) { // violation
+            while (o1 instanceof String Thing2) { // violation, 'Name 'Thing2' must match pattern*.'
                 Thing2.length();
             }
         }

@@ -242,7 +242,7 @@ class Test2 {}
       <subsection name="Violation Messages" id="SuppressWarnings_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22suppressed.warning.not.allowed%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22suppressed.warning.not.allowed%22">
               suppressed.warning.not.allowed
             </a>
           </li>
@@ -254,8 +254,12 @@ class Test2 {}
         </p>
       </subsection>
 
-      <subsection name="Package" id="SuppressWarnings_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="SuppressWarnings_Parent_Module">

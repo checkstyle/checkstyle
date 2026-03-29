@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.util.SortedSet;
 
@@ -122,16 +123,13 @@ public class AbstractViolationReporterTest {
         config.addMessage("msgKey", "This is a custom violation {0.");
         emptyCheck.configure(config);
 
-        try {
-            emptyCheck.log(1, "msgKey", "TestParam");
-            assertWithMessage("exception expected")
-                    .fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Error violation is unexpected")
-                    .that(exc.getMessage())
-                    .isEqualTo("Unmatched braces in the pattern.");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    emptyCheck.log(1, "msgKey", "TestParam");
+                }, "exception expected");
+        assertWithMessage("Error violation is unexpected")
+                .that(exc.getMessage())
+                .isEqualTo("Unmatched braces in the pattern.");
     }
 
     @Test
