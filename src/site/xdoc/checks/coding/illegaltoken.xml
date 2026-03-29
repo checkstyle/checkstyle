@@ -63,7 +63,9 @@
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-  void InvalidExample() {
+  native void InvalidExample();
+
+  void anotherMethod() {
     outer: // violation, 'Using 'outer:' is not allowed'
     for (int i = 0; i &lt; 5; i++) {
       if (i == 1) {
@@ -89,6 +91,15 @@ class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   native void InvalidExample(); // violation, 'Using 'native' is not allowed'
+
+  void anotherMethod() {
+    outer:
+    for (int i = 0; i &lt; 5; i++) {
+      if (i == 1) {
+        break outer;
+      }
+    }
+  }
 }
 </code></pre></div>
       </subsection>
@@ -105,7 +116,7 @@ class Example2 {
       <subsection name="Violation Messages" id="IllegalToken_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.token%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.token%22">
               illegal.token
             </a>
           </li>
@@ -117,9 +128,11 @@ class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="IllegalToken_Package">
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

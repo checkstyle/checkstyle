@@ -76,4 +76,13 @@ public class MatchXpathCheckExamplesTest extends AbstractExamplesModuleTestSuppo
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = {
+            "19:17: " + "Array initialization should contain at most 10 elements",
+        };
+
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+    }
 }

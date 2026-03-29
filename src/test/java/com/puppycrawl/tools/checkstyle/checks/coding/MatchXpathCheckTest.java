@@ -181,13 +181,8 @@ public class MatchXpathCheckTest
     public void testInvalidQuery() {
         final MatchXpathCheck matchXpathCheck = new MatchXpathCheck();
 
-        try {
-            matchXpathCheck.setQuery("!@#%^");
-            assertWithMessage("Exception was expected").fail();
-        }
-        catch (IllegalStateException ignored) {
-            // it is OK
-        }
+        getExpectedThrowable(IllegalStateException.class,
+                () -> matchXpathCheck.setQuery("!@#%^"));
     }
 
     @Test
@@ -201,13 +196,8 @@ public class MatchXpathCheckTest
         detailAST.setLineNo(0);
         detailAST.setColumnNo(0);
 
-        try {
-            matchXpathCheck.beginTree(detailAST);
-            assertWithMessage("Exception was expected").fail();
-        }
-        catch (IllegalStateException ignored) {
-            // it is OK
-        }
+        getExpectedThrowable(IllegalStateException.class,
+                () -> matchXpathCheck.beginTree(detailAST));
     }
 
     @Test

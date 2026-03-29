@@ -109,4 +109,35 @@ public class XpathRegressionDesignForExtensionTest extends AbstractXpathTestSupp
         runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
 
     }
+
+    @Test
+    public void testProtected() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathDesignForExtensionProtected.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(DesignForExtensionCheck.class);
+        moduleConfig.addProperty("ignoredAnnotations", "Override");
+
+        final String[] expected = {
+            "7:5: " + getCheckMessage(DesignForExtensionCheck.class,
+                    DesignForExtensionCheck.MSG_KEY,
+                    "InputXpathDesignForExtensionProtected",
+                    "getValue"),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+               + "[@text='InputXpathDesignForExtensionProtected']]/OBJBLOCK"
+               + "/METHOD_DEF[./IDENT[@text='getValue']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+               + "[@text='InputXpathDesignForExtensionProtected']]/OBJBLOCK"
+               + "/METHOD_DEF[./IDENT[@text='getValue']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+               + "[@text='InputXpathDesignForExtensionProtected']]/OBJBLOCK"
+               + "/METHOD_DEF[./IDENT[@text='getValue']]/MODIFIERS/LITERAL_PROTECTED"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
+    }
 }

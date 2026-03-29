@@ -162,11 +162,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="RegexpSinglelineJava_Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.regexp
-        </p>
-      </subsection>
+  <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <p> com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck</p>
+      <p>
+        Use this fully qualified class name in configuration when an exact class reference is
+        required.
+      </p>
+  </subsection>
 
       <subsection name="Parent Module" id="RegexpSinglelineJava_Parent_Module">
         <macro name="parent-module">

@@ -87,7 +87,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * <b>Note:</b> When entering a regular expression as a parameter in
  * the XML config file you must also take into account the XML rules. e.g.
- * if you want to match a &lt; symbol you need to enter &amp;lt;.
+ * if you want to match a {@literal <} symbol you need to enter &amp;lt;.
  * The regular expression should be entered on one line.
  * </p>
  *
@@ -99,7 +99,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <p>
  * <b>Note:</b> To search for things that mean something in XML, like
- * &lt; you need to escape them like &amp;lt;. This is required so the
+ * {@literal <} you need to escape them like &amp;lt;. This is required so the
  * XML parser does not act on them, but instead passes the correct
  * character to the regexp engine.
  * </p>
@@ -257,7 +257,6 @@ public class RegexpCheck extends AbstractCheck {
      * Processes the regexp matches and logs the number of errors in the file.
      *
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @SuppressWarnings("deprecation")
     private void processRegexpMatches() {
         final Matcher matcher = format.matcher(getFileContents().getText().getFullText());
@@ -293,7 +292,6 @@ public class RegexpCheck extends AbstractCheck {
      * @param matcher The matcher
      * @return true is that need to be ignored
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @SuppressWarnings("deprecation")
     private boolean isIgnore(int startLine, FileText text, LineColumn start, Matcher matcher) {
         final LineColumn end;

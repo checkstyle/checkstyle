@@ -22,9 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISSING;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
@@ -108,18 +108,14 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
     public void testSetHeader() {
         // check invalid header passes
         final RegexpHeaderCheck instance = new RegexpHeaderCheck();
-        try {
-            final String header = "^/**\\n * Licensed to the Apache Software Foundation (ASF)";
-            instance.setHeader(header);
-            assertWithMessage(String.format(Locale.ROOT, "%s should have been thrown",
-                    IllegalArgumentException.class)).fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
+        final String header = "^/**\\n * Licensed to the Apache Software Foundation (ASF)";
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> instance.setHeader(header));
+        assertWithMessage("Invalid exception message")
                 .that(exc.getMessage())
                 .isEqualTo("Unable to parse format: ^/**\\n *"
                     + " Licensed to the Apache Software Foundation (ASF)");
-        }
     }
 
     @Test
@@ -132,20 +128,16 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEmptyFilename() throws Exception {
+    public void testEmptyFilename() {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
         checkConfig.addProperty("headerFile", "");
-        try {
-            createChecker(checkConfig);
-            assertWithMessage("Checker creation should not succeed with invalid headerFile").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> createChecker(checkConfig));
+        assertWithMessage("Invalid exception message")
                 .that(exc.getMessage())
                 .isEqualTo("cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
                     + " - Cannot set property 'headerFile' to ''");
-        }
     }
 
     @Test
@@ -199,22 +191,17 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFailureForMultilineRegexp() throws Exception {
+    public void testFailureForMultilineRegexp() {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(RegexpHeaderCheck.class);
         checkConfig.addProperty("header", "^(.*\\n.*)");
-        try {
-            createChecker(checkConfig);
-            assertWithMessage(
-                    "Checker creation should not succeed when regexp spans multiple lines").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> createChecker(checkConfig));
+        assertWithMessage("Invalid exception message")
                 .that(exc.getMessage())
                 .isEqualTo("cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
                     + " - Cannot set property 'header' to '^(.*\\n.*)'");
-        }
     }
 
     @Test
@@ -372,16 +359,12 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("headerFile", getPath("InputRegexpHeader.invalid.header"));
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         final String path = getPath("InputRegexpHeaderMulti52.java");
-        try {
-            // Content header is conflicting with Input inline header
-            verify(checkConfig, path, expected);
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> verify(checkConfig, path, expected));
+        assertWithMessage("Invalid exception message")
                 .that(exc.getMessage())
                 .isEqualTo("line 3 in header specification is not a regular expression");
-        }
     }
 
     @Test

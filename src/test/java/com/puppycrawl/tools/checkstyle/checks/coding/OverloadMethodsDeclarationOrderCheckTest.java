@@ -36,20 +36,27 @@ public class OverloadMethodsDeclarationOrderCheckTest
     }
 
     @Test
-    public void testDefault() throws Exception {
-
+    public void testDefaultPart1() throws Exception {
         final String[] expected = {
             "33:5: " + getCheckMessage(MSG_KEY, 21),
             "62:9: " + getCheckMessage(MSG_KEY, 50),
             "67:9: " + getCheckMessage(MSG_KEY, 62),
             "87:5: " + getCheckMessage(MSG_KEY, 83),
-            "132:5: " + getCheckMessage(MSG_KEY, 120),
-            "144:5: " + getCheckMessage(MSG_KEY, 137),
-            "156:9: " + getCheckMessage(MSG_KEY, 149),
-            "159:5: " + getCheckMessage(MSG_KEY, 144),
         };
         verifyWithInlineConfigParser(
-                getPath("InputOverloadMethodsDeclarationOrder.java"), expected);
+            getPath("InputOverloadMethodsDeclarationOrder1.java"), expected);
+    }
+
+    @Test
+    public void testDefaultPart2() throws Exception {
+        final String[] expected = {
+            "53:9: " + getCheckMessage(MSG_KEY, 41),
+            "65:9: " + getCheckMessage(MSG_KEY, 58),
+            "77:13: " + getCheckMessage(MSG_KEY, 70),
+            "80:9: " + getCheckMessage(MSG_KEY, 65),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputOverloadMethodsDeclarationOrder2.java"), expected);
     }
 
     @Test

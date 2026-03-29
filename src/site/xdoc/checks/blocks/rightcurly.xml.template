@@ -139,8 +139,12 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="RightCurly_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="RightCurly_Parent_Module">

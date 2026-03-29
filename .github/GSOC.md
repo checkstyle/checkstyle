@@ -88,7 +88,7 @@ this is in a table.
 
 #### About You
 
-Tell us about yourself. what time zone are you located in?
+Tell us about yourself. What time zone are you located in?
 What is your background?
 **Share list of links to your Checkstyle contributions
 to be considered for GSoC; this is one of the most important selection criteria.**
@@ -117,6 +117,6 @@ you are excited to work with us.
     valuable. This article on developer feelings about code reviews is a good example:
     "[Developer Sentiment in Code Reviews][code-review-feelings-article-link]".
 - **Contribute, Contribute, Contribute.** This is the single best way to show us that you are
-    serious becoming a valuable member of our community.
+    serious about becoming a valuable member of our community.
 
 [code-review-feelings-article-link]: https://roman-ivanov.blogspot.com/2022/04/comments-on-predicting-developers.html

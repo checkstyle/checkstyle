@@ -2,6 +2,7 @@
 LocalVariableName
 format = (default)^([a-z][a-zA-Z0-9]*|_)$
 allowOneCharVarInForLoop = (default)false
+tokens = (default)VARIABLE_DEF
 
 
 */
@@ -36,7 +37,7 @@ final class InputLocalVariableName1two
     {
         // normal decl
         int abc = 0;
-        int ABC = 0; // violation
+        int ABC = 0; // violation, 'Name 'ABC' must match pattern*'
 
         // final decls
         final int cde = 0;
@@ -47,9 +48,10 @@ final class InputLocalVariableName1two
         {
             String innerBlockVariable = "";
         }
-        for (int I = 0; I < 1; I++) // violation
+        for (int I = 0; I < 1; I++) // violation, 'Name 'I' must match pattern*'
         {
-            String InnerBlockVariable = ""; // violation
+            String InnerBlockVariable = "";
+            // violation above, 'Name 'InnerBlockVariable' must match pattern*'
         }
     }
 

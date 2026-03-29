@@ -82,9 +82,9 @@ public class InputLocalFinalVariableNameTryResources {
         try (FileInputStream fis8859_1 = new FileInputStream(
                 new File(srcDir, "Bug.properties"));
              FileInputStream fisUTF8 = new FileInputStream(new File(srcDir, "Bug_Utf8.properties"));
-             // violation below 'Name 'isrutf8' must match pattern'
-             InputStreamReader isrutf8 = new InputStreamReader(fisUTF8, "UTF-8")) {
-            PropertyResourceBundle bundleUtf8 = new PropertyResourceBundle(isrutf8);
+             // violation below 'Name 'streamreader' must match pattern'
+             InputStreamReader streamreader = new InputStreamReader(fisUTF8, "UTF-8")) {
+            PropertyResourceBundle bundleUtf8 = new PropertyResourceBundle(streamreader);
             PropertyResourceBundle bundle = new PropertyResourceBundle(fis8859_1);
             String[] arrayUtf8 = {"1", "2", "3"};
             String[] array = {"key1", "key2"};
