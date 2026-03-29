@@ -306,7 +306,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck",
 
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck",
             "com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder",
             "com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter",
