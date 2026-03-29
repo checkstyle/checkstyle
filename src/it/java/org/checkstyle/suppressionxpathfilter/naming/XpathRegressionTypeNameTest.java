@@ -94,4 +94,31 @@ public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testClassDef() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathTypeNameAccessModifiers.java"));
+
+        final String pattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(TypeNameCheck.class);
+        moduleConfig.addProperty("format", pattern);
+        moduleConfig.addProperty("applyToPublic", "false");
+
+        final String[] expectedViolation = {
+            "7:21: " + getCheckMessage(TypeNameCheck.class,
+                        AbstractNameCheck.MSG_INVALID_PATTERN, "ThirdName", pattern),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/COMPILATION_UNIT"
+                        + "/CLASS_DEF[./IDENT[@text"
+                        + "='InputXpathTypeNameAccessModifiers']]"
+                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='SecondName']]"
+                        + "/OBJBLOCK/CLASS_DEF/IDENT[@text='ThirdName']"
+        );
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
 }

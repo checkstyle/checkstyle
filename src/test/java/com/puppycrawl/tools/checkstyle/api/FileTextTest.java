@@ -20,12 +20,14 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -44,38 +46,40 @@ public class FileTextTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testUnsupportedCharset() throws IOException {
+    public void testUnsupportedCharset() {
         // just to make UT coverage 100%
         final String charsetName = "STRANGE_CHARSET";
         final File file = new File("any name");
-        try {
-            final Object test = new FileText(file, charsetName);
-            assertWithMessage("UnsupportedEncodingException is expected but got %s", test)
-                    .fail();
-        }
-        catch (IllegalStateException exc) {
-            assertWithMessage("Invalid exception message")
-                    .that(exc)
-                    .hasMessageThat()
-                    .isEqualTo("Unsupported charset: " + charsetName);
-        }
+        final List<FileText> result = new ArrayList<>();
+        final IllegalStateException exc =
+                getExpectedThrowable(IllegalStateException.class, () -> {
+                    result.add(new FileText(file, charsetName));
+                }, "UnsupportedEncodingException is expected");
+        assertWithMessage("Object should not be created")
+                .that(result)
+                .isEmpty();
+        assertWithMessage("Invalid exception message")
+                .that(exc)
+                .hasMessageThat()
+                .isEqualTo("Unsupported charset: " + charsetName);
     }
 
     @Test
-    public void testFileNotFound() throws IOException {
+    public void testFileNotFound() {
         final String charsetName = StandardCharsets.ISO_8859_1.name();
         final File file = new File("any name");
-        try {
-            final Object test = new FileText(file, charsetName);
-            assertWithMessage("FileNotFoundException is expected but got %s", test)
-                    .fail();
-        }
-        catch (FileNotFoundException exc) {
-            assertWithMessage("Invalid exception message")
-                    .that(exc)
-                    .hasMessageThat()
-                    .isEqualTo("any name (No such file or directory)");
-        }
+        final List<FileText> result = new ArrayList<>();
+        final FileNotFoundException exc =
+                getExpectedThrowable(FileNotFoundException.class, () -> {
+                    result.add(new FileText(file, charsetName));
+                }, "FileNotFoundException is expected");
+        assertWithMessage("Object should not be created")
+                .that(result)
+                .isEmpty();
+        assertWithMessage("Invalid exception message")
+                .that(exc)
+                .hasMessageThat()
+                .isEqualTo("any name (No such file or directory)");
     }
 
     @Test

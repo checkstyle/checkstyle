@@ -88,4 +88,30 @@ public class XpathRegressionIllegalTypeTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                          expectedXpathQueries);
     }
+
+    @Test
+    public void testInnerClass() throws Exception {
+        final File fileToProcess =
+            new File(getPath("InputXpathIllegalTypeInnerClass.java"));
+        final DefaultConfiguration moduleConfig =
+            createModuleConfig(IllegalTypeCheck.class);
+
+        moduleConfig.addProperty("tokens", "METHOD_DEF");
+
+        final String[] expectedViolation = {
+            "5:27: " + getCheckMessage(IllegalTypeCheck.class,
+                                      IllegalTypeCheck.MSG_KEY, "java.util.HashMap"),
+        };
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTypeInnerClass']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='typeParam']]/TYPE_PARAMETERS/TYPE_PARAMETER"
+                + "[./IDENT[@text='T']]/TYPE_UPPER_BOUNDS/DOT"
+                + "[./IDENT[@text='HashMap']]/DOT/IDENT[@text='java']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                         expectedXpathQueries);
+    }
 }

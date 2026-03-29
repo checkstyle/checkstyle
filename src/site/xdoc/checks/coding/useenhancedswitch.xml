@@ -10,20 +10,20 @@
       <p>Since Checkstyle 13.3.0</p>
       <subsection name="Description" id="UseEnhancedSwitch_Description">
         <div>
-          Ensures that the enhanced switch (using <code>-></code> for case labels) is used
+          Ensures that the enhanced switch (using <code>-&gt;</code> for case labels) is used
           instead of the traditional switch (using <code>:</code> for case labels) where possible.
         </div>
 
         <p>
           Rationale: Java 14 has introduced enhancements for switch statements and expressions
-          that disallow fall-through behavior. The enhanced switch syntax using <code>-></code>
+          that disallow fall-through behavior. The enhanced switch syntax using <code>-&gt;</code>
           for case labels typically leads to more concise and readable code, reducing the likelihood
           of errors associated with fall-through cases.
         </p>
 
         <p>
           See the <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-14.html#jls-14.11.1-200">
-          Java Language Specification</a> for more information about <code>-></code> case labels, also known as
+          Java Language Specification</a> for more information about <code>-&gt;</code> case labels, also known as
           "switch rules".
         </p>
       </subsection>
@@ -119,7 +119,7 @@ public class Example2 {
       <subsection name="Violation Messages" id="UseEnhancedSwitch_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22use.enhanced.switch%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22use.enhanced.switch%22">
               use.enhanced.switch
             </a>
           </li>
@@ -131,9 +131,11 @@ public class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="UseEnhancedSwitch_Package">
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.UseEnhancedSwitchCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

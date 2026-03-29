@@ -45,9 +45,11 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+import com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
@@ -210,12 +212,10 @@ public final class CheckUtil {
      * @param module class to examine.
      * @param deepScan scan subclasses.
      * @return a set of checkstyle's module message fields.
-     * @throws ClassNotFoundException if the attempt to read a protected class fails.
      * @noinspection BooleanParameter
      * @noinspectionreason BooleanParameter - boolean parameter eases testing
      */
-    public static Set<Field> getCheckMessages(Class<?> module, boolean deepScan)
-            throws ClassNotFoundException {
+    public static Set<Field> getCheckMessages(Class<?> module, boolean deepScan) {
         final Set<Field> checkstyleMessages = new HashSet<>();
 
         // get all fields from current class
@@ -236,15 +236,11 @@ public final class CheckUtil {
 
         // special cases that require additional classes
         if (module == RegexpMultilineCheck.class) {
-            checkstyleMessages.addAll(getCheckMessages(Class
-                    .forName("com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector"),
-                    deepScan));
+            checkstyleMessages.addAll(getCheckMessages(MultilineDetector.class, deepScan));
         }
         else if (module == RegexpSinglelineCheck.class
                 || module == RegexpSinglelineJavaCheck.class) {
-            checkstyleMessages.addAll(getCheckMessages(Class
-                    .forName("com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector"),
-                    deepScan));
+            checkstyleMessages.addAll(getCheckMessages(SinglelineDetector.class, deepScan));
         }
 
         return checkstyleMessages;

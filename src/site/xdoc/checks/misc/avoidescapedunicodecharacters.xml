@@ -251,7 +251,7 @@ public class Example5 {
       <subsection name="Violation Messages" id="AvoidEscapedUnicodeCharacters_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22forbid.escaped.unicode.char%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22forbid.escaped.unicode.char%22">
               forbid.escaped.unicode.char
             </a>
           </li>
@@ -263,9 +263,11 @@ public class Example5 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="AvoidEscapedUnicodeCharacters_Package">
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

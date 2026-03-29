@@ -104,4 +104,34 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testEnum() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathJavadocVariableEnum.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(JavadocVariableCheck.class);
+
+        final String[] expectedViolation = {
+            "7:5: " + getCheckMessage(JavadocVariableCheck.class,
+                JavadocVariableCheck.MSG_JAVADOC_MISSING),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/ENUM_DEF"
+                + "[./IDENT[@text='InputXpathJavadocVariableEnum']]/OBJBLOCK"
+                + "/VARIABLE_DEF[./IDENT[@text='count']]",
+            "/COMPILATION_UNIT/ENUM_DEF"
+                + "[./IDENT[@text='InputXpathJavadocVariableEnum']]/OBJBLOCK"
+                + "/VARIABLE_DEF[./IDENT[@text='count']]/MODIFIERS",
+            "/COMPILATION_UNIT/ENUM_DEF"
+                + "[./IDENT[@text='InputXpathJavadocVariableEnum']]/OBJBLOCK"
+                + "/VARIABLE_DEF[./IDENT[@text='count']]/MODIFIERS"
+                + "/LITERAL_PRIVATE"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

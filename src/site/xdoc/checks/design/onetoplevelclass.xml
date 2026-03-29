@@ -84,7 +84,7 @@ public class Example3 { // ok, only one top-level class
       <subsection name="Violation Messages" id="OneTopLevelClass_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22one.top.level.class%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22one.top.level.class%22">
               one.top.level.class
             </a>
           </li>
@@ -96,9 +96,11 @@ public class Example3 { // ok, only one top-level class
         </p>
       </subsection>
 
-      <subsection name="Package" id="OneTopLevelClass_Package">
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.design
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

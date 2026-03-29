@@ -3,6 +3,7 @@ JavadocStyle
 scope = (default)private
 excludeScope = (default)null
 checkFirstSentence = false
+endOfSentenceFormat = (default)([.?!][ \t\n\r\f<])|([.?!]$)
 checkEmptyJavadoc = (default)false
 checkHtml = (default)true
 tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \

@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -367,7 +368,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    public void testInvalidCheckFormat() throws Exception {
+    public void testInvalidCheckFormat() {
         final DefaultConfiguration treeWalkerConfig =
             createModuleConfig(TreeWalker.class);
         final DefaultConfiguration filterConfig =
@@ -378,21 +379,21 @@ public class SuppressionCommentFilterTest
         treeWalkerConfig.addChild(filterConfig);
         treeWalkerConfig.addChild(checkConfig);
 
-        try {
-            execute(treeWalkerConfig, getPath("InputSuppressionCommentFilter10.java"));
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-            assertWithMessage("Invalid exception message")
-                .that(cause)
-                .hasMessageThat()
-                .isEqualTo("unable to parse expanded comment e[l");
-        }
+        final CheckstyleException exc = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> {
+                    execute(treeWalkerConfig,
+                            getPath("InputSuppressionCommentFilter10.java"));
+                });
+        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
+        assertWithMessage("Invalid exception message")
+            .that(cause)
+            .hasMessageThat()
+            .isEqualTo("unable to parse expanded comment e[l");
     }
 
     @Test
-    public void testInvalidMessageFormat() throws Exception {
+    public void testInvalidMessageFormat() {
         final DefaultConfiguration treeWalkerConfig =
             createModuleConfig(TreeWalker.class);
         final DefaultConfiguration filterConfig =
@@ -403,17 +404,17 @@ public class SuppressionCommentFilterTest
         treeWalkerConfig.addChild(filterConfig);
         treeWalkerConfig.addChild(checkConfig);
 
-        try {
-            execute(treeWalkerConfig, getPath("InputSuppressionCommentFilter11.java"));
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-            assertWithMessage("Invalid exception message")
-                .that(cause)
-                .hasMessageThat()
-                .isEqualTo("unable to parse expanded comment e[l");
-        }
+        final CheckstyleException exc = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> {
+                    execute(treeWalkerConfig,
+                            getPath("InputSuppressionCommentFilter11.java"));
+                });
+        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
+        assertWithMessage("Invalid exception message")
+            .that(cause)
+            .hasMessageThat()
+            .isEqualTo("unable to parse expanded comment e[l");
     }
 
     @Test

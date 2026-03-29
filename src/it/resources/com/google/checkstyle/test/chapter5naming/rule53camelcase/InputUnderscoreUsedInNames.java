@@ -22,27 +22,33 @@ public class InputUnderscoreUsedInNames {
   private String gradle851;
 
   class InnerBad {
-    int guava_33_4_7; // false-negative, _ between digit and letter
+    // violation below, ''guava_33_4_7' .* underscores allowed only between adjacent digits.'
+    int guava_33_4_7;
     int guava33_4_7;
 
-    int guava33_4_8_; // violation, _ at the end, 'must match pattern'
+    // violation below, ''guava33_4_8_' .* underscores allowed only between adjacent digits.'
+    int guava33_4_8_;
     int guava33_4_8;
 
-    int jdk_8_90; // false-negative, _ between digit and letter
+    // violation below, ''jdk_8_90' .* underscores allowed only between adjacent digits.'
+    int jdk_8_90;
     int jdk8_90;
 
-    int jdk8_91_; // violation, _ at the end, 'must match pattern'
+    // violation below, ''jdk8_91_' .* underscores allowed only between adjacent digits.'
+    int jdk8_91_;
     int jdk8_91;
 
-    int kotlin_1_9_24; // false-negative, _ between digit and letter
+    // violation below, ''kotlin_1_9_24' .* underscores allowed only between adjacent digits.'
+    int kotlin_1_9_24;
     int kotlin1_9_24;
 
-    // violation below, _ not allowed between lowercase character sequences, 'pattern'
+    // violation below, ''kotlin_version1_9_24'.* underscores allowed only between adjacent digits.'
     int kotlin_version1_9_24;
 
     int kotlinVersion1_9_24;
 
-    int kotlin1_9_25_; // violation, _ at the end, 'must match pattern'
+    // violation below, ''kotlin1_9_25_' .* underscores allowed only between adjacent digits.'
+    int kotlin1_9_25_;
     int kotlin1_9_25;
   }
 

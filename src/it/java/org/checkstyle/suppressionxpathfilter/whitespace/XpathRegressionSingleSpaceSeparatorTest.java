@@ -91,4 +91,27 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testInnerClassViolation() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathSingleSpaceSeparatorInnerClass.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(SingleSpaceSeparatorCheck.class);
+
+        final String[] expectedViolation = {
+            "5:15: " + getCheckMessage(SingleSpaceSeparatorCheck.class,
+                SingleSpaceSeparatorCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathSingleSpaceSeparatorInnerClass']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]/OBJBLOCK/VARIABLE_DEF"
+                + "/IDENT[@text='bad']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

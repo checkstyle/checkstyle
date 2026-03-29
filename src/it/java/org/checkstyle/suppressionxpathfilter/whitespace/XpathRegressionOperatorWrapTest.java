@@ -95,4 +95,37 @@ public class XpathRegressionOperatorWrapTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testOperatorWrapInnerClass() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathOperatorWrapInnerClass.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(OperatorWrapCheck.class);
+
+        final String[] expectedViolation = {
+            "7:23: " + getCheckMessage(OperatorWrapCheck.class,
+                        OperatorWrapCheck.MSG_LINE_NEW, "+"),
+        };
+
+        final List<String> expectedXpathQueries = List.of(
+             "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathOperatorWrapInnerClass']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='compute']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='y']]"
+                + "/ASSIGN/EXPR",
+             "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathOperatorWrapInnerClass']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='compute']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='y']]"
+                + "/ASSIGN/EXPR/PLUS[./NUM_INT[@text='5']]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
 }

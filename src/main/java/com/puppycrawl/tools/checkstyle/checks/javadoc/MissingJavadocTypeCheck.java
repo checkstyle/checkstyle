@@ -116,7 +116,7 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/19149
     @Override
     @SuppressWarnings("deprecation")
     public void visitToken(DetailAST ast) {

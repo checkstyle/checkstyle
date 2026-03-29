@@ -2,6 +2,7 @@
 LocalVariableName
 format = (default)^([a-z][a-zA-Z0-9]*|_)$
 allowOneCharVarInForLoop = (default)false
+tokens = (default)VARIABLE_DEF
 
 
 */
@@ -24,7 +25,7 @@ class InputLocalVariableName2one
     public void doSomething()
     {
         //"O" should be named "o"
-        for (Object O : new java.util.ArrayList()) // violation
+        for (Object O : new java.util.ArrayList()) // violation, 'Name 'O' must match pattern*'
         {
 
         }
