@@ -7,8 +7,6 @@
     </module>
   </module>
 </module>
-
-
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebefore;
