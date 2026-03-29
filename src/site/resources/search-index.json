@@ -1,0 +1,62 @@
+[
+  {
+    "title": "LineLength",
+    "url": "checks/sizes/linelength.html",
+    "category": "Sizes",
+    "keywords": ["line", "length", "max", "characters"]
+  },
+  {
+    "title": "MethodLength",
+    "url": "checks/sizes/methodlength.html",
+    "category": "Sizes",
+    "keywords": ["method", "length", "lines"]
+  },
+  {
+    "title": "FileLength",
+    "url": "checks/sizes/filelength.html",
+    "category": "Sizes",
+    "keywords": ["file", "length", "size"]
+  },
+  {
+    "title": "MagicNumber",
+    "url": "checks/coding/magicnumber.html",
+    "category": "Coding",
+    "keywords": ["number", "constant", "magic"]
+  },
+  {
+    "title": "VariableDeclarationUsageDistance",
+    "url": "checks/coding/variabledeclarationusagedistance.html",
+    "category": "Coding",
+    "keywords": ["variable", "usage", "distance", "scope"]
+  },
+  {
+    "title": "FinalLocalVariable",
+    "url": "checks/coding/finallocalvariable.html",
+    "category": "Coding",
+    "keywords": ["final", "variable", "local"]
+  },
+  {
+    "title": "EmptyBlock",
+    "url": "checks/blocks/emptyblock.html",
+    "category": "Blocks",
+    "keywords": ["empty", "block", "code"]
+  },
+  {
+    "title": "NeedBraces",
+    "url": "checks/blocks/needbraces.html",
+    "category": "Blocks",
+    "keywords": ["braces", "if", "loop"]
+  },
+  {
+    "title": "FileTabCharacter",
+    "url": "checks/whitespace/filetabcharacter.html",
+    "category": "Whitespace",
+    "keywords": ["tab", "file", "whitespace"]
+  },
+  {
+    "title": "WhitespaceAfter",
+    "url": "checks/whitespace/whitespaceafter.html",
+    "category": "Whitespace",
+    "keywords": ["space", "after", "whitespace"]
+  }
+]
