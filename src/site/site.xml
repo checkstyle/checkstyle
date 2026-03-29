@@ -57,6 +57,8 @@
                 src="$relativePath/js/google-analytics.js" defer async></script>
         <script type="text/javascript"
                 src="$relativePath/js/copy-clipboard.js" defer async></script>
+        <script type="text/javascript" src="$relativePath/js/search-box-poc.js" defer></script>
+        <link rel="stylesheet" href="$relativePath/css/search-box-poc.css" />
         <link rel="icon" href="$relativePath/images/favicon.png" type="image/x-icon" />
         <link rel="shortcut icon" href="$relativePath/images/favicon.ico" type="image/ico" />
       ]]>
