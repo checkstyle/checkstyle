@@ -127,7 +127,7 @@
 
   <!-- violation required by to show behavior of Check -->
   <suppress checks="Indentation"
-    files="indentation[\\/]Example[1-5].java"/>
+    files="indentation[\\/]Example[1-9].java"/>
 
   <!-- To match the behavior with Google style guide -->
   <suppress checks="Indentation"

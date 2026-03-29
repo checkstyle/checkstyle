@@ -34,6 +34,7 @@ import com.google.common.base.Splitter;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSupport {
 
@@ -158,6 +159,8 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
         assertWithMessage("Required tokens differ from expected")
             .that(checkObj.getRequiredTokens())
@@ -457,6 +460,26 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
+    public void testBlockCommentAtAbsoluteEndOfFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getPath("InputAvoidEscapedUnicodeCharactersCommentEnd.java"),
+            expected);
+    }
+
+    @Test
+    public void testBeginTreeClearsPendingViolations() throws Exception {
+        final String file1 = getPath("InputAvoidEscapedUnicodeCharactersBeginTree1.java");
+        final String file2 = getPath("InputAvoidEscapedUnicodeCharactersBeginTree2.java");
+
+        final List<String> expected1 = List.of(
+                "15:17: " + getCheckMessage(MSG_KEY));
+        final List<String> expected2 = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
+
+        verifyWithInlineConfigParser(file1, file2, expected1, expected2);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
         final int[] actual = check.getAcceptableTokens();
@@ -464,6 +487,8 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
         assertWithMessage("Acceptable tokens differ from expected")
             .that(actual)

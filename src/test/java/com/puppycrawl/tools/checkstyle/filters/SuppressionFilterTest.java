@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.File;
@@ -96,32 +97,30 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testNonExistentSuppressionFileWithFalseOptional() {
         final String fileName = "non_existent_suppression_file.xml";
-        try {
-            final boolean optional = false;
-            createSuppressionFilter(fileName, optional);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid error message")
-                .that(exc.getMessage())
-                .isEqualTo("Unable to find: " + fileName);
-        }
+        final boolean optional = false;
+        final CheckstyleException exc = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> {
+                    createSuppressionFilter(fileName, optional);
+                });
+        assertWithMessage("Invalid error message")
+            .that(exc.getMessage())
+            .isEqualTo("Unable to find: " + fileName);
     }
 
     @Test
-    public void testExistingInvalidSuppressionFileWithTrueOptional() throws IOException {
+    public void testExistingInvalidSuppressionFileWithTrueOptional() throws Exception {
         final String fileName = getPath("InputSuppressionFilterInvalidFile.xml");
-        try {
-            final boolean optional = true;
-            createSuppressionFilter(fileName, optional);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid error message")
-                .that(exc.getMessage())
-                .isEqualTo("Unable to parse " + fileName
-                        + " - invalid files or checks or message format");
-        }
+        final boolean optional = true;
+        final CheckstyleException exc = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> {
+                    createSuppressionFilter(fileName, optional);
+                });
+        assertWithMessage("Invalid error message")
+            .that(exc.getMessage())
+            .isEqualTo("Unable to parse " + fileName
+                    + " - invalid files or checks or message format");
     }
 
     @Test

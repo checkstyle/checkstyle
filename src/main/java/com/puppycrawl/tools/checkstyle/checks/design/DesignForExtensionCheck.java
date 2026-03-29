@@ -55,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * ATTENTION: Only user can decide whether a class is designed for extension or not.
  * The check just shows all classes which are possibly designed for extension.
- * If smth inappropriate is found please use suppression.
+ * If something inappropriate is found please use suppression.
  * </p>
  *
  * <p>

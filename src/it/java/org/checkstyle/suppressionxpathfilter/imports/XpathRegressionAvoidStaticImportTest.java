@@ -85,4 +85,24 @@ public class XpathRegressionAvoidStaticImportTest
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
 
+    @Test
+    public void testThree() throws Exception {
+        final File fileToProcess = new File(getPath(
+            "InputXpathAvoidStaticImportThree.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(CLASS);
+
+        final String[] expectedViolation = {
+            "3:29: " + getCheckMessage(CLASS,
+                AvoidStaticImportCheck.MSG_KEY, "java.lang.Math.abs"),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/COMPILATION_UNIT/STATIC_IMPORT/DOT[./IDENT[@text='abs']]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
+
 }

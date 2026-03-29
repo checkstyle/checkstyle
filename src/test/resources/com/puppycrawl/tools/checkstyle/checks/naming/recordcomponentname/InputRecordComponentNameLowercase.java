@@ -16,10 +16,10 @@ import org.w3c.dom.Node;
 public record InputRecordComponentNameLowercase(Integer x, String str, Double val123) {
 }
 
-record LowercaseFirstRecord(String value_123, // violation
-    String... Values) { // violation
+record LowercaseFirstRecord(String value_123, // violation, 'Name 'value_123' must match pattern'
+    String... Values) { // violation, 'Name 'Values' must match pattern'
 }
 
-record LowercaseSecondRecord(String V, // violation
-    int $age) { // violation
+record LowercaseSecondRecord(String V, // violation, 'Name 'V' must match pattern'
+    int $age) { // violation, 'Name '\$age' must match pattern'
 }

@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,17 +28,14 @@ public class SeverityLevelCounterTest {
 
     @Test
     public void testCtorException() {
-        try {
-            final Object test = new SeverityLevelCounter(null);
-            assertWithMessage("exception expected but got %s", test)
-                    .fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                    .that(exc)
-                    .hasMessageThat()
-                    .isEqualTo("'level' cannot be null");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> new SeverityLevelCounter(null));
+
+        assertWithMessage("Invalid exception message")
+                .that(exc)
+                .hasMessageThat()
+                .isEqualTo("'level' cannot be null");
     }
 
     @Test

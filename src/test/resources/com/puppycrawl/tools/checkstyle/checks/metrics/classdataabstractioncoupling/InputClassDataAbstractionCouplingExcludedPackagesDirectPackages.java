@@ -25,17 +25,19 @@ import org.apache.commons.lang3.text.StrTokenizer;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.apache.commons.lang3.tuple.MutablePair;
 
-public class InputClassDataAbstractionCouplingExcludedPackagesDirectPackages { // violation
+// violation below, 'Class Data Abstraction Coupling is 1 (max allowed is 0)'
+public class InputClassDataAbstractionCouplingExcludedPackagesDirectPackages {
     public ImmutablePair<String, Integer> aa = new ImmutablePair<>("test", 1);
     public StrTokenizer ab = new StrTokenizer();
 
-    class Inner { // violation
+    class Inner { // violation, 'Class Data Abstraction Coupling is 1 (max allowed is 0)'
         public MutablePair<String, String> b = new MutablePair<>("key", "value");
         public BasicThreadFactory c = new BasicThreadFactory.Builder().build();
     }
 }
 
-class InputClassDataAbstractionCouplingExcludedPackagesDirectPackagesHidden { // violation
+// violation below, 'Class Data Abstraction Coupling is 1 (max allowed is 0)'
+class InputClassDataAbstractionCouplingExcludedPackagesDirectPackagesHidden {
     public BasicThreadFactory c = new BasicThreadFactory.Builder().build();
 }
 

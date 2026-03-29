@@ -68,7 +68,7 @@ private static int checkErrorProneReport(String profile, String flag) {
     final File suppressionFile = new File(suppressedErrorsFileUri)
     Set<ErrorProneError> suppressedErrors = Collections.emptySet()
     if (suppressionFile.exists()) {
-        final groovy.util.Node suppressedErrorsNode = xmlParser.parse(suppressedErrorsFileUri)
+        final Node suppressedErrorsNode = xmlParser.parse(suppressedErrorsFileUri)
         suppressedErrors = getSuppressedErrors(suppressedErrorsNode)
     }
     return compareErrors(errors, suppressedErrors, flag)

@@ -80,11 +80,11 @@
   <module name="RegexpSingleline">
     <property name="id" value="numberOfTestCasesInXpath"/>
     <property name="format" value="@Test"/>
-    <property name="minimum" value="2"/>
+    <property name="minimum" value="3"/>
     <property name="maximum" value="9999"/>
     <property name="fileExtensions" value="java"/>
     <property name="message"
-             value="Two or more test cases are required for unit testing in Xpath "/>
+             value="Three or more test cases are required for unit testing in Xpath "/>
   </module>
 
   <!-- To restrict empty files -->

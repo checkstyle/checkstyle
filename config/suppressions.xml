@@ -73,7 +73,19 @@
   <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]InlineConfigParser\.java"/>
   <!-- exception maybe thrown while executing the static block -->
   <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]XpathFileGeneratorAuditListenerTest\.java"/>
-
+    <!-- Uses non-ascii symbols intentionally for testing IllegalSymbolCheck -->
+  <suppress checks="AvoidEscapedUnicodeCharacters"
+            files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionIllegalSymbolTest.java"/>
+  <suppress id="checkASCII"
+            files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionIllegalSymbolTest.java"/>
+  <suppress checks="IllegalSymbol"
+            files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionIllegalSymbolTest.java"/>
+  <suppress checks="AvoidEscapedUnicodeCharacters"
+            files="[\\/]checks[\\/]coding[\\/]IllegalSymbolCheck(Examples)?Test\.java"/>
+  <suppress id="checkASCII"
+            files="[\\/]checks[\\/]coding[\\/]IllegalSymbolCheck(Examples)?Test\.java"/>
+  <suppress checks="IllegalSymbol"
+            files="[\\/]checks[\\/]coding[\\/]IllegalSymbolCheck(Examples)?Test\.java"/>
 
   <!-- we need that set of converters -->
   <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
@@ -117,17 +129,21 @@
   <suppress id="noConsecutiveLines" files="[\\/]emptylineseparator.xml"/>
   <suppress id="noConsecutiveLines" files="[\\/]javadocparagraph.xml"/>
 
-  <!-- these are legacy use cases until #11166 -->
-  <suppress id="noUsageOfGetFileContentsMethod" files="UnusedImportsCheck.java"/>
+  <!-- until #19144 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocMethodCheck.java"/>
+  <!-- until #19145 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocStyleCheck.java"/>
+  <!-- until #19146 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocTypeCheck.java"/>
+  <!-- until #19147 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocVariableCheck.java"/>
+  <!-- until #19148 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocMethodCheck.java"/>
+  <!-- until #19149 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocTypeCheck.java"/>
+  <!-- permanent suppression to allow regexp on content of the line -->
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpSinglelineJavaCheck.java"/>
-  <suppress id="noUsageOfGetFileContentsMethod" files="AvoidEscapedUnicodeCharactersCheck.java"/>
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/5234 -->
   <suppress id="MatchXPathBranchContains" files="[\\/]DetailAstImplTest.java"/>
@@ -172,4 +188,10 @@
   <!-- Uses non-ascii symbols intentionally -->
   <suppress id="checkASCII"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]ConfigurationLoaderTest.java"/>
+
+  <!-- Remove suppression once all violations are fixed, tracked in #19176 -->
+  <suppress checks="MatchXpath"
+            id="MatchXpathForbidTryCatchFail"
+            files=".*[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/](?!utils|xpath|checks[\\/]coding|checks[\\/]design|checks[\\/]modifier|checks[\\/]naming|checks[\\/]annotation|checks[\\/]indentation|checks[\\/]metrics|checks[\\/]whitespace|checks[\\/]javadoc|checks[\\/]NewlineAtEndOfFileCheckTest|checks[\\/]SuppressWarningsHolderTest|checks[\\/]UncommentedMainCheckTest|CheckerTest|ConfigurationLoaderTest|DetailNodeTreeStringPrinterTest|JavadocPropertiesGeneratorTest|MainTest|PackageNamesLoaderTest|SarifLoggerTest|SuppressionsStringPrinterTest|ThreadModeSettingsTest|TreeWalkerTest).*"/>
+
 </suppressions>
