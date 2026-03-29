@@ -194,6 +194,9 @@ test-al)
   ;;
 
 versions)
+  if ! command -v xmlstarlet &> /dev/null; then
+    sudo apt-get install -y xmlstarlet
+  fi
   ./mvnw -e --no-transfer-progress clean versions:dependency-updates-report \
     versions:plugin-updates-report
   DEP_UPDATES=$(xmlstarlet sel \
