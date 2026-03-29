@@ -3,6 +3,7 @@
   <module name="TreeWalker">
     <module name="NoWhitespaceBefore">
       <property name="tokens" value="METHOD_REF, DOT"/>
+      <property name="allowLineBreaks" value="(default) false"/>
     </module>
   </module>
 </module>
