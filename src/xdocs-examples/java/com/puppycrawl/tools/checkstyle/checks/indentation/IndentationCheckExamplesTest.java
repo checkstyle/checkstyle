@@ -76,7 +76,9 @@ public class IndentationCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
     @Test
     public void testExample7() throws Exception {
-        final String[] expected = {};
+        final String[] expected = {
+            "23:9: " + getCheckMessage(MSG_ERROR, "throws", 8, 12),
+        };
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 
