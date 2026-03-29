@@ -1,6 +1,13 @@
 /*
 JavadocStyle
+scope = (default)private
+checkFirstSentence = (default)true
+checkHtml = (default)true
+checkEmptyJavadoc = (default)false
 endOfSentenceFormat = (default)([.?!][ \t\n\r\f<])|([.?!]$)
+tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
+         ENUM_CONSTANT_DEF, ENUM_DEF, INTERFACE_DEF, METHOD_DEF, PACKAGE_DEF, \
+         VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
 
 
 */

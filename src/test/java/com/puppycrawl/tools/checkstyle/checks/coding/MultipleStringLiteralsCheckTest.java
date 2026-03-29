@@ -152,8 +152,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultipleStringLiteralsTextBlocks() throws Exception {
-
+    public void testMultipleStringLiteralsTextBlocks1() throws Exception {
         final String[] expected = {
             "14:22: " + getCheckMessage(MSG_KEY, "\"string\"", 3),
             "19:25: " + getCheckMessage(MSG_KEY, "\"other string\"", 2),
@@ -168,16 +167,23 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
                 + "\\r \\r\\n \\\\r\\\\n \\\\''\\n\\\\11 \\\\57 \\n\\\\n\\n\\\\\\n\\n \\\\ \"\"a "
                 + "\"a\\n\\\\' \\\\\\' \\'\\n\"", 2),
             "65:20: " + getCheckMessage(MSG_KEY, "\"foo\"", 4),
-            "73:19: " + getCheckMessage(MSG_KEY, "\"another test\"", 2),
-            "77:20: " + getCheckMessage(MSG_KEY, "\"\"", 6),
-            "88:23: " + getCheckMessage(MSG_KEY, "\"        .\\n         .\\n.\\n\"", 2),
-            "104:24: " + getCheckMessage(MSG_KEY, "\"             foo\\n\\n\\n "
-                + "       bar\"", 2),
-            };
-
+        };
         verifyWithInlineConfigParser(
-                getPath("InputMultipleStringLiteralsTextBlocks.java"),
+                getPath("InputMultipleStringLiteralsTextBlocks1.java"),
             expected);
     }
 
+    @Test
+    public void testMultipleStringLiteralsTextBlocks2() throws Exception {
+        final String[] expected = {
+            "14:19: " + getCheckMessage(MSG_KEY, "\"another test\"", 2),
+            "18:20: " + getCheckMessage(MSG_KEY, "\"\"", 6),
+            "29:23: " + getCheckMessage(MSG_KEY, "\"        .\\n         .\\n.\\n\"", 2),
+            "45:24: " + getCheckMessage(MSG_KEY, "\"             foo\\n\\n\\n "
+                + "       bar\"", 2),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleStringLiteralsTextBlocks2.java"),
+            expected);
+    }
 }

@@ -400,17 +400,25 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFinishLocalSetup() throws IOException {
+    public void testFinishLocalSetup() throws Exception {
+        final String inputFile = "InputSarifLoggerEmpty.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEmpty.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
+
         logger.finishLocalSetup();
-        logger.auditStarted(null);
-        logger.auditFinished(null);
-        assertWithMessage("instance should not be null")
-            .that(logger)
-            .isNotNull();
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
+    /**
+     * SarifLogger.readResource(String) is a static utility method that loads
+     * classpath resources directly. Passing an invalid name triggers an IOException
+     * that is not reachable through the normal Checker.process(...) and
+     * Checker.fireErrors(...) execution flow, so this test must call the method
+     * directly rather than using verifyWithInlineConfigParserAndLogger.
+     */
     @Test
     public void testReadResourceWithInvalidName() {
         final IOException exception =

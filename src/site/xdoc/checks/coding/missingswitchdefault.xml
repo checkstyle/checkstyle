@@ -202,10 +202,12 @@ public class Example3 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="MissingSwitchDefault_Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
-        </p>
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+         <p>com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck</p>
+         <p>
+             Use this fully qualified class name in configuration when an exact class reference is
+             required.
+         </p>
       </subsection>
 
       <subsection name="Parent Module" id="MissingSwitchDefault_Parent_Module">

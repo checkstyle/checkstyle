@@ -156,9 +156,11 @@ class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="ModifiedControlVariable_Package">
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

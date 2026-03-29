@@ -423,9 +423,11 @@ public class Example11 {}
         </p>
       </subsection>
 
-      <subsection name="Package" id="Regexp_Package">
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.regexp
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 
