@@ -53,10 +53,10 @@ public class LocalFinalVariableNameCheckTest
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expected = {
-            "126:19: " + getCheckMessage(MSG_INVALID_PATTERN, "CDE", pattern),
+            "25:19: " + getCheckMessage(MSG_INVALID_PATTERN, "CDE", pattern),
         };
         verifyWithInlineConfigParser(
-                getPath("InputLocalFinalVariableName.java"), expected);
+                getPath("InputLocalFinalVariableNameDefault.java"), expected);
     }
 
     @Test
@@ -66,10 +66,10 @@ public class LocalFinalVariableNameCheckTest
         final String pattern = "[A-Z]+";
 
         final String[] expected = {
-            "125:19: " + getCheckMessage(MSG_INVALID_PATTERN, "cde", pattern),
+            "24:19: " + getCheckMessage(MSG_INVALID_PATTERN, "cde", pattern),
         };
         verifyWithInlineConfigParser(
-                getPath("InputLocalFinalVariableName1.java"), expected);
+                getPath("InputLocalFinalVariableNameUpperCase.java"), expected);
     }
 
     @Test
