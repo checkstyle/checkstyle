@@ -257,7 +257,7 @@ class ExternalService4 {
       <subsection name="Violation Messages" id="ParameterNumber_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxParam%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxParam%22">
               maxParam
             </a>
           </li>
@@ -269,9 +269,11 @@ class ExternalService4 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="ParameterNumber_Package">
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.sizes
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

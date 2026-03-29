@@ -213,12 +213,12 @@ messages_home.translations // violation,
       <subsection name="Violation Messages" id="Translation_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22translation.missingKey%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22translation.missingKey%22">
               translation.missingKey
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22translation.missingTranslationFile%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22translation.missingTranslationFile%22">
               translation.missingTranslationFile
             </a>
           </li>
@@ -230,9 +230,11 @@ messages_home.translations // violation,
         </p>
       </subsection>
 
-      <subsection name="Package" id="Translation_Package">
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.TranslationCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
@@ -221,7 +222,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
         final int astType = ast.getType();
         if (astTypeIsClassOrEnumOrRecordDef(astType)) {
             frame.setClassOrEnumOrRecordDef(true);
-            frame.setFrameName(ast.findFirstToken(TokenTypes.IDENT).getText());
+            frame.setFrameName(TokenUtil.getIdent(ast).getText());
         }
         currentFrame.addChild(frame);
         currentFrame = frame;
@@ -630,7 +631,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
          * @return name of the field.
          */
         private static String getFieldName(DetailAST field) {
-            return field.findFirstToken(TokenTypes.IDENT).getText();
+            return TokenUtil.getIdent(field).getText();
         }
 
     }

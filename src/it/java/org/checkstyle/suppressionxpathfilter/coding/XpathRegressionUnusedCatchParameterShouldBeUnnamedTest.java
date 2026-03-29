@@ -125,4 +125,48 @@ public class XpathRegressionUnusedCatchParameterShouldBeUnnamedTest
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testConstructor() throws Exception {
+        final File fileToProcess =
+                new File(getPath(
+                        "InputXpathUnusedCatchParameterShouldBeUnnamedConstructor.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(UnusedCatchParameterShouldBeUnnamedCheck.class);
+
+        final String[] expectedViolation = {
+            "10:16: " + getCheckMessage(UnusedCatchParameterShouldBeUnnamedCheck.class,
+                    UnusedCatchParameterShouldBeUnnamedCheck.MSG_UNUSED_CATCH_PARAMETER,
+                    "e"),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpath"
+                        + "UnusedCatchParameterShouldBeUnnamedConstructor']]"
+                        + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='InputXpath"
+                        + "UnusedCatchParameterShouldBeUnnamedConstructor']]/SLIST"
+                        + "/LITERAL_TRY/LITERAL_CATCH/PARAMETER_DEF[./IDENT[@text='e']]",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpath"
+                        + "UnusedCatchParameterShouldBeUnnamedConstructor']]"
+                        + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='InputXpath"
+                        + "UnusedCatchParameterShouldBeUnnamedConstructor']]/SLIST"
+                        + "/LITERAL_TRY/LITERAL_CATCH/PARAMETER_DEF[./IDENT[@text='e']]/MODIFIERS",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpath"
+                        + "UnusedCatchParameterShouldBeUnnamedConstructor']]"
+                        + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='InputXpath"
+                        + "UnusedCatchParameterShouldBeUnnamedConstructor']]/SLIST"
+                        + "/LITERAL_TRY/LITERAL_CATCH/PARAMETER_DEF[./IDENT[@text='e']]"
+                        + "/TYPE[./IDENT[@text='Exception']]",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpath"
+                        + "UnusedCatchParameterShouldBeUnnamedConstructor']]"
+                        + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='InputXpath"
+                        + "UnusedCatchParameterShouldBeUnnamedConstructor']]/SLIST"
+                        + "/LITERAL_TRY/LITERAL_CATCH/PARAMETER_DEF[./IDENT[@text='e']]"
+                        + "/TYPE/IDENT[@text='Exception']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

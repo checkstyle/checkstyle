@@ -89,4 +89,24 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
+    @Test
+    public void testStaticBlock() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathMissingSwitchDefaultStaticBlock.java"));
+
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
+
+        final String[] expectedViolation = {
+            "6:9: " + getCheckMessage(CLAZZ, MissingSwitchDefaultCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputXpathMissingSwitchDefaultStaticBlock']]"
+                    + "/OBJBLOCK/STATIC_INIT/SLIST/LITERAL_SWITCH"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
 }

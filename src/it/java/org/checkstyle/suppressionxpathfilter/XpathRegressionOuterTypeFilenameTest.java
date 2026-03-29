@@ -83,4 +83,29 @@ public class XpathRegressionOuterTypeFilenameTest extends AbstractXpathTestSuppo
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testInterface() throws Exception {
+        final File fileToProcess = new File(getPath(
+                "InputXpathOuterTypeFilenameThree.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(OuterTypeFilenameCheck.class);
+
+        final String[] expectedViolation = {
+            "3:1: " + getCheckMessage(OuterTypeFilenameCheck.class,
+                    OuterTypeFilenameCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT[@text='MyInterface']]",
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT[@text='MyInterface']]"
+                    + "/MODIFIERS",
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT[@text='MyInterface']]"
+                    + "/LITERAL_INTERFACE"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
 }

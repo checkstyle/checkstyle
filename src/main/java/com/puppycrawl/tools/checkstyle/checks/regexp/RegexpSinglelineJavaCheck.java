@@ -76,7 +76,6 @@ public class RegexpSinglelineJavaCheck extends AbstractCheck {
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @Override
     @SuppressWarnings("deprecation")
     public void beginTree(DetailAST rootAST) {

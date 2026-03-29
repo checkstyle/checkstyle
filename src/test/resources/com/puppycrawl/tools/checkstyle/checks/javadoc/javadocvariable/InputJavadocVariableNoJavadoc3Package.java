@@ -70,7 +70,7 @@ class InputJavadocVariableNoJavadoc3Package
 
     class IgnoredName {
         // ignore by name
-        private int logger; // violation
+        private int logger; // violation, 'Missing a Javadoc comment'
         // no warning, 'serialVersionUID' fields do not require Javadoc
         private static final long serialVersionUID = 0;
     }

@@ -90,12 +90,12 @@ public final class TestUtil {
     /**
      * Retrieves the specified field by its name in the class or its direct super.
      *
-     * @param clss the class to retrieve the field for
+     * @param targetClass the class to retrieve the field for
      * @param fieldName the name of the field to retrieve
      * @return the class' field if found
      */
-    private static Field getClassDeclaredField(Class<?> clss, String fieldName) {
-        return Stream.<Class<?>>iterate(clss, Objects::nonNull, Class::getSuperclass)
+    private static Field getClassDeclaredField(Class<?> targetClass, String fieldName) {
+        return Stream.<Class<?>>iterate(targetClass, Objects::nonNull, Class::getSuperclass)
             .flatMap(cls -> Arrays.stream(cls.getDeclaredFields()))
             .filter(field -> fieldName.equals(field.getName()))
             .findFirst()
@@ -105,22 +105,22 @@ public final class TestUtil {
             })
             .orElseThrow(() -> {
                 return new IllegalStateException(String.format(Locale.ROOT,
-                        "Field '%s' not found in '%s'", fieldName, clss.getCanonicalName()));
+                        "Field '%s' not found in '%s'", fieldName, targetClass.getCanonicalName()));
             });
     }
 
     /**
      * Retrieves the specified method by its name in the class or its direct super.
      *
-     * @param clss the class to retrieve the method for
+     * @param targetClass the class to retrieve the method for
      * @param methodName the name of the method to retrieve
      * @param parameters the expected number of parameters
      * @return the class' method
      */
-    private static Method getClassDeclaredMethod(Class<?> clss,
+    private static Method getClassDeclaredMethod(Class<?> targetClass,
                                                  String methodName,
                                                  int parameters) {
-        final Stream<Method> methods = Stream.<Class<?>>iterate(clss, Class::getSuperclass)
+        final Stream<Method> methods = Stream.<Class<?>>iterate(targetClass, Class::getSuperclass)
                 .flatMap(cls -> Arrays.stream(cls.getDeclaredMethods()))
                 .filter(method -> {
                     return methodName.equals(method.getName());
@@ -128,7 +128,7 @@ public final class TestUtil {
 
         final Supplier<String> exceptionMessage = () -> {
             return String.format(Locale.ROOT, "Method '%s' with %d parameters not found in '%s'",
-                    methodName, parameters, clss.getCanonicalName());
+                    methodName, parameters, targetClass.getCanonicalName());
         };
 
         return getMatchingExecutable(methods, parameters, exceptionMessage);
@@ -414,20 +414,21 @@ public final class TestUtil {
      * Reads the value of a static field using reflection. This method will traverse the
      * super class hierarchy until a field with name {@code fieldName} is found.
      *
-     * @param clss the class of the field
+     * @param targetClass the class of the field
      * @param fieldName the name of the field
      * @param clazz the expected type of the field value, used for type-safe casting
      * @throws RuntimeException if the field  can't be read
      */
-    public static <T> T getInternalStaticState(Class<?> clss, String fieldName, Class<T> clazz) {
+    public static <T> T getInternalStaticState(Class<?> targetClass, String fieldName,
+            Class<T> clazz) {
         try {
-            final Field field = getClassDeclaredField(clss, fieldName);
+            final Field field = getClassDeclaredField(targetClass, fieldName);
             return clazz.cast(field.get(null));
         }
         catch (ReflectiveOperationException exc) {
             final String message = String.format(Locale.ROOT,
                     "Failed to get static field '%s' for class '%s'",
-                    fieldName, clss);
+                    fieldName, targetClass);
             throw new IllegalStateException(message, exc);
         }
     }
@@ -435,28 +436,29 @@ public final class TestUtil {
     /**
      * Helper method for casting to collection type Map.
      *
-     * @param clss the class of the field
+     * @param targetClass the class of the field
      * @param fieldName the name of the field
      * @throws RuntimeException if the field  can't be read
      * @noinspection unchecked
      * @noinspectionreason unchecked - unchecked cast is ok on test code
      */
-    public static Map<String, String> getInternalStaticStateMap(Class<?> clss, String fieldName) {
-        return getInternalStaticState(clss, fieldName, Map.class);
+    public static Map<String, String> getInternalStaticStateMap(Class<?> targetClass,
+            String fieldName) {
+        return getInternalStaticState(targetClass, fieldName, Map.class);
     }
 
     /**
      * Helper method for casting to collection type Map.
      *
-     * @param clss the class of the field
+     * @param targetClass the class of the field
      * @param fieldName the name of the field
      * @throws RuntimeException if the field  can't be read
      * @noinspection unchecked
      * @noinspectionreason unchecked - unchecked cast is ok on test code
      */
     public static ThreadLocal<List<Object>> getInternalStaticStateThreadLocal(
-            Class<?> clss, String fieldName) {
-        return getInternalStaticState(clss, fieldName, ThreadLocal.class);
+            Class<?> targetClass, String fieldName) {
+        return getInternalStaticState(targetClass, fieldName, ThreadLocal.class);
     }
 
     /**
@@ -583,22 +585,22 @@ public final class TestUtil {
      * Instantiates an object of the given class with the given arguments,
      * even if the constructor is private.
      *
-     * @param clss The class to instantiate
+     * @param targetClass The class to instantiate
      * @param arguments The arguments to pass to the constructor
      * @param <T> the type of the object to instantiate
      * @return  The instantiated object
      * @throws ReflectiveOperationException if the constructor invocation failed
      */
     @SuppressWarnings("unchecked")
-    public static <T> T instantiate(Class<T> clss, Object... arguments)
+    public static <T> T instantiate(Class<T> targetClass, Object... arguments)
             throws ReflectiveOperationException {
 
         final Stream<Constructor<T>> ctors =
-                Arrays.stream(clss.getDeclaredConstructors()).map(Constructor.class::cast);
+                Arrays.stream(targetClass.getDeclaredConstructors()).map(Constructor.class::cast);
 
         final Supplier<String> exceptionMessage = () -> {
             return String.format(Locale.ROOT, "Constructor with %d parameters not found in '%s'",
-                    arguments.length, clss.getCanonicalName());
+                    arguments.length, targetClass.getCanonicalName());
         };
 
         final Constructor<T> constructor =

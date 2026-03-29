@@ -134,4 +134,46 @@ public class XpathRegressionUnusedLambdaParameterShouldBeUnnamedTest
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testStaticBlock() throws Exception {
+        final File fileToProcess =
+                new File(getPath(
+                        "InputXpathUnusedLambdaParameterShouldBeUnnamedStaticBlock.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(UnusedLambdaParameterShouldBeUnnamedCheck.class);
+
+        final String[] expectedViolation = {
+            "8:41: " + getCheckMessage(UnusedLambdaParameterShouldBeUnnamedCheck.class,
+                    UnusedLambdaParameterShouldBeUnnamedCheck.MSG_UNUSED_LAMBDA_PARAMETER,
+                    "x"),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/CLASS_DEF["
+                + "./IDENT[@text='InputXpathUnusedLambdaParameterShouldBeUnnamedStaticBlock']]"
+                + "/OBJBLOCK/STATIC_INIT/SLIST/VARIABLE_DEF[./IDENT[@text='f']]"
+                + "/ASSIGN/LAMBDA/PARAMETERS",
+            "/COMPILATION_UNIT/CLASS_DEF["
+                + "./IDENT[@text='InputXpathUnusedLambdaParameterShouldBeUnnamedStaticBlock']]"
+                + "/OBJBLOCK/STATIC_INIT/SLIST/VARIABLE_DEF[./IDENT[@text='f']]"
+                + "/ASSIGN/LAMBDA/PARAMETERS/PARAMETER_DEF[./IDENT[@text='x']]",
+            "/COMPILATION_UNIT/CLASS_DEF["
+                + "./IDENT[@text='InputXpathUnusedLambdaParameterShouldBeUnnamedStaticBlock']]"
+                + "/OBJBLOCK/STATIC_INIT/SLIST/VARIABLE_DEF[./IDENT[@text='f']]"
+                + "/ASSIGN/LAMBDA/PARAMETERS/PARAMETER_DEF[./IDENT[@text='x']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF["
+                + "./IDENT[@text='InputXpathUnusedLambdaParameterShouldBeUnnamedStaticBlock']]"
+                + "/OBJBLOCK/STATIC_INIT/SLIST/VARIABLE_DEF[./IDENT[@text='f']]"
+                + "/ASSIGN/LAMBDA/PARAMETERS/PARAMETER_DEF[./IDENT[@text='x']]/TYPE",
+            "/COMPILATION_UNIT/CLASS_DEF["
+                + "./IDENT[@text='InputXpathUnusedLambdaParameterShouldBeUnnamedStaticBlock']]"
+                + "/OBJBLOCK/STATIC_INIT/SLIST/VARIABLE_DEF[./IDENT[@text='f']]"
+                + "/ASSIGN/LAMBDA/PARAMETERS/PARAMETER_DEF/IDENT[@text='x']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

@@ -78,4 +78,21 @@ public class XpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
+    @Test
+    public void testAnnotationType() throws Exception {
+        final File fileToProcess = new File(getPath(
+            "InputXpathUnnecessarySemicolonAfterOuterTypeDeclarationAnnotation"
+                    + ".java"));
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
+        final String[] expectedViolation = {
+            "5:2: " + getCheckMessage(CLASS,
+                UnnecessarySemicolonAfterOuterTypeDeclarationCheck.MSG_SEMI),
+        };
+
+        final List<String> expectedXpathQueries =
+                Collections.singletonList("/COMPILATION_UNIT/SEMI");
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
 }

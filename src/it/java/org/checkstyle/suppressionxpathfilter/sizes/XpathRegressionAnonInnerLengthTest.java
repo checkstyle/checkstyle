@@ -103,4 +103,34 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testField() throws Exception {
+        final int maxLen = 5;
+        final File fileToProcess =
+                new File(getPath("InputXpathAnonInnerLengthField.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(AnonInnerLengthCheck.class);
+        moduleConfig.addProperty("max", String.valueOf(maxLen));
+
+        final String[] expectedViolation = {
+            "4:25: " + getCheckMessage(AnonInnerLengthCheck.class,
+                    AnonInnerLengthCheck.MSG_KEY, 9, maxLen),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='InputXpathAnonInnerLengthField']]"
+                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='runnable']]"
+                        + "/ASSIGN/EXPR",
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='InputXpathAnonInnerLengthField']]"
+                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='runnable']]"
+                        + "/ASSIGN/EXPR/LITERAL_NEW[./IDENT[@text='Runnable']]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
