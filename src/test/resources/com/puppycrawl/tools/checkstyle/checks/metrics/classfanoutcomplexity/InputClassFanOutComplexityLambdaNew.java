@@ -12,6 +12,7 @@ excludedClasses = (default)ArrayIndexOutOfBoundsException, ArrayList, Boolean, B
                   StringBuffer, StringBuilder, SuppressWarnings, Throwable, TreeMap, TreeSet, \
                   UnsupportedOperationException, Void, boolean, byte, char, double, float, \
                   int, long, short, var, void
+excludeClassesRegexps = (default)^$
 excludedPackages = (default)
 
 

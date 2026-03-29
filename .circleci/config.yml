@@ -129,6 +129,7 @@ workflows:
       - validate-with-maven-script:
           name: no-exception-struts
           image-name: *cs_img
+          resource_class: medium+
           command: ./.ci/validation.sh no-exception-struts
       - validate-with-maven-script:
           name: no-exception-checkstyle-sevntu

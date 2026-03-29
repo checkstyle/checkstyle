@@ -6,6 +6,7 @@ allowEmptyTypes = (default)false
 allowEmptyLoops = (default)false
 allowEmptyLambdas = (default)false
 allowEmptyCatches = (default)false
+allowEmptySwitchBlockStatements = (default)false
 ignoreEnhancedForColon = (default)true
 tokens = ARRAY_INIT
 

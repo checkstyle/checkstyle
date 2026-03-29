@@ -98,9 +98,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="CyclomaticComplexity_Package">
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.metrics
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

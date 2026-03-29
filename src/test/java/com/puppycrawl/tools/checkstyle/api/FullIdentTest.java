@@ -249,7 +249,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     @Test
     public void testCreateFullIdentBelow2() throws Exception {
         final String[] expected = {
-            "9:1: " + getCheckMessage(ImportOrderCheck.class,
+            "19:1: " + getCheckMessage(ImportOrderCheck.class,
                     MSG_ORDERING_LEX,
                     "java.util.HashMap",
                     "java.util.LinkedList"),

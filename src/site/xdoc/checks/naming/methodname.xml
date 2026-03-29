@@ -275,8 +275,12 @@ class Example7 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="MethodName_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="MethodName_Parent_Module">

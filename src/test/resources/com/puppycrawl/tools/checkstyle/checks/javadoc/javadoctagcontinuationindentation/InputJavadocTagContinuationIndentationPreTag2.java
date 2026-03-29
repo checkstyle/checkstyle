@@ -29,15 +29,19 @@ public class InputJavadocTagContinuationIndentationPreTag2 {
       * <pre>
       *          <em> {@code <field> [N] IMPLICIT <type>}</em>
       * </pre>
-      * For example, <em>FooLength [1] IMPLICIT INTEGER</em>, with value=4; // violation
-      * would be encoded as "81 01 04"  whereas in explicit // violation
-      * tagging it would be encoded as "A1 03 02 01 04". // violation
-      * explicit tagging the form is always constructed. // violation
+      * For example, <em>FooLength [1] IMPLICIT INTEGER</em>, with value=4;
+      * would be encoded as "81 01 04"  whereas in explicit
+      * tagging it would be encoded as "A1 03 02 01 04".
+      * explicit tagging the form is always constructed.
       * @param value original value being implicitly tagged
       */
      public Object writeImplicit(byte tag, Object value) {
          return new Object();
      }
+     // violation 9 lines above 'Line continuation .* expected level should be 4'
+     // violation 9 lines above 'Line continuation .* expected level should be 4'
+     // violation 9 lines above 'Line continuation .* expected level should be 4'
+     // violation 9 lines above 'Line continuation .* expected level should be 4'
 
      /**
       * Writes the object using a
@@ -53,47 +57,6 @@ public class InputJavadocTagContinuationIndentationPreTag2 {
       */
      @Serial
      private Object writeReplace() {
-         return new Object();
-     }
-
-     /**
-      * Queries this date-time.
-      * <p>
-      * This queries this date-time using the specified query strategy object.
-      * <p>
-      * Queries are a key tool for extracting information from date-times.
-      * <p>
-      * The most common query implementations are method references, such as
-      * Additional implementations are provided as static methods on {@link TemporalQuery}.
-      *
-      * @implSpec
-      * The default implementation must behave equivalent to this code: // violation
-      * <pre>
-      *  if (query == TemporalQueries.zoneId() ||
-      *        query == TemporalQueries.chronology() || query == TemporalQueries.precision()) {
-      *    return null;
-      *  }
-      *  return query.queryFrom(this);
-      * </pre>
-      * Future versions are permitted to add further queries to the if statement. // violation
-      * <p> // violation
-      * All classes implementing this interface and overriding this method must call // violation
-      * {@code TemporalAccessor.super.query(query)}. JDK classes may avoid calling // violation
-      * non-JDK classes may this optimization and must call {@code super}. // violation
-      * <p> // violation
-      * If the implementation for one of the queries listed in the // violation
-      * if statement of the default implementation, then it must do so. // violation
-      * <pre>
-      *    return MINUTES;
-      *  return TemporalAccessor.super.query(query);
-      * </pre>
-      * <p> // violation
-      * Implementations must ensure that no observable state is altered when this // violation
-      * read-only method is invoked. // violation
-      *
-      * @param query  the query to invoke, not null
-      */
-     Object query(Object query) {
          return new Object();
      }
 

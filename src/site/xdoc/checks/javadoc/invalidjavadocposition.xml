@@ -80,9 +80,11 @@ public class Example1 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="InvalidJavadocPosition_Package">
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocPositionCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

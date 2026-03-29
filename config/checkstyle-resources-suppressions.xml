@@ -79,10 +79,10 @@
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
     files="uncommentedmain[\\/]InputUncommentedMainBeginTreePackage2\.java"/>
-  
+
   <!-- intentional problem for testing -->
   <suppress checks="RegexpSingleline"
-    files="javadoctype[\\/]InputJavadocTypeWithBlockComment\.java"/>          
+    files="javadoctype[\\/]InputJavadocTypeWithBlockComment\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="OuterTypeFilename"
@@ -113,17 +113,17 @@
             files="[\\/]javadocparagraph[\\/]InputJavadocParagraphCheck1\.java"/>
   <suppress id="noTrailingWhitespace"
             files="[\\/]javadocparagraph[\\/]InputJavadocParagraphIncorrect4\.java"/>
-  
+
   <!-- Input file contains trailing whitespace to kill pitest mutation -->
-  <suppress id="noTrailingWhitespace" 
+  <suppress id="noTrailingWhitespace"
     files="separatorwrap[\\/]InputSeparatorWrapForTestTrailingWhitespace\.java"/>
-  <suppress id="noTrailingWhitespace" 
+  <suppress id="noTrailingWhitespace"
     files="nonemptyatclausedescription[\\/]InputNonEmptyAtclauseDescriptionOne\.java"/>
-  <suppress id="noTrailingWhitespace" 
+  <suppress id="noTrailingWhitespace"
     files="requireemptylinebeforeblocktaggroup[\\/]InputRequireEmptyLineBeforeBlockTagGroupIncorrect\.java"/>
-  <suppress id="noTrailingWhitespace" 
+  <suppress id="noTrailingWhitespace"
     files="requireemptylinebeforeblocktaggroup[\\/]InputRequireEmptyLineBeforeBlockTagGroupCorrect\.java"/>
-  <suppress id="noTrailingWhitespace" 
+  <suppress id="noTrailingWhitespace"
     files="javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationDescription\.java"/>
 
   <!-- intentional problem for testing -->
@@ -381,10 +381,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]requirethis[\\/]InputRequireThisEnumInnerClassesAndBugs\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]illegalinstantiation[\\/]InputIllegalInstantiationSemantic2\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]illegalinstantiation[\\/]InputIllegalInstantiationSemantic\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]hiddenfield[\\/]InputHiddenField7\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]hiddenfield[\\/]InputHiddenFieldLambdas\.java"/>
@@ -416,8 +412,6 @@
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNull\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]nofinalizer[\\/]InputNoFinalizerFallThrough\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]overloadmethodsdeclarationorder[\\/]InputOverloadMethodsDeclarationOrder\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]fallthrough[\\/]InputFallThrough\.java"/>
   <suppress checks="FileLength"
@@ -529,8 +523,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]finalparameters[\\/]InputFinalParameters\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]metrics[\\/]cyclomaticcomplexity[\\/]InputCyclomaticComplexity\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityRemoveIncorrectAnnotationToken\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]metrics[\\/]npathcomplexity[\\/]InputNPathComplexityOverflow\.java"/>
@@ -544,10 +536,6 @@
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]naming[\\/]packagename[\\/]InputPackageNameSimple1\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]naming[\\/]packagename[\\/]InputPackageNameSimple\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]naming[\\/]staticvariablename[\\/]InputStaticVariableName2\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]naming[\\/]staticvariablename[\\/]InputStaticVariableName1\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]naming[\\/]localfinalvariablename[\\/]InputLocalFinalVariableName\.java"/>
   <suppress checks="FileLength"
@@ -590,14 +578,6 @@
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilter5\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]main[\\/]InputMainComplexityOverflow\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableCheckSwitchExpressions\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]multiplestringliterals[\\/]InputMultipleStringLiteralsTextBlocks\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]blocks[\\/]needbraces[\\/]InputNeedBracesTestSwitchExpression\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]metrics[\\/]cyclomaticcomplexity[\\/]InputCyclomaticComplexityRecords\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]metrics[\\/]javancss[\\/]InputJavaNCSSRecordsAndCompactCtors\.java"/>
   <suppress checks="FileLength"

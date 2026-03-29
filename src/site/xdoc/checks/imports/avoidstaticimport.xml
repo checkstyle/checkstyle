@@ -124,8 +124,12 @@ import java.util.*;
         </p>
       </subsection>
 
-      <subsection name="Package" id="AvoidStaticImport_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.imports </p>
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.imports.AvoidStaticImportCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="AvoidStaticImport_Parent_Module">

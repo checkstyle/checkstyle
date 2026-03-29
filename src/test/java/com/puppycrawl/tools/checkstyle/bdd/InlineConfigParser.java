@@ -238,7 +238,7 @@ public final class InlineConfigParser {
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
             "com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck",
-            "com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck",
+
             "com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc."
@@ -246,16 +246,12 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocPositionCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc"
-                    + ".JavadocTagContinuationIndentationCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc"
                     + ".RequireEmptyLineBeforeBlockTagGroupCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck",
             "com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck",
             "com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck",
             "com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck",
             "com.puppycrawl.tools.checkstyle.checks.modifier.ClassMemberImpliedModifierCheck",
@@ -265,7 +261,6 @@ public final class InlineConfigParser {
 
             "com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck",
 
-            "com.puppycrawl.tools.checkstyle.checks.naming.RecordComponentNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.RecordTypeParameterNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck",
@@ -303,28 +298,18 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck",
-            "com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck",
-            "com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck",
             "com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck",
            
 
-            "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck",
-            "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck",
             "com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder",
             "com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter",
             "com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter",
