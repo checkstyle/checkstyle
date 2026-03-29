@@ -78,6 +78,10 @@ public class AvoidStarImportCheck
      * {@code import static org.junit.Assert.*;}.
      */
     private boolean allowStaticMemberImports;
+    /** Allow at most one star import */
+    private boolean allowSingleStarImport;
+    /** Counter for star imports */
+    private int starImportCount;
 
     @Override
     public int[] getDefaultTokens() {
@@ -143,21 +147,40 @@ public class AvoidStarImportCheck
     public void setAllowStaticMemberImports(boolean allow) {
         allowStaticMemberImports = allow;
     }
+    public void setAllowSingleStarImport(boolean allowSingleStarImport) {
+        this.allowSingleStarImport = allowSingleStarImport;
+    }
 
+    @Override
+    public void beginTree(DetailAST rootAST) {
+        starImportCount = 0;
+    }
     @Override
     public void visitToken(final DetailAST ast) {
         if (ast.getType() == TokenTypes.IMPORT) {
-            if (!allowClassImports) {
-                final DetailAST startingDot = ast.getFirstChild();
-                logsStarredImportViolation(startingDot);
-            }
+            final DetailAST startingDot = ast.getFirstChild();
+            handleStarImport(startingDot, allowClassImports);
         }
-        else if (!allowStaticMemberImports) {
-            // must navigate past the static keyword
+        else {
             final DetailAST startingDot = ast.getFirstChild().getNextSibling();
-            logsStarredImportViolation(startingDot);
+            handleStarImport(startingDot, allowStaticMemberImports);
         }
     }
+    private void handleStarImport(DetailAST startingDot, boolean isAllowed) {
+        final FullIdent name = FullIdent.createFullIdent(startingDot);
+        final String importText = name.getText();
+        if (importText.endsWith(".*") && !excludes.contains(importText)) {
+            starImportCount++;
+            if (!isAllowed) {
+                if (!allowSingleStarImport) {
+                    log(startingDot, MSG_KEY, importText);
+                }
+                else if (starImportCount > 1) {
+                    log(startingDot, MSG_KEY, importText);
+                }
+            }
+        }
+}
 
     /**
      * Gets the full import identifier.  If the import is a starred import and
