@@ -3,7 +3,6 @@ DesignForExtension
 ignoredAnnotations = Override, Deprecated, MyAnnotation
 requiredJavadocPhrase = (default).*
 
-
 */
 
 package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
