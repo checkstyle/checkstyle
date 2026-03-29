@@ -98,7 +98,7 @@ strategy:
     # versions to update
     'versions':
       image: 'ubuntu-24.04'
-      cmd: "./.ci/validation.sh versions"
+      cmd: "sudo apt-get install -y xmlstarlet && ./.ci/validation.sh versions"
       onCronOnly: true
 
     # lint for .md files, OSX is used because there is problem to install gem on linux
