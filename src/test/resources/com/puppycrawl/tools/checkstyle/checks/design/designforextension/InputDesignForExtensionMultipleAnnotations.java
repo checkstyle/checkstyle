@@ -1,8 +1,7 @@
 /*
 DesignForExtension
-ignoredAnnotations = Override, Deprecated, Before, After, BeforeClass, AfterClass
+ignoredAnnotations = (default)After, AfterClass, Before, BeforeClass, Override, Test
 requiredJavadocPhrase = (default).*
-
 
 */
 

@@ -1,8 +1,7 @@
 /*
 DesignForExtension
-ignoredAnnotations = (default)After, AfterClass, Before, BeforeClass, Test
+ignoredAnnotations = (default)After, AfterClass, Before, BeforeClass,Override, Test
 requiredJavadocPhrase = This implementation
-
 
 */
 
