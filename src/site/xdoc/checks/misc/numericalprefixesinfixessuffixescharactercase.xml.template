@@ -57,9 +57,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="NumericalPrefixesInfixesSuffixesCharacterCase_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks </p>
-      </subsection>
+  <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+    <p>com.puppycrawl.tools.checkstyle.checks.NumericalPrefixesInfixesSuffixesCharacterCaseCheck</p>
+    <p>
+      Use this fully qualified class name in configuration when an exact class reference is
+      required.
+    </p>
+  </subsection>
 
       <subsection name="Parent Module"
         id="NumericalPrefixesInfixesSuffixesCharacterCase_Parent_Module">

@@ -81,4 +81,24 @@ public class XpathRegressionLambdaBodyLengthTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
+    @Test
+    public void testNestedBlockViolation() throws Exception {
+        final File fileToProcess = new File(getPath(
+            "InputXpathLambdaBodyLengthNested.java"));
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
+        moduleConfig.addProperty("max", "5");
+
+        final String[] expectedViolation = {
+            "5:25: " + getCheckMessage(CLASS, LambdaBodyLengthCheck.MSG_KEY, 11, 5),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathLambdaBodyLengthNested']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST"
+                + "/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/LAMBDA");
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
 }

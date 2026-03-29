@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
@@ -54,15 +55,13 @@ public class ScopeTest {
             .that(scope.getName())
             .isEqualTo("public");
 
-        try {
-            Scope.getInstance("unknown");
-            assertWithMessage("exception expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid error message")
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    Scope.getInstance("unknown");
+                }, "exception expected");
+        assertWithMessage("Invalid error message")
                 .that(exc.getMessage())
                 .isEqualTo("No enum constant com.puppycrawl.tools.checkstyle.api.Scope.UNKNOWN");
-        }
     }
 
     @Test

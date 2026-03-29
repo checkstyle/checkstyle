@@ -1,0 +1,15 @@
+// non-compiled with javac: Compilable with Java22
+package org.checkstyle.suppressionxpathfilter.coding.missingnullcaseinswitch;
+
+public class InputXpathMissingNullCaseInSwitchStaticBlock {
+    static {
+        Object obj = null;
+        switch (obj) { // warn
+            case Rectangle(ColoredPoint _, ColoredPoint _) -> {}
+            case ColoredPoint(int _, int _, String _) -> {}
+            default -> {}
+        }
+    }
+    record ColoredPoint(int p, int x, String c) { }
+    record Rectangle(ColoredPoint upperLeft, ColoredPoint lowerRight) { }
+}

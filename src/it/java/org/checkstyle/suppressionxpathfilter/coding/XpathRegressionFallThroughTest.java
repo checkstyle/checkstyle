@@ -98,4 +98,37 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testCharSwitch() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathFallThroughCharSwitch.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(FallThroughCheck.class);
+
+        final String[] expectedViolation = {
+            "13:17: " + getCheckMessage(FallThroughCheck.class,
+                FallThroughCheck.MSG_FALL_THROUGH),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathFallThroughCharSwitch']]"
+                + "/OBJBLOCK/METHOD_DEF["
+                + "./IDENT[@text='test']]/SLIST/LITERAL_FOR/SLIST"
+                + "/LITERAL_SWITCH/CASE_GROUP["
+                + "./LITERAL_CASE/EXPR/CHAR_LITERAL"
+                + "[@text='&apos;&apos;c&apos;&apos;']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathFallThroughCharSwitch']]"
+                + "/OBJBLOCK/METHOD_DEF["
+                + "./IDENT[@text='test']]/SLIST/LITERAL_FOR/SLIST"
+                + "/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
 }

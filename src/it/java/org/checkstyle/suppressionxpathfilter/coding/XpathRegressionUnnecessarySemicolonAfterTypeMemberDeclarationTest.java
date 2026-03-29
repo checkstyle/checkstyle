@@ -88,4 +88,24 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
+    @Test
+    public void testEnum() throws Exception {
+        final File fileToProcess = new File(getPath(
+            "InputXpathUnnecessarySemicolonAfterTypeMemberDeclarationEnum.java"));
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
+        final String[] expectedViolation = {
+            "5:21: " + getCheckMessage(CLASS,
+                UnnecessarySemicolonAfterTypeMemberDeclarationCheck.MSG_SEMI),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/ENUM_DEF[./IDENT"
+                + "[@text="
+                + "'InputXpathUnnecessarySemicolonAfterTypeMemberDeclarationEnum']]"
+                + "/OBJBLOCK/SEMI[2]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
 }

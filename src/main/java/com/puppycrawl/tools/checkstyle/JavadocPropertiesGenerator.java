@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -184,7 +185,7 @@ public final class JavadocPropertiesGenerator {
      * @return the text content of the inner {@code TokenTypes.IDENT} node
      */
     private static String getName(DetailAST ast) {
-        return ast.findFirstToken(TokenTypes.IDENT).getText();
+        return NullUtil.notNull(ast.findFirstToken(TokenTypes.IDENT)).getText();
     }
 
     /**

@@ -97,4 +97,30 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testPrecededStaticInit() throws Exception {
+        final File fileToProcess = new File(
+                getPath("InputXpathEmptyForInitializerPadPrecededStaticInit.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(EmptyForInitializerPadCheck.class);
+
+        final String[] expectedViolation = {
+            "6:15: " + getCheckMessage(EmptyForInitializerPadCheck.class,
+                    EmptyForInitializerPadCheck.MSG_PRECEDED, ";"),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                    + "@text='InputXpathEmptyForInitializerPadPrecededStaticInit']]"
+                    + "/OBJBLOCK/STATIC_INIT/SLIST/LITERAL_FOR/FOR_INIT",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                    + "@text='InputXpathEmptyForInitializerPadPrecededStaticInit']]"
+                    + "/OBJBLOCK/STATIC_INIT/SLIST/LITERAL_FOR/SEMI[1]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
 }

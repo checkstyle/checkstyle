@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
@@ -60,9 +61,9 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     public void test() throws Exception {
 
         final String[] expected = {
-            "16:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
-            "17:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
-            "37:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
+            "17:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
+            "19:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
+            "39:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
         };
 
         verifyWithInlineConfigParser(
@@ -72,9 +73,9 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Test
     public void testExcludedPackageDirectPackages() throws Exception {
         final String[] expected = {
-            "28:1: " + getCheckMessage(MSG_KEY, 1, 0, "[StrTokenizer]"),
-            "32:5: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
-            "38:1: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
+            "29:1: " + getCheckMessage(MSG_KEY, 1, 0, "[StrTokenizer]"),
+            "33:5: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
+            "40:1: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
         };
 
         verifyWithInlineConfigParser(
@@ -85,9 +86,9 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Test
     public void testExcludedPackageCommonPackages() throws Exception {
         final String[] expected = {
-            "28:1: " + getCheckMessage(MSG_KEY, 2, 0, "[ImmutablePair, StrTokenizer]"),
-            "32:5: " + getCheckMessage(MSG_KEY, 2, 0, "[BasicThreadFactory.Builder, MutablePair]"),
-            "38:1: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
+            "29:1: " + getCheckMessage(MSG_KEY, 2, 0, "[ImmutablePair, StrTokenizer]"),
+            "33:5: " + getCheckMessage(MSG_KEY, 2, 0, "[BasicThreadFactory.Builder, MutablePair]"),
+            "40:1: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
         };
 
         verifyWithInlineConfigParser(
@@ -96,7 +97,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testExcludedPackageWithEndingDot() throws Exception {
+    public void testExcludedPackageWithEndingDot() {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
@@ -104,29 +105,26 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
         checkConfig.addProperty("excludedPackages",
             "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.");
 
-        try {
-            createChecker(checkConfig);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                    + "metrics.ClassDataAbstractionCouplingCheck");
-            assertWithMessage("Invalid exception message,")
-                .that(exc.getCause().getCause().getCause().getCause().getMessage())
-                .isEqualTo("the following values are not valid identifiers: ["
-                    + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.]");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> createChecker(checkConfig));
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                + "metrics.ClassDataAbstractionCouplingCheck");
+        assertWithMessage("Invalid exception message,")
+            .that(exc.getCause().getCause().getCause().getCause().getMessage())
+            .isEqualTo("the following values are not valid identifiers: ["
+                + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.]");
     }
 
     @Test
     public void testExcludedPackageCommonPackagesAllIgnored() throws Exception {
         final String[] expected = {
-            "28:1: " + getCheckMessage(MSG_KEY, 1, 0, "[StrTokenizer]"),
-            "32:5: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
-            "38:1: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
+            "29:1: " + getCheckMessage(MSG_KEY, 1, 0, "[StrTokenizer]"),
+            "33:5: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
+            "40:1: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
         };
 
         verifyWithInlineConfigParser(
@@ -147,23 +145,20 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
             new ClassDataAbstractionCouplingCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonToken(TokenTypes.CTOR_DEF, "ctor"));
-        try {
-            classDataAbstractionCouplingCheckObj.visitToken(ast);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Unknown type: ctor[0x-1]");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> classDataAbstractionCouplingCheckObj.visitToken(ast));
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Unknown type: ctor[0x-1]");
     }
 
     @Test
     public void testRegularExpression() throws Exception {
 
         final String[] expected = {
-            "22:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AnotherInnerClass, int]"),
-            "23:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
+            "23:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AnotherInnerClass, int]"),
+            "25:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
         };
 
         verifyWithInlineConfigParser(
@@ -174,9 +169,9 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     public void testEmptyRegularExpression() throws Exception {
 
         final String[] expected = {
-            "22:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
-            "23:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
-            "43:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
+            "23:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
+            "25:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
+            "45:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
         };
 
         verifyWithInlineConfigParser(
@@ -188,11 +183,11 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
         final int maxAbstraction = 1;
         final String[] expected = {
-            "31:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
-            "36:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
-            "46:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
-            "55:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
-            "67:5: " + getCheckMessage(MSG_KEY, 3, maxAbstraction, "[Date, Place, Time]"),
+            "32:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "38:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "49:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "58:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "71:5: " + getCheckMessage(MSG_KEY, 3, maxAbstraction, "[Date, Place, Time]"),
         };
 
         verifyWithInlineConfigParser(
@@ -204,7 +199,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     public void testNew() throws Exception {
 
         final String[] expected = {
-            "19:1: " + getCheckMessage(MSG_KEY, 2, 0, "[File, Random]"),
+            "20:1: " + getCheckMessage(MSG_KEY, 2, 0, "[File, Random]"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputClassDataAbstractionCoupling5.java"), expected);

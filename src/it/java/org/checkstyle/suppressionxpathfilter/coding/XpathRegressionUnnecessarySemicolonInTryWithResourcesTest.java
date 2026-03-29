@@ -88,4 +88,27 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
+    @Test
+    public void testInnerClass() throws Exception {
+        final File fileToProcess = new File(getPath(
+            "InputXpathUnnecessarySemicolonInTryWithResourcesInnerClass.java"
+        ));
+
+        final DefaultConfiguration moduleConfig =
+            createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
+        final String[] expectedViolation = {
+            "9:50: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
+                UnnecessarySemicolonInTryWithResourcesCheck.MSG_SEMI),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
+                + "'InputXpathUnnecessarySemicolonInTryWithResourcesInnerClass']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
+                + "/SLIST/LITERAL_TRY/RESOURCE_SPECIFICATION/SEMI"
+        );
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
 }

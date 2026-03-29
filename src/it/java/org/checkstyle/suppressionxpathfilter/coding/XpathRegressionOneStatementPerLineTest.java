@@ -88,4 +88,27 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testMethodBody() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathOneStatementPerLineMethodBody.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(OneStatementPerLineCheck.class);
+
+        final String[] expectedViolation = {
+            "5:29: " + getCheckMessage(OneStatementPerLineCheck.class,
+                OneStatementPerLineCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathOneStatementPerLineMethodBody']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/SEMI[2]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
