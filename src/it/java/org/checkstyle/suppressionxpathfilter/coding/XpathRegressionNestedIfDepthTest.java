@@ -95,4 +95,28 @@ public class XpathRegressionNestedIfDepthTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
             expectedXpathQueries);
     }
+
+    @Test
+    public void testStaticBlock() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathNestedIfDepthStaticBlock.java"));
+
+        final DefaultConfiguration moduleConfig =
+            createModuleConfig(NestedIfDepthCheck.class);
+
+        final String[] expectedViolation = {
+            "10:17: " + getCheckMessage(NestedIfDepthCheck.class,
+                NestedIfDepthCheck.MSG_KEY, 2, 1),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathNestedIfDepthStaticBlock']]/OBJBLOCK"
+                + "/STATIC_INIT/SLIST/LITERAL_IF"
+                + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+            expectedXpathQueries);
+    }
 }

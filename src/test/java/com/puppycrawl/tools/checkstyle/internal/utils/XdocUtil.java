@@ -222,9 +222,20 @@ public final class XdocUtil {
                     parseConfigBlock(xmlBlockMatcher.group(1));
 
                 if (entry != null) {
+                    final String checkClassKey = entry.getKey();
+                    final Set<String> props = entry.getValue();
                     checkToProperties
-                        .computeIfAbsent(entry.getKey(), key -> new HashSet<>())
-                        .addAll(entry.getValue());
+                        .computeIfAbsent(checkClassKey, key -> new HashSet<>())
+                        .addAll(props);
+                    // Also store under module name without "Check" suffix to handle checks
+                    // like SuppressWarningsHolder whose class name does not end with "Check"
+                    if (checkClassKey.endsWith("Check")) {
+                        final String moduleNameKey = checkClassKey.substring(
+                                0, checkClassKey.length() - "Check".length());
+                        checkToProperties
+                            .computeIfAbsent(moduleNameKey, key -> new HashSet<>())
+                            .addAll(props);
+                    }
                 }
             }
         }
@@ -234,30 +245,40 @@ public final class XdocUtil {
     }
 
     private static Map.Entry<String, Set<String>> parseConfigBlock(String configBlock) {
-        final Matcher moduleMatcher =
-                Pattern.compile("<module name=\"([^\"]+)\"").matcher(configBlock);
-        String lastModule = null;
-        while (moduleMatcher.find()) {
-            lastModule = moduleMatcher.group(1);
-        }
-
         final Matcher propMatcher =
                 Pattern.compile("<property name=\"([^\"]+)\"").matcher(configBlock);
         final Set<String> props = new HashSet<>();
+        int firstPropStart = -1;
         while (propMatcher.find()) {
+            if (firstPropStart == -1) {
+                firstPropStart = propMatcher.start();
+            }
             props.add(propMatcher.group(1));
         }
 
         Map.Entry<String, Set<String>> result = null;
-        if (lastModule != null && !props.isEmpty()) {
-            final String checkClassName;
-            if (lastModule.endsWith("Check")) {
-                checkClassName = lastModule;
+        if (!props.isEmpty()) {
+            // Find the last module before the first property to correctly associate
+            // properties with their owning module (handles cases where sibling modules
+            // appear after the module that owns the properties)
+            final Matcher moduleMatcher =
+                    Pattern.compile("<module name=\"([^\"]+)\"")
+                            .matcher(configBlock.substring(0, firstPropStart));
+            String lastModule = null;
+            while (moduleMatcher.find()) {
+                lastModule = moduleMatcher.group(1);
             }
-            else {
-                checkClassName = lastModule + "Check";
+
+            if (lastModule != null) {
+                final String checkClassName;
+                if (lastModule.endsWith("Check")) {
+                    checkClassName = lastModule;
+                }
+                else {
+                    checkClassName = lastModule + "Check";
+                }
+                result = Map.entry(checkClassName, props);
             }
-            result = Map.entry(checkClassName, props);
         }
 
         return result;

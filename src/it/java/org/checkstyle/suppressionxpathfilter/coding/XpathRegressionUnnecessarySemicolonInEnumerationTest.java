@@ -87,4 +87,27 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
+    @Test
+    public void testInnerEnum() throws Exception {
+        final File fileToProcess = new File(getPath(
+            "InputXpathUnnecessarySemicolonInEnumerationInnerEnum.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(UnnecessarySemicolonInEnumerationCheck.class);
+
+        final String[] expectedViolation = {
+            "6:17: " + getCheckMessage(UnnecessarySemicolonInEnumerationCheck.class,
+                UnnecessarySemicolonInEnumerationCheck.MSG_SEMI),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
+                + "'InputXpathUnnecessarySemicolonInEnumerationInnerEnum']]"
+                + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Status']]"
+                + "/OBJBLOCK/SEMI"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
 }

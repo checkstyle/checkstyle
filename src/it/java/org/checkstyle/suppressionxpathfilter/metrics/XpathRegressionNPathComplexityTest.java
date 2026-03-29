@@ -98,4 +98,36 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testConstructor() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathNPathComplexityConstructor.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(NPathComplexityCheck.class);
+        moduleConfig.addProperty("max", "0");
+
+        final String[] expectedViolation = {
+            "4:5: " + getCheckMessage(NPathComplexityCheck.class,
+                NPathComplexityCheck.MSG_KEY, 2, 0),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathNPathComplexityConstructor']]/OBJBLOCK"
+                + "/CTOR_DEF[./IDENT[@text='InputXpathNPathComplexityConstructor']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathNPathComplexityConstructor']]/OBJBLOCK"
+                + "/CTOR_DEF[./IDENT[@text='InputXpathNPathComplexityConstructor']]"
+                + "/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathNPathComplexityConstructor']]/OBJBLOCK"
+                + "/CTOR_DEF[./IDENT[@text='InputXpathNPathComplexityConstructor']]"
+                + "/MODIFIERS/LITERAL_PUBLIC"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

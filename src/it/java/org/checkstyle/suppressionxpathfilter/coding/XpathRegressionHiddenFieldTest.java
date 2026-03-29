@@ -90,4 +90,28 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testLocalVariable() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathHiddenFieldLocalVariable.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(HiddenFieldCheck.class);
+
+        final String[] expectedViolation = {
+            "7:13: " + getCheckMessage(HiddenFieldCheck.class,
+                HiddenFieldCheck.MSG_KEY, "count"),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathHiddenFieldLocalVariable']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='process']]/SLIST"
+                + "/VARIABLE_DEF/IDENT[@text='count']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

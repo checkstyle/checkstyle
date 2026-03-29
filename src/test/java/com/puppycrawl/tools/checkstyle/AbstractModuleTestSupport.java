@@ -75,7 +75,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      *
      * @return logger for tests
      */
-    protected final BriefUtLogger getBriefUtLogger() {
+    protected final DefaultLogger getBriefUtLogger() {
         return new BriefUtLogger(stream);
     }
 

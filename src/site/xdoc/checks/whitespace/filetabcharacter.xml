@@ -160,12 +160,12 @@ class Example3 {
       <subsection name="Violation Messages" id="FileTabCharacter_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22containsTab%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22containsTab%22">
               containsTab
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22file.containsTab%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22file.containsTab%22">
               file.containsTab
             </a>
           </li>
@@ -177,9 +177,11 @@ class Example3 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="FileTabCharacter_Package">
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

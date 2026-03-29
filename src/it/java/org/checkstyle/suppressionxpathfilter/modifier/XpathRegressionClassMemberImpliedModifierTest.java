@@ -100,4 +100,34 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testRecord() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathClassMemberImpliedModifierRecord.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(ClassMemberImpliedModifierCheck.class);
+
+        final String[] expectedViolation = {
+            "4:5: " + getCheckMessage(ClassMemberImpliedModifierCheck.class,
+                ClassMemberImpliedModifierCheck.MSG_KEY, "static"),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputXpathClassMemberImpliedModifierRecord']]"
+                    + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='Point']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputXpathClassMemberImpliedModifierRecord']]"
+                    + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='Point']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputXpathClassMemberImpliedModifierRecord']]"
+                    + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='Point']]/MODIFIERS"
+                    + "/LITERAL_PUBLIC"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

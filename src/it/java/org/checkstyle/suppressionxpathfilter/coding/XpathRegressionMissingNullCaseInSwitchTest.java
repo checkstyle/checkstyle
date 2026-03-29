@@ -91,4 +91,25 @@ public class XpathRegressionMissingNullCaseInSwitchTest
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
+    @Test
+    public void testStaticBlock() throws Exception {
+        final File fileToProcess =
+            new File(getPath("InputXpathMissingNullCaseInSwitchStaticBlock.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(MissingNullCaseInSwitchCheck.class);
+        final String[] expectedViolation = {
+            "7:9: " + getCheckMessage(MissingNullCaseInSwitchCheck.class,
+                    MissingNullCaseInSwitchCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingNullCaseInSwitchStaticBlock']]"
+                + "/OBJBLOCK/STATIC_INIT/SLIST/LITERAL_SWITCH"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
 }

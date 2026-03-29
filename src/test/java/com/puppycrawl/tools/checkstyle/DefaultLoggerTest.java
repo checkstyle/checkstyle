@@ -26,7 +26,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
-import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -37,7 +36,6 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class DefaultLoggerTest extends AbstractModuleTestSupport {
@@ -171,18 +169,6 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCtorWithNullParameter() {
-        final OutputStream infoStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE);
-        dl.addException(new AuditEvent(5000), new IllegalStateException("oops"));
-        dl.auditFinished(new AuditEvent(6000));
-        final String output = infoStream.toString();
-        assertWithMessage("Message should contain exception info")
-                .that(output)
-                .contains("java.lang.IllegalStateException: oops");
-    }
-
-    @Test
     public void testNullInfoStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final IllegalArgumentException ex =
@@ -216,28 +202,21 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAddErrorModuleId() {
-        final OutputStream infoStream = new ByteArrayOutputStream();
-        final OutputStream errorStream = new ByteArrayOutputStream();
-        final String auditFinishMessage = getAuditFinishMessage();
-        final String auditStartMessage = getAuditStartMessage();
+    public void testAddErrorModuleId() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestAddErrorModuleId.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestAddErrorModuleId.txt";
+
+        final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
+        final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
                 errorStream, OutputStreamOptions.CLOSE);
-        dl.finishLocalSetup();
-        dl.auditStarted(null);
-        dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, "bundle", "key",
-                null, "moduleId", getClass(), "customViolation")));
-        dl.auditFinished(null);
-        assertWithMessage("expected output")
-            .that(infoStream.toString())
-            .isEqualTo(auditStartMessage
-                        + System.lineSeparator()
-                        + auditFinishMessage
-                        + System.lineSeparator());
-        assertWithMessage("expected output")
-            .that(errorStream.toString())
-            .isEqualTo("[ERROR] fileName:1:2: customViolation [moduleId]"
-                + System.lineSeparator());
+
+        verifyWithInlineConfigParserAndDefaultLogger(
+                getPath(inputFile),
+                getPath(expectedInfoFile),
+                getPath(expectedErrorFile),
+                dl, infoStream, errorStream);
     }
 
     @Test
@@ -259,16 +238,23 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFinishLocalSetup() {
-        final OutputStream infoStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream,
-                OutputStreamOptions.CLOSE);
+    public void testFinishLocalSetup() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestSingleError.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestSingleError.txt";
+
+        final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
+        final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+                errorStream, OutputStreamOptions.CLOSE);
+
         dl.finishLocalSetup();
-        dl.auditStarted(null);
-        dl.auditFinished(null);
-        assertWithMessage("instance should not be null")
-            .that(dl)
-            .isNotNull();
+
+        verifyWithInlineConfigParserAndDefaultLogger(
+                getPath(inputFile),
+                getPath(expectedInfoFile),
+                getPath(expectedErrorFile),
+                dl, infoStream, errorStream);
     }
 
     /**
@@ -297,85 +283,89 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNewCtor() throws Exception {
-        final ResourceBundle bundle = ResourceBundle.getBundle(
-                Definitions.CHECKSTYLE_BUNDLE, Locale.ENGLISH);
-        final String auditStartedMessage = bundle.getString(DefaultLogger.AUDIT_STARTED_MESSAGE);
-        final String auditFinishedMessage = bundle.getString(DefaultLogger.AUDIT_FINISHED_MESSAGE);
-        final String addExceptionMessage = new MessageFormat(bundle.getString(
-                DefaultLogger.ADD_EXCEPTION_MESSAGE), Locale.ENGLISH).format(new String[] {"myfile"}
-        );
-        final String infoOutput;
-        final String errorOutput;
-        try (MockByteArrayOutputStream infoStream = new MockByteArrayOutputStream()) {
-            try (MockByteArrayOutputStream errorStream = new MockByteArrayOutputStream()) {
-                final DefaultLogger dl = new DefaultLogger(
-                        infoStream, OutputStreamOptions.CLOSE,
-                        errorStream, OutputStreamOptions.CLOSE);
-                dl.auditStarted(null);
-                dl.addException(new AuditEvent(5000, "myfile"),
-                        new IllegalStateException("oops"));
-                dl.auditFinished(new AuditEvent(6000, "myfile"));
-                infoOutput = infoStream.toString(StandardCharsets.UTF_8);
-                errorOutput = errorStream.toString(StandardCharsets.UTF_8);
+        final String inputFile = "InputDefaultLoggerTestException.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestException.txt";
 
-                assertWithMessage("Info stream should be closed")
-                        .that(infoStream.closedCount)
-                        .isGreaterThan(0);
-                assertWithMessage("Error stream should be closed")
-                        .that(errorStream.closedCount)
-                        .isGreaterThan(0);
-            }
+        try (MockByteArrayOutputStream infoStream = new MockByteArrayOutputStream();
+             MockByteArrayOutputStream errorStream = new MockByteArrayOutputStream()) {
+            final DefaultLogger dl = new DefaultLogger(
+                    infoStream, OutputStreamOptions.CLOSE,
+                    errorStream, OutputStreamOptions.CLOSE);
+
+            verifyWithInlineConfigParserAndDefaultLogger(
+                    getNonCompilablePath(inputFile),
+                    getPath(expectedInfoFile),
+                    getPath(expectedErrorFile),
+                    dl, infoStream, errorStream);
+
+            assertWithMessage("Info stream should be closed")
+                    .that(infoStream.closedCount)
+                    .isGreaterThan(0);
+            assertWithMessage("Error stream should be closed")
+                    .that(errorStream.closedCount)
+                    .isGreaterThan(0);
         }
-        assertWithMessage("Violation should contain message `audit started`")
-                .that(infoOutput)
-                .contains(auditStartedMessage);
-        assertWithMessage("Violation should contain message `audit finished`")
-                .that(infoOutput)
-                .contains(auditFinishedMessage);
-        assertWithMessage("Violation should contain exception info")
-                .that(errorOutput)
-                .contains(addExceptionMessage);
-        assertWithMessage("Violation should contain exception message")
-                .that(errorOutput)
-                .contains("java.lang.IllegalStateException: oops");
+    }
+
+    /**
+     * Direct invocation of {@code addException} is necessary because
+     * {@code Checker} implementation does not call {@code addException}
+     * during normal file processing flow, leaving mutations on lines 179-183
+     * ({@code PrintWriter::println}, {@code getLocalizedMessage},
+     * {@code AuditEvent::getFileName}, {@code Throwable::printStackTrace})
+     * with no coverage if tested only through {@code verifyWithInlineConfigParserAndDefaultLogger}.
+     */
+    @Test
+    public void testAddException() throws Exception {
+        try (MockByteArrayOutputStream errorStream = new MockByteArrayOutputStream()) {
+            final DefaultLogger dl = new DefaultLogger(
+                    new ByteArrayOutputStream(), OutputStreamOptions.CLOSE,
+                    errorStream, OutputStreamOptions.CLOSE);
+
+            dl.addException(new AuditEvent(5000, "myfile"),
+                    new IllegalStateException("oops"));
+
+            final String errorOutput = errorStream.toString(StandardCharsets.UTF_8);
+
+            assertWithMessage("Exception output should contain filename")
+                    .that(errorOutput)
+                    .contains("myfile");
+            assertWithMessage("Exception output should contain exception type")
+                    .that(errorOutput)
+                    .contains("java.lang.IllegalStateException");
+            assertWithMessage("Exception output should contain exception message")
+                    .that(errorOutput)
+                    .contains("oops");
+        }
     }
 
     @Test
-    public void testStreamsNotClosedByLogger() throws IOException {
-        try (MockByteArrayOutputStream infoStream = new MockByteArrayOutputStream();
-             MockByteArrayOutputStream errorStream = new MockByteArrayOutputStream()) {
-            final DefaultLogger defaultLogger = new DefaultLogger(
-                infoStream, OutputStreamOptions.NONE,
-                errorStream, OutputStreamOptions.NONE);
-            defaultLogger.auditStarted(null);
-            defaultLogger.auditFinished(null);
-            assertWithMessage("Info stream should be open")
-                .that(infoStream.closedCount)
-                .isEqualTo(0);
-            assertWithMessage("Error stream should be open")
-                .that(errorStream.closedCount)
-                .isEqualTo(0);
+    public void testStreamsNotClosedByLogger() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestSingleError.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestSingleError.txt";
+
+        try (ByteArrayOutputStream infoStream = new ModifiedByteArrayOutputStream();
+            ByteArrayOutputStream errorStream = new ModifiedByteArrayOutputStream()) {
+            final DefaultLogger dl = new DefaultLogger(
+                    infoStream, OutputStreamOptions.NONE,
+                    errorStream, OutputStreamOptions.NONE);
+
+            verifyWithInlineConfigParserAndDefaultLogger(
+                    getPath(inputFile),
+                    getPath(expectedInfoFile),
+                    getPath(expectedErrorFile),
+                    dl, infoStream, errorStream);
         }
     }
 
-    private static LocalizedMessage getAuditStartMessageClass() {
-        return new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
-                DefaultLogger.class, "DefaultLogger.auditStarted");
-    }
-
-    private static LocalizedMessage getAuditFinishMessageClass() {
-        return new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
-                DefaultLogger.class, "DefaultLogger.auditFinished");
-    }
-
-    private static String getAuditStartMessage() {
-        final LocalizedMessage auditStartMessage = getAuditStartMessageClass();
-        return auditStartMessage.getMessage();
-    }
-
-    private static String getAuditFinishMessage() {
-        final LocalizedMessage auditFinishMessage = getAuditFinishMessageClass();
-        return auditFinishMessage.getMessage();
+    private static final class ModifiedByteArrayOutputStream extends ByteArrayOutputStream {
+        @Override
+        public void close() throws IOException {
+            reset();
+            super.close();
+        }
     }
 
     private static final class MockByteArrayOutputStream extends ByteArrayOutputStream {

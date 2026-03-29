@@ -98,4 +98,33 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testNestedInInterface() throws Exception {
+        final File fileToProcess = new File(getPath(
+                "InputXpathMissingCtorInInterface.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(MissingCtorCheck.class);
+
+        final String[] expectedViolation = {
+            "4:5: " + getCheckMessage(MissingCtorCheck.class,
+                    MissingCtorCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
+                    + "@text='InputXpathMissingCtorInInterface']]"
+                    + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='NestedClass']]",
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
+                    + "@text='InputXpathMissingCtorInInterface']]"
+                    + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='NestedClass']]/MODIFIERS",
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
+                    + "@text='InputXpathMissingCtorInInterface']]"
+                    + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='NestedClass']]/LITERAL_CLASS"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
 }

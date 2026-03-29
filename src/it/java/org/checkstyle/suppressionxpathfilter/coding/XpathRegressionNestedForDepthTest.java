@@ -94,4 +94,29 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testInnerClass() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathNestedForDepthInnerClass.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(NestedForDepthCheck.class);
+
+        final String[] expectedViolation = {
+            "8:21: " + getCheckMessage(NestedForDepthCheck.class,
+                NestedForDepthCheck.MSG_KEY, 2, 1),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathNestedForDepthInnerClass']]/OBJBLOCK"
+                + "/CLASS_DEF[./IDENT[@text='Inner']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_FOR"
+                + "/SLIST/LITERAL_FOR/SLIST/LITERAL_FOR"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
