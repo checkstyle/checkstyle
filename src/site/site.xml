@@ -53,6 +53,7 @@
       <![CDATA[
         <script type="text/javascript" src="$relativePath/js/checkstyle.js" defer async></script>
         <script type="text/javascript" src="$relativePath/js/anchors.js" defer async></script>
+        <script type="text/javascript" src="$relativePath/js/search.js" defer></script
         <script type="text/javascript"
                 src="$relativePath/js/google-analytics.js" defer async></script>
         <script type="text/javascript"
