@@ -1,11 +1,9 @@
 /*
 DesignForExtension
-ignoredAnnotations = (default)After, AfterClass, Before, BeforeClass, Test
+ignoredAnnotations = (default)After, AfterClass, Before, BeforeClass, Override, Test
 requiredJavadocPhrase = (default).*
 
-
 */
-
 package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
 public interface InputDesignForExtensionInterfaceMemberScopeIsPublic {
