@@ -485,33 +485,33 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private boolean shouldCheckUnnamedVariable(DetailAST ast) {
         return validateUnnamedVariables
-                 || !"_".equals(ast.findFirstToken(TokenTypes.IDENT).getText());
+                 || !"_".equals(TokenUtil.getIdent(ast).getText());
     }
 
     /**
      * Insert a parameter at the topmost scope stack.
      *
-     * @param ast the variable to insert.
+     * @param ast parameter definition AST, but not receiver parameter.
      */
     private void insertParameter(DetailAST ast) {
         final Map<String, FinalVariableCandidate> scope = scopeStack.peek().scope;
-        final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
+        final DetailAST astNode = TokenUtil.getIdent(ast);
         scope.put(astNode.getText(), new FinalVariableCandidate(astNode));
     }
 
     /**
      * Insert a variable at the topmost scope stack.
      *
-     * @param ast the variable to insert.
+     * @param variableAst the variable to insert.
      */
-    private void insertVariable(DetailAST ast) {
+    private void insertVariable(DetailAST variableAst) {
         final Map<String, FinalVariableCandidate> scope = scopeStack.peek().scope;
-        final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
+        final DetailAST astNode = TokenUtil.getIdent(variableAst);
         final FinalVariableCandidate candidate = new FinalVariableCandidate(astNode);
         // for-each variables are implicitly assigned
-        candidate.assigned = ast.getParent().getType() == TokenTypes.FOR_EACH_CLAUSE;
+        candidate.assigned = variableAst.getParent().getType() == TokenTypes.FOR_EACH_CLAUSE;
         scope.put(astNode.getText(), candidate);
-        if (!isInitialized(ast)) {
+        if (!isInitialized(variableAst)) {
             scopeStack.peek().uninitializedVariables.add(astNode);
         }
     }

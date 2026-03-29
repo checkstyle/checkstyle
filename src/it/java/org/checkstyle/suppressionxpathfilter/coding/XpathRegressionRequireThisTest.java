@@ -44,9 +44,9 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testSimple() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathRequireThisOne.java"));
+                new File(getPath("InputXpathRequireThisSimple.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RequireThisCheck.class);
@@ -59,7 +59,7 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputXpathRequireThisOne']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathRequireThisSimple']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='changeAge']]/SLIST/EXPR/ASSIGN"
                 + "/IDENT[@text='age']"
         );
@@ -69,24 +69,51 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testAnonymousClass() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathRequireThisTwo.java"));
+                new File(getPath("InputXpathRequireThisAnonymousClass.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RequireThisCheck.class);
         moduleConfig.addProperty("validateOnlyOverlapping", "false");
 
         final String[] expectedViolation = {
-            "9:9: " + getCheckMessage(RequireThisCheck.class,
-                RequireThisCheck.MSG_METHOD, "method1", ""),
+            "9:13: " + getCheckMessage(RequireThisCheck.class,
+                RequireThisCheck.MSG_VARIABLE, "age", ""),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputXpathRequireThisTwo']]/OBJBLOCK"
-                + "/METHOD_DEF[./IDENT[@text='method2']]/SLIST/EXPR"
-                + "/METHOD_CALL/IDENT[@text='method1']"
+                + "[./IDENT[@text='InputXpathRequireThisAnonymousClass']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='runnable']]/ASSIGN/EXPR/"
+                + "LITERAL_NEW[./IDENT[@text='Runnable']]/OBJBLOCK/METHOD_DEF"
+                + "[./IDENT[@text='run']]/SLIST/EXPR/ASSIGN/IDENT[@text='age']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
+    @Test
+    public void testMethodInnerClass() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathRequireThisInnerClass.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(RequireThisCheck.class);
+        moduleConfig.addProperty("validateOnlyOverlapping", "false");
+
+        final String[] expectedViolation = {
+            "8:13: " + getCheckMessage(RequireThisCheck.class,
+                RequireThisCheck.MSG_VARIABLE, "age", ""),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathRequireThisInnerClass']]/OBJBLOCK"
+                + "/CLASS_DEF[./IDENT[@text='Inner']]/OBJBLOCK/METHOD_DEF"
+                + "[./IDENT[@text='changeAge']]/SLIST/EXPR/ASSIGN"
+                + "/IDENT[@text='age']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

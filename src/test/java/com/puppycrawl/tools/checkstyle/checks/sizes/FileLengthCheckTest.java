@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.Test;
 
@@ -68,21 +69,19 @@ public class FileLengthCheckTest
     }
 
     @Test
-    public void testArgs() throws Exception {
+    public void testArgs() {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FileLengthCheck.class);
-        try {
-            checkConfig.addProperty("max", "abc");
-            createChecker(checkConfig);
-            assertWithMessage("Should indicate illegal args").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                    + "sizes.FileLengthCheck - "
-                    + "illegal value 'abc' for property 'max'");
-        }
+        final CheckstyleException exc = getExpectedThrowable(CheckstyleException.class,
+                () -> {
+                    checkConfig.addProperty("max", "abc");
+                    createChecker(checkConfig);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                + "sizes.FileLengthCheck - "
+                + "illegal value 'abc' for property 'max'");
     }
 
     @Test
@@ -104,15 +103,11 @@ public class FileLengthCheckTest
         assertWithMessage("extension should be the same")
             .that(check.getFileExtensions()[0])
             .isEqualTo(".java");
-        try {
-            check.setFileExtensions((String[]) null);
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Extensions array can not be null");
-        }
+        final IllegalArgumentException exc = getExpectedThrowable(IllegalArgumentException.class,
+                () -> check.setFileExtensions((String[]) null));
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Extensions array can not be null");
     }
 
 }

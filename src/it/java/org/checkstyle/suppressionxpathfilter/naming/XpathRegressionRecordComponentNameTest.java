@@ -92,4 +92,30 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testNested() throws Exception {
+        final File fileToProcess = new File(getPath(
+                "InputXpathRecordComponentNameNested.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(RecordComponentNameCheck.class);
+
+        final String[] expectedViolation = {
+            "8:36: " + getCheckMessage(RecordComponentNameCheck.class,
+                AbstractNameCheck.MSG_INVALID_PATTERN,
+                    "_value", "^[a-z][a-zA-Z0-9]*$"),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathRecordComponentNameNested']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]/OBJBLOCK"
+                + "/RECORD_DEF[./IDENT[@text='MyRecord']]"
+                + "/RECORD_COMPONENTS/RECORD_COMPONENT_DEF/IDENT[@text='_value']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

@@ -122,6 +122,134 @@ public final class Example1 {
   }
 }
 </code></pre></div>
+        <hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to not require explicit <code>static</code> on nested enums:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ClassMemberImpliedModifier" /&gt;
+      &lt;property name="violateImpliedStaticOnNestedEnum" value="false"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          Code:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public final class Example2 {
+  static interface Address1 {
+  }
+
+  interface Address2 {  // violation, 'Implied modifier 'static' should be explicit'
+  }
+
+  static enum Age1 {
+    CHILD, ADULT
+  }
+
+  enum Age2 {  // violation, 'Implied modifier 'static' should be explicit'
+    CHILD, ADULT
+  }
+
+  public static record GoodRecord() {}
+  // violation below, 'Implied modifier 'static' should be explicit'
+  public record BadRecord() {}
+
+  public static record OuterRecord() {
+    static record InnerRecord1(){}
+    // violation below, 'Implied modifier 'static' should be explicit'
+    record InnerRecord2(){}
+  }
+}
+</code></pre></div>
+
+        <hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to not require explicit <code>static</code> on nested interfaces:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ClassMemberImpliedModifier" /&gt;
+      &lt;property name="violateImpliedStaticOnNestedInterface" value="false"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+          Code:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public final class Example3 {
+  static interface Address1 {
+  }
+
+  interface Address2 {  // violation, 'Implied modifier 'static' should be explicit'
+  }
+
+  static enum Age1 {
+    CHILD, ADULT
+  }
+
+  enum Age2 {  // violation, 'Implied modifier 'static' should be explicit'
+    CHILD, ADULT
+  }
+
+  public static record GoodRecord() {}
+  // violation below, 'Implied modifier 'static' should be explicit'
+  public record BadRecord() {}
+
+  public static record OuterRecord() {
+    static record InnerRecord1(){}
+    // violation below, 'Implied modifier 'static' should be explicit'
+    record InnerRecord2(){}
+  }
+}
+</code></pre></div>
+
+        <hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check to not require explicit <code>static</code> on nested records:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ClassMemberImpliedModifier" /&gt;
+      &lt;property name="violateImpliedStaticOnNestedRecord" value="false"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">
+          Code:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public final class Example4 {
+  static interface Address1 {
+  }
+
+  interface Address2 {  // violation, 'Implied modifier 'static' should be explicit'
+  }
+
+  static enum Age1 {
+    CHILD, ADULT
+  }
+
+  enum Age2 {  // violation, 'Implied modifier 'static' should be explicit'
+    CHILD, ADULT
+  }
+
+  public static record GoodRecord() {}
+  // violation below, 'Implied modifier 'static' should be explicit'
+  public record BadRecord() {}
+
+  public static record OuterRecord() {
+    static record InnerRecord1(){}
+    // violation below, 'Implied modifier 'static' should be explicit'
+    record InnerRecord2(){}
+  }
+}
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="ClassMemberImpliedModifier_Example_of_Usage">
@@ -136,7 +264,7 @@ public final class Example1 {
       <subsection name="Violation Messages" id="ClassMemberImpliedModifier_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22class.implied.modifier%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22class.implied.modifier%22">
               class.implied.modifier
             </a>
           </li>
@@ -148,8 +276,12 @@ public final class Example1 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="ClassMemberImpliedModifier_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.modifier </p>
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.modifier.ClassMemberImpliedModifierCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="ClassMemberImpliedModifier_Parent_Module">

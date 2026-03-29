@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPad
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_NOT_FOLLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.Test;
 
@@ -317,22 +318,20 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testInvalidOption() throws Exception {
+    public void testInvalidOption() {
 
-        try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final CheckstyleException exc =
+            getExpectedThrowable(CheckstyleException.class, () -> {
+                final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verifyWithInlineConfigParser(
-                    getPath("InputParenPadLeftRightAndNoSpace3.java"), expected);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                    + "whitespace.ParenPadCheck");
-        }
+                verifyWithInlineConfigParser(
+                        getPath("InputParenPadLeftRightAndNoSpace3.java"), expected);
+            });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                + "whitespace.ParenPadCheck");
     }
 
     @Test
@@ -583,30 +582,30 @@ public class ParenPadCheckTest
     @Test
     public void testParenPadForRecordPattern() throws Exception {
         final String[] expected = {
-            "14:40: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "16:40: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "16:60: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "22:40: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "22:47: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "26:46: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "26:61: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "26:73: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "31:40: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "31:47: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "31:62: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "31:74: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "42:23: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "44:23: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "44:38: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "52:30: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "52:37: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "56:36: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "56:51: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "56:63: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "61:30: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "61:37: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "61:52: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "61:64: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "19:40: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "21:40: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "21:60: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "27:40: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "27:47: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "31:46: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "31:61: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "31:73: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "36:40: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "36:47: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "36:62: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "36:74: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "47:23: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "49:23: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "49:38: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "57:30: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "57:37: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "61:36: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "61:51: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "61:63: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "66:30: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "66:37: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "66:52: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "66:64: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParenPadForRecordPattern.java"), expected);

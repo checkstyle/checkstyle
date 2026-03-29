@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_UNABLE_OPEN;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_WRONG_ENDING;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -120,22 +121,18 @@ public class NewlineAtEndOfFileCheckTest
     }
 
     @Test
-    public void testSetLineSeparatorFailure()
-            throws Exception {
+    public void testSetLineSeparatorFailure() {
         final DefaultConfiguration checkConfig =
             createModuleConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addProperty("lineSeparator", "ct");
-        try {
-            createChecker(checkConfig);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Error message is unexpected")
-                    .that(exc.getMessage())
-                    .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle."
-                            + "checks.NewlineAtEndOfFileCheck - "
-                            + "Cannot set property 'lineSeparator' to 'ct'");
-        }
+        final CheckstyleException exc = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> createChecker(checkConfig));
+        assertWithMessage("Error message is unexpected")
+                .that(exc.getMessage())
+                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle."
+                        + "checks.NewlineAtEndOfFileCheck - "
+                        + "Cannot set property 'lineSeparator' to 'ct'");
     }
 
     @Test
@@ -196,11 +193,12 @@ public class NewlineAtEndOfFileCheckTest
     public void testWrongSeparatorLength() throws Exception {
         try (RandomAccessFile file =
                      new ReadZeroRandomAccessFile(getPath("InputNewlineAtEndOfFileLf.java"), "r")) {
-            TestUtil.invokeVoidMethod(new NewlineAtEndOfFileCheck(), "endsWithNewline", file,
-                LineSeparatorOption.LF);
-            assertWithMessage("ReflectiveOperationException is expected").fail();
-        }
-        catch (ReflectiveOperationException exc) {
+            final ReflectiveOperationException exc = getExpectedThrowable(
+                ReflectiveOperationException.class,
+                () -> {
+                    TestUtil.invokeVoidMethod(new NewlineAtEndOfFileCheck(),
+                            "endsWithNewline", file, LineSeparatorOption.LF);
+                });
             assertWithMessage("Error message is unexpected")
                 .that(exc)
                     .hasCauseThat()

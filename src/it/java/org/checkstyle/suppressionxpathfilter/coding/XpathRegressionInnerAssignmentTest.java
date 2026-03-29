@@ -90,4 +90,37 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
+    @Test
+    public void testMethodCall() throws Exception {
+        final File fileToProcess = new
+                File(getPath("InputXpathInnerAssignmentMethodCall.java"));
+
+        final DefaultConfiguration moduleConfig = createModuleConfig(InnerAssignmentCheck.class);
+
+        final String[] expectedViolation = {
+            "6:46: " + getCheckMessage(InnerAssignmentCheck.class, InnerAssignmentCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathInnerAssignmentMethodCall']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='result']]"
+                + "/ASSIGN/EXPR/METHOD_CALL/ELIST",
+                "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathInnerAssignmentMethodCall']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='result']]"
+                + "/ASSIGN/EXPR/METHOD_CALL/ELIST/EXPR",
+                "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathInnerAssignmentMethodCall']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='result']]"
+                + "/ASSIGN/EXPR/METHOD_CALL/ELIST"
+                + "/EXPR/ASSIGN[./IDENT[@text='value']]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
 }

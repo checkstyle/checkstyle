@@ -237,7 +237,7 @@ public class JavadocTypeCheck
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/19146
     @Override
     @SuppressWarnings("deprecation")
     public void visitToken(DetailAST ast) {
@@ -303,13 +303,13 @@ public class JavadocTypeCheck
             JavadocUtil.JavadocTagType.BLOCK);
         if (!allowUnknownTags) {
             final String[] lines = textBlock.getText();
-            tags.getInvalidTags().stream()
+            tags.invalidTags().stream()
                 .filter(tag -> !isTagInsideCodeOrLiteralBlock(lines, textBlock, tag))
                 .forEach(tag -> {
                     log(tag.getLine(), tag.getCol(), MSG_UNKNOWN_TAG, tag.getName());
                 });
         }
-        return tags.getValidTags();
+        return tags.validTags();
     }
 
     /**

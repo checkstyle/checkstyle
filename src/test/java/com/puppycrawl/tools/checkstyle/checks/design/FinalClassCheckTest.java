@@ -73,7 +73,7 @@ public class FinalClassCheckTest
     @Test
     public void testFinalClass2() throws Exception {
         final String[] expected = {
-            "26:5: " + getCheckMessage(MSG_KEY, "someinnerClass"),
+            "26:5: " + getCheckMessage(MSG_KEY, "InnerFinalClass"),
             "33:5: " + getCheckMessage(MSG_KEY, "SomeClass"),
             "39:5: " + getCheckMessage(MSG_KEY, "SomeClass"),
             "60:1: " + getCheckMessage(MSG_KEY, "TestNewKeyword"),
@@ -129,15 +129,14 @@ public class FinalClassCheckTest
         final DetailAstImpl badAst = new DetailAstImpl();
         final int unsupportedTokenByCheck = TokenTypes.COMPILATION_UNIT;
         badAst.setType(unsupportedTokenByCheck);
-        try {
-            finalClassCheck.visitToken(badAst);
-            assertWithMessage("IllegalStateException is expected").fail();
-        }
-        catch (IllegalStateException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo(badAst.toString());
-        }
+        final IllegalStateException exc =
+            TestUtil.getExpectedThrowable(
+                IllegalStateException.class, () -> {
+                    finalClassCheck.visitToken(badAst);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo(badAst.toString());
     }
 
     @Test

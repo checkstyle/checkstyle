@@ -55,8 +55,12 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="HexLiteralCase_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks </p>
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.HexLiteralCaseCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="HexLiteralCase_Parent_Module">

@@ -22,10 +22,10 @@ enum testenum1
 enum testenum2
 {
     A, B;
-    // violation below 'Class someinnerClass should be declared as final'
-    public static class someinnerClass
+    // violation below 'Class InnerFinalClass should be declared as final'
+    public static class InnerFinalClass
     {
-        private someinnerClass() {}
+        private InnerFinalClass() {}
     }
 }
 

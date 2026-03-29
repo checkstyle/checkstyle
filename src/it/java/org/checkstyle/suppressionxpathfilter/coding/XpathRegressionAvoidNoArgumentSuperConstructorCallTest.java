@@ -94,4 +94,28 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
+    @Test
+    public void testStaticInnerClass() throws Exception {
+        final File fileToProcess = new File(getPath(
+            "InputXpathAvoidNoArgumentSuperConstructorCallStaticInner.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(CLASS);
+
+        final String[] expectedViolation = {
+            "6:13: " + getCheckMessage(CLASS,
+                AvoidNoArgumentSuperConstructorCallCheck.MSG_CTOR),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
+                + "'InputXpathAvoidNoArgumentSuperConstructorCallStaticInner']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Nested']]"
+                + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='Nested']]"
+                + "/SLIST/SUPER_CTOR_CALL"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
 }

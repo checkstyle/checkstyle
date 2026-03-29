@@ -66,8 +66,12 @@ public final class FullIdent {
      * @return a {@code FullIdent} value
      */
     public static FullIdent createFullIdent(DetailAST ast) {
+        DetailAST node = ast;
+        if (node != null && node.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+            node = node.getNextSibling();
+        }
         final FullIdent ident = new FullIdent();
-        extractFullIdent(ident, ast);
+        extractFullIdent(ident, node);
         return ident;
     }
 
@@ -101,7 +105,11 @@ public final class FullIdent {
                 pushToIdentStack(identStack, firstChild);
             }
             else if (typeOfAst == TokenTypes.DOT) {
-                pushToIdentStack(identStack, firstChild.getNextSibling());
+                DetailAST sibling = firstChild.getNextSibling();
+                if (sibling.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+                    sibling = sibling.getNextSibling();
+                }
+                pushToIdentStack(identStack, sibling);
                 pushToIdentStack(identStack, firstChild);
                 dotCounter++;
             }
