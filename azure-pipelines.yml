@@ -100,6 +100,7 @@ strategy:
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh versions"
       onCronOnly: true
+      needXmlstarlet: true
 
     # lint for .md files, OSX is used because there is problem to install gem on linux
     'markdownlint':
@@ -123,7 +124,7 @@ variables:
 
 steps:
   - bash: |
-      apt-fast install -y xmlstarlet
+      sudo apt-get install -y xmlstarlet
     condition: |
         and(
              ne(variables['Agent.OS'], 'Darwin'),
