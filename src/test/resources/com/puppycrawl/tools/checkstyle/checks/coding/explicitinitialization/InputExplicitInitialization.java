@@ -8,7 +8,7 @@ onlyObjectReferences = (default)false
 package com.puppycrawl.tools.checkstyle.checks.coding.explicitinitialization;
 
 public class InputExplicitInitialization {
-    private int x = 0; // violation ''x' explicitly initialized'
+    private int x = 0; // violation 'Variable ''x'' explicitly initialized to ''0'' (default value for its type).'
     private Object bar = /* comment test */null; // violation ''bar' explicitly initialized'
     private int y = 1;
     private long y1 = 1 - 1;
@@ -18,7 +18,10 @@ public class InputExplicitInitialization {
     private boolean b2 = true;
     private boolean b3;
     private String str = "";
-    java.lang.String str1 = null, str3 = null; // 2 violations
+    java.lang.String str1 = null, str3 = null; 
+    //2 violations above:
+    //'Variable ''str1'' explicitly initialized to ''null'' (default value for its type).'
+    //  'Variable ''str3'' explicitly initialized to ''null'' (default value for its type).'
     int ar1[] = null; // violation ''ar1' explicitly initialized'
     int ar2[] = new int[1];
     int ar3[];
