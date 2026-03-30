@@ -300,7 +300,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck",
 
             "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck",
             "com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder",
