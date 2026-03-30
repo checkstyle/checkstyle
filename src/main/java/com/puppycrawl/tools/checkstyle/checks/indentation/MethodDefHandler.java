@@ -47,7 +47,9 @@ public class MethodDefHandler extends BlockParentHandler {
         return null;
     }
 
-    @Override
+    /**
+     * Checks modifiers for method definitions.
+     */
     protected void checkModifiers() {
         final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
         if (isOnStartOfLine(modifier)
