@@ -53,10 +53,45 @@ public class LocalFinalVariableNameCheckTest
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expected = {
-            "126:19: " + getCheckMessage(MSG_INVALID_PATTERN, "CDE", pattern),
+            "24:19: " + getCheckMessage(MSG_INVALID_PATTERN, "CDE", pattern),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLocalFinalVariableName.java"), expected);
+    }
+
+    @Test
+    public void testDefaultMisc()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableNameMisc.java"), expected);
+    }
+
+    @Test
+    public void testDefaultMisc2()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableNameMisc2.java"), expected);
+    }
+
+    @Test
+    public void testDefaultMisc3()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableNameMisc3.java"), expected);
+    }
+
+    @Test
+    public void testDefaultForEachClause()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableName2.java"), expected);
+    }
+
+    @Test
+    public void testDefaultEnum()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableNameEnum1.java"), expected);
     }
 
     @Test
@@ -66,10 +101,45 @@ public class LocalFinalVariableNameCheckTest
         final String pattern = "[A-Z]+";
 
         final String[] expected = {
-            "125:19: " + getCheckMessage(MSG_INVALID_PATTERN, "cde", pattern),
+            "21:19: " + getCheckMessage(MSG_INVALID_PATTERN, "cde", pattern),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLocalFinalVariableName1.java"), expected);
+    }
+
+    @Test
+    public void testSetMisc()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableName1Misc.java"), expected);
+    }
+
+    @Test
+    public void testSetMisc2()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableName1Misc2.java"), expected);
+    }
+
+    @Test
+    public void testSetMisc3()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableName1Misc3.java"), expected);
+    }
+
+    @Test
+    public void testSetForEachClause()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableName3.java"), expected);
+    }
+
+    @Test
+    public void testSetEnum()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableNameEnum2.java"), expected);
     }
 
     @Test
@@ -124,12 +194,12 @@ public class LocalFinalVariableNameCheckTest
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expected = {
-            "18:18: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
-            "21:32: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
-            "29:24: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
-            "31:24: " + getCheckMessage(MSG_INVALID_PATTERN, "_BAD", pattern),
-            "37:19: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
-            "38:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_BAD", pattern),
+            "21:18: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "24:32: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "32:24: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "34:24: " + getCheckMessage(MSG_INVALID_PATTERN, "_BAD", pattern),
+            "40:19: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "41:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_BAD", pattern),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLocalFinalVariableNameUnnamedVariables.java"),

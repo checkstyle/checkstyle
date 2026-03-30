@@ -1,6 +1,6 @@
 /*
 RequireThis
-checkFields = true
+checkFields = (default)true
 checkMethods = (default)true
 validateOnlyOverlapping = (default)true
 

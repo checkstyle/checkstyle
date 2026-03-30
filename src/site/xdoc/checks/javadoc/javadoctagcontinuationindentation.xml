@@ -101,10 +101,10 @@ class Example1 {
    * Writes the object using a
    * &lt;a href="{@docRoot}/serialized-form.html#java.time.Ser"&gt;dedicated form&lt;/a&gt;.
    * @serialData
-   * &lt;code&gt; // violation
-   * out.writeByte(1); // violation
-   * out.writeInt(nanos); // violation
-   * &lt;/code&gt; // violation
+   * &lt;code&gt; // violation 'expected level should be 4'
+   * out.writeByte(1); // violation 'expected level should be 4'
+   * out.writeInt(nanos); // violation 'expected level should be 4'
+   * &lt;/code&gt; // violation 'expected level should be 4'
    */
   public void testMethodCode(String input) {}
 
@@ -164,10 +164,10 @@ class Example2 {
    * Writes the object using a
    * &lt;a href="{@docRoot}/serialized-form.html#java.time.Ser"&gt;dedicated form&lt;/a&gt;.
    * @serialData
-   * &lt;code&gt; // violation
-   * out.writeByte(1); // violation
-   * out.writeInt(nanos); // violation
-   * &lt;/code&gt; // violation
+   * &lt;code&gt; // violation 'expected level should be 2'
+   * out.writeByte(1); // violation 'expected level should be 2'
+   * out.writeInt(nanos); // violation 'expected level should be 2'
+   * &lt;/code&gt; // violation 'expected level should be 2'
    */
   public void testMethodCode(String input) {}
 
@@ -228,10 +228,10 @@ class Example3 {
    * Writes the object using a
    * &lt;a href="{@docRoot}/serialized-form.html#java.time.Ser"&gt;dedicated form&lt;/a&gt;.
    * @serialData
-   * &lt;code&gt; // violation
-   * out.writeByte(1); // violation
-   * out.writeInt(nanos); // violation
-   * &lt;/code&gt; // violation
+   * &lt;code&gt; // violation 'expected level should be 4'
+   * out.writeByte(1); // violation 'expected level should be 4'
+   * out.writeInt(nanos); // violation 'expected level should be 4'
+   * &lt;/code&gt; // violation 'expected level should be 4'
    */
   public void testMethodCode(String input) {}
 

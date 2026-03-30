@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suppressions PUBLIC
     "-//Puppy Crawl//DTD Suppressions Xpath Experimental 1.1//EN"
-    "https://checkstyle.org/dtds/suppressions_1_1_xpath.dtd">
+    "http://localhost:99999/nonexistent.dtd">
 <suppressions>
   <suppress-xpath files="file1" id="id1" checks="test" query="//CLASS_DEF"/>
 </suppressions>

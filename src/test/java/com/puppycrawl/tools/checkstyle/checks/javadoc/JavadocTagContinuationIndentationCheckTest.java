@@ -114,9 +114,6 @@ public class JavadocTagContinuationIndentationCheckTest
             "62: " + getCheckMessage(MSG_KEY, 4),
             "74: " + getCheckMessage(MSG_KEY, 4),
             "75: " + getCheckMessage(MSG_KEY, 4),
-            "86: " + getCheckMessage(MSG_KEY, 4),
-            "87: " + getCheckMessage(MSG_KEY, 4),
-            "88: " + getCheckMessage(MSG_KEY, 4),
             "89: " + getCheckMessage(MSG_KEY, 4),
             "90: " + getCheckMessage(MSG_KEY, 4),
             "91: " + getCheckMessage(MSG_KEY, 4),
@@ -128,8 +125,11 @@ public class JavadocTagContinuationIndentationCheckTest
             "97: " + getCheckMessage(MSG_KEY, 4),
             "98: " + getCheckMessage(MSG_KEY, 4),
             "99: " + getCheckMessage(MSG_KEY, 4),
-            "104: " + getCheckMessage(MSG_KEY, 4),
-            "105: " + getCheckMessage(MSG_KEY, 4),
+            "100: " + getCheckMessage(MSG_KEY, 4),
+            "101: " + getCheckMessage(MSG_KEY, 4),
+            "102: " + getCheckMessage(MSG_KEY, 4),
+            "107: " + getCheckMessage(MSG_KEY, 4),
+            "108: " + getCheckMessage(MSG_KEY, 4),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTagContinuationIndentationBlockTag.java"),
@@ -197,21 +197,29 @@ public class JavadocTagContinuationIndentationCheckTest
             "33: " + getCheckMessage(MSG_KEY, 4),
             "34: " + getCheckMessage(MSG_KEY, 4),
             "35: " + getCheckMessage(MSG_KEY, 4),
-            "70: " + getCheckMessage(MSG_KEY, 4),
-            "78: " + getCheckMessage(MSG_KEY, 4),
-            "79: " + getCheckMessage(MSG_KEY, 4),
-            "80: " + getCheckMessage(MSG_KEY, 4),
-            "81: " + getCheckMessage(MSG_KEY, 4),
-            "82: " + getCheckMessage(MSG_KEY, 4),
-            "83: " + getCheckMessage(MSG_KEY, 4),
-            "84: " + getCheckMessage(MSG_KEY, 4),
-            "85: " + getCheckMessage(MSG_KEY, 4),
-            "90: " + getCheckMessage(MSG_KEY, 4),
-            "91: " + getCheckMessage(MSG_KEY, 4),
-            "92: " + getCheckMessage(MSG_KEY, 4),
         };
         verifyWithInlineConfigParser(
             getPath("InputJavadocTagContinuationIndentationPreTag2.java"), expected);
+    }
+
+    @Test
+    public void testJavadocTagContinuationIndentationCheckPreTag2Two() throws Exception {
+        final String[] expected = {
+            "23: " + getCheckMessage(MSG_KEY, 4),
+            "31: " + getCheckMessage(MSG_KEY, 4),
+            "32: " + getCheckMessage(MSG_KEY, 4),
+            "33: " + getCheckMessage(MSG_KEY, 4),
+            "34: " + getCheckMessage(MSG_KEY, 4),
+            "35: " + getCheckMessage(MSG_KEY, 4),
+            "36: " + getCheckMessage(MSG_KEY, 4),
+            "37: " + getCheckMessage(MSG_KEY, 4),
+            "38: " + getCheckMessage(MSG_KEY, 4),
+            "43: " + getCheckMessage(MSG_KEY, 4),
+            "44: " + getCheckMessage(MSG_KEY, 4),
+            "45: " + getCheckMessage(MSG_KEY, 4),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocTagContinuationIndentationPreTag2Two.java"), expected);
     }
 
     @Test
