@@ -307,7 +307,6 @@ public final class InlineConfigParser {
 
             "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck",
             "com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder",
-            "com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter",
             "com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter",
             "com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter",
             "com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter"
