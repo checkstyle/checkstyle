@@ -5,7 +5,7 @@
       <property name="tokens"
                 value="METHOD_REF, DOT"/>
       <property name="allowLineBreaks"
-                value="(default) false"/>
+                value="false"/>
     </module>
   </module>
 </module>

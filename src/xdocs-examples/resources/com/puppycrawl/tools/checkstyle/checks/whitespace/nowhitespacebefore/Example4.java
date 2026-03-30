@@ -14,6 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebefore;
 
 import com.google.common.collect.Lists;
 
+
 // xdoc section -- start
 class Example4 {
   void example() {

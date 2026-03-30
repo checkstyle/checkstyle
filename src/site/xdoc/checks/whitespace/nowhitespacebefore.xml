@@ -92,9 +92,9 @@
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NoWhitespaceBefore"&gt;
       &lt;property name="allowLineBreaks"
-                value="(default) false"/&gt;
+                value="false"/&gt;
       &lt;property name="tokens"
-                value="(default) COMMA, SEMI, POST_INC,
+                value="COMMA, SEMI, POST_INC,
                        POST_DEC, ELLIPSIS, LABELED_STAT"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
@@ -103,7 +103,6 @@
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-  int foo = 5;
   void example() {
     foo ++; // violation 'is preceded with whitespace'
     foo++;
@@ -120,12 +119,12 @@ class Example1 {
       label1 : // violation '':' is preceded with whitespace'
       for (int i = 0; i &lt; 10; i++) {}
     }
-
     {
       label2:
       while (foo &lt; 5) {}
     }
   }
+  int foo = 5;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -138,7 +137,7 @@ class Example1 {
       &lt;property name="allowLineBreaks"
                 value="true"/&gt;
       &lt;property name="tokens"
-                value="(default) COMMA, SEMI, POST_INC,
+                value="COMMA, SEMI, POST_INC,
                        POST_DEC, ELLIPSIS, LABELED_STAT"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
@@ -171,7 +170,7 @@ class Example2 {
       &lt;property name="tokens"
                 value="METHOD_REF, DOT"/&gt;
       &lt;property name="allowLineBreaks"
-                value="(default) false"/&gt;
+                value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;

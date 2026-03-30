@@ -3,21 +3,18 @@
   <module name="TreeWalker">
     <module name="NoWhitespaceBefore">
       <property name="allowLineBreaks"
-                value="(default) false"/>
+                value="false"/>
       <property name="tokens"
-                value="(default) COMMA, SEMI, POST_INC,
+                value="COMMA, SEMI, POST_INC,
                        POST_DEC, ELLIPSIS, LABELED_STAT"/>
     </module>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebefore;
-
 import com.google.common.collect.Lists;
-
 // xdoc section -- start
 class Example1 {
-  int foo = 5;
   void example() {
     foo ++; // violation 'is preceded with whitespace'
     foo++;
@@ -34,11 +31,11 @@ class Example1 {
       label1 : // violation '':' is preceded with whitespace'
       for (int i = 0; i < 10; i++) {}
     }
-
     {
       label2:
       while (foo < 5) {}
     }
   }
+  int foo = 5;
 }
 // xdoc section -- end

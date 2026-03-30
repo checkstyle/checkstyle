@@ -5,7 +5,7 @@
       <property name="allowLineBreaks"
                 value="true"/>
       <property name="tokens"
-                value="(default) COMMA, SEMI, POST_INC,
+                value="COMMA, SEMI, POST_INC,
                        POST_DEC, ELLIPSIS, LABELED_STAT"/>
     </module>
   </module>
@@ -14,7 +14,6 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebefore;
 
 import com.google.common.collect.Lists;
-
 // xdoc section -- start
 class Example2 {
   int[][] array = { { 1, 2 }
