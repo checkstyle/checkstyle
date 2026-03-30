@@ -256,7 +256,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNeedBracesSwitchExpression() throws Exception {
+    public void testNeedBracesSwitchExpression1() throws Exception {
         final String[] expected = {
             "16:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "18:49: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
@@ -267,15 +267,24 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "36:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "39:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "42:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
-            "49:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "50:49: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
-            "53:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "56:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "59:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
-            "73:49: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputNeedBracesTestSwitchExpression.java"),
+                getPath("InputNeedBracesTestSwitchExpression1.java"),
+            expected);
+    }
+
+    @Test
+    public void testNeedBracesSwitchExpression2() throws Exception {
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "17:49: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "20:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "23:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "26:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "40:49: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNeedBracesTestSwitchExpression2.java"),
             expected);
     }
 
