@@ -12,44 +12,19 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;
 
 // xdoc section -- start
 class Example6 {
-    String field = "example";                  // basicOffset
-    int[] values = {                           // basicOffset
-        10,
-        20,
-        30
-    };
+    boolean x, y;
 
-    void processValues() throws Exception {
-        handleValue("Test String", 42);          // basicOffset
-    }
-
-    void handleValue(String aFooString,
-                     int aFooInt) {             // ok, lineWrappingIndentation
-
-        boolean cond1,cond2,cond3,cond4,cond5,cond6;
-        cond1=cond2=cond3=cond4=cond5=cond6=false;
-
-        if (cond1
-                || cond2) {                     // ok, lineWrappingIndentation
-            field = field.toUpperCase()
-                    .concat(" TASK");           // ok, lineWrappingIndentation
-        }
-
-        if ((cond1 && cond2)
-                || (cond3 && cond4)             // ok, lineWrappingIndentation
-                || !(cond5 && cond6)) {         // ok, lineWrappingIndentation
-            field.toUpperCase()
-                    .concat(" TASK")            // ok, lineWrappingIndentation
-                    .chars().forEach(c -> {     // ok, lineWrappingIndentation
-                        System.out.println((char) c);
-                    });
+    void method(int a,
+            int b) {        // ok, lineWrappingIndentation = 8
+        if (x
+                && y) {     // ok, lineWrappingIndentation = 8
         }
     }
 
-    void demonstrateSwitch() throws Exception {
-        switch (field) {
-            case "EXAMPLE": processValues();                        // caseIndent
-            case "COMPLETED": handleValue("Completed Case", 456);   // caseIndent
+    void method2(int a,
+        int b) {            // violation, 'level 8, expected level should be 12'
+        if (x
+            && y) {         // violation, 'level 12, expected level should be 16'
         }
     }
 }

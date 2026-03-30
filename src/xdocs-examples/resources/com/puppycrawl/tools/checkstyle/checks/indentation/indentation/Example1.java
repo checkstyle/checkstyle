@@ -10,46 +10,22 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;
 
 // xdoc section -- start
 class Example1 {
-    String field = "example";                  // basicOffset
-    int[] values = {                           // basicOffset
-        10,
-        20,
-        30
+    int a;                      // ok, basicOffset = 4
+
+    void method() {
+        int b = 0;              // ok, basicOffset = 4
+    }
+
+    void method2()
+            throws Exception {  // ok, throwsIndent = 4
+        switch (a) {
+            case 1:             // ok, caseIndent = 4
+                break;
+        }
+    }
+
+    int[] values = {
+        1, 2, 3                 // ok, arrayInitIndent = 4
     };
-
-    void processValues() throws Exception {
-        handleValue("Test String", 42);          // basicOffset
-    }
-
-    void handleValue(String aFooString,
-                     int aFooInt) {             // indent:8 ; expected: > 4;
-
-        boolean cond1,cond2,cond3,cond4,cond5,cond6;
-        cond1=cond2=cond3=cond4=cond5=cond6=false;
-
-        if (cond1
-            || cond2) {
-            field = field.toUpperCase()
-                .concat(" TASK");
-        }
-
-        if ((cond1 && cond2)
-                || (cond3 && cond4)          // ok, lineWrappingIndentation
-                || !(cond5 && cond6)) {      // ok, lineWrappingIndentation
-            field.toUpperCase()
-                 .concat(" TASK")             // ok, lineWrappingIndentation
-                 .chars().forEach(c -> {      // ok, lineWrappingIndentation
-                     System.out.println((char) c);
-                 });
-        }
-    }
-
-    void demonstrateSwitch() throws Exception {
-        switch (field) {
-            case "EXAMPLE": processValues();                        // caseIndent
-            case "COMPLETED": handleValue("Completed Case", 456);   // caseIndent
-        }
-    }
 }
 // xdoc section -- end
-
