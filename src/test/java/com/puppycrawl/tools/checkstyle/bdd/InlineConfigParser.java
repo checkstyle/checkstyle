@@ -297,7 +297,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck",
-            "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck",
