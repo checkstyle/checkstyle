@@ -51,6 +51,7 @@ Aqj
 archunit
 arity
 Arquillian
+arraybracketwhitespace
 arraycopy
 arraysquarebracketsattype
 arraytrailingcomma
@@ -764,7 +765,7 @@ Kp
 lambdabodylength
 lambdaparametername
 LBRACE
-LBRACK
+lbrack
 lcurly
 Leanback
 leftcurly
