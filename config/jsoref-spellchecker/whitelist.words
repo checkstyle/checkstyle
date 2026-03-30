@@ -52,6 +52,7 @@ archunit
 Arial
 arity
 Arquillian
+arraybracketwhitespace
 arraycopy
 arraysquarebracketsattype
 arraytrailingcomma
@@ -760,7 +761,7 @@ lambdabodylength
 lambdaexpressions
 lambdaparametername
 LBRACE
-LBRACK
+lbrack
 lcurly
 Leanback
 leftcurly
