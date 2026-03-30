@@ -4171,6 +4171,34 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testClassDefWrappedModifiers() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("arrayInitIndent", "2");
+        final String fileName =
+                getPath("InputIndentationClassDefWrappedModifiers.java");
+        final String[] expected = {
+            "16:3: " + getCheckMessage(MSG_ERROR, "class", 2, 6),
+            "18:3: " + getCheckMessage(MSG_ERROR, "static", 2, 6),
+            "22:3: " + getCheckMessage(MSG_ERROR, "static", 2, 6),
+            "31:3: " + getCheckMessage(MSG_ERROR, "strictfp", 2, 6),
+            "35:3: " + getCheckMessage(MSG_ERROR, "@", 2, 6),
+            "41:3: " + getCheckMessage(MSG_ERROR, "static", 2, 6),
+            "42:3: " + getCheckMessage(MSG_ERROR, "strictfp", 2, 6),
+            "64:7: " + getCheckMessage(MSG_ERROR, "@", 6, 2),
+            "65:7: " + getCheckMessage(MSG_ERROR, "@", 6, 2),
+            "66:7: " + getCheckMessage(MSG_ERROR, "static", 6, 2),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testTryResourcesLparenViolation() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("basicOffset", "4");
