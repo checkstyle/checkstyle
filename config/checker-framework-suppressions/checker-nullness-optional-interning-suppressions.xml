@@ -3007,6 +3007,31 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RedundantThisCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter c of HashSet constructor.</message>
+    <lineContent>final Set&lt;String&gt; scopeVariables = new HashSet&lt;&gt;(scopeStack.peek());</lineContent>
+    <details>
+      found   : @Initialized @Nullable Set&lt;@Initialized @NonNull String&gt;
+      required: @Initialized @NonNull Collection&lt;? extends @Initialized @NonNull String&gt;
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RedundantThisCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference child.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>final String parameterVariable = child.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RedundantThisCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference scopeStack.peek()</message>
+    <lineContent>scopeStack.peek().add(variable);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of Deque.push.</message>
