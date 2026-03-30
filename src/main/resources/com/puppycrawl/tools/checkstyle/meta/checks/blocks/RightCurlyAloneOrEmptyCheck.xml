@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyAloneOrEmptyCheck"
+             name="RightCurlyAloneOrEmpty"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks the placement of right curly braces (&lt;code&gt;'}'&lt;/code&gt;) for code blocks.
+ The policy verified is that the right curly brace must be alone on a line,
+ or the block must be empty. A block is considered empty if it contains no
+ statements or comments, and the right curly brace is placed immediately after
+ the left curly brace or on a different line.
+ This check supports if-else, try-catch-finally blocks, switch statements, switch cases, while-loops,
+ for-loops, method definitions, class definitions, constructor definitions,
+ instance, static initialization blocks, annotation definitions and enum definitions.
+ This check follows the conventions of
+ &lt;a href="https://google.github.io/styleguide/javaguide.html#s4.1-braces"&gt;
+ Google Java Style Guide&lt;/a&gt;.
+ &lt;/div&gt;</description>
+         <properties>
+            <property default-value="LITERAL_TRY,LITERAL_CATCH,LITERAL_FINALLY,LITERAL_IF,LITERAL_ELSE"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="alone.or.empty"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

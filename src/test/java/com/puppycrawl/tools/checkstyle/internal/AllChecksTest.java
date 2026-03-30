@@ -184,6 +184,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // these are covered by GenericWhitespaceCheck
                 "WILDCARD_TYPE", "GENERIC_END", "GENERIC_START")
             .collect(Collectors.toUnmodifiableSet()));
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("RightCurlyAloneOrEmpty", Stream.of(
+                // these are covered by RightCurly check
+                "LITERAL_DO", "INTERFACE_DEF")
+            .collect(Collectors.toUnmodifiableSet()));
 
         // google
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation", Stream.of(

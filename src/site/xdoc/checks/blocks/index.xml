@@ -69,6 +69,16 @@
               Checks the placement of right curly braces (<code>'}'</code>) for code blocks.
             </td>
           </tr>
+          <tr>
+            <td>
+              <a href="rightcurlyaloneorempty.html#RightCurlyAloneOrEmpty">
+                RightCurlyAloneOrEmpty
+              </a>
+            </td>
+            <td>
+              Checks the placement of right curly braces (<code>'}'</code>) for code blocks.
+            </td>
+          </tr>
         </table>
       </div>
     </section>
