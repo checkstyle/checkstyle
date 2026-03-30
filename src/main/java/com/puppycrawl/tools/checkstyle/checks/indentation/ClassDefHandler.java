@@ -28,6 +28,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class ClassDefHandler extends BlockParentHandler {
 
+    /** Token for modifier. */
+    private static final String MODIFIER = "modifier";
+
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -107,6 +110,120 @@ public class ClassDefHandler extends BlockParentHandler {
             TokenTypes.LITERAL_THROW,
             TokenTypes.LITERAL_CONTINUE,
         };
+    }
+
+    /**
+     * Checks modifiers for class/annotation definitions.
+     */
+    private void checkModifiers() {
+        if (getMainAst().getType() == TokenTypes.ANNOTATION_DEF) {
+            checkAnnotationDefModifiers();
+        }
+        else {
+            checkClassDefModifiers();
+        }
+    }
+
+    /**
+     * Checks modifiers for annotation definitions, skipping modifiers that are
+     * not at the start of the line.
+     */
+    private void checkAnnotationDefModifiers() {
+        final DetailAST modifiers = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
+        for (DetailAST modifier = modifiers.getFirstChild();
+             modifier != null;
+             modifier = modifier.getNextSibling()) {
+            if (isOnStartOfLine(modifier)
+                    && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
+                logError(modifier, MODIFIER, expandedTabsColumnNo(modifier));
+            }
+        }
+    }
+
+    /**
+     * Checks modifiers for class definitions, skipping wrapped modifiers
+     * that appear on lines after the first modifier line.
+     */
+    private void checkClassDefModifiers() {
+        final DetailAST modifiers = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST firstModifier = modifiers.getFirstChild();
+        final int firstModifierLine = firstModifier.getLineNo();
+        final DetailAST firstWrappedModifier = findFirstWrappedModifier(firstModifier);
+        final boolean hasWrappedAnnotationBeforeModifier =
+                hasWrappedAnnotationBeforeModifier(firstWrappedModifier);
+        for (DetailAST modifier = firstModifier;
+             modifier != null;
+             modifier = modifier.getNextSibling()) {
+            if (isOnStartOfLine(modifier)) {
+                final int columnNo = expandedTabsColumnNo(modifier);
+                if (!getIndent().isAcceptable(columnNo)) {
+                    if (modifier.getLineNo() == firstModifierLine) {
+                        logError(modifier, MODIFIER, columnNo);
+                    }
+                    else if (hasWrappedAnnotationBeforeModifier) {
+                        getIndentCheck().indentationLog(modifier, IndentationCheck.MSG_ERROR,
+                                getModifierTokenText(modifier), columnNo, getIndent());
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Finds the first modifier that is on a different line than the first modifier.
+     *
+     * @param firstModifier the first modifier in the modifiers list
+     * @return the first wrapped modifier, or null if none
+     */
+    private static DetailAST findFirstWrappedModifier(DetailAST firstModifier) {
+        final int firstModifierLine = firstModifier.getLineNo();
+        DetailAST nextModifier = firstModifier.getNextSibling();
+        while (nextModifier != null && nextModifier.getLineNo() == firstModifierLine) {
+            nextModifier = nextModifier.getNextSibling();
+        }
+        return nextModifier;
+    }
+
+    /**
+     * Checks if there is a wrapped annotation followed by a non-annotation
+     * modifier on a later line.
+     *
+     * @param firstWrappedModifier the first modifier on a wrapped line
+     * @return true if the pattern is detected
+     */
+    private static boolean hasWrappedAnnotationBeforeModifier(DetailAST firstWrappedModifier) {
+        boolean result = false;
+        if (firstWrappedModifier != null
+                && firstWrappedModifier.getType() == TokenTypes.ANNOTATION) {
+            final int firstWrappedLine = firstWrappedModifier.getLineNo();
+            for (DetailAST modifier = firstWrappedModifier.getNextSibling();
+                    modifier != null;
+                    modifier = modifier.getNextSibling()) {
+                if (modifier.getLineNo() > firstWrappedLine
+                        && modifier.getType() != TokenTypes.ANNOTATION) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Gets the token text to log for a modifier.
+     *
+     * @param modifier the modifier node
+     * @return the token text to log
+     */
+    private static String getModifierTokenText(DetailAST modifier) {
+        final String tokenText;
+        if (modifier.getType() == TokenTypes.ANNOTATION) {
+            tokenText = "@";
+        }
+        else {
+            tokenText = modifier.getText();
+        }
+        return tokenText;
     }
 
     /**
