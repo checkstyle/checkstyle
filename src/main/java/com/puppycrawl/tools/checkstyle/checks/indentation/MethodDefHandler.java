@@ -47,8 +47,10 @@ public class MethodDefHandler extends BlockParentHandler {
         return null;
     }
 
-    @Override
-    protected void checkModifiers() {
+    /**
+     * Checks modifiers for method definitions.
+     */
+    private void checkModifiers() {
         final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
         if (isOnStartOfLine(modifier)
             && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
