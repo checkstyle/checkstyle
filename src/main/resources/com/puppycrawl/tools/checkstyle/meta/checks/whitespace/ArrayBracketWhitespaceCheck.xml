@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.ArrayBracketWhitespaceCheck"
+             name="ArrayBracketWhitespace"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that the whitespace around the square bracket tokens &lt;code&gt;[&lt;/code&gt; and &lt;code&gt;]&lt;/code&gt;
+ are correct to the typical convention.
+ The convention is not configurable.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Left square bracket (&lt;code&gt;[&lt;/code&gt;):
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;must not be preceded by whitespace when preceded by a type or identifier.&lt;/li&gt;
+ &lt;li&gt;must not be followed by whitespace.&lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;
+ Right square bracket (&lt;code&gt;]&lt;/code&gt;):
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;must not be preceded by whitespace.&lt;/li&gt;
+ &lt;li&gt;must be followed by whitespace, except when it is followed by:
+   another bracket, a dot, a comma, a semicolon, postfix operators (&lt;code&gt;++&lt;/code&gt;, &lt;code&gt;--&lt;/code&gt;),
+   a right parenthesis, or a method reference (&lt;code&gt;::&lt;/code&gt;).&lt;/li&gt;
+ &lt;/ul&gt;</description>
+         <message-keys>
+            <message-key key="ws.followed"/>
+            <message-key key="ws.notFollowed"/>
+            <message-key key="ws.preceded"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
