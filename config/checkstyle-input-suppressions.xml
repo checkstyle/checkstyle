@@ -12,6 +12,8 @@
             files=".*EmptyFile.java"/>
   <suppress id="presenceOfCompilationComment"
             files="[\\/]checks[\\/]outertypefilename[\\/]package-info.java"/>
+  <suppress id="presenceOfCompilationComment"
+            files="[\\/]checks[\\/]whitespace[\\/]arraybracketwhitespace[\\/]compact[\\/]InputArrayBracketWhitespaceCompact.java"/>
 
   <suppress id="noCheckstyleInInputs"
             files="[\\/]checks[\\/]imports[\\/]redundantimport[\\/]InputRedundantImportWithoutPackage.java"/>
