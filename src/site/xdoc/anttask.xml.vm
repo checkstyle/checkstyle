@@ -120,8 +120,7 @@
             <td>path</td>
             <td>
               A set of paths to run Checkstyle on. Nested attribute.
-              See <a href="https://ant.apache.org/manual/using.html#path">path</a>
-              ant documentation for details
+              See <a href="...">path</a> Ant documentation for details.
             </td>
             <td>
               One of either <i>file</i> or at least one nested <i>fileset</i> or <i>path</i>
@@ -332,9 +331,10 @@
 
       <p>
         <b>
-          Checkstyle uses Ant configuration to validate its own code. See an example in our Git repository -
-          <a href="https://github.com/checkstyle/checkstyle/blob/master/config/ant-phase-verify.xml#L25">
-            config/ant-phase-verify.xml</a>.
+        Checkstyle uses Ant configuration to validate its own code.
+        See an example in our Git repository
+        <a href="https://github.com/checkstyle/checkstyle/blob/master/config/ant-phase-verify.xml#L25">
+        config/ant-phase-verify.xml</a>.
         </b>
       </p>
 
@@ -454,7 +454,8 @@
       <p>
         <b>
           To run checkstyle with a custom JAR with implementation of custom Checks
-          Ensure that the custom JAR is available on the classpath. An example can be found at
+          Ensure that the custom JAR is available on the classpath.
+          An example can be found at
           <a href="https://github.com/sevntu-checkstyle/checkstyle-samples/tree/master/ant-project">
           checkstyle-samples</a>.
         </b>
