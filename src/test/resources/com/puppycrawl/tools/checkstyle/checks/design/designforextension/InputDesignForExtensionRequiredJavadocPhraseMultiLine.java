@@ -1,9 +1,15 @@
 /*
+<<<<<<< Updated upstream
 DesignForExtension
 ignoredAnnotations = (default)After, AfterClass, Before, BeforeClass, Test
 requiredJavadocPhrase = This implementation..
 
 
+=======
+com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck
+ignoredAnnotations = (default)SafeVarargs, Override
+requiredJavadocPhrase = (default)
+>>>>>>> Stashed changes
 */
 
 package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
