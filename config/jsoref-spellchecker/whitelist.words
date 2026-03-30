@@ -49,7 +49,6 @@ appveyor
 APRV
 Aqj
 archunit
-args
 Arial
 arity
 Arquillian
@@ -1126,6 +1125,7 @@ recordcomponentnumber
 recordtypeparametername
 redundantimport
 redundantmodifier
+redundantthis
 refactor
 refactoring
 refaster
