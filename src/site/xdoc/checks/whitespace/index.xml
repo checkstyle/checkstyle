@@ -11,6 +11,17 @@
         <table>
           <tr>
             <td>
+              <a href="arraybracketwhitespace.html#ArrayBracketWhitespace">
+                ArrayBracketWhitespace
+              </a>
+            </td>
+            <td>
+              Checks that the whitespace around the square bracket tokens <code>[</code> and
+              <code>]</code> are correct to the typical convention.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="emptyforinitializerpad.html#EmptyForInitializerPad">
                 EmptyForInitializerPad
               </a>
