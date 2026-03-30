@@ -503,8 +503,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testMultiCheckOrder() throws Exception {
 
         final String[] expected = {
-            "28:9: " + getCheckMessage(WhitespaceAfterCheck.class, "ws.notFollowed", "if"),
-            "28:9: " + getCheckMessage(WhitespaceAroundCheck.class, "ws.notFollowed", "if"),
+            "29:9: " + getCheckMessage(WhitespaceAfterCheck.class, "ws.notFollowed", "if"),
+            "29:9: " + getCheckMessage(WhitespaceAroundCheck.class, "ws.notFollowed", "if"),
         };
 
         verifyWithInlineConfigParserTwice(
