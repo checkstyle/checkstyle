@@ -1163,6 +1163,7 @@ recordcomponentnumber
 recordtypeparametername
 redundantimport
 redundantmodifier
+redundantthis
 refactor
 refactoring
 refaster
