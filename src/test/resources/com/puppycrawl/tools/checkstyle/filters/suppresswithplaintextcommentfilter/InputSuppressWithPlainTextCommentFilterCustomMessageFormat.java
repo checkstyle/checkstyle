@@ -1,7 +1,7 @@
 /*
 SuppressWithPlainTextCommentFilter
-offCommentFormat = // CHECKSTYLE:OFF
-onCommentFormat = // CHECKSTYLE:ON
+offCommentFormat = (default)// CHECKSTYLE:OFF
+onCommentFormat = (default)// CHECKSTYLE:ON
 checkFormat = (default).*
 messageFormat = .*tab.*
 idFormat = (default)(null)
