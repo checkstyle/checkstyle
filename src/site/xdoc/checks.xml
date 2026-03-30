@@ -101,6 +101,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/whitespace/arraybracketwhitespace.html#ArrayBracketWhitespace">
+                ArrayBracketWhitespace
+              </a>
+            </td>
+            <td>
+              Checks that the whitespace around the square bracket tokens <code>[</code> and
+              <code>]</code> are correct to the typical convention.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/arraytrailingcomma.html#ArrayTrailingComma">
                 ArrayTrailingComma
               </a>

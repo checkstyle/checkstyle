@@ -930,6 +930,7 @@
     <module name="RecordComponentNumber"/>
 
     <!-- Whitespace -->
+    <module name="ArrayBracketWhitespace"/>
     <module name="EmptyForInitializerPad"/>
     <module name="EmptyForIteratorPad"/>
     <module name="EmptyLineSeparator">
