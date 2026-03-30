@@ -295,7 +295,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder",
             "com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter",
