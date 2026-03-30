@@ -385,6 +385,8 @@
             files="[\\/]checks[\\/]whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterUnnamedPattern.java"/>
   <suppress id="presenceOfCompilationComment"
             files="[\\/]checks[\\/]whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundUnnamedPattern.java"/>
+  <suppress id="presenceOfCompilationComment"
+            files="[\\/]checks[\\/]whitespace[\\/]arraybracketwhitespace[\\/]compact[\\/]InputArrayBracketWhitespaceCompact.java"/>
 
   <suppress id="noCheckstyleInInputs"
             files="[\\/]checks[\\/]imports[\\/]redundantimport[\\/]InputRedundantImportWithoutPackage.java"/>
