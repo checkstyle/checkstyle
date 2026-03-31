@@ -271,7 +271,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck",
             "com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck",
             "com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace."
                     + "NoWhitespaceBeforeCaseDefaultColonCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck",
