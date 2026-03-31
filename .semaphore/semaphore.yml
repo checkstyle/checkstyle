@@ -74,6 +74,9 @@ blocks:
                 - .ci/validation.sh no-error-contribution
                 - .ci/validation.sh no-error-methods-distance
                 - .ci/validation.sh no-error-equalsverifier
+                - .ci/validation.sh no-error-hibernate-search
+                - .ci/validation.sh no-error-strata
+                - .ci/validation.sh no-error-spring-integration
                 - .ci/validation.sh jacoco
                 - .ci/validation.sh no-error-htmlunit
 
