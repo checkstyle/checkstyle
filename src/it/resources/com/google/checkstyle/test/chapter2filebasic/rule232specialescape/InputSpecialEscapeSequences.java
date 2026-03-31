@@ -59,6 +59,18 @@ public class InputSpecialEscapeSequences {
     String r9 = "\\134"; // violation 'Consider using special escape sequence .*'
   }
 
+  /** Some javadoc. */
+  public void specialCharsWithWarn2DigitOctal() {
+    String r1 = "\\10"; // violation 'Consider using special escape sequence'
+    String r2 = "\\11"; // violation 'Consider using special escape sequence'
+    String r3 = "\\12"; // violation 'Consider using special escape sequence'
+    String r4 = "\\14"; // violation 'Consider using special escape sequence'
+    String r5 = "\\15"; // violation 'Consider using special escape sequence'
+    String r6 = "\\40"; // violation 'Consider using special escape sequence'
+    String r7 = "\\42"; // violation 'Consider using special escape sequence'
+    String r8 = "\\47"; // violation 'Consider using special escape sequence'
+  }
+
   class Inner {
     public String wrongEscapeSequences() {
       final String r1 = "\u0008"; // violation 'Consider using special escape sequence'
@@ -105,6 +117,18 @@ public class InputSpecialEscapeSequences {
       String r7 = "\\042"; // violation 'Consider using special escape sequence .*'
       String r8 = "\\047"; // violation 'Consider using special escape sequence .*'
       String r9 = "\\134"; // violation 'Consider using special escape sequence .*'
+    }
+
+    /** Some javadoc. */
+    public void specialCharsWithWarn2DigitOctal() {
+      String r1 = "\\10"; // violation 'Consider using special escape sequence'
+      String r2 = "\\11"; // violation 'Consider using special escape sequence'
+      String r3 = "\\12"; // violation 'Consider using special escape sequence'
+      String r4 = "\\14"; // violation 'Consider using special escape sequence'
+      String r5 = "\\15"; // violation 'Consider using special escape sequence'
+      String r6 = "\\40"; // violation 'Consider using special escape sequence'
+      String r7 = "\\42"; // violation 'Consider using special escape sequence'
+      String r8 = "\\47"; // violation 'Consider using special escape sequence'
     }
 
     Inner anoInner =
@@ -154,6 +178,17 @@ public class InputSpecialEscapeSequences {
             String r7 = "\\042"; // violation 'Consider using special escape sequence .*'
             String r8 = "\\047"; // violation 'Consider using special escape sequence .*'
             String r9 = "\\134"; // violation 'Consider using special escape sequence .*'
+          }
+
+          public void specialCharsWithWarn2DigitOctal() {
+            String r1 = "\\10"; // violation 'Consider using special escape sequence'
+            String r2 = "\\11"; // violation 'Consider using special escape sequence'
+            String r3 = "\\12"; // violation 'Consider using special escape sequence'
+            String r4 = "\\14"; // violation 'Consider using special escape sequence'
+            String r5 = "\\15"; // violation 'Consider using special escape sequence'
+            String r6 = "\\40"; // violation 'Consider using special escape sequence'
+            String r7 = "\\42"; // violation 'Consider using special escape sequence'
+            String r8 = "\\47"; // violation 'Consider using special escape sequence'
           }
         };
   }

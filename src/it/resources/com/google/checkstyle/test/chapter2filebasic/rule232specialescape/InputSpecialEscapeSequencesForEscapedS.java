@@ -27,5 +27,13 @@ class InputSpecialEscapeSequencesForEscapedS {
     final String r2 = "\011"; // violation 'Consider using special escape sequence'
     final String r3 = "\012"; // violation 'Consider using special escape sequence'
     final String r4 = "\010"; // violation 'Consider using special escape sequence'
+    final String r5 = "\10"; // violation 'Consider using special escape sequence'
+    final String r6 = "\11"; // violation 'Consider using special escape sequence'
+    final String r7 = "\12"; // violation 'Consider using special escape sequence'
+    final String r8 = "\14"; // violation 'Consider using special escape sequence'
+    final String r9 = "\15"; // violation 'Consider using special escape sequence'
+    final String r10 = "\40"; // violation 'Consider using special escape sequence'
+    final String r11 = "\42"; // violation 'Consider using special escape sequence'
+    final String r12 = "\47"; // violation 'Consider using special escape sequence'
   }
 }
