@@ -91,12 +91,12 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
     @Test
     public void testPatternMatchingForSwitch() throws Exception {
         final String[] expected = {
-            "14:62: " + getCheckMessage(MSG_KEY, ":"),
-            "16:21: " + getCheckMessage(MSG_KEY, ":"),
-            "18:21: " + getCheckMessage(MSG_KEY, ":"),
-            "20:67: " + getCheckMessage(MSG_KEY, ":"),
-            "23:36: " + getCheckMessage(MSG_KEY, ":"),
-            "25:21: " + getCheckMessage(MSG_KEY, ":"),
+            "15:62: " + getCheckMessage(MSG_KEY, ":"),
+            "17:21: " + getCheckMessage(MSG_KEY, ":"),
+            "19:21: " + getCheckMessage(MSG_KEY, ":"),
+            "22:67: " + getCheckMessage(MSG_KEY, ":"),
+            "25:36: " + getCheckMessage(MSG_KEY, ":"),
+            "27:21: " + getCheckMessage(MSG_KEY, ":"),
         };
         verifyWithInlineConfigParser(
                 getPath(
