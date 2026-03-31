@@ -226,6 +226,20 @@ workflows:
           resource_class: large
           command: ./.ci/validation.sh no-error-pgjdbc
       - validate-with-maven-script:
+          name: no-error-hibernate-search
+          image-name: cimg/openjdk:25.0
+          resource_class: medium+
+          command: ./.ci/validation.sh no-error-hibernate-search
+      - validate-with-maven-script:
+          name: no-error-spring-integration
+          image-name: cimg/openjdk:25.0
+          resource_class: medium+
+          command: ./.ci/validation.sh no-error-spring-integration
+      - validate-with-maven-script:
+          name: no-error-htmlunit
+          image-name: cimg/openjdk:21.0.6
+          command: ./.ci/validation.sh no-error-htmlunit
+      - validate-with-maven-script:
           name: linkcheck-plugin
           image-name: cimg/openjdk:21.0.6
           command: ./.ci/run-link-check-plugin.sh --skip-external
