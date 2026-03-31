@@ -202,7 +202,7 @@ public class LocalFinalVariableNameCheckTest
             "41:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_BAD", pattern),
         };
         verifyWithInlineConfigParser(
-                getPath("InputLocalFinalVariableNameUnnamedVariables.java"),
+                getNonCompilablePath("InputLocalFinalVariableNameUnnamedVariables.java"),
                 expected);
     }
 

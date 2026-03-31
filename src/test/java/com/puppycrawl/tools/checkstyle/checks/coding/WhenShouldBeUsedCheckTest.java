@@ -56,7 +56,7 @@ public class WhenShouldBeUsedCheckTest
     public void testSwitchStatements() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputWhenShouldBeUsedSwitchStatements.java"),
+                getNonCompilablePath("InputWhenShouldBeUsedSwitchStatements.java"),
             expected);
     }
 
@@ -70,7 +70,7 @@ public class WhenShouldBeUsedCheckTest
             "105:13: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getPath("InputWhenShouldBeUsedSwitchRule.java"),
+                getNonCompilablePath("InputWhenShouldBeUsedSwitchRule.java"),
             expected);
 
     }
@@ -79,7 +79,7 @@ public class WhenShouldBeUsedCheckTest
     public void testSwitchExpression() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputWhenShouldBeUsedSwitchExpression.java"),
+                getNonCompilablePath("InputWhenShouldBeUsedSwitchExpression.java"),
                 expected);
     }
 

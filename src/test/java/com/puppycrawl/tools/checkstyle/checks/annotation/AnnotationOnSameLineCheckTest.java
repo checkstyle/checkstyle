@@ -158,7 +158,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             "37:8: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Deprecated"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAnnotationOnSameLinePatternVariables.java"),
+                getNonCompilablePath("InputAnnotationOnSameLinePatternVariables.java"),
             expected);
     }
 
