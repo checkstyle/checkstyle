@@ -38,7 +38,7 @@ public class FinalLocalVariableCheckExamplesTest extends AbstractExamplesModuleT
             "31:9: " + getCheckMessage(MSG_KEY, "result"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
     }
 
     @Test
@@ -50,7 +50,7 @@ public class FinalLocalVariableCheckExamplesTest extends AbstractExamplesModuleT
             "31:9: " + getCheckMessage(MSG_KEY, "result"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example2.java"), expected);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class FinalLocalVariableCheckExamplesTest extends AbstractExamplesModuleT
             "31:9: " + getCheckMessage(MSG_KEY, "result"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example3.java"), expected);
     }
 
     @Test
@@ -72,7 +72,7 @@ public class FinalLocalVariableCheckExamplesTest extends AbstractExamplesModuleT
             "31:9: " + getCheckMessage(MSG_KEY, "result"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example4.java"), expected);
     }
 
     @Test
@@ -84,7 +84,7 @@ public class FinalLocalVariableCheckExamplesTest extends AbstractExamplesModuleT
             "25:37: " + getCheckMessage(MSG_KEY, "args"),
             "31:9: " + getCheckMessage(MSG_KEY, "result"),
         };
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example5.java"), expected);
     }
 
 }
