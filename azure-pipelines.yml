@@ -102,6 +102,13 @@ strategy:
       onCronOnly: true
       needXmlstarlet: true
 
+    # check dependency updates on PR
+    'check-dependency-updates-on-pr':
+      image: 'ubuntu-24.04'
+      cmd: "./.ci/validation.sh check-dependency-updates-on-pr"
+      skipCache: true
+      needXmlstarlet: true
+
     # lint for .md files, OSX is used because there is problem to install gem on linux
     'markdownlint':
       image: 'macOS-14'
