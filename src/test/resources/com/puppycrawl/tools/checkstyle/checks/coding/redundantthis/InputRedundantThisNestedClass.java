@@ -1,0 +1,49 @@
+/*
+RedundantThis
+checkMethodCall=true
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.coding.redundantthis;
+
+public class InputRedundantThisNestedClass {
+    private int x = 10;
+    private String name = "Outer Class";
+
+    class Inner {
+        private int x = 20;  // Same field name as outer
+        private String name = "Inner Class";
+
+        void display() {
+            System.out.println("Inner x (this.x):        " + this.x);
+            // violation above, 'Redundant "this", variable 'x' can be accesed directly.'
+
+            System.out.println("Inner name (this.name):  " + this.name);
+            // violation above, 'Redundant "this", variable 'name' can be accesed directly.'
+
+            System.out.println("Outer x (Outer.this.x):        " + Outer.this.x);
+            System.out.println("Outer name (Outer.this.name):  " + Outer.this.name);
+        }
+
+        void modify() {
+            this.x = 99;
+            // violation above, 'Redundant "this", variable 'x' can be accesed directly.'
+
+            Outer.this.x = 55;
+            Outer.this.show();
+        }
+    }
+
+    void show() {
+        Inner inner = new Inner();
+        inner.display();
+        System.out.println("\n--- After modify() ---");
+        inner.modify();
+        inner.display();
+    }
+
+    public static void main(String[] args) {
+        Outer outer = new Outer();
+        outer.show();
+    }
+}
