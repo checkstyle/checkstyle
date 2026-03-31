@@ -10,13 +10,13 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.nolinewrap;
 
 public class InputNoLineWrapRecordsAndCompactCtors {
     class Bar {
-        public // violation
+        public // violation 'CTOR_DEF statement should not be line-wrapped.'
         Bar() {
         }
         public void fun() {
         }
     }
-    record // violation
+    record // violation 'RECORD_DEF statement should not be line-wrapped.'
     MyRecord1() {
         public MyRecord1() {
         }
@@ -25,28 +25,30 @@ public class InputNoLineWrapRecordsAndCompactCtors {
         }
     }
     record MyRecord2() {
-        public // violation
+        public // violation 'CTOR_DEF statement should not be line-wrapped.'
         MyRecord2() {
         }
         public void fun() {
         }
     }
-    record MyRecord3(String str, int // violation
+    record MyRecord3(String str, int // violation 'RECORD_DEF statement should not be line-wrapped.'
                      x) {
-        public // violation
+        public // violation 'COMPACT_CTOR_DEF statement should not be line-wrapped.'
         MyRecord3{}
     }
 
-    record MyRecord4(String str, int x, // violation
+    // violation below 'RECORD_DEF statement should not be line-wrapped.'
+    record MyRecord4(String str, int x,
                      int y) {
-        public // violation
+        public // violation 'COMPACT_CTOR_DEF statement should not be line-wrapped.'
         MyRecord4{}
     }
 
     Record recordMethod (int x) {
-        record MyMethodRecord(int // violation
+        record MyMethodRecord(int // violation 'RECORD_DEF statement should not be line-wrapped.'
                                       x) {
-            public MyMethodRecord // violation
+            public MyMethodRecord
+            // violation above 'COMPACT_CTOR_DEF statement should not be line-wrapped.'
             {}
         }
 
