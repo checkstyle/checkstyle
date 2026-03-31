@@ -327,6 +327,7 @@ dsm
 Dsonar
 Dspotbugs
 Dstrict
+Dstrict
 Dsurefire
 Dtag
 Dtest
