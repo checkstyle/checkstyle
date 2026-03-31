@@ -453,11 +453,11 @@
 
       <p>
         <b>
-          To run checkstyle with a custom JAR with implementation of custom Checks
-          Ensure that the custom JAR is available on the classpath.
-          An example can be found at
-          <a href="https://github.com/sevntu-checkstyle/checkstyle-samples/tree/master/ant-project">
-          checkstyle-samples</a>.
+        To run Checkstyle with a custom JAR that implements custom checks, 
+        ensure that the custom JAR is available on the classpath.
+        An example can be found at
+        <a href="https://github.com/sevntu-checkstyle/checkstyle-samples/tree/master/ant-project">
+        checkstyle-samples</a>.
         </b>
       </p>
 
