@@ -11,18 +11,20 @@ public class InputNoWhitespaceBeforeCaseDefaultColonPatternMatchingForSwitch {
 
     void test(Object obj) {
         switch (obj) {
-            case ColoredPoint(int a, int b, _) when (a >= b) : {} break; // violation
+            // violation below '':' is preceded with whitespace.'
+            case ColoredPoint(int a, int b, _) when (a >= b) : {} break;
             case ColoredPoint(int a, int b, _) when (b > 100)
-                    : {} break; // violation
+                    : {} break; // violation '':' is preceded with whitespace.'
             case ColoredPoint(int a, int b, _) when (b != 1000)
-                    :  // violation
+                    :  // violation '':' is preceded with whitespace.'
             {} break;
-            case ColoredPoint(int a, int b, _) when (b != 100000) : // violation
+            // violation below '':' is preceded with whitespace.'
+            case ColoredPoint(int a, int b, _) when (b != 100000) :
             {} break;
             case
-                    Rectangle(_,_) :  // violation
+                    Rectangle(_,_) :  // violation '':' is preceded with whitespace.'
             {}
-            default : System.out.println("none"); // violation
+            default : System.out.println("none"); // violation '':' is preceded with whitespace.'
         }
     }
 
