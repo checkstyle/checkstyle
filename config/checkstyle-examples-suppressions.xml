@@ -104,6 +104,23 @@
   <!-- Suppress for files which are part of a non-compilable example fileset -->
   <suppress id="presenceOfCompilationComment"
             files="beforeexecutionexclusionfilefilter[\\/].*"/>
+  <!-- Suppress for non-compilable xdocs example filesets moved from resources -->
+  <suppress id="presenceOfCompilationComment"
+            files="finallocalvariable[\\/].*"/>
+  <suppress id="presenceOfCompilationComment"
+            files="missingnullcaseinswitch[\\/].*"/>
+  <suppress id="presenceOfCompilationComment"
+            files="patternvariableassignment[\\/].*"/>
+  <suppress id="presenceOfCompilationComment"
+            files="unusedcatchparametershouldbeunnamed[\\/].*"/>
+  <suppress id="presenceOfCompilationComment"
+            files="unusedlambdaparametershouldbeunnamed[\\/].*"/>
+  <suppress id="presenceOfCompilationComment"
+            files="unusedlocalvariable[\\/].*"/>
+  <suppress id="presenceOfCompilationComment"
+            files="whenshouldbeused[\\/].*"/>
+  <suppress id="presenceOfCompilationComment"
+            files="finalparameters[\\/].*"/>
 
   <!-- Without showing symbol, user can get confused which one we are referring to -->
   <suppress id="discouragedRegexpInViolationMessage"
