@@ -49,7 +49,6 @@ appveyor
 APRV
 Aqj
 archunit
-args
 Arial
 arity
 Arquillian
@@ -980,6 +979,7 @@ ogg
 OI
 olddomain
 olympe
+ond
 onestatement
 onestatementperline
 onetoplevel
