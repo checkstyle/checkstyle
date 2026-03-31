@@ -33,13 +33,13 @@ class InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings {
             case MON,
                     FRI: numLetters = 6;
                             break;
-            case TUE : numLetters = 7; // violation
+            case TUE : numLetters = 7; // violation '':' is preceded with whitespace.'
                        break;
             case THU, SAT
-                    : numLetters = 8; // violation
+                    : numLetters = 8; // violation '':' is preceded with whitespace.'
                          break;
             case WED,
-                    SUN : numLetters = 9; // violation
+                    SUN : numLetters = 9; // violation '':' is preceded with whitespace.'
                           break;
         };
         return numLetters;
@@ -58,7 +58,7 @@ class InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings {
                 yield l + someInt * 2;
             }
             default
-                   : { // violation
+                   : { // violation '':' is preceded with whitespace.'
                 int l = day.toString().length();
                 yield l;
             }
@@ -71,7 +71,7 @@ class InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings {
             case "FEB": days = 28;
                         break;
             case "JAN", "MAR"
-                       , "MAY" : days = 31; break; // violation
+                       , "MAY" : days = 31; break; // violation '':' is preceded with whitespace.'
             case "APR", "JUN": days = 30;
                                 break;
         };
@@ -88,13 +88,13 @@ class InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings {
 
         boolean t8 = (switch (e) {
             case A
-                : // violation
+                : // violation '':' is preceded with whitespace.'
                 x = 1;
                 yield true;
-            case B : // violation
+            case B : // violation '':' is preceded with whitespace.'
                 yield (x = 1) == 1 || true;
             default
-                    :yield false; // violation
+                    :yield false; // violation '':' is preceded with whitespace.'
         }) && x == 1;
 
         if (!t8) {
