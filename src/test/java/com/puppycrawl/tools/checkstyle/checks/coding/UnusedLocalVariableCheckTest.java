@@ -440,7 +440,7 @@ public void testSideEffectInitializer() throws Exception {
             "45:14: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "__"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputUnusedLocalVariableWithAllowUnnamed.java"),
+                getNonCompilablePath("InputUnusedLocalVariableWithAllowUnnamed.java"),
                 expected);
     }
 
@@ -456,7 +456,7 @@ public void testSideEffectInitializer() throws Exception {
             "46:14: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "__"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputUnusedLocalVariableWithAllowUnnamedFalse.java"),
+                getNonCompilablePath("InputUnusedLocalVariableWithAllowUnnamedFalse.java"),
                 expected);
     }
 
