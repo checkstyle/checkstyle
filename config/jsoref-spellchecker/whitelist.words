@@ -326,7 +326,6 @@ Dskip
 dsm
 Dsonar
 Dspotbugs
-Dstrict
 Dsurefire
 Dtag
 Dtest
