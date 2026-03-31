@@ -870,11 +870,14 @@ no-error-hibernate-search)
   echo "Checkout target sources ..."
   checkout_from https://github.com/hibernate/hibernate-search.git
   cd .ci-temp/hibernate-search
-  mvn -e --no-transfer-progress clean install -pl build/config -am \
+  # Use Hibernate Search's wrapper so we get the Maven version it expects.
+  ./mvnw --version
+  java -version
+  ./mvnw -e --no-transfer-progress clean install -pl build/config -am \
      -DskipTests=true -Dmaven.compiler.failOnWarning=false \
      -Dcheckstyle.skip=true -Dforbiddenapis.skip=true \
      -Dversion.com.puppycrawl.tools.checkstyle="${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress checkstyle:check \
+  ./mvnw -e --no-transfer-progress checkstyle:check \
      -Dversion.com.puppycrawl.tools.checkstyle="${CS_POM_VERSION}"
   cd ../
   removeFolderWithProtectedFiles hibernate-search
