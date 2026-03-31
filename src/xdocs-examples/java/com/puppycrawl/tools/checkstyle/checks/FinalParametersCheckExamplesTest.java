@@ -38,7 +38,7 @@ public class FinalParametersCheckExamplesTest extends AbstractExamplesModuleTest
             "16:25: " + getCheckMessage(MSG_KEY, "x"),
             "17:27: " + getCheckMessage(MSG_KEY, "args"),
         };
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class FinalParametersCheckExamplesTest extends AbstractExamplesModuleTest
         final String[] expected = {
             "16:32: " + getCheckMessage(MSG_KEY, "n"),
         };
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example2.java"), expected);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class FinalParametersCheckExamplesTest extends AbstractExamplesModuleTest
         final String[] expected = {
             "19:27: " + getCheckMessage(MSG_KEY, "args"),
         };
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example3.java"), expected);
     }
 
     @Test
@@ -64,6 +64,6 @@ public class FinalParametersCheckExamplesTest extends AbstractExamplesModuleTest
             "44:10: " + getCheckMessage(MSG_KEY, "number"),
         };
         verifyWithInlineConfigParser(
-                getPath("Example4.java"), expected);
+                getNonCompilablePath("Example4.java"), expected);
     }
 }

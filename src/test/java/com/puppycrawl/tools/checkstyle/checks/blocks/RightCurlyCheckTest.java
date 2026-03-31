@@ -989,6 +989,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "73:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
         final String fileName = "InputRightCurlySwitchWhen.java";
-        verifyWithInlineConfigParser(getPath(fileName), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath(fileName), expected);
     }
 }
