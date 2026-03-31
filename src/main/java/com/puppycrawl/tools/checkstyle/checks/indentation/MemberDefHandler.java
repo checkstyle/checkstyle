@@ -82,7 +82,9 @@ public class MemberDefHandler extends AbstractExpressionHandler {
         return getIndent();
     }
 
-    @Override
+    /**
+     * Checks modifiers for member definitions.
+     */
     protected void checkModifiers() {
         final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
         if (isOnStartOfLine(modifier)
