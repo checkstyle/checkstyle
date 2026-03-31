@@ -331,20 +331,6 @@ EOF
   removeFolderWithProtectedFiles hazelcast
   ;;
 
-no-error-configurate)
-  CS_POM_VERSION="$(getCheckstylePomVersion)"
-  echo "CS_version: ${CS_POM_VERSION}"
-  ./mvnw -e --no-transfer-progress clean install -Pno-validations
-  echo "Checkout target sources ..."
-  checkout_from "https://github.com/SpongePowered/Configurate.git"
-  cd .ci-temp/Configurate
-  git fetch --depth 1 origin major-checkstyle-12:major-checkstyle-12
-  git checkout major-checkstyle-12
-  ./gradlew -PcheckstyleVersion="${CS_POM_VERSION}" checkstyleMain checkstyleTest
-  cd ..
-  removeFolderWithProtectedFiles Configurate
-  ;;
-
 no-error-xwiki)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   ANTLR4_VERSION="$(getMavenProperty 'antlr4.version')"
@@ -871,11 +857,15 @@ no-error-hibernate-search)
   echo "Checkout target sources ..."
   checkout_from https://github.com/hibernate/hibernate-search.git
   cd .ci-temp/hibernate-search
-  mvn -e --no-transfer-progress clean install -pl build/config -am \
+  # Use Hibernate Search's wrapper so we get the Maven version it expects.
+  ./mvnw --version
+  java -version
+  ./mvnw -e --no-transfer-progress clean install -pl build/config -am \
      -DskipTests=true -Dmaven.compiler.failOnWarning=false \
      -Dcheckstyle.skip=true -Dforbiddenapis.skip=true \
+     -Denforcer.skip=true \
      -Dversion.com.puppycrawl.tools.checkstyle="${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress checkstyle:check \
+  ./mvnw -e --no-transfer-progress -f build/config/pom.xml checkstyle:check \
      -Dversion.com.puppycrawl.tools.checkstyle="${CS_POM_VERSION}"
   cd ../
   removeFolderWithProtectedFiles hibernate-search
@@ -970,7 +960,7 @@ no-error-strata)
   STRATA_CS_POM_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
                      -Dexec.args='${checkstyle.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-  mvn -e --no-transfer-progress install -B -Dstrict -DskipTests \
+mvn -e --no-transfer-progress install -B -Dstrict -DskipTests \
      -Dforbiddenapis.skip=true -Dcheckstyle.version="${CS_POM_VERSION}" \
      -Dcheckstyle.config.suffix="-v$STRATA_CS_POM_VERSION"
   cd ../
@@ -1002,11 +992,10 @@ no-error-htmlunit)
   checkout_from https://github.com/HtmlUnit/htmlunit.git "$HTMLUNIT_STABLE_SHA"
   cd .ci-temp/htmlunit
   echo "checkstyle.suppressions.file=checkstyle_suppressions.xml" > checkstyle.properties
-  readarray -t files < <(find src/main/java src/test/java -name "*.java")
-  java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
+  find src/main/java src/test/java -name "*.java" -print0 | \
+  xargs -0 -n 200 java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
     -c checkstyle.xml \
-    -p checkstyle.properties \
-    "${files[@]}"
+    -p checkstyle.properties
   cd ../
   removeFolderWithProtectedFiles htmlunit
   ;;
