@@ -5,6 +5,5 @@ MissingJavadocPackage
 */
 
 @Deprecated
-// violation below, 'Missing javadoc for package-info.java file.'
-package com.puppycrawl.tools.checkstyle.checks
+package com.puppycrawl.tools.checkstyle.checks // violation 'Missing javadoc for package-info.java file.'
         .javadoc.missingjavadocpackage.nojavadoc.annotation;
