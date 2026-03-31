@@ -4713,9 +4713,8 @@
                    enabled_by_default="true">
     <option name="ignoreRethrownExceptions" value="false"/>
   </inspection_tool>
-  <!-- disabled till we switch to jacoco that support try-with-resources -->
-  <inspection_tool class="ThrowFromFinallyBlock" enabled="false" level="ERROR"
-                   enabled_by_default="false"/>
+  <inspection_tool class="ThrowFromFinallyBlock" enabled="true" level="ERROR"
+                   enabled_by_default="true"/>
   <inspection_tool class="ThrowFromFinallyBlockJS" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
   <inspection_tool class="ThrowableInstanceNeverThrown" enabled="true" level="ERROR"
