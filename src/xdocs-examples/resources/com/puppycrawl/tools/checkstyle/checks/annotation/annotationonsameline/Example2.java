@@ -24,8 +24,7 @@ class Example2 implements Foo {
 
   // violation below, "should be on the same line with its target."
   @SuppressWarnings("deprecation")
-  public Example2() {
-  }
+  void methodB(){}
 
   @Override
   public void doSomething() {
