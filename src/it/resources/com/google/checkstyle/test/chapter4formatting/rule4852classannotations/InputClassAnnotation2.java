@@ -10,8 +10,10 @@ public final class InputClassAnnotation2 {
 
   /** Somejavadoc data. */
   @Deprecated @CheckReturnValue
+  // 2 violations above:
+  //    'Annotation 'Deprecated' should be alone on line.'
+  //    'Annotation 'CheckReturnValue' should be alone on line.'
   public class Inner {
-    // violation 2 lines above 'Annotation 'CheckReturnValue' should be alone on line'
     void test2() {}
   }
 }
@@ -19,8 +21,10 @@ public final class InputClassAnnotation2 {
 // violation 2 lines below 'Top-level class InputClassAnnotation3 has to reside'
 /** Somejavadoc data. */
 @Deprecated @CheckReturnValue
+// 2 violations above:
+//    'Annotation 'Deprecated' should be alone on line.'
+//    'Annotation 'CheckReturnValue' should be alone on line.'
 final class InputClassAnnotation3 {
-  // violation 2 lines above 'Annotation 'CheckReturnValue' should be alone on line'
   void test2() {}
 }
 
