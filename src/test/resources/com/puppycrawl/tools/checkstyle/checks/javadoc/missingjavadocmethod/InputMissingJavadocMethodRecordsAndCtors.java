@@ -19,33 +19,33 @@ public class InputMissingJavadocMethodRecordsAndCtors {
         private static int mNumber;
 
         // not javadoc
-        public void setNumber(final int number) { // violation
+        public void setNumber(final int number) { // violation 'Missing a Javadoc comment.'
             mNumber = number;
         }
 
         // not javadoc
-        public int getNumber() { // violation
+        public int getNumber() { // violation 'Missing a Javadoc comment.'
             return mNumber;
         }
 
-        public void setNumber1() { // violation
+        public void setNumber1() { // violation 'Missing a Javadoc comment.'
             mNumber = mNumber;
         }
     }
 
     public record MySecondRecord() {
         // not a javadoc comment on compact ctor
-        public MySecondRecord { // violation
+        public MySecondRecord { // violation 'Missing a Javadoc comment.'
         }
     }
 
     public record MyThirdRecord() {
         // not a javadoc comment on ctor
-        public MyThirdRecord() { // violation
+        public MyThirdRecord() { // violation 'Missing a Javadoc comment.'
         }
     }
 
-    public void setNumber1() // violation
+    public void setNumber1() // violation 'Missing a Javadoc comment.'
     {
 
     }
