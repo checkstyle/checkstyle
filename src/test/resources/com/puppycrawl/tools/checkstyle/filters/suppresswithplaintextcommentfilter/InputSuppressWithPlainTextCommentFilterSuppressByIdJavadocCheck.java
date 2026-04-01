@@ -14,7 +14,8 @@ accessModifiers = (default)public, protected, package, private
 allowMissingParamTags = (default)false
 allowMissingReturnTag = (default)false
 allowInlineReturn = (default)false
-tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
+violateExecutionOnNonTightHtml = (default)false
+tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF, BLOCK_COMMENT_BEGIN
 id = foo
 
 
