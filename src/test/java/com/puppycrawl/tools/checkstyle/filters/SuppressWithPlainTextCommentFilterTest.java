@@ -579,18 +579,18 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     @Test
     public void testSuppressedByIdJavadocCheck() throws Exception {
         final String[] suppressedViolationMessages = {
-            "29: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
-            "33:9: " + getCheckMessage(JavadocMethodCheck.class,
+            "30: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+            "34:9: " + getCheckMessage(JavadocMethodCheck.class,
                                        MSG_UNUSED_TAG, "@param", "unused"),
-            "40:22: " + getCheckMessage(JavadocMethodCheck.class,
+            "41:22: " + getCheckMessage(JavadocMethodCheck.class,
                                         MSG_EXPECTED_TAG, "@param", "a"),
         };
 
         final String[] expectedViolationMessages = {
-            "29: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
-            "33:9: " + getCheckMessage(JavadocMethodCheck.class,
+            "30: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+            "34:9: " + getCheckMessage(JavadocMethodCheck.class,
                                        MSG_UNUSED_TAG, "@param", "unused"),
-            "40:22: " + getCheckMessage(JavadocMethodCheck.class,
+            "41:22: " + getCheckMessage(JavadocMethodCheck.class,
                                         MSG_EXPECTED_TAG, "@param", "a"),
         };
 
