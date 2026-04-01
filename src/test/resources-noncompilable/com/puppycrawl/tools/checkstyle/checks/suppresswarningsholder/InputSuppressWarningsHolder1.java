@@ -5,6 +5,7 @@ aliasList = (default)
 com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter
 
 com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck
+allowUnnamedVariables = (default)true
 
 */
 
