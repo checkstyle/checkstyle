@@ -80,7 +80,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputCatchParameterName.java"), expected);
+                getNonCompilablePath("InputCatchParameterName.java"), expected);
     }
 
     @Test
@@ -115,6 +115,6 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputCatchParameterNameUnnamed.java"), expected);
+                getNonCompilablePath("InputCatchParameterNameUnnamed.java"), expected);
     }
 }
