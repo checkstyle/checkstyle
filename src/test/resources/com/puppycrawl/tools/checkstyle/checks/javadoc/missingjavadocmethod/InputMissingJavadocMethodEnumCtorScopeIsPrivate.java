@@ -23,7 +23,7 @@ public enum InputMissingJavadocMethodEnumCtorScopeIsPrivate {
         this.value = value;
     }
 
-    void packagePrivateMethod() { // violation
+    void packagePrivateMethod() { // violation 'Missing a Javadoc comment.'
     }
 
 }

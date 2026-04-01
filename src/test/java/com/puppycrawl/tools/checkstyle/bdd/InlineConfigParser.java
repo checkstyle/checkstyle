@@ -245,7 +245,6 @@ public final class InlineConfigParser {
                     + "AbstractJavadocCheckTest$TokenIsNotInAcceptablesCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc"
                     + ".RequireEmptyLineBeforeBlockTagGroupCheck",
