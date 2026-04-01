@@ -30,6 +30,8 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -50,6 +52,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             TokenTypes.CTOR_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
 
         assertWithMessage("Default acceptable tokens are invalid")
@@ -469,10 +472,26 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        final int[] expected = CommonUtil.EMPTY_INT_ARRAY;
+        final int[] expected = {
+            TokenTypes.BLOCK_COMMENT_BEGIN,
+        };
         final JavadocMethodCheck check = new JavadocMethodCheck();
         final int[] actual = check.getRequiredTokens();
         assertWithMessage("Required tokens differ from expected")
+            .that(actual)
+            .isEqualTo(expected);
+    }
+
+    @Test
+    public void testGetDefaultJavadocTokens() {
+        final JavadocMethodCheck check = new JavadocMethodCheck();
+
+        final int[] actual = check.getDefaultJavadocTokens();
+        final int[] expected = {
+            JavadocCommentsTokenTypes.JAVADOC_CONTENT,
+        };
+
+        assertWithMessage("Default javadoc tokens are invalid")
             .that(actual)
             .isEqualTo(expected);
     }
@@ -610,5 +629,187 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodDoNotAllowInlineReturn.java"), expected);
+    }
+
+    @Test
+    public void testIsTargetTokenConfigured() throws Exception {
+        final JavadocMethodCheck check = new JavadocMethodCheck();
+        final java.lang.reflect.Method method = JavadocMethodCheck.class
+                .getDeclaredMethod("isTargetTokenConfigured", int.class);
+        method.setAccessible(true);
+
+        // Empty configured tokens means default-token behavior: do not filter by token set.
+        final boolean defaultTokenBehavior = (boolean) method.invoke(check, TokenTypes.METHOD_DEF);
+
+        check.setTokens("CTOR_DEF");
+        final boolean methodTokenIncluded = (boolean) method.invoke(check, TokenTypes.METHOD_DEF);
+        final boolean ctorTokenIncluded = (boolean) method.invoke(check, TokenTypes.CTOR_DEF);
+
+        assertWithMessage("Expected METHOD_DEF to be accepted when configured tokens are empty")
+            .that(defaultTokenBehavior)
+            .isTrue();
+        assertWithMessage("Expected METHOD_DEF to be rejected when only CTOR_DEF is configured")
+            .that(methodTokenIncluded)
+            .isFalse();
+        assertWithMessage("Expected CTOR_DEF to be accepted when only CTOR_DEF is configured")
+            .that(ctorTokenIncluded)
+            .isTrue();
+    }
+
+    @Test
+        public void testGetTagArgument() throws Exception {
+        final java.lang.reflect.Method getTagArgumentMethod = JavadocMethodCheck.class
+            .getDeclaredMethod(
+                "getTagArgument",
+                com.puppycrawl.tools.checkstyle.api.DetailNode.class,
+                int.class);
+        getTagArgumentMethod.setAccessible(true);
+
+        final JavadocNodeImpl blockTag = new JavadocNodeImpl();
+        blockTag.setType(JavadocCommentsTokenTypes.PARAM_BLOCK_TAG);
+
+        final JavadocNodeImpl parameterName = new JavadocNodeImpl();
+        parameterName.setType(JavadocCommentsTokenTypes.PARAMETER_NAME);
+        parameterName.setText("value");
+        blockTag.addChild(parameterName);
+
+        final String argument = (String) getTagArgumentMethod.invoke(
+                null, blockTag, JavadocCommentsTokenTypes.PARAMETER_NAME);
+        final String missingArgument = (String) getTagArgumentMethod.invoke(
+                null, blockTag, JavadocCommentsTokenTypes.IDENTIFIER);
+
+        assertWithMessage("Expected to resolve existing tag argument")
+            .that(argument)
+            .isEqualTo("value");
+        assertWithMessage("Expected null when tag argument token is absent")
+            .that(missingArgument)
+            .isNull();
+    }
+
+    @Test
+    public void testHasDescriptionContent() throws Exception {
+        final java.lang.reflect.Method descriptionContentMethod = JavadocMethodCheck.class
+                .getDeclaredMethod(
+                        "hasDescriptionContent",
+                        com.puppycrawl.tools.checkstyle.api.DetailNode.class);
+        descriptionContentMethod.setAccessible(true);
+
+        final JavadocNodeImpl blockTag = new JavadocNodeImpl();
+        blockTag.setType(JavadocCommentsTokenTypes.PARAM_BLOCK_TAG);
+
+        final JavadocNodeImpl returnTag = new JavadocNodeImpl();
+        returnTag.setType(JavadocCommentsTokenTypes.RETURN_BLOCK_TAG);
+
+        final JavadocNodeImpl description = new JavadocNodeImpl();
+        description.setType(JavadocCommentsTokenTypes.DESCRIPTION);
+        returnTag.addChild(description);
+
+        final JavadocNodeImpl leadingAsterisk = new JavadocNodeImpl();
+        leadingAsterisk.setType(JavadocCommentsTokenTypes.LEADING_ASTERISK);
+        leadingAsterisk.setText("*");
+        description.addChild(leadingAsterisk);
+
+        final JavadocNodeImpl blankText = new JavadocNodeImpl();
+        blankText.setType(JavadocCommentsTokenTypes.TEXT);
+        blankText.setText("   ");
+        description.addChild(blankText);
+
+        final JavadocNodeImpl contentText = new JavadocNodeImpl();
+        contentText.setType(JavadocCommentsTokenTypes.TEXT);
+        contentText.setText("description");
+        description.addChild(contentText);
+
+        final boolean hasDescription = (boolean) descriptionContentMethod
+            .invoke(null, returnTag);
+        final boolean hasDescriptionInTagWithoutDescriptionNode =
+            (boolean) descriptionContentMethod.invoke(null, blockTag);
+
+        assertWithMessage("Expected visible description content to be detected")
+            .that(hasDescription)
+            .isTrue();
+        assertWithMessage("Expected false when DESCRIPTION node is absent")
+            .that(hasDescriptionInTagWithoutDescriptionNode)
+            .isFalse();
+    }
+
+    @Test
+        public void testTargetAstFromTypeContext() throws Exception {
+        final java.lang.reflect.Method getTargetAstMethod = JavadocMethodCheck.class
+            .getDeclaredMethod(
+                "getTargetAst",
+                com.puppycrawl.tools.checkstyle.api.DetailAST.class);
+        final java.lang.reflect.Method adjustTargetMethod = JavadocMethodCheck.class
+            .getDeclaredMethod(
+                "adjustTargetFromContext",
+                com.puppycrawl.tools.checkstyle.api.DetailAST.class);
+        getTargetAstMethod.setAccessible(true);
+        adjustTargetMethod.setAccessible(true);
+
+        final DetailAstImpl methodDef = new DetailAstImpl();
+        methodDef.setType(TokenTypes.METHOD_DEF);
+        final DetailAstImpl typeNode = new DetailAstImpl();
+        typeNode.setType(TokenTypes.TYPE);
+        final DetailAstImpl blockCommentInType = new DetailAstImpl();
+        blockCommentInType.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
+        methodDef.addChild(typeNode);
+        typeNode.addChild(blockCommentInType);
+
+        final Object adjustedFromType = adjustTargetMethod.invoke(null, typeNode);
+        final Object targetFromTypeParent = getTargetAstMethod.invoke(null, blockCommentInType);
+
+        assertWithMessage("Expected TYPE context to adjust to enclosing declaration")
+            .that(((DetailAstImpl) adjustedFromType).getType())
+            .isEqualTo(TokenTypes.METHOD_DEF);
+        assertWithMessage("Expected block comment under TYPE to resolve METHOD_DEF target")
+            .that(((DetailAstImpl) targetFromTypeParent).getType())
+            .isEqualTo(TokenTypes.METHOD_DEF);
+    }
+
+    @Test
+    public void testTargetAstSkipsCommentSiblings() throws Exception {
+        final java.lang.reflect.Method getTargetAstMethod = JavadocMethodCheck.class
+                .getDeclaredMethod(
+                        "getTargetAst",
+                        com.puppycrawl.tools.checkstyle.api.DetailAST.class);
+        final java.lang.reflect.Method targetTypeMethod = JavadocMethodCheck.class
+                .getDeclaredMethod(
+                        "isTargetType",
+                        com.puppycrawl.tools.checkstyle.api.DetailAST.class);
+        getTargetAstMethod.setAccessible(true);
+        targetTypeMethod.setAccessible(true);
+
+        final DetailAstImpl root = new DetailAstImpl();
+        root.setType(TokenTypes.CLASS_DEF);
+        final DetailAstImpl blockComment = new DetailAstImpl();
+        blockComment.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
+        final DetailAstImpl singleLineComment = new DetailAstImpl();
+        singleLineComment.setType(TokenTypes.SINGLE_LINE_COMMENT);
+        final DetailAstImpl ctorDef = new DetailAstImpl();
+        ctorDef.setType(TokenTypes.CTOR_DEF);
+        root.addChild(blockComment);
+        root.addChild(singleLineComment);
+        root.addChild(ctorDef);
+
+        final Object targetAfterCommentSiblings = getTargetAstMethod.invoke(null, blockComment);
+        final boolean compactCtorSupported =
+            (boolean) targetTypeMethod.invoke(null, createAst(TokenTypes.COMPACT_CTOR_DEF));
+        final boolean nullTargetUnsupported =
+            (boolean) targetTypeMethod.invoke(null, (Object) null);
+
+        assertWithMessage("Expected target resolution to skip comment siblings")
+            .that(((DetailAstImpl) targetAfterCommentSiblings).getType())
+            .isEqualTo(TokenTypes.CTOR_DEF);
+        assertWithMessage("Expected COMPACT_CTOR_DEF to be treated as supported target")
+            .that(compactCtorSupported)
+            .isTrue();
+        assertWithMessage("Expected null AST to be rejected as target")
+            .that(nullTargetUnsupported)
+            .isFalse();
+    }
+
+    private static DetailAstImpl createAst(int tokenType) {
+        final DetailAstImpl ast = new DetailAstImpl();
+        ast.setType(tokenType);
+        return ast;
     }
 }
