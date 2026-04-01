@@ -129,8 +129,6 @@
   <suppress id="noConsecutiveLines" files="[\\/]emptylineseparator.xml"/>
   <suppress id="noConsecutiveLines" files="[\\/]javadocparagraph.xml"/>
 
-  <!-- until #19144 -->
-  <suppress id="noUsageOfGetFileContentsMethod" files="JavadocMethodCheck.java"/>
   <!-- until #19145 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocStyleCheck.java"/>
   <!-- until #19146 -->
