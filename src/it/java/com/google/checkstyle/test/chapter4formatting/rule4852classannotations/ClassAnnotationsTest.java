@@ -55,6 +55,18 @@ public class ClassAnnotationsTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testAnnotationOnTypes() throws Exception {
+        final String filePath = getPath("InputAnnotationOnTypes.java");
+        verifyWithWholeConfig(filePath);
+    }
+
+    @Test
+    public void testAnnotationOnTypesFormatted() throws Exception {
+        final String filePath = getPath("InputFormattedAnnotationOnTypes.java");
+        verifyWithWholeConfig(filePath);
+    }
+
+    @Test
     public void testPackageAnnotation() throws Exception {
         final String filePath = getPath("package-info.java");
         verifyWithWholeConfig(filePath);

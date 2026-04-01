@@ -378,10 +378,15 @@
                     TYPE_EXTENSION_AND "/>
     </module>
     <module name="AnnotationLocation">
-      <property name="id" value="AnnotationLocationMostCases"/>
+      <property name="id" value="AnnotationLocationTypeAndPackage"/>
       <property name="tokens"
-               value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF,
-                      RECORD_DEF, COMPACT_CTOR_DEF, PACKAGE_DEF"/>
+               value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, RECORD_DEF, PACKAGE_DEF"/>
+      <property name="allowSamelineSingleParameterlessAnnotation" value="false"/>
+    </module>
+    <module name="AnnotationLocation">
+      <property name="id" value="AnnotationLocationMethodsAndCtors"/>
+      <property name="tokens"
+               value="METHOD_DEF, CTOR_DEF, COMPACT_CTOR_DEF"/>
     </module>
     <module name="AnnotationLocation">
       <property name="id" value="AnnotationLocationVariables"/>
