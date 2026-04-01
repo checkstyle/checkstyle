@@ -31,7 +31,10 @@ class InputNoWhitespaceBeforeDefault
         b=1; // Ignore 1
         b+=1; // Ignore 1
         b -=- 1 + (+ b); // Ignore 2
-        b = b ++ + b --; // 2 violations
+        b = b ++ + b --;
+        // 2 violations above:
+        //    ''\+\+' is preceded with whitespace.'
+        //    ''\-\-' is preceded with whitespace.'
         b = ++ b - -- b; // Ignore 1
     }
 
@@ -177,18 +180,18 @@ class InputNoWhitespaceBeforeDefault
     /** rfe 521323, detect whitespace before ';' */
     void rfe521323()
     {
-        doStuff() ; // violation
+        doStuff() ; // violation '';' is preceded with whitespace.'
         //       ^ whitespace
-        for (int i = 0 ; i < 5; i++) { // violation
+        for (int i = 0 ; i < 5; i++) { // violation '';' is preceded with whitespace.'
             //        ^ whitespace
         }
     }
 
 
     /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
-    private int i ; // violation
+    private int i ; // violation '';' is preceded with whitespace.'
     //           ^ whitespace
-    private int i1, i2, i3 ; // violation
+    private int i1, i2, i3 ; // violation '';' is preceded with whitespace.'
     //                    ^ whitespace
     private int i4, i5, i6;
 
@@ -196,7 +199,7 @@ class InputNoWhitespaceBeforeDefault
     void bug806243()
     {
         Object o = new InputNoWhitespaceBeforeDefault() {
-            private int j ; // violation
+            private int j ; // violation '';' is preceded with whitespace.'
             //           ^ whitespace
         };
     }
@@ -212,7 +215,7 @@ class InputNoWhitespaceBeforeDefault
  */
 interface IFoo_NoWhitespaceBeforeDefault
 {
-    void foo() ; // violation
+    void foo() ; // violation '';' is preceded with whitespace.'
     //        ^ whitespace
 }
 
@@ -267,11 +270,11 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         runs[0]
 .
  run()
-; // violation
+; // violation '';' is preceded with whitespace.'
     }
 
     public void testNullSemi() {
-        return ; // violation
+        return ; // violation '';' is preceded with whitespace.'
     }
 
     public void register(Object obj) { }
@@ -285,14 +288,15 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         testNullSemi
 (
 )
-; // violation
+; // violation '';' is preceded with whitespace.'
     }
 
-    public static void testNoWhitespaceBeforeEllipses(String ... args) { // violation
+    public static void testNoWhitespaceBeforeEllipses(String ... args) {
+        // violation above ''...' is preceded with whitespace.'
     }
 
     {
-        label1 : // violation
+        label1 : // violation '':' is preceded with whitespace.'
         for(int i = 0; i < 10; i++) {}
     }
 
