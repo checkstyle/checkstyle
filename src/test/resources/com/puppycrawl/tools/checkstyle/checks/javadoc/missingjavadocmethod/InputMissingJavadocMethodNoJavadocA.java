@@ -23,10 +23,10 @@ public class InputMissingJavadocMethodNoJavadocA //comment test
     int i3;
     private int i4;
 
-    public void foo1() {} // violation
-    protected void foo2() {} // violation
-    void foo3() {} // violation
-    private void foo4() {} // violation
+    public void foo1() {} // violation 'Missing a Javadoc comment.'
+    protected void foo2() {} // violation 'Missing a Javadoc comment.'
+    void foo3() {} // violation 'Missing a Javadoc comment.'
+    private void foo4() {} // violation 'Missing a Javadoc comment.'
 
     protected class ProtectedInner {
         public int i1;
@@ -34,10 +34,10 @@ public class InputMissingJavadocMethodNoJavadocA //comment test
         int i3;
         private int i4;
 
-        public void foo1() {} // violation
-        protected void foo2() {} // violation
-        void foo3() {} // violation
-        private void foo4() {} // violation
+        public void foo1() {} // violation 'Missing a Javadoc comment.'
+        protected void foo2() {} // violation 'Missing a Javadoc comment.'
+        void foo3() {} // violation 'Missing a Javadoc comment.'
+        private void foo4() {} // violation 'Missing a Javadoc comment.'
     }
 
     class PackageInner {
@@ -46,10 +46,10 @@ public class InputMissingJavadocMethodNoJavadocA //comment test
         int i3;
         private int i4;
 
-        public void foo1() {} // violation
-        protected void foo2() {} // violation
-        void foo3() {} // violation
-        private void foo4() {} // violation
+        public void foo1() {} // violation 'Missing a Javadoc comment.'
+        protected void foo2() {} // violation 'Missing a Javadoc comment.'
+        void foo3() {} // violation 'Missing a Javadoc comment.'
+        private void foo4() {} // violation 'Missing a Javadoc comment.'
     }
 
     private class PrivateInner {
@@ -58,9 +58,9 @@ public class InputMissingJavadocMethodNoJavadocA //comment test
         int i3;
         private int i4;
 
-        public void foo1() {} // violation
-        protected void foo2() {} // violation
-        void foo3() {} // violation
-        private void foo4() {} // violation
+        public void foo1() {} // violation 'Missing a Javadoc comment.'
+        protected void foo2() {} // violation 'Missing a Javadoc comment.'
+        void foo3() {} // violation 'Missing a Javadoc comment.'
+        private void foo4() {} // violation 'Missing a Javadoc comment.'
     }
 }

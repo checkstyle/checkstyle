@@ -21,20 +21,20 @@ public class InputMissingJavadocMethodPublicOnly
     private interface InnerInterface
     {
         String CONST = "InnerInterface";
-        void method(); // violation
+        void method(); // violation 'Missing a Javadoc comment.'
 
         class InnerInnerClass
         {
             private int mData;
 
-            private InnerInnerClass() // violation
+            private InnerInnerClass() // violation 'Missing a Javadoc comment.'
             {
                 final Runnable r = new Runnable() {
                         public void run() {};
                     };
             }
 
-            void method2() // violation
+            void method2() // violation 'Missing a Javadoc comment.'
             {
                 final Runnable r = new Runnable() {
                         public void run() {};
@@ -47,7 +47,7 @@ public class InputMissingJavadocMethodPublicOnly
     {
         private int mDiff;
 
-        void method() // violation
+        void method() // violation 'Missing a Javadoc comment.'
         {
         }
     }
@@ -57,35 +57,37 @@ public class InputMissingJavadocMethodPublicOnly
     protected int mDeer;
     public int aFreddo;
 
-    private InputMissingJavadocMethodPublicOnly(int aA) // violation
+    private InputMissingJavadocMethodPublicOnly(int aA) // violation 'Missing a Javadoc comment.'
     {
     }
 
-    InputMissingJavadocMethodPublicOnly(String aA) // violation
+    InputMissingJavadocMethodPublicOnly(String aA) // violation 'Missing a Javadoc comment.'
     {
     }
 
-    protected InputMissingJavadocMethodPublicOnly(Object aA) // violation
+    protected InputMissingJavadocMethodPublicOnly(Object aA)
+    // violation above 'Missing a Javadoc comment.'
     {
     }
 
-    public InputMissingJavadocMethodPublicOnly(Class<Object> aA) // violation
+    public InputMissingJavadocMethodPublicOnly(Class<Object> aA)
+    // violation above 'Missing a Javadoc comment.'
     {
     }
 
-    private void method(int aA) // violation
+    private void method(int aA) // violation 'Missing a Javadoc comment.'
     {
     }
 
-    void method(Long aA) // violation
+    void method(Long aA) // violation 'Missing a Javadoc comment.'
     {
     }
 
-    protected void method(Class<Object> aA) // violation
+    protected void method(Class<Object> aA) // violation 'Missing a Javadoc comment.'
     {
     }
 
-    public void method(StringBuffer aA) // violation
+    public void method(StringBuffer aA) // violation 'Missing a Javadoc comment.'
     {
     }
 
@@ -97,13 +99,11 @@ public class InputMissingJavadocMethodPublicOnly
     private void method(String aA)
     {
     }
-
     /**
      * This inner class has no author tag, which is OK.
      */
     public class InnerWithoutAuthor
     {
-
     }
 
     /** {@inheritDoc} */
