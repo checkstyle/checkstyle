@@ -391,7 +391,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     @Test
     public void testJavaDocMethod2() throws Exception {
         final String[] expected = {
-            "20:25: " + getCheckMessage(JavadocMethodCheck.class,
+            "21:25: " + getCheckMessage(JavadocMethodCheck.class,
                   MSG_EXPECTED_TAG, "@param", "i"),
         };
         verifyWithInlineConfigParser(
@@ -401,7 +401,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadoc() throws Exception {
         final String[] expected = {
-            "26:39: " + getCheckMessage(JavadocMethodCheck.class,
+            "27:39: " + getCheckMessage(JavadocMethodCheck.class,
                   MSG_EXPECTED_TAG, "@param", "i"),
         };
         verifyWithInlineConfigParser(
@@ -452,6 +452,18 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
         assertWithMessage("Expected isPackageInfo() to return false for ('/')")
                 .that(result)
                 .isFalse();
+    }
+
+    @Test
+    public void testGetSurroundingAccessModifierOnRootNode() throws Exception {
+        final DetailAST compilationUnit = getNodeFromFile(TokenTypes.COMPILATION_UNIT);
+
+        final Optional<AccessModifierOption> result =
+                CheckUtil.getSurroundingAccessModifier(compilationUnit);
+
+        assertWithMessage("Expected empty result for COMPILATION_UNIT root node")
+            .that(result.isPresent())
+            .isFalse();
     }
 
 }
