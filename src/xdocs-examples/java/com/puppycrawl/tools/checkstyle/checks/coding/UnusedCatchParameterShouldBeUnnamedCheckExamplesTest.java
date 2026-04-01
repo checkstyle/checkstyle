@@ -39,7 +39,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheckExamplesTest extends
             "20:14: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "exception"),
         };
         verifyWithInlineConfigParser(
-                getPath("Example1.java"),
+                getNonCompilablePath("Example1.java"),
                 expected);
     }
 

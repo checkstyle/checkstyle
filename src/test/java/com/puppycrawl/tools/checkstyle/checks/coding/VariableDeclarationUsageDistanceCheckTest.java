@@ -413,7 +413,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "35:9: " + getCheckMessage(MSG_KEY, "b", 5, 1),
         };
         verifyWithInlineConfigParser(
-                getPath("InputVariableDeclarationUsageDistancePatternVariables.java"),
+                getNonCompilablePath("InputVariableDeclarationUsageDistancePatternVariables.java"),
                 expected);
     }
 

@@ -39,6 +39,6 @@ public class WhenShouldBeUsedCheckExamplesTest
         };
 
         verifyWithInlineConfigParser(
-                getPath("Example1.java"), expected);
+                getNonCompilablePath("Example1.java"), expected);
     }
 }

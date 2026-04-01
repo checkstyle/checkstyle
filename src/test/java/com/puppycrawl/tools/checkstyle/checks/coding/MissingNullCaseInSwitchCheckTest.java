@@ -62,7 +62,7 @@ public class MissingNullCaseInSwitchCheckTest extends
             "88:17: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMissingNullCaseInSwitchWithPattern.java"),
+                getNonCompilablePath("InputMissingNullCaseInSwitchWithPattern.java"),
             expected);
     }
 
@@ -87,7 +87,7 @@ public class MissingNullCaseInSwitchCheckTest extends
             "90:17: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMissingNullCaseInSwitchWithRecordPattern.java"),
+                getNonCompilablePath("InputMissingNullCaseInSwitchWithRecordPattern.java"),
             expected);
     }
 
