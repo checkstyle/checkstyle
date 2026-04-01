@@ -291,7 +291,9 @@ public final class InlineConfigParser {
     private static final Set<String> SUPPRESSED_MODULES = Set.of(
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck",
+            "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
