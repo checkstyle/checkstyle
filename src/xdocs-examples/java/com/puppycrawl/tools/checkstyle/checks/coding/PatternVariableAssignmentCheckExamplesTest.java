@@ -40,7 +40,7 @@ public class PatternVariableAssignmentCheckExamplesTest extends AbstractExamples
             "31:7: " + getCheckMessage(MSG_KEY, "c"),
         };
 
-        verifyWithInlineXmlConfig(getPath(
+        verifyWithInlineXmlConfig(getNonCompilablePath(
             "Example1.java"), expected);
     }
 }

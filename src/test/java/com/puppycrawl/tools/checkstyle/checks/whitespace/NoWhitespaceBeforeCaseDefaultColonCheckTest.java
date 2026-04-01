@@ -99,7 +99,7 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
             "27:21: " + getCheckMessage(MSG_KEY, ":"),
         };
         verifyWithInlineConfigParser(
-                getPath(
+                getNonCompilablePath(
                         "InputNoWhitespaceBeforeCaseDefaultColonPatternMatchingForSwitch.java"),
                 expected);
     }
