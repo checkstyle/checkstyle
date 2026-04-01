@@ -18,7 +18,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
  */
 public class InputMissingJavadocMethodConstructor {
     private int field;
-    public InputMissingJavadocMethodConstructor() {} // violation
+    public InputMissingJavadocMethodConstructor() {} // violation 'Missing a Javadoc comment.'
     public InputMissingJavadocMethodConstructor(Runnable p1) { this.field = 0; }
     /** */
     public InputMissingJavadocMethodConstructor(String p1) { this.field = 0; }

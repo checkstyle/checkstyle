@@ -24,10 +24,10 @@ public class InputMissingJavadocMethodNoJavadoc3A //comment test
     int i3;
     private int i4;
 
-    public void foo1() {} // violation
+    public void foo1() {} // violation 'Missing a Javadoc comment.'
     protected void foo2() {}
-    void foo3() {} // violation
-    private void foo4() {} // violation
+    void foo3() {} // violation 'Missing a Javadoc comment.'
+    private void foo4() {} // violation 'Missing a Javadoc comment.'
 
     protected class ProtectedInner {
         public int i1;
@@ -47,10 +47,10 @@ public class InputMissingJavadocMethodNoJavadoc3A //comment test
         int i3;
         private int i4;
 
-        public void foo1() {} // violation
+        public void foo1() {} // violation 'Missing a Javadoc comment.'
         protected void foo2() {}
-        void foo3() {} // violation
-        private void foo4() {} // violation
+        void foo3() {} // violation 'Missing a Javadoc comment.'
+        private void foo4() {} // violation 'Missing a Javadoc comment.'
     }
 
     private class PrivateInner {
@@ -59,9 +59,9 @@ public class InputMissingJavadocMethodNoJavadoc3A //comment test
         int i3;
         private int i4;
 
-        public void foo1() {} // violation
+        public void foo1() {} // violation 'Missing a Javadoc comment.'
         protected void foo2() {}
-        void foo3() {} // violation
-        private void foo4() {} // violation
+        void foo3() {} // violation 'Missing a Javadoc comment.'
+        private void foo4() {} // violation 'Missing a Javadoc comment.'
     }
 }
