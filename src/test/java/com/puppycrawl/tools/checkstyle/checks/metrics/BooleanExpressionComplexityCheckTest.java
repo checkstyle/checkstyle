@@ -43,10 +43,10 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
         final String[] expected = {
             "21:9: " + getCheckMessage(MSG_KEY, 4, 3),
-            "38:46: " + getCheckMessage(MSG_KEY, 4, 3),
-            "48:9: " + getCheckMessage(MSG_KEY, 6, 3),
-            "54:34: " + getCheckMessage(MSG_KEY, 4, 3),
-            "56:34: " + getCheckMessage(MSG_KEY, 4, 3),
+            "39:46: " + getCheckMessage(MSG_KEY, 4, 3),
+            "50:9: " + getCheckMessage(MSG_KEY, 6, 3),
+            "57:34: " + getCheckMessage(MSG_KEY, 4, 3),
+            "60:34: " + getCheckMessage(MSG_KEY, 4, 3),
         };
 
         verifyWithInlineConfigParser(
@@ -101,9 +101,9 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
         final String[] expected = {
             "16:12: " + getCheckMessage(MSG_KEY, 4, max),
-            "24:23: " + getCheckMessage(MSG_KEY, 4, max),
-            "35:23: " + getCheckMessage(MSG_KEY, 4, max),
-            "45:27: " + getCheckMessage(MSG_KEY, 4, max),
+            "25:23: " + getCheckMessage(MSG_KEY, 4, max),
+            "37:23: " + getCheckMessage(MSG_KEY, 4, max),
+            "48:27: " + getCheckMessage(MSG_KEY, 4, max),
         };
 
         verifyWithInlineConfigParser(
