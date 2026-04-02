@@ -757,6 +757,7 @@ len
 lexer
 lexing
 lgpl
+Lhs
 LHSOf
 libcore
 liberapay
@@ -895,6 +896,7 @@ neovim
 nestedfordepth
 nestedifdepth
 nestedtrydepth
+Nestmate
 netbeans
 newdomain
 newlineatendoffile
@@ -1382,6 +1384,7 @@ ubuntu
 ucc
 UElement
 ufeff
+Uid
 ul
 UMD
 UML
@@ -1411,6 +1414,7 @@ unusedcatchparametershouldbeunnamed
 unusedimports
 unusedlambdaparametershouldbeunnamed
 unusedlocalvariable
+unusedprivatefield
 upperell
 urandom
 uri
