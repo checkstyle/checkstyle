@@ -230,6 +230,16 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     }
 
     /**
+     * Decide whether to check indentation for a specific child.
+     *
+     * @param child child AST node
+     * @return true if indentation should be checked
+     */
+    protected boolean shouldCheckIndentationForChild(DetailAST child) {
+        return true;
+    }
+
+    /**
      * Get the right parenthesis portion of the expression we are handling.
      *
      * @return the right parenthesis expression
@@ -264,11 +274,16 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         else {
             // NOTE: switch statements usually don't have curlies
             if (!hasCurlies() || !TokenUtil.areOnSameLine(getLeftCurly(), getRightCurly())) {
-                checkChildren(listChild,
-                        getCheckedChildren(),
-                        getChildrenExpectedIndent(),
-                        true,
-                        canChildrenBeNested());
+                final int[] checkedChildren = getCheckedChildren();
+                for (DetailAST child = listChild.getFirstChild();
+                        child != null;
+                        child = child.getNextSibling()) {
+                    if (TokenUtil.isOfType(child.getType(), checkedChildren)
+                            && shouldCheckIndentationForChild(child)) {
+                        checkExpressionSubtree(child, getChildrenExpectedIndent(),
+                                true, canChildrenBeNested());
+                    }
+                }
             }
         }
     }
@@ -283,7 +298,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         // if we have multileveled expected level then we should
         // try to suggest single level to children using curlies'
         // levels.
-        if (getIndent().isMultiLevel() && hasCurlies()) {
+        if (hasCurlies() && getIndent().isMultiLevel()) {
             if (isOnStartOfLine(getLeftCurly())) {
                 indentLevel = new IndentLevel(expandedTabsColumnNo(getLeftCurly())
                         + getBasicOffset());

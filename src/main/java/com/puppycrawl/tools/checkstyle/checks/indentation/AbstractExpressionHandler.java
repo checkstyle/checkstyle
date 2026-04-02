@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import java.util.Arrays;
-
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
@@ -400,11 +398,10 @@ public abstract class AbstractExpressionHandler {
                                        IndentLevel startIndent,
                                        boolean firstLineMatches,
                                        boolean allowNesting) {
-        Arrays.sort(tokenTypes);
         for (DetailAST child = parentNode.getFirstChild();
                 child != null;
                 child = child.getNextSibling()) {
-            if (Arrays.binarySearch(tokenTypes, child.getType()) >= 0) {
+            if (TokenUtil.isOfType(child.getType(), tokenTypes)) {
                 checkExpressionSubtree(child, startIndent,
                     firstLineMatches, allowNesting);
             }
