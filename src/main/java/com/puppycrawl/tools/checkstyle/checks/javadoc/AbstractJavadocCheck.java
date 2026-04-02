@@ -277,12 +277,12 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     }
 
     /**
-     * Defined final because all JavadocChecks require comment nodes.
+     * All JavadocChecks require comment nodes.
      *
      * @return true
      */
     @Override
-    public final boolean isCommentNodesRequired() {
+    public boolean isCommentNodesRequired() {
         return true;
     }
 
