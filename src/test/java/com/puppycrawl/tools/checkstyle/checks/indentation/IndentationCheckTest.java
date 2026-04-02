@@ -3608,6 +3608,41 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIndentationMethodParenthesisOnNewLine2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWarns(checkConfig,
+                getPath("InputIndentationCheckMethodParenOnNewLine2.java"),
+                expected);
+    }
+
+    @Test
+    public void testIndentationMethodParenthesisOnNewLine3() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = {
+            "8:13: " + getCheckMessage(MSG_ERROR, "method def lparen", 12, 4),
+        };
+
+        verifyWarns(checkConfig,
+                getPath("InputIndentationCheckMethodParenOnNewLine3.java"),
+                expected);
+    }
+
+    @Test
+    public void testIndentationMethodParenthesisOnNewLine4() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWarns(checkConfig,
+                getPath("InputIndentationCheckMethodParenOnNewLine4.java"),
+                expected);
+    }
+
+    @Test
     public void testIndentationLineWrappedRecordDeclaration() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");

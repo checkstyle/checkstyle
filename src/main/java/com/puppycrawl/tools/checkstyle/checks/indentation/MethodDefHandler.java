@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Handler for method definitions.
@@ -115,6 +116,33 @@ public class MethodDefHandler extends BlockParentHandler {
         if (getLeftCurly() != null) {
             super.checkIndentation();
         }
+    }
+
+    @Override
+    protected boolean shouldCheckLeftParen(DetailAST leftParen) {
+        return !isMethodParenOnItsOwnLineWithMatchingRightParen(leftParen,
+                getMethodDefParamRightParen(getMainAst()));
+    }
+
+    @Override
+    protected boolean shouldCheckRightParen(DetailAST leftParen, DetailAST rightParen) {
+        return !isMethodParenOnItsOwnLineWithMatchingRightParen(leftParen, rightParen);
+    }
+
+    /**
+     * Checks if method definition parenthesis are wrapped on separate lines and aligned.
+     *
+     * @param leftParen left parenthesis of method definition
+     * @param rightParen right parenthesis of method definition
+     * @return true if both parenthesis start their own lines and are aligned
+     */
+    private boolean isMethodParenOnItsOwnLineWithMatchingRightParen(DetailAST leftParen,
+            DetailAST rightParen) {
+        return rightParen != null
+                && !TokenUtil.areOnSameLine(leftParen, rightParen)
+                && isOnStartOfLine(leftParen)
+                && isOnStartOfLine(rightParen)
+                && expandedTabsColumnNo(leftParen) == expandedTabsColumnNo(rightParen);
     }
 
     /**

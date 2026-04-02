@@ -230,6 +230,27 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     }
 
     /**
+     * Determines whether left parenthesis should be checked.
+     *
+     * @param leftParen left parenthesis token
+     * @return true if left parenthesis should be checked
+     */
+    protected boolean shouldCheckLeftParen(DetailAST leftParen) {
+        return true;
+    }
+
+    /**
+     * Determines whether right parenthesis should be checked.
+     *
+     * @param leftParen left parenthesis token
+     * @param rightParen right parenthesis token
+     * @return true if right parenthesis should be checked
+     */
+    protected boolean shouldCheckRightParen(DetailAST leftParen, DetailAST rightParen) {
+        return true;
+    }
+
+    /**
      * Get the right parenthesis portion of the expression we are handling.
      *
      * @return the right parenthesis expression
@@ -251,8 +272,14 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     public void checkIndentation() {
         checkTopLevelToken();
         // separate to allow for eventual configuration
-        checkLeftParen(getLeftParen());
-        checkRightParen(getLeftParen(), getRightParen());
+        final DetailAST leftParen = getLeftParen();
+        if (shouldCheckLeftParen(leftParen)) {
+            checkLeftParen(leftParen);
+        }
+        final DetailAST rightParen = getRightParen();
+        if (shouldCheckRightParen(leftParen, rightParen)) {
+            checkRightParen(leftParen, rightParen);
+        }
         if (hasCurlies()) {
             checkLeftCurly();
             checkRightCurly();
