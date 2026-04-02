@@ -19,20 +19,26 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.Scope;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
@@ -73,7 +79,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * @since 8.21
  */
 @FileStatefulCheck
-public class MissingJavadocMethodCheck extends AbstractCheck {
+public class MissingJavadocMethodCheck extends AbstractJavadocCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -89,6 +95,9 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
 
     /** Pattern matching names of setter methods. */
     private static final Pattern SETTER_PATTERN = Pattern.compile("^set[A-Z].*");
+
+    /** Pattern matching a comment-only single-line comment. */
+    private static final Pattern SINGLE_LINE_COMMENT_PATTERN = Pattern.compile("^\\s*//.*$");
 
     /** Maximum nodes allowed in a body of setter. */
     private static final int SETTER_BODY_SIZE = 3;
@@ -116,6 +125,15 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
 
     /** Configure annotations that allow missed documentation. */
     private Set<String> allowedAnnotations = Set.of("Override");
+
+    /** Parser used to recognize Javadoc comments through the Javadoc AST pipeline. */
+    private final JavadocDetailNodeParser javadocParser = new JavadocDetailNodeParser();
+
+    /** Line numbers keyed the same way as FileContents#getJavadocBefore(int). */
+    private final Set<Integer> javadocCommentEndLines = new HashSet<>();
+
+    /** Block comments used to skip comment-only lines when searching for nearby Javadocs. */
+    private final List<BlockCommentPosition> blockComments = new ArrayList<>();
 
     /**
      * Setter to configure annotations that allow missed documentation.
@@ -179,7 +197,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     }
 
     @Override
-    public final int[] getRequiredTokens() {
+    public int[] getRequiredTokens() {
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
@@ -198,19 +216,160 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
         };
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/19148
     @Override
-    @SuppressWarnings("deprecation")
-    public final void visitToken(DetailAST ast) {
-        final Scope theScope = ScopeUtil.getScope(ast);
-        if (shouldCheck(ast, theScope)) {
-            final FileContents contents = getFileContents();
-            final TextBlock textBlock = contents.getJavadocBefore(ast.getLineNo());
+    public int[] getDefaultJavadocTokens() {
+        return CommonUtil.EMPTY_INT_ARRAY;
+    }
 
-            if (textBlock == null && !isMissingJavadocAllowed(ast)) {
-                log(ast, MSG_JAVADOC_MISSING);
-            }
+    @Override
+    public void beginTree(DetailAST rootAST) {
+        super.beginTree(rootAST);
+        javadocCommentEndLines.clear();
+        blockComments.clear();
+        collectComments(rootAST);
+    }
+
+    @Override
+    public void visitToken(DetailAST ast) {
+        final Scope theScope = ScopeUtil.getScope(ast);
+        if (shouldCheck(ast, theScope)
+                && !hasJavadocBefore(ast.getLineNo())
+                && !isMissingJavadocAllowed(ast)) {
+            log(ast, MSG_JAVADOC_MISSING);
         }
+    }
+
+    /**
+     * Collects all block comments in the file.
+     *
+     * @param ast the current node.
+     */
+    private void collectComments(DetailAST ast) {
+        final Deque<DetailAST> nodes = new ArrayDeque<>();
+        DetailAST node = ast;
+
+        while (node != null || !nodes.isEmpty()) {
+            while (node != null) {
+                nodes.push(node);
+                node = node.getNextSibling();
+            }
+
+            node = nodes.pop();
+            if (node.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                collectBlockComment(node);
+            }
+            node = node.getFirstChild();
+        }
+    }
+
+    @Override
+    public void visitJavadocToken(DetailNode ast) {
+        // No token-level Javadoc traversal is required for presence-only checks.
+    }
+
+    /**
+     * Collects information about a block comment.
+     *
+     * @param blockComment the block comment to collect.
+     */
+    private void collectBlockComment(DetailAST blockComment) {
+        final int startLineNo = blockComment.getLineNo();
+        final int endLineNo = blockComment.getLastChild().getLineNo();
+        final boolean javadocComment = isJavadocComment(blockComment);
+
+        blockComments.add(new BlockCommentPosition(startLineNo, endLineNo, javadocComment));
+        if (javadocComment) {
+            javadocCommentEndLines.add(endLineNo - 1);
+        }
+    }
+
+    /**
+     * Checks whether a block comment is recognized as a Javadoc comment by the Javadoc parser.
+     *
+     * @param blockComment the block comment to inspect
+     * @return {@code true} if the block comment is recognized as a Javadoc comment
+     */
+    private boolean isJavadocComment(DetailAST blockComment) {
+        boolean result = false;
+        if (JavadocUtil.isJavadocComment(JavadocUtil.getBlockCommentContent(blockComment))) {
+            final JavadocDetailNodeParser.ParseStatus parseStatus =
+                    javadocParser.parseJavadocComment(blockComment);
+            result = parseStatus.getTree() != null
+                    || parseStatus.getParseErrorMessage() != null;
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether there is a Javadoc comment before the specified line.
+     *
+     * @param lineNoBefore the line number to check before.
+     * @return {@code true} if there is a Javadoc comment before the line.
+     */
+    private boolean hasJavadocBefore(int lineNoBefore) {
+        int lineNo = lineNoBefore - 2;
+
+        while (lineNo > 0 && (lineIsBlank(lineNo) || lineIsComment(lineNo)
+                || lineInsideBlockComment(lineNo + 1))) {
+            lineNo--;
+        }
+        return javadocCommentEndLines.contains(lineNo);
+    }
+
+    /**
+     * Checks if the specified line is blank.
+     *
+     * @param lineNo the zero-based line number.
+     * @return {@code true} if the specified line is blank.
+     */
+    private boolean lineIsBlank(int lineNo) {
+        return CommonUtil.isBlank(getLines()[lineNo]);
+    }
+
+    /**
+     * Checks if the specified line is a single-line comment without code.
+     *
+     * @param lineNo the zero-based line number.
+     * @return {@code true} if the specified line is a single-line comment without code.
+     */
+    private boolean lineIsComment(int lineNo) {
+        return SINGLE_LINE_COMMENT_PATTERN.matcher(getLines()[lineNo]).matches();
+    }
+
+    /**
+     * Checks if the specified line number is inside a non-Javadoc block comment.
+     *
+     * @param lineNo the one-based line number to check.
+     * @return {@code true} if the line is inside a non-Javadoc block comment.
+     */
+    private boolean lineInsideBlockComment(int lineNo) {
+        return blockComments.stream()
+            .filter(comment -> !comment.javadocComment)
+            .anyMatch(comment -> isLineBlockComment(lineNo, comment));
+    }
+
+    /**
+     * Checks if the given line is inside a block comment and the comment occupies
+     * both the start and end lines.
+     *
+     * @param lineNo the one-based line number to check.
+     * @param comment the block comment to inspect.
+     * @return {@code true} if the line is inside the block comment.
+     */
+    private boolean isLineBlockComment(int lineNo, BlockCommentPosition comment) {
+        final boolean lineInsideBlockComment = lineNo >= comment.startLineNo
+                && lineNo <= comment.endLineNo;
+        boolean lineHasOnlyBlockComment = true;
+        final String startLine = getLines()[comment.startLineNo - 1].trim();
+        if (!startLine.startsWith("/*")) {
+            lineHasOnlyBlockComment = false;
+        }
+
+        final String endLine = getLines()[comment.endLineNo - 1].trim();
+        if (!endLine.endsWith("*/")) {
+            lineHasOnlyBlockComment = false;
+        }
+        return lineInsideBlockComment && lineHasOnlyBlockComment;
     }
 
     /**
@@ -223,8 +382,9 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
         final int numberOfLines;
         final DetailAST lcurly = methodDef.getLastChild();
         final DetailAST rcurly = lcurly.getLastChild();
+        final DetailAST firstChild = getFirstChildSkipComments(lcurly);
 
-        if (lcurly.getFirstChild() == rcurly) {
+        if (firstChild == rcurly) {
             numberOfLines = 1;
         }
         else {
@@ -299,6 +459,38 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     }
 
     /**
+     * Gets the first non-comment child of the given node.
+     *
+     * @param ast the node to inspect.
+     * @return the first non-comment child, or {@code null} if none exist.
+     */
+    private static DetailAST getFirstChildSkipComments(DetailAST ast) {
+        DetailAST child = ast.getFirstChild();
+        while (child != null && TokenUtil.isCommentType(child.getType())) {
+            child = child.getNextSibling();
+        }
+        return child;
+    }
+
+    /**
+     * Gets the number of non-comment children of the given node.
+     *
+     * @param ast the node to inspect.
+     * @return the number of non-comment children.
+     */
+    private static int getChildCountSkipComments(DetailAST ast) {
+        int count = 0;
+        DetailAST child = ast.getFirstChild();
+        while (child != null) {
+            if (!TokenUtil.isCommentType(child.getType())) {
+                count++;
+            }
+            child = child.getNextSibling();
+        }
+        return count;
+    }
+
+    /**
      * Returns whether an AST represents a getter method.
      *
      * @param ast the AST to check with
@@ -326,7 +518,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
                 final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
                 if (slist != null) {
-                    final DetailAST expr = slist.getFirstChild();
+                    final DetailAST expr = getFirstChildSkipComments(slist);
                     getterMethod = expr.getType() == TokenTypes.LITERAL_RETURN;
                 }
             }
@@ -362,12 +554,38 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
                 // RCURLY
                 final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
-                if (slist != null && slist.getChildCount() == SETTER_BODY_SIZE) {
-                    final DetailAST expr = slist.getFirstChild();
+                if (slist != null && getChildCountSkipComments(slist) == SETTER_BODY_SIZE) {
+                    final DetailAST expr = getFirstChildSkipComments(slist);
                     setterMethod = expr.getFirstChild().getType() == TokenTypes.ASSIGN;
                 }
             }
         }
         return setterMethod;
+    }
+
+    /** Line range information for a block comment. */
+    private static final class BlockCommentPosition {
+
+        /** The one-based start line number. */
+        private final int startLineNo;
+
+        /** The one-based end line number. */
+        private final int endLineNo;
+
+        /** Whether the block comment is Javadoc. */
+        private final boolean javadocComment;
+
+        /**
+         * Creates a block comment position.
+         *
+         * @param startLineNo the start line number
+         * @param endLineNo the end line number
+         * @param javadocComment whether the block comment is Javadoc
+         */
+        private BlockCommentPosition(int startLineNo, int endLineNo, boolean javadocComment) {
+            this.startLineNo = startLineNo;
+            this.endLineNo = endLineNo;
+            this.javadocComment = javadocComment;
+        }
     }
 }
