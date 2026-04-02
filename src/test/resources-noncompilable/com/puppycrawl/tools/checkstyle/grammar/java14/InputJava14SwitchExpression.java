@@ -75,7 +75,7 @@ public class InputJava14SwitchExpression {
         } > 7 ? "long" : "short";
     }
 
-    int assignement(Day day) {
+    int assignment(Day day) {
         int numLetters = switch (day) {
             case MON, FRI, SUN -> 6;
             case TUE -> 7;
