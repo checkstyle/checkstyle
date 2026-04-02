@@ -1,13 +1,16 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="NoWhitespaceBefore"/>
+    <module name="NoWhitespaceBefore">
+      <property name="allowLineBreaks"
+                value="(default) false"/>
+      <property name="tokens"
+                value="(default) COMMA, SEMI, POST_INC,
+                       POST_DEC, ELLIPSIS, LABELED_STAT"/>
+    </module>
   </module>
 </module>
-
-
 */
-
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebefore;
 
 import com.google.common.collect.Lists;

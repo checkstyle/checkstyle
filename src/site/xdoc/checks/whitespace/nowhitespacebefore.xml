@@ -90,7 +90,13 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="NoWhitespaceBefore"/&gt;
+    &lt;module name="NoWhitespaceBefore"&gt;
+      &lt;property name="allowLineBreaks"
+                value="(default) false"/&gt;
+      &lt;property name="tokens"
+                value="(default) COMMA, SEMI, POST_INC,
+                       POST_DEC, ELLIPSIS, LABELED_STAT"/&gt;
+    &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -129,7 +135,11 @@ class Example1 {
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NoWhitespaceBefore"&gt;
-      &lt;property name="allowLineBreaks" value="true"/&gt;
+      &lt;property name="allowLineBreaks"
+                value="true"/&gt;
+      &lt;property name="tokens"
+                value="(default) COMMA, SEMI, POST_INC,
+                       POST_DEC, ELLIPSIS, LABELED_STAT"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -158,7 +168,10 @@ class Example2 {
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NoWhitespaceBefore"&gt;
-      &lt;property name="tokens" value="METHOD_REF, DOT"/&gt;
+      &lt;property name="tokens"
+                value="METHOD_REF, DOT"/&gt;
+      &lt;property name="allowLineBreaks"
+                value="(default) false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -183,8 +196,10 @@ class Example3 {
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NoWhitespaceBefore"&gt;
-      &lt;property name="tokens" value="METHOD_REF, DOT"/&gt;
-      &lt;property name="allowLineBreaks" value="true"/&gt;
+      &lt;property name="tokens"
+                value="METHOD_REF, DOT"/&gt;
+      &lt;property name="allowLineBreaks"
+                value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;

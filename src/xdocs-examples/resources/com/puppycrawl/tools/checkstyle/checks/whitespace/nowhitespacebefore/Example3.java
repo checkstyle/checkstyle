@@ -2,14 +2,14 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="NoWhitespaceBefore">
-      <property name="tokens" value="METHOD_REF, DOT"/>
+      <property name="tokens"
+                value="METHOD_REF, DOT"/>
+      <property name="allowLineBreaks"
+                value="(default) false"/>
     </module>
   </module>
 </module>
-
-
 */
-
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebefore;
 
 import com.google.common.collect.Lists;
