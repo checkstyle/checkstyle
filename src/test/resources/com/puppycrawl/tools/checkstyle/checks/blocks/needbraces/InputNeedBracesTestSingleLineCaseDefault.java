@@ -73,7 +73,7 @@ public class InputNeedBracesTestSingleLineCaseDefault
         for (int i = 0; ; ) this.notify();
     }
 
-    private int getSmth(int num)
+    private int getSomething(int num)
     {
         int counter = 0;
         switch (num) {
