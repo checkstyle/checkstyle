@@ -25,7 +25,7 @@ public class InputMultipleStringLiterals7
         String a2 = "String" + "Contents";
     }
 
-    @SuppressWarnings("unchecked") // violation
+    @SuppressWarnings("unchecked") // violation, 'The String "unchecked" appears 4 times in the file.'
     void method2(){}
 
     @SuppressWarnings("unchecked")
