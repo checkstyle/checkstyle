@@ -137,8 +137,6 @@
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocTypeCheck.java"/>
   <!-- until #19147 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocVariableCheck.java"/>
-  <!-- until #19148 -->
-  <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocMethodCheck.java"/>
   <!-- until #19149 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocTypeCheck.java"/>
   <!-- permanent suppression to allow regexp on content of the line -->

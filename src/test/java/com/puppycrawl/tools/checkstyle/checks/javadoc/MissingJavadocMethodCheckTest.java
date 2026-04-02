@@ -21,14 +21,26 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck.MSG_JAVADOC_MISSING;
+import static org.mockito.Mockito.mockStatic;
 
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 
+import org.apache.commons.beanutils.PropertyUtils;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+import org.mockito.MockedStatic;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtilTest;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -64,6 +76,50 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Required tokens are invalid")
             .that(actual)
             .isEqualTo(expected);
+    }
+
+    @Test
+    public void testViolateExecutionOnNonTightHtmlPropertyIsHidden() throws Exception {
+        final MissingJavadocMethodCheck check = new MissingJavadocMethodCheck();
+
+        assertWithMessage("Unexpected inherited property was exposed")
+                .that(PropertyUtils.getPropertyDescriptor(check, "violateExecutionOnNonTightHtml"))
+                .isNull();
+    }
+
+    @Test
+    public void testBeanInfoPropertyDescriptors() {
+        final PropertyDescriptor[] descriptors =
+                new MissingJavadocMethodCheckBeanInfo().getPropertyDescriptors();
+
+        assertWithMessage("Unexpected inherited property was exposed by bean info")
+                .that(Arrays.stream(descriptors)
+                        .noneMatch(property -> {
+                            return "violateExecutionOnNonTightHtml".equals(property.getName());
+                        }))
+                .isTrue();
+    }
+
+    @Test
+    public void testBeanInfoPropertyDescriptorsOnIntrospectionException() throws Exception {
+        final MissingJavadocMethodCheckBeanInfo beanInfo = new MissingJavadocMethodCheckBeanInfo();
+
+        try (MockedStatic<Introspector> introspector = mockStatic(Introspector.class)) {
+            introspector.when(() -> {
+                Introspector.getBeanInfo(MissingJavadocMethodCheck.class,
+                        Object.class, Introspector.IGNORE_IMMEDIATE_BEANINFO);
+            })
+                    .thenThrow(new IntrospectionException("mock exception"));
+
+            final IllegalStateException exception = TestUtil.getExpectedThrowable(
+                    IllegalStateException.class, beanInfo::getPropertyDescriptors,
+                    "Expected IllegalStateException");
+
+            assertWithMessage("Expected IntrospectionException as cause")
+                    .that(exception)
+                    .hasCauseThat()
+                    .isInstanceOf(IntrospectionException.class);
+        }
     }
 
     @Test
@@ -524,12 +580,26 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
         final DetailAST notGetterMethod = CheckUtilTest.getNode(testFile, TokenTypes.METHOD_DEF);
 
         final DetailAST getterMethod = notGetterMethod.getNextSibling().getNextSibling();
+        final Path coverageTestFile = Path.of(getPath("InputMissingJavadocMethodCoverage.java"));
+        final DetailAST topMethod = CheckUtilTest.getNode(coverageTestFile, TokenTypes.METHOD_DEF);
+        final DetailAST commentMethod = topMethod.getNextSibling();
+        final DetailAST noArgNonGetterMethod = commentMethod.getNextSibling();
+        final DetailAST getterWithParameterMethod = noArgNonGetterMethod.getNextSibling();
 
         assertWithMessage("Invalid result: AST provided is getter method")
                 .that(MissingJavadocMethodCheck.isGetterMethod(getterMethod))
                 .isTrue();
         assertWithMessage("Invalid result: AST provided is not getter method")
                 .that(MissingJavadocMethodCheck.isGetterMethod(notGetterMethod))
+                .isFalse();
+        assertWithMessage("Invalid result: AST provided is not getter method")
+                .that(MissingJavadocMethodCheck.isGetterMethod(commentMethod))
+                .isFalse();
+        assertWithMessage("Invalid result: AST provided is not getter method")
+                .that(MissingJavadocMethodCheck.isGetterMethod(noArgNonGetterMethod))
+                .isFalse();
+        assertWithMessage("Invalid result: AST provided is not getter method")
+                .that(MissingJavadocMethodCheck.isGetterMethod(getterWithParameterMethod))
                 .isFalse();
     }
 
@@ -582,5 +652,67 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputMissingJavadocMethodAboveComments.java"),
                 expected);
+    }
+
+    @Test
+    public void testMissingJavadocMethodNearTopComment() throws Exception {
+        final String[] expected = {
+            "2:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "4:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "6:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "10:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputMissingJavadocMethodCoverageConfig.java"),
+                getPath("InputMissingJavadocMethodCoverage.java"), expected);
+    }
+
+    @Test
+    public void testJavadocAstBranches(@TempDir Path tempDir) throws Exception {
+        final Path file = tempDir.resolve("InputMissingJavadocMethod.java");
+
+        Files.writeString(file,
+                """
+                class InputMissingJavadocMethod {
+                    /** Ok. */
+                    void method() {}
+                }
+                """);
+        final DetailAST root =
+                JavaParser.parseFile(file.toFile(), JavaParser.Options.WITH_COMMENTS);
+        final DetailAST blockComment = TestUtil.findTokenInAstByPredicate(root,
+                ast -> ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN)
+                .orElseThrow();
+        final MissingJavadocMethodCheck check = new MissingJavadocMethodCheck();
+        final JavadocDetailNodeParser.ParseStatus parseStatusWithoutTree =
+                new JavadocDetailNodeParser.ParseStatus();
+
+        TestUtil.setInternalState(check, "javadocParser", new JavadocDetailNodeParser() {
+            @Override
+            public ParseStatus parseJavadocComment(DetailAST javadocCommentAst) {
+                return parseStatusWithoutTree;
+            }
+        });
+        assertWithMessage("Invalid result: Javadoc without parser tree or error accepted")
+                .that(TestUtil.invokeMethod(check, "isJavadocComment", Boolean.class,
+                        blockComment))
+                .isFalse();
+
+        final JavadocDetailNodeParser.ParseStatus parseStatusWithError =
+                new JavadocDetailNodeParser.ParseStatus();
+        parseStatusWithError.setParseErrorMessage(TestUtil.instantiate(
+                JavadocDetailNodeParser.ParseErrorMessage.class, 1, "key", new Object[0]));
+        TestUtil.setInternalState(check, "javadocParser", new JavadocDetailNodeParser() {
+            @Override
+            public ParseStatus parseJavadocComment(DetailAST javadocCommentAst) {
+                return parseStatusWithError;
+            }
+        });
+        assertWithMessage("Invalid result: Javadoc with parser error rejected")
+                .that(TestUtil.invokeMethod(check, "isJavadocComment", Boolean.class,
+                        blockComment))
+                .isTrue();
+
+        check.visitJavadocToken(null);
     }
 }
