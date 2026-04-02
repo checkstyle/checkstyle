@@ -4,41 +4,39 @@ allowedDuplicates = (default)1
 ignoreStringsRegexp = (null)
 ignoreOccurrenceContext = (default)ANNOTATION
 
-
 */
-
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.multiplestringliterals;
 
 public class InputMultipleStringLiteralsTextBlocks1 {
-    String string1 = "string"; // occurance #1 // violation
-    String string2a = "string"; // violation #1
+    String string1 = "string"; // violation, 'The String "string" appears 3 times in the file.'
+    String string2a = "string";
     String string2b = """
-            string"""; // violation #2
+             string""";
 
     String string3 = """
-            other string"""; // occurance #1 // violation above
+            other string"""; // violation above, 'The String "other string" appears 2 times in the file.'
     String string4 = """
-            other string"""; // violation below
+            other string"""; // violation below, 'The String "other string.*" appears 2 times in the file.'
     String string5 = """
             other string
             """; // occurrence #1
     String string6 = """
             other string
             """;
-     // violation below
+     // violation 6 lines above, 'The String "other string.*" appears 2 times in the file.'
     String escape1 = """
             <html>\u000D\u000A\n\u2000
                 <body>\u000D\u000A\n\u2000
                     <p>Hello, world</p>\u000D\u000A\n\u2000
                 </body>\u000D\u000A\n\u2000
             </html>\u000D\u000A\u2000
-            """; // occurrence #1 // violation below
+            """; // violation below, 'The String "<html>\u000D\u000A\n\u2000\n    <body>\u000D\u000A\n\u2000\n        <p>Hello, world</p>\u000D\u000A\n\u2000\n    </body>\u000D\u000A\n\u2000\n</html>\u000D\u000A\u2000\n" appears 2 times in the file.'
     String testMoreEscapes1 = """
             fun with\n
              whitespace\t\r
              and other escapes \"""
-            """; // occurrence #1 // violation below
+            """; // violation below, 'The String "fun with\n\n whitespace\t\r\n and other escapes \"""\n" appears 2 times in the file.'
     String evenMoreEscapes1 = """
             \b \f \\ \0 \1 \2 \r \r\n \\r\\n \\''
             \\11 \\57 \n\\n\n\\\n\n \\ ""a "a
@@ -50,22 +48,22 @@ public class InputMultipleStringLiteralsTextBlocks1 {
                     <p>Hello, world</p>\u000D\u000A\n\u2000
                 </body>\u000D\u000A\n\u2000
             </html>\u000D\u000A\u2000
-            """; // violation #1
+            """;
     String testMoreEscapes2 = """
             fun with\n
              whitespace\t\r
              and other escapes \"""
-            """; // violation #1
+            """;
     String evenMoreEscapes2 = """
             \b \f \\ \0 \1 \2 \r \r\n \\r\\n \\''
             \\11 \\57 \n\\n\n\\\n\n \\ ""a "a
             \\' \\\' \'
-            """; // violation #1
+            """;
 
-    String str1a = "foo"; // occurrence #1 // violation
-    String str1b = "foo"; // violation #1
+    String str1a = "foo"; // violation, 'The String "foo" appears 4 times in the file.'
+    String str1b = "foo";
     String str2a = """
-            foo"""; // violation #2
+            foo""";
     String str2b = """
-            foo"""; // violation #3
+            foo""";
 }

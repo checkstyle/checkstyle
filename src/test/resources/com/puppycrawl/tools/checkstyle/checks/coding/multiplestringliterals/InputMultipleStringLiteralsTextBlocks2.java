@@ -11,21 +11,21 @@ ignoreOccurrenceContext = (default)ANNOTATION
 package com.puppycrawl.tools.checkstyle.checks.coding.multiplestringliterals;
 
 public class InputMultipleStringLiteralsTextBlocks2 {
-    String str3 = "another test"; // occurrence #1 // violation
+    String str3 = "another test"; // violation, 'The String "another test" appears 2 times in the file.'
     String str4 = """
-            another test"""; // violation #1
+            another test""";
 
-    String str5a = ""; // occurrence #1 // violation
+    String str5a = ""; // violation, 'The String "" appears 6 times in the file.'
     String str5b = """
-            """; // violation #1
+            """;
     String str6 = """
-                        """; // violation #2
+                        """;
     String str7 = """
-"""; // violation #3
+""";
 
     String str8 = """
-                             """; // violation #4
-     // violation below
+                             """;
+     // violation below, 'The String ".*" appears 2 times in the file.'
     String str8b = """
         .
          .
@@ -41,7 +41,7 @@ public class InputMultipleStringLiteralsTextBlocks2 {
     String str9a = """
             test    """; // trailing whitespace removed per javac result
     String str9b = "test    "; // trailing whitespace not removed, strings are not equal!
-     // violation below
+     // violation below, 'The String ".*bar" appears 2 times in the file.'
     String str10a = """
              foo
 
