@@ -220,12 +220,39 @@ public final class SiteUtil {
     public static Set<String> getMessageKeys(Class<?> module)
             throws MacroExecutionException {
         final Set<Field> messageKeyFields = getCheckMessageKeysFields(module);
+        if (AbstractJavadocCheck.class.isAssignableFrom(module)
+                && !hasJavadocTokens(module)) {
+            messageKeyFields.removeIf(field -> {
+                return field.getDeclaringClass() == AbstractJavadocCheck.class;
+            });
+        }
         // We use a TreeSet to sort the message keys alphabetically
         final Set<String> messageKeys = new TreeSet<>();
         for (Field field : messageKeyFields) {
             messageKeys.add(getFieldValue(field, module).toString());
         }
         return messageKeys;
+    }
+
+    /**
+     * Checks whether the module has any Javadoc tokens.
+     *
+     * @param module the module to inspect
+     * @return {@code true} if the module has Javadoc tokens
+     * @throws MacroExecutionException if the module instance cannot be created
+     */
+    private static boolean hasJavadocTokens(Class<?> module) throws MacroExecutionException {
+        try {
+            final AbstractJavadocCheck check = (AbstractJavadocCheck) module
+                    .getDeclaredConstructor()
+                    .newInstance();
+            return check.getAcceptableJavadocTokens().length != 0;
+        }
+        catch (ReflectiveOperationException exception) {
+            final String message = String.format(Locale.ROOT,
+                    "Couldn't instantiate class: %s", module.getName());
+            throw new MacroExecutionException(message, exception);
+        }
     }
 
     /**
@@ -667,14 +694,16 @@ public final class SiteUtil {
 
         if (AbstractJavadocCheck.class.isAssignableFrom(clss)) {
             final AbstractJavadocCheck check = (AbstractJavadocCheck) instance;
-            result.add("violateExecutionOnNonTightHtml");
-
             final int[] acceptableJavadocTokens = check.getAcceptableJavadocTokens();
             Arrays.sort(acceptableJavadocTokens);
             final int[] defaultJavadocTokens = check.getDefaultJavadocTokens();
             Arrays.sort(defaultJavadocTokens);
             final int[] requiredJavadocTokens = check.getRequiredJavadocTokens();
             Arrays.sort(requiredJavadocTokens);
+
+            if (acceptableJavadocTokens.length != 0) {
+                result.add("violateExecutionOnNonTightHtml");
+            }
 
             if (!Arrays.equals(acceptableJavadocTokens, defaultJavadocTokens)
                     || !Arrays.equals(acceptableJavadocTokens, requiredJavadocTokens)) {
