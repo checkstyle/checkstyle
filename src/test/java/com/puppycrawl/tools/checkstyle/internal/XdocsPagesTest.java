@@ -1101,8 +1101,10 @@ public class XdocsPagesTest {
             if (AbstractJavadocCheck.class.isAssignableFrom(clss)) {
                 properties.removeAll(JAVADOC_CHECK_PROPERTIES);
 
-                // override
-                properties.add("violateExecutionOnNonTightHtml");
+                final AbstractJavadocCheck check = (AbstractJavadocCheck) instance;
+                if (check.getAcceptableJavadocTokens().length != 0) {
+                    properties.add("violateExecutionOnNonTightHtml");
+                }
             }
             else if (AbstractCheck.class.isAssignableFrom(clss)) {
                 properties.removeAll(CHECK_PROPERTIES);
@@ -1678,15 +1680,7 @@ public class XdocsPagesTest {
                                                  Node subSection,
                                                  Object instance) throws Exception {
         final Class<?> clss = instance.getClass();
-        final Set<Field> fields = CheckUtil.getCheckMessages(clss, true);
-        final Set<String> list = new TreeSet<>();
-
-        for (Field field : fields) {
-            // below is required for package/private classes
-            field.trySetAccessible();
-
-            list.add(field.get(null).toString());
-        }
+        final Set<String> list = SiteUtil.getMessageKeys(clss);
 
         final StringBuilder expectedText = new StringBuilder(120);
 
