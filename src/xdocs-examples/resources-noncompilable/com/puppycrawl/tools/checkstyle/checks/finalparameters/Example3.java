@@ -7,7 +7,7 @@
   </module>
 </module>
 */
-// non-compiled with javac: Compilable with Java21
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.finalparameters;
 
 // xdoc section -- start

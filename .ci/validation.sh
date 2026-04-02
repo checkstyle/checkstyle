@@ -730,7 +730,19 @@ javac20)
       done
   fi
   ;;
-
+check-no-java21-noncompilable)
+  files=($(grep -Rli --include='*.java' ': Compilable with Java21' \
+        src/test/resources-noncompilable \
+        src/it/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable || true))
+  if [[ ${#files[@]} -ne 0 ]]; then
+    echo "ERROR: The following files have 'Compilable with Java21' comment"
+    echo "but should use 'Compilable with Java25' instead:"
+    printf '%s\n' "${files[@]}"
+    exit 1
+  fi
+  echo "No files with Compilable with Java21 comment found. Check passed."
+  ;;
 javac21)
   files=($(grep -Rli --include='*.java' ': Compilable with Java21' \
         src/test/resources-noncompilable \
