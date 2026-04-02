@@ -60,4 +60,10 @@ public class CatchHandler extends BlockParentHandler {
         checkCondExpr();
     }
 
+    @Override
+    protected boolean shouldCheckIndentationForChild(DetailAST child) {
+        final DetailAST leftCurly = getLeftCurly();
+        return child.getLineNo() != leftCurly.getLineNo();
+    }
+
 }
