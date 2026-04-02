@@ -43,6 +43,20 @@ import com.puppycrawl.tools.checkstyle.grammar.SimpleToken;
         return VOID_TAGS.contains(tagName.toLowerCase());
     }
 
+    public boolean isSeeAnchorTag() {
+        for (int i = 3; i <= 8; i++) {
+            int tokenType = _input.LT(i).getType();
+            if (tokenType == TAG_NAME) {
+                return _input.LT(i).getText().equalsIgnoreCase("a");
+            }
+            if (tokenType != TEXT && tokenType != NEWLINE
+                    && tokenType != LEADING_ASTERISK) {
+                return false;
+            }
+        }
+        return false;
+    }
+
     public JavadocCommentsParser(CommonTokenStream tokens, Set<SimpleToken> unclosed) {
         super(tokens);
         _interp = new ParserATNSimulator(
@@ -119,7 +133,10 @@ seeTag
     : AT_SIGN
      ( tagName=SEE STRING_LITERAL
      | tagName=SEE reference description?
-     | tagName=SEE htmlElement description?
+     | { isSeeAnchorTag() }?
+       tagName=SEE tightElement description?
+     | { isSeeAnchorTag() }?
+       tagName=SEE selfClosingElement description?
      )
     ;
 
