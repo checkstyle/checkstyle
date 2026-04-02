@@ -694,7 +694,7 @@ javac17)
       mkdir -p target
       for file in "${files[@]}"
       do
-        javac --release 17 --enable-preview -d target "${file}"
+        javac --release 17 -d target "${file}"
       done
   fi
   ;;
@@ -710,7 +710,7 @@ javac19)
       mkdir -p target
       for file in "${files[@]}"
       do
-        javac --release 19 --enable-preview -d target "${file}"
+        javac --release 19 -d target "${file}"
       done
   fi
   ;;
@@ -726,11 +726,10 @@ javac20)
       mkdir -p target
       for file in "${files[@]}"
       do
-        javac --release 20 --enable-preview -d target "${file}"
+        javac --release 20 -d target "${file}"
       done
   fi
   ;;
-
 javac21)
   files=($(grep -Rli --include='*.java' ': Compilable with Java21' \
         src/test/resources-noncompilable \
@@ -742,7 +741,7 @@ javac21)
     mkdir -p target
     for file in "${files[@]}"
     do
-      javac --release 21 --enable-preview -d target "${file}"
+      javac --release 21 -d target "${file}"
     done
   fi
   ;;
@@ -758,7 +757,7 @@ javac22)
     mkdir -p target
     for file in "${files[@]}"
     do
-      javac --release 22 --enable-preview -d target "${file}"
+      javac --release 22 -d target "${file}"
     done
   fi
   ;;
@@ -774,7 +773,7 @@ javac25)
     mkdir -p target
     for file in "${files[@]}"
     do
-      javac --release 25 --enable-preview -d target "${file}"
+      javac --release 25 -d target "${file}"
     done
   fi
   ;;
