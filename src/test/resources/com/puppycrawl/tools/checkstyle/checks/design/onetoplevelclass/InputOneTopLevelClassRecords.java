@@ -1,5 +1,6 @@
 /*
 OneTopLevelClass
+violatingClassName = (default)null
 
 
 */
@@ -17,3 +18,5 @@ record TestRecord1() { // violation
 record TestRecord2() { // violation
 
 }
+
+
