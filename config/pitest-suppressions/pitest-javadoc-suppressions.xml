@@ -1,3 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>JavadocTagContinuationIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck</mutatedClass>
+    <mutatedMethod>getTargetedTextNodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailNode::getType</description>
+    <lineContent>if (child.getType() == JavadocCommentsTokenTypes.DESCRIPTION</lineContent>
+  </mutation>
+  <mutation unstable="false">
+    <sourceFile>JavadocTagContinuationIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck</mutatedClass>
+    <mutatedMethod>getTargetedTextNodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (child.getType() == JavadocCommentsTokenTypes.DESCRIPTION</lineContent>
+  </mutation>
 </suppressedMutations>
