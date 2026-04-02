@@ -87,7 +87,7 @@ public class InputRightCurlyTestOptionAlone {
         String value();
     }
 
-    public @interface TestAnnottation4 { String value();
+    public @interface TestAnnotation4 { String value();
     }
 
     interface Interface1
