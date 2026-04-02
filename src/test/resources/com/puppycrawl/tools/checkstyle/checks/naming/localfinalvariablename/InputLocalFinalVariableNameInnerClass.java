@@ -21,7 +21,7 @@ class InputLocalFinalVariableNameInnerClass
         public int fData;
     }
 
-    // Ignore - 2 vilations
+    // Ignore - 2 violations
     interface InnerInterface2
     {
         // Ignore - should be all upper case
