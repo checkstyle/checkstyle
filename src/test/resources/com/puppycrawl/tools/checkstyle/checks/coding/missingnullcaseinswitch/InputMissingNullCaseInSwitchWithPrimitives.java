@@ -83,7 +83,7 @@ public class InputMissingNullCaseInSwitchWithPrimitives {
     }
 
     void boxedTypes(Integer i) {
-        switch (i) {   // case label are of a refetence type (Integer) but we can't detect
+        switch (i) {   // case labels are of a reference type (Integer) but we can't detect
             default -> {}
             case 1 -> {}
             case 2 -> {}

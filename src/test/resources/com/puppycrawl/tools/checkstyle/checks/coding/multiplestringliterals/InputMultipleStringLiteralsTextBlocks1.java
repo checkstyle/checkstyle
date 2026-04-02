@@ -11,13 +11,13 @@ ignoreOccurrenceContext = (default)ANNOTATION
 package com.puppycrawl.tools.checkstyle.checks.coding.multiplestringliterals;
 
 public class InputMultipleStringLiteralsTextBlocks1 {
-    String string1 = "string"; // occurance #1 // violation
+    String string1 = "string"; // occurrence #1 // violation
     String string2a = "string"; // violation #1
     String string2b = """
             string"""; // violation #2
 
     String string3 = """
-            other string"""; // occurance #1 // violation above
+            other string"""; // occurrence #1 // violation above
     String string4 = """
             other string"""; // violation below
     String string5 = """
