@@ -201,5 +201,11 @@
             files="lineending[\\/]Example3.java"/>
   <suppress checks="LineLength"
             files="lineending[\\/]Example4.java"/>
+  <suppress checks="LineLength"
+            files="modifierorder[\\/]Example1\.java"/>
+  <suppress checks="LineLength"
+            files="modifierorder[\\/]Example3\.java"/>
+  <suppress checks="LineLength"
+            files="suppressionxpathfilter[\\/]Example10\.java"/>
 
 </suppressions>
