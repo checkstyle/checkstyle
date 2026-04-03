@@ -26,6 +26,7 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsCla
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -388,6 +389,19 @@ public class TokenUtilTest {
         assertWithMessage("Result is not expected")
                 .that(TokenUtil.isBooleanLiteralType(TokenTypes.LOR))
                 .isFalse();
+    }
+
+    @Test
+    public void testAsBitSetWithEmptyToken() {
+        final BitSet bitSet = TokenUtil.asBitSet("IDENT", " ", "CLASS_DEF");
+
+        final BitSet expected = new BitSet();
+        expected.set(TokenTypes.IDENT);
+        expected.set(TokenTypes.CLASS_DEF);
+
+        assertWithMessage("Empty tokens should be ignored")
+                .that(bitSet)
+                .isEqualTo(expected);
     }
 
 }
