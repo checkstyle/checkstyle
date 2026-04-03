@@ -2,13 +2,6 @@
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field configuration</message>
-    <lineContent>private Configuration configuration;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java</fileName>
     <specifier>toarray.nullable.elements.not.newarray</specifier>
     <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
     <lineContent>return result.toArray(CommonUtil.EMPTY_STRING_ARRAY);</lineContent>
