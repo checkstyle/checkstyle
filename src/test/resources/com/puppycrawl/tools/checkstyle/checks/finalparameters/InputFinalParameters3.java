@@ -20,16 +20,6 @@ import javax.swing.Action;
  **/
 class InputFinalParameters3
 {
-    /** no param constructor */
-    InputFinalParameters3()
-    {
-    }
-
-    /** non final param constructor */
-    InputFinalParameters3(String s)
-    {
-    }
-
     /** non final param constructor */
     InputFinalParameters3(final Integer i)
     {
@@ -120,62 +110,6 @@ class InputFinalParameters3
     }
 
     void methodC(String[] args) { // violation, 'args' should be final
-    }
-
-    /** some catch blocks */
-    void method1()
-    {
-        try {
-            String.CASE_INSENSITIVE_ORDER.equals("");
-        }
-        catch (NullPointerException npe) {
-            npe.getMessage();
-        }
-        catch (@MyAnnotation33 final ClassCastException e) {
-            e.getMessage();
-        }
-        catch (RuntimeException e) {
-            e.getMessage();
-        }
-        catch (@MyAnnotation33 NoClassDefFoundError e) {
-            e.getMessage();
-        }
-    }
-
-    native void method(int i);
-}
-
-abstract class AbstractClass3
-{
-    public abstract void abstractMethod(int aParam);
-}
-
-class Foo3
-{
-    /* Some for-each clauses */
-    public void Bar()
-    {
-        for(String s : someExpression())
-        {
-
-        }
-        for(final String s : someExpression())
-        {
-
-        }
-        for(@MyAnnotation33 String s : someExpression())
-        {
-
-        }
-        for(@MyAnnotation33 final String s : someExpression())
-        {
-
-        }
-    }
-
-    private String[] someExpression()
-    {
-        return null;
     }
 }
 
