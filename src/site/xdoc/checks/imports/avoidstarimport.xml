@@ -59,6 +59,13 @@
               <td><code>{}</code></td>
               <td>3.2</td>
             </tr>
+            <tr>
+              <td><a id="maxAllowedStarImports"/><a href="#maxAllowedStarImports">maxAllowedStarImports</a></td>
+              <td>Control how many star imports are allowed.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>0</code></td>
+              <td>13.4.0</td>
+            </tr>
           </table>
         </div>
       </subsection>
@@ -201,6 +208,28 @@ import java.util.Scanner;
 import java.io.*;
 import static java.lang.Math.*;
 import java.util.*; // violation, 'Using the '.*' form of import should be avoided.'
+import java.net.*;
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check so that at most a given count of star imports are allowed:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidStarImport"&gt;
+      &lt;property name="maxAllowedStarImports" value="4"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.Scanner;
+import java.io.*;
+import static java.lang.Math.*;
+import java.util.*;
 import java.net.*;
 </code></pre></div>
       </subsection>
