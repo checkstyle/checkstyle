@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -229,12 +230,11 @@ public class IllegalInstantiationCheck
                 if (isSamePackage(className, pkgNameLen, illegal)
                         || isStandardClass(className, illegal)) {
                     fullClassName = illegal;
+                    break;
                 }
-                else {
-                    fullClassName = checkImportStatements(className);
-                }
-
-                if (fullClassName != null) {
+                final Optional<String> importResult = checkImportStatements(className);
+                if (importResult.isPresent()) {
+                    fullClassName = importResult.orElseThrow();
                     break;
                 }
             }
@@ -246,11 +246,9 @@ public class IllegalInstantiationCheck
      * Check import statements.
      *
      * @param className name of the class
-     * @return value of illegal instantiated type
+     * @return Optional containing value of illegal instantiated type, if found
      */
-    private String checkImportStatements(String className) {
-        String illegalType = null;
-        // import statements
+    private Optional<String> checkImportStatements(String className) {
         for (FullIdent importLineText : imports) {
             String importArg = importLineText.getText();
             if (importArg.endsWith(".*")) {
@@ -259,11 +257,10 @@ public class IllegalInstantiationCheck
             }
             if (CommonUtil.baseClassName(importArg).equals(className)
                     && classes.contains(importArg)) {
-                illegalType = importArg;
-                break;
+                return Optional.of(importArg);
             }
         }
-        return illegalType;
+        return Optional.empty();
     }
 
     /**
