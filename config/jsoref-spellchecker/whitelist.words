@@ -865,6 +865,7 @@ multiplevariabledeclarations
 Multiset
 multithreading
 mutableexception
+mutationtest
 MVC
 mvn
 mvnrepository
@@ -1079,7 +1080,6 @@ POJO
 Popup
 Postgresql
 prebuilts
-prefs
 PRESIZE
 prettyprint
 printf
