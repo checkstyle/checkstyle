@@ -44,9 +44,6 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "80:17: " + getCheckMessage(MSG_KEY, "s"),
             "95:45: " + getCheckMessage(MSG_KEY, "e"),
             "98:36: " + getCheckMessage(MSG_KEY, "e"),
-            "115:18: " + getCheckMessage(MSG_KEY, "aParam"),
-            "118:18: " + getCheckMessage(MSG_KEY, "args"),
-            "121:18: " + getCheckMessage(MSG_KEY, "args"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalParameters.java"), expected);
@@ -71,9 +68,6 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "81:17: " + getCheckMessage(MSG_KEY, "s"),
             "96:45: " + getCheckMessage(MSG_KEY, "e"),
             "99:36: " + getCheckMessage(MSG_KEY, "e"),
-            "116:18: " + getCheckMessage(MSG_KEY, "aParam"),
-            "119:18: " + getCheckMessage(MSG_KEY, "args"),
-            "122:18: " + getCheckMessage(MSG_KEY, "args"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalParameters3.java"), expected);
@@ -81,23 +75,66 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCatchToken() throws Exception {
-        final String[] expected = {
-            "131:16: " + getCheckMessage(MSG_KEY, "npe"),
-            "137:16: " + getCheckMessage(MSG_KEY, "e"),
-            "140:16: " + getCheckMessage(MSG_KEY, "e"),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFinalParameters4.java"), expected);
     }
 
     @Test
     public void testForEachClauseToken() throws Exception {
-        final String[] expected = {
-            "158:13: " + getCheckMessage(MSG_KEY, "s"),
-            "166:13: " + getCheckMessage(MSG_KEY, "s"),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFinalParameters5.java"), expected);
+    }
+
+    @Test
+    public void testDefaultTokensSplit() throws Exception {
+        final String[] expected = {
+            "18:18: " + getCheckMessage(MSG_KEY, "aParam"),
+            "21:18: " + getCheckMessage(MSG_KEY, "args"),
+            "24:18: " + getCheckMessage(MSG_KEY, "args"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalParameters6.java"), expected);
+    }
+
+    @Test
+    public void testCtorTokenSplit() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalParameters7.java"), expected);
+    }
+
+    @Test
+    public void testMethodTokenSplit() throws Exception {
+        final String[] expected = {
+            "18:18: " + getCheckMessage(MSG_KEY, "aParam"),
+            "21:18: " + getCheckMessage(MSG_KEY, "args"),
+            "24:18: " + getCheckMessage(MSG_KEY, "args"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalParameters8.java"), expected);
+    }
+
+    @Test
+    public void testCatchTokenSplit() throws Exception {
+        final String[] expected = {
+            "33:16: " + getCheckMessage(MSG_KEY, "npe"),
+            "39:16: " + getCheckMessage(MSG_KEY, "e"),
+            "42:16: " + getCheckMessage(MSG_KEY, "e"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalParameters9.java"), expected);
+    }
+
+    @Test
+    public void testForEachClauseTokenSplit() throws Exception {
+        final String[] expected = {
+            "60:13: " + getCheckMessage(MSG_KEY, "s"),
+            "68:13: " + getCheckMessage(MSG_KEY, "s"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalParameters10.java"), expected);
     }
 
     @Test
