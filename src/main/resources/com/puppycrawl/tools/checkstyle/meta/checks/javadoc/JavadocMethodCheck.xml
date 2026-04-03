@@ -77,12 +77,10 @@
                <description>Control whether to allow inline return tags.</description>
             </property>
             <property default-value="false" name="allowMissingParamTags" type="boolean">
-               <description>Control whether to ignore violations when a method has parameters
- but does not have matching &lt;code&gt;param&lt;/code&gt; tags in the javadoc.</description>
+               <description>Control whether to ignore violations when a method has parameters but does not have matching &lt;code&gt;param&lt;/code&gt; tags in the javadoc.</description>
             </property>
             <property default-value="false" name="allowMissingReturnTag" type="boolean">
-               <description>Control whether to ignore violations when a method returns non-void type
- and does not have a &lt;code&gt;return&lt;/code&gt; tag in the javadoc.</description>
+               <description>Control whether to ignore violations when a method returns non-void type and does not have a &lt;code&gt;return&lt;/code&gt; tag in the javadoc.</description>
             </property>
             <property default-value="Override"
                       name="allowedAnnotations"

@@ -66,8 +66,7 @@
                <description>Specify pattern for strings allowed before the comment.</description>
             </property>
             <property name="legalComment" type="java.util.regex.Pattern">
-               <description>Define pattern for text allowed in trailing comments.
- This pattern will not be applied to multiline comments.</description>
+               <description>Define pattern for text allowed in trailing comments. This pattern will not be applied to multiline comments.</description>
             </property>
          </properties>
          <message-keys>
