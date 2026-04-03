@@ -170,3 +170,21 @@ steps:
                  eq(variables['Build.Reason'], 'Schedule')
                )
            )
+
+  - task: Cache@2
+    inputs:
+      key: 'maven | "$(Agent.OS)" | **/pom.xml | "$(Build.BuildId)"'
+      restoreKeys: |
+        maven | "$(Agent.OS)" | **/pom.xml
+        maven | "$(Agent.OS)"
+        maven
+      path: |
+        $(MAVEN_CACHE_FOLDER)
+        .mvn/wrapper
+    displayName: Save Maven cache after master build
+    condition: |
+      and(
+        succeeded(),
+        ne(variables.SKIP_CACHE, 'true'),
+        eq(variables['Build.SourceBranch'], 'refs/heads/master')
+      )
