@@ -96,11 +96,15 @@ public final class ModuleJavadocParsingUtil {
      * @return true if the element starts the "Notes" section, false otherwise.
      */
     private static boolean isStartOfNotesSection(DetailNode htmlElement) {
-        final DetailNode htmlContentNode = JavadocUtil.findFirstToken(
-            htmlElement, JavadocCommentsTokenTypes.HTML_CONTENT);
+        boolean result = false;
+        if (htmlElement != null) {
+            final DetailNode htmlContentNode = JavadocUtil.findFirstToken(
+                htmlElement, JavadocCommentsTokenTypes.HTML_CONTENT);
 
-        return htmlContentNode != null && JavadocMetadataScraperUtil.isChildNodeTextMatches(
-            htmlContentNode, NOTES_LINE);
+            result = htmlContentNode != null && JavadocMetadataScraperUtil.isChildNodeTextMatches(
+                htmlContentNode, NOTES_LINE);
+        }
+        return result;
     }
 
     /**
@@ -171,8 +175,12 @@ public final class ModuleJavadocParsingUtil {
      */
     public static String getModuleDescription(DetailNode moduleJavadoc) {
         final DetailNode descriptionEndNode = getDescriptionEndNode(moduleJavadoc);
-
-        return JavadocMetadataScraperUtil.constructSubTreeText(moduleJavadoc, descriptionEndNode);
+        String result = "";
+        if (descriptionEndNode != null) {
+            result = JavadocMetadataScraperUtil.constructSubTreeText(moduleJavadoc,
+                    descriptionEndNode);
+        }
+        return result;
     }
 
     /**
@@ -183,9 +191,16 @@ public final class ModuleJavadocParsingUtil {
      */
     public static String getModuleSinceVersion(DetailNode moduleJavadoc) {
         final DetailNode sinceTagNode = getModuleSinceVersionTagStartNode(moduleJavadoc);
-        return JavadocMetadataScraperUtil
-                    .constructSubTreeText(sinceTagNode, sinceTagNode.getFirstChild())
-                    .replace("@since ", "");
+        String result = "";
+
+        if (sinceTagNode == null) {
+            result = "";
+        }
+        else if (sinceTagNode.getFirstChild() != null) {
+            result = JavadocMetadataScraperUtil.constructSubTreeText(sinceTagNode,
+                    sinceTagNode.getFirstChild()).replace("@since ", "");
+        }
+        return result;
     }
 
     /**
@@ -218,33 +233,43 @@ public final class ModuleJavadocParsingUtil {
      */
     public static DetailNode getNotesSectionStartNode(DetailNode moduleJavadoc) {
         DetailNode notesStartNode = null;
-        DetailNode node = moduleJavadoc.getFirstChild();
+        if (moduleJavadoc != null) {
+            DetailNode node = moduleJavadoc.getFirstChild();
 
-        while (node != null) {
-            if (node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT) {
-                boolean found = false;
-                if (JavadocUtil.isTag(node, "ul")) {
-                    final DetailNode htmlContentNode = JavadocUtil.findFirstToken(
-                        node, JavadocCommentsTokenTypes.HTML_CONTENT);
-                    if (isStartOfNotesSection(htmlContentNode.getFirstChild())) {
-                        notesStartNode = node;
-                        found = true;
-                    }
-                }
-                else if ((JavadocUtil.isTag(node, "p")
-                            || JavadocUtil.isTag(node, "li"))
-                            && isStartOfNotesSection(node)) {
+            while (node != null) {
+                if (isNotesSectionNode(node)) {
                     notesStartNode = node;
-                    found = true;
-                }
-                if (found) {
                     break;
                 }
+                node = node.getNextSibling();
             }
-            node = node.getNextSibling();
         }
 
         return notesStartNode;
+    }
+
+    /**
+     * Checks if the given node is the start of the Notes section.
+     *
+     * @param node the node to check.
+     * @return true if the node is the start of the Notes section, false otherwise.
+     */
+    private static boolean isNotesSectionNode(DetailNode node) {
+        boolean result = false;
+        if (node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT) {
+            if (JavadocUtil.isTag(node, "ul")) {
+                final DetailNode htmlContentNode = JavadocUtil.findFirstToken(
+                    node, JavadocCommentsTokenTypes.HTML_CONTENT);
+                result = htmlContentNode != null
+                        && isStartOfNotesSection(htmlContentNode.getFirstChild());
+            }
+            else {
+                result = (JavadocUtil.isTag(node, "p")
+                            || JavadocUtil.isTag(node, "li"))
+                            && isStartOfNotesSection(node);
+            }
+        }
+        return result;
     }
 
     /**
@@ -255,14 +280,21 @@ public final class ModuleJavadocParsingUtil {
      * @return the {@code @since} tag start node, or {@code null} if not found
      */
     public static DetailNode getModuleSinceVersionTagStartNode(DetailNode moduleJavadoc) {
-        return JavadocUtil.getAllNodesOfType(
-                moduleJavadoc, JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG).stream()
-            .filter(javadocTag -> {
-                return javadocTag.getFirstChild().getType()
-                        == JavadocCommentsTokenTypes.SINCE_BLOCK_TAG;
-            })
-            .findFirst()
-            .orElse(null);
+        DetailNode result = null;
+
+        if (moduleJavadoc != null) {
+            result = JavadocUtil.getAllNodesOfType(
+                    moduleJavadoc, JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG).stream()
+                .filter(javadocTag -> {
+                    final DetailNode firstChild = javadocTag.getFirstChild();
+                    return firstChild != null
+                            && firstChild.getType()
+                                == JavadocCommentsTokenTypes.SINCE_BLOCK_TAG;
+                })
+                .findFirst()
+                .orElse(null);
+        }
+        return result;
     }
 
     /**
@@ -273,13 +305,19 @@ public final class ModuleJavadocParsingUtil {
      *     otherwise just the last node of module's javadoc.
      */
     public static DetailNode getNodeBeforeJavadocTags(DetailNode moduleJavadoc) {
-        DetailNode nodeBeforeJavadocTags = moduleJavadoc.getFirstChild();
+        DetailNode nodeBeforeJavadocTags = null;
 
-        while (nodeBeforeJavadocTags.getNextSibling() != null
-                && nodeBeforeJavadocTags.getNextSibling().getType()
-                    != JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG) {
+        if (moduleJavadoc != null) {
+            nodeBeforeJavadocTags = moduleJavadoc.getFirstChild();
 
-            nodeBeforeJavadocTags = nodeBeforeJavadocTags.getNextSibling();
+            if (nodeBeforeJavadocTags != null) {
+                while (nodeBeforeJavadocTags.getNextSibling() != null
+                        && nodeBeforeJavadocTags.getNextSibling().getType()
+                            != JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG) {
+
+                    nodeBeforeJavadocTags = nodeBeforeJavadocTags.getNextSibling();
+                }
+            }
         }
 
         return nodeBeforeJavadocTags;
@@ -302,10 +340,14 @@ public final class ModuleJavadocParsingUtil {
         else {
             final DetailNode notesEndNode = getNodeBeforeJavadocTags(moduleJavadoc);
 
-            final String unprocessedNotes =
-                    JavadocMetadataScraperUtil.constructSubTreeText(
-                        notesStartNode, notesEndNode);
-            result = NOTES_LINE_WITH_NEWLINE.matcher(unprocessedNotes).replaceAll("");
+            if (notesEndNode == null) {
+                result = "";
+            }
+            else {
+                final String unprocessedNotes = JavadocMetadataScraperUtil.constructSubTreeText(
+                            notesStartNode, notesEndNode);
+                result = NOTES_LINE_WITH_NEWLINE.matcher(unprocessedNotes).replaceAll("");
+            }
         }
 
         return result;
