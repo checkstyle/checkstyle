@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_ANNOTATION_ORDER;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_MODIFIER_ORDER;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.Test;
 
@@ -47,14 +48,186 @@ public class ModifierOrderCheckTest
     }
 
     @Test
+    public void testDefaultModifierOrder() throws Exception {
+        final String[] expected = {
+            "32:11: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputModifierOrderDefault.java"), expected);
+    }
+
+    @Test
+    public void testOpenjdkModifierOrder() throws Exception {
+        final String[] expected = {
+            "72:19: " + getCheckMessage(MSG_MODIFIER_ORDER, "static"),
+            "77:19: " + getCheckMessage(MSG_MODIFIER_ORDER, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputModifierOrderOpenjdk.java"), expected);
+    }
+
+    @Test
+    public void testCustomModifierOrder() throws Exception {
+        final String[] expected = {
+            "68:19: " + getCheckMessage(MSG_MODIFIER_ORDER, "static"),
+            "73:19: " + getCheckMessage(MSG_MODIFIER_ORDER, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputModifierOrderCustom.java"), expected);
+    }
+
+    @Test
+    public void testInvalidModifierOrderProperty() {
+        final ModifierOrderCheck check = new ModifierOrderCheck();
+        final IllegalArgumentException exception =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> check.setModifierOrder("invalid_style"));
+
+        assertWithMessage("Invalid exception message")
+            .that(exception.getMessage())
+            .isEqualTo("Invalid modifier in custom order: invalid_style");
+    }
+
+    @Test
+    public void testModifierOrderCaseInsensitive() {
+        final ModifierOrderCheck check = new ModifierOrderCheck();
+
+        check.setModifierOrder("DEFAULT");
+        check.setModifierOrder("OpenJDK");
+
+        check.setModifierOrder(" default ");
+        check.setModifierOrder(" openjdk ");
+
+        assertWithMessage("Setting case-insensitive style names should not throw")
+            .that(check)
+            .isNotNull();
+    }
+
+    @Test
+    public void testCustomModifierOrderWithWhitespace() {
+        final ModifierOrderCheck check = new ModifierOrderCheck();
+
+        check.setModifierOrder("public, static , final");
+
+        assertWithMessage("Setting modifier order with whitespace should not throw")
+            .that(check)
+            .isNotNull();
+    }
+
+    @Test
+    public void testAllValidModifiers() {
+        final ModifierOrderCheck check = new ModifierOrderCheck();
+
+        check.setModifierOrder("public");
+        check.setModifierOrder("protected");
+        check.setModifierOrder("private");
+        check.setModifierOrder("abstract");
+        check.setModifierOrder("default");
+        check.setModifierOrder("static");
+        check.setModifierOrder("sealed");
+        check.setModifierOrder("non-sealed");
+        check.setModifierOrder("final");
+        check.setModifierOrder("transient");
+        check.setModifierOrder("volatile");
+        check.setModifierOrder("synchronized");
+        check.setModifierOrder("native");
+        check.setModifierOrder("strictfp");
+
+        assertWithMessage("All valid modifier keywords should be accepted without throwing")
+            .that(check)
+            .isNotNull();
+    }
+
+    @Test
+    public void testInvalidModifierInCustomOrder() {
+        final ModifierOrderCheck check = new ModifierOrderCheck();
+
+        final String[] invalidModifiers = {
+            "publick", "privat", "statick", "finl", "abstractt",
+            "transientt", "volatilee", "synchronize", "nativee", "strictfpp",
+            "unknown", "modifier", "test", "",
+        };
+
+        for (String invalidModifier : invalidModifiers) {
+            final IllegalArgumentException exception =
+                    getExpectedThrowable(IllegalArgumentException.class,
+                            () -> check.setModifierOrder(invalidModifier));
+
+            assertWithMessage("Invalid exception message for: " + invalidModifier)
+                .that(exception.getMessage())
+                .isEqualTo("Invalid modifier in custom order: " + invalidModifier);
+        }
+    }
+
+    @Test
+    public void testModifierOrderPropertyActuallyChangesBehavior() throws Exception {
+        final String[] expectedDefault = {
+            "17:11: " + getCheckMessage(MSG_MODIFIER_ORDER, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputModifierOrderFinalStatic.java"), expectedDefault);
+    }
+
+    @Test
+    public void testCustomModifierOrderWithMultipleModifiers() throws Exception {
+        final ModifierOrderCheck check = new ModifierOrderCheck();
+        check.setModifierOrder("final, public, static");
+
+        assertWithMessage("Setting multiple custom modifiers should not throw")
+            .that(check)
+            .isNotNull();
+    }
+
+    @Test
+    public void testTrimmingOfWhitespaceInCustomModifierOrder() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputModifierOrderWhitespaceTrim.java"), expected);
+    }
+
+    @Test
+    public void testTrimmingOfWhitespaceWithInvalidModifier() {
+        final ModifierOrderCheck check = new ModifierOrderCheck();
+
+        final IllegalArgumentException exception =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> check.setModifierOrder(" publick "));
+
+        assertWithMessage("Invalid exception message should show trimmed modifier")
+            .that(exception.getMessage())
+            .isEqualTo("Invalid modifier in custom order: publick");
+    }
+
+    @Test
+    public void testTrimmingMakesInvalidModifierValid() {
+        final ModifierOrderCheck check = new ModifierOrderCheck();
+
+        check.setModifierOrder(" public , static ");
+
+        assertWithMessage("Whitespace-padded valid modifiers should be accepted without throwing")
+            .that(check)
+            .isNotNull();
+    }
+
+    @Test
+    public void testCustomModifierOrderBehaviorDifferentFromDefault() throws Exception {
+        final String[] expectedOpenJdk = {
+            "18:21: " + getCheckMessage(MSG_MODIFIER_ORDER, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputModifierOrderDefaultStatic.java"), expectedOpenJdk);
+    }
+
+    @Test
     public void testItOne() throws Exception {
         final String[] expected = {
-            "15:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "final"),
-            "19:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
-            "25:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
-            "35:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation2"),
-            "40:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation2"),
-            "50:35: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation4"),
+            "16:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "final"),
+            "20:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
+            "26:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
+            "36:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation2"),
+            "41:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation2"),
+            "51:35: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation4"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputModifierOrderItOne.java"), expected);
@@ -64,8 +237,8 @@ public class ModifierOrderCheckTest
     public void testItTwo() throws Exception {
         final String[] expected = {
 
-            "15:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "final"),
-            "57:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "default"),
+            "16:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "final"),
+            "58:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "default"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputModifierOrderItTwo.java"), expected);
@@ -130,7 +303,7 @@ public class ModifierOrderCheckTest
     @Test
     public void testSkipTypeAnnotationsOne() throws Exception {
         final String[] expected = {
-            "101:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
+            "103:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputModifierOrderTypeAnnotationsOne.java"),
@@ -148,7 +321,7 @@ public class ModifierOrderCheckTest
     @Test
     public void testAnnotationOnAnnotationDeclaration() throws Exception {
         final String[] expected = {
-            "9:8: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@InterfaceAnnotation"),
+            "11:8: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@InterfaceAnnotation"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputModifierOrderAnnotationDeclaration.java"), expected);
@@ -157,12 +330,12 @@ public class ModifierOrderCheckTest
     @Test
     public void testModifierOrderSealedAndNonSealed() throws Exception {
         final String[] expected = {
-            "10:8: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
-            "27:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
-            "45:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "sealed"),
-            "51:11: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
-            "54:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "static"),
-            "59:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "non-sealed"),
+            "12:8: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
+            "29:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
+            "47:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "sealed"),
+            "53:11: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
+            "56:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "static"),
+            "61:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "non-sealed"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputModifierOrderSealedAndNonSealed.java"), expected);
