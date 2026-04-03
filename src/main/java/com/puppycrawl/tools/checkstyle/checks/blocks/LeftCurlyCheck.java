@@ -229,7 +229,7 @@ public class LeftCurlyCheck
      * Skip all {@code TokenTypes.ANNOTATION}s to the first non-annotation.
      *
      * @param ast {@code DetailAST}.
-     * @return {@code DetailAST}.
+     * @return {@code DetailAST} or null if there are no annotations.
      */
     private static DetailAST skipModifierAnnotations(DetailAST ast) {
         DetailAST resultNode = ast;
@@ -257,6 +257,7 @@ public class LeftCurlyCheck
      * @param modifiers {@code DetailAST}.
      * @return {@code DetailAST} or null if there are no annotations.
      */
+    @Nullable
     private static DetailAST findLastAnnotation(DetailAST modifiers) {
         DetailAST annotation = modifiers.findFirstToken(TokenTypes.ANNOTATION);
         while (annotation != null && annotation.getNextSibling() != null
