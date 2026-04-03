@@ -1470,6 +1470,18 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
+    <specifier>type.arguments.not.inferred</specifier>
+    <message>Could not infer type arguments for Optional.map</message>
+    <lineContent>result = Optional.ofNullable(value).map(Object::toString).orElse(null);</lineContent>
+    <details>
+      unsatisfiable constraint: @GuardedBy Object &lt;: @GuardSatisfied Object
+      Object::toString -&gt; inference type: java.util.function.Function&lt;? super java.lang.Object,? extends U&gt;
+      From: Argument constraint
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateSink.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
