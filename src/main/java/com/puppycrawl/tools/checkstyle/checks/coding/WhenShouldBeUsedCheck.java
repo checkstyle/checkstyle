@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -82,12 +83,13 @@ public class WhenShouldBeUsedCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final boolean hasPatternLabel = hasPatternLabel(ast);
-        final DetailAST statementList = getStatementList(ast);
         // until https://github.com/checkstyle/checkstyle/issues/15270
         final boolean isInSwitchRule = ast.getParent().getType() == TokenTypes.SWITCH_RULE;
 
-        if (hasPatternLabel && statementList != null && isInSwitchRule) {
-            final List<DetailAST> blockStatements = getBlockStatements(statementList);
+        final Optional<DetailAST> statementList = getStatementList(ast);
+
+        if (hasPatternLabel && isInSwitchRule && statementList.isPresent()) {
+            final List<DetailAST> blockStatements = getBlockStatements(statementList.get());
 
             final boolean hasAcceptableStatementsOnly = blockStatements.stream()
                     .allMatch(WhenShouldBeUsedCheck::isAcceptableStatement);
@@ -106,11 +108,11 @@ public class WhenShouldBeUsedCheck extends AbstractCheck {
      * Get the statement list token of the case block.
      *
      * @param caseAST the AST node representing {@code LITERAL_CASE}
-     * @return the AST node representing {@code SLIST} of the current case
+     * @return Optional containing the AST node representing {@code SLIST} of the current case
      */
-    private static DetailAST getStatementList(DetailAST caseAST) {
+    private static Optional<DetailAST> getStatementList(DetailAST caseAST) {
         final DetailAST caseParent = caseAST.getParent();
-        return caseParent.findFirstToken(TokenTypes.SLIST);
+        return Optional.ofNullable(caseParent.findFirstToken(TokenTypes.SLIST));
     }
 
     /**
