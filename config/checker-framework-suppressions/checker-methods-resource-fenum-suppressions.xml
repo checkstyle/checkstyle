@@ -133,16 +133,12 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
-    <specifier>methodref.param</specifier>
-    <message>Incompatible parameter type for obj</message>
-    <lineContent>.mapToInt(int.class::cast);</lineContent>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>.mapToInt(item -&gt; (Integer) item);</lineContent>
     <details>
-      found   : @FenumUnqualified Object
-      required: capture extends @FenumTop Object
-      Consequence: method in @FenumUnqualified Class&lt;@FenumUnqualified Integer&gt;
-      @FenumUnqualified Integer cast(@FenumUnqualified Class&lt;@FenumUnqualified Integer&gt; this, @FenumUnqualified Object p0)
-      is not a valid method reference for method in @FenumUnqualified ToIntFunction&lt;capture extends @FenumTop Object&gt;
-      @FenumUnqualified int applyAsInt(@FenumUnqualified ToIntFunction&lt;capture extends @FenumTop Object&gt; this, capture extends @FenumTop Object p0)
+      type of expression: @FenumTop Integer
+      method return type: @FenumUnqualified int
     </details>
   </checkerFrameworkError>
 
