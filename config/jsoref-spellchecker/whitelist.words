@@ -1150,6 +1150,7 @@ requireemptylinebeforeblocktaggroup
 requirethis
 resourceleak
 Rethrown
+Rethrows
 returncount
 returnsreceiver
 reviewdog
