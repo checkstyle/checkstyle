@@ -1470,6 +1470,21 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
+    <specifier>methodref.receiver</specifier>
+    <message>Incompatible receiver type</message>
+    <lineContent>result = Optional.ofNullable(value).map(Object::toString).orElse(null);</lineContent>
+    <details>
+      found   : @GuardSatisfied Object
+      required: @GuardedBy Object
+      Consequence: method in @GuardedBy Object
+      @GuardedBy String toString(@GuardSatisfied Object this)
+      is not a valid method reference for method in @GuardedBy Function&lt;@GuardedBy Object, @GuardedBy String&gt;
+      @GuardedBy String apply(@GuardedBy Function&lt;@GuardedBy Object, @GuardedBy String&gt; this, @GuardedBy Object p0)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateSink.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>

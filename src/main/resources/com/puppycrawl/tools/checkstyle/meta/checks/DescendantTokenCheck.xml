@@ -42,8 +42,7 @@
                <description>Specify a minimum count for descendants.</description>
             </property>
             <property default-value="false" name="sumTokenCounts" type="boolean">
-               <description>Control whether the number of tokens found should be calculated
- from the sum of the individual token counts.</description>
+               <description>Control whether the number of tokens found should be calculated from the sum of the individual token counts.</description>
             </property>
             <property default-value=""
                       name="tokens"
