@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule487modifiers;
 
-// violation 2 lines below ''public' modifier out of order with the JLS suggestions.'
+// violation 2 lines below ''public' modifier out of order with the configured modifier order.'
 /** Some javadoc. */
 sealed public class InputModifierOrderNonSealed
     permits InputModifierOrderNonSealed.CircleOne1, InputModifierOrderNonSealed.RectangleOne1,
@@ -20,7 +20,7 @@ sealed public class InputModifierOrderNonSealed
   sealed class SquareOne1 extends InputModifierOrderNonSealed implements SquircleOne1 {
 
     sealed private class OtherSquare extends SquareOne1 permits OtherSquare2 {
-    } // violation above ''private' modifier out of order with the JLS suggestions.'
+    } // violation above ''private' modifier out of order with the configured modifier order.'
 
     private final class OtherSquare2 extends OtherSquare {}
 

@@ -15,8 +15,8 @@ package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
 public class Example10 {
 
   final public void legacyMethod() { // filtered violation 'modifier out of order'
-    strictfp abstract class legacyClass {}
-    // filtered violation above 'modifier out of order'
+    strictfp abstract class legacyClass {} // filtered violation 'modifier out of order'
+
   }
 
   public void otherMethod() {
