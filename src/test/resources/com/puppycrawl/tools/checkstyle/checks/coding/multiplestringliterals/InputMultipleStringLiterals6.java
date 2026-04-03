@@ -11,12 +11,12 @@ package com.puppycrawl.tools.checkstyle.checks.coding.multiplestringliterals;
 
 public class InputMultipleStringLiterals6
 {   /*string literals*/
-    String m = "StringContents"; // violation
+    String m = "StringContents"; // violation, 'The String "StringContents" appears 3 times in the file.'
     String m1 = "SingleString";
-    String m2 = "DoubleString" + "DoubleString"; // violation
+    String m2 = "DoubleString" + "DoubleString"; // violation, 'The String "DoubleString" appears 2 times in the file.'
     String m3 = "" + "";
     String m4 = "" + "";
-    String debugStr = ", " + ", " + ", "; // violation
+    String debugStr = ", " + ", " + ", "; // violation, 'The String ", " appears 3 times in the file.'
 
     void method1() {
         String a1 = "StringContents";
