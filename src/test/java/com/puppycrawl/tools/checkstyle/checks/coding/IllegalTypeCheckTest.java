@@ -23,12 +23,11 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
-import java.io.File;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -282,18 +281,14 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testClearDataBetweenFiles() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        final String violationFile = getPath("InputIllegalTypeTestClearDataBetweenFiles.java");
-        checkConfig.addProperty("illegalClassNames", "java.util.TreeSet");
-        final String[] expected = {
-            "21:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
-            "23:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
-        };
-
-        verify(createChecker(checkConfig), new File[] {
-            new File(violationFile),
-            new File(getPath("InputIllegalTypeSimilarClassName.java")),
-        }, violationFile, expected);
+        final String file1 = getPath("InputIllegalTypeTestClearDataBetweenFiles.java");
+        final String file2 = getPath("InputIllegalTypeSimilarClassName.java");
+        final List<String> expectedFirstInput = List.of(
+            "32:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "34:13: " + getCheckMessage(MSG_KEY, "TreeSet")
+        );
+        final List<String> expectedSecondInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
+        verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
 
     @Test
