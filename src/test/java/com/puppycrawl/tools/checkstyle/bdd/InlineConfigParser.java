@@ -238,7 +238,6 @@ public final class InlineConfigParser {
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
             "com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck",
-            "com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc."
                     + "AbstractJavadocCheckTest$TokenIsNotInAcceptablesCheck",
