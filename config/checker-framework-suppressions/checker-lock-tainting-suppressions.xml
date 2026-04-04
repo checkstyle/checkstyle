@@ -1532,34 +1532,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
     <specifier>type.arguments.not.inferred</specifier>
-    <message>Could not infer type arguments for IntStream.collect</message>
-    <lineContent>.collect(BitSet::new, BitSet::set, BitSet::or);</lineContent>
-    <details>
-      unsatisfiable constraint: @GuardedBy BitSet &lt;: @GuardSatisfied BitSet
-      @GuardedBy BitSet &lt;: use of R from Arrays.stream(tokens).map(String::trim).filter(Predicate.not(String::isEmpty)).mapToInt(TokenUtil::getTokenId).collect(BitSet::new, BitSet::set, BitSet::or)
-      From complementary bound.: @GuardedBy BitSet -&gt; use of R from Arrays.stream(tokens).map(String::trim).filter(Predicate.not(String::isEmpty)).mapToInt(TokenUtil::getTokenId).collect(BitSet::new, BitSet::set, BitSet::or)
-      BitSet::new -&gt; inference type: java.util.function.Supplier&lt;R&gt;
-      From: Argument constraint
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
-    <specifier>type.arguments.not.inferred</specifier>
-    <message>Could not infer type arguments for IntStream.collect</message>
-    <lineContent>.collect(BitSet::new, BitSet::set, BitSet::or);</lineContent>
-    <details>
-      unsatisfiable constraint: @GuardedBy BitSet &lt;: @GuardSatisfied BitSet
-      @GuardedBy BitSet &lt;: use of R from IntStream.of(tokens).collect(BitSet::new, BitSet::set, BitSet::or)
-      From complementary bound.: @GuardedBy BitSet -&gt; use of R from IntStream.of(tokens).collect(BitSet::new, BitSet::set, BitSet::or)
-      BitSet::new -&gt; inference type: java.util.function.Supplier&lt;R&gt;
-      From: Argument constraint
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
-    <specifier>type.arguments.not.inferred</specifier>
     <message>Could not infer type arguments for Stream.collect</message>
     <lineContent>.collect(Collectors.toUnmodifiableMap(</lineContent>
     <details>
