@@ -135,7 +135,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>methodref.param</specifier>
     <message>Incompatible parameter type for obj</message>
-    <lineContent>.mapToInt(int.class::cast);</lineContent>
+    <lineContent>.mapToInt(Integer.class::cast);</lineContent>
     <details>
       found   : @FenumUnqualified Object
       required: capture extends @FenumTop Object
