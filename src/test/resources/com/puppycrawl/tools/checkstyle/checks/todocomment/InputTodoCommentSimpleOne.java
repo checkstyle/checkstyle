@@ -1,4 +1,4 @@
-/* // violation
+/* // violation "Comment matches to-do format 'F.XME:'\."
 TodoComment
 format = FIXME:
 
