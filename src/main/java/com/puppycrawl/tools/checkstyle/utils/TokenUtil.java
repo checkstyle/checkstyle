@@ -31,7 +31,6 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -372,8 +371,11 @@ public final class TokenUtil {
      * @return tokens as BitSet
      */
     public static BitSet asBitSet(int... tokens) {
-        return IntStream.of(tokens)
-                .collect(BitSet::new, BitSet::set, BitSet::or);
+        final BitSet bitSet = new BitSet();
+        for (int token : tokens) {
+            bitSet.set(token);
+        }
+        return bitSet;
     }
 
     /**
@@ -383,11 +385,14 @@ public final class TokenUtil {
      * @return tokens as BitSet
      */
     public static BitSet asBitSet(String... tokens) {
-        return Arrays.stream(tokens)
-                .map(String::trim)
-                .filter(Predicate.not(String::isEmpty))
-                .mapToInt(TokenUtil::getTokenId)
-                .collect(BitSet::new, BitSet::set, BitSet::or);
+        final BitSet bitSet = new BitSet();
+        for (String token : tokens) {
+            final String trimmed = token.trim();
+            if (!trimmed.isEmpty()) {
+                bitSet.set(getTokenId(trimmed));
+            }
+        }
+        return bitSet;
     }
 
 }
