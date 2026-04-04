@@ -312,7 +312,9 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
                     new LocalizedMessage.Utf8Control()
             );
             for (String key : moduleDetails.getViolationMessageKeys()) {
-                result.put(key, bundle.getString(key));
+                if (bundle.containsKey(key)) {
+                    result.put(key, String.valueOf(bundle.getObject(key)));
+                }
             }
         }
         catch (ClassNotFoundException | MissingResourceException ignored) {

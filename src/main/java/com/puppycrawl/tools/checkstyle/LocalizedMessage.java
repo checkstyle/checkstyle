@@ -112,7 +112,13 @@ public class LocalizedMessage {
             // the GlobalProperties is specified by the user for resolving
             // custom classes.
             final ResourceBundle resourceBundle = getBundle();
-            final String pattern = resourceBundle.getString(key);
+            final String pattern;
+            if (resourceBundle.containsKey(key)) {
+                pattern = String.valueOf(resourceBundle.getObject(key));
+            }
+            else {
+                pattern = key;
+            }
             final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
             result = formatter.format(args);
         }
