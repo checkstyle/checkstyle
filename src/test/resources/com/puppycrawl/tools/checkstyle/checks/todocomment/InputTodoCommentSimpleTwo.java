@@ -1,4 +1,4 @@
-/* // violation
+/* // violation "Comment matches to-do format 'F.XME:'\."
 TodoComment
 format = FIXME:
 
@@ -65,13 +65,13 @@ public class InputTodoCommentSimpleTwo {
   	        int tab5 =1;
     }
 
-    // FIXME: // violation
-    /* FIXME: a // violation
+    // FIXME: // violation "Comment matches to-do format 'F.XME:'\."
+    /* FIXME: a // violation "Comment matches to-do format 'F.XME:'\."
      * FIXME:
      * TODO
      */
     /* NOTHING */
-    /* YES */ /* FIXME: x */ /* YES!! */ // violation
+    /* YES */ /* FIXME: x */ /* YES!! */ // violation "Comment matches to-do format 'F.XME:'\."
 
     /** test long comments **/
     void veryLong()
@@ -117,4 +117,3 @@ class InputTodoCommentSimple2
         }
     }
 }
-
