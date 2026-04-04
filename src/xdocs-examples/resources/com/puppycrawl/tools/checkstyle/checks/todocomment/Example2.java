@@ -7,7 +7,7 @@
   </module>
 </module>
 */
-// violation 9 lines above
+// violation 9 lines above 'matches to-do format'
 package com.puppycrawl.tools.checkstyle.checks.todocomment;
 
 // xdoc section -- start
@@ -15,9 +15,12 @@ public class Example2 {
   int i;
   int x;
   public void test() {
-    i++;   // TODO: do differently in future    // violation
-    i++;   // todo: do differently in future    // violation
-    i=i/x; // FIXME: handle x = 0 case          // violation
+    // violation below 'matches to-do format'
+    i++;   // TODO: do differently in future
+    // violation below 'matches to-do format'
+    i++;   // todo: do differently in future
+    // violation below 'matches to-do format'
+    i=i/x; // FIXME: handle x = 0 case
     i=i/x; // FIX :  handle x = 0 case
   }
 }
