@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 public class InputDesignForExtensionOverridableMethods {
 
     public class A {
-        public int foo1(int a, int b) {return a + b;} // violation
+        public int foo1(int a, int b) {return a + b;} // violation 'Class 'A' looks like designed for extension (can be subclassed), but the method 'foo1' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'A' final or making the method 'foo1' static/final/abstract/empty, or adding allowed annotation for the method.'
 
         public void foo2() { }
 

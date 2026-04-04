@@ -47,7 +47,7 @@ public abstract class InputDesignForExtension
 
     // this one is bad: neither abstract, final, nor empty
 
-    protected void doh() // violation
+    protected void doh() // violation 'Class 'InputDesignForExtension' looks like designed for extension (can be subclassed), but the method 'doh' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'InputDesignForExtension' final or making the method 'doh' static/final/abstract/empty, or adding allowed annotation for the method.'
     {
         System.identityHashCode("nonempty and overriding possible");
     }
@@ -101,7 +101,7 @@ public abstract class InputDesignForExtension
     {
     // nonPrivate ctor
     public anotherNonFinalClass(){}
-        public void someMethod() // violation
+        public void someMethod() // violation 'Class 'anotherNonFinalClass' looks like designed for extension (can be subclassed), but the method 'someMethod' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'anotherNonFinalClass' final or making the method 'someMethod' static/final/abstract/empty, or adding allowed annotation for the method.'
         {
         System.identityHashCode("nonempty and overriding is possible");
         }
