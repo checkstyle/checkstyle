@@ -12,12 +12,12 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-@interface InputOneTopLevelClassAnnotation2A { // violation
+@interface InputOneTopLevelClassAnnotation2A { // violation 'Top-level class InputOneTopLevelClassAnnotation2A has to reside in its own source file.'
    String author();
    String date();
 }
 
-@CheckForNull // violation
+@CheckForNull // violation 'Top-level class InputOneTopLevelClassAnnotation2B has to reside in its own source file.'
 @TypeQualifierDefault(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @interface InputOneTopLevelClassAnnotation2B {
