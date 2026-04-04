@@ -1,7 +1,7 @@
 /*
 MultipleStringLiterals
 allowedDuplicates = 2
-ignoreStringsRegexp =
+ignoreStringsRegexp = (default)^""$
 ignoreOccurrenceContext = (default)ANNOTATION
 
 
