@@ -176,6 +176,8 @@ jobs:
           REPO="../../../../checkstyle"
           BASE_BRANCH="upstream/master"
           export MAVEN_OPTS="-Xmx5g"
+          sed -i 's/#local-checkstyle/local-checkstyle/' projects.properties
+          grep local-checkstyle projects.properties
           if [ -f new_module_config.xml ]; then
             groovy diff.groovy -r "$REPO" -p "$REF" -pc new_module_config.xml -m single\
               -l projects.properties -xm "-Dcheckstyle.failsOnError=false"\
