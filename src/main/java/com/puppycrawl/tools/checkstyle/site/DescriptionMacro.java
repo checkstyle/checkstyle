@@ -28,7 +28,6 @@ import org.apache.maven.doxia.macro.MacroRequest;
 import org.apache.maven.doxia.sink.Sink;
 import org.codehaus.plexus.component.annotations.Component;
 
-import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -42,15 +41,12 @@ public class DescriptionMacro extends AbstractMacro {
         final Path modulePath = Path.of((String) request.getParameter("modulePath"));
         final String moduleName = CommonUtil.getFileNameWithoutExtension(modulePath.toString());
 
-        final DetailNode moduleJavadoc = SiteUtil.getModuleJavadoc(moduleName, modulePath);
-        if (moduleJavadoc == null) {
+        SiteUtil.processModule(moduleName, modulePath);
+        final String moduleDescription = JavadocScraperResultUtil.getModuleDescription();
+        if (moduleDescription.isEmpty()) {
             throw new MacroExecutionException(
                 "Javadoc of module " + moduleName + " is not found.");
         }
-
-        final String moduleDescription = ModuleJavadocParsingUtil.getModuleDescription(
-            moduleJavadoc);
-
         ModuleJavadocParsingUtil.writeOutJavadocPortion(moduleDescription, sink);
 
     }
