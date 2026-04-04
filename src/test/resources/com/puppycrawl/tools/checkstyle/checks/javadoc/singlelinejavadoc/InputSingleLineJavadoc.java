@@ -19,8 +19,10 @@ class InputSingleLineJavadoc {
      */
     void foo1() {}
 
-    /** @throws CheckstyleException if a problem occurs */ // violation
-    void foo2() {}
+    /** @throws CheckstyleException if a problem occurs */
+    void foo2() {
+         // violation 2 lines above 'Single-line Javadoc comment should be multi-line.'
+    }
 
     /**
      * @throws CheckstyleException if a problem occurs
@@ -35,7 +37,7 @@ class InputSingleLineJavadoc {
      */
     void foo5() {}
 
-    /** @inheritDoc */ // violation
+    /** @inheritDoc */ // violation 'Single-line Javadoc comment should be multi-line.'
     void foo6() {}
 
     /** {@inheritDoc} */
@@ -47,15 +49,17 @@ class InputSingleLineJavadoc {
     /** {@inheritDoc}  {@link #bar} */
     void foo9() {}
 
-    /** @customTag */ // violation
+    /** @customTag */ // violation 'Single-line Javadoc comment should be multi-line.'
     void bar() {}
 
-    /** @ignoredCustomTag */ // violation
+    /** @ignoredCustomTag */ // violation 'Single-line Javadoc comment should be multi-line.'
     void bar1() {}
 
     /** <h1> Some header </h1> {@inheritDoc} {@code bar1} text*/
     void bar2() {}
 
-    /** @customTag <a> href="https://github.com/checkstyle/checkstyle/"</a> text*/ // violation
-    void bar3() {}
+    /** @customTag <a> href="https://github.com/checkstyle/checkstyle/"</a> text*/
+    void bar3() {
+         // violation 2 lines above 'Single-line Javadoc comment should be multi-line.'
+    }
 }
