@@ -26,6 +26,7 @@ alundblad
 amazonaws
 amd
 androidx
+ANNOS
 annotationlocation
 annotationonsameline
 annotationusestyle
@@ -49,6 +50,7 @@ appveyor
 APRV
 Aqj
 archunit
+args
 Arial
 arity
 Arquillian
@@ -122,6 +124,7 @@ blogspot
 Bludov
 BNOT
 booleanexpressioncomplexity
+bools
 bothfiles
 Bpmn
 breadcrumb
@@ -142,6 +145,7 @@ cacio
 caciocavallosilano
 calledmethods
 camelcase
+cas
 casegroup
 catchparametername
 cba
@@ -185,7 +189,7 @@ clazz
 clemens
 Clickable
 Cloneable
-clss
+cls
 cmdline
 cmp
 cmt
@@ -444,6 +448,7 @@ Findentation
 findstr
 firefox
 firstsentence
+fis
 FIXME
 Fjava
 Fjavadoc
@@ -779,6 +784,7 @@ localhost
 localvariablename
 Loggable
 lombok
+lookaheads
 lookaround
 Loughran
 lparen
@@ -1065,6 +1071,7 @@ pitest
 pkgextra
 pkginfo
 pkx
+placeholders
 PLHM
 plugin
 PMB
@@ -1318,10 +1325,12 @@ taglist
 taskdef
 tbody
 tcr
+tcs
 td
 teamcity
 technotes
 temurin
+tes
 testattr
 Testik
 testinputfolder
