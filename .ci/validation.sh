@@ -996,8 +996,15 @@ no-error-htmlunit)
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
   echo "Checkout target sources ..."
-  checkout_from https://github.com/HtmlUnit/htmlunit
+  checkout_from https://github.com/HtmlUnit/htmlunit.git
   cd .ci-temp/htmlunit
+  # Pin HtmlUnit to a known-good commit to keep CI deterministic.
+  HTMLUNIT_STABLE_SHA="280b6e5738c70a983857231af409344ac53baf7b"
+  HTMLUNIT_STABLE_REF="${HTMLUNIT_STABLE_REF:-${HTMLUNIT_STABLE_SHA}}"
+  git checkout "${HTMLUNIT_STABLE_REF}"
+  echo "HtmlUnit ref requested: ${HTMLUNIT_STABLE_REF}"
+  echo "HtmlUnit commit under test: $(git rev-parse HEAD)"
+  echo "HtmlUnit top commit: $(git log -1 --oneline)"
   echo "checkstyle.suppressions.file=checkstyle_suppressions.xml" > checkstyle.properties
   readarray -t files < <(find src/main/java src/test/java -name "*.java")
   java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
