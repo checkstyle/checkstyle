@@ -294,6 +294,24 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testForceStrictConditionNestedContinuation() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("lineWrappingIndentation", "8");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "8");
+        final String[] expected = {
+            "35:15: " + getCheckMessage(MSG_ERROR_MULTI, "new", 14, "12, 16"),
+        };
+        verifyWarns(checkConfig,
+            getPath("InputIndentationForceStrictConditionNested.java"), expected);
+    }
+
+    @Test
     public void testZeroCaseLevel() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("arrayInitIndent", "4");
