@@ -996,8 +996,10 @@ no-error-htmlunit)
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
   echo "Checkout target sources ..."
-  checkout_from https://github.com/HtmlUnit/htmlunit
+  checkout_from https://github.com/HtmlUnit/htmlunit.git
   cd .ci-temp/htmlunit
+  echo "HtmlUnit commit under test: $(git rev-parse HEAD)"
+  echo "HtmlUnit top commit: $(git log -1 --oneline)"
   echo "checkstyle.suppressions.file=checkstyle_suppressions.xml" > checkstyle.properties
   readarray -t files < <(find src/main/java src/test/java -name "*.java")
   java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
