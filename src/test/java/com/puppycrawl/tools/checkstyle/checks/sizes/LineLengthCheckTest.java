@@ -118,7 +118,6 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     public void testLineLengthIgnoringPackageStatements() throws Exception {
         final String[] expected = {
             "17: " + getCheckMessage(MSG_KEY, 75, 86),
-            "21: " + getCheckMessage(MSG_KEY, 75, 76),
             "29: " + getCheckMessage(MSG_KEY, 75, 77),
         };
 
@@ -130,7 +129,6 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     public void testLineLengthIgnoringImportStatements() throws Exception {
         final String[] expected = {
             "18: " + getCheckMessage(MSG_KEY, 75, 81),
-            "22: " + getCheckMessage(MSG_KEY, 75, 84),
             "30: " + getCheckMessage(MSG_KEY, 75, 77),
         };
 
@@ -160,5 +158,15 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("charset", "IBM1098");
 
         verify(checkerConfig, getPath("InputLineLengthUnmappableCharacters.java"), expected);
+    }
+
+    @Test
+    public void testTextBlockContentIsIgnored() throws Exception {
+        final String[] expected = {
+            "19: " + getCheckMessage(MSG_KEY, 80, 131),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputLineLengthTextBlock.java"), expected);
     }
 }
