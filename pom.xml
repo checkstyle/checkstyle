@@ -3232,6 +3232,11 @@
               <compilerArgs combine.children="append">
                 <!-- -Awarns turns type-checking errors into warnings. -->
                 <arg>-Awarns</arg>
+                <!-- -AsuppressWarnings=methodref.param disables methodref.param specifier which
+                     Checker Framework cannot resolve for method references in generic streams
+                     (e.g. BitSet::set in IntStream.collect):
+                     See https://github.com/checkstyle/checkstyle/pull/19599 -->
+                <arg>-AsuppressWarnings=methodref.param</arg>
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>

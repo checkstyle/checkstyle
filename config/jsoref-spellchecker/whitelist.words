@@ -61,6 +61,7 @@ Asrc
 assertj
 ASTNo
 asttreestringprinter
+Asuppress
 atclause
 atclauseorder
 ATest
@@ -812,6 +813,7 @@ methodcount
 methodlength
 methodname
 methodparampad
+methodref
 methodsandconstructorsannotations
 methodtypeparametername
 MEZk
