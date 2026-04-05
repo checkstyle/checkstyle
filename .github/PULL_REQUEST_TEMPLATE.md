@@ -1,4 +1,4 @@
-# PLEASE READ BEFORE REMOVING
+# Pull Request Submission Guidelines
 
 **Rules:**
 
@@ -26,4 +26,4 @@ To avoid multiple iterations of fixes and CI failures, please read
 but we will help to resolve issues.
 
 ---
-Thanks for reading, feel free to remove this whole message and type what you need.
+Thank you for reviewing these guidelines. You may remove this section and provide your pull request details below.
