@@ -163,6 +163,7 @@ public class LineWrappingHandler {
         }
         final int currentIndent = firstNodeIndent + indentLevel;
 
+        int previousLineIndent = firstNodeIndent;
         for (DetailAST node : firstNodesOnLines.values()) {
             final int currentType = node.getType();
             if (checkForNullParameterChild(node) || checkForMethodLparenNewLine(node)
@@ -173,9 +174,51 @@ public class LineWrappingHandler {
                 logWarningMessage(node, firstNodeIndent);
             }
             else if (!TokenUtil.isOfType(currentType, IGNORED_LIST)) {
-                logWarningMessage(node, currentIndent);
+                previousLineIndent = checkNestedWrappingIndent(node,
+                        currentIndent, firstNodeIndent, indentLevel, previousLineIndent);
             }
         }
+    }
+
+    /**
+     * Checks indentation of a node that is not an RPAREN and not in the ignored list,
+     * accounting for legitimate nested continuation lines when forceStrictCondition is true.
+     *
+     * @param node the node to check.
+     * @param currentIndent expected indent for a single-level wrapped line.
+     * @param firstNodeIndent indent of the first node on the first wrapped line.
+     * @param indentLevel the line wrapping indentation increment.
+     * @param previousLineIndent the indent of the last validly-positioned node.
+     * @return updated previousLineIndent value.
+     */
+    private int checkNestedWrappingIndent(DetailAST node, int currentIndent,
+            int firstNodeIndent, int indentLevel, int previousLineIndent) {
+        final int actualCol = expandedTabsColumnNo(node);
+        final int result;
+        if (previousLineIndent > firstNodeIndent
+                && indentCheck.isForceStrictCondition()) {
+            // allow nested continuation, e.g. && inside a wrapped method arg
+            final int nestedIndent = previousLineIndent + indentLevel;
+            if (actualCol == currentIndent || actualCol == nestedIndent) {
+                result = actualCol;
+            }
+            else {
+                indentCheck.indentationLog(node,
+                        IndentationCheck.MSG_ERROR, node.getText(),
+                        actualCol, currentIndent);
+                result = previousLineIndent;
+            }
+        }
+        else {
+            logWarningMessage(node, currentIndent);
+            if (actualCol == currentIndent) {
+                result = actualCol;
+            }
+            else {
+                result = previousLineIndent;
+            }
+        }
+        return result;
     }
 
     /**
