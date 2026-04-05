@@ -1,3 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>checkNestedWrappingIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
+    <description>changed conditional boundary</description>
+    <lineContent>if (previousLineIndent &gt; firstNodeIndent</lineContent>
+  </mutation>
 </suppressedMutations>
