@@ -997,6 +997,9 @@ no-error-htmlunit)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
+  # Pin HtmlUnit to a known-good commit to keep CI deterministic.
+  HTMLUNIT_STABLE_SHA="6b12beaac15a445cd99af061b17c028aee1c41b7"
+  HTMLUNIT_STABLE_REF="${HTMLUNIT_STABLE_REF:-${HTMLUNIT_STABLE_SHA}}"
   echo "Checkout target sources ..."
   mkdir -p .ci-temp
   cd .ci-temp
@@ -1060,7 +1063,6 @@ no-exception-struts)
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
-
 
 no-exception-checkstyle-sevntu)
   export MAVEN_OPTS="-Xmx4g"
