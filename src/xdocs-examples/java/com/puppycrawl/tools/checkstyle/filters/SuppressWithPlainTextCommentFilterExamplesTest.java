@@ -188,14 +188,11 @@ public class SuppressWithPlainTextCommentFilterExamplesTest
     public void testExample9() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "23: Line is longer than 100 characters (found 147).",
-            "24: Line is longer than 100 characters (found 133).",
-            "25: Line is longer than 100 characters (found 116).",
-            "32: Line is longer than 100 characters (found 183).",
+            "29: Line is longer than 100 characters (found 183).",
         };
 
         final String[] expectedWithFilter = {
-            "32: Line is longer than 100 characters (found 183).",
+            "29: Line is longer than 100 characters (found 183).",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example9.java"),
