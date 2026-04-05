@@ -75,6 +75,12 @@ public class LineLengthCheck extends AbstractFileSetCheck {
     /** Default maximum number of columns in a line. */
     private static final int DEFAULT_MAX_COLUMNS = 80;
 
+    /** Java file extension. */
+    private static final String JAVA_FILE_EXTENSION = ".java";
+
+    /** Text block delimiter. */
+    private static final String TEXT_BLOCK_DELIMITER = "\"\"\"";
+
     /** Specify the maximum line length allowed. */
     private int max = DEFAULT_MAX_COLUMNS;
 
@@ -83,8 +89,26 @@ public class LineLengthCheck extends AbstractFileSetCheck {
 
     @Override
     protected void processFiltered(File file, FileText fileText) {
+        final boolean isJavaFile = file.getName().endsWith(JAVA_FILE_EXTENSION);
+        boolean insideTextBlock = false;
+
         for (int i = 0; i < fileText.size(); i++) {
             final String line = fileText.get(i);
+
+            if (isJavaFile) {
+                final int delimiterCount = getUnescapedTextBlockDelimiterCount(line);
+                if (insideTextBlock) {
+                    if (delimiterCount % 2 != 0) {
+                        insideTextBlock = false;
+                    }
+                    continue;
+                }
+
+                if (delimiterCount % 2 != 0) {
+                    insideTextBlock = true;
+                }
+            }
+
             final int realLength = CommonUtil.lengthExpandedTabs(
                 line, line.codePointCount(0, line.length()), getTabWidth());
 
@@ -92,6 +116,40 @@ public class LineLengthCheck extends AbstractFileSetCheck {
                 log(i + 1, MSG_KEY, max, realLength);
             }
         }
+    }
+
+    /**
+     * Returns the number of unescaped text block delimiters in a line.
+     *
+     * @param line the line to examine
+     * @return number of unescaped text block delimiters
+     */
+    private static int getUnescapedTextBlockDelimiterCount(String line) {
+        int count = 0;
+        for (int index = 0; index <= line.length() - TEXT_BLOCK_DELIMITER.length(); index++) {
+            if (line.startsWith(TEXT_BLOCK_DELIMITER, index)
+                    && !isEscaped(line, index)) {
+                count++;
+                index += TEXT_BLOCK_DELIMITER.length() - 1;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Checks whether the character at {@code index} is escaped by an odd number
+     * of preceding backslashes.
+     *
+     * @param line the line to examine
+     * @param index index of character to check
+     * @return true if escaped
+     */
+    private static boolean isEscaped(String line, int index) {
+        int backslashCount = 0;
+        for (int i = index - 1; i >= 0 && line.charAt(i) == '\\'; i--) {
+            backslashCount++;
+        }
+        return backslashCount % 2 != 0;
     }
 
     /**
