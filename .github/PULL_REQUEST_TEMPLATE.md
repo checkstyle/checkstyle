@@ -1,4 +1,4 @@
-# PLEASE READ BEFORE REMOVING
+# Please Read Before Removing This Section
 
 **Rules:**
 
