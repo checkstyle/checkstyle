@@ -3226,7 +3226,6 @@
               </annotationProcessorPaths>
               <annotationProcessors>
                 <annotationProcessor>org.checkerframework.framework.util.PurityChecker</annotationProcessor>
-                <annotationProcessor>org.checkerframework.common.value.ValueChecker</annotationProcessor>
                 <annotationProcessor>org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker</annotationProcessor>
               </annotationProcessors>
               <compilerArgs combine.children="append">
