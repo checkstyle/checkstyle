@@ -14,6 +14,7 @@ actionlint
 addons
 Adoptium
 adr
+aee
 AFBR
 AFilter
 aggregators
@@ -103,6 +104,7 @@ bc
 bdc
 bdd
 bdo
+beaac
 beanutils
 beforeexecutionexclusionfilefilter
 bestpractices
@@ -980,6 +982,7 @@ OI
 olddomain
 olympe
 ond
+oneline
 onestatement
 onestatementperline
 onetoplevel
@@ -1076,6 +1079,7 @@ Pno
 poetix
 Pointcut
 POJO
+popd
 Popup
 Postgresql
 prebuilts
@@ -1095,6 +1099,7 @@ protonpack
 Psevntu
 pullrequest
 puppycrawl
+pushd
 pw
 pwd
 px
