@@ -118,7 +118,6 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     public void testLineLengthIgnoringPackageStatements() throws Exception {
         final String[] expected = {
             "17: " + getCheckMessage(MSG_KEY, 75, 86),
-            "21: " + getCheckMessage(MSG_KEY, 75, 76),
             "29: " + getCheckMessage(MSG_KEY, 75, 77),
         };
 
@@ -130,7 +129,6 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     public void testLineLengthIgnoringImportStatements() throws Exception {
         final String[] expected = {
             "18: " + getCheckMessage(MSG_KEY, 75, 81),
-            "22: " + getCheckMessage(MSG_KEY, 75, 84),
             "30: " + getCheckMessage(MSG_KEY, 75, 77),
         };
 
@@ -160,5 +158,47 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("charset", "IBM1098");
 
         verify(checkerConfig, getPath("InputLineLengthUnmappableCharacters.java"), expected);
+    }
+
+    @Test
+    public void testTextBlockContentIsIgnored() throws Exception {
+        final String[] expected = {
+            "19: " + getCheckMessage(MSG_KEY, 80, 131),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputLineLengthTextBlock.java"), expected);
+    }
+
+    @Test
+    public void testEscapedTextBlockDelimiterDoesNotCloseBlock() throws Exception {
+        final String[] expected = {
+            "20: " + getCheckMessage(MSG_KEY, 80, 92),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputLineLengthEscapedDelimiter.java"), expected);
+    }
+
+    @Test
+    public void testEvenBackslashesBeforeDelimiterAtLineStart() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_KEY, 80, 88),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputLineLengthEscapedDelimiterAtLineStart.java"), expected);
+    }
+
+    @Test
+    public void testNonJavaFileStillCheckedForLineLength() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(LineLengthCheck.class);
+        checkConfig.addProperty("fileExtensions", "txt");
+
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_KEY, 80, 90),
+        };
+
+        verify(checkConfig, getPath("InputLineLengthNonJavaFile.txt"), expected);
     }
 }
