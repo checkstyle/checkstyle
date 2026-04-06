@@ -1213,7 +1213,7 @@ public final class SiteUtil {
         Field result = null;
         Class<?> currentClass = fieldClass;
 
-        while (!Object.class.equals(currentClass)) {
+        while (currentClass != Object.class) {
             try {
                 result = currentClass.getDeclaredField(propertyName);
                 result.trySetAccessible();
