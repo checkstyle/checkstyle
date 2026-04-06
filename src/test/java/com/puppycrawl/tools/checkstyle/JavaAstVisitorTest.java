@@ -37,6 +37,7 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -48,17 +49,7 @@ import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParserBaseVisito
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 // -@cs[ClassDataAbstractionCoupling] No way to split up class usage.
-
-/**
- * Tests for {@code JavaAstVisitor}.
- *
- * <p>Verifies correct traversal and processing of Java AST nodes.</p>
- *
- * @noinspection JavadocReference References are valid in project context
- * @noinspectionreason JavadocReference - References are valid
- */
 public class JavaAstVisitorTest extends AbstractModuleTestSupport {
-
     /**
      * If a visit method is not overridden, we should explain why we do not 'visit' the
      * parse tree at this node and construct an AST. Reasons could include that we have
@@ -100,6 +91,9 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
             "visitQualifiedNameExtended",
             "visitGuard"
     );
+
+    @TempDir
+    public File tempFolder;
 
     @Override
     public String getPackageLocation() {
