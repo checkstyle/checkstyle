@@ -1,0 +1,4 @@
+First short line.
+Second short line.
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+// violation above, 'Line is longer than 80 characters (found 90).'
