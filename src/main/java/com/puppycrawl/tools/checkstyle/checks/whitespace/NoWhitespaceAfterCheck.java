@@ -358,17 +358,14 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         final DetailAST parent = ast.getParent();
         final boolean isPrecededByTypeArgs =
                 parent.findFirstToken(TokenTypes.TYPE_ARGUMENTS) != null;
-        final Optional<DetailAST> objectArrayType = Optional.ofNullable(getIdentLastToken(ast));
 
         if (isPrecededByTypeArgs) {
             typeLastNode = parent.findFirstToken(TokenTypes.TYPE_ARGUMENTS)
                     .findFirstToken(TokenTypes.GENERIC_END);
         }
-        else if (objectArrayType.isPresent()) {
-            typeLastNode = objectArrayType.orElseThrow();
-        }
         else {
-            typeLastNode = parent.getFirstChild();
+            final Optional<DetailAST> objectArrayType = Optional.ofNullable(getIdentLastToken(ast));
+            typeLastNode = objectArrayType.orElseGet(parent::getFirstChild);
         }
 
         return typeLastNode;
