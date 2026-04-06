@@ -220,8 +220,21 @@
                     3.3 Import statements
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/imports/importorder.html#ImportOrder">ImportOrder</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportOrder">
+                    config
+                  </a>
+                  <br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/openjdk/checkstyle/test/chapter3formatting/rule33importstatements/ImportOrderTest.java">
+                    test
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
