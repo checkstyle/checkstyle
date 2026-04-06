@@ -90,6 +90,15 @@
       <property name="format" value="^[a-z]{2,}[a-zA-Z0-9]*$"/>
     </module>
 
+    <!-- §3.3: Import statements should be sorted -->
+    <module name="ImportOrder">
+      <property name="groups" value="java,javax"/>
+      <property name="ordered" value="true"/>
+      <property name="separated" value="true"/>
+      <property name="option" value="bottom"/>
+      <property name="sortStaticImportsAlphabetically" value="true"/>
+    </module>
+
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
       <property name="file" value="${org.checkstyle.openjdk.suppressionxpathfilter.config}"
