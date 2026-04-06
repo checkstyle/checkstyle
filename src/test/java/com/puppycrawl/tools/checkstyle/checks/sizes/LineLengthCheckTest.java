@@ -179,4 +179,26 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputLineLengthEscapedDelimiter.java"), expected);
     }
+
+    @Test
+    public void testEvenBackslashesBeforeDelimiterAtLineStart() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_KEY, 80, 88),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputLineLengthEscapedDelimiterAtLineStart.java"), expected);
+    }
+
+    @Test
+    public void testNonJavaFileStillCheckedForLineLength() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(LineLengthCheck.class);
+        checkConfig.addProperty("fileExtensions", "txt");
+
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_KEY, 80, 90),
+        };
+
+        verify(checkConfig, getPath("InputLineLengthNonJavaFile.txt"), expected);
+    }
 }
