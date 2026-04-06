@@ -21,9 +21,13 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
+import java.nio.charset.StandardCharsets;
 import java.nio.charset.CodingErrorAction;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -118,7 +122,6 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     public void testLineLengthIgnoringPackageStatements() throws Exception {
         final String[] expected = {
             "17: " + getCheckMessage(MSG_KEY, 75, 86),
-            "21: " + getCheckMessage(MSG_KEY, 75, 76),
             "29: " + getCheckMessage(MSG_KEY, 75, 77),
         };
 
@@ -130,7 +133,6 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     public void testLineLengthIgnoringImportStatements() throws Exception {
         final String[] expected = {
             "18: " + getCheckMessage(MSG_KEY, 75, 81),
-            "22: " + getCheckMessage(MSG_KEY, 75, 84),
             "30: " + getCheckMessage(MSG_KEY, 75, 77),
         };
 
@@ -160,5 +162,67 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("charset", "IBM1098");
 
         verify(checkerConfig, getPath("InputLineLengthUnmappableCharacters.java"), expected);
+    }
+
+    @Test
+    public void testTextBlockContentIsIgnored() throws Exception {
+        final String[] expected = {
+            "19: " + getCheckMessage(MSG_KEY, 80, 131),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputLineLengthTextBlock.java"), expected);
+    }
+
+    @Test
+    public void testEscapedTextBlockDelimiterDoesNotCloseBlock() throws Exception {
+        final String[] expected = {
+            "20: " + getCheckMessage(MSG_KEY, 80, 92),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputLineLengthEscapedDelimiter.java"), expected);
+    }
+
+    @Test
+    public void testEvenBackslashesBeforeDelimiterAtLineStart(@TempDir Path tempDir)
+            throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_KEY, 80, 88),
+        };
+
+        final Path inputFile = tempDir.resolve("InputLineLengthEscapedDelimiterAtLineStart.java");
+        final String input = String.join(System.lineSeparator(),
+                "/*",
+                "LineLength",
+                "fileExtensions = (default)null",
+                "ignorePattern = ^(package|import) .*$",
+                "max = (default)80",
+                "tabWidth = (default)0",
+                "",
+                "*/",
+                "package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;",
+                "",
+                "public class InputLineLengthEscapedDelimiterAtLineStart {",
+                "String text = \"\"\"",
+                "\\\\\"\"\"",
+                "String longLine = \"This is a regular string that is long enough to trigger a violation\";",
+                "// violation above, 'Line is longer than 80 characters (found 88).'",
+                "}",
+                "");
+        Files.writeString(inputFile, input, StandardCharsets.UTF_8);
+        verifyWithInlineConfigParser(inputFile.toString(), expected);
+    }
+
+    @Test
+    public void testNonJavaFileStillCheckedForLineLength() throws Exception {
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_KEY, 80, 90),
+        };
+
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineLengthNonJavaFileConfig.java"),
+                getPath("InputLineLengthNonJavaFile.txt"),
+                expected);
     }
 }
