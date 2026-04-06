@@ -168,9 +168,10 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      * @return true if lcurly is a code block
      */
     private boolean checkIfCodeBlock() {
+        final AbstractExpressionHandler parent = getParent();
         return getMainAst().getType() == TokenTypes.SLIST
-                && getParent() instanceof BlockParentHandler
-                && getParent().getParent() instanceof BlockParentHandler;
+                && parent instanceof BlockParentHandler
+                && parent.getParent() instanceof BlockParentHandler;
     }
 
     /**
@@ -284,8 +285,9 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         // try to suggest single level to children using curlies'
         // levels.
         if (getIndent().isMultiLevel() && hasCurlies()) {
-            if (isOnStartOfLine(getLeftCurly())) {
-                indentLevel = new IndentLevel(expandedTabsColumnNo(getLeftCurly())
+            final DetailAST leftCurly = getLeftCurly();
+            if (isOnStartOfLine(leftCurly)) {
+                indentLevel = new IndentLevel(expandedTabsColumnNo(leftCurly)
                         + getBasicOffset());
             }
             else if (isOnStartOfLine(getRightCurly())) {
