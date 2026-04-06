@@ -41,7 +41,7 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/18228">#18228</a>
           </li>
           <li>
-            UnnecessaryNullCheckWithInstanceOf ignores redundant null check for complex cases..
+            UnnecessaryNullCheckWithInstanceOf ignores redundant null check for complex cases.
             Author: MonuChaudhary14
             <a href="https://github.com/checkstyle/checkstyle/issues/17137">#17137</a>
           </li>
@@ -60,12 +60,14 @@
           </li>
           <li>
             Enforce file size on Java inputs.
-            Author: lithops-zty, avadhutmali, AsthaDhapodkar, Brijeshthummar02, HamzehAdawi, Carbon14-48
+            Author: lithops-zty, avadhutmali, AsthaDhapodkar, Brijeshthummar02,
+            HamzehAdawi, Carbon14-48
             <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
           </li>
           <li>
             SarifLoggerTest.java to use verifyWithInlineConfigParserAndLogger.
-            Author: kairav mittal, Tasneemmhammed0, surajgojanur, avadhutmali, Krish-876, Adam Gamil, Carbon14-48
+            Author: kairav mittal, Tasneemmhammed0, surajgojanur, avadhutmali,
+            Krish-876, Adam Gamil, Carbon14-48
             <a href="https://github.com/checkstyle/checkstyle/issues/16361">#16361</a>
           </li>
           <li>
@@ -74,8 +76,10 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/12721">#12721</a>
           </li>
           <li>
-            Updating properties in Input files to mention all default properties,.
-            Author: surajgojanur, Zaheer Ahmad, achyuth8055, Abdo Soliman, developer4949-code, gianmarco, avadhutmali, Eric Tao, HamzehAdawi, Carbon14-48, Newjin
+            Updating properties in Input files to mention all default properties.
+            Author: surajgojanur, Zaheer Ahmad, achyuth8055, Abdo Soliman,
+            developer4949-code, gianmarco, avadhutmali, Eric Tao, HamzehAdawi,
+            Carbon14-48, Newjin
             <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>
           </li>
           <li>
@@ -90,7 +94,10 @@
           </li>
           <li>
             XpathRegressionXxxxxxXxxxxxTest should have 3 test methods.
-            Author: Adam Mohamed Gamil, Tasneemmhammed0, Aman Baliyan, achyuth8055, lithops-zty, MiriyalaJayanth-19, daksh, Krish-876, Eric Tao, Carbon14-48, ayushactiveat, surajgojanur, Zaheer Ahmad, Parthib Basu, Akshat Gupta, pirzada-ahmadfaraz
+            Author: Adam Mohamed Gamil, Tasneemmhammed0, Aman Baliyan, achyuth8055,
+            lithops-zty, MiriyalaJayanth-19, daksh, Krish-876, Eric Tao,
+            Carbon14-48, ayushactiveat, surajgojanur, Zaheer Ahmad, Parthib Basu,
+            Akshat Gupta, pirzada-ahmadfaraz
             <a href="https://github.com/checkstyle/checkstyle/issues/19064">#19064</a>
           </li>
           <li>
@@ -219,7 +226,7 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/19087">#19087</a>
           </li>
           <li>
-            Forbid usage of Truth&#39;s `StandardSubjectBuilder#fail` method..
+            Forbid usage of Truth&#39;s `StandardSubjectBuilder#fail` method.
             Author: ayushactiveat
             <a href="https://github.com/checkstyle/checkstyle/issues/11315">#11315</a>
           </li>
@@ -411,7 +418,7 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/18614">#18614</a>
           </li>
           <li>
-            Updating properties in Input files to mention all default properties,.
+            Updating properties in Input files to mention all default properties.
             Author: Tasneemmhammed0, Adam Gamil
             <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>
           </li>
@@ -662,7 +669,8 @@
           </li>
           <li>
             Update `JavadocCommentsTokenTypes.java` to new format of AST print.
-            Author: Ayush Singh, NiMv1, Yukti Nandwana, asqwklop12, Avanish Gupta, Anushree Bondia, Hamza-Azeem12, AsthaDhapodkar, Rohit Kumar, Adam Gamil
+            Author: Ayush Singh, NiMv1, Yukti Nandwana, asqwklop12, Avanish Gupta,
+            Anushree Bondia, Hamza-Azeem12, AsthaDhapodkar, Rohit Kumar, Adam Gamil
             <a href="https://github.com/checkstyle/checkstyle/issues/17882">#17882</a>
           </li>
           <li>
@@ -747,7 +755,7 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/14122">#14122</a>
           </li>
           <li>
-            recheck that CNC_COLLECTION_NAMING_CONFUSION is resolved..
+            recheck that CNC_COLLECTION_NAMING_CONFUSION is resolved.
             Author: Youssef Alaa
             <a href="https://github.com/checkstyle/checkstyle/issues/17293">#17293</a>
           </li>
@@ -757,7 +765,7 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/18589">#18589</a>
           </li>
           <li>
-            Updating properties in Input files to mention all default properties,.
+            Updating properties in Input files to mention all default properties.
             Author: Anushree Bondia, 0xChaitanya
             <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>
           </li>
@@ -1121,7 +1129,7 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
           </li>
           <li>
-            Intellij Idea setup: Add steps to change encoding of properties file to UTF-8..
+            Intellij Idea setup: Add steps to change encoding of properties file to UTF-8.
             Author: atharv
             <a href="https://github.com/checkstyle/checkstyle/issues/18325">#18325</a>
           </li>
@@ -1136,7 +1144,7 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/9248">#9248</a>
           </li>
           <li>
-            Updating properties in Input files to mention all default properties,.
+            Updating properties in Input files to mention all default properties.
             Author: Youssef Alaa
             <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>
           </li>
@@ -1199,7 +1207,8 @@
         <ul>
           <li>
             Update `JavadocCommentsTokenTypes.java` to new format of AST print.
-            Author: Aman Baliyan, mahfouz72, Monu Chaudhary, Jiya Gupta, Suryanshu Agrawal, vishalup29
+            Author: Aman Baliyan, mahfouz72, Monu Chaudhary, Jiya Gupta,
+            Suryanshu Agrawal, vishalup29
             <a href="https://github.com/checkstyle/checkstyle/issues/17882">#17882</a>
           </li>
           <li>
@@ -1362,7 +1371,7 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/17746">#17746</a>
           </li>
           <li>
-            Updating properties in Input files to mention all default properties,.
+            Updating properties in Input files to mention all default properties.
             Author: vivek-0509
             <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>
           </li>
@@ -1591,7 +1600,7 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/17939">#17939</a>
           </li>
           <li>
-            Wrong tagOrder in AtClauseOrder documentation..
+            Wrong tagOrder in AtClauseOrder documentation.
             Author: Hariom
             <a href="https://github.com/checkstyle/checkstyle/issues/10086">#10086</a>
           </li>
@@ -1873,7 +1882,7 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/16361">#16361</a>
           </li>
           <li>
-            Add chechstyle-operewrite recipes to the project..
+            Add chechstyle-operewrite recipes to the project.
             Author: Anmol202005
             <a href="https://github.com/checkstyle/checkstyle/issues/17717">#17717</a>
           </li>
@@ -2146,7 +2155,7 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/13386">#13386</a>
           </li>
           <li>
-            Javadoc website mistakenly showing HTML entities meant for other characters..
+            Javadoc website mistakenly showing HTML entities meant for other characters.
             Author: MD. Zaid
             <a href="https://github.com/checkstyle/checkstyle/issues/17362">#17362</a>
           </li>
@@ -2181,7 +2190,7 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/17171">#17171</a>
           </li>
           <li>
-            Updating properties in Input files to mention all default properties,.
+            Updating properties in Input files to mention all default properties.
             Author: KishorMore
             <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>
           </li>
