@@ -869,11 +869,14 @@ no-error-hibernate-search)
   echo "Checkout target sources ..."
   checkout_from https://github.com/hibernate/hibernate-search.git
   cd .ci-temp/hibernate-search
-  mvn -e --no-transfer-progress clean install -pl build/config -am \
+  # Use Hibernate Search's wrapper so we get the Maven version it expects.
+  ./mvnw --version
+  java -version
+  ./mvnw -e --no-transfer-progress clean install -pl build/config -am \
      -DskipTests=true -Dmaven.compiler.failOnWarning=false \
      -Dcheckstyle.skip=true -Dforbiddenapis.skip=true \
      -Dversion.com.puppycrawl.tools.checkstyle="${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress checkstyle:check \
+  ./mvnw -e --no-transfer-progress checkstyle:check \
      -Dversion.com.puppycrawl.tools.checkstyle="${CS_POM_VERSION}"
   cd ../
   removeFolderWithProtectedFiles hibernate-search
@@ -968,8 +971,10 @@ no-error-strata)
   STRATA_CS_POM_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
                      -Dexec.args='${checkstyle.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-  mvn -e --no-transfer-progress install -B -Dstrict -DskipTests \
-     -Dforbiddenapis.skip=true -Dcheckstyle.version="${CS_POM_VERSION}" \
+  mvn -e --no-transfer-progress -B \
+     org.apache.maven.plugins:maven-checkstyle-plugin:3.6.0:check \
+     -Dcheckstyle.linkXRef=false \
+     -Dcheckstyle.version="${CS_POM_VERSION}" \
      -Dcheckstyle.config.suffix="-v$STRATA_CS_POM_VERSION"
   cd ../
   removeFolderWithProtectedFiles Strata
