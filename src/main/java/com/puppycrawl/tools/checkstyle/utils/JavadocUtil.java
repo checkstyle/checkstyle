@@ -96,16 +96,17 @@ public final class JavadocUtil {
      */
     public static JavadocTags getJavadocTags(TextBlock textBlock,
             JavadocTagType tagType) {
+        final String[] text = textBlock.getText();
         final List<TagInfo> tags = new ArrayList<>();
         final boolean isBlockTags = tagType == JavadocTagType.ALL
                                         || tagType == JavadocTagType.BLOCK;
         if (isBlockTags) {
-            tags.addAll(BlockTagUtil.extractBlockTags(textBlock.getText()));
+            tags.addAll(BlockTagUtil.extractBlockTags(text));
         }
         final boolean isInlineTags = tagType == JavadocTagType.ALL
                                         || tagType == JavadocTagType.INLINE;
         if (isInlineTags) {
-            tags.addAll(InlineTagUtil.extractInlineTags(textBlock.getText()));
+            tags.addAll(InlineTagUtil.extractInlineTags(text));
         }
 
         final List<JavadocTag> validTags = new ArrayList<>();

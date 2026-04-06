@@ -2238,8 +2238,10 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
          * Moves child reference to the last child.
          */
         private void advanceChildToEnd() {
-            while (child.getNextSibling() != null) {
-                child = child.getNextSibling();
+            DetailAstImpl nextSibling = child.getNextSibling();
+            while (nextSibling != null) {
+                child = nextSibling;
+                nextSibling = child.getNextSibling();
             }
         }
 
