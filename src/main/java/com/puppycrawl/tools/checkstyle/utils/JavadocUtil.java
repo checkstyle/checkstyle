@@ -96,35 +96,38 @@ public final class JavadocUtil {
      */
     public static JavadocTags getJavadocTags(TextBlock textBlock,
             JavadocTagType tagType) {
+        final String[] text = textBlock.getText();
         final List<TagInfo> tags = new ArrayList<>();
         final boolean isBlockTags = tagType == JavadocTagType.ALL
                                         || tagType == JavadocTagType.BLOCK;
         if (isBlockTags) {
-            tags.addAll(BlockTagUtil.extractBlockTags(textBlock.getText()));
+            tags.addAll(BlockTagUtil.extractBlockTags(text));
         }
         final boolean isInlineTags = tagType == JavadocTagType.ALL
                                         || tagType == JavadocTagType.INLINE;
         if (isInlineTags) {
-            tags.addAll(InlineTagUtil.extractInlineTags(textBlock.getText()));
+            tags.addAll(InlineTagUtil.extractInlineTags(text));
         }
 
         final List<JavadocTag> validTags = new ArrayList<>();
         final List<InvalidJavadocTag> invalidTags = new ArrayList<>();
 
         for (TagInfo tag : tags) {
-            final int col = tag.getPosition().getColumn();
+            final TagInfo.Position position = tag.getPosition();
+            final int col = position.getColumn();
 
             // Add the starting line of the comment to the line number to get the actual line number
             // in the source.
             // Lines are one-indexed, so need an off-by-one correction.
-            final int line = textBlock.getStartLineNo() + tag.getPosition().getLine() - 1;
+            final int line = textBlock.getStartLineNo() + position.getLine() - 1;
 
-            if (JavadocTagInfo.isValidName(tag.getName())) {
+            final String tagName = tag.getName();
+            if (JavadocTagInfo.isValidName(tagName)) {
                 validTags.add(
-                    new JavadocTag(line, col, tag.getName(), tag.getValue()));
+                    new JavadocTag(line, col, tagName, tag.getValue()));
             }
             else {
-                invalidTags.add(new InvalidJavadocTag(line, col, tag.getName()));
+                invalidTags.add(new InvalidJavadocTag(line, col, tagName));
             }
         }
 

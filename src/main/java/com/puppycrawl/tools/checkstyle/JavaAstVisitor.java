@@ -468,8 +468,9 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         // We also append the SEMI token to the first child [size() - 1],
         // until https://github.com/checkstyle/checkstyle/issues/3151
         processChildren(dummyNode, ctx.children.subList(1, ctx.children.size() - 1));
-        dummyNode.getFirstChild().addChild(create(ctx.SEMI()));
-        return dummyNode.getFirstChild();
+        final DetailAstImpl firstChild = dummyNode.getFirstChild();
+        firstChild.addChild(create(ctx.SEMI()));
+        return firstChild;
     }
 
     @Override
@@ -826,8 +827,9 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         processChildren(dummyNode, Collections.singletonList(ctx.children.get(1)));
         // We also append the SEMI token to the first child [size() - 1],
         // until https://github.com/checkstyle/checkstyle/issues/3151
-        dummyNode.getFirstChild().addChild(create(ctx.SEMI()));
-        return dummyNode.getFirstChild();
+        final DetailAstImpl firstChild = dummyNode.getFirstChild();
+        firstChild.addChild(create(ctx.SEMI()));
+        return firstChild;
     }
 
     @Override
@@ -1356,8 +1358,10 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         }
         else {
             DetailAstImpl firstChild = superSuffixParent;
-            while (firstChild.getFirstChild() != null) {
-                firstChild = firstChild.getFirstChild();
+            DetailAstImpl nextChild = firstChild.getFirstChild();
+            while (nextChild != null) {
+                firstChild = nextChild;
+                nextChild = firstChild.getFirstChild();
             }
             firstChild.addPreviousSibling(bop);
         }
@@ -2185,8 +2189,10 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     private static void addLastSibling(DetailAstImpl self, DetailAstImpl sibling) {
         DetailAstImpl nextSibling = self;
         if (nextSibling != null) {
-            while (nextSibling.getNextSibling() != null) {
-                nextSibling = nextSibling.getNextSibling();
+            DetailAstImpl next = nextSibling.getNextSibling();
+            while (next != null) {
+                nextSibling = next;
+                next = nextSibling.getNextSibling();
             }
             nextSibling.setNextSibling(sibling);
         }
@@ -2238,8 +2244,10 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
          * Moves child reference to the last child.
          */
         private void advanceChildToEnd() {
-            while (child.getNextSibling() != null) {
-                child = child.getNextSibling();
+            DetailAstImpl nextSibling = nextSibling.getNextSibling();
+            while (nextSibling != null) {
+                child = nextSibling;
+                nextSibling = nextSibling.getNextSibling();
             }
         }
 
