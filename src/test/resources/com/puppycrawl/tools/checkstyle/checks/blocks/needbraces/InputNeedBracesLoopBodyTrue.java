@@ -82,12 +82,6 @@ public class InputNeedBracesLoopBodyTrue {
             ;
     }
 
-    public void foo12() {
-        for (int i = 0; incrementValue() < 8; i++) {
-            int a = 5;
-        }
-    }
-
     public void foo14() {
         while (incrementValue() < 5) {
             return;
@@ -106,12 +100,6 @@ public class InputNeedBracesLoopBodyTrue {
         if(true); // violation ''if' construct must use '{}'s'
     }
 
-    public void foo18() {
-        if(true) {
-            int a;
-        }
-    }
-
     @Override
     public String toString(){
         while(fco.removeAssignedRole(this));
@@ -124,9 +112,5 @@ public class InputNeedBracesLoopBodyTrue {
 
     private int incrementValue() {
         return value++;
-    }
-
-    private void decrementValue() {
-        value--;
     }
 }

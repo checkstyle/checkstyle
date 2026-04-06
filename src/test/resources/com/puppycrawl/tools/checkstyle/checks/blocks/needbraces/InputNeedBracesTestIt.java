@@ -111,16 +111,6 @@ class InputNeedBracesTestIt
         switch (a) {default: {}}
     }
 
-    void whitespaceAfterSemi()
-    {
-        //reject
-        int i = 1;int j = 2;
-
-        //accept
-        for (;;) {
-        }
-    }
-
     /** Empty constructor block. **/
     public InputNeedBracesTestIt() {}
 
