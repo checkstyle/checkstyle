@@ -86,19 +86,15 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     public void testRecordsAndCompactCtors() throws Exception {
 
         final String[] expected = {
-            "12:1: " + getCheckMessage(MSG_FILE, 89, 2),
-            "16:1: " + getCheckMessage(MSG_CLASS, 87, 3),
-            "18:3: " + getCheckMessage(MSG_CLASS, 7, 3),
-            "36:3: " + getCheckMessage(MSG_RECORD, 6, 4),
-            "45:3: " + getCheckMessage(MSG_RECORD, 15, 4),
-            "56:5: " + getCheckMessage(MSG_METHOD, 8, 7),
-            "75:3: " + getCheckMessage(MSG_RECORD, 6, 4),
-            "109:3: " + getCheckMessage(MSG_RECORD, 8, 4),
-            "130:3: " + getCheckMessage(MSG_CLASS, 11, 3),
-            "151:3: " + getCheckMessage(MSG_RECORD, 12, 4),
-            "152:5: " + getCheckMessage(MSG_METHOD, 11, 7),
-            "166:3: " + getCheckMessage(MSG_CLASS, 12, 3),
-            "167:5: " + getCheckMessage(MSG_METHOD, 11, 7),
+            "12:1: " + getCheckMessage(MSG_FILE, 55, 2),
+            "14:1: " + getCheckMessage(MSG_CLASS, 54, 3),
+            "16:3: " + getCheckMessage(MSG_CLASS, 7, 3),
+            "34:3: " + getCheckMessage(MSG_RECORD, 6, 4),
+            "43:3: " + getCheckMessage(MSG_RECORD, 15, 4),
+            "54:5: " + getCheckMessage(MSG_METHOD, 8, 7),
+            "73:3: " + getCheckMessage(MSG_RECORD, 6, 4),
+            "106:3: " + getCheckMessage(MSG_RECORD, 10, 4),
+            "107:5: " + getCheckMessage(MSG_METHOD, 9, 7),
         };
 
         verifyWithInlineConfigParser(
@@ -120,8 +116,8 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRecordMax() throws Exception {
         final String[] expected = {
-            "14:1: " + getCheckMessage(MSG_CLASS, 152, 80),
-            "15:5: " + getCheckMessage(MSG_RECORD, 151, 150),
+            "14:1: " + getCheckMessage(MSG_CLASS, 105, 80),
+            "15:5: " + getCheckMessage(MSG_RECORD, 104, 100),
         };
 
         verifyWithInlineConfigParser(
