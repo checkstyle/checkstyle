@@ -1,3 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>JavaAstVisitor.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.JavaAstVisitor</mutatedClass>
+    <mutatedMethod>addLastSibling</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/DetailAstImpl::getNextSibling with receiver</description>
+    <lineContent>DetailAstImpl next = nextSibling.getNextSibling();</lineContent>
+  </mutation>
+  <mutation unstable="false">
+    <sourceFile>JavaAstVisitor.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.JavaAstVisitor</mutatedClass>
+    <mutatedMethod>visitSuperExp</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/DetailAstImpl::getFirstChild with receiver</description>
+    <lineContent>DetailAstImpl nextChild = firstChild.getFirstChild();</lineContent>
+  </mutation>
 </suppressedMutations>
