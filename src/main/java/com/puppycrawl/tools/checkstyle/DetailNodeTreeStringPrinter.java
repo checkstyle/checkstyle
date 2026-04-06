@@ -126,9 +126,11 @@ public final class DetailNodeTreeStringPrinter {
         final boolean isLastChild = node.getNextSibling() == null;
         DetailNode currentNode = node;
         final StringBuilder indentation = new StringBuilder(1024);
-        while (currentNode.getParent() != null) {
-            currentNode = currentNode.getParent();
-            if (currentNode.getParent() == null) {
+        DetailNode parent = currentNode.getParent();
+        while (parent != null) {
+            currentNode = parent;
+            parent = currentNode.getParent();
+            if (parent == null) {
                 if (isLastChild) {
                     // only ASCII symbols must be used due to
                     // problems with running tests on Windows

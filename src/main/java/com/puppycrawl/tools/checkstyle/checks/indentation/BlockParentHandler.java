@@ -168,9 +168,10 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      * @return true if lcurly is a code block
      */
     private boolean checkIfCodeBlock() {
+        final AbstractExpressionHandler parent = getParent();
         return getMainAst().getType() == TokenTypes.SLIST
-                && getParent() instanceof BlockParentHandler
-                && getParent().getParent() instanceof BlockParentHandler;
+                && parent instanceof BlockParentHandler
+                && parent.getParent() instanceof BlockParentHandler;
     }
 
     /**

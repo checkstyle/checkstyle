@@ -247,7 +247,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      * @return list of rules
      */
     private List<String> generateRules() {
-        final List<String> result = new ArrayList<>();
+        final List<String> result = new ArrayList<>(ruleMetadata.size());
         for (Map.Entry<RuleKey, ModuleDetails> entry : ruleMetadata.entrySet()) {
             final RuleKey ruleKey = entry.getKey();
             final ModuleDetails module = entry.getValue();
