@@ -154,6 +154,8 @@
   <suppress checks="FileTabCharacter"
     files="[\\/]InputCheckerTabCharacter\.txt"/>
   <suppress checks="FileTabCharacter"
+    files=".*[\\/]src[\\/]it[\\/]resources[\\/]com[\\/]openjdk[\\/]checkstyle[\\/]test[\\/]chapter3formatting[\\/]rule37indentation[\\/]InputFileTabCharacterInvalid\.java"/>
+  <suppress checks="FileTabCharacter"
     files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]indentation[\\/]Input.*\.java"/>
   <suppress checks="FileTabCharacter"
     files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppresswithplaintextcommentfilter[\\/]Input.*"/>
