@@ -67,6 +67,16 @@
 
     <!-- §3.12: Expression lambda body length check based on OpenJDK style guide -->
     <module name="LambdaBodyLength"/>
+    <module name="NoLineWrap">
+      <property name="tokens" value="PACKAGE_DEF"/>
+    </module>
+    <module name="OuterTypeFilename"/>
+
+    <!-- §3.12: Expression lambda body length check based on OpenJDK style guide -->
+    <module name="LambdaBodyLength"/>
+    <module name="NoLineWrap">
+      <property name="tokens" value="PACKAGE_DEF"/>
+    </module>
 
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
