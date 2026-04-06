@@ -851,10 +851,10 @@ public class MainTest {
             @SysOut Capturable systemOut) throws IOException {
         // we just reference there all violations
         final String[][] outputValues = {
-                {"InputMainComplexityOverflow", "1", "172"},
+                {"InputMainComplexityOverflow", "1", "108"},
         };
 
-        final int allowedLength = 170;
+        final int allowedLength = 106;
         final String msgKey = "maxLen.file";
         final String bundle = "com.puppycrawl.tools.checkstyle.checks.sizes.messages";
 
