@@ -17,7 +17,7 @@ public class InputLineLengthIgnoringImportStatements {
         // violation below 'longer than 75 characters (found 81)'
         String s = "import java.security.interfaces.RSAMultiPrimePrivateCrtKey;";
 
-        // violation 2 lines below 'longer than 75 characters (found 84)'
+        // line below is inside text block and should be ignored
         String a = """
             import java.security.       interfaces.      RSAMultiPrimePrivateCrtKey;
             """;
