@@ -181,6 +181,10 @@
   <suppress checks="FileTabCharacter"
     files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]whitespace[\\/]filetabcharacter\.xml"/>
 
+  <!-- Input intentionally contains a tab to verify FileTabCharacter in OpenJDK style config. -->
+  <suppress checks="FileTabCharacter"
+    files=".*[\\/]src[\\/]it[\\/]resources[\\/]com[\\/]openjdk[\\/]checkstyle[\\/]test[\\/]chapter3formatting[\\/]rule37indentation[\\/]InputFileTabCharacterInvalid\.java"/>
+
   <!-- Apart from a complex logic there is a lot of small methods for a better readability. -->
   <suppress checks="MethodCount"
             files="src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]whitespace[\\/]EmptyLineSeparatorCheck.java"/>
