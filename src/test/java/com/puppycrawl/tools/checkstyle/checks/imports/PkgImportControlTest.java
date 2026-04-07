@@ -23,8 +23,10 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-public class PkgImportControlTest {
+public final class PkgImportControlTest {
 
     private final PkgImportControl icRoot = new PkgImportControl(
             "com.kazgroup.courtlink", false, MismatchStrategy.DISALLOWED);
@@ -100,38 +102,27 @@ public class PkgImportControlTest {
             .isNull();
     }
 
-    @Test
-    public void testCheckAccess() {
+    @CsvSource({
+        "com.kazgroup.courtlink, MyClass, org.hibernate.something, DISALLOWED",
+        "com.kazgroup.courtlink.common, MyClass, com.badpackage.something, DISALLOWED",
+        "com.kazgroup.courtlink.common, MyClass, org.apache.commons, DISALLOWED",
+        "com.kazgroup.courtlink.common, MyClass, org.apache.commons.something, ALLOWED",
+        "com.kazgroup.courtlink.common, MyClass, org.hibernate.something, ALLOWED",
+        "com.kazgroup.courtlink.common, MyClass, org.springframework.something, DISALLOWED"
+    })
+    @ParameterizedTest
+    public void testCheckAccess(String pkg, String fileName, String importName,
+            AccessResult expected) {
+        final PkgImportControl ic;
+        if ("com.kazgroup.courtlink".equals(pkg)) {
+            ic = icRoot;
+        }
+        else {
+            ic = icCommon;
+        }
         assertWithMessage("Unexpected access result")
-            .that(icCommon.checkAccess(
-                "com.kazgroup.courtlink.common", "MyClass",
-                "org.springframework.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icCommon
-                .checkAccess("com.kazgroup.courtlink.common", "MyClass",
-                        "org.apache.commons.something"))
-            .isEqualTo(AccessResult.ALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icCommon.checkAccess(
-                "com.kazgroup.courtlink.common", "MyClass",
-                "org.apache.commons"))
-            .isEqualTo(AccessResult.DISALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icCommon.checkAccess(
-                "com.kazgroup.courtlink.common", "MyClass",
-                "org.hibernate.something"))
-            .isEqualTo(AccessResult.ALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icCommon.checkAccess(
-                "com.kazgroup.courtlink.common", "MyClass",
-                "com.badpackage.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icRoot.checkAccess(
-                "com.kazgroup.courtlink", "MyClass",
-                "org.hibernate.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
+            .that(ic.checkAccess(pkg, fileName, importName))
+            .isEqualTo(expected);
     }
 
     @Test
