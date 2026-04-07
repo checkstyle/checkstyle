@@ -22,7 +22,7 @@ class InputSummaryJavadocInlineCorrect {
     private void foo2() {}
 
     /**
-     * {@summary {@code ABC} Javadoc {@code some defination}.}
+     * {@summary {@code ABC} Javadoc {@code some definition}.}
      */
     private void foo3() {}
 
