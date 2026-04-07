@@ -97,14 +97,14 @@
            assertion calls are not required as they are called by the library.
            In MainTest PMD does not find asserts in lambdas called in the method
              invokeAndWait.
-           In FinalLocalVariableCheckTest, IllegalTypeCheckTest, MatchXpathCheckTest,
-             ReturnCountCheckTest PMD does not find asserts in getExpectedThrowable
-             utility method called from the test method. -->
+            In FinalLocalVariableCheckTest, IllegalTypeCheckTest, MatchXpathCheckTest,
+              ReturnCountCheckTest PMD does not find asserts in getExpectedThrowable
+              utility method called from the test method. -->
       <!-- For AllCheckTest.testAllModulesAreReferencedInConfigFile,
-           testAllCheckTokensAreReferencedInCheckstyleConfigFile,
-           testAllCheckTokensAreReferencedInGoogleConfigFile,
-           testAllCheckstyleModulesHaveXdocDocumentation
-           until https://github.com/checkstyle/checkstyle/issues/14870 -->
+            testAllCheckTokensAreReferencedInCheckstyleConfigFile,
+            testAllCheckTokensAreReferencedInGoogleConfigFile,
+            testAllCheckstyleModulesHaveXdocDocumentation
+            until https://github.com/checkstyle/checkstyle/issues/14870 -->
       <property name="violationSuppressXPath"
                value="//ClassDeclaration[@SimpleName='AllChecksTest'
                      or @SimpleName='AstRegressionTest'
@@ -161,8 +161,8 @@
           as they check each token and each rule explicitly.
          JavadocTokenTypes.testTokenValues contains several asserts as it checks each
           token explicitly. -->
-      <!-- For ClassImportRuleTest and all the below suppressions
-          until https://github.com/checkstyle/checkstyle/issues/14870 -->
+<!-- For ClassImportRuleTest and all the below suppressions
+    until https://github.com/checkstyle/checkstyle/issues/14870 -->
       <property name="violationSuppressXPath"
                value="//ClassDeclaration[@SimpleName='JavadocCommentsTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenValues']
@@ -172,14 +172,12 @@
                         //MethodDeclaration[@Name='testTokenNumbers']
                     | //ClassDeclaration[@SimpleName='ParseTreeTablePresentationTest']
                         //MethodDeclaration[@Name='testGetValueAtDetailNode']
-                    | //ClassDeclaration[@SimpleName='ClassImportRuleTest']
-                    | //ClassDeclaration[@SimpleName='PkgImportRuleTest']
                     | //ClassDeclaration[@SimpleName='PkgImportControlTest']
-                       //MethodDeclaration[ends-with(@Name, 'CheckAccess')]
+                        //MethodDeclaration[@Name='testRegExpChildCheckAccess']
                     | //ClassDeclaration[@SimpleName='JavadocTagInfoTest']
-                       //MethodDeclaration[@Name='testCoverage']
+                        //MethodDeclaration[@Name='testCoverage']
                     | //ClassDeclaration[@SimpleName='AstRegressionTest']
-                       //MethodDeclaration[@Name='testCustomAstTree']"/>
+                        //MethodDeclaration[@Name='testCustomAstTree']"/>
     </properties>
   </rule>
 
