@@ -9,10 +9,6 @@ validateOnlyOverlapping = false
 
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
 public class InputRequireThisEnumInnerClassesAndBugs3 {
     int i;
     void method1() {
@@ -66,56 +62,6 @@ enum MyEnum3
     }
 }
 
-class Bug21230033 {
-    @Rock(band = "GnR")
-    private String band;
-
-    class Inner {
-        @Rock(band = {"GnR"})
-        private String band;
-    }
-
-    class Inner2 {
-        @Rock(band = {"Tool"})
-        private String band;
-    }
-    /*     \m/(>.<)\m/     */
-    @interface Rock {
-        String[] band() default "Metallica";
-    }
-}
-
-class Bug11559213 {
-    private static int CONST = 1;
-    private static int static_method() {
-        return 1;
-    }
-
-    private int method1() {
-        return CONST;
-    }
-
-    private int method2() {
-        return static_method();
-    }
-}
-
-interface Issue1553 {
-    String BASE = "A";
-    String EXT = BASE + "B";
-}
-
-class Issue2573 {
-    public void foo() {
-        try (final InputStream foo = new ByteArrayInputStream(new byte[512])) {
-            foo.read();
-        }
-        catch (final IOException e) {
-            e.getCause();
-        }
-    }
-}
-
 class Issue22403 {
     int i;
     void foo() {
@@ -129,34 +75,6 @@ class Issue22403 {
         void bar() {
             instanceMethod();
             i++; // violation 'Reference to instance variable 'i' needs "Issue22403.this.".'
-        }
-    }
-}
-
-class Issue25393{
-    void foo(int i) {}
-    static void foo(double i) {}
-    void foo() {}
-
-    void bar() {
-        foo(1);
-        foo();
-    }
-}
-
-class NestedRechange3 {
-    final String s = "";
-
-    NestedRechange3() {
-        String s = "t";
-        s = s.substring(0); // violation 'Reference to instance variable 's' needs "this.".'
-    }
-
-    private static class NestedStatic {
-        static final String s = "";
-
-        public void method() {
-            s.substring(0);
         }
     }
 }
