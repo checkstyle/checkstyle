@@ -146,13 +146,6 @@
     </properties>
   </rule>
 
-  <rule ref="category/java/bestpractices.xml/UnitTestShouldUseBeforeAnnotation">
-    <properties>
-      <!-- A false positive. -->
-      <property name="violationSuppressXPath"
-               value="//ClassDeclaration[@SimpleName='CommitValidationTest']"/>
-    </properties>
-  </rule>
   <rule ref="category/java/bestpractices.xml/UnitTestContainsTooManyAsserts">
     <properties>
       <property name="maximumAsserts" value="11"/>
