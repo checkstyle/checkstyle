@@ -1,5 +1,8 @@
 /*
 com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck
+allowNewlineParagraph = (default)true
+violateExecutionOnNonTightHtml = (default)false
+
 
 */
 package com.puppycrawl.tools.checkstyle.treewalker;
