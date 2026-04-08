@@ -226,31 +226,38 @@ public class CommitValidationTest {
     private static int validateCommitMessage(String commitMessage) {
         final String message = commitMessage.replace("\r", "").replace("\n", "");
         final String trimRight = commitMessage.replaceAll("[\\r\\n]+$", "");
+        final boolean hasAcceptedPrefix = ACCEPTED_COMMIT_MESSAGE_PATTERN
+                                            .matcher(message).matches();
         final int result;
 
         if (message.matches(REVERT_COMMIT_MESSAGE_REGEX_PATTERN)) {
             // revert commits are excluded from validation
             result = 0;
         }
-        else if (!ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher(message).matches()) {
-            // improper prefix
-            result = 1;
-        }
-        else if (!trimRight.equals(message)) {
-            // single-line of text (multiple new lines are allowed on end because of
-            // git (1 new line) and GitHub's web ui (2 new lines))
-            result = 2;
-        }
-        else if (INVALID_POSTFIX_PATTERN.matcher(message).matches()) {
-            // improper postfix
-            result = 3;
-        }
-        else if (message.length() > 200) {
-            // commit message has more than 200 characters
-            result = 4;
+        else if (hasAcceptedPrefix) {
+            final boolean isSingleLine = trimRight.equals(message);
+            if (isSingleLine) {
+                if (INVALID_POSTFIX_PATTERN.matcher(message).matches()) {
+                    // improper postfix
+                    result = 3;
+                }
+                else if (message.length() > 200) {
+                    // commit message has more than 200 characters
+                    result = 4;
+                }
+                else {
+                    result = 0;
+                }
+            }
+            else {
+                // single-line of text (multiple new lines are allowed on end because of
+                // git (1 new line) and GitHub's web ui (2 new lines))
+                result = 2;
+            }
         }
         else {
-            result = 0;
+            // improper prefix
+            result = 1;
         }
 
         return result;
