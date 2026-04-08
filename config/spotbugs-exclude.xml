@@ -219,7 +219,6 @@
       NMCS_NEEDLESS_MEMBER_COLLECTION_SYNCHRONIZATION,
       OPM_OVERLY_PERMISSIVE_METHOD,
       PMB_INSTANCE_BASED_THREAD_LOCAL,
-      SEO_SUBOPTIMAL_EXPRESSION_ORDER,
       STT_STRING_PARSING_A_FIELD,
       WEM_WEAK_EXCEPTION_MESSAGING,
       " />
@@ -369,12 +368,6 @@
     <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
   </Match>
 
-  <!-- until https://github.com/mebigfatguy/fb-contrib/issues/491 -->
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.ConfigurationLoader" />
-    <Field name="ID_TO_RESOURCE_NAME_MAP" />
-    <Bug pattern="DMC_DUBIOUS_MAP_COLLECTION" />
-  </Match>
   <!-- not documented rule -->
   <Match>
     <Class name="com.puppycrawl.tools.checkstyle.DefaultContext" />
