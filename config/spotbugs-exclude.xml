@@ -125,13 +125,6 @@
     <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" />
   </Match>
   <Match>
-    <!-- false-positive. Bugs reported even though casting is done only
-           after verification using instanceof -->
-    <Class name="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser"/>
-    <Method name="parseJavadocAsDetailNode"/>
-    <Bug pattern="BC_UNCONFIRMED_CAST_OF_RETURN_VALUE"/>
-  </Match>
-  <Match>
     <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/6343 -->
     <Class
     name="com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck$SequencedProperties"/>
