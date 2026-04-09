@@ -174,21 +174,6 @@
     <Bug pattern="OCP_OVERLY_CONCRETE_PARAMETER"/>
   </Match>
   <Match>
-    <!-- Unable to resolve the item. -->
-    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-    <Method name="findLastChildWhichContainsSpecifiedToken"/>
-    <Bug pattern="SLS_SUSPICIOUS_LOOP_SEARCH"/>
-  </Match>
-  <Match>
-    <!-- Till https://github.com/mebigfatguy/fb-contrib/issues/329 -->
-    <Or>
-      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
-      <Class name="com.puppycrawl.tools.checkstyle.TreeWalker"/>
-    </Or>
-    <Method name="getExternalResourceLocations"/>
-    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS"/>
-  </Match>
-  <Match>
     <!-- For recursive code, the size is difficult to determine.
          It is better to use the default allocation size. -->
     <Or>
@@ -363,12 +348,6 @@
     <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
   </Match>
 
-  <!-- not documented rule -->
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.DefaultContext" />
-    <Method name="getAttributeNames" />
-    <Bug pattern="IMC_IMMATURE_CLASS_COLLECTION_RETURN" />
-  </Match>
   <!-- it has xdoc annotation, we need to reconsider it after we finalize our xdoc generation -->
   <Match>
     <Class name="com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck" />
