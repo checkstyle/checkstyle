@@ -383,11 +383,13 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
             });
             dummyRoot.addChild(snippetAttributes);
         }
-        if (ctx.COLON() != null) {
-            dummyRoot.addChild(create((Token) ctx.COLON().getPayload()));
+        final TerminalNode colon = ctx.COLON();
+        if (colon != null) {
+            dummyRoot.addChild(create((Token) colon.getPayload()));
         }
-        if (ctx.snippetBody() != null) {
-            dummyRoot.addChild(visit(ctx.snippetBody()));
+        final JavadocCommentsParser.SnippetBodyContext snippetBody = ctx.snippetBody();
+        if (snippetBody != null) {
+            dummyRoot.addChild(visit(snippetBody));
         }
         return dummyRoot.getFirstChild();
     }
@@ -661,11 +663,11 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
             node.setColumnNumber(node.getColumnNumber() + javadocColumnNumber);
         }
 
-        if (isJavadocTag(token.getType())) {
+        final int tokenType = token.getType();
+        if (isJavadocTag(tokenType)) {
             node.setType(JavadocCommentsTokenTypes.TAG_NAME);
         }
-
-        if (token.getType() == JavadocCommentsLexer.WS) {
+        if (tokenType == JavadocCommentsLexer.WS) {
             node.setType(JavadocCommentsTokenTypes.TEXT);
         }
 
