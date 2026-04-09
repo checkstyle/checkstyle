@@ -314,13 +314,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/Scope.java</fileName>
-    <specifier>method.guarantee.violated</specifier>
-    <message>@SideEffectFree method toString calls method getName with a weaker @ReleasesNoLocks side effect guarantee</message>
-    <lineContent>return getName();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/Scope.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -332,13 +325,6 @@
       cannot override method in @GuardedBy Object
       @GuardedBy String toString(@GuardSatisfied Object this)
     </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/SeverityLevel.java</fileName>
-    <specifier>method.guarantee.violated</specifier>
-    <message>@SideEffectFree method toString calls method getName with a weaker @ReleasesNoLocks side effect guarantee</message>
-    <lineContent>return getName();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -694,13 +680,6 @@
       cannot override method in @GuardedBy Object
       @GuardedBy String toString(@GuardSatisfied Object this)
     </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AccessModifierOption.java</fileName>
-    <specifier>method.guarantee.violated</specifier>
-    <message>@SideEffectFree method toString calls method getName with a weaker @ReleasesNoLocks side effect guarantee</message>
-    <lineContent>return getName();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
