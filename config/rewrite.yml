@@ -75,6 +75,11 @@ recipeList:
         # comments via `reliefPattern` and can optionally skip checking the last
         # case group with `checkLastCaseGroup`
         - org.openrewrite.staticanalysis.FallThrough
+        # Kept excluded: OpenRewrite's HideUtilityClassConstructor always makes
+        # constructors private in utility classes, ignoring Checkstyle's
+        # HideUtilityClassConstructorCheck option `ignoreAnnotatedBy` which
+        # allows skipping annotated classes like @SpringBootApplication that
+        # require a public constructor to work correctly.
         - org.openrewrite.staticanalysis.HideUtilityClassConstructor
         # Kept excluded: OpenRewrite's NeedBraces always adds braces, overriding
         # Checkstyle's NeedBracesCheck which allows configuration for single-line
@@ -82,7 +87,16 @@ recipeList:
         # `allowEmptyLoopBody` options.
         - org.openrewrite.staticanalysis.NeedBraces
         - org.openrewrite.staticanalysis.OperatorWrap
+        # Kept excluded: OpenRewrite's ReplaceThreadRunWithThreadStart replaces
+        # all Thread.run() calls with Thread.start() automatically. Checkstyle
+        # has no equivalent check for this, and there are valid cases where
+        # Thread.run() is called intentionally for sequential execution.
         - org.openrewrite.staticanalysis.ReplaceThreadRunWithThreadStart
+        # Kept excluded: OpenRewrite's ChainStringBuilderAppendCalls replaces
+        # string concatenation inside StringBuilder.append() with chained
+        # append() calls automatically. Checkstyle has no equivalent check for
+        # this, and the change is a stylistic preference that can reduce
+        # readability in some cases.
         - org.openrewrite.staticanalysis.ChainStringBuilderAppendCalls
         - org.openrewrite.staticanalysis.ReplaceStringBuilderWithString
         - org.openrewrite.staticanalysis.CustomImportOrder
