@@ -84,6 +84,7 @@ public abstract class AbstractAutomaticBean
     private static final String COMMA_SEPARATOR = ",";
 
     /** The configuration of this bean. */
+    @Nullable
     private Configuration configuration;
 
     /**
@@ -301,10 +302,11 @@ public abstract class AbstractAutomaticBean
     protected void setupChild(Configuration childConf)
             throws CheckstyleException {
         if (childConf != null) {
+            final String name = configuration.getName();
             final String message = getLocalizedMessage(
                 AbstractAutomaticBean.class,
                 "AbstractAutomaticBean.disallowedChild", childConf.getName(),
-                configuration.getName());
+                name);
             throw new CheckstyleException(message);
         }
     }

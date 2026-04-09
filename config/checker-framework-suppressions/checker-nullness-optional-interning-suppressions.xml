@@ -2,9 +2,20 @@
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field configuration</message>
-    <lineContent>private Configuration configuration;</lineContent>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference configuration</message>
+    <lineContent>final String name = configuration.getName();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return configuration;</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable Configuration
+      method return type: @Initialized @NonNull Configuration
+    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
