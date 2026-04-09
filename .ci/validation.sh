@@ -995,9 +995,15 @@ no-error-htmlunit)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
+  # Pin HtmlUnit to a known-good commit to keep CI deterministic.
+  HTMLUNIT_STABLE_SHA="6b12beaac15a445cd99af061b17c028aee1c41b7"
+  HTMLUNIT_STABLE_REF="${HTMLUNIT_STABLE_REF:-${HTMLUNIT_STABLE_SHA}}"
   echo "Checkout target sources ..."
-  checkout_from https://github.com/HtmlUnit/htmlunit
+  checkout_from https://github.com/HtmlUnit/htmlunit.git "${HTMLUNIT_STABLE_REF}"
   cd .ci-temp/htmlunit
+  echo "HtmlUnit ref requested: ${HTMLUNIT_STABLE_REF}"
+  echo "HtmlUnit commit under test: $(git rev-parse HEAD)"
+  echo "HtmlUnit top commit: $(git log -1 --oneline)"
   echo "checkstyle.suppressions.file=checkstyle_suppressions.xml" > checkstyle.properties
   readarray -t files < <(find src/main/java src/test/java -name "*.java")
   java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
@@ -1054,7 +1060,6 @@ no-exception-struts)
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
-
 
 no-exception-checkstyle-sevntu)
   export MAVEN_OPTS="-Xmx4g"
