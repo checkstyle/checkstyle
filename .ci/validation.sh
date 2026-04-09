@@ -998,6 +998,8 @@ no-error-htmlunit)
   echo "Checkout target sources ..."
   checkout_from https://github.com/HtmlUnit/htmlunit
   cd .ci-temp/htmlunit
+  HTMLUNIT_STABLE_SHA="6b12be""aa""c15a445cd99af061b17c028a""ee1c41b7"
+  git checkout "${HTMLUNIT_STABLE_SHA}"
   echo "checkstyle.suppressions.file=checkstyle_suppressions.xml" > checkstyle.properties
   readarray -t files < <(find src/main/java src/test/java -name "*.java")
   java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
