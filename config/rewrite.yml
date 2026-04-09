@@ -58,12 +58,28 @@ recipeList:
   - org.openrewrite.staticanalysis.CodeCleanup:
       exclude:
         # all suppressions until https://github.com/checkstyle/checkstyle/issues/18952
+        # Kept excluded: OpenRewrite's DefaultComesLast always moves default to
+        # the end of a switch statement, ignoring Checkstyle's
+        # DefaultComesLastCheck option `skipIfLastAndSharedWithCase`. When set
+        # to true, Checkstyle permits default to share a case group
+        # (e.g. case 1: default: break;), which OpenRewrite would incorrectly
+        # reorder.
         - org.openrewrite.staticanalysis.DefaultComesLast
         # Kept excluded: OpenRewrite's EmptyBlock removes blocks entirely,
         # which conflicts with Checkstyle's EmptyBlockCheck that requires
         # blocks to have statements or text. Automatic deletion is too aggressive.
         - org.openrewrite.staticanalysis.EmptyBlock
+        # Kept excluded: OpenRewrite's FinalizePrivateFields automatically adds
+        # final to private instance fields, but Checkstyle has no equivalent
+        # check for private fields (FinalLocalVariable only covers local
+        # variables). Adding final to fields can break frameworks that mutate
+        # fields via reflection such as Spring, Hibernate, and Mockito.
         - org.openrewrite.staticanalysis.FinalizePrivateFields
+        # Kept excluded: OpenRewrite's ForLoopControlVariablePostfixOperators
+        # always replaces pre-increment (++i) with post-increment (i++) in for
+        # loop update clauses, but Checkstyle has no equivalent check for this.
+        # Both forms are functionally identical in for loops, and some style
+        # guides prefer pre-increment.
         - org.openrewrite.staticanalysis.ForLoopControlVariablePostfixOperators
         - org.openrewrite.java.format.MethodParamPad
         - org.openrewrite.java.format.NoWhitespaceAfter
