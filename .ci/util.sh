@@ -42,18 +42,60 @@ function getCheckstylePomVersionWithoutSnapshotWithXmlstarlet {
 
 function checkout_from {
   CLONE_URL=$1
-  PROJECT=$(echo "$CLONE_URL" | sed -nE 's/.*\/(.*).git/\1/p')
+  TARGET_SHA=$2
+  PROJECT=$(basename "$CLONE_URL")
+  PROJECT=${PROJECT%.git}
+
+  if [ -z "$PROJECT" ]; then
+    echo "Error: cannot determine project folder from URL '$CLONE_URL'"
+    exit 1
+  fi
+
   mkdir -p .ci-temp
-  cd .ci-temp
-  if [ -d "$PROJECT" ]; then
+  pushd .ci-temp > /dev/null
+
+  if [ -n "$TARGET_SHA" ]; then
+    if [ -d "$PROJECT" ]; then
+      echo "Target project $PROJECT already exists, re-cloning with full history for SHA checkout"
+      removeFolderWithProtectedFiles "$PROJECT"
+    fi
+    CLONE_SUCCESS=0
+    for i in 1 2 3 4 5; do
+      git clone "$CLONE_URL" "$PROJECT" && CLONE_SUCCESS=1 && break
+      sleep 15s
+    done
+    if [ "$CLONE_SUCCESS" -ne 1 ]; then
+      echo "Error: failed to clone '$CLONE_URL' after 5 attempts"
+      popd > /dev/null
+      exit 1
+    fi
+    cd "$PROJECT"
+    if ! git cat-file -e "${TARGET_SHA}^{commit}" 2>/dev/null; then
+      echo "Error: unable to find commit '$TARGET_SHA' in '$PROJECT'"
+      popd > /dev/null
+      exit 1
+    fi
+    git checkout "$TARGET_SHA"
+    cd ../
+  elif [ -d "$PROJECT" ]; then
     echo "Target project $PROJECT is already cloned, latest changes will be fetched and reset"
     cd "$PROJECT"
-    git fetch
-    git reset --hard HEAD
+    git fetch --depth 1 origin HEAD
+    git reset --hard FETCH_HEAD
     git clean -f -d
     cd ../
   else
-    for i in 1 2 3 4 5; do git clone --depth 1 "$CLONE_URL" && break || sleep 15s; done
+    CLONE_SUCCESS=0
+    for i in 1 2 3 4 5; do
+      git clone --depth 1 "$CLONE_URL" "$PROJECT" && CLONE_SUCCESS=1 && break
+      sleep 15s
+    done
+    if [ "$CLONE_SUCCESS" -ne 1 ]; then
+      echo "Error: failed to clone '$CLONE_URL' after 5 attempts"
+      popd > /dev/null
+      exit 1
+    fi
   fi
-  cd ../
+
+  popd > /dev/null
 }
