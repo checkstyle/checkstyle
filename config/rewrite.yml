@@ -84,7 +84,20 @@ recipeList:
         - org.openrewrite.staticanalysis.OperatorWrap
         - org.openrewrite.staticanalysis.ReplaceThreadRunWithThreadStart
         - org.openrewrite.staticanalysis.ChainStringBuilderAppendCalls
+        # Kept excluded: OpenRewrite's ReplaceStringBuilderWithString
+        # automatically replaces StringBuilder.append() chains with string
+        # concatenation. Checkstyle has no equivalent check for this, and
+        # the replacement can reduce performance inside loops where the
+        # compiler does not optimize string concatenation as efficiently
+        # as an explicit StringBuilder.
         - org.openrewrite.staticanalysis.ReplaceStringBuilderWithString
+        # Kept excluded: OpenRewrite's CustomImportOrder applies a fixed
+        # default import group order with no configuration. Checkstyle's
+        # CustomImportOrderCheck is highly configurable via options like
+        # customImportOrderRules, specialImportsRegExp, and
+        # separateLineBetweenGroups. OpenRewrite ignores these settings
+        # and would reorder imports incorrectly for projects with a
+        # custom import order configuration.
         - org.openrewrite.staticanalysis.CustomImportOrder
 
   # individual recipes
