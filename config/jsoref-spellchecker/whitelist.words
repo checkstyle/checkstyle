@@ -14,7 +14,6 @@ actionlint
 addons
 Adoptium
 adr
-AFBR
 AFilter
 aggregators
 allchecks
@@ -1199,7 +1198,6 @@ selfexplanatory
 Selkin
 semaphoreci
 semver
-SEO
 separatorwrap
 SERIALVERSIONUID
 servlet

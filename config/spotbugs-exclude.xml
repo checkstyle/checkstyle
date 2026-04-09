@@ -226,7 +226,6 @@
       NMCS_NEEDLESS_MEMBER_COLLECTION_SYNCHRONIZATION,
       OPM_OVERLY_PERMISSIVE_METHOD,
       PMB_INSTANCE_BASED_THREAD_LOCAL,
-      SEO_SUBOPTIMAL_EXPRESSION_ORDER,
       STT_STRING_PARSING_A_FIELD,
       WEM_WEAK_EXCEPTION_MESSAGING,
       " />
@@ -323,34 +322,6 @@
     <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
   </Match>
 
-  <!-- Suppress AFBR_ABNORMAL_FINALLY_BLOCK_RETURN -->
-  <!-- until https://github.com/checkstyle/checkstyle/issues/16979 -->
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.Main" />
-    <Bug pattern="AFBR_ABNORMAL_FINALLY_BLOCK_RETURN" />
-  </Match>
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask" />
-    <Bug pattern="AFBR_ABNORMAL_FINALLY_BLOCK_RETURN" />
-  </Match>
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper" />
-    <Bug pattern="AFBR_ABNORMAL_FINALLY_BLOCK_RETURN" />
-  </Match>
-
-  <!-- Suppress CC_CYCLOMATIC_COMPLEXITY -->
-  <!-- until https://github.com/checkstyle/checkstyle/issues/16979 -->
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck" />
-    <Method name="visitToken" />
-    <Bug pattern="CC_CYCLOMATIC_COMPLEXITY" />
-  </Match>
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck" />
-    <Method name="getClassFrameWhereViolationIsFound" />
-    <Bug pattern="CC_CYCLOMATIC_COMPLEXITY" />
-  </Match>
-
   <!-- Suppress PSC_PRESIZE_COLLECTIONS -->
   <!-- until https://github.com/checkstyle/checkstyle/issues/16979 -->
   <Match>
@@ -362,18 +333,6 @@
     <Class name="com.puppycrawl.tools.checkstyle.SarifLogger" />
     <Method name="generateRules" />
     <Bug pattern="PSC_PRESIZE_COLLECTIONS" />
-  </Match>
-
-  <!-- Suppress RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE -->
-  <!-- until https://github.com/checkstyle/checkstyle/issues/16979 -->
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.site.SiteUtil" />
-    <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
-  </Match>
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil" />
-    <Method name="getTargetFiles" />
-    <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
   </Match>
 
   <!-- until https://github.com/mebigfatguy/fb-contrib/issues/491 -->
