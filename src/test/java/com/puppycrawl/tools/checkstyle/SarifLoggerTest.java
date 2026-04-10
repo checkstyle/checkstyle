@@ -102,7 +102,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
 
     /**
      * This test cannot use verifyWithInlineConfigParserAndLogger because
-     * XML 1.0 forbids most control characters (&#x8;, &#xC;, &#xD;, &#x9;, etc.)
+     * XML 1.0 forbids most control characters (&#x8;, &#xC;, &#xD;, etc.)
      * even as numeric character references in attribute values. These characters
      * require direct unit testing of the escape() method.
      */
@@ -111,10 +111,8 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         final String[][] encodings = {
             {"\b", "\\b"},
             {"\f", "\\f"},
-            {"\t", "\\t"},
             {"\r", "\\r"},
             {"/", "\\/"},
-            {"\u0010", "\\u0010"},
             {"\u001E", "\\u001E"},
             {"\u001F", "\\u001F"},
             {" ", " "},

@@ -42,13 +42,54 @@
                 },
                 "region": {
                   "startColumn": 13,
-                  "startLine": 15
+                  "startLine": 23
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\t"
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeSelect.java"
+                },
+                "region": {
+                  "startColumn": 13,
+                  "startLine": 23
                 }
               }
             }
           ],
           "message": {
             "text": "\"\\\\ \\n"
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeSelect.java"
+                },
+                "region": {
+                  "startColumn": 16,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "illegal.token.text",
+            "text": "Token text matches the illegal pattern '[\\x10]'."
           },
           "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
         }
