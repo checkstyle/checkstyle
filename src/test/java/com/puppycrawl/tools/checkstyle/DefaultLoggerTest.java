@@ -170,6 +170,10 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNullInfoStreamOptions() {
+        // This test cannot use verifyWithInlineConfigParserAndLogger as it does not
+        // involve an input file, configuration or audit process. It only verifies that
+        // constructing a DefaultLogger with null stream options throws an
+        // IllegalArgumentException with the correct message.
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final IllegalArgumentException ex =
                 TestUtil.getExpectedThrowable(IllegalArgumentException.class,
@@ -183,6 +187,10 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNullErrorStreamOptions() {
+        // This test cannot use verifyWithInlineConfigParserAndLogger as it does not
+        // involve an input file, configuration or audit process. It only verifies that
+        // constructing a DefaultLogger with null stream options throws an
+        // IllegalArgumentException with the correct message.
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final IllegalArgumentException ex =
                 TestUtil.getExpectedThrowable(IllegalArgumentException.class, () -> {
