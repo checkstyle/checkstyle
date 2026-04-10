@@ -33,7 +33,7 @@ all-sevntu-checks)
     | sed "s/com\.github\.sevntu\.checkstyle\.checks\..*\.//" \
     | sort | uniq | sed "s/Check$//" > $working_dir/file.txt
 
-  wget -q http://sevntu-checkstyle.github.io/sevntu.checkstyle/apidocs/allclasses-frame.html -O - \
+  curl --fail-with-body -s http://sevntu-checkstyle.github.io/sevntu.checkstyle/apidocs/allclasses-frame.html \
     | grep "<li>" | cut -d '>' -f 3 | sed "s/<\/a//" \
     | grep -E "Check$" \
     | sort | uniq | sed "s/Check$//" > $working_dir/web.txt
@@ -415,13 +415,11 @@ verify-no-exception-configs)
 
   mkdir -p .ci-temp/verify-no-exception-configs
   working_dir=.ci-temp/verify-no-exception-configs
-  wget -q \
-    --directory-prefix $working_dir \
-    --no-clobber \
+  curl -s --fail-with-body -o "$working_dir/checks-nonjavadoc-error.xml" \
+    -H "Authorization: token $GITHUB_TOKEN" \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-nonjavadoc-error.xml
-  wget -q \
-    --directory-prefix $working_dir \
-    --no-clobber \
+  curl -s --fail-with-body -o "$working_dir/checks-only-javadoc-error.xml" \
+    -H "Authorization: token $GITHUB_TOKEN" \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-only-javadoc-error.xml
   MODULES_WITH_EXTERNAL_FILES="Filter|ImportControl"
   xmlstarlet fo -D \
