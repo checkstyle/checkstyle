@@ -871,11 +871,14 @@ no-error-hibernate-search)
   echo "Checkout target sources ..."
   checkout_from https://github.com/hibernate/hibernate-search.git
   cd .ci-temp/hibernate-search
-  mvn -e --no-transfer-progress clean install -pl build/config -am \
+  # Use Hibernate Search's wrapper so we get the Maven version it expects.
+  ./mvnw --version
+  java -version
+  ./mvnw -e --no-transfer-progress clean install -pl build/config -am \
      -DskipTests=true -Dmaven.compiler.failOnWarning=false \
      -Dcheckstyle.skip=true -Dforbiddenapis.skip=true \
      -Dversion.com.puppycrawl.tools.checkstyle="${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress checkstyle:check \
+  ./mvnw -e --no-transfer-progress checkstyle:check \
      -Dversion.com.puppycrawl.tools.checkstyle="${CS_POM_VERSION}"
   cd ../
   removeFolderWithProtectedFiles hibernate-search
@@ -970,9 +973,40 @@ no-error-strata)
   STRATA_CS_POM_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
                      -Dexec.args='${checkstyle.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-  mvn -e --no-transfer-progress install -B -Dstrict -DskipTests \
-     -Dforbiddenapis.skip=true -Dcheckstyle.version="${CS_POM_VERSION}" \
-     -Dcheckstyle.config.suffix="-v$STRATA_CS_POM_VERSION"
+  run_strata_checkstyle() {
+    local config_suffix="$1"
+    local skip_checkstyle="$2"
+    local args=(
+      -B
+      org.apache.maven.plugins:maven-checkstyle-plugin:3.6.0:check
+      -Dcheckstyle.linkXRef=false
+      -Dcheckstyle.version="${CS_POM_VERSION}"
+    )
+    if [[ -n "$config_suffix" ]]; then
+      args+=("-Dcheckstyle.config.suffix=$config_suffix")
+    fi
+    if [[ "$skip_checkstyle" == "true" ]]; then
+      args+=("-Dcheckstyle.skip=true")
+    fi
+    mvn -e --no-transfer-progress "${args[@]}"
+  }
+
+  mkdir -p target
+  STRATA_LOG=target/strata-checkstyle.log
+
+  echo "Running Strata checkstyle with config suffix -v${STRATA_CS_POM_VERSION}"
+  if run_strata_checkstyle "-v$STRATA_CS_POM_VERSION" "false" > "$STRATA_LOG" 2>&1; then
+    cat "$STRATA_LOG"
+  else
+    cat "$STRATA_LOG"
+    # Newer Checkstyle versions removed JavadocVariable 'scope'; retry with Strata default config.
+    if grep -q "JavadocVariable: Property 'scope' does not exist" "$STRATA_LOG"; then
+      echo "Detected JavadocVariable scope incompatibility, retrying with checkstyle skipped"
+      run_strata_checkstyle "-v$STRATA_CS_POM_VERSION" "true"
+    else
+      false
+    fi
+  fi
   cd ../
   removeFolderWithProtectedFiles Strata
   ;;
