@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -295,7 +296,8 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * @return the file contents
      */
     public final String[] getLines() {
-        return context.get().fileContents.getLines();
+        final String[] lines = context.get().fileContents.getLines();
+        return Arrays.copyOf(lines, lines.length);
     }
 
     /**
