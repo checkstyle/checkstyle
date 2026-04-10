@@ -40,6 +40,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
+import org.junit.jupiter.api.function.Executable;
+
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
@@ -542,6 +544,26 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
         verifyContent(expectedInfoFile, infoStream);
         verifyCleanedMessageContent(expectedErrorFile, errorStream, basePath);
+    }
+
+    /**
+     * Verifies that the given logger constructor throws an {@link IllegalArgumentException}
+     * with the expected message.
+     *
+     * @param expectedMessage the expected exception message.
+     * @param constructor a lambda representing the logger constructor call to test.
+     */
+    protected static void verifyLoggerConstructionException(
+            String expectedMessage,
+            Executable constructor) {
+        final IllegalArgumentException ex =
+                TestUtil.getExpectedThrowable(IllegalArgumentException.class,
+                        constructor,
+                        "IllegalArgumentException expected");
+        assertWithMessage("Invalid error message")
+                .that(ex)
+                .hasMessageThat()
+                .isEqualTo(expectedMessage);
     }
 
     /**
