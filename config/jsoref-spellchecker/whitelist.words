@@ -255,10 +255,13 @@ davidwalsh
 DBFF
 Dcheckstyle
 dcm
+Dcpd
 Dconfig
 Dconnection
+Dcyclonedx
 ddd
 DDDL
+Ddokka
 Ddry
 DEADBEEF
 DECCHARS
@@ -295,6 +298,7 @@ Diachenko
 diffplug
 DIFFTOOL
 dirname
+Djapicmp
 Djacoco
 Djdepend
 Dlinkcheck
