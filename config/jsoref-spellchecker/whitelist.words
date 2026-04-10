@@ -255,9 +255,9 @@ davidwalsh
 DBFF
 Dcheckstyle
 dcm
-Dcpd
 Dconfig
 Dconnection
+Dcpd
 Dcyclonedx
 ddd
 DDDL
@@ -298,8 +298,8 @@ Diachenko
 diffplug
 DIFFTOOL
 dirname
-Djapicmp
 Djacoco
+Djapicmp
 Djdepend
 Dlinkcheck
 DMail
