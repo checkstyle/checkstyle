@@ -168,6 +168,12 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
                 .isFalse();
     }
 
+    /**
+     * This test cannot use verifyWithInlineConfigParserAndLogger as it does not
+     * involve an input file, configuration or audit process. It only verifies that
+     * constructing a DefaultLogger with null stream options throws an
+     * IllegalArgumentException with the correct message.
+     */
     @Test
     public void testNullInfoStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -181,6 +187,12 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
                         .isEqualTo("Parameter infoStreamOptions can not be null");
     }
 
+    /**
+     * This test cannot use verifyWithInlineConfigParserAndLogger as it does not
+     * involve an input file, configuration or audit process. It only verifies that
+     * constructing a DefaultLogger with null stream options throws an
+     * IllegalArgumentException with the correct message.
+     */
     @Test
     public void testNullErrorStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
