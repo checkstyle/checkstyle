@@ -134,8 +134,27 @@
                     <strong>2 - Java Source Files</strong>
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/misc/lineending.html#LineEnding">LineEnding</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineEnding">
+                  config</a>),
+                  <a href="checks/regexp/regexpsingleline.html#RegexpSingleline">
+                    RegexpSingleline</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpSingleline">
+                  config</a>),
+                  <a href="checks/misc/outertypefilename.html#OuterTypeFilename">
+                    OuterTypeFilename</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OuterTypeFilename">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter2javasourcefiles/rule2javasourcefiles">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
@@ -151,8 +170,13 @@
                     2.1 Special Characters
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="https://checkstyle.org/config.html#Checker">charset=US-ASCII</a>
+                </td>
+                <td>--</td>
               </tr>
               <!-- 3 Formatting -->
               <tr>
