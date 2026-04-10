@@ -262,6 +262,10 @@ no-error-pmd)
                 -Dmaven.javadoc.skip=true \
                 -Dmaven.source.skip=true \
                 -Dpmd.skip=true \
+                -Dcpd.skip=true \
+                -Djapicmp.skip=true \
+                -Dcyclonedx.skip=true \
+                -Ddokka.skip=true \
                 -Dcheckstyle.skip=false \
                 -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..
