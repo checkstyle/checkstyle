@@ -545,6 +545,26 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Verifies that the given logger constructor throws an {@link IllegalArgumentException}
+     * with the expected message.
+     *
+     * @param expectedMessage the expected exception message.
+     * @param constructor a lambda representing the logger constructor call to test.
+     */
+    protected static void verifyLoggerConstructionException(
+            String expectedMessage,
+            org.junit.jupiter.api.function.Executable constructor) {
+        final IllegalArgumentException ex =
+                TestUtil.getExpectedThrowable(IllegalArgumentException.class,
+                        constructor,
+                        "IllegalArgumentException expected");
+        assertWithMessage("Invalid error message")
+                .that(ex)
+                .hasMessageThat()
+                .isEqualTo(expectedMessage);
+    }
+
+    /**
      * Performs verification of the file with the given file name. Uses specified configuration.
      * Expected messages are represented by the array of strings.
      * This implementation uses overloaded
