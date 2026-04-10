@@ -171,34 +171,25 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     @Test
     public void testNullInfoStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final IllegalArgumentException ex =
-                TestUtil.getExpectedThrowable(IllegalArgumentException.class,
-                        () -> new DefaultLogger(outputStream, (OutputStreamOptions) null),
-                        "IllegalArgumentException expected");
-        assertWithMessage("Invalid error message")
-                .that(ex)
-                .hasMessageThat()
-                        .isEqualTo("Parameter infoStreamOptions can not be null");
+        verifyLoggerConstructionException(
+                "Parameter infoStreamOptions can not be null",
+                () -> {
+                    new DefaultLogger(outputStream, (OutputStreamOptions) null);
+                });
     }
 
     @Test
     public void testNullErrorStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final IllegalArgumentException ex =
-                TestUtil.getExpectedThrowable(IllegalArgumentException.class, () -> {
-                    final DefaultLogger defaultLogger = new DefaultLogger(outputStream,
-                            OutputStreamOptions.CLOSE, outputStream, null);
-
-                    // Workaround for Eclipse error "The allocated object is never used"
-                    assertWithMessage("defaultLogger should be non-null")
-                            .that(defaultLogger)
-                            .isNotNull();
-                },
-                "IllegalArgumentException expected");
-        assertWithMessage("Invalid error message")
-                .that(ex)
-                .hasMessageThat()
-                        .isEqualTo("Parameter errorStreamOptions can not be null");
+        verifyLoggerConstructionException(
+                "Parameter errorStreamOptions can not be null",
+                () -> {
+                    new DefaultLogger(
+                            outputStream,
+                            OutputStreamOptions.CLOSE,
+                            outputStream,
+                            null);
+                });
     }
 
     @Test
