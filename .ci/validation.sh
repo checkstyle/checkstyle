@@ -780,6 +780,44 @@ javac25)
   fi
   ;;
 
+javadoc-tool-validate)
+  # Validate that all inputs for Javadoc checks can be processed by the JDK javadoc tool
+  # without javadoc content errors (malformed HTML, invalid tags, etc.).
+  # Classpath-only errors ("package X does not exist", "cannot find symbol") are filtered
+  # out as they are irrelevant to javadoc content validity.
+  # Input files that intentionally produce javadoc errors must be placed under a
+  # 'resources-with-javadoc-error' source root so they are excluded from this check.
+  mkdir -p target
+  FAILED=0
+  for sourcepath_and_subpackage in \
+    "src/test/resources com.puppycrawl.tools.checkstyle.checks.javadoc" \
+    "src/xdocs-examples/resources com.puppycrawl.tools.checkstyle.checks.javadoc" \
+    "src/it/resources com.google.checkstyle.test.chapter7javadoc"
+  do
+    sourcepath="${sourcepath_and_subpackage%% *}"
+    subpackage="${sourcepath_and_subpackage#* }"
+    echo "Running javadoc on sourcepath=$sourcepath subpackage=$subpackage"
+    JAVADOC_OUTPUT=$(javadoc -sourcepath "$sourcepath" \
+      -subpackages "$subpackage" \
+      -d target 2>&1 || true)
+    REAL_ERRORS=$(echo "$JAVADOC_OUTPUT" \
+      | grep "error:" \
+      | grep -v "error: package .* does not exist" \
+      | grep -v "error: cannot find symbol" \
+      || true)
+    if [ -n "$REAL_ERRORS" ]; then
+      echo "javadoc content errors found in sourcepath '$sourcepath':"
+      echo "$REAL_ERRORS"
+      echo "If these errors are intentional, move the offending file(s) into a"
+      echo "'resources-with-javadoc-error' source root mirroring the same path structure."
+      FAILED=1
+    fi
+  done
+  if [ "$FAILED" -ne 0 ]; then
+    false
+  fi
+  ;;
+
 package-site)
   export MAVEN_OPTS="-Xmx5g"
   ./mvnw -e --no-transfer-progress package -Passembly,no-validations
