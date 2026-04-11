@@ -780,6 +780,26 @@ javac25)
   fi
   ;;
 
+javadoc-tool-validate)
+  mkdir -p .ci-temp
+  echo "Running javadoc on sourcepath=src/xdocs-examples/resources"
+  echo "subpackage=com.puppycrawl.tools.checkstyle.checks.javadoc"
+  JAVADOC_OUTPUT=$(javadoc -sourcepath "src/xdocs-examples/resources" \
+    -subpackages "com.puppycrawl.tools.checkstyle.checks.javadoc" \
+    -d .ci-temp 2>&1 || true)
+  echo "$JAVADOC_OUTPUT"
+  REAL_ERRORS=$(echo "$JAVADOC_OUTPUT" \
+    | grep "error:" \
+    | grep -v "error: package .* does not exist" \
+    | grep -v "error: cannot find symbol" \
+    || true)
+  if [ -n "$REAL_ERRORS" ]; then
+    echo "If these errors are intentional, move the offending file(s) into a"
+    echo "'resources-with-javadoc-error' source root mirroring the same path structure."
+    exit 1
+  fi
+  ;;
+
 package-site)
   export MAVEN_OPTS="-Xmx5g"
   ./mvnw -e --no-transfer-progress package -Passembly,no-validations
