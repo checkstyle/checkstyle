@@ -123,6 +123,7 @@ public class LeftCurlyCheck
             TokenTypes.STATIC_INIT,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.SWITCH_RULE,
         };
     }
 
@@ -156,7 +157,8 @@ public class LeftCurlyCheck
             case TokenTypes.LITERAL_WHILE, TokenTypes.LITERAL_CATCH,
                  TokenTypes.LITERAL_SYNCHRONIZED, TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_TRY,
                  TokenTypes.LITERAL_FINALLY, TokenTypes.LITERAL_DO,
-                 TokenTypes.LITERAL_IF, TokenTypes.STATIC_INIT, TokenTypes.LAMBDA -> {
+                 TokenTypes.LITERAL_IF, TokenTypes.STATIC_INIT, TokenTypes.LAMBDA,
+                 TokenTypes.SWITCH_RULE -> {
                 startToken = ast;
                 yield ast.findFirstToken(TokenTypes.SLIST);
             }
@@ -352,5 +354,4 @@ public class LeftCurlyCheck
                 || nextToken.getType() == TokenTypes.RCURLY
                 || !TokenUtil.areOnSameLine(leftCurly, nextToken);
     }
-
 }

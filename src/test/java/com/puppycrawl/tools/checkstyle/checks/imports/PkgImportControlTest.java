@@ -93,7 +93,7 @@ public class PkgImportControlTest {
     @Test
     public void testEnsureTrailingDot() {
         assertWithMessage("Unexpected response")
-            .that(icRoot.locateFinest("com.kazgroup.courtlinkkk", "MyClass"))
+            .that(icRoot.locateFinest("com.kazgroup.courtlinks", "MyClass"))
             .isNull();
         assertWithMessage("Unexpected response")
             .that(icRoot.locateFinest("com.kazgroup.courtlink/common.api", "MyClass"))
@@ -215,13 +215,13 @@ public class PkgImportControlTest {
             .that(icRootRegexpParent.locateFinest("com", "MyClass"))
             .isNull();
         assertWithMessage("Package should not be null")
-            .that(icRootRegexpParent.locateFinest("com/hurz/courtlink", "MyClass"))
+            .that(icRootRegexpParent.locateFinest("com/test/courtlink", "MyClass"))
             .isNull();
         assertWithMessage("Package should not be null")
-            .that(icRootRegexpParent.locateFinest("com.hurz.hurz.courtlink", "MyClass"))
+            .that(icRootRegexpParent.locateFinest("com.test.test.courtlink", "MyClass"))
             .isNull();
         assertWithMessage("Invalid package")
-            .that(icRootRegexpParent.locateFinest("com.hurz.courtlink.domain", "MyClass"))
+            .that(icRootRegexpParent.locateFinest("com.test.courtlink.domain", "MyClass"))
             .isEqualTo(icRootRegexpParent);
         assertWithMessage("Invalid package")
             .that(icRootRegexpParent.locateFinest("com.kazgroup.courtlink.domain", "MyClass"))
@@ -243,7 +243,7 @@ public class PkgImportControlTest {
     @Test
     public void testRegExpParentEnsureTrailingDot() {
         assertWithMessage("Invalid package")
-            .that(icRootRegexpParent.locateFinest("com.kazgroup.courtlinkkk", "MyClass"))
+            .that(icRootRegexpParent.locateFinest("com.kazgroup.courtlinks", "MyClass"))
             .isNull();
         assertWithMessage("Invalid package")
             .that(icRootRegexpParent.locateFinest("com.kazgroup.courtlink/common.api", "MyClass"))

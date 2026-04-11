@@ -76,10 +76,10 @@ public class NoLineWrapCheckTest
             "28:9: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
             "34:5: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
             "36:9: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
-            "40:5: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
-            "42:9: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
-            "47:9: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
-            "49:13: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
+            "41:5: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
+            "43:9: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
+            "48:9: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
+            "50:13: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoLineWrapRecordsAndCompactCtors.java"),

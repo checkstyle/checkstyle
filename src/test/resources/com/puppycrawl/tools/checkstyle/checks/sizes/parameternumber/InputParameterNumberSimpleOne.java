@@ -1,6 +1,7 @@
 /*
 ParameterNumber
 max = (default)7
+ignoreAnnotatedBy = (default)
 ignoreOverriddenMethods = (default)false
 tokens = (default)METHOD_DEF, CTOR_DEF
 

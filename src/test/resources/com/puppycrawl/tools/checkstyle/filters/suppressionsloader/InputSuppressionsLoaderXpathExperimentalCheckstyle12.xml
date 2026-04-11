@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+    "http://localhost:99999/nonexistent.dtd">
+<suppressions>
+  <suppress-xpath files="file1" id="id1" checks="test" query="//CLASS_DEF"/>
+</suppressions>

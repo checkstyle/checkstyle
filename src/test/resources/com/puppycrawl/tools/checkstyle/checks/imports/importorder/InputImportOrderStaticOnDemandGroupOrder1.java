@@ -22,7 +22,7 @@ import static org.antlr.v4.runtime.CommonToken.*;
 import org.antlr.v4.runtime.*; // violation 'Extra separation in import group before 'org.antlr.v4.runtime.*''
 
 import java.util.Set; // violation 'Extra separation in import group before 'java.util.Set''
-import org.junit.Test; // violation 'Wrong order for 'org.junit.Test' import.'
+import org.junit.Test; // violation 'Import statement for 'org.junit.Test' violates the configured import group order.'
 
 public class InputImportOrderStaticOnDemandGroupOrder1
 {

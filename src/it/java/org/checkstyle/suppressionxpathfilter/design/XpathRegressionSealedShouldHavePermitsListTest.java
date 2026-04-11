@@ -99,4 +99,33 @@ public class XpathRegressionSealedShouldHavePermitsListTest extends AbstractXpat
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testInterface() throws Exception {
+        final File fileToProcess =
+                new File(getPath(
+                        "InputXpathSealedShouldHavePermitsListInterface.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(SealedShouldHavePermitsListCheck.class);
+
+        final String[] expectedViolation = {
+            "4:1: " + getCheckMessage(SealedShouldHavePermitsListCheck.class,
+                SealedShouldHavePermitsListCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
+                + "[@text='InputXpathSealedShouldHavePermitsListInterface']]",
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
+                + "[@text='InputXpathSealedShouldHavePermitsListInterface']]"
+                        + "/MODIFIERS",
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
+                + "[@text='InputXpathSealedShouldHavePermitsListInterface']]"
+                        + "/MODIFIERS/LITERAL_PUBLIC"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

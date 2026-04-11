@@ -69,12 +69,30 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefaults() throws Exception {
+    public void testDefaultsInnerClass() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getPath("InputMethodCount.java"), expected);
+                getPath("InputMethodCountDefaultsInnerClass.java"), expected);
+    }
+
+    @Test
+    public void testDefaultsInnerInterface() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputMethodCountDefaultsInnerInterface.java"), expected);
+    }
+
+    @Test
+    public void testDefaultsAllModifiers() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputMethodCountDefaultsAllModifiers.java"), expected);
     }
 
     @Test

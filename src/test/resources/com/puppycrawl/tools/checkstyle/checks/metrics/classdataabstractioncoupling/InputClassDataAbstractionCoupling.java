@@ -13,8 +13,10 @@ package com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupl
 import javax.naming.NamingException;
 import java.util.*;
 
-public class InputClassDataAbstractionCoupling { // violation
-    private class InnerClass { // violation
+// violation below, 'Class Data Abstraction Coupling is 4 (max allowed is 0)'
+public class InputClassDataAbstractionCoupling {
+    // violation below, 'Class Data Abstraction Coupling is 1 (max allowed is 0)'
+    private class InnerClass {
         public List _list = new ArrayList();
     }
 
@@ -34,7 +36,7 @@ public class InputClassDataAbstractionCoupling { // violation
 
 }
 
-enum InnerEnum { // violation
+enum InnerEnum { // violation, 'Class Data Abstraction Coupling is 2 (max allowed is 0)'
     VALUE1;
 
     private InnerEnum()

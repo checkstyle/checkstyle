@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -57,52 +58,52 @@ public class SuppressionCommentFilterTest
     extends AbstractModuleTestSupport {
 
     private static final String[] ALL_MESSAGES = {
-        "45:17: "
+        "42:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "I", "^[a-z][a-zA-Z0-9]*$"),
-        "48:17: "
+        "45:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "J", "^[a-z][a-zA-Z0-9]*$"),
-        "51:17: "
+        "48:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "K", "^[a-z][a-zA-Z0-9]*$"),
-        "54:17: "
+        "51:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "L", "^[a-z][a-zA-Z0-9]*$"),
-        "55:30: "
+        "52:30: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "m", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-        "59:17: "
+        "56:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "M2", "^[a-z][a-zA-Z0-9]*$"),
-        "60:30: "
+        "57:30: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "n", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-        "64:17: "
+        "61:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "P", "^[a-z][a-zA-Z0-9]*$"),
-        "67:17: "
+        "64:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "Q", "^[a-z][a-zA-Z0-9]*$"),
-        "70:17: "
+        "67:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "R", "^[a-z][a-zA-Z0-9]*$"),
-        "71:30: "
+        "68:30: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "s", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-        "75:17: "
+        "72:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "T", "^[a-z][a-zA-Z0-9]*$"),
-        "96:23: "
+        "93:23: "
             + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
-        "103:11: "
+        "100:11: "
             + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
-        "109:11: "
+        "106:11: "
             + getCheckMessage(IllegalCatchCheck.class,
                 IllegalCatchCheck.MSG_KEY, "RuntimeException"),
-        "110:11: "
+        "107:11: "
             + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
-        "118:31: "
+        "115:31: "
             + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
     };
 
@@ -172,17 +173,17 @@ public class SuppressionCommentFilterTest
     @Test
     public void testDefault() throws Exception {
         final String[] suppressed = {
-            "48:17: "
+            "45:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "J", "^[a-z][a-zA-Z0-9]*$"),
-            "75:17: "
+            "72:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "T", "^[a-z][a-zA-Z0-9]*$"),
-            "96:23: "
+            "93:23: "
                 + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
-            "103:11: "
+            "100:11: "
                 + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
-            "118:31: "
+            "115:31: "
                 + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
         };
         verifySuppressedWithParser("InputSuppressionCommentFilter2.java", suppressed);
@@ -191,12 +192,12 @@ public class SuppressionCommentFilterTest
     @Test
     public void testCheckC() throws Exception {
         final String[] suppressed = {
-            "75:17: "
+            "72:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "T", "^[a-z][a-zA-Z0-9]*$"),
-            "96:23: "
+            "93:23: "
                 + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
-            "103:11: "
+            "100:11: "
                 + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
         };
         verifySuppressedWithParser("InputSuppressionCommentFilter3.java", suppressed);
@@ -205,10 +206,10 @@ public class SuppressionCommentFilterTest
     @Test
     public void testCheckCpp() throws Exception {
         final String[] suppressed = {
-            "48:17: "
+            "45:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "J", "^[a-z][a-zA-Z0-9]*$"),
-            "118:31: "
+            "115:31: "
                 + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
         };
         verifySuppressedWithParser("InputSuppressionCommentFilter4.java", suppressed);
@@ -218,18 +219,15 @@ public class SuppressionCommentFilterTest
     @Test
     public void testOffFormat() throws Exception {
         final String[] suppressed = {
-            "64:17: "
+            "61:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "P", "^[a-z][a-zA-Z0-9]*$"),
-            "70:17: "
+            "67:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "R", "^[a-z][a-zA-Z0-9]*$"),
-            "71:30: "
+            "68:30: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "s", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-            "74:17: "
-                + getCheckMessage(AbstractNameCheck.class,
-                    MSG_INVALID_PATTERN, "T", "^[a-z][a-zA-Z0-9]*$"),
         };
         verifySuppressedWithParser("InputSuppressionCommentFilter5.java", suppressed);
     }
@@ -239,7 +237,7 @@ public class SuppressionCommentFilterTest
     @Test
     public void testOffFormatCheck() throws Exception {
         final String[] suppressed = {
-            "71:30: "
+            "68:30: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "s", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
         };
@@ -249,7 +247,7 @@ public class SuppressionCommentFilterTest
     @Test
     public void testArgumentSuppression() throws Exception {
         final String[] suppressed = {
-            "110:11: "
+            "107:11: "
                 + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
         };
         verifySuppressedWithParser("InputSuppressionCommentFilter7.java", suppressed);
@@ -258,13 +256,13 @@ public class SuppressionCommentFilterTest
     @Test
     public void testExpansion() throws Exception {
         final String[] suppressed = {
-            "54:17: "
+            "51:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "L", "^[a-z][a-zA-Z0-9]*$"),
-            "55:30: "
+            "52:30: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "m", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-            "60:30: "
+            "57:30: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "n", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
         };
@@ -367,7 +365,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    public void testInvalidCheckFormat() throws Exception {
+    public void testInvalidCheckFormat() {
         final DefaultConfiguration treeWalkerConfig =
             createModuleConfig(TreeWalker.class);
         final DefaultConfiguration filterConfig =
@@ -378,21 +376,21 @@ public class SuppressionCommentFilterTest
         treeWalkerConfig.addChild(filterConfig);
         treeWalkerConfig.addChild(checkConfig);
 
-        try {
-            execute(treeWalkerConfig, getPath("InputSuppressionCommentFilter10.java"));
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-            assertWithMessage("Invalid exception message")
-                .that(cause)
-                .hasMessageThat()
-                .isEqualTo("unable to parse expanded comment e[l");
-        }
+        final CheckstyleException exc = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> {
+                    execute(treeWalkerConfig,
+                            getPath("InputSuppressionCommentFilter10.java"));
+                });
+        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
+        assertWithMessage("Invalid exception message")
+            .that(cause)
+            .hasMessageThat()
+            .isEqualTo("unable to parse expanded comment e[l");
     }
 
     @Test
-    public void testInvalidMessageFormat() throws Exception {
+    public void testInvalidMessageFormat() {
         final DefaultConfiguration treeWalkerConfig =
             createModuleConfig(TreeWalker.class);
         final DefaultConfiguration filterConfig =
@@ -403,17 +401,17 @@ public class SuppressionCommentFilterTest
         treeWalkerConfig.addChild(filterConfig);
         treeWalkerConfig.addChild(checkConfig);
 
-        try {
-            execute(treeWalkerConfig, getPath("InputSuppressionCommentFilter11.java"));
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-            assertWithMessage("Invalid exception message")
-                .that(cause)
-                .hasMessageThat()
-                .isEqualTo("unable to parse expanded comment e[l");
-        }
+        final CheckstyleException exc = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> {
+                    execute(treeWalkerConfig,
+                            getPath("InputSuppressionCommentFilter11.java"));
+                });
+        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
+        assertWithMessage("Invalid exception message")
+            .that(cause)
+            .hasMessageThat()
+            .isEqualTo("unable to parse expanded comment e[l");
     }
 
     @Test

@@ -42,7 +42,7 @@ public class BlockTagUtilTest {
             "/** @foo abc ",
             " * @bar def  ",
             "   @baz ghi  ",
-            " * @qux jkl",
+            " * @info jkl",
             " * @mytag",
             " */",
         };
@@ -62,7 +62,7 @@ public class BlockTagUtilTest {
         assertTagEquals(tag3, "baz", "ghi", 3, 3);
 
         final TagInfo tag4 = tags.get(3);
-        assertTagEquals(tag4, "qux", "jkl", 4, 3);
+        assertTagEquals(tag4, "info", "jkl", 4, 3);
 
         final TagInfo tag5 = tags.get(4);
         assertTagEquals(tag5, "mytag", "", 5, 3);

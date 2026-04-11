@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_ALONE;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_BREAK_BEFORE;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_SAME;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.Test;
 
@@ -332,22 +333,19 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidOption() throws Exception {
+    public void testInvalidOption() {
 
-        try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-
-            verifyWithInlineConfigParser(
-                    getPath("InputRightCurlyTestInvalidOption.java"), expected);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                    + "blocks.RightCurlyCheck");
-        }
+        final CheckstyleException exc = getExpectedThrowable(CheckstyleException.class,
+                () -> {
+                    final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+                    verifyWithInlineConfigParser(
+                            getPath("InputRightCurlyTestInvalidOption.java"), expected);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                + "blocks.RightCurlyCheck");
     }
 
     @Test
@@ -979,5 +977,18 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         final String fileName =
                 "InputRightCurlyCaseBlocksWithSwitchExpressionAloneOrSingleline.java";
         verifyWithInlineConfigParser(getPath(fileName), expected);
+    }
+
+    @Test
+    public void testSwitchWhenGuards() throws Exception {
+        final String[] expected = {
+            "25:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
+            "36:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "51:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+            "64:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "73:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+        };
+        final String fileName = "InputRightCurlySwitchWhen.java";
+        verifyWithInlineConfigParser(getNonCompilablePath(fileName), expected);
     }
 }

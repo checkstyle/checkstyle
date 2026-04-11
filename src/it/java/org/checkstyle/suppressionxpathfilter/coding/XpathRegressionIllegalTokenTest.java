@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -82,6 +83,34 @@ public class XpathRegressionIllegalTokenTest extends AbstractXpathTestSupport {
                         + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenNative']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myTest']]"
                         + "/MODIFIERS/LITERAL_NATIVE"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
+    @Test
+    public void testPostIncrement() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathIllegalTokenPostIncrement.java"));
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(IllegalTokenCheck.class);
+
+        moduleConfig.addProperty("tokens", "POST_INC");
+
+        final String[] expectedViolation = {
+            "8:10: " + getCheckMessage(IllegalTokenCheck.class,
+                        IllegalTokenCheck.MSG_KEY, "++"),
+        };
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT"
+                        + "/ENUM_DEF[./IDENT[@text='InputXpathIllegalTokenPostIncrement']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"
+                        + "/SLIST/EXPR",
+                "/COMPILATION_UNIT"
+                        + "/ENUM_DEF[./IDENT[@text='InputXpathIllegalTokenPostIncrement']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"
+                        + "/SLIST/EXPR/POST_INC[./IDENT[@text='i']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

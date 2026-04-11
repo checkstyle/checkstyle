@@ -85,7 +85,7 @@ private static int checkCheckerFrameworkReport(final String profile) {
     final File suppressionFile = new File(suppressedErrorsFileUri)
     List<CheckerFrameworkError> suppressedErrors = Collections.emptyList()
     if (suppressionFile.exists()) {
-        final groovy.util.Node suppressedErrorsNode = xmlParser.parse(suppressedErrorsFileUri)
+        final Node suppressedErrorsNode = xmlParser.parse(suppressedErrorsFileUri)
         suppressedErrors = getSuppressedErrors(suppressedErrorsNode)
     }
 
@@ -242,12 +242,12 @@ private static List<CheckerFrameworkError> getErrorFromText(final List<List<Stri
  * @param mainNode the main {@code suppressedErrors} node
  * @return A set of suppressed errors
  */
-private static List<CheckerFrameworkError> getSuppressedErrors(groovy.util.Node mainNode) {
+private static List<CheckerFrameworkError> getSuppressedErrors(Node mainNode) {
     final List<Node> children = mainNode.children()
     final List<CheckerFrameworkError> suppressedErrors = new ArrayList<>(children.size())
 
     children.each { final node ->
-        final groovy.util.Node errorNode = node
+        final Node errorNode = node
         suppressedErrors.add(getError(errorNode))
     }
     return suppressedErrors
@@ -260,7 +260,7 @@ private static List<CheckerFrameworkError> getSuppressedErrors(groovy.util.Node 
  * @param errorNode the {@code error} XML node
  * @return {@link CheckerFrameworkError} object represented by the {@code error} XML node
  */
-private static CheckerFrameworkError getError(groovy.util.Node errorNode) {
+private static CheckerFrameworkError getError(Node errorNode) {
     final List<Node> childNodes = errorNode.children()
 
     final List<String> details = new ArrayList<>()
@@ -270,7 +270,7 @@ private static CheckerFrameworkError getError(groovy.util.Node errorNode) {
     String lineContent = null
     final int lineNumber = -1
     childNodes.each {
-        final groovy.util.Node childNode = it
+        final Node childNode = it
         final String text = childNode.name()
 
         final String childNodeText = XmlUtil.escapeXml(childNode.text())

@@ -25,7 +25,6 @@ import java.util.regex.Pattern;
 
 import javax.swing.text.MutableAttributeSet;
 
-import org.apache.maven.doxia.markup.HtmlMarkup;
 import org.apache.maven.doxia.module.xdoc.XdocSink;
 import org.apache.maven.doxia.sink.SinkEventAttributes;
 import org.apache.maven.doxia.sink.impl.SinkEventAttributeSet;
@@ -82,7 +81,7 @@ public class XdocsTemplateSink extends XdocSink {
     public void link(String href) {
         final MutableAttributeSet attributes = new SinkEventAttributeSet();
         attributes.addAttribute(SinkEventAttributes.HREF, href);
-        writeStartTag(HtmlMarkup.A, attributes);
+        writeStartTag(A, attributes);
     }
 
     /**
@@ -105,7 +104,7 @@ public class XdocsTemplateSink extends XdocSink {
      */
     @Override
     public void tableRows(int[] justification, boolean grid) {
-        writeStartTag(HtmlMarkup.TABLE);
+        writeStartTag(TABLE);
     }
 
     /**

@@ -10,51 +10,43 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 // xdoc section -- start
 public class Example1 {
-
   public void test() {
-
-    boolean foo = false;
-    if (foo) {
+    boolean f = false;
+    if (f) {
       bar();
     } // violation, 'should be on the same line'
-    // as the next part of a multi-block statement (one that directly
-    // contains multiple blocks: if/else-if/else, do/while or try/catch/finally).
     else {
       bar();
     }
-
-    if (foo) {
+    if (f) {
       bar();
     } else {
       bar();
     }
-
-    if (foo) { bar(); } int i = 0;
-    // violation above, 'should be alone on a line.'
-
-    if (foo) { bar(); }
-    i = 0;
-
+    if (f) { bar(); } int i = 0; // violation, 'should be alone on a line.'
     try {
       bar();
     } // violation, 'should be on the same line'
-    // as the next part of a multi-block statement (one that directly
-    // contains multiple blocks: if/else-if/else, do/while or try/catch/finally).
     catch (Exception e) {
       bar();
     }
-
-    try {
-      bar();
-    } catch (Exception e) {
-      bar();
-    }
-
   }
-
   private void bar() {
   }
-
-  public void testSingleLine() { bar(); } // ok, because singleline is allowed
+  public void testSingleLine() { bar(); }
+  public void violate() { Object b = "b"; }
+  public void method0() {
+    int mode = 0;
+    int x;
+    switch (mode) {
+      case 1: int y = 1; break;
+      case 2: {x = 1;}
+      case 3: int z = 0; {break;}
+      default: x = 0;
+    }
+    switch (mode) {
+      case 1: x = 1; break;
+      default: x = 0; }
+  }
 }
 // xdoc section -- end

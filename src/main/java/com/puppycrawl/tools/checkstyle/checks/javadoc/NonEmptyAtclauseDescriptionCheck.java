@@ -56,8 +56,6 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
      *
      * @param strRep the string representation of the tokens interested in
      * @propertySince 7.3
-     * @noinspection RedundantMethodOverride
-     * @noinspectionreason Display module's unique property version
      */
     @Override
     public void setJavadocTokens(String... strRep) {

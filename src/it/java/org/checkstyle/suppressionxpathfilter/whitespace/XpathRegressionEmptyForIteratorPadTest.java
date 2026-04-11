@@ -97,4 +97,30 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testFollowedStaticInit() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathEmptyForIteratorPadFollowedStaticInit.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(EmptyForIteratorPadCheck.class);
+
+        final String[] expectedViolation = {
+            "5:31: " + getCheckMessage(EmptyForIteratorPadCheck.class,
+                    EmptyForIteratorPadCheck.MSG_WS_FOLLOWED, ";"),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathEmptyForIteratorPadFollowedStaticInit']]/OBJBLOCK"
+                + "/STATIC_INIT/SLIST/LITERAL_FOR/FOR_ITERATOR",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathEmptyForIteratorPadFollowedStaticInit']]/OBJBLOCK"
+                + "/STATIC_INIT/SLIST/LITERAL_FOR/RPAREN"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
 }

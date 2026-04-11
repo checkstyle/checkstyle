@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>XPath Support</title>
+  </head>
+  <body>
+    <section name="Content">
+      <macro name="toc">
+        <param name="fromDepth" value="1"/>
+        <param name="toDepth" value="1"/>
+      </macro>
+    </section>
+
+    <section name="Overview">
+      <p>
+        Checkstyle uses XPath queries in two main ways:
+      </p>
+      <ul>
+        <li>
+          <b>Violation suppression</b> — via
+          <a href="filters/suppressionxpathfilter.html">SuppressionXpathFilter</a>
+          and
+          <a href="filters/suppressionxpathsinglefilter.html">SuppressionXpathSingleFilter</a>,
+          which let you suppress specific violations by matching AST nodes with XPath expressions.
+        </li>
+        <li>
+          <b>Custom checks</b> — via the
+          <a href="checks/coding/matchxpath.html">MatchXpath</a> check,
+          which fires a violation on every AST node matched by a given XPath query,
+          allowing users to write custom style rules without writing Java code.
+        </li>
+      </ul>
+      <p>
+        This page explains the XPath version supported, how Checkstyle's AST maps to XPath,
+        the <code>@text</code> attribute, supported axes, and how to use the CLI tools to
+        build and test XPath queries.
+      </p>
+    </section>
+
+    <section name="XPath Version">
+      <p>
+        Checkstyle supports <b>XPath 3.1</b> via the Saxon-HE library.
+        For the exact Saxon-HE version bundled with your Checkstyle release, see the
+        <a href="project-info.html#Dependencies">dependency report</a>
+        and the corresponding documentation at
+        <a href="https://www.saxonica.com/welcome/welcome.xml">saxonica.com</a>.
+      </p>
+      <p>
+        Note that XPath 2.0 and XPath 1.0 are not fully backwards compatible. For example,
+        a numeric comparison such as <code>"4" &gt; "4.0"</code> yields different results
+        depending on the version. Always write queries with XPath 3.1 semantics in mind.
+      </p>
+    </section>
+
+    <section name="AST and XPath">
+      <p>
+        Checkstyle parses each Java source file into an Abstract Syntax Tree (AST).
+        XPath queries operate on this tree. Each node in the tree corresponds to a Java
+        language construct and has a <em>token type</em> (e.g. <code>CLASS_DEF</code>,
+        <code>METHOD_DEF</code>, <code>IDENT</code>).
+      </p>
+      <p>
+        You can print the full AST of any Java file using the <b>-T</b> option of the
+        Checkstyle command line tool:
+      </p>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+$ java -jar checkstyle-X.XX-all.jar -T Main.java
+CLASS_DEF -&gt; CLASS_DEF [1:0]
+|--MODIFIERS -&gt; MODIFIERS [1:0]
+|   `--LITERAL_PUBLIC -&gt; public [1:0]
+|--LITERAL_CLASS -&gt; class [1:7]
+|--IDENT -&gt; Main [1:13]
+`--OBJBLOCK -&gt; OBJBLOCK [1:18]
+    |--LCURLY -&gt; { [1:18]
+    |--METHOD_DEF -&gt; METHOD_DEF [2:4]
+    |   |--MODIFIERS -&gt; MODIFIERS [2:4]
+    |   |   `--LITERAL_PUBLIC -&gt; public [2:4]
+    |   |--TYPE -&gt; TYPE [2:11]
+    |   |   `--IDENT -&gt; String [2:11]
+    |   |--IDENT -&gt; sayHello [2:18]
+    |   |--LPAREN -&gt; ( [2:26]
+    |   |--PARAMETERS -&gt; PARAMETERS [2:27]
+    |   |   `--PARAMETER_DEF -&gt; PARAMETER_DEF [2:27]
+    |   |       |--MODIFIERS -&gt; MODIFIERS [2:27]
+    |   |       |--TYPE -&gt; TYPE [2:27]
+    |   |       |   `--IDENT -&gt; String [2:27]
+    |   |       `--IDENT -&gt; name [2:34]
+    |   |--RPAREN -&gt; ) [2:38]
+    |   `--SLIST -&gt; { [2:40]
+    |       |--LITERAL_RETURN -&gt; return [3:8]
+    |       |   `--SEMI -&gt; ; [3:31]
+    |       `--RCURLY -&gt; } [4:4]
+    `--RCURLY -&gt; } [5:0]
+      </code></pre></div>
+      <p>
+        You can then use the <b>-b</b> option to test an XPath query against a file and
+        see which AST nodes it matches:
+      </p>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+$ java -jar checkstyle-X.XX-all.jar Main.java -b "//METHOD_DEF[./IDENT[@text='sayHello']]"
+CLASS_DEF -&gt; CLASS_DEF [1:0]
+`--OBJBLOCK -&gt; OBJBLOCK [1:18]
+    |--METHOD_DEF -&gt; METHOD_DEF [2:4]
+      </code></pre></div>
+      <p>
+        Additionally, Checkstyle provides a
+        <a href="writingchecks.html#The_Checkstyle_SDK_Gui">GUI application</a>
+        that displays the AST interactively, making it easier to explore the tree
+        structure and build XPath queries.
+      </p>
+      <p>
+        For full XPath syntax reference, see
+        <a href="https://www.saxonica.com/html/documentation10/expressions/index.html">
+        XPath Syntax</a>.
+        For XPath functions, see
+        <a href="https://www.saxonica.com/html/documentation10/functions/fn/index.html">
+        XSLT/XPath Reference</a>.
+      </p>
+    </section>
+
+    <section name="The @text Attribute">
+      <p>
+        Checkstyle extends XPath with a special <code>@text</code> attribute that exposes
+        the source text of an AST node. This is available only on certain token types that
+        carry meaningful text — for example, <code>IDENT</code> nodes expose the identifier
+        name, and <code>STRING_LITERAL</code> nodes expose the literal value.
+      </p>
+      <p>
+        For the full list of token types that support <code>@text</code>, see
+        <a href="https://github.com/checkstyle/checkstyle/search?q=%22TOKEN_TYPES_WITH_TEXT_ATTRIBUTE+%3D+Arrays.asList%22">
+        XpathUtil</a> in the Checkstyle source.
+      </p>
+      <p>Example — match any method named <code>foo</code>:</p>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+//METHOD_DEF[./IDENT[@text='foo']]
+      </code></pre></div>
+      <p>Example — match any method named <code>test</code> or <code>foo</code>:</p>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+//METHOD_DEF[./IDENT[@text='test' or @text='foo']]
+      </code></pre></div>
+    </section>
+
+    <section name="Supported XPath Axes">
+      <p>
+        Checkstyle supports the following XPath axes when querying the AST:
+      </p>
+      <ul>
+        <li><code>ancestor</code></li>
+        <li><code>ancestor-or-self</code></li>
+        <li><code>attribute</code></li>
+        <li><code>child</code></li>
+        <li><code>descendant</code></li>
+        <li><code>descendant-or-self</code></li>
+        <li><code>following</code></li>
+        <li><code>following-sibling</code></li>
+        <li><code>parent</code></li>
+        <li><code>preceding</code></li>
+        <li><code>preceding-sibling</code></li>
+        <li><code>self</code></li>
+      </ul>
+    </section>
+
+    <section name="Using XPath for Suppressions">
+      <p>
+        XPath-based suppression allows you to suppress violations on specific AST nodes
+        rather than by line number or message pattern. This is more robust because it
+        does not break when code is reformatted or lines are added.
+      </p>
+      <p>
+        There are two filters available:
+      </p>
+      <ul>
+        <li>
+          <a href="filters/suppressionxpathfilter.html">SuppressionXpathFilter</a>
+          — uses a separate XML suppressions file with <code>suppress-xpath</code> elements.
+        </li>
+        <li>
+          <a href="filters/suppressionxpathsinglefilter.html">SuppressionXpathSingleFilter</a>
+          — configured inline in the Checkstyle config file, suppresses violations
+          matching a given check and XPath query.
+        </li>
+      </ul>
+      <p>
+        The command line tool can automatically generate XPath suppressions for detected
+        violations using the <b>-g</b> flag:
+      </p>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+$ java -jar checkstyle-X.XX-all.jar -c config.xml -g Main.java
+      </code></pre></div>
+      <p>
+        Note that XPath-based suppression does not support all checks. Checks that do not
+        log violations against an AST node (e.g. file-level checks) cannot be suppressed
+        this way. See
+        <a href="filters/suppressionxpathfilter.html#SuppressionXpathFilter_Description">
+        SuppressionXpathFilter</a> for the full list of incompatible checks.
+      </p>
+    </section>
+
+    <section name="Using XPath for Custom Checks">
+      <p>
+        The <a href="checks/coding/matchxpath.html">MatchXpath</a> check fires a violation
+        on every AST node matched by a given XPath query. This allows users to implement
+        custom style rules entirely in configuration, without writing any Java code.
+      </p>
+      <p>
+        It is recommended to always provide a custom violation message using the
+        <code>message</code> element with key <code>matchxpath.match</code> to explain
+        what is disallowed and what to use instead.
+      </p>
+      <p>
+        Example — require public methods to appear before private methods:
+      </p>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MatchXpath"&gt;
+      &lt;property name="query"
+           value="//METHOD_DEF[.//LITERAL_PRIVATE
+                  and following-sibling::METHOD_DEF[.//LITERAL_PUBLIC]]"/&gt;
+      &lt;message key="matchxpath.match"
+           value="Private methods must appear after public methods"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+      </code></pre></div>
+      <p>
+        Example — disallow parameterized constructors:
+      </p>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MatchXpath"&gt;
+      &lt;property name="query"
+           value="//CTOR_DEF[count(./PARAMETERS/*) &gt; 0]"/&gt;
+      &lt;message key="matchxpath.match"
+           value="Parameterized constructors are not allowed"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+      </code></pre></div>
+      <p>
+        Example — enforce use of <code>var</code> for new instance creation:
+      </p>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MatchXpath"&gt;
+      &lt;property name="query"
+           value="//VARIABLE_DEF[./ASSIGN/EXPR/LITERAL_NEW
+                  and not(./TYPE/IDENT[@text='var'])]"/&gt;
+      &lt;message key="matchxpath.match"
+           value="New instances should be created via var keyword"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+      </code></pre></div>
+      <p>
+        Example — disallow classes with more than one constructor:
+      </p>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MatchXpath"&gt;
+      &lt;property name="query"
+           value="//CLASS_DEF[count(./OBJBLOCK/CTOR_DEF) &gt; 1]"/&gt;
+      &lt;message key="matchxpath.match"
+           value="Classes with more than 1 constructor are not allowed"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+      </code></pre></div>
+      <p>
+        See the full <a href="checks/coding/matchxpath.html#MatchXpath_Examples">
+        MatchXpath examples</a> for more patterns.
+      </p>
+    </section>
+
+  </body>
+</document>

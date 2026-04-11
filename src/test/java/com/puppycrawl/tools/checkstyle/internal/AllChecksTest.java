@@ -79,6 +79,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             new HashMap<>();
     private static final Map<String, Set<String>> GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE =
             new HashMap<>();
+
     private static final Set<String> INTERNAL_MODULES;
 
     static {

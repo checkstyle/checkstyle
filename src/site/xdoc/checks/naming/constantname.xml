@@ -148,6 +148,60 @@ class Example3 {
   final static int MYSELF = 100;
   protected final static int myselfConstant = 1;
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          The following configuration skip validation on private constant field.
+        </p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ConstantName"&gt;
+      &lt;property name="applyToPrivate" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+  public final static int FIRST_CONSTANT1 = 10;
+  protected final static int SECOND_CONSTANT2 = 100;
+  final static int third_Constant3 = 1000; // violation 'must match pattern'
+  private final static int fourth_Const4 = 50;
+  public final static int log = 10; // violation 'must match pattern'
+  protected final static int logger = 50; // violation 'must match pattern'
+  final static int loggerMYSELF = 5; // violation 'must match pattern'
+  final static int MYSELF = 100;
+  protected final static int myselfConstant = 1; // violation 'must match pattern'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          The following configuration skip validation on package-private constant field.
+        </p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ConstantName"&gt;
+      &lt;property name="applyToPackage" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 {
+  public final static int FIRST_CONSTANT1 = 10;
+  protected final static int SECOND_CONSTANT2 = 100;
+  final static int third_Constant3 = 1000;
+  private final static int fourth_Const4 = 50; // violation 'must match pattern'
+  public final static int log = 10; // violation 'must match pattern'
+  protected final static int logger = 50; // violation 'must match pattern'
+  final static int loggerMYSELF = 5;
+  final static int MYSELF = 100;
+  protected final static int myselfConstant = 1; // violation 'must match pattern'
+}
 </code></pre></div>
       </subsection>
 
@@ -167,7 +221,7 @@ class Example3 {
       <subsection name="Violation Messages" id="ConstantName_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
               name.invalidPattern
             </a>
           </li>
@@ -179,8 +233,12 @@ class Example3 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="ConstantName_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="ConstantName_Parent_Module">

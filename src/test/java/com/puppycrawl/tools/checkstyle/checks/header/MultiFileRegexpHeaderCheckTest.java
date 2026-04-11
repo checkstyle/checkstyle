@@ -67,15 +67,12 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSetHeaderUriNotSupport() {
         final MultiFileRegexpHeaderCheck instance = new MultiFileRegexpHeaderCheck();
-        try {
-            instance.setHeaderFiles(String.valueOf(URI.create("file://test")));
-            assertWithMessage("Expected exception for unsupported URI").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                    .that(exc.getMessage())
-                    .isEqualTo("unable to load header file file://test");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> instance.setHeaderFiles(String.valueOf(URI.create("file://test"))));
+        assertWithMessage("Invalid exception message")
+                .that(exc.getMessage())
+                .isEqualTo("unable to load header file file://test");
     }
 
     @Test
@@ -158,17 +155,12 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         Files.write(emptyFile.toPath(), new ArrayList<>(), StandardCharsets.UTF_8);
         final URI fileUri = emptyFile.toURI();
 
-        try {
-            MultiFileRegexpHeaderCheck.getLines("empty.header", fileUri);
-            assertWithMessage(
-                    "Expected IllegalArgumentException when reading from an empty header file")
-                .fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Unexpected exception message")
-                    .that(exc.getMessage())
-                    .contains("Header file is empty: empty.header");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> MultiFileRegexpHeaderCheck.getLines("empty.header", fileUri));
+        assertWithMessage("Unexpected exception message")
+                .that(exc.getMessage())
+                .contains("Header file is empty: empty.header");
     }
 
     @Test
@@ -492,15 +484,12 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
 
-        try {
-            check.setHeaderFiles(corruptedHeaderFile.getPath());
-            assertWithMessage("Expected exception for corrupted header file").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> check.setHeaderFiles(corruptedHeaderFile.getPath()));
+        assertWithMessage("Invalid exception message")
                 .that(exc.getMessage())
                 .isEqualTo("Invalid regex pattern: Invalid regex [a-z");
-        }
     }
 
     @Test
@@ -914,16 +903,11 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final File nonExistentFile = new File(temporaryFolder, "nonexistent.header");
         final URI fileUri = nonExistentFile.toURI();
 
-        try {
-            MultiFileRegexpHeaderCheck.getLines("nonexistent.header", fileUri);
-            assertWithMessage(
-                    "Expected IllegalArgumentException when reading from a non-existent file")
-                .fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Unexpected exception message")
-                    .that(exc.getMessage())
-                    .contains("unable to load header file nonexistent.header");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> MultiFileRegexpHeaderCheck.getLines("nonexistent.header", fileUri));
+        assertWithMessage("Unexpected exception message")
+                .that(exc.getMessage())
+                .contains("unable to load header file nonexistent.header");
     }
 }

@@ -49,16 +49,16 @@ public class InputSuppressWarningsSingle5
         }
     }
 
-    // violation below, 'The warning 'abcun' cannot be suppressed at this location'
-    @SuppressWarnings("abcun")
+    // violation below, 'The warning 'unknown' cannot be suppressed at this location'
+    @SuppressWarnings("unknown")
     @Documented
     @interface Sweet {
         int cool();
     }
 
     @Documented
-    @SuppressWarnings("abcun")
-    // violation above, 'The warning 'abcun' cannot be suppressed at this location'
+    @SuppressWarnings("unknown")
+    // violation above, 'The warning 'unknown' cannot be suppressed at this location'
     @interface MoreSweetness {
 
         // violation below, 'The warning 'unused' cannot be suppressed at this location'

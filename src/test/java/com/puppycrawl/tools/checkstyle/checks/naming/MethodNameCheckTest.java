@@ -162,8 +162,8 @@ public class MethodNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "29:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PUBLICfoo", pattern),
-            "32:20: " + getCheckMessage(MSG_INVALID_PATTERN, "PROTECTEDfoo", pattern),
+            "29:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PublicFOO", pattern),
+            "32:20: " + getCheckMessage(MSG_INVALID_PATTERN, "ProtectedFOO", pattern),
         };
 
         verifyWithInlineConfigParser(

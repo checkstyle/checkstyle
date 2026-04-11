@@ -19,20 +19,24 @@ import java.lang.annotation.Target;
 /* Config = default */
 public class InputMissingJavadocMethodPublicMethods {
 
-    public void annotation(final char @SomeAnnotation [] arg) {} // violation
+    public void annotation(final char @SomeAnnotation [] arg) {}
+    // violation above 'Missing a Javadoc comment.'
 
-    public @SomeAnnotation String @SomeAnnotation [] annotationInSignature() { // violation
+    public @SomeAnnotation String @SomeAnnotation [] annotationInSignature() {
+    // violation above 'Missing a Javadoc comment.'
         return new String[]{};
     }
 
-    public static <T> T[] typeInSignature(T[] array) { // violation
+    public static <T> T[] typeInSignature(T[] array) { // violation 'Missing a Javadoc comment.'
         return null;
     }
-    public static <T> T[][] typeInSignature2(T[][] array) { // violation
+    public static <T> T[][] typeInSignature2(T[][] array) {
+    // violation above 'Missing a Javadoc comment.'
         return null;
     }
 
-    public static void main(String[] args) throws Exception {} // violation
+    public static void main(String[] args) throws Exception {}
+    // violation above 'Missing a Javadoc comment.'
 
     /**
      * Some javadoc

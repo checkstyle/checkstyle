@@ -43,7 +43,7 @@ public class InputSuppressWarningsCompactNonConstant3
         }
     }
 
-    @SuppressWarnings({"abcun"})
+    @SuppressWarnings({"invalid"})
     @Documented
     @interface Sweet {
         int cool();
@@ -53,7 +53,7 @@ public class InputSuppressWarningsCompactNonConstant3
     @SuppressWarnings({})
     @interface MoreSweetness {
 
-        @SuppressWarnings({"unused", "bleh"})
+        @SuppressWarnings({"unused", "ignore"})
         int cool();
     }
 

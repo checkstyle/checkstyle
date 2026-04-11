@@ -84,7 +84,7 @@ public class Example1 {
             id="UnusedLambdaParameterShouldBeUnnamed_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unused.lambda.parameter%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unused.lambda.parameter%22">
               unused.lambda.parameter
             </a>
           </li>
@@ -96,11 +96,13 @@ public class Example1 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="UnusedLambdaParameterShouldBeUnnamed_Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
-        </p>
-      </subsection>
+  <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+    <p>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLambdaParameterShouldBeUnnamedCheck</p>
+    <p>
+        Use this fully qualified class name in configuration when an exact class reference is
+        required.
+    </p>
+  </subsection>
 
       <subsection name="Parent Module" id="UnusedLambdaParameterShouldBeUnnamed_Parent_Module">
         <p>

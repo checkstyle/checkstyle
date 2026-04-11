@@ -31,6 +31,8 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.net.URI;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -268,7 +270,8 @@ public class XdocsPagesTest {
         "writingchecks.xml",
         "config.xml",
         "report_issue.xml",
-        "result_reports.xml"
+        "result_reports.xml",
+        "xpath.xml"
     );
 
     private static final String NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH =
@@ -931,7 +934,8 @@ public class XdocsPagesTest {
                 case 1 -> validatePropertySection(fileName, sectionName, subSection, instance);
                 case 3 -> validateUsageExample(fileName, sectionName, subSection);
                 case 4 -> validateViolationSection(fileName, sectionName, subSection, instance);
-                case 5 -> validatePackageSection(fileName, sectionName, subSection, instance);
+                case 5 -> validateFullyQualifiedNameSection(
+                        fileName, sectionName, subSection, instance);
                 case 6 -> validateParentSection(fileName, sectionName, subSection);
                 default -> {
                     // no code by design
@@ -971,7 +975,7 @@ public class XdocsPagesTest {
             case 2 -> "Examples";
             case 3 -> "Example of Usage";
             case 4 -> "Violation Messages";
-            case 5 -> "Package";
+            case 5 -> "Fully Qualified Name";
             case 6 -> "Parent Module";
             default -> null;
         };
@@ -1574,17 +1578,13 @@ public class XdocsPagesTest {
      * @return String form of property's default value.
      */
     private static String getIntArrayPropertyValue(Object value) {
-        final IntStream stream;
-        if (value instanceof Collection<?> collection) {
-            stream = collection.stream()
+        final IntStream stream = switch (value) {
+            case null -> throw new IllegalArgumentException("value is null");
+            case Collection<?> collection -> collection.stream()
                     .mapToInt(number -> (int) number);
-        }
-        else if (value instanceof BitSet set) {
-            stream = set.stream();
-        }
-        else {
-            stream = Arrays.stream((int[]) value);
-        }
+            case BitSet set -> set.stream();
+            default -> Arrays.stream((int[]) value);
+        };
         String result = stream
                 .mapToObj(TokenUtil::getTokenName)
                 .sorted()
@@ -1728,11 +1728,12 @@ public class XdocsPagesTest {
                     expectedUrl = "../../config.html#Custom_messages";
                 }
                 else {
+                    final String query = "path:src/main/resources/"
+                            + clss.getPackage().getName().replace('.', '/')
+                            + " path:**/messages*.properties repo:checkstyle/checkstyle \""
+                            + linkText + "\"";
                     expectedUrl = "https://github.com/search?q="
-                            + "path%3Asrc%2Fmain%2Fresources%2F"
-                            + clss.getPackage().getName().replace(".", "%2F")
-                            + "%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2F"
-                            + "checkstyle+%22" + linkText + "%22";
+                            + URLEncoder.encode(query, StandardCharsets.UTF_8);
                 }
 
                 assertWithMessage("%s section '%s' should have matching url for '%s'", fileName,
@@ -1841,11 +1842,15 @@ public class XdocsPagesTest {
                 .isTrue();
     }
 
-    private static void validatePackageSection(String fileName, String sectionName,
-            Node subSection, Object instance) {
-        assertWithMessage("%s section '%s' should have matching package", fileName, sectionName)
-            .that(subSection.getTextContent().trim())
-            .isEqualTo(instance.getClass().getPackage().getName());
+    private static void validateFullyQualifiedNameSection(String fileName, String sectionName,
+                                                          Node subSection, Object instance) {
+        final String fullyQualifiedName = subSection.getTextContent()
+                .replaceAll("\\s+", "");
+
+        assertWithMessage("%s section '%s' should have matching fully qualified name",
+                fileName, sectionName)
+                .that(fullyQualifiedName)
+                .contains(instance.getClass().getName());
     }
 
     private static void validateParentSection(String fileName, String sectionName,
@@ -2067,8 +2072,9 @@ public class XdocsPagesTest {
         final Iterator<Node> itrChecks = checks.iterator();
         final Iterator<Node> itrConfigs = configs.iterator();
         final boolean isGoogleDocumentation = "google".equals(styleName);
+        final boolean isOpenJdkDocumentation = "openjdk".equals(styleName);
 
-        if (isGoogleDocumentation) {
+        if (isGoogleDocumentation || isOpenJdkDocumentation) {
             validateChapterWiseTesting(itrChecks, itrConfigs, styleChecks, styleName, ruleName);
         }
         else {
@@ -2173,8 +2179,8 @@ public class XdocsPagesTest {
             if (!moduleIsCheck) {
                 if (href.startsWith(partialConfigUrl)) {
                     assertWithMessage(
-                        "google_style.xml rule '%s' module '%s' has too many config links",
-                        ruleName, moduleName).fail();
+                        "%s_style.xml rule '%s' module '%s' has too many config links",
+                        styleName, ruleName, moduleName).fail();
                 }
                 continue;
             }
@@ -2207,8 +2213,8 @@ public class XdocsPagesTest {
                     partialConfigUrl + "_checks.xml+repo%3Acheckstyle%2Fcheckstyle+" + moduleName;
 
                 assertWithMessage(
-                    "google_style.xml rule '%s' module '%s' should have matching config url",
-                    ruleName, moduleName)
+                    "%s_style.xml rule '%s' module '%s' should have matching config url",
+                    styleName, ruleName, moduleName)
                     .that(configUrl)
                     .isEqualTo(expectedUrl);
             }
@@ -2230,21 +2236,23 @@ public class XdocsPagesTest {
             final String extractedChapterNumber = getExtractedChapterNumber(ruleName);
             final String extractedSectionNumber = getExtractedSectionNumber(ruleName);
 
-            assertWithMessage("google_style.xml rule '%s' rule '' should have matching sample url",
-                ruleName)
+            assertWithMessage("%s_style.xml rule '%s' rule '' should have matching sample url",
+                styleName, ruleName)
                     .that(inputFolderUrl)
                     .startsWith("https://github.com/checkstyle/checkstyle/"
-                            + "tree/master/src/it/resources/com/google/checkstyle/test/");
+                            + "tree/master/src/it/resources/com/" + styleName
+                            + "/checkstyle/test/");
 
-            assertWithMessage("google_style.xml rule '%s' should have matching sample url",
-                ruleName)
+            assertWithMessage("%s_style.xml rule '%s' should have matching sample url",
+                styleName, ruleName)
                 .that(inputFolderUrl)
                 .containsMatch(
                     "/chapter" + extractedChapterNumber
                           + "\\D[^/]+/rule" + extractedSectionNumber + "\\D");
 
             assertWithMessage(
-                "google_style.xml rule '%s' should have a inputs test folder that exists", ruleName)
+                "%s_style.xml rule '%s' should have a inputs test folder that exists", styleName,
+                ruleName)
                     .that(new File(inputFolderUrl.substring(53).replace('/',
                             File.separatorChar)).exists())
                     .isTrue();

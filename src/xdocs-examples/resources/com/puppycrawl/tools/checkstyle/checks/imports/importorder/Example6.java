@@ -16,8 +16,8 @@ import static java.lang.Math.PI;
 import static java.lang.Math.abs; // ok, alphabetical case-sensitive ASCII order, 'P' < 'a'
 import static java.util.Collections.emptyList; // ok, alphabetical after Math.*
 
-import java.util.Set; // violation, extra separation in import group
-import static java.lang.Math.sin; // violation, wrong order, all static imports must be at 'top'
+import java.util.Set; // violation 'Extra separation in import group before 'java.util.Set''
+import static java.lang.Math.sin; // violation 'Import 'java.lang.Math.sin' violates the configured relative order between static and non-static imports.'
 import org.w3c.dom.*;
 // xdoc section -- end
 

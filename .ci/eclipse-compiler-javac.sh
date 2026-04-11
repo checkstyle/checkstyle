@@ -18,13 +18,14 @@ ECJ_MAVEN_VERSION="R-4.37-202509050730"
 
 echo "Using pinned eclipse release: $ECJ_MAVEN_VERSION"
 
-ECJ_JAR=$(wget --quiet -O- "$ECLIPSE_URL/$ECJ_MAVEN_VERSION/" | grep -o "ecj-[^\"]*" | head -n1)
+ECJ_JAR=$(curl --fail-with-body -s "$ECLIPSE_URL/$ECJ_MAVEN_VERSION/" \
+    | grep -o "ecj-[^\"]*" | head -n1)
 ECJ_PATH=~/.m2/repository/$ECJ_MAVEN_VERSION/$ECJ_JAR
 
 if [ ! -f "$ECJ_PATH" ]; then
     echo "$ECJ_PATH is not found, downloading ..."
     cd target
-    wget $ECLIPSE_URL/"$ECJ_MAVEN_VERSION"/"$ECJ_JAR"
+    curl --fail-with-body -O "$ECLIPSE_URL/$ECJ_MAVEN_VERSION/$ECJ_JAR"
     echo "test jar after download:"
     jar -tvf "$ECJ_JAR" > /dev/null
     echo "check compiler options"

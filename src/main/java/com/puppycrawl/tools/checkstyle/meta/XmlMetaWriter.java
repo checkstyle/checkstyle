@@ -96,9 +96,10 @@ public final class XmlMetaWriter {
         desc.appendChild(cdataDesc);
         checkModule.appendChild(desc);
         createPropertySection(moduleDetails, checkModule, doc);
-        if (!moduleDetails.getViolationMessageKeys().isEmpty()) {
+        final List<String> violationMessageKeys = moduleDetails.getViolationMessageKeys();
+        if (!violationMessageKeys.isEmpty()) {
             final Element messageKeys = doc.createElement("message-keys");
-            for (String msg : moduleDetails.getViolationMessageKeys()) {
+            for (String msg : violationMessageKeys) {
                 final Element messageKey = doc.createElement("message-key");
                 messageKey.setAttribute("key", msg);
                 messageKeys.appendChild(messageKey);
@@ -159,9 +160,10 @@ public final class XmlMetaWriter {
         final String modifiedPath;
         final String xmlExtension = ".xml";
         final String rootOutputPath = System.getProperty("user.dir") + "/src/main/resources";
-        if (moduleDetails.getFullQualifiedName().startsWith("com.puppycrawl.tools.checkstyle")) {
+        final String fullQualifiedName = moduleDetails.getFullQualifiedName();
+        if (fullQualifiedName.startsWith("com.puppycrawl.tools.checkstyle")) {
             final String moduleFilePath = FILEPATH_CONVERSION
-                    .matcher(moduleDetails.getFullQualifiedName())
+                    .matcher(fullQualifiedName)
                     .replaceAll(fileSeparator);
             final String checkstyleString = "checkstyle";
             final int indexOfCheckstyle =

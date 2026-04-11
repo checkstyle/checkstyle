@@ -2,7 +2,7 @@
 ImportOrder
 option = top
 groups = android, androidx, java
-ordered = true
+ordered = (default)true
 separated = (default)false
 separatedStaticGroups = true
 caseSensitive = (default)true

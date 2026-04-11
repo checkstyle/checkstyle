@@ -30,7 +30,7 @@ import javax.swing.JTable;
 
 import sun.tools.java.ArrayType;
 
-import org.junit.Test; // violation 'Wrong order for 'org.junit.Test' import.'
+import org.junit.Test; // violation 'Import statement for 'org.junit.Test' violates the configured import group order.'
 import org.mockito.Mock;
 
 import com.some.api.DetailClass;

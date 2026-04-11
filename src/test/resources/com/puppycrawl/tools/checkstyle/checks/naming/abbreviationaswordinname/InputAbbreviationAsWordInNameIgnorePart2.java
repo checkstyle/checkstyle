@@ -1,7 +1,7 @@
 /*
 AbbreviationAsWordInName
 allowedAbbreviationLength = 5
-allowedAbbreviations = NUMBER, MARAZMATIC, VARIABLE
+allowedAbbreviations = NUMBER, SYSTEMATIC, VARIABLE
 ignoreFinal = (default)true
 ignoreStatic = (default)true
 ignoreStaticFinal = (default)true

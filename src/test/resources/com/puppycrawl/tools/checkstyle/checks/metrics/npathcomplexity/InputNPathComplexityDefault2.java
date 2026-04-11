@@ -118,7 +118,7 @@ public class InputNPathComplexityDefault2 {
     }
 
     public void InputNestedTernaryCheck() {
-        double x = (getSmth() || Math.random() == 5) ? null : (int) Math
+        double x = (getSomething() || Math.random() == 5) ? null : (int) Math
                 .cos(400 * (10 + 40)); // good
         double y = (0.2 == Math.random()) ? (0.3 == Math.random()) ? null : (int) Math
                 .cos(400 * (10 + 40)) : 6; // bad (nested in first position)
@@ -127,7 +127,7 @@ public class InputNPathComplexityDefault2 {
                         .sin(300 * (12 + 30))); // bad (nested in second
                                                 // position)
     }
-    public boolean getSmth() { return true; };
+    public boolean getSomething() { return true; };
     public int apply(Object o) { return 0; }
 
     public void inClass(int type, Short s, int color) {

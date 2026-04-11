@@ -150,7 +150,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnmappableCharacters() throws Exception {
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_KEY, 75, 288),
+            "11: " + getCheckMessage(MSG_KEY, 75, 288),
         };
 
         final DefaultConfiguration checkConfig = createModuleConfig(LineLengthCheck.class);

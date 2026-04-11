@@ -192,7 +192,7 @@ public class JavadocStyleCheck
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/19145
     @Override
     @SuppressWarnings("deprecation")
     public void visitToken(DetailAST ast) {
@@ -366,12 +366,10 @@ public class JavadocStyleCheck
             else if (index > 0 && builder.charAt(index) == '/'
                     && builder.charAt(index - 1) == '*') {
                 builder.deleteCharAt(index);
-                builder.deleteCharAt(index - 1);
-                index--;
-                while (builder.charAt(index - 1) == '*') {
+                do {
                     builder.deleteCharAt(index - 1);
                     index--;
-                }
+                } while (builder.charAt(index - 1) == '*');
             }
             else {
                 break;

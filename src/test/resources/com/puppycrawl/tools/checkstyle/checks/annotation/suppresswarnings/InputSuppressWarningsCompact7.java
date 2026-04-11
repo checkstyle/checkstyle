@@ -48,8 +48,8 @@ public class InputSuppressWarningsCompact7
         }
     }
 
-    // violation below, 'The warning 'abcun' cannot be suppressed at this location'
-    @SuppressWarnings({"abcun"})
+    // violation below, 'The warning 'invalid' cannot be suppressed at this location'
+    @SuppressWarnings({"invalid"})
     @Documented
     @interface Sweet {
         int cool();
@@ -60,7 +60,7 @@ public class InputSuppressWarningsCompact7
     // violation above, 'The warning '' cannot be suppressed at this location'
     @interface MoreSweetness {
 
-        @SuppressWarnings({"unused", "bleh"}) // 2 violations
+        @SuppressWarnings({"unused", "ignore"}) // 2 violations
         int cool();
     }
 

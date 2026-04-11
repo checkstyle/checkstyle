@@ -17,7 +17,7 @@ public class InputAnnotationUseStyleCompact
 
 }
 
-@SomeArraysDiffStyle(pooches={DOGS.LEO}, um={}, duh={"bleh"})
+@SomeArraysDiffStyle(pooches={DOGS.LEO}, um={}, duh={"ignore"})
 @SuppressWarnings("") //compact_no_array
 @Deprecated()
 class Dep5 {
@@ -30,7 +30,7 @@ class Dep5 {
 enum SON5 {
 
     @Deprecated
-    @SomeArraysDiffStyle(pooches={DOGS.LEO}, um={""}, duh={"bleh"})
+    @SomeArraysDiffStyle(pooches={DOGS.LEO}, um={""}, duh={"ignore"})
     @APooch(dog=DOGS.HERBIE)
     @Another("") //compact_no_array
     ETHAN

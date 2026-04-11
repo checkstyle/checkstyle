@@ -1,7 +1,7 @@
 /*
 MissingJavadocType
-scope = (default)public
 excludeScope = (default)null
+scope = (default)public
 skipAnnotations = (default)Generated
 tokens = INTERFACE_DEF
 

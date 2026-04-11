@@ -1,0 +1,7 @@
+package org.checkstyle.suppressionxpathfilter.naming.lambdaparametername;
+
+import java.util.function.Function;
+
+public class InputXpathLambdaParameterNameField {
+    Function<String, String> trimmer = S -> S.trim(); // warn
+}

@@ -1,7 +1,7 @@
 /*
 AbbreviationAsWordInName
 allowedAbbreviationLength = 5
-allowedAbbreviations = NUMBER, MARAZMATIC, VARIABLE
+allowedAbbreviations = NUMBER, SYSTEMATIC, VARIABLE
 ignoreFinal = (default)true
 ignoreStatic = (default)true
 ignoreStaticFinal = (default)true
@@ -22,7 +22,7 @@ public class InputAbbreviationAsWordInNameIgnore {
     abstract class NonAAAAbstractClassName {
     }
 
-    abstract class FactoryWithBADNAme {
+    abstract class FactoryWithHARDName {
     }
 
     abstract class AbstractCLASSName {
@@ -45,15 +45,15 @@ public class InputAbbreviationAsWordInNameIgnore {
     }
 
     abstract class AbstractClassName3 {
-        class AbstractINNERRClass { // violation
+        class AbstractINNERSClass { // violation
         }
     }
 
     abstract class Class3Factory {
         class WellNamedFACTORY { // violation
-            public void marazmaticMETHODName() { // violation
-                int marazmaticVARIABLEName = 2;
-                int MARAZMATICVariableName = 1;
+            public void systematicMETHODName() { // violation
+                int systematicVARIABLEName = 2;
+                int SYSTEMATICVariableName = 1;
             }
         }
     }
@@ -79,25 +79,25 @@ public class InputAbbreviationAsWordInNameIgnore {
 
     interface Interface1 {
 
-        String VALUEEEE = "value"; // in interface this is final/static
+        String VALUELONG = "value"; // in interface this is final/static
 
     }
 
     interface Interface2 {
 
-        static String VALUEEEE = "value"; // in interface this is final/static
+        static String VALUELONG = "value"; // in interface this is final/static
 
     }
 
     interface Interface3 {
 
-        final String VALUEEEE = "value"; // in interface this is final/static
+        final String VALUELONG = "value"; // in interface this is final/static
 
     }
 
     interface Interface4 {
 
-        final static String VALUEEEE = "value"; // in interface this is final/static
+        final static String VALUELONG = "value"; // in interface this is final/static
 
     }
 

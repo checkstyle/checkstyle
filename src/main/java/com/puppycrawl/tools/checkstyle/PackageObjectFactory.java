@@ -523,6 +523,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.IllegalCatchCheck");
         NAME_TO_FULL_MODULE_NAME.put("IllegalInstantiationCheck",
                 BASE_PACKAGE + ".checks.coding.IllegalInstantiationCheck");
+        NAME_TO_FULL_MODULE_NAME.put("IllegalSymbolCheck",
+                BASE_PACKAGE + ".checks.coding.IllegalSymbolCheck");
         NAME_TO_FULL_MODULE_NAME.put("IllegalThrowsCheck",
                 BASE_PACKAGE + ".checks.coding.IllegalThrowsCheck");
         NAME_TO_FULL_MODULE_NAME.put("IllegalTokenCheck",
@@ -595,6 +597,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.UnnecessarySemicolonInEnumerationCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnnecessarySemicolonInTryWithResourcesCheck",
                 BASE_PACKAGE + ".checks.coding.UnnecessarySemicolonInTryWithResourcesCheck");
+        NAME_TO_FULL_MODULE_NAME.put("UseEnhancedSwitchCheck",
+            BASE_PACKAGE + ".checks.coding.UseEnhancedSwitchCheck");
         NAME_TO_FULL_MODULE_NAME.put("VariableDeclarationUsageDistanceCheck",
                 BASE_PACKAGE + ".checks.coding.VariableDeclarationUsageDistanceCheck");
         NAME_TO_FULL_MODULE_NAME.put("WhenShouldBeUsedCheck",
@@ -791,6 +795,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.naming.LocalVariableNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("MemberNameCheck",
                 BASE_PACKAGE + ".checks.naming.MemberNameCheck");
+        NAME_TO_FULL_MODULE_NAME.put("GoogleNonConstantFieldNameCheck",
+                BASE_PACKAGE + ".checks.naming.GoogleNonConstantFieldNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("MethodNameCheck",
                 BASE_PACKAGE + ".checks.naming.MethodNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("MethodTypeParameterNameCheck",

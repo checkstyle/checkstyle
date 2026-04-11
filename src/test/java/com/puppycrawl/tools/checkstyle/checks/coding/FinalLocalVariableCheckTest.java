@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.Test;
 
@@ -251,13 +251,8 @@ public class FinalLocalVariableCheckTest
         final DetailAstImpl lambdaAst = new DetailAstImpl();
         lambdaAst.setType(TokenTypes.LAMBDA);
 
-        try {
-            check.visitToken(lambdaAst);
-            assertWithMessage("IllegalStateException is expected").fail();
-        }
-        catch (IllegalStateException exc) {
-            // it is OK
-        }
+        getExpectedThrowable(IllegalStateException.class,
+                () -> check.visitToken(lambdaAst));
     }
 
     @Test
@@ -344,15 +339,33 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void testFinalLocalVariableSwitchExpressions() throws Exception {
+    public void testFinalLocalVariableSwitchExpressionsA() throws Exception {
         final String[] expected = {
             "15:19: " + getCheckMessage(MSG_KEY, "e"),
             "53:19: " + getCheckMessage(MSG_KEY, "e"),
-            "91:19: " + getCheckMessage(MSG_KEY, "e"),
-            "125:19: " + getCheckMessage(MSG_KEY, "e"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressions.java"),
+                getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressionsA.java"),
+            expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableSwitchExpressionsB() throws Exception {
+        final String[] expected = {
+            "16:19: " + getCheckMessage(MSG_KEY, "e"),
+            "50:19: " + getCheckMessage(MSG_KEY, "e"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressionsB.java"),
+            expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableSwitchExpressionsC() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressionsC.java"),
             expected);
     }
 
@@ -419,7 +432,7 @@ public class FinalLocalVariableCheckTest
             "50:18: " + getCheckMessage(MSG_KEY, "__"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputFinalLocalVariableValidateUnnamedVariablesTrue.java"),
+                getNonCompilablePath("InputFinalLocalVariableValidateUnnamedVariablesTrue.java"),
             expected);
     }
 
@@ -432,7 +445,7 @@ public class FinalLocalVariableCheckTest
             "50:18: " + getCheckMessage(MSG_KEY, "__"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputFinalLocalVariableValidateUnnamedVariablesFalse.java"),
+                getNonCompilablePath("InputFinalLocalVariableValidateUnnamedVariablesFalse.java"),
             expected);
     }
 

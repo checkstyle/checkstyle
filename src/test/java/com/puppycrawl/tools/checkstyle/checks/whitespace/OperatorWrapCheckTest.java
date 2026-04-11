@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.MSG_LINE_NEW;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.MSG_LINE_PREVIOUS;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.Test;
 
@@ -160,22 +161,20 @@ public class OperatorWrapCheckTest
     }
 
     @Test
-    public void testInvalidOption() throws Exception {
+    public void testInvalidOption() {
 
-        try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final CheckstyleException exc =
+            getExpectedThrowable(CheckstyleException.class, () -> {
+                final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verifyWithInlineConfigParser(
-                    getPath("InputOperatorWrap6.java"), expected);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                    + "whitespace.OperatorWrapCheck");
-        }
+                verifyWithInlineConfigParser(
+                        getPath("InputOperatorWrap6.java"), expected);
+            });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                + "whitespace.OperatorWrapCheck");
     }
 
     @Test
@@ -201,7 +200,7 @@ public class OperatorWrapCheckTest
             "82:38: " + getCheckMessage(MSG_LINE_NEW, "instanceof"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputOperatorWrapInstanceOfOperator.java"), expected);
+                getNonCompilablePath("InputOperatorWrapInstanceOfOperator.java"), expected);
     }
 
     @Test
@@ -214,7 +213,7 @@ public class OperatorWrapCheckTest
             "88:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "instanceof"),
         };
         verifyWithInlineConfigParser(
-                getPath(
+                getNonCompilablePath(
                         "InputOperatorWrapInstanceOfOperatorEndOfLine.java"), expected);
     }
 

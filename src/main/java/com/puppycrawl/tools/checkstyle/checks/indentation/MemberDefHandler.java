@@ -96,7 +96,7 @@ public class MemberDefHandler extends AbstractExpressionHandler {
      */
     private void checkType() {
         final DetailAST type = getMainAst().findFirstToken(TokenTypes.TYPE);
-        final DetailAST ident = AbstractExpressionHandler.getFirstToken(type);
+        final DetailAST ident = getFirstToken(type);
         final int columnNo = expandedTabsColumnNo(ident);
         if (isOnStartOfLine(ident) && !getIndent().isAcceptable(columnNo)) {
             logError(ident, "type", columnNo);

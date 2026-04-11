@@ -1,9 +1,9 @@
 /*
 LineLength
-fileExtensions = (default)""
+fileExtensions = (default)null
 ignorePattern = ^ *\\* *([^ ]+|\\{@code .*|<a href="[^"]+">)$
 max = (default)80
-
+tabWidth = (default)0
 
 */
 
