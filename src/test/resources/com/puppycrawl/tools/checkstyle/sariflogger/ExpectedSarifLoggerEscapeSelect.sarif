@@ -42,7 +42,7 @@
                 },
                 "region": {
                   "startColumn": 13,
-                  "startLine": 23
+                  "startLine": 36
                 }
               }
             }
@@ -62,7 +62,27 @@
                 },
                 "region": {
                   "startColumn": 13,
-                  "startLine": 23
+                  "startLine": 36
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\r"
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeSelect.java"
+                },
+                "region": {
+                  "startColumn": 13,
+                  "startLine": 36
                 }
               }
             }
@@ -81,15 +101,57 @@
                   "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeSelect.java"
                 },
                 "region": {
-                  "startColumn": 16,
-                  "startLine": 24
+                  "startColumn": 20,
+                  "startLine": 37
                 }
               }
             }
           ],
           "message": {
             "id": "illegal.token.text",
-            "text": "Token text matches the illegal pattern '[\\x10]'."
+            "text": "Token text matches the illegal pattern '\/'."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeSelect.java"
+                },
+                "region": {
+                  "startColumn": 20,
+                  "startLine": 38
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "illegal.token.text",
+            "text": "Token text matches the illegal pattern ' '."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeSelect.java"
+                },
+                "region": {
+                  "startColumn": 22,
+                  "startLine": 39
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "illegal.token.text",
+            "text": "Token text matches the illegal pattern 'bar1234'."
           },
           "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
         }
