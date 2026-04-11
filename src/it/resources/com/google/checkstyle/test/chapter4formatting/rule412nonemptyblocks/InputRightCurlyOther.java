@@ -138,9 +138,7 @@ class Interface {
     String someValue();
   }
 
-  public @interface TestAnnotation2 {
-    String someValue();
-  }
+  public @interface TestAnnotation2 { String someValue(); } // violation ''}' at column 59 should be alone on a line.'
 
   public @interface TestAnnotation3 {
     String someValue();
@@ -160,9 +158,7 @@ enum TestEnum1 {
 }
 
 // violation below 'Top-level class TestEnum2 has to reside in its own source file.'
-enum TestEnum2 {
-  SOME_VALUE;
-}
+enum TestEnum2 { SOME_VALUE; } // violation ''}' at column 30 should be alone on a line.'
 
 // violation below 'Top-level class TestEnum3 has to reside in its own source file.'
 enum TestEnum3 {
