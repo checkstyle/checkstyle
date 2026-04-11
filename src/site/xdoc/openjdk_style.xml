@@ -607,7 +607,18 @@
                     4.1 Package Names
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                    <span class="wrapper inline">
+                        <img src="images/ok_blue.png" alt=""/>
+                    </span>
+                    <a href="checks/naming/packagename.html#PackageName">PackageName</a>
+                    (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">config</a>)
+                </td>
+                <td>
+                    <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter4naming/rule41packagenames">
+                       samples
+                    </a>
+                </td>
                 <td/>
               </tr>
               <tr>
