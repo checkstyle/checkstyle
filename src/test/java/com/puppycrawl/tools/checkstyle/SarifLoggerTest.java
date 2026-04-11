@@ -112,9 +112,9 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         final String[][] encodings = {
             {"\b", "\\b"},
             {"\f", "\\f"},
-            {"\u0010", "\\u0010"},
-            {"\u001E", "\\u001E"},
-            {"\u001F", "\\u001F"},
+            {"", "\\u0010"},
+            {"", "\\u001E"},
+            {"", "\\u001F"},
         };
         for (String[] encoding : encodings) {
             final String encoded = SarifLogger.escape(encoding[0]);
