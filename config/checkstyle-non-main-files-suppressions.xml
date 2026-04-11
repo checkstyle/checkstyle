@@ -67,6 +67,12 @@
   <suppress id="lineLength" files="config[\\/]sarif-schema-2.1.0.json"/>
   <!-- test resources are weird by design, no validations in them -->
   <suppress id="lineLength"
+         files="src[\\/]it[\\/]resources[\\/].*[\\/]chapter4naming[\\/]rule41packagenames[\\/]InputBadPackageName2\.java"/>
+  <suppress id="lineLength"
+         files="src[\\/]it[\\/]resources[\\/].*[\\/]chapter4naming[\\/]rule41packagenames[\\/]InputPackageBadName3\.java"/>
+  <suppress id="lineLength"
+         files="src[\\/]it[\\/]resources[\\/].*[\\/]chapter4naming[\\/]rule41packagenames[\\/]InputPackageNameBad\.java"/>
+  <suppress id="lineLength"
          files="src[\\/]it[\\/]resources[\\/].*[\\/]Input.*ColumnLimit\.java"/>
   <suppress id="lineLength"
          files="src[\\/]it[\\/]resources[\\/].*[\\/]InputPackageStatement\.java"/>
