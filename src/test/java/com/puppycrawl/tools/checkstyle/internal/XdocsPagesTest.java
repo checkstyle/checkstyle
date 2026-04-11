@@ -2072,8 +2072,9 @@ public class XdocsPagesTest {
         final Iterator<Node> itrChecks = checks.iterator();
         final Iterator<Node> itrConfigs = configs.iterator();
         final boolean isGoogleDocumentation = "google".equals(styleName);
+        final boolean isOpenJdkDocumentation = "openjdk".equals(styleName);
 
-        if (isGoogleDocumentation) {
+        if (isGoogleDocumentation || isOpenJdkDocumentation) {
             validateChapterWiseTesting(itrChecks, itrConfigs, styleChecks, styleName, ruleName);
         }
         else {
@@ -2178,8 +2179,8 @@ public class XdocsPagesTest {
             if (!moduleIsCheck) {
                 if (href.startsWith(partialConfigUrl)) {
                     assertWithMessage(
-                        "google_style.xml rule '%s' module '%s' has too many config links",
-                        ruleName, moduleName).fail();
+                        "%s_style.xml rule '%s' module '%s' has too many config links",
+                        styleName, ruleName, moduleName).fail();
                 }
                 continue;
             }
@@ -2212,8 +2213,8 @@ public class XdocsPagesTest {
                     partialConfigUrl + "_checks.xml+repo%3Acheckstyle%2Fcheckstyle+" + moduleName;
 
                 assertWithMessage(
-                    "google_style.xml rule '%s' module '%s' should have matching config url",
-                    ruleName, moduleName)
+                    "%s_style.xml rule '%s' module '%s' should have matching config url",
+                    styleName, ruleName, moduleName)
                     .that(configUrl)
                     .isEqualTo(expectedUrl);
             }
@@ -2235,21 +2236,23 @@ public class XdocsPagesTest {
             final String extractedChapterNumber = getExtractedChapterNumber(ruleName);
             final String extractedSectionNumber = getExtractedSectionNumber(ruleName);
 
-            assertWithMessage("google_style.xml rule '%s' rule '' should have matching sample url",
-                ruleName)
+            assertWithMessage("%s_style.xml rule '%s' rule '' should have matching sample url",
+                styleName, ruleName)
                     .that(inputFolderUrl)
                     .startsWith("https://github.com/checkstyle/checkstyle/"
-                            + "tree/master/src/it/resources/com/google/checkstyle/test/");
+                            + "tree/master/src/it/resources/com/" + styleName
+                            + "/checkstyle/test/");
 
-            assertWithMessage("google_style.xml rule '%s' should have matching sample url",
-                ruleName)
+            assertWithMessage("%s_style.xml rule '%s' should have matching sample url",
+                styleName, ruleName)
                 .that(inputFolderUrl)
                 .containsMatch(
                     "/chapter" + extractedChapterNumber
                           + "\\D[^/]+/rule" + extractedSectionNumber + "\\D");
 
             assertWithMessage(
-                "google_style.xml rule '%s' should have a inputs test folder that exists", ruleName)
+                "%s_style.xml rule '%s' should have a inputs test folder that exists", styleName,
+                ruleName)
                     .that(new File(inputFolderUrl.substring(53).replace('/',
                             File.separatorChar)).exists())
                     .isTrue();

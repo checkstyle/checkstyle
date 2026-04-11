@@ -257,8 +257,11 @@ Dcheckstyle
 dcm
 Dconfig
 Dconnection
+Dcpd
+Dcyclonedx
 ddd
 DDDL
+Ddokka
 Ddry
 DEADBEEF
 DECCHARS
@@ -296,11 +299,11 @@ diffplug
 DIFFTOOL
 dirname
 Djacoco
+Djapicmp
 Djdepend
 Dlinkcheck
 DMail
 Dmaven
-DMC
 dnd
 Dnew
 doccheck
@@ -1199,7 +1202,6 @@ selfexplanatory
 Selkin
 semaphoreci
 semver
-SEO
 separatorwrap
 SERIALVERSIONUID
 servlet
@@ -1460,7 +1462,6 @@ Webp
 website
 webtoolkit
 Wellformedness
-wget
 whenshouldbeused
 wherejavadocrequired
 wheretobreak
