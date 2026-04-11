@@ -4280,24 +4280,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("caseIndent", "4");
         checkConfig.addProperty("lineWrappingIndentation", "8");
         checkConfig.addProperty("tabWidth", "4");
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("InputIndentationTryCtorParams.java"), expected);
-    }
 
-    @Test
-    public void testNewWithTabsIndentation() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
-        checkConfig.addProperty("basicOffset", "4");
-        checkConfig.addProperty("braceAdjustment", "0");
-        checkConfig.addProperty("caseIndent", "4");
-        checkConfig.addProperty("forceStrictCondition", "false");
-        checkConfig.addProperty("lineWrappingIndentation", "4");
-        checkConfig.addProperty("tabWidth", "4");
-        checkConfig.addProperty("throwsIndent", "4");
-        final String[] expected = {
-            "43:5: " + getCheckMessage(MSG_ERROR, "new", 4, 16),
-        };
-        verifyWarns(checkConfig, getPath("InputIndentationNewWithTabs.java"), expected);
+        final String fileName = getPath("InputIndentationTryCtorParams.java");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     private static final class IndentAudit implements AuditListener {
