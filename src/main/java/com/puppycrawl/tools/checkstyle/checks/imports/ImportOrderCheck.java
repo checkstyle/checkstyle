@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,7 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * <div>
@@ -228,7 +228,7 @@ public class ImportOrderCheck
      * @since 3.2
      */
     public void setGroups(String... packageGroups) {
-        groups = UnmodifiableCollectionUtil.copyOfArray(packageGroups, packageGroups.length);
+        groups = Arrays.copyOf(packageGroups, packageGroups.length);
         groupsReg = compilePatterns(packageGroups);
     }
 
@@ -246,7 +246,7 @@ public class ImportOrderCheck
      * @since 8.12
      */
     public void setStaticGroups(String... packageGroups) {
-        staticGroups = UnmodifiableCollectionUtil.copyOfArray(packageGroups, packageGroups.length);
+        staticGroups = Arrays.copyOf(packageGroups, packageGroups.length);
         staticGroupsReg = compilePatterns(packageGroups);
     }
 

@@ -42,7 +42,6 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * <div>
@@ -262,8 +261,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      * @since 8.42
      */
     public void setAccessModifiers(AccessModifierOption... accessModifiers) {
-        this.accessModifiers =
-            UnmodifiableCollectionUtil.copyOfArray(accessModifiers, accessModifiers.length);
+        this.accessModifiers = Arrays.copyOf(accessModifiers, accessModifiers.length);
     }
 
     /**

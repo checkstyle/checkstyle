@@ -5238,6 +5238,9 @@
                 <mutator>NULL_RETURNS</mutator>
                 <mutator>PRIMITIVE_RETURNS</mutator>
               </mutators>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.utils.*</param>
               </targetClasses>
@@ -5251,7 +5254,6 @@
               </excludedMethods>
               <excludedClasses>
                 <class>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</class>
-                <class>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</class>
                 <class>com.puppycrawl.tools.checkstyle.utils.WeakReferenceHolder</class>
               </excludedClasses>
               <targetTests>

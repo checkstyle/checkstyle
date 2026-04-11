@@ -45,12 +45,6 @@ public class ArchUnitTest {
         "Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang"
             + ".String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil"
             + ".EMPTY_STRING_ARRAY>",
-        "Constructor <com.puppycrawl.tools.checkstyle.api.Violation.<init>(int, int, int, int,"
-            + " java.lang.String, java.lang.String, [Ljava.lang.Object;,"
-            + " com.puppycrawl.tools.checkstyle.api.SeverityLevel, java.lang.String,"
-            + " java.lang.Class, java.lang.String)> calls method"
-            + " <com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil.copyOfArray"
-            + "([Ljava.lang.Object;, int)>",
         "Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util"
             + ".List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil"
             + ".EMPTY_STRING_ARRAY>",

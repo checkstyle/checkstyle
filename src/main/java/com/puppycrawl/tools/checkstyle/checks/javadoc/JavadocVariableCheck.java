@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
-import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * <div>
@@ -82,8 +81,7 @@ public class JavadocVariableCheck
      * @since 10.22.0
      */
     public void setAccessModifiers(AccessModifierOption... accessModifiers) {
-        this.accessModifiers =
-            UnmodifiableCollectionUtil.copyOfArray(accessModifiers, accessModifiers.length);
+        this.accessModifiers = Arrays.copyOf(accessModifiers, accessModifiers.length);
     }
 
     /**
