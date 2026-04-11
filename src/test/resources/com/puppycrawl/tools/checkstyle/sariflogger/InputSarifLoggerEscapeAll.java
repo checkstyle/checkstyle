@@ -29,12 +29,22 @@
       <property name="format" value="bar1234"/>
     </module>
   </module>
+  <module name="TreeWalker">
+    <module name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck">
+      <property name="tokens" value="STRING_LITERAL"/>
+    </module>
+  </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.sariflogger;
-public class InputSarifLoggerEscapeSelect {
+public class InputSarifLoggerEscapeAll {
     int x = 1; // violation '\t'
     String slash = "/"; // violation
     String space = " "; // violation
     String bar1234 = "bar1234"; // violation
+    String backspace = ""; // violation 'Using ".*" is not allowed.'
+    String formFeed = ""; // violation 'Using ".*" is not allowed.'
+    String dataLink = ""; // violation 'Using ".*" is not allowed.'
+    String recordSep = ""; // violation 'Using ".*" is not allowed.'
+    String unitSep = ""; // violation 'Using ".*" is not allowed.'
 }
