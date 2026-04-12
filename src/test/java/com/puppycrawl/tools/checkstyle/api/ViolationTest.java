@@ -211,4 +211,19 @@ public class ViolationTest {
                 EMPTY_OBJECT_ARRAY, "module", Violation.class, null);
     }
 
+    @Test
+    public void testArgsAreCopiedToEnsureImmutability() {
+        final Object[] originalArgs = {"InitialValue"};
+        final Violation violation = new Violation(1,
+                "com.puppycrawl.tools.checkstyle.messages",
+                "general.exception",
+                originalArgs, null, getClass(), null);
+
+        originalArgs[0] = "MutatedValue";
+
+        assertWithMessage("Violation args must be a copy")
+            .that(violation.getViolation())
+            .contains("InitialValue");
+    }
+
 }
