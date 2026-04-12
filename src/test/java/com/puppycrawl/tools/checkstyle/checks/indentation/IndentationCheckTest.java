@@ -268,6 +268,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("throwsIndent", "8");
         final String[] expected = {
+            "8:17: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 16, 12),
             "10:29: " + getCheckMessage(MSG_ERROR_MULTI, "method def rcurly", 28, "16, 20, 24"),
             "13:9: " + getCheckMessage(MSG_ERROR, "method def rcurly", 8, 4),
             "14:5: " + getCheckMessage(MSG_ERROR, "class def rcurly", 4, 0),
@@ -1392,7 +1393,11 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "46:1: " + getCheckMessage(MSG_ERROR, "\"\"\"", 0, 12),
             "52:1: " + getCheckMessage(MSG_ERROR, "\"\"\"", 0, 12),
             "59:9: " + getCheckMessage(MSG_ERROR, "\"\"\"", 8, 12),
-            "78:15: " + getCheckMessage(MSG_ERROR, "\"\"\"", 14, 12),
+            "74:54: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 20, 12),
+            "78:15: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 14, 12),
+            "80:51: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 14, 12),
+            "100:20: " + getCheckMessage(MSG_CHILD_ERROR, "if", 18, 12),
+            "101:21: " + getCheckMessage(MSG_CHILD_ERROR, "if", 18, 12),
         };
         verifyWarns(checkConfig, getPath("InputIndentationTextBlock.java"),
             expected);
@@ -1583,6 +1588,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "71:15: " + getCheckMessage(MSG_ERROR, "yield", 14, 16),
             "74:20: " + getCheckMessage(MSG_ERROR, "yield", 19, 16),
             "77:9: " + getCheckMessage(MSG_ERROR, "yield", 8, 16),
+            "79:10: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 8, 12),
+            "96:10: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 8, 12),
         };
         verifyWarns(checkConfig,
                 getPath("InputIndentationYieldForceStrict.java"), expected);
@@ -3043,7 +3050,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "23:17: " + getCheckMessage(MSG_ERROR, "(", 16, 12),
             "24:17: " + getCheckMessage(MSG_ERROR, "->", 16, 12),
-            "26:27: " + getCheckMessage(MSG_ERROR, "\"SECOND_ARG\"", 26, 12),
+            "26:27: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 26, 12),
             "27:26: " + getCheckMessage(MSG_ERROR, "(", 25, 12),
             "30:17: " + getCheckMessage(MSG_ERROR, "(", 16, 12),
             "31:21: " + getCheckMessage(MSG_ERROR, "if", 20, 16),
@@ -3903,11 +3910,18 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                 "InputIndentationPatternMatchingForSwitch.java");
         final String[] expected = {
             "21:13: " + getCheckMessage(MSG_CHILD_ERROR, "case", 12, 16),
+            "35:21: " + getCheckMessage(MSG_CHILD_ERROR, "case", 20, 16),
+            "41:21: " + getCheckMessage(MSG_CHILD_ERROR, "case", 20, 16),
+            "42:21: " + getCheckMessage(MSG_CHILD_ERROR, "case", 20, 16),
+            "47:21: " + getCheckMessage(MSG_CHILD_ERROR, "case", 20, 16),
+            "48:29: " + getCheckMessage(MSG_CHILD_ERROR, "case", 28, 16),
+            "53:21: " + getCheckMessage(MSG_CHILD_ERROR, "case", 20, 16),
             "54:13: " + getCheckMessage(MSG_CHILD_ERROR, "case", 12, 16),
             "69:13: " + getCheckMessage(MSG_CHILD_ERROR, "case", 12, 16),
             "70:13: " + getCheckMessage(MSG_CHILD_ERROR, "case", 12, 16),
             "75:5: " + getCheckMessage(MSG_CHILD_ERROR, "case", 4, 16),
             "76:5: " + getCheckMessage(MSG_CHILD_ERROR, "case", 4, 16),
+            "82:29: " + getCheckMessage(MSG_CHILD_ERROR, "case", 28, 16),
             "87:1: " + getCheckMessage(MSG_CHILD_ERROR, "case", 0, 16),
             "88:1: " + getCheckMessage(MSG_CHILD_ERROR, "case", 0, 16),
             "89:1: " + getCheckMessage(MSG_CHILD_ERROR, "case", 0, 16),
@@ -3937,6 +3951,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "34:1: " + getCheckMessage(MSG_CHILD_ERROR, "lambda", 0, 16),
             "44:25: " + getCheckMessage(MSG_CHILD_ERROR, "lambda", 24, 16),
             "47:13: " + getCheckMessage(MSG_CHILD_ERROR, "block", 12, 16),
+            "62:10: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 8, 12),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -3957,20 +3972,20 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "19:17: " + getCheckMessage(MSG_ERROR, "ColoredPoint", 16, 12),
             "24:9: " + getCheckMessage(MSG_ERROR, "ColoredPoint", 8, 12),
-            "29:17: " + getCheckMessage(MSG_ERROR, "ColoredPoint", 16, 12),
+            "29:17: " + getCheckMessage(MSG_CHILD_ERROR, "if", 16, 12),
             "34:9: " + getCheckMessage(MSG_CHILD_ERROR, "if", 8, 12),
             "37:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
             "39:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
             "40:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
             "41:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
             "42:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
-            "56:17: " + getCheckMessage(MSG_ERROR, "Rectangle", 16, 12),
-            "57:17: " + getCheckMessage(MSG_ERROR, "ColoredPoint", 16, 12),
-            "58:25: " + getCheckMessage(MSG_ERROR, "boolean", 24, 12),
-            "59:17: " + getCheckMessage(MSG_ERROR, "int", 16, 12),
-            "60:25: " + getCheckMessage(MSG_ERROR, "_", 24, 12),
-            "61:17: " + getCheckMessage(MSG_ERROR, "ColoredPoint", 16, 12),
-            "62:17: " + getCheckMessage(MSG_ERROR, ")", 16, 8),
+            "56:17: " + getCheckMessage(MSG_CHILD_ERROR, "if", 16, 12),
+            "57:17: " + getCheckMessage(MSG_CHILD_ERROR, "if", 16, 12),
+            "58:25: " + getCheckMessage(MSG_CHILD_ERROR, "if", 24, 12),
+            "59:17: " + getCheckMessage(MSG_CHILD_ERROR, "if", 16, 12),
+            "60:25: " + getCheckMessage(MSG_CHILD_ERROR, "if", 24, 12),
+            "61:17: " + getCheckMessage(MSG_CHILD_ERROR, "if", 16, 12),
+            "62:17: " + getCheckMessage(MSG_CHILD_ERROR, "if", 16, 12),
             "67:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
             "66:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
             "68:9: " + getCheckMessage(MSG_CHILD_ERROR, "if", 8, 12),

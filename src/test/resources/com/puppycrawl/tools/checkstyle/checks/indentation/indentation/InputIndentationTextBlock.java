@@ -71,13 +71,13 @@ public class InputIndentationTextBlock {                                    //in
         LOG.warn("""
                     The following settings                                  //indent:20 exp:20
                     {}                                                      //indent:20 exp:20
-                    Therefore returning error result.""",                   //indent:20 exp:20
+                    Therefore returning error result.""",                   //indent:20 exp:12 warn
             GO2);                                                           //indent:12 exp:12
         LOG.warn(                                                           //indent:8 exp:8
 //below indent:14 exp:12 warn
               """
-              Failed to lidation; will ignore for now,                      //indent:14 exp:14
-              but it may fail later during runtime""",                      //indent:14 exp:14
+            Failed to lidation; will ignore for now,                        //indent:12 exp:12
+              but it may fail later during runtime""",                      //indent:14 exp:12 warn
             GO1);                                                           //indent:12 exp:12
     }                                                                       //indent:4 exp:4
 
@@ -96,9 +96,9 @@ public class InputIndentationTextBlock {                                    //in
             System.out.println("This is one more string");}                 //indent:12 exp:12
 //below indent:8 exp:8
         if ("""
-//below indent:18 exp:18
-                  a""" + """
-                  bc""" == GO2) {                                           //indent:18 exp:18
+//below indent:18 exp:12 warn
+                  a""" + """                                                //indent:18 exp:12 warn
+                  bc""" == GO2) {                                           //indent:18 exp:12 warn
         }                                                                   //indent:8 exp:8
         else {                                                              //indent:8 exp:8
 //below indent:12 exp:12

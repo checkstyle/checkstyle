@@ -52,7 +52,7 @@ public class IndentationCheckExamplesTest extends AbstractExamplesModuleTestSupp
     public void testExample3() throws Exception {
         final String[] expected = {
             "26:18: " + getCheckMessage(MSG_ERROR, "int", 17, 8),
-            "28:17: " + getCheckMessage(MSG_ERROR, "&&", 16, 12),
+            "28:17: " + getCheckMessage(MSG_CHILD_ERROR, "if", 16, 12),
         };
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
