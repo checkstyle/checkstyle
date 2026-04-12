@@ -59,6 +59,6 @@ System.out.println("Test");                                             //indent
                     && z != 2                                           //indent:20 exp:20
                     && y != z;                                          //indent:20 exp:20
             default -> false;                                           //indent:12 exp:12
-        };                                                              //indent:8 exp:8
+        };                                                              //indent:8 exp:12 warn
     }                                                                   //indent:4 exp:4
 }                                                                       //indent:0 exp:0
