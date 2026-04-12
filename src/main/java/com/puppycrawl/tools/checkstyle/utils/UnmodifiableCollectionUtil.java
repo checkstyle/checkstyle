@@ -24,7 +24,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * <div>Note: it simply wraps the existing JDK methods to provide a workaround
@@ -74,21 +73,6 @@ public final class UnmodifiableCollectionUtil {
     }
 
     /**
-     * Returns an unmodifiable view of a List containing elements of a specific type.
-     *
-     * @param items The List of items to make unmodifiable.
-     * @param elementType The Class object representing the type of elements in the list.
-     * @param <S> The generic type of elements in the input Collection.
-     * @param <T> The type of elements in the resulting unmodifiable List.
-     * @return An unmodifiable List containing elements of the specified type.
-     */
-    public static <S, T> List<T> unmodifiableList(Collection<S> items, Class<T> elementType) {
-        return items.stream()
-                .map(elementType::cast)
-                .toList();
-    }
-
-    /**
      * Creates a copy of array.
      *
      * @param array Array to create a copy of
@@ -112,14 +96,4 @@ public final class UnmodifiableCollectionUtil {
         return Map.copyOf(map);
     }
 
-    /**
-     * Returns an immutable set containing only the specified object.
-     *
-     * @param obj the type of object in the set
-     * @param <T> the type of object
-     * @return immutable set
-     */
-    public static <T> Set<T> singleton(T obj) {
-        return Collections.singleton(obj);
-    }
 }
