@@ -184,4 +184,39 @@ public final class JavadocMetadataScraperUtil {
                 .map(Matcher::matches)
                 .orElse(Boolean.FALSE);
     }
+
+    /**
+     * Returns the validation type of a property for the given module class.
+     *
+     * @param moduleClass the class of the module.
+     * @param propertyName the name of the property.
+     * @return the validation type string, or {@code null} if not found.
+     */
+    public static String getPropertyValidationType(
+            final Class<?> moduleClass, final String propertyName) {
+        final String moduleName = moduleClass.getName();
+        final ModuleDetails moduleDetails =
+                XmlMetaReader.readAllModulesIncludingThirdPartyIfAny()
+                        .stream()
+                        .filter(module -> {
+                            return moduleName.equals(module.getFullQualifiedName());
+                        })
+                        .findFirst()
+                        .orElse(null);
+        final String result;
+
+        if (moduleDetails == null) {
+            result = null;
+        }
+        else {
+            result = moduleDetails.getProperties().stream()
+                    .filter(prop -> {
+                        return prop.getName().equals(propertyName);
+                    })
+                    .findFirst()
+                    .map(ModulePropertyDetails::getValidationType)
+                    .orElse(null);
+        }
+        return result;
+    }
 }
