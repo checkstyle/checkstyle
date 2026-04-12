@@ -43,6 +43,9 @@ public final class UnmodifiableCollectionUtil {
 
     /**
      * Creates an unmodifiable list based on the provided collection.
+     * This does NOT handle null — if called with null it will throw NPE.
+     * This is intentional: see
+     * <a href="https://github.com/hcoles/pitest/issues/1462">pitest issue #1462</a>.
      *
      * @param collection the collection to create an unmodifiable list from
      * @param <T> the type of elements in the set
