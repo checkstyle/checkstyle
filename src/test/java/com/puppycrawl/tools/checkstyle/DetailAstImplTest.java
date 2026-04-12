@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.io.Writer;
@@ -35,6 +36,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 
 import org.antlr.v4.runtime.CommonToken;
+import org.antlr.v4.runtime.Token;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -836,6 +838,72 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         assertWithMessage(badPrevMsg)
             .that(node.getPreviousSibling())
             .isEqualTo(prev);
+    }
+
+    @Test
+    public void testGetHiddenBeforeIsUnmodifiable() {
+        final DetailAstImpl detailAst = new DetailAstImpl();
+        final List<Token> tokens = new ArrayList<>();
+        tokens.add(new CommonToken(1, "before"));
+        detailAst.setHiddenBefore(tokens);
+
+        final List<Token> actual = detailAst.getHiddenBefore();
+
+        final Throwable thrown = getExpectedThrowable(UnsupportedOperationException.class, () -> {
+            actual.add(new CommonToken(2, "fail"));
+        });
+
+        assertWithMessage("Should throw exception when modifying unmodifiable list")
+            .that(thrown)
+            .isNotNull();
+    }
+
+    @Test
+    public void testGetHiddenAfterIsUnmodifiable() {
+        final DetailAstImpl detailAst = new DetailAstImpl();
+        final List<Token> tokens = new ArrayList<>();
+        tokens.add(new CommonToken(1, "after"));
+        detailAst.setHiddenAfter(tokens);
+
+        final List<Token> actual = detailAst.getHiddenAfter();
+
+        final Throwable thrown = getExpectedThrowable(UnsupportedOperationException.class, () -> {
+            actual.add(new CommonToken(2, "fail"));
+        });
+
+        assertWithMessage("Should throw exception when modifying unmodifiable list")
+            .that(thrown)
+            .isNotNull();
+    }
+
+    @Test
+    public void testSetHiddenBeforeIsDefensive() {
+        final DetailAstImpl detailAst = new DetailAstImpl();
+        final List<Token> tokens = new ArrayList<>();
+        tokens.add(new CommonToken(1, "original"));
+
+        detailAst.setHiddenBefore(tokens);
+
+        tokens.add(new CommonToken(2, "external-change"));
+
+        assertWithMessage("Internal list should not be affected by external changes")
+            .that(detailAst.getHiddenBefore())
+            .hasSize(1);
+    }
+
+    @Test
+    public void testSetHiddenAfterIsDefensive() {
+        final DetailAstImpl detailAst = new DetailAstImpl();
+        final List<Token> tokens = new ArrayList<>();
+        tokens.add(new CommonToken(1, "original"));
+
+        detailAst.setHiddenAfter(tokens);
+
+        tokens.add(new CommonToken(2, "external-change"));
+
+        assertWithMessage("Internal list should not be affected by external changes")
+            .that(detailAst.getHiddenAfter())
+            .hasSize(1);
     }
 
 }
