@@ -78,6 +78,9 @@ import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
 import com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder;
 import com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperUtil;
+import com.puppycrawl.tools.checkstyle.meta.ModuleDetails;
+import com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails;
+import com.puppycrawl.tools.checkstyle.meta.XmlMetaReader;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -781,6 +784,43 @@ public final class SiteUtil {
             })
             .map(DetailNode::getText)
             .map(String::trim);
+    }
+
+    /**
+     * Returns the validation type of a property for the given module class.
+     *
+     * @param moduleClass the class of the module.
+     * @param propertyName the name of the property.
+     * @return the validation type string, or {@code null} if not found.
+     * @throws MacroExecutionException if metadata cannot be read.
+     */
+    public static String getPropertyValidationType(
+            final Class<?> moduleClass, final String propertyName)
+            throws MacroExecutionException {
+        final String moduleName = moduleClass.getName();
+        final ModuleDetails moduleDetails =
+                XmlMetaReader.readAllModulesIncludingThirdPartyIfAny()
+                        .stream()
+                        .filter(module -> {
+                            return moduleName.equals(module.getFullQualifiedName());
+                        })
+                        .findFirst()
+                        .orElse(null);
+        final String result;
+
+        if (moduleDetails == null) {
+            result = null;
+        }
+        else {
+            result = moduleDetails.getProperties().stream()
+                    .filter(prop -> {
+                        return prop.getName().equals(propertyName);
+                    })
+                    .findFirst()
+                    .map(ModulePropertyDetails::getValidationType)
+                    .orElse(null);
+        }
+        return result;
     }
 
     /**
