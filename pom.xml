@@ -5238,6 +5238,9 @@
                 <mutator>NULL_RETURNS</mutator>
                 <mutator>PRIMITIVE_RETURNS</mutator>
               </mutators>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.utils.*</param>
               </targetClasses>

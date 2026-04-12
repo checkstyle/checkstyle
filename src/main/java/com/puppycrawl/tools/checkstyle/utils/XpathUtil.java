@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
@@ -214,6 +215,10 @@ public final class XpathUtil {
         final XPathDynamicContext xpathDynamicContext = xpathExpression
                 .createDynamicContext(rootNode);
         final List<Item> items = xpathExpression.evaluate(xpathDynamicContext);
-        return UnmodifiableCollectionUtil.unmodifiableList(items, NodeInfo.class);
+        final List<NodeInfo> result = new ArrayList<>(items.size());
+        for (Item item : items) {
+            result.add((NodeInfo) item);
+        }
+        return Collections.unmodifiableList(result);
     }
 }
