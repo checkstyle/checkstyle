@@ -214,6 +214,8 @@ public final class XpathUtil {
         final XPathDynamicContext xpathDynamicContext = xpathExpression
                 .createDynamicContext(rootNode);
         final List<Item> items = xpathExpression.evaluate(xpathDynamicContext);
-        return UnmodifiableCollectionUtil.unmodifiableList(items, NodeInfo.class);
+        return items.stream()
+                .map(NodeInfo.class::cast)
+                .toList();
     }
 }

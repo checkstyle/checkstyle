@@ -74,21 +74,6 @@ public final class UnmodifiableCollectionUtil {
     }
 
     /**
-     * Returns an unmodifiable view of a List containing elements of a specific type.
-     *
-     * @param items The List of items to make unmodifiable.
-     * @param elementType The Class object representing the type of elements in the list.
-     * @param <S> The generic type of elements in the input Collection.
-     * @param <T> The type of elements in the resulting unmodifiable List.
-     * @return An unmodifiable List containing elements of the specified type.
-     */
-    public static <S, T> List<T> unmodifiableList(Collection<S> items, Class<T> elementType) {
-        return items.stream()
-                .map(elementType::cast)
-                .toList();
-    }
-
-    /**
      * Creates a copy of array.
      *
      * @param array Array to create a copy of
@@ -122,4 +107,5 @@ public final class UnmodifiableCollectionUtil {
     public static <T> Set<T> singleton(T obj) {
         return Collections.singleton(obj);
     }
+
 }
