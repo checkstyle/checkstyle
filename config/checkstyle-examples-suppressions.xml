@@ -70,9 +70,6 @@
   <!-- Example deals with line wrapping and check does not take that into account.  -->
   <suppress id="exampleClassName"
     files="nolinewrap[\\/]Example5.java"/>
-  <!-- until https://github.com/checkstyle/checkstyle/issues/2629 -->
-  <suppress checks="Indent"
-    files="nolinewrap[\\/]Example5.java"/>
 
   <!-- multifileregexpheader examples use external XML configs instead of inline -->
   <suppress id="exampleFileXmlConfigPresence"
