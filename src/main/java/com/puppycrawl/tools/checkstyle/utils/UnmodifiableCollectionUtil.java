@@ -28,7 +28,7 @@ import java.util.Set;
 /**
  * <div>Note: it simply wraps the existing JDK methods to provide a workaround
  * for Pitest survival on mutation for removal of immutable wrapping,
- * see #13127 for more details.
+ * see #13127 and https://github.com/hcoles/pitest/issues/1462 for more details.
  * </div>
  *
  */
@@ -39,17 +39,6 @@ public final class UnmodifiableCollectionUtil {
      *
      */
     private UnmodifiableCollectionUtil() {
-    }
-
-    /**
-     * Creates an unmodifiable list based on the provided collection.
-     *
-     * @param collection the collection to create an unmodifiable list from
-     * @param <T> the type of elements in the set
-     * @return an unmodifiable list containing the elements from the provided collection
-     */
-    public static <T> List<T> unmodifiableList(List<T> collection) {
-        return Collections.unmodifiableList(collection);
     }
 
     /**
