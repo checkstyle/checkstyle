@@ -288,6 +288,22 @@ public class LocalizedMessageTest {
                 .isNull();
     }
 
+    @Test
+    public void testArgsAreCopiedToEnsureImmutability() {
+        final Object[] originalArgs = {"InitialValue"};
+        final LocalizedMessage message = new LocalizedMessage(
+                Definitions.CHECKSTYLE_BUNDLE,
+                DefaultLogger.class,
+                "DefaultLogger.addException",
+                originalArgs);
+
+        originalArgs[0] = "MutatedValue";
+
+        assertWithMessage("LocalizedMessage args must be a copy to ensure immutability")
+                .that(message.getMessage())
+                .contains("InitialValue");
+    }
+
     @AfterEach
     public void tearDown() {
         LocalizedMessage.setLocale(DEFAULT_LOCALE);
