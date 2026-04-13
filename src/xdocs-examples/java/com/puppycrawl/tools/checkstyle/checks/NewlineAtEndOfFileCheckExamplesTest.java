@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
+import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_WRONG_ENDING;
 
 import org.junit.jupiter.api.Test;
@@ -81,5 +82,23 @@ public class NewlineAtEndOfFileCheckExamplesTest extends AbstractExamplesModuleT
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
+    }
+
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR, "cr"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+    }
+
+    @Test
+    public void testExample8() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR, "crlf"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
 }
