@@ -71,6 +71,7 @@
          </properties>
          <message-keys>
             <message-key key="noNewlineAtEOF"/>
+            <message-key key="noNewlineAtEOFWithSeparator"/>
             <message-key key="unable.open"/>
             <message-key key="wrong.line.end"/>
          </message-keys>
