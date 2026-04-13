@@ -256,4 +256,5 @@ public class MethodParamPadCheckTest
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMethodParamPadCheckRecordPattern2.java"), expected);
     }
+
 }

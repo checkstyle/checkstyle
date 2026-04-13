@@ -191,10 +191,10 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
                 && ast.getNextSibling().getType() == TokenTypes.LPAREN) {
             final DetailAST methodDef = ast.getParent();
             final DetailAST endOfParams = methodDef.findFirstToken(TokenTypes.RPAREN);
-            after = endOfParams.getColumnNo() + 1;
+            after = endOfParams.getColumnNo();
         }
         else {
-            after = ast.getColumnNo() + ast.getText().length();
+            after = ast.getColumnNo() - 1 + ast.getText().length();
         }
         return after;
     }
