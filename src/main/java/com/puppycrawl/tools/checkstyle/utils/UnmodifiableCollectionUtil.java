@@ -23,7 +23,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -98,18 +97,6 @@ public final class UnmodifiableCollectionUtil {
      */
     public static <T> T[] copyOfArray(T[] array, int length) {
         return Arrays.copyOf(array, length);
-    }
-
-    /**
-     * Creates a copy of Map.
-     *
-     * @param map map to create a copy of
-     * @param <K> the type of keys in the map
-     * @param <V> the type of values in the map
-     * @return an immutable copy of the input map
-     */
-    public static <K, V> Map<K, V> copyOfMap(Map<? extends K, ? extends V> map) {
-        return Map.copyOf(map);
     }
 
     /**

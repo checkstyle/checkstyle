@@ -72,6 +72,20 @@ public class XmlLoaderTest {
             .isNotNull();
     }
 
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testPublicIdToResourceNameMapIsCopied() throws Exception {
+        final Map<String, String> mutableMap = new HashMap<>();
+        mutableMap.put("id", "resource");
+        final DummyLoader loader = new DummyLoader(mutableMap);
+        mutableMap.put("newId", "newResource");
+        final Map<String, String> internalMap = (Map<String, String>) TestUtil.getInternalState(
+                loader, "publicIdToResourceNameMap", Map.class);
+        assertWithMessage("Internal map should not reflect external changes")
+                .that(internalMap.containsKey("newId"))
+                .isFalse();
+    }
+
     private static final class DummyLoader extends XmlLoader {
 
         private DummyLoader(Map<String, String> publicIdToResourceNameMap)
