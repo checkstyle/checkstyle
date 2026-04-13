@@ -633,6 +633,16 @@
           </tr>
           <tr>
             <td>
+              <a href="unusedprivatefield.html#UnusedPrivateField">
+                UnusedPrivateField
+              </a>
+            </td>
+            <td>
+              Checks that a private field is declared but never used.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="useenhancedswitch.html#UseEnhancedSwitch">
                 UseEnhancedSwitch
               </a>
