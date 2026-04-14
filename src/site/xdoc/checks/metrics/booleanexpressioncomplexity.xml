@@ -44,6 +44,13 @@
               <th>since</th>
             </tr>
             <tr>
+              <td><a id="ignoreUniformChains"/><a href="#ignoreUniformChains">ignoreUniformChains</a></td>
+              <td>Control whether to ignore uniform chains of the same boolean operator. When enabled, a sequence like <code>a || b || c || d</code> counts as complexity 1 instead of the number of operators present.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.4.1</td>
+            </tr>
+            <tr>
               <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify the maximum number of boolean operations allowed in one expression.</td>
               <td><a href="../../property_types.html#int">int</a></td>
