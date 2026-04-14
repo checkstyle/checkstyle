@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -126,15 +127,12 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
                         "messages.properties", null, null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
 
-        try {
-            logger.addException(ev, null);
-            assertWithMessage("Exception is excepted").fail();
-        }
-        catch (UnsupportedOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Operation is not supported");
-        }
+        final UnsupportedOperationException exception =
+            getExpectedThrowable(UnsupportedOperationException.class,
+                () -> logger.addException(ev, null));
+        assertWithMessage("Invalid exception message")
+            .that(exception.getMessage())
+            .isEqualTo("Operation is not supported");
     }
 
     /**
@@ -255,21 +253,12 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
     @Test
     public void testNullOutputStreamOptions() {
         final OutputStream out = new ByteArrayOutputStream();
-        try {
-            final ChecksAndFilesSuppressionFileGeneratorAuditListener listener =
-                    new ChecksAndFilesSuppressionFileGeneratorAuditListener(out,
-                            null);
-            // assert required to calm down eclipse's 'The allocated object is never used' violation
-            assertWithMessage("Null instance")
-                    .that(listener)
-                    .isNotNull();
-            assertWithMessage("Exception was expected").fail();
-        }
-        catch (IllegalArgumentException exception) {
-            assertWithMessage("Invalid error message")
-                    .that(exception.getMessage())
-                    .isEqualTo("Parameter outputStreamOptions can not be null");
-        }
+        final IllegalArgumentException exception =
+            getExpectedThrowable(IllegalArgumentException.class,
+                () -> new ChecksAndFilesSuppressionFileGeneratorAuditListener(out, null));
+        assertWithMessage("Invalid error message")
+                .that(exception.getMessage())
+                .isEqualTo("Parameter outputStreamOptions can not be null");
     }
 
     private AuditEvent createAuditEvent(String fileName, int lineNumber, int columnNumber,

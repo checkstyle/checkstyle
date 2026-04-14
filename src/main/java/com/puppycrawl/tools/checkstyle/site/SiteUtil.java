@@ -871,7 +871,7 @@ public final class SiteUtil {
     }
 
     /**
-     * Returns {@code true} if {@code actualVersion} ≥ {@code requiredVersion}.
+     * Returns {@code true} if {@code actualVersion} >= {@code requiredVersion}.
      * Both versions have any trailing "-SNAPSHOT" stripped before comparison.
      *
      * @param actualVersion   e.g. "8.3" or "8.3-SNAPSHOT"
@@ -1091,23 +1091,16 @@ public final class SiteUtil {
      *
      * @param value the value to get the int stream from.
      * @return the int stream.
-     * @noinspection ChainOfInstanceofChecks
-     * @noinspectionreason ChainOfInstanceofChecks - We will deal with this at
-     *                     <a href="https://github.com/checkstyle/checkstyle/issues/13500">13500</a>
+     * @throws IllegalArgumentException if parameter is null.
      */
     private static IntStream getIntStream(Object value) {
-        final IntStream stream;
-        if (value instanceof Collection<?> collection) {
-            stream = collection.stream()
+        return switch (value) {
+            case null -> throw new IllegalArgumentException("value is null");
+            case Collection<?> collection -> collection.stream()
                     .mapToInt(int.class::cast);
-        }
-        else if (value instanceof BitSet set) {
-            stream = set.stream();
-        }
-        else {
-            stream = Arrays.stream((int[]) value);
-        }
-        return stream;
+            case BitSet set -> set.stream();
+            default -> Arrays.stream((int[]) value);
+        };
     }
 
     /**
@@ -1220,7 +1213,7 @@ public final class SiteUtil {
         Field result = null;
         Class<?> currentClass = fieldClass;
 
-        while (!Object.class.equals(currentClass)) {
+        while (currentClass != Object.class) {
             try {
                 result = currentClass.getDeclaredField(propertyName);
                 result.trySetAccessible();

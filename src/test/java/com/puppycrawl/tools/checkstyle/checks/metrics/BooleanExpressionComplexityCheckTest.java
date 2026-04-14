@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
@@ -42,10 +43,10 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
         final String[] expected = {
             "21:9: " + getCheckMessage(MSG_KEY, 4, 3),
-            "38:46: " + getCheckMessage(MSG_KEY, 4, 3),
-            "48:9: " + getCheckMessage(MSG_KEY, 6, 3),
-            "54:34: " + getCheckMessage(MSG_KEY, 4, 3),
-            "56:34: " + getCheckMessage(MSG_KEY, 4, 3),
+            "39:46: " + getCheckMessage(MSG_KEY, 4, 3),
+            "50:9: " + getCheckMessage(MSG_KEY, 6, 3),
+            "57:34: " + getCheckMessage(MSG_KEY, 4, 3),
+            "60:34: " + getCheckMessage(MSG_KEY, 4, 3),
         };
 
         verifyWithInlineConfigParser(
@@ -76,15 +77,12 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
             new BooleanExpressionComplexityCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonToken(TokenTypes.INTERFACE_DEF, "interface"));
-        try {
-            booleanExpressionComplexityCheckObj.visitToken(ast);
-            assertWithMessage("exception expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("Unknown type: interface[0x-1]");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> booleanExpressionComplexityCheckObj.visitToken(ast));
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Unknown type: interface[0x-1]");
     }
 
     @Test
@@ -103,9 +101,9 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
         final String[] expected = {
             "16:12: " + getCheckMessage(MSG_KEY, 4, max),
-            "24:23: " + getCheckMessage(MSG_KEY, 4, max),
-            "35:23: " + getCheckMessage(MSG_KEY, 4, max),
-            "45:27: " + getCheckMessage(MSG_KEY, 4, max),
+            "25:23: " + getCheckMessage(MSG_KEY, 4, max),
+            "37:23: " + getCheckMessage(MSG_KEY, 4, max),
+            "48:27: " + getCheckMessage(MSG_KEY, 4, max),
         };
 
         verifyWithInlineConfigParser(
@@ -146,7 +144,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputBooleanExpressionComplexityWhenExpression.java"),
+                getNonCompilablePath("InputBooleanExpressionComplexityWhenExpression.java"),
                 expected);
     }
 

@@ -89,4 +89,27 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testWhitespaceAroundLambda() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathWhitespaceAroundLambda.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(WhitespaceAroundCheck.class);
+
+        final String[] expectedViolation = {
+            "7:48: " + getCheckMessage(WhitespaceAroundCheck.class,
+                    WhitespaceAroundCheck.MSG_WS_NOT_PRECEDED, "->"),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathWhitespaceAroundLambda']]/OBJBLOCK/METHOD_DEF"
+                + "[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF[./IDENT"
+                + "[@text='function']]/ASSIGN/LAMBDA"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

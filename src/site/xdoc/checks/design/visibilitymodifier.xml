@@ -777,7 +777,7 @@ class Example12 {
       <subsection name="Violation Messages" id="VisibilityModifier_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22variable.notPrivate%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22variable.notPrivate%22">
               variable.notPrivate
             </a>
           </li>
@@ -789,9 +789,11 @@ class Example12 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="VisibilityModifier_Package">
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.design
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

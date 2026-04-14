@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -78,21 +79,42 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEscape() {
+    public void testEscape() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeSelect.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeSelect.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapeWithMessageKey() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeMessageKey.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeMessageKey.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    /**
+     * This test cannot use verifyWithInlineConfigParserAndLogger because
+     * XML 1.0 forbids control characters (U+0008, U+000C, U+0010, U+001E, U+001F)
+     * even as numeric character references or raw bytes in attribute values,
+     * making it impossible to pass these characters through the violation message
+     * into {@code escape()} via the inline config approach.
+     */
+    @Test
+    public void testEscapeDirectly() {
         final String[][] encodings = {
-            {"\"", "\\\""},
-            {"\\", "\\\\"},
             {"\b", "\\b"},
             {"\f", "\\f"},
-            {"\n", "\\n"},
-            {"\r", "\\r"},
-            {"\t", "\\t"},
-            {"/", "\\/"},
             {"\u0010", "\\u0010"},
             {"\u001E", "\\u001E"},
             {"\u001F", "\\u001F"},
-            {" ", " "},
-            {"bar1234", "bar1234"},
         };
         for (String[] encoding : encodings) {
             final String encoded = SarifLogger.escape(encoding[0]);
@@ -170,6 +192,13 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         );
     }
 
+    /**
+     * VerifyWithInlineConfigParserAndLogger uses Checker.process(...) and reaches
+     * logger callbacks through Checker.fireErrors(...), which triggers addError(AuditEvent).
+     * This test must call addException(AuditEvent, Throwable) directly with controlled events,
+     * including one event with a null fileName, because that exception path is not produced by
+     * the normal Checker.process(...) file-auditing flow.
+     */
     @Test
     public void testAddExceptions() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
@@ -240,6 +269,13 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
                 getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
+    /**
+     * VerifyWithInlineConfigParserAndLogger goes through Checker.process(...), where
+     * Checker.fireErrors(...) creates AuditEvent file names from real File objects and then
+     * normalizes them via relativizePathWithCatch(...), which delegates to
+     * CommonUtil.relativizePath(...). That flow does not produce synthetic "./Test.java",
+     * so this test keeps manual AuditEvent construction.
+     */
     @Test
     public void testAddErrorWithRelativeLinuxPath() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
@@ -257,6 +293,12 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         verifyContent(getPath("ExpectedSarifLoggerRelativeLinuxPath.sarif"), outStream);
     }
 
+    /**
+     * Checker.process(...) obtains file paths from the current runtime File API, and
+     * Checker.fireErrors(...) passes those paths through relativizePathWithCatch(...)
+     * / CommonUtil.relativizePath(...). On Linux CI, File.getAbsolutePath() cannot produce
+     * a native "C:\\..." Windows absolute path, so this Windows-specific case is manual.
+     */
     @Test
     public void testAddErrorWithAbsoluteWindowsPath() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
@@ -275,6 +317,12 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         verifyContent(getPath("ExpectedSarifLoggerAbsoluteWindowsPath.sarif"), outStream);
     }
 
+    /**
+     * VerifyWithInlineConfigParserAndLogger relies on Checker.process(...), where path strings
+     * are OS-dependent and produced from File semantics before Checker.fireErrors(...) calls
+     * relativizePathWithCatch(...) / CommonUtil.relativizePath(...). A Linux run will not emit
+     * ".\\Test.java", so this test must construct the AuditEvent manually.
+     */
     @Test
     public void testAddErrorWithRelativeWindowsPath() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
@@ -324,19 +372,19 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNullOutputStreamOptions() {
-        try {
-            final SarifLogger logger = new SarifLogger(outStream, (OutputStreamOptions) null);
-            // assert required to calm down eclipse's 'The allocated object is never used' violation
-            assertWithMessage("Null instance")
-                .that(logger)
-                .isNotNull();
-            assertWithMessage("Exception was expected").fail();
-        }
-        catch (IllegalArgumentException | IOException exception) {
-            assertWithMessage("Invalid error message")
-                .that(exception.getMessage())
-                .isEqualTo("Parameter outputStreamOptions can not be null");
-        }
+        final IllegalArgumentException exception =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    final SarifLogger logger =
+                            new SarifLogger(outStream, (OutputStreamOptions) null);
+                    // assert required to calm down eclipse's
+                    // 'The allocated object is never used' violation
+                    assertWithMessage("Null instance")
+                        .that(logger)
+                        .isNotNull();
+                }, "Exception was expected");
+        assertWithMessage("Invalid error message")
+            .that(exception.getMessage())
+            .isEqualTo("Parameter outputStreamOptions can not be null");
     }
 
     @Test
@@ -373,28 +421,34 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFinishLocalSetup() throws IOException {
+    public void testFinishLocalSetup() throws Exception {
+        final String inputFile = "InputSarifLoggerEmpty.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEmpty.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
+
         logger.finishLocalSetup();
-        logger.auditStarted(null);
-        logger.auditFinished(null);
-        assertWithMessage("instance should not be null")
-            .that(logger)
-            .isNotNull();
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
+    /**
+     * SarifLogger.readResource(String) is a static utility method that loads
+     * classpath resources directly. Passing an invalid name triggers an IOException
+     * that is not reachable through the normal Checker.process(...) and
+     * Checker.fireErrors(...) execution flow, so this test must call the method
+     * directly rather than using verifyWithInlineConfigParserAndLogger.
+     */
     @Test
     public void testReadResourceWithInvalidName() {
-        try {
-            SarifLogger.readResource("random");
-            assertWithMessage("Exception expected").fail();
-        }
-        catch (IOException exception) {
-            assertWithMessage("Exception message must match")
-                .that(exception.getMessage())
-                .isEqualTo("Cannot find the resource random");
-        }
+        final IOException exception =
+                getExpectedThrowable(IOException.class, () -> {
+                    SarifLogger.readResource("random");
+                }, "Exception expected");
+        assertWithMessage("Exception message must match")
+            .that(exception.getMessage())
+            .isEqualTo("Cannot find the resource random");
     }
 
     @Test
@@ -430,22 +484,10 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
                 getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
-    @Test
-    public void testEscapedMessageText() throws Exception {
-        final String inputFile = "InputSarifLoggerEscapedMessage.java";
-        final String expectedReportFile = "ExpectedSarifLoggerEscapedMessage.sarif";
-        final SarifLogger logger = new SarifLogger(outStream,
-                OutputStreamOptions.CLOSE);
-
-        verifyWithInlineConfigParserAndLogger(
-                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
-    }
-
     /**
-     * Tests {@code ClassNotFoundException} handling in {@code getMessages} method.
-     * Uses reflection to inject fake module metadata with non-existent class
-     * to trigger the exception. Real checkstyle modules cannot be used as
-     * all are on the classpath during testing.
+     * This test injects ruleMetadata via reflection to force ClassNotFoundException handling
+     * during logger.auditFinished(...). That reflective state mutation is outside the normal
+     * Checker.process(...) and Checker.fireErrors(...) helper flow.
      */
     @Test
     public void testGetMessagesWithClassNotFoundException() throws Exception {
@@ -471,10 +513,9 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Tests {@code MissingResourceException} handling in {@code getMessages} method.
-     * Uses reflection to inject fake module metadata pointing to a test class
-     * without messages.properties to trigger the exception. Real checkstyle modules
-     * cannot be used as all have proper resource bundles during testing.
+     * This test uses reflection to inject ruleMetadata and trigger MissingResourceException
+     * handling in logger.auditFinished(...). That reflective path is not reachable through
+     * the standard Checker.process(...) / Checker.fireErrors(...) execution.
      */
     @Test
     public void testGetMessagesWithMissingResourceException() throws Exception {

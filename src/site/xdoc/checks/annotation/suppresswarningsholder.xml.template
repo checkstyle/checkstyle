@@ -108,8 +108,12 @@
         </ul>
       </subsection>
 
-      <subsection name="Package" id="SuppressWarningsHolder_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks </p>
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</p>
+        <p>
+         Use this fully qualified class name in configuration when an exact class reference is
+         required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="SuppressWarningsHolder_Parent_Module">

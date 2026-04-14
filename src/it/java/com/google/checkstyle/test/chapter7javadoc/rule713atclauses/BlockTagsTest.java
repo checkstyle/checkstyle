@@ -71,6 +71,17 @@ public class BlockTagsTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testCorrectAtClauseOrderOnRecordAndCompactCtor() throws Exception {
+        verifyWithWholeConfig(getPath("InputCorrectAtClauseOrderCheckOnRecordAndCompactCtor.java"));
+    }
+
+    @Test
+    public void testIncorrectAtClauseOrderOnRecordAndCompactCtor() throws Exception {
+        verifyWithWholeConfig(
+            getPath("InputIncorrectAtClauseOrderCheckOnRecordAndCompactCtor.java"));
+    }
+
+    @Test
     public void testNonEmptyAtclauseDescription() throws Exception {
         verifyWithWholeConfig(getPath("InputNonEmptyAtclauseDescription.java"));
     }

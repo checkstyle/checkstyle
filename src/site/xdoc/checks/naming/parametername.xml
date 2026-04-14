@@ -78,7 +78,11 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   void method1(int v1) {}
-  void method2(int V2) {} // violation
+  void method2(int V2) {} // violation 'Name 'V2' must match pattern'
+  @Override
+  public boolean equals(Object v3) {
+    return true;
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -99,7 +103,10 @@ class Example1 {
 class Example2 {
   void method1(int v1) {}
   void method2(int v_2) {}
-  void method3(int V3) {} // violation
+  @Override
+  public boolean equals(Object V3) { // violation 'Name 'V3' must match pattern'
+    return true;
+  }
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -120,7 +127,7 @@ class Example2 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
   void method1(int v1) {}
-  void method2(int V2) {} // violation
+  void method2(int V2) {} // violation 'Name 'V2' must match pattern'
   @Override
   public boolean equals(Object V3) {
     return true;
@@ -144,8 +151,11 @@ class Example3 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
   void method1(int v1) {}
-  void method2(int v_2) {} // violation
-  void method3(int V3) {} // violation
+  void method2(int v_2) {} // violation 'Name 'v_2' must match pattern'
+  @Override
+  public boolean equals(Object V3) { // violation 'Name 'V3' must match pattern'
+    return true;
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
@@ -202,7 +212,7 @@ class Example5 {
       <subsection name="Violation Messages" id="ParameterName_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
               name.invalidPattern
             </a>
           </li>
@@ -214,8 +224,12 @@ class Example5 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="ParameterName_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="ParameterName_Parent_Module">

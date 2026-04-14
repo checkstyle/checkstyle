@@ -73,7 +73,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation.exam
       <subsection name="Violation Messages" id="PackageAnnotation_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.package.location%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.package.location%22">
               annotation.package.location
             </a>
           </li>
@@ -85,8 +85,12 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation.exam
         </p>
       </subsection>
 
-      <subsection name="Package" id="PackageAnnotation_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="PackageAnnotation_Parent_Module">

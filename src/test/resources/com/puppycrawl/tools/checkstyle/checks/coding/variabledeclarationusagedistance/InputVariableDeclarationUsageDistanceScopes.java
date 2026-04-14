@@ -976,7 +976,7 @@ class New4 {
     }
 
     void tryWithoutFinally() {
-        int a = 1;
+        int a = 1; // violation 'Distance between .* declaration and its first usage is 4.'
         System.lineSeparator();
         System.lineSeparator();
         System.lineSeparator();

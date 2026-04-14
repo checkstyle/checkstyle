@@ -46,7 +46,7 @@ public class XpathRegressionMissingNullCaseInSwitchTest
     @Test
     public void testSimple() throws Exception {
         final File fileToProcess =
-                new File(getPath(
+                new File(getNonCompilablePath(
                         "InputXpathMissingNullCaseInSwitchSimple.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -67,7 +67,7 @@ public class XpathRegressionMissingNullCaseInSwitchTest
     @Test
     public void testNestedExpression() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathMissingNullCaseInSwitchNested.java"));
+                new File(getNonCompilablePath("InputXpathMissingNullCaseInSwitchNested.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingNullCaseInSwitchCheck.class);
@@ -89,6 +89,27 @@ public class XpathRegressionMissingNullCaseInSwitchTest
                         + "/SWITCH_RULE/SLIST/VARIABLE_DEF"
                         + "[./IDENT[@text='y']]/ASSIGN/EXPR/LITERAL_SWITCH"
         );
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
+
+    @Test
+    public void testStaticBlock() throws Exception {
+        final File fileToProcess =
+            new File(getNonCompilablePath("InputXpathMissingNullCaseInSwitchStaticBlock.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(MissingNullCaseInSwitchCheck.class);
+        final String[] expectedViolation = {
+            "7:9: " + getCheckMessage(MissingNullCaseInSwitchCheck.class,
+                    MissingNullCaseInSwitchCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingNullCaseInSwitchStaticBlock']]"
+                + "/OBJBLOCK/STATIC_INIT/SLIST/LITERAL_SWITCH"
+        );
+
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
 }

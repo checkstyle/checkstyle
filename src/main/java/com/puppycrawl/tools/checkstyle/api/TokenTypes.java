@@ -4885,7 +4885,7 @@ public final class TokenTypes {
      * <p>For example:</p>
      * <pre>
      * for (int value : values) {
-     *     doSmth();
+     *     doSomething();
      * }
      * </pre>
      *
@@ -4906,7 +4906,7 @@ public final class TokenTypes {
      *  `--SLIST -&gt; {
      *      |--EXPR -&gt; EXPR
      *      |   `--METHOD_CALL -&gt; (
-     *      |       |--IDENT -&gt; doSmth
+     *      |       |--IDENT -&gt; doSomething
      *      |       |--ELIST -&gt; ELIST
      *      |       `--RPAREN -&gt; )
      *      |--SEMI -&gt; ;

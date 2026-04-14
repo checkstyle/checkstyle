@@ -118,4 +118,56 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testMultipleVariableDeclarationsInMethod() throws Exception {
+        final File fileToProcess = new File(
+                getPath("InputXpathMultipleVariableDeclarationsInMethod.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(MultipleVariableDeclarationsCheck.class);
+
+        final String[] expectedViolation = {
+            "5:9: " + getCheckMessage(MultipleVariableDeclarationsCheck.class,
+                MultipleVariableDeclarationsCheck.MSG_MULTIPLE_COMMA),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathMultipleVariableDeclarationsInMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='a']]",
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathMultipleVariableDeclarationsInMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='a']]/MODIFIERS",
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathMultipleVariableDeclarationsInMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='a']]/TYPE",
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathMultipleVariableDeclarationsInMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='a']]/TYPE/LITERAL_INT",
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathMultipleVariableDeclarationsInMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='b']]",
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathMultipleVariableDeclarationsInMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='b']]/MODIFIERS",
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathMultipleVariableDeclarationsInMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='b']]/TYPE",
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathMultipleVariableDeclarationsInMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='b']]/TYPE/LITERAL_INT"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }

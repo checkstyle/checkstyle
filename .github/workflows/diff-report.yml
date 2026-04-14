@@ -48,7 +48,7 @@ jobs:
 
     steps:
       - name: React to comment
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
@@ -154,7 +154,10 @@ jobs:
         run: |
           mv .ci-temp/projects.properties ./.ci-temp/contribution/checkstyle-tester/
           mv .ci-temp/*.xml ./.ci-temp/contribution/checkstyle-tester/
-          sudo apt install groovy
+          curl --fail-with-body -s "https://get.sdkman.io" | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install groovy
+          echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v6

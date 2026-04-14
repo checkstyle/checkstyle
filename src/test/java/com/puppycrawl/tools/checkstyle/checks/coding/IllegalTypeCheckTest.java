@@ -419,13 +419,8 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         final DetailAstImpl classDefAst = new DetailAstImpl();
         classDefAst.setType(TokenTypes.DOT);
 
-        try {
-            check.visitToken(classDefAst);
-            assertWithMessage("IllegalStateException is expected").fail();
-        }
-        catch (IllegalStateException exc) {
-            // it is OK
-        }
+        getExpectedThrowable(IllegalStateException.class,
+                () -> check.visitToken(classDefAst));
     }
 
     /**
@@ -450,7 +445,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIllegalTypeAbstractClassNameFormat() throws Exception {
         final String[] expected = {
-            "15:20: " + getCheckMessage(MSG_KEY, "Gitter"),
+            "24:20: " + getCheckMessage(MSG_KEY, "Gitter"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeAbstractClassNameFormat.java"),
@@ -483,7 +478,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "83:18: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTypeWithRecordPattern.java"),
+                getNonCompilablePath("InputIllegalTypeWithRecordPattern.java"),
                 expected);
     }
 

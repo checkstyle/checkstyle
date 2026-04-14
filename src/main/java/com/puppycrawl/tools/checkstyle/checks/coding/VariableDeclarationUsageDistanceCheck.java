@@ -310,7 +310,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             case TokenTypes.LITERAL_FOR,
                  TokenTypes.LITERAL_WHILE,
                  TokenTypes.LITERAL_DO,
-                 TokenTypes.LITERAL_IF -> currentDistToVarUsage + 1;
+                 TokenTypes.LITERAL_IF,
+                 TokenTypes.LITERAL_TRY -> currentDistToVarUsage + 1;
             default -> {
                 if (childNode.findFirstToken(TokenTypes.SLIST) == null) {
                     yield currentDistToVarUsage + 1;

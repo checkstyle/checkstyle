@@ -31,7 +31,7 @@ public class InputMissingJavadocMethodScopeAnonInner2
      * anon inner in member variable initialization.
      */
     private Runnable mRunnable = new Runnable() {
-        public void run() // violation
+        public void run() // violation 'Missing a Javadoc comment.'
         {
             System.identityHashCode("running");
         }
@@ -44,7 +44,7 @@ public class InputMissingJavadocMethodScopeAnonInner2
     {
         mButton.addMouseListener( new MouseAdapter()
         {
-            public void mouseClicked( MouseEvent aEv ) // violation
+            public void mouseClicked( MouseEvent aEv ) // violation 'Missing a Javadoc comment.'
             {
                 System.identityHashCode("click");
             }
@@ -58,7 +58,7 @@ public class InputMissingJavadocMethodScopeAnonInner2
     {
         mButton.addMouseListener( new MouseAdapter()
         {
-            public void mouseClicked( MouseEvent aEv ) // violation
+            public void mouseClicked( MouseEvent aEv ) // violation 'Missing a Javadoc comment.'
             {
                 System.identityHashCode("click");
             }

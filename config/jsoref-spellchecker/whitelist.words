@@ -25,7 +25,6 @@ alot
 alundblad
 amazonaws
 amd
-amitkumardeoghoria
 androidx
 annotationlocation
 annotationonsameline
@@ -49,7 +48,6 @@ APPLET
 appveyor
 APRV
 Aqj
-ARCHITEW
 archunit
 Arial
 arity
@@ -77,7 +75,6 @@ autobuild
 autocomplete
 autoconfiguration
 autocrlf
-autofix
 Autoproxy
 Autowire
 Autowired
@@ -134,6 +131,7 @@ BTest
 btnfrs
 buf
 bugdatabase
+buildkite
 Bunsubscribe
 bw
 BXOR
@@ -145,14 +143,12 @@ caciocavallosilano
 calledmethods
 camelcase
 casegroup
-casesensitive
 catchparametername
 cba
 cbeaff
 CComments
 cdata
 cde
-cdfd
 Cdi
 Cfg
 Cfml
@@ -163,6 +159,7 @@ charset
 CHDBEFIF
 checkchmod
 checkerframework
+checkmodule
 checksandfilessuppressionfilegeneratorauditlistener
 checkstyle
 checkstyleanttask
@@ -238,13 +235,10 @@ csv
 ctc
 ctor
 ctx
-CTYPE
 customimportorder
 CVS
 cyclomatic
 cyclomaticcomplexity
-cygpath
-cygwin
 cz
 dalvik
 Daniil
@@ -263,8 +257,11 @@ Dcheckstyle
 dcm
 Dconfig
 Dconnection
+Dcpd
+Dcyclonedx
 ddd
 DDDL
+Ddokka
 Ddry
 DEADBEEF
 DECCHARS
@@ -302,11 +299,11 @@ diffplug
 DIFFTOOL
 dirname
 Djacoco
+Djapicmp
 Djdepend
 Dlinkcheck
 DMail
 Dmaven
-DMC
 dnd
 Dnew
 doccheck
@@ -341,14 +338,11 @@ Duser
 dv
 Dversion
 Dxml
-eb
 EBFF
 EBNF
 ecj
-eclemma
 eclipsecommunityawards
 Edad
-edb
 ededed
 edef
 edu
@@ -361,7 +355,8 @@ elif
 elist
 Ellipsize
 emacs
-Emoji
+emoji
+Emoticons
 emptyblock
 emptycatchblock
 emptyforinitializerpad
@@ -388,7 +383,6 @@ Eslint
 esslingen
 esversion
 etsy
-euf
 ev
 Evt
 exceptionoverrides
@@ -490,7 +484,7 @@ gav
 Gdrox
 generalform
 genericwhitespace
-getenv
+Getenv
 gg
 gh
 Ghj
@@ -567,7 +561,6 @@ HXKS
 hyperlink
 hz
 iae
-icm
 ico
 icu
 identifiernames
@@ -583,6 +576,7 @@ illegalex
 illegalidentifiername
 illegalimport
 illegalinstantiation
+illegalsymbol
 illegalthrows
 illegaltoken
 illegaltokentext
@@ -627,7 +621,6 @@ isindex
 isset
 issuecomment
 issuehunt
-Itemtype
 itemvalue
 ith
 itr
@@ -641,8 +634,6 @@ Jakub
 jarchitect
 javaastvisitor
 javac
-JAVACCMD
-JAVACMD
 javadoc
 javadocblocktaglocation
 javadoccontentlocation
@@ -742,6 +733,7 @@ jtree
 junit
 junitpioneer
 jvm
+jvmargs
 jxr
 kailasam
 Kansara
@@ -818,6 +810,7 @@ mega
 membername
 meminitial
 metadata
+Metaspace
 methodcount
 methodlength
 methodname
@@ -829,7 +822,6 @@ mfussenegger
 MHTML
 Micha
 microsoft
-mingw
 minimalistic
 Mipmap
 misconfigured
@@ -848,7 +840,6 @@ mixin
 mkdir
 MKo
 mkordas
-mktemp
 MLINKCHECK
 MMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMM
@@ -879,10 +870,8 @@ multithreading
 mutableexception
 MVC
 mvn
-mvnd
 mvnrepository
 mvnw
-MWRAPPER
 Mycheckstyle
 mycompany
 mycompanychecks
@@ -955,7 +944,6 @@ nonrequiredjavadoc
 nonvalidating
 noparentfile
 NOPMD
-noprofile
 noreply
 noscript
 NOSONAR
@@ -985,7 +973,6 @@ numericliterals
 nutsandbolts
 nvim
 nvuillam
-nx
 OAuth
 objblock
 oburn
@@ -995,6 +982,7 @@ ogg
 OI
 olddomain
 olympe
+ond
 onestatement
 onestatementperline
 onetoplevel
@@ -1028,6 +1016,7 @@ overloadsplit
 overridable
 overridealwaysused
 OVERRIDERS
+owasp
 packageannotation
 packagecomment
 packagedeclaration
@@ -1092,7 +1081,6 @@ Pointcut
 POJO
 Popup
 Postgresql
-powershell
 prebuilts
 prefs
 PRESIZE
@@ -1108,8 +1096,6 @@ propertycachefile
 propkey
 protonpack
 Psevntu
-PSHOME
-PSMODULEP
 pullrequest
 puppycrawl
 pw
@@ -1146,7 +1132,6 @@ redundantmodifier
 refactor
 refactoring
 refaster
-refasterrules
 refid
 refreshenv
 regex
@@ -1161,7 +1146,6 @@ releasenotes
 RELi
 remkop
 reportyml
-REPOURL
 requireemptylinebeforeblocktaggroup
 requirethis
 resourceleak
@@ -1210,7 +1194,6 @@ Schneeberger
 scm
 scp
 screenshot
-Scriptblock
 Scss
 sdk
 sdkman
@@ -1219,13 +1202,11 @@ selfexplanatory
 Selkin
 semaphoreci
 semver
-SEO
 separatorwrap
 SERIALVERSIONUID
 servlet
 severitymatchfilter
 sevntu
-shasum
 shellcheck
 shengchen
 Shiell
@@ -1247,7 +1228,6 @@ SLo
 Slurper
 slurpersupport
 Sms
-Smth
 snyk
 socio
 Sohjiro
@@ -1280,7 +1260,6 @@ stackoverflow
 stackoverflowerror
 stacktrace
 standalone
-staticanalysis
 staticvariablename
 stdin
 Stdlib
@@ -1368,7 +1347,6 @@ tidelift
 timeline
 timezone
 TKN
-Tls
 tmp
 tmpdir
 tngtech
@@ -1439,7 +1417,6 @@ upperell
 urandom
 uri
 url
-usebackq
 useenhancedswitch
 userguide
 username
@@ -1478,7 +1455,6 @@ Wakelock
 walkthrough
 Warni
 Weakento
-webclient
 Webflow
 webjar
 Weblogic
@@ -1486,7 +1462,6 @@ Webp
 website
 webtoolkit
 Wellformedness
-wget
 whenshouldbeused
 wherejavadocrequired
 wheretobreak
@@ -1565,10 +1540,10 @@ xslt
 xsltproc
 XSO
 xwiki
+XXE
 XXXX
 xxxxxx
 xy
-xzf
 xzvf
 yaml
 yamllint

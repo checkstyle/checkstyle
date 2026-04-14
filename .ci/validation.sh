@@ -33,7 +33,7 @@ all-sevntu-checks)
     | sed "s/com\.github\.sevntu\.checkstyle\.checks\..*\.//" \
     | sort | uniq | sed "s/Check$//" > $working_dir/file.txt
 
-  wget -q http://sevntu-checkstyle.github.io/sevntu.checkstyle/apidocs/allclasses-frame.html -O - \
+  curl --fail-with-body -s http://sevntu-checkstyle.github.io/sevntu.checkstyle/apidocs/allclasses-frame.html \
     | grep "<li>" | cut -d '>' -f 3 | sed "s/<\/a//" \
     | grep -E "Check$" \
     | sort | uniq | sed "s/Check$//" > $working_dir/web.txt
@@ -196,15 +196,23 @@ test-al)
 versions)
   ./mvnw -e --no-transfer-progress clean versions:dependency-updates-report \
     versions:plugin-updates-report
-  if [ "$(grep "<nextVersion>" target/*-updates-report.xml | cat | wc -l)" -gt 0 ]; then
-    echo "Version reports (dependency-updates-report.xml):"
-    cat target/dependency-updates-report.xml
-    echo "Version reports (plugin-updates-report.xml):"
-    cat target/plugin-updates-report.xml
+  DEP_UPDATES=$(xmlstarlet sel \
+    -N d="https://www.mojohaus.org/VERSIONS/DEPENDENCY-UPDATES-REPORT/2.0.0" \
+    -t -m "//d:dependency[d:status!='no new available']" \
+    -v "d:groupId" -o ":" -v "d:artifactId" -o " " \
+    -v "d:currentVersion" -o " -> " -v "d:lastVersion" -n \
+    target/dependency-updates-report.xml)
+  PLUGIN_UPDATES=$(xmlstarlet sel \
+    -N p="https://www.mojohaus.org/VERSIONS/PLUGIN-UPDATES-REPORT/2.0.0" \
+    -t -m "//p:plugin[p:status!='no new available']" \
+    -v "p:groupId" -o ":" -v "p:artifactId" -o " " \
+    -v "p:currentVersion" -o " -> " -v "p:lastVersion" -n \
+    target/plugin-updates-report.xml)
+  if [ -n "${DEP_UPDATES}" ] || [ -n "${PLUGIN_UPDATES}" ]; then
     echo "New dependency versions:"
-    grep -B 7 -A 7 "<nextVersion>" target/dependency-updates-report.xml | cat
+    echo "${DEP_UPDATES}"
     echo "New plugin versions:"
-    grep -B 4 -A 7 "<nextVersion>" target/plugin-updates-report.xml | cat
+    echo "${PLUGIN_UPDATES}"
     echo "Verification is failed."
     false
   else
@@ -238,6 +246,7 @@ EOF
   ;;
 
 no-error-pmd)
+  export MAVEN_OPTS="-XX:MaxRAMPercentage=90"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
@@ -253,6 +262,10 @@ no-error-pmd)
                 -Dmaven.javadoc.skip=true \
                 -Dmaven.source.skip=true \
                 -Dpmd.skip=true \
+                -Dcpd.skip=true \
+                -Djapicmp.skip=true \
+                -Dcyclonedx.skip=true \
+                -Ddokka.skip=true \
                 -Dcheckstyle.skip=false \
                 -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..
@@ -402,13 +415,11 @@ verify-no-exception-configs)
 
   mkdir -p .ci-temp/verify-no-exception-configs
   working_dir=.ci-temp/verify-no-exception-configs
-  wget -q \
-    --directory-prefix $working_dir \
-    --no-clobber \
+  curl -s --fail-with-body -o "$working_dir/checks-nonjavadoc-error.xml" \
+    -H "Authorization: token $GITHUB_TOKEN" \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-nonjavadoc-error.xml
-  wget -q \
-    --directory-prefix $working_dir \
-    --no-clobber \
+  curl -s --fail-with-body -o "$working_dir/checks-only-javadoc-error.xml" \
+    -H "Authorization: token $GITHUB_TOKEN" \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-only-javadoc-error.xml
   MODULES_WITH_EXTERNAL_FILES="Filter|ImportControl"
   xmlstarlet fo -D \
@@ -517,7 +528,7 @@ checkstyle-and-sevntu)
 spotbugs-and-pmd)
   mkdir -p .ci-temp/spotbugs-and-pmd
   CHECKSTYLE_DIR=$(pwd)
-  export MAVEN_OPTS='-Xmx2g'
+  export MAVEN_OPTS="-Xmx4g"
   ./mvnw -e --no-transfer-progress clean pmd:check
   ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
   cd .ci-temp/spotbugs-and-pmd
@@ -685,7 +696,7 @@ javac17)
       mkdir -p target
       for file in "${files[@]}"
       do
-        javac --release 17 --enable-preview -d target "${file}"
+        javac --release 17 -d target "${file}"
       done
   fi
   ;;
@@ -701,7 +712,7 @@ javac19)
       mkdir -p target
       for file in "${files[@]}"
       do
-        javac --release 19 --enable-preview -d target "${file}"
+        javac --release 19 -d target "${file}"
       done
   fi
   ;;
@@ -717,11 +728,10 @@ javac20)
       mkdir -p target
       for file in "${files[@]}"
       do
-        javac --release 20 --enable-preview -d target "${file}"
+        javac --release 20 -d target "${file}"
       done
   fi
   ;;
-
 javac21)
   files=($(grep -Rli --include='*.java' ': Compilable with Java21' \
         src/test/resources-noncompilable \
@@ -733,7 +743,7 @@ javac21)
     mkdir -p target
     for file in "${files[@]}"
     do
-      javac --release 21 --enable-preview -d target "${file}"
+      javac --release 21 -d target "${file}"
     done
   fi
   ;;
@@ -749,7 +759,7 @@ javac22)
     mkdir -p target
     for file in "${files[@]}"
     do
-      javac --release 22 --enable-preview -d target "${file}"
+      javac --release 22 -d target "${file}"
     done
   fi
   ;;
@@ -765,12 +775,13 @@ javac25)
     mkdir -p target
     for file in "${files[@]}"
     do
-      javac --release 25 --enable-preview -d target "${file}"
+      javac --release 25 -d target "${file}"
     done
   fi
   ;;
 
 package-site)
+  export MAVEN_OPTS="-Xmx5g"
   ./mvnw -e --no-transfer-progress package -Passembly,no-validations
   ./mvnw -e --no-transfer-progress site -Dlinkcheck.skip=true
   ;;
@@ -814,7 +825,9 @@ no-error-pgjdbc)
   checkout_from https://github.com/pgjdbc/pgjdbc.git
   cd .ci-temp/pgjdbc
   ./gradlew --no-parallel --no-daemon checkstyleAll \
-            -PenableMavenLocal -Pcheckstyle.version="${CS_POM_VERSION}"
+            -PenableMavenLocal -Pcheckstyle.version="${CS_POM_VERSION}" \
+            -Dorg.gradle.daemon=false \
+            -Dorg.gradle.jvmargs="-Xmx2g -XX:MaxMetaspaceSize=512m -Xms1g"
   cd ../
   removeFolderWithProtectedFiles pgjdbc
   ;;
@@ -827,7 +840,7 @@ no-error-orekit)
   checkout_from https://github.com/Hipparchus-Math/hipparchus.git
   cd .ci-temp/hipparchus
   # checkout to version that Orekit expects
-  SHA_HIPPARCHUS="1492f06848f57e46bef911a""ad16203a242080028"
+  SHA_HIPPARCHUS="220b0288f2d5a1e479""32d22e88535d0e091c5f50"
   git fetch --depth 1 origin "$SHA_HIPPARCHUS"
   git checkout $SHA_HIPPARCHUS
   mvn -e --no-transfer-progress install -DskipTests
@@ -837,8 +850,9 @@ no-error-orekit)
   # no CI is enforced in project, so to make our build stable we should
   # checkout to latest release/development (annotated tag or hash) or sha that have fix we need
   # git checkout $(git describe --abbrev=0 --tags)
-  git fetch --depth 1 origin "9b121e504771f3ddd303ab""cc""c74ac9db64541ea1"
-  git checkout "9b121e504771f3ddd303ab""cc""c74ac9db64541ea1"
+  SHA_OREKIT="fd""d9ce1bc4fa0d2765""f4""5d33db""f32253d1abb85f"
+  git fetch --depth 1 origin "$SHA_OREKIT"
+  git checkout "$SHA_OREKIT"
   echo "checkstyle.header.file=license-header.txt" > checkstyle.properties
   readarray -t files < <(find src/main/java -name "*.java")
   java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
@@ -983,8 +997,9 @@ no-error-htmlunit)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
+  HTMLUNIT_STABLE_SHA="6b12be""aa""c15a445cd99af061b17c028a""ee1c41b7"
   echo "Checkout target sources ..."
-  checkout_from https://github.com/HtmlUnit/htmlunit
+  checkout_from https://github.com/HtmlUnit/htmlunit.git "$HTMLUNIT_STABLE_SHA"
   cd .ci-temp/htmlunit
   echo "checkstyle.suppressions.file=checkstyle_suppressions.xml" > checkstyle.properties
   readarray -t files < <(find src/main/java src/test/java -name "*.java")
@@ -1027,6 +1042,7 @@ no-error-trino)
   ;;
 
 no-exception-struts)
+  export MAVEN_OPTS="-XX:MaxRAMPercentage=90"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
@@ -1042,8 +1058,8 @@ no-exception-struts)
   removeFolderWithProtectedFiles contribution
   ;;
 
-
 no-exception-checkstyle-sevntu)
+  export MAVEN_OPTS="-Xmx4g"
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -1062,6 +1078,7 @@ no-exception-checkstyle-sevntu)
   ;;
 
 no-exception-checkstyle-sevntu-javadoc)
+  export MAVEN_OPTS="-Xmx4g"
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -1081,6 +1098,7 @@ no-exception-checkstyle-sevntu-javadoc)
 
 
 no-exception-guava)
+  export MAVEN_OPTS="-Xmx4g"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -1097,6 +1115,7 @@ no-exception-guava)
   ;;
 
 no-exception-hibernate-orm)
+  export MAVEN_OPTS="-Xmx4g"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -1113,6 +1132,7 @@ no-exception-hibernate-orm)
   ;;
 
 no-exception-spotbugs)
+  export MAVEN_OPTS="-Xmx4g"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
@@ -1129,6 +1149,7 @@ no-exception-spotbugs)
   ;;
 
 no-exception-spoon)
+  export MAVEN_OPTS="-Xmx4g"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
@@ -1145,6 +1166,7 @@ no-exception-spoon)
   ;;
 
 no-exception-spring-framework)
+  export MAVEN_OPTS="-Xmx4g"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
@@ -1161,6 +1183,7 @@ no-exception-spring-framework)
   ;;
 
 no-exception-hbase)
+  export MAVEN_OPTS="-Xmx4g"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -1177,6 +1200,7 @@ no-exception-hbase)
   ;;
 
 no-exception-Pmd-elasticsearch-lombok-ast)
+  export MAVEN_OPTS="-Xmx4g"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
@@ -1195,6 +1219,7 @@ no-exception-Pmd-elasticsearch-lombok-ast)
   ;;
 
 no-exception-alot-of-projects)
+  export MAVEN_OPTS="-Xmx4g"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -1216,6 +1241,7 @@ no-exception-alot-of-projects)
   ;;
 
 no-warning-imports-guava)
+  export MAVEN_OPTS="-Xmx4g"
   PROJECTS=checks-import-order/projects-to-test-imports-guava.properties
   CONFIG=checks-import-order/checks-imports-error-guava.xml
   REPORT=reports/guava/site/index.html

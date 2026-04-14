@@ -10,13 +10,13 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebefore;
 
 public class InputNoWhitespaceBeforeWithEmoji {
     private String[] _mVar0 = {
-        "😃😉🙈" ,  // violation
-        "😃 😉 🙈" ,  // violation
+        "😃😉🙈" ,  // violation '',' is preceded with whitespace.'
+        "😃 😉 🙈" ,  // violation '',' is preceded with whitespace.'
         "😃 😉 🙈",
         "😃😉🙈"
     };
     private String _mVar1 = "😃😉🙈";
     private String _mVar2 = "😃 😉 🙈";
-    private String _mVar3 = "😃 😉 🙈" ; // violation
-    private String _mVar4 = "a b c" ; // violation
+    private String _mVar3 = "😃 😉 🙈" ; // violation '';' is preceded with whitespace.'
+    private String _mVar4 = "a b c" ; // violation '';' is preceded with whitespace.'
 }

@@ -1,7 +1,7 @@
 /*
 MissingJavadocType
-scope = (default)public
 excludeScope = (default)null
+scope = (default)public
 skipAnnotations = SomeAnnotation, InputMissingJavadocTypeQualifiedAnnotation5.SomeAnnotation, \
     com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype.\
     InputMissingJavadocTypeQualifiedAnnotation5.SomeAnnotation

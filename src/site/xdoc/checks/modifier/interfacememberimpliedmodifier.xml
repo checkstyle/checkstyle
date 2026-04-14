@@ -340,7 +340,7 @@ public interface Example4 {
       <subsection name="Violation Messages" id="InterfaceMemberImpliedModifier_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22interface.implied.modifier%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22interface.implied.modifier%22">
               interface.implied.modifier
             </a>
           </li>
@@ -352,8 +352,12 @@ public interface Example4 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="InterfaceMemberImpliedModifier_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.modifier </p>
+      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="InterfaceMemberImpliedModifier_Parent_Module">

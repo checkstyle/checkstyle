@@ -6,10 +6,15 @@ com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter
 
 com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck
 ignorePattern = ^ *\\* *[^ ]+$
+max = (default)80
+tabWidth = (default)0
+fileExtensions = (default)null
 
 com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck
 max = 75
-
+ignorePattern = (default)^(package|import) .*
+tabWidth = (default)0
+fileExtensions = (default)null
 
 */
 

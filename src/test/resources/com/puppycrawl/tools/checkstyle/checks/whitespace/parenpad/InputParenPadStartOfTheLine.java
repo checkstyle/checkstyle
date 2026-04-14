@@ -12,7 +12,7 @@ tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
 package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 public class InputParenPadStartOfTheLine {
-public String checkSmth( String
+public String checkSomething( String
 a) { // violation, '')' is not preceded with whitespace.'
     return a + 1;
    }

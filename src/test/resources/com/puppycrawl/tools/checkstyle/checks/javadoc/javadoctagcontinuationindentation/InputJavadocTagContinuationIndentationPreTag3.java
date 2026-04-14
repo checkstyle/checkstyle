@@ -31,13 +31,17 @@ public class InputJavadocTagContinuationIndentationPreTag3 {
     /**
      * @return sub role of this role, which match `item`.
      *
-     * <code> // violation
-     * CtMethod method = ... // violation
-     * CtRole role = CtRole.TYPE_MEMBER.getMatchingSubRoleFor(method); // violation
-     * </code> // violation
+     * <code>
+     * CtMethod method = ...
+     * CtRole role = CtRole.TYPE_MEMBER.getMatchingSubRoleFor(method);
+     * </code>
      */
     @Internal
     public Object testMethod2() {
         return new Object();
     }
+    // violation 9 lines above 'Line continuation .* expected level should be 4'
+    // violation 9 lines above 'Line continuation .* expected level should be 4'
+    // violation 9 lines above 'Line continuation .* expected level should be 4'
+    // violation 9 lines above 'Line continuation .* expected level should be 4'
 }

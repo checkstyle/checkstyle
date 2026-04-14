@@ -13,9 +13,9 @@ public class InputJavadocTagContinuationIndentationDescription {
      * General Description here.
      *
      * @param s
-     * Description 1. // violation
-     * Description 2. // violation
-     * Description 3. // violation
+     * Description 1. // violation, 'Line continuation .* expected level should be 4'
+     * Description 2. // violation, 'Line continuation .* expected level should be 4'
+     * Description 3. // violation, 'Line continuation .* expected level should be 4'
      *                         Description 4 with extra indentation.
      *
      *
@@ -43,12 +43,12 @@ public class InputJavadocTagContinuationIndentationDescription {
     public void testWithMissingAsterisk(int x) {}
 
     /**
-     * @param s
-     *Description with missing space. // violation
-     * @param s2
-     *****Description with multiple asterisk and missing space // violation
-     ***** Description with multiple asterisk and missing space // violation
-     */
+     * @param s // violation below 'Line continuation .* expected level should be 4'
+     *Description with missing space.
+     * @param s2 // violation below 'Line continuation .* expected level should be 4'
+     *****Description with multiple asterisk and missing space
+     ***** Description with multiple asterisk and missing space
+     */ // violation above 'Line continuation .* expected level should be 4'
     public void testOtherCases(String s, String s2) {}
     
     /**
@@ -71,6 +71,6 @@ public class InputJavadocTagContinuationIndentationDescription {
      *  >SAX.</a>     
      */
     public void test() { }
-    // violation 4 lines above
-    // violation 4 lines above
+    // violation 4 lines above 'Line continuation .* expected level should be 4'
+    // violation 4 lines above 'Line continuation .* expected level should be 4'
 }

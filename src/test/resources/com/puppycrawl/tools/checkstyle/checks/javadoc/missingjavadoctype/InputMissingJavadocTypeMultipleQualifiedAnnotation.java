@@ -1,7 +1,7 @@
 /*
 MissingJavadocType
-scope = (default)public
 excludeScope = (default)null
+scope = (default)public
 skipAnnotations = Ann1, AnnClass.Ann3
 tokens = INTERFACE_DEF
 

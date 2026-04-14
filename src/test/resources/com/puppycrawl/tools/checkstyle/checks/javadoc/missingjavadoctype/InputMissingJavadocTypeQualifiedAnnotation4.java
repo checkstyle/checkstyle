@@ -1,7 +1,7 @@
 /*
 MissingJavadocType
-scope = (default)public
 excludeScope = (default)null
+scope = (default)public
 skipAnnotations = com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype.\
     InputMissingJavadocTypeQualifiedAnnotation4.SomeAnnotation
 tokens = INTERFACE_DEF

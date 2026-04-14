@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck.MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.instantiate;
 
 import java.util.Set;
@@ -42,43 +43,37 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIsProperUtilsClass() {
-        try {
-            instantiate(AnnotationUtil.class);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (ReflectiveOperationException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc)
-                .hasCauseThat()
-                .hasMessageThat()
-                .isEqualTo("do not instantiate.");
-        }
+        final ReflectiveOperationException exc =
+                getExpectedThrowable(ReflectiveOperationException.class, () -> {
+                    instantiate(AnnotationUtil.class);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc)
+            .hasCauseThat()
+            .hasMessageThat()
+            .isEqualTo("do not instantiate.");
     }
 
     @Test
     public void testContainsAnnotationNull() {
-        try {
-            AnnotationUtil.containsAnnotation(null);
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("the ast is null");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    AnnotationUtil.containsAnnotation(null);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("the ast is null");
     }
 
     @Test
     public void testContainsAnnotationNull2() {
-        try {
-            AnnotationUtil.containsAnnotation(null, "");
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("the ast is null");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    AnnotationUtil.containsAnnotation(null, "");
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("the ast is null");
     }
 
     @Test
@@ -119,95 +114,81 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAnnotationHolderNull() {
-        try {
-            AnnotationUtil.getAnnotationHolder(null);
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("the ast is null");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    AnnotationUtil.getAnnotationHolder(null);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("the ast is null");
     }
 
     @Test
     public void testAnnotationNull() {
-        try {
-            AnnotationUtil.getAnnotation(null, null);
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("the ast is null");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    AnnotationUtil.getAnnotation(null, null);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("the ast is null");
     }
 
     @Test
     public void testAnnotationNull2() {
-        try {
-            AnnotationUtil.getAnnotation(new DetailAstImpl(), null);
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("the annotation is null");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    AnnotationUtil.getAnnotation(new DetailAstImpl(), null);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("the annotation is null");
     }
 
     @Test
     public void testAnnotationEmpty() {
-        try {
-            AnnotationUtil.getAnnotation(new DetailAstImpl(), "");
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("the annotation is empty or spaces");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    AnnotationUtil.getAnnotation(new DetailAstImpl(), "");
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("the annotation is empty or spaces");
     }
 
     @Test
     public void testContainsAnnotationWithNull() {
-        try {
-            AnnotationUtil.getAnnotation(null, "");
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("the ast is null");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    AnnotationUtil.getAnnotation(null, "");
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("the ast is null");
     }
 
     @Test
     public void testContainsAnnotationListWithNullAst() {
-        try {
-            AnnotationUtil.containsAnnotation(null, Set.of("Override"));
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("the ast is null");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    AnnotationUtil.containsAnnotation(null, Set.of("Override"));
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("the ast is null");
     }
 
     @Test
     public void testContainsAnnotationListWithNullList() {
         final DetailAST ast = new DetailAstImpl();
         final Set<String> annotations = null;
-        try {
-            AnnotationUtil.containsAnnotation(ast, annotations);
-            assertWithMessage("IllegalArgumentException is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("annotations cannot be null");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    AnnotationUtil.containsAnnotation(ast, annotations);
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("annotations cannot be null");
     }
 
     @Test
@@ -234,26 +215,10 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testContainsAnnotationListWithNoMatchingAnnotation() {
-        final DetailAstImpl ast = new DetailAstImpl();
-        final DetailAstImpl modifiersAst = create(
-                TokenTypes.MODIFIERS,
-                create(
-                        TokenTypes.ANNOTATION,
-                        create(
-                                TokenTypes.DOT,
-                                create(
-                                        TokenTypes.IDENT,
-                                        "Override")
-                        )
-                )
-        );
-        ast.addChild(modifiersAst);
-        final Set<String> annotations = Set.of("Deprecated");
-        final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
-        assertWithMessage("No matching annotation found")
-            .that(result)
-            .isFalse();
+    public void testContainsAnnotationListWithNoMatchingAnnotation() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getPath("InputAnnotationUtilNoMatchingAnnotation.java"), expected);
     }
 
     @Test
@@ -363,21 +328,4 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
                 getPath("InputAnnotationUtil2.java"), expected);
     }
 
-    private static DetailAstImpl create(int tokenType) {
-        final DetailAstImpl ast = new DetailAstImpl();
-        ast.setType(tokenType);
-        return ast;
-    }
-
-    private static DetailAstImpl create(int tokenType, String text) {
-        final DetailAstImpl ast = create(tokenType);
-        ast.setText(text);
-        return ast;
-    }
-
-    private static DetailAstImpl create(int tokenType, DetailAstImpl child) {
-        final DetailAstImpl ast = create(tokenType);
-        ast.addChild(child);
-        return ast;
-    }
 }
