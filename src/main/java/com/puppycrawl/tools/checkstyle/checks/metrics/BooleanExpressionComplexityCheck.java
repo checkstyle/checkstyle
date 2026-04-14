@@ -70,6 +70,8 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
     private final Deque<Context> contextStack = new ArrayDeque<>();
     /** Specify the maximum number of boolean operations allowed in one expression. */
     private int max;
+    /** Control whether to ignore uniform chains of the same boolean operator. */
+    private boolean ignoreUniformChains;
     /** Current context. */
     private Context context = new Context(false);
 
@@ -128,6 +130,18 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
         this.max = max;
     }
 
+    /**
+     * Setter to control whether to ignore uniform chains of the same boolean operator.
+     * When enabled, a sequence like {@code a || b || c || d} counts as complexity 1
+     * instead of the number of operators present.
+     *
+     * @param ignoreUniformChains whether to ignore uniform operator chains.
+     * @since 13.4.1
+     */
+    public void setIgnoreUniformChains(boolean ignoreUniformChains) {
+        this.ignoreUniformChains = ignoreUniformChains;
+    }
+
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
@@ -138,20 +152,26 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
             case TokenTypes.EXPR -> visitExpr();
 
             case TokenTypes.BOR -> {
-                if (!isPipeOperator(ast) && !isPassedInParameter(ast)) {
+                if (!isPipeOperator(ast) && !isPassedInParameter(ast)
+                        && (!ignoreUniformChains || ast.getParent().getType() != ast.getType())) {
                     context.visitBooleanOperator();
                 }
             }
 
             case TokenTypes.BAND,
                  TokenTypes.BXOR -> {
-                if (!isPassedInParameter(ast)) {
+                if (!isPassedInParameter(ast)
+                        && (!ignoreUniformChains || ast.getParent().getType() != ast.getType())) {
                     context.visitBooleanOperator();
                 }
             }
 
             case TokenTypes.LAND,
-                 TokenTypes.LOR -> context.visitBooleanOperator();
+                 TokenTypes.LOR -> {
+                if (!ignoreUniformChains || ast.getParent().getType() != ast.getType()) {
+                    context.visitBooleanOperator();
+                }
+            }
 
             default -> throw new IllegalArgumentException("Unknown type: " + ast);
         }

@@ -87,6 +87,7 @@ public class XdocsExamplesAstConsistencyTest {
      * <p>Until: <a href="https://github.com/checkstyle/checkstyle/issues/18435">...</a>
      */
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
+            "checks/metrics/booleanexpressioncomplexity/Example4",
             "checks/annotation/annotationonsameline/Example2",
             "checks/annotation/missingoverride/Example2",
             "checks/annotation/suppresswarningsholder/Example1",
