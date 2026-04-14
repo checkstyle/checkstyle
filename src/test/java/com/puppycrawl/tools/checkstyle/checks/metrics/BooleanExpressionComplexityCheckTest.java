@@ -42,11 +42,11 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     public void test() throws Exception {
 
         final String[] expected = {
-            "21:9: " + getCheckMessage(MSG_KEY, 4, 3),
-            "39:46: " + getCheckMessage(MSG_KEY, 4, 3),
-            "50:9: " + getCheckMessage(MSG_KEY, 6, 3),
-            "57:34: " + getCheckMessage(MSG_KEY, 4, 3),
-            "60:34: " + getCheckMessage(MSG_KEY, 4, 3),
+            "22:9: " + getCheckMessage(MSG_KEY, 4, 3),
+            "40:46: " + getCheckMessage(MSG_KEY, 4, 3),
+            "51:9: " + getCheckMessage(MSG_KEY, 6, 3),
+            "58:34: " + getCheckMessage(MSG_KEY, 4, 3),
+            "61:34: " + getCheckMessage(MSG_KEY, 4, 3),
         };
 
         verifyWithInlineConfigParser(
@@ -100,10 +100,10 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
         final int max = 3;
 
         final String[] expected = {
-            "16:12: " + getCheckMessage(MSG_KEY, 4, max),
-            "25:23: " + getCheckMessage(MSG_KEY, 4, max),
-            "37:23: " + getCheckMessage(MSG_KEY, 4, max),
-            "48:27: " + getCheckMessage(MSG_KEY, 4, max),
+            "17:12: " + getCheckMessage(MSG_KEY, 4, max),
+            "26:23: " + getCheckMessage(MSG_KEY, 4, max),
+            "38:23: " + getCheckMessage(MSG_KEY, 4, max),
+            "49:27: " + getCheckMessage(MSG_KEY, 4, max),
         };
 
         verifyWithInlineConfigParser(
@@ -137,15 +137,27 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
         final int max = 0;
 
         final String[] expected = {
-            "17:21: " + getCheckMessage(MSG_KEY, 6, max),
-            "21:17: " + getCheckMessage(MSG_KEY, 6, max),
-            "25:27: " + getCheckMessage(MSG_KEY, 6, max),
-            "29:48: " + getCheckMessage(MSG_KEY, 1, max),
+            "18:21: " + getCheckMessage(MSG_KEY, 6, max),
+            "22:17: " + getCheckMessage(MSG_KEY, 6, max),
+            "26:27: " + getCheckMessage(MSG_KEY, 6, max),
+            "30:48: " + getCheckMessage(MSG_KEY, 1, max),
         };
 
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputBooleanExpressionComplexityWhenExpression.java"),
                 expected);
+    }
+
+    @Test
+    public void testIgnoreUniformChains() throws Exception {
+
+        final String[] expected = {
+            "34:9: " + getCheckMessage(MSG_KEY, 4, 3),
+            "60:9: " + getCheckMessage(MSG_KEY, 4, 3),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexityUniformChain.java"), expected);
     }
 
 }
