@@ -1,5 +1,6 @@
 /*
 BooleanExpressionComplexity
+ignoreUniformChains = (default)false
 max = 5
 tokens = BXOR,LAND,LOR
 
