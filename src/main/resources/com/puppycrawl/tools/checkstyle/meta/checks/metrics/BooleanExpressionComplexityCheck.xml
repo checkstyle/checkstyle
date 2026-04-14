@@ -27,6 +27,11 @@
  variables and Checkstyle does not know types of methods from different classes.
  &lt;/p&gt;</description>
          <properties>
+            <property default-value="false" name="ignoreUniformChains" type="boolean">
+               <description>Control whether to ignore uniform chains of the same boolean operator.
+ When enabled, a sequence like &lt;code&gt;a || b || c || d&lt;/code&gt; counts as complexity 1
+ instead of the number of operators present.</description>
+            </property>
             <property default-value="3" name="max" type="int">
                <description>Specify the maximum number of boolean operations allowed in one expression.</description>
             </property>
