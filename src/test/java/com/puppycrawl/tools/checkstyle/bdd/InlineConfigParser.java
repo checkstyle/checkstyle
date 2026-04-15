@@ -284,12 +284,19 @@ public final class InlineConfigParser {
      */
     private static final Set<String> SUPPRESSED_MODULES = Set.of(
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck",
             "com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder",
             "com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter",
             "com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter",
             "com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter"
+    );
+
+    /**
+     * Input files where default values for properties are intentionally not specified,
+     * in order to test manual setting of default values.
+     */
+    private static final Set<String> SUPPRESSED_VALIDATE_DEFAULT_FILES = Set.of(
+        "checks/coding/matchxpath/InputMatchXpath2.java"
     );
 
     // This is a hack until https://github.com/checkstyle/checkstyle/issues/13845
@@ -928,7 +935,12 @@ public final class InlineConfigParser {
         final String fullyQualifiedClassName =
                 getFullyQualifiedClassName(inputFilePath, moduleName);
 
-        validateDefaultProperties(properties, getDefaultProperties(fullyQualifiedClassName));
+        final boolean isSuppressedValidateDefaultFile = SUPPRESSED_VALIDATE_DEFAULT_FILES.stream()
+                .anyMatch(Path.of(inputFilePath)::endsWith);
+
+        if (!isSuppressedValidateDefaultFile) {
+            validateDefaultProperties(properties, getDefaultProperties(fullyQualifiedClassName));
+        }
 
         for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
             final String key = entry.getKey().toString();
