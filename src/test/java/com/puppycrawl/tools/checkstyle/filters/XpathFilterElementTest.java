@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpecte
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
-import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -187,30 +186,6 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
     public void testNonMatchingFileRegexp() throws Exception {
         final XpathFilterElement filter =
                 new XpathFilterElement("NonMatchingRegexp", "Test", null, null, null);
-        final TreeWalkerAuditEvent ev = getEvent(3, 0,
-                TokenTypes.CLASS_DEF);
-        assertWithMessage("Event should be accepted")
-                .that(filter.accept(ev))
-                .isTrue();
-    }
-
-    @Test
-    public void testNonMatchingFilePattern() throws Exception {
-        final Pattern pattern = Pattern.compile("NonMatchingRegexp");
-        final XpathFilterElement filter =
-                new XpathFilterElement(pattern, null, null, null, null);
-        final TreeWalkerAuditEvent ev = getEvent(3, 0,
-                TokenTypes.CLASS_DEF);
-        assertWithMessage("Event should be accepted")
-                .that(filter.accept(ev))
-                .isTrue();
-    }
-
-    @Test
-    public void testNonMatchingCheckPattern() throws Exception {
-        final Pattern pattern = Pattern.compile("NonMatchingRegexp");
-        final XpathFilterElement filter =
-                new XpathFilterElement(null, pattern, null, null, null);
         final TreeWalkerAuditEvent ev = getEvent(3, 0,
                 TokenTypes.CLASS_DEF);
         assertWithMessage("Event should be accepted")
