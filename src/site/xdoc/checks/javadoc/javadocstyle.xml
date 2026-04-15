@@ -106,6 +106,13 @@
               <td>3.4</td>
             </tr>
             <tr>
+              <td><a id="format"/><a href="#format">format</a></td>
+              <td>Specify the Javadoc comment format to check. Use <code>any</code> (default) to check all formats, <code>traditional</code> to check only traditional <code>/**</code> Javadoc comments, or <code>markdown</code> to check only Markdown <code>///</code> Javadoc comments.</td>
+              <td><a href="../../property_types.html#JavadocStyleFormatOption">JavadocStyleFormatOption</a></td>
+              <td><code>any</code></td>
+              <td>10.24.0</td>
+            </tr>
+            <tr>
               <td><a id="scope"/><a href="#scope">scope</a></td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
               <td><a href="../../property_types.html#Scope">Scope</a></td>
@@ -620,13 +627,12 @@ public class Example7 {
   private void testEmptyMethod() {}
   // violation 4 lines above 'Javadoc has empty description section'
 }
-</code></pre></div>
-
-        <hr class="example-separator"/>
-              <p id="Example8-config">
-                To configure the Check to use custom end of sentence format:
-              </p>
-              <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the check to validate only traditional Javadoc comments
+          (using <code>/**</code> delimiters):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocStyle"&gt;
@@ -637,8 +643,8 @@ public class Example7 {
 &lt;/module&gt;
 </code></pre></div>
 
-              <p id="Example8-code">Example8:</p>
-              <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <p id="Example8-code">Example8:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Some description here。
  */
@@ -661,10 +667,9 @@ public class Example8 {
     // violation 4 lines above 'First sentence should end with a period'
   }
   /**
-   * Some description here!
    */
   public void testMethod4() {
-    // violation 4 lines above 'First sentence should end with a period'
+    // ok, empty Javadoc is not reported when checkEmptyJavadoc is false
   }
   /**
    * Some description here
@@ -684,6 +689,56 @@ public class Example8 {
    *
    */
   private void testEmptyMethod() {}
+}
+</code></pre></div>
+
+        <hr class="example-separator"/>
+              <p id="Example9-config">
+                To configure the check to validate only Markdown Javadoc comments
+                (using <code>///</code> delimiters):
+              </p>
+              <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocStyle"&gt;
+      &lt;property name="format" value="markdown"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+              <p id="Example9-code">Example9:</p>
+              <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+ * Some description here
+ */
+public class Example9 {
+  Example9() {
+    // ok, format=markdown skips all traditional /** Javadoc comments
+  }
+  /**
+   * Some description here.
+   */
+  private void testMethod1() {}
+  /**
+   * {@return {@code true} if this object
+   * has been initialized, {@code false} otherwise}
+   */
+  private boolean testMethod2() {
+    return true;
+  }
+  /**
+   * Some description here
+   */
+  private void testMethod3() {
+    // ok, format=markdown skips traditional Javadoc - no violation
+  }
+  /**
+   * Some description here
+   */
+  public void testMethod4() {
+    // ok, format=markdown skips traditional Javadoc - no violation
+  }
 }
 </code></pre></div>
               </subsection>
