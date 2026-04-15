@@ -177,9 +177,11 @@ public class IndentationCheck extends AbstractCheck {
      * have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent
      * could be bigger on any value user would like.
      *
+     * Package-private for handler access within this package.
+     *
      * @return forceStrictCondition value.
      */
-    public boolean isForceStrictCondition() {
+    boolean isForceStrictCondition() {
         return forceStrictCondition;
     }
 
@@ -208,9 +210,11 @@ public class IndentationCheck extends AbstractCheck {
     /**
      * Getter to query how far new indentation level should be indented when on the next line.
      *
+     * Package-private for handler access within this package.
+     *
      * @return the number of tabs or spaces to indent
      */
-    public int getBasicOffset() {
+    int getBasicOffset() {
         return basicOffset;
     }
 
@@ -227,9 +231,11 @@ public class IndentationCheck extends AbstractCheck {
     /**
      * Getter to query how far a braces should be indented when on the next line.
      *
+     * Package-private for handler access within this package.
+     *
      * @return the positive offset to adjust braces
      */
-    public int getBraceAdjustment() {
+    int getBraceAdjustment() {
         return braceAdjustment;
     }
 
@@ -246,9 +252,11 @@ public class IndentationCheck extends AbstractCheck {
     /**
      * Getter to query how far a case label should be indented when on next line.
      *
+     * Package-private for handler access within this package.
+     *
      * @return the case indentation level
      */
-    public int getCaseIndent() {
+    int getCaseIndent() {
         return caseIndent;
     }
 
@@ -265,9 +273,11 @@ public class IndentationCheck extends AbstractCheck {
     /**
      * Getter to query how far a throws clause should be indented when on next line.
      *
+     * Package-private for handler access within this package.
+     *
      * @return the throws indentation level
      */
-    public int getThrowsIndent() {
+    int getThrowsIndent() {
         return throwsIndent;
     }
 
@@ -284,18 +294,22 @@ public class IndentationCheck extends AbstractCheck {
     /**
      * Getter to query how far an array initialization should be indented when on next line.
      *
+     * Package-private for handler access within this package.
+     *
      * @return the initialization indentation level
      */
-    public int getArrayInitIndent() {
+    int getArrayInitIndent() {
         return arrayInitIndent;
     }
 
     /**
      * Getter to query how far continuation line should be indented when line-wrapping is present.
      *
+     * Package-private for handler access within this package.
+     *
      * @return the line-wrapping indentation level
      */
-    public int getLineWrappingIndentation() {
+    int getLineWrappingIndentation() {
         return lineWrappingIndentation;
     }
 
@@ -312,13 +326,15 @@ public class IndentationCheck extends AbstractCheck {
     /**
      * Log a violation message.
      *
+     * Package-private for handler access within this package.
+     *
      * @param  ast the ast for which error to be logged
      * @param key the message that describes the violation
      * @param args the details of the message
      *
      * @see java.text.MessageFormat
      */
-    public void indentationLog(DetailAST ast, String key, Object... args) {
+    void indentationLog(DetailAST ast, String key, Object... args) {
         if (!incorrectIndentationLines.contains(ast.getLineNo())) {
             incorrectIndentationLines.add(ast.getLineNo());
             log(ast, key, args);
@@ -328,9 +344,11 @@ public class IndentationCheck extends AbstractCheck {
     /**
      * Get the width of a tab.
      *
+     * Package-private for handler access within this package.
+     *
      * @return the width of a tab
      */
-    public int getIndentationTabWidth() {
+    int getIndentationTabWidth() {
         return getTabWidth();
     }
 
@@ -381,18 +399,22 @@ public class IndentationCheck extends AbstractCheck {
     /**
      * Accessor for the line wrapping handler.
      *
+     * Package-private for handlers in this package.
+     *
      * @return the line wrapping handler
      */
-    public LineWrappingHandler getLineWrappingHandler() {
+    LineWrappingHandler getLineWrappingHandler() {
         return lineWrappingHandler;
     }
 
     /**
      * Accessor for the handler factory.
      *
+     * Package-private for handlers in this package.
+     *
      * @return the handler factory
      */
-    public final HandlerFactory getHandlerFactory() {
+    final HandlerFactory getHandlerFactory() {
         return handlerFactory;
     }
 

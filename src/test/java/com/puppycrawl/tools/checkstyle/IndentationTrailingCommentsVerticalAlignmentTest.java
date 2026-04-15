@@ -33,7 +33,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class IndentationTrailingCommentsVerticalAlignmentTest {
@@ -122,16 +121,40 @@ public class IndentationTrailingCommentsVerticalAlignmentTest {
 
     private static int extractTabWidthFromConfig(Configuration config) throws CheckstyleException {
         int result = 4;
+
+        final Optional<String> configuredTabWidth = findTabWidthInIndentationModule(config);
+        if (configuredTabWidth.isPresent()) {
+            result = Integer.parseInt(configuredTabWidth.orElseThrow());
+        }
+
+        return result;
+    }
+
+    private static Optional<String> findTabWidthInIndentationModule(Configuration config)
+            throws CheckstyleException {
+        Optional<String> result = Optional.empty();
         for (Configuration child : config.getChildren()) {
             if ("TreeWalker".equals(child.getName())) {
                 for (Configuration module : child.getChildren()) {
                     if ("IndentationCheck".equals(module.getName())
                             || "Indentation".equals(module.getName())) {
-                        final IndentationCheck check = new IndentationCheck();
-                        check.configure(module);
-                        result = check.getIndentationTabWidth();
+                        result = findPropertyByName(module, "tabWidth");
+                        break;
                     }
                 }
+                break;
+            }
+        }
+        return result;
+    }
+
+    private static Optional<String> findPropertyByName(Configuration config, String propertyName)
+            throws CheckstyleException {
+        Optional<String> result = Optional.empty();
+        for (String currentProperty : config.getPropertyNames()) {
+            if (propertyName.equals(currentProperty)) {
+                result = Optional.of(config.getProperty(propertyName));
+                break;
             }
         }
         return result;
