@@ -164,6 +164,17 @@ public class JavadocStyleCheck
      */
     private boolean checkEmptyJavadoc;
 
+    /**
+     * Specify the Javadoc comment format to check.
+     * Use {@code any} (default) to check all formats, {@code traditional} to check only
+     * traditional {@code /**} Javadoc comments, or {@code markdown} to check only
+     * Markdown {@code ///} Javadoc comments.
+     *
+     * <p>Note: {@code traditional} and {@code any} currently behave identically because
+     * Markdown {@code ///} Javadoc AST support is not yet available in the check pipeline.
+     */
+    private JavadocStyleFormatOption format = JavadocStyleFormatOption.ANY;
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
@@ -244,7 +255,7 @@ public class JavadocStyleCheck
      * @see #checkHtmlTags(DetailAST, TextBlock)
      */
     private void checkComment(final DetailAST ast, final TextBlock comment) {
-        if (comment != null) {
+        if (comment != null && format.shouldCheckTraditionalJavadocs()) {
             if (checkFirstSentence) {
                 checkFirstSentenceEnding(ast, comment);
             }
@@ -595,6 +606,20 @@ public class JavadocStyleCheck
      */
     public void setCheckEmptyJavadoc(boolean flag) {
         checkEmptyJavadoc = flag;
+    }
+
+    /**
+     * Setter to specify the Javadoc comment format to check.
+     * Use {@code any} (default) to check all formats, {@code traditional} to check only
+     * traditional {@code /**} Javadoc comments, or {@code markdown} to check only
+     * Markdown {@code ///} Javadoc comments.
+     *
+     * @param value string to decode format from
+     * @throws IllegalArgumentException if unable to decode
+     * @since 10.24.0
+     */
+    public void setFormat(String value) {
+        format = JavadocStyleFormatOption.valueOf(value.trim().toUpperCase(Locale.ENGLISH));
     }
 
 }
