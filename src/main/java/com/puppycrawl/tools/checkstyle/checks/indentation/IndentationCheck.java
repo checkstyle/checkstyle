@@ -179,7 +179,7 @@ public class IndentationCheck extends AbstractCheck {
      *
      * @return forceStrictCondition value.
      */
-    public boolean isForceStrictCondition() {
+    boolean isForceStrictCondition() {
         return forceStrictCondition;
     }
 
@@ -210,7 +210,7 @@ public class IndentationCheck extends AbstractCheck {
      *
      * @return the number of tabs or spaces to indent
      */
-    public int getBasicOffset() {
+    int getBasicOffset() {
         return basicOffset;
     }
 
@@ -229,7 +229,7 @@ public class IndentationCheck extends AbstractCheck {
      *
      * @return the positive offset to adjust braces
      */
-    public int getBraceAdjustment() {
+    int getBraceAdjustment() {
         return braceAdjustment;
     }
 
@@ -248,7 +248,7 @@ public class IndentationCheck extends AbstractCheck {
      *
      * @return the case indentation level
      */
-    public int getCaseIndent() {
+    int getCaseIndent() {
         return caseIndent;
     }
 
@@ -267,7 +267,7 @@ public class IndentationCheck extends AbstractCheck {
      *
      * @return the throws indentation level
      */
-    public int getThrowsIndent() {
+    int getThrowsIndent() {
         return throwsIndent;
     }
 
@@ -286,7 +286,7 @@ public class IndentationCheck extends AbstractCheck {
      *
      * @return the initialization indentation level
      */
-    public int getArrayInitIndent() {
+    int getArrayInitIndent() {
         return arrayInitIndent;
     }
 
@@ -295,7 +295,7 @@ public class IndentationCheck extends AbstractCheck {
      *
      * @return the line-wrapping indentation level
      */
-    public int getLineWrappingIndentation() {
+    int getLineWrappingIndentation() {
         return lineWrappingIndentation;
     }
 
@@ -318,7 +318,7 @@ public class IndentationCheck extends AbstractCheck {
      *
      * @see java.text.MessageFormat
      */
-    public void indentationLog(DetailAST ast, String key, Object... args) {
+    void indentationLog(DetailAST ast, String key, Object... args) {
         if (!incorrectIndentationLines.contains(ast.getLineNo())) {
             incorrectIndentationLines.add(ast.getLineNo());
             log(ast, key, args);
@@ -330,7 +330,7 @@ public class IndentationCheck extends AbstractCheck {
      *
      * @return the width of a tab
      */
-    public int getIndentationTabWidth() {
+    int getIndentationTabWidth() {
         return getTabWidth();
     }
 
@@ -383,7 +383,7 @@ public class IndentationCheck extends AbstractCheck {
      *
      * @return the line wrapping handler
      */
-    public LineWrappingHandler getLineWrappingHandler() {
+    LineWrappingHandler getLineWrappingHandler() {
         return lineWrappingHandler;
     }
 
@@ -392,7 +392,7 @@ public class IndentationCheck extends AbstractCheck {
      *
      * @return the handler factory
      */
-    public final HandlerFactory getHandlerFactory() {
+    final HandlerFactory getHandlerFactory() {
         return handlerFactory;
     }
 
