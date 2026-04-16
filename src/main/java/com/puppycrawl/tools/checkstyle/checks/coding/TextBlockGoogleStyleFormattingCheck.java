@@ -139,7 +139,8 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
             else if (parent.getType() == TokenTypes.QUESTION
                     && openingQuotes.getPreviousSibling() != null) {
                 quotesAreNotPreceded = !TokenUtil.areOnSameLine(openingQuotes,
-                        openingQuotes.getPreviousSibling());
+                        openingQuotes.getPreviousSibling())
+                        && !TokenUtil.areOnSameLine(openingQuotes, parent);
             }
             else {
                 quotesAreNotPreceded = !TokenUtil.areOnSameLine(openingQuotes, parent);
