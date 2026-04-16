@@ -9,6 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 import javax.annotation.processing.Generated;
 // xdoc section -- start
 /**
+ * <body>
  * @author a
  * @version $Revision1$
  */
