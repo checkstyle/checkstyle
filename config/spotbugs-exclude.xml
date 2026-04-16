@@ -260,13 +260,6 @@
     <Bug pattern="BAS_BLOATED_ASSIGNMENT_SCOPE"/>
   </Match>
 
-  <!-- Suppress PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS -->
-  <!-- false positive: NakedReceiverMutator causes unkillable mutations -->
-  <!-- until https://github.com/checkstyle/checkstyle/issues/16979 -->
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor" />
-    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
-  </Match>
   <Match>
     <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor$DetailAstPair" />
     <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
