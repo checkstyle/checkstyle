@@ -527,17 +527,14 @@
                   </span>
                   <a href="checks/sizes/lambdabodylength.html#LambdaBodyLength">
                     LambdaBodyLength</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaBodyLength">
+                  config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaBodyLength">
-                    config
-                  </a>
-                  <br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/openjdk/checkstyle/test/chapter3formatting/rule312lambdaexpressions/LambdaBodyLengthTest.java">
-                    test
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter3formatting/rule312lambdaexpressions">
+                    samples
                   </a>
                 </td>
-                <td/>
               </tr>
               <tr>
                 <td>
