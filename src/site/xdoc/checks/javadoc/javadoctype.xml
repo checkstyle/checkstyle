@@ -172,7 +172,7 @@ public class Example1 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -221,7 +221,7 @@ public class Example2 {
   private class ClassF&lt;T&gt; {}
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -270,7 +270,7 @@ public class Example3 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -319,7 +319,7 @@ public class Example4 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -369,7 +369,7 @@ public class Example5 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -418,7 +418,7 @@ public class Example6 {
   private class ClassF&lt;T&gt; {}
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -467,7 +467,7 @@ public class Example7 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -519,7 +519,7 @@ public class Example8 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated // violation, 'Type Javadoc comment is missing @param &lt;T&gt; tag'
+  @Generated("tool") // violation, 'Type Javadoc comment is missing @param &lt;T&gt; tag'
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div>

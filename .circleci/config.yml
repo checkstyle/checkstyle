@@ -88,6 +88,21 @@ jobs:
           name: Run yamllint
           command: yamllint -f parsable -c config/yamllint.yaml .
 
+  javadoc-tool-validate:
+    docker:
+      - image: cimg/openjdk:21.0.6
+    steps:
+      - checkout
+      - run:
+          name: Run javadoc-tool-validate
+          command: |
+            export PULL_REQUEST=$CIRCLE_PR_NUMBER
+            export PR_HEAD_SHA=$CIRCLE_SHA1
+            export PR_NUMBER=$CIRCLE_PR_NUMBER
+            ./.ci/validation.sh javadoc-tool-validate
+      - store_artifacts:
+          path: .ci-temp
+
 workflows:
   #  sonarqube:
   #    jobs:
@@ -294,6 +309,7 @@ workflows:
           name: javac25
           image-name: cimg/openjdk:25.0
           command: ./.ci/validation.sh javac25
+      - javadoc-tool-validate
   site-validation:
     jobs:
       - validate-with-maven-script:
