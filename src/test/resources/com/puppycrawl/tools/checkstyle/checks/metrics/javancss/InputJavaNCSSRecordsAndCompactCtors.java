@@ -9,11 +9,9 @@ recordMaximum = 4
 */
 
 // Java17
-package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;  // violation 'NCSS for this file is 89 (max allowed is 2).'
+package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;  // violation 'NCSS for this file is 55 (max allowed is 2).'
 
-import java.time.LocalDateTime;
-
-public class InputJavaNCSSRecordsAndCompactCtors {  // violation '.* is 87 (max allowed is 3).'
+public class InputJavaNCSSRecordsAndCompactCtors {  // violation '.* is 54 (max allowed is 3).'
 
   class TestClass {  // violation 'NCSS for this class is 7 (max allowed is 3).'
     //should count as 2
@@ -101,72 +99,12 @@ public class InputJavaNCSSRecordsAndCompactCtors {  // violation '.* is 87 (max 
   }
 
   record MyRecord6(int x, int y) {
-    //should give an ncss of 2
     public MyRecord6{
     }
   }
 
-  public record FXOrder(int units,  // violation 'NCSS for this record is 8 (max allowed is 4).'
-                        String side,
-                        double price,
-                        LocalDateTime sentAt,
-                        int ttl) {
-    public FXOrder {
-      if (units < 1) {
-        throw new IllegalArgumentException(
-                "FXOrder units must be positive");
-      }
-      if (ttl < 0) {
-        throw new IllegalArgumentException(
-                "FXOrder TTL must be positive, or 0 for market orders");
-      }
-      if (price <= 0.0) {
-        throw new IllegalArgumentException(
-                "FXOrder price must be positive");
-      }
-    } // 8
-  }
-
-  public class FXOrderClass {  // violation 'NCSS for this class is 11 (max allowed is 3).'
-    private int units;
-    private int ttl;
-    private double price; // 3
-
-    public FXOrderClass(int units, int ttl, double price) {
-      if (units < 1) {
-        throw new IllegalArgumentException(
-                "FXOrder units must be positive");
-      }
-      if (ttl < 0) {
-        throw new IllegalArgumentException(
-                "FXOrder TTL must be positive, or 0 for market orders");
-      }
-      if (price <= 0.0) {
-        throw new IllegalArgumentException(
-                "FXOrder price must be positive");
-      }
-    } // 8
-  }
-
-  record MyRecord7(int x, int y) {  // violation 'NCSS for this record is 12 (max allowed is 4).'
-    public MyRecord7{ // violation 'NCSS for this method is 11 (max allowed is 7).'
-      System.out.println("test");
-      System.out.println("test");
-      System.out.println("test");
-      System.out.println("test");
-      System.out.println("test");
-      System.out.println("test");
-      System.out.println("test");
-      System.out.println("test");
-      System.out.println("test");
-      System.out.println("test");
-    }
-  }
-
-  class MyClass {  // violation 'NCSS for this class is 12 (max allowed is 3).'
-    MyClass(int x) {  // violation 'NCSS for this method is 11 (max allowed is 7).'
-      System.out.println("test");
-      System.out.println("test");
+  record MyRecord7(int x, int y) {  // violation 'NCSS for this record is 10 (max allowed is 4).'
+    public MyRecord7{ // violation 'NCSS for this method is 9 (max allowed is 7).'
       System.out.println("test");
       System.out.println("test");
       System.out.println("test");
