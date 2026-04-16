@@ -383,4 +383,18 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
         verifyWithInlineConfigParser(
                 getPath("InputTextBlockGoogleStyleFormattingAnnotations.java"), expected);
     }
+
+    @Test
+    public void testDefaultTextBlockFormatWithTernary() throws Exception {
+        final String[] expected = {
+            "14:11: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "17:11: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "23:23: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "25:11: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "26:11: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "35:11: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputTextBlockGoogleStyleFormattingWithTernary.java"), expected);
+    }
 }
