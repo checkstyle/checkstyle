@@ -106,7 +106,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPackageJavadocMissingWithAnnotationAndBlockComment() throws Exception {
         final String[] expected = {
-            "13:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
+            "12:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("nojavadoc/annotation/blockcomment/package-info.java"), expected);
