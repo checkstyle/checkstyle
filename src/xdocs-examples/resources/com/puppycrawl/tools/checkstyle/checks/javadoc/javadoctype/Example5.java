@@ -9,7 +9,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
-
+import javax.annotation.processing.Generated;
 // xdoc section -- start
 /**
  * @author a
