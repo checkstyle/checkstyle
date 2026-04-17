@@ -576,6 +576,17 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-shade-plugin</artifactId>
           <version>3.6.2</version>
+          <configuration>
+            <filters>
+              <filter>
+                <artifact>*:*</artifact>
+                <excludes>
+                  <exclude>module-info.class</exclude>
+                  <exclude>META-INF/versions/*/module-info.class</exclude>
+                </excludes>
+              </filter>
+            </filters>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.pitest</groupId>
@@ -610,6 +621,12 @@
             <failOnWarnings>true</failOnWarnings>
             <doclint>-missing</doclint>
             <linksource>true</linksource>
+            <sourceFileExcludes>
+              <sourceFileExclude>module-info.java</sourceFileExclude>
+            </sourceFileExcludes>
+            <additionalOptions>
+              <additionalOption>--add-reads=com.puppycrawl.tools.checkstyle=ALL-UNNAMED</additionalOption>
+            </additionalOptions>
             <tags>
               <tag>
                 <name>noinspection</name>
@@ -986,6 +1003,16 @@
         <configuration>
           <compilerArgs>
             <arg>-Xpkginfo:always</arg>
+            <arg>--add-reads</arg>
+            <arg>com.puppycrawl.tools.checkstyle=ALL-UNNAMED</arg>
+            <arg>--add-modules</arg>
+            <arg>jdk.security.auth,jdk.compiler</arg>
+            <arg>--add-reads</arg>
+            <arg>com.puppycrawl.tools.checkstyle=jdk.security.auth</arg>
+            <arg>--add-reads</arg>
+            <arg>com.puppycrawl.tools.checkstyle=jdk.compiler</arg>
+            <arg>--add-exports</arg>
+            <arg>com.google.common/com.google.common.base.internal=com.puppycrawl.tools.checkstyle</arg>
           </compilerArgs>
         </configuration>
       </plugin>
@@ -1783,6 +1810,7 @@
         <artifactId>maven-failsafe-plugin</artifactId>
         <version>3.5.5</version>
         <configuration>
+          <useModulePath>false</useModulePath>
           <includes>
             <include>com/google/**/*.java</include>
             <include>org/checkstyle/**/*.java</include>
@@ -1837,6 +1865,7 @@
             -XX:+EnableDynamicAgentLoading
             -Xshare:off
           </argLine>
+          <useModulePath>false</useModulePath>
           <additionalClasspathElements>
             <additionalClasspathElement>
               src/test/resources-noncompilable
@@ -1892,9 +1921,21 @@
         </configuration>
         <executions>
           <execution>
+            <id>default-test-jar</id>
             <goals>
               <goal>test-jar</goal>
             </goals>
+            <configuration>
+              <archive>
+                <manifest>
+                  <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                  <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                </manifest>
+                <manifestEntries>
+                  <Automatic-Module-Name>${project.groupId}.${project.artifactId}.tests</Automatic-Module-Name>
+                </manifestEntries>
+              </archive>
+            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -2235,6 +2276,11 @@
             </reports>
           </reportSet>
         </reportSets>
+        <configuration>
+          <sourceFileExcludes>
+            <sourceFileExclude>module-info.java</sourceFileExclude>
+          </sourceFileExcludes>
+        </configuration>
       </plugin>
 
       <plugin>
@@ -5581,6 +5627,35 @@
               <threads>${pitest.plugin.threads}</threads>
               <outputFormats>${pitest.plugin.output.formats}</outputFormats>
             </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>sonatype-oss-release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.12.0</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+                <configuration>
+                  <sourceFileExcludes>
+                    <sourceFileExclude>module-info.java</sourceFileExclude>
+                  </sourceFileExcludes>
+                  <additionalOptions>
+                    <additionalOption>--add-reads=com.puppycrawl.tools.checkstyle=ALL-UNNAMED</additionalOption>
+                  </additionalOptions>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>

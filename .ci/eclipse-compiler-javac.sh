@@ -50,6 +50,12 @@ mkdir -p target/classes target/test-classes target/eclipse
 
 RESULT_FILE=target/eclipse/report.txt
 
+# Temporarily exclude module-info.java which ECJ cannot handle in classpath mode
+MODULE_INFO="src/main/java/module-info.java"
+MODULE_INFO_TMP="src/main/java/module-info.java.bak"
+mv "$MODULE_INFO" "$MODULE_INFO_TMP"
+trap 'mv "$MODULE_INFO_TMP" "$MODULE_INFO"' EXIT
+
 echo "Executing eclipse compiler, output is redirected to $RESULT_FILE..."
 echo "java -jar $ECJ_PATH -target ${JAVA_RELEASE} -source ${JAVA_RELEASE} -cp $1  ..."
 
