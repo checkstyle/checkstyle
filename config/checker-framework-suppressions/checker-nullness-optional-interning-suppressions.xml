@@ -568,7 +568,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter loader of ResourceBundle.getBundle.</message>
-    <lineContent>return ResourceBundle.getBundle(bundle, sLocale, sourceClass.getClassLoader(),</lineContent>
+    <lineContent>return ResourceBundle.getBundle(bundle, messageLocale, sourceClass.getClassLoader(),</lineContent>
     <details>
       found   : @Initialized @Nullable ClassLoader
       required: @Initialized @NonNull ClassLoader
@@ -2542,13 +2542,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference aMethodAST.findFirstToken(TokenTypes.IDENT)</message>
-    <lineContent>aMethodAST.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.IDENT)</message>
     <lineContent>frameName = ast.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
   </checkerFrameworkError>
@@ -2558,6 +2551,13 @@
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference child.findFirstToken(TokenTypes.IDENT)</message>
     <lineContent>child.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference methodAST.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>methodAST.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -8150,22 +8150,22 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter jTreeTable of ListToTreeSelectionModelWrapper constructor.</message>
-    <lineContent>ListToTreeSelectionModelWrapper(this);</lineContent>
+    <message>incompatible argument for parameter selectionModel of JTree.setSelectionModel.</message>
+    <lineContent>tree.setSelectionModel(selectionWrapper);</lineContent>
     <details>
-      found   : @UnderInitialization(javax.swing.JTable.class) @NonNull TreeTable
-      required: @Initialized @NonNull TreeTable
+      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper.class) @NonNull ListToTreeSelectionModelWrapper
+      required: @Initialized @NonNull TreeSelectionModel
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter selectionModel of JTree.setSelectionModel.</message>
-    <lineContent>tree.setSelectionModel(selectionWrapper);</lineContent>
+    <message>incompatible argument for parameter treeTable of ListToTreeSelectionModelWrapper constructor.</message>
+    <lineContent>ListToTreeSelectionModelWrapper(this);</lineContent>
     <details>
-      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper.class) @NonNull ListToTreeSelectionModelWrapper
-      required: @Initialized @NonNull TreeSelectionModel
+      found   : @UnderInitialization(javax.swing.JTable.class) @NonNull TreeTable
+      required: @Initialized @NonNull TreeTable
     </details>
   </checkerFrameworkError>
 

@@ -62,18 +62,18 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
     /**
      * Returns line numbers for lines with 'warn' comments.
      *
-     * @param aFileName file name.
+     * @param fileName file name.
      * @param tabWidth tab width.
      * @return array of line numbers containing 'warn' comments ('warn').
      * @throws IOException while reading the file for checking lines.
      * @throws IllegalStateException if file has incorrect indentation in comment or
      *     comment is inconsistent or if file has no indentation comment.
      */
-    private static Integer[] getLinesWithWarnAndCheckComments(String aFileName,
+    private static Integer[] getLinesWithWarnAndCheckComments(String fileName,
             final int tabWidth)
                     throws IOException {
         final List<Integer> result = new ArrayList<>();
-        try (BufferedReader br = Files.newBufferedReader(Path.of(aFileName))) {
+        try (BufferedReader br = Files.newBufferedReader(Path.of(fileName))) {
             int lineNumber = 1;
             for (String line = br.readLine(); line != null; line = br.readLine()) {
                 final Matcher match = LINE_WITH_COMMENT_REGEX.matcher(line);
@@ -86,7 +86,7 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
                         throw new IllegalStateException(String.format(Locale.ROOT,
                                         "File \"%1$s\" has incorrect indentation in comment."
                                                         + "Line %2$d: comment:%3$d, actual:%4$d.",
-                                        aFileName,
+                                        fileName,
                                         lineNumber,
                                         indentInComment,
                                         actualIndent));
@@ -99,7 +99,7 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
                     if (!isCommentConsistent(comment)) {
                         throw new IllegalStateException(String.format(Locale.ROOT,
                                         "File \"%1$s\" has inconsistent comment on line %2$d",
-                                        aFileName,
+                                        fileName,
                                         lineNumber));
                     }
                 }
@@ -107,7 +107,7 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
                     throw new IllegalStateException(String.format(Locale.ROOT,
                                     "File \"%1$s\" has no indentation comment or its format "
                                                     + "malformed. Error on line: %2$d(%3$s)",
-                                    aFileName,
+                                    fileName,
                                     lineNumber,
                                     line));
                 }

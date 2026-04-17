@@ -553,16 +553,17 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * Gets the check message 'as is' from appropriate 'messages.properties'
      * file.
      *
-     * @param aClass the package the message is located in.
+     * @param reporterClass the package the message is located in.
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments  the arguments of message in 'messages.properties' file.
      * @return The message of the check with the arguments applied.
      * @throws IOException if there is a problem loading the property file.
      */
-    protected static String getCheckMessage(Class<? extends AbstractViolationReporter> aClass,
-            String messageKey, Object... arguments) throws IOException {
+    protected static String getCheckMessage(
+            Class<? extends AbstractViolationReporter> reporterClass, String messageKey,
+            Object... arguments) throws IOException {
         final Properties pr = new Properties();
-        pr.load(aClass.getResourceAsStream("messages.properties"));
+        pr.load(reporterClass.getResourceAsStream("messages.properties"));
         final MessageFormat formatter = new MessageFormat(pr.getProperty(messageKey),
                 Locale.ROOT);
         return formatter.format(arguments);

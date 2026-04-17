@@ -15,7 +15,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter baseName of ResourceBundle.getBundle.</message>
-    <lineContent>return ResourceBundle.getBundle(bundle, sLocale, sourceClass.getClassLoader(),</lineContent>
+    <lineContent>return ResourceBundle.getBundle(bundle, messageLocale, sourceClass.getClassLoader(),</lineContent>
     <details>
       found   : @SignatureUnknown String
       required: @BinaryName String
@@ -101,7 +101,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/CodeSelector.java</fileName>
     <specifier>call.ui</specifier>
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
-    <lineContent>editor.moveCaretPosition(pModel.getSelectionEnd());</lineContent>
+    <lineContent>editor.moveCaretPosition(presentationModel.getSelectionEnd());</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -115,7 +115,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/CodeSelector.java</fileName>
     <specifier>call.ui</specifier>
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
-    <lineContent>editor.setCaretPosition(pModel.getSelectionStart());</lineContent>
+    <lineContent>editor.setCaretPosition(presentationModel.getSelectionStart());</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
