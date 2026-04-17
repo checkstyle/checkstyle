@@ -188,10 +188,11 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * This test cannot use verifyWithInlineConfigParserAndLogger as it does not
-     * involve an input file, configuration or audit process. It only verifies that
-     * constructing a DefaultLogger with null stream options throws an
-     * IllegalArgumentException with the correct message.
+     * Verifies that passing {@code null} as {@code errorStreamOptions}
+     * to {@link DefaultLogger} constructor throws
+     * {@link IllegalArgumentException}.
+     * This test is required to kill the pitest mutation that removes
+     * the {@code null} check for {@code errorStreamOptions}.
      */
     @Test
     public void testNullErrorStreamOptions() {
