@@ -982,6 +982,8 @@
         <configuration>
           <compilerArgs>
             <arg>-Xpkginfo:always</arg>
+            <arg>--add-reads</arg>
+            <arg>com.puppycrawl.tools.checkstyle=ALL-UNNAMED</arg>
           </compilerArgs>
         </configuration>
       </plugin>
@@ -1779,6 +1781,7 @@
         <artifactId>maven-failsafe-plugin</artifactId>
         <version>3.5.5</version>
         <configuration>
+          <useModulePath>false</useModulePath>
           <includes>
             <include>com/google/**/*.java</include>
             <include>org/checkstyle/**/*.java</include>
@@ -1833,6 +1836,7 @@
             -XX:+EnableDynamicAgentLoading
             -Xshare:off
           </argLine>
+          <useModulePath>false</useModulePath>
           <additionalClasspathElements>
             <additionalClasspathElement>
               src/test/resources-noncompilable
@@ -1888,9 +1892,21 @@
         </configuration>
         <executions>
           <execution>
+            <id>default-test-jar</id>
             <goals>
               <goal>test-jar</goal>
             </goals>
+            <configuration>
+              <archive>
+                <manifest>
+                  <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                  <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                </manifest>
+                <manifestEntries>
+                  <Automatic-Module-Name>${project.groupId}.${project.artifactId}.tests</Automatic-Module-Name>
+                </manifestEntries>
+              </archive>
+            </configuration>
           </execution>
         </executions>
       </plugin>
