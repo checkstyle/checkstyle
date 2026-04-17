@@ -35,8 +35,20 @@
 
   <!-- Add OpenJDK-specific checks here based on the style guide -->
 
+  <module name="FileTabCharacter">
+    <property name="eachLine" value="true"/>
+  </module>
+
   <module name="TreeWalker">
     <!-- Add TreeWalker checks based on OpenJDK style guide -->
+    <module name="Indentation">
+      <property name="basicOffset" value="4"/>
+      <property name="caseIndent" value="4"/>
+      <property name="throwsIndent" value="8"/>
+      <property name="lineWrappingIndentation" value="8"/>
+      <property name="arrayInitIndent" value="4"/>
+    </module>
+
     <module name="OneStatementPerLine"/>
 
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->

@@ -339,8 +339,28 @@
                     3.7 Indentation
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/filetabcharacter.html#FileTabCharacter">
+                    FileTabCharacter</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FileTabCharacter">
+                  config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/misc/indentation.html#Indentation">Indentation</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter3formatting/rule37indentation">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
