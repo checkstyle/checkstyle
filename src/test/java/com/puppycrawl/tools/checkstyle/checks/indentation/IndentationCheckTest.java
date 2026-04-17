@@ -59,11 +59,11 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
     private static final IndentComment[] EMPTY_INDENT_COMMENT_ARRAY = new IndentComment[0];
 
-    private static IndentComment[] getLinesWithWarnAndCheckComments(String aFileName,
+    private static IndentComment[] getLinesWithWarnAndCheckComments(String fileName,
             final int tabWidth)
             throws IOException {
         final List<IndentComment> result = new ArrayList<>();
-        try (BufferedReader br = Files.newBufferedReader(Path.of(aFileName))) {
+        try (BufferedReader br = Files.newBufferedReader(Path.of(fileName))) {
             int lineNumber = 1;
             String line = br.readLine();
             IndentComment pendingBelowComment = null;
@@ -87,14 +87,14 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                     }
                     else {
                         final int actualIndent = getLineStart(line, tabWidth);
-                        processInlineComment(warn, actualIndent, lineNumber, aFileName, result);
+                        processInlineComment(warn, actualIndent, lineNumber, fileName, result);
                     }
                 }
                 else if (!line.isEmpty()) {
                     throw new IllegalStateException(String.format(Locale.ROOT,
                             "File \"%1$s\" has no indentation comment or its format "
                                     + "malformed. Error on line: %2$d",
-                            aFileName,
+                            fileName,
                             lineNumber));
                 }
 
