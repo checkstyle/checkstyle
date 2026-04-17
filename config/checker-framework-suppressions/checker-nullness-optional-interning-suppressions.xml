@@ -7317,6 +7317,90 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypeBodyPaddingCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of AbstractCheck.log.</message>
+    <lineContent>log(leftCurly, MSG_START_REQUIRED);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypeBodyPaddingCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of AbstractCheck.log.</message>
+    <lineContent>log(rightCurly, MSG_END_REQUIRED);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypeBodyPaddingCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast1 of TokenUtil.areOnSameLine.</message>
+    <lineContent>if (TokenUtil.areOnSameLine(leftCurly, rightCurly)) {</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypeBodyPaddingCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast1 of TokenUtil.areOnSameLine.</message>
+    <lineContent>if (TokenUtil.areOnSameLine(leftCurly, rightCurly)) {</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypeBodyPaddingCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast2 of TokenUtil.areOnSameLine.</message>
+    <lineContent>if (TokenUtil.areOnSameLine(leftCurly, rightCurly)) {</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypeBodyPaddingCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast2 of TokenUtil.areOnSameLine.</message>
+    <lineContent>if (TokenUtil.areOnSameLine(leftCurly, rightCurly)) {</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypeBodyPaddingCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter objBlock of TypeBodyPaddingCheck.hasBodyToProcess.</message>
+    <lineContent>if (!shouldSkip(ast) &amp;&amp; hasBodyToProcess(objBlock)) {</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypeBodyPaddingCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference leftCurly</message>
+    <lineContent>final DetailAST nextNode = leftCurly.getNextSibling();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypecastParenPadCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
