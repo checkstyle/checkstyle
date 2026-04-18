@@ -1800,7 +1800,7 @@
               </a>
             </td>
             <td>
-              Checks that string literals are not used with <code>==</code> or <code>&#33;=</code>.
+              Checks that string literals are not used with <code>==</code> or <code>!=</code>.
             </td>
           </tr>
           <tr>

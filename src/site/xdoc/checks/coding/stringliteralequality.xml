@@ -10,7 +10,7 @@
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="StringLiteralEquality_Description">
         <div>
-          Checks that string literals are not used with <code>==</code> or <code>&#33;=</code>.
+          Checks that string literals are not used with <code>==</code> or <code>!=</code>.
           Since <code>==</code> will compare the object references, not the actual value of the strings,
           <code>String.equals()</code> should be used.
           More information can be found
