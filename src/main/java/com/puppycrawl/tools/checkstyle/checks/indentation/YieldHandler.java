@@ -42,6 +42,18 @@ public class YieldHandler extends AbstractExpressionHandler {
     }
 
     @Override
+    public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
+        final IndentLevel result;
+        if (TokenUtil.areOnSameLine(getMainAst(), child.getMainAst())) {
+            result = getIndent();
+        }
+        else {
+            result = super.getSuggestedChildIndent(child);
+        }
+        return result;
+    }
+
+    @Override
     public void checkIndentation() {
         checkYield();
         final DetailAST expression = getMainAst().getFirstChild();
