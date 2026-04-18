@@ -236,7 +236,7 @@ class InputRightCurlyTestWithAnnotations
     public class TestClass {}; // violation ''}' at column 29 should be alone on a line'
 
     public class TestClass1 {
-    }; // violation ''}' at column 5 should be alone on a line'
+    };
 
     public class TestClass2 {
         public TestClass2() {}; // violation ''}' at column 30 should be alone on a line'
@@ -266,10 +266,10 @@ class InputRightCurlyTestWithAnnotations
 
     public @interface TestAnnotation7 {
         String someValue();
-    }; // violation ''}' at column 5 should be alone on a line'
+    };
 
     public @interface TestAnnotation8 { String someValue();
-    }; // violation ''}' at column 5 should be alone on a line'
+    };
 
     public @interface TestAnnotation9 { String someValue(); };
     // violation above ''}' at column 61 should be alone on a line'
