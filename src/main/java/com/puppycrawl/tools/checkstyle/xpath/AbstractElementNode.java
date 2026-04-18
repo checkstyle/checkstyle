@@ -304,6 +304,7 @@ public abstract class AbstractElementNode extends AbstractNode {
      *
      * @return attribute node if possible, otherwise the {@code null} value
      */
+    @SuppressWarnings("ReferenceEquality")
     private AttributeNode getAttributeNode() {
         if (attributeNode == ATTRIBUTE_NODE_UNINITIALIZED) {
             attributeNode = createAttributeNode();
