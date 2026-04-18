@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class AvoidStarImportCheckTest
     extends AbstractModuleTestSupport {
@@ -106,6 +107,24 @@ public class AvoidStarImportCheckTest
         assertWithMessage("Default required tokens are invalid")
             .that(actual)
             .isEqualTo(expected);
+    }
+
+    @Test
+    public void testMaxAllowedStarImports() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputAvoidStarImportMaxAllowed.java"), expected);
+    }
+
+    @Test
+    public void testMaxAllowedMultipleFiles() throws Exception {
+        final String[] excepted = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputAvoidStarImportMaxAllowed.java"),
+                getPath("InputAvoidStarImportMaxAllowed2.java"),
+                excepted);
     }
 
 }
