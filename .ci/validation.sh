@@ -63,7 +63,7 @@ check-missing-pitests)
     "com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsParserUtil"
     "com.puppycrawl.tools.checkstyle.grammar.SimpleToken" "${list[@]}")
 
-  CMD="find src/main/java -type f ! -name 'package-info.java'"
+  CMD="find src/main/java -type f ! -name 'package-info.java' ! -name 'module-info.java'"
 
   for item in "${list[@]}"
   do
