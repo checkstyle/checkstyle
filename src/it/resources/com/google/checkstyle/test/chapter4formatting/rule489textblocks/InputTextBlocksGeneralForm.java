@@ -6,7 +6,8 @@ public class InputTextBlocksGeneralForm {
   /** Some javadoc. */
   public static String textFun() {
 
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation below 'Each line of text in the text block must be indented'
     final String simpleScript = """
         s
         """; // violation 'Text-block quotes are not vertically aligned'
@@ -16,13 +17,15 @@ public class InputTextBlocksGeneralForm {
         this is simple test;
         """;
 
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation below 'Each line of text in the text block must be indented'
     getData("""
         Hello,
         This is a multi-line message.
         """); // violation 'Text-block quotes are not vertically aligned'
 
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation below 'Each line of text in the text block must be indented'
     return """
         this is sample text
         """; // violation 'Text-block quotes are not vertically aligned'
