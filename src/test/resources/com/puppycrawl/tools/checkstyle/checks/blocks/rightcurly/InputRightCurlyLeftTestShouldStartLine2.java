@@ -83,7 +83,7 @@ class InputRightCurlyLeftTestShouldStartLine2
     {
         HELLO,
         GOODBYE
-    }; // violation ''}' at column 5 should be alone on a line'
+    };
 
     void method2()
     {

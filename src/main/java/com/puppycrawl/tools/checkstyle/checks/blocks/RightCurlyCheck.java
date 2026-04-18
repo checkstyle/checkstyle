@@ -239,10 +239,41 @@ public class RightCurlyCheck extends AbstractCheck {
     private static boolean isAloneOnLine(Details details, String targetSrcLine) {
         final DetailAST rcurly = details.rcurly();
         final DetailAST nextToken = details.nextToken();
-        return (nextToken == null || !TokenUtil.areOnSameLine(rcurly, nextToken)
+
+        // Ignore trailing semicolon after class/enum/annotation/interface definitions
+        final boolean nextTokenOnSameLine = nextToken != null
+                && TokenUtil.areOnSameLine(rcurly, nextToken)
+                && !isTrailingSemicolonAfterDefinition(rcurly, nextToken);
+
+        return (!nextTokenOnSameLine
             || skipDoubleBraceInstInit(details))
             && CommonUtil.hasWhitespaceBefore(details.rcurly().getColumnNo(),
                targetSrcLine);
+    }
+
+    /**
+     * Checks whether the right curly is followed by a semicolon that belongs to a
+     * class, enum, annotation, interface, or record definition.
+     *
+     * @param rcurly the right curly token to check
+     * @param nextToken the token following the right curly
+     * @return true if the right curly is followed by a semicolon that belongs to a
+     *     class, enum, annotation, interface, or record definition
+     */
+    private static boolean isTrailingSemicolonAfterDefinition(DetailAST rcurly,
+                                                              DetailAST nextToken) {
+        boolean isTrailingSemicolonAfterDefinition = false;
+        if (nextToken.getType() == TokenTypes.SEMI) {
+            final DetailAST parent = rcurly.getParent();
+            final DetailAST grandParent = parent.getParent();
+            isTrailingSemicolonAfterDefinition = TokenUtil.isOfType(grandParent.getType(),
+                    TokenTypes.CLASS_DEF,
+                    TokenTypes.ENUM_DEF,
+                    TokenTypes.ANNOTATION_DEF,
+                    TokenTypes.INTERFACE_DEF,
+                    TokenTypes.RECORD_DEF);
+        }
+        return isTrailingSemicolonAfterDefinition;
     }
 
     /**
