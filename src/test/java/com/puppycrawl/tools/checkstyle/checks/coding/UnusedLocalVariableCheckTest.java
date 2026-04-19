@@ -64,6 +64,7 @@ public void testSideEffectInitializer() throws Exception {
         final int[] expected = {
             TokenTypes.DOT,
             TokenTypes.VARIABLE_DEF,
+            TokenTypes.METHOD_REF,
             TokenTypes.IDENT,
             TokenTypes.SLIST,
             TokenTypes.LITERAL_FOR,
@@ -96,6 +97,7 @@ public void testSideEffectInitializer() throws Exception {
         final int[] expected = {
             TokenTypes.DOT,
             TokenTypes.VARIABLE_DEF,
+            TokenTypes.METHOD_REF,
             TokenTypes.IDENT,
             TokenTypes.SLIST,
             TokenTypes.LITERAL_FOR,

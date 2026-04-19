@@ -213,6 +213,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         return new int[] {
                 TokenTypes.DOT,
                 TokenTypes.VARIABLE_DEF,
+                TokenTypes.METHOD_REF,
                 TokenTypes.IDENT,
                 TokenTypes.SLIST,
                 TokenTypes.LITERAL_FOR,
@@ -255,23 +256,59 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         depth = 0;
     }
 
-    @Override
-    public void visitToken(DetailAST ast) {
-        final int type = ast.getType();
-        if (type == TokenTypes.DOT) {
-            visitDotToken(ast, variables);
-        } else if (type == TokenTypes.VARIABLE_DEF && !skipUnnamedVariables(ast)) {
-            visitVariableDefToken(ast);
-        } else if (type == TokenTypes.IDENT) {
-            visitIdentToken(ast, variables);
-        } else if (isInsideLocalAnonInnerClass(ast)) {
-            visitLocalAnonInnerClass(ast);
-        } else if (isNonLocalTypeDeclaration(ast)) {
-            visitNonLocalTypeDeclarationToken(ast);
-        } else if (type == TokenTypes.PACKAGE_DEF) {
-            packageName = CheckUtil.extractQualifiedName(ast.getFirstChild().getNextSibling());
+@Override
+public void visitToken(DetailAST ast) {
+    final int type = ast.getType(); 
+    if (type == TokenTypes.METHOD_REF) {
+    DetailAST firstChild = ast.getFirstChild();
+    // If it's "this::", "super::", or "ClassName::", we ignore it.
+    // We only care if the first child is an IDENT (a local variable).
+    if (firstChild.getType() == TokenTypes.IDENT) {
+        visitIdentToken(firstChild, variables);
+    } 
+    else if (firstChild.getType() == TokenTypes.DOT) {
+        // Handle cases like "myObject.variable::method"
+        DetailAST lastIdent = firstChild.findFirstToken(TokenTypes.IDENT);
+        if (lastIdent != null) {
+            visitIdentToken(lastIdent, variables);
         }
     }
+}
+    else if (type == TokenTypes.DOT) {
+        visitDotToken(ast, variables);
+    } 
+    else if (type == TokenTypes.VARIABLE_DEF && !skipUnnamedVariables(ast)) {
+    visitVariableDefToken(ast);
+} 
+    else if (type == TokenTypes.IDENT) {
+        visitIdentToken(ast, variables);
+    } 
+    else if (isInsideLocalAnonInnerClass(ast)) {
+        visitLocalAnonInnerClass(ast);
+    } 
+    else if (isNonLocalTypeDeclaration(ast)) {
+        visitNonLocalTypeDeclarationToken(ast);
+    } 
+    else if (type == TokenTypes.PACKAGE_DEF) {
+        packageName = CheckUtil.extractQualifiedName(ast.getFirstChild().getNextSibling());
+    }
+} // <--- visitToken ends here
+
+// Helper method stays OUTSIDE visitToken
+private DetailAST findIdent(DetailAST node) {
+    if (node.getType() == TokenTypes.IDENT) {
+        return node;
+    }
+    DetailAST child = node.getFirstChild();
+    while (child != null) {
+        DetailAST result = findIdent(child);
+        if (result != null) {
+            return result;
+        }
+        child = child.getNextSibling();
+    }
+    return null;
+}
 
     @Override
     public void leaveToken(DetailAST ast) {
@@ -328,10 +365,9 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
                 && parent.getType() == TokenTypes.DOT;
 
         if (isNestedClassInitialization || !isMethodReferenceMethodName
-                && !isConstructorReference
-                && !TokenUtil.isOfType(parent, UNACCEPTABLE_PARENT_OF_IDENT)) {
-            checkIdentifierAst(identAst, variablesStack);
-        }
+        && !TokenUtil.isOfType(parent, UNACCEPTABLE_PARENT_OF_IDENT)) {
+    checkIdentifierAst(identAst, variablesStack);
+}
     }
 
     /**
@@ -366,7 +402,9 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private boolean skipUnnamedVariables(DetailAST varDefAst) {
         final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
-        return allowUnnamedVariables && "_".equals(ident.getText());
+        final String name = ident.getText();
+        boolean isUnnamed="_".equals(name);
+        return allowUnnamedVariables && isUnnamed;
     }
 
     /**
@@ -834,6 +872,10 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
 
     private static boolean shouldCheckIdentTokenNestedUnderDot(DetailAST dotAst) {
 
+        // Check the identifier so that the variable 'obj' isn't wrongly marked as 'unused' in the stack.
+        if (dotAst.getType() == TokenTypes.METHOD_REF) {
+        return true;
+    }
     return TokenUtil.findFirstTokenByPredicate(dotAst,
     currentAst -> TokenUtil.isOfType(currentAst, TokenTypes.METHOD_CALL)
     || TokenUtil.isOfType(currentAst, TokenTypes.LITERAL_NEW)) == null;
