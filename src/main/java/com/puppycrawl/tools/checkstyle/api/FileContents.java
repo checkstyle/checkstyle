@@ -34,6 +34,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Represents the contents of a file.
  *
+ * @noinspection deprecation
+ * @noinspectionreason deprecation - {@code CommentListener} is deprecated but cannot be
+ *     removed until comments are retrieved entirely from the AST.
  */
 public final class FileContents implements CommentListener {
 
