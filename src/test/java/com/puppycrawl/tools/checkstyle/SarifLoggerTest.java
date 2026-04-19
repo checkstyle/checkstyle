@@ -370,6 +370,12 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
                 .isFalse();
     }
 
+    /**
+     * This test can't use verifyWithInlineConfigParserAndLogger because it
+     * checks for an exception during the logger's creation. Since the constructor
+     * fails immediately with a null parameter, we never get a logger instance
+     * to use in the inline verification process.
+     */
     @Test
     public void testNullOutputStreamOptions() {
         final IllegalArgumentException exception =
