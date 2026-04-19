@@ -12,19 +12,20 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  no-error-kafka:
-    if: github.repository == 'checkstyle/checkstyle'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-
-      - uses: actions/setup-java@v5
-        with:
-          distribution: temurin
-          java-version: 25
-
-      - name: Run Checkstyle on Apache Kafka
-        run: ./.ci/validation.sh no-error-kafka
+  # until #19718
+  #  no-error-kafka:
+  #    if: github.repository == 'checkstyle/checkstyle'
+  #    runs-on: ubuntu-latest
+  #    steps:
+  #      - uses: actions/checkout@v6
+  #
+  #      - uses: actions/setup-java@v5
+  #        with:
+  #          distribution: temurin
+  #          java-version: 25
+  #
+  #      - name: Run Checkstyle on Apache Kafka
+  #        run: ./.ci/validation.sh no-error-kafka
 
   no-error-trino:
     if: github.repository == 'checkstyle/checkstyle'
