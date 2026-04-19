@@ -1670,7 +1670,8 @@ public final class JavadocCommentsTokenTypes {
      * is ability include a format string inside the tag.
      *
      * <p>In this example, the format specifier {@code 0x%04x} is used to format the integer
-     * {@code Modifier#MANDATED} as a hexadecimal value, padded with zeros to a width of four characters.</p>
+     * {@code Modifier#MANDATED} as a hexadecimal value,
+     * padded with zeros to a width of four characters.</p>
      * <pre>{@code
      * {@value %04x Modifier#MANDATED}
      * }</pre>
