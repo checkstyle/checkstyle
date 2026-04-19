@@ -80,8 +80,8 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEscape() throws Exception {
-        final String inputFile = "InputSarifLoggerEscapeSelect.java";
-        final String expectedReportFile = "ExpectedSarifLoggerEscapeSelect.sarif";
+        final String inputFile = "InputSarifLoggerEscapeAll.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeAll.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
 
@@ -98,30 +98,6 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParserAndLogger(
                 getPath(inputFile), getPath(expectedReportFile), logger, outStream);
-    }
-
-    /**
-     * This test cannot use verifyWithInlineConfigParserAndLogger because
-     * XML 1.0 forbids control characters (U+0008, U+000C, U+0010, U+001E, U+001F)
-     * even as numeric character references or raw bytes in attribute values,
-     * making it impossible to pass these characters through the violation message
-     * into {@code escape()} via the inline config approach.
-     */
-    @Test
-    public void testEscapeDirectly() {
-        final String[][] encodings = {
-            {"\b", "\\b"},
-            {"\f", "\\f"},
-            {"\u0010", "\\u0010"},
-            {"\u001E", "\\u001E"},
-            {"\u001F", "\\u001F"},
-        };
-        for (String[] encoding : encodings) {
-            final String encoded = SarifLogger.escape(encoding[0]);
-            assertWithMessage("\"%s\"", encoding[0])
-                .that(encoded)
-                .isEqualTo(encoding[1]);
-        }
     }
 
     @Test
