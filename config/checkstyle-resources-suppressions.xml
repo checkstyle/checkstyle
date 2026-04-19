@@ -108,6 +108,8 @@
   <suppress id="noTrailingWhitespace"
     files="[\\/]InputRegexpSinglelineJavaTrailingComment10\.java"/>
   <suppress id="noTrailingWhitespace"
+    files="[\\/]InputTextBlockGoogleStyleFormatting10\.java"/>
+  <suppress id="noTrailingWhitespace"
             files="[\\/]javadocstyle[\\/]InputJavadocStyleTrailingSpace\.java"/>
   <suppress id="noTrailingWhitespace"
             files="[\\/]javadocparagraph[\\/]InputJavadocParagraphCheck1\.java"/>
@@ -242,6 +244,12 @@
     files="[\\/]it[\\/]resources-noncompilable[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/].*[\\/].*[\\/].*\.java"/>
 
   <!-- Until https://github.com/checkstyle/checkstyle/issues/11163 -->
+  <suppress checks="FileLength"
+    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting[\\/]InputTextBlockGoogleStyleFormatting\.java"/>
+  <suppress checks="FileLength"
+    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting[\\/]InputTextBlockGoogleStyleFormatting2\.java"/>
+  <suppress checks="FileLength"
+    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting[\\/]InputTextBlockGoogleStyleFormattingNotVerticallyAligned\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentation\.java"/>
   <suppress checks="FileLength"
