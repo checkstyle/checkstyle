@@ -34,6 +34,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Represents the contents of a file.
  *
+ * @noinspection deprecation
+ * @noinspectionreason deprecation - FileContents implements deprecated CommentListener.
  */
 public final class FileContents implements CommentListener {
 
