@@ -23,9 +23,13 @@ package com.puppycrawl.tools.checkstyle.grammar;
  * This interface is used to be notified by parser about comments
  * in the parsed code.
  *
+ * @deprecated Comments are now available directly in the AST via
+ *     {@code TokenTypes.SINGLE_LINE_COMMENT} and {@code TokenTypes.BLOCK_COMMENT_BEGIN}.
+ *     This interface will be removed in a future release.
  * @noinspection ClassOnlyUsedInOnePackage
  * @noinspectionreason ClassOnlyUsedInOnePackage - we restrict all parsing to a single package
  */
+@Deprecated(since = "13.4.1")
 public interface CommentListener {
 
     /**
