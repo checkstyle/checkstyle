@@ -52,6 +52,15 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/textblockgooglestyleformatting/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
+        <p id="Example5-code">
+            Example: Content indentation validation (violation and non-violation pairs)
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/textblockgooglestyleformatting/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
