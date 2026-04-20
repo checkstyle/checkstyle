@@ -46,6 +46,16 @@ public class WhereJavadocIsUsedTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testJavadocMethodProtectedScopeCorrect() throws Exception {
+        verifyWithWholeConfig(getPath("InputJavadocMethodProtectedScopeCorrect.java"));
+    }
+
+    @Test
+    public void testJavadocMethodProtectedScopeIncorrect() throws Exception {
+        verifyWithWholeConfig(getPath("InputJavadocMethodProtectedScopeIncorrect.java"));
+    }
+
+    @Test
     public void testJavadocTypeOnRecord() throws Exception {
         verifyWithWholeConfig(getPath("InputJavadocTypeOnRecord.java"));
     }
