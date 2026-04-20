@@ -345,7 +345,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @param ident identifier token to check
      * @return {@code true} if the identifier is a pattern variable in scope;
      *         {@code false} otherwise
-    */
+     */
     private static boolean isPatternVariableInScope(DetailAST ident) {
         final Set<String> patternVariablesInScope = new HashSet<>();
         DetailAST child = ident;
@@ -390,7 +390,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @param node node to test
      * @return {@code true} if {@code node} is in the subtree rooted at {@code root};
      *         {@code false} otherwise
-    */
+     */
     private static boolean isInSubtree(DetailAST root, DetailAST node) {
         boolean result = false;
         DetailAST current = node;
@@ -412,40 +412,38 @@ public class RequireThisCheck extends AbstractCheck {
      *
      * @param ast expression AST node
      * @return pattern variable names that are in scope in the true branch
-    */
+     */
     private static Set<String> getPatternVariablesInTrueBranch(DetailAST ast) {
         final Set<String> result = new HashSet<>();
 
-        if (ast == null) {
-            return result;
-        }
+        if (ast != null) {
+            switch (ast.getType()) {
+                case TokenTypes.EXPR -> {
+                    result.addAll(getPatternVariablesInTrueBranch(ast.getFirstChild()));
+                }
+                case TokenTypes.LNOT -> {
+                    result.addAll(getPatternVariablesInFalseBranch(getLogicalOperand(ast)));
+                }
+                case TokenTypes.LAND -> {
+                    result.addAll(getPatternVariablesInTrueBranch(ast.getFirstChild()));
+                    result.addAll(getPatternVariablesInTrueBranch(ast.getLastChild()));
+                }
+                case TokenTypes.LOR -> {
+                    final Set<String> left =
+                            getPatternVariablesInTrueBranch(ast.getFirstChild());
+                    final Set<String> right =
+                            getPatternVariablesInTrueBranch(ast.getLastChild());
 
-        switch (ast.getType()) {
-            case TokenTypes.EXPR:
-                result.addAll(getPatternVariablesInTrueBranch(ast.getFirstChild()));
-                break;
-            case TokenTypes.LNOT:
-                result.addAll(getPatternVariablesInFalseBranch(getLogicalOperand(ast)));
-                break;
-            case TokenTypes.LAND:
-                result.addAll(getPatternVariablesInTrueBranch(ast.getFirstChild()));
-                result.addAll(getPatternVariablesInTrueBranch(ast.getLastChild()));
-                break;
-            case TokenTypes.LOR: {
-                final Set<String> left =
-                        getPatternVariablesInTrueBranch(ast.getFirstChild());
-                final Set<String> right =
-                        getPatternVariablesInTrueBranch(ast.getLastChild());
-
-                left.retainAll(right);
-                result.addAll(left);
-                break;
+                    left.retainAll(right);
+                    result.addAll(left);
+                }
+                case TokenTypes.LITERAL_INSTANCEOF -> {
+                    result.addAll(getPatternVariablesDeclaredBy(ast));
+                }
+                default -> {
+                    // no-op
+                }
             }
-            case TokenTypes.LITERAL_INSTANCEOF:
-                result.addAll(getPatternVariablesDeclaredBy(ast));
-                break;
-            default:
-                break;
         }
 
         return result;
@@ -457,37 +455,35 @@ public class RequireThisCheck extends AbstractCheck {
      *
      * @param ast expression AST node
      * @return pattern variable names that are in scope in the false branch
-    */
+     */
     private static Set<String> getPatternVariablesInFalseBranch(DetailAST ast) {
         final Set<String> result = new HashSet<>();
 
-        if (ast == null) {
-            return result;
-        }
+        if (ast != null) {
+            switch (ast.getType()) {
+                case TokenTypes.EXPR -> {
+                    result.addAll(getPatternVariablesInFalseBranch(ast.getFirstChild()));
+                }
+                case TokenTypes.LNOT -> {
+                    result.addAll(getPatternVariablesInTrueBranch(getLogicalOperand(ast)));
+                }
+                case TokenTypes.LAND -> {
+                    final Set<String> left =
+                            getPatternVariablesInFalseBranch(ast.getFirstChild());
+                    final Set<String> right =
+                            getPatternVariablesInFalseBranch(ast.getLastChild());
 
-        switch (ast.getType()) {
-            case TokenTypes.EXPR:
-                result.addAll(getPatternVariablesInFalseBranch(ast.getFirstChild()));
-                break;
-            case TokenTypes.LNOT:
-                result.addAll(getPatternVariablesInTrueBranch(getLogicalOperand(ast)));
-                break;
-            case TokenTypes.LAND: {
-                final Set<String> left =
-                        getPatternVariablesInFalseBranch(ast.getFirstChild());
-                final Set<String> right =
-                        getPatternVariablesInFalseBranch(ast.getLastChild());
-
-                left.retainAll(right);
-                result.addAll(left);
-                break;
+                    left.retainAll(right);
+                    result.addAll(left);
+                }
+                case TokenTypes.LOR -> {
+                    result.addAll(getPatternVariablesInFalseBranch(ast.getFirstChild()));
+                    result.addAll(getPatternVariablesInFalseBranch(ast.getLastChild()));
+                }
+                default -> {
+                    // no-op
+                }
             }
-            case TokenTypes.LOR:
-                result.addAll(getPatternVariablesInFalseBranch(ast.getFirstChild()));
-                result.addAll(getPatternVariablesInFalseBranch(ast.getLastChild()));
-                break;
-            default:
-                break;
         }
 
         return result;
@@ -499,7 +495,7 @@ public class RequireThisCheck extends AbstractCheck {
      *
      * @param ast logical negation AST node
      * @return the operand of the logical negation
-    */
+     */
     private static DetailAST getLogicalOperand(DetailAST ast) {
         DetailAST child = ast.getFirstChild();
 
@@ -518,30 +514,29 @@ public class RequireThisCheck extends AbstractCheck {
      *
      * @param ast expression AST node
      * @return pattern variable names introduced when the expression is true
-    */
+     */
     private static Set<String> getPatternVariablesIntroducedWhenTrue(DetailAST ast) {
         final Set<String> result = new HashSet<>();
 
-        if (ast == null) {
-            return result;
-        }
-
-        switch (ast.getType()) {
-            case TokenTypes.EXPR:
-                result.addAll(getPatternVariablesIntroducedWhenTrue(ast.getFirstChild()));
-                break;
-            case TokenTypes.LNOT:
-                result.addAll(getPatternVariablesIntroducedWhenFalse(ast.getFirstChild()));
-                break;
-            case TokenTypes.LAND:
-                result.addAll(getPatternVariablesIntroducedWhenTrue(ast.getFirstChild()));
-                result.addAll(getPatternVariablesIntroducedWhenTrue(ast.getLastChild()));
-                break;
-            case TokenTypes.LITERAL_INSTANCEOF:
-                result.addAll(getPatternVariablesDeclaredBy(ast));
-                break;
-            default:
-                break;
+        if (ast != null) {
+            switch (ast.getType()) {
+                case TokenTypes.EXPR -> {
+                    result.addAll(getPatternVariablesIntroducedWhenTrue(ast.getFirstChild()));
+                }
+                case TokenTypes.LNOT -> {
+                    result.addAll(getPatternVariablesIntroducedWhenFalse(ast.getFirstChild()));
+                }
+                case TokenTypes.LAND -> {
+                    result.addAll(getPatternVariablesIntroducedWhenTrue(ast.getFirstChild()));
+                    result.addAll(getPatternVariablesIntroducedWhenTrue(ast.getLastChild()));
+                }
+                case TokenTypes.LITERAL_INSTANCEOF -> {
+                    result.addAll(getPatternVariablesDeclaredBy(ast));
+                }
+                default -> {
+                    // no-op
+                }
+            }
         }
 
         return result;
@@ -553,27 +548,26 @@ public class RequireThisCheck extends AbstractCheck {
      *
      * @param ast expression AST node
      * @return pattern variable names introduced when the expression is false
-    */
+     */
     private static Set<String> getPatternVariablesIntroducedWhenFalse(DetailAST ast) {
         final Set<String> result = new HashSet<>();
 
-        if (ast == null) {
-            return result;
-        }
-
-        switch (ast.getType()) {
-            case TokenTypes.EXPR:
-                result.addAll(getPatternVariablesIntroducedWhenFalse(ast.getFirstChild()));
-                break;
-            case TokenTypes.LNOT:
-                result.addAll(getPatternVariablesIntroducedWhenTrue(ast.getFirstChild()));
-                break;
-            case TokenTypes.LOR:
-                result.addAll(getPatternVariablesIntroducedWhenFalse(ast.getFirstChild()));
-                result.addAll(getPatternVariablesIntroducedWhenFalse(ast.getLastChild()));
-                break;
-            default:
-                break;
+        if (ast != null) {
+            switch (ast.getType()) {
+                case TokenTypes.EXPR -> {
+                    result.addAll(getPatternVariablesIntroducedWhenFalse(ast.getFirstChild()));
+                }
+                case TokenTypes.LNOT -> {
+                    result.addAll(getPatternVariablesIntroducedWhenTrue(ast.getFirstChild()));
+                }
+                case TokenTypes.LOR -> {
+                    result.addAll(getPatternVariablesIntroducedWhenFalse(ast.getFirstChild()));
+                    result.addAll(getPatternVariablesIntroducedWhenFalse(ast.getLastChild()));
+                }
+                default -> {
+                    // no-op
+                }
+            }
         }
 
         return result;

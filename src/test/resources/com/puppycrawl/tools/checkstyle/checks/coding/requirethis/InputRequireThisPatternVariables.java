@@ -20,7 +20,8 @@ public class InputRequireThisPatternVariables {
         this.n = null;
 
         Object o = 45;
-        if (!(o instanceof String p && p.equals("sd")) || !p.equals("wq")) { // violation 'Reference to instance variable 'p' needs "this."\.'
+        if (!(o instanceof String p && p.equals("sd"))
+            || !p.equals("wq")) { // violation 'Reference to instance variable 'p' needs "this."\.'
             p = "a"; // violation 'Reference to instance variable 'p' needs "this."\.'
         }
         else if (!(o instanceof Integer s && o instanceof String n)) {
@@ -36,5 +37,4 @@ public class InputRequireThisPatternVariables {
 
         System.out.println(this.p + ":" + this.s + ":" + this.n);
     }
-    
 }
