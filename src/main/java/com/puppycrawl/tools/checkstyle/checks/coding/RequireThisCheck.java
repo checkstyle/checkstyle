@@ -1051,6 +1051,26 @@ public class RequireThisCheck extends AbstractCheck {
         return left.getType() == right.getType() && left.getText().equals(right.getText());
     }
 
+    /** An AbstractFrame type. */
+    private enum FrameType {
+
+        /** Class frame type. */
+        CLASS_FRAME,
+        /** Constructor frame type. */
+        CTOR_FRAME,
+        /** Method frame type. */
+        METHOD_FRAME,
+        /** Block frame type. */
+        BLOCK_FRAME,
+        /** Catch frame type. */
+        CATCH_FRAME,
+        /** For frame type. */
+        FOR_FRAME,
+        /** Try with resources frame type. */
+        TRY_WITH_RESOURCES_FRAME
+
+    }
+
     /**
      * Utility methods for determining whether pattern variables are in scope.
      */
@@ -1325,26 +1345,6 @@ public class RequireThisCheck extends AbstractCheck {
 
             return result;
         }
-    }
-
-    /** An AbstractFrame type. */
-    private enum FrameType {
-
-        /** Class frame type. */
-        CLASS_FRAME,
-        /** Constructor frame type. */
-        CTOR_FRAME,
-        /** Method frame type. */
-        METHOD_FRAME,
-        /** Block frame type. */
-        BLOCK_FRAME,
-        /** Catch frame type. */
-        CATCH_FRAME,
-        /** For frame type. */
-        FOR_FRAME,
-        /** Try with resources frame type. */
-        TRY_WITH_RESOURCES_FRAME
-
     }
 
     /**
