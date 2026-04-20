@@ -66,9 +66,11 @@
             <property default-value="false" name="separatedStaticGroups" type="boolean">
                <description>Control whether static import groups should be separated by, at least,
  one blank line or comment and aren't separated internally.
- This property has effect only when the property
- &lt;code&gt;option&lt;/code&gt; is set to &lt;code&gt;top&lt;/code&gt; or &lt;code&gt;bottom&lt;/code&gt; and when property &lt;code&gt;staticGroups&lt;/code&gt;
- is enabled.</description>
+ When the property &lt;code&gt;option&lt;/code&gt; is set to &lt;code&gt;top&lt;/code&gt; or &lt;code&gt;bottom&lt;/code&gt;,
+ this property requires &lt;code&gt;staticGroups&lt;/code&gt; to be enabled.
+ When the property &lt;code&gt;option&lt;/code&gt; is set to &lt;code&gt;under&lt;/code&gt; or &lt;code&gt;above&lt;/code&gt;,
+ this property allows blank lines between static and non-static imports
+ within the same group.</description>
             </property>
             <property default-value="false"
                       name="sortStaticImportsAlphabetically"
