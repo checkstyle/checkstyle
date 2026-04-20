@@ -75,11 +75,12 @@ public class SimplifyBooleanExpressionCheck
                  TokenTypes.LAND -> log(parent, MSG_KEY);
 
             case TokenTypes.QUESTION -> {
-                final DetailAST nextSibling = ast.getNextSibling();
-                if (TokenUtil.isBooleanLiteralType(parent.getFirstChild().getType())
-                        || nextSibling != null && nextSibling.getNextSibling() != null
+                final DetailAST firstChild = skipParentheses(parent.getFirstChild());
+                final DetailAST nextSibling = skipParentheses(ast.getNextSibling());
+                if (TokenUtil.isBooleanLiteralType(firstChild.getType())
+                        || nextSibling != null
                         && TokenUtil.isBooleanLiteralType(
-                        nextSibling.getNextSibling().getType())) {
+                                skipParentheses(nextSibling.getNextSibling()).getType())) {
                     log(parent, MSG_KEY);
                 }
             }
@@ -88,6 +89,21 @@ public class SimplifyBooleanExpressionCheck
                 // do nothing
             }
         }
+    }
+
+    /**
+     * Iterates sibling nodes, skipping parantheses.
+     *
+     * @param node The starting node.
+     * @return The first sibling not of type {@code TokenTypes.LPAREN} or
+     *     {@code TokenTypes.RPAREN}, or {@code null} if no such node exists.
+     */
+    private static DetailAST skipParentheses(DetailAST node) {
+        DetailAST result = node;
+        while (TokenUtil.isOfType(result, TokenTypes.LPAREN, TokenTypes.RPAREN)) {
+            result = result.getNextSibling();
+        }
+        return result;
     }
 
 }
