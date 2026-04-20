@@ -26,6 +26,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG
 import java.io.File;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.Set;
 import java.util.SortedSet;
 
 import org.antlr.v4.runtime.CommonToken;
@@ -575,6 +576,239 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.orElseThrow(),
                         "current", current -> ((Collection<?>) current).isEmpty()))
                 .isTrue();
+    }
+
+    /**
+     * Verifies that pattern variables in scope are not treated as instance fields,
+     * while actual instance field references are still reported.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testPatternVariables() throws Exception {
+        final String[] expected = {
+            "24:17: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "25:13: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "29:13: " + getCheckMessage(MSG_VARIABLE, "s", ""),
+            "30:13: " + getCheckMessage(MSG_VARIABLE, "n", ""),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisPatternVariables.java"),
+                expected);
+    }
+
+    @Test
+    public void testPatternVariableHelperMethodsWithNull() throws Exception {
+        final Set<?> trueBranch = TestUtil.invokeStaticMethod(
+                RequireThisCheck.class, "getPatternVariablesInTrueBranch",
+                Set.class, (Object) null);
+        final Set<?> falseBranch = TestUtil.invokeStaticMethod(
+                RequireThisCheck.class, "getPatternVariablesInFalseBranch",
+                Set.class, (Object) null);
+        final Set<?> introducedWhenTrue = TestUtil.invokeStaticMethod(
+                RequireThisCheck.class, "getPatternVariablesIntroducedWhenTrue",
+                Set.class, (Object) null);
+        final Set<?> introducedWhenFalse = TestUtil.invokeStaticMethod(
+                RequireThisCheck.class, "getPatternVariablesIntroducedWhenFalse",
+                Set.class, (Object) null);
+
+        assertWithMessage("Expected true-branch helper to return empty set for null input")
+                .that(trueBranch)
+                .isEmpty();
+        assertWithMessage("Expected false-branch helper to return empty set for null input")
+                .that(falseBranch)
+                .isEmpty();
+        assertWithMessage("Expected introduced-when-true helper to return empty set for null input")
+                .that(introducedWhenTrue)
+                .isEmpty();
+        assertWithMessage(
+            "Expected introduced-when-false helper to return empty set for null input")
+                .that(introducedWhenFalse)
+                .isEmpty();
+    }
+
+    @Test
+    public void testPatternVariableLogicalOperandAndSubtree() throws Exception {
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputRequireThisPatternVariables.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final Optional<DetailAST> logicalNot = TestUtil.findTokenInAstByPredicate(root,
+                ast -> ast.getType() == TokenTypes.LNOT);
+
+        assertWithMessage("Ast should contain LNOT")
+                .that(logicalNot.isPresent())
+                .isTrue();
+
+        final DetailAST operand = TestUtil.invokeStaticMethod(
+                RequireThisCheck.class, "getLogicalOperand",
+                DetailAST.class, logicalNot.orElseThrow());
+
+        assertWithMessage("Expected logical operand to be found")
+                .that(operand)
+                .isNotNull();
+        assertWithMessage("Expected logical operand of LNOT to skip parentheses")
+                .that(operand.getType())
+                .isEqualTo(TokenTypes.LAND);
+
+        final boolean subtreeMatch = TestUtil.invokeStaticMethod(
+                RequireThisCheck.class, "isInSubtree",
+                Boolean.class, operand, operand.getLastChild());
+        final boolean subtreeMiss = TestUtil.invokeStaticMethod(
+                RequireThisCheck.class, "isInSubtree",
+                Boolean.class, operand, logicalNot.orElseThrow());
+
+        assertWithMessage("Expected right side of LAND to be inside LAND subtree")
+                .that(subtreeMatch)
+                .isTrue();
+        assertWithMessage("Expected LNOT to be outside LAND subtree")
+                .that(subtreeMiss)
+                .isFalse();
+    }
+
+    @Test
+    public void testPatternVariablesRecordPattern() throws Exception {
+        final String[] expected = {
+            "21:13: " + getCheckMessage(MSG_VARIABLE, "s", ""),
+            "22:13: " + getCheckMessage(MSG_VARIABLE, "x", ""),
+            "23:13: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisPatternVariablesRecordPattern.java"),
+                expected);
+    }
+
+    @Test
+    public void testPatternVariablesIntroducedByBooleanOperators() throws Exception {
+        final DetailAST land = createAst(TokenTypes.LAND, "&&",
+                createAst(TokenTypes.LITERAL_INSTANCEOF, "instanceof",
+                        createAst(TokenTypes.PATTERN_VARIABLE_DEF, "PATTERN_VARIABLE_DEF",
+                                createAst(TokenTypes.IDENT, "p"))),
+                createAst(TokenTypes.IDENT, "condition"));
+        final DetailAST lnot = createAst(TokenTypes.LNOT, "!",
+                createAst(TokenTypes.IDENT, "condition"));
+        final DetailAST lor = createAst(TokenTypes.LOR, "||",
+                createAst(TokenTypes.IDENT, "left"),
+                createAst(TokenTypes.IDENT, "right"));
+        final DetailAST exprWithLand = createAst(TokenTypes.EXPR, "EXPR", land);
+        final DetailAST exprWithLor = createAst(TokenTypes.EXPR, "EXPR", lor);
+
+        final Set<?> introducedWhenTrueFromLand = TestUtil.invokeStaticMethod(
+                RequireThisCheck.class, "getPatternVariablesIntroducedWhenTrue",
+                Set.class, land);
+        final Set<?> introducedWhenTrueFromExpr = TestUtil.invokeStaticMethod(
+                RequireThisCheck.class, "getPatternVariablesIntroducedWhenTrue",
+                Set.class, exprWithLand);
+        final Set<?> introducedWhenTrueFromLnot = TestUtil.invokeStaticMethod(
+                RequireThisCheck.class, "getPatternVariablesIntroducedWhenTrue",
+                Set.class, lnot);
+        final Set<?> introducedWhenFalseFromLor = TestUtil.invokeStaticMethod(
+                RequireThisCheck.class, "getPatternVariablesIntroducedWhenFalse",
+                Set.class, lor);
+        final Set<?> introducedWhenFalseFromExpr = TestUtil.invokeStaticMethod(
+                RequireThisCheck.class, "getPatternVariablesIntroducedWhenFalse",
+                Set.class, exprWithLor);
+
+        assertWithMessage("Expected LAND to introduce pattern variable p when true")
+                .that(introducedWhenTrueFromLand)
+                .containsExactly("p");
+        assertWithMessage("Expected EXPR to delegate to LAND when collecting true-path variables")
+                .that(introducedWhenTrueFromExpr)
+                .containsExactly("p");
+        assertWithMessage("Expected LNOT helper path to be exercised")
+                .that(introducedWhenTrueFromLnot)
+                .isEmpty();
+        assertWithMessage("Expected LOR to introduce no pattern variables when false")
+                .that(introducedWhenFalseFromLor)
+                .isEmpty();
+        assertWithMessage("Expected EXPR to delegate to LOR when collecting false-path variables")
+                .that(introducedWhenFalseFromExpr)
+                .isEmpty();
+    }
+
+    @Test
+    public void testPatternVariablesDeclaredByRecordPatternWithBindingVariable()
+            throws Exception {
+        final DetailAST root = JavaParser.parseFile(
+                new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
+                        + "grammar/java19/InputJava19RecordDecompositionWithConditionInLoops.java"),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final DetailAST instanceOfAst = TestUtil.findTokenInAstByPredicate(
+                root,
+                ast -> {
+                    return ast.getType() == TokenTypes.LITERAL_INSTANCEOF
+                            && ast.findFirstToken(TokenTypes.RECORD_PATTERN_DEF) != null
+                            && ast.findFirstToken(TokenTypes.RECORD_PATTERN_DEF)
+                                    .findFirstToken(TokenTypes.IDENT) != null;
+                })
+                .orElseThrow();
+
+        final Set<?> declared = TestUtil.invokeStaticMethod(
+                RequireThisCheck.class, "getPatternVariablesDeclaredBy",
+                Set.class, instanceOfAst);
+
+        assertWithMessage("Expected record pattern component and binding variable to be collected")
+                .that(declared)
+                .containsAtLeast("recordComponent", "r1");
+    }
+
+    @Test
+    public void testGetLogicalOperandWithSyntheticParenthesisTokens() throws Exception {
+        final DetailAST lnotWithLparen = createAst(TokenTypes.LNOT, "!",
+                createAst(TokenTypes.LPAREN, "("),
+                createAst(TokenTypes.IDENT, "operand"));
+        final DetailAST lnotWithRparen = createAst(TokenTypes.LNOT, "!",
+                createAst(TokenTypes.RPAREN, ")"),
+                createAst(TokenTypes.IDENT, "operand"));
+        final DetailAST lnotWithoutChildren = createAst(TokenTypes.LNOT, "!");
+
+        final DetailAST operandAfterLparen = TestUtil.invokeStaticMethod(
+                RequireThisCheck.class, "getLogicalOperand",
+                DetailAST.class, lnotWithLparen);
+        final DetailAST operandAfterRparen = TestUtil.invokeStaticMethod(
+                RequireThisCheck.class, "getLogicalOperand",
+                DetailAST.class, lnotWithRparen);
+        final DetailAST missingOperand = TestUtil.invokeStaticMethod(
+                RequireThisCheck.class, "getLogicalOperand",
+                DetailAST.class, lnotWithoutChildren);
+
+        assertWithMessage("Expected logical operand after LPAREN to be returned")
+                .that(operandAfterLparen.getText())
+                .isEqualTo("operand");
+        assertWithMessage("Expected logical operand after RPAREN to be returned")
+                .that(operandAfterRparen.getText())
+                .isEqualTo("operand");
+        assertWithMessage("Expected null when LNOT has no children")
+                .that(missingOperand)
+                .isNull();
+    }
+
+    @Test
+    public void testPatternVariablesDeclaredByRecordPatternBindingVariable() throws Exception {
+        final DetailAST recordPattern = createAst(TokenTypes.RECORD_PATTERN_DEF,
+                "RECORD_PATTERN_DEF",
+                createAst(TokenTypes.PATTERN_VARIABLE_DEF, "PATTERN_VARIABLE_DEF"),
+                createAst(TokenTypes.IDENT, "r1"));
+        final DetailAST instanceOfAst = createAst(TokenTypes.LITERAL_INSTANCEOF,
+                "instanceof", recordPattern);
+
+        final Set<?> declared = TestUtil.invokeStaticMethod(
+                RequireThisCheck.class, "getPatternVariablesDeclaredBy",
+                Set.class, instanceOfAst);
+
+        assertWithMessage("Expected binding variable to be collected from record pattern")
+                .that(declared)
+                .containsExactly("r1");
+    }
+
+    private static DetailAST createAst(int tokenType, String text, DetailAST... children) {
+        final DetailAstImpl ast = new DetailAstImpl();
+        ast.initialize(new CommonToken(tokenType, text));
+        for (DetailAST child : children) {
+            ast.addChild(child);
+        }
+        return ast;
     }
 
 }

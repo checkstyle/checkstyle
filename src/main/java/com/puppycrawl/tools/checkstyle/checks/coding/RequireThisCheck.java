@@ -98,7 +98,8 @@ public class RequireThisCheck extends AbstractCheck {
         TokenTypes.TYPE_ARGUMENT,
         TokenTypes.RECORD_DEF,
         TokenTypes.RECORD_COMPONENT_DEF,
-        TokenTypes.RESOURCE
+        TokenTypes.RESOURCE,
+        TokenTypes.PATTERN_VARIABLE_DEF
     );
     /** Set of all assign tokens. */
     private static final BitSet ASSIGN_TOKENS = TokenUtil.asBitSet(
@@ -326,7 +327,8 @@ public class RequireThisCheck extends AbstractCheck {
         if (!importOrPackage
                 && !typeName
                 && !isDeclarationToken(parentType)
-                && !isLambdaParameter(ast)) {
+                && !isLambdaParameter(ast)
+                && !isPatternVariableInScope(ast)) {
             final AbstractFrame fieldFrame = findClassFrame(ast, false);
 
             if (fieldFrame != null && ((ClassFrame) fieldFrame).hasInstanceMember(ast)) {
@@ -334,6 +336,267 @@ public class RequireThisCheck extends AbstractCheck {
             }
         }
         return frame;
+    }
+
+    /**
+     * Checks whether the given identifier is a pattern variable that is in scope
+     * at its current location.
+     *
+     * @param ident identifier token to check
+     * @return {@code true} if the identifier is a pattern variable in scope;
+     *         {@code false} otherwise
+     */
+    private static boolean isPatternVariableInScope(DetailAST ident) {
+        final Set<String> patternVariablesInScope = new HashSet<>();
+        DetailAST child = ident;
+
+        for (DetailAST parent = ident.getParent(); parent != null; parent = parent.getParent()) {
+            if (parent.getType() == TokenTypes.LAND
+                    && isInSubtree(parent.getLastChild(), child)) {
+                patternVariablesInScope.addAll(
+                        getPatternVariablesIntroducedWhenTrue(parent.getFirstChild()));
+            }
+            else if (parent.getType() == TokenTypes.LOR
+                    && isInSubtree(parent.getLastChild(), child)) {
+                patternVariablesInScope.addAll(
+                        getPatternVariablesIntroducedWhenFalse(parent.getFirstChild()));
+            }
+            else if (parent.getType() == TokenTypes.LITERAL_IF) {
+                final DetailAST condition = parent.findFirstToken(TokenTypes.EXPR);
+                final DetailAST thenStatement =
+                        parent.findFirstToken(TokenTypes.RPAREN).getNextSibling();
+                final DetailAST elseLiteral = parent.findFirstToken(TokenTypes.LITERAL_ELSE);
+
+                if (isInSubtree(thenStatement, child)) {
+                    patternVariablesInScope.addAll(
+                            getPatternVariablesInTrueBranch(condition));
+                }
+                else if (elseLiteral != null && isInSubtree(elseLiteral, child)) {
+                    patternVariablesInScope.addAll(
+                            getPatternVariablesInFalseBranch(condition));
+                }
+            }
+            child = parent;
+        }
+
+        return patternVariablesInScope.contains(ident.getText());
+    }
+
+    /**
+     * Checks whether the specified node is located inside the subtree rooted at
+     * the given root node.
+     *
+     * @param root root of the subtree
+     * @param node node to test
+     * @return {@code true} if {@code node} is in the subtree rooted at {@code root};
+     *         {@code false} otherwise
+     */
+    private static boolean isInSubtree(DetailAST root, DetailAST node) {
+        boolean result = false;
+        DetailAST current = node;
+
+        while (current != null) {
+            if (current == root) {
+                result = true;
+                break;
+            }
+            current = current.getParent();
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets the set of pattern variables that are guaranteed to be in scope when
+     * the given expression evaluates to {@code true}.
+     *
+     * @param ast expression AST node
+     * @return pattern variable names that are in scope in the true branch
+     */
+    private static Set<String> getPatternVariablesInTrueBranch(DetailAST ast) {
+        final Set<String> result = new HashSet<>();
+
+        if (ast != null) {
+            switch (ast.getType()) {
+                case TokenTypes.EXPR -> {
+                    result.addAll(getPatternVariablesInTrueBranch(ast.getFirstChild()));
+                }
+                case TokenTypes.LNOT -> {
+                    result.addAll(getPatternVariablesInFalseBranch(getLogicalOperand(ast)));
+                }
+                case TokenTypes.LAND -> {
+                    result.addAll(getPatternVariablesInTrueBranch(ast.getFirstChild()));
+                    result.addAll(getPatternVariablesInTrueBranch(ast.getLastChild()));
+                }
+                case TokenTypes.LOR -> {
+                    final Set<String> left =
+                            getPatternVariablesInTrueBranch(ast.getFirstChild());
+                    final Set<String> right =
+                            getPatternVariablesInTrueBranch(ast.getLastChild());
+
+                    left.retainAll(right);
+                    result.addAll(left);
+                }
+                case TokenTypes.LITERAL_INSTANCEOF -> {
+                    result.addAll(getPatternVariablesDeclaredBy(ast));
+                }
+                default -> {
+                    // no-op
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets the set of pattern variables that are guaranteed to be in scope when
+     * the given expression evaluates to {@code false}.
+     *
+     * @param ast expression AST node
+     * @return pattern variable names that are in scope in the false branch
+     */
+    private static Set<String> getPatternVariablesInFalseBranch(DetailAST ast) {
+        final Set<String> result = new HashSet<>();
+
+        if (ast != null) {
+            switch (ast.getType()) {
+                case TokenTypes.EXPR -> {
+                    result.addAll(getPatternVariablesInFalseBranch(ast.getFirstChild()));
+                }
+                case TokenTypes.LNOT -> {
+                    result.addAll(getPatternVariablesInTrueBranch(getLogicalOperand(ast)));
+                }
+                case TokenTypes.LAND -> {
+                    final Set<String> left =
+                            getPatternVariablesInFalseBranch(ast.getFirstChild());
+                    final Set<String> right =
+                            getPatternVariablesInFalseBranch(ast.getLastChild());
+
+                    left.retainAll(right);
+                    result.addAll(left);
+                }
+                case TokenTypes.LOR -> {
+                    result.addAll(getPatternVariablesInFalseBranch(ast.getFirstChild()));
+                    result.addAll(getPatternVariablesInFalseBranch(ast.getLastChild()));
+                }
+                default -> {
+                    // no-op
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets the logical operand of a unary logical negation expression, skipping
+     * over parenthesis tokens if present.
+     *
+     * @param ast logical negation AST node
+     * @return the operand of the logical negation
+     */
+    private static DetailAST getLogicalOperand(DetailAST ast) {
+        DetailAST child = ast.getFirstChild();
+
+        while (child != null
+                && (child.getType() == TokenTypes.LPAREN
+                    || child.getType() == TokenTypes.RPAREN)) {
+            child = child.getNextSibling();
+        }
+
+        return child;
+    }
+
+    /**
+     * Gets pattern variables introduced by the given expression when that
+     * expression evaluates to {@code true}.
+     *
+     * @param ast expression AST node
+     * @return pattern variable names introduced when the expression is true
+     */
+    private static Set<String> getPatternVariablesIntroducedWhenTrue(DetailAST ast) {
+        final Set<String> result = new HashSet<>();
+
+        if (ast != null) {
+            switch (ast.getType()) {
+                case TokenTypes.EXPR -> {
+                    result.addAll(getPatternVariablesIntroducedWhenTrue(ast.getFirstChild()));
+                }
+                case TokenTypes.LNOT -> {
+                    result.addAll(getPatternVariablesIntroducedWhenFalse(ast.getFirstChild()));
+                }
+                case TokenTypes.LAND -> {
+                    result.addAll(getPatternVariablesIntroducedWhenTrue(ast.getFirstChild()));
+                    result.addAll(getPatternVariablesIntroducedWhenTrue(ast.getLastChild()));
+                }
+                case TokenTypes.LITERAL_INSTANCEOF -> {
+                    result.addAll(getPatternVariablesDeclaredBy(ast));
+                }
+                default -> {
+                    // no-op
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets pattern variables introduced by the given expression when that
+     * expression evaluates to {@code false}.
+     *
+     * @param ast expression AST node
+     * @return pattern variable names introduced when the expression is false
+     */
+    private static Set<String> getPatternVariablesIntroducedWhenFalse(DetailAST ast) {
+        final Set<String> result = new HashSet<>();
+
+        if (ast != null) {
+            switch (ast.getType()) {
+                case TokenTypes.EXPR -> {
+                    result.addAll(getPatternVariablesIntroducedWhenFalse(ast.getFirstChild()));
+                }
+                case TokenTypes.LNOT -> {
+                    result.addAll(getPatternVariablesIntroducedWhenTrue(ast.getFirstChild()));
+                }
+                case TokenTypes.LOR -> {
+                    result.addAll(getPatternVariablesIntroducedWhenFalse(ast.getFirstChild()));
+                    result.addAll(getPatternVariablesIntroducedWhenFalse(ast.getLastChild()));
+                }
+                default -> {
+                    // no-op
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets pattern variables declared by an instanceof pattern.
+     *
+     * @param ast instanceof token
+     * @return declared pattern variable names
+     */
+    private static Set<String> getPatternVariablesDeclaredBy(DetailAST ast) {
+        final Set<String> result = new HashSet<>();
+
+        for (DetailAST patternVariable : getAllTokensOfType(ast, TokenTypes.PATTERN_VARIABLE_DEF)) {
+            final DetailAST ident = patternVariable.findFirstToken(TokenTypes.IDENT);
+            if (ident != null) {
+                result.add(ident.getText());
+            }
+        }
+
+        for (DetailAST recordPattern : getAllTokensOfType(ast, TokenTypes.RECORD_PATTERN_DEF)) {
+            final DetailAST bindingVariable = recordPattern.findFirstToken(TokenTypes.IDENT);
+            if (bindingVariable != null) {
+                result.add(bindingVariable.getText());
+            }
+        }
+
+        return result;
     }
 
     /**
