@@ -140,11 +140,21 @@
                   </span>
                   <a href="checks/misc/lineending.html#LineEnding">LineEnding</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineEnding">
-                  config</a>),
+                  config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
                   <a href="checks/regexp/regexpsingleline.html#RegexpSingleline">
                     RegexpSingleline</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpSingleline">
-                  config</a>),
+                  config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
                   <a href="checks/misc/outertypefilename.html#OuterTypeFilename">
                     OuterTypeFilename</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OuterTypeFilename">
