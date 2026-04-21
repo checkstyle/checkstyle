@@ -114,6 +114,14 @@
   <suppress id="discouragedRegexpInViolationMessage"
             files="regexponfilename[\\/]Example[24].*"/>
 
+  <!-- Example contains '$' in violation message intentionally -->
+  <suppress id="discouragedRegexpInViolationMessage"
+            files="googlenonconstantfieldname[\\/]Example1.java"/>
+
+  <!-- Example is longer than FileLength limit by design -->
+  <suppress checks="FileLength"
+            files="googlenonconstantfieldname[\\/]Example1.java"/>
+
   <!-- Suppress forbidden regex messages for avoidstarimport examples -->
   <suppress id="forbiddenRegexpInViolationMessage"
     files="avoidstarimport[\\/]Example[1-6].java"/>
