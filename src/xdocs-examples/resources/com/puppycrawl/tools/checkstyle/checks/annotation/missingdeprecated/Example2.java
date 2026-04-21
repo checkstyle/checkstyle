@@ -16,7 +16,8 @@ class Example2 {
   public static final int MY_CONST = 13; // ok
 
   /** This javadoc is missing deprecated tag. */
-  // violation below '@deprecated Javadoc tag with description.'
+  // violation 2 lines below """Must include both @java.lang.Deprecated annotation
+  //  and @deprecated Javadoc tag with description."""
   @Deprecated
   public static final int COUNTER = 10;
 

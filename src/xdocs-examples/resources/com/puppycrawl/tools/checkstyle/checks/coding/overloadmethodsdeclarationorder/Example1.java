@@ -19,7 +19,8 @@ class Example1 {
 
   void otherSame(String s) {}
   void foo() {}
-  // violation below, 'All overloaded methods should be placed next to each other'
+  // violation 2 lines below """All overloaded methods should be placed next
+  //  to each other. Previous overloaded method located at line '20'."""
   void otherSame(String s, int i) {}
 }
 // xdoc section -- end
