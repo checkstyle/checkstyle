@@ -15,7 +15,7 @@ public class Example2 {
   public void foo() {
     String nullString = null;
 
-    // violation below 'String literal expressions should be on the left side'
+    // violation below 'String literal expressions .... equals comparison.'
     nullString.equals("My_Sweet_String");
     "My_Sweet_String".equals(nullString);
 

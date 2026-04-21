@@ -84,7 +84,8 @@ class Example1 extends ParentClass1 {
   }
 
   /** {@inheritDoc} */
-  public void test2() { // violation, 'include @java.lang.Override'
+  // violation below, 'Must include @java.lang.Override .... Javadoc tag exists.'
+  public void test2() {
 
   }
 
@@ -128,7 +129,8 @@ class Example1 extends ParentClass1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   /** {@inheritDoc} */
-  public boolean equals(Object o) { // violation, 'include @java.lang.Override'
+  // violation below, 'Must include @java.lang.Override .... Javadoc tag exists.'
+  public boolean equals(Object o) {
     return o == this;
   }
 }
@@ -136,7 +138,8 @@ class Example2 {
 interface B {
 
   /** {@inheritDoc} */
-  void test(); // violation, 'include @java.lang.Override'
+  // violation below, 'Must include @java.lang.Override .... Javadoc tag exists.'
+  void test();
 }
 
 class C extends ParentClass2 {
