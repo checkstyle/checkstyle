@@ -19,9 +19,11 @@ public class Example2 {
 
   void foo() {}
 
-  Example2(int x) {} // violation 'Constructors should be grouped together'
+  // violation below, 'Constructors should be grouped together. .... at line '....'.'
+  Example2(int x) {}
 
-  Example2(String s, int x) {} // violation 'Constructors should be grouped together'
+  // violation below, 'Constructors should be grouped together. .... at line '....'.'
+  Example2(String s, int x) {}
 
   private enum ExampleEnum {
 
@@ -33,11 +35,13 @@ public class Example2 {
 
     final int x = 10;
 
-    ExampleEnum(String str) {} // violation 'Constructors should be grouped together'
+    // violation below, 'Constructors should be grouped together. .... at line .....'
+    ExampleEnum(String str) {}
 
     void foo() {}
   }
 
-  Example2(float f) {} // violation 'Constructors should be grouped together'
+  // violation below, 'Constructors should be grouped together. .... at line '....'.'
+  Example2(float f) {}
 }
 // xdoc section -- end

@@ -40,6 +40,15 @@ public record TestInputViolation(int lineNo, String message)
     /** Pattern to match the symbol: ")". */
     private static final Pattern CLOSE_PAREN_PATTERN = Pattern.compile("\\)");
 
+    /**
+     * Pattern to match four or more consecutive dots used as a human-readable
+     * wildcard in violation message comments (e.g. {@code 'Must include .... tag'}).
+     * Four dots are substituted with {@code .*} before the message is used as
+     * a regex, so example files do not need to contain raw regexp syntax.
+     * See <a href="https://github.com/checkstyle/checkstyle/issues/13740">issue #13740</a>.
+     */
+    private static final Pattern FOUR_DOTS_PATTERN = Pattern.compile("\\.\\.\\.\\.+");
+
     /** Legacy getter for line number (backward compatibility). */
     public int getLineNo() {
         return lineNo;
@@ -59,6 +68,7 @@ public record TestInputViolation(int lineNo, String message)
         String regex = lineNo + ":(?:\\d+:)?\\s.*";
         if (message != null) {
             String rawMessage = message;
+            rawMessage = FOUR_DOTS_PATTERN.matcher(rawMessage).replaceAll(".*");
             rawMessage = OPEN_CURLY_PATTERN.matcher(rawMessage).replaceAll("\\\\{");
             rawMessage = OPEN_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\(");
             rawMessage = CLOSE_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\)");
@@ -87,6 +97,6 @@ public record TestInputViolation(int lineNo, String message)
     @Override
     public boolean equals(Object object) {
         return object instanceof TestInputViolation violation
-            && compareTo(violation) == 0;
+                && compareTo(violation) == 0;
     }
 }

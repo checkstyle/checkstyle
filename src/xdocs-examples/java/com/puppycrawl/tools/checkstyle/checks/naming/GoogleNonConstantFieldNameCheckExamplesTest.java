@@ -35,14 +35,14 @@ public class GoogleNonConstantFieldNameCheckExamplesTest extends AbstractExample
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "31:13: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "Bad"),
-            "35:20: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "mValue"),
-            "39:21: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "f"),
-            "42:23: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "foo_bar"),
-            "46:7: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "fA"),
+            "29:13: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "Bad"),
+            "33:20: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "mValue"),
+            "37:21: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "f"),
+            "41:23: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "foo_bar"),
+            "45:7: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "fA"),
             "49:7: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "xml$parser"),
-            "52:7: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "gradle_9_5_1"),
-            "55:7: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "_foo2"),
+            "53:7: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "gradle_9_5_1"),
+            "57:7: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "_foo2"),
         };
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }

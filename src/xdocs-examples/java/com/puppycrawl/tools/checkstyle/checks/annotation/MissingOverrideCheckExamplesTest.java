@@ -36,9 +36,9 @@ public class MissingOverrideCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "31:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE, "test2"),
-            "37:3: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
-            "43:3: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
+            "32:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE, "test2"),
+            "38:3: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
+            "44:3: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
         };
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
@@ -46,8 +46,8 @@ public class MissingOverrideCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "22:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE, "equals"),
-            "30:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE, "test"),
+            "23:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE, "equals"),
+            "32:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE, "test"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);

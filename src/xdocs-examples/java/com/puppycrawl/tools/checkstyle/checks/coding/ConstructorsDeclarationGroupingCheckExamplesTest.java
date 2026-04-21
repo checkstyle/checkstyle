@@ -42,10 +42,10 @@ public class ConstructorsDeclarationGroupingCheckExamplesTest
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "22:3: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_KEY, 18),
-            "24:3: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_KEY, 18),
-            "36:5: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_KEY, 32),
-            "41:3: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_KEY, 18),
+            "23:3: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_KEY, 18),
+            "26:3: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_KEY, 18),
+            "39:5: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_KEY, 34),
+            "45:3: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_KEY, 18),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
