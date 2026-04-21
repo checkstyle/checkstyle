@@ -68,6 +68,10 @@
     <!-- §3.12: Expression lambda body length check based on OpenJDK style guide -->
     <module name="LambdaBodyLength"/>
 
+    <module name="UpperEll"/>
+    <module name="HexLiteralCase"/>
+    <module name="NumericalPrefixesInfixesSuffixesCharacterCase"/>
+
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
       <property name="file" value="${org.checkstyle.openjdk.suppressionxpathfilter.config}"
