@@ -170,11 +170,11 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
     final String r4 = // violation below 'Consider using special escape sequence'
         """
         \u0022
-        """; // violation 2 lines above 'Unicode escape(s) usage should be avoided.
+        """; // violation 2 lines above, 'Unicode escape(s) usage should be avoided.
     final String r5 = // violation below 'Consider using special escape sequence'
         """
         \u000csssdfsd
-        """; // violation 2 lines above 'Unicode escape(s) usage should be avoided.
+        """; // violation 2 lines above, 'Unicode escape(s) usage should be avoided.
     // The following have no escape sequences, should not cause violations
     final String r6 =
         """
