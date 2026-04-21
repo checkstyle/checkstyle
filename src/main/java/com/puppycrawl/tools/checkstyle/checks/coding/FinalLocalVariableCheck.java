@@ -316,6 +316,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 TokenTypes.LITERAL_ELSE,
                 TokenTypes.CASE_GROUP,
                 TokenTypes.SWITCH_RULE,
+                TokenTypes.LITERAL_CATCH,
             };
             if (!isInSpecificCodeBlocks(ident, blockTypes)) {
                 candidate.alreadyAssigned = true;
@@ -418,16 +419,18 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * If there is an {@code else} following or token is CASE_GROUP or
-     * SWITCH_RULE and there is another {@code case} following, then update the
-     * uninitialized variables.
+     * Update the uninitialized variables if:
+     * 1. there is an {@code else} following; or
+     * 2. token is CASE_GROUP or SWITCH_RULE and there is another {@code case} following, or
+     * 3. token is LITERAL_CATCH and there is another {@code catch} following,
      *
      * @param ast token to be checked
      * @return true if should be updated, else false
      */
     private static boolean shouldUpdateUninitializedVariables(DetailAST ast) {
         return ast.getLastChild().getType() == TokenTypes.LITERAL_ELSE
-            || isCaseTokenWithAnotherCaseFollowing(ast);
+            || isCaseTokenWithAnotherCaseFollowing(ast)
+            || isCatchTokenWithAnotherCatchFollowing(ast);
     }
 
     /**
@@ -464,6 +467,19 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             }
         }
         return returnValue;
+    }
+
+    /**
+     * If token is LITERAL_CATCH and there is another {@code catch} following.
+     *
+     * @param ast token to be checked
+     * @return true if token is LITERAL_CATCH and there is another {@code catch}
+     *     following, else false
+     */
+    private static boolean isCatchTokenWithAnotherCatchFollowing(DetailAST ast) {
+        return ast.getType() == TokenTypes.LITERAL_CATCH
+                && ast.getNextSibling() != null
+                && ast.getNextSibling().getType() == TokenTypes.LITERAL_CATCH;
     }
 
     /**
