@@ -300,7 +300,12 @@ public class FinalLocalVariableCheckTest
 
     @Test
     public void testMultiTypeCatch() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "14:13: " + getCheckMessage(MSG_KEY, "a"),
+            "21:13: " + getCheckMessage(MSG_KEY, "e1"),
+            "21:17: " + getCheckMessage(MSG_KEY, "e2"),
+            "34:19: " + getCheckMessage(MSG_KEY, "f"),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableMultiCatch.java"),
                 expected);
