@@ -33,7 +33,7 @@ public class OverloadMethodsDeclarationOrderCheckExamplesTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "23:3: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_KEY, "20"),
+            "24:3: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_KEY, "20"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
