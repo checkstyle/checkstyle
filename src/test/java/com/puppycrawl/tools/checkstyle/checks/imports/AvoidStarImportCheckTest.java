@@ -39,11 +39,11 @@ public class AvoidStarImportCheckTest
     public void testDefaultOperation()
             throws Exception {
         final String[] expected = {
-            "12:15: " + getCheckMessage(MSG_KEY, "java.io.*"),
-            "13:17: " + getCheckMessage(MSG_KEY, "java.lang.*"),
-            "28:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "13:15: " + getCheckMessage(MSG_KEY, "java.io.*"),
+            "14:17: " + getCheckMessage(MSG_KEY, "java.lang.*"),
             "29:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
-            "31:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
+            "30:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "32:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
         };
 
         verifyWithInlineConfigParser(
@@ -56,7 +56,7 @@ public class AvoidStarImportCheckTest
             throws Exception {
         // allow the java.io/java.lang,javax.swing.WindowConstants star imports
         final String[] expected2 = {
-            "31:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
+            "32:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAvoidStarImportExcludes.java"),
@@ -67,9 +67,9 @@ public class AvoidStarImportCheckTest
     public void testAllowClassImports() throws Exception {
         // allow all class star imports
         final String[] expected2 = {
-            "28:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "29:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
-            "31:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"), };
+            "30:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "32:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"), };
         verifyWithInlineConfigParser(
                 getPath("InputAvoidStarImportAllowClass.java"), expected2);
     }
@@ -78,11 +78,20 @@ public class AvoidStarImportCheckTest
     public void testAllowStaticMemberImports() throws Exception {
         // allow all static star imports
         final String[] expected2 = {
-            "12:15: " + getCheckMessage(MSG_KEY, "java.io.*"),
-            "13:17: " + getCheckMessage(MSG_KEY, "java.lang.*"),
+            "13:15: " + getCheckMessage(MSG_KEY, "java.io.*"),
+            "14:17: " + getCheckMessage(MSG_KEY, "java.lang.*"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAvoidStarImportAllowStaticMember.java"), expected2);
+    }
+
+    @Test
+    public void testMaxAllowed() throws Exception {
+        final String[] expected = {
+            "16:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.*"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAvoidStarImportMaxAllowed.java"), expected);
     }
 
     @Test
