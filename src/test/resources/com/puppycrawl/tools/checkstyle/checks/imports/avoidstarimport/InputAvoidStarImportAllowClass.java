@@ -1,6 +1,7 @@
 /*
 AvoidStarImport
 excludes = (default)
+maxAllowed = (default)0
 allowClassImports = true
 allowStaticMemberImports = (default)false
 
