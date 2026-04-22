@@ -54,6 +54,8 @@
 
   <module name="TreeWalker">
     <!-- Add TreeWalker checks based on OpenJDK style guide -->
+    <module name="AvoidStarImport"/>
+
     <module name="Indentation">
       <property name="basicOffset" value="4"/>
       <property name="caseIndent" value="4"/>
