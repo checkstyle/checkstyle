@@ -611,8 +611,36 @@
                     3.14 Literals
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/upperell.html#UpperEll">UpperEll</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UpperEll">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/hexliteralcase.html#HexLiteralCase">
+                    HexLiteralCase</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HexLiteralCase">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/numericalprefixesinfixessuffixescharactercase.html#NumericalPrefixesInfixesSuffixesCharacterCase">
+                    NumericalPrefixesInfixesSuffixesCharacterCase</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NumericalPrefixesInfixesSuffixesCharacterCase">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter3formatting/rule314literals">
+                    samples</a>
+                </td>
               </tr>
               <tr>
                 <td>
