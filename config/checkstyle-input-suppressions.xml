@@ -72,8 +72,6 @@
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]modifiedcontrolvariable[\\/]InputXpathModifiedControlVariableSkipEnhancedForLoop.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]multiplestringliterals[\\/]InputXpathMultipleStringLiteralsIgnoreRegexp.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]simplifybooleanexpression[\\/]InputXpathSimplifyBooleanExpressionInterface.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]naming[\\/]typename[\\/]InputXpathTypeNameDefault.java"/>
@@ -100,8 +98,6 @@
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule412nonemptyblocks[\\/]InputNonemptyBlocksLeftRightCurly.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]multiplestringliterals[\\/]InputXpathMultipleStringLiteralsIgnoreOccurrenceContext.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]returncount[\\/]InputXpathReturnCountVoid.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources-noncompilable[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]illegalinstantiation[\\/]InputXpathIllegalInstantiationInterface.java"/>
@@ -121,8 +117,6 @@
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]toolongpackagetotestcoveragegooglesjavastylerule[\\/]InputPackageStatementLongName.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]unnecessarysemicolonafteroutertypedeclaration[\\/]InputXpathUnnecessarySemicolonAfterOuterTypeDeclarationInnerTypes.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]multiplestringliterals[\\/]InputXpathMultipleStringLiteralsAllowDuplicates.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]naming[\\/]membername[\\/]InputXpathMemberNameIgnoreProtected.java"/>
   <suppress id="UnnecessaryOkComment"
@@ -171,8 +165,6 @@
             files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]naming[\\/]parametername[\\/]InputXpathParameterNameIgnoreOverridden.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]naming[\\/]methodname[\\/]InputXpathMethodNameInner.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]multiplestringliterals[\\/]InputXpathMultipleStringLiteralsDefault.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]sizes[\\/]parameternumber[\\/]InputXpathParameterNumberIgnoreOverriddenMethods.java"/>
   <suppress id="UnnecessaryOkComment"
