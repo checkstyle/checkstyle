@@ -47,6 +47,24 @@
           files="[\\/]packageobjectfactory[\\/]abc[\\/]FooCheck.java"/>
   <suppress id="noCheckstyleInInputs"
           files="[\\/]packageobjectfactory[\\/]zoo[\\/]FooCheck.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule333orderingandspacing[\\/]InputFormattedOrderingAndSpacingValid.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]imports[\\/]customimportorder[\\/]InputXpathCustomImportOrderFour.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule332nolinewrap[\\/]InputNoLineWrapping.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]imports[\\/]customimportorder[\\/]InputXpathCustomImportOrderSix.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule333orderingandspacing[\\/]InputOrderingAndSpacingValid.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule333orderingandspacing[\\/]InputOrderingAndSpacingValid2.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]blocks[\\/]needbraces[\\/]InputXpathNeedBracesSingleLine.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule333orderingandspacing[\\/]InputFormattedOrderingAndSpacingValid2.java"/>
+
+  <!-- until https://github.com/checkstyle/checkstyle/issues/19739 -->
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule462horizontalwhitespace[\\/]InputWhitespaceAroundEmptyTypesAndCycles.java"/>
   <suppress id="UnnecessaryOkComment"
@@ -61,8 +79,6 @@
             files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]naming[\\/]typename[\\/]InputXpathTypeNameDefault.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule462horizontalwhitespace[\\/]InputFormattedNoWhitespaceBeforeEmptyForLoop.java"/>
-  <suppress id="noCheckstyleInInputs"
-            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule333orderingandspacing[\\/]InputFormattedOrderingAndSpacingValid.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule3sourcefile[\\/]InputSourceFileStructure.java"/>
   <suppress id="UnnecessaryOkComment"
@@ -73,8 +89,6 @@
             files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]sizes[\\/]parameternumber[\\/]InputXpathParameterNumberDefault.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]naming[\\/]membername[\\/]InputXpathMemberNameDefault.java"/>
-  <suppress id="noCheckstyleInInputs"
-            files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]imports[\\/]customimportorder[\\/]InputXpathCustomImportOrderFour.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule341onetoplevel[\\/]InputOneTopLevelClassGood.java"/>
   <suppress id="UnnecessaryOkComment"
@@ -85,8 +99,6 @@
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule462horizontalwhitespace[\\/]InputFormattedWhitespaceAroundEmptyTypesAndCycles.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule412nonemptyblocks[\\/]InputNonemptyBlocksLeftRightCurly.java"/>
-  <suppress id="noCheckstyleInInputs"
-            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule332nolinewrap[\\/]InputNoLineWrapping.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]multiplestringliterals[\\/]InputXpathMultipleStringLiteralsIgnoreOccurrenceContext.java"/>
   <suppress id="UnnecessaryOkComment"
@@ -145,20 +157,12 @@
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule4821onevariableperline[\\/]InputFormattedOneVariablePerDeclaration.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]sizes[\\/]parameternumber[\\/]InputXpathParameterNumberMethods.java"/>
-  <suppress id="noCheckstyleInInputs"
-            files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]imports[\\/]customimportorder[\\/]InputXpathCustomImportOrderSix.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]naming[\\/]parametername[\\/]InputXpathParameterNameAccessModifier.java"/>
-  <suppress id="noCheckstyleInInputs"
-            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule333orderingandspacing[\\/]InputOrderingAndSpacingValid.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources-noncompilable[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]illegalinstantiation[\\/]InputXpathIllegalInstantiationAnonymous.java"/>
-  <suppress id="noCheckstyleInInputs"
-            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule333orderingandspacing[\\/]InputOrderingAndSpacingValid2.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule341onetoplevel[\\/]InputOneTopLevelClassBad2.java"/>
-  <suppress id="noCheckstyleInInputs"
-            files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]blocks[\\/]needbraces[\\/]InputXpathNeedBracesSingleLine.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]modifiedcontrolvariable[\\/]InputXpathModifiedControlVariableNestedSkipEnhancedForLoop.java"/>
   <suppress id="UnnecessaryOkComment"
@@ -171,8 +175,6 @@
             files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]multiplestringliterals[\\/]InputXpathMultipleStringLiteralsDefault.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]sizes[\\/]parameternumber[\\/]InputXpathParameterNumberIgnoreOverriddenMethods.java"/>
-  <suppress id="noCheckstyleInInputs"
-            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule333orderingandspacing[\\/]InputFormattedOrderingAndSpacingValid2.java"/>
   <suppress id="UnnecessaryOkComment"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule4821onevariableperline[\\/]InputOneVariablePerDeclaration.java"/>
 </suppressions>
