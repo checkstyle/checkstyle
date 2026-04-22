@@ -1,6 +1,7 @@
 /*
 AvoidStarImport
 excludes = java.io, java.lang, javax.swing.WindowConstants.*
+maxAllowed = (default)0
 allowClassImports = (default)false
 allowStaticMemberImports = (default)false
 
