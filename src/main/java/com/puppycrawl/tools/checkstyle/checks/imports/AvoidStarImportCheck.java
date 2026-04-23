@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.puppycrawl.tools.checkstyle.StatelessCheck;
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <div>
- * Checks that there are no import statements that use the {@code *} notation.
+ * Checks that there are no import statements that use the {@code *} notation by default.
  * </div>
  *
  * <p>
@@ -41,6 +41,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * <p>
+ * Property {@code maxAllowed} can be used to allow a limited number of wildcard imports
+ * per file.
+ * </p>
+ *
+ * <p>
  * Notes:
  * Note that property {@code excludes} is not recursive, subpackages of excluded
  * packages are not automatically excluded.
@@ -48,7 +53,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @since 3.0
  */
-@StatelessCheck
+@FileStatefulCheck
 public class AvoidStarImportCheck
     extends AbstractCheck {
 
@@ -66,6 +71,12 @@ public class AvoidStarImportCheck
      * allowed and classes where starred static member imports are allowed.
      */
     private final Set<String> excludes = new HashSet<>();
+
+    /** Maximum number of wildcard imports allowed per file. */
+    private int maxAllowed;
+
+    /** Number of wildcard imports seen in the current file. */
+    private int starImportCount;
 
     /**
      * Control whether to allow starred class imports like
@@ -101,6 +112,11 @@ public class AvoidStarImportCheck
         //      <property name="allowStaticMemberImports" value="false"/>
         //   </module>
         return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+    }
+
+    @Override
+    public void beginTree(DetailAST rootAST) {
+        starImportCount = 0;
     }
 
     /**
@@ -144,32 +160,43 @@ public class AvoidStarImportCheck
         allowStaticMemberImports = allow;
     }
 
-    @Override
-    public void visitToken(final DetailAST ast) {
-        if (ast.getType() == TokenTypes.IMPORT) {
-            if (!allowClassImports) {
-                final DetailAST startingDot = ast.getFirstChild();
-                logsStarredImportViolation(startingDot);
-            }
-        }
-        else if (!allowStaticMemberImports) {
-            // must navigate past the static keyword
-            final DetailAST startingDot = ast.getFirstChild().getNextSibling();
-            logsStarredImportViolation(startingDot);
-        }
+    /**
+     * Setter to specify the maximum number of wildcard imports allowed per file.
+     *
+     * @param maxAllowed the maximum number of wildcard imports allowed per file.
+     * @since 13.4.1
+     */
+    public void setMaxAllowed(int maxAllowed) {
+        this.maxAllowed = maxAllowed;
     }
 
-    /**
-     * Gets the full import identifier.  If the import is a starred import and
-     * it's not excluded then a violation is logged.
-     *
-     * @param startingDot the starting dot for the import statement
-     */
-    private void logsStarredImportViolation(DetailAST startingDot) {
+    @Override
+    public void visitToken(final DetailAST ast) {
+        final DetailAST startingDot;
+        if (ast.getType() == TokenTypes.IMPORT) {
+            startingDot = ast.getFirstChild();
+        }
+        else {
+            startingDot = ast.getFirstChild().getNextSibling();
+        }
         final FullIdent name = FullIdent.createFullIdent(startingDot);
         final String importText = name.getText();
-        if (importText.endsWith(STAR_IMPORT_SUFFIX) && !excludes.contains(importText)) {
-            log(startingDot, MSG_KEY, importText);
+
+        if (importText.endsWith(STAR_IMPORT_SUFFIX)) {
+            if (maxAllowed > 0) {
+                starImportCount++;
+                if (starImportCount > maxAllowed) {
+                    log(startingDot, MSG_KEY, importText);
+                }
+            }
+            else if (ast.getType() == TokenTypes.IMPORT) {
+                if (!allowClassImports && !excludes.contains(importText)) {
+                    log(startingDot, MSG_KEY, importText);
+                }
+            }
+            else if (!allowStaticMemberImports && !excludes.contains(importText)) {
+                log(startingDot, MSG_KEY, importText);
+            }
         }
     }
 

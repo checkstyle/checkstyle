@@ -16,7 +16,8 @@
               </a>
             </td>
             <td>
-              Checks that there are no import statements that use the <code>*</code> notation.
+              Checks that there are no import statements that use the <code>*</code> notation by
+              default.
             </td>
           </tr>
           <tr>
