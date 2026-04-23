@@ -1,7 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.returncount;
 
 public class InputXpathReturnCountNonVoid {
-    public boolean equals(Object obj) { // OK
+    public boolean equals(Object obj) {
         int i = 1;
         switch (i) {
         case 1: return true;
