@@ -10,7 +10,7 @@
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="AvoidStarImport_Description">
         <div>
-          Checks that there are no import statements that use the <code>*</code> notation.
+          Checks that there are no import statements that use the <code>*</code> notation by default.
         </div>
 
         <p>
@@ -18,6 +18,11 @@
           members from a class leads to tight coupling between packages
           or classes and might lead to problems when a new version of a
           library introduces name clashes.
+        </p>
+
+        <p>
+          Property <code>maxAllowed</code> can be used to allow a limited number of wildcard imports
+          per file.
         </p>
       </subsection>
 
@@ -58,6 +63,13 @@
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>3.2</td>
+            </tr>
+            <tr>
+              <td><a id="maxAllowed"/><a href="#maxAllowed">maxAllowed</a></td>
+              <td>Specify the maximum number of wildcard imports allowed per file.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>0</code></td>
+              <td>13.4.1</td>
             </tr>
           </table>
         </div>
@@ -202,6 +214,29 @@ import java.io.*;
 import static java.lang.Math.*;
 import java.util.*; // violation, 'Using the '.*' form of import should be avoided.'
 import java.net.*;
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check to allow only one wildcard import per file:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidStarImport"&gt;
+      &lt;property name="maxAllowed" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.Scanner;
+import java.io.*;
+import static java.lang.Math.*; // violation, 'Using the '.*' form of import should be avoided.'
+import java.util.*; // violation, 'Using the '.*' form of import should be avoided.'
+import java.net.*; // violation, 'Using the '.*' form of import should be avoided.'
 </code></pre></div>
       </subsection>
 
