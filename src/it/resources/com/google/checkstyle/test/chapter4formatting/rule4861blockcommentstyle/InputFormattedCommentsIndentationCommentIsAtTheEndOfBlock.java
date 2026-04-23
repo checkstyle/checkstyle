@@ -64,7 +64,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
   }
 
   //    public void foo10() {
-  //
+  //    intentionally empty line in commented-out code block
   //    }
 
   /** Some javadoc. */
@@ -382,7 +382,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
   public void foo49() {
     // comment
     // block
-    // ok
+
   }
 
   /** Some javadoc. */
