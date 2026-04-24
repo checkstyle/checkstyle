@@ -7,6 +7,16 @@
 <suppressions>
 
   <!-- intentional problem for testing -->
+  <suppress checks="PackageDeclaration" files="InputEmptyLineSeparatorCrash18660\.java"/>
+
+  <!-- intentional problem for testing -->
+  <suppress checks="PackageDeclaration" files="InputEmptyLineSeparatorIssue18660e\.java"/>
+
+  <!-- intentional problem for testing -->
+  <suppress checks="PackageDeclaration"
+            files="emptylineseparator[\\/]InputEmptyLineSeparatorMutationTest\.java"/>
+
+  <!-- intentional problem for testing -->
   <suppress checks="PackageDeclaration"
             files="src[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorCompactNoPackage.java"/>
   <!-- intentional problem for testing -->
