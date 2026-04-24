@@ -65,6 +65,11 @@
     <module name="OneStatementPerLine"/>
     <module name="OuterTypeFilename"/>
 
+    <!-- §3.3.1: No more than one wildcard import should be used per file -->
+    <module name="AvoidStarImport">
+      <property name="maxAllowed" value="1"/>
+    </module>
+
     <!-- §3.12: Expression lambda body length check based on OpenJDK style guide -->
     <module name="LambdaBodyLength"/>
 

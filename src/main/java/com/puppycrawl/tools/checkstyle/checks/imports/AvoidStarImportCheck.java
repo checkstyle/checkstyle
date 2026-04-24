@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.puppycrawl.tools.checkstyle.StatelessCheck;
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @since 3.0
  */
-@StatelessCheck
+@FileStatefulCheck
 public class AvoidStarImportCheck
     extends AbstractCheck {
 
@@ -60,6 +60,9 @@ public class AvoidStarImportCheck
 
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";
+
+    /** Default number of wildcard imports allowed in a file. */
+    private static final int DEFAULT_MAX_ALLOWED = 0;
 
     /**
      * Specify packages where starred class imports are
@@ -78,6 +81,12 @@ public class AvoidStarImportCheck
      * {@code import static org.junit.Assert.*;}.
      */
     private boolean allowStaticMemberImports;
+
+    /** Maximum number of wildcard imports that can be used in a file. */
+    private int maxAllowed = DEFAULT_MAX_ALLOWED;
+
+    /** Number of wildcard imports encountered in a file. */
+    private int starImportCount;
 
     @Override
     public int[] getDefaultTokens() {
@@ -101,6 +110,11 @@ public class AvoidStarImportCheck
         //      <property name="allowStaticMemberImports" value="false"/>
         //   </module>
         return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+    }
+
+    @Override
+    public void beginTree(DetailAST rootAST) {
+        starImportCount = 0;
     }
 
     /**
@@ -144,6 +158,16 @@ public class AvoidStarImportCheck
         allowStaticMemberImports = allow;
     }
 
+    /**
+     * Setter to control maximum number of wildcard imports allowed in a file.
+     *
+     * @param maxAllowedParam maximum number of wildcard imports allowed in a file
+     * @since 12.2.0
+     */
+    public void setMaxAllowed(int maxAllowedParam) {
+        maxAllowed = maxAllowedParam;
+    }
+
     @Override
     public void visitToken(final DetailAST ast) {
         if (ast.getType() == TokenTypes.IMPORT) {
@@ -169,6 +193,10 @@ public class AvoidStarImportCheck
         final FullIdent name = FullIdent.createFullIdent(startingDot);
         final String importText = name.getText();
         if (importText.endsWith(STAR_IMPORT_SUFFIX) && !excludes.contains(importText)) {
+            starImportCount++;
+        }
+        if (importText.endsWith(STAR_IMPORT_SUFFIX) && !excludes.contains(importText)
+                && starImportCount > maxAllowed) {
             log(startingDot, MSG_KEY, importText);
         }
     }

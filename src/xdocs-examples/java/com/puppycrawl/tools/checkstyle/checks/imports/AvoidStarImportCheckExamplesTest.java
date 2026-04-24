@@ -89,4 +89,15 @@ public class AvoidStarImportCheckExamplesTest extends AbstractExamplesModuleTest
 
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
+
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "16:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.*"),
+            "17:17: " + getCheckMessage(MSG_KEY, "java.util.*"),
+            "18:16: " + getCheckMessage(MSG_KEY, "java.net.*"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+    }
 }
