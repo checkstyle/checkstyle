@@ -59,6 +59,13 @@
               <td><code>{}</code></td>
               <td>3.2</td>
             </tr>
+            <tr>
+              <td><a id="maxAllowed"/><a href="#maxAllowed">maxAllowed</a></td>
+              <td>Control maximum number of wildcard imports allowed in a file.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>0</code></td>
+              <td>12.2</td>
+            </tr>
           </table>
         </div>
       </subsection>
@@ -203,6 +210,29 @@ import static java.lang.Math.*;
 import java.util.*; // violation, 'Using the '.*' form of import should be avoided.'
 import java.net.*;
 </code></pre></div>
+        <hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check so that at most one wildcard import is allowed per file:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidStarImport"&gt;
+      &lt;property name="maxAllowed" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.Scanner;
+import java.io.*;
+import static java.lang.Math.*; // violation, 'Using the '.*' form of import should be avoided.'
+import java.util.*; // violation, 'Using the '.*' form of import should be avoided.'
+import java.net.*; // violation, 'Using the '.*' form of import should be avoided.'
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="AvoidStarImport_Example_of_Usage">
@@ -214,6 +244,10 @@ import java.net.*;
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
             Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
