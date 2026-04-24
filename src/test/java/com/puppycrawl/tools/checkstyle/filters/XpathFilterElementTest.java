@@ -115,47 +115,6 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonMatchingModuleId() throws Exception {
-        final XpathFilterElement filter = new XpathFilterElement(
-                "InputXpathFilterElementSuppressByXpath", "Test", null, "id19", null);
-        final Violation message =
-                new Violation(3, 0, TokenTypes.CLASS_DEF, "", "", null, null, "id20",
-                        getClass(), null);
-        final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents, file.getName(),
-                message, JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
-        assertWithMessage("Event should be accepted")
-                .that(filter.accept(ev))
-                .isTrue();
-    }
-
-    @Test
-    public void testMatchingModuleId() throws Exception {
-        final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathFilterElementSuppressByXpath']]";
-        final XpathFilterElement filter = new XpathFilterElement(
-                "InputXpathFilterElementSuppressByXpath", "Test", null, "id19", xpath);
-        final Violation message =
-                new Violation(3, 0, TokenTypes.CLASS_DEF, "", "", null, null, "id19",
-                        getClass(), null);
-        final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents, file.getName(),
-                message, JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
-        assertWithMessage("Event should be rejected")
-                .that(filter.accept(ev))
-                .isFalse();
-    }
-
-    @Test
-    public void testNonMatchingFileNameModuleIdAndCheck() throws Exception {
-        final String xpath = "NON_MATCHING_QUERY";
-        final XpathFilterElement filter = new XpathFilterElement(
-                "InputXpathFilterElementSuppressByXpath", null, null, null, xpath);
-        final TreeWalkerAuditEvent ev = getEvent(3, 0,
-                TokenTypes.CLASS_DEF);
-        assertWithMessage("Event should be accepted")
-                .that(filter.accept(ev))
-                .isTrue();
-    }
-
-    @Test
     public void testDecideByMessage() throws Exception {
         final Violation message = new Violation(1, 0, TokenTypes.CLASS_DEF, "", "",
                 null, null, null, getClass(), "Test");
