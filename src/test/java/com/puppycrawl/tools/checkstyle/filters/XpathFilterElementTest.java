@@ -57,6 +57,12 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         return "com/puppycrawl/tools/checkstyle/filters/xpathfilterelement";
     }
 
+    /**
+     * This test should remain as a low level pure unit test.
+     * The functional {@code verifyFilterWithInlineConfigParser} equivalent
+     * in {@link SuppressionXpathSingleFilterTest} is not sufficient
+     * to kill all Pitest mutations covered by this test.
+     */
     @Test
     public void testNonMatchingTokenType() throws Exception {
         final String xpath = "//METHOD_DEF[./IDENT[@text='countTokens']]";
@@ -69,6 +75,12 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    /**
+     * This test should remain as a low level pure unit test.
+     * The functional {@code verifyFilterWithInlineConfigParser} equivalent
+     * in {@link SuppressionXpathSingleFilterTest} is not sufficient
+     * to kill all Pitest mutations covered by this test.
+     */
     @Test
     public void testNonMatchingColumnNumber() throws Exception {
         final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathFilterElementSuppressByXpath']]";
@@ -81,6 +93,12 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    /**
+     * This test should remain as a low level pure unit test.
+     * The functional {@code verifyFilterWithInlineConfigParser} equivalent
+     * in {@link SuppressionXpathSingleFilterTest} is not sufficient
+     * to kill all Pitest mutations covered by this test.
+     */
     @Test
     public void testNullFileName() {
         final XpathFilterElement filter = new XpathFilterElement(
@@ -92,6 +110,12 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    /**
+     * This test should remain as a low level pure unit test.
+     * The functional {@code verifyFilterWithInlineConfigParser} equivalent
+     * in {@link SuppressionXpathSingleFilterTest} is not sufficient
+     * to kill all Pitest mutations covered by this test.
+     */
     @Test
     public void testNonMatchingFileRegexp() throws Exception {
         final XpathFilterElement filter =
@@ -103,6 +127,12 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    /**
+     * This test should remain as a low level pure unit test.
+     * The functional {@code verifyFilterWithInlineConfigParser} equivalent
+     * in {@link SuppressionXpathSingleFilterTest} is not sufficient
+     * to kill all Pitest mutations covered by this test.
+     */
     @Test
     public void testNullViolation() {
         final XpathFilterElement filter = new XpathFilterElement(
@@ -114,47 +144,12 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
-    @Test
-    public void testNonMatchingModuleId() throws Exception {
-        final XpathFilterElement filter = new XpathFilterElement(
-                "InputXpathFilterElementSuppressByXpath", "Test", null, "id19", null);
-        final Violation message =
-                new Violation(3, 0, TokenTypes.CLASS_DEF, "", "", null, null, "id20",
-                        getClass(), null);
-        final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents, file.getName(),
-                message, JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
-        assertWithMessage("Event should be accepted")
-                .that(filter.accept(ev))
-                .isTrue();
-    }
-
-    @Test
-    public void testMatchingModuleId() throws Exception {
-        final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathFilterElementSuppressByXpath']]";
-        final XpathFilterElement filter = new XpathFilterElement(
-                "InputXpathFilterElementSuppressByXpath", "Test", null, "id19", xpath);
-        final Violation message =
-                new Violation(3, 0, TokenTypes.CLASS_DEF, "", "", null, null, "id19",
-                        getClass(), null);
-        final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents, file.getName(),
-                message, JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
-        assertWithMessage("Event should be rejected")
-                .that(filter.accept(ev))
-                .isFalse();
-    }
-
-    @Test
-    public void testNonMatchingFileNameModuleIdAndCheck() throws Exception {
-        final String xpath = "NON_MATCHING_QUERY";
-        final XpathFilterElement filter = new XpathFilterElement(
-                "InputXpathFilterElementSuppressByXpath", null, null, null, xpath);
-        final TreeWalkerAuditEvent ev = getEvent(3, 0,
-                TokenTypes.CLASS_DEF);
-        assertWithMessage("Event should be accepted")
-                .that(filter.accept(ev))
-                .isTrue();
-    }
-
+    /**
+     * This test should remain as a low level pure unit test.
+     * The functional {@code verifyFilterWithInlineConfigParser} equivalent
+     * in {@link SuppressionXpathSingleFilterTest} is not sufficient
+     * to kill all Pitest mutations covered by this test.
+     */
     @Test
     public void testDecideByMessage() throws Exception {
         final Violation message = new Violation(1, 0, TokenTypes.CLASS_DEF, "", "",
@@ -171,6 +166,13 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    /**
+     * This test should remain as a low level pure unit test.
+     * {@code verifyFilterWithInlineConfigParser} only verifies violation
+     * suppression behavior and cannot test the {@code equals()} and
+     * {@code hashCode()} contract of {@link XpathFilterElement},
+     * which requires direct class inspection via {@link EqualsVerifier}.
+     */
     @Test
     public void testEqualsAndHashCode() throws Exception {
         final XPathEvaluator xpathEvaluator = new XPathEvaluator(Configuration.newConfiguration());
