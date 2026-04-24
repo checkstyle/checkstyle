@@ -73,6 +73,7 @@
     <module name="NumericalPrefixesInfixesSuffixesCharacterCase"/>
 
     <module name="MultipleVariableDeclarations"/>
+    <module name="ArrayTypeStyle"/>
 
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
