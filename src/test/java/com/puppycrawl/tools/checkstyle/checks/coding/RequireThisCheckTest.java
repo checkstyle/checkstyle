@@ -72,7 +72,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisEnumInnerClassesAndBugs.java"),
-               expected);
+                expected);
     }
 
     @Test
@@ -85,7 +85,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisEnumInnerClassesAndBugs2.java"),
-               expected);
+                expected);
     }
 
     @Test
@@ -108,7 +108,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisEnumInnerClassesAndBugs3.java"),
-               expected);
+                expected);
     }
 
     @Test
@@ -136,7 +136,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisExpressions.java"),
-               expected);
+                expected);
     }
 
     @Test
@@ -161,14 +161,14 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     public void testTokensNotNull() {
         final RequireThisCheck check = new RequireThisCheck();
         assertWithMessage("Acceptable tokens should not be null")
-            .that(check.getAcceptableTokens())
-            .isNotNull();
+                .that(check.getAcceptableTokens())
+                .isNotNull();
         assertWithMessage("Default tokens should not be null")
-            .that(check.getDefaultTokens())
-            .isNotNull();
+                .that(check.getDefaultTokens())
+                .isNotNull();
         assertWithMessage("Required tokens should not be null")
-            .that(check.getRequiredTokens())
-            .isNotNull();
+                .that(check.getRequiredTokens())
+                .isNotNull();
     }
 
     @Test
@@ -194,8 +194,8 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final SortedSet<Violation> violations = check.getViolations();
 
         assertWithMessage("No exception violations expected")
-            .that(violations)
-            .isEmpty();
+                .that(violations)
+                .isEmpty();
     }
 
     @Test
@@ -505,13 +505,14 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     public void testLocalClassesInsideLambdas() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-            getPath("InputRequireThisLocalClassesInsideLambdas.java"),
-            expected);
+                getPath("InputRequireThisLocalClassesInsideLambdas.java"),
+                expected);
     }
 
     /**
      * We cannot confirm the type of the private class unless using reflection.
-     * Until <a href="https://github.com/checkstyle/checkstyle/issues/12666">#12666</a>.
+     * Until
+     * <a href="https://github.com/checkstyle/checkstyle/issues/12666">#12666</a>.
      *
      * @throws Exception when code tested throws an exception.
      */
@@ -524,18 +525,19 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final Object o = TestUtil.instantiate(cls, null, ident);
 
         final DetailAstImpl actual = TestUtil.invokeMethod(o,
-                "getFrameNameIdent", DetailAstImpl.class);
+            "getFrameNameIdent", DetailAstImpl.class);
         assertWithMessage("expected ident token")
-            .that(actual)
-            .isSameInstanceAs(ident);
+                .that(actual)
+                .isSameInstanceAs(ident);
         assertWithMessage("expected catch frame type")
-            .that(TestUtil.invokeMethod(o, "getType", Object.class).toString())
-            .isEqualTo("CATCH_FRAME");
+                .that(TestUtil.invokeMethod(o, "getType", Object.class).toString())
+                .isEqualTo("CATCH_FRAME");
     }
 
     /**
      * We cannot confirm the type of the private class unless using reflection.
-     * Until <a href="https://github.com/checkstyle/checkstyle/issues/12666">#12666</a>.
+     * Until
+     * <a href="https://github.com/checkstyle/checkstyle/issues/12666">#12666</a>.
      *
      * @throws Exception when code tested throws an exception.
      */
@@ -548,12 +550,13 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final Object o = TestUtil.instantiate(cls, null, ident);
 
         assertWithMessage("expected for frame type")
-            .that(TestUtil.invokeMethod(o, "getType", Object.class).toString())
-            .isEqualTo("FOR_FRAME");
+                .that(TestUtil.invokeMethod(o, "getType", Object.class).toString())
+                .isEqualTo("FOR_FRAME");
     }
 
     /**
-     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * We cannot reproduce situation when visitToken is called and leaveToken is
+     * not.
      * So, we have to use reflection to be sure that even in such situation
      * state of the field will be cleared.
      *
@@ -566,7 +569,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 new File(getPath("InputRequireThisSimple.java")),
                 JavaParser.Options.WITHOUT_COMMENTS);
         final Optional<DetailAST> classDef = TestUtil.findTokenInAstByPredicate(root,
-            ast -> ast.getType() == TokenTypes.CLASS_DEF);
+                ast -> ast.getType() == TokenTypes.CLASS_DEF);
 
         assertWithMessage("Ast should contain CLASS_DEF")
                 .that(classDef.isPresent())
@@ -575,6 +578,63 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.orElseThrow(),
                         "current", current -> ((Collection<?>) current).isEmpty()))
                 .isTrue();
+    }
+
+    @Test
+    public void testAnnotationFieldDoesNotRequireThis() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnnotationField.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationDefaultValueIsIgnored() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnnotationDefault.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationUsageIsIgnored() throws Exception {
+        final String[] expected = {
+            "45:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "46:9: " + getCheckMessage(MSG_VARIABLE, "name", ""),
+            "47:9: " + getCheckMessage(MSG_VARIABLE, "outer", ""),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnnotationMutation.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationConstantOverlappingTrue() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnnotationConstantOverlappingTrue.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationConstantOverlappingFalse() throws Exception {
+        final String[] expected = {
+            "19:18: " + getCheckMessage(MSG_VARIABLE, "CONTAINER", ""),
+            "25:31: " + getCheckMessage(MSG_VARIABLE, "warningsType", ""),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnnotationConstantOverlappingFalse.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationQualified() throws Exception {
+        final String[] expected = {
+            "19:19: " + getCheckMessage(MSG_VARIABLE, "CONTAINER", ""),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnnotationQualified.java"), expected);
     }
 
 }

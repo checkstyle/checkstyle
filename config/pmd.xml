@@ -402,8 +402,9 @@
       <property name="maxmethods" value="34"/>
       <!-- JavaAstVisitor is a visitor class with methods for the entire Java grammar. -->
       <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='JavaAstVisitor' 
-                    or @SimpleName='SiteUtil' or @SimpleName='JavadocCommentsAstVisitor']"/>
+                 value="//ClassDeclaration[@SimpleName='JavaAstVisitor'
+                    or @SimpleName='SiteUtil' or @SimpleName='JavadocCommentsAstVisitor'
+                    or @SimpleName='RequireThisCheck']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">
