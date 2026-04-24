@@ -546,7 +546,9 @@
                                             or @Name='setExcludedPackages']
                       | //ClassDeclaration[@SimpleName='UnusedImportsCheck']
                       //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml'
-                                            or @Name='setJavadocTokens']"/>
+                                            or @Name='setJavadocTokens']
+                      | //ClassDeclaration[@SimpleName='WriteTagCheck']
+                      //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']"/>
     </properties>
   </rule>
 </ruleset>
