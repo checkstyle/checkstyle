@@ -130,6 +130,13 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    /**
+     * This test should remain as a low level pure unit test.
+     * It uses {@link EqualsVerifier} library to validate {@code equals()}
+     * and {@code hashCode()} methods on all edge cases. This is a very
+     * technical method with implementation by strict rules, not related
+     * to checkstyle's target of validation.
+     */
     @Test
     public void testEqualsAndHashCode() throws Exception {
         final XPathEvaluator xpathEvaluator = new XPathEvaluator(Configuration.newConfiguration());
