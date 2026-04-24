@@ -261,18 +261,9 @@ public class RequireThisCheck extends AbstractCheck {
      * @param ast IDENT to check.
      */
     private void processIdent(DetailAST ast) {
-        int parentType = ast.getParent().getType();
-        if (parentType == TokenTypes.EXPR
-                && ast.getParent().getParent().getParent().getType()
-                    == TokenTypes.ANNOTATION_FIELD_DEF) {
-            parentType = TokenTypes.ANNOTATION_FIELD_DEF;
-        }
-        switch (parentType) {
-            case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR, TokenTypes.ANNOTATION,
-                 TokenTypes.ANNOTATION_FIELD_DEF -> {
-                // no need to check annotations content
-            }
-            case TokenTypes.METHOD_CALL -> {
+        if (!shouldSkipAnnotationContext(ast)) {
+            final int parentType = ast.getParent().getType();
+            if (parentType == TokenTypes.METHOD_CALL) {
                 if (checkMethods) {
                     final AbstractFrame frame = getMethodWithoutThis(ast);
                     if (frame != null) {
@@ -280,7 +271,7 @@ public class RequireThisCheck extends AbstractCheck {
                     }
                 }
             }
-            default -> {
+            else {
                 if (checkFields) {
                     final AbstractFrame frame = getFieldWithoutThis(ast, parentType);
                     final boolean canUseThis = !isInCompactConstructor(ast);
@@ -290,6 +281,93 @@ public class RequireThisCheck extends AbstractCheck {
                 }
             }
         }
+    }
+
+    /**
+     * Determines whether the given IDENT should be skipped because it is
+     * in an annotation context. When {@code validateOnlyOverlapping} is
+     * {@code true}, all annotation contexts are skipped. When it is
+     * {@code false}, only annotation structural elements (member names,
+     * type names, and annotation field defaults) are skipped, while actual
+     * field reference values inside annotations are still processed.
+     *
+     * @param ast IDENT token
+     * @return true if the IDENT should be skipped
+     */
+    private boolean shouldSkipAnnotationContext(DetailAST ast) {
+        final boolean result;
+        if (isInsideAnnotationFieldDef(ast)) {
+            result = true;
+        }
+        else if (isInsideAnnotation(ast)) {
+            result = validateOnlyOverlapping || isAnnotationStructuralElement(ast);
+        }
+        else {
+            result = false;
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether the given IDENT is inside an annotation usage.
+     *
+     * @param ast IDENT token
+     * @return true if IDENT is inside an annotation usage
+     */
+    private static boolean isInsideAnnotation(DetailAST ast) {
+        DetailAST current = ast;
+        boolean insideAnnotation = false;
+        while (current != null) {
+            if (current.getType() == TokenTypes.ANNOTATION) {
+                insideAnnotation = true;
+                break;
+            }
+            current = current.getParent();
+        }
+        return insideAnnotation;
+    }
+
+    /**
+     * Checks whether the given IDENT is inside an annotation field definition
+     * (e.g., default values in {@code @interface} members).
+     *
+     * @param ast IDENT token
+     * @return true if IDENT is inside an annotation field definition
+     */
+    private static boolean isInsideAnnotationFieldDef(DetailAST ast) {
+        DetailAST current = ast;
+        boolean insideAnnotationFieldDef = false;
+        while (current != null) {
+            if (current.getType() == TokenTypes.ANNOTATION_FIELD_DEF) {
+                insideAnnotationFieldDef = true;
+                break;
+            }
+            current = current.getParent();
+        }
+        return insideAnnotationFieldDef;
+    }
+
+    /**
+     * Checks if an IDENT is an annotation structural element — either
+     * an annotation type name (e.g., {@code SuppressWarnings} in
+     * {@code @SuppressWarnings}) or an annotation member name (e.g.,
+     * {@code value} in {@code value = "unused"}).
+     *
+     * @param ast IDENT token
+     * @return true if the IDENT is an annotation type name or member name
+     */
+    private static boolean isAnnotationStructuralElement(DetailAST ast) {
+        final int parentType = ast.getParent().getType();
+        boolean result = parentType == TokenTypes.ANNOTATION
+                || parentType == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR;
+        if (!result && parentType == TokenTypes.DOT) {
+            DetailAST current = ast.getParent();
+            while (current.getType() == TokenTypes.DOT) {
+                current = current.getParent();
+            }
+            result = current.getType() == TokenTypes.ANNOTATION;
+        }
+        return result;
     }
 
     /**
@@ -447,6 +525,7 @@ public class RequireThisCheck extends AbstractCheck {
             final DetailAST mods =
                     ast.findFirstToken(TokenTypes.MODIFIERS);
             if (ScopeUtil.isInInterfaceBlock(ast)
+                    || ScopeUtil.isInAnnotationBlock(ast)
                     || mods.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
                 ((ClassFrame) frame).addStaticMember(ident);
             }
