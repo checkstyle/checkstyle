@@ -1009,33 +1009,62 @@ public class RequireThisCheck extends AbstractCheck {
      * @return true if the token is a Lambda parameter
      */
     private static boolean isLambdaParameter(DetailAST ast) {
-        DetailAST parent;
-        for (parent = ast; parent != null; parent = parent.getParent()) {
+        boolean result = false;
+        for (DetailAST parent = ast; parent != null; parent = parent.getParent()) {
             if (parent.getType() == TokenTypes.LAMBDA) {
+                result = !isInsideTypeDefInsideLambda(ast)
+                        && isMatchingLambdaParam(ast, parent);
                 break;
             }
         }
-        final boolean isLambdaParameter;
-        if (parent == null) {
-            isLambdaParameter = false;
-        }
-        else if (ast.getType() == TokenTypes.PARAMETER_DEF) {
-            isLambdaParameter = true;
+        return result;
+    }
+
+    /**
+     * Checks whether the given AST matches a parameter of the specified lambda.
+     *
+     * @param ast the AST node to check.
+     * @param lambda the lambda expression AST node.
+     * @return true if the AST matches a lambda parameter.
+     */
+    private static boolean isMatchingLambdaParam(DetailAST ast, DetailAST lambda) {
+        final boolean isMatchingParam;
+        if (ast.getType() == TokenTypes.PARAMETER_DEF) {
+            isMatchingParam = true;
         }
         else {
-            final DetailAST lambdaParameters = parent.findFirstToken(TokenTypes.PARAMETERS);
+            final DetailAST lambdaParameters = lambda.findFirstToken(TokenTypes.PARAMETERS);
             if (lambdaParameters == null) {
-                isLambdaParameter = parent.getFirstChild().getText().equals(ast.getText());
+                isMatchingParam = lambda.getFirstChild().getText().equals(ast.getText());
             }
             else {
-                isLambdaParameter = TokenUtil.findFirstTokenByPredicate(lambdaParameters,
+                isMatchingParam = TokenUtil.findFirstTokenByPredicate(lambdaParameters,
                     paramDef -> {
                         final DetailAST param = paramDef.findFirstToken(TokenTypes.IDENT);
                         return param != null && param.getText().equals(ast.getText());
                     }).isPresent();
             }
         }
-        return isLambdaParameter;
+        return isMatchingParam;
+    }
+
+    /**
+     * Checks if the given AST is inside a type declaration (class, interface, enum,
+     * record, or anonymous class) that is nested within the enclosing lambda.
+     *
+     * @param ast the AST node to check.
+     * @return true if there is a type declaration boundary between {@code ast} and the lambda.
+     */
+    private static boolean isInsideTypeDefInsideLambda(DetailAST ast) {
+        boolean isInside = false;
+        for (DetailAST parent = ast; parent.getType() != TokenTypes.LAMBDA;
+                parent = parent.getParent()) {
+            if (parent.getType() == TokenTypes.OBJBLOCK) {
+                isInside = true;
+                break;
+            }
+        }
+        return isInside;
     }
 
     /**
