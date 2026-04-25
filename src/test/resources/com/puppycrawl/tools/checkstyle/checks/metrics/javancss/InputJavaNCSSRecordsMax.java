@@ -3,7 +3,7 @@ JavaNCSS
 methodMaximum = (default)50
 classMaximum = 80
 fileMaximum = (default)2000
-recordMaximum = (default)150
+recordMaximum = 100
 
 
 */
@@ -11,8 +11,8 @@ recordMaximum = (default)150
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
 
-public class InputJavaNCSSRecordsMax {// violation 'NCSS for this class is 152 (max allowed is 80)'
-    record MyRecord() { // violation 'NCSS for this record is 151 (max allowed is 150)'
+public class InputJavaNCSSRecordsMax {// violation 'NCSS for this class is 105 (max allowed is 80)'
+    record MyRecord() { // violation 'NCSS for this record is 104 (max allowed is 100)'
         static int myRecordField1 = 0;
         static int myRecordField2 = 0;
         static int myRecordField3 = 0;
@@ -116,52 +116,5 @@ public class InputJavaNCSSRecordsMax {// violation 'NCSS for this class is 152 (
         static int myRecordField101 = 0;
         static int myRecordField102 = 0;
         static int myRecordField103 = 0;
-        static int myRecordField104 = 0;
-        static int myRecordField105 = 0;
-        static int myRecordField106 = 0;
-        static int myRecordField107 = 0;
-        static int myRecordField108 = 0;
-        static int myRecordField109 = 0;
-        static int myRecordField110 = 0;
-        static int myRecordField111 = 0;
-        static int myRecordField112 = 0;
-        static int myRecordField113 = 0;
-        static int myRecordField114 = 0;
-        static int myRecordField115 = 0;
-        static int myRecordField116 = 0;
-        static int myRecordField117 = 0;
-        static int myRecordField118 = 0;
-        static int myRecordField119 = 0;
-        static int myRecordField120 = 0;
-        static int myRecordField121 = 0;
-        static int myRecordField122 = 0;
-        static int myRecordField123 = 0;
-        static int myRecordField124 = 0;
-        static int myRecordField125 = 0;
-        static int myRecordField126 = 0;
-        static int myRecordField127 = 0;
-        static int myRecordField128 = 0;
-        static int myRecordField129 = 0;
-        static int myRecordField130 = 0;
-        static int myRecordField131 = 0;
-        static int myRecordField132 = 0;
-        static int myRecordField133 = 0;
-        static int myRecordField134 = 0;
-        static int myRecordField135 = 0;
-        static int myRecordField136 = 0;
-        static int myRecordField137 = 0;
-        static int myRecordField138 = 0;
-        static int myRecordField139 = 0;
-        static int myRecordField140 = 0;
-        static int myRecordField141 = 0;
-        static int myRecordField142 = 0;
-        static int myRecordField143 = 0;
-        static int myRecordField144 = 0;
-        static int myRecordField145 = 0;
-        static int myRecordField146 = 0;
-        static int myRecordField147 = 0;
-        static int myRecordField148 = 0;
-        static int myRecordField149 = 0;
-        static int myRecordField150 = 0;
     }
 }

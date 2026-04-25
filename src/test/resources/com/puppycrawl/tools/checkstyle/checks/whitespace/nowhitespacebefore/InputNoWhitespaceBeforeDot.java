@@ -6,8 +6,8 @@ tokens = DOT
 
 */
 
-package com . puppycrawl // violation
-    .tools. // violation
+package com . puppycrawl // violation ''.' is preceded with whitespace.'
+    .tools. // violation ''.' is preceded with whitespace.'
     checkstyle.checks.whitespace.nowhitespacebefore;
 
 /**
@@ -130,14 +130,14 @@ class InputNoWhitespaceBeforeDot
     }
 
     /** @return dot test **/
-    private java .lang.  String dotTest() // violation
+    private java .lang.  String dotTest() // violation ''.' is preceded with whitespace.'
     {
         Object o = new java.lang.Object();
         o.
             toString();
         o
-            .toString(); // violation
-        o . toString(); // violation
+            .toString(); // violation ''.' is preceded with whitespace.'
+        o . toString(); // violation ''.' is preceded with whitespace.'
         return o.toString();
     }
 
@@ -265,7 +265,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDot
                 }
             }};
         runs[0]
-. // violation
+. // violation ''.' is preceded with whitespace.'
  run()
 ;
     }

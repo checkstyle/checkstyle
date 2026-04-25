@@ -62,8 +62,7 @@ jobs:
 
   sonarqube:
     docker:
-      - image: &cs_img amitkumardeoghoria/jdk-21-groovy-git-mvn-ant-jq:v1
-
+      - image: &cs_img checkstyle/jdk-21-groovy-git-mvn-ant-jq:20260329
     steps:
       - checkout
       - run:

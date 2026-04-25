@@ -23,8 +23,8 @@ public class InputMissingJavadocMethodNoJavadoc2A //comment test
     int i3;
     private int i4;
 
-    public void foo1() {} // violation
-    protected void foo2() {} // violation
+    public void foo1() {} // violation 'Missing a Javadoc comment.'
+    protected void foo2() {} // violation 'Missing a Javadoc comment.'
     void foo3() {}
     private void foo4() {}
 
@@ -34,8 +34,8 @@ public class InputMissingJavadocMethodNoJavadoc2A //comment test
         int i3;
         private int i4;
 
-        public void foo1() {} // violation
-        protected void foo2() {} // violation
+        public void foo1() {} // violation 'Missing a Javadoc comment.'
+        protected void foo2() {} // violation 'Missing a Javadoc comment.'
         void foo3() {}
         private void foo4() {}
     }

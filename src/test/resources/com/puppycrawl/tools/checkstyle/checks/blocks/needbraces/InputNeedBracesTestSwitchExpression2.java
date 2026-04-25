@@ -29,7 +29,7 @@ public class InputNeedBracesTestSwitchExpression2 {
     }
 
     /**
-     * Braces required in switch expression with switch labled block
+     * Braces required in switch expression with switch labeled block
      */
     int howMany4(NumsTwo k) {
         return switch (k) {

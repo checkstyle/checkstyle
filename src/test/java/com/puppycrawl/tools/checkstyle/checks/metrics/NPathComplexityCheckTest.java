@@ -266,7 +266,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputNPathComplexityPatternMatchingForSwitch.java"),
+                getNonCompilablePath("InputNPathComplexityPatternMatchingForSwitch.java"),
             expected);
 
     }

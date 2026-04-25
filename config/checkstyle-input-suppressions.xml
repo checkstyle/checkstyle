@@ -47,4 +47,20 @@
           files="[\\/]packageobjectfactory[\\/]abc[\\/]FooCheck.java"/>
   <suppress id="noCheckstyleInInputs"
           files="[\\/]packageobjectfactory[\\/]zoo[\\/]FooCheck.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule333orderingandspacing[\\/]InputFormattedOrderingAndSpacingValid.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]imports[\\/]customimportorder[\\/]InputXpathCustomImportOrderFour.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule332nolinewrap[\\/]InputNoLineWrapping.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]imports[\\/]customimportorder[\\/]InputXpathCustomImportOrderSix.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule333orderingandspacing[\\/]InputOrderingAndSpacingValid.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule333orderingandspacing[\\/]InputOrderingAndSpacingValid2.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]it[\\/]resources[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]blocks[\\/]needbraces[\\/]InputXpathNeedBracesSingleLine.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule333orderingandspacing[\\/]InputFormattedOrderingAndSpacingValid2.java"/>
 </suppressions>

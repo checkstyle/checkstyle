@@ -25,7 +25,6 @@ alot
 alundblad
 amazonaws
 amd
-amitkumardeoghoria
 androidx
 annotationlocation
 annotationonsameline
@@ -50,7 +49,6 @@ appveyor
 APRV
 Aqj
 archunit
-args
 Arial
 arity
 Arquillian
@@ -259,8 +257,11 @@ Dcheckstyle
 dcm
 Dconfig
 Dconnection
+Dcpd
+Dcyclonedx
 ddd
 DDDL
+Ddokka
 Ddry
 DEADBEEF
 DECCHARS
@@ -298,11 +299,11 @@ diffplug
 DIFFTOOL
 dirname
 Djacoco
+Djapicmp
 Djdepend
 Dlinkcheck
 DMail
 Dmaven
-DMC
 dnd
 Dnew
 doccheck
@@ -660,6 +661,7 @@ javaparser
 javarevisited
 javascript
 javase
+javasourcefiles
 javax
 Jax
 jb
@@ -748,6 +750,7 @@ Kordas
 Kotlin
 Kp
 lambdabodylength
+lambdaexpressions
 lambdaparametername
 LBRACE
 LBRACK
@@ -981,6 +984,7 @@ ogg
 OI
 olddomain
 olympe
+ond
 onestatement
 onestatementperline
 onetoplevel
@@ -1200,7 +1204,6 @@ selfexplanatory
 Selkin
 semaphoreci
 semver
-SEO
 separatorwrap
 SERIALVERSIONUID
 servlet
@@ -1227,7 +1230,6 @@ SLo
 Slurper
 slurpersupport
 Sms
-Smth
 snyk
 socio
 Sohjiro
@@ -1430,6 +1432,7 @@ uxxxx
 validator
 VALUELONG
 vararg
+variabledeclarations
 variabledeclarationusagedistance
 Veach
 Verdana
@@ -1462,7 +1465,6 @@ Webp
 website
 webtoolkit
 Wellformedness
-wget
 whenshouldbeused
 wherejavadocrequired
 wheretobreak

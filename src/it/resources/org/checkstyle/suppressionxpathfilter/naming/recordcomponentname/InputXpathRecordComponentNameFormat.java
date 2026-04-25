@@ -5,6 +5,6 @@ package org.checkstyle.suppressionxpathfilter.naming.recordcomponentname;
  * format = ^[a-z][a-zA-Z0-9]*$
  */
 public class InputXpathRecordComponentNameFormat {
-    public record MyRecord(int _underscoreValue, // ok
+    public record MyRecord(int _underscoreValue,
                            int otherValue) { } // warn
 }

@@ -32,7 +32,7 @@ enum InputMissingJavadocMethodTagsEnum5
         {
         }
 
-        public void someOtherMethod() // violation
+        public void someOtherMethod() // violation 'Missing a Javadoc comment.'
         {
 
         }
@@ -41,7 +41,7 @@ enum InputMissingJavadocMethodTagsEnum5
 
 @interface InputMissingJavadocMethodTagsAnnotation
 {
-    String someField(); // violation
+    String someField(); // violation 'Missing a Javadoc comment.'
     int A_CONSTANT = 0;
     /** Some javadoc. */
     int B_CONSTANT = 1;

@@ -79,28 +79,25 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEscape() {
-        final String[][] encodings = {
-            {"\"", "\\\""},
-            {"\\", "\\\\"},
-            {"\b", "\\b"},
-            {"\f", "\\f"},
-            {"\n", "\\n"},
-            {"\r", "\\r"},
-            {"\t", "\\t"},
-            {"/", "\\/"},
-            {"\u0010", "\\u0010"},
-            {"\u001E", "\\u001E"},
-            {"\u001F", "\\u001F"},
-            {" ", " "},
-            {"bar1234", "bar1234"},
-        };
-        for (String[] encoding : encodings) {
-            final String encoded = SarifLogger.escape(encoding[0]);
-            assertWithMessage("\"%s\"", encoding[0])
-                .that(encoded)
-                .isEqualTo(encoding[1]);
-        }
+    public void testEscape() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeAll.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeAll.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapeWithMessageKey() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeMessageKey.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeMessageKey.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
     @Test
@@ -349,6 +346,12 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
                 .isFalse();
     }
 
+    /**
+     * This test can't use verifyWithInlineConfigParserAndLogger because it
+     * checks for an exception during the logger's creation. Since the constructor
+     * fails immediately with a null parameter, we never get a logger instance
+     * to use in the inline verification process.
+     */
     @Test
     public void testNullOutputStreamOptions() {
         final IllegalArgumentException exception =
@@ -456,17 +459,6 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     public void testMultipleMessageStrings() throws Exception {
         final String inputFile = "InputSarifLoggerMultipleMessages.java";
         final String expectedReportFile = "ExpectedSarifLoggerMultipleMessages.sarif";
-        final SarifLogger logger = new SarifLogger(outStream,
-                OutputStreamOptions.CLOSE);
-
-        verifyWithInlineConfigParserAndLogger(
-                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
-    }
-
-    @Test
-    public void testEscapedMessageText() throws Exception {
-        final String inputFile = "InputSarifLoggerEscapedMessage.java";
-        final String expectedReportFile = "ExpectedSarifLoggerEscapedMessage.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
 

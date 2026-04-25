@@ -12,48 +12,15 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;
 
 // xdoc section -- start
 class Example2 {
-    String field = "example";                  // basicOffset
-    int[] values = {                           // basicOffset
-        10,
-        20,
-        30
-    };
-
-    void processValues() throws Exception {
-        handleValue("Test String", 42);          // basicOffset
-    }
-
-    void handleValue(String aFooString,
-                     int aFooInt) {
-
-        boolean cond1,cond2,cond3,cond4,cond5,cond6;
-        cond1=cond2=cond3=cond4=cond5=cond6=false;
-
-        if (cond1
-            || cond2) {
-            field = field.toUpperCase()
-                .concat(" TASK");
-        }
-
-        if ((cond1 && cond2)
-                || (cond3 && cond4)           // ok, lineWrappingIndentation
-                || !(cond5 && cond6)) {       // ok, lineWrappingIndentation
-            field.toUpperCase()
-                 .concat(" TASK")             // ok, lineWrappingIndentation
-                 .chars().forEach(c -> {      // ok, lineWrappingIndentation
-                     System.out.println((char) c);
-                 });
-        }
-    }
-
-    void demonstrateSwitch() throws Exception {
-        switch (field) {
-        case "EXAMPLE": processValues();                            // caseIndent
-        case "COMPLETED": handleValue("Completed Case", 456);       // caseIndent
+    void method(int x) {
+        switch (x) {
+        case 1:             // ok, caseIndent = 0 (same level as switch body)
+            break;
+        case 2:             // ok
+            break;
+            case 3:         // violation, 'level 12, expected level should be 8'
+            break;
         }
     }
 }
 // xdoc section -- end
-
-
-

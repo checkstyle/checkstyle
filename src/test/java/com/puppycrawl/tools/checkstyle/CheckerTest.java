@@ -518,8 +518,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .that(context.get("basedir"))
             .isEqualTo("testBaseDir");
 
-        final Locale locale =
-                TestUtil.getInternalStaticState(LocalizedMessage.class, "sLocale", Locale.class);
+        final Locale locale = TestUtil.getInternalStaticState(LocalizedMessage.class,
+                "messageLocale", Locale.class);
         assertWithMessage("Locale is set to unexpected value")
             .that(locale)
             .isEqualTo(Locale.ITALY);

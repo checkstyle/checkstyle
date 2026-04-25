@@ -151,7 +151,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testConditionRequiredWithoutOrdinaryChecks() throws Exception {
         final String[] expected = {
-            "7:5: " + getCheckMessage(JavadocParagraphCheck.class,
+            "10:5: " + getCheckMessage(JavadocParagraphCheck.class,
                     JavadocParagraphCheck.MSG_REDUNDANT_PARAGRAPH),
         };
         final String path = getPath("InputTreeWalkerJavadoc.java");
@@ -503,8 +503,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testMultiCheckOrder() throws Exception {
 
         final String[] expected = {
-            "28:9: " + getCheckMessage(WhitespaceAfterCheck.class, "ws.notFollowed", "if"),
-            "28:9: " + getCheckMessage(WhitespaceAroundCheck.class, "ws.notFollowed", "if"),
+            "29:9: " + getCheckMessage(WhitespaceAfterCheck.class, "ws.notFollowed", "if"),
+            "29:9: " + getCheckMessage(WhitespaceAroundCheck.class, "ws.notFollowed", "if"),
         };
 
         verifyWithInlineConfigParserTwice(

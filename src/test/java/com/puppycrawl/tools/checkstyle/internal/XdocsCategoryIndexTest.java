@@ -148,13 +148,13 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
 
     /**
      * Extracts the main section name from a check's XDoc file.
-     * This is typically the value of the 'name' attribute of the first &lt;section&gt; tag.
+     * This is typically the value of the 'name' attribute of the first {@literal <section>} tag.
      *
      * @param checkXdocFile Path to the check's XDoc file.
      * @return The main section name.
      * @throws ParserConfigurationException if a DocumentBuilder cannot be created.
      * @throws IOException if an I/O error occurs reading the file.
-     * @throws AssertionError if no &lt;section name=...&gt; is found.
+     * @throws AssertionError if no {@literal <section name=...>} is found.
      */
     private static String getMainSectionName(Path checkXdocFile)
             throws ParserConfigurationException, IOException {
@@ -177,8 +177,8 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
 
     /**
      * Extracts the description of a check from its XDoc file.
-     * It looks for a &lt;subsection name="Description"&gt; and then tries to find the content
-     * within a &lt;div&gt; or &lt;p&gt; tag.
+     * It looks for a {@literal <subsection name="Description">} and then tries to find the content
+     * within a {@literal <div>} or {@literal <p>} tag.
      * If not found, it aggregates direct text nodes of the subsection.
      * As a last resort, it uses the full text content of the subsection.
      *
@@ -302,11 +302,11 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
      * It iterates through all tables and their rows to find check names, hrefs, and descriptions.
      *
      * @param categoryIndexFile Path to the category's index.xml file.
-     * @return A map with check names (from &lt;a&gt; tag text) as keys
+     * @return A map with check names (from {@literal <a>} tag text) as keys
      *         and {@link CheckIndexInfo} objects as values.
      * @throws ParserConfigurationException if a DocumentBuilder cannot be created.
      * @throws IOException if an I/O error occurs reading the file.
-     * @throws AssertionError if no &lt;table&gt; is found in the index file.
+     * @throws AssertionError if no {@literal <table>} is found in the index file.
      */
     private static Map<String, CheckIndexInfo> parseCategoryIndex(Path categoryIndexFile)
             throws ParserConfigurationException, IOException {
@@ -331,10 +331,10 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Processes a single &lt;table&gt; element from a category index file.
+     * Processes a single {@literal <table>} element from a category index file.
      * Iterates over its rows, skipping a potential header row, and processes data rows.
      *
-     * @param tableElement The &lt;table&gt; DOM element.
+     * @param tableElement The {@literal <table>} DOM element.
      * @param indexedChecks The map to populate with check information.
      */
     private static void processTableElement(Element tableElement,
@@ -354,9 +354,10 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Checks if a given table row element is a header row (i.e., contains &lt;th&gt; elements).
+     * Checks if a given table row element is a header row
+     * (i.e., contains {@literal <th>} elements).
      *
-     * @param rowElement The &lt;tr&gt; DOM element.
+     * @param rowElement The {@literal <tr>} DOM element.
      * @return True if it's a header row, false otherwise.
      */
     private static boolean isHeaderRow(Element rowElement) {
@@ -364,10 +365,10 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Processes a data row (&lt;tr&gt; with &lt;td&gt; children) from a category index table.
-     * Extracts the check name, href, and description.
+     * Processes a data row ({@literal <tr>} with {@literal <td>} children) from a
+     * category index table. Extracts the check name, href, and description.
      *
-     * @param rowElement The &lt;tr&gt; DOM element representing a data row.
+     * @param rowElement The {@literal <tr>} DOM element representing a data row.
      * @param indexedChecks The map to populate with check information.
      */
     private static void processDataRow(Element rowElement,

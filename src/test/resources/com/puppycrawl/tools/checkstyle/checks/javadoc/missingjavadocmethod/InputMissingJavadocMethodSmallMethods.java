@@ -67,7 +67,7 @@ public class InputMissingJavadocMethodSmallMethods extends Some
                 + "oooooooo";
     }
 
-    String foo7() // violation
+    String foo7() // violation 'Missing a Javadoc comment.'
     {
         return "Fooooooooooooooo"
                 + "ooooo"

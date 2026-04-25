@@ -33,7 +33,7 @@ all-sevntu-checks)
     | sed "s/com\.github\.sevntu\.checkstyle\.checks\..*\.//" \
     | sort | uniq | sed "s/Check$//" > $working_dir/file.txt
 
-  wget -q http://sevntu-checkstyle.github.io/sevntu.checkstyle/apidocs/allclasses-frame.html -O - \
+  curl --fail-with-body -s http://sevntu-checkstyle.github.io/sevntu.checkstyle/apidocs/allclasses-frame.html \
     | grep "<li>" | cut -d '>' -f 3 | sed "s/<\/a//" \
     | grep -E "Check$" \
     | sort | uniq | sed "s/Check$//" > $working_dir/web.txt
@@ -262,6 +262,10 @@ no-error-pmd)
                 -Dmaven.javadoc.skip=true \
                 -Dmaven.source.skip=true \
                 -Dpmd.skip=true \
+                -Dcpd.skip=true \
+                -Djapicmp.skip=true \
+                -Dcyclonedx.skip=true \
+                -Ddokka.skip=true \
                 -Dcheckstyle.skip=false \
                 -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..
@@ -411,13 +415,11 @@ verify-no-exception-configs)
 
   mkdir -p .ci-temp/verify-no-exception-configs
   working_dir=.ci-temp/verify-no-exception-configs
-  wget -q \
-    --directory-prefix $working_dir \
-    --no-clobber \
+  curl -s --fail-with-body -o "$working_dir/checks-nonjavadoc-error.xml" \
+    -H "Authorization: token $GITHUB_TOKEN" \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-nonjavadoc-error.xml
-  wget -q \
-    --directory-prefix $working_dir \
-    --no-clobber \
+  curl -s --fail-with-body -o "$working_dir/checks-only-javadoc-error.xml" \
+    -H "Authorization: token $GITHUB_TOKEN" \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-only-javadoc-error.xml
   MODULES_WITH_EXTERNAL_FILES="Filter|ImportControl"
   xmlstarlet fo -D \
@@ -694,7 +696,7 @@ javac17)
       mkdir -p target
       for file in "${files[@]}"
       do
-        javac --release 17 --enable-preview -d target "${file}"
+        javac --release 17 -d target "${file}"
       done
   fi
   ;;
@@ -710,7 +712,7 @@ javac19)
       mkdir -p target
       for file in "${files[@]}"
       do
-        javac --release 19 --enable-preview -d target "${file}"
+        javac --release 19 -d target "${file}"
       done
   fi
   ;;
@@ -726,11 +728,10 @@ javac20)
       mkdir -p target
       for file in "${files[@]}"
       do
-        javac --release 20 --enable-preview -d target "${file}"
+        javac --release 20 -d target "${file}"
       done
   fi
   ;;
-
 javac21)
   files=($(grep -Rli --include='*.java' ': Compilable with Java21' \
         src/test/resources-noncompilable \
@@ -742,7 +743,7 @@ javac21)
     mkdir -p target
     for file in "${files[@]}"
     do
-      javac --release 21 --enable-preview -d target "${file}"
+      javac --release 21 -d target "${file}"
     done
   fi
   ;;
@@ -758,7 +759,7 @@ javac22)
     mkdir -p target
     for file in "${files[@]}"
     do
-      javac --release 22 --enable-preview -d target "${file}"
+      javac --release 22 -d target "${file}"
     done
   fi
   ;;
@@ -774,7 +775,7 @@ javac25)
     mkdir -p target
     for file in "${files[@]}"
     do
-      javac --release 25 --enable-preview -d target "${file}"
+      javac --release 25 -d target "${file}"
     done
   fi
   ;;
@@ -996,8 +997,9 @@ no-error-htmlunit)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
+  HTMLUNIT_STABLE_SHA="6b12be""aa""c15a445cd99af061b17c028a""ee1c41b7"
   echo "Checkout target sources ..."
-  checkout_from https://github.com/HtmlUnit/htmlunit
+  checkout_from https://github.com/HtmlUnit/htmlunit.git "$HTMLUNIT_STABLE_SHA"
   cd .ci-temp/htmlunit
   echo "checkstyle.suppressions.file=checkstyle_suppressions.xml" > checkstyle.properties
   readarray -t files < <(find src/main/java src/test/java -name "*.java")
@@ -1055,7 +1057,6 @@ no-exception-struts)
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
-
 
 no-exception-checkstyle-sevntu)
   export MAVEN_OPTS="-Xmx4g"

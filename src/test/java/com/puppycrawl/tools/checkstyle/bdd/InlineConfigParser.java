@@ -243,8 +243,8 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.javadoc."
                     + "AbstractJavadocCheckTest$TokenIsNotInAcceptablesCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocPositionCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck",
+<<<<<<< HEAD
             "com.puppycrawl.tools.checkstyle.checks.javadoc"
                     + ".JavadocTagContinuationIndentationCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck",
@@ -256,6 +256,11 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck",
             "com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck",
             "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck",
+=======
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc"
+                    + ".RequireEmptyLineBeforeBlockTagGroupCheck",
+>>>>>>> upstream/master
             "com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck",
             "com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck",
             "com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck",
@@ -271,7 +276,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.naming.PatternVariableNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.RecordComponentNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.RecordTypeParameterNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck",
@@ -279,12 +283,7 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck",
-            "com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck",
             "com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace."
-                    + "NoWhitespaceBeforeCaseDefaultColonCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck",
             "com.puppycrawl.tools.checkstyle.api.AbstractCheckTest$ViolationAstCheck",
             "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet"
@@ -304,6 +303,7 @@ public final class InlineConfigParser {
      */
     private static final Set<String> SUPPRESSED_MODULES = Set.of(
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck",
+<<<<<<< HEAD
             "com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck",
@@ -337,11 +337,20 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck",
+=======
+>>>>>>> upstream/master
             "com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder",
-            "com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter",
             "com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter",
             "com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter",
             "com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter"
+    );
+
+    /**
+     * Input files where default values for properties are intentionally not specified,
+     * in order to test manual setting of default values.
+     */
+    private static final Set<String> SUPPRESSED_VALIDATE_DEFAULT_FILES = Set.of(
+        "checks/coding/matchxpath/InputMatchXpath2.java"
     );
 
     // This is a hack until https://github.com/checkstyle/checkstyle/issues/13845
@@ -980,7 +989,12 @@ public final class InlineConfigParser {
         final String fullyQualifiedClassName =
                 getFullyQualifiedClassName(inputFilePath, moduleName);
 
-        validateDefaultProperties(properties, getDefaultProperties(fullyQualifiedClassName));
+        final boolean isSuppressedValidateDefaultFile = SUPPRESSED_VALIDATE_DEFAULT_FILES.stream()
+                .anyMatch(Path.of(inputFilePath)::endsWith);
+
+        if (!isSuppressedValidateDefaultFile) {
+            validateDefaultProperties(properties, getDefaultProperties(fullyQualifiedClassName));
+        }
 
         for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
             final String key = entry.getKey().toString();

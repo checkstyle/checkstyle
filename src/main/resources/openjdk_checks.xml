@@ -17,6 +17,7 @@
 
 <module name="Checker">
   <property name="severity" value="error"/>
+  <property name="charset" value="US-ASCII"/>
 
   <property name="fileExtensions" value="java, properties, xml"/>
 
@@ -33,11 +34,45 @@
     <property name="optional" value="true"/>
   </module>
 
+  <module name="LineEnding">
+    <property name="lineEnding" value="lf"/>
+    <property name="fileExtensions" value="java"/>
+  </module>
+
+  <module name="RegexpSingleline">
+    <property name="format" value="\s+$"/>
+    <property name="minimum" value="0"/>
+    <property name="maximum" value="0"/>
+    <property name="message" value="Line has trailing spaces."/>
+  </module>
+
   <!-- Add OpenJDK-specific checks here based on the style guide -->
+
+  <module name="FileTabCharacter">
+    <property name="eachLine" value="true"/>
+  </module>
 
   <module name="TreeWalker">
     <!-- Add TreeWalker checks based on OpenJDK style guide -->
+    <module name="Indentation">
+      <property name="basicOffset" value="4"/>
+      <property name="caseIndent" value="4"/>
+      <property name="throwsIndent" value="8"/>
+      <property name="lineWrappingIndentation" value="8"/>
+      <property name="arrayInitIndent" value="4"/>
+    </module>
+
     <module name="OneStatementPerLine"/>
+    <module name="OuterTypeFilename"/>
+
+    <!-- §3.12: Expression lambda body length check based on OpenJDK style guide -->
+    <module name="LambdaBodyLength"/>
+
+    <module name="UpperEll"/>
+    <module name="HexLiteralCase"/>
+    <module name="NumericalPrefixesInfixesSuffixesCharacterCase"/>
+
+    <module name="MultipleVariableDeclarations"/>
 
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
