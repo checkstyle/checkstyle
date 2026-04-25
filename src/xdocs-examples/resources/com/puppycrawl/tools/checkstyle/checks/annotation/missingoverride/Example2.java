@@ -19,7 +19,9 @@ class ParentClass2 {
 // xdoc section -- start
 class Example2 {
   /** {@inheritDoc} */
-  public boolean equals(Object o) { // violation, 'include @java.lang.Override'
+  // violation 2 lines below """Must include @java.lang.Override annotation when
+  //  '@inheritDoc' Javadoc tag exists."""
+  public boolean equals(Object o) {
     return o == this;
   }
 }
@@ -27,7 +29,9 @@ class Example2 {
 interface B {
 
   /** {@inheritDoc} */
-  void test(); // violation, 'include @java.lang.Override'
+  // violation 2 lines below """Must include @java.lang.Override annotation when
+  //  '@inheritDoc' Javadoc tag exists."""
+  void test();
 }
 
 class C extends ParentClass2 {

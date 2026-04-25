@@ -13,7 +13,6 @@ class Example1 {
 
   static final int STATIC_FINAL = 0;
   private static final int Invalid_Name = 1;
-
   static int staticField;
   private static int Static_Bad;
 
@@ -21,7 +20,6 @@ class Example1 {
     int CONSTANT = 1;
     String Invalid_Name = "test";
   }
-
   @interface ExampleAnnotation {
     int DEFAULT = 0;
     String Bad_Name = "test";
@@ -29,29 +27,51 @@ class Example1 {
 
   final int bad = 0;
   final int Bad = 0;
-  // violation above, 'Non-constant field name 'Bad' must start lowercase'
-
+  // violation above """Non-constant field name 'Bad' must start lowercase,
+  //  be at least 2 chars, avoid single lowercase letter followed by uppercase,
+  //  contain only letters, digits or underscores,
+  //  with underscores allowed only between adjacent digits."""
   public final int myValue = 0;
   public final int mValue = 0;
-  // violation above, 'avoid single lowercase letter followed by uppercase'
-
+  // violation above """Non-constant field name 'mValue' must start lowercase,
+  //  be at least 2 chars, avoid single lowercase letter followed by uppercase,
+  //  contain only letters, digits or underscores,
+  //  with underscores allowed only between adjacent digits."""
   private final int foo = 0;
-  private final int f = 0; // violation, 'be at least 2 chars'
-
+  private final int f = 0;
+  // violation above """Non-constant field name 'f' must start lowercase,
+  //  be at least 2 chars, avoid single lowercase letter followed by uppercase,
+  //  contain only letters, digits or underscores,
+  //  with underscores allowed only between adjacent digits."""
   protected final int fooBar = 0;
   protected final int foo_bar = 0;
-  // violation above, 'underscores allowed only between adjacent digits'
-
+  // violation above """Non-constant field name 'foo_bar' must start lowercase,
+  //  be at least 2 chars, avoid single lowercase letter followed by uppercase,
+  //  contain only letters, digits or underscores,
+  //  with underscores allowed only between adjacent digits."""
   int fieldA;
-  int fA; // violation, 'avoid single lowercase letter followed by uppercase'
-
+  int fA;
+  // violation above """Non-constant field name 'fA' must start lowercase,
+  //  be at least 2 chars, avoid single lowercase letter followed by uppercase,
+  //  contain only letters, digits or underscores,
+  //  with underscores allowed only between adjacent digits."""
   int xmlParser;
-  int xml$parser; // violation, 'contain only letters, digits or underscores'
-
+  int xml$parser;
+  // violation above """Non-constant field name 'xml\$parser' must start lowercase,
+  //  be at least 2 chars, avoid single lowercase letter followed by uppercase,
+  //  contain only letters, digits or underscores,
+  //  with underscores allowed only between adjacent digits."""
   int gradle9_5_1;
-  int gradle_9_5_1; // violation, 'underscores allowed only between adjacent digits'
-
+  int gradle_9_5_1;
+  // violation above """Non-constant field name 'gradle_9_5_1' must start lowercase,
+  //  be at least 2 chars, avoid single lowercase letter followed by uppercase,
+  //  contain only letters, digits or underscores,
+  //  with underscores allowed only between adjacent digits."""
   int foo2;
-  int _foo2; // violation, 'underscores allowed only between adjacent digits'
+  int _foo2;
+  // violation above """Non-constant field name '_foo2' must start lowercase,
+  //  be at least 2 chars, avoid single lowercase letter followed by uppercase,
+  //  contain only letters, digits or underscores,
+  //  with underscores allowed only between adjacent digits."""
 }
 // xdoc section -- end

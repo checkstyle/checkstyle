@@ -15,7 +15,9 @@ public class Example5 {
         int j = 7;
         // it is OK
         break;
-      case "3": // violation 2 lines below 'Comment has incorrect indentation level'
+      case "3":
+        // violation 3 lines below """Comment has incorrect indentation level 12,
+        //  expected is 8, indentation should be the same level as line 23."""
         if (true) {}
             //It is not okay
         break;
@@ -25,7 +27,8 @@ public class Example5 {
       case "6":
      // It is not okay
       case "7":
-       // violation 2 lines above 'Comment has incorrect indentation level 5'
+       // violation 2 lines above """Comment has incorrect indentation level 5,
+       // expected is 6, 6, indentation should be the same level as line 27, 29"""
       default:
     }
   }
