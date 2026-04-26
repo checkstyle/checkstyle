@@ -77,4 +77,16 @@ public class PatternVariableAssignmentCheckTest extends AbstractModuleTestSuppor
             "InputPatternVariableAssignmentCheck2.java"), expected);
     }
 
+    @Test
+    public void testPatternVariableAssignmentCheck3() throws Exception {
+
+        final String[] expected = {
+            "24:13: " + getCheckMessage(MSG_KEY, "integer3"),
+            "32:13: " + getCheckMessage(MSG_KEY, "arr2"),
+        };
+
+        verifyWithInlineXmlConfig(getPath(
+            "InputPatternVariableAssignmentCheck3.java"), expected);
+    }
+
 }
