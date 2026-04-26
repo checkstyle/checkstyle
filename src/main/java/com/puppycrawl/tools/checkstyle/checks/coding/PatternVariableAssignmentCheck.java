@@ -161,11 +161,9 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
 
             final DetailAST assignToken = getMatchedAssignToken(expressionBranch);
 
-            if (assignToken != null) {
-                final DetailAST neededAssignIdent = getNeededAssignIdent(assignToken);
-                if (neededAssignIdent.getPreviousSibling() == null) {
-                    reassignedVariableIdents.add(getNeededAssignIdent(assignToken));
-                }
+            if (assignToken != null
+                    && assignToken.getFirstChild().getType() == TokenTypes.IDENT) {
+                reassignedVariableIdents.add(assignToken.getFirstChild());
             }
         }
 
@@ -281,22 +279,4 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
         return matchedAssignToken;
     }
 
-    /**
-     * Gets the needed AST Ident of reassigned variable for check to compare.
-     *
-     * @param assignToken The AST branch of reassigned variable's ASSIGN token.
-     * @return needed AST Ident.
-     */
-    private static DetailAST getNeededAssignIdent(DetailAST assignToken) {
-        DetailAST assignIdent = assignToken;
-
-        while (traverseUntilNeededBranchType(
-            assignIdent, assignToken.getFirstChild(), TokenTypes.IDENT) != null) {
-
-            assignIdent =
-                traverseUntilNeededBranchType(assignIdent, assignToken, TokenTypes.IDENT);
-        }
-
-        return assignIdent;
-    }
 }
