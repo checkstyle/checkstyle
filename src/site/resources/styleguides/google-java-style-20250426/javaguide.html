@@ -952,6 +952,36 @@ re-wrap the lines when necessary (paragraph-style). Most formatters don't re-wra
   this code when all clients can handle XML responses.").</p>
 </div>
 
+<a id="box-comments"></a>
+<h5 id="s4.8.6.3-box-comments">4.8.6.3 Box comments</h5>
+
+<p>Comments are not enclosed in boxes drawn with asterisks or other characters.</p>
+
+<p>Avoid creating visual "boxes" around comments using repeated characters:</p>
+
+<pre class="badcode">// *****************************************
+// * This is a bad box comment style      *
+// *****************************************
+
+/*
+ =========================================
+ Bad box comment with equals signs
+ =========================================
+*/
+</pre>
+
+<p>Instead, use regular comment styles as described in
+<a href="#s4.8.6.1-block-comment-style">Section 4.8.6.1</a>:</p>
+
+<pre class="prettyprint lang-java">// This is a good comment style
+// It's clear and readable without decorations
+
+/*
+ * This is also acceptable for
+ * multi-line comments.
+ */
+</pre>
+
 <a id="modifiers"></a>
 <h4 id="s4.8.7-modifiers">4.8.7 Modifiers</h4>
 
