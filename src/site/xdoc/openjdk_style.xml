@@ -736,8 +736,22 @@
                     4.3 Method Names
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt="" />
+                  </span>
+                  <a href="checks/naming/methodname.html#MethodName">MethodName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
+                  config</a>)
+                  <br />
+                  Method names should typically be verbs or other descriptions of actions.
+                  This cannot be fully covered because Checkstyle does not have English vocabulary
+                  to determine whether a method name is a verb or action description.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter4naming/rule43methodnames">
+                    samples</a>
+                </td>
               </tr>
               <tr>
                 <td>
