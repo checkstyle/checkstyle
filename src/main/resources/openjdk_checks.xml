@@ -74,6 +74,10 @@
 
     <module name="MultipleVariableDeclarations"/>
 
+    <module name="MethodName">
+      <property name="format" value="^[a-z]{2,}[a-zA-Z0-9]*$"/>
+    </module>
+
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
       <property name="file" value="${org.checkstyle.openjdk.suppressionxpathfilter.config}"
