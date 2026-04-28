@@ -22,6 +22,26 @@
     <property name="message" value="Inputs should not reference checkstyle's own files"/>
   </module>
 
+  <module name="RegexpMultiline">
+    <property name="id" value="violationBetweenAnnotationAndMethod"/>
+    <property name="format"
+              value="\n[ \t]*@\w+[^\n]*\n[ \t]*//[ \t]*violation"/>
+    <property name="fileExtensions" value="java"/>
+    <message key="regexp.exceeded"
+             value="Violation comment must not be placed between an annotation and its target.
+Place it before the annotation block instead."/>
+  </module>
+
+  <module name="RegexpMultiline">
+    <property name="id" value="violationBetweenJavadocAndMethod"/>
+    <property name="format"
+              value="\n[ \t]+\*/[ \t]*\n[ \t]*//[ \t]*violation"/>
+    <property name="fileExtensions" value="java"/>
+    <message key="regexp.exceeded"
+             value="Violation comment must not be placed between a Javadoc block and its target.
+Place it before the Javadoc block instead."/>
+  </module>
+
   <module name="TreeWalker">
     <module name="Regexp">
       <property name="id" value="UnnecessaryOkComment"/>
