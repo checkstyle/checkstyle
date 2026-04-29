@@ -114,8 +114,9 @@ Note that single and double quotes inside messages do not need to be escaped.
 > [!Important]
 > Even message is RegExp based, it is highly discouraged to use RegExp syntax.
 >
-> If a message is excessively long, you can simply specify part of the message,
-> instead of using `.*` to truncate it,
+> If a message is excessively long, you can specify part of the message instead of using
+> `.*` to truncate it. For xdocs example files where the full message is required,
+> use the multiline `"""` format described below.
 >
 > **Bad example**
 >
@@ -128,7 +129,51 @@ Note that single and double quotes inside messages do not need to be escaped.
 > ```java
 > final static int badConstant = 5; // violation ''badConstant' must match pattern'
 > ```
->
+
+### Multiline Violation Messages
+
+When a violation message is too long to fit on a single line, you can use the triple-quote
+(`"""`) multiline format. This allows the message to span multiple `//` comment lines.
+
+**Syntax:**
+
+```java
+// violation N lines below """First part of the message
+//  continuation of the message."""
+```
+
+**Rules:**
+
+- The opening `"""` must appear immediately after the violation keyword on the same line.
+- Continuation lines must start with `//` and must not be violation comments themselves.
+- The closing `"""` must appear at the end of the last continuation line.
+- Use `violation N lines below` or `violation N lines above` where `N` accounts for
+  the number of continuation lines.
+
+**Example:**
+
+```java
+// violation 2 lines below """Must include both @java.lang.Deprecated annotation
+//  and @deprecated Javadoc tag with description."""
+@Deprecated
+public static final int COUNTER = 10;
+```
+
+**Example with `violation above`:**
+
+```java
+final int Bad = 0;
+// violation above, """Non-constant field name 'Bad' must start lowercase,
+//  be at least 2 chars, avoid single lowercase letter followed by uppercase,
+//  contain only letters, digits or underscores,
+//  with underscores allowed only between adjacent digits."""
+```
+
+> [!Important]
+> The multiline `"""` format is intended only for xdocs example files under
+> `src/xdocs-examples/resources/` where violation messages are too long to fit
+> on a single line. For regular test input files under `src/test/resources/`,
+> prefer specifying a unique fragment of the message instead.
 
 ## Multiple Violations on Same Line
 
