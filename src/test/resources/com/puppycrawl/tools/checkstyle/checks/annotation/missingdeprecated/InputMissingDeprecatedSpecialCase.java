@@ -7,16 +7,18 @@ violateExecutionOnNonTightHtml = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 
+// violation 3 lines below 'Duplicate @deprecated tag.'
 /**
  * @deprecated bleh
- * @deprecated boo // violation 'Duplicate @deprecated tag.'
+ * @deprecated boo
  */
 @Deprecated
 public class InputMissingDeprecatedSpecialCase
 {
+    // violation 3 lines below 'Duplicate @deprecated tag.'
     /**
      * @deprecated bleh
-     * @deprecated boo // violation 'Duplicate @deprecated tag.'
+     * @deprecated boo
      */
     public int i; // violation 'Must include both @java.lang.Deprecated annotation.*@deprecated.*'
 
@@ -35,27 +37,30 @@ public class InputMissingDeprecatedSpecialCase
 
     }
 
+    // violation 3 lines below 'Duplicate @deprecated tag.'
     /**
      * @deprecated
-     * @deprecated // violation 'Duplicate @deprecated tag.'
+     * @deprecated
      */
     @Deprecated
     public void foo3() {
 
     }
 
+    // violation 3 lines below 'Duplicate @deprecated tag.'
     /**
      * @deprecated bleh
-     * @deprecated // violation 'Duplicate @deprecated tag.'
+     * @deprecated
      */
     @Deprecated
     public void foo4() {
 
     }
 
+    // violation 3 lines below 'Duplicate @deprecated tag.'
     /**
      * @deprecated
-     * @deprecated bleh // violation 'Duplicate @deprecated tag.'
+     * @deprecated bleh
      */
     @Deprecated
     public void foo5() {
