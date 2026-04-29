@@ -64,7 +64,7 @@
   <suppress id="noCheckstyleInInputs"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule333orderingandspacing[\\/]InputFormattedOrderingAndSpacingValid2.java"/>
 
-  <!-- Input files with violation comments inside Javadoc  -->
+  <!-- Input files with violation comments inside Javadoc, until https://github.com/checkstyle/checkstyle/issues/19764 -->
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]chapter7javadoc[\\/]rule711generalform[\\/]InputCorrectJavadocLeadingAsteriskAlignment.java"/>
   <suppress id="noViolationCommentsInJavadoc"
