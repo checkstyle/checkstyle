@@ -107,16 +107,16 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     public void testSpecialCaseDeprecated() throws Exception {
 
         final String[] expected = {
-            "12: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
-            "19: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
-            "21: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "26: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "40: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
-            "49: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
-            "58: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
-            "99: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "106: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "113: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "13: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
+            "21: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
+            "23: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "28: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "41: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
+            "50: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
+            "59: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
+            "95: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "102: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "109: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
         verifyWithInlineConfigParser(
@@ -139,8 +139,8 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     public void testTwoInJavadocWithoutAnnotation() throws Exception {
 
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
-            "19: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "17: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
+            "21: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
         verifyWithInlineConfigParser(
