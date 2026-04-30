@@ -685,8 +685,8 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     /**
-     * Create a JavadocNodeImpl from a given token and token type. This method
-     * should be used for imaginary nodes only, i.e. 'JAVADOC_INLINE_TAG -&gt; JAVADOC_INLINE_TAG',
+     * Create a JavadocNodeImpl from a given token and token type. This method should be used for
+     * imaginary nodes only, i.e. {@literal 'JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG'},
      * where the text on the RHS matches the text on the LHS.
      *
      * @param tokenType the token type of this JavadocNodeImpl

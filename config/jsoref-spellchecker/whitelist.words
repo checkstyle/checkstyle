@@ -273,6 +273,7 @@ defaultcomeslast
 defaultlabelpresence
 defaultlogger
 delims
+Denforcer
 DENORMALIZER
 Depedency
 dependabot
@@ -661,6 +662,7 @@ javaparser
 javarevisited
 javascript
 javase
+javasourcefiles
 javax
 Jax
 jb
@@ -749,6 +751,7 @@ Kordas
 Kotlin
 Kp
 lambdabodylength
+lambdaexpressions
 lambdaparametername
 LBRACE
 LBRACK
@@ -1430,6 +1433,7 @@ uxxxx
 validator
 VALUELONG
 vararg
+variabledeclarations
 variabledeclarationusagedistance
 Veach
 Verdana

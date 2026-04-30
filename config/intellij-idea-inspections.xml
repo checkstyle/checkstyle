@@ -4511,6 +4511,8 @@
         <option value="CanBeFinal"/>
         <!-- false positive from Language Injection in snippet block -->
         <option value="EmptyClass"/>
+        <!-- false positive from errorprone -->
+        <option value="ReferenceEquality"/>
       </list>
     </option>
   </inspection_tool>

@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class ParseTreeTableModel implements TreeModel {
 
     /** Presentation model. */
-    private final ParseTreeTablePresentation pModel;
+    private final ParseTreeTablePresentation presentationModel;
 
     /**
      * A list of event listeners for the tree model.
@@ -44,12 +44,12 @@ public class ParseTreeTableModel implements TreeModel {
     private final EventListenerList listenerList = new EventListenerList();
 
     /**
-     * Initialise pModel.
+     * Initialise presentationModel.
      *
      * @param parseTree DetailAST parse tree.
      */
     public ParseTreeTableModel(DetailAST parseTree) {
-        pModel = new ParseTreeTablePresentation(parseTree);
+        presentationModel = new ParseTreeTablePresentation(parseTree);
         setParseTree(parseTree);
     }
 
@@ -59,8 +59,8 @@ public class ParseTreeTableModel implements TreeModel {
      * @param parseTree DetailAST parse tree.
      */
     protected final void setParseTree(DetailAST parseTree) {
-        pModel.setRoot(parseTree);
-        final Object[] path = {pModel.getRoot()};
+        presentationModel.setRoot(parseTree);
+        final Object[] path = {presentationModel.getRoot()};
         // no need to setup remaining info, as the call results in a
         // table structure changed event anyway - we just pass nulls
         fireTreeStructureChanged(this, path, null, CommonUtil.EMPTY_OBJECT_ARRAY);
@@ -72,7 +72,7 @@ public class ParseTreeTableModel implements TreeModel {
      * @param mode ParseMode enum
      */
     protected void setParseMode(ParseMode mode) {
-        pModel.setParseMode(mode);
+        presentationModel.setParseMode(mode);
     }
 
     /**
@@ -81,7 +81,7 @@ public class ParseTreeTableModel implements TreeModel {
      * @return the number of available column.
      */
     public int getColumnCount() {
-        return pModel.getColumnCount();
+        return presentationModel.getColumnCount();
     }
 
     /**
@@ -91,7 +91,7 @@ public class ParseTreeTableModel implements TreeModel {
      * @return the name for column number {@code column}.
      */
     public String getColumnName(int column) {
-        return pModel.getColumnName(column);
+        return presentationModel.getColumnName(column);
     }
 
     /**
@@ -103,7 +103,7 @@ public class ParseTreeTableModel implements TreeModel {
     // -@cs[ForbidWildcardAsReturnType] We need to satisfy javax.swing.table.AbstractTableModel
     // public Class<?> getColumnClass(int columnIndex) {...}
     public Class<?> getColumnClass(int column) {
-        return pModel.getColumnClass(column);
+        return presentationModel.getColumnClass(column);
     }
 
     /**
@@ -115,17 +115,17 @@ public class ParseTreeTableModel implements TreeModel {
      *     at column number {@code column}.
      */
     public Object getValueAt(Object node, int column) {
-        return pModel.getValueAt(node, column);
+        return presentationModel.getValueAt(node, column);
     }
 
     @Override
     public Object getChild(Object parent, int index) {
-        return pModel.getChild(parent, index);
+        return presentationModel.getChild(parent, index);
     }
 
     @Override
     public int getChildCount(Object parent) {
-        return pModel.getChildCount(parent);
+        return presentationModel.getChildCount(parent);
     }
 
     @Override
@@ -135,18 +135,18 @@ public class ParseTreeTableModel implements TreeModel {
 
     @Override
     public Object getRoot() {
-        return pModel.getRoot();
+        return presentationModel.getRoot();
     }
 
     @Override
     public boolean isLeaf(Object node) {
-        return pModel.isLeaf(node);
+        return presentationModel.isLeaf(node);
     }
 
     // This is not called in the JTree's default mode: use a naive implementation.
     @Override
     public int getIndexOfChild(Object parent, Object child) {
-        return pModel.getIndexOfChild(parent, child);
+        return presentationModel.getIndexOfChild(parent, child);
     }
 
     @Override
@@ -199,7 +199,7 @@ public class ParseTreeTableModel implements TreeModel {
      * @return true if editable
      */
     public boolean isCellEditable(int column) {
-        return pModel.isCellEditable(column);
+        return presentationModel.isCellEditable(column);
     }
 
 }

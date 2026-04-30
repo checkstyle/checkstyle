@@ -10,6 +10,188 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 13.4.1">
+      <div class="releaseDate">27.04.2026</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            ImportOrder: option=under; doesn&#39;t allow empty line between &#39;import&#39; and
+            &#39;import static&#39;.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/5460">#5460</a>
+          </li>
+          <li>
+            Add checks for OpenJDK Style §3.10 - Variable Declarations.
+            Author: lithops-zty
+            <a href="https://github.com/checkstyle/checkstyle/issues/19641">#19641</a>
+          </li>
+          <li>
+            Add checks for OpenJDK Style §3.14 - Literals.
+            Author: Aman Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/19620">#19620</a>
+          </li>
+          <li>
+            Add checks for OpenJDK Style §3.7 - Indentation.
+            Author: Anushree Bondia
+            <a href="https://github.com/checkstyle/checkstyle/issues/19619">#19619</a>
+          </li>
+          <li>
+            Add checks for OpenJDK Style §2 - Java Source Files.
+            Author: Anushree Bondia
+            <a href="https://github.com/checkstyle/checkstyle/issues/19617">#19617</a>
+          </li>
+          <li>
+            Add checks for OpenJDK Style §3.12 - Lambda Expressions.
+            Author: Eric Tao
+            <a href="https://github.com/checkstyle/checkstyle/issues/19662">#19662</a>
+          </li>
+          <li>
+            AnnotationLocation allows same-line parameterless annotation on class declarations
+            (violates Google Style §4.8.5.2).
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/19559">#19559</a>
+          </li>
+          <li>
+            False negative: VariableDeclarationUsageDistance does not flag variable usage inside
+            try blocks.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/19608">#19608</a>
+          </li>
+          <li>
+            Add RECORD_DEF and COMPACT_CTOR_DEF to AtclauseOrder target in google_checks.xml.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/19682">#19682</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Conver test from XpathFilterElementTest to SuppressionXpathSingleFilterTest to use
+            inlined config in Input files.
+            Author: Carbon14-48
+            <a href="https://github.com/checkstyle/checkstyle/issues/11440">#11440</a>
+          </li>
+          <li>
+            Remove &#39;//ok&#39; comments from it Input files.
+            Author: ayushactiveat, Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/19739">#19739</a>
+          </li>
+          <li>
+            Updating properties in Input files to mention all default properties.
+            Author: ayushactiveat, jeonyunhwan, achyuth8055, developer4949-code, lithops-zty
+            <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: achyuth8055, developer4949-code, lithops-zty
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Update documentation for new abstract methods in AbstractCheck.
+            Author: Vishnu
+            <a href="https://github.com/checkstyle/checkstyle/issues/4939">#4939</a>
+          </li>
+          <li>
+            Input files under `it` are not tested against `config/checkstyle-input-checks.xml`.
+            Author: lithops-zty
+            <a href="https://github.com/checkstyle/checkstyle/issues/19737">#19737</a>
+          </li>
+          <li>
+            SarifLoggerTest.java to use verifyWithInlineConfigParserAndLogger.
+            Author: Carbon14-48
+            <a href="https://github.com/checkstyle/checkstyle/issues/16361">#16361</a>
+          </li>
+          <li>
+            Resolve CheckerFramework violations.
+            Author: Carbon14-48
+            <a href="https://github.com/checkstyle/checkstyle/issues/14084">#14084</a>
+          </li>
+          <li>
+            No documentation on how to write TreeWalkerFilter.
+            Author: ayushactiveat
+            <a href="https://github.com/checkstyle/checkstyle/issues/6197">#6197</a>
+          </li>
+          <li>
+            update tables in option page to have link to exact line of table.
+            Author: ayushactiveat
+            <a href="https://github.com/checkstyle/checkstyle/issues/9070">#9070</a>
+          </li>
+          <li>
+            Semaphore failure.
+            Author: Brijeshthummar02, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/19601">#19601</a>
+          </li>
+          <li>
+            Fix  PMD 7.1.0 Violations.
+            Author: Carbon14-48
+            <a href="https://github.com/checkstyle/checkstyle/issues/14870">#14870</a>
+          </li>
+          <li>
+            convert all wget to curls.
+            Author: Carbon14-48
+            <a href="https://github.com/checkstyle/checkstyle/issues/13040">#13040</a>
+          </li>
+          <li>
+            job no-error-pmd is failing with likely memory problem.
+            Author: achyuth8055
+            <a href="https://github.com/checkstyle/checkstyle/issues/19394">#19394</a>
+          </li>
+          <li>
+            Resolve Suppressed SpotBugs False Positives.
+            Author: Carbon14-48
+            <a href="https://github.com/checkstyle/checkstyle/issues/16979">#16979</a>
+          </li>
+          <li>
+            Migrate Codenarc from currently compatible version v2.2.0 to latest release.
+            Author: ayushactiveat
+            <a href="https://github.com/checkstyle/checkstyle/issues/14680">#14680</a>
+          </li>
+          <li>
+            doc: wrap long lines in release notes.
+            Author: Arpit Tripathi
+          </li>
+          <li>
+            Remove from whitelist file odd words that came from test imput files.
+            Author: achyuth8055
+            <a href="https://github.com/checkstyle/checkstyle/issues/5741">#5741</a>
+          </li>
+          <li>
+            Define violation messages for all violations.
+            Author: achyuth8055, developer4949-code, MiriyalaJayanth-19, HamzehAdawi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            Move Intputs to non-compiled folders to let Idea to run test without compilation error.
+            Author: ayushactiveat
+            <a href="https://github.com/checkstyle/checkstyle/issues/19188">#19188</a>
+          </li>
+          <li>
+            Enable IntellijIdea inspection: &#39;throw&#39; inside &#39;finally&#39; block.
+            Author: Zaheer Ahmad
+            <a href="https://github.com/checkstyle/checkstyle/issues/3301">#3301</a>
+          </li>
+          <li>
+            Improve examples of IndentationCheck.
+            Author: developer4949-code, achyuth8055
+            <a href="https://github.com/checkstyle/checkstyle/issues/19411">#19411</a>
+          </li>
+          <li>
+            validation.sh versions &quot;xmlstarlet: command not found&quot;.
+            Author: ayushactiveat
+            <a href="https://github.com/checkstyle/checkstyle/issues/19515">#19515</a>
+          </li>
+          <li>
+            fix pitest in SuppressionsLoader.
+            Author: Carbon14-48
+            <a href="https://github.com/checkstyle/checkstyle/issues/19525">#19525</a>
+          </li>
+          <li>
+            Upgrade all scripts to groovy 3.0.17 or 5.x.
+            Author: Amit Kumar Deohoria, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/17269">#17269</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 13.4.0">
       <div class="releaseDate">29.03.2026</div>
       <p>Breaking backward compatibility:</p>

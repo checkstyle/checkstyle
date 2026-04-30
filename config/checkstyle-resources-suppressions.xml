@@ -162,6 +162,8 @@
   <suppress checks="FileTabCharacter"
     files="[\\/]InputCheckerTabCharacter\.txt"/>
   <suppress checks="FileTabCharacter"
+    files=".*[\\/]src[\\/]it[\\/]resources[\\/]com[\\/]openjdk[\\/]checkstyle[\\/]test[\\/]chapter3formatting[\\/]rule37indentation[\\/]InputFileTabCharacterInvalid\.java"/>
+  <suppress checks="FileTabCharacter"
     files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]indentation[\\/]Input.*\.java"/>
   <suppress checks="FileTabCharacter"
     files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppresswithplaintextcommentfilter[\\/]Input.*"/>
@@ -242,8 +244,6 @@
             files="[\\/]InputAstTreeStringPrinterTextBlocksEscapesAreOneChar\.java"/>
 
   <!-- intentional problem for testing -->
-  <suppress checks="FileLength"
-    files="[\\/]InputJavaNCSSRecordsMax\.java"/>
   <suppress checks="FileLength"
     files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/].*[\\/].*[\\/].*\.java"/>
   <suppress checks="FileLength"
@@ -385,8 +385,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNull\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]nofinalizer[\\/]InputNoFinalizerFallThrough\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]fallthrough[\\/]InputFallThrough\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]fallthrough[\\/]InputFallThrough3\.java"/>
@@ -509,8 +507,7 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]xpath[\\/]xpathmapper[\\/]InputXpathMapperStringConcat\.java"/>
   <suppress checks="FileLength"
-
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]metrics[\\/]javancss[\\/]InputJavaNCSSRecordsAndCompactCtors\.java"/>
+    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]main[\\/]InputMainComplexityOverflow\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]java14[\\/]InputJava14TextBlocks\.java"/>
   <suppress checks="FileLength"

@@ -96,15 +96,15 @@ public class TagParser {
      * @param lineNo the source line number.
      */
     private void parseTags(String[] text, int lineNo) {
-        final int nLines = text.length;
+        final int numLines = text.length;
         Point position = new Point(0, 0);
-        while (position.lineNo() < nLines) {
+        while (position.lineNo() < numLines) {
             // if this is html comment then skip it
             if (isCommentTag(text, position)) {
                 position = skipHtmlComment(text, position);
             }
             else if (isTag(text, position)) {
-                position = parseTag(text, lineNo, nLines, position);
+                position = parseTag(text, lineNo, numLines, position);
             }
             else {
                 position = getNextPoint(text, position);
@@ -118,19 +118,19 @@ public class TagParser {
      *
      * @param text the source line to parse.
      * @param lineNo the source line number.
-     * @param nLines line length
+     * @param numLines line length
      * @param position start position for parsing
      * @return position after tag
      */
-    private Point parseTag(String[] text, int lineNo, final int nLines, Point position) {
+    private Point parseTag(String[] text, int lineNo, final int numLines, Point position) {
         // find end of tag
         final Point endTag = findChar(text, '>', position);
-        final boolean incompleteTag = endTag.lineNo() >= nLines;
+        final boolean incompleteTag = endTag.lineNo() >= numLines;
         // get tag id (one word)
         final String tagId = getTagId(text, position);
         // is this closed tag
         final boolean closedTag =
-                endTag.lineNo() < nLines
+                endTag.lineNo() < numLines
                  && text[endTag.lineNo()]
                  .charAt(endTag.columnNo() - 1) == '/';
         // add new tag

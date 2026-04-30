@@ -80,8 +80,8 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEscape() throws Exception {
-        final String inputFile = "InputSarifLoggerEscapeSelect.java";
-        final String expectedReportFile = "ExpectedSarifLoggerEscapeSelect.sarif";
+        final String inputFile = "InputSarifLoggerEscapeAll.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeAll.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
 
@@ -98,32 +98,6 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParserAndLogger(
                 getPath(inputFile), getPath(expectedReportFile), logger, outStream);
-    }
-
-    /**
-     * This test cannot use verifyWithInlineConfigParserAndLogger because
-     * XML 1.0 forbids most control characters (&#x8;, &#xC;, &#xD;, etc.)
-     * even as numeric character references in attribute values. These characters
-     * require direct unit testing of the escape() method.
-     */
-    @Test
-    public void testEscapeDirectly() {
-        final String[][] encodings = {
-            {"\b", "\\b"},
-            {"\f", "\\f"},
-            {"\r", "\\r"},
-            {"/", "\\/"},
-            {"\u001E", "\\u001E"},
-            {"\u001F", "\\u001F"},
-            {" ", " "},
-            {"bar1234", "bar1234"},
-        };
-        for (String[] encoding : encodings) {
-            final String encoded = SarifLogger.escape(encoding[0]);
-            assertWithMessage("\"%s\"", encoding[0])
-                .that(encoded)
-                .isEqualTo(encoding[1]);
-        }
     }
 
     @Test
@@ -372,6 +346,12 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
                 .isFalse();
     }
 
+    /**
+     * This test can't use verifyWithInlineConfigParserAndLogger because it
+     * checks for an exception during the logger's creation. Since the constructor
+     * fails immediately with a null parameter, we never get a logger instance
+     * to use in the inline verification process.
+     */
     @Test
     public void testNullOutputStreamOptions() {
         final IllegalArgumentException exception =

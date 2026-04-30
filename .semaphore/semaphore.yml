@@ -102,3 +102,40 @@ blocks:
             - echo "eval of CMD is completed";
             - ./.ci/validation.sh git-diff
             - ./.ci/validation.sh ci-temp-check
+
+  - name: "Linux openjdk25 build"
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore m2-jdk25
+          - eval "export M2_CACHE_SIZE=$(du -s $HOME/.m2 | cut -f1)"
+          - sudo apt-get update
+          - sudo apt-get install -y ant xsltproc xmlstarlet
+          - sudo apt-get install -y openjdk-25-jdk
+          - export JAVA_HOME=/usr/lib/jvm/java-25-openjdk-amd64
+          - export PATH=$JAVA_HOME/bin:$PATH
+          - java -version
+          - export GRADLE_OPTS=-Dorg.gradle.console=plain
+      epilogue:
+        commands:
+          - |
+            if [[ ${M2_CACHE_SIZE} -ne $(du -s $HOME/.m2 | cut -f1) ]]
+            then
+              cache delete m2-jdk25
+              cache store m2-jdk25 $HOME/.m2
+            fi
+      jobs:
+        - name: No Error Test (openjdk25, fast pool)
+          matrix:
+            - env_var: CMD
+              values:
+                - .ci/validation.sh no-error-hibernate-search
+                - .ci/validation.sh no-error-spring-integration
+
+          commands:
+            - echo "eval of CMD is starting";
+            - echo "CMD=$CMD";
+            - eval $CMD;
+            - echo "eval of CMD is completed";
+            - ./.ci/validation.sh git-diff

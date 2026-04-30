@@ -22,6 +22,14 @@
     <property name="message" value="Inputs should not reference checkstyle's own files"/>
   </module>
 
+  <module name="RegexpMultiline">
+    <property name="id" value="noViolationCommentsInJavadoc"/>
+    <property name="matchAcrossLines" value="true"/>
+    <property name="format"
+              value="\/\*\*[^\/](?:[^*]|\*(?!\/))*?(\/\/[^\n]+violation[^\n]+)\n(?:[^*]|\*(?!\/))*?\*\/"/>
+    <property name="message" value="Violation comments should not be placed inside Javadoc."/>
+  </module>
+
   <module name="TreeWalker">
     <module name="Regexp">
       <property name="id" value="UnnecessaryOkComment"/>

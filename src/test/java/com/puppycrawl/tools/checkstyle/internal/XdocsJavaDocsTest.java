@@ -301,9 +301,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
             // Relative links to DTDs are prohibited, so we don't try to resolve them
             if (!initialValue.startsWith("/dtds")) {
-                value = currentXdocPath
-                        .getParent()
-                        .resolve(Path.of(value))
+                value = currentXdocPath.resolveSibling(Path.of(value))
                         .normalize()
                         .toString()
                         .replaceAll("src[\\\\/]site[\\\\/]xdoc[\\\\/]", "")

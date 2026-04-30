@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -210,33 +211,33 @@ public class IllegalInstantiationCheck
      *     or null if instantiation of className is OK
      */
     private String getIllegalInstantiation(String className) {
-        String fullClassName = null;
+        final String fullClassName;
 
         if (classes.contains(className)) {
             fullClassName = className;
         }
         else {
-            final int pkgNameLen;
-
-            if (pkgName == null) {
-                pkgNameLen = 0;
+            final Optional<String> importResult = checkImportStatements(className);
+            if (importResult.isPresent()) {
+                fullClassName = importResult.get();
             }
             else {
-                pkgNameLen = pkgName.length();
-            }
+                final int pkgNameLen;
 
-            for (String illegal : classes) {
-                if (isSamePackage(className, pkgNameLen, illegal)
-                        || isStandardClass(className, illegal)) {
-                    fullClassName = illegal;
+                if (pkgName == null) {
+                    pkgNameLen = 0;
                 }
                 else {
-                    fullClassName = checkImportStatements(className);
+                    pkgNameLen = pkgName.length();
                 }
 
-                if (fullClassName != null) {
-                    break;
-                }
+                fullClassName = classes.stream()
+                        .filter(illegal -> {
+                            return isSamePackage(className, pkgNameLen, illegal)
+                                    || isStandardClass(className, illegal);
+                        })
+                        .findFirst()
+                        .orElse(null);
             }
         }
         return fullClassName;
@@ -246,11 +247,10 @@ public class IllegalInstantiationCheck
      * Check import statements.
      *
      * @param className name of the class
-     * @return value of illegal instantiated type
+     * @return Optional containing value of illegal instantiated type, if found
      */
-    private String checkImportStatements(String className) {
-        String illegalType = null;
-        // import statements
+    private Optional<String> checkImportStatements(String className) {
+        Optional<String> result = Optional.empty();
         for (FullIdent importLineText : imports) {
             String importArg = importLineText.getText();
             if (importArg.endsWith(".*")) {
@@ -259,11 +259,11 @@ public class IllegalInstantiationCheck
             }
             if (CommonUtil.baseClassName(importArg).equals(className)
                     && classes.contains(importArg)) {
-                illegalType = importArg;
+                result = Optional.of(importArg);
                 break;
             }
         }
-        return illegalType;
+        return result;
     }
 
     /**

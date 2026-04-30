@@ -381,23 +381,23 @@ public class HiddenFieldCheck
 
     /**
      * Determine if a specific method identified by methodAST and a single
-     * variable name aName is a setter. This recognition partially depends
-     * on mSetterCanReturnItsClass property.
+     * variable name parameterName is a setter. This recognition partially depends
+     * on setterCanReturnItsClass property.
      *
-     * @param aMethodAST AST corresponding to a method call
-     * @param aName name of single parameter of this method.
+     * @param methodAST AST corresponding to a method call
+     * @param parameterName name of single parameter of this method.
      * @return true of false indicating of method is a setter or not.
      */
-    private boolean isSetterMethod(DetailAST aMethodAST, String aName) {
+    private boolean isSetterMethod(DetailAST methodAST, String parameterName) {
         final String methodName =
-            aMethodAST.findFirstToken(TokenTypes.IDENT).getText();
+            methodAST.findFirstToken(TokenTypes.IDENT).getText();
         boolean isSetterMethod = false;
 
-        if (("set" + capitalize(aName)).equals(methodName)) {
-            // method name did match set${Name}(${anyType} ${aName})
-            // where ${Name} is capitalized version of ${aName}
+        if (("set" + capitalize(parameterName)).equals(methodName)) {
+            // method name did match set${Name}(${anyType} ${parameterName})
+            // where ${Name} is capitalized version of ${parameterName}
             // therefore this method is potentially a setter
-            final DetailAST typeAST = aMethodAST.findFirstToken(TokenTypes.TYPE);
+            final DetailAST typeAST = methodAST.findFirstToken(TokenTypes.TYPE);
             final String returnType = typeAST.getFirstChild().getText();
             if (typeAST.findFirstToken(TokenTypes.LITERAL_VOID) != null
                     || setterCanReturnItsClass && frame.isEmbeddedIn(returnType)) {
@@ -410,7 +410,7 @@ public class HiddenFieldCheck
                 // or
                 //
                 // return type is not void, but it is the same as the class
-                // where method is declared and mSetterCanReturnItsClass
+                // where method is declared and setterCanReturnItsClass
                 // is set to true
                 isSetterMethod = true;
             }
@@ -501,7 +501,7 @@ public class HiddenFieldCheck
      * Setter to allow to expand the definition of a setter method to include methods
      * that return the class' instance.
      *
-     * @param aSetterCanReturnItsClass if true then setter can return
+     * @param setterCanReturnItsClass if true then setter can return
      *        either void or class in which it is declared. If false then
      *        in order to be recognized as setter method (otherwise
      *        already recognized as a setter) must return void.  Later is
@@ -509,8 +509,8 @@ public class HiddenFieldCheck
      * @since 6.3
      */
     public void setSetterCanReturnItsClass(
-        boolean aSetterCanReturnItsClass) {
-        setterCanReturnItsClass = aSetterCanReturnItsClass;
+        boolean setterCanReturnItsClass) {
+        this.setterCanReturnItsClass = setterCanReturnItsClass;
     }
 
     /**
