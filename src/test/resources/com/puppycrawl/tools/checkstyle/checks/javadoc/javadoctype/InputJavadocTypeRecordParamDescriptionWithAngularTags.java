@@ -51,16 +51,17 @@ record Record2<T>(int a, int b) {
     record Record4<V>() {}
 }
 
+// violation 3 lines below 'Unused @param tag for \'<P>\'.'
 /**
  * @param <T>
- * @param    <P>     stuff <><><<stuff></></></> stuff // violation,'Unused @param tag for '<P>'.'
+ * @param    <P>     stuff <><><<stuff></></></> stuff
  */
 record Record5<T, U>() {} // violation, 'Type Javadoc comment is missing @param <U> tag.'
 
+// violation 3 lines below 'Unused @param tag for \'region\'.'
 /**
  *
  * @param region [(<>{@code stuff<stuff🐦‍🔥>🐦‍🔥&lt;stuff&gt;}</>)]{@code {&lt;stuff&gt;}}
- * // violation above, 'Unused @param tag for 'region'.'
  */
 record Record6(int a) {} // violation, 'Type Javadoc comment is missing @param a tag.'
 
@@ -72,11 +73,11 @@ record Record6(int a) {} // violation, 'Type Javadoc comment is missing @param a
  */
 record Record7<T>(int a, int b) {}
 
+// violation 4 lines below 'Unused @param tag for \'e\'.'
 /**
  * @param a <<></>></><<></>></>
  * @param b stuff<stuff>:<>:<>:<🐦‍🔥<<🐦‍🔥>>🐦‍🔥>
  * @param e [(<>{@code stuff<stuff🐦[(‍{🔥}])>🐦‍🔥&lt;stuff&gt;}</>)]{@code {&lt;stuff&gt;}}
- * // violation above, 'Unused @param tag for 'e'.'
  */
 record Record8(int a, int b, int c) { // violation, 'Type Javadoc comment is missing @param c tag.'
 }

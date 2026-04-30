@@ -43,9 +43,10 @@ record MyRecord2(HashMap<String, String> myHashMap){}
  */
 record MyRecord3<X>(){} // violation 'missing @param <X> tag.'
 
+// violation 3 lines below 'Unused @param tag for 'x'.'
 /**
  *
- * @param x // violation 'Unused @param tag for 'x'.'
+ * @param x
  */
 record MyRecord4(){}
 
@@ -55,15 +56,17 @@ record MyRecord4(){}
  */
 record MyRecord5<X>(){}
 
+// violation 2 lines below 'Unused @param tag for 'notMyString'.'
 /**
- * @param notMyString // violation 'Unused @param tag for 'notMyString'.'
+ * @param notMyString
  * @param <X>
  */
 record MyRecord6<X>(String myString, int myInt){} // 2 violations
 
+// violation 3 lines below 'Unused @param tag for 'x'.'
 /**
  *
- * @param x // violation 'Unused @param tag for 'x'.'
+ * @param x
  */
 record MyRecord7(List<String>myList){} // violation 'missing @param myList tag.'
 
@@ -74,8 +77,9 @@ record MyRecord7(List<String>myList){} // violation 'missing @param myList tag.'
  */
 record MyRecord8<X, T>(String X){} // violation 'missing @param X tag.'
 
+// violation 2 lines below 'Unused @param tag for 'notMyString'.'
 /**
- * @param notMyString // violation 'Unused @param tag for 'notMyString'.'
+ * @param notMyString
  * @param <X>
  */
 record MyRecord9<X, T>(String myString, int myInt){} // 3 violations
