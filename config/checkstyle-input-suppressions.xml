@@ -125,22 +125,7 @@
             files="[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationOffset3.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationPreTag.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeBadTag.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeParamDescriptionWithAngularTags.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeRecordComponents2.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeRecordParamDescriptionWithAngularTags.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeTestTrimProperty.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeTypeParamsTags.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeTypeParamsTags_1.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeUnusedParamInJavadocForClass.java"/>
+
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocInlineReturn.java"/>
   <suppress id="noViolationCommentsInJavadoc"
