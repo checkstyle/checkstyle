@@ -232,7 +232,7 @@
     <junit.version>6.0.3</junit.version>
     <forbiddenapis.version>3.10</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
-    <checkerframework.version>4.0.0</checkerframework.version>
+    <checkerframework.version>4.1.0</checkerframework.version>
     <error-prone.version>2.49.0</error-prone.version>
     <error-prone-support.version>0.29.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
