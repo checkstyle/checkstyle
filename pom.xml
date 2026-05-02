@@ -1836,6 +1836,7 @@
             --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
             -XX:+EnableDynamicAgentLoading
             -Xshare:off
+            -Dnet.bytebuddy.experimental=true
           </argLine>
           <additionalClasspathElements>
             <additionalClasspathElement>

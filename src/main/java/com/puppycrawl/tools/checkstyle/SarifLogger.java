@@ -447,15 +447,20 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
     /**
      * Render the severity level into SARIF severity level.
      *
-     * @param severityLevel the Severity level.
-     * @return the rendered severity level in string.
+     * @param severityLevel the Severity level (may be {@code null}).
+     * @return the rendered SARIF severity string.
      */
     private static String renderSeverityLevel(SeverityLevel severityLevel) {
+        if (severityLevel == null) {
+            return "none";
+        }
         return switch (severityLevel) {
             case IGNORE -> "none";
             case INFO -> "note";
             case WARNING -> "warning";
             case ERROR -> "error";
+            // Future‑proof: if a new level appears, treat it as a warning.
+            default -> "warning";
         };
     }
 
