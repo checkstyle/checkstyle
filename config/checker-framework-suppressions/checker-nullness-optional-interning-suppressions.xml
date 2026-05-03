@@ -5881,6 +5881,17 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/SynchronizedHandler.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to isOnStartOfLine(com.puppycrawl.tools.checkstyle.api.DetailAST) not allowed on the given receiver.</message>
+    <lineContent>isInline = !isOnStartOfLine(ast);</lineContent>
+    <details>
+      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.indentation.SynchronizedHandler.class) @NonNull SynchronizedHandler
+      required: @Initialized @NonNull AbstractExpressionHandler
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/SynchronizedHandler.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
     <lineContent>return syncStatementAST.findFirstToken(TokenTypes.RPAREN);</lineContent>
