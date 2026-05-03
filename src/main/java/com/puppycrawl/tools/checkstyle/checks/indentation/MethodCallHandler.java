@@ -245,6 +245,16 @@ public class MethodCallHandler extends AbstractExpressionHandler {
             }
         }
 
+        if (getMainAst().getType() == TokenTypes.METHOD_CALL
+                && getMainAst().getFirstChild().getType() == TokenTypes.DOT) {
+            final int callLineStart = getLineStart(lparen);
+            final int lineWrapIndent = getIndentCheck().getLineWrappingIndentation();
+            if (standardIndent.isAcceptable(callLineStart - lineWrapIndent)) {
+                enhancedIndent = IndentLevel.addAcceptable(enhancedIndent,
+                        new IndentLevel(callLineStart));
+            }
+        }
+
         if (rparenLevel != lparenLevel + 1
                 && !enhancedIndent.isAcceptable(rparenLevel)
                 && isOnStartOfLine(rparen)) {
