@@ -40,4 +40,10 @@ public class FinallyHandler extends BlockParentHandler {
         super(indentCheck, "finally", ast, parent);
     }
 
+    @Override
+    protected boolean shouldCheckIndentationForChild(DetailAST child) {
+        final DetailAST leftCurly = getLeftCurly();
+        return getFirstAstNode(child).getLineNo() != leftCurly.getLineNo();
+    }
+
 }
