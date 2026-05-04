@@ -261,18 +261,9 @@ public class RequireThisCheck extends AbstractCheck {
      * @param ast IDENT to check.
      */
     private void processIdent(DetailAST ast) {
-        int parentType = ast.getParent().getType();
-        if (parentType == TokenTypes.EXPR
-                && ast.getParent().getParent().getParent().getType()
-                    == TokenTypes.ANNOTATION_FIELD_DEF) {
-            parentType = TokenTypes.ANNOTATION_FIELD_DEF;
-        }
-        switch (parentType) {
-            case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR, TokenTypes.ANNOTATION,
-                 TokenTypes.ANNOTATION_FIELD_DEF -> {
-                // no need to check annotations content
-            }
-            case TokenTypes.METHOD_CALL -> {
+        if (!shouldSkipAnnotationContext(ast)) {
+            final int parentType = ast.getParent().getType();
+            if (parentType == TokenTypes.METHOD_CALL) {
                 if (checkMethods) {
                     final AbstractFrame frame = getMethodWithoutThis(ast);
                     if (frame != null) {
@@ -280,7 +271,7 @@ public class RequireThisCheck extends AbstractCheck {
                     }
                 }
             }
-            default -> {
+            else {
                 if (checkFields) {
                     final AbstractFrame frame = getFieldWithoutThis(ast, parentType);
                     final boolean canUseThis = !isInCompactConstructor(ast);
@@ -290,6 +281,93 @@ public class RequireThisCheck extends AbstractCheck {
                 }
             }
         }
+    }
+
+    /**
+     * Determines whether the given IDENT should be skipped because it is
+     * in an annotation context. When {@code validateOnlyOverlapping} is
+     * {@code true}, all annotation contexts are skipped. When it is
+     * {@code false}, only annotation structural elements (member names,
+     * type names, and annotation field defaults) are skipped, while actual
+     * field reference values inside annotations are still processed.
+     *
+     * @param ast IDENT token
+     * @return true if the IDENT should be skipped
+     */
+    private boolean shouldSkipAnnotationContext(DetailAST ast) {
+        final boolean result;
+        if (isInsideAnnotationFieldDef(ast)) {
+            result = true;
+        }
+        else if (isInsideAnnotation(ast)) {
+            result = validateOnlyOverlapping || isAnnotationStructuralElement(ast);
+        }
+        else {
+            result = false;
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether the given IDENT is inside an annotation usage.
+     *
+     * @param ast IDENT token
+     * @return true if IDENT is inside an annotation usage
+     */
+    private static boolean isInsideAnnotation(DetailAST ast) {
+        DetailAST current = ast;
+        boolean insideAnnotation = false;
+        while (current != null) {
+            if (current.getType() == TokenTypes.ANNOTATION) {
+                insideAnnotation = true;
+                break;
+            }
+            current = current.getParent();
+        }
+        return insideAnnotation;
+    }
+
+    /**
+     * Checks whether the given IDENT is inside an annotation field definition
+     * (e.g., default values in {@code @interface} members).
+     *
+     * @param ast IDENT token
+     * @return true if IDENT is inside an annotation field definition
+     */
+    private static boolean isInsideAnnotationFieldDef(DetailAST ast) {
+        DetailAST current = ast;
+        boolean insideAnnotationFieldDef = false;
+        while (current != null) {
+            if (current.getType() == TokenTypes.ANNOTATION_FIELD_DEF) {
+                insideAnnotationFieldDef = true;
+                break;
+            }
+            current = current.getParent();
+        }
+        return insideAnnotationFieldDef;
+    }
+
+    /**
+     * Checks if an IDENT is an annotation structural element — either
+     * an annotation type name (e.g., {@code SuppressWarnings} in
+     * {@code @SuppressWarnings}) or an annotation member name (e.g.,
+     * {@code value} in {@code value = "unused"}).
+     *
+     * @param ast IDENT token
+     * @return true if the IDENT is an annotation type name or member name
+     */
+    private static boolean isAnnotationStructuralElement(DetailAST ast) {
+        final int parentType = ast.getParent().getType();
+        boolean result = parentType == TokenTypes.ANNOTATION
+                || parentType == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR;
+        if (!result && parentType == TokenTypes.DOT) {
+            DetailAST current = ast.getParent();
+            while (current.getType() == TokenTypes.DOT) {
+                current = current.getParent();
+            }
+            result = current.getType() == TokenTypes.ANNOTATION;
+        }
+        return result;
     }
 
     /**
@@ -325,7 +403,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         if (!importOrPackage
                 && !typeName
-                && !isDeclarationToken(parentType)
+                && !DECLARATION_TOKENS.get(parentType)
                 && !isLambdaParameter(ast)) {
             final AbstractFrame fieldFrame = findClassFrame(ast, false);
 
@@ -418,7 +496,8 @@ public class RequireThisCheck extends AbstractCheck {
             }
 
             case TokenTypes.LITERAL_NEW -> {
-                if (isAnonymousClassDef(ast)) {
+                final DetailAST lastChild = ast.getLastChild();
+                if (lastChild != null && lastChild.getType() == TokenTypes.OBJBLOCK) {
                     frameStack.addFirst(new AnonymousClassFrame(frame, ast.toString()));
                 }
             }
@@ -447,6 +526,7 @@ public class RequireThisCheck extends AbstractCheck {
             final DetailAST mods =
                     ast.findFirstToken(TokenTypes.MODIFIERS);
             if (ScopeUtil.isInInterfaceBlock(ast)
+                    || ScopeUtil.isInAnnotationBlock(ast)
                     || mods.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
                 ((ClassFrame) frame).addStaticMember(ident);
             }
@@ -494,7 +574,8 @@ public class RequireThisCheck extends AbstractCheck {
                 frames.put(ast, frameStack.poll());
 
             case TokenTypes.LITERAL_NEW -> {
-                if (isAnonymousClassDef(ast)) {
+                final DetailAST lastChild = ast.getLastChild();
+                if (lastChild != null && lastChild.getType() == TokenTypes.OBJBLOCK) {
                     frameStack.remove();
                 }
             }
@@ -512,18 +593,6 @@ public class RequireThisCheck extends AbstractCheck {
     }
 
     /**
-     * Whether the AST is a definition of an anonymous class.
-     *
-     * @param ast the AST to process.
-     * @return true if the AST is a definition of an anonymous class.
-     */
-    private static boolean isAnonymousClassDef(DetailAST ast) {
-        final DetailAST lastChild = ast.getLastChild();
-        return lastChild != null
-            && lastChild.getType() == TokenTypes.OBJBLOCK;
-    }
-
-    /**
      * Returns the class frame where violation is found (where the field is used without 'this')
      * or null otherwise.
      *
@@ -537,55 +606,54 @@ public class RequireThisCheck extends AbstractCheck {
         final AbstractFrame variableDeclarationFrame = findFrame(ast, false);
         final FrameType variableDeclarationFrameType = variableDeclarationFrame.getType();
         final DetailAST prevSibling = ast.getPreviousSibling();
-        if (variableDeclarationFrameType == FrameType.CLASS_FRAME
-                && !validateOnlyOverlapping
-                && (prevSibling == null || !isInExpression(ast))
-                && canBeReferencedFromStaticContext(ast)) {
-            frameWhereViolationIsFound = variableDeclarationFrame;
-        }
-        else if (variableDeclarationFrameType == FrameType.METHOD_FRAME) {
-            if (isOverlappingByArgument(ast)) {
-                if (!isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
-                        && !isReturnedVariable(variableDeclarationFrame, ast)
-                        && canBeReferencedFromStaticContext(ast)
-                        && canAssignValueToClassField(ast)) {
+
+        switch (variableDeclarationFrameType) {
+            case CLASS_FRAME -> {
+                if (!validateOnlyOverlapping
+                        && (prevSibling == null || TokenTypes.DOT != ast.getParent().getType()
+                            && TokenTypes.METHOD_REF != ast.getParent().getType())
+                        && canBeReferencedFromStaticContext(ast)) {
+                    frameWhereViolationIsFound = variableDeclarationFrame;
+                }
+            }
+            case METHOD_FRAME -> {
+                if (isOverlappingByArgument(ast)) {
+                    if (!isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
+                            && !isReturnedVariable(variableDeclarationFrame, ast)
+                            && canBeReferencedFromStaticContext(ast)
+                            && canAssignValueToClassField(ast)) {
+                        frameWhereViolationIsFound = findFrame(ast, true);
+                    }
+                }
+                else if (!validateOnlyOverlapping
+                         && prevSibling == null
+                         && ASSIGN_TOKENS.get(ast.getParent().getType())
+                         && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
+                         && canBeReferencedFromStaticContext(ast)
+                         && canAssignValueToClassField(ast)) {
                     frameWhereViolationIsFound = findFrame(ast, true);
                 }
             }
-            else if (!validateOnlyOverlapping
-                     && prevSibling == null
-                     && isAssignToken(ast.getParent().getType())
-                     && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
-                     && canBeReferencedFromStaticContext(ast)
-                     && canAssignValueToClassField(ast)) {
-                frameWhereViolationIsFound = findFrame(ast, true);
+            case CTOR_FRAME -> {
+                if (isOverlappingByArgument(ast)
+                     && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)) {
+                    frameWhereViolationIsFound = findFrame(ast, true);
+                }
+            }
+            case BLOCK_FRAME -> {
+                if (isOverlappingByLocalVariable(ast)
+                        && canAssignValueToClassField(ast)
+                        && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
+                        && !isReturnedVariable(variableDeclarationFrame, ast)
+                        && canBeReferencedFromStaticContext(ast)) {
+                    frameWhereViolationIsFound = findFrame(ast, true);
+                }
+            }
+            default -> {
+                // no-operation
             }
         }
-        else if (variableDeclarationFrameType == FrameType.CTOR_FRAME
-                 && isOverlappingByArgument(ast)
-                 && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)) {
-            frameWhereViolationIsFound = findFrame(ast, true);
-        }
-        else if (variableDeclarationFrameType == FrameType.BLOCK_FRAME
-                    && isOverlappingByLocalVariable(ast)
-                    && canAssignValueToClassField(ast)
-                    && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
-                    && !isReturnedVariable(variableDeclarationFrame, ast)
-                    && canBeReferencedFromStaticContext(ast)) {
-            frameWhereViolationIsFound = findFrame(ast, true);
-        }
         return frameWhereViolationIsFound;
-    }
-
-    /**
-     * Checks ast parent is in expression.
-     *
-     * @param ast token to check
-     * @return true if token is part of expression, false otherwise
-     */
-    private static boolean isInExpression(DetailAST ast) {
-        return TokenTypes.DOT == ast.getParent().getType()
-                || TokenTypes.METHOD_REF == ast.getParent().getType();
     }
 
     /**
@@ -733,27 +801,17 @@ public class RequireThisCheck extends AbstractCheck {
      * @return true if a value can be assigned to a field.
      */
     private boolean canAssignValueToClassField(DetailAST ast) {
-        final AbstractFrame fieldUsageFrame = findFrame(ast, false);
-        final boolean fieldUsageInConstructor = isInsideConstructorFrame(fieldUsageFrame);
+        AbstractFrame fieldUsageFrame = findFrame(ast, false);
+        while (fieldUsageFrame.getType() == FrameType.BLOCK_FRAME) {
+            fieldUsageFrame = fieldUsageFrame.getParent();
+        }
+        final boolean fieldUsageInConstructor =
+            fieldUsageFrame.getType() == FrameType.CTOR_FRAME;
 
         final AbstractFrame declarationFrame = findFrame(ast, true);
         final boolean finalField = ((ClassFrame) declarationFrame).hasFinalField(ast);
 
         return fieldUsageInConstructor || !finalField;
-    }
-
-    /**
-     * Checks whether a field usage frame is inside constructor frame.
-     *
-     * @param frame frame, where field is used.
-     * @return true if the field usage frame is inside constructor frame.
-     */
-    private static boolean isInsideConstructorFrame(AbstractFrame frame) {
-        AbstractFrame fieldUsageFrame = frame;
-        while (fieldUsageFrame.getType() == FrameType.BLOCK_FRAME) {
-            fieldUsageFrame = fieldUsageFrame.getParent();
-        }
-        return fieldUsageFrame.getType() == FrameType.CTOR_FRAME;
     }
 
     /**
@@ -766,8 +824,8 @@ public class RequireThisCheck extends AbstractCheck {
         boolean overlapping = false;
         final DetailAST parent = ast.getParent();
         final DetailAST sibling = ast.getNextSibling();
-        if (sibling != null && isAssignToken(parent.getType())) {
-            if (isCompoundAssignToken(parent.getType())) {
+        if (sibling != null && ASSIGN_TOKENS.get(parent.getType())) {
+            if (COMPOUND_ASSIGN_TOKENS.get(parent.getType())) {
                 overlapping = true;
             }
             else {
@@ -788,7 +846,7 @@ public class RequireThisCheck extends AbstractCheck {
     private boolean isOverlappingByLocalVariable(DetailAST ast) {
         boolean overlapping = false;
         final DetailAST parent = ast.getParent();
-        if (isAssignToken(parent.getType())) {
+        if (ASSIGN_TOKENS.get(parent.getType())) {
             final ClassFrame classFrame = (ClassFrame) findFrame(ast, true);
             final Set<DetailAST> exprIdents =
                 getAllTokensOfType(ast.getNextSibling(), TokenTypes.IDENT);
@@ -957,36 +1015,6 @@ public class RequireThisCheck extends AbstractCheck {
     private static AbstractFrame findFrame(AbstractFrame frame, DetailAST name,
             boolean lookForMethod) {
         return frame.getIfContains(name, lookForMethod);
-    }
-
-    /**
-     * Check that token is related to Definition tokens.
-     *
-     * @param parentType token Type.
-     * @return true if token is related to Definition Tokens.
-     */
-    private static boolean isDeclarationToken(int parentType) {
-        return DECLARATION_TOKENS.get(parentType);
-    }
-
-    /**
-     * Check that token is related to assign tokens.
-     *
-     * @param tokenType token type.
-     * @return true if token is related to assign tokens.
-     */
-    private static boolean isAssignToken(int tokenType) {
-        return ASSIGN_TOKENS.get(tokenType);
-    }
-
-    /**
-     * Check that token is related to compound assign tokens.
-     *
-     * @param tokenType token type.
-     * @return true if token is related to compound assign tokens.
-     */
-    private static boolean isCompoundAssignToken(int tokenType) {
-        return COMPOUND_ASSIGN_TOKENS.get(tokenType);
     }
 
     /**

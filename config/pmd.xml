@@ -402,7 +402,7 @@
       <property name="maxmethods" value="34"/>
       <!-- JavaAstVisitor is a visitor class with methods for the entire Java grammar. -->
       <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='JavaAstVisitor' 
+                 value="//ClassDeclaration[@SimpleName='JavaAstVisitor'
                     or @SimpleName='SiteUtil' or @SimpleName='JavadocCommentsAstVisitor']"/>
     </properties>
   </rule>
