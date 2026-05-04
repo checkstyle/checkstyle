@@ -34,6 +34,11 @@ public class SynchronizedHandler extends BlockParentHandler {
     private final boolean methodModifier;
 
     /**
+     * Determine that "synchronized" block is inline with its parent's opening brace.
+     */
+    private final boolean isInline;
+
+    /**
      * Construct an instance of this handler with the given indentation check,
      * name, abstract syntax tree, and parent handler.
      *
@@ -45,11 +50,12 @@ public class SynchronizedHandler extends BlockParentHandler {
                                AbstractExpressionHandler parent) {
         super(indentCheck, "synchronized", ast, parent);
         methodModifier = isMethodModifier(ast);
+        isInline = !isOnStartOfLine(ast);
     }
 
     @Override
     public void checkIndentation() {
-        if (!methodModifier) {
+        if (!methodModifier && !isInline) {
             super.checkIndentation();
             checkSynchronizedExpr();
             checkWrappingIndentation(getMainAst(),

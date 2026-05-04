@@ -109,7 +109,15 @@ public class MethodDefHandler extends BlockParentHandler {
         checkThrows();
 
         if (getMethodDefParamRightParen(getMainAst()) != null) {
-            checkWrappingIndentation(getMainAst(), getMethodDefParamRightParen(getMainAst()));
+            // Skip wrapping check for inline method defs (e.g. inside anonymous
+            // classes on the same line as the opening brace)
+            final DetailAST parent = getMainAst().getParent();
+            final boolean isInlineMethod = parent.getFirstChild().getLineNo()
+                    == getMainAst().getLineNo();
+            if (!isInlineMethod) {
+                checkWrappingIndentation(getMainAst(),
+                        getMethodDefParamRightParen(getMainAst()));
+            }
         }
         // abstract method def -- no body
         if (getLeftCurly() != null) {
