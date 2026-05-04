@@ -32,8 +32,7 @@
             <property default-value="falls?[ -]?thr(u|ough)"
                       name="reliefPattern"
                       type="java.util.regex.Pattern">
-               <description>Define the RegExp to match the relief comment that suppresses
- the warning about a fall through.</description>
+               <description>Define the RegExp to match the relief comment that suppresses the warning about a fall through.</description>
             </property>
          </properties>
          <message-keys>

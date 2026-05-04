@@ -22,9 +22,7 @@
             <property default-value="Generated"
                       name="skipAnnotations"
                       type="java.lang.String[]">
-               <description>Specify annotations that allow missed documentation.
- If annotation is present in target sources in multiple forms of qualified
- name, all forms should be listed in this property.</description>
+               <description>Specify annotations that allow missed documentation. If annotation is present in target sources in multiple forms of qualified name, all forms should be listed in this property.</description>
             </property>
             <property default-value="INTERFACE_DEF,CLASS_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
                       name="tokens"
