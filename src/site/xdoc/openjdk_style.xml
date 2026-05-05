@@ -19,6 +19,12 @@
           Draft v6, December 2015.
         </p>
         <p>
+          The OpenJDK style guide says that, apart from <code>LF</code>, the only allowed
+          whitespace character is Space, and that <code>\'</code>, <code>\"</code>, <code>\\</code>,
+          <code>\t</code>, <code>\b</code>, <code>\r</code>, <code>\f</code>, and <code>\n</code>
+          should be preferred over corresponding octal or Unicode escaped characters.
+        </p>
+        <p>
           <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/openjdk_checks.xml">
             Incomplete Checkstyle configuration for 'OpenJDK Java Style'</a>
         </p>
@@ -138,6 +144,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt=""/>
                   </span>
+                  <a href="https://checkstyle.org/config.html#Checker">charset=US-ASCII</a>,
                   <a href="checks/misc/lineending.html#LineEnding">LineEnding</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineEnding">
                   config</a>)
@@ -184,9 +191,20 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt=""/>
                   </span>
-                  <a href="https://checkstyle.org/config.html#Checker">charset=US-ASCII</a>
+                  <a href="checks/coding/illegaltokentext.html#IllegalTokenText">
+                    IllegalTokenText</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalTokenText">
+                  config</a>),
+                  <a href="checks/misc/avoidescapedunicodecharacters.html#AvoidEscapedUnicodeCharacters">
+                    AvoidEscapedUnicodeCharacters</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidEscapedUnicodeCharacters">
+                  config</a>)
                 </td>
-                <td>--</td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter2javasourcefiles/rule21specialcharacters">
+                    samples
+                  </a>
+                </td>
               </tr>
               <!-- 3 Formatting -->
               <tr>
