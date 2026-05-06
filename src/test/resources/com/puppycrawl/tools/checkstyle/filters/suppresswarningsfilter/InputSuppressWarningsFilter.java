@@ -38,6 +38,7 @@ com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck
 scope = PRIVATE
 excludeScope = (default)null
 skipAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 */
@@ -84,7 +85,6 @@ class InputSuppressWarningsFilter {
     public void needsToCatchException() {
         try { }
         catch (Exception ex) { // filtered violation 'Catching 'Exception' is not allowed'
-            // should NOT fail IllegalCatchCheck
         }
     }
 
