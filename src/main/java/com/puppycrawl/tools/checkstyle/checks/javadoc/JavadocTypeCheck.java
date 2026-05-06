@@ -408,7 +408,12 @@ public class JavadocTypeCheck
         final boolean found = tags
             .stream()
             .filter(JavadocTag::isParamTag)
-            .anyMatch(tag -> tag.getFirstArg().indexOf(recordComponentName) == 0);
+            .anyMatch(tag -> {
+                final String arg = tag.getFirstArg();
+                return arg != null
+                    && (arg.equals(recordComponentName)
+                        || arg.startsWith(recordComponentName.concat(SPACE)));
+            });
 
         if (!found) {
             log(ast, MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText()
