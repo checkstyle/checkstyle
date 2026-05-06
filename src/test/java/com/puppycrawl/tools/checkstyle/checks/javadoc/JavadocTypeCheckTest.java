@@ -420,6 +420,16 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testJavadocTypeRecordComponentPrefixMatch() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_MISSING_TAG, "@param value"),
+            "14:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "valueExtra"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeRecordComponentPrefixMatch.java"), expected);
+    }
+
+    @Test
     public void testJavadocTypeInterfaceMemberScopeIsPublic() throws Exception {
 
         final String[] expected = {
