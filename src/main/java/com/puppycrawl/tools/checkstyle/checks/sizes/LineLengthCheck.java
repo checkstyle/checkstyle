@@ -83,15 +83,50 @@ public class LineLengthCheck extends AbstractFileSetCheck {
 
     @Override
     protected void processFiltered(File file, FileText fileText) {
+        boolean inTextBlock = false;
         for (int i = 0; i < fileText.size(); i++) {
             final String line = fileText.get(i);
-            final int realLength = CommonUtil.lengthExpandedTabs(
-                line, line.codePointCount(0, line.length()), getTabWidth());
+            
+            // Count """ occurrences in this line
+            final int quoteCount = countTextBlockQuotes(line);
+            
+            // Check if we should process this line before updating the text block state
+            // We should check if we're NOT currently inside a text block
+            final boolean shouldCheck = !inTextBlock;
+            
+            // Update text block state after decision but before next iteration
+            // Each """ toggles the state (odd count = toggle, even = no change)
+            if (quoteCount % 2 == 1) {
+                inTextBlock = !inTextBlock;
+            }
+            
+            // Only check lines that are outside text blocks
+            if (shouldCheck) {
+                final int realLength = CommonUtil.lengthExpandedTabs(
+                    line, line.codePointCount(0, line.length()), getTabWidth());
 
-            if (realLength > max && !ignorePattern.matcher(line).find()) {
-                log(i + 1, MSG_KEY, max, realLength);
+                if (realLength > max && !ignorePattern.matcher(line).find()) {
+                    log(i + 1, MSG_KEY, max, realLength);
+                }
             }
         }
+    }
+    
+    /**
+     * Counts the number of text block quote markers (\"\"\")
+     * in a line. Each occurrence represents a boundary.
+     *
+     * @param line the line to check
+     * @return the count of \"\"\" occurrences
+     */
+    private static int countTextBlockQuotes(String line) {
+        int count = 0;
+        int index = 0;
+        while ((index = line.indexOf("\"\"\"", index)) != -1) {
+            count++;
+            index += 3;
+        }
+        return count;
     }
 
     /**

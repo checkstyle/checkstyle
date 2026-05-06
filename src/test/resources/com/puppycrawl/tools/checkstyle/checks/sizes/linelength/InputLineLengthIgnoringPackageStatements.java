@@ -16,7 +16,7 @@ public class InputLineLengthIgnoringPackageStatements {
         // violation below 'longer than 75 characters (found 86)'
         String s = "package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;";
 
-        // violation 2 lines below 'longer than 75 characters (found 76)'
+        // No violation - lines inside text blocks are now skipped
         String a = """
             package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
             """;
