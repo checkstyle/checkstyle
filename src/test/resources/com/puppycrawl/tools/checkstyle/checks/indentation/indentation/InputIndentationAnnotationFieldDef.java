@@ -28,3 +28,7 @@ public class InputIndentationAnnotationFieldDef {                             //
         List<T>[] matrix2;                                                    //indent:8 exp:8
     }                                                                         //indent:4 exp:4
 }                                                                             //indent:0 exp:0
+class                                                                         //indent:0 exp:0
+    BrokenClass {                                                             //indent:4 exp:4
+    //indent:4 exp:4
+}                                                                             //indent:0 exp:0
