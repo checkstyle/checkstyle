@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import java.util.Collections;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
@@ -28,7 +29,6 @@ import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
-import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * <div>
@@ -177,7 +177,7 @@ public class SuppressionFilter
 
     @Override
     public Set<String> getExternalResourceLocations() {
-        return UnmodifiableCollectionUtil.singleton(file);
+        return Collections.singleton(file);
     }
 
 }

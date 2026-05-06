@@ -24,7 +24,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * <div>Note: it simply wraps the existing JDK methods to provide a workaround
@@ -110,16 +109,5 @@ public final class UnmodifiableCollectionUtil {
      */
     public static <K, V> Map<K, V> copyOfMap(Map<? extends K, ? extends V> map) {
         return Map.copyOf(map);
-    }
-
-    /**
-     * Returns an immutable set containing only the specified object.
-     *
-     * @param obj the type of object in the set
-     * @param <T> the type of object
-     * @return immutable set
-     */
-    public static <T> Set<T> singleton(T obj) {
-        return Collections.singleton(obj);
     }
 }

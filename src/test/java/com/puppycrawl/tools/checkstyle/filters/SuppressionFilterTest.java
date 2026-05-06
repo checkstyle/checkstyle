@@ -30,6 +30,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.util.Set;
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
@@ -221,6 +222,22 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         secondCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         execute(secondCheckerConfig, pathToEmptyFile.toString());
+    }
+
+    @Test
+    public void testGetExternalResourceLocations() throws Exception {
+        final SuppressionFilter filter = new SuppressionFilter();
+        final String fileName = getPath("InputSuppressionFilterNone.xml");
+        filter.setFile(fileName);
+
+        final Set<String> actual = filter.getExternalResourceLocations();
+
+        assertWithMessage("Should contain exactly one resource")
+            .that(actual)
+            .hasSize(1);
+        assertWithMessage("Should contain the configured suppression file")
+            .that(actual)
+            .containsExactly(fileName);
     }
 
     private static boolean isConnectionAvailableAndStable(String url) throws Exception {
