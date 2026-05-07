@@ -308,8 +308,19 @@ public final class ConfigurationLoader {
                     exc.getMessage(), exc.getLineNumber(), exc.getColumnNumber());
             throw new CheckstyleException(message, exc);
         }
-        catch (final ParserConfigurationException | IOException | SAXException exc) {
-            throw new CheckstyleException(UNABLE_TO_PARSE_EXCEPTION_PREFIX, exc);
+        catch (final IOException exc) {
+            throw new CheckstyleException(
+                UNABLE_TO_PARSE_EXCEPTION_PREFIX
+                + " - Could not read the Checkstyle configuration file."
+                + " Check that the file path is correct and the file is readable: "
+                + exc.getMessage(), exc);
+        }
+        catch (final ParserConfigurationException | SAXException exc) {
+            throw new CheckstyleException(
+                UNABLE_TO_PARSE_EXCEPTION_PREFIX
+                + " - Failed to parse the Checkstyle configuration file."
+                + " Ensure the file is valid XML and follows the Checkstyle DTD format: "
+                + exc.getMessage(), exc);
         }
     }
 
