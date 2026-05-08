@@ -19,11 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
-import static org.mockito.Mockito.mockConstruction;
-import static org.mockito.Mockito.when;
-
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -35,13 +30,17 @@ import java.util.Properties;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedConstruction;
+import static org.mockito.Mockito.mockConstruction;
+import static org.mockito.Mockito.when;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader.IgnoredModulesOptions;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 /**
  * Unit test for ConfigurationLoader.
@@ -426,12 +425,12 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
         final Configuration[] children = config.getChildren();
         final Configuration[] grandchildren = children[0].getChildren();
-        final List<String> messages = new ArrayList<>(grandchildren[0].getMessages().values());
+        final List<String> messages = new ArrayList<>(grandchildren[0].getViolations().values());
         final String expectedKey = "name.invalidPattern";
         final List<String> expectedMessages = Collections
                 .singletonList("Member ''{0}'' must start with ''m'' (checked pattern ''{1}'').");
         assertWithMessage("Messages should contain key: %s", expectedKey)
-                .that(grandchildren[0].getMessages())
+                .that(grandchildren[0].getViolations())
                 .containsKey(expectedKey);
         assertWithMessage("Message is not expected")
                 .that(messages)

@@ -102,7 +102,7 @@ public abstract class AbstractViolationReporter
      * @return unmodifiable map containing custom messages
      */
     protected Map<String, String> getCustomMessages() {
-        return getConfiguration().getMessages();
+        return getConfiguration().getViolations();
     }
 
     /**

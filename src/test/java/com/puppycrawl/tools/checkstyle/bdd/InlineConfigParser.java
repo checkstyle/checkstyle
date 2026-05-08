@@ -1013,7 +1013,7 @@ public final class InlineConfigParser {
             }
         }
 
-        final Map<String, String> messages = module.getMessages();
+        final Map<String, String> messages = module.getViolations();
         for (final Map.Entry<String, String> entry : messages.entrySet()) {
             final String key = entry.getKey();
             final String value = entry.getValue();
