@@ -19,13 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static com.google.common.truth.Truth.assertWithMessage;
-
 import java.util.Map;
 import java.util.TreeMap;
 
 import org.junit.jupiter.api.Test;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class DefaultConfigurationTest {
@@ -109,7 +108,7 @@ public class DefaultConfigurationTest {
         final Map<String, String> expected = new TreeMap<>();
         expected.put("key", "value");
         assertWithMessage("Invalid message map")
-            .that(config.getMessages())
+            .that(config.getViolations())
             .isEqualTo(expected);
     }
 
