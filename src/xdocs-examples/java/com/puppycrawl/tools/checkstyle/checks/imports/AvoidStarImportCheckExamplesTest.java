@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportChec
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class AvoidStarImportCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
@@ -88,5 +89,12 @@ public class AvoidStarImportCheckExamplesTest extends AbstractExamplesModuleTest
         };
 
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+    }
+
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 }
