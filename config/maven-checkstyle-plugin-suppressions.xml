@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.1//EN"
+    "https://checkstyle.org/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+    <!-- Suppressions for Maven Checkstyle Plugin configuration -->
+    <!-- Suppress violations in non-main source directories -->
+    <suppress checks="." files="target/.*"/>
+    <suppress checks="." files=".*/resources.*"/>
+</suppressions>
