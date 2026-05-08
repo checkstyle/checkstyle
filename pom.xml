@@ -563,6 +563,28 @@
         </plugin>
         <!-- from super-pom END -->
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>${checkstyle.plugin.version}</version>
+          <configuration>
+            <configLocation>config/checkstyle-checks.xml</configLocation>
+            <suppressionsLocation>config/maven-checkstyle-plugin-suppressions.xml</suppressionsLocation>
+            <suppressionsFileExpression>project.basedir/config/maven-checkstyle-plugin-suppressions.xml</suppressionsFileExpression>
+            <includeTestSourceDirectory>false</includeTestSourceDirectory>
+            <failsOnError>true</failsOnError>
+            <violationSeverity>warning</violationSeverity>
+          </configuration>
+          <executions>
+            <execution>
+              <id>checkstyle-check</id>
+              <goals>
+                <goal>check</goal>
+              </goals>
+              <phase>verify</phase>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
           <version>3.6.3</version>
