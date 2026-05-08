@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.1//EN"
+    "https://checkstyle.org/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+    <!-- Suppressions for Maven Checkstyle Plugin (sun_checks.xml) -->
+    <!-- These are used to align Maven plugin violations with project standards -->
+    
+    <!-- Generated and configuration files that don't need checks -->
+    <suppress checks="." files="target/.*"/>
+    <suppress checks="." files=".*\.xml"/>
+    <suppress checks="." files=".*\.properties"/>
+    
+    <!-- Test resources and input files -->
+    <suppress checks="." files=".*/resources-noncompilable/.*"/>
+    <suppress checks="." files=".*/resources/.*"/>
+    <suppress checks="." files=".*/src/it/.*"/>
+    
+</suppressions>
