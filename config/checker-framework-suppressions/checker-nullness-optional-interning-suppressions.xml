@@ -4820,17 +4820,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/ClassDefHandler.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter ast of AbstractExpressionHandler.getLineStart.</message>
-    <lineContent>final int lineStart = getLineStart(ident);</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailAST
-      required: @Initialized @NonNull DetailAST
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/ClassDefHandler.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter ast of AbstractExpressionHandler.isOnStartOfLine.</message>
     <lineContent>if (isOnStartOfLine(atAst)) {</lineContent>
     <details>
@@ -4851,6 +4840,13 @@
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference getMainAst().findFirstToken(TokenTypes.OBJBLOCK)</message>
     <lineContent>return getMainAst().findFirstToken(TokenTypes.OBJBLOCK)</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/ClassDefHandler.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ident</message>
+    <lineContent>if (ident.getLineNo() == getMainAst().getLineNo()) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
