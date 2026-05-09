@@ -19,10 +19,18 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import com.puppycrawl.tools.checkstyle.StatelessCheck;
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.Pipeline;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.PipelineBuilder;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.ThresholdFilter;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.TokenFilter;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.ViolationSink;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.message.AstEvent;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.message.ViolationMessage;
+import com.puppycrawl.tools.checkstyle.checks.sizes.pipeline.AnonInnerLengthMeasurementFilter;
 
 /**
  * <div>
@@ -39,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @since 3.2
  */
-@StatelessCheck
+@FileStatefulCheck
 public class AnonInnerLengthCheck extends AbstractCheck {
 
     /**
@@ -53,6 +61,8 @@ public class AnonInnerLengthCheck extends AbstractCheck {
 
     /** Specify the maximum number of lines allowed. */
     private int max = DEFAULT_MAX;
+
+    private Pipeline<AstEvent, ViolationMessage> pipeline;
 
     @Override
     public int[] getDefaultTokens() {
@@ -70,16 +80,21 @@ public class AnonInnerLengthCheck extends AbstractCheck {
     }
 
     @Override
+    public void beginTree(DetailAST rootAST) {
+        pipeline = PipelineBuilder.<AstEvent>start()
+                .add(new TokenFilter(TokenTypes.LITERAL_NEW))
+                .add(new AnonInnerLengthMeasurementFilter(max, MSG_KEY))
+                .add(new ThresholdFilter(max))
+                .addQueued(new ViolationSink())
+                .build();
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
-        final DetailAST openingBrace = ast.findFirstToken(TokenTypes.OBJBLOCK);
-        if (openingBrace != null) {
-            final DetailAST closingBrace =
-                openingBrace.findFirstToken(TokenTypes.RCURLY);
-            final int length =
-                closingBrace.getLineNo() - openingBrace.getLineNo() + 1;
-            if (length > max) {
-                log(ast, MSG_KEY, length, max);
-            }
+        pipeline.submit(new AstEvent(ast, AstEvent.Phase.VISIT));
+        while (pipeline.hasResults()) {
+            final ViolationMessage v = pipeline.drain();
+            log(v.getLine(), v.getCol(), v.getMessageKey(), v.getArgs());
         }
     }
 
