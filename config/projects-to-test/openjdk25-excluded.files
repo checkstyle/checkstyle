@@ -34,6 +34,9 @@
 
 <!-- until https://github.com/checkstyle/checkstyle/issues/17052 -->
 <module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]jdk[\\/]jdk[\\/]jfr[\\/]event[\\/]tracing[\\/]TestConstructors.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]FeatureFlexibleConstructors.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
