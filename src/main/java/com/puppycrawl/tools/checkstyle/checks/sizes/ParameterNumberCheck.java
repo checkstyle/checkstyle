@@ -26,7 +26,14 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.Pipeline;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.PipelineBuilder;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.ThresholdFilter;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.TokenFilter;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.ViolationSink;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.message.AstEvent;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.message.ViolationMessage;
+import com.puppycrawl.tools.checkstyle.checks.sizes.pipeline.ParameterNumberMeasurementFilter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -37,55 +44,28 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 3.0
  */
 @StatelessCheck
-public class ParameterNumberCheck
-    extends AbstractCheck {
+public class ParameterNumberCheck extends AbstractCheck {
 
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
     public static final String MSG_KEY = "maxParam";
 
-    /** Default maximum number of allowed parameters. */
     private static final int DEFAULT_MAX_PARAMETERS = 7;
 
-    /** Specify the maximum number of parameters allowed. */
     private int max = DEFAULT_MAX_PARAMETERS;
 
-    /** Ignore number of parameters for methods with {@code @Override} annotation. */
     private boolean ignoreOverriddenMethods;
 
-    /**
-     * Ignore methods and constructors annotated with the specified annotation(s).
-     */
     private Set<String> ignoreAnnotatedBy = Collections.emptySet();
 
-    /**
-     * Setter to specify the maximum number of parameters allowed.
-     *
-     * @param max the max allowed parameters
-     * @since 3.0
-     */
+    private Pipeline<AstEvent, ViolationMessage> pipeline;
+
     public void setMax(int max) {
         this.max = max;
     }
 
-    /**
-     * Setter to ignore number of parameters for methods with {@code @Override} annotation.
-     *
-     * @param ignoreOverriddenMethods set ignore overridden methods
-     * @since 6.2
-     */
     public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods) {
         this.ignoreOverriddenMethods = ignoreOverriddenMethods;
     }
 
-    /**
-     * Setter to ignore methods and constructors annotated with the specified annotation(s).
-     *
-     * @param annotationNames specified annotation(s)
-     * @since 10.15.0
-     */
     public void setIgnoreAnnotatedBy(String... annotationNames) {
         ignoreAnnotatedBy = Set.of(annotationNames);
     }
@@ -106,43 +86,22 @@ public class ParameterNumberCheck
     }
 
     @Override
+    public void beginTree(DetailAST rootAST) {
+        pipeline = PipelineBuilder.<AstEvent>start()
+                .add(new TokenFilter(TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF))
+                .add(new ParameterNumberMeasurementFilter(
+                        max, ignoreOverriddenMethods, ignoreAnnotatedBy, MSG_KEY))
+                .add(new ThresholdFilter(max))
+                .addQueued(new ViolationSink())
+                .build();
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
-        final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-        final int count = params.getChildCount(TokenTypes.PARAMETER_DEF);
-        if (count > max && !shouldIgnoreNumberOfParameters(ast)) {
-            final DetailAST name = ast.findFirstToken(TokenTypes.IDENT);
-            log(name, MSG_KEY, max, count);
+        pipeline.submit(new AstEvent(ast, AstEvent.Phase.VISIT));
+        while (pipeline.hasResults()) {
+            final ViolationMessage v = pipeline.drain();
+            log(v.getLine(), v.getCol(), v.getMessageKey(), v.getArgs());
         }
     }
-
-    /**
-     * Determine whether to ignore number of parameters.
-     *
-     * @param ast the token to process
-     * @return true if number of parameters should be ignored.
-     */
-    private boolean shouldIgnoreNumberOfParameters(DetailAST ast) {
-        return isIgnoredOverriddenMethod(ast) || isAnnotatedByIgnoredAnnotations(ast);
-    }
-
-    /**
-     * Checks if method is overridden and should be ignored.
-     *
-     * @param ast method definition to check
-     * @return true if method is overridden and should be ignored.
-     */
-    private boolean isIgnoredOverriddenMethod(DetailAST ast) {
-        return ignoreOverriddenMethods && AnnotationUtil.hasOverrideAnnotation(ast);
-    }
-
-    /**
-     * Checks if method or constructor is annotated by ignored annotation(s).
-     *
-     * @param ast method or constructor definition to check
-     * @return true if annotated by ignored annotation(s).
-     */
-    private boolean isAnnotatedByIgnoredAnnotations(DetailAST ast) {
-        return AnnotationUtil.containsAnnotation(ast, ignoreAnnotatedBy);
-    }
-
 }

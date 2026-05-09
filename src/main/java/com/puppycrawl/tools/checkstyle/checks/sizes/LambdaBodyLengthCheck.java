@@ -19,10 +19,18 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import com.puppycrawl.tools.checkstyle.StatelessCheck;
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.Pipeline;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.PipelineBuilder;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.ThresholdFilter;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.TokenFilter;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.ViolationSink;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.message.AstEvent;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.message.ViolationMessage;
+import com.puppycrawl.tools.checkstyle.checks.sizes.pipeline.LambdaBodyLengthMeasurementFilter;
 
 /**
  * <div>
@@ -38,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @since 8.37
  */
-@StatelessCheck
+@FileStatefulCheck
 public class LambdaBodyLengthCheck extends AbstractCheck {
 
     /**
@@ -52,6 +60,8 @@ public class LambdaBodyLengthCheck extends AbstractCheck {
 
     /** Specify the maximum number of lines allowed. */
     private int max = DEFAULT_MAX;
+
+    private Pipeline<AstEvent, ViolationMessage> pipeline;
 
     /**
      * Setter to specify the maximum number of lines allowed.
@@ -79,63 +89,22 @@ public class LambdaBodyLengthCheck extends AbstractCheck {
     }
 
     @Override
+    public void beginTree(DetailAST rootAST) {
+        pipeline = PipelineBuilder.<AstEvent>start()
+                .add(new TokenFilter(TokenTypes.LAMBDA))
+                .add(new LambdaBodyLengthMeasurementFilter(max, MSG_KEY))
+                .add(new ThresholdFilter(max))
+                .addQueued(new ViolationSink())
+                .build();
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getParent().getType() != TokenTypes.SWITCH_RULE) {
-            final int length = getLength(ast);
-            if (length > max) {
-                log(ast, MSG_KEY, length, max);
-            }
+        pipeline.submit(new AstEvent(ast, AstEvent.Phase.VISIT));
+        while (pipeline.hasResults()) {
+            final ViolationMessage v = pipeline.drain();
+            log(v.getLine(), v.getCol(), v.getMessageKey(), v.getArgs());
         }
-    }
-
-    /**
-     * Get length of lambda body.
-     *
-     * @param ast lambda body node.
-     * @return length of lambda body.
-     */
-    private static int getLength(DetailAST ast) {
-        final DetailAST lambdaBody = ast.getLastChild();
-        final int length;
-        if (lambdaBody.getType() == TokenTypes.SLIST) {
-            length = lambdaBody.getLastChild().getLineNo() - lambdaBody.getLineNo();
-        }
-        else {
-            length = getLastNodeLineNumber(lambdaBody) - getFirstNodeLineNumber(lambdaBody);
-        }
-        return length + 1;
-    }
-
-    /**
-     * Get last child node in the tree line number.
-     *
-     * @param lambdaBody lambda body node.
-     * @return last child node in the tree line number.
-     */
-    private static int getLastNodeLineNumber(DetailAST lambdaBody) {
-        DetailAST node = lambdaBody;
-        int result;
-        do {
-            result = node.getLineNo();
-            node = node.getLastChild();
-        } while (node != null);
-        return result;
-    }
-
-    /**
-     * Get first child node in the tree line number.
-     *
-     * @param lambdaBody lambda body node.
-     * @return first child node in the tree line number.
-     */
-    private static int getFirstNodeLineNumber(DetailAST lambdaBody) {
-        DetailAST node = lambdaBody;
-        int result;
-        do {
-            result = node.getLineNo();
-            node = node.getFirstChild();
-        } while (node != null);
-        return result;
     }
 
 }

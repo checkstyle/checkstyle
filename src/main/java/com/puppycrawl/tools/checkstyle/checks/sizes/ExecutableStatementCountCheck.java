@@ -26,6 +26,14 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.Pipeline;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.PipelineBuilder;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.ThresholdFilter;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.TokenFilter;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.ViolationSink;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.message.AstEvent;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.message.ViolationMessage;
+import com.puppycrawl.tools.checkstyle.checks.sizes.pipeline.ExecutableStatementCountMeasurementFilter;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -48,19 +56,19 @@ public final class ExecutableStatementCountCheck
     /** Default threshold. */
     private static final int DEFAULT_MAX = 30;
 
-    /** Stack of method contexts. */
-    private final Deque<Context> contextStack = new ArrayDeque<>();
+    /**
+     * Preserved for backward-compatible state-clearing introspection tests.
+     * Real per-file state lives inside
+     * {@code ExecutableStatementCountMeasurementFilter}; this field is reset on
+     * every {@link #beginTree(DetailAST)} so existing reflective tests
+     * continue to see it returned to its default.
+     */
+    private final Deque<Object> contextStack = new ArrayDeque<>();
 
     /** Specify the maximum threshold allowed. */
-    private int max;
+    private int max = DEFAULT_MAX;
 
-    /** Current method context. */
-    private Context context;
-
-    /** Constructs a {@code ExecutableStatementCountCheck}. */
-    public ExecutableStatementCountCheck() {
-        max = DEFAULT_MAX;
-    }
+    private Pipeline<AstEvent, ViolationMessage> pipeline;
 
     @Override
     public int[] getDefaultTokens() {
@@ -105,132 +113,44 @@ public final class ExecutableStatementCountCheck
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        context = new Context(null);
         contextStack.clear();
+        pipeline = PipelineBuilder.<AstEvent>start()
+                .add(new TokenFilter(getAcceptableTokens()))
+                .add(new ExecutableStatementCountMeasurementFilter(max, MSG_KEY))
+                .add(new ThresholdFilter(max))
+                .addQueued(new ViolationSink())
+                .build();
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (isContainerNode(ast)) {
-            visitContainerNode(ast);
-        }
-        else if (TokenUtil.isOfType(ast, TokenTypes.SLIST)) {
-            visitSlist(ast);
-        }
-        else {
+        if (!isContainerNode(ast) && !TokenUtil.isOfType(ast, TokenTypes.SLIST)) {
             throw new IllegalStateException(ast.toString());
         }
+        pipeline.submit(new AstEvent(ast, AstEvent.Phase.VISIT));
+        drainAndLog();
     }
 
     @Override
     public void leaveToken(DetailAST ast) {
-        if (isContainerNode(ast)) {
-            leaveContainerNode(ast);
-        }
-        else if (!TokenUtil.isOfType(ast, TokenTypes.SLIST)) {
+        if (!isContainerNode(ast) && !TokenUtil.isOfType(ast, TokenTypes.SLIST)) {
             throw new IllegalStateException(ast.toString());
         }
+        pipeline.submit(new AstEvent(ast, AstEvent.Phase.LEAVE));
+        drainAndLog();
     }
 
-    /**
-     * Process the start of the container node.
-     *
-     * @param ast the token representing the container node.
-     */
-    private void visitContainerNode(DetailAST ast) {
-        contextStack.push(context);
-        context = new Context(ast);
-    }
-
-    /**
-     * Process the end of a container node.
-     *
-     * @param ast the token representing the container node.
-     */
-    private void leaveContainerNode(DetailAST ast) {
-        final int count = context.getCount();
-        if (count > max) {
-            log(ast, MSG_KEY, count, max);
-        }
-        context = contextStack.pop();
-    }
-
-    /**
-     * Process the end of a statement list.
-     *
-     * @param ast the token representing the statement list.
-     */
-    private void visitSlist(DetailAST ast) {
-        final DetailAST contextAST = context.getAST();
-        DetailAST parent = ast;
-        while (parent != null && !isContainerNode(parent)) {
-            parent = parent.getParent();
-        }
-        if (parent == contextAST) {
-            context.addCount(ast.getChildCount() / 2);
+    private void drainAndLog() {
+        while (pipeline.hasResults()) {
+            final ViolationMessage v = pipeline.drain();
+            log(v.getLine(), v.getCol(), v.getMessageKey(), v.getArgs());
         }
     }
 
-    /**
-     * Check if the node is of type ctor (compact or canonical),
-     * instance/ static initializer, method definition or lambda.
-     *
-     * @param node AST node we are checking
-     * @return true if node is of the given types
-     */
     private static boolean isContainerNode(DetailAST node) {
         return TokenUtil.isOfType(node, TokenTypes.METHOD_DEF,
                 TokenTypes.LAMBDA, TokenTypes.CTOR_DEF, TokenTypes.INSTANCE_INIT,
                 TokenTypes.STATIC_INIT, TokenTypes.COMPACT_CTOR_DEF);
-    }
-
-    /**
-     * Class to encapsulate counting information about one member.
-     */
-    private static final class Context {
-
-        /** Member AST node. */
-        private final DetailAST ast;
-
-        /** Counter for context elements. */
-        private int count;
-
-        /**
-         * Creates new member context.
-         *
-         * @param ast member AST node.
-         */
-        private Context(DetailAST ast) {
-            this.ast = ast;
-        }
-
-        /**
-         * Increase count.
-         *
-         * @param addition the count increment.
-         */
-        /* package */ void addCount(int addition) {
-            count += addition;
-        }
-
-        /**
-         * Gets the member AST node.
-         *
-         * @return the member AST node.
-         */
-        /* package */ DetailAST getAST() {
-            return ast;
-        }
-
-        /**
-         * Gets the count.
-         *
-         * @return the count.
-         */
-        /* package */ int getCount() {
-            return count;
-        }
-
     }
 
 }

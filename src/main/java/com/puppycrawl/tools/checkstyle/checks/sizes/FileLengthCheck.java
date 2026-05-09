@@ -24,6 +24,13 @@ import java.io.File;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.Pipeline;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.PipelineBuilder;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.LineSplitterFilter;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.ThresholdFilter;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.ViolationSink;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.message.ViolationMessage;
+import com.puppycrawl.tools.checkstyle.checks.sizes.pipeline.FileLengthMeasurementFilter;
 
 /**
  * <div>
@@ -55,8 +62,18 @@ public class FileLengthCheck extends AbstractFileSetCheck {
 
     @Override
     protected void processFiltered(File file, FileText fileText) {
-        if (fileText.size() > max) {
-            log(1, MSG_KEY, fileText.size(), max);
+        final Pipeline<FileText, ViolationMessage> pipeline = PipelineBuilder.<FileText>start()
+                .addQueued(new LineSplitterFilter())
+                .addQueued(new FileLengthMeasurementFilter(max, MSG_KEY))
+                .addQueued(new ThresholdFilter(max))
+                .addQueued(new ViolationSink())
+                .build();
+
+        pipeline.submit(fileText);
+
+        while (pipeline.hasResults()) {
+            final ViolationMessage v = pipeline.drain();
+            log(v.getLine(), v.getMessageKey(), v.getArgs());
         }
     }
 

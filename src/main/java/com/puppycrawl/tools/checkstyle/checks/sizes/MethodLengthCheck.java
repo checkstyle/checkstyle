@@ -19,16 +19,18 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import java.util.ArrayDeque;
-import java.util.BitSet;
-import java.util.Deque;
-import java.util.Objects;
-import java.util.stream.Stream;
-
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.Pipeline;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.PipelineBuilder;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.ThresholdFilter;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.TokenFilter;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.ViolationSink;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.message.AstEvent;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.message.ViolationMessage;
+import com.puppycrawl.tools.checkstyle.checks.sizes.pipeline.MethodLengthMeasurementFilter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -62,6 +64,9 @@ public class MethodLengthCheck extends AbstractCheck {
     /** Specify the maximum number of lines allowed. */
     private int max = DEFAULT_MAX_LINES;
 
+    /** Pipeline driving the per-token measurement + threshold + sink chain. */
+    private Pipeline<AstEvent, ViolationMessage> pipeline;
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
@@ -82,64 +87,29 @@ public class MethodLengthCheck extends AbstractCheck {
     }
 
     @Override
+    public void beginTree(DetailAST rootAST) {
+        pipeline = PipelineBuilder.<AstEvent>start()
+                .add(new TokenFilter(TokenTypes.METHOD_DEF,
+                                     TokenTypes.CTOR_DEF,
+                                     TokenTypes.COMPACT_CTOR_DEF))
+                .add(new MethodLengthMeasurementFilter(countEmpty, max, MSG_KEY))
+                .add(new ThresholdFilter(max))
+                .addQueued(new ViolationSink())
+                .build();
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
-        final DetailAST openingBrace = ast.findFirstToken(TokenTypes.SLIST);
-        if (openingBrace != null) {
-            final int length;
-            if (countEmpty) {
-                final DetailAST closingBrace = openingBrace.findFirstToken(TokenTypes.RCURLY);
-                length = getLengthOfBlock(openingBrace, closingBrace);
-            }
-            else {
-                length = countUsedLines(openingBrace);
-            }
-            if (length > max) {
-                final String methodName = ast.findFirstToken(TokenTypes.IDENT).getText();
-                log(ast, MSG_KEY, length, max, methodName);
-            }
-        }
+        pipeline.submit(new AstEvent(ast, AstEvent.Phase.VISIT));
+        drainAndLog();
     }
 
-    /**
-     * Returns length of code.
-     *
-     * @param openingBrace block opening brace
-     * @param closingBrace block closing brace
-     * @return number of lines with code for current block
-     */
-    private static int getLengthOfBlock(DetailAST openingBrace, DetailAST closingBrace) {
-        final int startLineNo = openingBrace.getLineNo();
-        final int endLineNo = closingBrace.getLineNo();
-        return endLineNo - startLineNo + 1;
-    }
-
-    /**
-     * Count number of used code lines without comments.
-     *
-     * @param ast start ast
-     * @return number of used lines of code
-     */
-    private static int countUsedLines(DetailAST ast) {
-        final Deque<DetailAST> nodes = new ArrayDeque<>();
-        nodes.add(ast);
-        final BitSet usedLines = new BitSet();
-        while (!nodes.isEmpty()) {
-            final DetailAST node = nodes.removeFirst();
-            final int lineIndex = node.getLineNo();
-            // text block requires special treatment,
-            // since it is the only non-comment token that can span more than one line
-            if (node.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
-                final int endLineIndex = node.getLastChild().getLineNo();
-                usedLines.set(lineIndex, endLineIndex + 1);
-            }
-            else {
-                usedLines.set(lineIndex);
-                Stream.iterate(
-                    node.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling
-                ).forEach(nodes::addFirst);
-            }
+    /** Drain sink, forward each violation to the framework log. */
+    private void drainAndLog() {
+        while (pipeline.hasResults()) {
+            final ViolationMessage v = pipeline.drain();
+            log(v.getLine(), v.getCol(), v.getMessageKey(), v.getArgs());
         }
-        return usedLines.cardinality();
     }
 
     /**

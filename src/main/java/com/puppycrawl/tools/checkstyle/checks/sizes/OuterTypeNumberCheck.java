@@ -23,6 +23,14 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.Pipeline;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.PipelineBuilder;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.ThresholdFilter;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.TokenFilter;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.filter.ViolationSink;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.message.AstEvent;
+import com.puppycrawl.tools.checkstyle.checks.pipeline.message.ViolationMessage;
+import com.puppycrawl.tools.checkstyle.checks.sizes.pipeline.OuterTypeNumberMeasurementFilter;
 
 /**
  * <div>
@@ -38,18 +46,22 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 @FileStatefulCheck
 public class OuterTypeNumberCheck extends AbstractCheck {
 
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
     public static final String MSG_KEY = "maxOuterTypes";
 
-    /** Specify the maximum number of outer types allowed. */
     private int max = 1;
-    /** Tracks the current depth in types. */
+
+    /**
+     * Preserved for backward-compatible state-clearing introspection tests.
+     * The real per-file state lives inside
+     * {@code OuterTypeNumberMeasurementFilter}; these fields are reset on every
+     * {@link #beginTree(DetailAST)} so existing reflective tests continue to
+     * see them returned to their defaults.
+     */
     private int currentDepth;
-    /** Tracks the number of outer types found. */
+
     private int outerNum;
+
+    private Pipeline<AstEvent, ViolationMessage> pipeline;
 
     @Override
     public int[] getDefaultTokens() {
@@ -73,39 +85,45 @@ public class OuterTypeNumberCheck extends AbstractCheck {
     }
 
     @Override
-    public void beginTree(DetailAST ast) {
+    public void beginTree(DetailAST rootAST) {
         currentDepth = 0;
         outerNum = 0;
-    }
-
-    @Override
-    public void finishTree(DetailAST ast) {
-        if (max < outerNum) {
-            log(ast, MSG_KEY, outerNum, max);
-        }
+        pipeline = PipelineBuilder.<AstEvent>start()
+                .add(new TokenFilter(getRequiredTokens()))
+                .add(new OuterTypeNumberMeasurementFilter(max, MSG_KEY))
+                .add(new ThresholdFilter(max))
+                .addQueued(new ViolationSink())
+                .build();
+        pipeline.submit(new AstEvent(rootAST, AstEvent.Phase.BEGIN_TREE));
+        drainAndLog();
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (currentDepth == 0) {
-            outerNum++;
-        }
-        currentDepth++;
+        pipeline.submit(new AstEvent(ast, AstEvent.Phase.VISIT));
+        drainAndLog();
     }
 
     @Override
     public void leaveToken(DetailAST ast) {
-        currentDepth--;
+        pipeline.submit(new AstEvent(ast, AstEvent.Phase.LEAVE));
+        drainAndLog();
     }
 
-    /**
-     * Setter to specify the maximum number of outer types allowed.
-     *
-     * @param max the new number.
-     * @since 5.0
-     */
+    @Override
+    public void finishTree(DetailAST rootAST) {
+        pipeline.submit(new AstEvent(rootAST, AstEvent.Phase.FINISH_TREE));
+        drainAndLog();
+    }
+
+    private void drainAndLog() {
+        while (pipeline.hasResults()) {
+            final ViolationMessage v = pipeline.drain();
+            log(v.getLine(), v.getCol(), v.getMessageKey(), v.getArgs());
+        }
+    }
+
     public void setMax(int max) {
         this.max = max;
     }
-
 }
