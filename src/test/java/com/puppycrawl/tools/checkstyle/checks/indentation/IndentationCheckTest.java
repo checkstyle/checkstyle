@@ -4030,6 +4030,26 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIndentationUnnamedPattern() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("throwsIndent", "8");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+
+        final String fileName = getNonCompilablePath(
+                "InputIndentationUnnamedPattern.java");
+        final String[] expected = {
+            "26:9: " + getCheckMessage(MSG_CHILD_ERROR, "if", 8, 12),
+            "29:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testIndentationCodeBlocks1() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
