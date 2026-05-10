@@ -386,7 +386,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadocSetters() throws Exception {
         final String[] expected = {
-            "13: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
+            "14: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsJavadocSetters.java"), expected);
