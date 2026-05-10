@@ -86,8 +86,6 @@
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]coding[\\/]illegaltoken[\\/]InputIllegalTokensCheckCommentsContent.java"/>
   <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]imports[\\/]unusedimports[\\/]InputUnusedImportsJavadocSetters.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]indentation[\\/]commentsindentation[\\/]InputCommentsIndentationJavadoc.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]atclauseorder[\\/]InputAtclauseOrderMethodReturningArrayType.java"/>
