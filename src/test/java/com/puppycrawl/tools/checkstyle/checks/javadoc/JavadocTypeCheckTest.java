@@ -369,7 +369,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
                 getPath("InputJavadocTypeRecordComponents.java"), expected);
     }
 
-@Test
+    @Test
     public void testJavadocTypeRecordComponentNameMismatch() throws Exception {
         final String[] expected = {
             "21:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "valueExtra"),
