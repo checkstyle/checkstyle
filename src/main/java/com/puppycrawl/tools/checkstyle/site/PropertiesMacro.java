@@ -23,11 +23,15 @@ import java.lang.reflect.Field;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
+
+import javax.annotation.Nullable;
 
 import org.apache.maven.doxia.macro.AbstractMacro;
 import org.apache.maven.doxia.macro.Macro;
@@ -41,6 +45,9 @@ import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+import com.puppycrawl.tools.checkstyle.meta.ModuleDetails;
+import com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails;
+import com.puppycrawl.tools.checkstyle.meta.XmlMetaReader;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -65,6 +72,12 @@ public class PropertiesMacro extends AbstractMacro {
     /** Represents the relative path to the property types XML. */
     private static final String PROPERTY_TYPES_XML = "property_types.xml";
 
+    /** Validation type indicating a set of token types. */
+    private static final String VALIDATION_TYPE_TOKEN_TYPES_SET = "tokenTypesSet";
+
+    /** Validation type indicating a set of tokens. */
+    private static final String VALIDATION_TYPE_TOKEN_SET = "tokenSet";
+
     /** The string '#'. */
     private static final String HASHTAG = "#";
 
@@ -83,11 +96,39 @@ public class PropertiesMacro extends AbstractMacro {
      */
     private static final String TOKENS_PROPERTY = SiteUtil.TOKENS;
 
+    /**
+     * Cache of validation types: fully-qualified module name to
+     * a map of property name to validation type.
+     * Built once at class load time to avoid repeated XML re-reads.
+     */
+    private static final Map<String, Map<String, String>> VALIDATION_TYPE_CACHE =
+            buildValidationTypeCache();
+
     /** The name of the current module being processed. */
     private static String currentModuleName = "";
 
     /** The file of the current module being processed. */
     private static Path currentModulePath = Path.of("");
+
+    /**
+     * Builds the validation type cache by reading all module XML metadata once.
+     *
+     * @return unmodifiable map of module name to property name to validation type.
+     */
+    private static Map<String, Map<String, String>> buildValidationTypeCache() {
+        final Map<String, Map<String, String>> cache = new HashMap<>();
+        for (ModuleDetails module : XmlMetaReader.readAllModulesIncludingThirdPartyIfAny()) {
+            final Map<String, String> propMap = new HashMap<>();
+            for (ModulePropertyDetails prop : module.getProperties()) {
+                if (prop.getValidationType() != null) {
+                    propMap.put(prop.getName(), prop.getValidationType());
+                }
+            }
+            cache.put(module.getFullQualifiedName(),
+                    Collections.unmodifiableMap(propMap));
+        }
+        return Collections.unmodifiableMap(cache);
+    }
 
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
@@ -244,17 +285,20 @@ public class PropertiesMacro extends AbstractMacro {
      */
     private static void writePropertyRow(Sink sink, String propertyName,
                                          DetailNode propertyJavadoc, Object instance,
-                                            DetailNode moduleJavadoc)
+                                         DetailNode moduleJavadoc)
             throws MacroExecutionException {
         final Field field = SiteUtil.getField(instance.getClass(), propertyName);
+        // Use validationType from XML metadata instead of field-based heuristics.
+        final String validationType =
+                getPropertyValidationType(instance.getClass(), propertyName);
 
         sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_12);
         sink.tableRow();
 
         writePropertyNameCell(sink, propertyName);
         writePropertyDescriptionCell(sink, propertyName, propertyJavadoc);
-        writePropertyTypeCell(sink, propertyName, field, instance);
-        writePropertyDefaultValueCell(sink, propertyName, field, instance);
+        writePropertyTypeCell(sink, propertyName, field, instance, validationType);
+        writePropertyDefaultValueCell(sink, propertyName, field, instance, validationType);
         writePropertySinceVersionCell(
                 sink, moduleJavadoc, propertyJavadoc);
 
@@ -305,11 +349,13 @@ public class PropertiesMacro extends AbstractMacro {
      * @param propertyName the name of the property.
      * @param field the field of the property.
      * @param instance the instance of the module.
+     * @param validationType the validation type of the property.
      * @throws MacroExecutionException if link to the property_types.html file cannot be
      *                                 constructed.
      */
     private static void writePropertyTypeCell(Sink sink, String propertyName,
-                                              Field field, Object instance)
+                                              Field field, Object instance,
+                                              @Nullable String validationType)
             throws MacroExecutionException {
         sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_14);
         sink.tableCell();
@@ -347,7 +393,8 @@ public class PropertiesMacro extends AbstractMacro {
         else {
             final String type;
 
-            if (ModuleJavadocParsingUtil.isPropertySpecialTokenProp(field)) {
+            if (VALIDATION_TYPE_TOKEN_TYPES_SET.equals(validationType)
+                    || VALIDATION_TYPE_TOKEN_SET.equals(validationType)) {
                 type = "subset of tokens TokenTypes";
             }
             else {
@@ -458,7 +505,7 @@ public class PropertiesMacro extends AbstractMacro {
     private static void writeLinkToToken(Sink sink, String document, String tokenName)
             throws MacroExecutionException {
         final String link = SiteUtil.getLinkToDocument(currentModuleName, document)
-                        + HASHTAG + tokenName;
+                + HASHTAG + tokenName;
         sink.link(link);
         sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_20);
         sink.text(tokenName);
@@ -472,10 +519,12 @@ public class PropertiesMacro extends AbstractMacro {
      * @param propertyName the name of the property.
      * @param field the field of the property.
      * @param instance the instance of the module.
+     * @param validationType the validation type of the property.
      * @throws MacroExecutionException if an error occurs during retrieval of the default value.
      */
     private static void writePropertyDefaultValueCell(Sink sink, String propertyName,
-                                                      Field field, Object instance)
+                                                      Field field, Object instance,
+                                                      @Nullable String validationType)
             throws MacroExecutionException {
         sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_14);
         sink.tableCell();
@@ -509,8 +558,9 @@ public class PropertiesMacro extends AbstractMacro {
         else {
             final String defaultValue = getDefaultValue(propertyName, field, instance);
 
-            if (ModuleJavadocParsingUtil.isPropertySpecialTokenProp(field)
-                && !CURLY_BRACKET.equals(defaultValue)) {
+            if ((VALIDATION_TYPE_TOKEN_TYPES_SET.equals(validationType)
+                    || VALIDATION_TYPE_TOKEN_SET.equals(validationType))
+                    && !CURLY_BRACKET.equals(defaultValue)) {
 
                 final List<String> defaultValuesList =
                         Arrays.asList(COMMA_SPACE_PATTERN.split(defaultValue));
@@ -574,6 +624,29 @@ public class PropertiesMacro extends AbstractMacro {
                 + "Checker</a> module";
         }
 
+        return result;
+    }
+
+    /**
+     * Returns the validation type of a property for the given module class,
+     * using the pre-built cache.
+     *
+     * @param moduleClass the class of the module.
+     * @param propertyName the name of the property.
+     * @return the validation type string, or {@code null} if not found.
+     */
+    @Nullable
+    private static String getPropertyValidationType(
+            Class<?> moduleClass, String propertyName) {
+        final Map<String, String> propMap =
+                VALIDATION_TYPE_CACHE.get(moduleClass.getName());
+        final String result;
+        if (propMap == null) {
+            result = null;
+        }
+        else {
+            result = propMap.get(propertyName);
+        }
         return result;
     }
 
