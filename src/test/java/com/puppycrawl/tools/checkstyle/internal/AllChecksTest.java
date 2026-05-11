@@ -173,6 +173,13 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // we prefer no braces here as it looks unusual even though they help avoid sharing
                 // scope of variables
                 "LITERAL_DEFAULT", "LITERAL_CASE").collect(Collectors.toUnmodifiableSet()));
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("EmptyLineWrappingInBlock", Stream.of(
+                // we only enforce empty line rules for type/class-level blocks in main config
+                "ANNOTATION_ARRAY_INIT", "ARRAY_INIT", "CASE_GROUP", "CTOR_DEF", "INSTANCE_INIT",
+                "LAMBDA", "LITERAL_CASE", "LITERAL_CATCH", "LITERAL_DEFAULT", "LITERAL_DO",
+                "LITERAL_ELSE", "LITERAL_FINALLY", "LITERAL_FOR", "LITERAL_IF", "LITERAL_NEW",
+                "LITERAL_SWITCH", "LITERAL_SYNCHRONIZED", "LITERAL_TRY", "LITERAL_WHILE",
+                "METHOD_DEF", "SLIST", "STATIC_INIT").collect(Collectors.toUnmodifiableSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("FinalParameters", Stream.of(
                 // we prefer these to be effectively final as to not damage readability
                 "FOR_EACH_CLAUSE", "LITERAL_CATCH", "PATTERN_VARIABLE_DEF")

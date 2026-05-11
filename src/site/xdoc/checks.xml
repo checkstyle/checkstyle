@@ -413,6 +413,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/whitespace/emptylinewrappinginblock.html#EmptyLineWrappingInBlock">
+                EmptyLineWrappingInBlock
+              </a>
+            </td>
+            <td>
+              Checks the presence or absence of empty lines at the top and bottom of code blocks
+              (e.g.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/emptystatement.html#EmptyStatement">
                 EmptyStatement
               </a>
