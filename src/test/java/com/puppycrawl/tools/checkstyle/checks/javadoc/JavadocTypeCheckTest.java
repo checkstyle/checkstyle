@@ -370,6 +370,16 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testJavadocTypeRecordComponentNameMismatch() throws Exception {
+        final String[] expected = {
+            "20:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "valueExtra"),
+            "23:1: " + getCheckMessage(MSG_MISSING_TAG, "@param value"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeRecordComponentNameMismatch.java"), expected);
+    }
+
+    @Test
     public void testJavadocTypeParamDescriptionWithAngularTags() throws Exception {
         final String[] expected = {
             "50:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<P>"),
