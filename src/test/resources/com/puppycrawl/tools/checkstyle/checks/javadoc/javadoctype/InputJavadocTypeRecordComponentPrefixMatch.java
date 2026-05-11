@@ -14,11 +14,10 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
+// violations 4 lines below 'missing @param value tag, unused @param valueExtra tag'
 /**
  * Example case with prefix match bug.
  *
  * @param valueExtra wrong tag for a different component
  */
-public record InputJavadocTypeRecordComponentPrefixMatch(String value) {
-} // violation 'Type Javadoc comment is missing @param value tag.'
-// violation 'Unused @param tag for 'valueExtra'.'
+public record InputJavadocTypeRecordComponentPrefixMatch(String value) {}
