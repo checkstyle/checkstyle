@@ -50,6 +50,10 @@ public class SimplifyBooleanExpressionCheckTest
             "109:21: " + getCheckMessage(MSG_KEY),
             "110:23: " + getCheckMessage(MSG_KEY),
             "111:20: " + getCheckMessage(MSG_KEY),
+            "113:27: " + getCheckMessage(MSG_KEY),
+            "114:35: " + getCheckMessage(MSG_KEY),
+            "115:31: " + getCheckMessage(MSG_KEY),
+            "116:35: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputSimplifyBooleanExpression.java"), expected);
