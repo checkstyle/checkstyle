@@ -349,9 +349,10 @@ public final class ScopeUtil {
      */
     public static boolean isInScope(DetailAST ast, Scope scope) {
         return getSurroundingScope(ast)
-                .map(surroundingScope -> {
-                    return surroundingScope == scope;
-                })
+                .map(
+                        surroundingScope -> {
+                            return surroundingScope == scope;
+                        })
                 .orElse(Boolean.FALSE);
     }
 

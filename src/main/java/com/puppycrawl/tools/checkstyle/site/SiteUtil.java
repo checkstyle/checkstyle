@@ -445,9 +445,11 @@ public final class SiteUtil {
     public static Set<String> getPropertiesForDocumentation(Class<?> clss, Object instance) {
         final Set<String> properties =
                 getProperties(clss).stream()
-                    .filter(prop -> {
-                        return !isGlobalProperty(clss, prop) && !isUndocumentedProperty(clss, prop);
-                    })
+                    .filter(
+                            prop -> {
+                                return !isGlobalProperty(clss, prop)
+                                        && !isUndocumentedProperty(clss, prop);
+                            })
                     .collect(Collectors.toCollection(HashSet::new));
         properties.addAll(getNonExplicitProperties(instance, clss));
         return new TreeSet<>(properties);
@@ -493,13 +495,14 @@ public final class SiteUtil {
         final Map<String, DetailNode> propertiesJavadocs =
             new LinkedHashMap<>(unmodifiablePropertiesJavadocs);
 
-        properties.forEach(property -> {
-            final DetailNode superClassPropertyJavadoc =
-                    SUPER_CLASS_PROPERTIES_JAVADOCS.get(property);
-            if (superClassPropertyJavadoc != null) {
-                propertiesJavadocs.putIfAbsent(property, superClassPropertyJavadoc);
-            }
-        });
+        properties.forEach(
+                property -> {
+                    final DetailNode superClassPropertyJavadoc =
+                            SUPER_CLASS_PROPERTIES_JAVADOCS.get(property);
+                    if (superClassPropertyJavadoc != null) {
+                        propertiesJavadocs.putIfAbsent(property, superClassPropertyJavadoc);
+                    }
+                });
 
         assertAllPropertySetterJavadocsAreFound(properties, moduleName, propertiesJavadocs);
 
@@ -776,9 +779,11 @@ public final class SiteUtil {
 
         return propertyJavadocTag
             .map(tag -> JavadocUtil.findFirstToken(tag, JavadocCommentsTokenTypes.DESCRIPTION))
-            .map(description -> {
-                return JavadocUtil.findFirstToken(description, JavadocCommentsTokenTypes.TEXT);
-            })
+            .map(
+                    description -> {
+                        return JavadocUtil.findFirstToken(
+                                description, JavadocCommentsTokenTypes.TEXT);
+                    })
             .map(DetailNode::getText)
             .map(String::trim);
     }
@@ -835,10 +840,11 @@ public final class SiteUtil {
         final DetailNode sinceJavadocTag = getSinceJavadocTag(javadoc);
         return Optional.ofNullable(sinceJavadocTag)
             .map(tag -> JavadocUtil.findFirstToken(tag, JavadocCommentsTokenTypes.DESCRIPTION))
-            .map(description -> {
-                return JavadocUtil.findFirstToken(
-                        description, JavadocCommentsTokenTypes.TEXT);
-            })
+            .map(
+                    description -> {
+                        return JavadocUtil.findFirstToken(
+                                description, JavadocCommentsTokenTypes.TEXT);
+                    })
             .map(DetailNode::getText)
             .map(String::trim)
             .orElse(null);

@@ -377,10 +377,11 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         if (!ctx.snippetAttributes.isEmpty()) {
             final JavadocNodeImpl snippetAttributes =
                     createImaginary(JavadocCommentsTokenTypes.SNIPPET_ATTRIBUTES);
-            ctx.snippetAttributes.forEach(snippetAttributeContext -> {
-                final JavadocNodeImpl snippetAttribute = visit(snippetAttributeContext);
-                snippetAttributes.addChild(snippetAttribute);
-            });
+            ctx.snippetAttributes.forEach(
+                    snippetAttributeContext -> {
+                        final JavadocNodeImpl snippetAttribute = visit(snippetAttributeContext);
+                        snippetAttributes.addChild(snippetAttribute);
+                    });
             dummyRoot.addChild(snippetAttributes);
         }
         final TerminalNode colon = ctx.COLON();
@@ -487,10 +488,11 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         if (!ctx.htmlAttributes.isEmpty()) {
             final JavadocNodeImpl htmlAttributes =
                     createImaginary(JavadocCommentsTokenTypes.HTML_ATTRIBUTES);
-            ctx.htmlAttributes.forEach(htmlAttributeContext -> {
-                final JavadocNodeImpl htmlAttribute = visit(htmlAttributeContext);
-                htmlAttributes.addChild(htmlAttribute);
-            });
+            ctx.htmlAttributes.forEach(
+                    htmlAttributeContext -> {
+                        final JavadocNodeImpl htmlAttribute = visit(htmlAttributeContext);
+                        htmlAttributes.addChild(htmlAttribute);
+                    });
             javadocNode.addChild(htmlAttributes);
         }
 
@@ -507,10 +509,11 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         if (!ctx.htmlAttributes.isEmpty()) {
             final JavadocNodeImpl htmlAttributes =
                     createImaginary(JavadocCommentsTokenTypes.HTML_ATTRIBUTES);
-            ctx.htmlAttributes.forEach(htmlAttributeContext -> {
-                final JavadocNodeImpl htmlAttribute = visit(htmlAttributeContext);
-                htmlAttributes.addChild(htmlAttribute);
-            });
+            ctx.htmlAttributes.forEach(
+                    htmlAttributeContext -> {
+                        final JavadocNodeImpl htmlAttribute = visit(htmlAttributeContext);
+                        htmlAttributes.addChild(htmlAttribute);
+                    });
             javadocNode.addChild(htmlAttributes);
         }
 
