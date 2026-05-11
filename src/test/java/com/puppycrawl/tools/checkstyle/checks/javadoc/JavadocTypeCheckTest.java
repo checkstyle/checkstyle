@@ -420,6 +420,14 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testJavadocTypeRecordComponentPrefixMatch() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeRecordComponentPrefixMatch.java"), expected);
+    }
+
+    @Test
     public void testJavadocTypeInterfaceMemberScopeIsPublic() throws Exception {
 
         final String[] expected = {
