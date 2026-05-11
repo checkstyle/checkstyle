@@ -267,6 +267,7 @@ Ddry
 DEADBEEF
 DECCHARS
 declarationorder
+declarationrightbeforefirstusage
 declaredwhenneeded
 Deconstruction
 defau
@@ -604,6 +605,7 @@ innerassignment
 Innerclass
 innertypelast
 inplace
+inputdeclarationusagedistanceatmost
 instanceof
 Intelli
 intellij

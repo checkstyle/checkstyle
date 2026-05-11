@@ -85,6 +85,7 @@
 
     <module name="MultipleVariableDeclarations"/>
     <module name="ArrayTypeStyle"/>
+    <module name="VariableDeclarationUsageDistance"/>
 
     <module name="MethodName">
       <property name="format" value="^[a-z]{2,}[a-zA-Z0-9]*$"/>
