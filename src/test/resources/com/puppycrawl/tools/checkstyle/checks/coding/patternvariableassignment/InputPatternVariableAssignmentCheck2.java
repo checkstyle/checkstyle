@@ -6,7 +6,6 @@
 </module>
 */
 
-// Java21
 package com.puppycrawl.tools.checkstyle.checks.coding.patternvariableassignment;
 
 public class InputPatternVariableAssignmentCheck2 {
@@ -59,13 +58,23 @@ public class InputPatternVariableAssignmentCheck2 {
         }
     }
 
-    public static boolean bigEnoughTriang(Object s) {
+    public static boolean bigEnoughTriangle(Object s) {
         if (!(s instanceof Triangle r)) {
             return false;
         }
-        r = null; // ok until #17203
+        r = null; // violation "Assignment of pattern variable 'r' is not allowed."
         return true;
-     }
+    }
+
+    public static boolean bigEnoughTriangle2(Object s) {
+        if (!(s instanceof Triangle r)) {
+            return false;
+        }
+        if (r != null) {
+          r = null; // violation "Assignment of pattern variable 'r' is not allowed."
+        }
+        return true;
+    }
 
      public class StringHolder {
 
