@@ -102,7 +102,11 @@ recipeList:
         - org.openrewrite.staticanalysis.ChainStringBuilderAppendCalls
         - org.openrewrite.staticanalysis.ReplaceStringBuilderWithString
         - org.openrewrite.staticanalysis.CustomImportOrder
-
+  - org.openrewrite.staticanalysis.CommonStaticAnalysis:
+      exclude:
+        # there is some problem in their implementation, let us revisit it in few years.
+        # https://github.com/checkstyle/checkstyle/pull/18903#discussion_r3215832346
+        - org.openrewrite.staticanalysis.LambdaBlockToExpression
   # individual recipes
   - org.openrewrite.java.RemoveUnusedImports
   - org.openrewrite.java.format.NormalizeFormat
