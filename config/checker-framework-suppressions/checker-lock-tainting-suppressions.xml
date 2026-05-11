@@ -108,7 +108,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
     <specifier>methodref.param</specifier>
     <message>Incompatible parameter type for arg0</message>
-    <lineContent>.filter(messages::containsKey).map(key -&gt; {</lineContent>
+    <lineContent>.filter(messages::containsKey).map(</lineContent>
     <details>
       found   : @GuardSatisfied Object
       required: @GuardedBy String
@@ -123,7 +123,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
     <specifier>methodref.receiver.bound</specifier>
     <message>Incompatible receiver type</message>
-    <lineContent>.filter(messages::containsKey).map(key -&gt; {</lineContent>
+    <lineContent>.filter(messages::containsKey).map(</lineContent>
     <details>
       found   : @GuardedBy Map&lt;@GuardedBy String, @GuardedBy String&gt;
       required: @GuardSatisfied Map&lt;@GuardedBy String, @GuardedBy String&gt;
