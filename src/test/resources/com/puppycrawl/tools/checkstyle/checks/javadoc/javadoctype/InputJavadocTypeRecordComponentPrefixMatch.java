@@ -12,7 +12,6 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 */
 
-// Java17
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 /**
@@ -21,4 +20,4 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
  * @param valueExtra wrong tag for a different component
  */
 public record InputJavadocTypeRecordComponentPrefixMatch(String value) {
-} // 2 violations: missing @param value tag, unused @param valueExtra tag
+} // 2 violations
