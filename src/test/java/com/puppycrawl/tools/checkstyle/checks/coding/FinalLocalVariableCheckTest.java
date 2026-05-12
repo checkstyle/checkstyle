@@ -291,10 +291,24 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void testMultiTypeCatch() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+    public void testMultiTypeCatchAdjacentCatches() throws Exception {
+        final String[] expected = {
+            "13:13: " + getCheckMessage(MSG_KEY, "a"),
+        };
         verifyWithInlineConfigParser(
-                getPath("InputFinalLocalVariableMultiCatch.java"),
+                getPath("InputFinalLocalVariableMultiCatchAdjacentCatches.java"),
+                expected);
+    }
+
+    @Test
+    public void testMultiTypeCatchNested() throws Exception {
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_KEY, "e1"),
+            "16:17: " + getCheckMessage(MSG_KEY, "e2"),
+            "87:19: " + getCheckMessage(MSG_KEY, "f"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableMultiCatchNested.java"),
                 expected);
     }
 
