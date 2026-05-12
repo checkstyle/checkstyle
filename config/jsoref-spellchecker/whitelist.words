@@ -309,6 +309,7 @@ Dmaven
 dnd
 Dnew
 doccheck
+doccomments
 Dockter
 doclet
 doclint
@@ -410,6 +411,7 @@ fd
 FDCF
 Fdesign
 FDF
+Fdoc
 FEF
 fenum
 ffc
@@ -1006,6 +1008,7 @@ optionalbracesusage
 OQ
 orderedproperties
 orderingandspacing
+orderoftags
 orekit
 ORELSEGET
 orm
@@ -1494,6 +1497,7 @@ wq
 wrappinglines
 writetag
 writingchecks
+writingdoccomments
 writingfilefilters
 writingfilters
 writingjavadocchecks
