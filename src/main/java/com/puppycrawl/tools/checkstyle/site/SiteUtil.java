@@ -446,7 +446,8 @@ public final class SiteUtil {
         final Set<String> properties =
                 getProperties(clss).stream()
                     .filter(prop -> {
-                        return !isGlobalProperty(clss, prop) && !isUndocumentedProperty(clss, prop);
+                        return !isGlobalProperty(clss, prop)
+                                && !isUndocumentedProperty(clss, prop);
                     })
                     .collect(Collectors.toCollection(HashSet::new));
         properties.addAll(getNonExplicitProperties(instance, clss));
@@ -777,7 +778,8 @@ public final class SiteUtil {
         return propertyJavadocTag
             .map(tag -> JavadocUtil.findFirstToken(tag, JavadocCommentsTokenTypes.DESCRIPTION))
             .map(description -> {
-                return JavadocUtil.findFirstToken(description, JavadocCommentsTokenTypes.TEXT);
+                return JavadocUtil.findFirstToken(
+                        description, JavadocCommentsTokenTypes.TEXT);
             })
             .map(DetailNode::getText)
             .map(String::trim);
