@@ -2976,17 +2976,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/PatternVariableAssignmentCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bound of PatternVariableAssignmentCheck.traverseUntilNeededBranchType.</message>
-    <lineContent>branchLeadingToReassignedVar, TokenTypes.EXPR)) {</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailAST
-      required: @Initialized @NonNull DetailAST
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/PatternVariableAssignmentCheck.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter startingBranch of PatternVariableAssignmentCheck.traverseUntilNeededBranchType.</message>
     <lineContent>assignIdent, assignToken.getFirstChild(), TokenTypes.IDENT) != null) {</lineContent>
     <details>
@@ -7110,17 +7099,6 @@
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference parent.findFirstToken(TokenTypes.TYPE_ARGUMENTS)</message>
     <lineContent>typeLastNode = parent.findFirstToken(TokenTypes.TYPE_ARGUMENTS)</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoWhitespaceAfterCheck.java</fileName>
-    <specifier>prefer.map.and.orelse</specifier>
-    <message>It is better style to use map and orElse.</message>
-    <lineContent>else if (objectArrayType.isPresent()) {</lineContent>
-    <details>
-      Consider changing to:
-      typeLastNode.map(java.util.Optional::orElseThrow).orElse(parent.getFirstChild())
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

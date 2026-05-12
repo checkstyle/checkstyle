@@ -1067,6 +1067,7 @@ php
 picocli
 pid
 pinentry
+pipefail
 PIPESTATUS
 pitest
 pkgextra
