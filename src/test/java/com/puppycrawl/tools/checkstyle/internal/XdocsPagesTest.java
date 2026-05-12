@@ -247,6 +247,9 @@ public class XdocsPagesTest {
     private static final Set<String> OPENJDK_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigOpenJdkStyleModules());
 
+    private static final Set<String> DOC_COMMENTS_MODULES = Collections.unmodifiableSet(
+        CheckUtil.getConfigDocCommentsStyleModules());
+
     private static final Set<String> NON_MODULE_XDOC = Set.of(
         "config_system_properties.xml",
         "sponsoring.xml",
@@ -260,6 +263,7 @@ public class XdocsPagesTest {
         "google_style.xml",
         "openjdk_style.xml",
         "sun_style.xml",
+        "doc_comments_style.xml",
         "style_configs.xml",
         "writingfilters.xml",
         "writingfilefilters.xml",
@@ -660,24 +664,19 @@ public class XdocsPagesTest {
             for (int position = 0; position < subSections.getLength(); position++) {
                 final Node subSection = subSections.item(position);
                 final Node name = subSection.getAttributes().getNamedItem("name");
-
                 assertWithMessage("All sub-sections in '%s' must have a name", fileName)
                     .that(name)
                     .isNotNull();
-
                 final Node id = subSection.getAttributes().getNamedItem("id");
-
                 assertWithMessage("All sub-sections in '%s' must have an id", fileName)
                     .that(id)
                     .isNotNull();
-
                 // Checks and filters have their own xdocs files, so the section name
                 // is the same as the section id by default.
                 String sectionName = XmlUtil.getNameAttributeOfNode(subSection.getParentNode());
                 final String nameString = name.getNodeValue();
                 final String subsectionId = id.getNodeValue();
                 final String expectedId;
-
                 if ("google_style.xml".equals(fileName)) {
                     sectionName = "Google";
                     expectedId = (sectionName + "_" + nameString).replace(' ', '_');
@@ -690,6 +689,10 @@ public class XdocsPagesTest {
                     sectionName = "OpenJDK";
                     expectedId = (sectionName + "_" + nameString).replace(' ', '_');
                 }
+                else if ("doc_comments_style.xml".equals(fileName)) {
+                    sectionName = "Documentation Comments";
+                    expectedId = (sectionName + "_" + nameString).replace(' ', '_');
+                }
                 else if ((path.toString().contains("filters")
                         || path.toString().contains("checks"))
                         && !subsectionId.startsWith(sectionName)) {
@@ -698,7 +701,6 @@ public class XdocsPagesTest {
                 else {
                     expectedId = (sectionName + "_" + nameString).replace(' ', '_');
                 }
-
                 assertWithMessage("%s sub-section %s for section %s must match", fileName,
                     nameString, sectionName)
                     .that(subsectionId)
@@ -1750,6 +1752,7 @@ public class XdocsPagesTest {
             .replace("Google Style", "")
             .replace("Sun Style", "")
             .replace("OpenJDK Style", "")
+            .replace("Documentation Comments Style", "")
             .replace("Checkstyle's Import Control Config", "")
             .trim();
 
@@ -1762,6 +1765,7 @@ public class XdocsPagesTest {
         boolean hasGoogle = false;
         boolean hasSun = false;
         boolean hasOpenjdk = false;
+        boolean hasDocComments = false;
 
         for (Node node : XmlUtil.findChildElementsByTag(subSection, "a")) {
             final String url = node.getAttributes().getNamedItem("href").getTextContent();
@@ -1776,9 +1780,7 @@ public class XdocsPagesTest {
             }
             else if ("Google Style".equals(linkText)) {
                 hasGoogle = true;
-                expectedUrl = "https://github.com/search?q="
-                        + "path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+"
-                        + "repo%3Acheckstyle%2Fcheckstyle+"
+                expectedUrl = getExpectedStyleGuideUrl("google_checks.xml")
                         + sectionName;
 
                 assertWithMessage(
@@ -1790,9 +1792,7 @@ public class XdocsPagesTest {
             }
             else if ("Sun Style".equals(linkText)) {
                 hasSun = true;
-                expectedUrl = "https://github.com/search?q="
-                        + "path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+"
-                        + "repo%3Acheckstyle%2Fcheckstyle+"
+                expectedUrl = getExpectedStyleGuideUrl("sun_checks.xml")
                         + sectionName;
 
                 assertWithMessage(
@@ -1803,15 +1803,24 @@ public class XdocsPagesTest {
             }
             else if ("OpenJDK Style".equals(linkText)) {
                 hasOpenjdk = true;
-                expectedUrl = "https://github.com/search?q="
-                        + "path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+"
-                        + "repo%3Acheckstyle%2Fcheckstyle+"
+                expectedUrl = getExpectedStyleGuideUrl("openjdk_checks.xml")
                         + sectionName;
                 assertWithMessage(
                     "%s section '%s' should be in openjdk_checks.xml "
                            + "or not reference 'OpenJDK Style'",
                     fileName, sectionName)
                     .that(OPENJDK_MODULES)
+                    .contains(sectionName);
+            }
+            else if ("Documentation Comments Style".equals(linkText)) {
+                hasDocComments = true;
+                expectedUrl = getExpectedStyleGuideUrl("doc_comments_checks.xml")
+                        + sectionName;
+                assertWithMessage(
+                    "%s section '%s' should be in doc_comments_checks.xml "
+                           + "or not reference 'Documentation Comments Style'",
+                    fileName, sectionName)
+                    .that(DOC_COMMENTS_MODULES)
                     .contains(sectionName);
             }
             else if ("Checkstyle's Import Control Config".equals(linkText)) {
@@ -1840,6 +1849,17 @@ public class XdocsPagesTest {
             fileName, sectionName)
                 .that(hasOpenjdk || !OPENJDK_MODULES.contains(sectionName))
                 .isTrue();
+        assertWithMessage("%s section '%s' should have a documentation comments section since "
+                        + "it is in its config",
+            fileName, sectionName)
+                .that(hasDocComments || !DOC_COMMENTS_MODULES.contains(sectionName))
+                .isTrue();
+    }
+
+    private static String getExpectedStyleGuideUrl(String styleGuideName) {
+        return "https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2F"
+            + styleGuideName
+            + "+repo%3Acheckstyle%2Fcheckstyle+";
     }
 
     private static void validateFullyQualifiedNameSection(String fileName, String sectionName,
@@ -1906,6 +1926,7 @@ public class XdocsPagesTest {
             final Set<String> styleChecks = switch (styleName) {
                 case "google" -> new HashSet<>(GOOGLE_MODULES);
                 case "openjdk" -> new HashSet<>(OPENJDK_MODULES);
+                case "doc_comments" -> new HashSet<>(DOC_COMMENTS_MODULES);
                 case "sun" -> {
                     final Set<String> checks = new HashSet<>(SUN_MODULES);
                     checks.removeAll(IGNORED_SUN_MODULES);
@@ -2073,8 +2094,9 @@ public class XdocsPagesTest {
         final Iterator<Node> itrConfigs = configs.iterator();
         final boolean isGoogleDocumentation = "google".equals(styleName);
         final boolean isOpenJdkDocumentation = "openjdk".equals(styleName);
+        final boolean isDocCommentsDocumentation = "doc_comments".equals(styleName);
 
-        if (isGoogleDocumentation || isOpenJdkDocumentation) {
+        if (isGoogleDocumentation || isOpenJdkDocumentation || isDocCommentsDocumentation) {
             validateChapterWiseTesting(itrChecks, itrConfigs, styleChecks, styleName, ruleName);
         }
         else {
@@ -2127,9 +2149,8 @@ public class XdocsPagesTest {
                         .getTextContent();
 
                 if ("config".equals(configName)) {
-                    final String expectedUrl = "https://github.com/search?q="
-                            + "path%3Asrc%2Fmain%2Fresources%20path%3A**%2F" + styleName
-                            + "_checks.xml+repo%3Acheckstyle%2Fcheckstyle+" + moduleName;
+                    final String expectedUrl = getExpectedStyleGuideUrl(styleName + "_checks.xml")
+                            + moduleName;
 
                     assertWithMessage(
                         "%s_style.xml rule '%s' module '%s' should have matching %s url", styleName,
@@ -2236,12 +2257,14 @@ public class XdocsPagesTest {
             final String extractedChapterNumber = getExtractedChapterNumber(ruleName);
             final String extractedSectionNumber = getExtractedSectionNumber(ruleName);
 
+            final String stylePackageName = getStylePackageName(styleName);
+
             assertWithMessage("%s_style.xml rule '%s' rule '' should have matching sample url",
                 styleName, ruleName)
-                    .that(inputFolderUrl)
-                    .startsWith("https://github.com/checkstyle/checkstyle/"
-                            + "tree/master/src/it/resources/com/" + styleName
-                            + "/checkstyle/test/");
+                .that(inputFolderUrl)
+                .startsWith("https://github.com/checkstyle/checkstyle/"
+                    + "tree/master/src/it/resources/com/" + stylePackageName
+                    + "/checkstyle/test/");
 
             assertWithMessage("%s_style.xml rule '%s' should have matching sample url",
                 styleName, ruleName)
@@ -2267,6 +2290,14 @@ public class XdocsPagesTest {
                 .that(hasChecks)
                 .isFalse();
         }
+    }
+
+    private static String getStylePackageName(String styleName) {
+        String result = styleName;
+        if ("doc_comments".equals(styleName)) {
+            result = "doccomments";
+        }
+        return result;
     }
 
     private static String getExtractedChapterNumber(String ruleName) {
