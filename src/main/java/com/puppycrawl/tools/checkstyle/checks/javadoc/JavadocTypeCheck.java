@@ -409,8 +409,7 @@ public class JavadocTypeCheck
             .stream()
                 .filter(JavadocTag::isParamTag).anyMatch(tag -> {
                     final String arg = tag.getFirstArg();
-                    return arg != null
-                            && (arg.equals(recordComponentName)
+                    return arg.equals(recordComponentName)
                             || arg.startsWith(recordComponentName + SPACE));
                 });
 
