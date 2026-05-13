@@ -25,7 +25,7 @@ public class InputJavadocType3 {
     *
     * @link <T>
     */
-    protected class InnerPublic2<T> // violation 'missing @param <T> tag.'
+    protected class InnerPublic2<T> // violation 'missing @param '<T>' tag.'
     {
     }
 }

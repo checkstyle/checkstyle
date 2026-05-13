@@ -66,6 +66,7 @@
             <message-key key="javadoc.unknownTag"/>
             <message-key key="javadoc.unusedTag"/>
             <message-key key="javadoc.unusedTagGeneral"/>
+            <message-key key="type.missingParamTag"/>
             <message-key key="type.missingTag"/>
             <message-key key="type.tagFormat"/>
          </message-keys>
