@@ -114,7 +114,7 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "8:1: " + getCheckMessage(JavadocTypeCheck.class,
-                MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText() + " <C>"),
+                MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText() + " '<C>'"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(

@@ -134,6 +134,6 @@ class PackageClass_1 {
     void methodWithTwoStarComment() {}
 
     /** */
-    protected class ProtectedInner2<T> { // violation 'missing @param <T>.'
+    protected class ProtectedInner2<T> { // violation 'missing @param '<T>'.'
     }
 }

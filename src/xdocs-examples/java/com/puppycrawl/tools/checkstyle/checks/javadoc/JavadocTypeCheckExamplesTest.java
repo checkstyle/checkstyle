@@ -36,8 +36,8 @@ public class JavadocTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
     public void testExample1() throws Exception {
         final String[] expected = {
             "28:6: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknownTag"),
-            "36:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
-            "39:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "36:3: " + getCheckMessage(MSG_MISSING_TAG, "@param '<T>'"),
+            "39:3: " + getCheckMessage(MSG_MISSING_TAG, "@param '<T>'"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -47,7 +47,7 @@ public class JavadocTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
     public void testExample2() throws Exception {
         final String[] expected = {
             "30:6: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknownTag"),
-            "38:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "38:3: " + getCheckMessage(MSG_MISSING_TAG, "@param '<T>'"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -57,8 +57,8 @@ public class JavadocTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
     public void testExample3() throws Exception {
         final String[] expected = {
             "30:6: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknownTag"),
-            "38:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
-            "41:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "38:3: " + getCheckMessage(MSG_MISSING_TAG, "@param '<T>'"),
+            "41:3: " + getCheckMessage(MSG_MISSING_TAG, "@param '<T>'"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -68,8 +68,8 @@ public class JavadocTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
     public void testExample4() throws Exception {
         final String[] expected = {
             "30:6: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknownTag"),
-            "38:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
-            "41:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "38:3: " + getCheckMessage(MSG_MISSING_TAG, "@param '<T>'"),
+            "41:3: " + getCheckMessage(MSG_MISSING_TAG, "@param '<T>'"),
 
         };
 
@@ -79,7 +79,7 @@ public class JavadocTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "42:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "42:3: " + getCheckMessage(MSG_MISSING_TAG, "@param '<T>'"),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
@@ -97,8 +97,8 @@ public class JavadocTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample7() throws Exception {
         final String[] expected = {
-            "38:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
-            "41:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "38:3: " + getCheckMessage(MSG_MISSING_TAG, "@param '<T>'"),
+            "41:3: " + getCheckMessage(MSG_MISSING_TAG, "@param '<T>'"),
         };
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
@@ -108,9 +108,9 @@ public class JavadocTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
     public void testExample8() throws Exception {
         final String[] expected = {
             "30:6: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknownTag"),
-            "38:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
-            "41:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
-            "44:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "38:3: " + getCheckMessage(MSG_MISSING_TAG, "@param '<T>'"),
+            "41:3: " + getCheckMessage(MSG_MISSING_TAG, "@param '<T>'"),
+            "44:3: " + getCheckMessage(MSG_MISSING_TAG, "@param '<T>'"),
         };
 
         verifyWithInlineConfigParser(getPath("Example8.java"), expected);
