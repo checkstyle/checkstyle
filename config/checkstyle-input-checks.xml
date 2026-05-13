@@ -31,6 +31,27 @@
   </module>
 
   <module name="TreeWalker">
+    <module name="MatchXpath">
+      <property name="id" value="violationBetweenAnnotationAndMethod"/>
+      <property name="query"
+                value="//MODIFIERS/SINGLE_LINE_COMMENT[
+                       ./COMMENT_CONTENT[contains(@text, 'violation')]
+                       and preceding-sibling::ANNOTATION]"/>
+      <message key="matchxpath.match"
+               value="Violation comment must not be placed between an annotation and its target.
+Place it before the annotation block instead."/>
+    </module>
+    <module name="MatchXpath">
+      <property name="id" value="violationBetweenJavadocAndMethod"/>
+      <property name="query"
+                value="//MODIFIERS/SINGLE_LINE_COMMENT[
+                       ./COMMENT_CONTENT[contains(@text, 'violation')]
+                       and preceding-sibling::BLOCK_COMMENT_BEGIN[
+                       ./COMMENT_CONTENT[starts-with(@text, '*')]]]"/>
+      <message key="matchxpath.match"
+               value="Violation comment must not be placed between a Javadoc block and its target.
+Place it before the Javadoc block instead."/>
+    </module>
     <module name="Regexp">
       <property name="id" value="UnnecessaryOkComment"/>
       <property name="format"
