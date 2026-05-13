@@ -208,7 +208,7 @@
     <pmd.version>7.24.0</pmd.version>
     <jacoco.plugin.version>0.8.14</jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
-    <slf4j.version>2.0.17</slf4j.version>
+    <slf4j.version>2.0.18</slf4j.version>
     <saxon.version>12.9</saxon.version>
     <checkstyle.plugin.version>3.6.0</checkstyle.plugin.version>
     <sevntu.checkstyle.plugin.version>1.44.1</sevntu.checkstyle.plugin.version>
