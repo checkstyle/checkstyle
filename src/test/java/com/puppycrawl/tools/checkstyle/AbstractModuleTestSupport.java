@@ -298,6 +298,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         assertWithMessage("Violations for %s differ.", filePath)
             .that(actualViolations)
             .containsExactlyElementsIn(expected);
+
     }
 
     /**
