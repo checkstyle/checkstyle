@@ -19,6 +19,7 @@
 
 package org.checkstyle.suppressionxpathfilter.javadoc;
 
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_MISSING_PARAM_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_MISSING_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_TAG_FORMAT;
 
@@ -114,7 +115,7 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "8:1: " + getCheckMessage(JavadocTypeCheck.class,
-                MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText() + " <C>"),
+                MSG_MISSING_PARAM_TAG, JavadocTagInfo.PARAM.getText(), "<C>"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
