@@ -16,8 +16,7 @@ import java.lang.annotation.Target;
 
 @AnnotationAnnotation(value = "foo")
   @AnnotationAnnotation // violation '.* incorrect .* level 2, .* should be 0.'
-// violation below 'Annotation 'AnnotationAnnotation' should be alone on line.'
-@AnnotationAnnotation("bar") @interface InputAnnotationLocationAnnotation {
+@AnnotationAnnotation("bar") @interface InputAnnotationLocationAnnotation { // violation '.* should be alone on line.'
 
     @AnnotationAnnotation(value = "foo")
       @AnnotationAnnotation // violation '.* incorrect .* level 6, .* should be 4.'
