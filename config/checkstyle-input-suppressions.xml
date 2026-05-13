@@ -307,8 +307,6 @@
             files="[\\/]checks[\\/]javadoc[\\/]missingjavadocpackage[\\/]nojavadoc[\\/]annotation[\\/]blockcomment[\\/]package-info\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]missingjavadocpackage[\\/]nojavadoc[\\/]annotation[\\/]package-info\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]checks[\\/]javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocIncorrect3\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]writetag[\\/]InputWriteTagEnumsAndAnnotations\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"

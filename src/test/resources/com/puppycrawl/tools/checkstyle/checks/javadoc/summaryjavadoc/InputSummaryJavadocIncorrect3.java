@@ -29,11 +29,11 @@ public class InputSummaryJavadocIncorrect3 {
     public void testHtmlTags() {
     }
 
+    // violation 3 lines below 'Summary of Javadoc is missing an ending period'
     /**
      * <p><i></i></p>
      * {@summary This is summary}
      */
-    // violation 2 lines above 'Summary of Javadoc is missing an ending period'
     public void testHtmlTags2() {
     }
 
@@ -52,11 +52,11 @@ public class InputSummaryJavadocIncorrect3 {
     public void testParagraphTag() {
     }
 
+    // violation 3 lines below 'Summary of Javadoc is missing an ending period'
     /**
      * <pre></pre>
      * {@summary This is summary}
      */
-    // violation 2 lines above 'Summary of Javadoc is missing an ending period'
     public void testPreTag() {
     }
 
@@ -68,12 +68,12 @@ public class InputSummaryJavadocIncorrect3 {
     public void testOtherTags() {
     }
 
+    // violation 4 lines below 'Summary of Javadoc is missing an ending period.'
     /**
      * <br>
      * <br>
      * {@summary Line breaks will be there but this will be the summary}
      */
-    // violation 2 lines above 'Summary of Javadoc is missing an ending period.'
     public void testBreakTag() {
     }
 
@@ -88,21 +88,21 @@ public class InputSummaryJavadocIncorrect3 {
     public void testMultipleElements() {
     }
 
+    // violation 3 lines below 'Summary of Javadoc is missing an ending period'
     /**
      * <p> </p>
      * {@summary This is not the summary}
      */
-    // violation 2 lines above 'Summary of Javadoc is missing an ending period'
     public void testHtmlTags3() {
     }
 
+    // violation 5 lines below 'Summary of Javadoc is missing an ending period'
     /**
      * <p>
      *
      * </p>
      * {@summary This is the summary}
      */
-    // violation 2 lines above 'Summary of Javadoc is missing an ending period'
     public void testHtmlTags4() {
     }
 
