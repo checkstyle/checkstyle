@@ -195,16 +195,16 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIncorrectUsageOfSummaryTag() throws Exception {
         final String[] expected = {
-            "34:8: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "35:8: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "41:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "49:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "57:8: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "58:8: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "64:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "74:8: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "75:8: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             // Until https://github.com/checkstyle/checkstyle/issues/11425
             "82:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "93:8: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "103:8: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "94:8: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "104:8: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "110:8: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
         };
 
