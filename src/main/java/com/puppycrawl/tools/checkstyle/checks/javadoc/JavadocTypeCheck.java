@@ -114,6 +114,9 @@ public class JavadocTypeCheck
     /** Javadoc tag token literal. */
     private static final String JAVADOC_TAG_TOKEN = "@";
 
+    /** Single quote literal. */
+    private static final String SINGLE_QUOTE = "'";
+
     /** Pattern to match type name within angle brackets in javadoc param tag. */
     private static final Pattern TYPE_NAME_IN_JAVADOC_TAG =
             Pattern.compile("^<([^>]+)");
@@ -412,7 +415,7 @@ public class JavadocTypeCheck
 
         if (!found) {
             log(ast, MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText()
-                + SPACE + recordComponentName);
+                + SPACE + SINGLE_QUOTE + recordComponentName + SINGLE_QUOTE);
         }
     }
 
@@ -436,7 +439,7 @@ public class JavadocTypeCheck
 
         if (!found) {
             log(ast, MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText()
-                + SPACE + typeParamNameWithBrackets);
+                + SPACE + SINGLE_QUOTE + typeParamNameWithBrackets + SINGLE_QUOTE);
         }
     }
 
