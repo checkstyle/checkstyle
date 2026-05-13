@@ -16,8 +16,7 @@ import java.lang.annotation.Target;
 
 @ClassAnnotation(value = "foo")
   @ClassAnnotation // violation '.* incorrect .* level 2, .* should be 0.'
-// violation below 'Annotation 'ClassAnnotation' should be alone on line.'
-@ClassAnnotation("bar") class InputAnnotationLocationClass {
+@ClassAnnotation("bar") class InputAnnotationLocationClass { // violation '.* should be alone on line.'
 
     @ClassAnnotation(value = "foo")
       @ClassAnnotation // violation '.* incorrect .* level 6, .* should be 4.'
@@ -25,8 +24,7 @@ import java.lang.annotation.Target;
 
     @ClassAnnotation(value = "foo")
       @ClassAnnotation // violation '.* incorrect .* level 6, .* should be 4.'
-    // violation below 'Annotation 'ClassAnnotation' should be alone on line.'
-    @ClassAnnotation("bar") InputAnnotationLocationClass() {
+    @ClassAnnotation("bar") InputAnnotationLocationClass() { // violation '.* should be alone on line.'
     }
 
 }
