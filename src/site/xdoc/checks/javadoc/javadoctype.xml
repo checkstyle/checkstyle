@@ -519,7 +519,7 @@ public class Example8 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated // violation, 'Type Javadoc comment is missing @param &lt;T&gt; tag'
+  @Generated // violation, 'Type Javadoc comment is missing @param '&lt;T&gt;' tag'
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div>
@@ -553,6 +553,11 @@ public class Example8 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unusedTagGeneral%22">
               javadoc.unusedTagGeneral
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22type.missingParamTag%22">
+              type.missingParamTag
             </a>
           </li>
           <li>

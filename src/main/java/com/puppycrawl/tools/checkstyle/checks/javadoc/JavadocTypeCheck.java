@@ -94,6 +94,12 @@ public class JavadocTypeCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    public static final String MSG_MISSING_PARAM_TAG = "type.missingParamTag";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
     public static final String MSG_UNUSED_TAG = "javadoc.unusedTag";
 
     /**
@@ -107,9 +113,6 @@ public class JavadocTypeCheck
 
     /** Close angle bracket literal. */
     private static final String CLOSE_ANGLE_BRACKET = ">";
-
-    /** Space literal. */
-    private static final String SPACE = " ";
 
     /** Javadoc tag token literal. */
     private static final String JAVADOC_TAG_TOKEN = "@";
@@ -411,8 +414,8 @@ public class JavadocTypeCheck
             .anyMatch(tag -> tag.getFirstArg().indexOf(recordComponentName) == 0);
 
         if (!found) {
-            log(ast, MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText()
-                + SPACE + recordComponentName);
+            log(ast, MSG_MISSING_PARAM_TAG, JavadocTagInfo.PARAM.getText(),
+                recordComponentName);
         }
     }
 
@@ -435,8 +438,8 @@ public class JavadocTypeCheck
             .anyMatch(tag -> tag.getFirstArg().indexOf(typeParamNameWithBrackets) == 0);
 
         if (!found) {
-            log(ast, MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText()
-                + SPACE + typeParamNameWithBrackets);
+            log(ast, MSG_MISSING_PARAM_TAG, JavadocTagInfo.PARAM.getText(),
+                typeParamNameWithBrackets);
         }
     }
 
