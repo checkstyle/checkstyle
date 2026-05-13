@@ -383,4 +383,37 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
         verifyWithInlineConfigParser(
                 getPath("InputTextBlockGoogleStyleFormattingAnnotations.java"), expected);
     }
+
+    @Test
+    public void testTernaryOperatorTextBlocks() throws Exception {
+        final String[] expected = {
+            "12:36: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "12:60: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "16:23: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "26:23: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "27:23: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "35:23: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "36:23: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "42:33: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "42:57: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "48:31: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "48:57: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "48:81: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "53:30: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "53:51: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "63:38: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "63:59: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "67:25: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "68:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "72:25: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "90:27: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "90:51: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "101:24: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "101:48: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "110:42: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "110:66: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputTextBlockGoogleStyleFormattingTernary.java"), expected);
+    }
 }
