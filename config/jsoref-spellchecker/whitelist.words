@@ -11,6 +11,7 @@ Acheckstyle
 acm
 Aconfig
 actionlint
+adddescription
 addons
 Adoptium
 adr
@@ -83,6 +84,7 @@ Autowiring
 avoiddoublebraceinitialization
 avoidescapedunicodecharacters
 avoidinlineconditionals
+avoidlatin
 avoidnestedblocks
 avoidnoargumentsuperconstructorcall
 avoidstarimport
@@ -105,6 +107,7 @@ bdc
 bdd
 bdo
 beanutils
+befieldclear
 beforeexecutionexclusionfilefilter
 bestpractices
 bew
@@ -177,6 +180,7 @@ classannotations
 classdataabstractioncoupling
 classdeclarations
 classfanoutcomplexity
+classinterfacefielddescriptions
 classloader
 classmemberimpliedmodifier
 classname
@@ -271,6 +275,7 @@ declaredwhenneeded
 Deconstruction
 defau
 defaultcomeslast
+defaultconstructors
 defaultlabelpresence
 defaultlogger
 delims
@@ -309,6 +314,8 @@ Dmaven
 dnd
 Dnew
 doccheck
+doccommentcheckingtool
+doccomments
 Dockter
 doclet
 doclint
@@ -410,6 +417,7 @@ fd
 FDCF
 Fdesign
 FDF
+Fdoc
 FEF
 fenum
 ffc
@@ -587,6 +595,7 @@ Ime
 img
 iml
 impl
+implementationindependence
 importcontrol
 importcontrolloader
 importcontroltest
@@ -600,6 +609,7 @@ Inet
 infinispan
 initializedfields
 Inlined
+inlinelinks
 inlinetags
 innerassignment
 Innerclass
@@ -817,6 +827,7 @@ meminitial
 metadata
 Metaspace
 methodcount
+methoddescriptions
 methodlength
 methodname
 methodparampad
@@ -987,6 +998,7 @@ ogg
 OI
 olddomain
 olympe
+omitparentheses
 ond
 onestatement
 onestatementperline
@@ -1006,6 +1018,8 @@ optionalbracesusage
 OQ
 orderedproperties
 orderingandspacing
+orderingmultipletags
+orderoftags
 orekit
 ORELSEGET
 orm
@@ -1123,6 +1137,7 @@ RBRACE
 rbrack
 rcurly
 rdiachenko
+rdperson
 RDz
 reactivex
 readarray
@@ -1152,12 +1167,14 @@ releasenotes
 RELi
 remkop
 reportyml
+requiredtags
 requireemptylinebeforeblocktaggroup
 requirethis
 resourceleak
 Rethrown
 returncount
 returnsreceiver
+reusingcomments
 reviewdog
 revwalk
 rfc
@@ -1322,6 +1339,7 @@ sysextensions
 sysprop
 systemout
 tac
+tagcomments
 Taglib
 taglist
 taskdef
@@ -1349,6 +1367,7 @@ thomasjensen
 thr
 throwable
 throwscount
+throwstag
 Thymeleaf
 tidelift
 timeline
@@ -1425,8 +1444,10 @@ urandom
 uri
 url
 useenhancedswitch
+usephrases
 userguide
 username
+usethis
 usr
 UTests
 utf
@@ -1494,6 +1515,7 @@ wq
 wrappinglines
 writetag
 writingchecks
+writingdoccomments
 writingfilefilters
 writingfilters
 writingjavadocchecks
