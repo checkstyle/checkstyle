@@ -9,6 +9,7 @@
         |com\.google\.checkstyle\.test|
         |com\.openjdk\.checkstyle\.test|
         |com\.sun\.checkstyle\.test|
+        |com\.doccomments\.checkstyle\.test|
         |org\.checkstyle.*)"
         regex="true">
 
