@@ -140,8 +140,12 @@
             files="[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorWithComments.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]filters[\\/]suppresswithnearbytextfilter[\\/]InputSuppressWithNearbyTextFilterNearbyTextPatternUrlLineLengthSuppression.java"/>
+<<<<<<< master
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]InputAnnotationLocationClass\.java"/>
+=======
+  <!-- until https://github.com/checkstyle/checkstyle/issues/19803 -->
+>>>>>>> master
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]InputAnnotationLocationInterface\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"

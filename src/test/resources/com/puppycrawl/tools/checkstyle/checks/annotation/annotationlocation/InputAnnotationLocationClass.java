@@ -14,18 +14,20 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Repeatable;
 import java.lang.annotation.Target;
 
+// violation 3 lines below '.* incorrect .* level 2, .* should be 0.'
+// violation 3 lines below '.* should be alone on line.'
 @ClassAnnotation(value = "foo")
-  @ClassAnnotation // violation '.* incorrect .* level 2, .* should be 0.'
-// violation below 'Annotation 'ClassAnnotation' should be alone on line.'
+  @ClassAnnotation
 @ClassAnnotation("bar") class InputAnnotationLocationClass {
 
     @ClassAnnotation(value = "foo")
       @ClassAnnotation // violation '.* incorrect .* level 6, .* should be 4.'
     @ClassAnnotation("bar") Object field; // violation '.* should be alone on line.'
 
+    // violation 3 lines below '.* incorrect .* level 6, .* should be 4.'
+    // violation 3 lines below '.* should be alone on line.'
     @ClassAnnotation(value = "foo")
-      @ClassAnnotation // violation '.* incorrect .* level 6, .* should be 4.'
-    // violation below 'Annotation 'ClassAnnotation' should be alone on line.'
+      @ClassAnnotation
     @ClassAnnotation("bar") InputAnnotationLocationClass() {
     }
 
