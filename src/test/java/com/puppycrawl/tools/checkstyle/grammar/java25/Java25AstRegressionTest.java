@@ -43,4 +43,32 @@ public class Java25AstRegressionTest extends AbstractTreeTestSupport {
                 getNonCompilablePath("ExpectedImportModuleJavaBase.txt"),
                 getNonCompilablePath("InputImportModuleJavaBase.java"));
     }
+
+    @Test
+    public void testFlexibleConstructorBody() throws Exception {
+        verifyAst(
+                getNonCompilablePath("ExpectedFlexibleConstructorBody.txt"),
+                getNonCompilablePath("InputFlexibleConstructorBody.java"));
+    }
+
+    @Test
+    public void testFlexibleConstructorBodyWithReturn() throws Exception {
+        verifyAst(
+                getNonCompilablePath("ExpectedFlexibleConstructorBodyWithReturn.txt"),
+                getNonCompilablePath("InputFlexibleConstructorBodyWithReturn.java"));
+    }
+
+    @Test
+    public void testFlexibleConstructorBodyWithNestedClass() throws Exception {
+        verifyAst(
+                getNonCompilablePath("ExpectedFlexibleConstructorBodyWithNestedClass.txt"),
+                getNonCompilablePath("InputFlexibleConstructorBodyWithNestedClass.java"));
+    }
+
+    @Test
+    public void testFlexibleConstructorBodyWithRecord() throws Exception {
+        verifyAst(
+                getNonCompilablePath("ExpectedFlexibleConstructorBodyWithRecord.txt"),
+                getNonCompilablePath("InputFlexibleConstructorBodyWithRecord.java"));
+    }
 }
