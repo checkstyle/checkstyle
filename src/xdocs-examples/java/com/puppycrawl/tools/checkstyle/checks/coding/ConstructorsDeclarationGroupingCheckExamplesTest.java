@@ -33,7 +33,9 @@ public class ConstructorsDeclarationGroupingCheckExamplesTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "27:3: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_KEY, 21),
+            "39:5: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_KEY, 33),
+            "43:5: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_KEY, 33),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -42,10 +44,11 @@ public class ConstructorsDeclarationGroupingCheckExamplesTest
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "24:3: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_KEY, 18),
-            "28:3: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_KEY, 18),
-            "42:5: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_KEY, 36),
-            "49:3: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_KEY, 18),
+            "21:3: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_ORDER),
+            "27:3: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_KEY, 21),
+            "27:3: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_ORDER),
+            "39:5: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_KEY, 33),
+            "43:5: " + getCheckMessage(ConstructorsDeclarationGroupingCheck.MSG_KEY, 33),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
