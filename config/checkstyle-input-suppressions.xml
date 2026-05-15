@@ -12,6 +12,9 @@
             files=".*EmptyFile.java"/>
   <suppress id="presenceOfCompilationComment"
             files="/checks/outertypefilename/package-info.java"/>
+  <suppress id="presenceOfCompilationComment"
+            files="/checks/coding/unusedprivatefield/InputUnusedPrivateFieldQualifiedThisUnresolvable.java"/>
+
 
   <!--  Intentional suppressions for testing -->
   <suppress checks="NewlineAtEndOfFile"
