@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.RedundantThisCheck"
+             name="RedundantThis"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that references to instance variables and methods of the present object
+ explicitly avoid unnecessary use of "this", unless required to resolve ambiguity with
+ a shadowed field.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Rationale: modern IDEs(e.g. IDEA, ECLIPSE, NetBeans) show what an entity is
+ (class variable, local variable etc.) so there is no need to put redundant
+ "this" keyword.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="false" name="checkMethodCall" type="boolean">
+               <description>Check whether to check redundant "this" with method call.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="redundant.this.method"/>
+            <message-key key="redundant.this.variable"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
