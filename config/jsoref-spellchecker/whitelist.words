@@ -1493,6 +1493,8 @@ unusedcatchparametershouldbeunnamed
 unusedimports
 unusedlambdaparametershouldbeunnamed
 unusedlocalvariable
+Unusedprivate
+unusedprivatefield
 unusedtryresourceshouldbeunnamed
 uppercased
 upperell
