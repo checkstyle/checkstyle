@@ -4191,11 +4191,6 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "35:3: " + getCheckMessage(MSG_ERROR, "@", 2, 6),
             "41:3: " + getCheckMessage(MSG_ERROR, "static", 2, 6),
             "42:3: " + getCheckMessage(MSG_ERROR, "strictfp", 2, 6),
-            "64:7: " + getCheckMessage(MSG_ERROR, "class def modifier", 6, 2),
-            "65:5: " + getCheckMessage(MSG_ERROR, "class def modifier", 4, 2),
-            "66:2: " + getCheckMessage(MSG_ERROR, "class def modifier", 1, 2),
-            "67:2: " + getCheckMessage(MSG_ERROR, "class def modifier", 1, 2),
-            "68:7: " + getCheckMessage(MSG_ERROR, "class def modifier", 6, 2),
         };
         verifyWarns(checkConfig, fileName, expected);
     }

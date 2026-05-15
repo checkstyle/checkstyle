@@ -147,52 +147,16 @@ public class ClassDefHandler extends BlockParentHandler {
     private void checkClassDefModifiers() {
         final DetailAST modifiers = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
         final DetailAST firstModifier = modifiers.getFirstChild();
-        final int firstModifierLine = getFirstNonAnnotationModifierLine(firstModifier);
-        boolean passedFirstNonAnnotationLine = false;
-
+        final int firstModifierLine = firstModifier.getLineNo();
         for (DetailAST modifier = firstModifier;
              modifier != null;
              modifier = modifier.getNextSibling()) {
-            final int columnNo = expandedTabsColumnNo(modifier);
-            final boolean isAnnotation = modifier.getType() == TokenTypes.ANNOTATION;
-
-            if (!isAnnotation && modifier.getLineNo() == firstModifierLine) {
-                passedFirstNonAnnotationLine = true;
-            }
-
-            if (isOnStartOfLine(modifier) && !getIndent().isAcceptable(columnNo)) {
-                final boolean shouldCheck;
-                if (isAnnotation) {
-                    shouldCheck = !passedFirstNonAnnotationLine;
-                }
-                else {
-                    shouldCheck = modifier.getLineNo() == firstModifierLine;
-                }
-
-                if (shouldCheck) {
-                    logError(modifier, MODIFIER, columnNo);
-                }
+            if (modifier.getLineNo() == firstModifierLine
+                    && isOnStartOfLine(modifier)
+                    && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
+                logError(modifier, MODIFIER, expandedTabsColumnNo(modifier));
             }
         }
-    }
-
-    /**
-     * Finds the line number of the first non-annotation modifier.
-     *
-     * @param firstModifier the first modifier in the modifiers list
-     * @return the line number for the first non-annotation modifier
-     */
-    private static int getFirstNonAnnotationModifierLine(DetailAST firstModifier) {
-        int result = firstModifier.getLineNo();
-        for (DetailAST modifier = firstModifier;
-             modifier != null;
-             modifier = modifier.getNextSibling()) {
-            if (modifier.getType() != TokenTypes.ANNOTATION) {
-                result = modifier.getLineNo();
-                break;
-            }
-        }
-        return result;
     }
 
     /**

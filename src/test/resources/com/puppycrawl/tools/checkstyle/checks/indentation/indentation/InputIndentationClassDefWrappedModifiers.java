@@ -60,13 +60,6 @@ public class InputIndentationClassDefWrappedModifiers {                    //ind
   public @X                                                                //indent:2 exp:2
       @Y                                                                   //indent:6 exp:6
         @Z class ManyAnnotationsWithManyWraps {};                          //indent:8 exp:8
-  @SuppressWarnings("foo")                                                 //indent:2 exp:2
-      public class AnnotationBeforeWrongIndent {}                          //indent:6 exp:2 warn
-    @X class AnnotationWrongIndent {};                                     //indent:4 exp:2 warn
- @SuppressWarnings("foo")                                                  //indent:1 exp:2 warn
- public class AnnotationBeforeWrongIndent2 {}                              //indent:1 exp:2 warn
-      @X public class SameLineAnnotationAndModifier {}                     //indent:6 exp:2 warn
-  @X public class KillMutant {}                                            //indent:2 exp:2
   public static @X @Y final class NoWrap2 {};                              //indent:2 exp:2
   public static                                                            //indent:2 exp:2
       @X @Y final class  WrapBetweenStaticAndAnnotation {};                //indent:6 exp:6
@@ -78,8 +71,6 @@ public class InputIndentationClassDefWrappedModifiers {                    //ind
   public                                                                   //indent:2 exp:2
       static @X @Y                                                         //indent:6 exp:6
         final class ManyWraps3 {};                                         //indent:8 exp:8
-  @X @Y                                                                    //indent:2 exp:2
-  public class CoverageClass {}                                            //indent:2 exp:2
 }                                                                          //indent:0 exp:0
   @interface X {};                                                         //indent:2 exp:2
   @interface Y {};                                                         //indent:2 exp:2
@@ -89,9 +80,4 @@ class StandardAuthorizerPropertyTest {                                     //ind
   @Retention(RetentionPolicy.RUNTIME)                                      //indent:2 exp:2
   @AlphaChars @NumericChars @Chars({ '_', '-', '.' })                      //indent:2 exp:2
   public @interface ValidTopicChars {}                                     //indent:2 exp:2
-}                                                                          //indent:0 exp:0
-@SuppressWarnings("foo")                                                   //indent:0 exp:0
-class TestClass2 {                                                         //indent:0 exp:0
-  public TestClass2(String unassisted, @AlphaChars String assisted) {      //indent:2 exp:2
-  }                                                                        //indent:2 exp:2
 }                                                                          //indent:0 exp:0
