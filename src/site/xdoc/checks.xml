@@ -2064,6 +2064,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/unusedprivatefield.html#UnusedPrivateField">
+                UnusedPrivateField
+              </a>
+            </td>
+            <td>
+              Check that a private field is declared, but never used.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/unusedtryresourceshouldbeunnamed.html#UnusedTryResourceShouldBeUnnamed">
                 UnusedTryResourceShouldBeUnnamed
               </a>
