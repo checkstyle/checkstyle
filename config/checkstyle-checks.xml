@@ -410,7 +410,9 @@
     <module name="AvoidDoubleBraceInitialization"/>
     <module name="AvoidInlineConditionals"/>
     <module name="AvoidNoArgumentSuperConstructorCall"/>
-    <module name="ConstructorsDeclarationGrouping"/>
+    <module name="ConstructorsDeclarationGrouping">
+      <property name="orderByIncreasingParameterCount" value="true"/>
+    </module>
     <module name="CovariantEquals"/>
     <module name="DeclarationOrder"/>
     <module name="DefaultComesLast"/>
