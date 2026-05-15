@@ -10,19 +10,19 @@ package com.puppycrawl.tools.checkstyle.checks.coding.constructorsdeclarationgro
 
 // xdoc section -- start
 public class Example1 {
-
   int x;
-
   Example1() {}
 
   Example1(String s) {}
 
   // comments between constructors are allowed.
-  Example1(int x) {}
+  Example1(int x, int y, int z) {}
 
+  int a = 0;
+
+  // violation 2 lines below """Constructors should be grouped together.
+  // The last grouped constructor is declared at line '19'."""
   Example1(String s, int x) {}
-
-  void foo() {}
 
   private enum ExampleEnum {
 
@@ -30,13 +30,23 @@ public class Example1 {
 
     ExampleEnum() {}
 
-    ExampleEnum(int x) {}
+    void foo() {}
 
+    // violation 2 lines below """Constructors should be grouped together.
+    // The last grouped constructor is declared at line '31'."""
+    ExampleEnum(int x, int y) {}
+
+    // violation 2 lines below """Constructors should be grouped together.
+    // The last grouped constructor is declared at line '31'."""
     ExampleEnum(String s) {}
 
-    int x = 10;
+  }
 
-    void foo() {}
+  class CorrectInput {
+    CorrectInput() {}
+    CorrectInput(String s) {}
+    CorrectInput(int x) {}
+    CorrectInput(String s, int x) {}
   }
 }
 // xdoc section -- end
