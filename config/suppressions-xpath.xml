@@ -511,4 +511,10 @@
           checks="LocalVariableNameCheck"
           query="//METHOD_DEF[./IDENT[@text='getLineNumbersFromExpected']]
                 //VARIABLE_DEF/IDENT[@text='i']"/>
+
+<!-- Reason at https://github.com/checkstyle/checkstyle/pull/19831#issuecomment-4470974055 -->
+  <suppress-xpath
+          files="IndentLevel.java"
+          checks="ConstructorsDeclarationGroupingCheck"
+          query="//CTOR_DEF[./IDENT[@text='IndentLevel']][./MODIFIERS/LITERAL_PRIVATE]"/>
 </suppressions>
