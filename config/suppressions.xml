@@ -192,7 +192,14 @@
             id="MatchXpathForbidTryCatchFail"
             files=".*[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/](?!utils|xpath|checks[\\/]coding|checks[\\/]design|checks[\\/]modifier|checks[\\/]naming|checks[\\/]annotation|checks[\\/]indentation|checks[\\/]metrics|checks[\\/]whitespace|checks[\\/]javadoc|checks[\\/]NewlineAtEndOfFileCheckTest|checks[\\/]SuppressWarningsHolderTest|checks[\\/]UncommentedMainCheckTest|CheckerTest|ConfigurationLoaderTest|DetailNodeTreeStringPrinterTest|JavadocPropertiesGeneratorTest|MainTest|PackageNamesLoaderTest|SarifLoggerTest|SuppressionsStringPrinterTest|ThreadModeSettingsTest|TreeWalkerTest).*"/>
 
+<<<<<<< HEAD
   <!-- JavadocStyle incorrectly parses HTML tags inside {@literal}, {@code} blocks as real HTML,
           until #19145 -->
   <suppress checks="JavadocStyle" files="JavadocParagraphCheck\.java"/>
+=======
+  <!-- files aren't meant to comply unless noted by maintainer -->
+  <suppress checks="UnusedTryResourceShouldBeUnnamed"
+            files="[\\/]src[\\/](test|main)[\\/]"/>
+
+>>>>>>> bae1908aab (Issue #15484: UnusedTryResourceShouldBeUnnamed module)
 </suppressions>
