@@ -28,6 +28,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class ClassDefHandler extends BlockParentHandler {
 
+    /** Token for modifier. */
+    private static final String MODIFIER = "modifier";
+
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -107,6 +110,121 @@ public class ClassDefHandler extends BlockParentHandler {
             TokenTypes.LITERAL_THROW,
             TokenTypes.LITERAL_CONTINUE,
         };
+    }
+
+    /**
+     * Checks modifiers for class/annotation definitions.
+     */
+    private void checkModifiers() {
+        if (getMainAst().getType() == TokenTypes.ANNOTATION_DEF) {
+            checkAnnotationDefModifiers();
+        }
+        else {
+            checkClassDefModifiers();
+        }
+    }
+
+    /**
+     * Checks modifiers for annotation definitions, skipping modifiers that are
+     * not at the start of the line.
+     */
+    private void checkAnnotationDefModifiers() {
+        final DetailAST modifiers = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
+        for (DetailAST modifier = modifiers.getFirstChild();
+             modifier != null;
+             modifier = modifier.getNextSibling()) {
+            if (isOnStartOfLine(modifier)
+                    && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
+                logError(modifier, MODIFIER, expandedTabsColumnNo(modifier));
+            }
+        }
+    }
+
+    /**
+     * Checks modifiers for class definitions, skipping wrapped modifiers
+     * that appear on lines after the first non-annotation modifier line.
+     */
+    private void checkClassDefModifiers() {
+        final DetailAST modifiers = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST firstModifier = modifiers.getFirstChild();
+        final int firstNonAnnotationLine = getFirstNonAnnotationModifierLine(firstModifier);
+        final boolean hasNonAnnotationModifier = hasNonAnnotationModifier(firstModifier);
+        boolean visitedFirstNonAnnotationLine = false;
+        for (DetailAST modifier = firstModifier;
+             modifier != null;
+             modifier = modifier.getNextSibling()) {
+            if (hasNonAnnotationModifier
+                    && modifier.getLineNo() == firstNonAnnotationLine) {
+                visitedFirstNonAnnotationLine = true;
+            }
+            if (shouldCheckModifier(modifier, firstNonAnnotationLine, visitedFirstNonAnnotationLine,
+                    hasNonAnnotationModifier)) {
+                logError(modifier, MODIFIER, expandedTabsColumnNo(modifier));
+            }
+        }
+    }
+
+    /**
+     * Determines whether a modifier should be checked.
+     *
+     * @param modifier the modifier to check
+     * @param firstNonAnnotationLine line number of the first non-annotation modifier
+     * @param visitedFirstNonAnnotationLine whether we've processed the first non-annotation line
+     * @param hasNonAnnotationModifier whether a non-annotation modifier exists
+     * @return {@code true} if the modifier should be checked
+     */
+    private boolean shouldCheckModifier(DetailAST modifier, int firstNonAnnotationLine,
+            boolean visitedFirstNonAnnotationLine, boolean hasNonAnnotationModifier) {
+        final boolean isOnFirstNonAnnotationLine = modifier.getLineNo() == firstNonAnnotationLine;
+        final boolean isAcceptable = getIndent().isAcceptable(expandedTabsColumnNo(modifier));
+        final boolean result;
+        if (hasNonAnnotationModifier) {
+            result = isOnStartOfLine(modifier)
+                    && (isOnFirstNonAnnotationLine || !visitedFirstNonAnnotationLine)
+                    && !isAcceptable;
+        }
+        else {
+            result = !isAcceptable && isOnStartOfLine(modifier);
+        }
+        return result;
+    }
+
+    /**
+     * Finds the line number of the first non-annotation modifier.
+     *
+     * @param firstModifier the first modifier in the modifiers list
+     * @return the line number for the first non-annotation modifier
+     */
+    private static int getFirstNonAnnotationModifierLine(DetailAST firstModifier) {
+        int firstNonAnnotationLine = firstModifier.getLineNo();
+        for (DetailAST modifier = firstModifier;
+             modifier != null;
+             modifier = modifier.getNextSibling()) {
+            if (modifier.getType() != TokenTypes.ANNOTATION) {
+                firstNonAnnotationLine = modifier.getLineNo();
+                break;
+            }
+        }
+        return firstNonAnnotationLine;
+    }
+
+    /**
+     * Determines whether modifiers list contains a non-annotation modifier.
+     *
+     * @param firstModifier the first modifier in the modifiers list
+     * @return {@code true} if a non-annotation modifier is present
+     */
+    private static boolean hasNonAnnotationModifier(DetailAST firstModifier) {
+        boolean result = false;
+        for (DetailAST modifier = firstModifier;
+             modifier != null;
+             modifier = modifier.getNextSibling()) {
+            if (modifier.getType() != TokenTypes.ANNOTATION) {
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
 
     /**
