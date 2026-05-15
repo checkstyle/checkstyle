@@ -20,8 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector.MSG_REGEXP_EXCEEDED;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector.MSG_REGEXP_MINIMUM;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck.MSG_REGEXP_EXCEEDED;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck.MSG_REGEXP_MINIMUM;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;

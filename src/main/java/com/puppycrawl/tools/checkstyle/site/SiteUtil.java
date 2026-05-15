@@ -73,9 +73,6 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
-import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
-import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
-import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
 import com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder;
 import com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -233,51 +230,28 @@ public final class SiteUtil {
      *
      * @param module class to examine.
      * @return a set of checkstyle's module message fields.
-     * @throws MacroExecutionException if the attempt to read a protected class fails.
-     * @noinspection ChainOfInstanceofChecks
-     * @noinspectionreason ChainOfInstanceofChecks - We will deal with this at
-     *                     <a href="https://github.com/checkstyle/checkstyle/issues/13500">13500</a>
      *
      */
-    private static Set<Field> getCheckMessageKeysFields(Class<?> module)
-            throws MacroExecutionException {
-        try {
-            final Set<Field> checkstyleMessages = new HashSet<>();
+    private static Set<Field> getCheckMessageKeysFields(Class<?> module) {
+        final Set<Field> checkstyleMessages = new HashSet<>();
 
-            // get all fields from current class
-            final Field[] fields = module.getDeclaredFields();
+        // get all fields from current class
+        final Field[] fields = module.getDeclaredFields();
 
-            for (Field field : fields) {
-                if (field.getName().startsWith("MSG_")) {
-                    checkstyleMessages.add(field);
-                }
+        for (Field field : fields) {
+            if (field.getName().startsWith("MSG_")) {
+                checkstyleMessages.add(field);
             }
-
-            // deep scan class through hierarchy
-            final Class<?> superModule = module.getSuperclass();
-
-            if (superModule != null) {
-                checkstyleMessages.addAll(getCheckMessageKeysFields(superModule));
-            }
-
-            // special cases that require additional classes
-            if (module == RegexpMultilineCheck.class) {
-                checkstyleMessages.addAll(getCheckMessageKeysFields(Class
-                    .forName("com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector")));
-            }
-            else if (module == RegexpSinglelineCheck.class
-                    || module == RegexpSinglelineJavaCheck.class) {
-                checkstyleMessages.addAll(getCheckMessageKeysFields(Class
-                    .forName("com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector")));
-            }
-
-            return checkstyleMessages;
         }
-        catch (ClassNotFoundException exc) {
-            final String message = String.format(Locale.ROOT, "Couldn't find class: %s",
-                    module.getName());
-            throw new MacroExecutionException(message, exc);
+
+        // deep scan class through hierarchy
+        final Class<?> superModule = module.getSuperclass();
+
+        if (superModule != null && superModule != Object.class) {
+            checkstyleMessages.addAll(getCheckMessageKeysFields(superModule));
         }
+
+        return checkstyleMessages;
     }
 
     /**

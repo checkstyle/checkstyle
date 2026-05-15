@@ -29,18 +29,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 public class SinglelineDetector {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_REGEXP_EXCEEDED = "regexp.exceeded";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_REGEXP_MINIMUM = "regexp.minimum";
-
-    /**
      * The detection options to use.
      */
     private final DetectorOptions options;
@@ -80,7 +68,7 @@ public class SinglelineDetector {
     private void finish() {
         if (currentMatches < options.getMinimum()) {
             if (options.getMessage().isEmpty()) {
-                options.getReporter().log(1, MSG_REGEXP_MINIMUM,
+                options.getReporter().log(1, RegexpSinglelineCheck.MSG_REGEXP_MINIMUM,
                         options.getMinimum(), options.getFormat());
             }
             else {
@@ -114,7 +102,7 @@ public class SinglelineDetector {
                 currentMatches++;
                 if (currentMatches > options.getMaximum()) {
                     if (options.getMessage().isEmpty()) {
-                        options.getReporter().log(lineNo, MSG_REGEXP_EXCEEDED,
+                        options.getReporter().log(lineNo, RegexpSinglelineCheck.MSG_REGEXP_EXCEEDED,
                                 matcher.pattern().toString());
                     }
                     else {

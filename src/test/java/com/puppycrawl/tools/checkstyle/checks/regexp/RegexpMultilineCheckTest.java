@@ -20,10 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_EMPTY;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_EXCEEDED;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_MINIMUM;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_STACKOVERFLOW;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck.MSG_EMPTY;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck.MSG_REGEXP_EXCEEDED;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck.MSG_REGEXP_MINIMUM;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck.MSG_STACKOVERFLOW;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
