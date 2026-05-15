@@ -1426,6 +1426,9 @@ unusedcatchparametershouldbeunnamed
 unusedimports
 unusedlambdaparametershouldbeunnamed
 unusedlocalvariable
+unusedprivatefield
+Unusedprivatefieldnames
+Unusedprivatefieldthis
 unusedtryresourceshouldbeunnamed
 upperell
 urandom
