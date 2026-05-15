@@ -196,6 +196,7 @@
           <item name="UnusedLambdaParameterShouldBeUnnamed"
                 href="checks/coding/unusedlambdaparametershouldbeunnamed.html"/>
           <item name="UnusedLocalVariable" href="checks/coding/unusedlocalvariable.html"/>
+          <item name="UnusedPrivateField" href="checks/coding/unusedprivatefield.html"/>
           <item name="UseEnhancedSwitch"
                 href="checks/coding/useenhancedswitch.html"/>
           <item name="VariableDeclarationUsageDistance"
