@@ -56,6 +56,27 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "constructors.declaration.grouping";
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_ORDER = "constructors.declaration.order";
+
+    /**
+     * Control whether to order constructors by increasing arity.
+     */
+    private boolean orderByIncreasingArity;
+
+    /**
+     * Setter to control whether to enforce order by increasing arity or not.
+     *
+     * @param orderByIncreasingArity true if order by increasing arity is required.
+     * @since 13.5.0
+     */
+    public void setOrderByIncreasingArity(boolean orderByIncreasingArity) {
+        this.orderByIncreasingArity = orderByIncreasingArity;
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -118,6 +139,25 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
             // log all constructors that are not grouped
             constructorsToLog
                     .forEach(ctor -> log(ctor, MSG_KEY, lastGroupedConstructor.getLineNo()));
+
+            if (orderByIncreasingArity) {
+
+                // list of all constructor ASTs
+                final List<DetailAST> allConstructors = children.stream()
+                        .filter(ConstructorsDeclarationGroupingCheck::isConstructor)
+                        .toList();
+
+                int previousParamCount = 0;
+                boolean isOrdered = true;
+                for (DetailAST constructor : allConstructors) {
+                    final int currentParamCount = getArity(constructor);
+                    isOrdered = isOrdered && currentParamCount >= previousParamCount;
+                    previousParamCount = currentParamCount;
+                    if (!isOrdered) {
+                        log(constructor, MSG_ORDER);
+                    }
+                }
+            }
         }
     }
 
@@ -146,5 +186,20 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
     private static boolean isConstructor(DetailAST ast) {
         return ast.getType() == TokenTypes.CTOR_DEF
                 || ast.getType() == TokenTypes.COMPACT_CTOR_DEF;
+    }
+
+    /**
+     * Get the arity of a constructor.
+     *
+     * @param constructor the constructor AST
+     * @return the arity of the constructor
+     */
+    private static int getArity(DetailAST constructor) {
+        final DetailAST params = constructor.findFirstToken(TokenTypes.PARAMETERS);
+        int arity = 0;
+        if (params != null) {
+            arity = params.getChildCount(TokenTypes.PARAMETER_DEF);
+        }
+        return arity;
     }
 }
