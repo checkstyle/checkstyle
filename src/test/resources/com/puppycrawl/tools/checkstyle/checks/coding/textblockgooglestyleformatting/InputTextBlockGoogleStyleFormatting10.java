@@ -13,7 +13,7 @@ public class InputTextBlockGoogleStyleFormatting10 {
             """
      Less Indentation than expected
      Violation is expected here.
-            """; // violation above, ok until #18227
+            """;
 
         final String simpleScript1 =
             """
@@ -28,7 +28,7 @@ public class InputTextBlockGoogleStyleFormatting10 {
      Less Indentation than expected
                 and each line has a different indentation value
                         Violation is expected here.
-                """; // violation above, ok until #18227
+                """;
 
         final String simpleScript3 = simpleScript +
             simpleScript1 +
