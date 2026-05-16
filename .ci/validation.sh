@@ -1454,7 +1454,7 @@ openrewrite-checkstyle-auto-fix)
   PROJECT_ROOT="$(pwd)"
   export MAVEN_OPTS="-Xmx4g -Xms2g"
 
-  cd /tmp
+  mkdir -p .ci-temp && cd .ci-temp
   git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
   cd checkstyle-openrewrite-recipes
   ./mvnw -e --no-transfer-progress clean install -DskipTests
@@ -1473,7 +1473,7 @@ openrewrite-checkstyle-auto-fix)
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
 
-  rm -rf /tmp/checkstyle-openrewrite-recipes
+  rm -rf .ci-temp/checkstyle-openrewrite-recipes
   ;;
 
 openrewrite-refaster-rules-1)
@@ -1481,7 +1481,7 @@ openrewrite-refaster-rules-1)
   PROJECT_ROOT="$(pwd)"
   export MAVEN_OPTS="-Xmx4g -Xms2g"
 
-  cd /tmp
+  mkdir -p .ci-temp && cd .ci-temp
   git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
   cd checkstyle-openrewrite-recipes
   ./mvnw -e --no-transfer-progress clean install -DskipTests
@@ -1496,7 +1496,7 @@ openrewrite-refaster-rules-1)
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
 
-  rm -rf /tmp/checkstyle-openrewrite-recipes
+  rm -rf .ci-temp/checkstyle-openrewrite-recipes
   ;;
 
 openrewrite-refaster-rules-2)
@@ -1504,7 +1504,7 @@ openrewrite-refaster-rules-2)
   PROJECT_ROOT="$(pwd)"
   export MAVEN_OPTS="-Xmx4g -Xms2g"
 
-  cd /tmp
+  mkdir -p .ci-temp && cd .ci-temp
   git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
   cd checkstyle-openrewrite-recipes
   ./mvnw -e --no-transfer-progress clean install -DskipTests
@@ -1519,7 +1519,7 @@ openrewrite-refaster-rules-2)
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
 
-  rm -rf /tmp/checkstyle-openrewrite-recipes
+  rm -rf .ci-temp/checkstyle-openrewrite-recipes
   ;;
 
 openrewrite-static-analysis)
@@ -1527,7 +1527,7 @@ openrewrite-static-analysis)
   PROJECT_ROOT="$(pwd)"
   export MAVEN_OPTS="-Xmx4g -Xms2g"
 
-  cd /tmp
+  mkdir -p .ci-temp && cd .ci-temp
   git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
   cd checkstyle-openrewrite-recipes
   ./mvnw -e --no-transfer-progress clean install -DskipTests
@@ -1542,7 +1542,7 @@ openrewrite-static-analysis)
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
 
-  rm -rf /tmp/checkstyle-openrewrite-recipes
+  rm -rf .ci-temp/checkstyle-openrewrite-recipes
   ;;
 
 *)
