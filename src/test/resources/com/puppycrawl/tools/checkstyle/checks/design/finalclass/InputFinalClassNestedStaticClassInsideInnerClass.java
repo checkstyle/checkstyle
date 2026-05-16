@@ -4,7 +4,7 @@ FinalClass
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
 
 public class InputFinalClassNestedStaticClassInsideInnerClass {

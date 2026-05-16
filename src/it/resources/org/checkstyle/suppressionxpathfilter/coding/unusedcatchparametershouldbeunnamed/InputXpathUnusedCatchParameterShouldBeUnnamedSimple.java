@@ -1,4 +1,4 @@
-// Java21
+
 package org.checkstyle.suppressionxpathfilter.coding.unusedcatchparametershouldbeunnamed;
 
 public class InputXpathUnusedCatchParameterShouldBeUnnamedSimple {

@@ -1,6 +1,4 @@
 COMPILATION_UNIT -> COMPILATION_UNIT [2:1]
-|--SINGLE_LINE_COMMENT -> // [1:1]
-|   `--COMMENT_CONTENT ->  Java17\n [1:3]
 |--PACKAGE_DEF -> package [2:1]
 |   |--ANNOTATIONS -> ANNOTATIONS [2:48]
 |   |--DOT -> . [2:48]

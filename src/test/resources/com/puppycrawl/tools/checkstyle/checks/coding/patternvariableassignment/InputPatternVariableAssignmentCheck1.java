@@ -6,7 +6,7 @@
 </module>
 */
 
-// Java21
+
 package com.puppycrawl.tools.checkstyle.checks.coding.patternvariableassignment;
 
 public class InputPatternVariableAssignmentCheck1 {

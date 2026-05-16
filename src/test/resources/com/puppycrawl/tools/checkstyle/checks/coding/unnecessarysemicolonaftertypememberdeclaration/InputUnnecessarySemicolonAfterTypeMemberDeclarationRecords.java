@@ -7,7 +7,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, VARIABLE_D
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicolonaftertypememberdeclaration;
 
 public record InputUnnecessarySemicolonAfterTypeMemberDeclarationRecords() {

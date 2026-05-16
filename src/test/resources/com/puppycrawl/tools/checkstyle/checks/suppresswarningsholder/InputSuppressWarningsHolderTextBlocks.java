@@ -14,7 +14,7 @@ applyToPrivate = (default)true
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.suppresswarningsholder;
 
 /* Config:

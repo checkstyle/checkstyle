@@ -1,4 +1,4 @@
-// Java17
+
 package com.puppycrawl.tools.checkstyle.grammar.java15;
 
 public sealed class InputAstRegressionSealedAndPermits permits Circle, Square, Rectangle {

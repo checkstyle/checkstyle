@@ -4,7 +4,7 @@ OverloadMethodsDeclarationOrder
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.coding.overloadmethodsdeclarationorder;
 
 public class InputOverloadMethodsDeclarationOrderRecords {

@@ -5,7 +5,7 @@ skipIfLastAndSharedWithCase = (default)false
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.coding.defaultcomeslast;
 
 public class InputDefaultComesLastSwitchExpressions {
