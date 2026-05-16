@@ -276,7 +276,7 @@ public final class Example4 {
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="ClassMemberImpliedModifier_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.checks.modifier.ClassMemberImpliedModifierCheck</p>
         <p>
             Use this fully qualified class name in configuration when an exact class reference is

@@ -356,7 +356,7 @@ import static java.lang.Character.UnicodeBlock.BASIC_LATIN => java.lang.Characte
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="ImportOrder_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck</p>
         <p>
           Use this fully qualified class name in configuration when an exact class reference is
