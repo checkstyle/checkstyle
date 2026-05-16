@@ -28,6 +28,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class ClassDefHandler extends BlockParentHandler {
 
+    /** Token for modifier. */
+    private static final String MODIFIER = "modifier";
+
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -107,6 +110,72 @@ public class ClassDefHandler extends BlockParentHandler {
             TokenTypes.LITERAL_THROW,
             TokenTypes.LITERAL_CONTINUE,
         };
+    }
+
+    /**
+     * Checks modifiers for class/annotation definitions.
+     */
+    private void checkModifiers() {
+        if (getMainAst().getType() == TokenTypes.ANNOTATION_DEF) {
+            checkAnnotationDefModifiers();
+        }
+        else {
+            checkClassDefModifiers();
+        }
+    }
+
+    /**
+     * Checks modifiers for annotation definitions, skipping modifiers that are
+     * not at the start of the line.
+     */
+    private void checkAnnotationDefModifiers() {
+        final DetailAST modifiers = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
+        for (DetailAST modifier = modifiers.getFirstChild();
+             modifier != null;
+             modifier = modifier.getNextSibling()) {
+            if (isOnStartOfLine(modifier)
+                    && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
+                logError(modifier, MODIFIER, expandedTabsColumnNo(modifier));
+            }
+        }
+    }
+
+    /**
+     * Checks modifiers for class definitions, skipping wrapped modifiers
+     * that appear on lines after the first modifier line.
+     */
+    private void checkClassDefModifiers() {
+        final DetailAST modifiers = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST firstModifier = modifiers.getFirstChild();
+        final int firstModifierLine = firstModifier.getLineNo();
+
+        // Find first non-annotation modifier line
+        int firstNonAnnotationLine = firstModifierLine;
+        for (DetailAST modifier = firstModifier;
+             modifier != null;
+             modifier = modifier.getNextSibling()) {
+            if (modifier.getType() != TokenTypes.ANNOTATION) {
+                firstNonAnnotationLine = modifier.getLineNo();
+                break;
+            }
+        }
+
+        for (DetailAST modifier = firstModifier;
+             modifier != null;
+             modifier = modifier.getNextSibling()) {
+            final int columnNo = expandedTabsColumnNo(modifier);
+            final int lineNo = modifier.getLineNo();
+
+            // Check modifier if it's on firstModifierLine (wrapped case)
+            // OR on firstNonAnnotationLine (annotation before class case)
+            // For firstNonAnnotationLine, only check if UNDER-indented (actual < expected)
+            final boolean shouldCheck = lineNo == firstModifierLine
+                || lineNo == firstNonAnnotationLine && !getIndent().isAcceptable(columnNo);
+
+            if (shouldCheck && isOnStartOfLine(modifier) && !getIndent().isAcceptable(columnNo)) {
+                logError(modifier, MODIFIER, columnNo);
+            }
+        }
     }
 
     /**
