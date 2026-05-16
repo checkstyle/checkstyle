@@ -368,7 +368,7 @@ public class Example5 {
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="ReturnCount_Fully_Qualified_Name">
         <p>com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck</p>
         <p>
           Use this fully qualified class name in configuration when an exact class reference is

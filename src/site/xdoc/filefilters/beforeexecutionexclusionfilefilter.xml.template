@@ -108,7 +108,8 @@
         </ul>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name"
+                   id="BeforeExecutionExclusionFileFilter_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter </p>
         <p>
             This is the fully qualified class name of the module.

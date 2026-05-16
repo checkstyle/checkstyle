@@ -204,7 +204,7 @@ class Example2 implements Foo {
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="AnnotationOnSameLine_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineCheck</p>
         <p>
           Use this fully qualified class name in configuration when an exact class reference is

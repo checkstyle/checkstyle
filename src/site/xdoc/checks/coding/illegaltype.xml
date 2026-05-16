@@ -950,7 +950,7 @@ public class Example9 extends TreeSet {
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="IllegalType_Fully_Qualified_Name">
         <p>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck</p>
         <p>
             Use this fully qualified class name in configuration when an exact class reference is

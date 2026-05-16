@@ -723,7 +723,7 @@ import java.lang.String;
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="CustomImportOrder_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck</p>
         <p>
           Use this fully qualified class name in configuration when an exact class reference is
