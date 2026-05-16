@@ -81,9 +81,6 @@ recipeList:
         # Both forms are functionally identical in for loops, and some style
         # guides prefer pre-increment.
         - org.openrewrite.staticanalysis.ForLoopControlVariablePostfixOperators
-        - org.openrewrite.java.format.MethodParamPad
-        - org.openrewrite.java.format.NoWhitespaceAfter
-        - org.openrewrite.java.format.NoWhitespaceBefore
         - org.openrewrite.staticanalysis.TypecastParenPad
         - org.openrewrite.staticanalysis.ExplicitInitialization
         # Kept excluded: OpenRewrite's FallThrough always adds break statements,
