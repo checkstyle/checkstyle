@@ -5,7 +5,7 @@ ignoreEqualsIgnoreCase = (default)false
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.coding.equalsavoidnull;
 
 public class InputEqualsAvoidNullRecordsAndCompactCtors {

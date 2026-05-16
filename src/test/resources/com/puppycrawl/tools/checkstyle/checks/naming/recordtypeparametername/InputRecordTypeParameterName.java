@@ -5,7 +5,7 @@ format = (default)^[A-Z]$
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.naming.recordtypeparametername;
 
 import java.io.Serializable;

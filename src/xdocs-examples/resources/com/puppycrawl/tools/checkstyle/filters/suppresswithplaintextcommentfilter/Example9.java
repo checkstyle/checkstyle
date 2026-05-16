@@ -13,7 +13,7 @@
 
 
 */
-// Java17
+
 package com.puppycrawl.tools.checkstyle.filters.suppresswithplaintextcommentfilter;
 
 // xdoc section -- start

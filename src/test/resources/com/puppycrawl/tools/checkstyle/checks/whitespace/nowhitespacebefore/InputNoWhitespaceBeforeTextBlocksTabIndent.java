@@ -6,7 +6,7 @@ tokens = (default)COMMA, SEMI, POST_INC, POST_DEC, ELLIPSIS, LABELED_STAT
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebefore;
 
 public class InputNoWhitespaceBeforeTextBlocksTabIndent {

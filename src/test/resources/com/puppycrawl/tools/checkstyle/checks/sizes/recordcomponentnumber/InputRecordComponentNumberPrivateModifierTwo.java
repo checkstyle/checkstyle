@@ -7,7 +7,7 @@ accessModifiers = private
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentnumber;
 
 import java.util.ArrayDeque;

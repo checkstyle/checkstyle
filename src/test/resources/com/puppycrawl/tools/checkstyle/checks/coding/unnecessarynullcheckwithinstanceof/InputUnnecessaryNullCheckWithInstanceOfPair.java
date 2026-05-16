@@ -3,7 +3,7 @@ UnnecessaryNullCheckWithInstanceOf
 
 */
 
-// Java21
+
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarynullcheckwithinstanceof;
 
 record Pair<T, U>(T first, U second) {}

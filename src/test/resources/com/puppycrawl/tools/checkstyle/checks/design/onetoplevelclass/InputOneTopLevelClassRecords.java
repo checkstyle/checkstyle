@@ -4,7 +4,7 @@ OneTopLevelClass
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.design.onetoplevelclass;
 
 public record InputOneTopLevelClassRecords() {

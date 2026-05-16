@@ -1,4 +1,4 @@
-// Java17
+
 package com.puppycrawl.tools.checkstyle.grammar.java16;
 
 public class InputPatternVariableWithModifiers {

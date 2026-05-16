@@ -3,7 +3,7 @@ UnnecessaryNullCheckWithInstanceOf
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarynullcheckwithinstanceof;
 
 public class InputUnnecessaryNullCheckWithInstanceOfTwo {

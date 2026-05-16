@@ -12,7 +12,7 @@ tokens = LITERAL_WHEN
 
 */
 
-// Java21
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 public class InputWhitespaceAroundLiteralWhen {

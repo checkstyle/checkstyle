@@ -11,7 +11,7 @@ tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, \
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 // violation below ''{' at column 57 should be on a new line'
 public class InputLeftCurlyTestSwitchExpressionsNewLine {

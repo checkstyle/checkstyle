@@ -18,7 +18,7 @@ excludedPackages = (default)
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 
 import javax.naming.NamingException;
