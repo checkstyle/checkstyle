@@ -99,7 +99,7 @@
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="MethodLength_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck</p>
         <p>
           Use this fully qualified class name in configuration when an exact class reference is

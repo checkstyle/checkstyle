@@ -73,7 +73,7 @@
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="GenericWhitespace_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck</p>
         <p>
             Use this fully qualified class name in configuration when an exact class reference is

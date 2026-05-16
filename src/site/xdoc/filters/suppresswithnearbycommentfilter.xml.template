@@ -177,7 +177,8 @@
           </li>
         </ul>
       </subsection>
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name"
+                   id="SuppressWithNearbyCommentFilter_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter</p>
         <p>
             This is the fully qualified class name of the module.

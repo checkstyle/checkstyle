@@ -100,7 +100,7 @@ public class Example2{ }
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="RedundantImport_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck</p>
         <p>
           Use this fully qualified class name in configuration when an exact class reference is
