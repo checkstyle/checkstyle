@@ -83,7 +83,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s1">
-                    <strong>1 Introduction</strong>
+                    <strong>Introduction</strong>
                   </a>
                 </td>
                 <td>↓</td>
@@ -95,7 +95,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s1.1">
-                    1.1 Principles
+                    <strong><em>Principles</em></strong>
                   </a>
                 </td>
                 <td>--</td>
@@ -107,7 +107,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s1.1.1">
-                    1.1.1 Writing API Specifications
+                    Writing API Specifications
                   </a>
                 </td>
                 <td>???</td>
@@ -119,7 +119,8 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s1.1.1.1">
-                    1.1.1.1 Separate Specification Documents
+                    Java Platform API Specification is defined
+                      by the documentation comments in the source code
                   </a>
                 </td>
                 <td>???</td>
@@ -131,7 +132,8 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s1.1.1.2">
-                    1.1.1.2 Contract Between Callers and Implementations
+                    Java Platform API Specification is a contract
+                      between callers and implementations
                   </a>
                 </td>
                 <td>???</td>
@@ -143,7 +145,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s1.1.1.3">
-                    1.1.1.3 Implementation-Independent Assertions
+                    Java API Specification assertions need to be implementation-independent
                   </a>
                 </td>
                 <td>???</td>
@@ -155,7 +157,8 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s1.1.1.4">
-                    1.1.1.4 Conformance Testing Requirements
+                    Java API Specification should contain assertions
+                      sufficient to enable Software Quality Assurance
                   </a>
                 </td>
                 <td>???</td>
@@ -167,7 +170,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s1.1.2">
-                    1.1.2 Writing Programming Guide Documentation
+                    Writing Programming Guide Documentation
                   </a>
                 </td>
                 <td>???</td>
@@ -179,7 +182,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s1.1.2.1">
-                    1.1.2.1 API spec bugs
+                    API spec bugs
                   </a>
                 </td>
                 <td>???</td>
@@ -191,7 +194,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s1.1.2.2">
-                    1.1.2.2 Code bugs
+                    Code bugs
                   </a>
                 </td>
                 <td>???</td>
@@ -203,7 +206,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s1.1.3">
-                    1.1.3 Who Owns and Edits the Doc Comments
+                    Who Owns and Edits the Doc Comments
                   </a>
                 </td>
                 <td>--</td>
@@ -215,7 +218,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s1.2">
-                    1.2 Terminology
+                    <strong><em>Terminology</em></strong>
                   </a>
                 </td>
                 <td>--</td>
@@ -227,7 +230,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s1.3">
-                    1.3 Source Files
+                    <strong><em>Source Files</em></strong>
                   </a>
                 </td>
                 <td>--</td>
@@ -240,7 +243,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2">
-                    <strong>2 Writing Doc Comments</strong>
+                    <strong>Writing Doc Comments</strong>
                   </a>
                 </td>
                 <td>↓</td>
@@ -253,7 +256,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.1">
-                    2.1 Format of a Doc Comment
+                    <strong><em>Format of a Doc Comment</em></strong>
                   </a>
                 </td>
                 <td>???</td>
@@ -265,7 +268,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.1.1">
-                    2.1.1 Notes
+                    Notes
                   </a>
                 </td>
                 <td>???</td>
@@ -277,7 +280,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.1.2">
-                    2.1.2 getImage
+                    getImage
                   </a>
                 </td>
                 <td>--</td>
@@ -290,7 +293,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.2">
-                    2.2 Doc Comment Checking Tool
+                    <strong><em>Doc Comment Checking Tool</em></strong>
                   </a>
                 </td>
                 <td>--</td>
@@ -303,7 +306,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.3">
-                    2.3 Descriptions
+                    <strong><em>Descriptions</em></strong>
                   </a>
                 </td>
                 <td>↓</td>
@@ -315,7 +318,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.3.1">
-                    2.3.1 First Sentence
+                    First Sentence
                   </a>
                 </td>
                 <td>???</td>
@@ -327,7 +330,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.3.2">
-                    2.3.2 Implementation-Independence
+                    Implementation-Independence
                   </a>
                 </td>
                 <td>???</td>
@@ -339,7 +342,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.3.3">
-                    2.3.3 Automatic re-use of method comments
+                    Automatic re-use of method comments
                   </a>
                 </td>
                 <td>???</td>
@@ -352,7 +355,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.4">
-                    2.4 A Style Guide
+                    <strong><em>A Style Guide</em></strong>
                   </a>
                 </td>
                 <td>↓</td>
@@ -364,7 +367,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.4.1">
-                    2.4.1 &lt;code&gt; style for keywords and names
+                    Use &lt;code&gt; style for keywords and names
                   </a>
                 </td>
                 <td>???</td>
@@ -376,7 +379,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.4.2">
-                    2.4.2 In-line links
+                    Use in-line links economically
                   </a>
                 </td>
                 <td>???</td>
@@ -387,7 +390,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.4.3">
-                    2.4.3 Method and constructor parentheses
+                    Omit parentheses for the general form of methods and constructors
                   </a>
                 </td>
                 <td>???</td>
@@ -398,7 +401,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.4.4">
-                    2.4.4 Phrases instead of sentences
+                    OK to use phrases instead of complete sentences
                   </a>
                 </td>
                 <td>???</td>
@@ -409,7 +412,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.4.5">
-                    2.4.5 Third-person descriptions
+                    Use 3rd person descriptive
                   </a>
                 </td>
                 <td>???</td>
@@ -420,7 +423,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.4.6">
-                    2.4.6 Method descriptions
+                    Method descriptions begin with a verb phrase
                   </a>
                 </td>
                 <td>???</td>
@@ -431,7 +434,8 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.4.7">
-                    2.4.7 Class, interface, and field descriptions
+                    Class/interface/field descriptions can omit
+                      the subject and simply state the object
                   </a>
                 </td>
                 <td>???</td>
@@ -442,7 +446,8 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.4.8">
-                    2.4.8 Use of “this”
+                    Use "this" instead of "the" when referring to an
+                      object created from the current class
                   </a>
                 </td>
                 <td>???</td>
@@ -453,7 +458,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.4.9">
-                    2.4.9 Description beyond API name
+                    Add description beyond the API name
                   </a>
                 </td>
                 <td>???</td>
@@ -464,7 +469,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.4.10">
-                    2.4.10 Use of “field”
+                    Be clear when using the term "field"
                   </a>
                 </td>
                 <td>???</td>
@@ -475,7 +480,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.4.11">
-                    2.4.11 Latin terms
+                    Avoid Latin
                   </a>
                 </td>
                 <td>???</td>
@@ -488,7 +493,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.5">
-                    2.5 Tag Conventions
+                    <strong><em>Tag Conventions</em></strong>
                   </a>
                 </td>
                 <td>↓</td>
@@ -502,7 +507,7 @@
                 </td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.5.1">
-                    2.5.1 Order of Tags
+                    Order of Tags
                   </a>
                 </td>
                 <td>
@@ -526,7 +531,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.5.2">
-                    2.5.2 Ordering Multiple Tags
+                    Ordering Multiple Tags
                   </a>
                 </td>
                 <td>???</td>
@@ -538,7 +543,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.5.3">
-                    2.5.3 Required Tags
+                    Required Tags
                   </a>
                 </td>
                 <td>???</td>
@@ -550,7 +555,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.5.4">
-                    2.5.4 Tag Comments
+                    Tag Comments
                   </a>
                 </td>
                 <td>↓</td>
@@ -562,7 +567,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.5.4.1">
-                    2.5.4.1 @author
+                    @author
                   </a>
                 </td>
                 <td>???</td>
@@ -574,7 +579,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.5.4.2">
-                    2.5.4.2 @version
+                    @version
                   </a>
                 </td>
                 <td>???</td>
@@ -586,7 +591,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.5.4.3">
-                    2.5.4.3 @param
+                    @param
                   </a>
                 </td>
                 <td>???</td>
@@ -598,7 +603,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.5.4.4">
-                    2.5.4.4 @return
+                    @return
                   </a>
                 </td>
                 <td>???</td>
@@ -610,7 +615,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.5.4.5">
-                    2.5.4.5 @deprecated
+                    @deprecated
                   </a>
                 </td>
                 <td>???</td>
@@ -622,7 +627,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.5.4.6">
-                    2.5.4.6 @since
+                    @since
                   </a>
                 </td>
                 <td>???</td>
@@ -634,7 +639,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.5.4.7">
-                    2.5.4.7 @throws
+                    @throws
                   </a>
                 </td>
                 <td>???</td>
@@ -646,7 +651,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.5.4.8">
-                    2.5.4.8 @see
+                    @see
                   </a>
                 </td>
                 <td>???</td>
@@ -658,7 +663,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.5.4.9">
-                    2.5.4.9 @serial
+                    @serial
                   </a>
                 </td>
                 <td>???</td>
@@ -670,7 +675,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.5.4.10">
-                    2.5.4.10 @serialField
+                    @serialField
                   </a>
                 </td>
                 <td>???</td>
@@ -682,7 +687,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.5.4.11">
-                    2.5.4.11 @serialData
+                    @serialData
                   </a>
                 </td>
                 <td>???</td>
@@ -694,7 +699,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.5.4.12">
-                    2.5.4.12 {@link}
+                    {@link}
                   </a>
                 </td>
                 <td>???</td>
@@ -706,7 +711,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.5.5">
-                    2.5.5 Custom Tags and Annotations
+                    Custom Tags and Annotations
                   </a>
                 </td>
                 <td>???</td>
@@ -719,7 +724,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.6">
-                    2.6 Documenting Default Constructors
+                    <strong><em>Documenting Default Constructors</em></strong>
                   </a>
                 </td>
                 <td>???</td>
@@ -732,7 +737,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.7">
-                    2.7 Documenting Exceptions with @throws Tag
+                    <strong><em>Documenting Exceptions with @throws Tag</em></strong>
                   </a>
                 </td>
                 <td>--</td>
@@ -744,7 +749,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.7.1">
-                    2.7.1 Documenting Exceptions in API Specs
+                    Documenting Exceptions in API Specs
                   </a>
                 </td>
                 <td>--</td>
@@ -756,7 +761,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.7.2">
-                    2.7.2 Throws Tag
+                    Throws Tag
                   </a>
                 </td>
                 <td>--</td>
@@ -768,7 +773,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.7.3">
-                    2.7.3 Exceptions to Document
+                    Guidelines - Which Exceptions to Document
                   </a>
                 </td>
                 <td>???</td>
@@ -780,7 +785,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.7.4">
-                    2.7.4 Documenting Unchecked Exceptions
+                    Documenting Unchecked Exceptions
                   </a>
                 </td>
                 <td>???</td>
@@ -792,7 +797,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.7.5">
-                    2.7.5 Background on Checked and Unchecked Exceptions
+                    Background on Checked and Unchecked Exceptions
                   </a>
                 </td>
                 <td>--</td>
@@ -804,7 +809,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.7.6">
-                    2.7.6 Background on the Throws Clause
+                    Background on the Throws Clause
                   </a>
                 </td>
                 <td>???</td>
@@ -817,7 +822,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.8">
-                    2.8 Package-Level Comments
+                    <strong><em>Package-Level Comments</em></strong>
                   </a>
                 </td>
                 <td>--</td>
@@ -829,7 +834,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.8.1">
-                    2.8.1 Template for package.html
+                    Template for package.html source file
                   </a>
                 </td>
                 <td>???</td>
@@ -841,7 +846,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.8.2">
-                    2.8.2 Contents of package.html
+                    Contents of package.html source file
                   </a>
                 </td>
                 <td>???</td>
@@ -854,7 +859,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.9">
-                    2.9 Documenting Anonymous Inner Classes
+                    <strong><em>Documenting Anonymous Inner Classes</em></strong>
                   </a>
                 </td>
                 <td>--</td>
@@ -867,7 +872,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.10">
-                    2.10 Including Images
+                    <strong><em>Including Images</em></strong>
                   </a>
                 </td>
                 <td>--</td>
@@ -879,7 +884,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.10.1">
-                    2.10.1 Images in Source Tree
+                    Images in Source Tree
                   </a>
                 </td>
                 <td>↓</td>
@@ -891,7 +896,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.10.1.1">
-                    2.10.1.1 Naming of doc images in source tree
+                    Naming of doc images in source tree
                   </a>
                 </td>
                 <td>???</td>
@@ -903,7 +908,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.10.1.2">
-                    2.10.1.2 Location of doc images in source tree
+                    Location of doc images in source tree
                   </a>
                 </td>
                 <td>???</td>
@@ -915,7 +920,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.10.2">
-                    2.10.2 Images in HTML Destination
+                    Images in HTML Destination
                   </a>
                 </td>
                 <td>↓</td>
@@ -927,7 +932,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.10.2.1">
-                    2.10.2.1 Naming of doc images in HTML destination
+                    Naming of doc images in HTML destination
                   </a>
                 </td>
                 <td>???</td>
@@ -939,7 +944,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.10.2.2">
-                    2.10.2.2 Location of doc images in HTML destination
+                    Location of doc images in HTML destination
                   </a>
                 </td>
                 <td>???</td>
@@ -952,7 +957,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.11">
-                    2.11 Examples of Doc Comments
+                    <strong><em>Examples of Doc Comments</em></strong>
                   </a>
                 </td>
                 <td>--</td>
@@ -965,7 +970,7 @@
                   <img src="images/anchor.png" alt=""/></span></a></td>
                 <td>
                   <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#s2.12">
-                    2.12 Troubleshooting Curly Quotes (Microsoft Word)
+                    <strong><em>Troubleshooting Curly Quotes (Microsoft Word)</em></strong>
                   </a>
                 </td>
                 <td>--</td>
