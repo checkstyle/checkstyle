@@ -405,7 +405,7 @@ files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
           </li>
         </ul>
       </subsection>
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="SuppressionFilter_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.filters.SuppressionFilter </p>
         <p>
               This is the fully qualified class name of the module.

@@ -144,7 +144,7 @@ public class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="NestedForDepth_Fully_Qualified_Name">
         <p>com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck</p>
         <p>
             Use this fully qualified class name in configuration when an exact class reference is

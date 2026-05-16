@@ -254,7 +254,7 @@ public abstract class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="NPathComplexity_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck</p>
         <p>
             Use this fully qualified class name in configuration when an exact class reference is
