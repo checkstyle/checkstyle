@@ -81,8 +81,11 @@ recipeList:
         # Both forms are functionally identical in for loops, and some style
         # guides prefer pre-increment.
         - org.openrewrite.staticanalysis.ForLoopControlVariablePostfixOperators
+        # conflicts with MethodParamPadCheck in checkstyle_checks.xml
         - org.openrewrite.java.format.MethodParamPad
+        # conflicts with NoWhitespaceAfterCheck in checkstyle_checks.xml
         - org.openrewrite.java.format.NoWhitespaceAfter
+        # conflicts with NoWhitespaceBeforeCheck in checkstyle_checks.xml
         - org.openrewrite.java.format.NoWhitespaceBefore
         - org.openrewrite.staticanalysis.TypecastParenPad
         - org.openrewrite.staticanalysis.ExplicitInitialization
