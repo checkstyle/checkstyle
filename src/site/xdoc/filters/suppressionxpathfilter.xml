@@ -1021,7 +1021,7 @@ public class Example14 {
           </li>
         </ul>
       </subsection>
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="SuppressionXpathFilter_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter</p>
         <p>
             This is the fully qualified class name of the module.

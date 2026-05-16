@@ -74,7 +74,8 @@
         </p>
       </subsection>
 
-<subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+<subsection name="Fully Qualified Name"
+             id="UnnecessarySemicolonAfterTypeMemberDeclaration_Fully_Qualified_Name">
   <p>com.puppycrawl.tools.checkstyle.checks.coding.
   UnnecessarySemicolonAfterTypeMemberDeclarationCheck</p>
   <p>
