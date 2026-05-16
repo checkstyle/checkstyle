@@ -269,7 +269,7 @@ class ExternalService4 {
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="ParameterNumber_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck</p>
         <p>
           Use this fully qualified class name in configuration when an exact class reference is
