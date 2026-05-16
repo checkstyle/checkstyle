@@ -322,6 +322,16 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <dependency>
+        <groupId>net.bytebuddy</groupId>
+        <artifactId>byte-buddy</artifactId>
+        <version>1.18.8</version>
+      </dependency>
+      <dependency>
+        <groupId>net.bytebuddy</groupId>
+        <artifactId>byte-buddy-agent</artifactId>
+        <version>1.18.8</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
@@ -397,18 +407,6 @@
       <artifactId>archunit-junit5</artifactId>
       <version>1.4.2</version>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.github.caciocavallosilano</groupId>
-      <artifactId>cacio-tta</artifactId>
-      <version>1.18</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>com.jidesoft</groupId>
-          <artifactId>jide-oss</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.google.truth</groupId>
@@ -890,7 +888,7 @@
           <javaVersion>${java.version}</javaVersion>
           <includeTestClasses>false</includeTestClasses>
           <exclusionPatterns>
-            <!-- until https://github.com/gaul/modernizer-maven-plugin/issues/300 -->
+            <!-- Modernizer flags Optional.get() even when guarded by isPresent() -->
             <exclusionPattern>java/util/Optional.get:.*</exclusionPattern>
           </exclusionPatterns>
         </configuration>
@@ -2503,6 +2501,48 @@
   </reporting>
 
   <profiles>
+
+    <profile>
+      <id>cacio-tta-pre-jdk25</id>
+      <activation>
+        <jdk>(,25)</jdk>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.github.caciocavallosilano</groupId>
+          <artifactId>cacio-tta</artifactId>
+          <version>1.18</version>
+          <scope>test</scope>
+          <exclusions>
+            <exclusion>
+              <groupId>com.jidesoft</groupId>
+              <artifactId>jide-oss</artifactId>
+            </exclusion>
+          </exclusions>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>cacio-tta-jdk25</id>
+      <activation>
+        <jdk>[25,)</jdk>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.github.caciocavallosilano</groupId>
+          <artifactId>cacio-tta-jdk25</artifactId>
+          <version>2.0</version>
+          <scope>test</scope>
+          <exclusions>
+            <exclusion>
+              <groupId>com.jidesoft</groupId>
+              <artifactId>jide-oss</artifactId>
+            </exclusion>
+          </exclusions>
+        </dependency>
+      </dependencies>
+    </profile>
 
     <profile>
       <!-- To be used during development. Run the command -->
