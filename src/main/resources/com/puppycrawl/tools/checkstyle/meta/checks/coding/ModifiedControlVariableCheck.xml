@@ -43,8 +43,7 @@
             <property default-value="false"
                       name="skipEnhancedForLoopVariable"
                       type="boolean">
-               <description>Control whether to check
- &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2"&gt;
+               <description>Control whether to check &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2"&gt;
  enhanced for-loop&lt;/a&gt; variable.</description>
             </property>
          </properties>
