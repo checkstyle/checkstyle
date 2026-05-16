@@ -1,5 +1,3 @@
-// Java21
-
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
 /** Some class. */

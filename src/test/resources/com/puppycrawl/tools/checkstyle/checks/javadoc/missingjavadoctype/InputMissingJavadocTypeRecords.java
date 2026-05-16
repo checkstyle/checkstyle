@@ -9,7 +9,7 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 */
 
-// java17
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
 public record InputMissingJavadocTypeRecords() { // violation

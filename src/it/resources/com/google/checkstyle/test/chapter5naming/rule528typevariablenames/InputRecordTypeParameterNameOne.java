@@ -1,5 +1,3 @@
-// Java17
-
 package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
 import java.io.Serializable;

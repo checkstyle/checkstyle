@@ -4,7 +4,7 @@ UncommentedMain
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
 
 public record InputUncommentedMainBeginTree2(Integer x) {

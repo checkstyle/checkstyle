@@ -4,7 +4,7 @@ tokens = LITERAL_WHEN
 
 */
 
-// Java21
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 
 public class InputWhitespaceAfterLiteralWhen {

@@ -5,7 +5,7 @@ format = (default)^[a-z][a-zA-Z0-9]*$
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.naming.recordcomponentname;
 
 import java.io.Serializable;

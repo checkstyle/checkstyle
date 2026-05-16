@@ -4,7 +4,7 @@ MissingSwitchDefault
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.coding.missingswitchdefault;
 
 import java.util.Optional;

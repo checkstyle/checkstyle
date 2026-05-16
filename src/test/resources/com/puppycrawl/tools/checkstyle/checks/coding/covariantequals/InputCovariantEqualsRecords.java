@@ -4,7 +4,7 @@ CovariantEquals
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.coding.covariantequals;
 
 public class InputCovariantEqualsRecords {

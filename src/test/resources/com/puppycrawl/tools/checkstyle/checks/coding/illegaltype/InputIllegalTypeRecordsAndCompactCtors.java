@@ -15,7 +15,7 @@ tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, INTERFACE_DEF, METHOD_CALL, M
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 
 import java.util.HashMap;

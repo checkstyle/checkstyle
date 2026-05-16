@@ -12,7 +12,7 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 /**

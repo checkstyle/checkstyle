@@ -5,7 +5,7 @@ max = 1
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
 
 public class InputNPathComplexityRecords {

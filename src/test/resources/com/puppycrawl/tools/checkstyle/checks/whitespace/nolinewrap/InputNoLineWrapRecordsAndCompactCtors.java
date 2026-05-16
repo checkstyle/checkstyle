@@ -5,7 +5,7 @@ tokens = RECORD_DEF, CLASS_DEF, CTOR_DEF, COMPACT_CTOR_DEF
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nolinewrap;
 
 public class InputNoLineWrapRecordsAndCompactCtors {

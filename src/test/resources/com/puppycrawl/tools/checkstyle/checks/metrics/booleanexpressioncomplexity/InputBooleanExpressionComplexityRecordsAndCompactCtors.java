@@ -6,7 +6,7 @@ tokens = (default)LAND, BAND, LOR, BOR, BXOR
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.metrics.booleanexpressioncomplexity;
 
 public class InputBooleanExpressionComplexityRecordsAndCompactCtors {

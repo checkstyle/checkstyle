@@ -4,7 +4,7 @@ ModifierOrder
 
 */
 
-// java17
+
 package com.puppycrawl.tools.checkstyle.checks.modifier.modifierorder;
 
 public sealed class InputModifierOrderSealedAndNonSealedNoViolation

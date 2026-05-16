@@ -8,7 +8,7 @@ allowNonPrintableEscapes = (default)false
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.avoidescapedunicodecharacters;
 
 public class InputAvoidEscapedUnicodeCharactersTextBlocks {

@@ -1,4 +1,4 @@
-// Java17                                                               //indent:0 exp:0
+//                                                                      //indent:0 exp:0
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent:0 exp:0
                                                                         //indent:72 exp:72
 import java.io.IOException;                                             //indent:0 exp:0

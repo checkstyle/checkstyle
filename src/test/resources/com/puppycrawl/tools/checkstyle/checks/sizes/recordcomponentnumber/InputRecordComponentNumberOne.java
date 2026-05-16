@@ -6,7 +6,7 @@ accessModifiers = (default)public, protected, package, private
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentnumber;
 
 import java.awt.Point;
