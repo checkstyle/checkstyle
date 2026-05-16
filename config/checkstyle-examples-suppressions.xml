@@ -207,4 +207,7 @@
   <suppress checks="LineLength"
             files="lineending[\\/]Example4.java"/>
 
+  <suppress checks="LineLength"
+            files="overloadmethodsdeclarationorder[\\/]Example2.java"/>
+
 </suppressions>
