@@ -33,9 +33,23 @@ public class OverloadMethodsDeclarationOrderCheckExamplesTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "24:3: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_KEY, "20"),
+            "30:3: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_KEY, "26"),
+            "43:5: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_KEY, "37"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {
+            "17:3: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_ORDER),
+            "20:3: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_ORDER),
+            "30:3: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_KEY, "26"),
+            "43:5: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_KEY, "37"),
+            "43:5: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_ORDER),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }
