@@ -9,8 +9,16 @@
  name but different signatures where the signature can differ by the number of
  input parameters or type of input parameters or both.
  &lt;/div&gt;</description>
+         <properties>
+            <property default-value="false"
+                      name="orderByIncreasingParameterCount"
+                      type="boolean">
+               <description>Control whether to enforce order by increasing parameter count (arity) or not.</description>
+            </property>
+         </properties>
          <message-keys>
             <message-key key="overload.methods.declaration"/>
+            <message-key key="overload.methods.declaration.order"/>
          </message-keys>
       </check>
    </module>

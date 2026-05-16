@@ -46,6 +46,28 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "overload.methods.declaration";
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_ORDER = "overload.methods.declaration.order";
+
+    /**
+     * Control whether to order overloaded methods by increasing parameter count.
+     */
+    private boolean orderByIncreasingParameterCount;
+
+    /**
+     * Setter to control whether to enforce order by increasing parameter count (arity) or not.
+     *
+     * @param orderByIncreasingParameterCount true if order by increasing parameter
+     *               count is required.
+     * @since 13.5.0
+     */
+    public void setOrderByIncreasingParameterCount(boolean orderByIncreasingParameterCount) {
+        this.orderByIncreasingParameterCount = orderByIncreasingParameterCount;
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -92,6 +114,10 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
         DetailAST currentToken = objectBlock.getFirstChild();
         final Map<String, Integer> methodIndexMap = new HashMap<>();
         final Map<String, Integer> methodLineNumberMap = new HashMap<>();
+
+        final Map<String, Integer> methodParameterCountMap = new HashMap<>();
+        final Map<String, Boolean> methodIsOrderedMap = new HashMap<>();
+
         int currentIndex = 0;
         while (currentToken != null) {
             if (currentToken.getType() == TokenTypes.METHOD_DEF) {
@@ -102,18 +128,48 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
                 final DetailAST previousSibling = currentToken.getPreviousSibling();
                 final boolean isMethod = previousSibling.getType() == TokenTypes.METHOD_DEF;
 
-                if (previousIndex != null
-                        && (!isMethod || currentIndex - previousIndex > allowedDistance)) {
-                    final int previousLineWithOverloadMethod =
-                            methodLineNumberMap.get(methodName);
-                    log(currentToken, MSG_KEY,
-                            previousLineWithOverloadMethod);
+                if (previousIndex != null) {
+                    if (!isMethod || currentIndex - previousIndex > allowedDistance) {
+                        final int previousLineWithOverloadMethod =
+                                methodLineNumberMap.get(methodName);
+                        log(currentToken, MSG_KEY,
+                                previousLineWithOverloadMethod);
+                    }
+
+                    if (orderByIncreasingParameterCount) {
+                        final int currentParamCount = getParameterCount(currentToken);
+                        final boolean isOrdered = methodIsOrderedMap.get(methodName)
+                             && currentParamCount >= methodParameterCountMap.get(methodName);
+                        if (!isOrdered) {
+                            methodIsOrderedMap.put(methodName, false);
+                            log(currentToken, MSG_ORDER);
+                        }
+                    }
+                }
+                else {
+                    methodIsOrderedMap.put(methodName, true);
                 }
                 methodIndexMap.put(methodName, currentIndex);
                 methodLineNumberMap.put(methodName, currentToken.getLineNo());
+
+                methodParameterCountMap.put(methodName, getParameterCount(currentToken));
             }
             currentToken = currentToken.getNextSibling();
         }
     }
 
+    /**
+     * Get the parameter count of a method.
+     *
+     * @param method the method AST
+     * @return the parameter count of the method
+     */
+    private static int getParameterCount(DetailAST method) {
+        final DetailAST params = method.findFirstToken(TokenTypes.PARAMETERS);
+        int parameterCount = 0;
+        if (params != null) {
+            parameterCount = params.getChildCount(TokenTypes.PARAMETER_DEF);
+        }
+        return parameterCount;
+    }
 }
