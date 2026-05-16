@@ -100,7 +100,7 @@ recipeList:
         - org.openrewrite.staticanalysis.OperatorWrap
         - org.openrewrite.staticanalysis.ReplaceThreadRunWithThreadStart
         - org.openrewrite.staticanalysis.ChainStringBuilderAppendCalls
-        - org.openrewrite.staticanalysis.ReplaceStringBuilderWithString
+        # Kept excluded: to avoid conflicts with CustomImportOrderCheck
         - org.openrewrite.staticanalysis.CustomImportOrder
   - org.openrewrite.staticanalysis.CommonStaticAnalysis:
       exclude:
