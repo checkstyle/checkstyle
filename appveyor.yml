@@ -43,6 +43,10 @@ environment:
     - JAVA_HOME: C:\Program Files\Java\JDK21
       DESC: "site, without verify (JDK21)"
       CMD: "./.ci/validation.cmd site_without_verify"
+    # verify (JDK25)
+    - JAVA_HOME: C:\Program Files\Java\JDK25
+      DESC: "verify (JDK25)"
+      CMD: "./mvnw.cmd -e --no-transfer-progress verify"
 
 build_script:
   - ps: |
