@@ -313,7 +313,8 @@ public class Example9 {
           </li>
         </ul>
       </subsection>
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name"
+                   id="SuppressWithNearbyTextFilter_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyTextFilter</p>
         <p>
               This is the fully qualified class name of the module.

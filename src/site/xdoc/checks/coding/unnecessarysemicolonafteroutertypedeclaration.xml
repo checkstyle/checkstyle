@@ -164,7 +164,8 @@ enum U {
         </p>
       </subsection>
 
-<subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+<subsection name="Fully Qualified Name"
+             id="UnnecessarySemicolonAfterOuterTypeDeclaration_Fully_Qualified_Name">
   <p>com.puppycrawl.tools.checkstyle.checks.coding.
   UnnecessarySemicolonAfterOuterTypeDeclarationCheck</p>
   <p>

@@ -298,7 +298,7 @@ try (Closeable resource = acquire(); ) // no check before right parenthesis
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="ParenPad_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck</p>
         <p>
           Use this fully qualified class name in configuration when an exact class reference is
