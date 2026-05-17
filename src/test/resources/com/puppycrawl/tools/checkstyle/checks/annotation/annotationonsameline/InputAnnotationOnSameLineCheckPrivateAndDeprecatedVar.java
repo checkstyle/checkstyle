@@ -27,8 +27,7 @@ public class InputAnnotationOnSameLineCheckPrivateAndDeprecatedVar {
 
     // violation below, "Annotation 'SuppressWarnings' should be on the same line with its target."
     @SuppressWarnings("deprecation")
-    @Ann
-    // violation above, "Annotation 'Ann' should be on the same line with its target."
+    @Ann // violation, "Annotation 'Ann' should be on the same line with its target."
     Integer x2;
 
     @SuppressWarnings("deprecation") @Ann @Ann2 @Ann3 @Ann4 Integer x3;
