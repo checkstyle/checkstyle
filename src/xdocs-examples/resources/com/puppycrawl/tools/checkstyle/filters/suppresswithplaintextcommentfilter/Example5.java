@@ -20,12 +20,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters.suppresswithplaintextcommentfilter;
 
+public class Example5 { }
+
 // xdoc section -- start
-public class Example5 {
-  // CHECKSTYLE_OFF: ALMOST_ALL
-  public static final int MAX_ITEMS = 100;
-  private String[] stringArray;
-  // CHECKSTYLE_ON: ALMOST_ALL
-  private int[] intArray;
-}
 // xdoc section -- end
