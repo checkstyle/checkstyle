@@ -147,7 +147,7 @@ steps:
 
   - task: JavaToolInstaller@0
     inputs:
-      versionSpec: 21
+      versionSpec: 25
       jdkArchitectureOption: 'X64'
       jdkSourceOption: 'PreInstalled'
 
