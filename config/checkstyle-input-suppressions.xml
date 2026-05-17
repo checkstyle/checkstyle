@@ -156,8 +156,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsCompact1\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsCompact2\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsCompact3\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsCompact5\.java"/>
