@@ -142,8 +142,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]InputAnnotationLocationInterface\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]InputAnnotationLocationRecordsAndCompactCtors\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]inputs[\\/]package-info\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheckInterfaceAndEnum\.java"/>
@@ -156,10 +154,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsCompact1\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsCompact2\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsCompact3\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsCompact5\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsCompact6\.java"/>
@@ -167,8 +161,6 @@
             files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsCompact7\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsCompactNonConstant1\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsCompactNonConstant2\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsCompactNonConstant4\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
