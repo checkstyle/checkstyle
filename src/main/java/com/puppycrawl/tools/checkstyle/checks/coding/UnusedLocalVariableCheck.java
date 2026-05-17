@@ -896,21 +896,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          * Create a new VariableDesc instance.
          *
          * @param name name of the variable
-         * @param typeAst ast of type {@link TokenTypes#TYPE}
-         * @param scope ast of type {@link TokenTypes#SLIST} or
-         *              {@link TokenTypes#LITERAL_FOR} or {@link TokenTypes#OBJBLOCK}
-         *              which is enclosing the variable
-         */
-        private VariableDesc(String name, DetailAST typeAst, DetailAST scope) {
-            this.name = name;
-            this.typeAst = typeAst;
-            this.scope = scope;
-        }
-
-        /**
-         * Create a new VariableDesc instance.
-         *
-         * @param name name of the variable
          */
         private VariableDesc(String name) {
             this(name, null, null);
@@ -926,6 +911,21 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          */
         private VariableDesc(String name, DetailAST scope) {
             this(name, null, scope);
+        }
+
+        /**
+         * Create a new VariableDesc instance.
+         *
+         * @param name name of the variable
+         * @param typeAst ast of type {@link TokenTypes#TYPE}
+         * @param scope ast of type {@link TokenTypes#SLIST} or
+         *              {@link TokenTypes#LITERAL_FOR} or {@link TokenTypes#OBJBLOCK}
+         *              which is enclosing the variable
+         */
+        private VariableDesc(String name, DetailAST typeAst, DetailAST scope) {
+            this.name = name;
+            this.typeAst = typeAst;
+            this.scope = scope;
         }
 
         /**
