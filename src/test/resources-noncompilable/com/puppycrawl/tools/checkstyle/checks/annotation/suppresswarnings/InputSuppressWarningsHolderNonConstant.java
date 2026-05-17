@@ -46,8 +46,8 @@ public class InputSuppressWarningsHolderNonConstant {
 
 class CustomSuppressWarnings {
     static final String UN_U = "UN_U";
+    // violation below, 'The warning '' cannot be suppressed at this location'
     @SuppressWarnings
-    // violation above, 'The warning '' cannot be suppressed at this location'
     private @interface SuppressWarnings {
     }
 }
