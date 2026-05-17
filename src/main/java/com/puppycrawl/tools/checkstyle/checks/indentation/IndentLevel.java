@@ -32,6 +32,13 @@ public class IndentLevel {
     private final BitSet levels = new BitSet();
 
     /**
+     * Creates new instance with no acceptable indentation level.
+     * This is only used internally to combine multiple levels.
+     */
+    private IndentLevel() {
+    }
+
+    /**
      * Creates new instance with one acceptable indentation level.
      *
      * @param indent acceptable indentation level.
@@ -53,13 +60,6 @@ public class IndentLevel {
                 levels.set(i + offset);
             }
         }
-    }
-
-    /**
-     * Creates new instance with no acceptable indentation level.
-     * This is only used internally to combine multiple levels.
-     */
-    private IndentLevel() {
     }
 
     /**
