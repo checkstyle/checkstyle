@@ -16,7 +16,6 @@ public class InputAnnotationOnSameLineRecordsAndCompactCtors {
 
     // violation below, "Annotation 'SuppressWarnings' should be on the same line with its target."
     @SuppressWarnings("deprecation")
-
     public record MyRecord2() {
     }
 
@@ -25,8 +24,7 @@ public class InputAnnotationOnSameLineRecordsAndCompactCtors {
             record MyRecord3() {
     }
     @SuppressWarnings("deprecation") public record MyRecord4() {
-    // violation below, "Annotation 'SuppressWarnings' should be on the same line with its target."
-        @SuppressWarnings("deprecation")
+        @SuppressWarnings("deprecation") // violation, "Annotation 'SuppressWarnings' should be on the same line with its target."
         public MyRecord4 {
         }
     }
@@ -54,8 +52,7 @@ public class InputAnnotationOnSameLineRecordsAndCompactCtors {
         }
     }
 
-    // violation below, "Annotation 'SuppressWarnings' should be on the same line with its target."
-    @SuppressWarnings("deprecation")
+    @SuppressWarnings("deprecation") // violation, "Annotation 'SuppressWarnings' should be on the same line with its target."
     /**
      * @return
      */
