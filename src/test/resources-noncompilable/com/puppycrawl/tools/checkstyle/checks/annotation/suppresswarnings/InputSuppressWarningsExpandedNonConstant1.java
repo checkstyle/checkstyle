@@ -52,9 +52,9 @@ public class InputSuppressWarningsExpandedNonConstant1
         int cool();
     }
 
+    // violation 2 lines below 'The warning '' cannot be suppressed at this location'
     @Documented
     @SuppressWarnings(value={})
-    // violation above, 'The warning '' cannot be suppressed at this location'
     @interface MoreSweetness {
 
         @SuppressWarnings(value={"unused", "ignore"})
@@ -76,8 +76,8 @@ public class InputSuppressWarningsExpandedNonConstant1
     }
 
     // violation below, 'The warning '' cannot be suppressed at this location'
-    @SuppressWarnings(value={(false) ? "unchecked" : "", (false) ? "unchecked" : ""})
-    class Cond { // violation above, 'The warning '' cannot be suppressed at this location'
+    @SuppressWarnings(value={(false) ? "unchecked" : "", (false) ? "unchecked" : ""}) // violation, 'The warning '' cannot be suppressed at this location'
+    class Cond {
 
         // violation below, 'The warning '' cannot be suppressed at this location'
         @SuppressWarnings(value={(false) ? "" : "unchecked"})
@@ -85,10 +85,10 @@ public class InputSuppressWarningsExpandedNonConstant1
 
         }
 
-        // violation below, 'The warning '   ' cannot be suppressed at this location'
+        // violation 2 lines below 'The warning '   ' cannot be suppressed at this location'
+        // violation 2 lines below 'The warning '   ' cannot be suppressed at this location'
         @SuppressWarnings(value={(false) ? (true) ? "   " : "unused" : "unchecked",
             (false) ? (true) ? "   " : "unused" : "unchecked"})
-        // violation above, 'The warning '   ' cannot be suppressed at this location'
         public void aCond1() {
 
         }
