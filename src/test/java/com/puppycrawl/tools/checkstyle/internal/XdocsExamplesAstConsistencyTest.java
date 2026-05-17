@@ -292,8 +292,6 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithnearbytextfilter/Example7",
             "filters/suppresswithnearbytextfilter/Example8",
             "filters/suppresswithnearbytextfilter/Example9",
-            "filters/suppresswithplaintextcommentfilter/Example5",
-            "filters/suppresswithplaintextcommentfilter/Example9",
             "checks/indentation/indentation/Example2",
             "checks/indentation/indentation/Example3",
             "checks/indentation/indentation/Example4",
