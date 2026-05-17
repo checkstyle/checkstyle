@@ -18,6 +18,11 @@ package com.puppycrawl.tools.checkstyle.filters.suppresswithplaintextcommentfilt
 
 // xdoc section -- start
 public class Example9 {
+  // CHECKSTYLE_OFF: ALMOST_ALL
+  public static final int MAX_ITEMS = 100;
+  private String[] stringArray;
+  // CHECKSTYLE_ON: ALMOST_ALL
+  private int[] intArray;
 
   static final String LOCATION_CSV_SAMPLE = """
           locationId,label,regionId,regionLabel,vendorId,vendorLabel,address,address2,city,stateProvinceCode,zipCode,countryCode,latitude,longitude
