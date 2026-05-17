@@ -38,9 +38,9 @@ public class InputSuppressWarningsExpandedNonConstant2
             @SuppressWarnings(value={"unused"})
             Object o = new InputSuppressWarningsExpandedNonConstant2() {
 
+                // violation 2 lines below 'The warning 'unchecked' cannot be suppressed at this location'
                 @Override
                 @SuppressWarnings(value={"unchecked"})
-                // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
                 public String toString() {
                     return "";
                 }
@@ -55,9 +55,9 @@ public class InputSuppressWarningsExpandedNonConstant2
         int cool();
     }
 
+    // violation 2 lines below 'The warning '' cannot be suppressed at this location'
     @Documented
     @SuppressWarnings(value={})
-    // violation above, 'The warning '' cannot be suppressed at this location'
     @interface MoreSweetness {
 
         @SuppressWarnings(value={"unused", "ignore"}) // 2 violations
@@ -74,8 +74,8 @@ public class InputSuppressWarningsExpandedNonConstant2
         @SuppressWarnings(value={"unchecked"})
         @Deprecated
         int b = 1;
+        // violation below 'The warning 'unchecked' cannot be suppressed at this location'
         void doFoo(String s, @SuppressWarnings(value={"unchecked"})String y) {
-            // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
 
         }
     }
@@ -103,8 +103,7 @@ public class InputSuppressWarningsExpandedNonConstant2
         // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
         @java.lang.SuppressWarnings(value={(false) ? "unchecked" :
                     ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused", // 4 violations
-                (false) ? "unchecked" :
-                // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
+                (false) ? "unchecked" : // violation, 'The warning 'unchecked' cannot be suppressed at this location'
                     ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused"}) // 4 violations
         public void seriously() {
 
