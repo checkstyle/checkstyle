@@ -19,16 +19,14 @@ import java.util.List;
 }
 
 public @Ann     // violation, "Annotation 'Ann' should be on the same line with its target."
-                // violation below, "Annotation 'Ann' should be on the same line with its target."
-@Ann2 class InputAnnotationOnSameLineCheckInterfaceAndEnum implements @Ann
+@Ann2 class InputAnnotationOnSameLineCheckInterfaceAndEnum implements @Ann // violation, "Annotation 'Ann' should be on the same line with its target."
         @Ann2 TestInterface {
 
     @Ann        // violation, "Annotation 'Ann' should be on the same line with its target."
     @Ann2 private Integer x = new @Ann // violation, should be on the same line with its target."
             @Ann2 Integer(0);
 
-            // violation below, "Annotation 'Ann' should be on the same line with its target."
-    private List<@Ann
+    private List<@Ann // violation, "Annotation 'Ann' should be on the same line with its target."
             @Ann2 Integer> integerList;
 
     @Ann        // violation, "Annotation 'Ann' should be on the same line with its target."
@@ -41,8 +39,7 @@ public @Ann     // violation, "Annotation 'Ann' should be on the same line with 
     @Ann2 public InputAnnotationOnSameLineCheckInterfaceAndEnum() {}
 
     @Ann        // violation, "Annotation 'Ann' should be on the same line with its target."
-                // violation below, "Annotation 'Ann' should be on the same line with its target."
-    @Ann2 public void setX(@Ann
+    @Ann2 public void setX(@Ann // violation, "Annotation 'Ann' should be on the same line with its target."
 
             @Ann2 int x) throws @Ann // violation, should be on the same line with its target."
                     @Ann2 Exception {
