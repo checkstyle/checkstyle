@@ -37,9 +37,9 @@ public class InputSuppressWarningsExpandedNonConstant3
             @SuppressWarnings(value={"unused"})
             Object o = new InputSuppressWarningsExpandedNonConstant3() {
 
+                // violation 2 lines below 'The warning 'unchecked' cannot be suppressed at this location'
                 @Override
                 @SuppressWarnings(value={"unchecked"})
-                // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
                 public String toString() {
                     return "";
                 }
@@ -70,15 +70,15 @@ public class InputSuppressWarningsExpandedNonConstant3
         @SuppressWarnings(value={"unchecked"})
         @Deprecated
         int b = 1;
+        // violation below 'The warning 'unchecked' cannot be suppressed at this location'
         void doFoo(String s, @SuppressWarnings(value={"unchecked"})String y) {
-            // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
 
         }
     }
 
     // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
-    @SuppressWarnings(value={(false) ? "unchecked" : "", (false) ? "unchecked" : ""})
-    class Cond { // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
+    @SuppressWarnings(value={(false) ? "unchecked" : "", (false) ? "unchecked" : ""}) // violation, 'The warning 'unchecked' cannot be suppressed at this location'
+    class Cond {
 
         // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
         @SuppressWarnings(value={(false) ? "" : "unchecked"})
@@ -86,10 +86,10 @@ public class InputSuppressWarningsExpandedNonConstant3
 
         }
 
-        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        // violation 2 lines below 'The warning 'unchecked' cannot be suppressed at this location'
+        // violation 2 lines below 'The warning 'unchecked' cannot be suppressed at this location'
         @SuppressWarnings(value={(false) ? (true) ? "   " : "unused" : "unchecked",
             (false) ? (true) ? "   " : "unused" : "unchecked"})
-        // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
         public void aCond1() {
 
         }
@@ -103,8 +103,7 @@ public class InputSuppressWarningsExpandedNonConstant3
         // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
         @java.lang.SuppressWarnings(value={(false) ? "unchecked" :
                     ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused",
-                (false) ? "unchecked" :
-                // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
+                (false) ? "unchecked" : // violation, 'The warning 'unchecked' cannot be suppressed at this location'
                     ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused"})
         public void seriously() {
 
