@@ -140,8 +140,6 @@
             files="[\\/]filters[\\/]suppresswithnearbytextfilter[\\/]InputSuppressWithNearbyTextFilterNearbyTextPatternUrlLineLengthSuppression.java"/>
   <!-- until https://github.com/checkstyle/checkstyle/issues/19803 -->
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]InputAnnotationLocationInterface\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]InputAnnotationLocationRecordsAndCompactCtors\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]inputs[\\/]package-info\.java"/>
