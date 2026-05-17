@@ -635,6 +635,10 @@
       <property name="severity" value="ignore"/>
     </module>
     <module name="UnusedLocalVariable"/>
+    <!-- until https://github.com/checkstyle/checkstyle/issues/19830 -->
+    <module name="UnusedTryResourceShouldBeUnnamed">
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="UseEnhancedSwitch"/>
     <module name="VariableDeclarationUsageDistance"/>
     <module name="WhenShouldBeUsed"/>
