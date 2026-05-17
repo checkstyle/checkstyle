@@ -252,10 +252,10 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testInterface() throws Exception {
         final String[] expected = {
-            "18:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "InterfaceAnnotation", 2, 0),
-            "20:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "InterfaceAnnotation"),
-            "23:7: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "InterfaceAnnotation", 6, 4),
-            "24:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "InterfaceAnnotation"),
+            "20:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "InterfaceAnnotation", 2, 0),
+            "21:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "InterfaceAnnotation"),
+            "26:7: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "InterfaceAnnotation", 6, 4),
+            "27:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "InterfaceAnnotation"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationInterface.java"), expected);
@@ -264,8 +264,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPackage() throws Exception {
         final String[] expected = {
-            "12:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "PackageAnnotation", 2, 0),
-            "14:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "PackageAnnotation"),
+            "14:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "PackageAnnotation", 2, 0),
+            "15:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "PackageAnnotation"),
         };
         verifyWithInlineConfigParser(
                 getPath("inputs/package-info.java"), expected);
