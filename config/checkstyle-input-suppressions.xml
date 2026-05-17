@@ -214,8 +214,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsSingle5\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsSingle6\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsSingle7\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineSingleLineSmallTalkStyle\.java"/>
