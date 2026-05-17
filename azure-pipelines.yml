@@ -95,6 +95,16 @@ strategy:
       image: 'macOS-14'
       cmd: "JAVA_HOME=$JAVA_HOME_21_X64 ./mvnw -e --no-transfer-progress verify"
 
+    # OpenJDK25 verify
+    'OpenJDK25 verify':
+      image: 'ubuntu-24.04'
+      cmd: "JAVA_HOME=$JAVA_HOME_25_X64 ./mvnw -e --no-transfer-progress verify"
+
+    # MacOS JDK25 verify
+    'MacOS JDK25 verify':
+      image: 'macOS-14'
+      cmd: "JAVA_HOME=$JAVA_HOME_25_X64 ./mvnw -e --no-transfer-progress verify"
+
     # versions to update
     'versions':
       image: 'ubuntu-24.04'
