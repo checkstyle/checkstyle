@@ -140,11 +140,7 @@
             files="[\\/]filters[\\/]suppresswithnearbytextfilter[\\/]InputSuppressWithNearbyTextFilterNearbyTextPatternUrlLineLengthSuppression.java"/>
   <!-- until https://github.com/checkstyle/checkstyle/issues/19803 -->
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]InputAnnotationLocationInterface\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]InputAnnotationLocationRecordsAndCompactCtors\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]inputs[\\/]package-info\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheckInterfaceAndEnum\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
@@ -153,8 +149,6 @@
             files="[\\/]checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineRecordsAndCompactCtors\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineRecordsAndCompactCtors\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsCompact1\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsCompact2\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
