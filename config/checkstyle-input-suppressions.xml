@@ -224,8 +224,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]coding[\\/]unusedlocalvariable[\\/]InputUnusedLocalVariableNestedClasses3\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]coding[\\/]unusedlocalvariable[\\/]InputUnusedLocalVariableTestWarningSeverity\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]indentation[\\/]commentsindentation[\\/]InputCommentsIndentationAfterAnnotation\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]indentation[\\/]commentsindentation[\\/]InputCommentsIndentationCommentIsAtTheEndOfBlockFour\.java"/>
