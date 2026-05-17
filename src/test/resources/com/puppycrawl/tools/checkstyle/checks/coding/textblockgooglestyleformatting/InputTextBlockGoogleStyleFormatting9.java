@@ -8,8 +8,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.textblockgooglestyleformat
 
 public class InputTextBlockGoogleStyleFormatting9 {
 
-    @SuppressWarnings({"membername"})
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    @SuppressWarnings({"membername"}) // violation below 'Opening quotes (""") of text-block must be on the new line'
     String STRING1 = """
             string""";
     // violation 2 lines above 'Each line of text in the text block must be indented'
@@ -29,8 +28,8 @@ public class InputTextBlockGoogleStyleFormatting9 {
     @SuppressWarnings({
         "checkstyle:membername"
     }) // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
-    // violation below 'Each line of text in the text block must be indented'
-    String STRING3 = """
+
+    String STRING3 = """ // violation, 'Each line of text in the text block must be indented'
         string
         """; // violation 'Text-block quotes are not vertically aligned'
 

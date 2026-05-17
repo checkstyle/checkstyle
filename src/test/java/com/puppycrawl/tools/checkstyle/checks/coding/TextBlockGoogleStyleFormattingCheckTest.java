@@ -411,17 +411,17 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     @Test
     public void testDefaultTextBlockFormatInAnnotations() throws Exception {
         final String[] expected = {
-            "13:22: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "13:25: " + getCheckMessage(MSG_TEXT_BLOCK_CONTENT),
-            "14:19: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "14:19: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
-            "22:22: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "22:25: " + getCheckMessage(MSG_TEXT_BLOCK_CONTENT),
-            "23:15: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "23:15: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
-            "33:22: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "33:25: " + getCheckMessage(MSG_TEXT_BLOCK_CONTENT),
-            "35:9: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "12:22: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "12:25: " + getCheckMessage(MSG_TEXT_BLOCK_CONTENT),
+            "13:19: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "13:19: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "21:22: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "21:25: " + getCheckMessage(MSG_TEXT_BLOCK_CONTENT),
+            "22:15: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "22:15: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "32:22: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "32:25: " + getCheckMessage(MSG_TEXT_BLOCK_CONTENT),
+            "34:9: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
         };
         verifyWithInlineConfigParser(
                 getPath("InputTextBlockGoogleStyleFormatting9.java"), expected);
