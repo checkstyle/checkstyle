@@ -82,8 +82,66 @@ public final class TokenTypes {
      * @see #RECORD_DEF
      * @see #ANNOTATION_DEF
      * @see #ENUM_DEF
+     * @see #COMPACT_COMPILATION_UNIT
      **/
     public static final int COMPILATION_UNIT = JavaLanguageLexer.COMPILATION_UNIT;
+
+    /**
+     * The root of an AST for a JEP 512 (JDK 25) compact source file. This node
+     * replaces {@link #COMPILATION_UNIT} as the root when the source file declares
+     * any top-level method or field. It represents a {@code CompactCompilationUnit},
+     * which is one of the three mutually exclusive compilation-unit
+     * forms ({@code OrdinaryCompilationUnit}, {@code CompactCompilationUnit},
+     * {@code ModularCompilationUnit}). Import declarations and top-level members
+     * appear as direct children of this node. Compact source files cannot declare
+     * a package.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * import java.util.List;
+     *
+     * int counter = 3;
+     * void main() {}
+     * </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * COMPACT_COMPILATION_UNIT -&gt; COMPACT_COMPILATION_UNIT
+     * |--IMPORT -&gt; import
+     * |   |--DOT -&gt; .
+     * |   |   |--DOT -&gt; .
+     * |   |   |   |--IDENT -&gt; java
+     * |   |   |   `--IDENT -&gt; util
+     * |   |   `--IDENT -&gt; List
+     * |   `--SEMI -&gt; ;
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_INT -&gt; int
+     * |   |--IDENT -&gt; counter
+     * |   |--ASSIGN -&gt; =
+     * |   |   `--EXPR -&gt; EXPR
+     * |   |       `--NUM_INT -&gt; 3
+     * |   `--SEMI -&gt; ;
+     * `--METHOD_DEF -&gt; METHOD_DEF
+     *     |--MODIFIERS -&gt; MODIFIERS
+     *     |--TYPE -&gt; TYPE
+     *     |   `--LITERAL_VOID -&gt; void
+     *     |--IDENT -&gt; main
+     *     |--LPAREN -&gt; (
+     *     |--PARAMETERS -&gt; PARAMETERS
+     *     |--RPAREN -&gt; )
+     *     `--SLIST -&gt; {
+     *         `--RCURLY -&gt; }
+     * </pre>
+     *
+     * @see <a href="https://openjdk.org/jeps/512">JEP 512: Compact Source Files
+     *     and Instance Main Methods</a>
+     * @see #COMPILATION_UNIT
+     **/
+    public static final int COMPACT_COMPILATION_UNIT =
+            JavaLanguageLexer.COMPACT_COMPILATION_UNIT;
+
     /**
      * Modifiers for type, method, and field declarations.  The
      * modifiers element is always present even though it may have no
@@ -6661,12 +6719,12 @@ public final class TokenTypes {
      *
      * <p>parses as:</p>
      * <pre>
-     * MODULE_IMPORT -> import
-     *  |--LITERAL_MODULE -> module
-     *  |--DOT -> .
-     *  |   |--IDENT -> java
-     *  |   `--IDENT -> base
-     *  `--SEMI -> ;
+     * MODULE_IMPORT -&gt; import
+     *  |--LITERAL_MODULE -&gt; module
+     *  |--DOT -&gt; .
+     *  |   |--IDENT -&gt; java
+     *  |   `--IDENT -&gt; base
+     *  `--SEMI -&gt; ;
      * </pre>
      *
      * @see <a href="https://docs.oracle.com/javase/specs/jls/se25/html/jls-7.html#jls-7.5.5">
@@ -6690,12 +6748,12 @@ public final class TokenTypes {
      *
      * <p>parses as:</p>
      * <pre>
-     * MODULE_IMPORT -> import
-     *  |--LITERAL_MODULE -> module
-     *  |--DOT -> .
-     *  |   |--IDENT -> java
-     *  |   `--IDENT -> base
-     *  `--SEMI -> ;
+     * MODULE_IMPORT -&gt; import
+     *  |--LITERAL_MODULE -&gt; module
+     *  |--DOT -&gt; .
+     *  |   |--IDENT -&gt; java
+     *  |   `--IDENT -&gt; base
+     *  `--SEMI -&gt; ;
      * </pre>
      *
      * @see <a href="https://docs.oracle.com/javase/specs/jls/se25/html/jls-7.html#jls-7.5.5">
