@@ -45,6 +45,13 @@ public class Java25AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        verifyAst(
+                getNonCompilablePath("ExpectedCompactSourceFile.txt"),
+                getNonCompilablePath("InputCompactSourceFile.java"));
+    }
+
+    @Test
     public void testFlexibleConstructorBody() throws Exception {
         verifyAst(
                 getNonCompilablePath("ExpectedFlexibleConstructorBody.txt"),
