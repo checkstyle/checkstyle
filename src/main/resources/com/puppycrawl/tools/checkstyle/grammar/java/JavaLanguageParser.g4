@@ -77,8 +77,23 @@ options { tokenVocab=JavaLanguageLexer; }
     }
 }
 
+// compactMemberDeclaration is an alternative to typeDeclaration to support
+// JEP 512 (JDK 25) compact source files. The two branches are disjoint after
+// modifiers: typeDeclaration starts with class/enum/interface/@interface/record,
+// while compactMemberDeclaration starts with a type name (void/int/IDENT/...).
+// See: https://openjdk.org/jeps/512
 compilationUnit
-    : packageDeclaration? importDeclaration* typeDeclaration* EOF
+    : packageDeclaration? importDeclaration*
+      (typeDeclaration | compactMemberDeclaration)* EOF
+    ;
+
+compactMemberDeclaration
+    : mods+=modifier* type=compactMember[$ctx.mods]
+    ;
+
+compactMember[List<ModifierContext> mods]
+    : methodDeclaration[mods]
+    | fieldDeclaration[mods]
     ;
 
 packageDeclaration
