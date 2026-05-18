@@ -443,7 +443,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
-    <lineContent>return compilationUnit;</lineContent>
+    <lineContent>return root;</lineContent>
     <details>
       type of expression: @Initialized @Nullable DetailAstImpl
       method return type: @Initialized @NonNull DetailAstImpl
