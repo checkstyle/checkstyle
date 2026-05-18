@@ -88,6 +88,12 @@
   <suppress checks="PackageDeclarationCheck"
     files="rule41packagenames[\\/]InputPackageNameBad\.java"/>
 
+  <!-- compact source files cannot have package declarations or matching outer type -->
+  <suppress checks="PackageDeclarationCheck"
+    files="java25[\\/]InputCompactSourceFile\.java"/>
+  <suppress checks="OuterTypeFilename"
+    files="java25[\\/]InputCompactSourceFile\.java"/>
+
   <!-- intentional problem for testing -->
   <suppress checks="RegexpSingleline"
     files="javadoctype[\\/]InputJavadocTypeWithBlockComment\.java"/>
