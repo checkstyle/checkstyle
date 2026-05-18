@@ -132,18 +132,38 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitCompilationUnit(JavaLanguageParser.CompilationUnitContext ctx) {
-        final DetailAstImpl compilationUnit;
+        final DetailAstImpl root;
         // 'EOF' token is always present; therefore if we only have one child, we have an empty file
         final boolean isEmptyFile = ctx.children.size() == 1;
         if (isEmptyFile) {
-            compilationUnit = null;
+            root = null;
         }
         else {
-            compilationUnit = createImaginary(TokenTypes.COMPILATION_UNIT);
             // last child is 'EOF', we do not include this token in AST
-            processChildren(compilationUnit, ctx.children.subList(0, ctx.children.size() - 1));
+            final List<ParseTree> children = ctx.children.subList(0, ctx.children.size() - 1);
+
+            final boolean isCompactSourceFile = children.stream()
+                    .anyMatch(JavaAstVisitor::isCompactMemberDeclaration);
+
+            if (isCompactSourceFile) {
+                root = createImaginary(TokenTypes.COMPACT_COMPILATION_UNIT);
+            }
+            else {
+                root = createImaginary(TokenTypes.COMPILATION_UNIT);
+            }
+            processChildren(root, children);
         }
-        return compilationUnit;
+        return root;
+    }
+
+    /**
+     * Checks whether the given parse-tree node is a compact member declaration.
+     *
+     * @param child a parse-tree child of the compilation unit
+     * @return true if the node is a compact member declaration
+     */
+    private static boolean isCompactMemberDeclaration(ParseTree child) {
+        return child instanceof JavaLanguageParser.CompactMemberDeclarationContext;
     }
 
     @Override
