@@ -71,4 +71,8 @@ public class BlockCommentStyleTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputFormattedCommentsIndentationSurroundingCode.java"));
     }
 
+    @Test
+    public void testBoxComments() throws Exception {
+        verifyWithWholeConfig(getPath("InputBoxComments.java"));
+    }
 }
