@@ -27,9 +27,7 @@ jobs:
           use-annotations: false
           pr-mode: false
 
-          args: |
-            --config,config/qodana.yml,
-            --print-problems
+          args: --config config/qodana.yml --print-problems
 
       - name: Brief Report
         if: always()

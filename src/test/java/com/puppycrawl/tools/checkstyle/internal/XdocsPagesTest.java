@@ -1719,7 +1719,7 @@ public class XdocsPagesTest {
             assertWithMessage("%s section '%s' should have the expected error keys", fileName,
                 sectionName)
                 .that(subsectionTextContent)
-                .isEqualTo(expectedText.toString().replaceAll("\n", " ").trim());
+                .isEqualTo(expectedText.toString().replace("\n", " ").trim());
 
             for (Node node : XmlUtil.findChildElementsByTag(subSection, "a")) {
                 final String url = node.getAttributes().getNamedItem("href").getTextContent();
