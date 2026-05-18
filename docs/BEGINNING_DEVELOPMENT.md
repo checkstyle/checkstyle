@@ -19,13 +19,6 @@ everything you need to do to complete your first pull request.**
 You can find information about development environment preparation here:
 [Prepare development environment in Ubuntu](https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki/Prepare-Development-Environment-in-Ubuntu-12.04)
 
-Note: JDK 25 is currently not supported.
-Some test dependencies (cacio-tta, Mockito/ByteBuddy)
-are incompatible with JDK 25. Please use JDK 21 (LTS)
-for development until this issue is resolved.
-See [issue #18361](https://github.com/checkstyle/checkstyle/issues/18361)
-for more details.
-
 - Fork Checkstyle upstream project. As it is described [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
 
 - Clone your forked repository to your computer:
