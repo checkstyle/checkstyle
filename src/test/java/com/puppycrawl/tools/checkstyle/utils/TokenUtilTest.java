@@ -33,11 +33,17 @@ import java.util.TreeMap;
 
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class TokenUtilTest {
+public class TokenUtilTest extends AbstractModuleTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/utils/tokenutil";
+    }
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
@@ -223,7 +229,7 @@ public class TokenUtilTest {
 
         assertWithMessage("Invalid token total number")
             .that(tokenTypesTotalNumber)
-            .isEqualTo(191);
+            .isEqualTo(192);
     }
 
     @Test
@@ -233,10 +239,10 @@ public class TokenUtilTest {
 
         assertWithMessage("Invalid token length")
             .that(allTokenIds.length)
-            .isEqualTo(191);
+            .isEqualTo(192);
         assertWithMessage("invalid sum")
             .that(sum)
-            .isEqualTo(20273);
+            .isEqualTo(20501);
     }
 
     @Test
@@ -388,6 +394,16 @@ public class TokenUtilTest {
         assertWithMessage("Result is not expected")
                 .that(TokenUtil.isBooleanLiteralType(TokenTypes.LOR))
                 .isFalse();
+    }
+
+    @Test
+    public void testIsRootNodeForCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "13:5: Redundant 'public' modifier.",
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputTokenUtilCompactSourceFile.java"),
+                expected);
     }
 
 }
