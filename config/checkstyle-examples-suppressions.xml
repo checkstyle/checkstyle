@@ -118,6 +118,9 @@
   <!-- Example is longer than FileLength limit by design -->
   <suppress checks="FileLength"
             files="googlenonconstantfieldname[\\/]Example1.java"/>
+  <suppress checks="FileLength"
+            files="annotation[\\/]annotationonsameline[\\/]Example2.java"/>
+
 
   <!-- Suppress forbidden regex messages for avoidstarimport examples -->
   <suppress id="forbiddenRegexpInViolationMessage"
