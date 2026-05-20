@@ -32,8 +32,9 @@ public class MatchXpathCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "20:3: " + "Private methods must appear after public methods",
-            "23:3: " + "Private methods must appear after public methods",
+            "29:3: " + "Private methods must appear after public methods",
+            "32:3: " + "Private methods must appear after public methods",
+            "34:3: " + "Private methods must appear after public methods",
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -42,8 +43,9 @@ public class MatchXpathCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "20:3: " + "Parameterized constructors are not allowed",
-            "22:3: " + "Parameterized constructors are not allowed",
+            "24:3: " + "Parameterized constructors are not allowed",
+            "26:3: " + "Parameterized constructors are not allowed",
+            "46:5: " + "Parameterized constructors are not allowed",
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -52,8 +54,8 @@ public class MatchXpathCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "18:3: " + "Method name should not be test or foo",
-            "21:3: " + "Method name should not be test or foo",
+            "34:3: " + "Method name should not be test or foo",
+            "37:3: " + "Method name should not be test or foo",
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -62,7 +64,7 @@ public class MatchXpathCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "20:5: " + "New instances should be created via var keyword",
+            "41:5: " + "New instances should be created via var keyword",
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -71,7 +73,8 @@ public class MatchXpathCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "19:3: " + "Classes with more than 1 constructor are not allowed",
+            "18:1: " + "Classes with more than 1 constructor are not allowed",
+            "45:3: " + "Classes with more than 1 constructor are not allowed",
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
@@ -80,7 +83,7 @@ public class MatchXpathCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-            "19:17: " + "Array initialization should contain at most 10 elements",
+            "21:17: " + "Array initialization should contain at most 10 elements",
         };
 
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
