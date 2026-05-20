@@ -10,20 +10,30 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationonsameline;
 
 import org.junit.Before;
 
+import javax.annotation.Nullable;
+
 // xdoc section -- start
-class Example1 {
+@Deprecated interface Foo1 {
+  void doSomething();
+}
+
+class Example1 implements Foo1 {
 
   // violation below, "should be on the same line with its target."
   @SuppressWarnings("deprecation")
   public Example1() {
   }
 
-  @SuppressWarnings("unchecked") public void fun2() {
-  }
+  @SuppressWarnings("unchecked") public void fun2() {}
 
-  public void fun1() {
-  }
+  public void fun1() {}
 
+  // violation below, "should be on the same line with its target."
+  @Nullable
+  String s;
+  // violation below, "should be on the same line with its target."
+  @Override
+  public void doSomething() {}
 }
 
 @SuppressWarnings("unchecked") class Test1 extends Example1 {
@@ -32,12 +42,10 @@ class Example1 {
   }
 
   @Override // violation, "should be on the same line with its target."
-  public void fun1() {
-  }
+  public void fun1() {}
 
   @Before // violation, "should be on the same line with its target."
-  @Override public void fun2() {
-  }
+  @Override public void fun2() {}
 
   // violation below, "should be on the same line with its target."
   @SuppressWarnings("deprecation")
