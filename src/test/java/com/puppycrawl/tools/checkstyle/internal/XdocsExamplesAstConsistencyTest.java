@@ -87,7 +87,6 @@ public class XdocsExamplesAstConsistencyTest {
      * <p>Until: <a href="https://github.com/checkstyle/checkstyle/issues/18435">...</a>
      */
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
-            "checks/annotation/annotationonsameline/Example2",
             "checks/annotation/missingoverride/Example2",
             "checks/annotation/suppresswarningsholder/Example1",
             "checks/blocks/emptyblock/Example3",
@@ -98,11 +97,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/coding/illegaltokentext/Example4",
             "checks/coding/illegalsymbol/Example4",
             "checks/coding/illegaltokentext/Example5",
-            "checks/coding/matchxpath/Example2",
-            "checks/coding/matchxpath/Example3",
-            "checks/coding/matchxpath/Example4",
-            "checks/coding/matchxpath/Example5",
-            "checks/coding/matchxpath/Example6",
             "checks/coding/packagedeclaration/Example2",
             "checks/coding/requirethis/Example5",
             "checks/coding/requirethis/Example6",
