@@ -127,6 +127,13 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
+  int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+  int[] small = {1, 2, 3};
+
+  public Example1() { }
+  public Example1(Object c) { }
+  public Example1(int a, HashMap&lt;String, Integer&gt; b) { }
+
   public void method1() { }
   // violation below 'Private methods must appear after public methods'
   private void method2() { }
@@ -135,6 +142,21 @@ public class Example1 {
   private void method4() { }
   public void method5() { }
   private void method6() { }
+  // violation above 'Private methods must appear after public methods'
+  public void test() {}
+  public void getName() {}
+  public void foo() {}
+  public void sayHello() {}
+
+  public void method() {
+    Object a = new Object();
+    var b = new Object();
+  }
+
+  class Inner {
+    public Inner(int a) { }
+    public Inner() { }
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">To violate if there are any parametrized constructors</p>
@@ -153,11 +175,36 @@ public class Example1 {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
+  int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+  int[] small = {1, 2, 3};
+
+  public Example2() { }
   // violation below 'Parameterized constructors are not allowed'
   public Example2(Object c) { }
   // violation below 'Parameterized constructors are not allowed'
   public Example2(int a, HashMap&lt;String, Integer&gt; b) { }
-  public Example2() { }
+
+  public void method1() { }
+  private void method2() { }
+  public void method3() { }
+  private void method4() { }
+  public void method5() { }
+  private void method6() { }
+
+  public void test() {}
+  public void getName() {}
+  public void foo() {}
+  public void sayHello() {}
+
+  public void method() {
+    Object a = new Object();
+    var b = new Object();
+  }
+
+  class Inner {   // violation below 'Parameterized constructors are not allowed'
+    public Inner(int a) { }
+    public Inner() { }
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">To violate if method name is 'test' or 'foo'</p>
@@ -176,12 +223,36 @@ public class Example2 {
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
+  int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+  int[] small = {1, 2, 3};
+
+  public Example3() { }
+  public Example3(Object c) { }
+  public Example3(int a, HashMap&lt;String, Integer&gt; b) { }
+
+  public void method1() { }
+  private void method2() { }
+  public void method3() { }
+  private void method4() { }
+  public void method5() { }
+  private void method6() { }
+
   // violation below 'Method name should not be test or foo'
   public void test() {}
   public void getName() {}
   // violation below 'Method name should not be test or foo'
   public void foo() {}
   public void sayHello() {}
+
+  public void method() {
+    Object a = new Object();
+    var b = new Object();
+  }
+
+  class Inner {
+    public Inner(int a) { }
+    public Inner() { }
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -204,10 +275,34 @@ public class Example3 {
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
-  public void foo() {
+  int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+  int[] small = {1, 2, 3};
+
+  public Example4() { }
+  public Example4(Object c) { }
+  public Example4(int a, HashMap&lt;String, Integer&gt; b) { }
+
+  public void method1() { }
+  private void method2() { }
+  public void method3() { }
+  private void method4() { }
+  public void method5() { }
+  private void method6() { }
+
+  public void test() {}
+  public void getName() {}
+  public void foo() {}
+  public void sayHello() {}
+
+  public void method() {
     // violation below 'New instances should be created via var keyword'
     Object a = new Object();
     var b = new Object();
+  }
+
+  class Inner {
+    public Inner(int a) { }
+    public Inner() { }
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -229,7 +324,31 @@ public class Example4 {
         <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example5 {
+  // violation above 'Classes with more than 1 constructor are not allowed'
+  int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+  int[] small = {1, 2, 3};
+
   public Example5() { }
+  public Example5(Object c) { }
+  public Example5(int a, HashMap&lt;String, Integer&gt; b) { }
+
+  public void method1() { }
+  private void method2() { }
+  public void method3() { }
+  private void method4() { }
+  public void method5() { }
+  private void method6() { }
+
+  public void test() {}
+  public void getName() {}
+  public void foo() {}
+  public void sayHello() {}
+
+  public void method() {
+    Object a = new Object();
+    var b = new Object();
+  }
+
   // violation below 'Classes with more than 1 constructor are not allowed'
   class Inner {
     public Inner(int a) { }
@@ -260,6 +379,32 @@ public class Example6 {
   int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 
   int[] small = {1, 2, 3};
+
+  public Example6() { }
+  public Example6(Object c) { }
+  public Example6(int a, HashMap&lt;String, Integer&gt; b) { }
+
+  public void method1() { }
+  private void method2() { }
+  public void method3() { }
+  private void method4() { }
+  public void method5() { }
+  private void method6() { }
+
+  public void test() {}
+  public void getName() {}
+  public void foo() {}
+  public void sayHello() {}
+
+  public void method() {
+    Object a = new Object();
+    var b = new Object();
+  }
+
+  class Inner {
+    public Inner(int a) { }
+    public Inner() { }
+  }
 }
 </code></pre></div>
       </subsection>
