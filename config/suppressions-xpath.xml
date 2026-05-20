@@ -511,4 +511,9 @@
           checks="LocalVariableNameCheck"
           query="//METHOD_DEF[./IDENT[@text='getLineNumbersFromExpected']]
                 //VARIABLE_DEF/IDENT[@text='i']"/>
+
+  <suppress-xpath
+          files="IndentLevel.java"
+          checks="ConstructorsDeclarationGroupingCheck"
+          query="//CTOR_DEF[./IDENT[@text='IndentLevel']][./MODIFIERS/LITERAL_PRIVATE]"/>
 </suppressions>
