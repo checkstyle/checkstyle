@@ -77,10 +77,20 @@ options { tokenVocab=JavaLanguageLexer; }
     }
 }
 
-compilationUnit
-    : packageDeclaration? importDeclaration* typeDeclaration* EOF
+compilationUnit 
+    : packageDeclaration? importDeclaration*
+      (typeDeclaration | compactMemberDeclaration)* EOF
     ;
 
+compactMemberDeclaration
+    : mods+=modifier* type=compactMember[$ctx.mods]
+    ;
+
+compactMember[List<ModifierContext> mods]
+    : methodDeclaration[mods]
+    | fieldDeclaration[mods]
+    ;
+    
 packageDeclaration
     : annotations[true] LITERAL_PACKAGE qualifiedName SEMI
     ;
