@@ -18,7 +18,9 @@ package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 // xdoc section -- start
@@ -58,5 +60,15 @@ class Example6 {
 
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
+
+  public final int someIntValue = 0; // violation 'must be private'
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableSet<String> includes = null;
+
+  // violation below, immutable type not in config 'must be private'
+  public final BigDecimal value = null;
+
+  // violation below, mutable 'must be private'
+  public final List list = null;
 }
 // xdoc section -- end
