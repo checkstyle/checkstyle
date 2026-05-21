@@ -117,8 +117,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/descendanttoken/Example7",
             "checks/descendanttoken/Example8",
             "checks/descendanttoken/Example9",
-            "checks/design/visibilitymodifier/Example11",
-            "checks/design/visibilitymodifier/Example12",
             "checks/finalparameters/Example4",
             "checks/imports/avoidstaticimport/Example2",
             "checks/imports/customimportorder/Example10",
@@ -301,7 +299,11 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/coding/matchxpath/Example4",
             "checks/coding/matchxpath/Example5",
             "checks/coding/matchxpath/Example6",
-            "filters/suppresswithplaintextcommentfilter/Example9"
+            "filters/suppresswithplaintextcommentfilter/Example9",
+            "checks/design/visibilitymodifier/Example7",
+            "checks/design/visibilitymodifier/Example9",
+            "checks/design/visibilitymodifier/Example10",
+            "checks/design/visibilitymodifier/Example11"
             );
 
     /**
