@@ -1170,6 +1170,7 @@ rfc
 Rgb
 rgba
 rhs
+rhsm
 rhysd
 rickgiles
 rightcurly
@@ -1338,6 +1339,7 @@ teamcity
 technotes
 temurin
 testattr
+Testcase
 Testik
 testinputfolder
 testmodules
