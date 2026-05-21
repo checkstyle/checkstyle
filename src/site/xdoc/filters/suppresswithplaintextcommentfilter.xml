@@ -456,6 +456,11 @@ WHERE u.registration_date &gt;= '2023-01-01' AND u.status = 'active';
         <p id="Example9-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example9 {
+  // CHECKSTYLE_OFF: ALMOST_ALL
+  public static final int MAX_ITEMS = 100;
+  private String[] stringArray;
+  // CHECKSTYLE_ON: ALMOST_ALL
+  private int[] intArray;
 
   static final String LOCATION_CSV_SAMPLE = """
           locationId,label,regionId,regionLabel,vendorId,vendorLabel,address,address2,city,stateProvinceCode,zipCode,countryCode,latitude,longitude
