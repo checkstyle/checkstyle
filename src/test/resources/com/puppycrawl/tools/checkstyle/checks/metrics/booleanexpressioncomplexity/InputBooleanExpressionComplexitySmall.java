@@ -1,5 +1,6 @@
 /*
 BooleanExpressionComplexity
+ignoreUniformChains = (default)false
 max = 1
 tokens = (default)LAND, BAND, LOR, BOR, BXOR
 
