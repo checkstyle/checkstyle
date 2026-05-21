@@ -28,6 +28,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class ClassDefHandler extends BlockParentHandler {
 
+    /** Token for modifier. */
+    private static final String MODIFIER = "modifier";
+
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -107,6 +110,104 @@ public class ClassDefHandler extends BlockParentHandler {
             TokenTypes.LITERAL_THROW,
             TokenTypes.LITERAL_CONTINUE,
         };
+    }
+
+    /**
+     * Checks modifiers for class/annotation definitions.
+     */
+    private void checkModifiers() {
+        if (getMainAst().getType() == TokenTypes.ANNOTATION_DEF) {
+            checkAnnotationDefModifiers();
+        }
+        else {
+            checkClassDefModifiers();
+        }
+    }
+
+    /**
+     * Checks modifiers for annotation definitions, skipping modifiers that are
+     * not at the start of the line.
+     */
+    private void checkAnnotationDefModifiers() {
+        final DetailAST modifiers = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
+        for (DetailAST modifier = modifiers.getFirstChild();
+             modifier != null;
+             modifier = modifier.getNextSibling()) {
+            if (isOnStartOfLine(modifier)
+                    && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
+                logError(modifier, MODIFIER, expandedTabsColumnNo(modifier));
+            }
+        }
+    }
+
+    /**
+     * Checks modifiers for class definitions, skipping wrapped modifiers
+     * that appear on lines after the first modifier line.
+     * Annotations that wrap before the class keyword are skipped when they
+     * share the same column as the first non-annotation modifier, since
+     * the class keyword violation is sufficient to flag the group.
+     */
+    private void checkClassDefModifiers() {
+        final DetailAST modifiers = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST firstModifier = modifiers.getFirstChild();
+        final DetailAST firstNonAnnotationMod = getFirstNonAnnotationModifier(firstModifier);
+        final int firstModifierLine = firstModifier.getLineNo();
+        final int firstNonAnnotationLine = firstNonAnnotationMod.getLineNo();
+        final int firstNonAnnotationColumn = firstNonAnnotationMod.getColumnNo();
+        final boolean annotationWrapsBeforeClass = firstModifierLine != firstNonAnnotationLine;
+
+        for (DetailAST modifier = firstModifier;
+             modifier != null;
+             modifier = modifier.getNextSibling()) {
+            final int columnNo = expandedTabsColumnNo(modifier);
+            if (shouldCheckModifier(modifier, firstModifierLine,
+                    firstNonAnnotationLine, annotationWrapsBeforeClass,
+                    firstNonAnnotationColumn)
+                    && isOnStartOfLine(modifier)
+                    && !getIndent().isAcceptable(columnNo)) {
+                logError(modifier, MODIFIER, columnNo);
+            }
+        }
+    }
+
+    /**
+     * Determines whether a modifier should be checked for indentation violations.
+     *
+     * @param modifier the modifier to check
+     * @param firstModifierLine line number of the first modifier
+     * @param firstNonAnnotationLine line number of the first non-annotation modifier
+     * @param annotationWrapsBeforeClass whether an annotation wraps before the class
+     * @param firstNonAnnotationColumn column of the first non-annotation modifier
+     * @return {@code true} if the modifier should be checked
+     */
+    private static boolean shouldCheckModifier(DetailAST modifier,
+            int firstModifierLine, int firstNonAnnotationLine,
+            boolean annotationWrapsBeforeClass,
+            int firstNonAnnotationColumn) {
+        return !(annotationWrapsBeforeClass
+                && modifier.getType() == TokenTypes.ANNOTATION
+                && modifier.getColumnNo() == firstNonAnnotationColumn)
+            && (modifier.getLineNo() == firstModifierLine
+                || modifier.getLineNo() == firstNonAnnotationLine);
+    }
+
+    /**
+     * Finds the first non-annotation modifier node.
+     *
+     * @param firstModifier the first modifier in the modifiers list
+     * @return the first non-annotation modifier node
+     */
+    private static DetailAST getFirstNonAnnotationModifier(DetailAST firstModifier) {
+        DetailAST result = firstModifier;
+        for (DetailAST modifier = firstModifier;
+             modifier != null;
+             modifier = modifier.getNextSibling()) {
+            if (modifier.getType() != TokenTypes.ANNOTATION) {
+                result = modifier;
+                break;
+            }
+        }
+        return result;
     }
 
     /**
