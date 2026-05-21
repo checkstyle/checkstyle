@@ -85,7 +85,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s1-introduction">
-                    <strong>1 - Introduction</strong>
+                    <strong>Introduction</strong>
                   </a>
                 </td>
                 <td>--</td>
@@ -102,7 +102,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s1.1-motivation">
-                    1.1 Motivation
+                    Motivation
                   </a>
                 </td>
                 <td>--</td>
@@ -119,7 +119,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s1.2-guiding-principles">
-                    1.2 Guiding Principles
+                    Guiding Principles
                   </a>
                 </td>
                 <td>--</td>
@@ -137,7 +137,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s2-java-source-files">
-                    <strong>2 - Java Source Files</strong>
+                    <strong>Java Source Files</strong>
                   </a>
                 </td>
                 <td>
@@ -184,7 +184,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s2.1-special-characters">
-                    2.1 Special Characters
+                    Special Characters
                   </a>
                 </td>
                 <td>
@@ -218,7 +218,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3-formatting">
-                    <strong>3 - Formatting</strong>
+                    <strong>Formatting</strong>
                   </a>
                 </td>
                 <td>???</td>
@@ -235,7 +235,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.1-copyright-notice">
-                    3.1 Copyright notice
+                    Copyright notice
                   </a>
                 </td>
                 <td>???</td>
@@ -281,7 +281,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.3-import-statements">
-                    3.3 Import statements
+                    Import statements
                   </a>
                 </td>
                 <td>
@@ -309,7 +309,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.3.1-wildcard-imports">
-                    3.3.1 Wildcard Imports
+                    Wildcard Imports
                   </a>
                 </td>
                 <td>???</td>
@@ -326,7 +326,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.4-class-structure">
-                    3.4 Class Structure
+                    Class Structure
                   </a>
                 </td>
                 <td>???</td>
@@ -343,7 +343,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.4.1-order-of-constructors-and-overloaded-methods">
-                    3.4.1 Order of Constructors and Overloaded Methods
+                    Order of Constructors and Overloaded Methods
                   </a>
                 </td>
                 <td>???</td>
@@ -360,7 +360,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.5-modifiers">
-                    3.5 Modifiers
+                    Modifiers
                   </a>
                 </td>
                 <td>???</td>
@@ -377,7 +377,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.6-braces">
-                    3.6 Braces
+                    Braces
                   </a>
                 </td>
                 <td>???</td>
@@ -394,7 +394,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.6.1-short-forms">
-                    3.6.1 Short Forms
+                    Short Forms
                   </a>
                 </td>
                 <td>???</td>
@@ -411,7 +411,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.7-indentation">
-                    3.7 Indentation
+                    Indentation
                   </a>
                 </td>
                 <td>
@@ -448,7 +448,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8-wrapping-lines">
-                    3.8 Wrapping Lines
+                    Wrapping Lines
                   </a>
                 </td>
                 <td>
@@ -477,7 +477,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8.1-wrapping-class-declarations">
-                    3.8.1 Wrapping Class Declarations
+                    Wrapping Class Declarations
                   </a>
                 </td>
                 <td>???</td>
@@ -494,7 +494,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8.2-wrapping-method-declarations">
-                    3.8.2 Wrapping Method Declarations
+                    Wrapping Method Declarations
                   </a>
                 </td>
                 <td>???</td>
@@ -511,7 +511,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8.3-wrapping-expressions">
-                    3.8.3 Wrapping Expressions
+                    Wrapping Expressions
                   </a>
                 </td>
                 <td>???</td>
@@ -528,7 +528,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.9-whitespace">
-                    3.9 Whitespace
+                    Whitespace
                   </a>
                 </td>
                 <td>↓</td>
@@ -545,7 +545,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.9.1-vertical-whitespace">
-                    3.9.1 Vertical Whitespace
+                    Vertical Whitespace
                   </a>
                 </td>
                 <td>???</td>
@@ -562,7 +562,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.9.2-horizontal-whitespace">
-                    3.9.2 Horizontal Whitespace
+                    Horizontal Whitespace
                   </a>
                 </td>
                 <td>???</td>
@@ -579,7 +579,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.10-variable-declarations">
-                    3.10 Variable Declarations
+                    Variable Declarations
                   </a>
                 </td>
                 <td>
@@ -625,7 +625,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.11-annotations">
-                    3.11 Annotations
+                    Annotations
                   </a>
                 </td>
                 <td>???</td>
@@ -642,7 +642,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.12-lambda-expressions">
-                    3.12 Lambda Expressions
+                    Lambda Expressions
                   </a>
                 </td>
                 <td>
@@ -671,7 +671,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.13-redundant-parentheses">
-                    3.13 Redundant Parentheses
+                    Redundant Parentheses
                   </a>
                 </td>
                 <td>???</td>
@@ -688,7 +688,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.14-literals">
-                    3.14 Literals
+                    Literals
                   </a>
                 </td>
                 <td>
@@ -751,7 +751,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4-naming">
-                    <strong>4 - Naming</strong>
+                    <strong>Naming</strong>
                   </a>
                 </td>
                 <td>↓</td>
@@ -768,7 +768,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.1-package-names">
-                    4.1 Package Names
+                    Package Names
                   </a>
                 </td>
                 <td>
@@ -801,7 +801,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.2-class-interface-enum-names">
-                    4.2 Class, Interface and Enum Names
+                    Class, Interface and Enum Names
                   </a>
                 </td>
                 <td>???</td>
@@ -818,7 +818,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.3-method-names">
-                    4.3 Method Names
+                    Method Names
                   </a>
                 </td>
                 <td>
@@ -849,7 +849,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.4-variables">
-                    4.4 Variables
+                    Variables
                   </a>
                 </td>
                 <td>???</td>
@@ -866,7 +866,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.5-type-variables">
-                    4.5 Type Variables
+                    Type Variables
                   </a>
                 </td>
                 <td>???</td>
@@ -883,7 +883,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.6-constants">
-                    4.6 Constants
+                    Constants
                   </a>
                 </td>
                 <td>???</td>
@@ -901,7 +901,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s5-programming-practices">
-                    <strong>5 - Programming Practices</strong>
+                    <strong>Programming Practices</strong>
                   </a>
                 </td>
                 <td>???</td>
@@ -918,7 +918,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s5.1-commenting-code">
-                    5.1 Commenting Code
+                    Commenting Code
                   </a>
                 </td>
                 <td>???</td>
@@ -936,7 +936,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s6-when-to-reformat">
-                    <strong>6 - When to reformat code</strong>
+                    <strong>When to reformat code</strong>
                   </a>
                 </td>
                 <td>--</td>
@@ -954,7 +954,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s7-cases-not-covered">
-                    <strong>7 - Cases not covered</strong>
+                    <strong>Cases not covered</strong>
                   </a>
                 </td>
                 <td>--</td>
