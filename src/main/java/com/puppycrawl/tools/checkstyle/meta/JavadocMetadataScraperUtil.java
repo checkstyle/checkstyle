@@ -36,6 +36,17 @@ public final class JavadocMetadataScraperUtil {
     private static final Pattern TOKEN_TEXT_PATTERN = Pattern.compile("([A-Z_]{2,})+");
 
     /**
+     * Matches an ampersand ({@code &}) that is NOT already the start of a valid
+     * HTML entity reference (numeric like {@code &#64;}, hex like {@code &#x40;},
+     * or named like {@code &amp;}).  Used when escaping text inside
+     * {@code {@code}} and {@code {@literal}} blocks so that existing HTML entity
+     * escapes written deliberately in Javadoc (e.g. {@code &#64;} for {@code @})
+     * are preserved rather than being double-escaped to {@code &amp;#64;}.
+     */
+    private static final Pattern BARE_AMPERSAND_PATTERN =
+            Pattern.compile("&(?!#\\d+;|#[xX][0-9a-fA-F]+;|[a-zA-Z][a-zA-Z0-9]*;)");
+
+    /**
      * Private utility constructor.
      */
     private JavadocMetadataScraperUtil() {
@@ -147,13 +158,17 @@ public final class JavadocMetadataScraperUtil {
     }
 
     /**
-     * Escapes special XML characters in the given text.
+     * Escapes special XML characters in the given text, while preserving any
+     * HTML entity references that are already present (e.g. {@code &#64;} for
+     * {@code @}, {@code &amp;} for a literal ampersand).  A bare {@code &} that
+     * is <em>not</em> already the start of a valid entity is still escaped to
+     * {@code &amp;}.
      *
      * @param text the text to escape.
      * @return text with XML special characters escaped.
      */
     private static String escapeXmlChars(String text) {
-        return text.replace("&", "&amp;")
+        return BARE_AMPERSAND_PATTERN.matcher(text).replaceAll("&amp;")
             .replace("<", "&lt;")
             .replace(">", "&gt;");
     }

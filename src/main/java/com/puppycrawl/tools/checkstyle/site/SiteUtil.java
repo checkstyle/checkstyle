@@ -132,6 +132,15 @@ public final class SiteUtil {
     /** The precompiled pattern for a comma followed by a space. */
     private static final Pattern COMMA_SPACE_PATTERN = Pattern.compile(", ");
 
+    /**
+     * Matches an ampersand ({@code &}) that is NOT already the start of a valid
+     * HTML entity reference (numeric like {@code &#64;}, hex like {@code &#x40;},
+     * or named like {@code &amp;}).  Used in {@code {@code}} / {@code {@literal}}
+     * blocks to escape only "bare" ampersands while leaving existing entities intact.
+     */
+    private static final Pattern BARE_AMPERSAND_PATTERN =
+            Pattern.compile("&(?!#\\d+;|#[xX][0-9a-fA-F]+;|[a-zA-Z][a-zA-Z0-9]*;)");
+
     /** The string '{}'. */
     private static final String EMPTY_CURLY_BRACES = "{}";
 
@@ -1799,10 +1808,12 @@ public final class SiteUtil {
                                            DescriptionTraversalState state) {
         if (isTextContent(node, state.inHtmlElement)) {
             if (state.inCodeLiteral || state.inLiteralTag) {
-                description.append(node.getText().trim()
-                        .replace("&", "&amp;")
+                final String text = BARE_AMPERSAND_PATTERN
+                        .matcher(node.getText().trim())
+                        .replaceAll("&amp;")
                         .replace("<", "&lt;")
-                        .replace(">", "&gt;"));
+                        .replace(">", "&gt;");
+                description.append(text);
             }
             else {
                 description.append(node.getText());
