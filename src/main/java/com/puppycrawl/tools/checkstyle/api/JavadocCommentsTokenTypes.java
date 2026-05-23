@@ -939,13 +939,13 @@ public final class JavadocCommentsTokenTypes {
     public static final int SUMMARY_INLINE_TAG = JavadocCommentsLexer.SUMMARY_INLINE_TAG;
 
     /**
-     * {@code {@inheritDoc}} inline tag.
+     * {@code @inheritDoc} inline tag.
      *
-     * <p>This node models the inline {@code {@inheritDoc}} tag that instructs Javadoc
+     * <p>This node models the inline {@code @inheritDoc}tag that instructs Javadoc
      * to inherit documentation from the corresponding element in a parent class or interface.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * {@inheritDoc}}</pre>
+     * <pre>{@code * @inheritDoc}</pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
