@@ -47,13 +47,3 @@ exclude:
       - src/test/java/com/puppycrawl/tools/checkstyle/grammar/javadoc/ParseTreeBuilder.java
 
       - docs/GRAMMAR_UPDATES.md
-
-  # until https://github.com/checkstyle/checkstyle/issues/19895
-  - name: UnnecessaryInheritDoc
-    paths:
-      - src/main/java/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.java
-      - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java
-      - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo.java
-      - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java
-      - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java
-      - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java

@@ -137,7 +137,7 @@ public enum JavadocTagInfo {
     },
 
     /**
-     * {@code {@inheritDoc}}.
+     * {@code @inheritDoc} .
      */
     INHERIT_DOC("{@inheritDoc}", "inheritDoc", Type.INLINE) {
 
