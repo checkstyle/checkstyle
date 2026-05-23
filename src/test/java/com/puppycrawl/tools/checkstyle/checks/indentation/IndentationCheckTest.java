@@ -4171,6 +4171,78 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testClassDefWrappedModifiers() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("arrayInitIndent", "2");
+        final String fileName =
+                getPath("InputIndentationClassDefWrappedModifiers.java");
+        final String[] expected = {
+            "16:3: " + getCheckMessage(MSG_ERROR, "class", 2, 6),
+            "18:3: " + getCheckMessage(MSG_ERROR, "static", 2, 6),
+            "22:3: " + getCheckMessage(MSG_ERROR, "static", 2, 6),
+            "31:3: " + getCheckMessage(MSG_ERROR, "strictfp", 2, 6),
+            "35:3: " + getCheckMessage(MSG_ERROR, "@", 2, 6),
+            "41:3: " + getCheckMessage(MSG_ERROR, "static", 2, 6),
+            "42:3: " + getCheckMessage(MSG_ERROR, "strictfp", 2, 6),
+            "75:2: " + getCheckMessage(MSG_ERROR, "class def modifier", 1, 2),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testAnnotationBeforeClass() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("arrayInitIndent", "2");
+        final String fileName = getPath("InputIndentationAnnotationBeforeClass.java");
+        final String[] expected = {
+            "32:2: " + getCheckMessage(MSG_ERROR, "class def modifier", 1, 2),
+            "38:2: " + getCheckMessage(MSG_ERROR, "class def modifier", 1, 2),
+            "40:5: " + getCheckMessage(MSG_ERROR, "class def modifier", 4, 2),
+        };
+        verify(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testAnnotationBeforeClassOpenJdkCase() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("arrayInitIndent", "2");
+        final String fileName = getPath("InputIndentationAnnotBeforeClassOpenJdkCase.java");
+        final String[] expected = {
+            "5:4: " + getCheckMessage(MSG_ERROR, "class def modifier", 3, 4),
+            "8:9: " + getCheckMessage(MSG_ERROR, "class def modifier", 8, 4),
+            "11:3: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 4),
+            "14:7: " + getCheckMessage(MSG_ERROR, "class def modifier", 6, 4),
+            "18:4: " + getCheckMessage(MSG_ERROR, "class def modifier", 3, 4),
+            "22:7: " + getCheckMessage(MSG_ERROR, "class def modifier", 6, 4),
+            "25:3: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 4),
+            "28:4: " + getCheckMessage(MSG_ERROR, "enum def modifier", 3, 4),
+            "31:4: " + getCheckMessage(MSG_ERROR, "interface def modifier", 3, 4),
+        };
+        verify(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testTryResourcesLparenViolation() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("basicOffset", "4");
