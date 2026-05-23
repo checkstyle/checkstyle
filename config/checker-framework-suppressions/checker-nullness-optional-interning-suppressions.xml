@@ -2921,9 +2921,30 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/OverloadMethodsDeclarationOrderCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference params</message>
+    <lineContent>return params.getChildCount(TokenTypes.PARAMETER_DEF);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/OverloadMethodsDeclarationOrderCheck.java</fileName>
+    <specifier>unboxing.of.nullable</specifier>
+    <message>unboxing a possibly-null reference methodIsOrderedMap.get(methodName)</message>
+    <lineContent>final Boolean isOrdered = methodIsOrderedMap.get(methodName)</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/OverloadMethodsDeclarationOrderCheck.java</fileName>
     <specifier>unboxing.of.nullable</specifier>
     <message>unboxing a possibly-null reference methodLineNumberMap.get(methodName)</message>
     <lineContent>methodLineNumberMap.get(methodName);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/OverloadMethodsDeclarationOrderCheck.java</fileName>
+    <specifier>unboxing.of.nullable</specifier>
+    <message>unboxing a possibly-null reference methodParameterCountMap.get(methodName)</message>
+    <lineContent>&amp;&amp; currentParamCount &gt;= methodParameterCountMap.get(methodName);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
