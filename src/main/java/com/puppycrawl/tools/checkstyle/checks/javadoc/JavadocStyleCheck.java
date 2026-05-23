@@ -57,7 +57,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * content.
  * Javadoc automatically places the first sentence in the method summary
  * table and index. Without proper punctuation the Javadoc may be malformed.
- * All items eligible for the {@code {@inheritDoc}} tag are exempt from this
+ * All items eligible for the {@code @inheritDoc}} tag are exempt from this
  * requirement.
  * </li>
  * <li>
