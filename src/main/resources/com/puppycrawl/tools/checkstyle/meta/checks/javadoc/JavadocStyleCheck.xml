@@ -20,7 +20,7 @@
  content.
  Javadoc automatically places the first sentence in the method summary
  table and index. Without proper punctuation the Javadoc may be malformed.
- All items eligible for the &lt;code&gt;{@inheritDoc}&lt;/code&gt; tag are exempt from this
+ All items eligible for the &lt;code&gt;@inheritDoc&lt;/code&gt;} tag are exempt from this
  requirement.
  &lt;/li&gt;
  &lt;li&gt;
