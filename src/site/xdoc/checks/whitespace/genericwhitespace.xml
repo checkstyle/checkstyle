@@ -11,7 +11,7 @@
       <subsection name="Description" id="GenericWhitespace_Description">
         <div>
           Checks that the whitespace around the Generic tokens (angle brackets)
-          "&lt;" and "&gt;" are correct to the <i>typical</i> convention.
+          "<code>&lt;</code>" and "<code>&gt;</code>" are correct to the <i>typical</i> convention.
           The convention is not configurable.
         </div>
 
@@ -21,7 +21,7 @@
         </p>
 
         <p>
-          Left angle bracket ("&lt;"):
+          Left angle bracket ("<code>&lt;</code>"):
         </p>
         <ul>
         <li> should be preceded with whitespace only
@@ -33,7 +33,7 @@
         </ul>
 
         <p>
-          Right angle bracket ("&gt;"):
+          Right angle bracket ("<code>&gt;</code>"):
         </p>
         <ul>
         <li> should not be preceded with whitespace in all cases.</li>

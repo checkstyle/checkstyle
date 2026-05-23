@@ -59,8 +59,9 @@
               </a>
             </td>
             <td>
-              Checks that the whitespace around the Generic tokens (angle brackets) "&lt;" and
-              "&gt;" are correct to the <i>typical</i> convention.
+              Checks that the whitespace around the Generic tokens (angle brackets)
+              "<code>&lt;</code>" and "<code>&gt;</code>" are correct to the <i>typical</i>
+              convention.
             </td>
           </tr>
           <tr>
