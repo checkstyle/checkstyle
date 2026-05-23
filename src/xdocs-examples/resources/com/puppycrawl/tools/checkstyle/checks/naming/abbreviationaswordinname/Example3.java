@@ -15,8 +15,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 
+import java.util.HashSet;
+import java.util.Set;
+
 // xdoc section -- start
-class Example3 {
+class Example3 extends SuperClass {
+  int CURRENT_COUNTER; // violation 'no more than '1' consecutive capital letters'
+  // violation below 'no more than '1' consecutive capital letters'
+  static int GLOBAL_COUNTER;
+  final Set<String> stringsFOUND = new HashSet<>(); // ok, final is ignored
   int firstNum;
   int secondNUM; // violation 'no more than '1' consecutive capital letters'
   static int thirdNum; // ok, the static modifier would be checked
@@ -25,8 +32,25 @@ class Example3 {
   String firstURL; // ok, URL abbreviation is allowed
   final int TOTAL = 5; // ok, final is ignored
   static final int LIMIT = 10; // ok, static final is ignored
+  int counterXYZ = 1; // violation 'no more than '1' consecutive capital letters'
+  final int customerID = 2; // ok, final is ignored
+  // violation below 'no more than '1' consecutive capital letters'
+  static int nextID = 3;
+  static final int MAX_ALLOWED = 4; // ok, static final is ignored
+
   void newOAuth2Client() {} // ok, O abbreviation is allowed
   void OAuth2() {} // ok, O abbreviation is allowed
   void OAUth2() {}
+
+  @Override
+  public void printCOUNTER() {
+    System.out.println(CURRENT_COUNTER);
+  }
+  void incrementCOUNTER() {
+    CURRENT_COUNTER++;
+  }
+  static void incrementGLOBAL() {
+    GLOBAL_COUNTER++;
+  }
 }
 // xdoc section -- end

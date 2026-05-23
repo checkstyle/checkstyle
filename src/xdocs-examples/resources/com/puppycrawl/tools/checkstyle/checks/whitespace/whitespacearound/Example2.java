@@ -17,6 +17,17 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 // xdoc section -- start
 class Example2 {
+  public Example2() { }
+
+  class Test { }
+  interface testInterface { }
+  class anotherTest {
+    int a = 4;
+  }
+
+  int y = 0;
+  int a = 4;
+
   void example() {
     int b=10; // 2 violations
     // no space before and after'='
@@ -42,6 +53,34 @@ class Example2 {
     c>>>=1; // 2 violations
     // no space before and after'>>>='
     c >>>= 1;
+    Runnable noop = () -> { };
+    try { } catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item : vowels) { }
+    for (int i = 100; i > 10; i--) { }
+    do { } while (y == 1);
+    int i = 0;
+    switch (i) {
+      case 1: { }
+    }
+    int a = 4;
   }
+
+  public static void main(String[] args) {
+    if (true) { }
+    else { }
+    for (int i = 1; i > 1; i++) { }
+    Runnable noop = () -> { };
+    try { }
+    catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) {
+
+    }
+  }
+
+  public void muFunction() { }
+  void myFunction() { }
+  void myFunction2() { }
 }
 // xdoc section -- end

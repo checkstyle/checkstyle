@@ -382,6 +382,46 @@ try {
 class Example1 {
   public Example1(){} // 3 violations
   // no space after ')' and '{', no space before '}'
+
+  class Test { }
+  interface testInterface { }
+  class anotherTest {
+    int a = 4;
+  }
+
+  int y = 0;
+  int a = 4;
+
+  void example() {
+    int b = 10;
+    int c = 10;
+    b += 10;
+    b += 10;
+    c *= 10;
+    c *= 10;
+    c -= 5;
+    c -= 5;
+    c /= 2;
+    c /= 2;
+    c %= 1;
+    c %= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    Runnable noop = () -&gt; { };
+    try { } catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item : vowels) { }
+    for (int i = 100; i &gt; 10; i--) { }
+    do { } while (y == 1);
+    int i = 0;
+    switch (i) {
+      case 1: { }
+    }
+    int a = 4;
+  }
+
   public static void main(String[] args) {
     if (true) { }
     else{ // 2 violations
@@ -401,6 +441,10 @@ class Example1 {
 
     }
   }
+
+  public void muFunction() { }
+  void myFunction() { }
+  void myFunction2() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -421,6 +465,17 @@ class Example1 {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
+  public Example2() { }
+
+  class Test { }
+  interface testInterface { }
+  class anotherTest {
+    int a = 4;
+  }
+
+  int y = 0;
+  int a = 4;
+
   void example() {
     int b=10; // 2 violations
     // no space before and after'='
@@ -446,7 +501,35 @@ class Example2 {
     c&gt;&gt;&gt;=1; // 2 violations
     // no space before and after'&gt;&gt;&gt;='
     c &gt;&gt;&gt;= 1;
+    Runnable noop = () -&gt; { };
+    try { } catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item : vowels) { }
+    for (int i = 100; i &gt; 10; i--) { }
+    do { } while (y == 1);
+    int i = 0;
+    switch (i) {
+      case 1: { }
+    }
+    int a = 4;
   }
+
+  public static void main(String[] args) {
+    if (true) { }
+    else { }
+    for (int i = 1; i &gt; 1; i++) { }
+    Runnable noop = () -&gt; { };
+    try { }
+    catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) {
+
+    }
+  }
+
+  public void muFunction() { }
+  void myFunction() { }
+  void myFunction2() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -464,6 +547,61 @@ class Example2 {
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
+  public Example3() { }
+
+  class Test { }
+  interface testInterface { }
+  class anotherTest {
+    int a = 4;
+  }
+
+  int y = 0;
+  int a = 4;
+
+  void example() {
+    int b = 10;
+    int c = 10;
+    b += 10;
+    b += 10;
+    c *= 10;
+    c *= 10;
+    c -= 5;
+    c -= 5;
+    c /= 2;
+    c /= 2;
+    c %= 1;
+    c %= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    Runnable noop = () -&gt; { };
+    try { } catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item : vowels) { }
+    for (int i = 100; i &gt; 10; i--) { }
+    do { } while (y == 1);
+    int i = 0;
+    switch (i) {
+      case 1: { }
+    }
+    int a = 4;
+  }
+
+  public static void main(String[] args) {
+    if (true) { }
+    else { }
+    for (int i = 1; i &gt; 1; i++) { }
+    Runnable noop = () -&gt; { };
+    try { }
+    catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) {
+
+    }
+  }
+
+  public void muFunction() { }
   void myFunction() {} // violation ''}' is not preceded with whitespace'
   void myFunction2() { }
 }
@@ -483,9 +621,64 @@ class Example3 {
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
-  public void muFunction() {}
+  public Example4() { }
+
+  class Test { }
+  interface testInterface { }
+  class anotherTest {
+    int a = 4;
+  }
+
+  int y = 0;
   int a=4; // 2 violations
   // no space before and after '='
+
+  void example() {
+    int b = 10;
+    int c = 10;
+    b += 10;
+    b += 10;
+    c *= 10;
+    c *= 10;
+    c -= 5;
+    c -= 5;
+    c /= 2;
+    c /= 2;
+    c %= 1;
+    c %= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    Runnable noop = () -&gt; { };
+    try { } catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item : vowels) { }
+    for (int i = 100; i &gt; 10; i--) { }
+    do { } while (y == 1);
+    int i = 0;
+    switch (i) {
+      case 1: { }
+    }
+    int a = 4;
+  }
+
+  public static void main(String[] args) {
+    if (true) { }
+    else { }
+    for (int i = 1; i &gt; 1; i++) { }
+    Runnable noop = () -&gt; { };
+    try { }
+    catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) {
+
+    }
+  }
+
+  public void muFunction() {}
+  void myFunction() {}
+  void myFunction2() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
@@ -504,8 +697,63 @@ class Example4 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
   public Example5() {}
-  public void myFunction() {} // 2 violations
+
+  class Test { }
+  interface testInterface { }
+  class anotherTest {
+    int a = 4;
+  }
+
+  int y = 0;
+  int a = 4;
+
+  void example() {
+    int b = 10;
+    int c = 10;
+    b += 10;
+    b += 10;
+    c *= 10;
+    c *= 10;
+    c -= 5;
+    c -= 5;
+    c /= 2;
+    c /= 2;
+    c %= 1;
+    c %= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    Runnable noop = () -&gt; { };
+    try { } catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item : vowels) { }
+    for (int i = 100; i &gt; 10; i--) { }
+    do { } while (y == 1);
+    int i = 0;
+    switch (i) {
+      case 1: { }
+    }
+    int a = 4;
+  }
+
+  public static void main(String[] args) {
+    if (true) { }
+    else { }
+    for (int i = 1; i &gt; 1; i++) { }
+    Runnable noop = () -&gt; { };
+    try { }
+    catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) {
+
+    }
+  }
+
+  public void muFunction() { }
+  void myFunction() {} // 2 violations
   // no space after '{', no space before '}'
+  void myFunction2() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
@@ -523,12 +771,64 @@ class Example5 {
         <p id="Example6-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example6 {
+  public Example6() { }
+
   class Test {}
   interface testInterface{}
   class anotherTest {
     int a=4; // 2 violations
     // no space before and after '='
   }
+
+  int y = 0;
+  int a = 4;
+
+  void example() {
+    int b = 10;
+    int c = 10;
+    b += 10;
+    b += 10;
+    c *= 10;
+    c *= 10;
+    c -= 5;
+    c -= 5;
+    c /= 2;
+    c /= 2;
+    c %= 1;
+    c %= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    Runnable noop = () -&gt; { };
+    try { } catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item : vowels) { }
+    for (int i = 100; i &gt; 10; i--) { }
+    do { } while (y == 1);
+    int i = 0;
+    switch (i) {
+      case 1: { }
+    }
+    int a = 4;
+  }
+
+  public static void main(String[] args) {
+    if (true) { }
+    else { }
+    for (int i = 1; i &gt; 1; i++) { }
+    Runnable noop = () -&gt; { };
+    try { }
+    catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) {
+
+    }
+  }
+
+  public void muFunction() { }
+  void myFunction() { }
+  void myFunction2() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example7-config">
@@ -546,13 +846,64 @@ class Example6 {
         <p id="Example7-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example7 {
+  public Example7() { }
+
+  class Test { }
+  interface testInterface { }
+  class anotherTest {
+    int a = 4;
+  }
+
   int y = 0;
+  int a = 4;
+
   void example() {
+    int b = 10;
+    int c = 10;
+    b += 10;
+    b += 10;
+    c *= 10;
+    c *= 10;
+    c -= 5;
+    c -= 5;
+    c /= 2;
+    c /= 2;
+    c %= 1;
+    c %= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    Runnable noop = () -&gt; { };
+    try { } catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item : vowels) { }
     for (int i = 100;i &gt; 10; i--){}
     do {} while (y == 1);
+    int i = 0;
+    switch (i) {
+      case 1: { }
+    }
     int a=4; // 2 violations
     // no space before and after '='
   }
+
+  public static void main(String[] args) {
+    if (true) { }
+    else { }
+    for (int i = 1; i &gt; 1; i++) { }
+    Runnable noop = () -&gt; { };
+    try { }
+    catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) {
+
+    }
+  }
+
+  public void muFunction() { }
+  void myFunction() { }
+  void myFunction2() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example8-config">
@@ -570,11 +921,64 @@ class Example7 {
         <p id="Example8-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example8 {
+  public Example8() { }
+
+  class Test { }
+  interface testInterface { }
+  class anotherTest {
+    int a = 4;
+  }
+
+  int y = 0;
+  int a = 4;
+
   void example() {
+    int b = 10;
+    int c = 10;
+    b += 10;
+    b += 10;
+    c *= 10;
+    c *= 10;
+    c -= 5;
+    c -= 5;
+    c /= 2;
+    c /= 2;
+    c %= 1;
+    c %= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
     Runnable noop = () -&gt; {};
+    try { } catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item : vowels) { }
+    for (int i = 100; i &gt; 10; i--) { }
+    do { } while (y == 1);
+    int i = 0;
+    switch (i) {
+      case 1: { }
+    }
     int a=4; // 2 violations
     // no space before and after '='
   }
+
+  public static void main(String[] args) {
+    if (true) { }
+    else { }
+    for (int i = 1; i &gt; 1; i++) { }
+    Runnable noop = () -&gt; { };
+    try { }
+    catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) {
+
+    }
+  }
+
+  public void muFunction() { }
+  void myFunction() { }
+  void myFunction2() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example9-config">
@@ -592,12 +996,64 @@ class Example8 {
         <p id="Example9-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example9 {
+  public Example9() { }
+
+  class Test { }
+  interface testInterface { }
+  class anotherTest {
+    int a = 4;
+  }
+
+  int y = 0;
+  int a = 4;
+
   void example() {
+    int b = 10;
+    int c = 10;
+    b += 10;
+    b += 10;
+    c *= 10;
+    c *= 10;
+    c -= 5;
+    c -= 5;
+    c /= 2;
+    c /= 2;
+    c %= 1;
+    c %= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    Runnable noop = () -&gt; { };
+    try { } catch (Exception e){}
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item : vowels) { }
+    for (int i = 100; i &gt; 10; i--) { }
+    do { } while (y == 1);
+    int i = 0;
+    switch (i) {
+      case 1: { }
+    }
     int a=4; // 2 violations
     // no space before and after '='
-    try {
-    } catch (Exception e){}
   }
+
+  public static void main(String[] args) {
+    if (true) { }
+    else { }
+    for (int i = 1; i &gt; 1; i++) { }
+    Runnable noop = () -&gt; { };
+    try { }
+    catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) {
+
+    }
+  }
+
+  public void muFunction() { }
+  void myFunction() { }
+  void myFunction2() { }
 }
 </code></pre></div>
         <p>
@@ -620,13 +1076,65 @@ class Example9 {
         <p id="Example10-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example10 {
+  public Example10() { }
+
+  class Test { }
+  interface testInterface { }
+  class anotherTest {
+    int a = 4;
+  }
+
+  int y = 0;
+  int a = 4;
+
   void example() {
-    int a=4; // 2 violations
-    // no space before and after '='
+    int b = 10;
+    int c = 10;
+    b += 10;
+    b += 10;
+    c *= 10;
+    c *= 10;
+    c -= 5;
+    c -= 5;
+    c /= 2;
+    c /= 2;
+    c %= 1;
+    c %= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    Runnable noop = () -&gt; { };
+    try { } catch (Exception e) { }
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { // violation '':' is not preceded with whitespace'
     }
+    for (int i = 100; i &gt; 10; i--) { }
+    do { } while (y == 1);
+    int i = 0;
+    switch (i) {
+      case 1: { }
+    }
+    int a=4; // 2 violations
+    // no space before and after '='
   }
+
+  public static void main(String[] args) {
+    if (true) { }
+    else { }
+    for (int i = 1; i &gt; 1; i++) { }
+    Runnable noop = () -&gt; { };
+    try { }
+    catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) { // violation '':' is not preceded with whitespace'
+
+    }
+  }
+
+  public void muFunction() { }
+  void myFunction() { }
+  void myFunction2() { }
 }
 </code></pre></div>
         <hr class="example-separator"/>
@@ -645,16 +1153,65 @@ class Example10 {
         <p id="Example11-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example11 {
+  public Example11() { }
+
+  class Test { }
+  interface testInterface { }
+  class anotherTest {
+    int a = 4;
+  }
+
+  int y = 0;
+  int a = 4;
+
   void example() {
+    int b = 10;
+    int c = 10;
+    b += 10;
+    b += 10;
+    c *= 10;
+    c *= 10;
+    c -= 5;
+    c -= 5;
+    c /= 2;
+    c /= 2;
+    c %= 1;
+    c %= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    c &gt;&gt;&gt;= 1;
+    Runnable noop = () -&gt; { };
+    try { } catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item : vowels) { }
+    for (int i = 100; i &gt; 10; i--) { }
+    do { } while (y == 1);
     int i = 0;
     switch (i) {
       case 1: {}
     }
-
     int a=4; // 2 violations
     // ''=' is not preceded with whitespace.'
     // ''=' is not followed by whitespace.'
   }
+
+  public static void main(String[] args) {
+    if (true) { }
+    else { }
+    for (int i = 1; i &gt; 1; i++) { }
+    Runnable noop = () -&gt; { };
+    try { }
+    catch (Exception e) { }
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) {
+
+    }
+  }
+
+  public void muFunction() { }
+  void myFunction() { }
+  void myFunction2() { }
 }
 </code></pre></div>
 

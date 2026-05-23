@@ -132,9 +132,23 @@ if ((condition1 &amp;&amp; condition2)
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
     int a;                      // ok, basicOffset = 4
+    boolean x, y;
+    String field = "example";
+    int[] values = {
+        1, 2, 3                 // ok, arrayInitIndent = 4
+    };
+    int[] values1 = {
+        10,
+        20,
+        30
+    };
+    int[] values2 = {
+        10
+    };
 
     void method() {
         int b = 0;              // ok, basicOffset = 4
+        int c = 1;
     }
 
     void method2()
@@ -142,12 +156,69 @@ class Example1 {
         switch (a) {
             case 1:             // ok, caseIndent = 4
                 break;
+            case 2:
+                break;
+            case 3:
+                break;
         }
     }
 
-    int[] values = {
-        1, 2, 3                 // ok, arrayInitIndent = 4
-    };
+    void method3(int a,
+                 int b) {
+        if (x
+                &amp;&amp; y) {
+            method3(a, b);
+        }
+    }
+
+    void method4(int a,
+                 int b) {
+        if (x
+                &amp;&amp; y) {
+            method4(a, b);
+        }
+    }
+
+    void processValues()
+            throws Exception {
+        handleValue("Test String", 42);
+    }
+
+    void handleValue(String aFooString,
+                     int aFooInt) {
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
+        if (cond1
+                || cond2) {
+            field = field.toUpperCase()
+                    .concat(" TASK");
+        }
+        if ((cond1 &amp;&amp; cond2)
+                || (cond3 &amp;&amp; cond4)
+                || !(cond5 &amp;&amp; cond6)) {
+            field.toUpperCase()
+                    .concat(" TASK")
+                    .chars().forEach(c -&gt; {
+                        System.out.println((char) c);
+                    });
+        }
+    }
+
+    void demonstrateSwitch()
+            throws Exception {
+        switch (field) {
+            case "EXAMPLE": processValues();
+            case "COMPLETED": handleValue("Completed Case", 456);
+        }
+    }
+
+    void methodBrace()
+    {
+    }
+
+    void methodBrace2()
+    {
+    }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -170,8 +241,29 @@ class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-    void method(int x) {
-        switch (x) {
+    int a;
+    boolean x, y;
+    String field = "example";
+    int[] values = {
+        1, 2, 3
+    };
+    int[] values1 = {
+        10,
+        20,
+        30
+    };
+    int[] values2 = {
+        10
+    };
+
+    void method() {
+        int b = 0;
+        int c = 1;
+    }
+
+    void method2()
+            throws Exception {
+        switch (a) {
         case 1:             // ok, caseIndent = 0 (same level as switch body)
             break;
         case 2:             // ok
@@ -179,6 +271,63 @@ class Example2 {
             case 3:         // violation, 'level 12, expected level should be 8'
             break;
         }
+    }
+
+    void method3(int a,
+                 int b) {
+        if (x
+                &amp;&amp; y) {
+            method3(a, b);
+        }
+    }
+
+    void method4(int a,
+                 int b) {
+        if (x
+                &amp;&amp; y) {
+            method4(a, b);
+        }
+    }
+
+    void processValues()
+            throws Exception {
+        handleValue("Test String", 42);
+    }
+
+    void handleValue(String aFooString,
+                     int aFooInt) {
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
+        if (cond1
+                || cond2) {
+            field = field.toUpperCase()
+                    .concat(" TASK");
+        }
+        if ((cond1 &amp;&amp; cond2)
+                || (cond3 &amp;&amp; cond4)
+                || !(cond5 &amp;&amp; cond6)) {
+            field.toUpperCase()
+                    .concat(" TASK")
+                    .chars().forEach(c -&gt; {
+                        System.out.println((char) c);
+                    });
+        }
+    }
+
+    void demonstrateSwitch()
+            throws Exception {
+        switch (field) {
+        case "EXAMPLE": processValues();
+        case "COMPLETED": handleValue("Completed Case", 456);
+        }
+    }
+
+    void methodBrace()
+    {
+    }
+
+    void methodBrace2()
+    {
     }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -200,22 +349,93 @@ class Example2 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
+    int a;
     boolean x, y;
+    String field = "example";
+    int[] values = {
+        1, 2, 3
+    };
+    int[] values1 = {
+        10,
+        20,
+        30
+    };
+    int[] values2 = {
+        10
+    };
 
-    void method(int a,
-        int b) {            // ok, lineWrappingIndentation=4 from method
-        if (x
-            &amp;&amp; y) {         // ok, lineWrappingIndentation=4 from 'if'
-            method(a, b);
+    void method() {
+        int b = 0;
+        int c = 1;
+    }
+
+    void method2()
+        throws Exception {
+        switch (a) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
         }
     }
 
-    void method2(int a,
+    void method3(int a,
+        int b) {            // ok, lineWrappingIndentation=4 from method
+        if (x
+            &amp;&amp; y) {         // ok, lineWrappingIndentation=4 from 'if'
+            method3(a, b);
+        }
+    }
+
+    void method4(int a,
                  int b) {   // violation, 'level 17, expected level should be 8'
         if (x
                 &amp;&amp; y) {     // violation, 'level 16, expected level should be 12'
-            method2(a, b);
+            method4(a, b);
         }
+    }
+
+    void processValues()
+        throws Exception {
+        handleValue("Test String", 42);
+    }
+
+    void handleValue(String aFooString,
+                     int aFooInt) { // violation, 'level 21, expected level should be 8'
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
+        if (cond1
+                || cond2) { // violation, 'level 16, expected level should be 12'
+            field = field.toUpperCase()
+                    .concat(" TASK");
+        }
+        if ((cond1 &amp;&amp; cond2)
+                || (cond3 &amp;&amp; cond4) // violation, 'level 16, expected level should be 12'
+                || !(cond5 &amp;&amp; cond6)) { // violation, 'level 16, expected level should be 12'
+            field.toUpperCase()
+                    .concat(" TASK") // violation, 'level 20, expected level should be 16'
+                    .chars().forEach(c -&gt; { // violation, 'level 20, expected level should be 16'
+                        System.out.println((char) c);
+                    });
+        }
+    }
+
+    void demonstrateSwitch()
+            throws Exception { // violation, 'level 12, expected level should be 8'
+        switch (field) {
+            case "EXAMPLE": processValues();
+            case "COMPLETED": handleValue("Completed Case", 456);
+        }
+    }
+
+    void methodBrace()
+    {
+    }
+
+    void methodBrace2()
+    {
     }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -225,10 +445,92 @@ class Example3 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
       int a;               // violation, 'level 6, expected level should be 4'
+    boolean x, y;
+    String field = "example";
+    int[] values = {
+        1, 2, 3
+    };
+    int[] values1 = {
+        10,
+        20,
+        30
+    };
+    int[] values2 = {
+        10
+    };
 
     void method() {
         int b = 0;         // ok
           int c = 1;       // violation, 'level 10, expected level should be 8'
+    }
+
+    void method2()
+            throws Exception {
+        switch (a) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+    }
+
+    void method3(int a,
+                 int b) {
+        if (x
+                &amp;&amp; y) {
+            method3(a, b);
+        }
+    }
+
+    void method4(int a,
+                 int b) {
+        if (x
+                &amp;&amp; y) {
+            method4(a, b);
+        }
+    }
+
+    void processValues()
+            throws Exception {
+        handleValue("Test String", 42);
+    }
+
+    void handleValue(String aFooString,
+                     int aFooInt) {
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
+        if (cond1
+                || cond2) {
+            field = field.toUpperCase()
+                    .concat(" TASK");
+        }
+        if ((cond1 &amp;&amp; cond2)
+                || (cond3 &amp;&amp; cond4)
+                || !(cond5 &amp;&amp; cond6)) {
+            field.toUpperCase()
+                    .concat(" TASK")
+                    .chars().forEach(c -&gt; {
+                        System.out.println((char) c);
+                    });
+        }
+    }
+
+    void demonstrateSwitch()
+            throws Exception {
+        switch (field) {
+            case "EXAMPLE": processValues();
+            case "COMPLETED": handleValue("Completed Case", 456);
+        }
+    }
+
+    void methodBrace()
+    {
+    }
+
+    void methodBrace2()
+    {
     }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -250,10 +552,92 @@ class Example4 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
   int a;                  // ok, basicOffset = 2
+  boolean x, y;
+  String field = "example";
+  int[] values = {
+      1, 2, 3
+  };
+  int[] values1 = {
+      10,
+      20,
+      30
+  };
+  int[] values2 = {
+      10
+  };
 
   void method() {
     int b = 0;            // ok, basicOffset = 2
       int c = 1;          // violation, 'level 6, expected level should be 4'
+  }
+
+  void method2()
+          throws Exception {
+    switch (a) {
+        case 1:
+          break;
+        case 2:
+          break;
+        case 3:
+          break;
+    }
+  }
+
+  void method3(int a,
+               int b) {
+    if (x
+            &amp;&amp; y) {
+      method3(a, b);
+    }
+  }
+
+  void method4(int a,
+               int b) {
+    if (x
+            &amp;&amp; y) {
+      method4(a, b);
+    }
+  }
+
+  void processValues()
+          throws Exception {
+    handleValue("Test String", 42);
+  }
+
+  void handleValue(String aFooString,
+                   int aFooInt) {
+    boolean cond1,cond2,cond3,cond4,cond5,cond6;
+    cond1=cond2=cond3=cond4=cond5=cond6=false;
+    if (cond1
+            || cond2) {
+      field = field.toUpperCase()
+              .concat(" TASK");
+    }
+    if ((cond1 &amp;&amp; cond2)
+            || (cond3 &amp;&amp; cond4)
+            || !(cond5 &amp;&amp; cond6)) {
+      field.toUpperCase()
+              .concat(" TASK")
+              .chars().forEach(c -&gt; {
+                System.out.println((char) c);
+              });
+    }
+  }
+
+  void demonstrateSwitch()
+          throws Exception {
+    switch (field) {
+        case "EXAMPLE": processValues();
+        case "COMPLETED": handleValue("Completed Case", 456);
+    }
+  }
+
+  void methodBrace()
+  {
+  }
+
+  void methodBrace2()
+  {
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -275,20 +659,93 @@ class Example5 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example6 {
+    int a;
     boolean x, y;
+    String field = "example";
+    int[] values = {
+            1, 2, 3
+    };
+    int[] values1 = {
+            10,
+            20,
+            30
+    };
+    int[] values2 = {
+            10
+    };
 
-    void method(int a,
-            int b) {        // ok, lineWrappingIndentation = 8
-        if (x
-                &amp;&amp; y) {     // ok, lineWrappingIndentation = 8
+    void method() {
+        int b = 0;
+        int c = 1;
+    }
+
+    void method2()
+            throws Exception {
+        switch (a) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
         }
     }
 
-    void method2(int a,
+    void method3(int a,
+            int b) {        // ok, lineWrappingIndentation = 8
+        if (x
+                &amp;&amp; y) {     // ok, lineWrappingIndentation = 8
+            method3(a, b);
+        }
+    }
+
+    void method4(int a,
         int b) {            // violation, 'level 8, expected level should be 12'
         if (x
             &amp;&amp; y) {         // violation, 'level 12, expected level should be 16'
+            method4(a, b);
         }
+    }
+
+    void processValues()
+            throws Exception {
+        handleValue("Test String", 42);
+    }
+
+    void handleValue(String aFooString,
+                     int aFooInt) {
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
+        if (cond1
+                || cond2) {
+            field = field.toUpperCase()
+                    .concat(" TASK");
+        }
+        if ((cond1 &amp;&amp; cond2)
+                || (cond3 &amp;&amp; cond4)
+                || !(cond5 &amp;&amp; cond6)) {
+            field.toUpperCase()
+                    .concat(" TASK")
+                    .chars().forEach(c -&gt; {
+                        System.out.println((char) c);
+                    });
+        }
+    }
+
+    void demonstrateSwitch()
+            throws Exception {
+        switch (field) {
+            case "EXAMPLE": processValues();
+            case "COMPLETED": handleValue("Completed Case", 456);
+        }
+    }
+
+    void methodBrace()
+    {
+    }
+
+    void methodBrace2()
+    {
     }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -312,12 +769,53 @@ class Example6 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example7 {
+    int a;
+    boolean x, y;
     String field = "example";                  // basicOffset
-    int[] values = {                           // basicOffset
+    int[] values = {
+        1, 2, 3
+    };
+    int[] values1 = {                          // basicOffset
         10,
         20,
         30
     };
+    int[] values2 = {
+        10
+    };
+
+    void method() {
+        int b = 0;
+        int c = 1;
+    }
+
+    void method2()
+            throws Exception {
+        switch (a) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+    }
+
+    void method3(int a,
+                 int b) {
+        if (x
+                &amp;&amp; y) {
+            method3(a, b);
+        }
+    }
+
+    void method4(int a,
+                 int b) {
+        if (x
+                &amp;&amp; y) {
+            method4(a, b);
+        }
+    }
 
     void processValues()
         throws Exception { // violation, ''throws' has incorrect indentation'
@@ -354,6 +852,14 @@ class Example7 {
             case "COMPLETED": handleValue("Completed Case", 456);   // caseIndent
         }
     }
+
+    void methodBrace()
+    {
+    }
+
+    void methodBrace2()
+    {
+    }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example8-config">
@@ -373,6 +879,12 @@ class Example7 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example8 {
+    int a;
+    boolean x, y;
+    String field = "example";
+    int[] values = {
+        1, 2, 3
+    };
     int[] values1 = {
       10,                 // ok, arrayInitIndent = 2 (col 6 = array col 4 + 2)
       20,
@@ -382,6 +894,80 @@ class Example8 {
     int[] values2 = {
   10                      // violation, 'level 2, expected level should be one of'
     };
+
+    void method() {
+        int b = 0;
+        int c = 1;
+    }
+
+    void method2()
+            throws Exception {
+        switch (a) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+    }
+
+    void method3(int a,
+                 int b) {
+        if (x
+                &amp;&amp; y) {
+            method3(a, b);
+        }
+    }
+
+    void method4(int a,
+                 int b) {
+        if (x
+                &amp;&amp; y) {
+            method4(a, b);
+        }
+    }
+
+    void processValues()
+            throws Exception {
+        handleValue("Test String", 42);
+    }
+
+    void handleValue(String aFooString,
+                     int aFooInt) {
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
+        if (cond1
+                || cond2) {
+            field = field.toUpperCase()
+                    .concat(" TASK");
+        }
+        if ((cond1 &amp;&amp; cond2)
+                || (cond3 &amp;&amp; cond4)
+                || !(cond5 &amp;&amp; cond6)) {
+            field.toUpperCase()
+                    .concat(" TASK")
+                    .chars().forEach(c -&gt; {
+                        System.out.println((char) c);
+                    });
+        }
+    }
+
+    void demonstrateSwitch()
+            throws Exception {
+        switch (field) {
+            case "EXAMPLE": processValues();
+            case "COMPLETED": handleValue("Completed Case", 456);
+        }
+    }
+
+    void methodBrace()
+    {
+    }
+
+    void methodBrace2()
+    {
+    }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example9-config">
@@ -401,11 +987,92 @@ class Example8 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example9 {
-    void method()
+    int a;
+    boolean x, y;
+    String field = "example";
+    int[] values = {
+        1, 2, 3
+    };
+    int[] values1 = {
+        10,
+        20,
+        30
+    };
+    int[] values2 = {
+        10
+    };
+
+    void method() {
+        int b = 0;
+        int c = 1;
+    }
+
+    void method2()
+            throws Exception {
+        switch (a) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+    }
+
+    void method3(int a,
+                 int b) {
+        if (x
+                &amp;&amp; y) {
+            method3(a, b);
+        }
+    }
+
+    void method4(int a,
+                 int b) {
+        if (x
+                &amp;&amp; y) {
+            method4(a, b);
+        }
+    }
+
+    void processValues()
+            throws Exception {
+        handleValue("Test String", 42);
+    }
+
+    void handleValue(String aFooString,
+                     int aFooInt) {
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
+        if (cond1
+                || cond2) {
+            field = field.toUpperCase()
+                    .concat(" TASK");
+        }
+        if ((cond1 &amp;&amp; cond2)
+                || (cond3 &amp;&amp; cond4)
+                || !(cond5 &amp;&amp; cond6)) {
+            field.toUpperCase()
+                    .concat(" TASK")
+                    .chars().forEach(c -&gt; {
+                        System.out.println((char) c);
+                    });
+        }
+    }
+
+    void demonstrateSwitch()
+            throws Exception {
+        switch (field) {
+            case "EXAMPLE": processValues();
+            case "COMPLETED": handleValue("Completed Case", 456);
+        }
+    }
+
+    void methodBrace()
       {               // ok, braceAdjustment = 2 (col 6 = method col 4 + braceAdj 2)
       }               // ok, closing brace at col 6
 
-    void method2()
+    void methodBrace2()
     {                 // violation, 'level 4, expected level should be 6'
     }                 // violation, 'level 4, expected level should be 6'
 }
