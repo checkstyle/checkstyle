@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.UnnecessaryFullyQualifiedTypeCheck"
+             name="UnnecessaryFullyQualifiedType"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks for fully qualified type references that are unnecessary because the
+ type could simply be imported and referenced by its simple name.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ A fully qualified type reference, such as &lt;code&gt;java.util.Map&lt;/code&gt;, is reported
+ as unnecessary unless another type with the same simple name is also used in
+ the file. For example, &lt;code&gt;java.util.Map&lt;/code&gt; is allowed only when a different
+ &lt;code&gt;Map&lt;/code&gt; (e.g. &lt;code&gt;com.example.Map&lt;/code&gt;, a locally declared &lt;code&gt;Map&lt;/code&gt;, or
+ a same-package or &lt;code&gt;java.lang&lt;/code&gt; &lt;code&gt;Map&lt;/code&gt;) is also referenced, since in
+ that case qualification is required to tell the two types apart.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Using fully qualified names where they are not needed reduces readability and
+ is inconsistent with common Java style conventions, which favor importing the
+ type instead.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ The following limitations apply:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ To distinguish a package qualified type (such as &lt;code&gt;java.util.Map&lt;/code&gt;) from a
+ reference to a nested type (such as &lt;code&gt;Map.Entry&lt;/code&gt;), the check relies on the
+ common convention that package names start with a lowercase letter. A qualified
+ reference is treated as fully qualified only when the identifier preceding the
+ simple name starts with a lowercase letter.
+ &lt;/li&gt;
+ &lt;li&gt;
+ References to nested types via an enclosing type (for example
+ &lt;code&gt;java.util.Map.Entry&lt;/code&gt;) and fully qualified annotations
+ (for example &lt;code&gt;@java.lang.Override&lt;/code&gt;) are not reported.
+ &lt;/li&gt;
+ &lt;/ul&gt;</description>
+         <message-keys>
+            <message-key key="unnecessary.fully.qualified.type"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
