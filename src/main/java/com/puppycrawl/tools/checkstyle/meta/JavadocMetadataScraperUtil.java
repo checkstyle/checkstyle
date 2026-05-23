@@ -35,6 +35,21 @@ public final class JavadocMetadataScraperUtil {
     /** Regular expression for detecting ANTLR tokens(for e.g. CLASS_DEF). */
     private static final Pattern TOKEN_TEXT_PATTERN = Pattern.compile("([A-Z_]{2,})+");
 
+    /** HTML opening code tag. */
+    private static final String CODE_TAG_OPEN = "<code>";
+
+    /** HTML closing code tag. */
+    private static final String CODE_TAG_CLOSE = "</code>";
+
+    /**
+     * Matches a bare ampersand that is NOT already the start of a valid HTML entity reference
+     * (numeric, hex, or named). Used when escaping text inside {@code @code} and
+     * {@code @literal} blocks so that existing HTML entity escapes written deliberately
+     * in Javadoc source are preserved rather than being double-escaped.
+     */
+    private static final Pattern BARE_AMPERSAND_PATTERN =
+            Pattern.compile("&(?!#\\d+;|#[xX][0-9a-fA-F]+;|[a-zA-Z][a-zA-Z0-9]*;)");
+
     /**
      * Private utility constructor.
      */
@@ -124,9 +139,9 @@ public final class JavadocMetadataScraperUtil {
     public static String adjustCodeInlineTagChildToHtml(DetailNode codeChild) {
 
         return switch (codeChild.getType()) {
-            case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END -> "</code>";
+            case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END -> CODE_TAG_CLOSE;
             case JavadocCommentsTokenTypes.TAG_NAME -> "";
-            case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_START -> "<code>";
+            case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_START -> CODE_TAG_OPEN;
             default -> escapeXmlChars(codeChild.getText().trim());
         };
     }
@@ -139,21 +154,24 @@ public final class JavadocMetadataScraperUtil {
      */
     public static String adjustLiteralInlineTagChildToText(DetailNode literalChild) {
         return switch (literalChild.getType()) {
-            case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END,
-                 JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_START,
-                 JavadocCommentsTokenTypes.TAG_NAME -> "";
+            case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END -> CODE_TAG_CLOSE;
+            case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_START -> CODE_TAG_OPEN;
+            case JavadocCommentsTokenTypes.TAG_NAME -> "";
             default -> escapeXmlChars(literalChild.getText().trim());
         };
     }
 
     /**
-     * Escapes special XML characters in the given text.
+     * Escapes special XML characters in the given text, while preserving any
+     * HTML entity references that are already present (e.g. {@code &#64;} for
+     * {@code @}, {@code &amp;} for a literal ampersand). A bare {@code &} that
+     * is not already the start of a valid entity is still escaped to {@code &amp;}.
      *
      * @param text the text to escape.
      * @return text with XML special characters escaped.
      */
     private static String escapeXmlChars(String text) {
-        return text.replace("&", "&amp;")
+        return BARE_AMPERSAND_PATTERN.matcher(text).replaceAll("&amp;")
             .replace("<", "&lt;")
             .replace(">", "&gt;");
     }

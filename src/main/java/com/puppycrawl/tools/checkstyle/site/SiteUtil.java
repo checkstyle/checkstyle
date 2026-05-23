@@ -132,11 +132,25 @@ public final class SiteUtil {
     /** The precompiled pattern for a comma followed by a space. */
     private static final Pattern COMMA_SPACE_PATTERN = Pattern.compile(", ");
 
+    /**
+     * Matches a bare ampersand that is NOT already the start of a valid HTML entity reference
+     * (numeric, hex, or named). Used in {@code @code} and {@code @literal} inline-tag blocks
+     * to escape only bare ampersands while leaving existing entities intact.
+     */
+    private static final Pattern BARE_AMPERSAND_PATTERN =
+            Pattern.compile("&(?!#\\d+;|#[xX][0-9a-fA-F]+;|[a-zA-Z][a-zA-Z0-9]*;)");
+
     /** The string '{}'. */
     private static final String EMPTY_CURLY_BRACES = "{}";
 
     /** The string 'null'. */
     private static final String NULL_STR = "null";
+
+    /** HTML opening code tag. */
+    private static final String CODE_TAG_OPEN = "<code>";
+
+    /** HTML closing code tag. */
+    private static final String CODE_TAG_CLOSE = "</code>";
 
     /** Class name and their corresponding parent module name. */
     private static final Map<Class<?>, String> CLASS_TO_PARENT_MODULE = Map.ofEntries(
@@ -1799,10 +1813,12 @@ public final class SiteUtil {
                                            DescriptionTraversalState state) {
         if (isTextContent(node, state.inHtmlElement)) {
             if (state.inCodeLiteral || state.inLiteralTag) {
-                description.append(node.getText().trim()
-                        .replace("&", "&amp;")
+                final String text = BARE_AMPERSAND_PATTERN
+                        .matcher(node.getText().trim())
+                        .replaceAll("&amp;")
                         .replace("<", "&lt;")
-                        .replace(">", "&gt;"));
+                        .replace(">", "&gt;");
+                description.append(text);
             }
             else {
                 description.append(node.getText());
@@ -1825,21 +1841,23 @@ public final class SiteUtil {
                 && node.getParent().getType()
                 == JavadocCommentsTokenTypes.CODE_INLINE_TAG) {
             state.inCodeLiteral = true;
-            description.append("<code>");
+            description.append(CODE_TAG_OPEN);
         }
         if (state.inCodeLiteral
                 && node.getType() == JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END) {
             state.inCodeLiteral = false;
-            description.append("</code>");
+            description.append(CODE_TAG_CLOSE);
         }
         if (node.getType() == JavadocCommentsTokenTypes.TAG_NAME
                 && node.getParent().getType()
                 == JavadocCommentsTokenTypes.LITERAL_INLINE_TAG) {
             state.inLiteralTag = true;
+            description.append(CODE_TAG_OPEN);
         }
         if (state.inLiteralTag
                 && node.getType() == JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END) {
             state.inLiteralTag = false;
+            description.append(CODE_TAG_CLOSE);
         }
     }
 

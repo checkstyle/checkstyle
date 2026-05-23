@@ -13,17 +13,17 @@
  &lt;/p&gt;
  &lt;ul&gt;
  &lt;li&gt;There is one blank line between each of two paragraphs.&lt;/li&gt;
- &lt;li&gt;Each paragraph but the first has &amp;lt;p&amp;gt; immediately
+ &lt;li&gt;Each paragraph but the first has &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; immediately
  before the first word, with no space after.&lt;/li&gt;
  &lt;li&gt;The outer most paragraph tags should not precede
  &lt;a href="https://www.w3schools.com/html/html_blocks.asp"&gt;HTML block-tag&lt;/a&gt;.
  Nested paragraph tags are allowed to do that. This check only supports following block-tags:
- &amp;lt;address&amp;gt;,&amp;lt;blockquote&amp;gt;
- ,&amp;lt;div&amp;gt;,&amp;lt;dl&amp;gt;
- ,&amp;lt;h1&amp;gt;,&amp;lt;h2&amp;gt;,&amp;lt;h3&amp;gt;,&amp;lt;h4&amp;gt;,&amp;lt;h5&amp;gt;,
- &amp;lt;h6&amp;gt;,&amp;lt;hr&amp;gt;
- ,&amp;lt;ol&amp;gt;,&amp;lt;p&amp;gt;,&amp;lt;pre&amp;gt;
- ,&amp;lt;table&amp;gt;,&amp;lt;ul&amp;gt;.
+ &lt;code&gt;&amp;lt;address&amp;gt;&lt;/code&gt;,&lt;code&gt;&amp;lt;blockquote&amp;gt;&lt;/code&gt;
+ ,&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;,&lt;code&gt;&amp;lt;dl&amp;gt;&lt;/code&gt;
+ ,&lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt;,&lt;code&gt;&amp;lt;h2&amp;gt;&lt;/code&gt;,&lt;code&gt;&amp;lt;h3&amp;gt;&lt;/code&gt;,&lt;code&gt;&amp;lt;h4&amp;gt;&lt;/code&gt;,&lt;code&gt;&amp;lt;h5&amp;gt;&lt;/code&gt;,
+ &lt;code&gt;&amp;lt;h6&amp;gt;&lt;/code&gt;,&lt;code&gt;&amp;lt;hr&amp;gt;&lt;/code&gt;
+ ,&lt;code&gt;&amp;lt;ol&amp;gt;&lt;/code&gt;,&lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt;,&lt;code&gt;&amp;lt;pre&amp;gt;&lt;/code&gt;
+ ,&lt;code&gt;&amp;lt;table&amp;gt;&lt;/code&gt;,&lt;code&gt;&amp;lt;ul&amp;gt;&lt;/code&gt;.
  &lt;/li&gt;
  &lt;/ul&gt;
 
@@ -36,7 +36,7 @@
  It also ignores paragraph tags inside block tags.&lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="allowNewlineParagraph" type="boolean">
-               <description>Control whether the &amp;lt;p&amp;gt; tag should be placed immediately before the first word.</description>
+               <description>Control whether the &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; tag should be placed immediately before the first word.</description>
             </property>
             <property default-value="false"
                       name="violateExecutionOnNonTightHtml"

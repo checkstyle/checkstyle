@@ -6,7 +6,7 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks that the whitespace around the Generic tokens (angle brackets)
- "&amp;lt;" and "&amp;gt;" are correct to the &lt;i&gt;typical&lt;/i&gt; convention.
+ "&lt;code&gt;&amp;lt;&lt;/code&gt;" and "&lt;code&gt;&amp;gt;&lt;/code&gt;" are correct to the &lt;i&gt;typical&lt;/i&gt; convention.
  The convention is not configurable.
  &lt;/div&gt;
 
@@ -16,7 +16,7 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- Left angle bracket ("&amp;lt;"):
+ Left angle bracket ("&lt;code&gt;&amp;lt;&lt;/code&gt;"):
  &lt;/p&gt;
  &lt;ul&gt;
  &lt;li&gt; should be preceded with whitespace only
@@ -28,7 +28,7 @@
  &lt;/ul&gt;
 
  &lt;p&gt;
- Right angle bracket ("&amp;gt;"):
+ Right angle bracket ("&lt;code&gt;&amp;gt;&lt;/code&gt;"):
  &lt;/p&gt;
  &lt;ul&gt;
  &lt;li&gt; should not be preceded with whitespace in all cases.&lt;/li&gt;
