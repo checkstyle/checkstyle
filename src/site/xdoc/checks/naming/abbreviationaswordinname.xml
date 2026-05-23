@@ -182,10 +182,11 @@ class Example1 extends SuperClass { // ok, camel case
   }
 }
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           To configure to include static variables and
           methods tagged with <code>@Override</code> annotation.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example2-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -219,12 +220,13 @@ class Example2 extends SuperClass { // ok, camel case
   }
 }
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           To configure to check all variables and identifiers
           (including ones with the static modifier) and enforce
           no abbreviations (essentially camel case) except for
           words like 'XML' and 'URL'.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example3-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -254,11 +256,12 @@ class Example3 {
   void OAUth2() {}
 }
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           To configure to check variables, excluding fields with
           the static modifier, and allow abbreviations up to 2
           consecutive capital letters ignoring the longer word 'CSV'.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example4-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -286,10 +289,11 @@ class Example4 { // ok, ignore checking the class name
   static final int LIMIT = 10; // ok, static final is ignored
 }
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           To configure to check variables, enforcing no abbreviations
           except for variables that are both static and final.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example5-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -314,10 +318,11 @@ class Example5 {
   static final int MAX_ALLOWED = 4; // ok, ignored
 }
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           To configure to check variables, enforcing no abbreviations
           and ignoring static (but non-final) variables only.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example6-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -343,11 +348,12 @@ class Example6 {
   static final int MAX_ALLOWED = 4;
 }
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           To configure to check variables, enforce
           no abbreviations (essentially camel case) except for
           words like 'ALLOWED'.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example7-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
