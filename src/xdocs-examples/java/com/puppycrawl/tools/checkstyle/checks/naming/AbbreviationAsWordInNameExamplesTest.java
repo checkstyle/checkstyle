@@ -38,8 +38,8 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
     public void testExample1() throws Exception {
         final String[] expected = {
             "18:7: " + getCheckMessage(MSG_KEY, "CURRENT_COUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
-            "27:8: " + getCheckMessage(MSG_KEY, "incrementCOUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
-            "31:15: " + getCheckMessage(MSG_KEY, "incrementGLOBAL", DEFAULT_EXPECTED_CAPITAL_COUNT),
+            "44:8: " + getCheckMessage(MSG_KEY, "incrementCOUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
+            "46:15: " + getCheckMessage(MSG_KEY, "incrementGLOBAL", DEFAULT_EXPECTED_CAPITAL_COUNT),
         };
 
         verifyWithInlineXmlConfig(getPath("Example1.java"), expected);
@@ -50,9 +50,9 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
         final String[] expected = {
             "21:7: " + getCheckMessage(MSG_KEY, "CURRENT_COUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
             "23:14: " + getCheckMessage(MSG_KEY, "GLOBAL_COUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
-            "27:15: " + getCheckMessage(MSG_KEY, "printCOUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
-            "31:8: " + getCheckMessage(MSG_KEY, "incrementCOUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
-            "35:15: " + getCheckMessage(MSG_KEY, "incrementGLOBAL", DEFAULT_EXPECTED_CAPITAL_COUNT),
+            "45:15: " + getCheckMessage(MSG_KEY, "printCOUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
+            "47:8: " + getCheckMessage(MSG_KEY, "incrementCOUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
+            "49:15: " + getCheckMessage(MSG_KEY, "incrementGLOBAL", DEFAULT_EXPECTED_CAPITAL_COUNT),
         };
 
         verifyWithInlineXmlConfig(getPath("Example2.java"), expected);
@@ -63,8 +63,12 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
         final int expectedCapitalCount = 1;
 
         final String[] expected = {
-            "21:7: " + getCheckMessage(MSG_KEY, "secondNUM", expectedCapitalCount),
-            "23:14: " + getCheckMessage(MSG_KEY, "fourthNUm", expectedCapitalCount),
+            "23:7: " + getCheckMessage(MSG_KEY, "CURRENT_COUNTER", expectedCapitalCount),
+            "25:14: " + getCheckMessage(MSG_KEY, "GLOBAL_COUNTER", expectedCapitalCount),
+            "29:7: " + getCheckMessage(MSG_KEY, "secondNUM", expectedCapitalCount),
+            "31:14: " + getCheckMessage(MSG_KEY, "fourthNUm", expectedCapitalCount),
+            "36:7: " + getCheckMessage(MSG_KEY, "nextXYZ", expectedCapitalCount),
+            "39:14: " + getCheckMessage(MSG_KEY, "nextID", expectedCapitalCount),
         };
 
         verifyWithInlineXmlConfig(getPath("Example3.java"), expected);
@@ -88,9 +92,17 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
         final int expectedCapitalCount = 1;
 
         final String[] expected = {
-            "21:7: " + getCheckMessage(MSG_KEY, "counterXYZ", expectedCapitalCount),
-            "23:13: " + getCheckMessage(MSG_KEY, "customerID", expectedCapitalCount),
-            "24:14: " + getCheckMessage(MSG_KEY, "nextID", expectedCapitalCount),
+            "24:7: " + getCheckMessage(MSG_KEY, "CURRENT_COUNTER", expectedCapitalCount),
+            "26:14: " + getCheckMessage(MSG_KEY, "GLOBAL_COUNTER", expectedCapitalCount),
+            "28:21: " + getCheckMessage(MSG_KEY, "stringsFOUND", expectedCapitalCount),
+            "30:7: " + getCheckMessage(MSG_KEY, "secondNUM", expectedCapitalCount),
+            "32:14: " + getCheckMessage(MSG_KEY, "fourthNUm", expectedCapitalCount),
+            "33:10: " + getCheckMessage(MSG_KEY, "firstXML", expectedCapitalCount),
+            "34:10: " + getCheckMessage(MSG_KEY, "firstURL", expectedCapitalCount),
+            "35:13: " + getCheckMessage(MSG_KEY, "TOTAL", expectedCapitalCount),
+            "37:7: " + getCheckMessage(MSG_KEY, "nextXYZ", expectedCapitalCount),
+            "38:13: " + getCheckMessage(MSG_KEY, "countID", expectedCapitalCount),
+            "40:14: " + getCheckMessage(MSG_KEY, "nextID", expectedCapitalCount),
         };
 
         verifyWithInlineXmlConfig(getPath("Example5.java"), expected);
