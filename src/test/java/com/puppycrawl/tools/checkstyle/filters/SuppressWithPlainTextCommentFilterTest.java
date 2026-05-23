@@ -727,7 +727,6 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
     @Test
     public void testCheckFormatAnchoredToIndentationCheckFqcn() throws Exception {
-        // Regression test for https://github.com/checkstyle/checkstyle/issues/19793.
         // checkFormat is applied via Matcher.find() against the source class FQCN
         // (Violation.getSourceName()), so an unanchored "IndentationCheck" regex
         // also matches CommentsIndentationCheck and JavadocTagContinuationIndentationCheck.
