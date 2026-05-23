@@ -1942,6 +1942,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/imports/unnecessaryfullyqualifiedtype.html#UnnecessaryFullyQualifiedType">
+                UnnecessaryFullyQualifiedType
+              </a>
+            </td>
+            <td>
+              Checks for fully qualified type references that are unnecessary because the type could
+              simply be imported and referenced by its simple name.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/unnecessarynullcheckwithinstanceof.html#UnnecessaryNullCheckWithInstanceOf">
                 UnnecessaryNullCheckWithInstanceOf
               </a>
