@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck.MSG_ORDER;
 
 import org.junit.jupiter.api.Test;
 
@@ -81,6 +82,36 @@ public class OverloadMethodsDeclarationOrderCheckTest
         verifyWithInlineConfigParser(
                 getPath(
                         "InputOverloadMethodsDeclarationOrderPrivateAndStaticMethods.java"
+                ), expected);
+    }
+
+    @Test
+    public void testOrderByIncreasingArity() throws Exception {
+        final String[] expected = {
+            "21:5: " + getCheckMessage(MSG_ORDER),
+            "24:5: " + getCheckMessage(MSG_ORDER),
+            "32:9: " + getCheckMessage(MSG_ORDER),
+            "35:9: " + getCheckMessage(MSG_ORDER),
+            "48:9: " + getCheckMessage(MSG_ORDER),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputOverloadMethodsDeclarationOrderArity.java"), expected);
+    }
+
+    @Test
+    public void testMisc() throws Exception {
+
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_KEY, 11),
+            "19:5: " + getCheckMessage(MSG_ORDER),
+            "33:9: " + getCheckMessage(MSG_KEY, 26),
+            "33:9: " + getCheckMessage(MSG_ORDER),
+            "36:9: " + getCheckMessage(MSG_ORDER),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath(
+                        "InputOverloadMethodsDeclarationOrderMisc.java"
                 ), expected);
     }
 
