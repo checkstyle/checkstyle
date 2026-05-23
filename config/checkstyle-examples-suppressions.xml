@@ -175,6 +175,10 @@
   <suppress checks="LineLength"
     files="annotation[\\/]suppresswarningsholder[\\/]Example2.java"/>
 
+  <!-- Examples for AbbreviationAsWordInName have long lines to show violations -->
+  <suppress checks="LineLength"
+    files="abbreviationaswordinname[\\/]Example[235]\.java"/>
+
   <!-- Example must show line length violations and filtered violations -->
   <suppress checks="LineLength"
     files="suppresswithplaintextcommentfilter[\\/]Example9.java"/>
