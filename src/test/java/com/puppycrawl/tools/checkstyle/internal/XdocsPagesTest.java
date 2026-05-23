@@ -2189,14 +2189,31 @@ public class XdocsPagesTest {
 
             hasChecks = true;
 
+            final Node idAttr = module.getAttributes().getNamedItem("id");
+            final String moduleId;
+            if (idAttr != null) {
+                moduleId = idAttr.getTextContent();
+            }
+            else {
+                moduleId = "";
+            }
+
+            final String moduleKey;
+            if (moduleId.isEmpty()) {
+                moduleKey = moduleName;
+            }
+            else {
+                moduleKey = moduleName + "#" + moduleId;
+            }
+
             assertWithMessage(
                 "The module '%s' in the rule '%s' of the style guide '%s_style.xml'"
                     + " should not appear more than once in the section.",
                 moduleName, ruleName, styleName)
                 .that(usedModules)
-                .doesNotContain(moduleName);
+                .doesNotContain(moduleKey);
 
-            usedModules.add(moduleName);
+            usedModules.add(moduleKey);
 
             assertWithMessage("%s_style.xml rule '%s' module '%s' shouldn't end with 'Check'",
                 styleName, ruleName, moduleName)
@@ -2214,11 +2231,21 @@ public class XdocsPagesTest {
                 final String expectedUrl =
                     partialConfigUrl + "_checks.xml+repo%3Acheckstyle%2Fcheckstyle+" + moduleName;
 
-                assertWithMessage(
-                    "%s_style.xml rule '%s' module '%s' should have matching config url",
-                    styleName, ruleName, moduleName)
-                    .that(configUrl)
-                    .isEqualTo(expectedUrl);
+                if (moduleId.isEmpty()) {
+                    assertWithMessage(
+                            "%s_style.xml rule '%s' module '%s' should have matching config url",
+                            styleName, ruleName, moduleName)
+                            .that(configUrl)
+                            .isEqualTo(expectedUrl);
+                }
+                else {
+                    final String expectedUrlWithId = expectedUrl + "+" + moduleId;
+                    assertWithMessage(
+                            "%s_style.xml rule '%s' module '%s' should have matching config url",
+                            styleName, ruleName, moduleName)
+                            .that(configUrl)
+                            .isEqualTo(expectedUrlWithId);
+                }
             }
             else {
                 assertWithMessage("%s_style.xml rule '%s' module '%s' is missing the config link",
