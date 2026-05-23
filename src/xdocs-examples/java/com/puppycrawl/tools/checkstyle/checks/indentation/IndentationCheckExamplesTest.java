@@ -43,7 +43,7 @@ public class IndentationCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "21:13: " + getCheckMessage(MSG_CHILD_ERROR, "case", 12, 8),
+            "42:13: " + getCheckMessage(MSG_CHILD_ERROR, "case", 12, 8),
         };
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
@@ -51,8 +51,15 @@ public class IndentationCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "26:18: " + getCheckMessage(MSG_ERROR, "int", 17, 8),
-            "28:17: " + getCheckMessage(MSG_ERROR, "&&", 16, 12),
+            "56:18: " + getCheckMessage(MSG_ERROR, "int", 17, 8),
+            "58:17: " + getCheckMessage(MSG_ERROR, "&&", 16, 12),
+            "69:22: " + getCheckMessage(MSG_ERROR, "int", 21, 8),
+            "73:17: " + getCheckMessage(MSG_ERROR, "||", 16, 12),
+            "78:17: " + getCheckMessage(MSG_ERROR, "||", 16, 12),
+            "79:17: " + getCheckMessage(MSG_ERROR, "||", 16, 12),
+            "81:21: " + getCheckMessage(MSG_ERROR, ".", 20, 16),
+            "82:21: " + getCheckMessage(MSG_ERROR, ".", 20, 16),
+            "89:13: " + getCheckMessage(MSG_ERROR, "throws", 12, 8),
         };
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
@@ -61,7 +68,7 @@ public class IndentationCheckExamplesTest extends AbstractExamplesModuleTestSupp
     public void testExample4() throws Exception {
         final String[] expected = {
             "13:7: " + getCheckMessage(MSG_ERROR, "member def type", 6, 4),
-            "17:11: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 10, 8),
+            "30:11: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 10, 8),
         };
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
@@ -69,7 +76,7 @@ public class IndentationCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "19:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 4),
+            "32:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 4),
         };
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
@@ -77,8 +84,8 @@ public class IndentationCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-            "25:9: " + getCheckMessage(MSG_ERROR, "int", 8, 12),
-            "27:13: " + getCheckMessage(MSG_ERROR, "&&", 12, 16),
+            "56:9: " + getCheckMessage(MSG_ERROR, "int", 8, 12),
+            "58:13: " + getCheckMessage(MSG_ERROR, "&&", 12, 16),
         };
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
@@ -86,7 +93,7 @@ public class IndentationCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample7() throws Exception {
         final String[] expected = {
-            "23:9: " + getCheckMessage(MSG_ERROR, "throws", 8, 12),
+            "64:9: " + getCheckMessage(MSG_ERROR, "throws", 8, 12),
         };
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
@@ -94,7 +101,7 @@ public class IndentationCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample8() throws Exception {
         final String[] expected = {
-            "22:3: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 2, "6, 8"),
+            "28:3: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 2, "6, 8"),
         };
         verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
@@ -102,8 +109,8 @@ public class IndentationCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample9() throws Exception {
         final String[] expected = {
-            "20:5: " + getCheckMessage(MSG_ERROR, "method def lcurly", 4, 6),
-            "21:5: " + getCheckMessage(MSG_ERROR, "method def rcurly", 4, 6),
+            "101:5: " + getCheckMessage(MSG_ERROR, "method def lcurly", 4, 6),
+            "102:5: " + getCheckMessage(MSG_ERROR, "method def rcurly", 4, 6),
         };
         verifyWithInlineConfigParser(getPath("Example9.java"), expected);
     }

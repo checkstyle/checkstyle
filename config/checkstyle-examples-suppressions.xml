@@ -207,4 +207,23 @@
   <suppress checks="LineLength"
             files="lineending[\\/]Example4.java"/>
 
+  <!-- Examples contains important violations that need to be shown -->
+  <suppress checks="FileLength"
+            files="annotationonsameline[\\/]Example2.java"/>
+
+  <!-- Examples need additional spacing/readability -->
+  <suppress checks="FileLength"
+            files="whitespacearound[\\/]Example([1-9]|10|11).java"/>
+
+  <!-- Example needs long xpath expression -->
+  <suppress checks="LineLength"
+            files="matchxpath[\\/]Example5.java"/>
+
+  <!-- Examples are longer than FileLength limit by design -->
+  <suppress checks="FileLength"
+            files="indentation[\\/]Example[1-9].java"/>
+
+  <!-- Example contains long lines due to deep indentation -->
+  <suppress checks="LineLength"
+            files="indentation[\\/]Example3.java"/>
 </suppressions>

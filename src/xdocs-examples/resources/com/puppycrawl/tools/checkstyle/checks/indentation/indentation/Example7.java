@@ -12,12 +12,53 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;
 
 // xdoc section -- start
 class Example7 {
+    int a;
+    boolean x, y;
     String field = "example";                  // basicOffset
-    int[] values = {                           // basicOffset
+    int[] values = {
+        1, 2, 3
+    };
+    int[] values1 = {                          // basicOffset
         10,
         20,
         30
     };
+    int[] values2 = {
+        10
+    };
+
+    void method() {
+        int b = 0;
+        int c = 1;
+    }
+
+    void method2()
+            throws Exception {
+        switch (a) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+    }
+
+    void method3(int a,
+                 int b) {
+        if (x
+                && y) {
+            method3(a, b);
+        }
+    }
+
+    void method4(int a,
+                 int b) {
+        if (x
+                && y) {
+            method4(a, b);
+        }
+    }
 
     void processValues()
         throws Exception { // violation, ''throws' has incorrect indentation'
@@ -53,6 +94,14 @@ class Example7 {
             case "EXAMPLE": processValues();                        // caseIndent
             case "COMPLETED": handleValue("Completed Case", 456);   // caseIndent
         }
+    }
+
+    void methodBrace()
+    {
+    }
+
+    void methodBrace2()
+    {
     }
 }
 // xdoc section -- end
