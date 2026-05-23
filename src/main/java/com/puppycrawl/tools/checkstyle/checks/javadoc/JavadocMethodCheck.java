@@ -88,12 +88,12 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * Javadoc is not required on a method that is tagged with the {@code @Override}
  * annotation. However, under Java 5 it is not possible to mark a method required
  * for an interface (this was <i>corrected</i> under Java 6). Hence, Checkstyle
- * supports using the convention of using a single {@code {@inheritDoc}} tag
+ * supports using the convention of using a single {@code @inheritDoc}} tag
  * instead of all the other tags.
  * </p>
  *
  * <p>
- * Note that only inheritable items will allow the {@code {@inheritDoc}}
+ * Note that only inheritable items will allow the {@code @inheritDoc}}
  * tag to be used in place of comments. Static methods at all visibilities,
  * private non-static methods and constructors are not inheritable.
  * </p>
