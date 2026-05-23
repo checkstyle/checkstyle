@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>UnnecessaryFullyQualifiedType</title>
+  </head>
+  <body>
+    <section name="UnnecessaryFullyQualifiedType">
+      <p>Since Checkstyle 13.5.0</p>
+      <subsection name="Description" id="UnnecessaryFullyQualifiedType_Description">
+        <div>
+          Checks for fully qualified type references that are unnecessary because the
+          type could simply be imported and referenced by its simple name.
+        </div>
+
+        <p>
+          A fully qualified type reference, such as <code>java.util.Map</code>, is reported
+          as unnecessary unless another type with the same simple name is also used in
+          the file. For example, <code>java.util.Map</code> is allowed only when a different
+          <code>Map</code> (e.g. <code>com.example.Map</code>, a locally declared <code>Map</code>, or
+          a same-package or <code>java.lang</code> <code>Map</code>) is also referenced, since in
+          that case qualification is required to tell the two types apart.
+        </p>
+
+        <p>
+          Using fully qualified names where they are not needed reduces readability and
+          is inconsistent with common Java style conventions, which favor importing the
+          type instead.
+        </p>
+
+        <p>
+          The following limitations apply:
+        </p>
+        <ul>
+        <li>
+          To distinguish a package qualified type (such as <code>java.util.Map</code>) from a
+          reference to a nested type (such as <code>Map.Entry</code>), the check relies on the
+          common convention that package names start with a lowercase letter. A qualified
+          reference is treated as fully qualified only when the identifier preceding the
+          simple name starts with a lowercase letter.
+        </li>
+        <li>
+          References to nested types via an enclosing type (for example
+          <code>java.util.Map.Entry</code>) and fully qualified annotations
+          (for example <code>@java.lang.Override</code>) are not reported.
+        </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Examples" id="UnnecessaryFullyQualifiedType_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnnecessaryFullyQualifiedType"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+            Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+
+  // violation below, 'Unnecessary fully qualified type - java.util.List.'
+  java.util.List&lt;String&gt; list;
+
+  Map&lt;Boolean, String&gt; choiceMap = new HashMap&lt;&gt;();
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="UnnecessaryFullyQualifiedType_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessaryFullyQualifiedType">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="UnnecessaryFullyQualifiedType_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.fully.qualified.type%22">
+              unnecessary.fully.qualified.type
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name"
+          id="UnnecessaryFullyQualifiedType_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.imports.UnnecessaryFullyQualifiedTypeCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="UnnecessaryFullyQualifiedType_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
