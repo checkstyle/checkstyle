@@ -677,6 +677,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.imports.ImportOrderCheck");
         NAME_TO_FULL_MODULE_NAME.put("RedundantImportCheck",
                 BASE_PACKAGE + ".checks.imports.RedundantImportCheck");
+        NAME_TO_FULL_MODULE_NAME.put("UnnecessaryFullyQualifiedTypeCheck",
+                BASE_PACKAGE + ".checks.imports.UnnecessaryFullyQualifiedTypeCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnusedImportsCheck",
                 BASE_PACKAGE + ".checks.imports.UnusedImportsCheck");
     }
