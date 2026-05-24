@@ -184,10 +184,11 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example10.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
         <p>
           To understand the difference between allowPublicImmutableFields and
           allowPublicFinalFields options, please, study the following examples.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example11-config">
            1) To configure the check to use only 'allowPublicImmutableFields' option:
         </p>
