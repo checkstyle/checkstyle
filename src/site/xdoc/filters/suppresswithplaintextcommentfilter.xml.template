@@ -140,13 +140,14 @@
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example6.xml"/>
           <param name="type" value="raw"/>
         </macro>
+        <hr class="example-separator"/>
         <p>
           It is possible to specify the ID of checks, which can be used by the
           SuppressWithPlainTextCommentFilter to suppress audit events.
           The following examples show how to suppress audit events in code surrounded
           by <code>CSOFF &lt;ID&gt; (reason)</code> and <code>CSON &lt;ID&gt;</code>,
           where ID is the ID of the check you want to suppress.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example7-config">
           Example of Checkstyle checks and SuppressWithPlainTextCommentFilter configuration -
           the checkFormat, set to '$1', indicates that the ID of the check
