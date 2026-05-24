@@ -85,11 +85,12 @@
   &lt;module name="RegexpSingleline" /&gt;
 &lt;/module&gt;
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
         This configuration does not match to anything,
         so we do not provide any code example for it
         as no violation will ever be reported.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example2-config">
         To configure the check to find occurrences of 'System.exit('
         with some <i>slack</i> of allowing only one occurrence per file:

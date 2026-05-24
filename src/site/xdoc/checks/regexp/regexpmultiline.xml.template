@@ -77,6 +77,7 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
         <p>
           Note: Beware of the greedy regular expression used in the above example.
           <code>.*</code> will match as much as possible and not produce multiple violations in
@@ -84,7 +85,7 @@
           expression being too greedy, avoid overusing matching all text or allow it to be
           optional, like <code>.*?</code>. Changing the example expression to not be greedy
           will allow multiple violations in the example to be found in the same file.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example4-config">
         To configure the check to match a maximum of three test strings:
         </p>
