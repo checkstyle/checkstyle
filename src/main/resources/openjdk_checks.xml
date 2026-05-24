@@ -92,6 +92,7 @@
     </module>
 
     <!-- §3.3: Import statements should be sorted -->
+    <module name="AvoidStarImport"/>
     <module name="ImportOrder">
       <property name="groups" value="java,javax"/>
       <property name="ordered" value="true"/>
