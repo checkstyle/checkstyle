@@ -119,7 +119,8 @@
           ImportOrder has a limitation by design to enforce an empty line between groups
           ("java", "javax"). There is no flexibility to enforce empty lines between some
           groups and no empty lines between other groups.
-        </p><hr class="example-separator"/>
+        </p>
+        <hr class="example-separator"/>
         <p id="Example4-config">
           Note: "separated" option is disabled because IDEA default has blank line
           between "java" and static imports, and no blank line between "javax" and "java".
@@ -179,7 +180,8 @@
           not, default value is <b>false</b>. It is applied to static imports grouped
           with <b>top</b> or <b>bottom</b> options. This option is helping in reconciling
           of this Check and other tools like Eclipse's Organize Imports feature.
-        </p><hr class="example-separator"/>
+        </p>
+        <hr class="example-separator"/>
         <p id="Example6-config">
           To configure the Check allows static imports grouped to the <b>top</b> being sorted
           alphabetically:
@@ -276,7 +278,8 @@ import static java.lang.Character.UnicodeBlock.BASIC_LATIN => java.lang.Characte
         </macro>
         <p>
           To configure the check to enforce static import group separation
-        </p><hr class="example-separator"/>
+        </p>
+        <hr class="example-separator"/>
         <p id="Example10-config">
           Example for <code>separatedStaticGroups=true</code>
         </p>

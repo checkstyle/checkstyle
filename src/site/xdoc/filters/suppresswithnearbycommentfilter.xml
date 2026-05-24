@@ -264,7 +264,8 @@ public class Example6 {
           show how to skip validations near code that has comment like
           <code>// @cs-: &lt;ID/&gt; (reason)</code>, where ID is the ID of checks you want to
           suppress.
-        </p><hr class="example-separator"/>
+        </p>
+        <hr class="example-separator"/>
         <p id="Example7-config">
           Example of Checkstyle checks and
           SuppressWithNearbyCommentFilter configuration (idFormat which
