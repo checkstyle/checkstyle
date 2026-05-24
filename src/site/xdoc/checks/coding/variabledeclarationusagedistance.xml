@@ -148,7 +148,8 @@ public class Example2 {
           The distance for the variable &quot;minutes&quot; in the method <code>case2</code> is 6
           because there is one more expression (except the initialization block) between the
           declaration of this variable and its usage.
-        </p><hr class="example-separator"/>
+        </p>
+        <hr class="example-separator"/>
         <p id="Example3-config">
             To configure the check to set allowed distance:
         </p>
