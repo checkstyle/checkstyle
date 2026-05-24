@@ -49,9 +49,10 @@
           <param name="type" value="code"/>
         </macro>
         <p>
-          Note that method call foo(5) does not raise a violation
+          Note that method call <code>foo(5);</code> does not raise a violation
           because methods cannot be overlapped in java.
-        </p><hr class="example-separator"/>
+        </p>
+        <hr class="example-separator"/>
         <p id="Example4-config">
             To configure the check demand methods and fields to have 'this.'
         </p>
@@ -116,6 +117,7 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example6.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
       </subsection>
 
       <subsection name="Example of Usage" id="RequireThis_Example_of_Usage">
