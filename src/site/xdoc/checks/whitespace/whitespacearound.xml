@@ -382,25 +382,33 @@ try {
 class Example1 {
   public Example1(){} // 3 violations
   // no space after ')' and '{', no space before '}'
-  public static void main(String[] args) {
-    if (true) { }
-    else{ // 2 violations
-         // no space after 'else', no space before '}'
-    }
+  int y = 0;
+  int a = 4;
 
-    for (int i = 1; i &gt; 1; i++) {} // 2 violations
-    // no space after '{', no space before '}'
-
+  void example() {
     Runnable noop = () -&gt;{}; // 4 violations
     // no space after '-&gt;' and '{', no space before '{' and '}'
     try { }
     catch (Exception e){} // 3 violations
     // no space after ')' and '{', no space before '}'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
-    for (char item: vowels) { // ok, ignoreEnhancedForColon is true by default
-
+    for (char item: vowels) { }
+    for (int i = 100;i &gt; 10; i--){} // 3 violations
+    // no space before '{', no space after '{', no space before '}'
+    do {} while (y == 1); // 2 violations
+    // no space after '{', no space before '}'
+    int i = 0;
+    switch (i) {
+      case 1: {} // 2 violations
+      // no space after '{', no space before '}'
     }
+    int a=4; // 2 violations
+    // no space before '=', no space after '='
   }
+
+  void myFunction() {} // 2 violations
+  // no space after '{', no space before '}'
+  void myFunction2() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -464,7 +472,34 @@ class Example2 {
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
+  public Example3(){} // violation ''}' is not preceded with whitespace'
+
+  int y = 0;
+  int a = 4;
+
+  void example() {
+    Runnable noop = () -&gt;{}; // violation ''}' is not preceded with whitespace'
+
+    try { }
+    catch (Exception e){} // violation ''}' is not preceded with whitespace'
+
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) { }
+    for (int i = 100;i &gt; 10; i--){} // violation ''}' is not preceded with whitespace'
+
+    do {} while (y == 1); // violation ''}' is not preceded with whitespace'
+
+    int i = 0;
+    switch (i) {
+      case 1: {} // violation ''}' is not preceded with whitespace'
+
+    }
+    int a=4;
+
+  }
+
   void myFunction() {} // violation ''}' is not preceded with whitespace'
+
   void myFunction2() { }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -483,9 +518,35 @@ class Example3 {
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
-  public void muFunction() {}
-  int a=4; // 2 violations
-  // no space before and after '='
+  public Example4(){} // 3 violations
+  // no space after ')' and '{', no space before '}'
+  int y = 0;
+  int a = 4;
+
+  void example() {
+    Runnable noop = () -&gt;{}; // 4 violations
+    // no space after '-&gt;' and '{', no space before '{' and '}'
+    try { }
+    catch (Exception e){} // 3 violations
+    // no space after ')' and '{', no space before '}'
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) { }
+    for (int i = 100;i &gt; 10; i--){} // 3 violations
+    // no space before '{', no space after '{', no space before '}'
+    do {} while (y == 1); // 2 violations
+    // no space after '{', no space before '}'
+    int i = 0;
+    switch (i) {
+      case 1: {} // 2 violations
+      // no space after '{', no space before '}'
+    }
+    int a=4; // 2 violations
+    // no space before '=', no space after '='
+  }
+
+  void myFunction() {}
+
+  void myFunction2() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
@@ -503,9 +564,35 @@ class Example4 {
         <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
-  public Example5() {}
-  public void myFunction() {} // 2 violations
+  public Example5(){} // violation, no space after ')'
+
+  int y = 0;
+  int a = 4;
+
+  void example() {
+    Runnable noop = () -&gt;{}; // 4 violations
+    // no space after '-&gt;' and '{', no space before '{' and '}'
+    try { }
+    catch (Exception e){} // 3 violations
+    // no space after ')' and '{', no space before '}'
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) { }
+    for (int i = 100;i &gt; 10; i--){} // 3 violations
+    // no space before '{', no space after '{', no space before '}'
+    do {} while (y == 1); // 2 violations
+    // no space after '{', no space before '}'
+    int i = 0;
+    switch (i) {
+      case 1: {} // 2 violations
+      // no space after '{', no space before '}'
+    }
+    int a=4; // 2 violations
+    // no space before '=', no space after '='
+  }
+
+  void myFunction() {} // 2 violations
   // no space after '{', no space before '}'
+  void myFunction2() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
@@ -523,12 +610,35 @@ class Example5 {
         <p id="Example6-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example6 {
-  class Test {}
-  interface testInterface{}
-  class anotherTest {
+  public Example6(){} // 3 violations
+  // no space after ')' and '{', no space before '}'
+  int y = 0;
+  int a = 4;
+
+  void example() {
+    Runnable noop = () -&gt;{}; // 4 violations
+    // no space after '-&gt;' and '{', no space before '{' and '}'
+    try { }
+    catch (Exception e){} // 3 violations
+    // no space after ')' and '{', no space before '}'
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) { }
+    for (int i = 100;i &gt; 10; i--){} // 3 violations
+    // no space before '{', no space after '{', no space before '}'
+    do {} while (y == 1); // 2 violations
+    // no space after '{', no space before '}'
+    int i = 0;
+    switch (i) {
+      case 1: {} // 2 violations
+      // no space after '{', no space before '}'
+    }
     int a=4; // 2 violations
-    // no space before and after '='
+    // no space before '=', no space after '='
   }
+
+  void myFunction() {} // 2 violations
+  // no space after '{', no space before '}'
+  void myFunction2() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example7-config">
@@ -546,13 +656,35 @@ class Example6 {
         <p id="Example7-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example7 {
+  public Example7(){} // 3 violations
+  // no space after ')' and '{', no space before '}'
   int y = 0;
+  int a = 4;
+
   void example() {
+    Runnable noop = () -&gt;{}; // 4 violations
+    // no space after '-&gt;' and '{', no space before '{' and '}'
+    try { }
+    catch (Exception e){} // 3 violations
+    // no space after ')' and '{', no space before '}'
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) { }
     for (int i = 100;i &gt; 10; i--){}
+
     do {} while (y == 1);
+
+    int i = 0;
+    switch (i) {
+      case 1: {} // 2 violations
+      // no space after '{', no space before '}'
+    }
     int a=4; // 2 violations
-    // no space before and after '='
+    // no space before '=', no space after '='
   }
+
+  void myFunction() {} // 2 violations
+  // no space after '{', no space before '}'
+  void myFunction2() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example8-config">
@@ -570,11 +702,35 @@ class Example7 {
         <p id="Example8-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example8 {
+  public Example8(){} // 3 violations
+  // no space after ')' and '{', no space before '}'
+  int y = 0;
+  int a = 4;
+
   void example() {
-    Runnable noop = () -&gt; {};
+    Runnable noop = () -&gt;{}; // violation, no space after '-&gt;'
+
+    try { }
+    catch (Exception e){} // 3 violations
+    // no space after ')' and '{', no space before '}'
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) { }
+    for (int i = 100;i &gt; 10; i--){} // 3 violations
+    // no space before '{', no space after '{', no space before '}'
+    do {} while (y == 1); // 2 violations
+    // no space after '{', no space before '}'
+    int i = 0;
+    switch (i) {
+      case 1: {} // 2 violations
+      // no space after '{', no space before '}'
+    }
     int a=4; // 2 violations
-    // no space before and after '='
+    // no space before '=', no space after '='
   }
+
+  void myFunction() {} // 2 violations
+  // no space after '{', no space before '}'
+  void myFunction2() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example9-config">
@@ -592,12 +748,35 @@ class Example8 {
         <p id="Example9-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example9 {
+  public Example9(){} // 3 violations
+  // no space after ')' and '{', no space before '}'
+  int y = 0;
+  int a = 4;
+
   void example() {
+    Runnable noop = () -&gt;{}; // 4 violations
+    // no space after '-&gt;' and '{', no space before '{' and '}'
+    try { }
+    catch (Exception e){}
+
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) { }
+    for (int i = 100;i &gt; 10; i--){} // 3 violations
+    // no space before '{', no space after '{', no space before '}'
+    do {} while (y == 1); // 2 violations
+    // no space after '{', no space before '}'
+    int i = 0;
+    switch (i) {
+      case 1: {} // 2 violations
+      // no space after '{', no space before '}'
+    }
     int a=4; // 2 violations
-    // no space before and after '='
-    try {
-    } catch (Exception e){}
+    // no space before '=', no space after '='
   }
+
+  void myFunction() {} // 2 violations
+  // no space after '{', no space before '}'
+  void myFunction2() { }
 }
 </code></pre></div>
         <p>
@@ -620,13 +799,35 @@ class Example9 {
         <p id="Example10-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example10 {
+  public Example10(){} // 3 violations
+  // no space after ')' and '{', no space before '}'
+  int y = 0;
+  int a = 4;
+
   void example() {
-    int a=4; // 2 violations
-    // no space before and after '='
+    Runnable noop = () -&gt;{}; // 4 violations
+    // no space after '-&gt;' and '{', no space before '{' and '}'
+    try { }
+    catch (Exception e){} // 3 violations
+    // no space after ')' and '{', no space before '}'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
-    for (char item: vowels) { // violation '':' is not preceded with whitespace'
+    for (char item: vowels) { } // violation '':' is not preceded with whitespace'
+    for (int i = 100;i &gt; 10; i--){} // 3 violations
+    // no space before '{', no space after '{', no space before '}'
+    do {} while (y == 1); // 2 violations
+    // no space after '{', no space before '}'
+    int i = 0;
+    switch (i) {
+      case 1: {} // 2 violations
+      // no space after '{', no space before '}'
     }
+    int a=4; // 2 violations
+    // no space before '=', no space after '='
   }
+
+  void myFunction() {} // 2 violations
+  // no space after '{', no space before '}'
+  void myFunction2() { }
 }
 </code></pre></div>
         <hr class="example-separator"/>
@@ -645,16 +846,35 @@ class Example10 {
         <p id="Example11-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example11 {
+  public Example11(){} // 3 violations
+  // no space after ')' and '{', no space before '}'
+  int y = 0;
+  int a = 4;
+
   void example() {
+    Runnable noop = () -&gt;{}; // 4 violations
+    // no space after '-&gt;' and '{', no space before '{' and '}'
+    try { }
+    catch (Exception e){} // 3 violations
+    // no space after ')' and '{', no space before '}'
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) { }
+    for (int i = 100;i &gt; 10; i--){} // 3 violations
+    // no space before '{', no space after '{', no space before '}'
+    do {} while (y == 1); // 2 violations
+    // no space after '{', no space before '}'
     int i = 0;
     switch (i) {
       case 1: {}
-    }
 
+    }
     int a=4; // 2 violations
-    // ''=' is not preceded with whitespace.'
-    // ''=' is not followed by whitespace.'
+    // no space before '=', no space after '='
   }
+
+  void myFunction() {} // 2 violations
+  // no space after '{', no space before '}'
+  void myFunction2() { }
 }
 </code></pre></div>
 
