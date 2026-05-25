@@ -34,7 +34,8 @@ public class TrailingCommentCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "17:16: " + getCheckMessage(MSG_KEY),
+            "16:10: " + getCheckMessage(MSG_KEY),
+            "22:16: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -43,8 +44,12 @@ public class TrailingCommentCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "21:16: " + getCheckMessage(MSG_KEY),
-            "24:8: " + getCheckMessage(MSG_KEY),
+            "15:10: " + getCheckMessage(MSG_KEY),
+            "16:10: " + getCheckMessage(MSG_KEY),
+            "17:10: " + getCheckMessage(MSG_KEY),
+            "18:10: " + getCheckMessage(MSG_KEY),
+            "24:16: " + getCheckMessage(MSG_KEY),
+            "27:8: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -54,6 +59,7 @@ public class TrailingCommentCheckExamplesTest extends AbstractExamplesModuleTest
     public void testExample3() throws Exception {
         final String[] expected = {
             "18:10: " + getCheckMessage(MSG_KEY),
+            "24:16: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);

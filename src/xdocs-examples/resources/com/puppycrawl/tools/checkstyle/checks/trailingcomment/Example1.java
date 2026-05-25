@@ -10,6 +10,11 @@ package com.puppycrawl.tools.checkstyle.checks.trailingcomment;
 
 // xdoc section -- start
 public class Example1 {
+  int a;
+  int b;
+  int c;
+  int d; // violation
+
   public static void main(String[] args) {
     int x = 10;
 
