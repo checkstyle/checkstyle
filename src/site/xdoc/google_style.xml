@@ -53,6 +53,21 @@
           <br />
         </p>
       </subsection>
+            <subsection name="Blue-tick explanation details" id="Google_Blue_tick_details">
+        <p>
+          Blue-tick checks indicate partial coverage of a Google Style rule.
+          For each blue-tick row, we should provide a short explanation that describes:
+        </p>
+        <ul>
+          <li>what part of the rule is currently covered,</li>
+          <li>what part is still missing, and</li>
+          <li>a link to the blocking issue (if available).</li>
+        </ul>
+        <p>
+          This additional explanation improves contributor onboarding and helps
+          readers understand why a rule is not fully green yet.
+        </p>
+      </subsection>
       <subsection name="Coverage table" id="Google_Coverage_table">
         <p>
           <b>ATTENTION:</b>
