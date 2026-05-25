@@ -41,9 +41,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * <div>
  * Checks that a local variable is declared and/or assigned, but not used.
- * Doesn't support
+ * Supports
  * <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30">
- * pattern variables yet</a>.
+ * pattern variables</a>.
  * Doesn't check
  * <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.12.3">
  * array components</a> as array
@@ -85,6 +85,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         TokenTypes.SLIST,
         TokenTypes.LITERAL_FOR,
         TokenTypes.OBJBLOCK,
+        TokenTypes.SWITCH_RULE,
+        TokenTypes.CASE_GROUP,
     };
 
     /**
@@ -139,6 +141,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
 
     /** Package separator. */
     private static final String PACKAGE_SEPARATOR = ".";
+
+    /**
+     *  Symbol used to represent unnamed variables in Java pattern matching.
+     */
+    private static final String UNNAMED_VAR = "_";
 
     /**
      * Keeps tracks of the variables declared in file.
@@ -221,6 +228,9 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             TokenTypes.ENUM_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.PATTERN_VARIABLE_DEF,
+            TokenTypes.SWITCH_RULE,
+            TokenTypes.CASE_GROUP,
         };
     }
 
@@ -253,6 +263,10 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         }
         else if (type == TokenTypes.VARIABLE_DEF && !skipUnnamedVariables(ast)) {
             visitVariableDefToken(ast);
+        }
+        else if (type == TokenTypes.PATTERN_VARIABLE_DEF
+                && !skipUnnamedPatternVariables(ast)) {
+            addPatternVariable(ast, variables);
         }
         else if (type == TokenTypes.IDENT) {
             visitIdentToken(ast, variables);
@@ -363,7 +377,50 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private boolean skipUnnamedVariables(DetailAST varDefAst) {
         final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
-        return allowUnnamedVariables && "_".equals(ident.getText());
+        return allowUnnamedVariables && UNNAMED_VAR.equals(ident.getText());
+    }
+
+    /**
+     * Check for skip current {@link TokenTypes#PATTERN_VARIABLE_DEF}.
+     *
+     * @param patternVarDefAst ast of type {@link TokenTypes#PATTERN_VARIABLE_DEF}
+     * @return true if the current pattern variable should be skipped.
+     */
+    private static boolean skipUnnamedPatternVariables(DetailAST patternVarDefAst) {
+        final DetailAST ident = patternVarDefAst.findFirstToken(TokenTypes.IDENT);
+        return UNNAMED_VAR.equals(ident.getText());
+    }
+
+    /**
+     * Add a pattern variable to the {@code variablesStack} stack.
+     *
+     * @param patternVarDefAst ast of type {@link TokenTypes#PATTERN_VARIABLE_DEF}
+     * @param variablesStack stack of all the relevant variables in the scope
+     */
+    private static void addPatternVariable(DetailAST patternVarDefAst,
+            Deque<VariableDesc> variablesStack) {
+        final DetailAST ident = patternVarDefAst.findFirstToken(TokenTypes.IDENT);
+        final DetailAST scope = findScopeOfPatternVariable(patternVarDefAst);
+        variablesStack.push(new VariableDesc(ident.getText(), patternVarDefAst, scope));
+    }
+
+    /**
+     * Find the scope of a pattern variable. The scope is determined by the nearest
+     *
+     * @param patternVarDefAst ast of type.
+     * @return result when condition is false.
+     */
+    private static DetailAST findScopeOfPatternVariable(DetailAST patternVarDefAst) {
+        DetailAST current = patternVarDefAst;
+        DetailAST result = null;
+        while (current != null && result == null) {
+            final int type = current.getType();
+            if (type == TokenTypes.SLIST) {
+                result = current;
+            }
+            current = current.getParent();
+        }
+        return result;
     }
 
     /**
