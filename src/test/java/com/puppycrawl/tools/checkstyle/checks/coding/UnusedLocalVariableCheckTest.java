@@ -72,6 +72,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
             TokenTypes.ENUM_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.PATTERN_VARIABLE_DEF,
         };
         assertWithMessage("Required tokens are invalid")
                 .that(actual)
@@ -104,6 +105,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
             TokenTypes.ENUM_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.PATTERN_VARIABLE_DEF,
         };
         assertWithMessage("Acceptable tokens are invalid")
                 .that(actual)
@@ -451,6 +453,20 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnusedLocalVariablePatternVariablesCondition() throws Exception {
+        final String[] expected = {
+            "19:37: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "redBall"),
+            "21:46: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "greenBall"),
+            "41:40: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "redBall"),
+            "43:49: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "greenBall"),
+            "56:30: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "lr"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariablePatternVariablesCondition.java"),
+                expected);
+    }
+
+    @Test
     public void testClearStateVariables() throws Exception {
         final UnusedLocalVariableCheck check = new UnusedLocalVariableCheck();
         final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(
@@ -579,6 +595,37 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableAnonInnerClasses3.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnusedLocalVariablePatternVariables() throws Exception {
+        final String[] expected = {
+            "18:25: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "c"),
+            "19:28: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "r"),
+            "48:29: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "c"),
+            "49:32: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "r"),
+            "93:25: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+            "112:35: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+        };
+        verifyWithInlineConfigParser(
+                getPath(
+                    "InputUnusedLocalVariablePatternVariables.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnusedLocalVariablePatternVariablesAllowUnnamed() throws Exception {
+        final String[] expected = {
+            "18:28: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "c"),
+            "19:28: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "r"),
+            "29:32: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "c"),
+            "30:32: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "r"),
+            "45:35: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "s"),
+        };
+        verifyWithInlineConfigParser(
+                getPath(
+                    "InputUnusedLocalVariablePatternVariablesAllowUnnamed.java"),
                 expected);
     }
 
