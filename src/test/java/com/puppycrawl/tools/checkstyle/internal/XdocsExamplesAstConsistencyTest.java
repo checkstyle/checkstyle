@@ -216,16 +216,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/whitespace/singlespaceseparator/Example2",
             "checks/whitespace/typecastparenpad/Example2",
             "checks/whitespace/whitespaceafter/Example2",
-            "checks/whitespace/whitespacearound/Example10",
-            "checks/whitespace/whitespacearound/Example2",
-            "checks/whitespace/whitespacearound/Example3",
-            "checks/whitespace/whitespacearound/Example4",
-            "checks/whitespace/whitespacearound/Example5",
-            "checks/whitespace/whitespacearound/Example6",
-            "checks/whitespace/whitespacearound/Example7",
-            "checks/whitespace/whitespacearound/Example8",
-            "checks/whitespace/whitespacearound/Example9",
-            "checks/whitespace/whitespacearound/Example11",
             "filters/suppressionfilter/Example2",
             "filters/suppressionfilter/Example3",
             "filters/suppressionfilter/Example4",
@@ -291,7 +281,8 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/naming/abbreviationaswordinname/Example6",
             "checks/naming/abbreviationaswordinname/Example7",
             "checks/naming/localvariablename/Example3",
-            "checks/naming/localvariablename/Example5"
+            "checks/naming/localvariablename/Example5",
+            "checks/whitespace/whitespacearound/Example2"
             );
 
     /**
