@@ -338,7 +338,8 @@ keyC=value5
           The following examples show how to suppress audit events in code surrounded
           by <code>CSOFF &lt;ID&gt; (reason)</code> and <code>CSON &lt;ID&gt;</code>,
           where ID is the ID of the check you want to suppress.
-        </p><hr class="example-separator"/>
+        </p>
+        <hr class="example-separator"/>
         <p id="Example7-config">
           Example of Checkstyle checks and SuppressWithPlainTextCommentFilter configuration -
           the checkFormat, set to '$1', indicates that the ID of the check

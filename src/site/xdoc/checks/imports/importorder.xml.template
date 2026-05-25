@@ -111,6 +111,7 @@
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
+        <hr class="example-separator"/>
         <p>
           Note: a
           <a href="../../filters/suppressionxpathsinglefilter.html#SuppressionXpathSingleFilter">
@@ -119,7 +120,7 @@
           ImportOrder has a limitation by design to enforce an empty line between groups
           ("java", "javax"). There is no flexibility to enforce empty lines between some
           groups and no empty lines between other groups.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example4-config">
           Note: "separated" option is disabled because IDEA default has blank line
           between "java" and static imports, and no blank line between "javax" and "java".
@@ -172,6 +173,7 @@
           this wildcard group. The wildcard group position can be specified using the
           <code>*</code> character.
         </p>
+        <hr class="example-separator"/>
         <p>
           Check also has on option making it more flexible:
           <b>sortStaticImportsAlphabetically</b> - sets whether static imports grouped by
@@ -179,7 +181,7 @@
           not, default value is <b>false</b>. It is applied to static imports grouped
           with <b>top</b> or <b>bottom</b> options. This option is helping in reconciling
           of this Check and other tools like Eclipse's Organize Imports feature.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example6-config">
           To configure the Check allows static imports grouped to the <b>top</b> being sorted
           alphabetically:
@@ -274,9 +276,10 @@ import static java.lang.Character.UnicodeBlock.BASIC_LATIN => java.lang.Characte
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example9.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
         <p>
           To configure the check to enforce static import group separation
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example10-config">
           Example for <code>separatedStaticGroups=true</code>
         </p>
