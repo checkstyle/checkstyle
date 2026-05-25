@@ -210,11 +210,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/sizes/lambdabodylength/Example2",
             "checks/sizes/linelength/Example6",
             "checks/todocomment/Example3",
-            "checks/trailingcomment/Example2",
-            "checks/trailingcomment/Example3",
-            "checks/trailingcomment/Example4",
-            "checks/trailingcomment/Example5",
-            "checks/trailingcomment/Example6",
             "checks/whitespace/nolinewrap/Example2",
             "checks/whitespace/nolinewrap/Example3",
             "checks/whitespace/nolinewrap/Example4",
@@ -303,7 +298,10 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/design/visibilitymodifier/Example7",
             "checks/design/visibilitymodifier/Example9",
             "checks/design/visibilitymodifier/Example10",
-            "checks/design/visibilitymodifier/Example11"
+            "checks/design/visibilitymodifier/Example11",
+            "checks/trailingcomment/Example4",
+            "checks/trailingcomment/Example5",
+            "checks/trailingcomment/Example6"
             );
 
     /**
