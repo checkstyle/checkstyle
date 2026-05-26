@@ -24,6 +24,9 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.XpathIteratorUtil.f
 
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.xpath.RootNode;
 import net.sf.saxon.om.NodeInfo;
 
 public class DescendantIteratorTest {
@@ -102,6 +105,35 @@ public class DescendantIteratorTest {
             assertWithMessage("Node should be null")
                     .that(iterator.next())
                     .isNull();
+        }
+    }
+
+    @Test
+    public void testNoStackOverflowOnDeepTree() {
+        final int depth = 10_000;
+        final DetailAstImpl root = new DetailAstImpl();
+        root.setType(TokenTypes.EXPR);
+        root.setLineNo(1);
+        root.setColumnNo(0);
+        DetailAstImpl current = root;
+        for (int index = 1; index < depth; index++) {
+            final DetailAstImpl child = new DetailAstImpl();
+            child.setType(TokenTypes.EXPR);
+            child.setLineNo(index + 1);
+            child.setColumnNo(0);
+            current.addChild(child);
+            current = child;
+        }
+        final RootNode rootNode = new RootNode(root);
+        try (DescendantIterator iterator = new DescendantIterator(
+                rootNode, DescendantIterator.StartWith.CHILDREN)) {
+            int count = 0;
+            while (iterator.next() != null) {
+                count++;
+            }
+            assertWithMessage("Expected %s descendants", depth)
+                    .that(count)
+                    .isEqualTo(depth);
         }
     }
 }
