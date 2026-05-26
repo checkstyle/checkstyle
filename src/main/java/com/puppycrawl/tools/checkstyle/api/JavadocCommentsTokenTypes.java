@@ -1152,6 +1152,13 @@ public final class JavadocCommentsTokenTypes {
     public static final int IDENTIFIER = JavadocCommentsLexer.IDENTIFIER;
 
     /**
+     * Dot symbol {@code .} used in qualified names.
+     *
+     * <p>Used in references to separate package and class segments.</p>
+     */
+    public static final int DOT = JavadocCommentsLexer.UNUSED_TOKEN1;
+
+    /**
      * Hash symbol {@code #} used in references within Javadoc.
      *
      * <p><b>Example:</b></p>
@@ -1516,6 +1523,14 @@ public final class JavadocCommentsTokenTypes {
      * @see #JAVADOC_INLINE_TAG
      */
     public static final int REFERENCE = JavadocCommentsLexer.REFERENCE;
+
+    /**
+     * Qualified package/class name in Javadoc references.
+     *
+     * <p>This node groups {@link #IDENTIFIER} and {@link #DOT} tokens so consumers
+     * can process each segment without manual string parsing.</p>
+     */
+    public static final int PACKAGE_CLASS = JavadocCommentsLexer.Link_COMMA;
 
     /**
      * {@code MEMBER_REFERENCE} Member reference (method or field).

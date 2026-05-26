@@ -449,7 +449,7 @@ EXTENDS: 'extends';
 SUPER: 'super';
 
 IDENTIFIER
-    : ([a-zA-Z0-9_$] | '.')+
+    : [a-zA-Z_$] [a-zA-Z0-9_$]*
       {
           int la = _input.LA(1);
           if (Character.isWhitespace(la) || la == '\n' || la == '\r') {
@@ -463,6 +463,7 @@ IDENTIFIER
       }
     ;
 
+Reference_DOT: '.' -> type(UNUSED_TOKEN1);
 QUESTION: '?';
 HASH: '#';
 LPAREN: '(' -> pushMode(PARAMETER_LIST);

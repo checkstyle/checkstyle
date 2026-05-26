@@ -214,11 +214,15 @@ customInlineTag
 // Components
 reference
     : HASH memberReference
-    | (module=qualifiedName SLASH)? type=typeName (HASH memberReference)?
+    | (module=packageClass SLASH)? type=typeName (HASH memberReference)?
     ;
 
 typeName
-    : qualifiedName (typeArguments)?
+    : packageClass (typeArguments)?
+    ;
+
+packageClass
+    : IDENTIFIER (UNUSED_TOKEN1 IDENTIFIER)*
     ;
 
 qualifiedName
