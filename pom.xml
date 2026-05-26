@@ -202,7 +202,7 @@
     <surefire.options />
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.13.2</antlr4.version>
-    <site.plugin.version>3.21.0</site.plugin.version>
+    <site.plugin.version>3.22.0</site.plugin.version>
     <spotbugs.plugin.version>4.9.8.3</spotbugs.plugin.version>
     <pmd.plugin.version>3.28.0</pmd.plugin.version>
     <pmd.version>7.25.0</pmd.version>
