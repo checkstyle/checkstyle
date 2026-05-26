@@ -103,6 +103,7 @@ public class SuppressionSingleFilter extends AbstractAutomaticBean implements Fi
     /**
      * Setter to define the RegExp for matching against the name of the check associated with an
      * audit event.
+     * The pattern is matched against the fully qualified class name of the Check.
      *
      * @param checks the name of the check
      * @since 8.23
