@@ -33,6 +33,8 @@ import org.apache.maven.doxia.sink.SinkFactory;
 import org.codehaus.plexus.DefaultPlexusContainer;
 import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.util.ReaderFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.puppycrawl.tools.checkstyle.site.XdocsTemplateParser;
 import com.puppycrawl.tools.checkstyle.site.XdocsTemplateSinkFactory;
@@ -49,6 +51,7 @@ public final class XdocGenerator {
     }
 
     public static void generateXdocContent(File temporaryFolder) throws Exception {
+        final Logger logger = LoggerFactory.getLogger(XdocGenerator.class);
         final PlexusContainer plexus = new DefaultPlexusContainer();
         final Set<Path> templatesFilePaths = XdocUtil.getXdocsTemplatesFilePaths();
 
@@ -56,23 +59,49 @@ public final class XdocGenerator {
             final String pathToFile = path.toString();
             final File inputFile = new File(pathToFile);
             final File outputFile = new File(pathToFile.replace(".template", ""));
-            final File tempFile = new File(temporaryFolder, outputFile.getName());
-            tempFile.deleteOnExit();
-            final XdocsTemplateSinkFactory sinkFactory = (XdocsTemplateSinkFactory)
-                    plexus.lookup(SinkFactory.ROLE, XDOCS_TEMPLATE_HINT);
-            final Sink sink = sinkFactory.createSink(tempFile.getParentFile(),
-                    tempFile.getName(), String.valueOf(StandardCharsets.UTF_8));
-            final XdocsTemplateParser parser = (XdocsTemplateParser)
-                    plexus.lookup(Parser.ROLE, XDOCS_TEMPLATE_HINT);
-            try (Reader reader = ReaderFactory.newReader(inputFile,
+            final File tempFile = new File(
+                temporaryFolder,
+                outputFile.getName() + ".tmp"
+            );
+            final XdocsTemplateSinkFactory sinkFactory =
+                (XdocsTemplateSinkFactory) plexus.lookup(SinkFactory.ROLE, XDOCS_TEMPLATE_HINT);
+
+            final Sink sink = sinkFactory.createSink(
+                tempFile.getParentFile(),
+                tempFile.getName(),
+                String.valueOf(StandardCharsets.UTF_8)
+            );
+
+            final XdocsTemplateParser parser =
+                (XdocsTemplateParser) plexus.lookup(Parser.ROLE, XDOCS_TEMPLATE_HINT);
+
+            final boolean success;
+
+            try (Reader reader = ReaderFactory.newReader(
+                    inputFile,
                     String.valueOf(StandardCharsets.UTF_8))) {
+
                 parser.parse(reader, sink);
+                success = true;
             }
             finally {
                 sink.close();
             }
-            final StandardCopyOption copyOption = StandardCopyOption.REPLACE_EXISTING;
-            Files.copy(tempFile.toPath(), outputFile.toPath(), copyOption);
+
+            if (success) {
+                Files.move(
+                    tempFile.toPath(),
+                    outputFile.toPath(),
+                    StandardCopyOption.REPLACE_EXISTING
+                );
+            }
+            else {
+                if (logger.isDebugEnabled()) {
+                    logger.debug(
+                            "Error generating xdoc. Temp file preserved at: {}",
+                            tempFile.getAbsolutePath());
+                }
+            }
         }
     }
 }
