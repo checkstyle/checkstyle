@@ -520,6 +520,10 @@
           <groupId>com.google.collections</groupId>
           <artifactId>google-collections</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>org.codehaus.plexus</groupId>
+          <artifactId>plexus-utils</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
   </dependencies>
