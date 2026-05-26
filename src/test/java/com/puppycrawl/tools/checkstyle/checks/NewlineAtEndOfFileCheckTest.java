@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
+import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_UNABLE_OPEN;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_WRONG_ENDING;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
@@ -100,9 +101,19 @@ public class NewlineAtEndOfFileCheckTest
     }
 
     @Test
+    public void testCrEndingWhenLfExpected() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR, "lf"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileCrWhenLfExpected.java"),
+            expected);
+    }
+
+    @Test
     public void testNoNewlineLfAtEndOfFile() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR, "lf"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNewlineAtEndOfFileNoNewline.java"),
@@ -118,6 +129,28 @@ public class NewlineAtEndOfFileCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputNewlineAtEndOfFileNoNewline2.java"),
             expected);
+    }
+
+    @Test
+    public void testNoNewlineWithLfSeparatorLogsSpecificMessage() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF.toString());
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR, "lf"),
+        };
+        verify(checkConfig, getPath("InputNewlineAtEndOfFileNoNewline.java"), expected);
+    }
+
+    @Test
+    public void testNoNewlineWithLfCrCrlfSeparatorLogsGenericMessage() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+        };
+        verify(checkConfig, getPath("InputNewlineAtEndOfFileNoNewline.java"), expected);
     }
 
     @Test
