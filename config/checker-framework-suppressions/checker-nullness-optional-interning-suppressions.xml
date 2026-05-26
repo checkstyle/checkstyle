@@ -6060,83 +6060,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter firstArg of JavadocTag constructor.</message>
-    <lineContent>javadocArgMatcher.group(2)));</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter firstArg of JavadocTag constructor.</message>
-    <lineContent>javadocArgMissingDescriptionMatcher.group(2)));</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter tag of JavadocTag constructor.</message>
-    <lineContent>javadocArgMissingDescriptionMatcher.group(1),</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter tag of JavadocTag constructor.</message>
-    <lineContent>tags.add(new JavadocTag(currentLine, 0, noargCurlyMatcher.group(1)));</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter tag of JavadocTag constructor.</message>
-    <lineContent>tags.add(new JavadocTag(currentLine, col, javadocArgMatcher.group(1),</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter tag of JavadocTag constructor.</message>
-    <lineContent>tags.add(new JavadocTag(currentLine, col, javadocNoargMatcher.group(1)));</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter tag of JavadocTag constructor.</message>
-    <lineContent>tags.add(new JavadocTag(tagLine, col, param1));</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference params</message>
     <lineContent>DetailAST child = params.getFirstChild();</lineContent>
@@ -6161,6 +6084,13 @@
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference typeParam.findFirstToken(TokenTypes.IDENT)</message>
     <lineContent>if (typeParam.findFirstToken(TokenTypes.IDENT).getText()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field currentAst</message>
+    <lineContent>private DetailAST currentAst;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
