@@ -248,6 +248,7 @@ import com.sun.source.tree.Tree;
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
+        <hr class="example-separator"/>
         <p>
           Note: a
           <a href="../../filters/suppressionxpathsinglefilter.html#SuppressionXpathSingleFilter">
@@ -256,7 +257,7 @@ import com.sun.source.tree.Tree;
           ImportOrder has a limitation by design to enforce an empty line between groups
           (&quot;java&quot;, &quot;javax&quot;). There is no flexibility to enforce empty lines between some
           groups and no empty lines between other groups.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example4-config">
           Note: &quot;separated&quot; option is disabled because IDEA default has blank line
           between &quot;java&quot; and static imports, and no blank line between &quot;javax&quot; and &quot;java&quot;.
@@ -270,10 +271,6 @@ import com.sun.source.tree.Tree;
       &lt;property name="separated" value="false"/&gt;
       &lt;property name="option" value="bottom"/&gt;
       &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
-    &lt;/module&gt;
-    &lt;module name="SuppressionXpathSingleFilter"&gt;
-      &lt;property name="checks" value="ImportOrder"/&gt;
-      &lt;property name="message" value="^'java\..*'.*"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -332,6 +329,7 @@ import static javax.swing.JTree.*;
           this wildcard group. The wildcard group position can be specified using the
           <code>*</code> character.
         </p>
+        <hr class="example-separator"/>
         <p>
           Check also has on option making it more flexible:
           <b>sortStaticImportsAlphabetically</b> - sets whether static imports grouped by
@@ -339,7 +337,7 @@ import static javax.swing.JTree.*;
           not, default value is <b>false</b>. It is applied to static imports grouped
           with <b>top</b> or <b>bottom</b> options. This option is helping in reconciling
           of this Check and other tools like Eclipse's Organize Imports feature.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example6-config">
           To configure the Check allows static imports grouped to the <b>top</b> being sorted
           alphabetically:
@@ -469,9 +467,10 @@ import static java.lang.Character.valueOf;
 import static java.lang.Character.UnicodeBlock.BASIC_LATIN;
 // violation above 'Wrong lexicographical order for ...'
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           To configure the check to enforce static import group separation
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example10-config">
           Example for <code>separatedStaticGroups=true</code>
         </p>
