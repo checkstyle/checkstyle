@@ -63,8 +63,8 @@ public final class XMLLogger
     /** Close output stream in auditFinished. */
     private final boolean closeStream;
 
-    /** Holds all messages for the given file. */
-    private final Map<String, FileMessages> fileMessages =
+    /** Holds all violations for the given file. */
+    private final Map<String, FileViolations> fileViolations =
             new HashMap<>();
 
     /**
@@ -138,29 +138,29 @@ public final class XMLLogger
 
     @Override
     public void fileStarted(AuditEvent event) {
-        fileMessages.put(event.getFileName(), new FileMessages());
+        fileViolations.put(event.getFileName(), new FileViolations());
     }
 
     @Override
     public void fileFinished(AuditEvent event) {
         final String fileName = event.getFileName();
-        final FileMessages messages = fileMessages.remove(fileName);
-        writeFileMessages(fileName, messages);
+        final FileViolations violations = fileViolations.remove(fileName);
+        writeFileViolations(fileName, violations);
     }
 
     /**
      * Prints the file section with all file errors and exceptions.
      *
      * @param fileName The file name, as should be printed in the opening file tag.
-     * @param messages The file messages.
+     * @param violations The file violations.
      */
-    private void writeFileMessages(String fileName, FileMessages messages) {
+    private void writeFileViolations(String fileName, FileViolations violations) {
         writeFileOpeningTag(fileName);
-        if (messages != null) {
-            for (AuditEvent errorEvent : messages.getErrors()) {
+        if (violations != null) {
+            for (AuditEvent errorEvent : violations.getErrors()) {
                 writeFileError(errorEvent);
             }
-            for (Throwable exception : messages.getExceptions()) {
+            for (Throwable exception : violations.getExceptions()) {
                 writeException(exception);
             }
         }
@@ -187,9 +187,9 @@ public final class XMLLogger
     public void addError(AuditEvent event) {
         if (event.getSeverityLevel() != SeverityLevel.IGNORE) {
             final String fileName = event.getFileName();
-            final FileMessages messages = fileMessages.get(fileName);
-            if (messages != null) {
-                messages.addError(event);
+            final FileViolations violations = fileViolations.get(fileName);
+            if (violations != null) {
+                violations.addError(event);
             }
             else {
                 writeFileError(event);
@@ -229,9 +229,9 @@ public final class XMLLogger
     @Override
     public void addException(AuditEvent event, Throwable throwable) {
         final String fileName = event.getFileName();
-        final FileMessages messages = fileMessages.get(fileName);
-        if (messages != null) {
-            messages.addException(throwable);
+        final FileViolations violations = fileViolations.get(fileName);
+        if (violations != null) {
+            violations.addException(throwable);
         }
         else {
             writeException(throwable);
@@ -336,9 +336,9 @@ public final class XMLLogger
     }
 
     /**
-     * The registered file messages.
+     * The registered file violations.
      */
-    private static final class FileMessages {
+    private static final class FileViolations {
 
         /** The file error events. */
         private final List<AuditEvent> errors = new ArrayList<>();
@@ -356,7 +356,7 @@ public final class XMLLogger
         }
 
         /**
-         * Adds the given error event to the messages.
+         * Adds the given error event to the violations.
          *
          * @param event the error event.
          */
@@ -374,7 +374,7 @@ public final class XMLLogger
         }
 
         /**
-         * Adds the given exception to the messages.
+         * Adds the given exception to the violations.
          *
          * @param throwable the file exception
          */

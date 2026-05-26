@@ -181,7 +181,7 @@ public final class DefaultConfiguration implements Configuration {
      * @return unmodifiable map containing custom messages
      */
     @Override
-    public Map<String, String> getMessages() {
+    public Map<String, String> getViolations() {
         return new HashMap<>(messages);
     }
 
