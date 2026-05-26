@@ -85,4 +85,25 @@ public class RegexpMultilineCheckExamplesTest extends AbstractExamplesModuleTest
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
+
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "16: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test #[0-9]+: ([A-Za-z ]+)"),
+            "19: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test #[0-9]+: ([A-Za-z ]+)"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+    }
+
+    @Test
+    public void testExample8() throws Exception {
+        final String[] expected = {
+            "15: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "([A-Z]+) = ([0-9]+)"),
+            "16: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "([A-Z]+) = ([0-9]+)"),
+            "17: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "([A-Z]+) = ([0-9]+)"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+    }
 }
