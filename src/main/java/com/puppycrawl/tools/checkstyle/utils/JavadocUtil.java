@@ -24,6 +24,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
@@ -188,6 +190,56 @@ public final class JavadocUtil {
     public static String getJavadocCommentContent(DetailAST javadocCommentBegin) {
         final DetailAST commentContent = javadocCommentBegin.getFirstChild();
         return commentContent.getText().substring(1);
+    }
+
+    /**
+     * Returns the Javadoc block comment attached to the given declaration AST node.
+     *
+     * @param ast the declaration AST node
+     * @return the attached Javadoc block comment, or {@code null} if none is found
+     */
+    @Nullable
+    public static DetailAST getAttachedJavadocComment(final DetailAST ast) {
+        DetailAST result = null;
+        DetailAST child = ast.getFirstChild();
+        while (result == null && child != null && !isDeclarationBody(child)) {
+            result = findJavadocComment(child);
+            child = child.getNextSibling();
+        }
+        return result;
+    }
+
+    /**
+     * Finds the first Javadoc block comment under the given AST node.
+     *
+     * @param ast the AST node to search
+     * @return the Javadoc block comment, or {@code null} if none is found
+     */
+    @Nullable
+    private static DetailAST findJavadocComment(DetailAST ast) {
+        DetailAST result = null;
+        if (ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN && isJavadocComment(ast)) {
+            result = ast;
+        }
+        else {
+            DetailAST child = ast.getFirstChild();
+            while (result == null && child != null) {
+                result = findJavadocComment(child);
+                child = child.getNextSibling();
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether the node starts a declaration body.
+     *
+     * @param ast the AST node to check
+     * @return {@code true} when the node starts a declaration body
+     */
+    private static boolean isDeclarationBody(DetailAST ast) {
+        final int tokenType = ast.getType();
+        return tokenType == TokenTypes.SLIST || tokenType == TokenTypes.OBJBLOCK;
     }
 
     /**
