@@ -1,5 +1,5 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
-import com.google.common.base.Objects;
+import java.util.Objects;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,8 +24,8 @@ public class InputMissingJavadocMethodSetterGetter3<V, C> {
         }
         InputMissingJavadocMethodSetterGetter3<V, C> that =
                 (InputMissingJavadocMethodSetterGetter3<V, C>) o;
-        return Objects.equal(field, that.field) &&
-                Objects.equal(array, that.array);
+        return Objects.equals(field, that.field) &&
+                Objects.equals(array, that.array);
     }
 
     public void doSomething(int value) {

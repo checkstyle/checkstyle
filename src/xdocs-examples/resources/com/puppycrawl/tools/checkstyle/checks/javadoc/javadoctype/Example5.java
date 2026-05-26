@@ -9,7 +9,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
-
+import javax.annotation.processing.Generated;
 // xdoc section -- start
 /**
  * @author a
@@ -42,7 +42,7 @@ public class Example5 {
   private class ClassF<T> {} // violation, as param tag for <T> is missing
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG<T> {}
 }
 // xdoc section -- end
