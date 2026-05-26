@@ -141,9 +141,44 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         else {
             compilationUnit = createImaginary(TokenTypes.COMPILATION_UNIT);
             // last child is 'EOF', we do not include this token in AST
-            processChildren(compilationUnit, ctx.children.subList(0, ctx.children.size() - 1));
+            final List<ParseTree> children = ctx.children.subList(0, ctx.children.size() - 1);
+
+            final boolean isCompactSourceFile = children.stream()
+                    .anyMatch(JavaLanguageParser.CompactMemberDeclarationContext.class::isInstance);
+
+            if (isCompactSourceFile) {
+                buildCompactCompilationUnit(compilationUnit, children);
+            }
+            else {
+                processChildren(compilationUnit, children);
+            }
         }
         return compilationUnit;
+    }
+
+    /**
+     * Builds the AST for a JEP 512 compact source file. Import declarations are
+     * attached as direct children of {@code compilationUnit}; top-level members
+     * (methods, fields, nested type declarations) are wrapped inside a synthetic
+     * {@link TokenTypes#COMPACT_COMPILATION_UNIT} node that mirrors the implicit
+     * class produced by {@code javac}. Compact source files cannot declare a
+     * package, so only imports are handled at the compilation-unit level.
+     *
+     * @param compilationUnit the COMPILATION_UNIT root being built
+     * @param children parse-tree children of CompilationUnitContext (excluding EOF)
+     */
+    private void buildCompactCompilationUnit(DetailAstImpl compilationUnit,
+                                             Iterable<ParseTree> children) {
+        final DetailAstImpl compactUnit = createImaginary(TokenTypes.COMPACT_COMPILATION_UNIT);
+        for (ParseTree child : children) {
+            if (child instanceof JavaLanguageParser.ImportDeclarationContext) {
+                compilationUnit.addChild(visit(child));
+            }
+            else {
+                compactUnit.addChild(visit(child));
+            }
+        }
+        compilationUnit.addChild(compactUnit);
     }
 
     @Override
