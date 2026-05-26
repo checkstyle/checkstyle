@@ -712,4 +712,13 @@ public class WhitespaceAroundCheckTest
                 getPath(fileName),
                 expected);
     }
+
+    @Test
+    public void testWhitespaceAroundReservedWords() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputWhitespaceAroundReservedWords.java"),
+                expected);
+    }
 }
