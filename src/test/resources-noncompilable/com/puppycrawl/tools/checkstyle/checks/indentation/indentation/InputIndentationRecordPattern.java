@@ -59,7 +59,7 @@ _)) {}                                                                      //in
                 int y,                                                      //indent:16 exp:12 warn
                         _),                                                 //indent:24 exp:12 warn
                 ColoredPoint(_,_,_)                                         //indent:16 exp:12 warn
-                )                                                           //indent:16 exp:8 warn
+                )                                                           //indent:16 exp:12 warn
         ) {}                                                                //indent:8 exp:8
 
         if (obj instanceof                                                  //indent:8 exp:8

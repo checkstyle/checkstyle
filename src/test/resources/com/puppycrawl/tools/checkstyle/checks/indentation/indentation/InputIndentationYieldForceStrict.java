@@ -76,7 +76,7 @@ class InputIndentationYieldForceStrict {                                  //inde
             default -> {                                                  //indent:12 exp:12
         yield false;                                                      //indent:8 exp:16 warn
             }                                                             //indent:12 exp:12
-        };                                                                //indent:8 exp:8
+        };                                                                //indent:8 exp:12 warn
     }                                                                     //indent:4 exp:4
 
     public boolean returnKeywordCorrect(int k) {                          //indent:4 exp:4
@@ -93,6 +93,6 @@ class InputIndentationYieldForceStrict {                                  //inde
             default -> {                                                  //indent:12 exp:12
                 yield false;                                              //indent:16 exp:16
             }                                                             //indent:12 exp:12
-        };                                                                //indent:8 exp:8
+        };                                                                //indent:8 exp:12 warn
     }                                                                     //indent:4 exp:4
 }                                                                         //indent:0 exp:0

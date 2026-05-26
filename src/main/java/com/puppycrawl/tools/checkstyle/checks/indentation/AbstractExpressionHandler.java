@@ -351,8 +351,10 @@ public abstract class AbstractExpressionHandler {
         // at the correct indention level; otherwise, it is an only a
         // violation if this statement starts the line and it is less than
         // the correct indentation level
-        if (mustMatch && !indentLevel.isAcceptable(start)
-                || !mustMatch && columnNumber == start && indentLevel.isGreaterThan(start)) {
+        if ((mustMatch || indentCheck.isForceStrictCondition())
+                && !indentLevel.isAcceptable(start)
+                || !mustMatch && columnNumber == start
+                    && indentLevel.isGreaterThan(start)) {
             logChildError(ast, start, indentLevel);
         }
     }
