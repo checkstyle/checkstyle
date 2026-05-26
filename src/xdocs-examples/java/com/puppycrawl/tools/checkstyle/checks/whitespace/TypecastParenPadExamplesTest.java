@@ -49,10 +49,10 @@ public class TypecastParenPadExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "21:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "25:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "25:15: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
-            "27:16: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "23:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "25:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "25:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "27:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
