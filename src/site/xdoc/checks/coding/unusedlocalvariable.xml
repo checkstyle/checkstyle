@@ -11,9 +11,9 @@
       <subsection name="Description" id="UnusedLocalVariable_Description">
         <div>
           Checks that a local variable is declared and/or assigned, but not used.
-          Doesn't support
+          Supports
           <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30">
-          pattern variables yet</a>.
+          pattern variables</a>.
           Doesn't check
           <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.12.3">
           array components</a> as array
