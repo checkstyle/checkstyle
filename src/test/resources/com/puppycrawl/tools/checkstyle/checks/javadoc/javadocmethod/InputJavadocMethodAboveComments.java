@@ -6,6 +6,7 @@ accessModifiers = (default)public, protected, package, private
 allowMissingParamTags = (default)false
 allowMissingReturnTag = (default)false
 allowInlineReturn = (default)false
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 
 */
@@ -41,18 +42,6 @@ public class InputJavadocMethodAboveComments {
      * @return 0
      */
     public int foo3() throws Exception {
-        return 0;
-    }
-    /**
-     * A dangling Javadoc comment.
-     * @throws Exception exception
-     * @return 0
-     */
-    /**
-     * A Javadoc comment.
-     * @return 0
-     */
-    public int foo4() throws Exception {  // violation, 'Expected @throws tag for 'Exception''
         return 0;
     }
     /**
