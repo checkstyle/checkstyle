@@ -6,8 +6,8 @@ accessModifiers = (default)public, protected, package, private
 allowMissingParamTags = (default)false
 allowMissingReturnTag = (default)false
 allowInlineReturn = (default)false
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
-
 
 */
 
@@ -79,5 +79,16 @@ public class InputJavadocMethodGenerics <E extends java.lang.Exception,
      * @param <P> some parameter
      */
     public interface InvalidParameterInJavadoc<T> {}
+
+    // 3 violations 7 lines below:
+    //  '@return tag should be present and have description.'
+    //  'Expected @param tag for '<T>'.'
+    //  'Expected @param tag for 'value'.'
+    /**
+     * Javadoc.
+     */
+    <T> T method(T value) {
+        return value;
+    }
 }
 
