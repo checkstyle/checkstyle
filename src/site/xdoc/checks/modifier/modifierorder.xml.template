@@ -18,6 +18,15 @@
         </macro>
       </subsection>
 
+      <subsection name="Properties" id="ModifierOrder_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/ModifierOrderCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
       <subsection name="Examples" id="ModifierOrder_Examples">
         <p id="Example1-config"> To configure the check: </p>
         <macro name="example">

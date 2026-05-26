@@ -10,11 +10,12 @@
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="ModifierOrder_Description">
         <div>
-          Checks that the order of modifiers conforms to the suggestions in the
+          Checks that the order of modifiers conforms to the configured order.
+          By default, checks that the order conforms to the suggestions in the
           <a href="https://docs.oracle.com/javase/specs/jls/se16/preview/specs/sealed-classes-jls.html">
           Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3</a> and
           <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html">9.4</a>.
-          The correct order is:
+          The default order is:
         </div>
 
         <ol>
@@ -35,7 +36,29 @@
         </ol>
 
         <p>
-          In additional, modifiers are checked to ensure all annotations
+          To configure the check to follow the
+          <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-modifiers">
+          OpenJDK style</a>, set the property <code>modifierOrder</code> to <code>openjdk</code>.
+          The OpenJDK order is:
+        </p>
+
+        <ol>
+        <li> <code>public</code> </li>
+        <li> <code>protected</code> </li>
+        <li> <code>private</code> </li>
+        <li> <code>abstract</code> </li>
+        <li> <code>static</code> </li>
+        <li> <code>final</code> </li>
+        <li> <code>transient</code> </li>
+        <li> <code>volatile</code> </li>
+        <li> <code>default</code> </li>
+        <li> <code>synchronized</code> </li>
+        <li> <code>native</code> </li>
+        <li> <code>strictfp</code> </li>
+        </ol>
+
+        <p>
+          In addition, modifiers are checked to ensure all annotations
           are declared before all other modifiers.
         </p>
 
@@ -49,6 +72,27 @@
           <a href="https://www.oracle.com/technical-resources/articles/java/ma14-architect-annotations.html">
           type annotations</a> from validation.
         </p>
+      </subsection>
+
+      <subsection name="Properties" id="ModifierOrder_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="modifierOrder"/><a href="#modifierOrder">modifierOrder</a></td>
+              <td>Specify the order of modifiers. Use "default" for JLS suggested order, "openjdk" for OpenJDK style. Or provide a custom comma-separated list of modifiers.</td>
+              <td><a href="../../property_types.html#String">String</a></td>
+              <td><code>default</code></td>
+              <td>13.4.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="ModifierOrder_Examples">
@@ -65,7 +109,7 @@
 public class Example1 {
   public static final int MAX_VALUE = 100;
 
-  // violation below "'private' modifier out of order with the JLS suggestions"
+  // violation below "'private' modifier out of order with the configured modifier order"
   final private String example = "Example";
 
   // violation below, 'annotation modifier does not precede non-annotation modifiers'

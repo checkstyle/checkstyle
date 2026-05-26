@@ -205,13 +205,13 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testExample10() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "17:9: 'public' modifier out of order with the JLS suggestions.",
-            "18:14: 'abstract' modifier out of order with the JLS suggestions.",
-            "23:14: 'abstract' modifier out of order with the JLS suggestions.",
+            "17:9: 'public' modifier out of order with the configured modifier order.",
+            "18:14: 'abstract' modifier out of order with the configured modifier order.",
+            "23:14: 'abstract' modifier out of order with the configured modifier order.",
         };
 
         final String[] expectedWithFilter = {
-            "23:14: 'abstract' modifier out of order with the JLS suggestions.",
+            "23:14: 'abstract' modifier out of order with the configured modifier order.",
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"

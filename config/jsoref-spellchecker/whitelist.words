@@ -5,6 +5,7 @@ abstractcheck
 abstractclassname
 abstractfileset
 abstractjavadoc
+abstractt
 ABx
 ACEM
 Acheckstyle
@@ -451,6 +452,7 @@ finalparameters
 findbugs
 Findentation
 findstr
+finl
 firefox
 firstsentence
 FIXME
@@ -895,6 +897,7 @@ NAMEFILE
 nameofaffectedcheck
 namespace
 nanos
+nativee
 nbactions
 nbia
 nbsp
@@ -1100,6 +1103,7 @@ printf
 println
 PRINTSTACKTRACE
 priva
+privat
 PRMC
 programpractice
 Proguard
@@ -1107,6 +1111,7 @@ propertycachefile
 propkey
 protonpack
 Psevntu
+publick
 pullrequest
 puppycrawl
 pw
@@ -1273,6 +1278,7 @@ stackoverflow
 stackoverflowerror
 stacktrace
 standalone
+statick
 staticvariablename
 stdin
 Stdlib
@@ -1284,6 +1290,7 @@ stmt
 streamapi
 streamreader
 strictfp
+strictfpp
 stringliteralequality
 strkkk
 STT
@@ -1375,6 +1382,7 @@ TOSTRING
 Touchscreen
 tpc
 trailingcomment
+transientt
 treemap
 treeset
 treetable
@@ -1462,6 +1470,7 @@ Vladlis
 vm
 vnd
 Vnen
+volatilee
 vscode
 Vtl
 Vuillamy

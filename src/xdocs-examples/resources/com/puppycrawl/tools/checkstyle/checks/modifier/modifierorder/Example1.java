@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.modifier.modifierorder;
 public class Example1 {
   public static final int MAX_VALUE = 100;
 
-  // violation below "'private' modifier out of order with the JLS suggestions"
+  // violation below "'private' modifier out of order with the configured modifier order"
   final private String example = "Example";
 
   // violation below, 'annotation modifier does not precede non-annotation modifiers'

@@ -5,11 +5,12 @@
              name="ModifierOrder"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks that the order of modifiers conforms to the suggestions in the
+ Checks that the order of modifiers conforms to the configured order.
+ By default, checks that the order conforms to the suggestions in the
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se16/preview/specs/sealed-classes-jls.html"&gt;
  Java Language specification, &amp;#167; 8.1.1, 8.3.1, 8.4.3&lt;/a&gt; and
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html"&gt;9.4&lt;/a&gt;.
- The correct order is:
+ The default order is:
  &lt;/div&gt;
 
  &lt;ol&gt;
@@ -30,7 +31,29 @@
  &lt;/ol&gt;
 
  &lt;p&gt;
- In additional, modifiers are checked to ensure all annotations
+ To configure the check to follow the
+ &lt;a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-modifiers"&gt;
+ OpenJDK style&lt;/a&gt;, set the property &lt;code&gt;modifierOrder&lt;/code&gt; to &lt;code&gt;openjdk&lt;/code&gt;.
+ The OpenJDK order is:
+ &lt;/p&gt;
+
+ &lt;ol&gt;
+ &lt;li&gt; &lt;code&gt;public&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;protected&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;private&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;abstract&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;static&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;final&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;transient&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;volatile&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;default&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;synchronized&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;native&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;strictfp&lt;/code&gt; &lt;/li&gt;
+ &lt;/ol&gt;
+
+ &lt;p&gt;
+ In addition, modifiers are checked to ensure all annotations
  are declared before all other modifiers.
  &lt;/p&gt;
 
@@ -44,6 +67,15 @@
  &lt;a href="https://www.oracle.com/technical-resources/articles/java/ma14-architect-annotations.html"&gt;
  type annotations&lt;/a&gt; from validation.
  &lt;/p&gt;</description>
+         <properties>
+            <property default-value="default"
+                      name="modifierOrder"
+                      type="java.lang.String">
+               <description>Specify the order of modifiers.
+ Use "default" for JLS suggested order, "openjdk" for OpenJDK style.
+ Or provide a custom comma-separated list of modifiers.</description>
+            </property>
+         </properties>
          <message-keys>
             <message-key key="annotation.order"/>
             <message-key key="mod.order"/>

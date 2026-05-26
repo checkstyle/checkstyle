@@ -19,14 +19,14 @@
                   "text": "''{0}'' annotation modifier does not precede non-annotation modifiers."
                 },
                 "mod.order": {
-                  "text": "''{0}'' modifier out of order with the JLS suggestions."
+                  "text": "''{0}'' modifier out of order with the configured modifier order."
                 }
               },
               "shortDescription": {
                 "text": "ModifierOrder"
               },
               "fullDescription": {
-                "text": "<div>\n Checks that the order of modifiers conforms to the suggestions in the\n <a href=\"https:\/\/docs.oracle.com\/javase\/specs\/jls\/se16\/preview\/specs\/sealed-classes-jls.html\">\n Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3<\/a> and\n <a href=\"https:\/\/docs.oracle.com\/javase\/specs\/jls\/se11\/html\/jls-9.html\">9.4<\/a>.\n The correct order is:\n <\/div>\n\n <ol>\n <li> <code>public<\/code> <\/li>\n <li> <code>protected<\/code> <\/li>\n <li> <code>private<\/code> <\/li>\n <li> <code>abstract<\/code> <\/li>\n <li> <code>default<\/code> <\/li>\n <li> <code>static<\/code> <\/li>\n <li> <code>sealed<\/code> <\/li>\n <li> <code>non-sealed<\/code> <\/li>\n <li> <code>final<\/code> <\/li>\n <li> <code>transient<\/code> <\/li>\n <li> <code>volatile<\/code> <\/li>\n <li> <code>synchronized<\/code> <\/li>\n <li> <code>native<\/code> <\/li>\n <li> <code>strictfp<\/code> <\/li>\n <\/ol>\n\n <p>\n In additional, modifiers are checked to ensure all annotations\n are declared before all other modifiers.\n <\/p>\n\n <p>\n Rationale: Code is easier to read if everybody follows\n a standard.\n <\/p>\n\n <p>\n ATTENTION: We skip\n <a href=\"https:\/\/www.oracle.com\/technical-resources\/articles\/java\/ma14-architect-annotations.html\">\n type annotations<\/a> from validation.\n <\/p>"
+                "text": "<div>\n Checks that the order of modifiers conforms to the configured order.\n By default, checks that the order conforms to the suggestions in the\n <a href=\"https:\/\/docs.oracle.com\/javase\/specs\/jls\/se16\/preview\/specs\/sealed-classes-jls.html\">\n Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3<\/a> and\n <a href=\"https:\/\/docs.oracle.com\/javase\/specs\/jls\/se11\/html\/jls-9.html\">9.4<\/a>.\n The default order is:\n <\/div>\n\n <ol>\n <li> <code>public<\/code> <\/li>\n <li> <code>protected<\/code> <\/li>\n <li> <code>private<\/code> <\/li>\n <li> <code>abstract<\/code> <\/li>\n <li> <code>default<\/code> <\/li>\n <li> <code>static<\/code> <\/li>\n <li> <code>sealed<\/code> <\/li>\n <li> <code>non-sealed<\/code> <\/li>\n <li> <code>final<\/code> <\/li>\n <li> <code>transient<\/code> <\/li>\n <li> <code>volatile<\/code> <\/li>\n <li> <code>synchronized<\/code> <\/li>\n <li> <code>native<\/code> <\/li>\n <li> <code>strictfp<\/code> <\/li>\n <\/ol>\n\n <p>\n To configure the check to follow the\n <a href=\"https:\/\/cr.openjdk.org\/~alundblad\/styleguide\/index-v6.html#toc-modifiers\">\n OpenJDK style<\/a>, set the property <code>modifierOrder<\/code> to <code>openjdk<\/code>.\n The OpenJDK order is:\n <\/p>\n\n <ol>\n <li> <code>public<\/code> <\/li>\n <li> <code>protected<\/code> <\/li>\n <li> <code>private<\/code> <\/li>\n <li> <code>abstract<\/code> <\/li>\n <li> <code>static<\/code> <\/li>\n <li> <code>final<\/code> <\/li>\n <li> <code>transient<\/code> <\/li>\n <li> <code>volatile<\/code> <\/li>\n <li> <code>default<\/code> <\/li>\n <li> <code>synchronized<\/code> <\/li>\n <li> <code>native<\/code> <\/li>\n <li> <code>strictfp<\/code> <\/li>\n <\/ol>\n\n <p>\n In addition, modifiers are checked to ensure all annotations\n are declared before all other modifiers.\n <\/p>\n\n <p>\n Rationale: Code is easier to read if everybody follows\n a standard.\n <\/p>\n\n <p>\n ATTENTION: We skip\n <a href=\"https:\/\/www.oracle.com\/technical-resources\/articles\/java\/ma14-architect-annotations.html\">\n type annotations<\/a> from validation.\n <\/p>"
               }
             }
           ],
@@ -52,7 +52,7 @@
           ],
           "message": {
             "id": "mod.order",
-            "text": "'static' modifier out of order with the JLS suggestions."
+            "text": "'static' modifier out of order with the configured modifier order."
           },
           "ruleId": "com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"
         },

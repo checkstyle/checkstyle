@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule487modifiers;
 
-// violation 2 lines below ''public' modifier out of order with the JLS suggestions'
+// violation 2 lines below ''public' modifier out of order with the configured modifier order'
 /** Some javadoc. */
 sealed public class InputModifierOrderSealed permits
         InputModifierOrderSealed.Four,
@@ -14,7 +14,7 @@ sealed public class InputModifierOrderSealed permits
 
   sealed class Three extends InputModifierOrderSealed implements Five {
 
-    // violation below ''private' modifier out of order with the JLS suggestions'
+    // violation below ''private' modifier out of order with the configured modifier order'
     sealed private class OtherSquare extends Three {}
 
     private final class OtherSquare2 extends OtherSquare {}
@@ -23,6 +23,6 @@ sealed public class InputModifierOrderSealed permits
   /** Some javadoc. */
   public final class FilledFour extends Four {}
 
-  // violation below ''abstract' modifier out of order with the JLS suggestions'
+  // violation below ''abstract' modifier out of order with the configured modifier order'
   sealed abstract interface Five permits Three, Two {}
 }

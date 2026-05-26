@@ -1,6 +1,6 @@
 /*
 ModifierOrder
-
+modifierOrder = (default)default
 
 */
 
@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.modifier.modifierorder;
  * - use of 'public' in interface definition
  * @author lkuehne
  */
-strictfp final class InputModifierOrderItTwo { // violation ''final'.*out of order.*JLS.'
+strictfp final class InputModifierOrderItTwo { // violation ''final'.*out of order.*'
 
 }
 class SafeVarargsUsage {
@@ -54,7 +54,8 @@ interface InputDefaultPublicModifier
     }
 
     /** wrong order */
-    strictfp default void b() // violation ''default' modifier out of order .*JLS suggestions.'
+    strictfp default void b()
+    // violation above ''default' modifier out of order.*'
     {
     }
 }
