@@ -268,6 +268,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // whitespace is necessary between a type annotation and ellipsis
                 // according '4.6.2 Horizontal whitespace point 9'
                 "ELLIPSIS").collect(Collectors.toUnmodifiableSet()));
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("EmptyLineSeparator", Stream.of(
+                "ENUM_CONSTANT_DEF"
+        ).collect(Collectors.toUnmodifiableSet()));
         INTERNAL_MODULES = Definitions.INTERNAL_MODULES.stream()
                 .map(moduleName -> {
                     final List<String> packageTokens = Splitter
