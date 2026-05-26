@@ -240,6 +240,10 @@ import java.net.*; // violation, 'Only '1' star import is allowed per file.'
       <subsection name="Example of Usage" id="AvoidStarImport_Example_of_Usage">
         <ul>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
+            OpenJDK Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
             Google Style</a>
           </li>
