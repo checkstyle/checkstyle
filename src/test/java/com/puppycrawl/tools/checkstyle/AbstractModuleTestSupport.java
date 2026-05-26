@@ -672,6 +672,23 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Runs 'verifyWithInlineConfigParser' with limited stack size suitable for XPath-based
+     * checks, allowing Saxon's XPath engine to initialize while still detecting stack
+     * overflows caused by deep AST traversal.
+     *
+     * @param fileName file name to verify.
+     * @param expected an array of expected messages.
+     * @throws Exception if exception occurs during verification process.
+     */
+    protected final void verifyWithLimitedXpathResources(String fileName, String... expected)
+            throws Exception {
+        TestUtil.runWithLimitedXpathResources(() -> {
+            verifyWithInlineConfigParser(fileName, expected);
+            return null;
+        });
+    }
+
+    /**
      * Executes given config on a list of files only. Does not verify violations.
      *
      * @param config check configuration

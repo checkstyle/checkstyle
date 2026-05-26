@@ -51,7 +51,7 @@ public class MatchXpathCheckTest
     public void testNoStackoverflowError()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(
+        verifyWithLimitedXpathResources(
                 getPath("InputMatchXpathNoStackoverflowError.java"), expected);
     }
 
