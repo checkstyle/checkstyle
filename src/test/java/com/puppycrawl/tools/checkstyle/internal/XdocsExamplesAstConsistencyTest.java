@@ -175,11 +175,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example6",
             "checks/metrics/javancss/Example5",
             "checks/metrics/npathcomplexity/Example2",
-            "checks/naming/abbreviationaswordinname/Example3",
-            "checks/naming/abbreviationaswordinname/Example4",
-            "checks/naming/abbreviationaswordinname/Example5",
-            "checks/naming/abbreviationaswordinname/Example6",
-            "checks/naming/abbreviationaswordinname/Example7",
             "checks/naming/lambdaparametername/Example2",
             "checks/naming/localfinalvariablename/Example3",
             "checks/naming/localvariablename/Example3",
@@ -301,7 +296,10 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/design/visibilitymodifier/Example11",
             "checks/trailingcomment/Example4",
             "checks/trailingcomment/Example5",
-            "checks/trailingcomment/Example6"
+            "checks/trailingcomment/Example6",
+            "checks/naming/abbreviationaswordinname/Example4",
+            "checks/naming/abbreviationaswordinname/Example6",
+            "checks/naming/abbreviationaswordinname/Example7"
             );
 
     /**
