@@ -59,7 +59,8 @@
             </tr>
             <tr>
               <td><a id="checkFormat"/><a href="#checkFormat">checkFormat</a></td>
-              <td>Specify check pattern to suppress.</td>
+              <td>Specify check pattern to suppress.
+                The pattern is matched against the fully qualified class name of the Check.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>.*</code></td>
               <td>8.6</td>
