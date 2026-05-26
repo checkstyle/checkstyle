@@ -34,7 +34,8 @@
             </tr>
             <tr>
               <td><a id="checkPattern"/><a href="#checkPattern">checkPattern</a></td>
-              <td>Specify check name pattern to suppress. Property can also be a RegExp group index at <code>nearbyTextPattern</code> in format of <code>$x</code> and be picked from line that matches <code>nearbyTextPattern</code>.</td>
+              <td>Specify check name pattern to suppress. Property can also be a RegExp group index at <code>nearbyTextPattern</code> in format of <code>$x</code> and be picked from line that matches <code>nearbyTextPattern</code>.
+                The pattern is matched against the fully qualified class name of the Check.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>.*</code></td>
               <td>10.10.0</td>
