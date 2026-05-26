@@ -378,6 +378,100 @@ public class TokenUtilTest {
     }
 
     @Test
+    public void testIsOfTypeOverloadsTrue() {
+        final int type = TokenTypes.LITERAL_CATCH;
+        final DetailAstImpl ast = new DetailAstImpl();
+        ast.setType(type);
+
+        assertWithMessage("1-arg int overload")
+                .that(TokenUtil.isOfType(type, TokenTypes.LITERAL_CATCH))
+                .isTrue();
+        assertWithMessage("2-arg int overload")
+                .that(TokenUtil.isOfType(type, TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_CATCH))
+                .isTrue();
+        assertWithMessage("3-arg int overload")
+                .that(TokenUtil.isOfType(type, TokenTypes.LITERAL_FOR,
+                        TokenTypes.LITERAL_IF, TokenTypes.LITERAL_CATCH))
+                .isTrue();
+        assertWithMessage("4-arg int overload")
+                .that(TokenUtil.isOfType(type, TokenTypes.LITERAL_FOR,
+                        TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE, TokenTypes.LITERAL_CATCH))
+                .isTrue();
+
+        assertWithMessage("1-arg ast overload")
+                .that(TokenUtil.isOfType(ast, TokenTypes.LITERAL_CATCH))
+                .isTrue();
+        assertWithMessage("2-arg ast overload")
+                .that(TokenUtil.isOfType(ast, TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_CATCH))
+                .isTrue();
+        assertWithMessage("3-arg ast overload")
+                .that(TokenUtil.isOfType(ast, TokenTypes.LITERAL_FOR,
+                        TokenTypes.LITERAL_IF, TokenTypes.LITERAL_CATCH))
+                .isTrue();
+        assertWithMessage("4-arg ast overload")
+                .that(TokenUtil.isOfType(ast, TokenTypes.LITERAL_FOR,
+                        TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE, TokenTypes.LITERAL_CATCH))
+                .isTrue();
+    }
+
+    @Test
+    public void testIsOfTypeOverloadsFalse() {
+        final int type = TokenTypes.LITERAL_CATCH;
+        final DetailAstImpl ast = new DetailAstImpl();
+        ast.setType(type);
+
+        assertWithMessage("1-arg int overload")
+                .that(TokenUtil.isOfType(type, TokenTypes.LITERAL_FOR))
+                .isFalse();
+        assertWithMessage("2-arg int overload")
+                .that(TokenUtil.isOfType(type, TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_IF))
+                .isFalse();
+        assertWithMessage("3-arg int overload")
+                .that(TokenUtil.isOfType(type, TokenTypes.LITERAL_FOR,
+                        TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE))
+                .isFalse();
+        assertWithMessage("4-arg int overload")
+                .that(TokenUtil.isOfType(type, TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_IF,
+                        TokenTypes.LITERAL_ELSE, TokenTypes.LITERAL_SWITCH))
+                .isFalse();
+
+        assertWithMessage("1-arg ast overload")
+                .that(TokenUtil.isOfType(ast, TokenTypes.LITERAL_FOR))
+                .isFalse();
+        assertWithMessage("2-arg ast overload")
+                .that(TokenUtil.isOfType(ast, TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_IF))
+                .isFalse();
+        assertWithMessage("3-arg ast overload")
+                .that(TokenUtil.isOfType(ast, TokenTypes.LITERAL_FOR,
+                        TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE))
+                .isFalse();
+        assertWithMessage("4-arg ast overload")
+                .that(TokenUtil.isOfType(ast, TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_IF,
+                        TokenTypes.LITERAL_ELSE, TokenTypes.LITERAL_SWITCH))
+                .isFalse();
+    }
+
+    @Test
+    public void testIsOfTypeOverloadsNullAstFalse() {
+        final DetailAstImpl nullAst = null;
+
+        assertWithMessage("1-arg null ast overload")
+                .that(TokenUtil.isOfType(nullAst, TokenTypes.LITERAL_CATCH))
+                .isFalse();
+        assertWithMessage("2-arg null ast overload")
+                .that(TokenUtil.isOfType(nullAst, TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_CATCH))
+                .isFalse();
+        assertWithMessage("3-arg null ast overload")
+                .that(TokenUtil.isOfType(nullAst, TokenTypes.LITERAL_FOR,
+                        TokenTypes.LITERAL_IF, TokenTypes.LITERAL_CATCH))
+                .isFalse();
+        assertWithMessage("4-arg null ast overload")
+                .that(TokenUtil.isOfType(nullAst, TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_IF,
+                        TokenTypes.LITERAL_ELSE, TokenTypes.LITERAL_CATCH))
+                .isFalse();
+    }
+
+    @Test
     public void testIsBooleanLiteralType() {
         assertWithMessage("Result is not expected")
                 .that(TokenUtil.isBooleanLiteralType(TokenTypes.LITERAL_TRUE))

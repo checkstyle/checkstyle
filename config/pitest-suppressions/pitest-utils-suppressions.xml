@@ -1,3 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>TokenUtil.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.TokenUtil</mutatedClass>
+    <mutatedMethod>isOfType</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>return ast != null &amp;&amp; isOfType(ast.getType(), types);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>TokenUtil.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.TokenUtil</mutatedClass>
+    <mutatedMethod>isOfType</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>return type == first || type == second || type == third || type == fourth;</lineContent>
+  </mutation>
 </suppressedMutations>
