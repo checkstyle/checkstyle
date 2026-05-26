@@ -139,17 +139,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/imports/importcontrol/someImports/Example11",
             "checks/imports/importcontrol/someImports/Example6",
             "checks/imports/importcontrol/someImports/Example7",
-            "checks/imports/importorder/Example10",
-            "checks/imports/importorder/Example11",
-            "checks/imports/importorder/Example12",
-            "checks/imports/importorder/Example2",
-            "checks/imports/importorder/Example3",
-            "checks/imports/importorder/Example4",
-            "checks/imports/importorder/Example5",
-            "checks/imports/importorder/Example6",
-            "checks/imports/importorder/Example7",
-            "checks/imports/importorder/Example8",
-            "checks/imports/importorder/Example9",
             "checks/indentation/commentsindentation/Example3",
             "checks/indentation/commentsindentation/Example4",
             "checks/indentation/commentsindentation/Example5",
@@ -301,7 +290,18 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/design/visibilitymodifier/Example11",
             "checks/trailingcomment/Example4",
             "checks/trailingcomment/Example5",
-            "checks/trailingcomment/Example6"
+            "checks/trailingcomment/Example6",
+            "checks/imports/importorder/Example10",
+            "checks/imports/importorder/Example11",
+            "checks/imports/importorder/Example12",
+            "checks/imports/importorder/Example2",
+            "checks/imports/importorder/Example3",
+            "checks/imports/importorder/Example4",
+            "checks/imports/importorder/Example5",
+            "checks/imports/importorder/Example6",
+            "checks/imports/importorder/Example7",
+            "checks/imports/importorder/Example8",
+            "checks/imports/importorder/Example9"
             );
 
     /**
