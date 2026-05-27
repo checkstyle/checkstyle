@@ -205,9 +205,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/whitespace/nolinewrap/Example3",
             "checks/whitespace/nolinewrap/Example4",
             "checks/whitespace/nolinewrap/Example5",
-            "checks/whitespace/nowhitespacebefore/Example2",
-            "checks/whitespace/nowhitespacebefore/Example3",
-            "checks/whitespace/nowhitespacebefore/Example4",
             "checks/whitespace/operatorwrap/Example2",
             "checks/whitespace/parenpad/Example2",
             "checks/whitespace/separatorwrap/Example2",
@@ -290,7 +287,8 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/naming/abbreviationaswordinname/Example6",
             "checks/naming/abbreviationaswordinname/Example7",
             "checks/naming/localvariablename/Example3",
-            "checks/naming/localvariablename/Example5"
+            "checks/naming/localvariablename/Example5",
+            "checks/whitespace/nowhitespacebefore/Example4"
             );
 
     /**
