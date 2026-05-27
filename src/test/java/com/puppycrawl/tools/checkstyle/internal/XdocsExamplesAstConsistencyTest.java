@@ -150,12 +150,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/imports/importorder/Example7",
             "checks/imports/importorder/Example8",
             "checks/imports/importorder/Example9",
-            "checks/indentation/commentsindentation/Example3",
-            "checks/indentation/commentsindentation/Example4",
-            "checks/indentation/commentsindentation/Example5",
-            "checks/indentation/commentsindentation/Example6",
-            "checks/indentation/commentsindentation/Example7",
-            "checks/indentation/commentsindentation/Example8",
             "checks/javadoc/javadocleadingasteriskalign/Example2",
             "checks/javadoc/javadocleadingasteriskalign/Example3",
             "checks/javadoc/javadocmethod/Example7",
@@ -288,7 +282,13 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/naming/abbreviationaswordinname/Example7",
             "checks/naming/localvariablename/Example3",
             "checks/naming/localvariablename/Example5",
-            "checks/whitespace/nowhitespacebefore/Example4"
+            "checks/whitespace/nowhitespacebefore/Example4",
+            "checks/indentation/commentsindentation/Example3",
+            "checks/indentation/commentsindentation/Example4",
+            "checks/indentation/commentsindentation/Example5",
+            "checks/indentation/commentsindentation/Example6",
+            "checks/indentation/commentsindentation/Example7",
+            "checks/indentation/commentsindentation/Example8"
             );
 
     /**
