@@ -23,20 +23,30 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
+import java.io.File;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.Comment;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-public class JavadocUtilTest {
+public class JavadocUtilTest extends AbstractModuleTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/utils/javadocutil";
+    }
 
     @Test
     public void testTags() {
@@ -361,6 +371,78 @@ public class JavadocUtilTest {
             .isEqualTo("1\\r2\\n3\\t");
     }
 
+    @Test
+    public void testGetAttachedJavadocCommentForMethodDefinitions() throws Exception {
+        final DetailAST root = parseInputFile("InputJavadocUtilMethodDefComments.java");
+        assertAttachedJavadoc(root, TokenTypes.METHOD_DEF, "modifierPath",
+                "modifier");
+        assertAttachedJavadoc(root, TokenTypes.METHOD_DEF, "annotationPath",
+                "annotation");
+        assertAttachedJavadoc(root, TokenTypes.METHOD_DEF, "typeParameterPath",
+                "typeParams");
+        assertAttachedJavadoc(root, TokenTypes.METHOD_DEF, "qualifiedReturnType",
+                "qualifiedType");
+        assertNoAttachedJavadoc(root, TokenTypes.METHOD_DEF,
+                "bodyCommentOnly");
+        assertAttachedJavadoc(root, TokenTypes.METHOD_DEF, "danglingReal",
+                "real");
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForConstructorDefinitions() throws Exception {
+        final DetailAST root = parseInputFile("InputJavadocUtilCtorDefComments.java");
+        assertAttachedJavadoc(root, TokenTypes.CTOR_DEF, "ModifierPath",
+                "modifier");
+        assertAttachedJavadoc(root, TokenTypes.CTOR_DEF, "PublicModifierPath",
+                "publicModifier");
+        assertAttachedJavadoc(root, TokenTypes.CTOR_DEF, "TypeParameterPath",
+                "typeParams");
+        assertNoAttachedJavadoc(root, TokenTypes.CTOR_DEF,
+                "BodyCommentOnly");
+        assertAttachedJavadoc(root, TokenTypes.CTOR_DEF, "DanglingReal",
+                "real");
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForAnnotationFieldDefinitions()
+            throws Exception {
+        final DetailAST root = parseInputFile(
+                "InputJavadocUtilAnnotationFieldDefComments.java");
+        assertAttachedJavadoc(root, TokenTypes.ANNOTATION_FIELD_DEF, "value",
+                "annotationField");
+        assertAttachedJavadoc(root, TokenTypes.ANNOTATION_FIELD_DEF, "qualifiedValue",
+                "qualifiedType");
+        assertNoAttachedJavadoc(root, TokenTypes.ANNOTATION_FIELD_DEF,
+                "noJavadoc");
+        assertAttachedJavadoc(root, TokenTypes.ANNOTATION_FIELD_DEF, "number",
+                "real");
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForCompactConstructorDefinitions()
+            throws Exception {
+        final DetailAST root = parseInputFile(
+                "InputJavadocUtilCompactCtorDefComments.java");
+        assertAttachedJavadoc(root, TokenTypes.COMPACT_CTOR_DEF,
+                "InputJavadocUtilCompactCtorDefComments", "modifier");
+        assertNoAttachedJavadoc(root, TokenTypes.COMPACT_CTOR_DEF,
+                "CompactBodyCommentOnly");
+        assertAttachedJavadoc(root, TokenTypes.COMPACT_CTOR_DEF, "CompactDanglingReal",
+                "real");
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForTypeDefinitions() throws Exception {
+        final DetailAST root = parseInputFile("InputJavadocUtilTypeDefComments.java");
+        assertAttachedJavadoc(root, TokenTypes.CLASS_DEF, "InputJavadocUtilTypeDefComments",
+                "classComment");
+        assertAttachedJavadoc(root, TokenTypes.CLASS_DEF, "ClassAnnotationPath",
+                "annotationClass");
+        assertNoAttachedJavadoc(root, TokenTypes.CLASS_DEF, "ClassBodyCommentOnly");
+        assertAttachedJavadoc(root, TokenTypes.CLASS_DEF, "ClassDanglingReal",
+                "real");
+    }
+
     private static void assertTag(String message, InvalidJavadocTag expected,
             InvalidJavadocTag actual) {
         assertWithMessage("%s line", message)
@@ -388,6 +470,47 @@ public class JavadocUtilTest {
         assertWithMessage("%s tag name", message)
             .that(actual.getTagName())
             .isEqualTo(expected.getTagName());
+    }
+
+    private DetailAST parseInputFile(String fileName) throws Exception {
+        return JavaParser.parseFile(new File(getPath(fileName)),
+                JavaParser.Options.WITH_COMMENTS);
+    }
+
+    private static void assertAttachedJavadoc(DetailAST root, int tokenType,
+            String declarationName, String expectedCommentContent) {
+        final DetailAST declaration = findDeclaration(root, tokenType, declarationName);
+        final DetailAST comment = JavadocUtil.getAttachedJavadocComment(declaration);
+
+        assertWithMessage("Expected attached Javadoc")
+            .that(comment)
+            .isNotNull();
+
+        assertWithMessage("Invalid attached Javadoc")
+            .that(JavadocUtil.getJavadocCommentContent(comment))
+            .contains(expectedCommentContent);
+    }
+
+    private static void assertNoAttachedJavadoc(DetailAST root, int tokenType,
+            String declarationName) {
+        final DetailAST declaration = findDeclaration(root, tokenType, declarationName);
+        final DetailAST comment = JavadocUtil.getAttachedJavadocComment(declaration);
+
+        assertWithMessage("Unexpected attached Javadoc")
+            .that(comment)
+            .isNull();
+    }
+
+    private static DetailAST findDeclaration(DetailAST root, int tokenType,
+            String declarationName) {
+        return TestUtil.findTokenInAstByPredicate(root, ast -> {
+            return ast.getType() == tokenType && hasName(ast, declarationName);
+        }).orElseThrow();
+    }
+
+    private static boolean hasName(DetailAST ast, String expectedName) {
+        final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
+        return ident != null && expectedName.equals(ident.getText());
     }
 
 }
