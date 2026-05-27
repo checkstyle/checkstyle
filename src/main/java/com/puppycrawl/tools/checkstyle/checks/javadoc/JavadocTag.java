@@ -132,15 +132,6 @@ public class JavadocTag {
     }
 
     /**
-     * Checks that the tag is a 'see' or 'inheritDoc' tag.
-     *
-     * @return whether the tag is a 'see' or 'inheritDoc' tag
-     */
-    public boolean isSeeOrInheritDocTag() {
-        return tagInfo == JavadocTagInfo.SEE || isInheritDocTag();
-    }
-
-    /**
      * Checks that the tag is a 'inheritDoc' tag.
      *
      * @return whether the tag is a 'inheritDoc' tag
