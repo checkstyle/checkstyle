@@ -66,12 +66,29 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   void MyMethod() {
+    int good = 1;
+    int g = 0;
     for (int var = 1; var &lt; 10; var++) {}
     for (int VAR = 1; VAR &lt; 10; VAR++) {}
     // violation above, 'Name 'VAR' must match pattern*'
     for (int i = 1; i &lt; 10; i++) {}
     for (int var_1 = 0; var_1 &lt; 10; var_1++) {}
     // violation above, 'Name 'var_1' must match pattern*'
+    for (int v = 1; v &lt; 10; v++) {
+      int a = 1;
+    }
+    for (int V = 1; V &lt; 10; V++) {
+      // violation above, 'Name 'V' must match pattern*'
+      int I = 1; // violation, 'Name 'I' must match pattern*'
+    }
+    List list = new ArrayList();
+    for (Object o : list) {
+      String a = "";
+    }
+    for (Object O : list) {
+      // violation above, 'Name 'O' must match pattern*'
+      String A = ""; // violation, 'Name 'A' must match pattern*'
+    }
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -92,11 +109,29 @@ class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   void MyMethod() {
+    int good = 1;
+    int g = 0;
     for (int var = 1; var &lt; 10; var++) {}
     for (int VAR = 1; VAR &lt; 10; VAR++) {}
     // violation above, 'Name 'VAR' must match pattern*'
     for (int i = 1; i &lt; 10; i++) {}
     for (int var_1 = 0; var_1 &lt; 10; var_1++) {}
+
+    for (int v = 1; v &lt; 10; v++) {
+      int a = 1;
+    }
+    for (int V = 1; V &lt; 10; V++) {
+      // violation above, 'Name 'V' must match pattern*'
+      int I = 1; // violation, 'Name 'I' must match pattern*'
+    }
+    List list = new ArrayList();
+    for (Object o : list) {
+      String a = "";
+    }
+    for (Object O : list) {
+      // violation above, 'Name 'O' must match pattern*'
+      String A = ""; // violation, 'Name 'A' must match pattern*'
+    }
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -137,10 +172,17 @@ class Example4 {
   void MyMethod() {
     int good = 1;
     int g = 0; // violation, 'Name 'g' must match pattern*'
+    for (int var = 1; var &lt; 10; var++) {}
+    for (int VAR = 1; VAR &lt; 10; VAR++) {}
+    // violation above, 'Name 'VAR' must match pattern*'
+    for (int i = 1; i &lt; 10; i++) {}
+    for (int var_1 = 0; var_1 &lt; 10; var_1++) {}
+
     for (int v = 1; v &lt; 10; v++) {
       int a = 1; // violation, 'Name 'a' must match pattern*'
     }
     for (int V = 1; V &lt; 10; V++) {
+
       int I = 1; // violation, 'Name 'I' must match pattern*'
     }
     List list = new ArrayList();
@@ -148,6 +190,7 @@ class Example4 {
       String a = ""; // violation, 'Name 'a' must match pattern*'
     }
     for (Object O : list) {
+
       String A = ""; // violation, 'Name 'A' must match pattern*'
     }
   }
