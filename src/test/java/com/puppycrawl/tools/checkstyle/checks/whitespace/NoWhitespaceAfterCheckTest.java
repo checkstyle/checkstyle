@@ -177,6 +177,26 @@ public class NoWhitespaceAfterCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterArrayDeclarations3.java"));
     }
+    
+    @Test
+    public void testDoWhile() throws Exception {
+        final String[] expected = {
+            "16:11: " + getCheckMessage(MSG_KEY, "while"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterDoWhile.java"), expected);
+    }
+
+    @Test
+    public void testLiteralIf() throws Exception {
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_KEY, "if"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterLiteralIf.java"), expected);
+    }
 
     @Test
     public void testSynchronized() throws Exception {
