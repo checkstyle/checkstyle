@@ -15,23 +15,40 @@ import com.google.common.collect.Lists;
 // xdoc section -- start
 class Example1 {
   int foo = 5;
+  int[][] array = { { 1, 2 }
+                    , { 3, 4 } }; // violation '',' is preceded with whitespace'
+  int[][] array2 = { { 1, 2 },
+                       { 3, 4 } };
+  void ellipsisExample(String ...params) {}
+  // violation above ''...' is preceded with whitespace'
+  void ellipsisExample2(String
+                            ...params) {
+    // violation above ''...' is preceded with whitespace'
+    Lists.charactersOf("foo")
+        .listIterator()
+        .forEachRemaining(System.out::print);
+
+  }
+
   void example() {
     foo ++; // violation 'is preceded with whitespace'
     foo++;
-    for (int i = 0 ; i < 5; i++) {}  // violation '';' is preceded with whitespace'
+    for (int i = 0 ; i < 5; i++) {} // violation '';' is preceded with whitespace'
     for (int i = 0; i < 5; i++) {}
-    int[][] array = { { 1, 2 }
-                    , { 3, 4 } }; // violation '',' is preceded with whitespace'
-    int[][] array2 = { { 1, 2 },
-                       { 3, 4 } };
     Lists.charactersOf("foo").listIterator()
-           .forEachRemaining(System.out::print)
-           ; // violation '';' is preceded with whitespace'
+        .forEachRemaining(System.out::print);
+
+    Lists.charactersOf("foo").listIterator().forEachRemaining(System.out ::print);
+
+    Lists.charactersOf("foo").listIterator().forEachRemaining(System.out::print);
+    Lists.charactersOf("foo").listIterator()
+        .forEachRemaining(System.out::print)
+
+    ; // violation '';' is preceded with whitespace'
     {
       label1 : // violation '':' is preceded with whitespace'
       for (int i = 0; i < 10; i++) {}
     }
-
     {
       label2:
       while (foo < 5) {}
