@@ -110,6 +110,8 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
             TokenTypes.TYPECAST,
             TokenTypes.ARRAY_DECLARATOR,
             TokenTypes.INDEX_OP,
+            TokenTypes.DO_WHILE,
+            TokenTypes.LITERAL_IF,
             TokenTypes.LITERAL_SYNCHRONIZED,
             TokenTypes.METHOD_REF,
         };
