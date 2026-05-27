@@ -182,9 +182,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/naming/abbreviationaswordinname/Example7",
             "checks/naming/lambdaparametername/Example2",
             "checks/naming/localfinalvariablename/Example3",
-            "checks/naming/localvariablename/Example3",
-            "checks/naming/localvariablename/Example4",
-            "checks/naming/localvariablename/Example5",
             "checks/naming/membername/Example2",
             "checks/naming/membername/Example3",
             "checks/naming/parametername/Example5",
@@ -301,7 +298,9 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/design/visibilitymodifier/Example11",
             "checks/trailingcomment/Example4",
             "checks/trailingcomment/Example5",
-            "checks/trailingcomment/Example6"
+            "checks/trailingcomment/Example6",
+            "checks/naming/localvariablename/Example3",
+            "checks/naming/localvariablename/Example5"
             );
 
     /**
