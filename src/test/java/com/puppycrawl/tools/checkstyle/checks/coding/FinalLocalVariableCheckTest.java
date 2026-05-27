@@ -291,10 +291,18 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void testMultiTypeCatch() throws Exception {
+    public void testMultiTypeCatchAdjacentCatches() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputFinalLocalVariableMultiCatch.java"),
+                getPath("InputFinalLocalVariableMultiCatchAdjacentCatches.java"),
+                expected);
+    }
+
+    @Test
+    public void testMultiTypeCatchNested() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableMultiCatchNested.java"),
                 expected);
     }
 
