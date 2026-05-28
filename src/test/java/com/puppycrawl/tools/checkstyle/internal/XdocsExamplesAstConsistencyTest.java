@@ -205,7 +205,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/whitespace/nolinewrap/Example3",
             "checks/whitespace/nolinewrap/Example4",
             "checks/whitespace/nolinewrap/Example5",
-            "checks/whitespace/operatorwrap/Example2",
             "checks/whitespace/separatorwrap/Example2",
             "checks/whitespace/separatorwrap/Example3",
             "checks/whitespace/singlespaceseparator/Example2",
