@@ -19,9 +19,19 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.operatorwrap;
 // xdoc section -- start
 class Example2 {
   void example() {
+    String s = "Hello" +
+      "World";
+
+    if (10 ==
+            20) {
+    }
+
+    int c = 10 /
+            5;
+
     int b
             = 10; // violation ''=' should be on the previous line'
-    int c =
+    int e =
             10;
     b
             += 10; // violation ''\+=' should be on the previous line'
