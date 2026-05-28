@@ -167,25 +167,42 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-  int n;
-
-  public void fun() {
-    bar( 1);  // violation 'is followed by whitespace'
+  int x;
+  public Example1(int n) {
   }
 
-  public void bar(int k ) {  // violation 'is preceded with whitespace'
-    while (k &gt; 0) {
+  public void fun() {
+    try {
+      throw new IOException();
     }
-
-    StringBuilder obj = new StringBuilder(k);
+    catch( IOException e) { // violation 'is followed by whitespace'
+    }
+    catch(Exception e ) {}  // violation 'is preceded with whitespace'
+    for ( int i = 0; i &lt; x; i++ ) { // 2 violations
+      // ''(' is followed by whitespace'
+      // '')' is preceded with whitespace'
+    }
   }
 
   public void fun2() {
-    switch( n) {  // violation 'is followed by whitespace'
+    switch( x) { // violation 'is followed by whitespace'
       case 2:
-        bar(n);
+        break;
       default:
         break;
+    }
+  }
+
+  class Bar extends Example1 {
+    public Bar() {
+      super(1 ); // violation '')' is preceded with whitespace'
+    }
+    public Bar(int k) {
+      super( k ); // 2 violations
+      // ''(' is followed by whitespace'
+      // '')' is preceded with whitespace'
+      for ( int i = 0; i &lt; k; i++) { // violation ''(' is followed by whitespace'
+      }
     }
   }
 }
@@ -211,18 +228,28 @@ class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   int x;
-
   public Example2(int n) {
   }
 
   public void fun() {
     try {
       throw new IOException();
-    } catch( IOException e) { // violation 'not preceded with whitespace'
-    } catch( Exception e ) {
     }
-
+    catch( IOException e) { // violation 'not preceded with whitespace'
+    }
+    catch(Exception e ) {}  // violation 'not followed by whitespace'
     for ( int i = 0; i &lt; x; i++ ) {
+      // ok
+      // ok
+    }
+  }
+
+  public void fun2() {
+    switch( x) { // ok
+      case 2:
+        break;
+      default:
+        break;
     }
   }
 
@@ -230,10 +257,10 @@ class Example2 {
     public Bar() {
       super(1 ); // violation 'not followed by whitespace'
     }
-
     public Bar(int k) {
-      super( k );
-
+      super( k ); // ok
+      // ok
+      // ok
       for ( int i = 0; i &lt; k; i++) { // violation 'not preceded with whitespace'
       }
     }
