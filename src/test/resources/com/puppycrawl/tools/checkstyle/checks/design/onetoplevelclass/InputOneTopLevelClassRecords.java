@@ -15,7 +15,8 @@ record TestRecord1() {
 
 }
 
-// violation below 'Top-level class TestRecord2 has to reside in its own source file.'
+// violation 2 lines below 'Top-level class TestRecord2 has to reside in its own source file.'
+@Deprecated
 record TestRecord2() {
 
 }
