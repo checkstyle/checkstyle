@@ -64,6 +64,18 @@ Make a comment in PR:
 Github, generate report for configs in PR description
 ```
 
+### Diff Report by local configuration for a project
+
+Make a comment in PR:
+
+```txt
+GitHub, generate report for {{project_name}} with {{path_to_config}}
+```
+
+Workflow will use the specified config from `src/main/resources` directory
+and the `config/list-of-projects.yml` to generate the diff report for the specified project.
+Example: `GitHub, generate report for checkstyle with openjdk_checks.xml`.
+
 ### Configure saved-replies to ease typing trigger comment
 
 If you plan to frequently use regression/diff report, it is recommended to use

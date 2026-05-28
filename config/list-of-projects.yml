@@ -1,0 +1,425 @@
+projects:
+  # Few projects that deliver a set of unusual Java constructions
+  # that shall be correctly handled by AST visitor
+  - name: checkstyle
+    scm: git
+    url: https://github.com/checkstyle/checkstyle.git
+    reference: master
+    excludes:
+      - '**/.ci-temp/**/*'
+      - '**/resources-noncompilable/**/asttreestringprinter/**/*'
+      - '**/resources-noncompilable/**/filefilters/**/*'
+      - '**/resources-noncompilable/**/main/**/*'
+      - '**/resources-noncompilable/**/suppressionsstringprinter/**/*'
+      - '**/resources-noncompilable/**/gui/**/*'
+      - '**/resources-noncompilable/**/javadocpropertiesgenerator/**/*'
+      # yamllint disable rule:line-length
+      - 'src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/javaparser/InputJavaParser.java'
+      - '**/InputAllEscapedUnicodeCharacters.java'
+      - '**/resources-noncompilable/**/javaparser/InputJavaParser.java'
+      # yamllint disable rule:line-length
+      - '**/resources-noncompilable/**/checks/imports/unusedimports/InputUnusedImportsSingleWordPackage.java'
+      - '**/resources-noncompilable/**/grammar/java19/*'
+      - '**/resources-noncompilable/**/treewalker/**/*'
+
+  - name: sevntu-checkstyle
+    scm: git
+    url: https://github.com/sevntu-checkstyle/sevntu.checkstyle
+    reference: master
+
+  - name: checkstyle-sonar
+    scm: git
+    url: https://github.com/checkstyle/sonar-checkstyle
+    reference: master
+
+  # OpenJDK 25 requires lots of excludes; list here should be consistent with file filters at:
+  # https://github.com/checkstyle/checkstyle/blob/master/config/projects-to-test/openjdk25-excluded.files
+  - name: openjdk25
+    scm: git
+    url: https://github.com/openjdk/jdk25u.git
+    reference: master
+    excludes:
+      - '**/test/langtools/jdk/javadoc/doclet/testSupplementary/C.java'
+      - '**/test/hotspot/jtreg/runtime/exceptionMsgs/methodPrinting/TestPrintingMethods.java'
+      - '**/test/langtools/tools/javac/MethodParameters/UncommonParamNames.java'
+      - '**/test/langtools/tools/javac/unicode/UnicodeAtEOL.java'
+      - '**/test/langtools/tools/javac/unicode/UnicodeCommentDelimiter.java'
+      - '**/test/langtools/tools/javac/unicode/FirstChar2.java'
+      - '**/test/langtools/tools/javac/processing/model/util/elements/TestGetDocComment_Line.java'
+      - '**/test/langtools/tools/javac/diags/examples/FeatureFlexibleConstructors.java'
+      - '**/test/langtools/tools/javac/diags/examples/PreviewFeatureUse.java'
+      - '**/test/langtools/tools/javac/patterns/UninitializedThisException.java'
+      - '**/test/langtools/tools/javac/SuperInit/LambdaOuterCapture.java'
+      - '**/test/langtools/tools/javac/SuperInit/EarlyLocalTest1.java'
+      - '**/test/langtools/tools/javac/SuperInit/EarlyLambdaReturn.java'
+      - '**/test/langtools/tools/javac/SuperInit/EarlyLocalTest2.java'
+      - '**/test/langtools/tools/javac/SuperInit/EarlyLocalCtorRef.java'
+      - '**/test/langtools/tools/javac/SuperInit/EarlyLocalTest4.java'
+      - '**/test/langtools/tools/javac/SuperInit/EarlyLocalTest5.java'
+      - '**/test/langtools/tools/javac/SuperInit/EarlyLocalTest3.java'
+      - '**/test/langtools/tools/javac/SuperInit/SuperInitGood.java'
+      - '**/test/langtools/tools/javac/diags/examples/ImplicitClass.java'
+      - '**/test/langtools/tools/javac/ImplicitClass/NestedEnum.java'
+      - '**/test/langtools/tools/javac/flags/NoFalseSealedError.java'
+      - '**/test/langtools/tools/javac/diags/examples/UnnamedClass.java'
+      - '**/test/jdk/java/lang/Class/UnnamedClass/Unnamed.java'
+      - '**/test/langtools/tools/javac/unnamedclass/SourceLevelErrorPosition.java'
+      - '**/test/langtools/tools/javac/processing/model/element/Anonymous.java'
+      - '**/test/langtools/tools/javac/unnamedclass/NestedEnum.java'
+      - '**/test/jdk/java/lang/template/StringTemplateTest.java'
+      - '**/test/langtools/tools/javac/diags/examples/StringTemplate.java'
+      - '**/test/micro/org/openjdk/bench/java/lang/StringTemplateFMT.java'
+      - '**/test/jdk/java/lang/template/Basic.java'
+      - '**/test/jdk/java/lang/template/FormatterBuilder.java'
+      - '**/test/langtools/tools/javac/template/T8312814.java'
+      - '**/test/langtools/tools/javac/TextBlockIllegalEscape.java'
+      - '**/test/langtools/tools/javac/diags/examples/UnnamedClassNoMain.java'
+      - '**/test/langtools/tools/javac/diags/examples/UnnamedClassBad-Filename.java'
+      - '**/test/langtools/tools/javac/unnamed/UnnamedClassRecovery.java'
+      - '**/test/langtools/tools/javac/patterns/UnnamedErrors.java'
+      - '**/test/langtools/tools/javac/diags/examples/UnnamedClassHasPackage.java'
+      - '**/test/langtools/tools/javac/diags/examples/StringTemplateUnclosedString.java'
+      - '**/test/langtools/tools/javac/diags/examples/StringTemplateUnclosedTextBlock.java'
+      - '**/test/langtools/tools/javac/diags/examples/StringTemplateNoProcessor.java'
+      - '**/test/langtools/tools/javac/diags/examples/StringTemplateRawProcessor.java'
+      - '**/test/langtools/tools/javac/diags/examples/StringTemplateNotProcessor.java'
+      - '**/test/langtools/tools/javac/diags/examples/ModuleDeclSbInModuleInfoJava.java'
+      - '**/test/langtools/jdk/javadoc/tool/T4994049/FileWithTabs.java'
+      - '**/test/langtools/jdk/javadoc/tool/6964914/Error.java'
+      - '**/test/langtools/jdk/javadoc/doclet/testUnnamedPackage/src1/BadSource.java'
+      - '**/test/langtools/jdk/javadoc/doclet/testSourceTab/SingleTab/C.java'
+      - '**/test/langtools/jdk/javadoc/doclet/testSourceTab/DoubleTab/C.java'
+      - '**/test/langtools/tools/javac/enum/EnumAsIdentifier.java'
+      - '**/test/langtools/tools/javac/enum/EnumMembersOrder.java'
+      - '**/test/langtools/tools/javac/T6882235.java'
+      - '**/test/langtools/tools/javac/6440583/A.java'
+      - '**/test/langtools/tools/javac/T4994049/T4994049.java'
+      - '**/test/langtools/tools/javac/T8185983/RejectTypeArgsOnSelectTest.java'
+      - '**/test/langtools/tools/javac/T8286057.java'
+      - '**/test/langtools/tools/javac/rawDiags/Error.java'
+      - '**/test/langtools/tools/javac/T8026963/TypeAnnotationsCrashWithErroneousTreeTest.java'
+      - '**/test/langtools/tools/javac/lambda/lambdaExpression/InvalidExpression1.java'
+      - '**/test/langtools/tools/javac/lambda/8131742/T8131742.java'
+      - '**/test/langtools/tools/javac/lambda/funcInterfaces/LambdaTest1_neg1.java'
+      - '**/test/langtools/tools/javac/processing/6994946/SyntaxErrorTest.java'
+      - '**/test/langtools/tools/javac/processing/errors/TestParseErrors/ParseErrors.java'
+      - '**/test/langtools/tools/javac/IllegalAnnotation.java'
+      - '**/test/langtools/tools/javac/ExtendArray.java'
+      - '**/test/langtools/tools/javac/unicode/TripleQuote.java'
+      - '**/test/langtools/tools/javac/unicode/SupplementaryJavaID4.java'
+      - '**/test/langtools/tools/javac/unicode/SupplementaryJavaID3.java'
+      - '**/test/langtools/tools/javac/unicode/SupplementaryJavaID2.java'
+      - '**/test/langtools/tools/javac/unicode/SupplementaryJavaID5.java'
+      - '**/test/langtools/tools/javac/unicode/NonasciiDigit.java'
+      - '**/test/langtools/tools/javac/unicode/SupplementaryJavaID1.java'
+      - '**/test/langtools/tools/javac/unicode/SupplementaryJavaID6.java'
+      - '**/test/langtools/tools/javac/patterns/DeconstructionPatternErrors.java'
+      - '**/test/langtools/tools/javac/patterns/ForEachPatternsErrors.java'
+      - '**/test/langtools/tools/javac/patterns/PatternCaseErrorRecovery.java'
+      - '**/test/langtools/tools/javac/Digits.java'
+      - '**/test/langtools/tools/javac/annotations/typeAnnotations/failures/IndexArray.java'
+      # yamllint disable rule:line-length
+      - '**/test/langtools/tools/javac/annotations/typeAnnotations/failures/target/IncompleteArray.java'
+      - '**/test/langtools/tools/javac/patterns/ForEachTestAllAnalyzers.java'
+      - '**/test/langtools/tools/javac/patterns/NoModifiersOnBinding.java'
+      - '**/test/langtools/tools/javac/patterns/SwitchErrors.java'
+      - '**/test/langtools/tools/javac/annotations/typeAnnotations/failures/target/DotClass.java'
+      - '**/test/langtools/tools/javac/annotations/typeAnnotations/failures/StaticFields.java'
+      - '**/test/langtools/tools/javac/annotations/typeAnnotations/failures/BadCast.java'
+      - '**/test/langtools/tools/javac/annotations/typeAnnotations/failures/AnnotatedPackage2.java'
+      - '**/test/langtools/tools/javac/annotations/typeAnnotations/failures/AnnotatedClassExpr.java'
+      - '**/test/langtools/tools/javac/annotations/typeAnnotations/failures/IncompleteArray.java'
+      - '**/test/langtools/tools/javac/annotations/typeAnnotations/failures/AnnotatedImport.java'
+      # yamllint disable rule:line-length
+      - '**/test/langtools/tools/javac/annotations/typeAnnotations/failures/AnnotatedMethodSelectorTest.java'
+      - '**/test/langtools/tools/javac/annotations/typeAnnotations/failures/OldArray.java'
+      - '**/test/langtools/tools/javac/annotations/typeAnnotations/6967002/T6967002.java'
+      - '**/test/langtools/tools/javac/annotations/neg/Z5.java'
+      - '**/test/langtools/tools/javac/annotations/neg/AnnComma.java'
+      - '**/test/langtools/tools/javac/annotations/neg/Z9.java'
+      - '**/test/langtools/tools/javac/annotations/neg/Z2.java'
+      - '**/test/langtools/tools/javac/annotations/neg/NoDefault.java'
+      - '**/test/langtools/tools/javac/annotations/neg/Z8.java'
+      - '**/test/langtools/tools/javac/annotations/neg/NoStatic.java'
+      - '**/test/langtools/tools/javac/annotations/neg/Z3.java'
+      - '**/test/langtools/tools/javac/annotations/neg/Z13.java'
+      - '**/test/langtools/tools/javac/annotations/neg/pkg/package-info.java'
+      - '**/test/langtools/tools/javac/annotations/neg/Z14.java'
+      - '**/test/langtools/tools/javac/annotations/neg/Syntax1.java'
+      - '**/test/langtools/tools/javac/diags/examples/IllegalStartOfStmt.java'
+      - '**/test/langtools/tools/javac/diags/examples/UnclosedStringLiteral.java'
+      - '**/test/langtools/tools/javac/diags/examples/Expected3.java'
+      - '**/test/langtools/tools/javac/diags/examples/VarAllOrNothing.java'
+      - '**/test/langtools/tools/javac/diags/examples/ForeachNotExhaustive.java'
+      - '**/test/langtools/tools/javac/diags/examples/DefaultAllowedInIntfAnnotationMember.java'
+      - '**/test/langtools/tools/javac/diags/examples/ForeachBadInitialization.java'
+      - '**/test/langtools/tools/javac/diags/examples/IllegalArrayCreation.java'
+      - '**/test/langtools/tools/javac/diags/examples/ExpectedModule.java'
+      - '**/test/langtools/tools/javac/diags/examples/TryWithResourcesExprNeedsVar.java'
+      - '**/test/langtools/tools/javac/diags/examples/InitializerNotAllowed.java'
+      - '**/test/langtools/tools/javac/diags/examples/MalformedFpLit.java'
+      - '**/test/langtools/tools/javac/diags/examples/TextBlockCloseDelimiter.java'
+      - '**/test/langtools/tools/javac/diags/examples/IllegalNonAsciiDigit.java'
+      - '**/test/langtools/tools/javac/diags/examples/CatchWithoutTry.java'
+      - '**/test/langtools/tools/javac/diags/examples/ProcessorWrongType/ProcessorWrongType.java'
+      - '**/test/langtools/tools/javac/diags/examples/InvalidBinaryNumber.java'
+      - '**/test/langtools/tools/javac/diags/examples/InvalidHexNumber.java'
+      - '**/test/langtools/tools/javac/diags/examples/EmptyCharLiteral.java'
+      - '**/test/langtools/tools/javac/diags/examples/EnumsCantBeGeneric.java'
+      - '**/test/langtools/tools/javac/diags/examples/RecordsCantDeclareComponentModifiers.java'
+      - '**/test/langtools/tools/javac/diags/examples/IllegalChar.java'
+      - '**/test/langtools/tools/javac/diags/examples/NotAllowedClass.java'
+      - '**/test/langtools/tools/javac/diags/examples/ArrayDimMissing.java'
+      - '**/test/langtools/tools/javac/diags/examples/IllegalAnnotationDeclaration.java'
+      - '**/test/langtools/tools/javac/diags/examples/EnumAsIdentifier2.java'
+      - '**/test/langtools/tools/javac/diags/examples/ThisAsIdentifier.java'
+      - '**/test/langtools/tools/javac/diags/examples/VarargsMustBeLast.java'
+      - '**/test/langtools/tools/javac/diags/examples/CantExtendIntfAnno.java'
+      # yamllint disable rule:line-length
+      - '**/test/langtools/tools/javac/diags/examples/RecordsComponentsCanNotDeclareCStyleArrays.java'
+      - '**/test/langtools/tools/javac/diags/examples/AnnotationMustBeNameValue.java'
+      - '**/test/langtools/tools/javac/diags/examples/NotAllowedVariable.java'
+      - '**/test/langtools/tools/javac/diags/examples/VarargsAndReceiver.java'
+      - '**/test/langtools/tools/javac/diags/examples/Orphaned.java'
+      - '**/test/langtools/tools/javac/diags/examples/IllegalEscapeChar.java'
+      - '**/test/langtools/tools/javac/diags/examples/UnclosedComment.java'
+      - '**/test/langtools/tools/javac/diags/examples/IntNumberTooLarge.java'
+      - '**/test/langtools/tools/javac/diags/examples/IllegalUnderscore.java'
+      - '**/test/langtools/tools/javac/diags/examples/IllegalDot.java'
+      - '**/test/langtools/tools/javac/diags/examples/PrematureEOF.java'
+      - '**/test/langtools/tools/javac/diags/examples/AssertAsIdentifier2.java'
+      - '**/test/langtools/tools/javac/diags/examples/UnclosedCharLiteral.java'
+      - '**/test/langtools/tools/javac/diags/examples/TryWithoutCatchOrFinallyOrResource.java'
+      - '**/test/langtools/tools/javac/diags/examples/CannotCreateArrayWithTypeArgs.java'
+      - '**/test/langtools/tools/javac/diags/examples/IllegalLineEndInCharLit.java'
+      - '**/test/langtools/tools/javac/diags/examples/ExplicitImplicitLambda.java'
+      - '**/test/langtools/tools/javac/diags/examples/EnumConstantExpected.java'
+      - '**/test/langtools/tools/javac/diags/examples/VarInImplicitLambda.java'
+      - '**/test/langtools/tools/javac/diags/examples/SwitchCaseUnexpectedStatement.java'
+      - '**/test/langtools/tools/javac/diags/examples/IllegalStartOfExpr.java'
+      - '**/test/langtools/tools/javac/diags/examples/IllegalStartOfType.java'
+      - '**/test/langtools/tools/javac/diags/examples/IntfAnnotationsCantHaveParams.java'
+      - '**/test/langtools/tools/javac/DefiniteAssignment/ConstantInfiniteWhile.java'
+      - '**/test/langtools/tools/javac/diags/examples/SwitchMixingCaseTypes.java'
+      - '**/test/langtools/tools/javac/diags/examples/DotClassExpected.java'
+      - '**/test/langtools/tools/javac/diags/examples/ElseWithoutIf.java'
+      - '**/test/langtools/tools/javac/diags/examples/IdentifierExpected.java'
+      - '**/test/langtools/tools/javac/diags/examples/IntfAnnotationsCantHaveTypeParams.java'
+      - '**/test/langtools/tools/javac/diags/examples/FinallyWithoutTry.java'
+      - '**/test/langtools/tools/javac/diags/examples/IncorrectRecordDeclaration.java'
+      - '**/test/langtools/tools/javac/diags/examples/EnumConstantNotExpected.java'
+      - '**/test/langtools/tools/javac/diags/examples/CallMustBeFirst.java'
+      - '**/test/langtools/tools/javac/diags/examples/AnnotationMissingElementValue.java'
+      - '**/test/langtools/tools/javac/diags/examples/ThrowsNotAllowedInAnno.java'
+      - '**/test/langtools/tools/javac/diags/examples/Expected2.java'
+      - '**/test/langtools/tools/javac/diags/examples/IntfAnnotationCantHaveTypeParams.java'
+      - '**/test/langtools/tools/javac/EOI.java'
+      - '**/test/langtools/tools/javac/quid/T6999438.java'
+      - '**/test/langtools/tools/javac/T8036019.java'
+      - '**/test/langtools/tools/javac/Parens3.java'
+      - '**/test/langtools/tools/javac/records/RecordDeclarationSyntaxTest.java'
+      - '**/test/langtools/tools/javac/QualifiedAccess/QualifiedAccess_4.java'
+      - '**/test/langtools/tools/javac/policy/test3/A.java'
+      - '**/test/langtools/tools/javac/BadHexConstant.java'
+      - '**/test/langtools/tools/javac/failover/FailOver01.java'
+      - '**/test/langtools/tools/javac/failover/FailOver15.java'
+      - '**/test/langtools/tools/javac/generics/6413682/T6413682.java'
+      - '**/test/langtools/tools/javac/api/TestGetElementReferenceDataWithErrors.java'
+      - '**/test/langtools/tools/javac/api/T6265137a.java'
+      - '**/test/langtools/tools/javac/TryWithResources/PlainTry.java'
+      - '**/test/langtools/tools/javac/TryWithResources/ResDeclOutsideTry.java'
+      - '**/test/langtools/tools/javac/TryWithResources/TwrForVariable2.java'
+      - '**/test/langtools/tools/javac/TryWithResources/BadTwrSyntax.java'
+      - '**/test/langtools/tools/javac/var_implicit_lambda/VarInImplicitLambdaNegTest01.java'
+      - '**/test/langtools/tools/javac/ImportUnnamed/foo/A.java'
+      - '**/test/langtools/tools/javac/T8175198/AnnotationsAndFormalParamsTest.java'
+      - '**/test/langtools/tools/javac/parser/MissingClosingBrace.java'
+      - '**/test/langtools/tools/javac/parser/SingleCommaAnnotationValueFail.java'
+      - '**/test/langtools/tools/javac/parser/7157165/T7157165.java'
+      - '**/test/langtools/tools/javac/parser/8081769/T8081769.java'
+      - '**/test/langtools/tools/javac/literals/BadBinaryLiterals.java'
+      - '**/test/langtools/tools/javac/literals/T6891079.java'
+      - '**/test/langtools/tools/javac/literals/BadUnderscoreLiterals.java'
+      - '**/test/langtools/tools/javac/incompleteStatements/T8000484.java'
+      - '**/test/hotspot/jtreg/runtime/classFileParserBug/Bad_NCDFE_Msg.java'
+      - '**/test/langtools/tools/javac/8245153/T8245153.java'
+      - '**/test/langtools/tools/javac/ExtraneousEquals.java'
+      - '**/test/langtools/tools/javac/parser/ErroneousParameters.java'
+      - '**/test/langtools/tools/javac/parser/T4881269.java'
+      - '**/test/langtools/tools/javac/switchextra/SwitchStatementBroken.java'
+      - '**/test/langtools/tools/javac/switchextra/SwitchStatementBroken2.java'
+      - '**/test/langtools/tools/javac/BadAnnotation.java'
+      - '**/test/langtools/tools/javac/UncaughtOverflow.java'
+      - '**/test/langtools/tools/javac/LabeledDeclaration.java'
+      - '**/test/jdk/java/lang/template/T8313809.java'
+      - '**/test/langtools/tools/javac/T8312163.java'
+      - '**/test/langtools/tools/javac/patterns/PatternErrorRecovery.java'
+      - '**/test/langtools/tools/javac/patterns/T8309054.java'
+      - '**/test/langtools/tools/javac/diags/examples/GuardNotAllowed.java'
+      - '**/test/langtools/tools/javac/switchextra/SwitchArrowBrokenConstant.java'
+      - '**/test/langtools/tools/javac/switchexpr/ParserRecovery.java'
+      - '**/test/langtools/tools/javac/recovery/T8337976.java'
+      - '**/test/langtools/tools/javac/diags/examples/ImplicitClassBad-Filename.java'
+      - '**/test/langtools/tools/javac/diags/examples/CallOnlyInConstructor.java'
+      - '**/test/langtools/tools/javac/diags/examples/CallsNotAllowedHere.java'
+      - '**/test/langtools/tools/javac/diags/examples/ClassMethodOrFieldExpected.java'
+      - '**/test/langtools/tools/javac/diags/examples/ImplicitClassNoMain.java'
+      - '**/test/langtools/tools/javac/diags/examples/IllegalCharLiteralMultipleSurrogates.java'
+      - '**/test/langtools/tools/javac/diags/examples/ImplicitClassHasPackage.java'
+      - '**/test/langtools/tools/javac/ImplicitClass/SourceLevelErrorPosition.java'
+      - '**/test/langtools/tools/javac/ImplicitClass/Implicit.java'
+      - '**/test/langtools/tools/javac/ImplicitClass/ImplicitClassRecovery.java'
+      - '**/test/langtools/tools/javac/diags/examples/ReturnBeforeSuperclassInit.java'
+      - '**/test/langtools/tools/javac/diags/examples/RedundantSuperclassInit.java'
+      - '**/test/langtools/tools/javac/diags/examples/IllegalDigitInOctalLiteral.java'
+      - '**/test/langtools/tools/javac/diags/examples/IllegalDigitInBinaryLiteral.java'
+      - '**/test/langtools/tools/javac/diags/examples/StatementNotExpected.java'
+      - '**/test/langtools/tools/javac/diags/examples/CantAssignInitializedBeforeCtorCalled.java'
+      - '**/test/langtools/tools/javac/LocalClassCtorPrologue.java'
+      - '**/test/langtools/tools/javac/DefiniteAssignment/DA_DUConstructors.java'
+      - '**/test/langtools/tools/javac/SuperInit/SuperInitFails.java'
+      - '**/test/langtools/tools/javac/SuperInit/EarlyAssignments.java'
+      - '**/test/langtools/tools/javac/ImportUnnamed/foo/A.java'
+      - '**/test/langtools/tools/javac/SuperInit/EarlyLocalClass.java'
+      - '**/test/langtools/tools/javac/SuperInit/EarlyInnerAccessErrorMessageTest.java'
+
+  - name: Hartshorn
+    scm: git
+    url: https://github.com/Dockbox-OSS/Hartshorn
+    reference: develop/0.7.0
+
+  - name: camunda
+    scm: git
+    url: https://github.com/camunda/camunda
+    reference: main
+
+  - name: guava
+    scm: git
+    url: https://github.com/google/guava
+    reference: v28.2
+
+  - name: spotbugs
+    scm: git
+    url: https://github.com/spotbugs/spotbugs
+    reference: 3.1.2
+
+  - name: pmd
+    scm: git
+    url: https://github.com/pmd/pmd
+    reference: pmd_releases/6.21.0
+    excludes:
+      - '**/pmd/pmd-java/src/test/**/*'
+      - '**/pmd/cpd/files/*'
+
+  - name: spoon
+    scm: git
+    url: https://github.com/INRIA/spoon.git
+    reference: spoon-core-10.1.0
+    excludes:
+      - '**/src/test/resources/**/*'
+
+  - name: lombok-ast
+    scm: git
+    url: https://github.com/rzwitserloot/lombok.ast
+    reference: v0.2
+    excludes:
+      - '**/lombok-ast/test/**/*'
+
+  - name: spring-framework
+    scm: git
+    url: https://github.com/spring-projects/spring-framework
+    reference: v4.1.6.RELEASE
+
+  - name: hibernate-orm
+    scm: git
+    url: https://github.com/hibernate/hibernate-orm
+    reference: 4.2.19.Final
+    excludes:
+      - '**/hibernate-orm/documentation/**/*'
+
+  - name: elasticsearch
+    scm: git
+    url: https://github.com/elastic/elasticsearch
+    reference: v1.5.2
+
+  - name: java-design-patterns
+    scm: git
+    url: https://github.com/iluwatar/java-design-patterns
+    reference: dd855a376bc025aa61f6816584f79eb9854fe5d7
+
+  - name: MaterialDesignLibrary
+    scm: git
+    url: https://github.com/navasmdc/MaterialDesignLibrary
+    reference: 1.3
+
+  - name: Hbase
+    scm: git
+    url: https://github.com/apache/hbase
+    reference: 1.1.0.1
+
+  - name: Orekit
+    scm: git
+    url: https://github.com/CS-SI/Orekit
+    reference: 8.0.1
+
+  - name: pulsar
+    scm: git
+    url: https://github.com/apache/pulsar
+    reference: master
+
+  - name: rhsm
+    scm: git
+    url: https://github.com/RedHatInsights/rhsm-subscriptions
+    reference: main
+
+  # Those projects are quite old and have a lot of legacy code
+  - name: apache-ant
+    scm: git
+    url: https://github.com/apache/ant
+    reference: ANT_194
+    excludes:
+      - '**/apache-ant/src/tests/**/*'
+      - '**/apache-ant/src/etc/testcases/'
+
+  - name: apache-jsecurity
+    scm: git
+    url: https://github.com/apache/jsecurity
+    reference: c2ac5b90a467aedb04b52ae50a99e83207d847b3
+
+  - name: android-launcher
+    scm: git
+    url: https://github.com/android/platform_packages_apps_launcher
+    reference: android-2.1_r2.1p2
+
+  - name: apache-struts
+    scm: git
+    url: https://github.com/apache/struts.git
+    reference: main
+    excludes:
+      - '**/apache-struts/**/resources/**/*'
+
+  # Projects which contain a lot of lambda expressions
+  - name: infinispan
+    scm: git
+    url: https://github.com/infinispan/infinispan
+    reference: 7.2.5.Final
+
+  - name: protonpack
+    scm: git
+    url: https://github.com/poetix/protonpack
+    reference: protonpack-1.7
+
+  - name: jOOL
+    scm: git
+    url: https://github.com/jOOQ/jOOL
+    reference: version-0.9.7
+
+  - name: RxJava
+    scm: git
+    url: https://github.com/ReactiveX/RxJava
+    reference: v1.0.9
+
+  - name: Vavr
+    scm: git
+    url: https://github.com/vavr-io/vavr
+    reference: v0.9.0

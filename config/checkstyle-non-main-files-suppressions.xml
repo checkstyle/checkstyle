@@ -414,5 +414,7 @@
   <suppress id="violationMessagesModuleMacroMustExist"
             files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+\.xml"/>
 
+  <!-- If files names are wrapped then they through error at time of report generation -->
+  <suppress id="lineLength" files="config[\\/]list-of-projects.yml"/>
 
 </suppressions>
