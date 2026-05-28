@@ -14,6 +14,7 @@ record TestRecord1() { // violation
 
 }
 
+@Deprecated
 record TestRecord2() { // violation
 
 }
