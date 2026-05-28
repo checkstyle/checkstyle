@@ -131,6 +131,35 @@ parse-pr-description-text)
   ./.ci/append-to-github-output.sh "report_label" "$REPORT_LABEL"
   ;;
 
+# Processes local-repo based config files.
+process-local-repo-config-files)
+  mkdir -p .ci-temp
+  # Extract master branch config for the base diff_config
+  git -C .ci-temp/checkstyle show upstream/master:"$CONFIG_LINK" > .ci-temp/diff_config.xml
+  # Use PR branch config for the patch_config
+  cp "$PATCH_CONFIG_LINK" .ci-temp/patch_config.xml
+
+  # Add config-level property (Checker)
+  CHECKER_MATCH='<module name="Checker">'
+  CHECKER_PROP='<property name="haltOnException" value="false"\/>'
+  sed -i "s/$CHECKER_MATCH/$CHECKER_MATCH\n  $CHECKER_PROP/g" \
+    .ci-temp/diff_config.xml
+  sed -i "s/$CHECKER_MATCH/$CHECKER_MATCH\n  $CHECKER_PROP/g" \
+    .ci-temp/patch_config.xml
+
+  # Add TreeWalker-level properties
+  TW_MATCH='<module name="TreeWalker">'
+  TW_PROP1='<property name="skipFileOnJavaParseException" value="true"\/>'
+  TW_PROP2='<property name="javaParseExceptionSeverity" value="ignore"\/>'
+  sed -i "s/$TW_MATCH/$TW_MATCH\n    $TW_PROP1\n    $TW_PROP2/g" \
+    .ci-temp/diff_config.xml
+  sed -i "s/$TW_MATCH/$TW_MATCH\n    $TW_PROP1\n    $TW_PROP2/g" \
+    .ci-temp/patch_config.xml
+
+  yq ".projects = [.projects[] | select(.name == \"$PROJECT_NAME\")]" \
+    "$PROJECTS_LINK" > .ci-temp/projects.yml
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s

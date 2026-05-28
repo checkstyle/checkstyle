@@ -20,6 +20,7 @@ my @excludes=qw(
   ^config/projects-to-test/openjdk19-excluded\.files$
   ^config/projects-to-test/openjdk20-excluded\.files$
   ^config/projects-to-test/openjdk25-excluded\.files$
+  ^config/list-of-projects\.yml$
   ^config/jsoref-spellchecker/whitelist.words$
   ^config/checker-framework-suppressions/
   ^config/archunit-store/
