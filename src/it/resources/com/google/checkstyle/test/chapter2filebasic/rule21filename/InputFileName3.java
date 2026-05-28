@@ -7,7 +7,7 @@ package com.google.checkstyle.test.chapter2filebasic.rule21filename;
   int version();
 }
 
-// violation below 'Top-level class InputFileName3 has to reside in its own source file.'
+// violation 2 lines below 'Top-level class InputFileName3 has to reside in its own source file.'
 @MyAnnotation2(name = "ABC", version = 1)
 class InputFileName3 {}
 
