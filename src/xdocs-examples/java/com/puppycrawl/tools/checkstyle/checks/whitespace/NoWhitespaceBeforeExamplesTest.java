@@ -34,11 +34,13 @@ public class NoWhitespaceBeforeExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "19:9: " + getCheckMessage(MSG_KEY, "++"),
-            "21:20: " + getCheckMessage(MSG_KEY, ";"),
-            "24:21: " + getCheckMessage(MSG_KEY, ","),
-            "29:12: " + getCheckMessage(MSG_KEY, ";"),
-            "31:14: " + getCheckMessage(MSG_KEY, ":"),
+            "19:21: " + getCheckMessage(MSG_KEY, ","),
+            "22:31: " + getCheckMessage(MSG_KEY, "..."),
+            "25:29: " + getCheckMessage(MSG_KEY, "..."),
+            "34:9: " + getCheckMessage(MSG_KEY, "++"),
+            "36:20: " + getCheckMessage(MSG_KEY, ";"),
+            "47:5: " + getCheckMessage(MSG_KEY, ";"),
+            "49:14: " + getCheckMessage(MSG_KEY, ":"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -47,7 +49,10 @@ public class NoWhitespaceBeforeExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "23:31: " + getCheckMessage(MSG_KEY, "..."),
+            "24:31: " + getCheckMessage(MSG_KEY, "..."),
+            "36:9: " + getCheckMessage(MSG_KEY, "++"),
+            "38:20: " + getCheckMessage(MSG_KEY, ";"),
+            "51:14: " + getCheckMessage(MSG_KEY, ":"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -56,8 +61,11 @@ public class NoWhitespaceBeforeExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "21:10: " + getCheckMessage(MSG_KEY, "."),
-            "23:74: " + getCheckMessage(MSG_KEY, "::"),
+            "30:9: " + getCheckMessage(MSG_KEY, "."),
+            "31:9: " + getCheckMessage(MSG_KEY, "."),
+            "41:9: " + getCheckMessage(MSG_KEY, "."),
+            "43:74: " + getCheckMessage(MSG_KEY, "::"),
+            "47:9: " + getCheckMessage(MSG_KEY, "."),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
