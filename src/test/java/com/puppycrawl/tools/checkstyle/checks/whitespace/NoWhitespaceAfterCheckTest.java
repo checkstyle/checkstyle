@@ -177,6 +177,26 @@ public class NoWhitespaceAfterCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterArrayDeclarations3.java"));
     }
+    
+    @Test
+    public void testDoWhile() throws Exception {
+        final String[] expected = {
+            "16:11: " + getCheckMessage(MSG_KEY, "while"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterDoWhile.java"), expected);
+    }
+
+    @Test
+    public void testLiteralIf() throws Exception {
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_KEY, "if"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterLiteralIf.java"), expected);
+    }
 
     @Test
     public void testSynchronized() throws Exception {
@@ -186,6 +206,34 @@ public class NoWhitespaceAfterCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestSynchronized.java"), expected);
     }
+    
+    @Test
+    public void testLiteralFor() throws Exception {
+        final String[] expected = {
+            "14:9: " + getCheckMessage(MSG_KEY, "for"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterFor.java"), expected);
+    }
+
+    @Test
+    public void testLiteralWhile() throws Exception {
+        final String[] expected = {
+            "14:9: " + getCheckMessage(MSG_KEY, "while"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterWhile.java"), expected);
+    }
+
+    @Test
+    public void testLiteralCatch() throws Exception {
+        final String[] expected = {
+            "15:11: " + getCheckMessage(MSG_KEY, "catch"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterCatch.java"), expected); 
+    }  
 
     @Test
     public void testNpe() throws Exception {
