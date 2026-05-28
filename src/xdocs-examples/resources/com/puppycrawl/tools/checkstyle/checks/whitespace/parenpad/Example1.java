@@ -10,27 +10,46 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
+import java.io.IOException;
+
 // xdoc section -- start
 class Example1 {
-  int n;
-
-  public void fun() {
-    bar( 1);  // violation 'is followed by whitespace'
+  int x;
+  public Example1(int n) {
   }
 
-  public void bar(int k ) {  // violation 'is preceded with whitespace'
-    while (k > 0) {
+  public void fun() {
+    try {
+      throw new IOException();
     }
-
-    StringBuilder obj = new StringBuilder(k);
+    catch( IOException e) { // violation 'is followed by whitespace'
+    }
+    catch(Exception e ) {}  // violation 'is preceded with whitespace'
+    for ( int i = 0; i < x; i++ ) { // 2 violations
+      // ''(' is followed by whitespace'
+      // '')' is preceded with whitespace'
+    }
   }
 
   public void fun2() {
-    switch( n) {  // violation 'is followed by whitespace'
+    switch( x) { // violation 'is followed by whitespace'
       case 2:
-        bar(n);
+        break;
       default:
         break;
+    }
+  }
+
+  class Bar extends Example1 {
+    public Bar() {
+      super(1 ); // violation '')' is preceded with whitespace'
+    }
+    public Bar(int k) {
+      super( k ); // 2 violations
+      // ''(' is followed by whitespace'
+      // '')' is preceded with whitespace'
+      for ( int i = 0; i < k; i++) { // violation ''(' is followed by whitespace'
+      }
     }
   }
 }
