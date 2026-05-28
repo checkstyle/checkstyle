@@ -17,10 +17,10 @@ import java.lang.annotation.RetentionPolicy;
    String date();
 }
 
-@CheckForNull // violation
+@CheckForNull
 @TypeQualifierDefault(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@interface InputOneTopLevelClassAnnotation2B {
+@interface InputOneTopLevelClassAnnotation2B {  // violation
    String author();
    int currentRevision() default 1;
 }
