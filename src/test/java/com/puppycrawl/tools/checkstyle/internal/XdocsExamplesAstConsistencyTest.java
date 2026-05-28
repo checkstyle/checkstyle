@@ -226,9 +226,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/whitespace/whitespacearound/Example8",
             "checks/whitespace/whitespacearound/Example9",
             "checks/whitespace/whitespacearound/Example11",
-            "filters/suppressionfilter/Example2",
-            "filters/suppressionfilter/Example3",
-            "filters/suppressionfilter/Example4",
             "filters/suppressionsinglefilter/Example2",
             "filters/suppressionsinglefilter/Example3",
             "filters/suppressionsinglefilter/Example4",
@@ -290,6 +287,9 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/naming/abbreviationaswordinname/Example4",
             "checks/naming/abbreviationaswordinname/Example6",
             "checks/naming/abbreviationaswordinname/Example7",
+            "filters/suppressionfilter/Example2",
+            "filters/suppressionfilter/Example3",
+            "filters/suppressionfilter/Example4",
             "checks/naming/localvariablename/Example3",
             "checks/naming/localvariablename/Example5"
             );
