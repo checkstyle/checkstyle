@@ -13,7 +13,7 @@ class Example4 {
       int a;               // violation, 'level 6, expected level should be 4'
 
     void method() {
-        int b = 0;         // ok
+        int b = 0;
           int c = 1;       // violation, 'level 10, expected level should be 8'
     }
 }

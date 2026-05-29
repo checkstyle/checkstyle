@@ -24,10 +24,10 @@ class MyClass {
 class Example5 {
   /** Javadoc.*/
   @Annotation
-  private class Class1 { } // ok
+  private class Class1 { }
 
   @MyClass.Annotation
-  private class Class2 { } // ok
+  private class Class2 { }
 
   private class Class3 { } // violation, 'Missing a Javadoc comment'
 }
