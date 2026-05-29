@@ -14,6 +14,7 @@ public enum InputOneTopLevelClassEnum2 {
     VALUE1, VALUE2;
 }
 
+@Deprecated
 enum InputOneTopLevelClassEnum2inner2 { // violation
     VALUE1, VALUE2;
 }

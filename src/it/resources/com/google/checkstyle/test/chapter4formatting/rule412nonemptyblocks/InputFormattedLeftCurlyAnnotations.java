@@ -30,7 +30,7 @@ class InputFormattedLeftCurlyAnnotations {
   }
 }
 
-// violation below '.* InputFormattedLeftCurlyAnnotations2 has to reside in its own source file.'
+// violation 2 lines below 'Top-level class .* has to reside in its own source file.'
 @TestClassAnnotation2
 class InputFormattedLeftCurlyAnnotations2 {
   private static final int X = 10;
@@ -56,6 +56,6 @@ class InputFormattedLeftCurlyAnnotations2 {
   }
 }
 
-// violation below 'Top-level class TestClassAnnotation2 has to reside in its own source file.'
+// violation 2 lines below 'Top-level class .* has to reside in its own source file.'
 @Target(ElementType.TYPE)
 @interface TestClassAnnotation2 {}

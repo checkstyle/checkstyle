@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -82,9 +83,9 @@ public class OneTopLevelClassCheck extends AbstractCheck {
                 }
                 else if (!isPublic(currentNode)) {
                     // extra non-public type, log immediately
-                    final String typeName = currentNode
-                        .findFirstToken(TokenTypes.IDENT).getText();
-                    log(currentNode, MSG_KEY, typeName);
+                    final String typeName = NullUtil.notNull(currentNode
+                        .findFirstToken(TokenTypes.IDENT)).getText();
+                    log(getDefinitionKeyword(currentNode), MSG_KEY, typeName);
                 }
             }
             currentNode = currentNode.getNextSibling();
@@ -92,9 +93,9 @@ public class OneTopLevelClassCheck extends AbstractCheck {
 
         // if there was a public type and first type is non-public, log it
         if (publicTypeFound && !isPublic(firstType)) {
-            final String typeName = firstType
-                .findFirstToken(TokenTypes.IDENT).getText();
-            log(firstType, MSG_KEY, typeName);
+            final String typeName = NullUtil.notNull(firstType
+                .findFirstToken(TokenTypes.IDENT)).getText();
+            log(getDefinitionKeyword(firstType), MSG_KEY, typeName);
         }
     }
 
@@ -116,8 +117,33 @@ public class OneTopLevelClassCheck extends AbstractCheck {
      */
     private static boolean isPublic(DetailAST typeDef) {
         final DetailAST modifiers =
-                typeDef.findFirstToken(TokenTypes.MODIFIERS);
+                NullUtil.notNull(typeDef.findFirstToken(TokenTypes.MODIFIERS));
         return modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null;
     }
 
+    /**
+     * Returns the keyword token for a type definition AST node.
+     * (e.g., {@code class}, {@code interface}, {@code enum}, {@code record})
+     *
+     * @param typeDef the type definition AST node
+     * @return the keyword token
+     */
+    private static DetailAST getDefinitionKeyword(DetailAST typeDef) {
+        return switch (typeDef.getType()) {
+            case TokenTypes.CLASS_DEF ->
+                NullUtil.notNull(
+                    typeDef.findFirstToken(TokenTypes.LITERAL_CLASS));
+            case TokenTypes.ENUM_DEF ->
+                NullUtil.notNull(
+                    typeDef.findFirstToken(TokenTypes.ENUM));
+            case TokenTypes.RECORD_DEF ->
+                NullUtil.notNull(
+                    typeDef.findFirstToken(TokenTypes.LITERAL_RECORD));
+            case TokenTypes.ANNOTATION_DEF ->
+                NullUtil.notNull(
+                    typeDef.findFirstToken(TokenTypes.AT));
+            default -> NullUtil.notNull(
+                    typeDef.findFirstToken(TokenTypes.LITERAL_INTERFACE));
+        };
+    }
 }
