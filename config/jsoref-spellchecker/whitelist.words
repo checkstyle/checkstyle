@@ -276,6 +276,7 @@ declaredwhenneeded
 Deconstruction
 defau
 defaultcomeslast
+defaultconstructors
 defaultlabelpresence
 defaultlogger
 delims
@@ -315,6 +316,7 @@ dnd
 Dnew
 doccheck
 doccomments
+docdefaultconstr
 Dockter
 doclet
 doclint
