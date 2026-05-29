@@ -98,8 +98,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/coding/illegalsymbol/Example4",
             "checks/coding/illegaltokentext/Example5",
             "checks/coding/packagedeclaration/Example2",
-            "checks/coding/requirethis/Example5",
-            "checks/coding/requirethis/Example6",
             "checks/coding/unnecessaryparentheses/Example2",
             "checks/coding/unnecessaryparentheses/Example3",
             "checks/coding/variabledeclarationusagedistance/Example2",
@@ -290,7 +288,9 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/naming/abbreviationaswordinname/Example6",
             "checks/naming/abbreviationaswordinname/Example7",
             "checks/naming/localvariablename/Example3",
-            "checks/naming/localvariablename/Example5"
+            "checks/naming/localvariablename/Example5",
+            "checks/coding/requirethis/Example5",
+            "checks/coding/requirethis/Example6"
             );
 
     /**
