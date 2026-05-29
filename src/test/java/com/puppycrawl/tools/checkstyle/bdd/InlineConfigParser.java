@@ -942,6 +942,35 @@ public final class InlineConfigParser {
         validateProperties(matchedProperties, missingProperties);
     }
 
+    private static void setProperties(String inputFilePath, Configuration module,
+                                      ModuleInputConfiguration.Builder moduleInputConfigBuilder)
+            throws CheckstyleException {
+        final String[] getPropertyNames = module.getPropertyNames();
+        for (final String propertyName : getPropertyNames) {
+            final String propertyValue = module.getProperty(propertyName);
+
+            if ("file".equals(propertyName)) {
+                final String filePath = getResolvedPath(propertyValue, inputFilePath);
+                moduleInputConfigBuilder.addNonDefaultProperty(propertyName, filePath);
+            }
+            else {
+                if (NULL_STRING.equals(propertyValue)) {
+                    moduleInputConfigBuilder.addNonDefaultProperty(propertyName, null);
+                }
+                else {
+                    moduleInputConfigBuilder.addNonDefaultProperty(propertyName, propertyValue);
+                }
+            }
+        }
+
+        final Map<String, String> messages = module.getMessages();
+        for (final Map.Entry<String, String> entry : messages.entrySet()) {
+            final String key = entry.getKey();
+            final String value = entry.getValue();
+            moduleInputConfigBuilder.addModuleMessage(key, value);
+        }
+    }
+
     private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
                             String inputFilePath,
                             List<String> lines,
@@ -989,35 +1018,6 @@ public final class InlineConfigParser {
             else {
                 inputConfigBuilder.addNonDefaultProperty(key, value);
             }
-        }
-    }
-
-    private static void setProperties(String inputFilePath, Configuration module,
-                                      ModuleInputConfiguration.Builder moduleInputConfigBuilder)
-            throws CheckstyleException {
-        final String[] getPropertyNames = module.getPropertyNames();
-        for (final String propertyName : getPropertyNames) {
-            final String propertyValue = module.getProperty(propertyName);
-
-            if ("file".equals(propertyName)) {
-                final String filePath = getResolvedPath(propertyValue, inputFilePath);
-                moduleInputConfigBuilder.addNonDefaultProperty(propertyName, filePath);
-            }
-            else {
-                if (NULL_STRING.equals(propertyValue)) {
-                    moduleInputConfigBuilder.addNonDefaultProperty(propertyName, null);
-                }
-                else {
-                    moduleInputConfigBuilder.addNonDefaultProperty(propertyName, propertyValue);
-                }
-            }
-        }
-
-        final Map<String, String> messages = module.getMessages();
-        for (final Map.Entry<String, String> entry : messages.entrySet()) {
-            final String key = entry.getKey();
-            final String value = entry.getValue();
-            moduleInputConfigBuilder.addModuleMessage(key, value);
         }
     }
 

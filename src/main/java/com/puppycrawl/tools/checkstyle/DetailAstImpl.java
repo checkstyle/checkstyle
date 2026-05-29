@@ -89,17 +89,6 @@ public final class DetailAstImpl implements DetailAST {
     /**
      * Initializes this DetailAstImpl.
      *
-     * @param tokenType the type of this DetailAstImpl
-     * @param tokenText the text of this DetailAstImpl
-     */
-    public void initialize(int tokenType, String tokenText) {
-        type = tokenType;
-        text = tokenText;
-    }
-
-    /**
-     * Initializes this DetailAstImpl.
-     *
      * @param token the token to generate this DetailAstImpl from
      */
     public void initialize(Token token) {
@@ -107,6 +96,17 @@ public final class DetailAstImpl implements DetailAST {
         type = token.getType();
         lineNo = token.getLine();
         columnNo = token.getCharPositionInLine();
+    }
+
+    /**
+     * Initializes this DetailAstImpl.
+     *
+     * @param tokenType the type of this DetailAstImpl
+     * @param tokenText the text of this DetailAstImpl
+     */
+    public void initialize(int tokenType, String tokenText) {
+        type = tokenType;
+        text = tokenText;
     }
 
     /**

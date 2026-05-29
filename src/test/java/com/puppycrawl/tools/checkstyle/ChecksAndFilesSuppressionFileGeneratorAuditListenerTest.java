@@ -261,17 +261,17 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
                 .isEqualTo("Parameter outputStreamOptions can not be null");
     }
 
+    private AuditEvent createAuditEvent(String fileName, Violation violation) {
+        return new AuditEvent(this,
+                getPath(fileName), violation);
+    }
+
     private AuditEvent createAuditEvent(String fileName, int lineNumber, int columnNumber,
                                         Class<?> sourceClass) {
         final Violation violation =
                 new Violation(lineNumber, columnNumber, "messages.properties", null,
                         null, null, sourceClass, null);
 
-        return new AuditEvent(this,
-                getPath(fileName), violation);
-    }
-
-    private AuditEvent createAuditEvent(String fileName, Violation violation) {
         return new AuditEvent(this,
                 getPath(fileName), violation);
     }

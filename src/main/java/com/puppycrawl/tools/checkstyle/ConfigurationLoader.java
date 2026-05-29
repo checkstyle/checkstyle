@@ -236,26 +236,6 @@ public final class ConfigurationLoader {
     }
 
     /**
-     * Returns the module configurations in a specified file.
-     *
-     * @param config location of config file, can be either a URL or a filename
-     * @param overridePropsResolver overriding properties
-     * @param ignoredModulesOptions {@code OMIT} if modules with severity
-     *            'ignore' should be omitted, {@code EXECUTE} otherwise
-     * @param threadModeSettings the thread mode configuration
-     * @return the check configurations
-     * @throws CheckstyleException if an error occurs
-     */
-    public static Configuration loadConfiguration(String config,
-                                                  PropertyResolver overridePropsResolver,
-                                                  IgnoredModulesOptions ignoredModulesOptions,
-                                                  ThreadModeSettings threadModeSettings)
-            throws CheckstyleException {
-        return loadConfiguration(CommonUtil.sourceFromFilename(config), overridePropsResolver,
-                ignoredModulesOptions, threadModeSettings);
-    }
-
-    /**
      * Returns the module configurations from a specified input source.
      * Note that if the source does wrap an open byte or character
      * stream, clients are required to close that stream by themselves
@@ -273,6 +253,26 @@ public final class ConfigurationLoader {
             throws CheckstyleException {
         return loadConfiguration(configSource, overridePropsResolver,
                 ignoredModulesOptions, ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
+    }
+
+    /**
+     * Returns the module configurations in a specified file.
+     *
+     * @param config location of config file, can be either a URL or a filename
+     * @param overridePropsResolver overriding properties
+     * @param ignoredModulesOptions {@code OMIT} if modules with severity
+     *            'ignore' should be omitted, {@code EXECUTE} otherwise
+     * @param threadModeSettings the thread mode configuration
+     * @return the check configurations
+     * @throws CheckstyleException if an error occurs
+     */
+    public static Configuration loadConfiguration(String config,
+                                                  PropertyResolver overridePropsResolver,
+                                                  IgnoredModulesOptions ignoredModulesOptions,
+                                                  ThreadModeSettings threadModeSettings)
+            throws CheckstyleException {
+        return loadConfiguration(CommonUtil.sourceFromFilename(config), overridePropsResolver,
+                ignoredModulesOptions, threadModeSettings);
     }
 
     /**

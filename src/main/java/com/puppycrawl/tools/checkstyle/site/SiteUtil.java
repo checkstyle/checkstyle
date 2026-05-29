@@ -628,6 +628,21 @@ public final class SiteUtil {
     }
 
     /**
+     * Scrape the Javadocs of the class and its properties setters.
+     *
+     * @param moduleName the name of the module.
+     * @param modulePath the module Path.
+     * @throws MacroExecutionException if an error occurs during processing.
+     */
+    public static void processModule(String moduleName, Path modulePath)
+            throws MacroExecutionException {
+        final Object instance = getModuleInstance(moduleName);
+        final Set<String> properties = getPropertiesForDocumentation(instance.getClass(),
+                instance);
+        processModule(moduleName, modulePath, instance, properties);
+    }
+
+    /**
      * Scrape the Javadocs of the class and its properties setters with
      * ClassAndPropertiesSettersJavadocScraper.
      *
@@ -671,21 +686,6 @@ public final class SiteUtil {
             final String message = String.format(Locale.ROOT, "Failed processing %s", moduleName);
             throw new MacroExecutionException(message, checkstyleException);
         }
-    }
-
-    /**
-     * Scrape the Javadocs of the class and its properties setters.
-     *
-     * @param moduleName the name of the module.
-     * @param modulePath the module Path.
-     * @throws MacroExecutionException if an error occurs during processing.
-     */
-    public static void processModule(String moduleName, Path modulePath)
-            throws MacroExecutionException {
-        final Object instance = getModuleInstance(moduleName);
-        final Set<String> properties = getPropertiesForDocumentation(instance.getClass(),
-                instance);
-        processModule(moduleName, modulePath, instance, properties);
     }
 
     /**

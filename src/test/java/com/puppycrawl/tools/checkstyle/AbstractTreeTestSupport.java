@@ -43,6 +43,22 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
 
     /**
      * Performs verification of the given text ast tree representation.
+     * This implementation uses
+     * {@link AbstractTreeTestSupport#verifyAst(String, String, JavaParser.Options)}
+     * method inside.
+     *
+     * @param expectedTextPrintFileName expected text ast tree representation.
+     * @param actualJavaFileName actual text ast tree representation.
+     * @throws Exception if exception occurs during verification.
+     */
+    protected static void verifyAst(String expectedTextPrintFileName, String actualJavaFileName)
+            throws Exception {
+        verifyAst(expectedTextPrintFileName, actualJavaFileName,
+                JavaParser.Options.WITHOUT_COMMENTS);
+    }
+
+    /**
+     * Performs verification of the given text ast tree representation.
      *
      * @param expectedTextPrintFileName expected text ast tree representation.
      * @param actualJavaFileName actual text ast tree representation.
@@ -60,22 +76,6 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
         assertWithMessage("Generated AST from Java file should match pre-defined AST")
                 .that(actualContents)
                 .isEqualTo(expectedContents);
-    }
-
-    /**
-     * Performs verification of the given text ast tree representation.
-     * This implementation uses
-     * {@link AbstractTreeTestSupport#verifyAst(String, String, JavaParser.Options)}
-     * method inside.
-     *
-     * @param expectedTextPrintFileName expected text ast tree representation.
-     * @param actualJavaFileName actual text ast tree representation.
-     * @throws Exception if exception occurs during verification.
-     */
-    protected static void verifyAst(String expectedTextPrintFileName, String actualJavaFileName)
-            throws Exception {
-        verifyAst(expectedTextPrintFileName, actualJavaFileName,
-                JavaParser.Options.WITHOUT_COMMENTS);
     }
 
     /**
