@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.doccomments.checkstyle.test.chapter2writingdoccomments.rule251orderoftags;
+package com.doccomments.checkstyle.test.writingdoccomments.tagconventions.orderoftags;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +27,7 @@ public class AtclauseOrderTest extends AbstractDocCommentsModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
-        return "com/doccomments/checkstyle/test/chapter2writingdoccomments/rule251orderoftags";
+        return "com/doccomments/checkstyle/test/writingdoccomments/tagconventions/orderoftags";
     }
 
     @Test
