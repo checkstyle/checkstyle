@@ -239,24 +239,6 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
                 getCustomMessages().get(key)));
     }
 
-    @Override
-    public final void log(int lineNo, int colNo, String key,
-            Object... args) {
-        final int col = 1 + CommonUtil.lengthExpandedTabs(
-            getLines()[lineNo - 1], colNo, tabWidth);
-        context.get().violations.add(
-            new Violation(
-                lineNo,
-                col,
-                getMessageBundle(),
-                key,
-                args,
-                getSeverityLevel(),
-                getId(),
-                getClass(),
-                getCustomMessages().get(key)));
-    }
-
     /**
      * Helper method to log a Violation.
      *
@@ -287,6 +269,24 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
                         getId(),
                         getClass(),
                         getCustomMessages().get(key)));
+    }
+
+    @Override
+    public final void log(int lineNo, int colNo, String key,
+            Object... args) {
+        final int col = 1 + CommonUtil.lengthExpandedTabs(
+            getLines()[lineNo - 1], colNo, tabWidth);
+        context.get().violations.add(
+            new Violation(
+                lineNo,
+                col,
+                getMessageBundle(),
+                key,
+                args,
+                getSeverityLevel(),
+                getId(),
+                getClass(),
+                getCustomMessages().get(key)));
     }
 
     /**
