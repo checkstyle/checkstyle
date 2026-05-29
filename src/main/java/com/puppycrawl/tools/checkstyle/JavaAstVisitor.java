@@ -2098,20 +2098,6 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     }
 
     /**
-     * Create a DetailAstImpl from a given token and token type. This method
-     * should be used for literal nodes only, i.e. {@literal 'PACKAGE_DEF -> package'}.
-     *
-     * @param tokenType the token type of this DetailAstImpl
-     * @param startToken the first token that appears in this DetailAstImpl.
-     * @return new DetailAstImpl of given type
-     */
-    private DetailAstImpl create(int tokenType, Token startToken) {
-        final DetailAstImpl ast = create(startToken);
-        ast.setType(tokenType);
-        return ast;
-    }
-
-    /**
      * Create a DetailAstImpl from a given token. This method should be
      * used for terminal nodes, i.e. {@code LCURLY}, when we are building
      * an AST for a specific token, regardless of position.
@@ -2146,6 +2132,20 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
      */
     private DetailAstImpl create(TerminalNode node) {
         return create((Token) node.getPayload());
+    }
+
+    /**
+     * Create a DetailAstImpl from a given token and token type. This method
+     * should be used for literal nodes only, i.e. {@literal 'PACKAGE_DEF -> package'}.
+     *
+     * @param tokenType the token type of this DetailAstImpl
+     * @param startToken the first token that appears in this DetailAstImpl.
+     * @return new DetailAstImpl of given type
+     */
+    private DetailAstImpl create(int tokenType, Token startToken) {
+        final DetailAstImpl ast = create(startToken);
+        ast.setType(tokenType);
+        return ast;
     }
 
     /**
