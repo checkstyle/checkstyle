@@ -391,7 +391,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     @Test
     public void testJavaDocMethod2() throws Exception {
         final String[] expected = {
-            "20:25: " + getCheckMessage(JavadocMethodCheck.class,
+            "21:25: " + getCheckMessage(JavadocMethodCheck.class,
                   MSG_EXPECTED_TAG, "@param", "i"),
         };
         verifyWithInlineConfigParser(
