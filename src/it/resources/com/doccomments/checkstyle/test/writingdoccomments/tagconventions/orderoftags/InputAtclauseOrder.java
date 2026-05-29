@@ -1,4 +1,4 @@
-package com.doccomments.checkstyle.test.chapter2writingdoccomments.rule251orderoftags;
+package com.doccomments.checkstyle.test.writingdoccomments.tagconventions.orderoftags;
 
 /**
  * Input for AtclauseOrderCheck examples.

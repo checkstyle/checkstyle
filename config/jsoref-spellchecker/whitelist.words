@@ -312,6 +312,7 @@ dnd
 Dnew
 doccheck
 doccomments
+docdefaultconstr
 Dockter
 doclet
 doclint
@@ -1328,6 +1329,7 @@ sysextensions
 sysprop
 systemout
 tac
+tagconventions
 Taglib
 taglist
 taskdef

@@ -39,6 +39,9 @@
     <!-- Tag conventions -->
     <module name="AtclauseOrder"/>
 
+    <!-- Documenting default constructors -->
+    <module name="MissingCtor"/>
+
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
       <property name="file" value="${org.checkstyle.openjdk.suppressionxpathfilter.config}"

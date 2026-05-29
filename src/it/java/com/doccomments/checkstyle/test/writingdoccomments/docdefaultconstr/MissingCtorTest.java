@@ -17,22 +17,22 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.doccomments.checkstyle.test.chapter2writingdoccomments.rule251orderoftags;
+package com.doccomments.checkstyle.test.writingdoccomments.docdefaultconstr;
 
 import org.junit.jupiter.api.Test;
 
 import com.doccomments.checkstyle.test.base.AbstractDocCommentsModuleTestSupport;
 
-public class AtclauseOrderTest extends AbstractDocCommentsModuleTestSupport {
+public class MissingCtorTest extends AbstractDocCommentsModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
-        return "com/doccomments/checkstyle/test/chapter2writingdoccomments/rule251orderoftags";
+        return "com/doccomments/checkstyle/test/writingdoccomments/docdefaultconstr";
     }
 
     @Test
-    public void testAtclauseOrder() throws Exception {
-        verifyWithWholeConfig(getPath("InputAtclauseOrder.java"));
+    public void testMissingCtor() throws Exception {
+        verifyWithWholeConfig(getPath("InputMissingCtor.java"));
     }
 
 }
