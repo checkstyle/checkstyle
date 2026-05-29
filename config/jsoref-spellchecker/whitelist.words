@@ -198,6 +198,7 @@ CNAME
 Cnt
 cobertura
 codacy
+codebases
 codeclimate
 codeconventions
 codecov
@@ -276,6 +277,7 @@ declaredwhenneeded
 Deconstruction
 defau
 defaultcomeslast
+defaultconstructors
 defaultlabelpresence
 defaultlogger
 delims
@@ -315,6 +317,7 @@ dnd
 Dnew
 doccheck
 doccomments
+docdefaultconstr
 Dockter
 doclet
 doclint
