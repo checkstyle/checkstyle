@@ -83,7 +83,7 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   @Deprecated
-  public static final int MY_CONST = 13; // ok
+  public static final int MY_CONST = 13;
 
   /** This javadoc is missing deprecated tag. */
   // violation 2 lines below """Must include both @java.lang.Deprecated annotation
@@ -96,14 +96,14 @@ class Example1 {
    * &lt;p&gt;&lt;/p&gt;
    */
   @Deprecated
-    public static final int NUM = 123456; // ok
+    public static final int NUM = 123456;
 
   /**
    * @deprecated
    *  &lt;p&gt;
    */
   @Deprecated
-  public static final int CONST = 12; // ok
+  public static final int CONST = 12;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -123,7 +123,7 @@ class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   @Deprecated
-  public static final int MY_CONST = 13; // ok
+  public static final int MY_CONST = 13;
 
   /** This javadoc is missing deprecated tag. */
   // violation 2 lines below """Must include both @java.lang.Deprecated annotation
@@ -136,7 +136,7 @@ class Example2 {
    * &lt;p&gt;&lt;/p&gt;
    */
   @Deprecated
-  public static final int NUM = 123456; // ok
+  public static final int NUM = 123456;
 
   /**
    * @deprecated
