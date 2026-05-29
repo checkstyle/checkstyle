@@ -1328,6 +1328,7 @@ sysextensions
 sysprop
 systemout
 tac
+tagconventions
 Taglib
 taglist
 taskdef
