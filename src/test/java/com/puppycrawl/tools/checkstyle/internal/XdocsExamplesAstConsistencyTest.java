@@ -200,7 +200,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/regexp/regexpsingleline/Example4",
             "checks/regexp/regexpmultiline/Example5",
             "checks/sizes/lambdabodylength/Example2",
-            "checks/sizes/linelength/Example6",
             "checks/todocomment/Example3",
             "checks/whitespace/nolinewrap/Example2",
             "checks/whitespace/nolinewrap/Example3",
