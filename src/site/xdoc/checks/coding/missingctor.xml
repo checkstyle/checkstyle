@@ -13,6 +13,19 @@
           Checks that classes (except abstract ones) define a constructor and don't rely
           on the default one.
         </div>
+
+        <p>
+          Note that <b>when creating</b> an explicit constructor, it must match
+          precisely the declaration of the automatically generated constructor;
+          even if the constructor should logically be protected, it must be made
+          public to match the declaration of the automatically generated
+          constructor, for <b>compatibility</b>.
+        </p>
+
+        <p>
+          See <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#defaultconstructors">
+          Documentation Comments Style Guide</a>.
+        </p>
       </subsection>
 
       <subsection name="Examples" id="MissingCtor_Examples">
@@ -51,6 +64,10 @@ abstract class AbstractExample {
 
       <subsection name="Example of Usage" id="MissingCtor_Example_of_Usage">
         <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingCtor">
+            Documentation Comments Style</a>
+          </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingCtor">
             Checkstyle Style</a>

@@ -520,7 +520,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/chapter2writingdoccomments/rule251orderoftags">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/tagconventions/orderoftags">
                     samples
                   </a>
                 </td>
@@ -727,8 +727,30 @@
                     <strong><em>Documenting Default Constructors</em></strong>
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/coding/missingctor.html#MissingCtor">
+                    MissingCtor</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingCtor">
+                  config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Cannot cover compatibility rule for replacing an implicit default constructor,
+                    as Checkstyle analyzes only the current source snapshot and cannot know whether
+                    the constructor was part of a previously released API.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/docdefaultconstr">
+                    samples
+                  </a>
+                </td>
               </tr>
 
               <!-- EXCEPTIONS -->

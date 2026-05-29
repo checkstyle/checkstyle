@@ -195,4 +195,8 @@
   <!-- JavadocStyle incorrectly parses HTML tags inside {@literal}, {@code} blocks as real HTML,
           until #19145 -->
   <suppress checks="JavadocStyle" files="JavadocParagraphCheck\.java"/>
+
+    <!-- Oracle URL in Javadoc must stay on one line to keep generated link valid. -->
+  <suppress checks="LineLength"
+            files="[\\/]MissingCtorCheck\.java"/>
 </suppressions>
