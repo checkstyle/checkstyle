@@ -780,8 +780,8 @@ public class JavadocStyleCheckTest
     @Test
     public void testJavadocTag2() throws Exception {
         final String[] expected = {
-            "24: " + getCheckMessage(MSG_NO_PERIOD),
-            "26:16: " + getCheckMessage(MSG_UNCLOSED_HTML,
+            "26: " + getCheckMessage(MSG_NO_PERIOD),
+            "28:16: " + getCheckMessage(MSG_UNCLOSED_HTML,
                     "<AREA ALT=\"alt\" Coordination=\"100,0,200,50\" HREF=\"/href/\"> <"),
         };
 
