@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 // xdoc section -- start
 class Example2 {
   @Deprecated
-  public static final int MY_CONST = 13; // ok
+  public static final int MY_CONST = 13;
 
   /** This javadoc is missing deprecated tag. */
   // violation 2 lines below """Must include both @java.lang.Deprecated annotation
@@ -26,7 +26,7 @@ class Example2 {
    * <p></p>
    */
   @Deprecated
-  public static final int NUM = 123456; // ok
+  public static final int NUM = 123456;
 
   /**
    * @deprecated

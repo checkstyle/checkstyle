@@ -184,10 +184,10 @@ class Example3 {
 class Example4 {
   /** Javadoc.*/
   @SpringBootApplication
-  private class Application { } // ok
+  private class Application { }
 
   @Configuration
-  private class DatabaseConfiguration { } // ok
+  private class DatabaseConfiguration { }
 
   private class MissingDoc { } // violation, 'Missing a Javadoc comment'
 }
@@ -214,10 +214,10 @@ class Example4 {
 class Example5 {
   /** Javadoc.*/
   @Annotation
-  private class Class1 { } // ok
+  private class Class1 { }
 
   @MyClass.Annotation
-  private class Class2 { } // ok
+  private class Class2 { }
 
   private class Class3 { } // violation, 'Missing a Javadoc comment'
 }

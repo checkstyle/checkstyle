@@ -21,10 +21,10 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 class Example4 {
   /** Javadoc.*/
   @SpringBootApplication
-  private class Application { } // ok
+  private class Application { }
 
   @Configuration
-  private class DatabaseConfiguration { } // ok
+  private class DatabaseConfiguration { }
 
   private class MissingDoc { } // violation, 'Missing a Javadoc comment'
 }
