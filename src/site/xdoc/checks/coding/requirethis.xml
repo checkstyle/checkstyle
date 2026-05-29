@@ -208,7 +208,7 @@ class Example3 {
   }
 
   void foo(int field3) {
-
+    // ok, checkMethods is false
     field3 = field3;
   }
 }
