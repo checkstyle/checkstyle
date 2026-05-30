@@ -17,12 +17,14 @@ public class InputCommentsIndentationAfterAnnotation {
 
 }
 
+// violation 2 lines below '.* incorrect .* level 4, expected is 0, .* same .* as line 23.'
 @AfterAnnotationCommentsAnnotation1
-    // violation '.* incorrect .* level 4, expected is 0, .* same .* as line 22.'
+    // Comment after annotation
 class InputCommentsIndentationAfterAnnotation1 {
 
+    // violation 2 lines below '.* incorrect .* level 8, expected is 4, .* same .* as line 28.'
     @AfterAnnotationCommentsAnnotation1
-        // violation '.* incorrect .* level 8, expected is 4, .* same .* as line 26.'
+        // Comment after annotation
     public int input;
 
 }
@@ -39,13 +41,15 @@ class InputCommentsIndentationAfterAnnotation3 {
 
 }
 
+// violation 2 lines below '.* incorrect .* level 4, expected is 0, .* same .* as line 47.'
 @AfterAnnotationCommentsAnnotation1
-    // violation '.* incorrect .* level 4, expected is 0, .* same .* as line 44.'
+    // Comment after annotation
 @AfterAnnotationCommentsAnnotation2
 class InputCommentsIndentationAfterAnnotation4 {
 
+    // violation 2 lines below '.* incorrect .* level 8, expected is 4, .* same .* as line 53.'
     @AfterAnnotationCommentsAnnotation1
-        // violation '.* incorrect .* level 8, expected is 4, .* same .* as line 49.'
+        // Comment after annotation
     @AfterAnnotationCommentsAnnotation2
     public int input;
 
@@ -53,8 +57,9 @@ class InputCommentsIndentationAfterAnnotation4 {
 
 class InputCommentsIndentationAfterAnnotation5 {
 
+    // violation 2 lines below '.* incorrect .* level 2, expected is 4, .* same .* as line 63.'
     @AfterAnnotationCommentsAnnotation1
-  // violation '.* incorrect .* level 2, expected is 4, .* same .* as line 58.'
+  // Comment after annotation
     @AfterAnnotationCommentsAnnotation2
     public int input;
 
