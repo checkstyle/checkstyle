@@ -350,8 +350,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]it[\\/]resources[\\/]com[\\/]openjdk[\\/]checkstyle[\\/]test[\\/]chapter3formatting[\\/]rule310variabledeclarations[\\/]onevariableperline[\\/]InputOneVariablePerDeclaration\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]utils[\\/]annotationutil[\\/]InputAnnotationUtil1\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter5naming[\\/]rule523methodnames[\\/]InputMethodName2\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter6programpractice[\\/]rule61overridealwaysused[\\/]InputOverrideAlwaysUsedForRecord\.java"/>
