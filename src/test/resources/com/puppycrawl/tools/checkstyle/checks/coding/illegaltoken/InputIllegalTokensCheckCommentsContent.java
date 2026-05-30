@@ -7,8 +7,8 @@ tokens = COMMENT_CONTENT
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
-// violation 10 lines above 'is not allowed'
-// violation 2 lines above 'is not allowed'
+// violation 9 lines above 'is not allowed'
+// violation below 'is not allowed'
 /**
  * Test for illegal tokens
  */
