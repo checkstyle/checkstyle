@@ -360,8 +360,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter6programpractice[\\/]rule61overridealwaysused[\\/]InputOverrideAlwaysUsedForRecordInClass\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter6programpractice[\\/]rule61overridealwaysused[\\/]InputOverrideAlwaysUsedForRecordMixed\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter6programpractice[\\/]rule61overridealwaysused[\\/]InputOverrideAlwaysUsedForRecordNested\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter6programpractice[\\/]rule61overridealwaysused[\\/]InputOverrideAlwaysUsedForRecordViolation\.java"/>
