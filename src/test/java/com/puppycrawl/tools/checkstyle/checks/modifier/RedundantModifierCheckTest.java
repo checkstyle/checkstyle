@@ -463,4 +463,14 @@ public class RedundantModifierCheckTest
                         "InputRedundantModifierFinalUnnamedVariablesWithOldVersion.java"),
                 expected);
     }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "13:5: " + getCheckMessage(MSG_KEY, "public"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRedundantModifierCompactSourceFile.java"),
+                expected);
+    }
 }
