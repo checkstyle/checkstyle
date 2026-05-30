@@ -376,8 +376,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]sun[\\/]checkstyle[\\/]test[\\/]chapter3fileorganization[\\/]rule313classdeclarations[\\/]InputDeclarationOrderAccessModifiers\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]com[\\/]sun[\\/]checkstyle[\\/]test[\\/]chapter3fileorganization[\\/]rule313classdeclarations[\\/]InputDeclarationOrderConstructor\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]sun[\\/]checkstyle[\\/]test[\\/]chapter3fileorganization[\\/]rule313classdeclarations[\\/]InputDeclarationOrderDefault\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]sun[\\/]checkstyle[\\/]test[\\/]chapter3fileorganization[\\/]rule313classdeclarations[\\/]InputDeclarationOrderMultipleViolations\.java"/>
