@@ -100,6 +100,7 @@ Barowski
 basedir
 basefont
 baz
+bbb
 bc
 bdc
 bdd
@@ -148,6 +149,7 @@ casegroup
 catchparametername
 cba
 cbeaff
+ccc
 CComments
 cdata
 cde
@@ -209,7 +211,7 @@ codeselectorpresentation
 codestyle
 colgroup
 columnlimit
-Combobox
+combobox
 commentsindentation
 commitish
 commonutil
@@ -226,6 +228,7 @@ Contextualizable
 contextualization
 contextualized
 Contextualizing
+CORS
 courtlink
 covariantequals
 COVEREDRATIO
@@ -270,11 +273,14 @@ DDDL
 Ddokka
 Ddry
 DEADBEEF
+debounce
+debouncing
 DECCHARS
 declarationorder
 declarationrightbeforefirstusage
 declaredwhenneeded
 Deconstruction
+deduplicated
 defau
 defaultcomeslast
 defaultconstructors
@@ -357,6 +363,7 @@ Edad
 ededed
 edef
 edu
+eee
 Eghj
 Ei
 ej
@@ -402,6 +409,7 @@ Exif
 explicitinitialization
 expr
 Externalizable
+fafafa
 fallsthrough
 fallthrough
 fallthru
@@ -756,6 +764,7 @@ kazgroup
 kbd
 kclee
 KDoc
+keydown
 keyframes
 keyname
 keyscan
@@ -788,6 +797,7 @@ linkplain
 linksource
 linux
 Lisetskii
+listbox
 Ljava
 lkuehne
 LNOT
@@ -799,6 +809,7 @@ Loggable
 lombok
 lookaround
 Loughran
+lowercased
 lparen
 lte
 lucene
@@ -914,6 +925,7 @@ nestedfordepth
 nestedifdepth
 nestedtrydepth
 netbeans
+Neue
 newdomain
 newlineatendoffile
 Nfc
@@ -1109,6 +1121,7 @@ priva
 PRMC
 programpractice
 Proguard
+propert
 propertycachefile
 propkey
 protonpack
@@ -1122,6 +1135,7 @@ py
 qa
 qalab
 qaplug
+qi
 qodana
 qualitygates
 Qube
@@ -1224,6 +1238,7 @@ Schneeberger
 scm
 scp
 screenshot
+scrollbar
 Scss
 sdk
 sdkman
@@ -1344,6 +1359,7 @@ Sys
 sysextensions
 sysprop
 systemout
+tabindex
 tac
 tagconventions
 Taglib
@@ -1360,6 +1376,7 @@ Testik
 testinputfolder
 testmodules
 testname
+TEXTAREA
 textblock
 textblockgooglestyleformatting
 tfij
@@ -1445,6 +1462,7 @@ unusedimports
 unusedlambdaparametershouldbeunnamed
 unusedlocalvariable
 unusedtryresourceshouldbeunnamed
+uppercased
 upperell
 urandom
 uri
@@ -1489,6 +1507,7 @@ Warni
 Weakento
 Webflow
 webjar
+webkit
 Weblogic
 Webp
 website
@@ -1541,6 +1560,7 @@ xffffffff
 xffffffffffffffff
 xg
 Xhenseval
+XHR
 XHTML
 xm
 Xmaxerrs
@@ -1571,6 +1591,7 @@ xsl
 xslt
 xsltproc
 XSO
+XSS
 xwiki
 XXE
 XXXX
