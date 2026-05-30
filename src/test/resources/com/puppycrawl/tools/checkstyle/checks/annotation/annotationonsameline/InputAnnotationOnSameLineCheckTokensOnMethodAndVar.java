@@ -14,12 +14,12 @@ public class InputAnnotationOnSameLineCheckTokensOnMethodAndVar {
     @Annotation3 int x;
 
     int y;
-
-
-
-    @Annotation3 // violation, "should be on the same line with its target."
-    @SomeClass2.Annotation // violation, "should be on the same line with its target."
-    @java.lang.Deprecated // violation, "should be on the same line with its target."
+    // violation 3 lines below "Annotation 'Annotation3' should be on the same line with its target."
+    // violation 3 lines below "Annotation 'Annotation' should be on the same line with its target."
+    // violation 3 lines below "Annotation 'Deprecated' should be on the same line with its target."
+    @Annotation3
+    @SomeClass2.Annotation
+    @java.lang.Deprecated
     public int getX() {
         return (int) x;
     }
