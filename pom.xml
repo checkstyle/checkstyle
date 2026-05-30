@@ -1019,6 +1019,21 @@
               </arguments>
             </configuration>
           </execution>
+          <execution>
+            <id>generate-search-index</id>
+            <phase>process-classes</phase>
+            <goals><goal>java</goal></goals>
+            <configuration>
+              <classpathScope>compile</classpathScope>
+              <mainClass>
+                com.puppycrawl.tools.checkstyle.site.SearchIndexGenerator
+              </mainClass>
+              <arguments>
+                <argument>${project.basedir}/src/site/xdoc</argument>
+                <argument>${project.build.directory}/site</argument>
+              </arguments>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
 
