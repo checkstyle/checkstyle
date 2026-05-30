@@ -405,8 +405,6 @@
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]missingdeprecated[\\/]InputMissingDeprecatedBadDeprecated\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]missingdeprecated[\\/]InputMissingDeprecatedBadJavadoc\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]missingdeprecated[\\/]InputMissingDeprecatedClass\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]missingoverride[\\/]InputMissingOverrideBadOverrideFromObject\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
