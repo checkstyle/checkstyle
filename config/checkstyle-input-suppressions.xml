@@ -304,8 +304,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]writetag[\\/]InputWriteTagEnumsAndAnnotations\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]checks[\\/]trailingcomment[\\/]InputTrailingComment\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]trailingcomment[\\/]InputTrailingComment2\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorWithJavadoc2\.java"/>
