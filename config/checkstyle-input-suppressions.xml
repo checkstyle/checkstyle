@@ -332,8 +332,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule4861blockcommentstyle[\\/]InputCommentsIndentationSurroundingCode\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule487modifiers[\\/]InputModifierOrder\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter5naming[\\/]rule522classnames[\\/]InputClassNames\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter5naming[\\/]rule522classnames[\\/]InputFormattedClassNames\.java"/>
