@@ -370,8 +370,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule711generalform[\\/]InputFormattedCorrectJavadocLeadingAsteriskAlignment\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule734nonrequiredjavadoc[\\/]InputFormattedInvalidJavadocPositionRecord\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule734nonrequiredjavadoc[\\/]InputInvalidJavadocPositionRecord\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]sun[\\/]checkstyle[\\/]test[\\/]chapter3fileorganization[\\/]rule313classdeclarations[\\/]InputDeclarationOrderAccessModifiers\.java"/>
