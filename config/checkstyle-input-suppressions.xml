@@ -394,8 +394,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]annotationusestyle[\\/]InputAnnotationUseStyleCompactNoArray\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]annotationusestyle[\\/]InputAnnotationUseStyleDifferentStyles\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]annotationusestyle[\\/]InputAnnotationUseStyleExpanded\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]annotationusestyle[\\/]InputAnnotationUseStyleNoTrailingComma\.java"/>
