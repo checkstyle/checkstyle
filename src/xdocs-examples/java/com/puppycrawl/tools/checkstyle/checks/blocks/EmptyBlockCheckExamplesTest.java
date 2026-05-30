@@ -35,8 +35,8 @@ public class EmptyBlockCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "15:34: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "for"),
-            "19:9: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "try"),
+            "14:34: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "for"),
+            "17:9: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "try"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -45,7 +45,7 @@ public class EmptyBlockCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "22:9: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "try"),
+            "21:9: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "try"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -54,12 +54,12 @@ public class EmptyBlockCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "30:15: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "32:15: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "34:15: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "37:16: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "50:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "51:18: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "19:16: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "22:15: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "24:15: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "27:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "44:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "45:18: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
