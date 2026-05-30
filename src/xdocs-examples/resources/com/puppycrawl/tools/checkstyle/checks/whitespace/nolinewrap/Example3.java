@@ -1,20 +1,37 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="NoLineWrap"/>
+    <module name="NoLineWrap">
+      <property name="tokens" value="CLASS_DEF, METHOD_DEF, CTOR_DEF"/>
+    </module>
   </module>
 </module>
 
 
 */
 
-// xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nolinewrap;
 
-import java.lang. // violation 'should not be line-wrapped'
-  Boolean;
+// xdoc section -- start
 
-import static java.math.BigInteger.ONE;
+class // violation 'should not be line-wrapped'
+  Example3 {
+
+  public Example3() {
+  }
+
+  public static void // violation 'should not be line-wrapped'
+    doSomething() {
+  }
+
+  class Bar {
+
+    public // violation 'should not be line-wrapped'
+      Bar() {
+    }
+
+    public void fun() {
+    }
+  }
+}
 // xdoc section -- end
-
-class Example3 { }
