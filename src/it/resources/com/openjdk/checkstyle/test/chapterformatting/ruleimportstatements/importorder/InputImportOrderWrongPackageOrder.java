@@ -1,4 +1,4 @@
-package com.openjdk.checkstyle.test.chapterformatting.ruleimportstatements;
+package com.openjdk.checkstyle.test.chapterformatting.ruleimportstatements.importorder;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
