@@ -308,8 +308,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]trailingcomment[\\/]InputTrailingComment2\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorWithJavadoc2\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterAnnotation2\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]whitespace[\\/]whitespaceafter[\\/]example1[\\/]package-info\.java"/>
