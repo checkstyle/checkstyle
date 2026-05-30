@@ -345,8 +345,6 @@
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule712paragraphs[\\/]InputFormattedIncorrectJavadocParagraph\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule712paragraphs[\\/]InputIncorrectJavadocParagraph\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule712paragraphs[\\/]InputIncorrectRequireEmptyLineBeforeBlockTagGroup\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]it[\\/]resources[\\/]com[\\/]openjdk[\\/]checkstyle[\\/]test[\\/]chapter3formatting[\\/]rule310variabledeclarations[\\/]onevariableperline[\\/]InputOneVariablePerDeclaration\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
