@@ -1019,6 +1019,21 @@
               </arguments>
             </configuration>
           </execution>
+          <execution>
+            <id>generate-search-index</id>
+            <phase>process-classes</phase>
+            <goals><goal>java</goal></goals>
+            <configuration>
+              <classpathScope>compile</classpathScope>
+              <mainClass>
+                com.puppycrawl.tools.checkstyle.site.SearchIndexGenerator
+              </mainClass>
+              <arguments>
+                <argument>${project.basedir}/src/site/xdoc</argument>
+                <argument>${project.build.directory}/site</argument>
+              </arguments>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
 
@@ -1997,6 +2012,7 @@
                 <exclude>markdownlint.rb</exclude>
                 <exclude>openrewrite-recipes-checkstyle.properties</exclude>
                 <exclude>org.eclipse.jdt.core.prefs</exclude>
+                <exclude>search-index-schema.json</exclude>
                 <exclude>projects-to-test/**</exclude>
                 <exclude>qodana.yml</exclude>
                 <exclude>rewrite.yml</exclude>
@@ -2209,6 +2225,13 @@
               <jsonSchema>file:///${project.basedir}/config/sarif-schema-2.1.0.json</jsonSchema>
               <includes>
                 <include>**/*.sarif</include>
+              </includes>
+            </validation>
+            <validation>
+              <directory>${project.build.directory}/site</directory>
+              <jsonSchema>file:///${project.basedir}/config/search-index-schema.json</jsonSchema>
+              <includes>
+                <include>search-index.json</include>
               </includes>
             </validation>
           </validations>
