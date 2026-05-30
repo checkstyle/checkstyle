@@ -89,7 +89,6 @@ public class XdocsExamplesAstConsistencyTest {
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
             "checks/annotation/missingoverride/Example2",
             "checks/annotation/suppresswarningsholder/Example1",
-            "checks/blocks/emptyblock/Example3",
             "checks/blocks/emptycatchblock/Example4",
             "checks/blocks/emptycatchblock/Example5",
             "checks/blocks/needbraces/Example6",
@@ -98,8 +97,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/coding/illegalsymbol/Example4",
             "checks/coding/illegaltokentext/Example5",
             "checks/coding/packagedeclaration/Example2",
-            "checks/coding/requirethis/Example5",
-            "checks/coding/requirethis/Example6",
             "checks/coding/unnecessaryparentheses/Example2",
             "checks/coding/unnecessaryparentheses/Example3",
             "checks/coding/variabledeclarationusagedistance/Example2",
@@ -290,7 +287,9 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/naming/abbreviationaswordinname/Example6",
             "checks/naming/abbreviationaswordinname/Example7",
             "checks/naming/localvariablename/Example3",
-            "checks/naming/localvariablename/Example5"
+            "checks/naming/localvariablename/Example5",
+            "checks/coding/requirethis/Example5",
+            "checks/coding/requirethis/Example6"
             );
 
     /**
