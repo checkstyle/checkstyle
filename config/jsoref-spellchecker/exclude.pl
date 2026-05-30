@@ -9,6 +9,8 @@ my @excludes=qw(
   ^src/it/resources/
   ^src/test/resources/
   ^src/site/resources/styleguides/
+  ^src/site/resources/css/
+  ^src/site/resources/js/
   ^src/test/resources-noncompilable/
   /messages.*_..\.properties$
   /releasenotes_old.*\.xml$
