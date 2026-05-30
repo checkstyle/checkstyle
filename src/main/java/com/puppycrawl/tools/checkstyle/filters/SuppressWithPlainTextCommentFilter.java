@@ -137,6 +137,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
 
     /**
      * Setter to specify check pattern to suppress.
+     * The pattern is matched against the fully qualified class name of the Check.
      *
      * @param format pattern for check format.
      * @since 8.6
