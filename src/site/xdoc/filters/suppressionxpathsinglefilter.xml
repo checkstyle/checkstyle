@@ -53,7 +53,8 @@
             </tr>
             <tr>
               <td><a id="checks"/><a href="#checks">checks</a></td>
-              <td>Define a Regular Expression matched against the name of the check associated with an audit event.</td>
+              <td>Define a Regular Expression matched against the name of the check associated with an audit event.
+                The pattern is matched against the fully qualified class name of the Check.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
