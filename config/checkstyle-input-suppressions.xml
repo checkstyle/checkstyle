@@ -340,8 +340,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter5naming[\\/]rule523methodnames[\\/]InputMethodName\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule711generalform[\\/]InputIncorrectJavadocLeadingAsteriskAlignment\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule712paragraphs[\\/]InputFormattedIncorrectJavadocParagraph\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule712paragraphs[\\/]InputIncorrectJavadocParagraph\.java"/>
