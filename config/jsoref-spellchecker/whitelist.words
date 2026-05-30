@@ -656,6 +656,7 @@ javadocstyle
 javadoctagcontinuationindentation
 javadoctags
 javadoctype
+javadocutil
 javadocvariable
 Javaee
 javaformat
@@ -877,6 +878,7 @@ multiplevariabledeclarations
 Multiset
 multithreading
 mutableexception
+mutationtest
 MVC
 mvn
 mvnrepository
@@ -921,7 +923,6 @@ nlow
 NMCS
 NMTOKEN
 noarch
-noarg
 noarraytrailingcomma
 noblank
 nobr
