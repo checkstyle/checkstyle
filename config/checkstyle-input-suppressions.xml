@@ -337,8 +337,6 @@
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter5naming[\\/]rule522classnames[\\/]InputClassNames\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter5naming[\\/]rule522classnames[\\/]InputFormattedClassNames\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter5naming[\\/]rule523methodnames[\\/]InputMethodName\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule711generalform[\\/]InputIncorrectJavadocLeadingAsteriskAlignment\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
