@@ -21,7 +21,7 @@ blocks:
           - export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
           - export PATH=$JAVA_HOME/bin:$PATH
           - java -version
-          - curl --fail-with-body -s "https://get.sdkman.io" | bash
+          - curl --fail-with-body -s "https://get.sdkman.io?ci=true&rcupdate=false" | bash
           - source "$HOME/.sdkman/bin/sdkman-init.sh"
           - sdk install groovy
           - groovy --version
