@@ -310,8 +310,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorWithJavadoc2\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterAnnotation2\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]whitespace[\\/]whitespaceafter[\\/]example1[\\/]package-info\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule412nonemptyblocks[\\/]InputFormattedNonemptyBlocksLeftRightCurly\.java"/>
