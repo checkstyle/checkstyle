@@ -314,8 +314,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]whitespace[\\/]whitespaceafter[\\/]example1[\\/]package-info\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule412nonemptyblocks[\\/]InputFormattedNonemptyBlocksLeftRightCurly\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule412nonemptyblocks[\\/]InputNonemptyBlocksLeftRightCurly\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule462horizontalwhitespace[\\/]InputNoWhitespaceBeforeAnnotations\.java"/>
