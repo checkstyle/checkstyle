@@ -469,8 +469,6 @@
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]missingjavadoctype[\\/]InputMissingJavadocTypeQualifiedAnnotation1\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]missingjavadoctype[\\/]InputMissingJavadocTypeQualifiedAnnotation3\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]missingjavadoctype[\\/]InputMissingJavadocTypeQualifiedAnnotation4\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]nonemptyatclausedescription[\\/]InputNonEmptyAtclauseDescriptionOne\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
