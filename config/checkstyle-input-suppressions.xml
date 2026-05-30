@@ -494,8 +494,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]suppresswarningsholder[\\/]InputSuppressWarningsHolderAlias4\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]suppresswarningsholder[\\/]InputSuppressWarningsHolderWithAndWithoutCheckSuffixDifferentCases\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppresswarningsfilter[\\/]InputSuppressWarningsFilter\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppresswarningsfilter[\\/]InputSuppressWarningsFilterById\.java"/>
