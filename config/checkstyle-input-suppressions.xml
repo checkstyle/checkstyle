@@ -220,8 +220,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineSingleLineSmallTalkStyle\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting[\\/]InputTextBlockGoogleStyleFormatting9\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]coding[\\/]unusedlocalvariable[\\/]InputUnusedLocalVariableNestedClasses3\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]coding[\\/]unusedlocalvariable[\\/]InputUnusedLocalVariableTestWarningSeverity\.java"/>
@@ -409,8 +407,6 @@
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]missingdeprecated[\\/]InputMissingDeprecatedClass\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]missingoverride[\\/]InputMissingOverrideBadOverrideFromObject\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsSingle1\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]illegalthrows[\\/]InputIllegalThrowsNotIgnoreOverriddenMethod\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
