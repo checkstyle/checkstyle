@@ -339,11 +339,11 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCommentsAfterAnnotation() throws Exception {
         final String[] expected = {
-            "21:5: " + getCheckMessage(MSG_KEY_SINGLE, 22, 4, 0),
-            "25:9: " + getCheckMessage(MSG_KEY_SINGLE, 26, 8, 4),
-            "43:5: " + getCheckMessage(MSG_KEY_SINGLE, 44, 4, 0),
-            "48:9: " + getCheckMessage(MSG_KEY_SINGLE, 49, 8, 4),
-            "57:3: " + getCheckMessage(MSG_KEY_SINGLE, 58, 2, 4),
+            "22:5: " + getCheckMessage(MSG_KEY_SINGLE, 23, 4, 0),
+            "27:9: " + getCheckMessage(MSG_KEY_SINGLE, 28, 8, 4),
+            "46:5: " + getCheckMessage(MSG_KEY_SINGLE, 47, 4, 0),
+            "52:9: " + getCheckMessage(MSG_KEY_SINGLE, 53, 8, 4),
+            "62:3: " + getCheckMessage(MSG_KEY_SINGLE, 63, 2, 4),
         };
         final String testInputFile = "InputCommentsIndentationAfterAnnotation.java";
         verifyWithInlineConfigParser(getPath(testInputFile), expected);
