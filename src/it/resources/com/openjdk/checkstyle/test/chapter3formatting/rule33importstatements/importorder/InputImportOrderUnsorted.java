@@ -1,4 +1,4 @@
-package com.openjdk.checkstyle.test.chapter3formatting.rule33importstatements;
+package com.openjdk.checkstyle.test.chapter3formatting.rule33importstatements.importorder;
 
 import java.util.Map;
 import java.util.Arrays;
