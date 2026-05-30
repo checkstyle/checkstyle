@@ -46,9 +46,7 @@ public class NoLineWrapExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "12:1: " + getCheckMessage(MSG_KEY, "package"),
-            "16:1: " + getCheckMessage(MSG_KEY, "import"),
-            "19:1: " + getCheckMessage(MSG_KEY, "import"),
+            "17:1: " + getCheckMessage(MSG_KEY, "import"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -57,29 +55,11 @@ public class NoLineWrapExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "14:1: " + getCheckMessage(MSG_KEY, "import"),
+            "17:1: " + getCheckMessage(MSG_KEY, "CLASS_DEF"),
+            "23:3: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
+            "29:5: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
-    }
-
-    @Test
-    public void testExample4() throws Exception {
-        final String[] expected = {
-            "18:1: " + getCheckMessage(MSG_KEY, "import"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
-    }
-
-    @Test
-    public void testExample5() throws Exception {
-        final String[] expected = {
-            "19:1: " + getCheckMessage(MSG_KEY, "CLASS_DEF"),
-            "25:3: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
-            "31:5: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 }
