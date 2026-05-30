@@ -54,7 +54,7 @@ public class InputCommentsIndentationSurroundingCode2One
         int a = 5, b = 3, v = 6;
         if (a == b
             && v == b || ( a ==1
-                           /// violation '.* incorrect .* level 27, expected is 36, .* as line 60.'
+                           // violation '.* incorrect .* level 27, expected is 36, .* as line 60.'
                        /* violation
                         * one fine day ... */
                                     && b == 1)   ) {

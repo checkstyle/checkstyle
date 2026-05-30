@@ -11,7 +11,7 @@ public class InputCommentsIndentationInEmptyBlock {
             || (a == 1
             // violation 2 lines below '.* should be the same level as line 18.'
             // violation 3 lines below '.* should be the same level as line 18.'
-        /// // odd indentation comment
+        // // odd indentation comment
             //
               /*   // odd indentation comment
                * one fine day ... */

@@ -210,7 +210,8 @@ public final class TokenUtil {
 
     /**
      * Is argument comment-related type (SINGLE_LINE_COMMENT,
-     * BLOCK_COMMENT_BEGIN, BLOCK_COMMENT_END, COMMENT_CONTENT).
+     * BLOCK_COMMENT_BEGIN, BLOCK_COMMENT_END, COMMENT_CONTENT,
+     * MARKDOWN_JAVADOC_COMMENT).
      *
      * @param type
      *        token type.
@@ -220,12 +221,14 @@ public final class TokenUtil {
         return type == TokenTypes.SINGLE_LINE_COMMENT
                 || type == TokenTypes.BLOCK_COMMENT_BEGIN
                 || type == TokenTypes.BLOCK_COMMENT_END
-                || type == TokenTypes.COMMENT_CONTENT;
+                || type == TokenTypes.COMMENT_CONTENT
+                || type == TokenTypes.MARKDOWN_JAVADOC_COMMENT;
     }
 
     /**
      * Is argument comment-related type name (SINGLE_LINE_COMMENT,
-     * BLOCK_COMMENT_BEGIN, BLOCK_COMMENT_END, COMMENT_CONTENT).
+     * BLOCK_COMMENT_BEGIN, BLOCK_COMMENT_END, COMMENT_CONTENT,
+     * MARKDOWN_JAVADOC_COMMENT).
      *
      * @param type
      *        token type name.
