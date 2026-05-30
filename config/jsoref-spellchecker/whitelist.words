@@ -100,6 +100,7 @@ Barowski
 basedir
 basefont
 baz
+bbb
 bc
 bdc
 bdd
@@ -129,6 +130,7 @@ breadcrumb
 BSR
 Bsubscribe
 BTest
+Btn
 btnfrs
 buf
 bugdatabase
@@ -148,6 +150,8 @@ casegroup
 catchparametername
 cba
 cbeaff
+ccc
+Ccircle
 CComments
 cdata
 cde
@@ -209,7 +213,7 @@ codeselectorpresentation
 codestyle
 colgroup
 columnlimit
-Combobox
+combobox
 commentsindentation
 commitish
 commonutil
@@ -226,6 +230,7 @@ Contextualizable
 contextualization
 contextualized
 Contextualizing
+CORS
 courtlink
 covariantequals
 COVEREDRATIO
@@ -238,11 +243,13 @@ cson
 css
 cstyle
 csv
+Csvg
 ctc
 ctor
 ctx
 customimportorder
 CVS
+cx
 cyclomatic
 cyclomaticcomplexity
 cz
@@ -270,6 +277,8 @@ DDDL
 Ddokka
 Ddry
 DEADBEEF
+debounce
+debouncing
 DECCHARS
 declarationorder
 declarationrightbeforefirstusage
@@ -357,6 +366,7 @@ Edad
 ededed
 edef
 edu
+eee
 Eghj
 Ei
 ej
@@ -757,6 +767,7 @@ kazgroup
 kbd
 kclee
 KDoc
+keydown
 keyframes
 keyname
 keyscan
@@ -781,8 +792,10 @@ libcore
 liberapay
 lifecycle
 linebreak
+linecap
 linecolumn
 lineending
+linejoin
 linelength
 linewrapping
 linkcheck
@@ -790,6 +803,7 @@ linkplain
 linksource
 linux
 Lisetskii
+listbox
 Ljava
 lkuehne
 LNOT
@@ -917,6 +931,7 @@ nestedfordepth
 nestedifdepth
 nestedtrydepth
 netbeans
+Neue
 newdomain
 newlineatendoffile
 Nfc
@@ -1124,6 +1139,7 @@ py
 qa
 qalab
 qaplug
+qi
 qodana
 qualitygates
 Qube
@@ -1226,6 +1242,7 @@ Schneeberger
 scm
 scp
 screenshot
+scrollbar
 Scss
 sdk
 sdkman
@@ -1346,6 +1363,7 @@ Sys
 sysextensions
 sysprop
 systemout
+tabindex
 tac
 tagconventions
 Taglib
@@ -1362,6 +1380,7 @@ Testik
 testinputfolder
 testmodules
 testname
+TEXTAREA
 textblock
 textblockgooglestyleformatting
 tfij
@@ -1410,6 +1429,7 @@ tvf
 tw
 typecastparenpad
 typename
+typeof
 typevariablenames
 ub
 uber
@@ -1447,6 +1467,7 @@ unusedimports
 unusedlambdaparametershouldbeunnamed
 unusedlocalvariable
 unusedtryresourceshouldbeunnamed
+uppercased
 upperell
 urandom
 uri
@@ -1491,6 +1512,7 @@ Warni
 Weakento
 Webflow
 webjar
+webkit
 Weblogic
 Webp
 website
@@ -1543,6 +1565,7 @@ xffffffff
 xffffffffffffffff
 xg
 Xhenseval
+XHR
 XHTML
 xm
 Xmaxerrs
@@ -1573,6 +1596,7 @@ xsl
 xslt
 xsltproc
 XSO
+XSS
 xwiki
 XXE
 XXXX
