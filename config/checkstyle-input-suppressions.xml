@@ -422,8 +422,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberIgnoreFieldDeclarationRecords\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberIgnoreFieldDeclarationWithAnnotation\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberRecordsDefault\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberWaiverParentToken3\.java"/>
