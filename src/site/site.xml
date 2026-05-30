@@ -59,6 +59,8 @@
                 src="$relativePath/js/copy-clipboard.js" defer async></script>
         <link rel="icon" href="$relativePath/images/favicon.png" type="image/x-icon" />
         <link rel="shortcut icon" href="$relativePath/images/favicon.ico" type="image/ico" />
+        <script src="$relativePath/search-index.js"></script>
+        <script src="$relativePath/js/search.js"></script>
       ]]>
     </head>
     <links>

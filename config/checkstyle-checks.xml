@@ -847,7 +847,7 @@
     </module>
     <module name="TrailingComment"/>
     <module name="UncommentedMain">
-      <property name="excludedClasses" value="\.(Main|JavadocPropertiesGenerator)$"/>
+      <property name="excludedClasses" value="\.(Main|JavadocPropertiesGenerator|SearchIndexGenerator)$"/>
     </module>
     <module name="UpperEll"/>
     <module name="HexLiteralCase"/>
