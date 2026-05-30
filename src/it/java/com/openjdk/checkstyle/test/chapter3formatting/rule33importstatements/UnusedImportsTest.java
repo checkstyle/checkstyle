@@ -23,37 +23,17 @@ import org.junit.jupiter.api.Test;
 
 import com.openjdk.checkstyle.test.base.AbstractOpenJdkModuleTestSupport;
 
-public class ImportOrderTest extends AbstractOpenJdkModuleTestSupport {
+public class UnusedImportsTest extends AbstractOpenJdkModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
         return "com/openjdk/checkstyle/test/chapter3formatting/"
-            + "rule33importstatements/importorder";
+            + "rule33importstatements/unusedimports";
     }
 
     @Test
-    public void testImportOrderValid() throws Exception {
-        verifyWithWholeConfig(getPath("InputImportOrderValid.java"));
-    }
-
-    @Test
-    public void testImportOrderStaticFirst() throws Exception {
-        verifyWithWholeConfig(getPath("InputImportOrderStaticFirst.java"));
-    }
-
-    @Test
-    public void testImportOrderWrongPackageOrder() throws Exception {
-        verifyWithWholeConfig(getPath("InputImportOrderWrongPackageOrder.java"));
-    }
-
-    @Test
-    public void testImportOrderUnsorted() throws Exception {
-        verifyWithWholeConfig(getPath("InputImportOrderUnsorted.java"));
-    }
-
-    @Test
-    public void testImportOrderMissingSeparator() throws Exception {
-        verifyWithWholeConfig(getPath("InputImportOrderMissingSeparator.java"));
+    public void testNoUnusedImports() throws Exception {
+        verifyWithWholeConfig(getPath("InputUnusedImports.java"));
     }
 
 }
