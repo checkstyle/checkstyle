@@ -364,8 +364,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter6programpractice[\\/]rule61overridealwaysused[\\/]InputOverrideAlwaysUsedForRecordNested\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter6programpractice[\\/]rule61overridealwaysused[\\/]InputOverrideAlwaysUsedForRecordViolation\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule711generalform[\\/]InputCorrectJavadocLeadingAsteriskAlignment\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule711generalform[\\/]InputFormattedCorrectJavadocLeadingAsteriskAlignment\.java"/>
