@@ -381,8 +381,6 @@
             files="[\\/]com[\\/]sun[\\/]checkstyle[\\/]test[\\/]chapter3fileorganization[\\/]rule313classdeclarations[\\/]InputDeclarationOrderDefault\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]sun[\\/]checkstyle[\\/]test[\\/]chapter3fileorganization[\\/]rule313classdeclarations[\\/]InputDeclarationOrderMultipleViolations\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]com[\\/]sun[\\/]checkstyle[\\/]test[\\/]chapter3fileorganization[\\/]rule313classdeclarations[\\/]InputDeclarationOrderStaticMembers\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]InputAnnotationLocationCustomAnnotationsDeclared\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
