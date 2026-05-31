@@ -256,8 +256,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodGenerics\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodMissingJavadocTagsDefault\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodParamsTags\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodRecords2\.java"/>
