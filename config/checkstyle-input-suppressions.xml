@@ -429,8 +429,6 @@
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]design[\\/]designforextension[\\/]InputDesignForExtensionIgnoredAnnotations\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]design[\\/]designforextension[\\/]InputDesignForExtensionOverridableMethods\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]design[\\/]designforextension[\\/]InputDesignForExtensionOverridableMethods\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]design[\\/]finalclass[\\/]InputFinalClassPrivateCtor\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
