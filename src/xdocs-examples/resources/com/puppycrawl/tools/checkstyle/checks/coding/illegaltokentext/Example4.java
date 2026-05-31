@@ -15,14 +15,19 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 // xdoc section -- start
 public class Example4 {
   public void myTest() {
-    int test1 = 0;
-    int test2 = 0x111;
-    int test3 = 0X111; // ok, case is ignored
-    // violation below 'Token text matches the illegal pattern'
-    int test4 = 010;
-    long test5 = 0L;
-    // violation below 'Token text matches the illegal pattern'
-    long test6 = 010L;
+
+    String test  = "a href";
+
+    String test2 = "A href";
+    String link = "href";
+    final String quote = """
+            \"""";
+    int num1 = 0;
+    int num2 = 0x111;
+    int num3 = 0X111; // ok, case is ignored
+    int num4 = 010;     // violation 'Token text matches the illegal pattern'
+    long num5 = 0L;
+    long num6 = 010L;   // violation 'Token text matches the illegal pattern'
   }
 }
 // xdoc section -- end

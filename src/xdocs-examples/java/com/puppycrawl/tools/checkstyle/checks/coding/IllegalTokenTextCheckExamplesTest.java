@@ -53,7 +53,7 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "17:29: " + getCheckMessage(MSG_KEY, '"'),
+            "23:29: " + getCheckMessage(MSG_KEY, '"'),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -62,8 +62,8 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "22:17: " + getCheckMessage(MSG_KEY, "^0[^lx]"),
-            "25:18: " + getCheckMessage(MSG_KEY, "^0[^lx]"),
+            "28:16: " + getCheckMessage(MSG_KEY, "^0[^lx]"),
+            "30:17: " + getCheckMessage(MSG_KEY, "^0[^lx]"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -72,7 +72,9 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "18:20: Custom illegal text found",
+            "19:20: Custom illegal text found",
+            "21:20: Custom illegal text found",
+            "22:19: Custom illegal text found",
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
