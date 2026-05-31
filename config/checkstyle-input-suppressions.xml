@@ -70,8 +70,6 @@
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]chapter7javadoc[\\/]rule711generalform[\\/]InputFormattedCorrectJavadocLeadingAsteriskAlignment.java"/>
   <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]chapter7javadoc[\\/]rule713atclauses[\\/]InputIncorrectAtClauseOrderCheck1.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]chapter7javadoc[\\/]rule713atclauses[\\/]InputIncorrectAtClauseOrderCheck2.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]chapter7javadoc[\\/]rule713atclauses[\\/]InputIncorrectAtClauseOrderCheck3.java"/>
