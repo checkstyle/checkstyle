@@ -249,9 +249,9 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
         final String[] expected = {
-            "20: " + getCheckMessage(MSG_KEY, tagOrder),
-            "32: " + getCheckMessage(MSG_KEY, tagOrder),
-            "33: " + getCheckMessage(MSG_KEY, tagOrder),
+            "21: " + getCheckMessage(MSG_KEY, tagOrder),
+            "35: " + getCheckMessage(MSG_KEY, tagOrder),
+            "36: " + getCheckMessage(MSG_KEY, tagOrder),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAtclauseOrderMethodReturningArrayType.java"), expected);
