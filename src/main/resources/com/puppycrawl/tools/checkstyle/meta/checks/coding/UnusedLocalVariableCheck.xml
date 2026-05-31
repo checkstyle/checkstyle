@@ -6,9 +6,9 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks that a local variable is declared and/or assigned, but not used.
- Doesn't support
+ Supports
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30"&gt;
- pattern variables yet&lt;/a&gt;.
+ pattern variables&lt;/a&gt;.
  Doesn't check
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.12.3"&gt;
  array components&lt;/a&gt; as array
