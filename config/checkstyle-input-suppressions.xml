@@ -104,8 +104,6 @@
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadoccontentlocation[\\/]package-info.java"/>
   <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]javadoc[\\/]javadocleadingasteriskalign[\\/]InputJavadocLeadingAsteriskAlignIncorrect.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadocleadingasteriskalign[\\/]InputJavadocLeadingAsteriskAlignTabs.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadocmissingwhitespaceafterasterisk[\\/]InputJavadocMissingWhitespaceAfterAsteriskInvalid.java"/>
