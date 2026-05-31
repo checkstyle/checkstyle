@@ -440,8 +440,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocleadingasteriskalign[\\/]InputJavadocLeadingAsteriskAlignIncorrect\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocleadingasteriskalign[\\/]InputJavadocLeadingAsteriskAlignTabs\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodConstructor\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodInheritDoc\.java"/>
