@@ -4429,6 +4429,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "9:15: " + getCheckMessage(MSG_CHILD_ERROR, "case", 14, 16),
             "13:16: " + getCheckMessage(MSG_CHILD_ERROR, "case", 15, 16),
+            "15:16: " + getCheckMessage(MSG_CHILD_ERROR, "case", 15, 16),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
