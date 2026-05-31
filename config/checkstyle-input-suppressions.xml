@@ -90,8 +90,6 @@
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]atclauseorder[\\/]InputAtclauseOrderMethodReturningArrayType.java"/>
   <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]javadoc[\\/]atclauseorder[\\/]InputAtclauseOrderRecords.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadocblocktaglocation[\\/]InputJavadocBlockTagLocationCustomTags.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadocblocktaglocation[\\/]InputJavadocBlockTagLocationIncorrect.java"/>
@@ -100,15 +98,17 @@
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationFirstLine.java"/>
   <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationTrimOptionProperty.java"/>
+            files="[\\/]checks[\\/]javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationInterface.java"/>
   <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]javadoc[\\/]javadoccontentlocation[\\/]package-info.java"/>
+            files="[\\/]checks[\\/]javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationTrimOptionProperty.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadocleadingasteriskalign[\\/]InputJavadocLeadingAsteriskAlignIncorrect.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadocleadingasteriskalign[\\/]InputJavadocLeadingAsteriskAlignTabs.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadocmissingwhitespaceafterasterisk[\\/]InputJavadocMissingWhitespaceAfterAsteriskInvalid.java"/>
+  <suppress id="noViolationCommentsInJavadoc"
+            files="[\\/]checks[\\/]javadoc[\\/]javadocstyle[\\/]InputJavadocStyleCheck1.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentation.java"/>
   <suppress id="noViolationCommentsInJavadoc"
@@ -301,8 +301,6 @@
             files="[\\/]checks[\\/]javadoc[\\/]writetag[\\/]InputWriteTagEnumsAndAnnotations\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]trailingcomment[\\/]InputTrailingComment\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]checks[\\/]trailingcomment[\\/]InputTrailingComment2\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorWithJavadoc2\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
