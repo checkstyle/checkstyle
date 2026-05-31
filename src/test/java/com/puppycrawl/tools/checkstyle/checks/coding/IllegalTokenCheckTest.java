@@ -70,11 +70,8 @@ public class IllegalTokenCheckTest
         final String[] expected = {
             "1:3: " + getCheckMessage(MSG_KEY,
                         "\\nIllegalToken\\ntokens = COMMENT_CONTENT\\n\\n\\n"),
-            "10:3: " + getCheckMessage(MSG_KEY,
-                        "*\\n * // violation 10"
-                            + " lines above 'is not allowed'\\n"
-                            + " * // violation 2 lines above 'is not allowed'\\n"
-                            + " * Test for illegal tokens\\n "),
+            "12:3: " + getCheckMessage(MSG_KEY,
+                        "*\\n * Test for illegal tokens\\n "),
             "40:29: " + getCheckMessage(MSG_KEY,
                         " some comment href // violation, 'is not allowed'\\n"),
             "44:28: " + getCheckMessage(MSG_KEY,
