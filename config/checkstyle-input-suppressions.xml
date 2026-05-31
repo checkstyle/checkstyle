@@ -114,8 +114,6 @@
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationBlockTag.java"/>
   <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationDescription.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationOffset3.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationPreTag.java"/>
@@ -451,12 +449,6 @@
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodNoJavadocOnlyPrivateScope\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodNoJavadocProtectedScope\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentation1\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationBlockTag\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationDescription\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]missingjavadocmethod[\\/]InputMissingJavadocMethodExtendAnnotation\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
