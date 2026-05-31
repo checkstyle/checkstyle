@@ -9,7 +9,6 @@ tagOrder = (default)@author, @version, @param, @return, @throws, @exception, @se
 
 */
 
-
 package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 
 import java.io.Serializable;
@@ -21,41 +20,48 @@ public class InputAtclauseOrderRecords {
         /**
          * Some text.
          *
-         * @param aString Some text. // should be a violation, but doesn't work w/ anno
+         * @param aString Some text.
          * @return Some text.
          * @throws Exception Some text.
          */
+        // should be flagged, but doesn't work w/ anno
         String method(String aString) throws Exception {
             return "null";
         }
 
+        // violation 7 lines below
+        // violation 7 lines below
+        // violation 7 lines below
         /**
          * Some text.
          *
          * @since the other day
-         * @param aString Some text. // violation
-         * @return Some text. // violation
-         * @throws Exception Some text. // violation
+         * @param aString Some text.
+         * @return Some text.
+         * @throws Exception Some text.
          */
         String method1(String aString) throws Exception {
             return "null";
         }
 
+        // violation 6 lines below
+        // violation 6 lines below
         /**
          * Some text.
          *
          * @since some time
-         * @param aString Some text. // violation
-         * @throws Exception Some text. // violation
+         * @param aString Some text.
+         * @throws Exception Some text.
          * @serialData Some javadoc.
          */
         void method2(String aString) throws Exception {
         }
 
+        // violation 4 lines below
         /**
          * Some text.
          * @since since
-         * @throws Exception Some text. // violation
+         * @throws Exception Some text.
          * @since Some text.
          */
         void method3() throws Exception {
@@ -67,14 +73,16 @@ public class InputAtclauseOrderRecords {
 /**
  * Some javadoc.
  *
- * @author max // should be a violation
+ * @author max
  * @version 1.0
  * @since Some javadoc.
  */
+// should be flagged
 record myOtherOtherRecord() {
+    // violation 3 lines below
     /**
      * @since Some javadoc.
-     * @author max // violation
+     * @author max
      **/
     public myOtherOtherRecord{}
 }
@@ -82,15 +90,17 @@ record myOtherOtherRecord() {
 /**
  * Some javadoc.
  *
- * @author max // should be a violation
+ * @author max
  * @version 1.0
  * @since Some javadoc.
  */
+// should be flagged
 class myOtherOtherClass {
-        /**
-         * @since Some javadoc.
-         * @author max // violation
-         **/
+    // violation 3 lines below
+    /**
+     * @since Some javadoc.
+     * @author max
+     **/
     public myOtherOtherClass() {
     }
 }
