@@ -96,8 +96,6 @@
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadocblocktaglocation[\\/]InputJavadocBlockTagLocationIncorrect.java"/>
   <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationDefault.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationFirstLine.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationTrimOptionProperty.java"/>
