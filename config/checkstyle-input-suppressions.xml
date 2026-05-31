@@ -472,8 +472,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]nonemptyatclausedescription[\\/]InputNonEmptyAtclauseDescriptionTwo\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocHtmlFormat\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocInlineDefault\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocInlineForbidden\.java"/>
