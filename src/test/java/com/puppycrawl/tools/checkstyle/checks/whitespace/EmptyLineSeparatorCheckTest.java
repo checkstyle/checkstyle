@@ -248,6 +248,35 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testModuleImport() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputEmptyLineSeparatorModuleImport.java"),
+            expected);
+    }
+
+    @Test
+    public void testModuleImportSeparated() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputEmptyLineSeparatorModuleImportSeparated.java"),
+            expected);
+    }
+
+    @Test
+    public void testModuleImportMultipleEmptyLines() throws Exception {
+        final String[] expected = {
+            "18:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "import"),
+            "19:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputEmptyLineSeparatorModuleImportMultipleEmptyLines.java"),
+            expected);
+    }
+
+    @Test
     public void testBlockCommentNotSeparatedFromPackage() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "/*"),
@@ -392,6 +421,7 @@ public class EmptyLineSeparatorCheckTest
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
+            TokenTypes.MODULE_IMPORT,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
