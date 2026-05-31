@@ -74,13 +74,13 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
     @Test
     public void testIncorrect() throws Exception {
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "author"),
-            "16: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "since"),
-            "17: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "param"),
-            "19: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "throws"),
-            "20: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "see"),
-            "21: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "return"),
-            "21: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "throws"),
+            "22: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "author"),
+            "23: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "since"),
+            "24: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "param"),
+            "26: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "throws"),
+            "27: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "see"),
+            "28: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "return"),
+            "28: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "throws"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocBlockTagLocationIncorrect.java"), expected);
@@ -89,12 +89,12 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
     @Test
     public void testCustomTags() throws Exception {
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "apiNote"),
-            "14: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implNote"),
-            "14: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implSpec"),
-            "16: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "apiNote"),
-            "17: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implNote"),
-            "18: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implSpec"),
+            "19: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "apiNote"),
+            "19: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implNote"),
+            "19: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implSpec"),
+            "21: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "apiNote"),
+            "22: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implNote"),
+            "23: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implSpec"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocBlockTagLocationCustomTags.java"), expected);
