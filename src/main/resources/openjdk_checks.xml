@@ -91,6 +91,9 @@
       <property name="format" value="^[a-z]{2,}[a-zA-Z0-9]*$"/>
     </module>
 
+    <!-- Javadoc checks: verify javadoc formatting, first-sentence punctuation, and HTML tags -->
+    <module name="JavadocStyle"/>
+
     <!-- §3.3: Import statements should be sorted -->
     <module name="ImportOrder">
       <property name="groups" value="java,javax"/>
