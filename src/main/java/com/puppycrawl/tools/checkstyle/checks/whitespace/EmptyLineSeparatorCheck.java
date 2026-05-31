@@ -146,6 +146,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
+            TokenTypes.MODULE_IMPORT,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
@@ -200,7 +201,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         switch (astType) {
             case TokenTypes.VARIABLE_DEF -> processVariableDef(ast, nextToken);
 
-            case TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT -> processImport(ast, nextToken);
+            case TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT, TokenTypes.MODULE_IMPORT ->
+                processImport(ast, nextToken);
 
             default -> {
                 if (nextToken.getType() == TokenTypes.RCURLY) {
@@ -447,7 +449,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @param nextToken next token
      */
     private void processImport(DetailAST ast, DetailAST nextToken) {
-        if (!TokenUtil.isOfType(nextToken, TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT)
+        if (!TokenUtil.isOfType(nextToken, TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT,
+                TokenTypes.MODULE_IMPORT)
             && !hasEmptyLineAfter(ast)) {
             log(nextToken, MSG_SHOULD_BE_SEPARATED, nextToken.getText());
         }
@@ -499,7 +502,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (!allowMultipleEmptyLines) {
             if (TokenUtil.isOfType(token,
                 TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT,
-                TokenTypes.STATIC_IMPORT, TokenTypes.STATIC_INIT)) {
+                TokenTypes.STATIC_IMPORT, TokenTypes.MODULE_IMPORT, TokenTypes.STATIC_INIT)) {
                 DetailAST previousNode = token.getPreviousSibling();
                 while (isCommentInBeginningOfLine(previousNode)) {
                     if (hasEmptyLineBefore(previousNode) && isPrePreviousLineEmpty(previousNode)) {
