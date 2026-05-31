@@ -92,10 +92,6 @@
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]atclauseorder[\\/]InputAtclauseOrderRecords.java"/>
   <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]javadoc[\\/]javadocblocktaglocation[\\/]InputJavadocBlockTagLocationCustomTags.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]javadoc[\\/]javadocblocktaglocation[\\/]InputJavadocBlockTagLocationIncorrect.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationDefault.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationFirstLine.java"/>
