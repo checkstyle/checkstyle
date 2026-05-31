@@ -138,8 +138,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]InputAnnotationLocationInterface\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]InputAnnotationLocationRecordsAndCompactCtors\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]inputs[\\/]package-info\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheckInterfaceAndEnum\.java"/>
