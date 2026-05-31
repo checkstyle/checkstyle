@@ -11,7 +11,7 @@ public class InputIndentation17270b {                                   //indent
                 7, 8 -> "correct";                                      //indent:16 exp:16
             case 9, 10,                                                 //indent:12 exp:12
                11, 12 -> "under by 1";                                  //indent:15 exp:16 warn
-            case 13, 14,                                                 //indent:12 exp:12
+            case 13, 14,                                                //indent:12 exp:12
                15, 16 -> "under by 1";                                  //indent:15 exp:16 warn
             default -> "d";                                             //indent:12 exp:12
         });                                                             //indent:8 exp:8
