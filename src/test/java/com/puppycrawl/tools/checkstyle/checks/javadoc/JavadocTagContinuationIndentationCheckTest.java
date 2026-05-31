@@ -91,14 +91,14 @@ public class JavadocTagContinuationIndentationCheckTest
     @Test
     public void testCheckWithDescription() throws Exception {
         final String[] expected = {
-            "16: " + getCheckMessage(MSG_KEY, 4),
-            "17: " + getCheckMessage(MSG_KEY, 4),
-            "18: " + getCheckMessage(MSG_KEY, 4),
-            "47: " + getCheckMessage(MSG_KEY, 4),
-            "49: " + getCheckMessage(MSG_KEY, 4),
-            "50: " + getCheckMessage(MSG_KEY, 4),
-            "70: " + getCheckMessage(MSG_KEY, 4),
-            "71: " + getCheckMessage(MSG_KEY, 4),
+            "19: " + getCheckMessage(MSG_KEY, 4),
+            "20: " + getCheckMessage(MSG_KEY, 4),
+            "21: " + getCheckMessage(MSG_KEY, 4),
+            "53: " + getCheckMessage(MSG_KEY, 4),
+            "55: " + getCheckMessage(MSG_KEY, 4),
+            "56: " + getCheckMessage(MSG_KEY, 4),
+            "76: " + getCheckMessage(MSG_KEY, 4),
+            "77: " + getCheckMessage(MSG_KEY, 4),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTagContinuationIndentationDescription.java"),
