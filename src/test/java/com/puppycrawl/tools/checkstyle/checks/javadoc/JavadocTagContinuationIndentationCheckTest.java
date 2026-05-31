@@ -80,8 +80,8 @@ public class JavadocTagContinuationIndentationCheckTest
     @Test
     public void testCheckWithOffset3() throws Exception {
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_KEY, 3),
-            "27: " + getCheckMessage(MSG_KEY, 3),
+            "16: " + getCheckMessage(MSG_KEY, 3),
+            "29: " + getCheckMessage(MSG_KEY, 3),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTagContinuationIndentationOffset3.java"),
