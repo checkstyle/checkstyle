@@ -14,24 +14,26 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 import java.sql.SQLException;
 
 public interface InputAtclauseOrderMethodReturningArrayType {
+    // violation 4 lines below
     /**
      * @return int array
      * @exception SQLException
      * @throws java.sql.SQLTimeoutException
-     * @see #addBatch // violation above
+     * @see #addBatch
      * @see DatabaseMetaData#supportsBatchUpdates
      * @since 1.2
      */
     int[] executeBatch() throws SQLException;
 
+    // violation 7 lines below
+    // violation 7 lines below
     /**
       * {@code selected} is an array that will contain
       * the indices of items that have been selected.
       *
       * @serial
-      * @see #getSelectedIndexes() // violation
-      * @see #getSelectedIndex() // violation
+      * @see #getSelectedIndexes()
+      * @see #getSelectedIndex()
       */
     int selected[] = new int[0];
 }
-
