@@ -57,8 +57,8 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefault() throws Exception {
         final String[] expected = {
-            "17:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
-            "21:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
+            "18:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
+            "23:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocContentLocationDefault.java"), expected);
