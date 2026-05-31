@@ -236,8 +236,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocNonTightHtmlTags2\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocNonTightHtmlTags3\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocNonTightHtmlTagsOne\.java"/>
