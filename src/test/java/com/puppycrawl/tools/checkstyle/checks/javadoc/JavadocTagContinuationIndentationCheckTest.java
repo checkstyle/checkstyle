@@ -181,7 +181,7 @@ public class JavadocTagContinuationIndentationCheckTest
     @Test
     public void testJavadocTagContinuationIndentationCheckPreTag() throws Exception {
         final String[] expected = {
-            "91: " + getCheckMessage(MSG_KEY, 4),
+            "92: " + getCheckMessage(MSG_KEY, 4),
             "100: " + getCheckMessage(MSG_KEY, 4),
             "101: " + getCheckMessage(MSG_KEY, 4),
             "102: " + getCheckMessage(MSG_KEY, 4),
