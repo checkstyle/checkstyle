@@ -274,8 +274,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphIncorrect\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]checks[\\/]javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphIncorrect2\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphIncorrect3\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphIncorrect4\.java"/>
