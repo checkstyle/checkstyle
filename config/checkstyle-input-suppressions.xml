@@ -66,8 +66,6 @@
 
   <!-- Input files with violation comments inside Javadoc, until https://github.com/checkstyle/checkstyle/issues/19764 -->
   <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]chapter7javadoc[\\/]rule711generalform[\\/]InputCorrectJavadocLeadingAsteriskAlignment.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]chapter7javadoc[\\/]rule711generalform[\\/]InputFormattedCorrectJavadocLeadingAsteriskAlignment.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]chapter7javadoc[\\/]rule713atclauses[\\/]InputIncorrectAtClauseOrderCheck1.java"/>
