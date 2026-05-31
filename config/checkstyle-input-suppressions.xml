@@ -127,8 +127,6 @@
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocInlineReturnForbidden.java"/>
   <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorEmptyLineAfterPackageForPackageAst.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorJavadocCommentAfterPackage.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorWithComments.java"/>
