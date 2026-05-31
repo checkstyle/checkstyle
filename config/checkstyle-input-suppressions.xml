@@ -76,8 +76,6 @@
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]chapter7javadoc[\\/]rule713atclauses[\\/]InputIncorrectAtClauseOrderCheck3.java"/>
   <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]chapter7javadoc[\\/]rule713atclauses[\\/]InputIncorrectAtClauseOrderCheckOnRecordAndCompactCtor.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]chapter7javadoc[\\/]rule713atclauses[\\/]InputJavaDocTagContinuationIndentation.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityRemoveIncorrectAnnotationToken.java"/>
