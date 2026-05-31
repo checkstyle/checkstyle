@@ -34,12 +34,13 @@ public class NoLineWrapExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "12:1: " + getCheckMessage(MSG_KEY, "package"),
-            "15:1: " + getCheckMessage(MSG_KEY, "import"),
+            "14:1: " + getCheckMessage(MSG_KEY, "package"),
             "18:1: " + getCheckMessage(MSG_KEY, "import"),
+            "22:1: " + getCheckMessage(MSG_KEY, "import"),
+            "26:1: " + getCheckMessage(MSG_KEY, "import"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
     }
 
     @Test
