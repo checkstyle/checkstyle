@@ -333,7 +333,7 @@
                     Implementation-Independence
                   </a>
                 </td>
-                <td>???</td>
+                <td>--</td>
                 <td/>
               </tr>
 
@@ -345,7 +345,16 @@
                     Automatic re-use of method comments
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Violations of this guideline cannot be detected by Checkstyle due to its
+                  <a href="writingchecks.html#Limitations">
+                    limitation</a>, multiple file checking is not supported.
+                </td>
                 <td/>
               </tr>
 
