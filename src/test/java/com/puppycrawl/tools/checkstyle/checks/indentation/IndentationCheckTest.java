@@ -2744,6 +2744,20 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testModuleImportIndent() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = {
+            "5:4: " + getCheckMessage(MSG_ERROR, "import", 3, 0),
+            "6:7: " + getCheckMessage(MSG_ERROR, "import", 6, 0),
+            "7:7: " + getCheckMessage(MSG_ERROR, "import", 6, 0),
+            "8:2: " + getCheckMessage(MSG_ERROR, "import", 1, 0),
+        };
+        verifyWarns(checkConfig, getNonCompilablePath("InputIndentationModuleImport.java"),
+                expected);
+    }
+
+    @Test
     public void testValidAssignWithChecker() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
