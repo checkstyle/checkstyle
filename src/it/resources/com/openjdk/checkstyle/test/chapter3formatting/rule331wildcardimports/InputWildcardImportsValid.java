@@ -1,5 +1,6 @@
 package com.openjdk.checkstyle.test.chapter3formatting.rule331wildcardimports;
 
+import java.util.*;
 import java.util.List;
 import java.util.Map;
 

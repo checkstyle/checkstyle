@@ -1,8 +1,8 @@
 package com.openjdk.checkstyle.test.chapter3formatting.rule331wildcardimports;
 
-import java.util.*; // violation '.*import should be avoided - java\.util\.\*\.'
+import java.util.*;
 
-import static java.lang.Math.*; // violation '.*import should be avoided - java\.lang\.Math\.\*\.'
+import static java.lang.Math.*; // violation, 'Only '1' star import is allowed per file.'
 
 public class InputWildcardImportsInvalid {
 
