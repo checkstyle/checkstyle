@@ -291,8 +291,6 @@
             files="[\\/]checks[\\/]javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphIncorrectOpenClosedTag3\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]javadocstyle[\\/]InputJavadocStyleCheck1\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]checks[\\/]javadoc[\\/]javadocstyle[\\/]InputJavadocStyleCheck2\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]missingjavadocpackage[\\/]nojavadoc[\\/]annotation[\\/]blockcomment[\\/]package-info\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
