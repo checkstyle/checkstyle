@@ -231,14 +231,14 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
             + " @see, @since, @serial, @serialField, @serialData, @deprecated]";
 
         final String[] expected = {
-            "36: " + getCheckMessage(MSG_KEY, tagOrder),
-            "37: " + getCheckMessage(MSG_KEY, tagOrder),
             "38: " + getCheckMessage(MSG_KEY, tagOrder),
-            "48: " + getCheckMessage(MSG_KEY, tagOrder),
-            "49: " + getCheckMessage(MSG_KEY, tagOrder),
-            "58: " + getCheckMessage(MSG_KEY, tagOrder),
-            "77: " + getCheckMessage(MSG_KEY, tagOrder),
-            "92: " + getCheckMessage(MSG_KEY, tagOrder),
+            "39: " + getCheckMessage(MSG_KEY, tagOrder),
+            "40: " + getCheckMessage(MSG_KEY, tagOrder),
+            "52: " + getCheckMessage(MSG_KEY, tagOrder),
+            "53: " + getCheckMessage(MSG_KEY, tagOrder),
+            "63: " + getCheckMessage(MSG_KEY, tagOrder),
+            "83: " + getCheckMessage(MSG_KEY, tagOrder),
+            "99: " + getCheckMessage(MSG_KEY, tagOrder),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAtclauseOrderRecords.java"), expected);
