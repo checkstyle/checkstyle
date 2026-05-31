@@ -244,8 +244,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocNonTightHtmlTagsTwo\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocNonTightHtmlTagsVisitCountOne\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocNonTightHtmlTagsVisitCountTwo\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocParsingErrors2\.java"/>
