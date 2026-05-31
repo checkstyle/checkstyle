@@ -14,11 +14,13 @@ public interface InputJavadocContentLocationDefault {
      */
     void ok();
 
-    /** Text. // violation 'Javadoc content should start from the next line after /\*\*.'
+    // violation below 'Javadoc content should start from the next line after /\*\*.'
+    /** Text.
      */
     void violation();
 
-    /** // violation 'Javadoc content should start from the next line after /\*\*.'
+    // violation below 'Javadoc content should start from the next line after /\*\*.'
+    /**
      *
      * Third line.
      */
