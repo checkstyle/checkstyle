@@ -45,7 +45,12 @@ public class NoLineWrapCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        return new int[] {
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.IMPORT,
+            TokenTypes.STATIC_IMPORT,
+            TokenTypes.MODULE_IMPORT,
+        };
     }
 
     @Override
@@ -53,6 +58,7 @@ public class NoLineWrapCheck extends AbstractCheck {
         return new int[] {
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
+            TokenTypes.MODULE_IMPORT,
             TokenTypes.PACKAGE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.METHOD_DEF,
