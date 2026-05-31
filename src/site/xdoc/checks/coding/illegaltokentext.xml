@@ -98,7 +98,17 @@ public class Example1 {
   public void myTest() {
     // violation below 'Token text matches the illegal pattern 'a href'.'
     String test  = "a href";
+
     String test2 = "A href"; // ok, case is sensitive
+    String link = "href";
+    final String quote = """
+            \"""";
+    int num1 = 0;
+    int num2 = 0x111;
+    int num3 = 0X111;
+    int num4 = 010;
+    long num5 = 0L;
+    long num6 = 010L;
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -125,6 +135,15 @@ public class Example2 {
     String test  = "a href";
     // violation below 'Token text matches the illegal pattern 'a href'.'
     String test2 = "A href";
+    String link = "href";
+    final String quote = """
+            \"""";
+    int num1 = 0;
+    int num2 = 0x111;
+    int num3 = 0X111;
+    int num4 = 010;
+    long num5 = 0L;
+    long num6 = 010L;
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -146,8 +165,19 @@ public class Example2 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
   public void myTest() {
+
+    String test  = "a href";
+
+    String test2 = "A href";
+    String link = "href";
     final String quote = """
             \""""; // violation above 'Token text matches the illegal pattern '"'.'
+    int num1 = 0;
+    int num2 = 0x111;
+    int num3 = 0X111;
+    int num4 = 010;
+    long num5 = 0L;
+    long num6 = 010L;
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -170,14 +200,19 @@ public class Example3 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
   public void myTest() {
-    int test1 = 0;
-    int test2 = 0x111;
-    int test3 = 0X111; // ok, case is ignored
-    // violation below 'Token text matches the illegal pattern'
-    int test4 = 010;
-    long test5 = 0L;
-    // violation below 'Token text matches the illegal pattern'
-    long test6 = 010L;
+
+    String test  = "a href";
+
+    String test2 = "A href";
+    String link = "href";
+    final String quote = """
+            \"""";
+    int num1 = 0;
+    int num2 = 0x111;
+    int num3 = 0X111; // ok, case is ignored
+    int num4 = 010;     // violation 'Token text matches the illegal pattern'
+    long num5 = 0L;
+    long num6 = 010L;   // violation 'Token text matches the illegal pattern'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -199,8 +234,20 @@ public class Example4 {
         <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example5 {
-  public void test() {
-    String link  = "href"; // violation 'Custom illegal text found'
+  public void myTest() {
+
+    String test  = "a href"; // violation 'Custom illegal text found'
+
+    String test2 = "A href"; // violation 'Custom illegal text found'
+    String link = "href";    // violation 'Custom illegal text found'
+    final String quote = """
+            \"""";
+    int num1 = 0;
+    int num2 = 0x111;
+    int num3 = 0X111;
+    int num4 = 010;
+    long num5 = 0L;
+    long num6 = 010L;
   }
 }
 </code></pre></div>
