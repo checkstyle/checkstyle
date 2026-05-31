@@ -230,8 +230,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocInvalidAtSeeReference\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocInvalidAtSeeReference2\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocInvalidLexing\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags\.java"/>
