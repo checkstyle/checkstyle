@@ -25,10 +25,9 @@ public class InputSuppressWithNearbyTextFilterNearbyTextPatternUrlLineLengthSupp
     public class SarifLogger{
     }
 
-
+    // filtered violation 3 lines below 'Line is longer than 90 characters (found 98).'
     /**
      *
-     * // filtered violation below 'Line is longer than 90 characters (found 98).'
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHJECF">
      * Oracle Docs</a>
      * @see #PARAM_LITERAL
