@@ -30,14 +30,14 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Scope;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
@@ -95,7 +95,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  */
 @StatelessCheck
 public class JavadocStyleCheck
-    extends AbstractCheck {
+    extends AbstractJavadocCheck {
 
     /** Message property key for the Empty Javadoc message. */
     public static final String MSG_EMPTY = "javadoc.empty";
@@ -139,6 +139,9 @@ public class JavadocStyleCheck
 
     /** Specify the format for first word in javadoc. */
     private static final Pattern SENTENCE_SEPARATOR = Pattern.compile("\\.(?=\\s|$)");
+
+    /** Parser instance for converting block comments into Javadoc AST. */
+    private final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();
 
     /** Specify the visibility scope where Javadoc comments are checked. */
     private Scope scope = Scope.PRIVATE;
@@ -192,20 +195,24 @@ public class JavadocStyleCheck
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/19145
     @Override
-    @SuppressWarnings("deprecation")
     public void visitToken(DetailAST ast) {
         if (shouldCheck(ast)) {
-            final FileContents contents = getFileContents();
-            // Need to start searching for the comment before the annotations
-            // that may exist. Even if annotations are not defined on the
-            // package, the ANNOTATIONS AST is defined.
-            final TextBlock textBlock =
-                contents.getJavadocBefore(ast.getFirstChild().getLineNo());
-
-            checkComment(ast, textBlock);
+            final DetailAST javadocComment = getJavadoc(ast);
+            if (javadocComment != null) {
+                checkComment(ast, javadocComment);
+            }
         }
+    }
+
+    @Override
+    public int[] getDefaultJavadocTokens() {
+        return new int[] {JavadocCommentsTokenTypes.JAVADOC_CONTENT};
+    }
+
+    @Override
+    public void visitJavadocToken(DetailNode ast) {
+        // This check preserves declaration-token flow and uses block comment AST directly.
     }
 
     /**
@@ -238,24 +245,22 @@ public class JavadocStyleCheck
      * Performs the various checks against the Javadoc comment.
      *
      * @param ast the AST of the element being documented
-     * @param comment the source lines that make up the Javadoc comment.
+     * @param comment the Javadoc block comment AST.
      *
-     * @see #checkFirstSentenceEnding(DetailAST, TextBlock)
-     * @see #checkHtmlTags(DetailAST, TextBlock)
+     * @see #checkFirstSentenceEnding(DetailAST, DetailAST)
+     * @see #checkHtmlTags(DetailAST, DetailAST)
      */
-    private void checkComment(final DetailAST ast, final TextBlock comment) {
-        if (comment != null) {
-            if (checkFirstSentence) {
-                checkFirstSentenceEnding(ast, comment);
-            }
+    private void checkComment(final DetailAST ast, final DetailAST comment) {
+        if (checkFirstSentence) {
+            checkFirstSentenceEnding(ast, comment);
+        }
 
-            if (checkHtml) {
-                checkHtmlTags(ast, comment);
-            }
+        if (checkHtml) {
+            checkHtmlTags(ast, comment);
+        }
 
-            if (checkEmptyJavadoc) {
-                checkJavadocIsNotEmpty(comment);
-            }
+        if (checkEmptyJavadoc) {
+            checkJavadocIsNotEmpty(comment);
         }
     }
 
@@ -267,10 +272,10 @@ public class JavadocStyleCheck
      * comments for TokenTypes that are valid for {_AT_inheritDoc}.
      *
      * @param ast the current node
-     * @param comment the source lines that make up the Javadoc comment.
+     * @param comment the Javadoc block comment AST.
      */
-    private void checkFirstSentenceEnding(final DetailAST ast, TextBlock comment) {
-        final String commentText = getCommentText(comment.getText());
+    private void checkFirstSentenceEnding(final DetailAST ast, DetailAST comment) {
+        final String commentText = getCommentText(getCommentLines(comment));
         final boolean hasInLineReturnTag = Arrays.stream(SENTENCE_SEPARATOR.split(commentText))
                 .findFirst()
                 .map(INLINE_RETURN_TAG_PATTERN::matcher)
@@ -282,20 +287,20 @@ public class JavadocStyleCheck
             && !endOfSentenceFormat.matcher(commentText).find()
             && !(commentText.startsWith("{@inheritDoc}")
             && JavadocTagInfo.INHERIT_DOC.isValidOn(ast))) {
-            log(comment.getStartLineNo(), MSG_NO_PERIOD);
+            log(comment.getLineNo(), MSG_NO_PERIOD);
         }
     }
 
     /**
      * Checks that the Javadoc is not empty.
      *
-     * @param comment the source lines that make up the Javadoc comment.
+     * @param comment the Javadoc block comment AST.
      */
-    private void checkJavadocIsNotEmpty(TextBlock comment) {
-        final String commentText = getCommentText(comment.getText());
+    private void checkJavadocIsNotEmpty(DetailAST comment) {
+        final String commentText = getCommentText(getCommentLines(comment));
 
         if (commentText.isEmpty()) {
-            log(comment.getStartLineNo(), MSG_EMPTY);
+            log(comment.getLineNo(), MSG_EMPTY);
         }
     }
 
@@ -307,21 +312,104 @@ public class JavadocStyleCheck
      */
     private static String getCommentText(String... comments) {
         final StringBuilder builder = new StringBuilder(1024);
-        for (final String line : comments) {
-            final int textStart = findTextStart(line);
 
+        for (final String line : comments) {
+            String commentLine = line;
+            final int commentEnd = commentLine.indexOf("*/");
+            if (commentEnd >= 0) {
+                commentLine = commentLine.substring(0, commentEnd + 2);
+            }
+
+            final int textStart = findTextStart(commentLine);
             if (textStart != -1) {
-                if (line.charAt(textStart) == '@') {
-                    // we have found the tag section
+                if (commentLine.charAt(textStart) == '@') {
                     break;
                 }
-                builder.append(line.substring(textStart));
+                builder.append(commentLine.substring(textStart));
                 trimTail(builder);
                 builder.append('\n');
             }
         }
 
         return builder.toString().trim();
+    }
+
+    /**
+     * Checks the comment for HTML tags that do not have a corresponding close
+     * tag or a close tag that has no previous open tag.  This code was
+     * primarily copied from the DocCheck checkHtml method.
+     *
+     * @param ast the node with the Javadoc
+     * @param comment the Javadoc block comment AST.
+     * @noinspection MethodWithMultipleReturnPoints
+     * @noinspectionreason MethodWithMultipleReturnPoints - check and method are
+     *      too complex to break apart
+     */
+    // -@cs[ReturnCount] Too complex to break apart.
+    private void checkHtmlTags(final DetailAST ast, final DetailAST comment) {
+        final Deque<HtmlTag> htmlStack = new ArrayDeque<>();
+        final String[] text = getCommentLines(comment);
+        final int startLineNo = comment.getLineNo();
+        final JavadocDetailNodeParser.ParseStatus parseStatus = parser.parseJavadocComment(comment);
+
+        final Deque<HtmlTag> htmlTags = new ArrayDeque<>();
+        if (parseStatus.getTree() != null) {
+            collectHtmlTags(parseStatus.getTree(), htmlTags);
+        }
+        else {
+            final TagParser tagParser = new TagParser(text, startLineNo);
+            while (tagParser.hasNextTag()) {
+                htmlTags.addLast(tagParser.nextTag());
+            }
+        }
+
+        while (!htmlTags.isEmpty()) {
+            final HtmlTag tag = htmlTags.removeFirst();
+
+            if (tag.isIncompleteTag()) {
+                log(tag.getLineNo(), MSG_INCOMPLETE_TAG, text[tag.getLineNo() - startLineNo]);
+                return;
+            }
+            if (tag.isClosedTag()) {
+                // do nothing
+                continue;
+            }
+            if (tag.isCloseTag()) {
+                // We have found a close tag.
+                if (isExtraHtml(tag.getId(), htmlStack)) {
+                    // No corresponding open tag was found on the stack.
+                    log(tag.getLineNo(),
+                        tag.getPosition(),
+                        MSG_EXTRA_HTML,
+                        tag.getText());
+                }
+                else {
+                    // See if there are any unclosed tags that were opened
+                    // after this one.
+                    checkUnclosedTags(htmlStack, tag.getId());
+                }
+            }
+            else {
+                // We only push html tags that are allowed
+                if (isAllowedTag(tag)) {
+                    htmlStack.push(tag);
+                }
+            }
+        }
+
+        // Identify any tags left on the stack.
+        // Skip multiples, like <b>...<b>
+        String lastFound = "";
+        final List<String> typeParameters = CheckUtil.getTypeParameterNames(ast);
+        for (final HtmlTag htmlTag : htmlStack) {
+            if (!isSingleTag(htmlTag)
+                && !htmlTag.getId().equals(lastFound)
+                && !typeParameters.contains(htmlTag.getId())) {
+                log(htmlTag.getLineNo(), htmlTag.getPosition(),
+                        MSG_UNCLOSED_HTML, htmlTag.getText());
+                lastFound = htmlTag.getId();
+            }
+        }
     }
 
     /**
@@ -379,73 +467,133 @@ public class JavadocStyleCheck
     }
 
     /**
-     * Checks the comment for HTML tags that do not have a corresponding close
-     * tag or a close tag that has no previous open tag.  This code was
-     * primarily copied from the DocCheck checkHtml method.
+     * Collects HTML tag events from javadoc tree in source order.
      *
-     * @param ast the node with the Javadoc
-     * @param comment the {@code TextBlock} which represents
-     *                 the Javadoc comment.
-     * @noinspection MethodWithMultipleReturnPoints
-     * @noinspectionreason MethodWithMultipleReturnPoints - check and method are
-     *      too complex to break apart
+     * @param node current node.
+     * @param tags destination collection.
      */
-    // -@cs[ReturnCount] Too complex to break apart.
-    private void checkHtmlTags(final DetailAST ast, final TextBlock comment) {
-        final int lineNo = comment.getStartLineNo();
-        final Deque<HtmlTag> htmlStack = new ArrayDeque<>();
-        final String[] text = comment.getText();
-
-        final TagParser parser = new TagParser(text, lineNo);
-
-        while (parser.hasNextTag()) {
-            final HtmlTag tag = parser.nextTag();
-
-            if (tag.isIncompleteTag()) {
-                log(tag.getLineNo(), MSG_INCOMPLETE_TAG,
-                    text[tag.getLineNo() - lineNo]);
-                return;
-            }
-            if (tag.isClosedTag()) {
-                // do nothing
-                continue;
-            }
-            if (tag.isCloseTag()) {
-                // We have found a close tag.
-                if (isExtraHtml(tag.getId(), htmlStack)) {
-                    // No corresponding open tag was found on the stack.
-                    log(tag.getLineNo(),
-                        tag.getPosition(),
-                        MSG_EXTRA_HTML,
-                        tag.getText());
-                }
-                else {
-                    // See if there are any unclosed tags that were opened
-                    // after this one.
-                    checkUnclosedTags(htmlStack, tag.getId());
-                }
-            }
-            else {
-                // We only push html tags that are allowed
-                if (isAllowedTag(tag)) {
-                    htmlStack.push(tag);
-                }
+    private void collectHtmlTags(DetailNode node, Deque<HtmlTag> tags) {
+        if (node.getType() == JavadocCommentsTokenTypes.HTML_TAG_START) {
+            final String tagName = JavadocUtil.findFirstToken(node,
+                    JavadocCommentsTokenTypes.TAG_NAME).getText();
+            final boolean isClosedTag = node.getParent() != null
+                && node.getParent().getType() == JavadocCommentsTokenTypes.VOID_ELEMENT
+                && isSelfClosedTag(node);
+            tags.add(new HtmlTag(tagName,
+                    node.getLineNumber(),
+                    node.getColumnNumber(),
+                    isClosedTag,
+                    false,
+                    getLines()[node.getLineNumber() - 1]));
+        }
+        else if (node.getType() == JavadocCommentsTokenTypes.HTML_TAG_END) {
+            final String tagName = JavadocUtil.findFirstToken(node,
+                    JavadocCommentsTokenTypes.TAG_NAME).getText();
+            tags.add(new HtmlTag(tagName,
+                    node.getLineNumber(),
+                    node.getColumnNumber(),
+                    false,
+                    false,
+                    getLines()[node.getLineNumber() - 1]));
+        }
+        else if (node.getType() == JavadocCommentsTokenTypes.TEXT) {
+            final int incompleteTagIndex = findIncompleteTagIndex(node.getText());
+            if (incompleteTagIndex >= 0
+                    && !isContinuedClosingTagOnNextLine(node, incompleteTagIndex)) {
+                tags.add(new HtmlTag("",
+                        node.getLineNumber(),
+                        node.getColumnNumber() + incompleteTagIndex,
+                        false,
+                        true,
+                        getLines()[node.getLineNumber() - 1]));
             }
         }
 
-        // Identify any tags left on the stack.
-        // Skip multiples, like <b>...<b>
-        String lastFound = "";
-        final List<String> typeParameters = CheckUtil.getTypeParameterNames(ast);
-        for (final HtmlTag htmlTag : htmlStack) {
-            if (!isSingleTag(htmlTag)
-                && !htmlTag.getId().equals(lastFound)
-                && !typeParameters.contains(htmlTag.getId())) {
-                log(htmlTag.getLineNo(), htmlTag.getPosition(),
-                        MSG_UNCLOSED_HTML, htmlTag.getText());
-                lastFound = htmlTag.getId();
+        DetailNode child = node.getFirstChild();
+        while (child != null) {
+            collectHtmlTags(child, tags);
+            child = child.getNextSibling();
+        }
+    }
+
+    /**
+     * Checks if a void element token is explicitly self-closed with {@code />}.
+     *
+     * @param htmlTagStart HTML tag start node.
+     * @return true when start tag is explicitly self-closed.
+     */
+    private boolean isSelfClosedTag(DetailNode htmlTagStart) {
+        final String line = getLines()[htmlTagStart.getLineNumber() - 1];
+        final int startColumn = htmlTagStart.getColumnNumber();
+        final int closeBracketIndex = line.indexOf('>', startColumn);
+        return closeBracketIndex > startColumn && line.charAt(closeBracketIndex - 1) == '/';
+    }
+
+    /**
+     * Checks if an incomplete tag marker is actually a split closing tag on next line.
+     *
+     * @param textNode text node containing {@code <}.
+     * @param tagStartIndex index of the incomplete tag marker in current text.
+     * @return true when the current line is continued as closing tag on next line.
+     */
+    private static boolean isContinuedClosingTagOnNextLine(DetailNode textNode, int tagStartIndex) {
+        final String text = textNode.getText();
+        final boolean onlyTagMarker = text.substring(tagStartIndex).trim().equals("<");
+
+        boolean result = false;
+        if (onlyTagMarker) {
+            DetailNode nextNode = textNode.getNextSibling();
+            while (nextNode != null && (nextNode.getType() == JavadocCommentsTokenTypes.NEWLINE
+                    || nextNode.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK
+                    || nextNode.getType() == JavadocCommentsTokenTypes.TEXT
+                        && nextNode.getText().isBlank())) {
+                nextNode = nextNode.getNextSibling();
+            }
+
+            if (nextNode != null && nextNode.getType() == JavadocCommentsTokenTypes.TEXT) {
+                final String nextText = nextNode.getText().stripLeading();
+                result = nextText.startsWith("/") && nextText.contains(">");
             }
         }
+        return result;
+    }
+
+    /**
+     * Finds an incomplete tag start in plain text.
+     *
+     * @param text token text.
+     * @return index of incomplete tag start, or -1 when absent.
+     */
+    private static int findIncompleteTagIndex(String text) {
+        int index = -1;
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) == '<') {
+                index = i;
+                if (i == text.length() - 1) {
+                    break;
+                }
+
+                final char nextChar = text.charAt(i + 1);
+                if ((Character.isLetter(nextChar) || nextChar == '/' || nextChar == '!')
+                        && text.indexOf('>', i + 1) < 0) {
+                    break;
+                }
+                index = -1;
+            }
+        }
+        return index;
+    }
+
+    /**
+     * Retrieves source lines of a Javadoc block comment.
+     *
+     * @param comment block comment AST node.
+     * @return lines that make up the Javadoc comment.
+     */
+    private String[] getCommentLines(DetailAST comment) {
+        final int startLine = comment.getLineNo();
+        final int endLine = comment.getLastChild().getLineNo();
+        return Arrays.copyOfRange(getLines(), startLine - 1, endLine);
     }
 
     /**
@@ -535,6 +683,110 @@ public class JavadocStyleCheck
         }
 
         return isExtra;
+    }
+
+    /**
+     * Retrieves the Javadoc comment associated with a declaration AST.
+     *
+     * @param ast declaration AST.
+     * @return javadoc block comment AST or null.
+     */
+    private DetailAST getJavadoc(DetailAST ast) {
+        DetailAST result = ast.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+
+        if (result == null) {
+            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+            final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+
+            if (modifiers != null) {
+                result = modifiers.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+            }
+            if (result == null && type != null) {
+                result = type.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+            }
+        }
+
+        if (result == null && ast.getType() == TokenTypes.PACKAGE_DEF) {
+            DetailAST child = ast.getFirstChild();
+            while (child != null && result == null) {
+                DetailAST previousSibling = child.getPreviousSibling();
+                while (previousSibling != null
+                        && previousSibling.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+                    previousSibling = previousSibling.getPreviousSibling();
+                }
+                if (previousSibling != null
+                        && previousSibling.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                    result = previousSibling;
+                }
+                child = child.getNextSibling();
+            }
+
+        }
+
+        if (result == null && ast.getType() == TokenTypes.PACKAGE_DEF) {
+            DetailAST previousSibling = ast.getPreviousSibling();
+            while (previousSibling != null
+                    && previousSibling.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+                previousSibling = previousSibling.getPreviousSibling();
+            }
+            if (previousSibling != null
+                    && previousSibling.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                result = previousSibling;
+            }
+        }
+
+        if (result == null && ast.getType() == TokenTypes.PACKAGE_DEF) {
+            result = findNearestJavadocBeforeLine(ast, ast.getLineNo());
+        }
+
+        if (result != null && !JavadocUtil.isJavadocComment(result)) {
+            result = null;
+        }
+
+        return result;
+    }
+
+    /**
+     * Finds nearest javadoc block comment before given line.
+     *
+     * @param ast any node from the current tree.
+     * @param lineNo upper bound line number.
+     * @return nearest javadoc block comment before the line or null.
+     */
+    private static DetailAST findNearestJavadocBeforeLine(DetailAST ast, int lineNo) {
+        DetailAST root = ast;
+        while (root.getParent() != null) {
+            root = root.getParent();
+        }
+
+        return findNearestJavadocInSubtree(root, lineNo, null);
+    }
+
+    /**
+     * Recursively searches for nearest javadoc block before a line.
+     *
+     * @param node current node.
+     * @param lineNo upper bound line number.
+     * @param currentBest current best match.
+     * @return nearest javadoc block comment or null.
+     */
+    private static DetailAST findNearestJavadocInSubtree(DetailAST node, int lineNo,
+                                                          DetailAST currentBest) {
+        DetailAST bestMatch = currentBest;
+        if (node.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                && node.getLineNo() < lineNo
+                && JavadocUtil.isJavadocComment(node)
+                && (bestMatch == null || node.getLineNo() > bestMatch.getLineNo())) {
+            bestMatch = node;
+        }
+
+        DetailAST child = node.getFirstChild();
+        while (child != null) {
+            bestMatch = findNearestJavadocInSubtree(child, lineNo, bestMatch);
+            child = child.getNextSibling();
+        }
+
+        return bestMatch;
     }
 
     /**
