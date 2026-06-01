@@ -14,7 +14,9 @@ violation is expected.
 To specify that a violation occurs on a specific line, append `// violation '<message>'` to the
 end of that line.
 
-**Example from [`src/test/resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/InputTypeName.java`](https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/InputTypeName.java#L25):**
+**Example from**
+[`src/test/resources/com/puppycrawl/tools/checkstyle/checks/naming/
+typename/InputTypeName.java`][example-input-typename]
 
 ```java
 public class InputTypeName {} // violation 'Name 'InputTypeName' must match pattern'
@@ -25,14 +27,19 @@ public class InputTypeName {} // violation 'Name 'InputTypeName' must match patt
 Sometimes, placing the comment on the same line makes the line too long or unreadable.
 You can specify that the violation occurs on the line immediately above or below the comment.
 
-**Example from [`src/test/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/InputLeftCurlyTestNewLineOptionWithLambda.java`](https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/InputLeftCurlyTestNewLineOptionWithLambda.java#L23):**
+**Example from**
+[`src/test/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/
+InputLeftCurlyTestNewLineOptionWithLambda.java`][example-input-leftcurly-lambda]
 
 ```java
 // violation below ''{' at column 32 should be on a new line'
 static Runnable r3 = () -> {String.valueOf("ok");};
 ```
 
-**Example from [`src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/InputFinalLocalVariableConstructor.java`](https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/InputFinalLocalVariableConstructor.java#L23):**
+**Example from**
+[`src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/
+coding/finallocalvariable/
+InputFinalLocalVariableConstructor.java`][example-finallocalvariable-constructor]
 
 ```java
 InputFinalLocalVariableConstructor(String str) {
@@ -45,7 +52,9 @@ InputFinalLocalVariableConstructor(String str) {
 If the violation is further away, you can specify the exact number of lines above or below the
 comment.
 
-**Example from [`src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/InputJavadocStyleHtml4.java`](https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/InputJavadocStyleHtml4.java#L26):**
+**Example from**
+[`src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/
+javadocstyle/InputJavadocStyleHtml4.java`][example-input-javadocstyle-html4]
 
 ```java
 // violation 3 lines below 'Unclosed HTML tag found: <code>'
@@ -56,7 +65,10 @@ comment.
 private void unclosedTag() {}
 ```
 
-**Example from [`src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarynullcheckwithinstanceof/InputUnnecessaryNullCheckWithInstanceOfTernary.java`](https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarynullcheckwithinstanceof/InputUnnecessaryNullCheckWithInstanceOfTernary.java#L36):**
+**Example from**
+[`src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/
+unnecessarynullcheckwithinstanceof/InputUnnecessary
+NullCheckWithInstanceOfTernary.java`][example-unnecessarynullcheckwithinstanceof-ternary]
 
 ```java
 return obj != null && obj instanceof Integer ? (Integer) obj * 2
@@ -85,9 +97,9 @@ error content.
 Alternatively, you can also check Checkstyle's online documentation.
 Take `AvoidStaticImport` as an example:
 
-1) Go to its [doc page](https://checkstyle.org/checks/imports/avoidstaticimport.html#AvoidStaticImport),
+1) Go to its [doc page][avoidstaticimport-doc],
 
-2) Scroll all the way to ['Violation Messages'](https://checkstyle.org/checks/imports/avoidstaticimport.html#Violation_Messages),
+2) Scroll all the way to ['Violation Messages'][violation-messages],
 and click on `import.avoidStatic`. You will see the actual message content in all languages.
 
 3) Use the English content from `messages.properties` and replace placeholders `{x}` with
@@ -102,7 +114,10 @@ The violation message specified in the comment is treated as a regular expressio
 This means that if your expected message contains special RegExp characters
 (like `*`, `[`, `]`, `(`, `)`), they must be properly escaped.
 
-**Example from [`src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/InputIllegalTypeTestPlainAndArraysTypes.java`](https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/InputIllegalTypeTestPlainAndArraysTypes.java#L38):**
+**Example from**
+[`src/test/resources/com/puppycrawl/tools/checkstyle/checks/
+coding/illegaltype/InputIllegal
+TypeTestPlainAndArraysTypes.java`][example-input-illegaltype-plain-arrays]
 
 ```java
 Boolean[][] value = matrix != null ? matrix : new Boolean[0][0];
@@ -180,7 +195,10 @@ final int Bad = 0;
 When a single line triggers multiple violations, you can group them using a
 multi-line format.
 
-**Example from [`src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/InputJavadocParagraphIncorrect.java`](https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/InputJavadocParagraphIncorrect.java#L43):**
+**Example from**
+[`src/test/resources/com/puppycrawl/tools/checkstyle/checks/
+javadoc/javadocparagraph/
+InputJavadocParagraphIncorrect.java`][example-input-javadocparagraph-incorrect]
 
 ```java
 // 2 violations 4 lines below:
@@ -201,7 +219,10 @@ The syntax `X violations` can be followed by
 When testing filters (like `SuppressWithNearbyTextFilter`), you need to specify violations
 that are expected to be suppressed by the filter. These are marked as `filtered violation`.
 
-**Example from [`src/test/resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/InputSuppressWithNearbyTextFilterDefaultConfig.java`](https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/InputSuppressWithNearbyTextFilterDefaultConfig.java#L30):**
+**Example from**
+[`src/test/resources/com/puppycrawl/tools/checkstyle/filters/
+suppresswithnearbytextfilter/InputSuppressWithNearby
+TextFilterDefaultConfig.java`][example-suppresswithnearbytextfilter-default]
 
 ```java
     // filtered violation below 'Line is longer than 90 characters (found 97).'
@@ -214,7 +235,10 @@ Sometimes it is useful to explicitly mark a line of code as valid or expected to
 without violations, often to explain why a specific construct is acceptable. You can use
 `// ok, <explanation>` for this purpose.
 
-**Example from [`src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/InputEmptyLineSeparatorWithComments.java`](https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/InputEmptyLineSeparatorWithComments.java#L183):**
+**Example from**
+[`src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/
+checks/whitespace/emptylineseparator/
+InputEmptyLineSeparatorWithComments.java`][example-input-emptylineseparator-comments]
 
 ```java
 public static class Class1 { }
@@ -285,4 +309,31 @@ public void test() {}
 
 ## Reference
 
-- Violation messages RegExp and parsing: [`src/test/java/com/puppycrawl/tools/checkstyle/bdd/InlineConfigParser.java`](https://github.com/checkstyle/checkstyle/blob/master/src/test/java/com/puppycrawl/tools/checkstyle/bdd/InlineConfigParser.java)
+- Violation messages RegExp and parsing:
+  [`src/test/java/com/puppycrawl/tools/checkstyle/bdd/
+  InlineConfigParser.java`][example-inlineconfigparser]
+
+[example-input-typename]:
+https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/InputTypeName.java#L25
+[example-input-leftcurly-lambda]:
+https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/InputLeftCurlyTestNewLineOptionWithLambda.java#L23
+[example-finallocalvariable-constructor]:
+https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/InputFinalLocalVariableConstructor.java#L23
+[example-input-javadocstyle-html4]:
+https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/InputJavadocStyleHtml4.java#L26
+[example-unnecessarynullcheckwithinstanceof-ternary]:
+https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarynullcheckwithinstanceof/InputUnnecessaryNullCheckWithInstanceOfTernary.java#L36
+[example-input-illegaltype-plain-arrays]:
+https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/InputIllegalTypeTestPlainAndArraysTypes.java#L38
+[example-input-javadocparagraph-incorrect]:
+https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/InputJavadocParagraphIncorrect.java#L43
+[example-input-suppresswithnearbytextfilter-default]:
+https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/InputSuppressWithNearbyTextFilterDefaultConfig.java#L30
+[example-input-emptylineseparator-comments]:
+https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/InputEmptyLineSeparatorWithComments.java#L183
+[example-inlineconfigparser]:
+https://github.com/checkstyle/checkstyle/blob/master/src/test/java/com/puppycrawl/tools/checkstyle/bdd/InlineConfigParser.java
+[violation-messages]:
+https://checkstyle.org/checks/imports/avoidstaticimport.html#Violation_Messages
+[avoidstaticimport-doc]:
+https://checkstyle.org/checks/imports/avoidstaticimport.html#AvoidStaticImport

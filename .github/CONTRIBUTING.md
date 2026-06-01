@@ -26,7 +26,7 @@ maintainers alike.**
 ## Code of Conduct
 
 This project and everyone participating in it is governed by the
-    [CheckStyle Code of Conduct](/.github/CODE_OF_CONDUCT.md).
+[CheckStyle Code of Conduct](/.github/CODE_OF_CONDUCT.md).
 
 ## Getting Started
 
@@ -35,18 +35,14 @@ This project and everyone participating in it is governed by the
   development environment, building the project, and running tests.
 - Take a look at the [Contribution Guidelines](https://checkstyle.org/contributing.html) for
   on how to contribute to the project.
-- Select an issue to work on from the
-  [Issues Page](https://github.com/checkstyle/checkstyle/issues). We
-  have a few issues labeled as
-  https://github.com/checkstyle/checkstyle/labels/good%20first%20issue to
-  help you get started. Please watch [videos](https://www.youtube.com/playlist?list=PLHM9s_lN4X0hzOQ0sUmGdroxW0HfREAqj)
-  on how to setup local environment and send first fix.
-- Once you get your first PR merged, you can move on to
-  https://github.com/checkstyle/checkstyle/labels/good%20second%20issue,
-  https://github.com/checkstyle/checkstyle/labels/good%20third%20issue,
-  and finally https://github.com/checkstyle/checkstyle/labels/good%20fourth%20issue
+- Select an issue to work on from the [Issues Page][issues-page]. We
+  have a few issues labeled as [good first issue][goodFirst-Issue] to
+  help you get started. Please watch [videos][videos-playlist] on how to
+  setup local environment and send first fix.
+- Once you get your first PR merged, you can move on to [good second issue][goodSecond-Issue]
+  ,[good third issue][goodThird-Issue], and finally [good fourth issue][goodFourth-Issue]
   before taking up some bug fixes or features. Always make sure that the issue you select
-  has the https://github.com/checkstyle/checkstyle/labels/approved label.
+  has the [approved][Approved-Label] label.
 - When you decide which issue you would like to take up,
   please comment on the issue to let others know that you are working on it ("I am on it.").
   It is completely ok to change a mind, please try to remove comment.
@@ -55,16 +51,18 @@ This project and everyone participating in it is governed by the
 
 ## Submitting Pull Requests
 
-- **Read our pull request rules.** See [PR Rules](https://github.com/checkstyle/checkstyle/wiki/PR-rules).
+- **Read our pull request rules.** See [PR Rules][pr-rules].
 - **Comment on the issue.** When you decide which issue you would like to take up,
   please comment on the issue to let others know that you are working on it ("I am on it.").
   Existing "I am on it" comments are a good indication that someone is already working on the
   issue, but these comments can be old or outdated; if a comment is a few weeks old with no
   activity, feel free to ask if the issue is still being worked on.
-- **Read the Github docs.** Visit GitHub's [Pull Request Guide](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)
-  for information on how to submit a pull request.
-- **Follow the template.** Please follow the [CheckStyle Pull Request Template](https://github.com/checkstyle/checkstyle/blob/master/.github/PULL_REQUEST_TEMPLATE.md)
-  that is provided in the pull request description when submitting a pull request.
+- **Read the Github docs.** Visit GitHub's
+  [Pull Request Guide][pull-request-guide] for information on how to
+  submit a pull request.
+- **Follow the template.** Please follow the
+  [CheckStyle Pull Request Template][pr-template] that is provided in the
+  pull request description when submitting a pull request.
 - **Run maven build locally.** `mvn clean verify` should pass on your local before
   submitting a pull request.
 - **Keep the PR small.** If you are working on a large feature, consider breaking it up into
@@ -74,8 +72,9 @@ This project and everyone participating in it is governed by the
 ## Code Review
 
 All submissions, including submissions by project members, require review. We use GitHub pull
-requests for this purpose. Consult the [GitHub Help](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews)
-for more information on pull request reviews.
+requests for this purpose. Consult the
+[GitHub Help][github-help-pr-reviews] for more information on pull
+request reviews.
 
 Here are some general guidelines to follow when submitting a pull request:
 
@@ -99,36 +98,36 @@ thorough issue description. :brain:
 Some points to consider when opening an issue:
 
 - **Make sure you are using the latest Checkstyle version.**
-  Before [Opening an Issue](https://github.com/checkstyle/checkstyle/issues),
-  check if you are using the latest version of the project,
-  [found here](https://github.com/checkstyle/checkstyle/releases). If you are not up-to-date,
-  check to see if updating to the latest release fixes your issue.
+  Before [Opening an Issue][opening-issue], check if you are using the
+  latest version of the project, [found here][releases]. If you are not
+  up-to-date, check to see if updating to the latest release fixes your
+  issue.
 - **Do not open a duplicate feature request.** Search for existing feature requests first. If you
   find your feature (or one very similar) previously requested, comment on that issue.
 - **Fully complete the provided issue template.** The bug report and feature request templates
   specify all the information we need to quickly and efficiently address your issue. Be clear,
   concise, and descriptive.
   Provide as much information as you can, including steps to reproduce, stack traces, etc.
-- **Use [GitHub-flavored Markdown](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax).**
-  Especially put code blocks and console outputs in backticks (```). This improves readability.
+- **Use [GitHub-flavored Markdown][github-markdown].**
+  Especially put code blocks and console outputs in backticks (```). This
+  improves readability.
 
 ## Reporting Security Issues
 
 **Do not file a public issue for security vulnerabilities.** Please contact the
 maintainers directly.
-see the [Security Policy](https://github.com/checkstyle/checkstyle/blob/master/SECURITY.md)
-for more information.
+see the [Security Policy][security-policy] for more information.
 
 ## Google Summer of Code
 
-Please see the [GSoC Participant Guide](https://github.com/checkstyle/checkstyle/blob/master/.github/GSOC.md).
+Please see the [GSoC Participant Guide][gsoc-guide].
 
 ## Asking Questions
 
-See our [Discussions Page](https://github.com/checkstyle/checkstyle/discussions). In short, GitHub
-issues are not the appropriate place to debug your specific project, but should be reserved
-for filing bugs and feature requests. You can also visit our
-[Google Groups Forum](https://groups.google.com/g/checkstyle-devel)
+See our [Discussions Page][discussions]. In short, GitHub
+issues are not the appropriate place to debug your specific project, but
+should be reserved for filing bugs and feature requests. You can also
+visit our [Google Groups Forum][google-groups].
 
 ## Credits
 
@@ -137,3 +136,40 @@ for filing bugs and feature requests. You can also visit our
 - [CocoaPods](https://github.com/CocoaPods/CocoaPods/blob/master/CONTRIBUTING.md)
 - [Docker](https://github.com/moby/moby/blob/master/CONTRIBUTING.md)
 - [.github](https://github.com/jessesquires/.github)
+
+[issues-page]:
+https://github.com/checkstyle/checkstyle/issues
+[goodFirst-Issue]:
+https://github.com/checkstyle/checkstyle/labels/good%20first%20issue
+[videos-playlist]:
+https://www.youtube.com/playlist?list=PLHM9s_lN4X0hzOQ0sUmGdroxW0HfREAqj
+[goodSecond-Issue]:
+https://github.com/checkstyle/checkstyle/labels/good%20second%20issue
+[goodThird-Issue]:
+https://github.com/checkstyle/checkstyle/labels/good%20third%20issue
+[goodFourth-Issue]:
+https://github.com/checkstyle/checkstyle/labels/good%20fourth%20issue
+[Approved-Label]:
+https://github.com/checkstyle/checkstyle/labels/approved
+[pr-rules]:
+https://github.com/checkstyle/checkstyle/wiki/PR-rules
+[pull-request-guide]:
+https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests
+[pr-template]:
+https://github.com/checkstyle/checkstyle/blob/master/.github/PULL_REQUEST_TEMPLATE.md
+[github-help-pr-reviews]:
+https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews
+[opening-issue]:
+https://github.com/checkstyle/checkstyle/issues
+[releases]:
+https://github.com/checkstyle/checkstyle/releases
+[github-markdown]:
+https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax
+[security-policy]:
+https://github.com/checkstyle/checkstyle/blob/master/SECURITY.md
+[gsoc-guide]:
+https://github.com/checkstyle/checkstyle/blob/master/.github/GSOC.md
+[discussions]:
+https://github.com/checkstyle/checkstyle/discussions
+[google-groups]:
+https://groups.google.com/g/checkstyle-devel
