@@ -73,6 +73,8 @@
     </module>
     <module name="AvoidEscapedUnicodeCharacters"/>
 
+    <module name="OverloadMethodsDeclarationOrder"/>
+
     <!-- §3.12: Expression lambda body length check based on OpenJDK style guide -->
     <module name="LambdaBodyLength"/>
     <module name="NoLineWrap">
