@@ -86,4 +86,14 @@ public class NoLineWrapCheckTest
                 expected);
     }
 
+    @Test
+    public void testNoLineWrapModuleImport() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_KEY, "import"),
+            "19:1: " + getCheckMessage(MSG_KEY, "import"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputNoLineWrapModuleImport.java"), expected);
+    }
+
 }
