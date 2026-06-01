@@ -604,6 +604,7 @@ indentcontinuationlines
 Inet
 infinispan
 initializedfields
+inlineconfigparser
 Inlined
 inlinetags
 innerassignment

@@ -39,7 +39,7 @@ GitHub, generate report by config from some/path/InputXxxxxx.java
 
 Workflow will find InputXxxxxx.java in repository, take config from it and will use for diff report
 generation. Workflow will use default list of projects that is located at
-[test-configs repository](https://github.com/checkstyle/test-configs/blob/main/extractor/src/main/resources/list-of-projects.yml).
+[test-configs repository][test-configs-list].
 
 ### Diff Report by configuration at test-configs repository
 
@@ -50,13 +50,12 @@ GitHub, generate report for {{folder in https://github.com/checkstyle/test-confi
 ```
 
 Workflow will download config.xml and list-of-projects.yml from
-[test-configs repository](https://github.com/checkstyle/test-configs),
-use then for diff report generation.
+[test-configs repository][test-configs-root], use then for diff report generation.
 
 ### Diff Report by configuration in Pull Request Description
 
 Add the links of the config files in the PR description as described at
-[checkstyle-tester](https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/README.md#executing-generation-using-github-action)
+[checkstyle-tester][checkstyle-tester-docs].
 
 Make a comment in PR:
 
@@ -79,9 +78,21 @@ Example: `GitHub, generate report for checkstyle with openjdk_checks.xml`.
 ### Configure saved-replies to ease typing trigger comment
 
 If you plan to frequently use regression/diff report, it is recommended to use
-["Saved Reply"](https://docs.github.com/en/get-started/writing-on-github/working-with-saved-replies/creating-a-saved-reply)
-GitHub feature of your GitHub account.
+[Saved Reply][saved-reply] GitHub feature of your GitHub account.
 
 Usage:
-[by button in web UI](https://docs.github.com/en/get-started/writing-on-github/working-with-saved-replies/using-saved-replies),
-[by slash command](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/about-slash-commands)
+[by button in web UI][saved-reply-ui],
+[by slash command][saved-reply-slash]
+
+[test-configs-list]:
+https://github.com/checkstyle/test-configs/blob/main/extractor/src/main/resources/list-of-projects.yml
+[test-configs-root]:
+https://github.com/checkstyle/test-configs
+[checkstyle-tester-docs]:
+https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/README.md#executing-generation-using-github-action
+[saved-reply]:
+https://docs.github.com/en/get-started/writing-on-github/working-with-saved-replies/creating-a-saved-reply
+[saved-reply-ui]:
+https://docs.github.com/en/get-started/writing-on-github/working-with-saved-replies/using-saved-replies
+[saved-reply-slash]:
+https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/about-slash-commands

@@ -127,7 +127,7 @@ A list to a few of the popular ones:
   redundant `strictfp` modifiers. This resulted in the analysis of `RedundantModifierCheck`
   to verify if we needed to update it.
 
-- **New check**: Sonar introduced a [new rule](https://rules.sonarsource.com/java/tag/java21/RSPEC-6916/)
+- **New check**: Sonar introduced a [new rule][new-rule]
   to suggest the use of `when` instead of a single if statement inside
   a pattern match body. This resulted in the creation
   of a new check `WhenShouldBeUsed` to enforce the use of this new feature.
@@ -174,3 +174,6 @@ This issue should be linked to the tracker issue of this feature.
 It is good to follow the bug report template to aid in demonstrating the need for check updates.
 See [#14963](https://github.com/checkstyle/checkstyle/issues/14963) and
 [#14985](https://github.com/checkstyle/checkstyle/issues/14985) for reference.
+
+[new-rule]:
+https://rules.sonarsource.com/java/tag/java21/RSPEC-6916/
