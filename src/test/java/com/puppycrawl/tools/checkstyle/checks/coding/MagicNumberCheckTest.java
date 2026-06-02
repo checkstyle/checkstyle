@@ -853,4 +853,22 @@ public class MagicNumberCheckTest
                 getPath("InputMagicNumberWithOperatorsWithIgnoreFieldsFalse.java"),
                 expected);
     }
+
+    @Test
+    public void testMagicNumberInCompactSourceFileWithIgnoreFieldDeclaration() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberCompact.java"), expected);
+    }
+
+    @Test
+    public void testMagicNumberInCompactSourceFilesWithIgnoreFieldsFalse() throws Exception {
+        final String[] expected = {
+            "20:13: " + getCheckMessage(MSG_KEY, "42"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberCompactViolation.java"), expected);
+    }
 }
