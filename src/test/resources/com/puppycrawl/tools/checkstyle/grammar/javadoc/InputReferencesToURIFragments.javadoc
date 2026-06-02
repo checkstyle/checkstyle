@@ -1,0 +1,25 @@
+* The {@code Character} class is the {@linkplain
+* java.lang##wrapperClass wrapper class} for values of the primitive
+* type {@code char}. An object of type {@code Character} contains a
+* single field whose type is {@code char}.
+* Package documentation fragment:
+* {@link java.lang##wrapperClass wrapper classes}
+*
+* Another package fragment:
+* {@link java.util##CollectionsFramework Collections Framework overview}
+*
+* Another class fragment:
+* {@link java.util.stream.Stream##Reduction reduction operations}
+*
+* Module documentation fragment:
+* {@link java.base/java.lang##services module services}
+*
+* Nested class documentation fragment:
+* {@link java.util.Map.Entry##api-note Entry API note}
+*
+* Fragment in current class documentation:
+* {@link ##thread-safety Thread Safety section}
+* {@linkplain java.lang.String##compact-strings compact strings}
+*
+* @see java.lang##wrapperClass
+* @see java.lang.String##compact-strings
