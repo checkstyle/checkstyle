@@ -290,6 +290,12 @@ public class JavadocCommentsTokenTypesTest {
         assertWithMessage(msg)
                 .that(JavadocCommentsTokenTypes.TAG_ATTR_NAME)
                 .isEqualTo(114);
+        assertWithMessage(msg)
+                .that(JavadocCommentsTokenTypes.FRAGMENT_REFERENCE)
+                .isEqualTo(117);
+        assertWithMessage(msg)
+                .that(JavadocCommentsTokenTypes.HYPHEN)
+                .isEqualTo(118);
     }
 
 }
