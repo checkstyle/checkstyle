@@ -15,8 +15,8 @@ package com.puppycrawl. // ok, PACKAGE_DEF is not part of the tokens
   tools.checkstyle.checks.whitespace.nolinewrap;
 
 import java.io.*;
-import java.lang. // violation 'should not be line-wrapped'
-  Boolean;
+import com.puppycrawl.tools. // violation 'should not be line-wrapped'
+  checkstyle.api.AbstractCheck;
 
 import static java.math. // ok, STATIC_IMPORT is not part of the tokens
   BigInteger.ZERO;
