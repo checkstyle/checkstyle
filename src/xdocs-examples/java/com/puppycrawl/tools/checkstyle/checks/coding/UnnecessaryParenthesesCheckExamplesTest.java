@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_ASSIGN;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_EXPR;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_IDENT;
-import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_LAMBDA;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_LITERAL;
 
 import org.junit.jupiter.api.Test;
@@ -44,11 +43,6 @@ public class UnnecessaryParenthesesCheckExamplesTest extends AbstractExamplesMod
             "27:15: " + getCheckMessage(MSG_ASSIGN),
             "28:20: " + getCheckMessage(MSG_ASSIGN),
             "28:24: " + getCheckMessage(MSG_IDENT, "square"),
-            "36:21: " + getCheckMessage(MSG_LAMBDA),
-            "44:9: " + getCheckMessage(MSG_EXPR),
-            "44:31: " + getCheckMessage(MSG_EXPR),
-            "44:53: " + getCheckMessage(MSG_EXPR),
-            "48:9: " + getCheckMessage(MSG_EXPR),
         };
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
@@ -56,8 +50,8 @@ public class UnnecessaryParenthesesCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "18:18: " + getCheckMessage(MSG_EXPR),
-            "26:19: " + getCheckMessage(MSG_EXPR),
+            "37:18: " + getCheckMessage(MSG_EXPR),
+            "44:19: " + getCheckMessage(MSG_EXPR),
         };
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
