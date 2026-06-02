@@ -4168,6 +4168,7 @@
                 If we remove this destroy we would have to remove all of them as they are chained
                 together, so we just exclude it from pitest check. -->
                 <param>destroy</param>
+                <param>setViolateExecutionOnNonTightHtml</param>
               </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>99</mutationThreshold>
