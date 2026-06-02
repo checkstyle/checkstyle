@@ -5362,6 +5362,9 @@
                   com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheckTest
                 </param>
                 <param>
+                  com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheckTest
+                </param>
+                <param>
                   com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocPositionCheckTest
                 </param>
                 <param>
