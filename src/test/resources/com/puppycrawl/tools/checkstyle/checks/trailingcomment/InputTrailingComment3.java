@@ -31,7 +31,7 @@ public class InputTrailingComment3 {
         /* int y */int y/**/;
     }
 
-    /** // violation
+    /* // violation
      * comment with trailing space.
      */
     final static public String NAME="Some Name"; // NOI18N // violation
@@ -48,9 +48,9 @@ public class InputTrailingComment3 {
         /* ok */ final long start = 0L;
     }
 
-    /** // violation
+    /* // violation
      * violation above this line.
-     **/
+     */
     /* package */ void addError() {
     }
 }
