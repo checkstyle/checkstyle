@@ -4,6 +4,7 @@ tag = @author
 tagFormat = \\S
 tagSeverity = error
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+violateExecutionOnNonTightHtml = (default)false
 
 
 */
