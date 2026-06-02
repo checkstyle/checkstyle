@@ -48,7 +48,7 @@ tokens {
     HIDDEN_BLOCK_TAG, USES_BLOCK_TAG, PROVIDES_BLOCK_TAG, SERIAL_BLOCK_TAG,
     SERIAL_DATA_BLOCK_TAG, SERIAL_FIELD_BLOCK_TAG, CUSTOM_BLOCK_TAG,
     JAVADOC_INLINE_TAG, HTML_COMMENT_START, HTML_COMMENT_END, HTML_COMMENT,
-    HTML_COMMENT_CONTENT
+    HTML_COMMENT_CONTENT, FRAGMENT_REFERENCE
 }
 
 @lexer::header {
@@ -449,7 +449,7 @@ EXTENDS: 'extends';
 SUPER: 'super';
 
 IDENTIFIER
-    : ([a-zA-Z0-9_$] | '.')+
+    : ([a-zA-Z0-9_$] | '.' | '-')+
       {
           int la = _input.LA(1);
           if (Character.isWhitespace(la) || la == '\n' || la == '\r') {

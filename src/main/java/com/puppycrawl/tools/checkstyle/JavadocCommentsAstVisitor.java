@@ -424,10 +424,20 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     public JavadocNodeImpl visitTypeArgument(JavadocCommentsParser.TypeArgumentContext ctx) {
         return buildImaginaryNode(JavadocCommentsTokenTypes.TYPE_ARGUMENT, ctx);
     }
+    
+    @Override 
+    public JavadocNodeImpl visitReferenceSuffix(JavadocCommentsParser.ReferenceSuffixContext ctx) {
+        return flattenedTree(ctx);
+    }
 
     @Override
     public JavadocNodeImpl visitMemberReference(JavadocCommentsParser.MemberReferenceContext ctx) {
         return buildImaginaryNode(JavadocCommentsTokenTypes.MEMBER_REFERENCE, ctx);
+    }
+    
+	@Override 
+    public JavadocNodeImpl visitFragmentReference(JavadocCommentsParser.FragmentReferenceContext ctx) { 
+        return buildImaginaryNode(JavadocCommentsTokenTypes.FRAGMENT_REFERENCE, ctx);
     }
 
     @Override
