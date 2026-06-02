@@ -335,6 +335,18 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testFillTemplateWithStringsByRegexpOptionalGroup() {
+        final IllegalArgumentException ex = getExpectedThrowable(IllegalArgumentException.class, () -> {
+            CommonUtil.fillTemplateWithStringsByRegexp("before $0 after1 $1 after2 $2 after3",
+                "word", Pattern.compile("(\\w+)( \\d+)?"));
+        });
+        assertWithMessage("Invalid exception message")
+            .that(ex)
+            .hasMessageThat()
+            .isEqualTo("Group 2 in regular expression '(\\w+)( \\d+)?' is optional and didn't match.");
+    }
+
+    @Test
     public void testGetFileNameWithoutExtension() {
         assertWithMessage("invalid result")
             .that(CommonUtil.getFileNameWithoutExtension("filename"))

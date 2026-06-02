@@ -469,7 +469,12 @@ public final class CommonUtil {
         if (matcher.find()) {
             for (int i = 0; i <= matcher.groupCount(); i++) {
                 // $n expands comment match like in Pattern.subst().
-                result = result.replaceAll("\\$" + i, matcher.group(i));
+                String replacement = matcher.group(i);
+                if (replacement == null) {
+                    throw new IllegalArgumentException("Group " + i + " in regular expression '"
+                        + regexp.pattern() + "' is optional and didn't match.");
+                }
+                result = result.replaceAll("\\$" + i, Matcher.quoteReplacement(replacement));
             }
         }
         return result;
