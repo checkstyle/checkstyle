@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import java.util.Collections;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -58,7 +57,7 @@ public class ParameterNumberCheck
     /**
      * Ignore methods and constructors annotated with the specified annotation(s).
      */
-    private Set<String> ignoreAnnotatedBy = Collections.emptySet();
+    private Set<String> ignoreAnnotatedBy = Set.of();
 
     /**
      * Setter to specify the maximum number of parameters allowed.

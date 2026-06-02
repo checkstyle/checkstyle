@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -346,7 +345,7 @@ public class SuppressWarningsHolder
      */
     private static List<String> getAllAnnotationValues(DetailAST ast) {
         // get values of annotation
-        List<String> values = Collections.emptyList();
+        List<String> values = List.of();
         final DetailAST lparenAST = ast.findFirstToken(TokenTypes.LPAREN);
         if (lparenAST != null) {
             final DetailAST nextAST = lparenAST.getNextSibling();
@@ -465,7 +464,7 @@ public class SuppressWarningsHolder
      */
     private static List<String> getAnnotationValues(DetailAST ast) {
         return switch (ast.getType()) {
-            case TokenTypes.EXPR -> Collections.singletonList(getStringExpr(ast));
+            case TokenTypes.EXPR -> List.of(getStringExpr(ast));
             case TokenTypes.ANNOTATION_ARRAY_INIT -> findAllExpressionsInChildren(ast);
             default -> throw new IllegalArgumentException(
                     "Expression or annotation array initializer AST expected: " + ast);
