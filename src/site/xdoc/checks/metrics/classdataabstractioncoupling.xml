@@ -399,6 +399,7 @@ class Example10 {
 }
 </code></pre></div>
 
+        <hr class="example-separator"/>
         <p>
           Override property <code>excludedPackages</code> to mark some packages as excluded.
           Each member of <code>excludedPackages</code> should be a valid identifier:
@@ -424,7 +425,7 @@ class Example10 {
           Also note, that <code>excludedPackages</code> will not exclude classes, imported via
           wildcard (e.g. <code>import java.math.*</code>). Instead of wildcard import you should
           use direct import (e.g. <code>import java.math.BigDecimal</code>).
-        </p> <hr class="example-separator"/>
+        </p>
         <p id="Example11-config">
           Also note, that checkstyle will not exclude classes within the same file
           even if it was listed in the <code>excludedPackages</code> parameter. For example,
