@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -305,7 +304,7 @@ public class SuppressionXpathFilter extends AbstractAutomaticBean implements
 
     @Override
     public Set<String> getExternalResourceLocations() {
-        return Collections.singleton(file);
+        return Set.of(file);
     }
 
     @Override

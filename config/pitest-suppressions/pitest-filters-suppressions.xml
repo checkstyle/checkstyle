@@ -1,3 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>SuppressionCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter</mutatedClass>
+    <mutatedMethod>tagSuppressions</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Comparator::naturalOrder</description>
+    <lineContent>tags.sort(Comparator.naturalOrder());</lineContent>
+  </mutation>
 </suppressedMutations>
