@@ -87,7 +87,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testNumberFormatException() throws Exception {
         final String[] expected = {
             "8: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 52,
-                    "mismatched input '}' expecting IDENTIFIER", "MEMBER_REFERENCE"),
+                    "no viable alternative at input '}'", "REFERENCE_SUFFIX"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNumberFormatException.java"), expected);
@@ -419,12 +419,12 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             "40: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     30, "token recognition error at: '-'", " "),
             "72: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
-                    32, "mismatched input 'description' expecting <EOF>", "JAVADOC"),
+                    31, "mismatched input '-' expecting <EOF>", "JAVADOC"),
             "88: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
-                    34, "mismatched input 'description' "
+                    33, "mismatched input '-' "
                              + "expecting JAVADOC_INLINE_TAG_END", "INLINE_TAG"),
             "95: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
-                    39, "mismatched input 'description'"
+                    38, "mismatched input '-'"
                             + " expecting JAVADOC_INLINE_TAG_END", "INLINE_TAG"),
         };
         verifyWithInlineConfigParser(
