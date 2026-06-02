@@ -71,8 +71,9 @@ Make a comment in PR:
 GitHub, generate report for {{project_name}} with {{path_to_config}}
 ```
 
-Workflow will use the specified config from `src/main/resources` directory
-and the `config/list-of-projects.yml` to generate the diff report for the specified project.
+Workflow will use the specified config from [src/main/resources][local-config-files] directory
+and the [list-of-projects][list-of-projects] to generate the diff report for the
+specified project.
 Example: `GitHub, generate report for checkstyle with openjdk_checks.xml`.
 
 ### Configure saved-replies to ease typing trigger comment
@@ -86,6 +87,10 @@ Usage:
 
 [test-configs-list]:
 https://github.com/checkstyle/test-configs/blob/main/extractor/src/main/resources/list-of-projects.yml
+[list-of-projects]:
+https://github.com/checkstyle/checkstyle/blob/master/config/list-of-projects.yml
+[local-config-files]:
+https://github.com/checkstyle/checkstyle/tree/master/src/main/resources
 [test-configs-root]:
 https://github.com/checkstyle/test-configs
 [checkstyle-tester-docs]:

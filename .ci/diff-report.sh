@@ -131,8 +131,8 @@ parse-pr-description-text)
   ./.ci/append-to-github-output.sh "report_label" "$REPORT_LABEL"
   ;;
 
-# Processes local-repo based config files.
 process-local-repo-config-files)
+  # Some properties and modules are explicitly added in the config files to prevent parser failures
   mkdir -p .ci-temp
   # Extract master branch config for the base diff_config
   git -C .ci-temp/checkstyle show upstream/master:"$CONFIG_LINK" > .ci-temp/diff_config.xml
@@ -151,9 +151,13 @@ process-local-repo-config-files)
   TW_MATCH='<module name="TreeWalker">'
   TW_PROP1='<property name="skipFileOnJavaParseException" value="true"\/>'
   TW_PROP2='<property name="javaParseExceptionSeverity" value="ignore"\/>'
-  sed -i "s/$TW_MATCH/$TW_MATCH\n    $TW_PROP1\n    $TW_PROP2/g" \
+  TW_MODULE1='<module name="SuppressionXpathSingleFilter">\n'
+  TW_MODULE1+='      <property name="message" '
+  TW_MODULE1+='value="Javadoc comment at column \\d+ has parse error"\/>\n'
+  TW_MODULE1+='    <\/module>'
+  sed -i "s/$TW_MATCH/$TW_MATCH\n    $TW_PROP1\n    $TW_PROP2\n    $TW_MODULE1/g" \
     .ci-temp/diff_config.xml
-  sed -i "s/$TW_MATCH/$TW_MATCH\n    $TW_PROP1\n    $TW_PROP2/g" \
+  sed -i "s/$TW_MATCH/$TW_MATCH\n    $TW_PROP1\n    $TW_PROP2\n    $TW_MODULE1/g" \
     .ci-temp/patch_config.xml
 
   yq ".projects = [.projects[] | select(.name == \"$PROJECT_NAME\")]" \
