@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.ArrayDeque;
-import java.util.Collections;
 import java.util.Deque;
 import java.util.HashSet;
 import java.util.Set;
@@ -101,7 +100,7 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
     public void beginTree(DetailAST rootAST) {
         // clear data
         parameterNamesStack.clear();
-        parameterNames = Collections.emptySet();
+        parameterNames = Set.of();
     }
 
     @Override
