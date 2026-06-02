@@ -471,10 +471,12 @@ public final class CommonUtil {
                 // $n expands comment match like in Pattern.subst().
                 String replacement = matcher.group(i);
                 if (replacement == null) {
-                    throw new IllegalArgumentException("Group " + i + " in regular expression '"
-                        + regexp.pattern() + "' is optional and didn't match.");
+                    throw new IllegalArgumentException("Group " + i
+                            + " in regular expression '" + regexp.pattern()
+                            + "' is optional and didn't match.");
                 }
-                result = result.replaceAll("\\$" + i, Matcher.quoteReplacement(replacement));
+                result = result.replaceAll("\\$" + i,
+                        Matcher.quoteReplacement(replacement));
             }
         }
         return result;
