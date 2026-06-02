@@ -213,8 +213,8 @@ customInlineTag
 
 // Components
 reference
-    : HASH memberReference
-    | (module=qualifiedName SLASH)? type=typeName (HASH memberReference)?
+    : HASH referenceSuffix
+    | (module=qualifiedName SLASH)? type=typeName (HASH referenceSuffix)?
     ;
 
 typeName
@@ -236,8 +236,17 @@ typeArgument
     | QUESTION SUPER typeName
     ;
 
+referenceSuffix
+    : HASH fragmentReference
+    | memberReference
+    ;
+
 memberReference
     : IDENTIFIER (LPAREN parameterTypeList? RPAREN)?
+    ;
+
+fragmentReference
+    : IDENTIFIER (HYPHEN IDENTIFIER)*
     ;
 
 parameterTypeList
