@@ -84,7 +84,8 @@
           expression being too greedy, avoid overusing matching all text or allow it to be
           optional, like <code>.*?</code>. Changing the example expression to not be greedy
           will allow multiple violations in the example to be found in the same file.
-        </p><hr class="example-separator"/>
+        </p>
+        <hr class="example-separator"/>
         <p id="Example4-config">
         To configure the check to match a maximum of three test strings:
         </p>
