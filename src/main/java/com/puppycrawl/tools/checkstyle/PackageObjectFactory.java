@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -141,7 +140,7 @@ public class PackageObjectFactory implements ModuleFactory {
             throw new IllegalArgumentException(NULL_PACKAGE_MESSAGE);
         }
 
-        packages = Collections.singleton(packageName);
+        packages = Set.of(packageName);
         this.moduleClassLoader = moduleClassLoader;
     }
 
@@ -312,7 +311,7 @@ public class PackageObjectFactory implements ModuleFactory {
                         Collectors.toCollection(HashSet::new))));
         }
         catch (IOException ignore) {
-            returnValue = Collections.emptyMap();
+            returnValue = Map.of();
         }
         return returnValue;
     }

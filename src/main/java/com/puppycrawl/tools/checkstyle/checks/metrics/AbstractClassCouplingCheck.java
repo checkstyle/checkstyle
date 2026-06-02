@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.List;
@@ -82,7 +81,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     );
 
     /** Package names to ignore. */
-    private static final Set<String> DEFAULT_EXCLUDED_PACKAGES = Collections.emptySet();
+    private static final Set<String> DEFAULT_EXCLUDED_PACKAGES = Set.of();
 
     /** Pattern to match brackets in a full type name. */
     private static final Pattern BRACKET_PATTERN = Pattern.compile("\\[[^]]*]");
