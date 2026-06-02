@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -426,8 +427,30 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     @Override
+    public JavadocNodeImpl visitReferenceSuffix(JavadocCommentsParser.ReferenceSuffixContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
     public JavadocNodeImpl visitMemberReference(JavadocCommentsParser.MemberReferenceContext ctx) {
         return buildImaginaryNode(JavadocCommentsTokenTypes.MEMBER_REFERENCE, ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitFragmentReference(
+            JavadocCommentsParser.FragmentReferenceContext ctx) {
+        final Token firstToken = (Token) ctx.IDENTIFIER(0).getPayload();
+        final JavadocNodeImpl fragmentIdentifierLeaf = create(firstToken);
+
+        final String fullFragmentText = ctx.children.stream()
+                .map(ParseTree::getText)
+                .collect(Collectors.joining());
+        fragmentIdentifierLeaf.setText(fullFragmentText);
+
+        final JavadocNodeImpl fragmentReferenceNode =
+                createImaginary(JavadocCommentsTokenTypes.FRAGMENT_REFERENCE);
+        fragmentReferenceNode.addChild(fragmentIdentifierLeaf);
+        return fragmentReferenceNode;
     }
 
     @Override
