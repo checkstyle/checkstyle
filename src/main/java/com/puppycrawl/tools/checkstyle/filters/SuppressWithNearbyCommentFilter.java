@@ -27,6 +27,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
@@ -69,6 +72,9 @@ import com.puppycrawl.tools.checkstyle.utils.WeakReferenceHolder;
 public class SuppressWithNearbyCommentFilter
     extends AbstractAutomaticBean
     implements TreeWalkerFilter {
+
+    /** Logger for SuppressWithNearbyCommentFilter. */
+    private final Log log = LogFactory.getLog(SuppressWithNearbyCommentFilter.class);
 
     /** Format to turn checkstyle reporting off. */
     private static final String DEFAULT_COMMENT_FORMAT =
@@ -286,8 +292,14 @@ public class SuppressWithNearbyCommentFilter
      * @param line the line number of the tag.
      */
     private void addTag(String text, int line) {
-        final Tag tag = new Tag(text, line, this);
-        tags.add(tag);
+        try {
+            final Tag tag = new Tag(text, line, this);
+            tags.add(tag);
+        }
+        catch (IllegalArgumentException ex) {
+            log.warn("SuppressWithNearbyCommentFilter is unable to parse expanded text. "
+                    + ex.getMessage());
+        }
     }
 
     /**

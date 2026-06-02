@@ -28,6 +28,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
@@ -98,6 +101,9 @@ public class SuppressionCommentFilter
         OFF,
 
     }
+
+    /** Logger for SuppressionCommentFilter. */
+    private final Log log = LogFactory.getLog(SuppressionCommentFilter.class);
 
     /** Turns checkstyle reporting off. */
     private static final String DEFAULT_OFF_FORMAT = "CHECKSTYLE:OFF";
@@ -328,8 +334,14 @@ public class SuppressionCommentFilter
      * @param reportingOn {@code true} if the tag turns checkstyle reporting on.
      */
     private void addTag(String text, int line, int column, TagType reportingOn) {
-        final Tag tag = new Tag(line, column, text, reportingOn, this);
-        tags.add(tag);
+        try {
+            final Tag tag = new Tag(line, column, text, reportingOn, this);
+            tags.add(tag);
+        }
+        catch (IllegalArgumentException ex) {
+            log.warn("SuppressionCommentFilter is unable to parse expanded text. "
+                    + ex.getMessage());
+        }
     }
 
     /**

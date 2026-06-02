@@ -31,6 +31,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
@@ -81,6 +84,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 8.6
  */
 public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean implements Filter {
+
+    /** Logger for SuppressWithPlainTextCommentFilter. */
+    private final Log log = LogFactory.getLog(SuppressWithPlainTextCommentFilter.class);
 
     /** Comment format which turns checkstyle reporting off. */
     private static final String DEFAULT_OFF_FORMAT = "// CHECKSTYLE:OFF";
@@ -241,12 +247,24 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
 
         Suppression suppression = null;
         if (onCommentMatcher.find()) {
-            suppression = new Suppression(onCommentMatcher.group(0),
-                lineNo + 1, SuppressionType.ON, this);
+            try {
+                suppression = new Suppression(onCommentMatcher.group(0),
+                    lineNo + 1, SuppressionType.ON, this);
+            }
+            catch (IllegalArgumentException ex) {
+                log.warn("SuppressWithPlainTextCommentFilter is unable to parse expanded text. "
+                        + ex.getMessage());
+            }
         }
         if (offCommentMatcher.find()) {
-            suppression = new Suppression(offCommentMatcher.group(0),
-                lineNo + 1, SuppressionType.OFF, this);
+            try {
+                suppression = new Suppression(offCommentMatcher.group(0),
+                    lineNo + 1, SuppressionType.OFF, this);
+            }
+            catch (IllegalArgumentException ex) {
+                log.warn("SuppressWithPlainTextCommentFilter is unable to parse expanded text. "
+                        + ex.getMessage());
+            }
         }
 
         return Optional.ofNullable(suppression);

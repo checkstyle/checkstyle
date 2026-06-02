@@ -210,7 +210,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testInvalidCheckFormat() {
+    public void testInvalidCheckFormat() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
         filterCfg.addProperty("checkFormat", "e[l");
@@ -220,32 +220,22 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         final DefaultConfiguration checkCfg = createModuleConfig(FileTabCharacterCheck.class);
         checkCfg.addProperty("eachLine", "true");
 
-        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
-
         final String[] violationMessages = {
-            "5:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_FILE_CONTAINS_TAB),
-            "8:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "10:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "20:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "24:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "27:30: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "30:13: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
-        final CheckstyleException exc = getExpectedThrowable(
-                CheckstyleException.class,
-                () -> {
-                    verifySuppressed(
-                        "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
-                        removeSuppressed(violationMessages, suppressed),
-                        filterCfg, checkCfg
-                    );
-                });
-        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-        assertWithMessage("Invalid exception message")
-            .that(cause)
-            .hasMessageThat()
-            .isEqualTo("unable to parse expanded comment e[l");
+        verifySuppressed(
+            "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
+            violationMessages,
+            filterCfg, checkCfg
+        );
     }
 
     @Test
-    public void testInvalidIdFormat() {
+    public void testInvalidIdFormat() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
         filterCfg.addProperty("idFormat", "e[l");
@@ -255,23 +245,21 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         final DefaultConfiguration checkCfg = createModuleConfig(FileTabCharacterCheck.class);
         checkCfg.addProperty("eachLine", "true");
 
-        final CheckstyleException exc = getExpectedThrowable(
-                CheckstyleException.class,
-                () -> {
-                    verifySuppressed(
-                        "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
-                        CommonUtil.EMPTY_STRING_ARRAY, filterCfg, checkCfg
-                    );
-                });
-        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-        assertWithMessage("Invalid exception message")
-            .that(cause)
-            .hasMessageThat()
-            .isEqualTo("unable to parse expanded comment e[l");
+        final String[] violationMessages = {
+            "20:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "24:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "27:30: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "30:13: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+        };
+
+        verifySuppressed(
+            "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
+            violationMessages, filterCfg, checkCfg
+        );
     }
 
     @Test
-    public void testInvalidMessageFormat() {
+    public void testInvalidMessageFormat() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
         filterCfg.addProperty("messageFormat", "e[l");
@@ -281,32 +269,22 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         final DefaultConfiguration checkCfg = createModuleConfig(FileTabCharacterCheck.class);
         checkCfg.addProperty("eachLine", "true");
 
-        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
-
         final String[] violationMessages = {
-            "5:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_FILE_CONTAINS_TAB),
-            "8:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "10:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "20:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "24:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "27:30: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "30:13: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
-        final CheckstyleException exc = getExpectedThrowable(
-                CheckstyleException.class,
-                () -> {
-                    verifySuppressed(
-                        "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
-                        removeSuppressed(violationMessages, suppressed),
-                        filterCfg, checkCfg
-                    );
-                });
-        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-        assertWithMessage("Invalid exception message")
-            .that(cause)
-            .hasMessageThat()
-            .isEqualTo("unable to parse expanded comment e[l");
+        verifySuppressed(
+            "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
+            violationMessages,
+            filterCfg, checkCfg
+        );
     }
 
     @Test
-    public void testInvalidMessageFormatInSqlFile() {
+    public void testInvalidMessageFormatInSqlFile() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
         filterCfg.addProperty("onCommentFormat", "CSON (\\w+)");
@@ -315,27 +293,16 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         final DefaultConfiguration checkCfg = createModuleConfig(RegexpSinglelineCheck.class);
         checkCfg.addProperty("format", "^.*COUNT\\(\\*\\).*$");
 
-        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
-
         final String[] violationMessages = {
             "2: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                     "^.*COUNT\\(\\*\\).*$"),
         };
 
-        final CheckstyleException exc = getExpectedThrowable(
-                CheckstyleException.class,
-                () -> {
-                    verifySuppressed(
-                        "InputSuppressWithPlainTextCommentFilterWithCustomOnComment.sql",
-                        removeSuppressed(violationMessages, suppressed),
-                        filterCfg, checkCfg
-                    );
-                });
-        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-        assertWithMessage("Invalid exception message")
-            .that(cause)
-            .hasMessageThat()
-            .isEqualTo("unable to parse expanded comment e[l");
+        verifySuppressed(
+            "InputSuppressWithPlainTextCommentFilterWithCustomOnComment.sql",
+            violationMessages,
+            filterCfg, checkCfg
+        );
     }
 
     @Test

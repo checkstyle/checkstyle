@@ -45,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport {
 
@@ -333,88 +334,55 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void testInvalidCheckPattern() {
+    public void testInvalidCheckPattern() throws Exception {
         final String[] violationAndSuppressedMessages = {
             "18: " + getLineLengthCheckMessage(80, 93),
         };
 
-        final CheckstyleException exc = getExpectedThrowable(
-                CheckstyleException.class,
-                () -> {
-                    verifyFilterWithInlineConfigParser(
-                        getPath("InputSuppressWithNearbyTextFilterInvalidCheckPattern.txt"),
-                        violationAndSuppressedMessages
-                    );
-                });
-        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-        assertWithMessage("Invalid exception message")
-            .that(cause)
-            .hasMessageThat()
-            .isEqualTo("unable to parse expanded comment a![b");
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithNearbyTextFilterInvalidCheckPattern.txt"),
+            violationAndSuppressedMessages,
+            violationAndSuppressedMessages
+        );
     }
 
     @Test
-    public void testInvalidIdPattern() {
+    public void testInvalidIdPattern() throws Exception {
         final String[] violationAndSuppressedMessages = {
             "18: " + getLineLengthCheckMessage(80, 93),
         };
 
-        final CheckstyleException exc = getExpectedThrowable(
-                CheckstyleException.class,
-                () -> {
-                    verifyFilterWithInlineConfigParser(
-                        getPath("InputSuppressWithNearbyTextFilterInvalidIdPattern.txt"),
-                        violationAndSuppressedMessages
-                    );
-                });
-        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-        assertWithMessage("Invalid exception message")
-            .that(cause)
-            .hasMessageThat()
-            .isEqualTo("unable to parse expanded comment a![b");
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithNearbyTextFilterInvalidIdPattern.txt"),
+            violationAndSuppressedMessages,
+            violationAndSuppressedMessages
+        );
     }
 
     @Test
-    public void testInvalidMessagePattern() {
+    public void testInvalidMessagePattern() throws Exception {
         final String[] violationAndSuppressedMessages = {
             "18: " + getLineLengthCheckMessage(80, 93),
         };
 
-        final CheckstyleException exc = getExpectedThrowable(
-                CheckstyleException.class,
-                () -> {
-                    verifyFilterWithInlineConfigParser(
-                        getPath("InputSuppressWithNearbyTextFilterInvalidMessagePattern.txt"),
-                        violationAndSuppressedMessages
-                    );
-                });
-        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-        assertWithMessage("Invalid exception message")
-            .that(cause)
-            .hasMessageThat()
-            .isEqualTo("unable to parse expanded comment a![b");
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithNearbyTextFilterInvalidMessagePattern.txt"),
+            violationAndSuppressedMessages,
+            violationAndSuppressedMessages
+        );
     }
 
     @Test
-    public void testInvalidLineRange() {
+    public void testInvalidLineRange() throws Exception {
         final String[] violationAndSuppressedMessages = {
             "18: " + getLineLengthCheckMessage(80, 93),
         };
 
-        final CheckstyleException exc = getExpectedThrowable(
-                CheckstyleException.class,
-                () -> {
-                    verifyFilterWithInlineConfigParser(
-                        getPath("InputSuppressWithNearbyTextFilterInvalidLineRange.txt"),
-                        violationAndSuppressedMessages
-                    );
-                });
-        assertWithMessage("Invalid exception message")
-            .that(exc)
-            .hasCauseThat()
-            .hasMessageThat()
-            .isEqualTo("unable to parse line range"
-                    + " from 'SUPPRESS CHECKSTYLE LineLengthCheck' using a!b");
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithNearbyTextFilterInvalidLineRange.txt"),
+            violationAndSuppressedMessages,
+            violationAndSuppressedMessages
+        );
     }
 
     /**
