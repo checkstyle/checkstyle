@@ -31,6 +31,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
@@ -56,6 +59,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 10.10.0
  */
 public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implements Filter {
+
+    /** Logger for SuppressWithNearbyTextFilter. */
+    private final Log log = LogFactory.getLog(SuppressWithNearbyTextFilter.class);
 
     /** Default nearby text pattern to turn check reporting off. */
     private static final String DEFAULT_NEARBY_TEXT_PATTERN = "SUPPRESS CHECKSTYLE (\\w+)";
@@ -238,7 +244,13 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
         Suppression suppression = null;
         if (nearbyTextMatcher.find()) {
             final String text = nearbyTextMatcher.group(0);
-            suppression = new Suppression(text, lineNo + 1, this);
+            try {
+                suppression = new Suppression(text, lineNo + 1, this);
+            }
+            catch (IllegalArgumentException ex) {
+                log.warn("SuppressWithNearbyTextFilter is unable to parse expanded text. "
+                        + ex.getMessage());
+            }
         }
 
         return suppression;

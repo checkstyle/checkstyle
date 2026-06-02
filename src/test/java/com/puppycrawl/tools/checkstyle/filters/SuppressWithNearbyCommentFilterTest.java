@@ -378,7 +378,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testInvalidInfluenceFormat() {
+    public void testInvalidInfluenceFormat() throws Exception {
         final DefaultConfiguration treeWalkerConfig =
             createModuleConfig(TreeWalker.class);
         final DefaultConfiguration filterConfig =
@@ -389,18 +389,14 @@ public class SuppressWithNearbyCommentFilterTest
         treeWalkerConfig.addChild(filterConfig);
         treeWalkerConfig.addChild(checkConfig);
 
-        final CheckstyleException exc = getExpectedThrowable(
-                CheckstyleException.class,
-                () -> {
-                    execute(treeWalkerConfig, getPath(
-                            "InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"));
-                });
-        assertWithMessage("Invalid exception message")
-            .that(exc)
-            .hasCauseThat()
-            .hasMessageThat()
-            .isEqualTo("unable to parse influence"
-                    + " from 'SUPPRESS CHECKSTYLE MemberNameCheck' using a");
+        final String[] expected = {
+            "5:16: "
+                + getCheckMessage(MemberNameCheck.class,
+                    MSG_INVALID_PATTERN, "NUM1", "^[a-z][a-zA-Z0-9]*$"),
+        };
+        verify(treeWalkerConfig,
+            getPath("InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"),
+            expected);
     }
 
     @Test
@@ -437,7 +433,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testInvalidCheckFormat() {
+    public void testInvalidCheckFormat() throws Exception {
         final DefaultConfiguration treeWalkerConfig =
             createModuleConfig(TreeWalker.class);
         final DefaultConfiguration filterConfig =
@@ -448,17 +444,14 @@ public class SuppressWithNearbyCommentFilterTest
         treeWalkerConfig.addChild(filterConfig);
         treeWalkerConfig.addChild(checkConfig);
 
-        final CheckstyleException exc = getExpectedThrowable(
-                CheckstyleException.class,
-                () -> {
-                    execute(treeWalkerConfig, getPath(
-                            "InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"));
-                });
-        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-        assertWithMessage("Invalid exception message")
-            .that(cause)
-            .hasMessageThat()
-            .isEqualTo("unable to parse expanded comment a[l");
+        final String[] expected = {
+            "5:16: "
+                + getCheckMessage(MemberNameCheck.class,
+                    MSG_INVALID_PATTERN, "NUM1", "^[a-z][a-zA-Z0-9]*$"),
+        };
+        verify(treeWalkerConfig,
+            getPath("InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"),
+            expected);
     }
 
     @Test

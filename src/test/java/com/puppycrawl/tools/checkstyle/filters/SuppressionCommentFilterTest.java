@@ -365,7 +365,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    public void testInvalidCheckFormat() {
+    public void testInvalidCheckFormat() throws Exception {
         final DefaultConfiguration treeWalkerConfig =
             createModuleConfig(TreeWalker.class);
         final DefaultConfiguration filterConfig =
@@ -376,21 +376,22 @@ public class SuppressionCommentFilterTest
         treeWalkerConfig.addChild(filterConfig);
         treeWalkerConfig.addChild(checkConfig);
 
-        final CheckstyleException exc = getExpectedThrowable(
-                CheckstyleException.class,
-                () -> {
-                    execute(treeWalkerConfig,
-                            getPath("InputSuppressionCommentFilter10.java"));
-                });
-        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-        assertWithMessage("Invalid exception message")
-            .that(cause)
-            .hasMessageThat()
-            .isEqualTo("unable to parse expanded comment e[l");
+        final String[] expected = {
+            "4:22: "
+                + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "logger", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+            "6:22: "
+                + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "logMYSELF", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+        };
+
+        verify(treeWalkerConfig,
+               getPath("InputSuppressionCommentFilter10.java"),
+               expected);
     }
 
     @Test
-    public void testInvalidMessageFormat() {
+    public void testInvalidMessageFormat() throws Exception {
         final DefaultConfiguration treeWalkerConfig =
             createModuleConfig(TreeWalker.class);
         final DefaultConfiguration filterConfig =
@@ -401,17 +402,15 @@ public class SuppressionCommentFilterTest
         treeWalkerConfig.addChild(filterConfig);
         treeWalkerConfig.addChild(checkConfig);
 
-        final CheckstyleException exc = getExpectedThrowable(
-                CheckstyleException.class,
-                () -> {
-                    execute(treeWalkerConfig,
-                            getPath("InputSuppressionCommentFilter11.java"));
-                });
-        final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
-        assertWithMessage("Invalid exception message")
-            .that(cause)
-            .hasMessageThat()
-            .isEqualTo("unable to parse expanded comment e[l");
+        final String[] expected = {
+            "5:22: "
+                + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "logMYSELF", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+        };
+
+        verify(treeWalkerConfig,
+               getPath("InputSuppressionCommentFilter11.java"),
+               expected);
     }
 
     @Test
