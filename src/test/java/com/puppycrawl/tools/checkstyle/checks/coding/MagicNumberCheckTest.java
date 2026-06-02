@@ -853,4 +853,61 @@ public class MagicNumberCheckTest
                 getPath("InputMagicNumberWithOperatorsWithIgnoreFieldsFalse.java"),
                 expected);
     }
+
+    @Test
+    public void testMagicNumberInCompactSourceFilesWithIgnoreFieldDeclaration1() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberCompact1.java"), expected);
+    }
+
+    @Test
+    public void testMagicNumberInCompactSourceFilesWithIgnoreFieldDeclaration2() throws Exception {
+        final String[] expected = {
+            "19:28: " + getCheckMessage(MSG_KEY, "123"),
+            "23:20: " + getCheckMessage(MSG_KEY, "42"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberCompact2.java"), expected);
+    }
+
+    @Test
+    public void testMagicNumberInCompactSourceFilesWithIgnoreFieldDeclaration3() throws Exception {
+        final String[] expected = {
+            "20:24: " + getCheckMessage(MSG_KEY, "456"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberCompact3.java"), expected);
+    }
+
+    @Test
+    public void testMagicNumberInCompactSourceFilesWithIgnoreFieldDeclaration4() throws Exception {
+        final String[] expected = {
+            "22:17: " + getCheckMessage(MSG_KEY, "42"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberCompact4.java"), expected);
+    }
+
+    @Test
+    public void testMagicNumberInCompactSourceFilesWithIgnoreFieldDeclaration5() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberCompact5.java"), expected);
+    }
+
+    @Test
+    public void testMagicNumberInCompactSourceFilesWithIgnoreFieldsFalse() throws Exception {
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_KEY, "42"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberCompactViolation.java"), expected);
+    }
 }
