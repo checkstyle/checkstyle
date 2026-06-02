@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -342,6 +343,12 @@ public class GeneratedJavadocCommentsTokenTypesTest {
         assertWithMessage(MSG)
             .that(JavadocCommentsLexer.TAG_ATTR_NAME)
             .isEqualTo(114);
+        assertWithMessage(MSG)
+                .that(JavadocCommentsTokenTypes.FRAGMENT_REFERENCE)
+                .isEqualTo(117);
+        assertWithMessage(MSG)
+                .that(JavadocCommentsTokenTypes.HYPHEN)
+                .isEqualTo(118);
 
         final Set<String> modeNames = Set.of(JavadocCommentsLexer.modeNames);
         final Set<String> channelNames = Set.of(JavadocCommentsLexer.channelNames);
@@ -358,7 +365,7 @@ public class GeneratedJavadocCommentsTokenTypesTest {
                         + " 'GeneratedJavadocTokenTypesTest' and verified"
                         + " that their old numbering didn't change")
             .that(tokenCount)
-            .isEqualTo(88);
+            .isEqualTo(90);
     }
 
     /**
