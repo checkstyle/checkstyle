@@ -1549,6 +1549,42 @@ public final class JavadocCommentsTokenTypes {
     public static final int MEMBER_REFERENCE = JavadocCommentsLexer.MEMBER_REFERENCE;
 
     /**
+     * Fragment reference in a Javadoc {@code ##fragmentId} reference.
+     *
+     * <p>This node represents a reference to a documentation section (HTML anchor)
+     * using the double-hash {@code ##} syntax introduced in JDK 23. It is the
+     * identifier that follows {@code ##} and names the target section.</p>
+     *
+     * <p>Fragment identifiers may contain hyphens (e.g. {@code api-note},
+     * {@code compact-strings}).</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * {@link java.lang##wrapperClass wrapper class}}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     `--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     *         |--JAVADOC_INLINE_TAG_START -> {\@
+     *         |--TAG_NAME -> link
+     *         |--TEXT ->
+     *         |--REFERENCE -> REFERENCE
+     *         |   |--IDENTIFIER -> java.lang
+     *         |   |--HASH -> #
+     *         |   |--HASH -> #
+     *         |   `--FRAGMENT_REFERENCE -> FRAGMENT_REFERENCE
+     *         |       `--IDENTIFIER -> wrapperClass
+     *         |--DESCRIPTION -> DESCRIPTION
+     *         |   `--TEXT ->  wrapper class
+     *         `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #REFERENCE
+     * @see #HASH
+     */
+    public static final int FRAGMENT_REFERENCE = JavadocCommentsLexer.FRAGMENT_REFERENCE;
+
+    /**
      * {@code PARAMETER_TYPE_LIST} represents the list of parameter types inside a
      * member reference within a Javadoc inline {@code @link} tag.
      *
