@@ -335,6 +335,24 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testFillTemplateWithStringsByRegexpOptionalGroup() {
+        final String result = CommonUtil.fillTemplateWithStringsByRegexp("before $0 after $1",
+                "a", Pattern.compile("(\\w)?a"));
+        assertWithMessage("Invalid result")
+            .that(result)
+            .isEqualTo("before a after ");
+    }
+
+    @Test
+    public void testFillTemplateWithStringsByRegexpSpecialCharacters() {
+        final String result = CommonUtil.fillTemplateWithStringsByRegexp("before $0 after $1",
+                "$a\\", Pattern.compile("(\\$)?a\\\\"));
+        assertWithMessage("Invalid result")
+            .that(result)
+            .isEqualTo("before $a\\ after $");
+    }
+
+    @Test
     public void testGetFileNameWithoutExtension() {
         assertWithMessage("invalid result")
             .that(CommonUtil.getFileNameWithoutExtension("filename"))
