@@ -96,14 +96,6 @@
   <suppress checks="PackageDeclarationCheck"
     files="redundantmodifier[\\/]InputRedundantModifierCompactSourceFile\.java"/>
 
-  <!-- until https://github.com/checkstyle/checkstyle/issues/19909 -->
-  <suppress checks="OuterTypeFilename"
-    files="java25[\\/]InputCompactSourceFile\.java"/>
-  <suppress checks="OuterTypeFilename"
-    files="java25[\\/]InputCompactSourceFileWithModifiers\.java"/>
-  <suppress checks="OuterTypeFilename"
-    files="redundantmodifier[\\/]InputRedundantModifierCompactSourceFile\.java"/>
-
   <!-- intentional problem for testing -->
   <suppress checks="RegexpSingleline"
     files="javadoctype[\\/]InputJavadocTypeWithBlockComment\.java"/>
