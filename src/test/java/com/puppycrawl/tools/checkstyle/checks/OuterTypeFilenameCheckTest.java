@@ -171,6 +171,20 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testEmptyFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputOuterTypeFilenameEmpty.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputOuterTypeFilenameCompactSourceFile.java"), expected);
+    }
+
+    @Test
     public void testStateIsClearedOnBeginTree2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
         final String file1 = getPath(
