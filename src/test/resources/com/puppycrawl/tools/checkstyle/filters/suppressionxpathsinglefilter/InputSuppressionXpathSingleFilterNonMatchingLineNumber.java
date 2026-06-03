@@ -10,6 +10,7 @@ com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck
 scope = package
 excludeScope = (default)(null)
 skipAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = CLASS_DEF
 
 */

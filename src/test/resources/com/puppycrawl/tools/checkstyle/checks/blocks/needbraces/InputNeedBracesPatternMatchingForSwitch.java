@@ -7,7 +7,7 @@ tokens = LITERAL_CASE, LITERAL_DEFAULT, LAMBDA
 
 */
 
-// Java21
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
 public class InputNeedBracesPatternMatchingForSwitch {

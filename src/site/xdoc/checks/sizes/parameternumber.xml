@@ -148,10 +148,11 @@ class ExternalService2 {
 
 }
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           To configure the check to ignore number of parameters for methods with
           <code>@Override</code> or <code>@java.lang.Override annotation</code>.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example3-config">
           Rationale: developer may need to override method with many parameters from
           3-rd party library.
@@ -269,7 +270,7 @@ class ExternalService4 {
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="ParameterNumber_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck</p>
         <p>
           Use this fully qualified class name in configuration when an exact class reference is

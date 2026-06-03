@@ -14,12 +14,14 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
+// violation 6 lines below 'Unused @param tag for \'BAD\'.'
+// violation 6 lines below 'Unused @param tag for \'<BAD>\'.'
+// violation 6 lines below 'Unused Javadoc tag'
 /**
  * InputJavadocTypeUnusedParamInJavadocForClass.
  *
- * @param BAD This is bad.   // violation 'Unused @param tag for 'BAD'.'
- * @param <BAD> This doesn't exist.   // violation 'Unused @param tag for '<BAD>'.'
- * // violation below 'Unused Javadoc tag'
+ * @param BAD This is bad.
+ * @param <BAD> This doesn't exist.
  * @param
  */
 public class InputJavadocTypeUnusedParamInJavadocForClass {

@@ -13,7 +13,7 @@ public class Example2 {
   public String testMethod1() {
     // violation below 'Opening quotes (""") of text-block must be on the new line'
     final String simpleScript1Violate = """
-        contents of the text block
+                                         contents of the text block
       """; // violation 'Text-block quotes are not vertically aligned'
     final String simpleScript1Correct =
         """
@@ -23,7 +23,7 @@ public class Example2 {
     final String simpleScript2Violate = simpleScript1Violate +
         // violation below 'quotes (""") of text-block must be on the new line'
         simpleScript1Violate + """
-        this is simple script
+                                this is simple script
         """; // violation 'Text-block quotes are not vertically aligned'
     final String simpleScript2Correct = simpleScript1Violate +
         simpleScript1Violate +
@@ -34,7 +34,7 @@ public class Example2 {
     getData(
         // violation below 'quotes (""") of text-block must be on the new line'
         1, """
-           this is a multi-line message
+            this is a multi-line message
            """);
     getData(
         1,
@@ -44,7 +44,7 @@ public class Example2 {
 
     // violation below 'Opening quotes (""") of text-block must be on the new line'
     return """
-        this is sample text
+            this is sample text
         """; // violation 'Text-block quotes are not vertically aligned'
   }
   public void getData(String text, int num) {}

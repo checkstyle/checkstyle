@@ -194,10 +194,15 @@
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+BeforeExecutionExclusionFileFilter">
             OpenJDK Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+BeforeExecutionExclusionFileFilter">
+            Documentation Comments Style</a>
+          </li>
         </ul>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name"
+                   id="BeforeExecutionExclusionFileFilter_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter </p>
         <p>
             This is the fully qualified class name of the module.

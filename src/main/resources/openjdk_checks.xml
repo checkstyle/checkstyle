@@ -64,15 +64,51 @@
 
     <module name="OneStatementPerLine"/>
     <module name="OuterTypeFilename"/>
+    <module name="IllegalTokenText">
+      <property name="tokens" value="STRING_LITERAL, CHAR_LITERAL, TEXT_BLOCK_CONTENT"/>
+      <property name="format"
+          value="\\u00(08|09|0(a|A)|0(c|C)|0(d|D)|20|22|27|5(C|c))|\\(0(10|11|12|14|15|40|42|47)|134)"/>
+      <property name="message"
+                value="Consider using special escape sequence instead of octal value or Unicode escaped value."/>
+    </module>
+    <module name="AvoidEscapedUnicodeCharacters"/>
 
     <!-- §3.12: Expression lambda body length check based on OpenJDK style guide -->
     <module name="LambdaBodyLength"/>
+    <module name="NoLineWrap">
+      <property name="tokens" value="PACKAGE_DEF"/>
+    </module>
+
+    <module name="UpperEll"/>
+    <module name="HexLiteralCase"/>
+    <module name="NumericalPrefixesInfixesSuffixesCharacterCase"/>
+
+    <module name="MultipleVariableDeclarations"/>
+    <module name="ArrayTypeStyle"/>
+    <module name="VariableDeclarationUsageDistance"/>
+
+    <module name="MethodName">
+      <property name="format" value="^[a-z]{2,}[a-zA-Z0-9]*$"/>
+    </module>
+
+    <!-- §3.3: Import statements should be sorted -->
+    <module name="ImportOrder">
+      <property name="groups" value="java,javax"/>
+      <property name="ordered" value="true"/>
+      <property name="separated" value="true"/>
+      <property name="option" value="bottom"/>
+      <property name="sortStaticImportsAlphabetically" value="true"/>
+    </module>
 
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
       <property name="file" value="${org.checkstyle.openjdk.suppressionxpathfilter.config}"
                 default="checkstyle-xpath-suppressions.xml" />
       <property name="optional" value="true"/>
+    </module>
+
+    <module name="PackageName">
+      <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
     </module>
 
   </module>

@@ -139,9 +139,11 @@ public class ImportOrderCheck
 
     /**
      * Control whether static import groups should be separated by, at least, one blank
-     * line or comment and aren't separated internally. This property has effect only when the
-     * property {@code option} is set to {@code top} or {@code bottom} and when property
-     * {@code staticGroups} is enabled.
+     * line or comment and aren't separated internally. When the property {@code option}
+     * is set to {@code top} or {@code bottom}, this property requires {@code staticGroups}
+     * to be enabled. When the property {@code option} is set to {@code under} or
+     * {@code above}, this property allows blank lines between static and non-static
+     * imports within the same group.
      */
     private boolean separatedStaticGroups;
 
@@ -279,9 +281,11 @@ public class ImportOrderCheck
     /**
      * Setter to control whether static import groups should be separated by, at least,
      * one blank line or comment and aren't separated internally.
-     * This property has effect only when the property
-     * {@code option} is set to {@code top} or {@code bottom} and when property {@code staticGroups}
-     * is enabled.
+     * When the property {@code option} is set to {@code top} or {@code bottom},
+     * this property requires {@code staticGroups} to be enabled.
+     * When the property {@code option} is set to {@code under} or {@code above},
+     * this property allows blank lines between static and non-static imports
+     * within the same group.
      *
      * @param separatedStaticGroups
      *            whether groups should be separated by one blank line or comment.
@@ -410,6 +414,12 @@ public class ImportOrderCheck
         }
         else if (groupIdx == lastGroup) {
             doVisitTokenInSameGroup(isStatic, previous, name, ast);
+
+            if (separatedStaticGroups
+                    && isStatic != lastImportStatic
+                    && !isSeparatorBeforeImport(ast.getLineNo())) {
+                log(ast, MSG_SEPARATION, name);
+            }
         }
         else {
             handleLowerGroup(previous, ast, name);
@@ -489,7 +499,15 @@ public class ImportOrderCheck
      */
     private boolean isSeparatorInGroup(int groupIdx, boolean isStatic, int line) {
         final boolean inSameGroup = groupIdx == lastGroup;
-        return (inSameGroup || !needSeparator(isStatic)) && isSeparatorBeforeImport(line);
+        final boolean result;
+        if (inSameGroup) {
+            result = (isStatic == lastImportStatic || !separatedStaticGroups)
+                    && isSeparatorBeforeImport(line);
+        }
+        else {
+            result = !needSeparator(isStatic) && isSeparatorBeforeImport(line);
+        }
+        return result;
     }
 
     /**

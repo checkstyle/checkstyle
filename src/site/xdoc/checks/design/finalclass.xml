@@ -125,7 +125,7 @@ public class Example1 { // ok, since it has a public constructor
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="FinalClass_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck</p>
         <p>
             Use this fully qualified class name in configuration when an exact class reference is

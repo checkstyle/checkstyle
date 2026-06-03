@@ -896,4 +896,57 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
 
     }
+
+    @Test
+    public void testUnderSeparatedStaticNonStaticBlankLine() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputImportOrderUnderSeparatedStaticNonStaticBlankLine.java"), expected);
+    }
+
+    @Test
+    public void testUnderSeparatedSameTypeBlankLine() throws Exception {
+        final String[] expected = {
+            "21:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP,
+                    "java.util.List"),
+            "25:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP,
+                    "java.util.Collections.sort"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputImportOrderUnderSeparatedSameTypeBlankLine.java"), expected);
+    }
+
+    @Test
+    public void testUnderSeparatedSameTypeBlankLineCorrect() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getPath("InputImportOrderUnderSeparatedSameTypeBlankLineCorrect.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnderSeparatedStaticNonStaticBlankLineEclipseStyle() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                    "InputImportOrderUnderSeparatedStaticNonStaticBlankLineEclipseStyle.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnderSeparatedStaticNonStaticMissingSeparator() throws Exception {
+        final String[] expected = {
+            "20:1: " + getCheckMessage(MSG_SEPARATION, "java.util.Collections.emptyList"),
+            "23:1: " + getCheckMessage(MSG_SEPARATION, "com.google.common.collect.Lists.asList"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputImportOrderUnderSeparatedStaticNonStaticMissingSeparator.java"),
+                expected);
+    }
+
 }

@@ -338,10 +338,13 @@ CLASS_DEF -> CLASS_DEF [5:0]
         Hence, we need to register the Check for the token types
         CLASS_DEF and INTERFACE_DEF. The TreeWalker will only call
         visitToken for these token types. Because the requirements of
-        our tasks are so simple, there is no need to implement the other
-        methods (<code>leaveToken()</code>, <code>finishTree()</code>, etc.)
-        available to us from AbstractCheck. Here is our first shot at our
-        Check implementation:
+        our tasks are so simple, there is no need to implement the
+        traversal lifecycle methods (<code>leaveToken()</code>, <code>finishTree()</code>, etc.)
+        available to us from <code>AbstractCheck</code>.
+        However, <code>AbstractCheck</code> requires that token set methods
+        (<code>getDefaultTokens()</code>, <code>getAcceptableTokens()</code>,
+        and <code>getRequiredTokens()</code>) are implemented.
+        Here is our first shot at our Check implementation:
       </p>
 
       <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -357,6 +360,18 @@ public class MethodLimitCheck extends AbstractCheck
   public int[] getDefaultTokens()
   {
     return new int[]{TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
+  }
+
+  @Override
+  public int[] getAcceptableTokens()
+  {
+    return getDefaultTokens();
+  }
+
+  @Override
+  public int[] getRequiredTokens()
+  {
+    return getDefaultTokens();
   }
 
   @Override
@@ -518,6 +533,7 @@ public class MethodLimitCheck extends AbstractCheck
 public class MethodLimitCheck extends AbstractCheck
 {
   // code from above omitted for brevity
+  // ...
   public void setMax(int limit)
   {
     max = limit;

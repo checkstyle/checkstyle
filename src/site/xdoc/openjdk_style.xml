@@ -19,6 +19,12 @@
           Draft v6, December 2015.
         </p>
         <p>
+          The OpenJDK style guide says that, apart from <code>LF</code>, the only allowed
+          whitespace character is Space, and that <code>\'</code>, <code>\"</code>, <code>\\</code>,
+          <code>\t</code>, <code>\b</code>, <code>\r</code>, <code>\f</code>, and <code>\n</code>
+          should be preferred over corresponding octal or Unicode escaped characters.
+        </p>
+        <p>
           <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/openjdk_checks.xml">
             Incomplete Checkstyle configuration for 'OpenJDK Java Style'</a>
         </p>
@@ -79,7 +85,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s1-introduction">
-                    <strong>1 - Introduction</strong>
+                    <strong>Introduction</strong>
                   </a>
                 </td>
                 <td>--</td>
@@ -96,7 +102,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s1.1-motivation">
-                    1.1 Motivation
+                    Motivation
                   </a>
                 </td>
                 <td>--</td>
@@ -113,7 +119,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s1.2-guiding-principles">
-                    1.2 Guiding Principles
+                    Guiding Principles
                   </a>
                 </td>
                 <td>--</td>
@@ -131,20 +137,31 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s2-java-source-files">
-                    <strong>2 - Java Source Files</strong>
+                    <strong>Java Source Files</strong>
                   </a>
                 </td>
                 <td>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt=""/>
                   </span>
+                  <a href="https://checkstyle.org/config.html#Checker">charset=US-ASCII</a>,
                   <a href="checks/misc/lineending.html#LineEnding">LineEnding</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineEnding">
-                  config</a>),
+                  config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
                   <a href="checks/regexp/regexpsingleline.html#RegexpSingleline">
                     RegexpSingleline</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpSingleline">
-                  config</a>),
+                  config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
                   <a href="checks/misc/outertypefilename.html#OuterTypeFilename">
                     OuterTypeFilename</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OuterTypeFilename">
@@ -167,16 +184,27 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s2.1-special-characters">
-                    2.1 Special Characters
+                    Special Characters
                   </a>
                 </td>
                 <td>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt=""/>
                   </span>
-                  <a href="https://checkstyle.org/config.html#Checker">charset=US-ASCII</a>
+                  <a href="checks/coding/illegaltokentext.html#IllegalTokenText">
+                    IllegalTokenText</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalTokenText">
+                  config</a>),
+                  <a href="checks/misc/avoidescapedunicodecharacters.html#AvoidEscapedUnicodeCharacters">
+                    AvoidEscapedUnicodeCharacters</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidEscapedUnicodeCharacters">
+                  config</a>)
                 </td>
-                <td>--</td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter2javasourcefiles/rule21specialcharacters">
+                    samples
+                  </a>
+                </td>
               </tr>
               <!-- 3 Formatting -->
               <tr>
@@ -190,7 +218,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3-formatting">
-                    <strong>3 - Formatting</strong>
+                    <strong>Formatting</strong>
                   </a>
                 </td>
                 <td>???</td>
@@ -207,7 +235,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.1-copyright-notice">
-                    3.1 Copyright notice
+                    Copyright notice
                   </a>
                 </td>
                 <td>???</td>
@@ -227,8 +255,20 @@
                     3.2 Package declaration
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/nolinewrap.html#NoLineWrap">
+                    NoLineWrap</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoLineWrap">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter3formatting/rule32packagedeclaration">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
@@ -241,11 +281,22 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.3-import-statements">
-                    3.3 Import statements
+                    Import statements
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/imports/importorder.html#ImportOrder">ImportOrder</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportOrder">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter3formatting/rule33importstatements">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
@@ -258,7 +309,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.3.1-wildcard-imports">
-                    3.3.1 Wildcard Imports
+                    Wildcard Imports
                   </a>
                 </td>
                 <td>???</td>
@@ -275,7 +326,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.4-class-structure">
-                    3.4 Class Structure
+                    Class Structure
                   </a>
                 </td>
                 <td>???</td>
@@ -292,7 +343,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.4.1-order-of-constructors-and-overloaded-methods">
-                    3.4.1 Order of Constructors and Overloaded Methods
+                    Order of Constructors and Overloaded Methods
                   </a>
                 </td>
                 <td>???</td>
@@ -309,7 +360,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.5-modifiers">
-                    3.5 Modifiers
+                    Modifiers
                   </a>
                 </td>
                 <td>???</td>
@@ -326,7 +377,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.6-braces">
-                    3.6 Braces
+                    Braces
                   </a>
                 </td>
                 <td>???</td>
@@ -343,7 +394,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.6.1-short-forms">
-                    3.6.1 Short Forms
+                    Short Forms
                   </a>
                 </td>
                 <td>???</td>
@@ -360,7 +411,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.7-indentation">
-                    3.7 Indentation
+                    Indentation
                   </a>
                 </td>
                 <td>
@@ -397,7 +448,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8-wrapping-lines">
-                    3.8 Wrapping Lines
+                    Wrapping Lines
                   </a>
                 </td>
                 <td>
@@ -426,7 +477,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8.1-wrapping-class-declarations">
-                    3.8.1 Wrapping Class Declarations
+                    Wrapping Class Declarations
                   </a>
                 </td>
                 <td>???</td>
@@ -443,7 +494,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8.2-wrapping-method-declarations">
-                    3.8.2 Wrapping Method Declarations
+                    Wrapping Method Declarations
                   </a>
                 </td>
                 <td>???</td>
@@ -460,7 +511,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8.3-wrapping-expressions">
-                    3.8.3 Wrapping Expressions
+                    Wrapping Expressions
                   </a>
                 </td>
                 <td>???</td>
@@ -477,7 +528,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.9-whitespace">
-                    3.9 Whitespace
+                    Whitespace
                   </a>
                 </td>
                 <td>↓</td>
@@ -494,7 +545,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.9.1-vertical-whitespace">
-                    3.9.1 Vertical Whitespace
+                    Vertical Whitespace
                   </a>
                 </td>
                 <td>???</td>
@@ -511,7 +562,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.9.2-horizontal-whitespace">
-                    3.9.2 Horizontal Whitespace
+                    Horizontal Whitespace
                   </a>
                 </td>
                 <td>???</td>
@@ -528,11 +579,40 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.10-variable-declarations">
-                    3.10 Variable Declarations
+                    Variable Declarations
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/coding/multiplevariabledeclarations.html#MultipleVariableDeclarations">
+                    MultipleVariableDeclarations</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleVariableDeclarations">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/arraytypestyle.html#ArrayTypeStyle">
+                    ArrayTypeStyle</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ArrayTypeStyle">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/coding/variabledeclarationusagedistance.html#VariableDeclarationUsageDistance">
+                    VariableDeclarationUsageDistance</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter3formatting/rule310variabledeclarations">
+                    samples</a>
+                </td>
               </tr>
               <tr>
                 <td>
@@ -545,7 +625,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.11-annotations">
-                    3.11 Annotations
+                    Annotations
                   </a>
                 </td>
                 <td>???</td>
@@ -562,7 +642,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.12-lambda-expressions">
-                    3.12 Lambda Expressions
+                    Lambda Expressions
                   </a>
                 </td>
                 <td>
@@ -591,7 +671,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.13-redundant-parentheses">
-                    3.13 Redundant Parentheses
+                    Redundant Parentheses
                   </a>
                 </td>
                 <td>???</td>
@@ -608,11 +688,39 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.14-literals">
-                    3.14 Literals
+                    Literals
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/upperell.html#UpperEll">UpperEll</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UpperEll">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/hexliteralcase.html#HexLiteralCase">
+                    HexLiteralCase</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HexLiteralCase">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/numericalprefixesinfixessuffixescharactercase.html#NumericalPrefixesInfixesSuffixesCharacterCase">
+                    NumericalPrefixesInfixesSuffixesCharacterCase</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NumericalPrefixesInfixesSuffixesCharacterCase">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter3formatting/rule314literals">
+                    samples</a>
+                </td>
               </tr>
               <tr>
                 <td>
@@ -643,7 +751,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4-naming">
-                    <strong>4 - Naming</strong>
+                    <strong>Naming</strong>
                   </a>
                 </td>
                 <td>↓</td>
@@ -660,10 +768,26 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.1-package-names">
-                    4.1 Package Names
+                    Package Names
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                    <p>
+                        Note: Detection of plural forms or
+                      semantic word variations is not supported,
+                        as there is no valid method to do it.
+                    </p>
+                    <span class="wrapper inline">
+                        <img src="images/ok_blue.png" alt=""/>
+                    </span>
+                    <a href="checks/naming/packagename.html#PackageName">PackageName</a>
+                    (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">config</a>)
+                </td>
+                <td>
+                    <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter4naming/rule41packagenames">
+                       samples
+                    </a>
+                </td>
                 <td/>
               </tr>
               <tr>
@@ -677,7 +801,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.2-class-interface-enum-names">
-                    4.2 Class, Interface and Enum Names
+                    Class, Interface and Enum Names
                   </a>
                 </td>
                 <td>???</td>
@@ -694,11 +818,25 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.3-method-names">
-                    4.3 Method Names
+                    Method Names
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt="" />
+                  </span>
+                  <a href="checks/naming/methodname.html#MethodName">MethodName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
+                  config</a>)
+                  <br />
+                  Method names should typically be verbs or other descriptions of actions.
+                  This cannot be fully covered because Checkstyle does not have English vocabulary
+                  to determine whether a method name is a verb or action description.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter4naming/rule43methodnames">
+                    samples</a>
+                </td>
               </tr>
               <tr>
                 <td>
@@ -711,7 +849,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.4-variables">
-                    4.4 Variables
+                    Variables
                   </a>
                 </td>
                 <td>???</td>
@@ -728,7 +866,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.5-type-variables">
-                    4.5 Type Variables
+                    Type Variables
                   </a>
                 </td>
                 <td>???</td>
@@ -745,7 +883,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.6-constants">
-                    4.6 Constants
+                    Constants
                   </a>
                 </td>
                 <td>???</td>
@@ -763,7 +901,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s5-programming-practices">
-                    <strong>5 - Programming Practices</strong>
+                    <strong>Programming Practices</strong>
                   </a>
                 </td>
                 <td>???</td>
@@ -780,7 +918,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s5.1-commenting-code">
-                    5.1 Commenting Code
+                    Commenting Code
                   </a>
                 </td>
                 <td>???</td>
@@ -798,7 +936,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s6-when-to-reformat">
-                    <strong>6 - When to reformat code</strong>
+                    <strong>When to reformat code</strong>
                   </a>
                 </td>
                 <td>--</td>
@@ -816,7 +954,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s7-cases-not-covered">
-                    <strong>7 - Cases not covered</strong>
+                    <strong>Cases not covered</strong>
                   </a>
                 </td>
                 <td>--</td>

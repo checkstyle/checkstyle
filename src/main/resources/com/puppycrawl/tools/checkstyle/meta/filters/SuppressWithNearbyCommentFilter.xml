@@ -38,7 +38,7 @@
             <property default-value=".*"
                       name="checkFormat"
                       type="java.util.regex.Pattern">
-               <description>Specify check pattern to suppress.</description>
+               <description>Specify check pattern to suppress. The pattern is matched against the fully qualified class name of the Check.</description>
             </property>
             <property default-value="SUPPRESS CHECKSTYLE (\w+)"
                       name="commentFormat"
@@ -49,8 +49,7 @@
                <description>Specify check ID pattern to suppress.</description>
             </property>
             <property default-value="0" name="influenceFormat" type="java.lang.String">
-               <description>Specify negative/zero/positive value that defines the number
- of lines preceding/at/following the suppression comment.</description>
+               <description>Specify negative/zero/positive value that defines the number of lines preceding/at/following the suppression comment.</description>
             </property>
             <property name="messageFormat" type="java.util.regex.Pattern">
                <description>Define message pattern to suppress.</description>

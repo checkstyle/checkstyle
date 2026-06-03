@@ -28,7 +28,9 @@ class Example1 extends ParentClass1 {
   }
 
   /** {@inheritDoc} */
-  public void test2() { // violation, 'include @java.lang.Override'
+  // violation 2 lines below """Must include @java.lang.Override annotation when
+  //  '@inheritDoc' Javadoc tag exists."""
+  public void test2() {
 
   }
 

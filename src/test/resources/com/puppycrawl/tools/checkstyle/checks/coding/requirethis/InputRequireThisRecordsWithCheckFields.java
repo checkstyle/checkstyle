@@ -7,7 +7,7 @@ validateOnlyOverlapping = (default)true
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 public record InputRequireThisRecordsWithCheckFields(String a) {

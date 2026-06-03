@@ -25,6 +25,7 @@ public class InputLineBreakAfterLeftCurlyOfBlockInSwitch {
           handleTwoWithAnExtremelyLongMethodCallThatWouldNotFitOnTheSameLine();
       // violation below ''{' at column 18 should have line break after'
       default -> { handleSurprisingNumber(number); }
+      // violation above ''}' at column 52 should be alone on a line.'
     }
   }
 

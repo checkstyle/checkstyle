@@ -84,6 +84,12 @@ public class TryHandler extends BlockParentHandler {
         }
     }
 
+    @Override
+    protected boolean shouldCheckIndentationForChild(DetailAST child) {
+        final DetailAST leftCurly = getLeftCurly();
+        return getFirstAstNode(child).getLineNo() != leftCurly.getLineNo();
+    }
+
     /**
      * Method to check the indentation of left paren or right paren.
      * This method itself checks whether either of these are on start of line. This method

@@ -245,6 +245,10 @@ public class Example5 {
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidEscapedUnicodeCharacters">
             Checkstyle Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidEscapedUnicodeCharacters">
+            OpenJDK Style</a>
+          </li>
         </ul>
       </subsection>
 
@@ -263,7 +267,8 @@ public class Example5 {
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name"
+                   id="AvoidEscapedUnicodeCharacters_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</p>
         <p>
             Use this fully qualified class name in configuration when an exact class reference is

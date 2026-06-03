@@ -626,6 +626,18 @@ public final class TestUtil {
     }
 
     /**
+     *  Executes the provided executable and expects it to throw an exception of the specified type.
+     *
+     * @param expectedType the class of the expected exception type.
+     * @param executable the executable to be executed
+     * @return the expected exception thrown by the executable.
+     */
+    public static <T extends Throwable> T getExpectedThrowable(Class<T> expectedType,
+                                                               Executable executable) {
+        return assertThrows(expectedType, executable);
+    }
+
+    /**
      * Executes the provided executable and expects it to throw an exception of the specified type.
      *
      * @param expectedType the class of the expected exception type.
@@ -637,18 +649,6 @@ public final class TestUtil {
                                                                Executable executable,
                                                                String message) {
         return assertThrows(expectedType, executable, message);
-    }
-
-    /**
-     *  Executes the provided executable and expects it to throw an exception of the specified type.
-     *
-     * @param expectedType the class of the expected exception type.
-     * @param executable the executable to be executed
-     * @return the expected exception thrown by the executable.
-     */
-    public static <T extends Throwable> T getExpectedThrowable(Class<T> expectedType,
-                                                               Executable executable) {
-        return assertThrows(expectedType, executable);
     }
 
 }

@@ -9,7 +9,7 @@ applyToPrivate = (default)true
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.grammar.java14;
 
 import java.io.Serializable;

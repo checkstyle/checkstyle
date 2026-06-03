@@ -114,6 +114,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      * Setter to specify check name pattern to suppress. Property can also
      * be a RegExp group index at {@code nearbyTextPattern} in
      * format of {@code $x} and be picked from line that matches {@code nearbyTextPattern}.
+     * The pattern is matched against the fully qualified class name of the Check.
      *
      * @param pattern a {@code String} value.
      * @since 10.10.0

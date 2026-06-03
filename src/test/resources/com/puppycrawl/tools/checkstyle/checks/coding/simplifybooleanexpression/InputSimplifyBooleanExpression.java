@@ -8,12 +8,10 @@ package com.puppycrawl.tools.checkstyle.checks.coding.simplifybooleanexpression;
 
 /**
    Contains boolean logic that can be simplified.
-
    @author lkuehne
  */
 public class InputSimplifyBooleanExpression
 {
-
     public static boolean isOddMillis()
     {
         boolean even = System.currentTimeMillis() % 2 == 0;
@@ -110,5 +108,13 @@ public class InputSimplifyBooleanExpression
         int d = false ? 1 : 2; // violation, 'Expression can be simplified'
         temp = a() ? true : true; // violation, 'Expression can be simplified'
         temp = value != null ? value : (false);
+        boolean w = c > 1 ? (true) : ((false)); // violation, 'Expression can be simplified'
+        boolean wNoParens = c > 1 ? true : false; // violation, 'Expression can be simplified'
+        boolean wFullySimplified = c > 1;
+        boolean x = ((false)) ? c == 1 : c > 10; // violation, 'Expression can be simplified'
+        boolean xNoParens = false ? c == 1 : c > 10; // violation, 'Expression can be simplified'
+        boolean xFullySimplified = c > 10;
+        boolean y = c > 1 ? (c < 10 ? false : a) : false;
+        boolean z = (c < 10 ? false : a) ? c == 1 : c > 10;
     }
 }

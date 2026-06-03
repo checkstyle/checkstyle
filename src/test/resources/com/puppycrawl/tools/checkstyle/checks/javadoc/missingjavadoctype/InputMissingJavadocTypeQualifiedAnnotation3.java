@@ -3,6 +3,7 @@ MissingJavadocType
 excludeScope = (default)null
 scope = (default)public
 skipAnnotations = InputMissingJavadocTypeQualifiedAnnotation3.SomeAnnotation
+violateExecutionOnNonTightHtml = (default)false
 tokens = INTERFACE_DEF
 
 

@@ -80,8 +80,7 @@
             </tr>
             <tr>
               <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
-              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
-     Tight-HTML Rules</a>.</td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>13.4.0</td>
@@ -213,7 +212,7 @@ class Example2{
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="UnusedImports_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck</p>
         <p>
             Use this fully qualified class name in configuration when an exact class reference is

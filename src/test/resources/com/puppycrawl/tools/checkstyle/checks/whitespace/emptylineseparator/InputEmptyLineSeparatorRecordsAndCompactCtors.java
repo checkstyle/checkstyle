@@ -10,7 +10,7 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
 
 */
 
-// Java17
+//
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; // violation ''package' should be separated from previous line.'
 
 public class InputEmptyLineSeparatorRecordsAndCompactCtors {

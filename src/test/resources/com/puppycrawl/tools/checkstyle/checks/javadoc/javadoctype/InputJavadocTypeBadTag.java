@@ -14,10 +14,11 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
+// violation 4 lines below 'Unknown tag 'mytag'.'
+// violation 4 lines below 'Unknown tag 'mytag''
 /**
  * The following is a bad tag.
- * @mytag Hello   // violation 'Unknown tag 'mytag'.'
- * // violation below 'Unknown tag 'mytag''
+ * @mytag Hello
  * @mytag
  */
 public class InputJavadocTypeBadTag

@@ -8,7 +8,7 @@ recordMaximum = 100
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
 
 public class InputJavaNCSSRecordsMax {// violation 'NCSS for this class is 105 (max allowed is 80)'

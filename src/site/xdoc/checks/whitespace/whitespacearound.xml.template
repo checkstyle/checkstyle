@@ -42,20 +42,6 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example2-config">
-          To configure the check for whitespace only around assignment operators:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example2.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example2-code">Example:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example2.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check for whitespace only around curly braces:
         </p>
@@ -187,8 +173,21 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example11.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check for whitespace only around assignment operators:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example2.java"/>
+          <param name="type" value="config"/>
         </macro>
-
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="WhitespaceAround_Example_of_Usage">
@@ -219,7 +218,7 @@
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="WhitespaceAround_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck</p>
         <p>
           Use this fully qualified class name in configuration when an exact class reference is

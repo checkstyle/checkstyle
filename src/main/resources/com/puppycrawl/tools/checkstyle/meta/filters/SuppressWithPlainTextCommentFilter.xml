@@ -44,7 +44,7 @@
             <property default-value=".*"
                       name="checkFormat"
                       type="java.util.regex.Pattern">
-               <description>Specify check pattern to suppress.</description>
+               <description>Specify check pattern to suppress. The pattern is matched against the fully qualified class name of the Check.</description>
             </property>
             <property name="idFormat" type="java.util.regex.Pattern">
                <description>Specify check ID pattern to suppress.</description>

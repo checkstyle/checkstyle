@@ -1,4 +1,4 @@
-// Java17
+
 
 package org.checkstyle.suppressionxpathfilter.coding.covariantequals;
 

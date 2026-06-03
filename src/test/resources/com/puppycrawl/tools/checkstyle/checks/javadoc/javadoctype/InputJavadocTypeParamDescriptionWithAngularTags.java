@@ -44,15 +44,16 @@ class Shogun<T, U> {
     class Minowara<V> extends Shogun<T, U> implements Mandate<T, U, V> {}
 }
 
+// violation 3 lines below 'Unused @param tag for \'<P>\'.'
 /**
  * @param    <T>
- * @param <P> stuff <><><<stuff></></></> stuff // violation, 'Unused @param tag for '<P>'.'
+ * @param <P> stuff <><><<stuff></></></> stuff
  */
 interface Regent<T, U> {} // violation, 'Type Javadoc comment is missing @param <U> tag.'
 
+// violation 3 lines below 'Unused @param tag for 'region'.'
 /**
  *
  * @param region [(<>{@code stuff<stuff🐦‍🔥@@@>🐦‍🔥&lt;{stuff}&gt;}</>@)]{@code {&lt;stuff&gt;}}
- * // violation above, 'Unused @param tag for 'region'.'
  */
 class Fief {}

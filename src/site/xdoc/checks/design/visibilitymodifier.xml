@@ -202,6 +202,18 @@ class Example1 {
 
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
+
+  // violation below, annotation not configured 'must be private'
+  public final int someIntValue = 0;
+
+  // violation below, annotation not configured 'must be private'
+  public final ImmutableSet&lt;String&gt; includes = null;
+
+  // violation below, annotation not configured 'must be private'
+  public final BigDecimal value = null;
+
+  // violation below, annotation not configured 'must be private'
+  public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -255,6 +267,18 @@ class Example2 {
 
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
+
+  // violation below, 'must be private'
+  public final int someIntValue = 0;
+
+  // violation below, 'must be private'
+  public final ImmutableSet&lt;String&gt; includes = null;
+
+  // violation below, 'must be private'
+  public final BigDecimal value = null;
+
+  // violation below, 'must be private'
+  public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -309,6 +333,18 @@ class Example3 {
 
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
+
+  // violation below, 'must be private'
+  public final int someIntValue = 0;
+
+  // violation below, 'must be private'
+  public final ImmutableSet&lt;String&gt; includes = null;
+
+  // violation below, 'must be private'
+  public final BigDecimal value = null;
+
+  // violation below, 'must be private'
+  public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -364,6 +400,18 @@ class Example4 {
 
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
+
+  // violation below, 'must be private'
+  public final int someIntValue = 0;
+
+  // violation below, 'must be private'
+  public final ImmutableSet&lt;String&gt; includes = null;
+
+  // violation below, 'must be private'
+  public final BigDecimal value = null;
+
+  // violation below, 'must be private'
+  public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
@@ -419,6 +467,17 @@ class Example5 {
 
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
+
+  public final int someIntValue = 0; // violation 'must be private'
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableSet&lt;String&gt; includes = null;
+
+  // violation below, immutable type not in config 'must be private'
+  public final BigDecimal value = null;
+
+  // violation below, mutable 'must be private'
+  public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
@@ -476,6 +535,16 @@ class Example6 {
 
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
+
+  public final int someIntValue = 0; // violation 'must be private'
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableSet&lt;String&gt; includes = null;
+
+  // violation below, immutable type not in config 'must be private'
+  public final BigDecimal value = null;
+
+  // violation below, mutable 'must be private'
+  public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example7-config">
@@ -590,6 +659,18 @@ class Example8 {
   @com.google.common.annotations.VisibleForTesting
   // violation below, annotation not configured 'must be private'
   public String testString = "";
+
+  // violation below, 'must be private'
+  public final int someIntValue = 0;
+
+  // violation below, 'must be private'
+  public final ImmutableSet&lt;String&gt; includes = null;
+
+  // violation below, 'must be private'
+  public final BigDecimal value = null;
+
+  // violation below, 'must be private'
+  public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example9-config">
@@ -699,10 +780,11 @@ class Example10 {
   public String testString = "";
 }
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           To understand the difference between allowPublicImmutableFields and
           allowPublicFinalFields options, please, study the following examples.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example11-config">
            1) To configure the check to use only 'allowPublicImmutableFields' option:
         </p>
@@ -748,11 +830,42 @@ class Example11 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example12 {
+  private int myPrivateField1;
+
+  int field1; // violation, 'must be private'
+
+  protected String field2; // violation, 'must be private'
+
+  // violation below, 'must be private'
+  public int field3 = 42;
+
+  public long serialVersionUID = 1L;
+
+  public static final int field4 = 42;
+
+  public final int field5 = 42;
+
+  public final java.lang.String notes = null;
+
+  public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+
+  public final ImmutableSet&lt;String&gt; mySet2 = null;
+
+  public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+
+  @java.lang.Deprecated
+  String annotatedString; // violation, 'must be private'
+
+  @Deprecated
+  // violation below, 'must be private'
+  String shortCustomAnnotated;
+
+  @com.google.common.annotations.VisibleForTesting
+  public String testString = "";
+
   public final int someIntValue = 0;
 
   public final ImmutableSet&lt;String&gt; includes = null;
-
-  public final java.lang.String notes = "";
 
   public final BigDecimal value = null;
 
@@ -789,7 +902,7 @@ class Example12 {
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="VisibilityModifier_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck</p>
         <p>
             Use this fully qualified class name in configuration when an exact class reference is

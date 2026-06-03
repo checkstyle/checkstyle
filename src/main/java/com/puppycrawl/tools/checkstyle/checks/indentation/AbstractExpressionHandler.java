@@ -404,11 +404,22 @@ public abstract class AbstractExpressionHandler {
         for (DetailAST child = parentNode.getFirstChild();
                 child != null;
                 child = child.getNextSibling()) {
-            if (Arrays.binarySearch(tokenTypes, child.getType()) >= 0) {
+            if (Arrays.binarySearch(tokenTypes, child.getType()) >= 0
+                    && shouldCheckIndentationForChild(child)) {
                 checkExpressionSubtree(child, startIndent,
                     firstLineMatches, allowNesting);
             }
         }
+    }
+
+    /**
+     * Decide whether to check indentation for a specific child.
+     *
+     * @param child child AST node
+     * @return true if indentation should be checked
+     */
+    protected boolean shouldCheckIndentationForChild(DetailAST child) {
+        return true;
     }
 
     /**

@@ -43,7 +43,7 @@ not already done so, please read through the following documentation provided by
   This is another place to ask questions and get to know the community.
 - **Start contributing.** Please read [CONTRIBUTING doc](CONTRIBUTING.md).
 - **Take a Look at Our Project Ideas.** We have a list of project ideas that we think would be
-  great for GSoC. You can find them in our wiki [Checkstyle Wiki](https://github.com/checkstyle/checkstyle/wiki).
+  great for GSoC. You can find them in our wiki [Checkstyle Wiki][checkstyle_wiki].
   You can also propose your own project idea. We are open to new ideas and would love to hear
   what you are interested in working on.
 - **Create a Draft Proposal.** Once you have completed a few issues,
@@ -119,4 +119,7 @@ you are excited to work with us.
 - **Contribute, Contribute, Contribute.** This is the single best way to show us that you are
     serious about becoming a valuable member of our community.
 
-[code-review-feelings-article-link]: https://roman-ivanov.blogspot.com/2022/04/comments-on-predicting-developers.html
+[checkstyle_wiki]:
+https://github.com/checkstyle/checkstyle/wiki
+[code-review-feelings-article-link]:
+https://roman-ivanov.blogspot.com/2022/04/comments-on-predicting-developers.html

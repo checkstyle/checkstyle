@@ -89,7 +89,8 @@
         This configuration does not match to anything,
         so we do not provide any code example for it
         as no violation will ever be reported.
-        </p><hr class="example-separator"/>
+        </p>
+        <hr class="example-separator"/>
         <p id="Example2-config">
         To configure the check to find occurrences of 'System.exit('
         with some <i>slack</i> of allowing only one occurrence per file:
@@ -251,7 +252,7 @@ CREATE DATABASE MyDB;
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="RegexpSingleline_Fully_Qualified_Name">
          <p> com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck</p>
          <p>
           Use this fully qualified class name in configuration when an exact class reference is

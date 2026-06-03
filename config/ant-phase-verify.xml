@@ -205,7 +205,8 @@
     >
       <path>
         <fileset dir="src"
-                 includes="test/resources/**/*.java,test/resources-noncompilable/**/*.java">
+                 includes="test/resources/**/*.java,test/resources-noncompilable/**/*.java,
+                 it/resources/**/*.java,it/resources-noncompilable/**/*.java">
           <!-- bad syntax, permanent exclude -->
           <exclude name="**/InputAstTreeStringPrinter.java" />
           <exclude name="**/InputSuppressionsStringPrinter.java"/>

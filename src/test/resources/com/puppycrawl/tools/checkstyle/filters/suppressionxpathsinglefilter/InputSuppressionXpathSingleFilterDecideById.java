@@ -11,6 +11,7 @@ id = 007
 scope = (default)public
 excludeScope = (default)(null)
 skipAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = CLASS_DEF
 
 */

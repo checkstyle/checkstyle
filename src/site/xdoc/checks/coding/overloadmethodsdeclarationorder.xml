@@ -38,7 +38,8 @@ class Example1 {
 
   void otherSame(String s) {}
   void foo() {}
-  // violation below, 'All overloaded methods should be placed next to each other'
+  // violation 2 lines below """All overloaded methods should be placed next
+  //  to each other. Previous overloaded method located at line '20'."""
   void otherSame(String s, int i) {}
 }
 </code></pre></div>
@@ -72,7 +73,8 @@ class Example1 {
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name"
+                   id="OverloadMethodsDeclarationOrder_Fully_Qualified_Name">
         <p>com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck</p>
         <p>
             Use this fully qualified class name in configuration when an exact class reference is

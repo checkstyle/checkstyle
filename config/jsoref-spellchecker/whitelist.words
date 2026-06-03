@@ -53,6 +53,7 @@ Arial
 arity
 Arquillian
 arraycopy
+arraysquarebracketsattype
 arraytrailingcomma
 arraytypestyle
 ASF
@@ -135,6 +136,7 @@ buildkite
 Bunsubscribe
 bw
 BXOR
+bytebuddy
 bytecode
 Cacheable
 cachefile
@@ -266,6 +268,7 @@ Ddry
 DEADBEEF
 DECCHARS
 declarationorder
+declarationrightbeforefirstusage
 declaredwhenneeded
 Deconstruction
 defau
@@ -273,6 +276,7 @@ defaultcomeslast
 defaultlabelpresence
 defaultlogger
 delims
+Denforcer
 DENORMALIZER
 Depedency
 dependabot
@@ -307,6 +311,7 @@ Dmaven
 dnd
 Dnew
 doccheck
+doccomments
 Dockter
 doclet
 doclint
@@ -408,6 +413,7 @@ fd
 FDCF
 Fdesign
 FDF
+Fdoc
 FEF
 fenum
 ffc
@@ -462,6 +468,7 @@ forbiddenapis
 Foreach
 Fpuppycrawl
 fq
+Fqcn
 freemarker
 Fregexp
 Fresources
@@ -590,12 +597,14 @@ importcontrolloader
 importcontroltest
 importorder
 importrule
+importstatements
 imprt
 Incompatabilities
 indentcontinuationlines
 Inet
 infinispan
 initializedfields
+inlineconfigparser
 Inlined
 inlinetags
 innerassignment
@@ -1003,6 +1012,7 @@ optionalbracesusage
 OQ
 orderedproperties
 orderingandspacing
+orderoftags
 orekit
 ORELSEGET
 orm
@@ -1065,6 +1075,7 @@ php
 picocli
 pid
 pinentry
+pipefail
 PIPESTATUS
 pitest
 pkgextra
@@ -1152,6 +1163,7 @@ requireemptylinebeforeblocktaggroup
 requirethis
 resourceleak
 Rethrown
+Rethrows
 returncount
 returnsreceiver
 reviewdog
@@ -1245,6 +1257,7 @@ sourceforge
 sourcepath
 sourcesets
 spacebar
+specialcharacters
 specialescape
 spellchecker
 spliterator
@@ -1317,6 +1330,7 @@ sysextensions
 sysprop
 systemout
 tac
+tagconventions
 Taglib
 taglist
 taskdef
@@ -1415,6 +1429,7 @@ unusedcatchparametershouldbeunnamed
 unusedimports
 unusedlambdaparametershouldbeunnamed
 unusedlocalvariable
+unusedtryresourceshouldbeunnamed
 upperell
 urandom
 uri
@@ -1432,6 +1447,7 @@ uxxxx
 validator
 VALUELONG
 vararg
+variabledeclarations
 variabledeclarationusagedistance
 Veach
 Verdana
@@ -1488,6 +1504,7 @@ wq
 wrappinglines
 writetag
 writingchecks
+writingdoccomments
 writingfilefilters
 writingfilters
 writingjavadocchecks
@@ -1556,6 +1573,7 @@ youtrack
 youtu
 youtube
 Yoyodyne
+yq
 yyyy
 Zbbh
 zf

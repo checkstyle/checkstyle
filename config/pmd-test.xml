@@ -49,10 +49,6 @@
     <exclude name="JUnitUseExpected"/>
     <!-- will be addressed in https://github.com/checkstyle/checkstyle/projects/5 -->
     <exclude name="NonThreadSafeSingleton"/>
-    <!-- Clashes with CommentDefaultAccessModifier. We do not like package and protected
-      visibility, they are HACK in design and illusion of protection of method from outside.
-      Keeping them public is ok. -->
-    <exclude name="JUnit5TestShouldBePackagePrivate"/>
   </rule>
 
   <rule ref="category/java/design.xml/NcssCount">
@@ -76,7 +72,8 @@
                        //MethodDeclaration[@Name='testTokenNumbering']    
                    | //ClassDeclaration[@SimpleName='GeneratedJavadocCommentsTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenNumbers']
-                   | //ClassDeclaration[@SimpleName='IndentationCheckTest']"/>
+                   | //ClassDeclaration[@SimpleName='IndentationCheckTest']
+                   | //ClassDeclaration[@SimpleName='XdocsPagesTest']"/>
     </properties>
   </rule>
 

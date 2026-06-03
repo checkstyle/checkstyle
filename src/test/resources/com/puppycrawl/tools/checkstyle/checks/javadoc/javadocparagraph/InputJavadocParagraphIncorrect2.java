@@ -1,7 +1,7 @@
 /*
 JavadocParagraph
-violateExecutionOnNonTightHtml = (default)false
 allowNewlineParagraph = false
+violateExecutionOnNonTightHtml = (default)false
 
 
 */

@@ -74,10 +74,10 @@ public class CommentsIndentationCheckExamplesTest extends AbstractExamplesModule
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "20:13: " + getCheckMessage(
-                    CommentsIndentationCheck.MSG_KEY_SINGLE, 21, 12, 8),
-            "26:6: " + getCheckMessage(
-                    CommentsIndentationCheck.MSG_KEY_SINGLE, "25, 27", 5, "6, 6"),
+            "22:13: " + getCheckMessage(
+                    CommentsIndentationCheck.MSG_KEY_SINGLE, 23, 12, 8),
+            "28:6: " + getCheckMessage(
+                    CommentsIndentationCheck.MSG_KEY_SINGLE, "27, 29", 5, "6, 6"),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);

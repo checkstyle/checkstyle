@@ -10,7 +10,7 @@ tagOrder = (default)@author, @version, @param, @return, @throws, @exception, @se
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 
 import java.io.IOException;

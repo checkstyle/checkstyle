@@ -4,7 +4,7 @@ MissingSwitchDefault
 
 */
 
-// Java21
+
 package com.puppycrawl.tools.checkstyle.checks.coding.missingswitchdefault;
 
 public class InputMissingSwitchDefaultCheckNullCaseLabel {

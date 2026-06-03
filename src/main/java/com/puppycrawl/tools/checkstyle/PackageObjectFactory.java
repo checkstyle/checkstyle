@@ -128,6 +128,26 @@ public class PackageObjectFactory implements ModuleFactory {
     /**
      * Creates a new {@code PackageObjectFactory} instance.
      *
+     * @param packageName The package name to use
+     * @param moduleClassLoader class loader used to load Checkstyle
+     *          core and custom modules
+     * @throws IllegalArgumentException if moduleClassLoader is null or packageNames is null
+     */
+    public PackageObjectFactory(String packageName, ClassLoader moduleClassLoader) {
+        if (moduleClassLoader == null) {
+            throw new IllegalArgumentException(NULL_LOADER_MESSAGE);
+        }
+        if (packageName == null) {
+            throw new IllegalArgumentException(NULL_PACKAGE_MESSAGE);
+        }
+
+        packages = Collections.singleton(packageName);
+        this.moduleClassLoader = moduleClassLoader;
+    }
+
+    /**
+     * Creates a new {@code PackageObjectFactory} instance.
+     *
      * @param packageNames package names to use
      * @param moduleClassLoader class loader used to load Checkstyle
      *          core and custom modules
@@ -147,26 +167,6 @@ public class PackageObjectFactory implements ModuleFactory {
         packages = new LinkedHashSet<>(packageNames);
         this.moduleClassLoader = moduleClassLoader;
         this.moduleLoadOption = moduleLoadOption;
-    }
-
-    /**
-     * Creates a new {@code PackageObjectFactory} instance.
-     *
-     * @param packageName The package name to use
-     * @param moduleClassLoader class loader used to load Checkstyle
-     *          core and custom modules
-     * @throws IllegalArgumentException if moduleClassLoader is null or packageNames is null
-     */
-    public PackageObjectFactory(String packageName, ClassLoader moduleClassLoader) {
-        if (moduleClassLoader == null) {
-            throw new IllegalArgumentException(NULL_LOADER_MESSAGE);
-        }
-        if (packageName == null) {
-            throw new IllegalArgumentException(NULL_PACKAGE_MESSAGE);
-        }
-
-        packages = Collections.singleton(packageName);
-        this.moduleClassLoader = moduleClassLoader;
     }
 
     /**
@@ -617,6 +617,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.UnusedLambdaParameterShouldBeUnnamedCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnnecessaryNullCheckWithInstanceOfCheck",
                 BASE_PACKAGE + ".checks.coding.UnnecessaryNullCheckWithInstanceOfCheck");
+        NAME_TO_FULL_MODULE_NAME.put("UnusedTryResourceShouldBeUnnamedCheck",
+                BASE_PACKAGE + ".checks.coding.UnusedTryResourceShouldBeUnnamedCheck");
     }
 
     /**

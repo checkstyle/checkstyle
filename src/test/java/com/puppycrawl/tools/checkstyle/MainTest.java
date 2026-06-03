@@ -1256,12 +1256,12 @@ public class MainTest {
             @SysOut Capturable systemOut) throws IOException {
         final String expected = Files.readString(Path.of(
             getPath("InputMainExpectedInputJavadocComment.txt")))
-            .replaceAll("\\\\r\\\\n", "\\\\n").replaceAll("\r\n", "\n");
+            .replace("\\\\r\\\\n", "\\\\n").replace("\r\n", "\n");
 
         assertMainReturnCode(0, "-j", getPath("InputMainJavadocComment.javadoc"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData().replaceAll("\\\\r\\\\n", "\\\\n")
-                        .replaceAll("\r\n", "\n"))
+                        .replace("\r\n", "\n"))
             .isEqualTo(expected);
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
@@ -1726,12 +1726,12 @@ public class MainTest {
         final String expected = Files.readString(Path.of(
             getPath("InputMainExpectedInputAstTreeStringPrinterJavadoc.txt")))
                 .replaceAll("\\\\r\\\\n", "\\\\n")
-                .replaceAll("\r\n", "\n");
+                .replace("\r\n", "\n");
 
         assertMainReturnCode(0, "-J", getPath("InputMainAstTreeStringPrinterJavadoc.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData().replaceAll("\\\\r\\\\n", "\\\\n")
-                        .replaceAll("\r\n", "\n"))
+                        .replace("\r\n", "\n"))
             .isEqualTo(expected);
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())

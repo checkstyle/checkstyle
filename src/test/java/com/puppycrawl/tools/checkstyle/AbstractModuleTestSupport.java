@@ -578,6 +578,42 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Performs verification of the given files.
+     *
+     * @param checker {@link Checker} instance
+     * @param processedFiles files to process.
+     * @param expectedViolations a map of expected violations per files.
+     * @throws Exception if exception occurs during verification process.
+     */
+    protected final void verify(Checker checker,
+                          File[] processedFiles,
+                          Map<String, List<String>> expectedViolations)
+            throws Exception {
+        stream.flush();
+        stream.reset();
+        final List<File> theFiles = new ArrayList<>();
+        Collections.addAll(theFiles, processedFiles);
+        checker.process(theFiles);
+
+        // process each of the lines
+        final Map<String, List<String>> actualViolations = getActualViolations();
+        final Map<String, List<String>> realExpectedViolations =
+                Maps.filterValues(expectedViolations, input -> !input.isEmpty());
+
+        assertWithMessage("Files with expected violations and actual violations differ.")
+            .that(actualViolations.keySet())
+            .isEqualTo(realExpectedViolations.keySet());
+
+        realExpectedViolations.forEach((fileName, violationList) -> {
+            assertWithMessage("Violations for %s differ.", fileName)
+                .that(actualViolations.get(fileName))
+                .containsExactlyElementsIn(violationList);
+        });
+
+        checker.destroy();
+    }
+
+    /**
      * Performs verification of the file with the given file name.
      * Uses provided {@link Checker} instance.
      * Expected messages are represented by the array of strings.
@@ -618,42 +654,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final Map<String, List<String>> expectedViolations = new HashMap<>();
         expectedViolations.put(messageFileName, Arrays.asList(expected));
         verify(checker, processedFiles, expectedViolations);
-    }
-
-    /**
-     * Performs verification of the given files.
-     *
-     * @param checker {@link Checker} instance
-     * @param processedFiles files to process.
-     * @param expectedViolations a map of expected violations per files.
-     * @throws Exception if exception occurs during verification process.
-     */
-    protected final void verify(Checker checker,
-                          File[] processedFiles,
-                          Map<String, List<String>> expectedViolations)
-            throws Exception {
-        stream.flush();
-        stream.reset();
-        final List<File> theFiles = new ArrayList<>();
-        Collections.addAll(theFiles, processedFiles);
-        checker.process(theFiles);
-
-        // process each of the lines
-        final Map<String, List<String>> actualViolations = getActualViolations();
-        final Map<String, List<String>> realExpectedViolations =
-                Maps.filterValues(expectedViolations, input -> !input.isEmpty());
-
-        assertWithMessage("Files with expected violations and actual violations differ.")
-            .that(actualViolations.keySet())
-            .isEqualTo(realExpectedViolations.keySet());
-
-        realExpectedViolations.forEach((fileName, violationList) -> {
-            assertWithMessage("Violations for %s differ.", fileName)
-                .that(actualViolations.get(fileName))
-                .containsExactlyElementsIn(violationList);
-        });
-
-        checker.destroy();
     }
 
     /**

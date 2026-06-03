@@ -3,6 +3,7 @@ MissingJavadocType
 excludeScope = (default)null
 scope = (default)public
 skipAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 
@@ -25,4 +26,34 @@ public class InputMissingJavadocTypeAboveComments { // violation, 'Missing a Jav
     public class Myclass { } /* My class */
 
     public class Myclass2 { } // violation, 'Missing a Javadoc comment.'
+
+    /**
+     *
+     */
+
+    // singline comment missing javadoc
+    public class InputMissingJavadocTypeAboveComments3 { }
+
+
+    /**
+     *
+     */
+
+    /* singline comment missing javadoc */
+    public class InputMissingJavadocTypeAboveComments4 { }
+
+    /**
+     *
+     */ public class Myclass3 { }
+
+  /**javadoc*/ public class Myclass5 { }
+
+  /** Test class for variable naming in for each clause.
+   *
+   */
+  /*
+     Input class for JavadocType
+  */
+  public class InputJavadocTypeAboveComments { }
+
 }

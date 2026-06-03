@@ -34,7 +34,7 @@
             </tr>
             <tr>
               <td><a id="checkPattern"/><a href="#checkPattern">checkPattern</a></td>
-              <td>Specify check name pattern to suppress. Property can also be a RegExp group index at <code>nearbyTextPattern</code> in format of <code>$x</code> and be picked from line that matches <code>nearbyTextPattern</code>.</td>
+              <td>Specify check name pattern to suppress. Property can also be a RegExp group index at <code>nearbyTextPattern</code> in format of <code>$x</code> and be picked from line that matches <code>nearbyTextPattern</code>. The pattern is matched against the fully qualified class name of the Check.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>.*</code></td>
               <td>10.10.0</td>
@@ -313,7 +313,8 @@ public class Example9 {
           </li>
         </ul>
       </subsection>
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name"
+                   id="SuppressWithNearbyTextFilter_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyTextFilter</p>
         <p>
               This is the fully qualified class name of the module.

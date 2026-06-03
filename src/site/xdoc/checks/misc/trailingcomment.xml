@@ -111,6 +111,11 @@ d = e / f;      /* Some insightful block comment &#42;/
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
+  int a;
+  int b;
+  int c;
+  int d; // violation
+
   public static void main(String[] args) {
     int x = 10;
 
@@ -145,14 +150,20 @@ public class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
+  int a; // violation, line content before comment should match pattern "^\s*$"
+  int b; // violation, line content before comment should match pattern "^\s*$"
+  int c; // violation, line content before comment should match pattern "^\s*$"
+  int d; // violation, line content before comment should match pattern "^\s*$"
+
   public static void main(String[] args) {
-    int x = new Random().nextInt(100);
+    int x = 10;
 
     if (/* OK, this comment does not end the line */ x &gt; 5) {}
     int a = 5; // violation, line content before comment should match pattern "^\s*$"
     doSomething(
             "param1"
     ); // violation, line content before comment should match pattern "^\s*$"
+
   }
 
   private static void doSomething(String param) {
@@ -184,6 +195,20 @@ public class Example3 {
   int b; // NOPMD
   int c; // NOSONAR
   int d; // violation, not suppressed
+
+  public static void main(String[] args) {
+    int x = 10;
+
+    if (/* OK */ x &gt; 5) {}
+    int a = 5; // violation
+    doSomething(
+            "param1"
+    ); // ok, by default such trailing of method/code-block ending is allowed
+
+  }
+
+  private static void doSomething(String param) {
+  }
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -307,7 +332,7 @@ public class Example6 {
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="TrailingComment_Fully_Qualified_Name">
         <p>com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck</p>
         <p>
               Use this fully qualified class name in configuration when an exact class reference is

@@ -59,7 +59,7 @@
             </tr>
             <tr>
               <td><a id="checkFormat"/><a href="#checkFormat">checkFormat</a></td>
-              <td>Specify check pattern to suppress.</td>
+              <td>Specify check pattern to suppress. The pattern is matched against the fully qualified class name of the Check.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>.*</code></td>
               <td>8.6</td>
@@ -332,13 +332,14 @@ keyC=value5
   &lt;/macro&gt;
 &lt;/project&gt;
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           It is possible to specify the ID of checks, which can be used by the
           SuppressWithPlainTextCommentFilter to suppress audit events.
           The following examples show how to suppress audit events in code surrounded
           by <code>CSOFF &lt;ID&gt; (reason)</code> and <code>CSON &lt;ID&gt;</code>,
           where ID is the ID of the check you want to suppress.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example7-config">
           Example of Checkstyle checks and SuppressWithPlainTextCommentFilter configuration -
           the checkFormat, set to '$1', indicates that the ID of the check
@@ -483,7 +484,8 @@ public class Example9 {
           </li>
         </ul>
       </subsection>
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name"
+                   id="SuppressWithPlainTextCommentFilter_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter</p>
         <p>
             This is the fully qualified class name of the module.

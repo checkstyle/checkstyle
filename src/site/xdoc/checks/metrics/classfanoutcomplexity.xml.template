@@ -127,6 +127,7 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
         <p>
           Override property <code>excludedPackages</code> to mark some packages as excluded.
           Each member of <code>excludedPackages</code> should be a valid identifier:
@@ -152,7 +153,7 @@
           Also note, that <code>excludedPackages</code> will not exclude classes, imported via
           wildcard (e.g. <code>import java.math.*</code>). Instead of wildcard import you should
           use direct import (e.g. <code>import java.math.BigDecimal</code>).
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example6-config">
           Also note, that checkstyle will not exclude classes within the same file
           even if it was listed in the <code>excludedPackages</code> parameter. For example,
@@ -201,7 +202,7 @@
         </p>
       </subsection>
 
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name" id="ClassFanOutComplexity_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck</p>
         <p>
           Use this fully qualified class name in configuration when an exact class reference is
