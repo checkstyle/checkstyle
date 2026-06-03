@@ -60,8 +60,8 @@ public class FinalParametersCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "22:12: " + getCheckMessage(MSG_KEY, "e"),
-            "44:10: " + getCheckMessage(MSG_KEY, "number"),
+            "25:12: " + getCheckMessage(MSG_KEY, "e"),
+            "41:10: " + getCheckMessage(MSG_KEY, "number"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("Example4.java"), expected);
