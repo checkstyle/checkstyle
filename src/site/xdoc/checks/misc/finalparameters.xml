@@ -100,6 +100,30 @@ public class Example1 {
   public void methodOne(final int x) { }
   public void methodTwo(int x) { } // violation, 'x should be final'
   public static void main(String[] args) { } // violation, 'args should be final'
+
+  void testCatchParameters() {
+    try { int x = 1 / 0; }
+    catch (Exception e) {
+      System.out.println(e);
+    }
+    try { int x = 1 / 0; }
+    catch (Exception _) {
+      System.out.println("infinity");
+    }
+    try { int x = 1 / 0; }
+    catch (final Exception _) {
+      System.out.println("infinity");
+    }
+  }
+
+  void testForEachParameters() {
+    int[] l = {1, 2, 3};
+    int x = 0;
+    for (int number: l) {
+      System.out.println(number);
+    }
+    for (int _: l) { x++; }
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -126,6 +150,30 @@ public class Example2 {
   public void methodOne(final int x) { }
   public void methodTwo(int x) { }
   public static void main(String[] args) { }
+
+  void testCatchParameters() {
+    try { int x = 1 / 0; }
+    catch (Exception e) {
+      System.out.println(e);
+    }
+    try { int x = 1 / 0; }
+    catch (Exception _) {
+      System.out.println("infinity");
+    }
+    try { int x = 1 / 0; }
+    catch (final Exception _) {
+      System.out.println("infinity");
+    }
+  }
+
+  void testForEachParameters() {
+    int[] l = {1, 2, 3};
+    int x = 0;
+    for (int number: l) {
+      System.out.println(number);
+    }
+    for (int _: l) { x++; }
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -153,6 +201,30 @@ public class Example3 {
   public void methodOne(final int x) { }
   public void methodTwo(int x) { }
   public static void main(String[] args) { } // violation, 'args should be final'
+
+  void testCatchParameters() {
+    try { int x = 1 / 0; }
+    catch (Exception e) {
+      System.out.println(e);
+    }
+    try { int x = 1 / 0; }
+    catch (Exception _) {
+      System.out.println("infinity");
+    }
+    try { int x = 1 / 0; }
+    catch (final Exception _) {
+      System.out.println("infinity");
+    }
+  }
+
+  void testForEachParameters() {
+    int[] l = {1, 2, 3};
+    int x = 0;
+    for (int number: l) {
+      System.out.println(number);
+    }
+    for (int _: l) { x++; }
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -174,25 +246,23 @@ public class Example3 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
+  public Example4() { }
+  public Example4(final int m) { }
+  public Example4(final int m, int n) { }
+  public void methodOne(final int x) { }
+  public void methodTwo(int x) { }
+  public static void main(String[] args) { }
 
   void testCatchParameters() {
-    try {
-      int x = 1 / 0;
-    }
+    try { int x = 1 / 0; }
     catch (Exception e) { // violation, 'Parameter e should be final'
       System.out.println(e);
     }
-    try {
-      int x = 1 / 0;
-    }
+    try { int x = 1 / 0; }
     catch (Exception _) { // ok, unnamed catch parameter, it is implicitly final
       System.out.println("infinity");
     }
-    try {
-      int x = 1 / 0;
-    }
-    // it is ok to have unnamed final parameters
-    // but it is unnecessary as it is implicitly final
+    try { int x = 1 / 0; }
     catch (final Exception _) {
       System.out.println("infinity");
     }
@@ -204,12 +274,8 @@ public class Example4 {
     for (int number: l) { // violation, 'Parameter number should be final'
       System.out.println(number);
     }
-    // ok, unnamed enhanced for loop variable, it is implicitly final
-    for (int _: l) {
-      x++;
-    }
+    for (int _: l) { x++; }
   }
-
 }
 </code></pre></div>
       </subsection>
