@@ -41,25 +41,6 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example1.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p>
-          Check is able to detect a block of initialization methods, as a single point for distance.
-          If a variable is used in such a block and there are no other statements after
-          variable declaration, then distance = 1.
-        </p>
-        <p id="Example2-config">
-          Configure the check to default:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example2.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example2-code">Example:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example2.java"/>
-          <param name="type" value="code"/>
         </macro>
         <p>
           The distance for the variable "minutes" in the method <code>case1</code> is 1 even
@@ -128,6 +109,25 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example6.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p>
+          Check is able to detect a block of initialization methods, as a single point for distance.
+          If a variable is used in such a block and there are no other statements after
+          variable declaration, then distance = 1.
+        </p>
+        <p id="Example2-config">
+          Configure the check to default:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
