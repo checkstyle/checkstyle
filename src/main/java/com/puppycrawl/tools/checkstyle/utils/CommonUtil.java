@@ -66,6 +66,9 @@ public final class CommonUtil {
     /** Pseudo URL protocol for loading from the class path. */
     public static final String CLASSPATH_URL_PROTOCOL = "classpath:";
 
+    /** Dollar sign literal used as regex group reference prefix in templates. */
+    private static final String DOLLAR_SIGN = "$";
+
     /** Prefix for the exception when unable to find resource. */
     private static final String UNABLE_TO_FIND_EXCEPTION_PREFIX = "Unable to find: ";
 
@@ -461,6 +464,8 @@ public final class CommonUtil {
      * @param lineToPlaceInTemplate contains expression which should be placed into string.
      * @param regexp expression to find in comment.
      * @return the string, based on template filled with given lines
+     * @throws IllegalArgumentException if a regex group referenced in the template
+     *         did not participate in the match (optional group that returned null)
      */
     public static String fillTemplateWithStringsByRegexp(
         String template, String lineToPlaceInTemplate, Pattern regexp) {
@@ -469,7 +474,23 @@ public final class CommonUtil {
         if (matcher.find()) {
             for (int i = 0; i <= matcher.groupCount(); i++) {
                 // $n expands comment match like in Pattern.subst().
-                result = result.replaceAll("\\$" + i, matcher.group(i));
+                final String group = matcher.group(i);
+                if (group == null) {
+                    if (result.contains(DOLLAR_SIGN + i)) {
+                        throw new IllegalArgumentException(
+                            "Regex group " + i + " has no match for input \""
+                            + lineToPlaceInTemplate + "\" using regexp \""
+                            + regexp.pattern() + "\". "
+                            + "Template \"" + template + "\" references group $" + i
+                            + " but it did not participate in the match "
+                            + "(optional group that did not match). "
+                            + "Please verify your commentFormat/checkFormat/influenceFormat "
+                            + "configuration.");
+                    }
+                }
+                else {
+                    result = result.replace(DOLLAR_SIGN + i, group);
+                }
             }
         }
         return result;

@@ -9189,16 +9189,6 @@
     <lineContent>.isPresent();</lineContent>
   </checkerFrameworkError>
 
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter replacement of String.replaceAll.</message>
-    <lineContent>result = result.replaceAll(&quot;\\$&quot; + i, matcher.group(i));</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
