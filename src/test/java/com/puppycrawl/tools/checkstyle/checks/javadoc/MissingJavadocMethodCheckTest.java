@@ -102,6 +102,13 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingJavadocMethodCompactSourceFile.java"), expected);
+    }
+
+    @Test
     public void testTags2() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputMissingJavadocMethodTags2.java"), expected);
