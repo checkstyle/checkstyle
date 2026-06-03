@@ -294,9 +294,9 @@ public class FinalClassCheckTest
             "44:5: " + getCheckMessage(MSG_KEY, "Node"),
             "51:5: " + getCheckMessage(MSG_KEY, "Some1"),
             "55:1: " + getCheckMessage(MSG_KEY, "Some2"),
-            "105:5: " + getCheckMessage(MSG_KEY, "NewCheck"),
-            "108:5: " + getCheckMessage(MSG_KEY, "NewCheck2"),
-            "112:5: " + getCheckMessage(MSG_KEY, "OldCheck"),
+            "106:5: " + getCheckMessage(MSG_KEY, "NewCheck"),
+            "110:5: " + getCheckMessage(MSG_KEY, "NewCheck2"),
+            "115:5: " + getCheckMessage(MSG_KEY, "OldCheck"),
         };
         verifyWithInlineConfigParser(getPath("InputFinalClassPrivateCtor.java"),
                                      expected);
