@@ -469,7 +469,9 @@ public final class CommonUtil {
         if (matcher.find()) {
             for (int i = 0; i <= matcher.groupCount(); i++) {
                 // $n expands comment match like in Pattern.subst().
-                result = result.replaceAll("\\$" + i, matcher.group(i));
+                final String group = matcher.group(i);
+                final String replacement = group == null ? "" : group;
+                result = result.replace("$" + i, replacement);
             }
         }
         return result;
