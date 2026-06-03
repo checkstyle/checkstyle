@@ -192,6 +192,7 @@ public class RequireThisCheck extends AbstractCheck {
             TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.LITERAL_TRY,
             TokenTypes.RESOURCE,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
     }
 
@@ -225,7 +226,8 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.IDENT -> processIdent(ast);
             case TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF, TokenTypes.ENUM_DEF,
                  TokenTypes.ANNOTATION_DEF, TokenTypes.SLIST, TokenTypes.METHOD_DEF,
-                 TokenTypes.CTOR_DEF, TokenTypes.LITERAL_FOR, TokenTypes.RECORD_DEF ->
+                 TokenTypes.CTOR_DEF, TokenTypes.LITERAL_FOR, TokenTypes.RECORD_DEF,
+                 TokenTypes.COMPACT_COMPILATION_UNIT ->
                 current.push(frames.get(ast));
             case TokenTypes.LITERAL_TRY -> {
                 if (ast.getFirstChild().getType() == TokenTypes.RESOURCE_SPECIFICATION) {
@@ -351,7 +353,8 @@ public class RequireThisCheck extends AbstractCheck {
         if (frame.getFrameName().equals(getNearestClassFrameName())) {
             log(ast, msgKey, ast.getText(), "");
         }
-        else if (!(frame instanceof AnonymousClassFrame)) {
+        else if (!(frame instanceof AnonymousClassFrame)
+                && !(frame instanceof CompactCompilationUnitFrame)) {
             log(ast, msgKey, ast.getText(), frame.getFrameName() + '.');
         }
     }
@@ -440,6 +443,9 @@ public class RequireThisCheck extends AbstractCheck {
                 final DetailAST classFrameNameIdent = ast.findFirstToken(TokenTypes.IDENT);
                 frameStack.addFirst(new ClassFrame(frame, classFrameNameIdent));
             }
+
+            case TokenTypes.COMPACT_COMPILATION_UNIT ->
+                frameStack.addFirst(new CompactCompilationUnitFrame(frame, ast));
 
             case TokenTypes.SLIST -> frameStack.addFirst(new BlockFrame(frame, ast));
 
@@ -540,7 +546,8 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF, TokenTypes.ENUM_DEF,
                  TokenTypes.ANNOTATION_DEF, TokenTypes.SLIST, TokenTypes.METHOD_DEF,
                  TokenTypes.CTOR_DEF, TokenTypes.LITERAL_CATCH, TokenTypes.LITERAL_FOR,
-                 TokenTypes.RECORD_DEF, TokenTypes.COMPACT_CTOR_DEF ->
+                 TokenTypes.RECORD_DEF, TokenTypes.COMPACT_CTOR_DEF,
+                 TokenTypes.COMPACT_COMPILATION_UNIT ->
                 frames.put(ast, frameStack.poll());
 
             case TokenTypes.LITERAL_NEW -> {
@@ -1554,6 +1561,26 @@ public class RequireThisCheck extends AbstractCheck {
         @Override
         protected String getFrameName() {
             return frameName;
+        }
+
+    }
+
+    /**
+     * A frame for the implicit class of a compact source file (JEP 512).
+     * The class is unnamed in source code, so a reference to one of its members
+     * from a nested class cannot be qualified with {@code <ClassName>.this} and is
+     * not flagged, the same way references to anonymous class members are skipped.
+     */
+    private static class CompactCompilationUnitFrame extends ClassFrame {
+
+        /**
+         * Creates compact compilation unit frame.
+         *
+         * @param parent parent frame.
+         * @param ident frame name ident.
+         */
+        /* package */ CompactCompilationUnitFrame(AbstractFrame parent, DetailAST ident) {
+            super(parent, ident);
         }
 
     }
