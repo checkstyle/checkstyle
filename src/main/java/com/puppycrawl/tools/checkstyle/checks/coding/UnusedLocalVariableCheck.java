@@ -24,6 +24,7 @@ import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,9 +42,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * <div>
  * Checks that a local variable is declared and/or assigned, but not used.
- * Doesn't support
+ * Supports
  * <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30">
- * pattern variables yet</a>.
+ * pattern variables</a>.
  * Doesn't check
  * <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.12.3">
  * array components</a> as array
@@ -141,6 +142,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static final String PACKAGE_SEPARATOR = ".";
 
     /**
+     *  Symbol used to represent unnamed variables in Java pattern matching.
+     */
+    private static final String UNNAMED_VAR = "_";
+
+    /**
      * Keeps tracks of the variables declared in file.
      */
     private final Deque<VariableDesc> variables = new ArrayDeque<>();
@@ -221,6 +227,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             TokenTypes.ENUM_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.PATTERN_VARIABLE_DEF,
         };
     }
 
@@ -253,6 +260,10 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         }
         else if (type == TokenTypes.VARIABLE_DEF && !skipUnnamedVariables(ast)) {
             visitVariableDefToken(ast);
+        }
+        else if (type == TokenTypes.PATTERN_VARIABLE_DEF
+                && !skipUnnamedPatternVariables(ast)) {
+            addPatternVariable(ast, variables);
         }
         else if (type == TokenTypes.IDENT) {
             visitIdentToken(ast, variables);
@@ -363,7 +374,49 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private boolean skipUnnamedVariables(DetailAST varDefAst) {
         final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
-        return allowUnnamedVariables && "_".equals(ident.getText());
+        return allowUnnamedVariables && UNNAMED_VAR.equals(ident.getText());
+    }
+
+    /**
+     * Checks whether the specified current pattern variable is an unnamed pattern variable.
+     *
+     * @param patternVarDefAst ast of type {@link TokenTypes#PATTERN_VARIABLE_DEF}
+     * @return true if the current pattern variable should be skipped.
+     */
+    private static boolean skipUnnamedPatternVariables(DetailAST patternVarDefAst) {
+        final DetailAST ident = patternVarDefAst.findFirstToken(TokenTypes.IDENT);
+        return UNNAMED_VAR.equals(ident.getText());
+    }
+
+    /**
+     * Add a pattern variable to the {@code variablesStack} stack.
+     *
+     * @param patternVarDefAst ast of type {@link TokenTypes#PATTERN_VARIABLE_DEF}
+     * @param variablesStack stack of all the relevant variables in the scope
+     */
+    private static void addPatternVariable(DetailAST patternVarDefAst,
+            Deque<VariableDesc> variablesStack) {
+        final DetailAST ident = patternVarDefAst.findFirstToken(TokenTypes.IDENT);
+        final DetailAST scope = findScopeOfPatternVariable(patternVarDefAst);
+        variablesStack.push(new VariableDesc(ident.getText(), ident, scope));
+    }
+
+    /**
+     * Find the scope of a pattern variable.
+     *
+     * @param patternVarDefAst ast of type.
+     * @return the outermost enclosing {@link TokenTypes#SLIST}, or {@code null} if none.
+     */
+    private static DetailAST findScopeOfPatternVariable(DetailAST patternVarDefAst) {
+        final Deque<DetailAST> slistAncestors = new ArrayDeque<>();
+        for (DetailAST current = patternVarDefAst;
+             current != null;
+             current = current.getParent()) {
+            if (current.getType() == TokenTypes.SLIST) {
+                slistAncestors.push(current);
+            }
+        }
+        return slistAncestors.peekLast();
     }
 
     /**
@@ -396,16 +449,20 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param variablesStack stack of all the relevant variables in the scope
      */
     private void logViolations(DetailAST scopeAst, Deque<VariableDesc> variablesStack) {
-        while (!variablesStack.isEmpty() && variablesStack.peek().getScope() == scopeAst) {
-            final VariableDesc variableDesc = variablesStack.pop();
-            if (!variableDesc.isUsed()
-                    && !variableDesc.isInstVarOrClassVar()) {
-                final DetailAST typeAst = variableDesc.getTypeAst();
-                if (allowUnnamedVariables) {
-                    log(typeAst, MSG_UNUSED_NAMED_LOCAL_VARIABLE, variableDesc.getName());
-                }
-                else {
-                    log(typeAst, MSG_UNUSED_LOCAL_VARIABLE, variableDesc.getName());
+        final Iterator<VariableDesc> iterator = variablesStack.iterator();
+        while (iterator.hasNext()) {
+            final VariableDesc variableDesc = iterator.next();
+            if (variableDesc.getScope() == scopeAst) {
+                iterator.remove();
+                if (!variableDesc.isUsed()
+                        && !variableDesc.isInstVarOrClassVar()) {
+                    final DetailAST typeAst = variableDesc.getTypeAst();
+                    if (allowUnnamedVariables) {
+                        log(typeAst, MSG_UNUSED_NAMED_LOCAL_VARIABLE, variableDesc.getName());
+                    }
+                    else {
+                        log(typeAst, MSG_UNUSED_LOCAL_VARIABLE, variableDesc.getName());
+                    }
                 }
             }
         }
