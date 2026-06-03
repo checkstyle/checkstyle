@@ -470,7 +470,12 @@ public final class CommonUtil {
             for (int i = 0; i <= matcher.groupCount(); i++) {
                 // $n expands comment match like in Pattern.subst().
                 final String group = matcher.group(i);
-                final String replacement = group == null ? "" : group;
+                final String replacement;
+                if (group == null) {
+                    replacement = "";
+                } else {
+                    replacement = group;
+                }
                 result = result.replaceAll("\\$" + i,
                         Matcher.quoteReplacement(replacement));
             }
