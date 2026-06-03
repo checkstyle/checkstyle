@@ -335,6 +335,23 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testFillTemplateWithStringsByRegexpOptionalGroup() {
+        final IllegalArgumentException ex =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    CommonUtil.fillTemplateWithStringsByRegexp("before $0 after $1",
+                        "a", Pattern.compile("(\\w)?a"));
+                });
+        assertWithMessage("Invalid exception message")
+            .that(ex)
+            .hasMessageThat()
+            .isEqualTo("Regex group 1 has no match for input \"a\" using regexp "
+                + "\"(\\w)?a\". Template \"before $0 after $1\" references group $1 but "
+                + "it did not participate in the match (optional group that did not match). "
+                + "Please verify your commentFormat/checkFormat/influenceFormat "
+                + "configuration.");
+    }
+
+    @Test
     public void testGetFileNameWithoutExtension() {
         assertWithMessage("invalid result")
             .that(CommonUtil.getFileNameWithoutExtension("filename"))
