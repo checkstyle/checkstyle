@@ -97,48 +97,6 @@ public class Example1 {
     }
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p>
-          Check is able to detect a block of initialization methods, as a single point for distance.
-          If a variable is used in such a block and there are no other statements after
-          variable declaration, then distance = 1.
-        </p>
-        <p id="Example2-config">
-          Configure the check to default:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="VariableDeclarationUsageDistance"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example2 {
-
-  public void case1(long timeNow, int hh, int min) {
-    int minutes = min + 5; // ok, No violation reported
-    Calendar cal = Calendar.getInstance();
-    cal.setTimeInMillis(timeNow);
-    cal.set(Calendar.SECOND, 0);
-    cal.set(Calendar.MILLISECOND, 0);
-    cal.set(Calendar.HOUR_OF_DAY, hh);
-    cal.set(Calendar.MINUTE, minutes);
-  }
-
-  public void case2(long timeNow, int hh, int min){
-    // violation below, 'variable 'minutes' declaration and its first usage is 6.'
-    int minutes = min + 5000;
-    Calendar cal = Calendar.getInstance();
-    cal.setTimeInMillis(timeNow);
-    cal.set(Calendar.SECOND, 0);
-    cal.set(Calendar.MILLISECOND, 0);
-    cal.set(Calendar.HOUR_OF_DAY, hh);
-    System.out.println("Hello World");
-    cal.set(Calendar.MINUTE, minutes);
-  }
-}
 </code></pre></div>
         <p>
           The distance for the variable &quot;minutes&quot; in the method <code>case1</code> is 1 even
@@ -314,6 +272,48 @@ public class Example6 {
       b = 2;
       count++;
     }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p>
+          Check is able to detect a block of initialization methods, as a single point for distance.
+          If a variable is used in such a block and there are no other statements after
+          variable declaration, then distance = 1.
+        </p>
+        <p id="Example2-config">
+          Configure the check to default:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VariableDeclarationUsageDistance"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+
+  public void case1(long timeNow, int hh, int min) {
+    int minutes = min + 5; // ok, No violation reported
+    Calendar cal = Calendar.getInstance();
+    cal.setTimeInMillis(timeNow);
+    cal.set(Calendar.SECOND, 0);
+    cal.set(Calendar.MILLISECOND, 0);
+    cal.set(Calendar.HOUR_OF_DAY, hh);
+    cal.set(Calendar.MINUTE, minutes);
+  }
+
+  public void case2(long timeNow, int hh, int min){
+    // violation below, 'variable 'minutes' declaration and its first usage is 6.'
+    int minutes = min + 5000;
+    Calendar cal = Calendar.getInstance();
+    cal.setTimeInMillis(timeNow);
+    cal.set(Calendar.SECOND, 0);
+    cal.set(Calendar.MILLISECOND, 0);
+    cal.set(Calendar.HOUR_OF_DAY, hh);
+    System.out.println("Hello World");
+    cal.set(Calendar.MINUTE, minutes);
   }
 }
 </code></pre></div>
