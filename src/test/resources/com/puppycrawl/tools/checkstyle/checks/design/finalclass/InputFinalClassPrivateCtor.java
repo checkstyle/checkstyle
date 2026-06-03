@@ -102,14 +102,17 @@ class IfAbstract {
 
 class Suppression {
 
-    @SuppressWarnings("uncheck") // violation 'Class NewCheck should be declared as final'
+    // violation below 'Class NewCheck should be declared as final'
+    @SuppressWarnings("uncheck")
     private static class NewCheck {}
 
-    @SuppressWarnings("uncheck") // violation 'Class NewCheck2 should be declared as final'
+    // violation below 'Class NewCheck2 should be declared as final'
+    @SuppressWarnings("uncheck")
     private class NewCheck2 {}
 
 
-    @SuppressWarnings("uncheck") // violation 'Class OldCheck should be declared as final'
+    // violation below 'Class OldCheck should be declared as final'
+    @SuppressWarnings("uncheck")
     private class OldCheck {
         private OldCheck(){}
     }
