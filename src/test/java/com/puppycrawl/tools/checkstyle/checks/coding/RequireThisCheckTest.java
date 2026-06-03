@@ -184,6 +184,50 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "15:15: " + getCheckMessage(MSG_VARIABLE, "field", ""),
+            "20:5: " + getCheckMessage(MSG_VARIABLE, "field", ""),
+            "20:13: " + getCheckMessage(MSG_VARIABLE, "field", ""),
+            "28:5: " + getCheckMessage(MSG_METHOD, "increment", ""),
+            "35:9: " + getCheckMessage(MSG_VARIABLE, "innerField", ""),
+            "35:22: " + getCheckMessage(MSG_VARIABLE, "innerField", ""),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRequireThisCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRequireThisCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileNestedReference() throws Exception {
+        final String[] expected = {
+            "22:9: " + getCheckMessage(MSG_VARIABLE, "innerField", ""),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRequireThisCompactSourceFileNestedReference.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileImport() throws Exception {
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_VARIABLE, "field", ""),
+            "17:13: " + getCheckMessage(MSG_VARIABLE, "field", ""),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRequireThisCompactSourceFileImport.java"),
+                expected);
+    }
+
+    @Test
     public void testDefaultSwitch() {
         final RequireThisCheck check = new RequireThisCheck();
 
