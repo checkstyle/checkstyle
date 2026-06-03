@@ -469,7 +469,23 @@ public final class CommonUtil {
         if (matcher.find()) {
             for (int i = 0; i <= matcher.groupCount(); i++) {
                 // $n expands comment match like in Pattern.subst().
-                result = result.replaceAll("\\$" + i, matcher.group(i));
+                final String group = matcher.group(i);
+                if (group == null) {
+                    if (result.contains("$" + i)) {
+                        throw new IllegalArgumentException(
+                            "Regex group " + i + " has no match for input \""
+                            + lineToPlaceInTemplate + "\" using regexp \""
+                            + regexp.pattern() + "\". "
+                            + "Template \"" + template + "\" references group $" + i
+                            + " but it did not participate in the match "
+                            + "(optional group that did not match). "
+                            + "Please verify your commentFormat/checkFormat/influenceFormat "
+                            + "configuration.");
+                    }
+                }
+                else {
+                    result = result.replace("$" + i, group);
+                }
             }
         }
         return result;
