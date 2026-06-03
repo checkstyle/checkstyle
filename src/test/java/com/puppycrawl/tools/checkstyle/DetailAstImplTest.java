@@ -58,7 +58,8 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
                  "InputNoCodeInFile1.java",
                  "InputNoCodeInFile2.java",
                  "InputNoCodeInFile3.java",
-                 "InputNoCodeInFile5.java"
+                 "InputNoCodeInFile5.java",
+                 "InputOuterTypeFilenameEmpty.java"
         );
 
     @TempDir
