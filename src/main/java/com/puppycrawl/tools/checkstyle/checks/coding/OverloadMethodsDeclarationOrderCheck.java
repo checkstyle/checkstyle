@@ -60,22 +60,28 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
     public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.OBJBLOCK,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        final int parentType = ast.getParent().getType();
+        if (ast.getType() == TokenTypes.OBJBLOCK) {
+            final int parentType = ast.getParent().getType();
 
-        final int[] tokenTypes = {
-            TokenTypes.CLASS_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.LITERAL_NEW,
-            TokenTypes.RECORD_DEF,
-        };
+            final int[] tokenTypes = {
+                TokenTypes.CLASS_DEF,
+                TokenTypes.ENUM_DEF,
+                TokenTypes.INTERFACE_DEF,
+                TokenTypes.LITERAL_NEW,
+                TokenTypes.RECORD_DEF,
+            };
 
-        if (TokenUtil.isOfType(parentType, tokenTypes)) {
+            if (TokenUtil.isOfType(parentType, tokenTypes)) {
+                checkOverloadMethodsGrouping(ast);
+            }
+        }
+        else if (ast.getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
             checkOverloadMethodsGrouping(ast);
         }
     }
@@ -100,7 +106,8 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
                         currentToken.findFirstToken(TokenTypes.IDENT).getText();
                 final Integer previousIndex = methodIndexMap.get(methodName);
                 final DetailAST previousSibling = currentToken.getPreviousSibling();
-                final boolean isMethod = previousSibling.getType() == TokenTypes.METHOD_DEF;
+                final boolean isMethod = previousSibling != null
+                        && previousSibling.getType() == TokenTypes.METHOD_DEF;
 
                 if (previousIndex != null
                         && (!isMethod || currentIndex - previousIndex > allowedDistance)) {
