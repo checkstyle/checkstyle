@@ -12,6 +12,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegalsymbol;
 // xdoc section -- start
 public class Example3 {
   // café // violation 'Illegal symbol detected: 'é''
-  int value = 1;
+
+  int value1 = 1;
+  String value2 = "Hello 😀";
 }
 // xdoc section -- end
