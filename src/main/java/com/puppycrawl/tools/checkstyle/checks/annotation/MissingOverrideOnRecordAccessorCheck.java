@@ -88,7 +88,7 @@ public class MissingOverrideOnRecordAccessorCheck extends AbstractCheck {
     private static boolean isRecordAccessorMethod(DetailAST ast) {
         boolean result = false;
         final DetailAST grandParent = ast.getParent().getParent();
-        if (grandParent.getType() == TokenTypes.RECORD_DEF) {
+        if (grandParent != null && grandParent.getType() == TokenTypes.RECORD_DEF) {
             final DetailAST parameters = ast.findFirstToken(TokenTypes.PARAMETERS);
             if (parameters.getChildCount() == 0) {
                 final String methodName = getMethodName(ast);
