@@ -116,7 +116,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/descendanttoken/Example8",
             "checks/descendanttoken/Example9",
             "checks/finalparameters/Example4",
-            "checks/imports/avoidstaticimport/Example2",
             "checks/imports/customimportorder/Example10",
             "checks/imports/customimportorder/Example11",
             "checks/imports/customimportorder/Example12",
