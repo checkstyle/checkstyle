@@ -1,5 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
-/** // violation ''/\*' should be separated from previous line.'
+// violation below ''/\*' should be separated from previous line.'
+/**
  * Some javadoc here.
  */
 
