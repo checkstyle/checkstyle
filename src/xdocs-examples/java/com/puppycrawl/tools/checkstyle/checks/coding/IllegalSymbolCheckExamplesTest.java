@@ -68,7 +68,7 @@ public class IllegalSymbolCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "16:18: " + getCheckMessage(MSG_KEY, "😀"),
+            "18:19: " + getCheckMessage(MSG_KEY, "😀"),
         };
 
         verifyWithInlineConfigParser(
