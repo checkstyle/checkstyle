@@ -9,10 +9,12 @@
 package com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport;
 
 // xdoc section -- start
-import static java.lang.Math.pow;          // violation, 'Using a static member import should be avoided.'
-import static java.lang.System.*;          // violation, 'Using a static member import should be avoided.'
+import static java.lang.Math.*;           // violation, 'Using a static member import should be avoided.'
+import static java.lang.System.out;       // violation, 'Using a static member import should be avoided.'
+import static java.lang.Integer.parseInt; // violation, 'Using a static member import should be avoided.'
+
 import java.io.File;
-import java.util.*;
+import java.util.List;
 // xdoc section -- end
 
-class Example1{}
+class Example1 {}
