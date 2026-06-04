@@ -959,6 +959,11 @@
       <property name="tokens" value="ARRAY_DECLARATOR"/>
       <property name="tokens" value="INDEX_OP"/>
       <property name="tokens" value="METHOD_REF"/>
+      <property name="tokens" value="LITERAL_IF"/>
+      <property name="tokens" value="LITERAL_FOR"/>
+      <property name="tokens" value="LITERAL_WHILE"/>
+      <property name="tokens" value="LITERAL_CATCH"/>
+      <property name="tokens" value="DO_WHILE"/>
     </module>
     <module name="NoWhitespaceBefore"/>
     <module name="NoWhitespaceBeforeCaseDefaultColon"/>
