@@ -131,17 +131,20 @@ public class MethodNameCheck
             // in all cases this will be the classDef type except anon inner
             // with anon inner classes this will be the Literal_New keyword
             final DetailAST classDefOrNew = ast.getParent().getParent();
-            final DetailAST classIdent =
-                classDefOrNew.findFirstToken(TokenTypes.IDENT);
-            // Following logic is to handle when a classIdent can not be
-            // found. This is when you have a Literal_New keyword followed
-            // a DOT, which is when you have:
-            // new Outclass.InnerInterface(x) { ... }
-            // Such a rare case, will not have the logic to handle parsing
-            // down the tree looking for the first ident.
-            if (classIdent != null
-                && method.getText().equals(classIdent.getText())) {
-                log(method, MSG_KEY, method.getText());
+
+            if (classDefOrNew != null) {
+                final DetailAST classIdent =
+                    classDefOrNew.findFirstToken(TokenTypes.IDENT);
+                // Following logic is to handle when a classIdent can not be
+                // found. This is when you have a Literal_New keyword followed
+                // a DOT, which is when you have:
+                // new Outclass.InnerInterface(x) { ... }
+                // Such a rare case, will not have the logic to handle parsing
+                // down the tree looking for the first ident.
+                if (classIdent != null
+                    && method.getText().equals(classIdent.getText())) {
+                    log(method, MSG_KEY, method.getText());
+                }
             }
         }
     }
