@@ -48,19 +48,24 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return getRequiredTokens();
+        return new int[] {
+            TokenTypes.OBJBLOCK,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
+        };
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return getRequiredTokens();
+        return new int[] {
+            TokenTypes.OBJBLOCK,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
+        };
     }
 
     @Override
     public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.OBJBLOCK,
-            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
     }
 
