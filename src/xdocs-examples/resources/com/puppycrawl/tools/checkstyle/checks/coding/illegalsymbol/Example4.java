@@ -13,7 +13,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegalsymbol;
 // xdoc section -- start
 public class Example4 {
   // 😀 This emoji in comment is ok
-  String value = "Hello 😀"; // violation 'Illegal symbol detected: '😀''
+
+  int value1 = 1;
+  String value2 = "Hello 😀"; // violation 'Illegal symbol detected: '😀''
 }
 // xdoc section -- end
 
