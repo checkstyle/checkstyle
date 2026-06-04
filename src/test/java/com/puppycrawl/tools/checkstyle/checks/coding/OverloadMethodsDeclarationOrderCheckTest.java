@@ -85,6 +85,16 @@ public class OverloadMethodsDeclarationOrderCheckTest
     }
 
     @Test
+    public void testCompactSourceFileOverloads() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_KEY, 6),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOverloadMethodsDeclarationOrderCompact.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final OverloadMethodsDeclarationOrderCheck check =
             new OverloadMethodsDeclarationOrderCheck();
