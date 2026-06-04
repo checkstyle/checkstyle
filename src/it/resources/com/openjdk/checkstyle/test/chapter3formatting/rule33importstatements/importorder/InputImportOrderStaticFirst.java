@@ -1,4 +1,4 @@
-package com.openjdk.checkstyle.test.chapter3formatting.rule33importstatements;
+package com.openjdk.checkstyle.test.chapter3formatting.rule33importstatements.importorder;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.max;
