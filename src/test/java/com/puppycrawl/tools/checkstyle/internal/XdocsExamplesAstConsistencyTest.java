@@ -90,7 +90,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/annotation/missingoverride/Example2",
             "checks/annotation/suppresswarningsholder/Example1",
             "checks/blocks/needbraces/Example6",
-            "checks/coding/illegalsymbol/Example4",
             "checks/coding/packagedeclaration/Example2",
             "checks/coding/variabledeclarationusagedistance/Example2",
             "checks/descendanttoken/Example10",
@@ -271,7 +270,9 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/whitespace/nowhitespacebefore/Example4",
             "checks/whitespace/whitespacearound/Example2",
             "checks/blocks/emptycatchblock/Example4",
-            "checks/blocks/emptycatchblock/Example5"
+            "checks/blocks/emptycatchblock/Example5",
+            "checks/coding/illegalsymbol/Example3",
+            "checks/coding/illegalsymbol/Example5"
             );
 
     /**
