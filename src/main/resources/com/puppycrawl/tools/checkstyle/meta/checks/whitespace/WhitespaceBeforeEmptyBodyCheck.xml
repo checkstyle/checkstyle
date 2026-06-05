@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceBeforeEmptyBodyCheck"
+             name="WhitespaceBeforeEmptyBody"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that a whitespace is present before the opening brace of an empty body.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ This check applies to the following tokens:
+ Methods and constructors, Classes, interfaces, enums, and records,
+ Annotation definitions, Loops: &lt;code&gt;while&lt;/code&gt;, &lt;code&gt;for&lt;/code&gt;, &lt;code&gt;do-while&lt;/code&gt;,
+ Lambdas and anonymous classes, Static initializer blocks,
+ Try-catch-finally statements, Synchronized blocks, Switch statements.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ A body containing only comments is considered empty by this check.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="METHOD_DEF,CTOR_DEF,COMPACT_CTOR_DEF,CLASS_DEF,INTERFACE_DEF,RECORD_DEF,ENUM_DEF,ANNOTATION_DEF,LITERAL_NEW,LITERAL_DO,LITERAL_WHILE,LITERAL_FOR,LITERAL_IF,LITERAL_ELSE,STATIC_INIT,LITERAL_TRY,LITERAL_CATCH,LITERAL_FINALLY,LITERAL_SYNCHRONIZED,LITERAL_SWITCH,LAMBDA"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="ws.notPreceded"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
