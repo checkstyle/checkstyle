@@ -160,8 +160,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/metrics/npathcomplexity/Example2",
             "checks/naming/lambdaparametername/Example2",
             "checks/naming/localfinalvariablename/Example3",
-            "checks/naming/membername/Example2",
-            "checks/naming/membername/Example3",
             "checks/naming/parametername/Example5",
             "checks/naming/patternvariablename/Example4",
             "checks/naming/typename/Example2",
