@@ -109,8 +109,9 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   // ✅ Enhancement completed // violation 'Illegal symbol detected: '✅''
-  // 😀 Happy coding // violation 'Illegal symbol detected: '😀''
-  int value = 1;
+  // 😀 Happy coding          // violation 'Illegal symbol detected: '😀''
+  int value1 = 1;
+  String value2 = "Hello 😀";
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -131,7 +132,33 @@ public class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   // 🌟 Star // violation 'Illegal symbol detected: '🌟''
-  int value = 1;
+
+  int value1 = 1;
+  String value2 = "Hello 😀";
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check for ASCII-only mode:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalSymbol"&gt;
+      &lt;property name="symbolCodes" value="0x1F600-0x1F64F"/&gt;
+      &lt;property name="tokens" value="STRING_LITERAL"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">
+            Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example4 {
+  // 😀 This emoji in comment is ok
+
+  int value1 = 1;
+  String value2 = "Hello 😀"; // violation 'Illegal symbol detected: '😀''
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -152,6 +179,31 @@ public class Example2 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
   // café // violation 'Illegal symbol detected: 'é''
+
+  int value1 = 1;
+  String value2 = "Hello 😀";
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check for ASCII-only mode:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalSymbol"&gt;
+      &lt;property name="symbolCodes" value="0x0080-0x10FFFF"/&gt;
+      &lt;message key="illegal.symbol"
+               value="Only ASCII characters are allowed."/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">
+            Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example5 {
+  // café // violation 'Only ASCII characters are allowed.'
   int value = 1;
 }
 </code></pre></div>
