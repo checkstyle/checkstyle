@@ -95,6 +95,8 @@
     files="java25[\\/]InputCompactSourceFileWithModifiers\.java"/>
   <suppress checks="PackageDeclarationCheck"
     files="redundantmodifier[\\/]InputRedundantModifierCompactSourceFile\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="missingoverride[\\/]InputMissingOverrideCompactSourceFile\.java"/>
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/19909 -->
   <suppress checks="OuterTypeFilename"

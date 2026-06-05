@@ -228,6 +228,16 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingOverrideCompactSourceFile.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final int[] expectedTokens = {TokenTypes.METHOD_DEF };
         final MissingOverrideCheck check = new MissingOverrideCheck();
