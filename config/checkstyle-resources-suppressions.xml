@@ -544,5 +544,11 @@
     files=".*[\\/]sariflogger[\\/]InputSarifLogger Space\.java"/>
   <suppress id="resourceFileName"
     files=".*[\\/]sariflogger[\\/]InputSarifLogger Space\.java"/>
+  
+  <!-- Compact source files cannot have package declarations -->
+  <suppress checks="PackageDeclaration" files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberCompact1\.java"/>
+  <suppress checks="PackageDeclaration" files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberCompact3\.java"/>
+  <suppress checks="PackageDeclaration" files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberCompact5\.java"/>
+  <suppress checks="PackageDeclaration" files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberCompactViolation\.java"/>
 
 </suppressions>
