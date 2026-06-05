@@ -102,30 +102,7 @@ import module
 import static java.math.
   BigInteger.ZERO;
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example2-code">
-          Examples:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-package com.puppycrawl.tools.checkstyle. // violation 'should not be line-wrapped'
-  checks.whitespace.nolinewrap;
-
-import java.lang.Object;
-import java.lang. // violation 'should not be line-wrapped'
-  Integer;
-
-import static java.math. // violation 'should not be line-wrapped'
-  BigInteger.TEN;
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-package com.puppycrawl.tools.checkstyle.checks.whitespace.nolinewrap;
-
-import java.lang. // violation 'should not be line-wrapped'
-  Boolean;
-
-import static java.math.BigInteger.ONE;
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="Example2-config">
           To configure the check to force no line-wrapping only
           in import statements:
         </p>
@@ -138,21 +115,20 @@ import static java.math.BigInteger.ONE;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">
+        <p id="Example2-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-package com.puppycrawl. // ok, PACKAGE_DEF is not part of the tokens
+package com.puppycrawl.      // ok, PACKAGE_DEF is not part of the tokens
   tools.checkstyle.checks.whitespace.nolinewrap;
 
-import java.io.*;
-import java.lang. // violation 'should not be line-wrapped'
-  Boolean;
+import com.puppycrawl.tools. // violation 'should not be line-wrapped'
+  checkstyle.api.AbstractCheck;
 
-import static java.math. // ok, STATIC_IMPORT is not part of the tokens
+import static java.math.     // ok, STATIC_IMPORT is not part of the tokens
   BigInteger.ZERO;
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="Example3-config">
           To configure the check to force no line-wrapping only
           in class, method and constructor definitions:
         </p>
@@ -165,17 +141,14 @@ import static java.math. // ok, STATIC_IMPORT is not part of the tokens
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">
+        <p id="Example3-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
-import static java.math.BigInteger.ZERO;
-
 class // violation 'should not be line-wrapped'
-  Example5 {
+  Example3 {
 
-  public Example5() {
+  public Example3() {
   }
 
   public static void // violation 'should not be line-wrapped'

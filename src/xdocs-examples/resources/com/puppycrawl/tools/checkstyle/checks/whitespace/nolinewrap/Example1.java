@@ -1,9 +1,7 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="NoLineWrap">
-      <property name="tokens" value="IMPORT"/>
-    </module>
+    <module name="NoLineWrap"/>
   </module>
 </module>
 
@@ -11,14 +9,14 @@
 */
 
 // xdoc section -- start
-package com.puppycrawl.      // ok, PACKAGE_DEF is not part of the tokens
+package com.puppycrawl.      // violation 'should not be line-wrapped'
   tools.checkstyle.checks.whitespace.nolinewrap;
 
 import com.puppycrawl.tools. // violation 'should not be line-wrapped'
   checkstyle.api.AbstractCheck;
 
-import static java.math.     // ok, STATIC_IMPORT is not part of the tokens
+import static java.math.     // violation 'should not be line-wrapped'
   BigInteger.ZERO;
 // xdoc section -- end
 
-class Example2 { }
+class Example1 { }
