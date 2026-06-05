@@ -595,7 +595,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         for (DetailAST typeChild = token.findFirstToken(TokenTypes.TYPE).getLastChild();
              typeChild != null; typeChild = typeChild.getPreviousSibling()) {
 
-            if (isTokenNotOnPreviousSiblingLines(typeChild, token)) {
+            if (typeChild.getLineNo() > 2
+                && isTokenNotOnPreviousSiblingLines(typeChild, token)) {
 
                 final String commentBeginningPreviousLine =
                     getLine(typeChild.getLineNo() - 2);
@@ -630,7 +631,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             previousSibling = astNode;
         }
 
-        return token.getLineNo() != previousSibling.getLineNo();
+        return previousSibling == null
+                || token.getLineNo() != previousSibling.getLineNo();
     }
 
     /**
@@ -704,20 +706,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             // [lineNo - 2] is the number of the previous line as the numbering starts from zero.
             final String lineBefore = getLine(lineNo - 2);
 
-            if (CommonUtil.isBlank(lineBefore)) {
-                result = true;
-            }
-            else if (token.findFirstToken(TokenTypes.TYPE) != null) {
-                for (DetailAST typeChild = token.findFirstToken(TokenTypes.TYPE).getLastChild();
-                     typeChild != null && !result && typeChild.getLineNo() > 1;
-                     typeChild = typeChild.getPreviousSibling()) {
-
-                    final String commentBeginningPreviousLine =
-                        getLine(typeChild.getLineNo() - 2);
-                    result = CommonUtil.isBlank(commentBeginningPreviousLine);
-
-                }
-            }
+            result = CommonUtil.isBlank(lineBefore)
+                    || token.findFirstToken(TokenTypes.TYPE) != null;
         }
         return result;
     }
@@ -762,7 +752,10 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true variable definition is a type field.
      */
     private static boolean isTypeField(DetailAST variableDef) {
-        return TokenUtil.isTypeDeclaration(variableDef.getParent().getParent().getType());
+        final DetailAST container = variableDef.getParent().getParent();
+
+        return container == null
+                || TokenUtil.isTypeDeclaration(container.getType());
     }
 
 }
