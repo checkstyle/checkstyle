@@ -76,6 +76,19 @@ and the [list-of-projects][list-of-projects] to generate the diff report for the
 specified project.
 Example: `GitHub, generate report for checkstyle with openjdk_checks.xml`.
 
+### Baseline Report by local configuration for a project
+
+Make a comment in PR:
+
+```txt
+GitHub, generate baseline report for {{project_name}} with {{config_name}}
+```
+
+Workflow will use the specified config from [src/main/resources][local-config-files] directory
+and the [list-of-projects][list-of-projects] to generate the baseline report for the
+specified project.
+Example: `GitHub, generate baseline report for checkstyle with openjdk_checks.xml`.
+
 ### Configure saved-replies to ease typing trigger comment
 
 If you plan to frequently use regression/diff report, it is recommended to use
