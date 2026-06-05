@@ -206,7 +206,7 @@
     <spotbugs.plugin.version>4.9.8.3</spotbugs.plugin.version>
     <pmd.plugin.version>3.28.0</pmd.plugin.version>
     <pmd.version>7.25.0</pmd.version>
-    <jacoco.plugin.version>0.8.14</jacoco.plugin.version>
+    <jacoco.plugin.version>0.8.15</jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
     <slf4j.version>2.0.18</slf4j.version>
     <saxon.version>12.9</saxon.version>
