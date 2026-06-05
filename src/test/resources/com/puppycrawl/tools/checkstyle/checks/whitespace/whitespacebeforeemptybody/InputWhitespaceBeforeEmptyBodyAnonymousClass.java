@@ -1,0 +1,38 @@
+/*
+WhitespaceBeforeEmptyBody
+tokens = LITERAL_NEW
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacebeforeemptybody;
+
+public class InputWhitespaceBeforeEmptyBodyAnonymousClass {
+
+    interface Foo {
+        void foo();
+    }
+
+    interface Bar {
+        void bar();
+    }
+
+    void method(){
+        Foo a = new Foo(){
+           int num = 1;
+        };
+
+        Foo b = new Foo(){ // violation ''{' is not preceded with whitespace'
+            // comment
+        };
+
+        Foo c = new Foo(){ // violation ''{' is not preceded with whitespace'
+            /* comment */
+        };
+
+        Bar d = new Bar(){ // violation ''{' is not preceded with whitespace'
+        };
+
+        Bar e = new Bar(){}; // violation ''{' is not preceded with whitespace'
+    }
+}
