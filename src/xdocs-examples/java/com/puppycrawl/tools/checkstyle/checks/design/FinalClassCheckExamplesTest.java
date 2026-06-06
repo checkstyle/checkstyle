@@ -40,4 +40,13 @@ public class FinalClassCheckExamplesTest extends AbstractExamplesModuleTestSuppo
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {
+            "22:1: " + getCheckMessage(MSG_KEY, "Example2A"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
 }
