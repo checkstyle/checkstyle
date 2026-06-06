@@ -211,6 +211,17 @@ public class FinalClassCheckTest
     }
 
     @Test
+    public void testFinalClassIgnoreAnnotatedBy() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_KEY, "InputFinalClassIgnoreAnnotatedByNoAnnotation"),
+            "26:1: " + getCheckMessage(MSG_KEY,
+                    "InputFinalClassIgnoreAnnotatedByOtherAnnotation"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalClassIgnoreAnnotatedBy.java"), expected);
+    }
+
+    @Test
     public void testFinalClassAnonymousInnerClass() throws Exception {
         final String[] expected = {
             "11:9: " + getCheckMessage(MSG_KEY, "b"),
