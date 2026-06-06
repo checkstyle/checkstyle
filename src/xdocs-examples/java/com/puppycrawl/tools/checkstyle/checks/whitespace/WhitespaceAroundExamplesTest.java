@@ -316,4 +316,16 @@ public class WhitespaceAroundExamplesTest extends AbstractExamplesModuleTestSupp
         verifyWithInlineConfigParser(getPath("Example11.java"), expected);
     }
 
+    @Test
+    public void testExample12() throws Exception {
+        final String[] expected = {
+            "17:10: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "17:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "28:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "28:19: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("Example12.java"), expected);
+    }
 }

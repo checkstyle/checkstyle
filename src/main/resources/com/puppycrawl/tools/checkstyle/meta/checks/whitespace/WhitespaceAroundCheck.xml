@@ -66,6 +66,9 @@
             <property default-value="false" name="allowEmptyConstructors" type="boolean">
                <description>Allow empty constructor bodies.</description>
             </property>
+            <property default-value="false" name="allowEmptyInitializers" type="boolean">
+               <description>Allow empty initializer.</description>
+            </property>
             <property default-value="false" name="allowEmptyLambdas" type="boolean">
                <description>Allow empty lambda bodies.</description>
             </property>

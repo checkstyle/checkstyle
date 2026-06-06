@@ -7,6 +7,7 @@ allowEmptyLoops = (default)false
 allowEmptyLambdas = (default)false
 allowEmptyCatches = (default)false
 allowEmptySwitchBlockStatements = (default)false
+allowEmptyInitializers = (default)false
 ignoreEnhancedForColon = (default)true
 tokens = LITERAL_WHEN
 

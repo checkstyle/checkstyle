@@ -113,6 +113,8 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     private boolean allowEmptyCatches;
     /** Allow empty switch blocks and block statements. */
     private boolean allowEmptySwitchBlockStatements;
+    /** Allow empty initializers. */
+    private boolean allowEmptyInitializers;
     /**
      * Ignore whitespace around colon in
      * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
@@ -328,6 +330,16 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         allowEmptySwitchBlockStatements = allow;
     }
 
+    /**
+     * Setter to allow empty initializer.
+     *
+     * @param allow {@code true} to allow empty switch initializer.
+     * @since 13.6.0
+     */
+    public void setAllowEmptyInitializers(boolean allow) {
+        allowEmptyInitializers = allow;
+    }
+
     @Override
     public void visitToken(DetailAST ast) {
         final int currentType = ast.getType();
@@ -389,8 +401,9 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * @return true if it should be checked if previous token is separated by whitespace,
      *      false otherwise.
      */
-    private static boolean shouldCheckSeparationFromPreviousToken(DetailAST ast) {
-        return !isPartOfDoubleBraceInitializerForPreviousToken(ast);
+    private boolean shouldCheckSeparationFromPreviousToken(DetailAST ast) {
+        return !isPartOfDoubleBraceInitializerForPreviousToken(ast)
+                && !isEmptyInitializerFromSlist(ast);
     }
 
     /**
@@ -405,6 +418,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {
         return !isEmptyCtorBlockCheckedFromSlist(ast)
+                && !isEmptyInitializerFromSlist(ast)
                 && !(ast.getType() == TokenTypes.LITERAL_RETURN
                 && ast.getFirstChild().getType() == TokenTypes.SEMI)
                 && ast.getType() != TokenTypes.ARRAY_INIT
@@ -437,6 +451,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     private boolean isEmptyBlock(DetailAST ast, int parentType) {
         return isEmptyMethodBlock(ast, parentType)
                 || isEmptyCtorBlockCheckedFromRcurly(ast)
+                || isEmptyInitializerFromRcurly(ast)
                 || isEmptyLoop(ast, parentType)
                 || isEmptyLambda(ast, parentType)
                 || isEmptyCatch(ast, parentType)
@@ -506,6 +521,25 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     }
 
     /**
+     * Test if the given {@code DetailAST} is part of an allowed empty
+     * initializer block checked from RCURLY.
+     *
+     * @param ast the {@code DetailAST} to test.
+     * @return {@code true} if {@code ast} makes up part of an
+     *         allowed empty initializer block.
+     */
+    private boolean isEmptyInitializerFromRcurly(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        final int grandParentType = parent.getParent().getType();
+        return allowEmptyInitializers
+                && (grandParentType == TokenTypes.SLIST
+                        || grandParentType == TokenTypes.STATIC_INIT
+                        || grandParentType == TokenTypes.INSTANCE_INIT)
+                && parent.getFirstChild().getType() == TokenTypes.RCURLY;
+
+    }
+
+    /**
      * Test if the given {@code DetailAST} is a part of an allowed
      * empty constructor checked from SLIST token.
      *
@@ -517,6 +551,23 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         return allowEmptyConstructors
                 && (ast.getParent().getType() == TokenTypes.CTOR_DEF
                         || ast.getParent().getType() == TokenTypes.COMPACT_CTOR_DEF)
+                && ast.getFirstChild().getType() == TokenTypes.RCURLY;
+    }
+
+    /**
+     * Test if the given {@code DetailAST} is a part of an allowed
+     * empty initializer checked from SLIST token.
+     *
+     * @param ast the {@code DetailAST} to test.
+     * @return {@code true} if {@code ast} makes up part of an
+     *          empty initializer block.
+     */
+    private boolean isEmptyInitializerFromSlist(DetailAST ast) {
+        return allowEmptyInitializers
+                && ast.getType() == TokenTypes.SLIST
+                && (ast.getParent().getType() == TokenTypes.SLIST
+                        || ast.getParent().getType() == TokenTypes.STATIC_INIT
+                        || ast.getParent().getType() == TokenTypes.INSTANCE_INIT)
                 && ast.getFirstChild().getType() == TokenTypes.RCURLY;
     }
 
