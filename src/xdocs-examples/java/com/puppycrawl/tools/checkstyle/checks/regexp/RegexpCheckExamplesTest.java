@@ -40,9 +40,7 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
-
-        };
+        final String[] expected = {};
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
@@ -68,7 +66,7 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "21: Found duplicate pattern '// This code is copyrighted\\n// \\(c\\) MyCompany'.",
+            "20: Found duplicate pattern '// This code is copyrighted\\n// \\(c\\) MyCompany'.",
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -86,8 +84,8 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-            "17: Line matches the illegal pattern 'System\\.out\\.println'.",
-            "20: Line matches the illegal pattern 'System\\.out\\.println'.",
+            "23: Line matches the illegal pattern 'System\\.out\\.println'.",
+            "24: Line matches the illegal pattern 'System\\.out\\.println'.",
         };
 
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
@@ -96,7 +94,7 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample7() throws Exception {
         final String[] expected = {
-            "18: Line matches the illegal pattern 'System\\.out\\.println'.",
+            "24: Line matches the illegal pattern 'System\\.out\\.println'.",
         };
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
@@ -123,7 +121,7 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample10() throws Exception {
         final String[] expected = {
-            "18: Line matches the illegal pattern"
+            "26: Line matches the illegal pattern"
                 + " 'The error limit has been exceeded, the check is aborting,"
                 + " there may be more unreported errors.(?i)fix me\\.'.",
         };
