@@ -6,25 +6,34 @@
     </module>
   </module>
 </module>
-
-
 */
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.lambdabodylength;
 
 // xdoc section -- start
 class Example2 {
-  Runnable r = () -> { // ok, length is 5
+  // violation below 'Lambda body length is 10 lines (max allowed is 5).'
+  Runnable r = () -> {
     System.out.println(2);
     System.out.println(3);
     System.out.println(4);
+    System.out.println(5);
+    System.out.println(6);
+    System.out.println(7);
+    System.out.println(8);
+    System.out.println(9);
   };
-  // violation below 'Lambda body length is 6 lines (max allowed is 5).'
+  // violation below 'Lambda body length is 11 lines (max allowed is 5).'
   Runnable r2 = () -> {
-    System.out.println(2); // line 2 of lambda
+    System.out.println(2);
     System.out.println(3);
     System.out.println(4);
     System.out.println(5);
+    System.out.println(6);
+    System.out.println(7);
+    System.out.println(8);
+    System.out.println(9);
+    System.out.println(10);
   };
   // violation below 'Lambda body length is 6 lines (max allowed is 5).'
   Runnable r3 = () ->
