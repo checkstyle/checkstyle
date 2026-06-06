@@ -214,7 +214,7 @@ public class FinalClassCheckTest
     public void testFinalClassIgnoreAnnotatedBy() throws Exception {
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_KEY, "InputFinalClassIgnoreAnnotatedByNoAnnotation"),
-            "27:1: " + getCheckMessage(MSG_KEY,
+            "26:1: " + getCheckMessage(MSG_KEY,
                     "InputFinalClassIgnoreAnnotatedByOtherAnnotation"),
         };
         verifyWithInlineConfigParser(

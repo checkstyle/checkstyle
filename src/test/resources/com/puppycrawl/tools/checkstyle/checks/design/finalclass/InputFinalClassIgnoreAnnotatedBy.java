@@ -23,8 +23,8 @@ class InputFinalClassIgnoreAnnotatedByConfiguration { // ok, skipped by annotati
     }
 }
 
-@OtherAnnotation
-class InputFinalClassIgnoreAnnotatedByOtherAnnotation { // violation, 'should be declared as final'
+@OtherAnnotation // violation, 'Class InputFinalClassIgnoreAnnotatedByOtherAnnotation should be declared as final.'
+class InputFinalClassIgnoreAnnotatedByOtherAnnotation {
     private InputFinalClassIgnoreAnnotatedByOtherAnnotation() {
     }
 }
