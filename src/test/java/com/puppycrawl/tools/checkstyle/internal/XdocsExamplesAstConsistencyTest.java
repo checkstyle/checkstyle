@@ -271,7 +271,8 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/blocks/emptycatchblock/Example4",
             "checks/blocks/emptycatchblock/Example5",
             "checks/coding/illegalsymbol/Example3",
-            "checks/coding/illegalsymbol/Example5"
+            "checks/coding/illegalsymbol/Example5",
+            "checks/design/finalclass/Example2"
             );
 
     /**
