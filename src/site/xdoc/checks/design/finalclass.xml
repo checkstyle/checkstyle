@@ -32,7 +32,32 @@
         <li>
           Class is extended by another class in the same file.
         </li>
+        <li>
+          Class is annotated with any of the specified annotations from the
+          <a href="#FinalClass_ignoreAnnotatedBy">ignoreAnnotatedBy</a> property.
+        </li>
         </ol>
+      </subsection>
+
+      <subsection name="Properties" id="FinalClass_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="FinalClass_ignoreAnnotatedBy"/><a href="#FinalClass_ignoreAnnotatedBy">ignoreAnnotatedBy</a></td>
+              <td>Ignore classes annotated with the specified annotation(s). Annotation names provided in this property must exactly match the annotation names on the classes. If the target class has annotations specified with their fully qualified names (including package), the annotations in this property should also be specified with their fully qualified names. Similarly, if the target class has annotations specified with their simple names, this property should contain the annotations with the same simple names.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>{}</code></td>
+              <td>13.6.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="FinalClass_Examples">
@@ -95,7 +120,43 @@ public class Example1 { // ok, since it has a public constructor
   }
 }
 </code></pre></div>
-      </subsection>
+      </subsection><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to ignore classes annotated with <code>Configuration</code>
+          or <code>java.lang.Deprecated</code>.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="FinalClass"&gt;
+      &lt;property name="ignoreAnnotatedBy"
+        value="Configuration, java.lang.Deprecated" /&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+@java.lang.Deprecated // ok, skipped by annotation
+class Example2 {
+
+  private Example2() {
+  }
+}
+
+class Example2A { // violation, 'Class Example2A should be declared as final.'
+
+  private Example2A() {
+  }
+}
+
+@Configuration // ok, skipped by annotation
+class Example2B {
+
+  private Example2B() {
+  }
+}
+</code></pre></div>
 
       <subsection name="Example of Usage" id="FinalClass_Example_of_Usage">
         <ul>
