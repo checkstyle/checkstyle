@@ -11,14 +11,19 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
+// This code is copyrighted
+// (c) MyCompany  // violation below 'Found duplicate pattern'
+// This code is copyrighted
+// (c) MyCompany
 
 // xdoc section -- start
-// This code is copyrighted
-// (c) MyCompany
-public class Example4 {}
+public class Example4 {
 
-// violation below 'Found duplicate pattern'
-// This code is copyrighted
-// (c) MyCompany
-class Example41 {}
+  private void foo() {
+    System.out.println("");
+    // System.out.println("debug");
+
+    // fix me.
+  }
+}
 // xdoc section -- end
