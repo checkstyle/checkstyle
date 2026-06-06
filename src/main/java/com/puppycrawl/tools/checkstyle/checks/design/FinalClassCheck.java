@@ -20,12 +20,14 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import java.util.ArrayDeque;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.ToIntFunction;
 
@@ -33,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
@@ -61,6 +64,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   </li>
  *   <li>
  *       Class is extended by another class in the same file.
+ *   </li>
+ *   <li>
+ *       Class is annotated with any of the specified annotations from
+ *       {@code ignoreAnnotatedBy} property.
  *   </li>
  * </ol>
  *
@@ -95,6 +102,33 @@ public class FinalClassCheck
 
     /** Full qualified name of the package. */
     private String packageName;
+
+    /**
+     * Ignore classes annotated with the specified annotation(s). Annotation names
+     * provided in this property must exactly match the annotation names on the classes.
+     * If the target class has annotations specified with their fully qualified names
+     * (including package), the annotations in this property should also be specified with
+     * their fully qualified names. Similarly, if the target class has annotations specified
+     * with their simple names, this property should contain the annotations with the same
+     * simple names.
+     */
+    private Set<String> ignoreAnnotatedBy = Collections.emptySet();
+
+    /**
+     * Setter to ignore classes annotated with the specified annotation(s). Annotation names
+     * provided in this property must exactly match the annotation names on the classes.
+     * If the target class has annotations specified with their fully qualified names
+     * (including package), the annotations in this property should also be specified with
+     * their fully qualified names. Similarly, if the target class has annotations specified
+     * with their simple names, this property should contain the annotations with the same
+     * simple names.
+     *
+     * @param annotationNames specified annotation(s)
+     * @since 13.6.0
+     */
+    public void setIgnoreAnnotatedBy(String... annotationNames) {
+        ignoreAnnotatedBy = Set.of(annotationNames);
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -198,12 +232,23 @@ public class FinalClassCheck
             innerClasses.forEach(this::registerExtendedClass);
             // Second pass: report violation for all classes that should be declared as final
             innerClasses.forEach((qualifiedClassName, classDesc) -> {
-                if (shouldBeDeclaredAsFinal(classDesc)) {
+                if (shouldBeDeclaredAsFinal(classDesc)
+                        && !shouldIgnoreClass(classDesc.getTypeDeclarationAst())) {
                     final String className = CommonUtil.baseClassName(qualifiedClassName);
                     log(classDesc.getTypeDeclarationAst(), MSG_KEY, className);
                 }
             });
         }
+    }
+
+    /**
+     * Checks if class is annotated by specific annotation(s) to skip.
+     *
+     * @param ast class to check
+     * @return true if annotated by ignored annotations
+     */
+    private boolean shouldIgnoreClass(DetailAST ast) {
+        return AnnotationUtil.containsAnnotation(ast, ignoreAnnotatedBy);
     }
 
     /**

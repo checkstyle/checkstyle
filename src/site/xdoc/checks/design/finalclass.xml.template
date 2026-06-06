@@ -18,6 +18,15 @@
         </macro>
       </subsection>
 
+      <subsection name="Properties" id="FinalClass_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/FinalClassCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
       <subsection name="Examples" id="FinalClass_Examples">
         <p id="Example1-config">
           To configure the check:
@@ -31,6 +40,21 @@
         <macro name="example">
           <param name="path"
                    value="resources/com/puppycrawl/tools/checkstyle/checks/design/finalclass/Example1.java"/>
+            <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to ignore classes annotated with <code>Configuration</code>
+          or <code>java.lang.Deprecated</code>.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/finalclass/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/finalclass/Example2.java"/>
             <param name="type" value="code"/>
         </macro>
       </subsection>
