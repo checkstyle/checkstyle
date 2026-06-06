@@ -1,6 +1,6 @@
 /*
 FinalClass
-
+ignoreAnnotatedBy = (default)
 
 */
 
