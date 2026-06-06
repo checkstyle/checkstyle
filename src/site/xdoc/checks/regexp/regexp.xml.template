@@ -49,24 +49,6 @@
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example2-code">Example2 with violation:</p>
-        <macro name="example">
-          <param name="path"
-            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example2.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example3-config"> Your statement may be multiline. </p>
-        <macro name="example">
-          <param name="path"
-            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example3.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example3-code">Example3:</p>
-        <macro name="example">
-          <param name="path"
-            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example3.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
         <p id="Example4-config">Configure Check to make sure that it appear only once:</p>
         <macro name="example">
           <param name="path"
@@ -79,21 +61,6 @@
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example4.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example5-config">Instead of printing whole regexp that might be unnecessary for
-          user, you can substitute it to some static text:
-        </p>
-        <macro name="example">
-          <param name="path"
-            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example5.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example5-code">Example5 with violation:</p>
-        <macro name="example">
-          <param name="path"
-            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example5.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-
         <p id="Example6-config">
           Configure the check to make sure there are no calls to <code>System.out.println</code>:
         </p>
@@ -118,6 +85,54 @@
         <macro name="example">
           <param name="path"
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example10-config">
+          There is also a feature to limit the number of violations reported.
+          When the limit is reached the check aborts with a message
+          reporting that the limit has been reached.
+        </p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example10.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example10-code">Example10:</p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example10.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example2-code">Example2 with violation:</p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example3-config"> Your statement may be multiline. </p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example3:</p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">Instead of printing whole regexp that might be unnecessary for
+          user, you can substitute it to some static text:
+        </p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example5 with violation:</p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example5.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example8-config">
@@ -150,22 +165,6 @@
         <macro name="example">
           <param name="path"
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example9.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example10-config">
-          There is also a feature to limit the number of violations reported.
-          When the limit is reached the check aborts with a message
-          reporting that the limit has been reached.
-        </p>
-        <macro name="example">
-          <param name="path"
-            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example10.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example10-code">Example10:</p>
-        <macro name="example">
-          <param name="path"
-            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example10.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example11-config">
