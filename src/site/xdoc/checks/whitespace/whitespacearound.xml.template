@@ -188,6 +188,21 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
+        <p id="Example12-config">
+          To configure the check to allow empty initializers:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example12.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example12-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example12.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="WhitespaceAround_Example_of_Usage">
