@@ -123,6 +123,30 @@ public class EmptyLineSeparatorCheckTest
             expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "17:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "23:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputEmptyLineSeparatorCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileMultipleEmptyLines() throws Exception {
+        final String[] expected = {
+            "18:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "22:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                    "InputEmptyLineSeparatorCompactSourceFileMultipleEmptyLines.java"), expected);
+    }
+
     /**
      * Config is defined in the method because strictly the file with one line
      * is required to be tested.
