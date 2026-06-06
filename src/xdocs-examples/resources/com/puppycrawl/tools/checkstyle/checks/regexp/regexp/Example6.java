@@ -11,14 +11,18 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
+// (c) MyCompany
+
+// (c) MyCompany
+
 // xdoc section -- start
 public class Example6 {
+
   private void foo() {
     System.out.println(""); // violation, 'Line matches the illegal pattern'
-    System.out.
-      println("");
     // System.out.println("debug");
     // violation above, 'Line matches the illegal pattern'
+    // fix me.
   }
 }
 // xdoc section -- end
