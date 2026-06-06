@@ -1,6 +1,6 @@
 /*
 FinalClass
-
+ignoreAnnotatedBy = (default)
 
 */
 package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
