@@ -129,8 +129,11 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      */
     private static List<DetailNode> getTargetedTextNodesInsideHtmlElement(DetailNode ast) {
         final List<DetailNode> textNodes = new ArrayList<>();
-
         if (!JavadocUtil.isTag(ast, PRE_TAG) && !isInsidePreTag(ast)) {
+            final DetailNode prevSibling = ast.getPreviousSibling();
+            if (prevSibling != null && isTargetTextNode(prevSibling)) {
+                textNodes.add(prevSibling);
+            }
             DetailNode node = ast.getFirstChild();
             while (node != null) {
                 if (node.getType() == JavadocCommentsTokenTypes.HTML_CONTENT) {
