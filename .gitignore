@@ -34,6 +34,9 @@ checkstyle.iws
 # Temp files
 *~
 
+# Personal notes
+NOTES.md
+
 # Java Virtual machine crash logs
 hs_err_pid*
 replay_pid*
