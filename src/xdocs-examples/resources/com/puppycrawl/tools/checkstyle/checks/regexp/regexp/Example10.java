@@ -12,15 +12,19 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
-// xdoc section -- start
-public class Example10 {
-  private void foo() {
-    // fix me.
-    // violation above, 'Line matches the illegal pattern'
-  }
-  private void foo1() {
-    // fix me.
+// (c) MyCompany
 
+// (c) MyCompany
+
+// xdoc section -- start
+// This code is copyrighted.
+public class Example10 {
+
+  private void foo() {
+    System.out.println("");
+    // System.out.println("debug");
+    // fix me. // violation 'Line matches the illegal pattern'
+    // fix me.
   }
 }
 // xdoc section -- end

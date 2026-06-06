@@ -15,10 +15,10 @@ package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 // xdoc section -- start
 // This code is copyrighted
 // (c) MyCompany
-public class Example4 {}
 
 // violation below 'Found duplicate pattern'
 // This code is copyrighted
 // (c) MyCompany
-class Example41 {}
+
+public class Example4 {}
 // xdoc section -- end
