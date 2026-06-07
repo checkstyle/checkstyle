@@ -98,6 +98,26 @@
     <property name="maximum" value="0"/>
   </module>
 
+  <module name="RegexpMultiline">
+    <property name="id" value="markerCommentBetweenAnnotationAndTarget"/>
+    <property name="format"
+              value="(?:\r?\n|\A)[ \t]*@[A-Za-z_][\w.]*(?:\([^\r\n]*\))?[ \t]*\r?\n[ \t]*//[ \t]*(?:ok|[^\r\n]*violation)"/>
+    <property name="message"
+              value="Marker comments must not be placed alone on a line between an
+annotation and its target. Place it before the annotation,
+or inline on the same line as the annotation."/>
+  </module>
+
+  <module name="RegexpMultiline">
+    <property name="id" value="markerCommentBetweenJavadocAndTarget"/>
+    <property name="format"
+              value="(?:\r?\n|\A)[ \t]*\*/[ \t]*\r?\n[ \t]*//[ \t]*(?:ok|[^\r\n]*violation)"/>
+    <property name="message"
+              value="Marker comments must not be placed alone on a line between a
+Javadoc block and its target. Place it before the Javadoc
+block, or inline on the same line as the closing '*/'."/>
+  </module>
+
   <!-- Miscellaneous -->
   <module name="NewlineAtEndOfFile"/>
 
