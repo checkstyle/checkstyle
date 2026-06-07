@@ -172,6 +172,32 @@ public class ModifiedControlVariableCheckTest
                 expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "11:10: " + getCheckMessage(MSG_KEY, "i"),
+            "19:11: " + getCheckMessage(MSG_KEY, "k"),
+            "24:14: " + getCheckMessage(MSG_KEY, "a"),
+            "31:10: " + getCheckMessage(MSG_KEY, "i"),
+            "36:14: " + getCheckMessage(MSG_KEY, "item"),
+            "43:14: " + getCheckMessage(MSG_KEY, "i"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputModifiedControlVariableCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileSkipEnhancedForLoop() throws Exception {
+        final String[] expected = {
+            "16:10: " + getCheckMessage(MSG_KEY, "i"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                    "InputModifiedControlVariableCompactSourceFileSkipEnhancedForLoop.java"),
+                expected);
+    }
+
     /**
      * We cannot reproduce situation when visitToken is called and leaveToken is not.
      * So, we have to use reflection to be sure that even in such situation
