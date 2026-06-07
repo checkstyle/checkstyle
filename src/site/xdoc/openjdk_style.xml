@@ -252,7 +252,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.2-package-declaration">
-                    3.2 Package declaration
+                    Package declaration
                   </a>
                 </td>
                 <td>
@@ -733,7 +733,7 @@
                 </td>
                 <td>
                   <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.15-javadoc">
-                    3.15 Javadoc
+                    Javadoc
                   </a>
                 </td>
                 <td>???</td>
