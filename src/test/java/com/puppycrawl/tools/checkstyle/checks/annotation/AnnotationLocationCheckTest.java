@@ -339,4 +339,18 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testAnnotationLocationCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "28:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "28:29: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Deprecated"),
+            "31:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "Deprecated", 4, 0),
+            "42:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputAnnotationLocationCompactSourceFile.java"),
+            expected);
+    }
+
 }
