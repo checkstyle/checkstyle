@@ -533,18 +533,21 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static void addLocalVariables(DetailAST varDefAst, Deque<VariableDesc> variablesStack) {
         final DetailAST parentAst = varDefAst.getParent();
         final DetailAST grandParent = parentAst.getParent();
-        final boolean isInstanceVarInInnerClass =
-                grandParent.getType() == TokenTypes.LITERAL_NEW
-                || grandParent.getType() == TokenTypes.CLASS_DEF;
-        if (isInstanceVarInInnerClass
-                || parentAst.getType() != TokenTypes.OBJBLOCK) {
-            final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
-            final VariableDesc desc = new VariableDesc(ident.getText(),
-                    varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));
-            if (isInstanceVarInInnerClass) {
-                desc.registerAsInstOrClassVar();
+
+        if (grandParent != null) {
+            final boolean isInstanceVarInInnerClass =
+                    grandParent.getType() == TokenTypes.LITERAL_NEW
+                    || grandParent.getType() == TokenTypes.CLASS_DEF;
+            if (isInstanceVarInInnerClass
+                    || parentAst.getType() != TokenTypes.OBJBLOCK) {
+                final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
+                final VariableDesc desc = new VariableDesc(ident.getText(),
+                        varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));
+                if (isInstanceVarInInnerClass) {
+                    desc.registerAsInstOrClassVar();
+                }
+                variablesStack.push(desc);
             }
-            variablesStack.push(desc);
         }
     }
 
@@ -556,11 +559,13 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private void addInstanceOrClassVar(DetailAST varDefAst) {
         final DetailAST parentAst = varDefAst.getParent();
-        if (isNonLocalTypeDeclaration(parentAst.getParent())
+        final DetailAST grandParentAst = parentAst.getParent();
+        if (grandParentAst != null
+                && isNonLocalTypeDeclaration(grandParentAst)
                 && !isPrivateInstanceVariable(varDefAst)) {
             final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
             final VariableDesc desc = new VariableDesc(ident.getText());
-            typeDeclAstToTypeDeclDesc.get(parentAst.getParent()).addInstOrClassVar(desc);
+            typeDeclAstToTypeDeclDesc.get(grandParentAst).addInstOrClassVar(desc);
         }
     }
 

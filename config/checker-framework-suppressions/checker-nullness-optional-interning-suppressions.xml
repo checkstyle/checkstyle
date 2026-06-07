@@ -3663,15 +3663,15 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference typeDeclAstToTypeDeclDesc.get(obtainedClass.getTypeDeclAst())</message>
-    <lineContent>.get(obtainedClass.getTypeDeclAst())</lineContent>
+    <message>dereference of possibly-null reference typeDeclAstToTypeDeclDesc.get(grandParentAst)</message>
+    <lineContent>typeDeclAstToTypeDeclDesc.get(grandParentAst).addInstOrClassVar(desc);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference typeDeclAstToTypeDeclDesc.get(parentAst.getParent())</message>
-    <lineContent>typeDeclAstToTypeDeclDesc.get(parentAst.getParent()).addInstOrClassVar(desc);</lineContent>
+    <message>dereference of possibly-null reference typeDeclAstToTypeDeclDesc.get(obtainedClass.getTypeDeclAst())</message>
+    <lineContent>.get(obtainedClass.getTypeDeclAst())</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
