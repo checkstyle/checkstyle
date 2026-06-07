@@ -12,14 +12,18 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
+// (c) MyCompany
+
+// (c) MyCompany
+
 // xdoc section -- start
-public class Example7 {
+public class Example7 { // This code is copyrighted.
+
   private void foo() {
     System.out.println(""); // violation, 'Line matches the illegal pattern'
-    System.out.
-            println("");
     // System.out.println("debug");
-
+    // fix me.
+    // fix me.
   }
 }
 // xdoc section -- end
