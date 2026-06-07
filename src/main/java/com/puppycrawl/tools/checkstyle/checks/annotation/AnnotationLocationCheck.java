@@ -187,7 +187,8 @@ public class AnnotationLocationCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         // ignore variable def tokens that are not field definitions
         if (ast.getType() != TokenTypes.VARIABLE_DEF
-                || ast.getParent().getType() == TokenTypes.OBJBLOCK) {
+                || ast.getParent().getType() == TokenTypes.OBJBLOCK
+                || ast.getParent().getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
             DetailAST node = ast.findFirstToken(TokenTypes.MODIFIERS);
             if (node == null) {
                 node = ast.findFirstToken(TokenTypes.ANNOTATIONS);
