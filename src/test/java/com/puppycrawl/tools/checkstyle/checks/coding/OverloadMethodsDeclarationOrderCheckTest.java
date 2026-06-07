@@ -85,6 +85,28 @@ public class OverloadMethodsDeclarationOrderCheckTest
     }
 
     @Test
+    public void testCompactSourceFileOverloads() throws Exception {
+        // Uses real compact source file — hits COMPACT_COMPILATION_UNIT branch
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MSG_KEY, 5),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputOverloadMethodsDeclarationOrderCompact.java"),
+            expected);
+    }
+
+    @Test
+    public void testCompactSourceFileOverloadsWrapped() throws Exception {
+        // Uses class-wrapped file — safe for RequireThisCheck
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY, 9),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputOverloadMethodsDeclarationOrderCompactWrapped.java"),
+            expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final OverloadMethodsDeclarationOrderCheck check =
             new OverloadMethodsDeclarationOrderCheck();
