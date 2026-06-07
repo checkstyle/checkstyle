@@ -141,7 +141,9 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      */
     private static boolean openingQuotesAreAloneOnTheLine(DetailAST openingQuotes) {
         DetailAST parent = openingQuotes;
-        boolean quotesAreNotPreceded = true;
+        final DetailAST previousSibling = openingQuotes.getPreviousSibling();
+        boolean quotesAreNotPreceded = previousSibling == null
+                || !TokenUtil.areOnSameLine(openingQuotes, previousSibling);
         while (quotesAreNotPreceded || parent.getType() == TokenTypes.ELIST
                 || parent.getType() == TokenTypes.EXPR) {
 
@@ -149,11 +151,6 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
 
             if (parent.getType() == TokenTypes.METHOD_DEF) {
                 quotesAreNotPreceded = !quotesArePrecededWithComma(openingQuotes);
-            }
-            else if (parent.getType() == TokenTypes.QUESTION
-                    && openingQuotes.getPreviousSibling() != null) {
-                quotesAreNotPreceded = !TokenUtil.areOnSameLine(openingQuotes,
-                        openingQuotes.getPreviousSibling());
             }
             else {
                 quotesAreNotPreceded = !TokenUtil.areOnSameLine(openingQuotes, parent);
