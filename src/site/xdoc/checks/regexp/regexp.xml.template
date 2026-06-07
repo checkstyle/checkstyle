@@ -49,6 +49,48 @@
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
+        <p id="Example6-config">
+          Configure the check to make sure there are no calls to <code>System.out.println</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Example6:</p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example6.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example7-config">Configure to ignore comments:</p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example7:</p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example10-config">
+          There is also a feature to limit the number of violations reported.
+          When the limit is reached the check aborts with a message
+          reporting that the limit has been reached.
+        </p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example10.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example10-code">Example10:</p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example10.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
         <p id="Example2-code">Example2 with violation:</p>
         <macro name="example">
           <param name="path"
@@ -93,33 +135,6 @@
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example5.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-
-        <p id="Example6-config">
-          Configure the check to make sure there are no calls to <code>System.out.println</code>:
-        </p>
-        <macro name="example">
-          <param name="path"
-            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example6.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example6-code">Example6:</p>
-        <macro name="example">
-          <param name="path"
-            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example6.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example7-config">Configure to ignore comments:</p>
-        <macro name="example">
-          <param name="path"
-            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example7.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example7-code">Example7:</p>
-        <macro name="example">
-          <param name="path"
-            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example7.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
         <p id="Example8-config">
           Configure the check to find trailing whitespace at the end of a line:
         </p>
@@ -150,22 +165,6 @@
         <macro name="example">
           <param name="path"
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example9.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example10-config">
-          There is also a feature to limit the number of violations reported.
-          When the limit is reached the check aborts with a message
-          reporting that the limit has been reached.
-        </p>
-        <macro name="example">
-          <param name="path"
-            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example10.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example10-code">Example10:</p>
-        <macro name="example">
-          <param name="path"
-            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example10.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example11-config">
