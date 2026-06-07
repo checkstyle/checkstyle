@@ -210,7 +210,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             }
 
             case TokenTypes.VARIABLE_DEF -> {
-                if (ast.getParent().getType() != TokenTypes.OBJBLOCK
+                final int parentType = ast.getParent().getType();
+                if (parentType != TokenTypes.OBJBLOCK
+                        && parentType != TokenTypes.COMPACT_COMPILATION_UNIT
                         && ast.findFirstToken(TokenTypes.MODIFIERS)
                             .findFirstToken(TokenTypes.FINAL) == null
                         && !isVariableInForInit(ast)
@@ -368,10 +370,13 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private void storePrevScopeUninitializedVariableData() {
         final ScopeData scopeData = scopeStack.peek();
-        final Deque<DetailAST> prevScopeUninitializedVariableData =
-                new ArrayDeque<>();
-        scopeData.uninitializedVariables.forEach(prevScopeUninitializedVariableData::push);
-        scopeData.prevScopeUninitializedVariables = prevScopeUninitializedVariableData;
+
+        if (scopeData != null) {
+            final Deque<DetailAST> prevScopeUninitializedVariableData =
+                    new ArrayDeque<>();
+            scopeData.uninitializedVariables.forEach(prevScopeUninitializedVariableData::push);
+            scopeData.prevScopeUninitializedVariables = prevScopeUninitializedVariableData;
+        }
     }
 
     /**
