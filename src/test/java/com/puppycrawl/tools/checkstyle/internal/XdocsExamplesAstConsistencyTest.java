@@ -54,6 +54,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * {@code // xdoc section -- end} markers is compared. Helper code outside
  * these markers (like interface definitions) can differ between examples.
  *
+ * <p>Line numbers within the extracted xdoc section are also compared, ensuring
+ * that structurally identical statements appear on the same relative lines across
+ * examples. Because {@code parseContent} re-parses only the extracted section
+ * (starting at line 1), line numbers are always section-relative and are safe
+ * to compare directly between examples.
+ *
  */
 public class XdocsExamplesAstConsistencyTest {
 
@@ -231,6 +237,123 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithnearbytextfilter/Example7",
             "filters/suppresswithnearbytextfilter/Example8",
             "filters/suppresswithnearbytextfilter/Example9",
+            "checks/annotation/annotationlocation/Example2",
+            "checks/annotation/annotationlocation/Example3",
+            "checks/annotation/annotationlocation/Example4",
+            "checks/annotation/annotationonsameline/Example2",
+            "checks/annotation/annotationusestyle/Example2",
+            "checks/annotation/annotationusestyle/Example3",
+            "checks/annotation/annotationusestyle/Example4",
+            "checks/annotation/suppresswarnings/Example2",
+            "checks/blocks/leftcurly/Example3",
+            "checks/blocks/needbraces/Example2",
+            "checks/blocks/needbraces/Example3",
+            "checks/blocks/needbraces/Example4",
+            "checks/blocks/needbraces/Example5",
+            "checks/blocks/rightcurly/Example2",
+            "checks/coding/equalsavoidnull/Example2",
+            "checks/coding/explicitinitialization/Example2",
+            "checks/coding/fallthrough/Example2",
+            "checks/coding/fallthrough/Example3",
+            "checks/coding/hiddenfield/Example2",
+            "checks/coding/hiddenfield/Example3",
+            "checks/coding/hiddenfield/Example4",
+            "checks/coding/hiddenfield/Example5",
+            "checks/coding/hiddenfield/Example6",
+            "checks/coding/hiddenfield/Example7",
+            "checks/coding/illegalinstantiation/Example2",
+            "checks/coding/illegalinstantiation/Example3",
+            "checks/coding/illegalthrows/Example2",
+            "checks/coding/illegalthrows/Example3",
+            "checks/coding/illegaltype/Example2",
+            "checks/coding/illegaltype/Example6",
+            "checks/coding/illegaltype/Example7",
+            "checks/coding/illegaltype/Example8",
+            "checks/coding/magicnumber/Example2",
+            "checks/coding/magicnumber/Example3",
+            "checks/coding/magicnumber/Example4",
+            "checks/coding/magicnumber/Example5",
+            "checks/coding/magicnumber/Example6",
+            "checks/coding/nestedfordepth/Example2",
+            "checks/coding/nestedifdepth/Example2",
+            "checks/coding/onestatementperline/Example2",
+            "checks/coding/unnecessarysemicolonafteroutertypedeclaration/Example2",
+            "checks/coding/variabledeclarationusagedistance/Example3",
+            "checks/coding/variabledeclarationusagedistance/Example4",
+            "checks/coding/variabledeclarationusagedistance/Example5",
+            "checks/coding/variabledeclarationusagedistance/Example6",
+            "checks/design/visibilitymodifier/Example12",
+            "checks/design/visibilitymodifier/Example2",
+            "checks/design/visibilitymodifier/Example3",
+            "checks/design/visibilitymodifier/Example4",
+            "checks/design/visibilitymodifier/Example5",
+            "checks/design/visibilitymodifier/Example6",
+            "checks/design/visibilitymodifier/Example8",
+            "checks/javadoc/atclauseorder/Example2",
+            "checks/javadoc/atclauseorder/Example3",
+            "checks/javadoc/javadoccontentlocation/Example2",
+            "checks/javadoc/javadocstyle/Example2",
+            "checks/javadoc/javadocstyle/Example3",
+            "checks/javadoc/javadocstyle/Example4",
+            "checks/javadoc/javadocstyle/Example5",
+            "checks/javadoc/javadocstyle/Example6",
+            "checks/javadoc/javadocstyle/Example8",
+            "checks/javadoc/javadoctagcontinuationindentation/Example3",
+            "checks/javadoc/missingjavadoctype/Example3",
+            "checks/javadoc/writetag/Example3",
+            "checks/javadoc/writetag/Example4",
+            "checks/javadoc/writetag/Example5",
+            "checks/metrics/booleanexpressioncomplexity/Example2",
+            "checks/metrics/booleanexpressioncomplexity/Example3",
+            "checks/metrics/classfanoutcomplexity/Example2",
+            "checks/metrics/classfanoutcomplexity/Example3",
+            "checks/metrics/classfanoutcomplexity/Example4",
+            "checks/metrics/classfanoutcomplexity/Example5",
+            "checks/metrics/classfanoutcomplexity/Example6",
+            "checks/modifier/interfacememberimpliedmodifier/Example2",
+            "checks/modifier/interfacememberimpliedmodifier/Example3",
+            "checks/modifier/interfacememberimpliedmodifier/Example4",
+            "checks/modifier/redundantmodifier/Example2",
+            "checks/naming/abstractclassname/Example3",
+            "checks/naming/abstractclassname/Example4",
+            "checks/naming/catchparametername/Example2",
+            "checks/naming/methodname/Example4",
+            "checks/naming/packagename/Example2",
+            "checks/naming/parametername/Example2",
+            "checks/naming/parametername/Example3",
+            "checks/naming/parametername/Example4",
+            "checks/naming/patternvariablename/Example2",
+            "checks/naming/patternvariablename/Example3",
+            "checks/newlineatendoffile/Example3",
+            "checks/regexp/regexpsingleline/Example5",
+            "checks/regexp/regexpsingleline/Example6",
+            "checks/regexp/regexpsinglelinejava/Example2",
+            "checks/regexp/regexpsinglelinejava/Example3",
+            "checks/regexp/regexpsinglelinejava/Example4",
+            "checks/regexp/regexpsinglelinejava/Example5",
+            "checks/sizes/methodlength/Example3",
+            "checks/sizes/outertypenumber/Example2",
+            "checks/sizes/parameternumber/Example2",
+            "checks/sizes/parameternumber/Example3",
+            "checks/sizes/parameternumber/Example4",
+            "checks/todocomment/Example2",
+            "checks/uncommentedmain/Example2",
+            "checks/uniqueproperties/Example2",
+            "checks/whitespace/emptyforiteratorpad/Example2",
+            "checks/whitespace/parenpad/Example2",
+            "filters/suppressioncommentfilter/Example2",
+            "filters/suppressioncommentfilter/Example3",
+            "filters/suppressioncommentfilter/Example5",
+            "filters/suppressioncommentfilter/Example7",
+            "filters/suppressioncommentfilter/Example8",
+            "filters/suppressionxpathsinglefilter/Example3",
+            "filters/suppresswithplaintextcommentfilter/Example2",
+            "filters/suppresswithplaintextcommentfilter/Example3",
+            "filters/suppresswithplaintextcommentfilter/Example4",
+            "filters/suppresswithplaintextcommentfilter/Example5",
+            "filters/suppresswithplaintextcommentfilter/Example6",
+            "filters/suppresswithplaintextcommentfilter/Example7",
+            "filters/suppresswithplaintextcommentfilter/Example8",
             // until https://github.com/checkstyle/checkstyle/issues/19891
             "checks/indentation/commentsindentation/Example3",
             "checks/indentation/commentsindentation/Example4",
@@ -276,7 +399,8 @@ public class XdocsExamplesAstConsistencyTest {
 
     /**
      * Tests that examples with the same code structure maintain consistency.
-     * Examples not marked as independent must have identical AST structure.
+     * Examples not marked as independent must have identical AST structure,
+     * including the line numbers of each node within the xdoc section.
      *
      * @throws IOException if an I/O error occurs
      */
@@ -638,7 +762,8 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Validates that all examples in the list have identical AST structure.
+     * Validates that all examples in the list have identical AST structure,
+     * including identical line numbers for each node within the xdoc section.
      *
      * @param dir the directory containing the examples
      * @param examples the list of examples that must all match
@@ -676,6 +801,11 @@ public class XdocsExamplesAstConsistencyTest {
 
     /**
      * Extracts content between xdoc section markers from a file.
+     *
+     * <p>The extracted lines are re-joined and parsed fresh by {@link #parseContent}, so
+     * AST line numbers are always relative to the start of the extracted section (line 1).
+     * This makes line-number comparisons between examples independent of any difference in
+     * header length (license block, imports, etc.) above the marker.
      *
      * @param file the file to read
      * @return the content between markers, or entire file if no markers
@@ -776,6 +906,11 @@ public class XdocsExamplesAstConsistencyTest {
     /**
      * Converts a DetailAST into a structural representation that excludes comments.
      *
+     * <p>Each node captures its token type, any semantic literal text, and its
+     * line number within the parsed xdoc section. The line number is intentionally
+     * omitted for class and constructor name identifiers because those names are
+     * allowed to differ across examples.
+     *
      * @param ast the AST to convert
      * @return structural representation of the AST, or null if the node is a comment
      */
@@ -786,8 +921,10 @@ public class XdocsExamplesAstConsistencyTest {
             result = null;
         }
         else {
-            final StructuralAstNode node = new StructuralAstNode(ast.getType(), ast.getText(),
-                    isClassOrConstructorName(ast));
+            final boolean ignoreName = isClassOrConstructorName(ast);
+            final StructuralAstNode node = new StructuralAstNode(
+                    ast.getType(), ast.getText(), ignoreName, ast.getLineNo(), ignoreName
+            );
 
             for (DetailAST child = ast.getFirstChild();
                  child != null;
@@ -833,14 +970,33 @@ public class XdocsExamplesAstConsistencyTest {
     /**
      * Represents a structural AST node without comments or source positions.
      * This allows for pure structural comparison between example files.
-     * Now includes literal text values for semantic comparison.
+     * Includes literal text values for semantic comparison and line numbers
+     * for positional consistency validation.
+     *
+     * <p>Line numbers are section-relative (line 1 = first line of the extracted
+     * xdoc section) because {@link #parseContent} re-parses only the extracted
+     * section string. Class and constructor name nodes have their line number
+     * set to {@code null} so that intentional name differences do not cause
+     * false positives.
      */
     private static final class StructuralAstNode {
         private final int type;
         private final String text;
+        /** Section-relative line number; null when position is intentionally ignored. */
+        private final Integer lineNo;
         private final List<StructuralAstNode> children = new ArrayList<>();
 
-        private StructuralAstNode(int type, String text, boolean ignoreText) {
+        /**
+         * Constructs a structural AST node.
+         *
+         * @param type           the token type
+         * @param text           the token text from the source
+         * @param ignoreText     if true, the text field is not stored (class/ctor names)
+         * @param lineNo         the line number of this node within the parsed section
+         * @param ignorePosition if true, the line number is not stored (class/ctor names)
+         */
+        private StructuralAstNode(int type, String text, boolean ignoreText,
+                                  int lineNo, boolean ignorePosition) {
             this.type = type;
             if (ignoreText) {
                 this.text = null;
@@ -850,6 +1006,12 @@ public class XdocsExamplesAstConsistencyTest {
             }
             else {
                 this.text = null;
+            }
+            if (ignorePosition) {
+                this.lineNo = null;
+            }
+            else {
+                this.lineNo = lineNo;
             }
         }
 
@@ -864,7 +1026,8 @@ public class XdocsExamplesAstConsistencyTest {
                 case TokenTypes.NUM_INT, TokenTypes.NUM_LONG, TokenTypes.NUM_FLOAT,
                      TokenTypes.NUM_DOUBLE, TokenTypes.STRING_LITERAL,
                      TokenTypes.CHAR_LITERAL, TokenTypes.LITERAL_TRUE,
-                     TokenTypes.LITERAL_FALSE, TokenTypes.LITERAL_NULL -> true;
+                     TokenTypes.LITERAL_FALSE, TokenTypes.LITERAL_NULL,
+                     TokenTypes.IDENT -> true;
                 default -> false;
             };
         }
@@ -875,22 +1038,19 @@ public class XdocsExamplesAstConsistencyTest {
 
         @Override
         public boolean equals(Object obj) {
-            final boolean result;
-            if (obj instanceof StructuralAstNode other) {
-                final boolean typeMatch = type == other.type;
-                final boolean textMatch = Objects.equals(text, other.text);
-                final boolean childrenMatch = children.equals(other.children);
-                result = typeMatch && textMatch && childrenMatch;
+            if (!(obj instanceof StructuralAstNode other)) {
+                return false;
             }
-            else {
-                result = false;
-            }
-            return result;
+            final boolean typeMatch = type == other.type;
+            final boolean textMatch = Objects.equals(text, other.text);
+            final boolean lineNoMatch = Objects.equals(lineNo, other.lineNo);
+            final boolean childrenMatch = children.equals(other.children);
+            return typeMatch && textMatch && lineNoMatch && childrenMatch;
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(type, text, children);
+            return Objects.hash(type, text, lineNo, children);
         }
 
         @Override
@@ -905,6 +1065,9 @@ public class XdocsExamplesAstConsistencyTest {
             }
             if (text != null) {
                 sb.append(", text='").append(text).append('\'');
+            }
+            if (lineNo != null) {
+                sb.append(", line=").append(lineNo);
             }
             if (!children.isEmpty()) {
                 sb.append(", children=").append(children.size());
