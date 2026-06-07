@@ -18,11 +18,11 @@
 
         <div id="tocDiv" class="vertical_toc"></div>
 
-        <h2 id="s1-introduction">Introduction</h2>
+        <h2 id="introduction">Introduction</h2>
         <p>This is a set of style guidelines for for JDK Release Projects in the OpenJDK Community. Other OpenJDK
             Projects, and projects outside of OpenJDK, are welcome to adopt these guidelines as they see fit.</p>
 
-        <h3 id="s1.1-motivation">Motivation</h3>
+        <h3 id="motivation">Motivation</h3>
         <p>Code that looks familiar is easier to understand and therefore also easier to review, debug and maintain. To
             ensure that code looks familiar to all developers on the project it&rsquo;s important to agree on a common
             set of style guidelines.</p>
@@ -32,7 +32,7 @@
             different opinions about them. Keep in mind however, that having a consistent style is more important than
             to satisfy each individual developers preference.</p>
 
-        <h3 id="s1.2-guiding-principles">Guiding Principles</h3>
+        <h3 id="guiding-principles">Guiding Principles</h3>
         <p>The guidelines in this document strive to maximize,</p>
         <ol>
             <li>Correctness</li>
@@ -54,7 +54,7 @@
             support for rules that can&rsquo;t be handled today might be added in future versions. So, whether a rule
             plays well with tools or not can be a factor, but it&rsquo;s secondary to the above principles.</p>
 
-        <h2 id="s2-java-source-files">Java Source Files</h2>
+        <h2 id="java-source-files">Java Source Files</h2>
         <p>This section concerns ordinary <code>.java</code> files only. Rules do not necessarily apply to other source
             files in the project such as <code>.jasm</code>, <code>.sh</code> or <code>.gmk</code>.</p>
 
@@ -92,7 +92,7 @@
                 to the compiler, the class it contains may not be resolved correctly.</p>
         </div>
 
-        <h3 id="s2.1-special-characters">Special Characters</h3>
+        <h3 id="special-characters">Special Characters</h3>
         <section>Apart from <code>LF</code> the only allowed white space character is Space (ASCII value 32). Note that
             this implies that other white space characters (in, for instance, string and character literals) must be
             written in escaped form.</section>
@@ -115,7 +115,7 @@
                 longer forms (<code>\011</code>, <code>\u0009</code>).</p>
         </div>
 
-        <h2 id="s3-formatting">Formatting</h2>
+        <h2 id="formatting">Formatting</h2>
         <section>
             A <code>.java</code> source file should be structured as follows:
             <ol>
@@ -127,7 +127,7 @@
         </section>
         <section>There may be only one top level class declaration per file.</section>
 
-        <h3 id="s3.1-copyright-notice">Copyright notice</h3>
+        <h3 id="copyright-notice">Copyright notice</h3>
         <section>
             All source files should have an appropriate copyright notice at the top of the file.
         </section>
@@ -146,13 +146,13 @@
             For questions regarding copyright or license notices, please contact <a
                 href="mailto:iris.clark@oracle.com">iris.clark@oracle.com</a>.
         </p>
-        <h3 id="s3.2-package-declaration">Package declaration</h3>
+        <h3 id="package-declaration">Package declaration</h3>
         <section>
             The package declaration should not be line wrapped, regardless of whether it exceeds the recommended maximum
             length of a line. (See section on <i>Wrapping Lines</i>.)
         </section>
 
-        <h3 id="s3.3-import-statements">Import statements</h3>
+        <h3 id="import-statements">Import statements</h3>
         <section>
             Import statements should be sorted&hellip;
             <ul>
@@ -172,7 +172,7 @@
         <section>Import statements should not be line wrapped, regardless of whether it exceeds the recommended maximum
             length of a line.</section>
         <section>No unused imports should be present.</section>
-        <h4 id="s3.3.1-wildcard-imports">Wildcard Imports</h4>
+        <h4 id="wildcard-imports">Wildcard Imports</h4>
         <section>Wildcard imports should in general not be used.</section>
         <section>When importing a large number of closely-related classes (such as implementing a visitor over a tree
             with dozens of distinct &ldquo;node&rdquo; classes), a wildcard import may be used.</section>
@@ -187,7 +187,7 @@
                 warnings which clutters the list of problems.</p>
         </div>
 
-        <h3 id="s3.4-class-structure">Class Structure</h3>
+        <h3 id="class-structure">Class Structure</h3>
         <section>
             <p>The recommended order of class members is the following:</p>
             <ol>
@@ -203,7 +203,7 @@
 
         <section>Nested types are put at the top of the class or right before it is first used.</section>
 
-        <h4 id="s3.4.1-order-of-constructors-and-overloaded-methods">Order of Constructors and Overloaded Methods</h4>
+        <h4 id="order-of-constructors-and-overloaded-methods">Order of Constructors and Overloaded Methods</h4>
         <section>Constructors and overloaded methods should be grouped together by functionality and ordered with
             increasing arity. This implies that delegation among these constructs flow downward in the code.</section>
         <section>Constructors and overloaded methods should not be split apart by other members.</section>
@@ -255,7 +255,7 @@ void setValue(double d) {
                 downwards in the file makes the code easier to follow.</p>
         </div>
 
-        <h3 id="s3.5-modifiers">Modifiers</h3>
+        <h3 id="modifiers">Modifiers</h3>
         <section>
             Modifiers should go in the following order
             <ol>
@@ -289,7 +289,7 @@ void setValue(double d) {
                     15: Minimize Mutability</em> for details.</p>
         </div>
 
-        <h3 id="s3.6-braces">Braces</h3>
+        <h3 id="braces">Braces</h3>
         <section>Opening braces should be put on the end of the current line rather than on a line by its own.</section>
         <section>There should be a new line in front of a closing brace unless the block is empty (see&nbsp;<em>Short
                 Forms</em> below)</section>
@@ -383,7 +383,7 @@ for (int[] row : matrix) {
             <p>Omitting braces is error prone and can lead to mistakes in the indentation and hard to detect bugs.</p>
         </div>
 
-        <h4 id="s3.6.1-short-forms">Short Forms</h4>
+        <h4 id="short-forms">Short Forms</h4>
         <section>
             The above recommendations are intended to improve uniformity (and thus increase familiarity / readability).
             In some cases &ldquo;short forms&rdquo; that deviate from the above guidelines are just as readable and may
@@ -410,7 +410,7 @@ for (int[] row : matrix) {
             <p style="clear: both"></p>
         </div>
 
-        <h3 id="s3.7-indentation">Indentation</h3>
+        <h3 id="indentation">Indentation</h3>
         <section>Indentation level is four spaces.</section>
         <section>Only space characters may be used for indentation. No tabs.</section>
         <section>Empty lines must not be indented. (This is implied by the no trailing white space rule.)</section>
@@ -463,7 +463,7 @@ default:
                 editors are avoided.</p>
         </div>
 
-        <h3 id="s3.8-wrapping-lines">Wrapping Lines</h3>
+        <h3 id="wrapping-lines">Wrapping Lines</h3>
         <section>
             <p>Source code and comments should generally not exceed 80 characters per line and rarely if ever exceed 100
                 characters per line, including indentation.</p>
@@ -608,7 +608,7 @@ if (somePredicate() ||
         </section>
 
 
-        <h4 id="s3.8.1-wrapping-class-declarations">Wrapping Class Declarations</h4>
+        <h4 id="wrapping-class-declarations">Wrapping Class Declarations</h4>
         <section>A class header should not be wrapped unless it approaches the maximum column limit.</section>
         <section>If it does, it may be wrapped before <code>extends</code> and/or <code>implements</code> keywords.
         </section>
@@ -643,7 +643,7 @@ if (somePredicate() ||
             <p style="clear: both"></p>
         </div>
 
-        <h4 id="s3.8.2-wrapping-method-declarations">Wrapping Method Declarations</h4>
+        <h4 id="wrapping-method-declarations">Wrapping Method Declarations</h4>
         <section>Method declarations can be formatted by listing the arguments vertically, or by a new line and +8 extra
             spaces</section>
         <section>If a throws clause needs to be wrapped, put the line break in front of the throws clause and make sure
@@ -711,7 +711,7 @@ int someMethod(String aString,
         </div>
 
 
-        <h4 id="s3.8.3-wrapping-expressions">Wrapping Expressions</h4>
+        <h4 id="wrapping-expressions">Wrapping Expressions</h4>
         <section>If a line approaches the maximum character limit, always consider breaking it down into multiple
             statements / expressions instead of wrapping the line.</section>
         <section>Break before operators.</section>
@@ -751,8 +751,8 @@ popupMsg("Inbox notification: You have " +
             <p style="clear: both"></p>
         </div>
 
-        <h3 id="s3.9-whitespace">Whitespace</h3>
-        <h4 id="s3.9.1-vertical-whitespace">Vertical Whitespace</h4>
+        <h3 id="whitespace">Whitespace</h3>
+        <h4 id="vertical-whitespace">Vertical Whitespace</h4>
         <section>
             A single blank line should be used to separate&hellip;
             <ul>
@@ -774,7 +774,7 @@ popupMsg("Inbox notification: You have " +
         <section>Multiple consecutive blank lines should only be used to separate groups of related members and not as
             the standard inter-member spacing.</section>
 
-        <h4 id="s3.9.2-horizontal-whitespace">Horizontal Whitespace</h4>
+        <h4 id="horizontal-whitespace">Horizontal Whitespace</h4>
         <section>
             A single space should be used&hellip;
             <ul>
@@ -831,14 +831,14 @@ long   sixtyfourFlags;</code></pre>
                 causes unnecessarily complicated patches to review.</p>
         </div>
 
-        <h3 id="s3.10-variable-declarations">Variable Declarations</h3>
+        <h3 id="variable-declarations">Variable Declarations</h3>
         <section>One variable per declaration (and at most one declaration per line)</section>
         <section>Square brackets of arrays should be at the type (<code>String[] args</code>) and not on the variable
             (<code>String args[]</code>).</section>
         <section>Declare a local variable right before it is first used, and initialize it as close to the declaration
             as possible.</section>
 
-        <h3 id="s3.11-annotations">Annotations</h3>
+        <h3 id="annotations">Annotations</h3>
         <section>Declaration annotations should be put on a separate line from the declaration being annotated.
         </section>
         <section>Few/short annotations annotating a single-line method may however be put on the same line as the method
@@ -890,7 +890,7 @@ public void foo() {
             <p style="clear: both"></p>
         </div>
 
-        <h3 id="s3.12-lambda-expressions">Lambda Expressions</h3>
+        <h3 id="lambda-expressions">Lambda Expressions</h3>
         <section>Expression lambdas are preferred over single-line block lambdas.</section>
         <section>
             <p>Method references should generally be preferred over lambda expressions.</p>
@@ -957,7 +957,7 @@ Function&lt;Person, String&gt; nameFunc = (Person p) -&gt; p.getFirstName() + " 
             <p style="clear: both"></p>
         </div>
 
-        <h3 id="s3.13-redundant-parentheses">Redundant Parentheses</h3>
+        <h3 id="redundant-parentheses">Redundant Parentheses</h3>
         <section>Redundant grouping parentheses (i.e. parentheses that does not affect evaluation) may be used if they
             improve readability.</section>
         <section>Redundant grouping parentheses should typically be left out in shorter expressions involving common
@@ -983,7 +983,7 @@ Function&lt;Person, String&gt; nameFunc = (Person p) -&gt; p.getFirstName() + " 
             <p style="clear: both"></p>
         </div>
 
-        <h3 id="s3.14-literals">Literals</h3>
+        <h3 id="literals">Literals</h3>
         <section><code>long</code> literals should use the upper case letter <code>L</code> suffix.</section>
         <section>Hexadecimal literals should use upper case letters <code>A</code>-<code>F</code>.</section>
         <section>All other numerical prefixes, infixes, and suffixes should use lowercase letters.</section>
@@ -1026,7 +1026,7 @@ double d2 = 0x1.3P2;</code></pre>
             </p>
         </div>
 
-        <h3 id="s3.15-javadoc">Javadoc</h3>
+        <h3 id="javadoc">Javadoc</h3>
         <p>This section only covers basic Javadoc formatting. For a complete reference refer to &nbsp;<a
                 href="http://www.oracle.com/technetwork/articles/java/index-137868.html">How to Write Doc Comments for
                 the Javadoc Tool</a>.</p>
@@ -1071,20 +1071,20 @@ double d2 = 0x1.3P2;</code></pre>
         </div>
 
 
-        <h2 id="s4-naming">Naming</h2>
+        <h2 id="naming">Naming</h2>
         <section>Avoid hiding/shadowing methods, variables and type variables in outer scopes.</section>
         <section>Let the verbosity of the name correlate to the size of the scope. (For instance, use descriptive names
             for fields of large classes and brief names for local short-lived variables.)</section>
         <section>When naming public static members, let the identifier be self descriptive if you believe they will be
             statically imported.</section>
 
-        <h3 id="s4.1-package-names">Package Names</h3>
+        <h3 id="package-names">Package Names</h3>
         <section>Package names should be all lower case without underscores or other special characters.</section>
         <section>Don&rsquo;t use plural form. Follow the convention of the standard API which uses for instance
             <code>java.lang.annotation</code> and not <code>java.lang.annotations</code>.
         </section>
 
-        <h3 id="s4.2-class-interface-enum-names">Class, Interface and Enum Names</h3>
+        <h3 id="class-interface-and-enum-names">Class, Interface and Enum Names</h3>
         <section>Class and enum names should typically be nouns.</section>
         <section>Interface names should typically be nouns or adjectives ending with <i>&hellip;able</i>.</section>
         <section>Use mixed case with the first letter in each word in upper case.</section>
@@ -1131,7 +1131,7 @@ class XMLParser {
             <p style="clear: both"></p>
         </div>
 
-        <h3 id="s4.3-method-names">Method Names</h3>
+        <h3 id="method-names">Method Names</h3>
         <section>Method names should typically be verbs or other descriptions of actions.</section>
         <section>Use mixed case with the first letter in lower case.</section>
 
@@ -1167,7 +1167,7 @@ class XMLParser {
             <p style="clear: both"></p>
         </div>
 
-        <h3 id="s4.4-variables">Variables</h3>
+        <h3 id="variables">Variables</h3>
         <section>Variable names should be in mixed case with the first letter in lower case.</section>
 
         <div>
@@ -1189,7 +1189,7 @@ boolean DataAvailable;</code></pre>
             <p style="clear: both"></p>
         </div>
 
-        <h3 id="s4.5-type-variables">Type Variables</h3>
+        <h3 id="type-variables">Type Variables</h3>
         <section>For simple cases where there are few type variables involved use a single upper case letter.</section>
         <section>If one letter is more descriptive than another (such as <code>K</code> and <code>V</code> for keys and
             values in maps or <code>R</code> for a function return type) use that, otherwise use <code>T</code>.
@@ -1227,7 +1227,7 @@ boolean DataAvailable;</code></pre>
             <p style="clear: both"></p>
         </div>
 
-        <h3 id="s4.6-constants">Constants</h3>
+        <h3 id="constants">Constants</h3>
         <section>Constants (static final fields whose content is immutable, by language rules or by convention) should
             be named with all capital letters and underscore (<code>_</code>) to separate words.</section>
 
@@ -1250,7 +1250,7 @@ boolean DataAvailable;</code></pre>
         </div>
 
 
-        <h2 id="s5-programming-practices">Programming Practices</h2>
+        <h2 id="programming-practices">Programming Practices</h2>
         <p>
             The focus of the guidelines in this document is on style. General guidelines on best programming practices,
             use of design patterns, how to structure programs etc is thus out of scope.&nbsp;A few &ldquo;low
@@ -1278,7 +1278,7 @@ boolean DataAvailable;</code></pre>
 
 
 
-        <h3 id="s5.1-commenting-code">Commenting Code</h3>
+        <h3 id="commenting-code">Commenting Code</h3>
         <section>First and foremost, try to make the code simple enough that it&rsquo;s self explanatory. While comments
             explaining the code are good, not having to explain the code is better.</section>
         <section>For single line comments, use end-of-line comments (<code>//</code>) otherwise use multiline comments
@@ -1294,7 +1294,7 @@ boolean DataAvailable;</code></pre>
         <section>Comments should be grammatically correct and follow general recommendations of technical writing.
         </section>
 
-        <h2 id="s6-when-to-reformat">When to reformat code</h2>
+        <h2 id="when-to-reformat-code">When to reformat code</h2>
         <section>Do not reformat code in files unrelated to the current changeset, even if the code doesn&rsquo;t adhere
             to the guidelines.</section>
         <section>Minor cleanups in files that are already touched for other reasons are fine. Put the cleanups in a
@@ -1312,7 +1312,7 @@ boolean DataAvailable;</code></pre>
             </ul>
         </div>
 
-        <h2 id="s7-cases-not-covered">Cases not covered</h2>
+        <h2 id="cases-not-covered">Cases not covered</h2>
         <section>If some aspect is not covered by these guidelines one should fall back on the style of the surrounding
             code within the same file, within the package or within the project in that order.</section>
 

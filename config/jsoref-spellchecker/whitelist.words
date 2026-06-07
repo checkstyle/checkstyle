@@ -157,6 +157,9 @@ Cfml
 cfz
 cgi
 chainedpropertyutil
+chapterformatting
+chapterjavasourcefiles
+chapternaming
 charset
 CHDBEFIF
 checkchmod
@@ -597,7 +600,6 @@ importcontrolloader
 importcontroltest
 importorder
 importrule
-importstatements
 imprt
 Incompatabilities
 indentcontinuationlines
@@ -670,7 +672,6 @@ javaparser
 javarevisited
 javascript
 javase
-javasourcefiles
 javax
 Jax
 jb
@@ -759,7 +760,6 @@ Kordas
 Kotlin
 Kp
 lambdabodylength
-lambdaexpressions
 lambdaparametername
 LBRACE
 LBRACK
@@ -1189,8 +1189,20 @@ Rsa
 RSPEC
 Rtl
 ru
+ruleimportstatements
+ruleindentation
+rulejavasourcefiles
+rulelambdaexpressions
+ruleliterals
+rulemethodnames
+rulepackagedeclaration
+rulepackagenames
 ruleset
 rulesetfiles
+rulespecialcharacters
+rulevariabledeclarations
+rulewildcardimports
+rulewrappinglines
 Ruslan
 rw
 rx
@@ -1257,7 +1269,6 @@ sourceforge
 sourcepath
 sourcesets
 spacebar
-specialcharacters
 specialescape
 spellchecker
 spliterator
@@ -1447,7 +1458,6 @@ uxxxx
 validator
 VALUELONG
 vararg
-variabledeclarations
 variabledeclarationusagedistance
 Veach
 Verdana
@@ -1491,7 +1501,6 @@ Wifi
 wiki
 wikipedia
 wiktionary
-wildcardimports
 windowsservercore
 withgoogle
 wj
@@ -1502,7 +1511,6 @@ wontfix
 workaround
 workflow
 wq
-wrappinglines
 writetag
 writingchecks
 writingdoccomments

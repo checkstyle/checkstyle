@@ -329,7 +329,7 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule712paragraphs[\\/]InputIncorrectRequireEmptyLineBeforeBlockTagGroup\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]it[\\/]resources[\\/]com[\\/]openjdk[\\/]checkstyle[\\/]test[\\/]chapter3formatting[\\/]rule310variabledeclarations[\\/]onevariableperline[\\/]InputOneVariablePerDeclaration\.java"/>
+            files="[\\/]it[\\/]resources[\\/]com[\\/]openjdk[\\/]checkstyle[\\/]test[\\/]chapterformatting[\\/]rulevariabledeclarations[\\/]onevariableperline[\\/]InputOneVariablePerDeclaration\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]utils[\\/]annotationutil[\\/]InputAnnotationUtil1\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"

@@ -76,15 +76,15 @@
               <!-- 1 Introduction -->
               <tr>
                 <td>
-                  <a name="a1"/>
-                  <a href="#1">
+                  <a name="introduction"/>
+                  <a href="#introduction">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s1-introduction">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#introduction">
                     <strong>Introduction</strong>
                   </a>
                 </td>
@@ -93,15 +93,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a1.1"/>
-                  <a href="#1.1">
+                  <a name="motivation"/>
+                  <a href="#motivation">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s1.1-motivation">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#motivation">
                     Motivation
                   </a>
                 </td>
@@ -110,15 +110,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a1.2"/>
-                  <a href="#1.2">
+                  <a name="guiding-principles"/>
+                  <a href="#guiding-principles">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s1.2-guiding-principles">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#guiding-principles">
                     Guiding Principles
                   </a>
                 </td>
@@ -128,15 +128,15 @@
               <!-- 2 Java Source Files -->
               <tr>
                 <td>
-                  <a name="a2"/>
-                  <a href="#2">
+                  <a name="java-source-files"/>
+                  <a href="#java-source-files">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s2-java-source-files">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#java-source-files">
                     <strong>Java Source Files</strong>
                   </a>
                 </td>
@@ -168,22 +168,22 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter2javasourcefiles/rule2javasourcefiles">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterjavasourcefiles/rulejavasourcefiles">
                     samples
                   </a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a2.1"/>
-                  <a href="#2.1">
+                  <a name="special-characters"/>
+                  <a href="#special-characters">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s2.1-special-characters">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#special-characters">
                     Special Characters
                   </a>
                 </td>
@@ -201,7 +201,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter2javasourcefiles/rule21specialcharacters">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterjavasourcefiles/rulespecialcharacters">
                     samples
                   </a>
                 </td>
@@ -209,15 +209,15 @@
               <!-- 3 Formatting -->
               <tr>
                 <td>
-                  <a name="a3"/>
-                  <a href="#3">
+                  <a name="formatting"/>
+                  <a href="#formatting">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3-formatting">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#formatting">
                     <strong>Formatting</strong>
                   </a>
                 </td>
@@ -226,15 +226,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a3.1"/>
-                  <a href="#3.1">
+                  <a name="copyright-notice"/>
+                  <a href="#copyright-notice">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.1-copyright-notice">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#copyright-notice">
                     Copyright notice
                   </a>
                 </td>
@@ -243,16 +243,16 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a3.2"/>
-                  <a href="#3.2">
+                  <a name="package-declaration"/>
+                  <a href="#package-declaration">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.2-package-declaration">
-                    3.2 Package declaration
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#package-declaration">
+                    Package declaration
                   </a>
                 </td>
                 <td>
@@ -265,22 +265,22 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter3formatting/rule32packagedeclaration">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulepackagedeclaration">
                     samples
                   </a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.3"/>
-                  <a href="#3.3">
+                  <a name="import-statements"/>
+                  <a href="#import-statements">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.3-import-statements">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#import-statements">
                     Import statements
                   </a>
                 </td>
@@ -293,22 +293,22 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter3formatting/rule33importstatements">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/ruleimportstatements">
                     samples
                   </a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.3.1"/>
-                  <a href="#3.3.1">
+                  <a name="wildcard-imports"/>
+                  <a href="#wildcard-imports">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.3.1-wildcard-imports">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#wildcard-imports">
                     Wildcard Imports
                   </a>
                 </td>
@@ -321,22 +321,22 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter3formatting/rule331wildcardimports">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulewildcardimports">
                     samples
                   </a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.4"/>
-                  <a href="#3.4">
+                  <a name="class-structure"/>
+                  <a href="#class-structure">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.4-class-structure">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#class-structure">
                     Class Structure
                   </a>
                 </td>
@@ -345,15 +345,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a3.4.1"/>
-                  <a href="#3.4.1">
+                  <a name="order-of-constructors-and-overloaded-methods"/>
+                  <a href="#order-of-constructors-and-overloaded-methods">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.4.1-order-of-constructors-and-overloaded-methods">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#order-of-constructors-and-overloaded-methods">
                     Order of Constructors and Overloaded Methods
                   </a>
                 </td>
@@ -362,15 +362,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a3.5"/>
-                  <a href="#3.5">
+                  <a name="modifiers"/>
+                  <a href="#modifiers">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.5-modifiers">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#modifiers">
                     Modifiers
                   </a>
                 </td>
@@ -379,15 +379,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a3.6"/>
-                  <a href="#3.6">
+                  <a name="braces"/>
+                  <a href="#braces">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.6-braces">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#braces">
                     Braces
                   </a>
                 </td>
@@ -396,15 +396,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a3.6.1"/>
-                  <a href="#3.6.1">
+                  <a name="short-forms"/>
+                  <a href="#short-forms">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.6.1-short-forms">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#short-forms">
                     Short Forms
                   </a>
                 </td>
@@ -413,15 +413,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a3.7"/>
-                  <a href="#3.7">
+                  <a name="indentation"/>
+                  <a href="#indentation">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.7-indentation">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#indentation">
                     Indentation
                   </a>
                 </td>
@@ -443,22 +443,22 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter3formatting/rule37indentation">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/ruleindentation">
                     samples
                   </a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.8"/>
-                  <a href="#3.8">
+                  <a name="wrapping-lines"/>
+                  <a href="#wrapping-lines">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8-wrapping-lines">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#wrapping-lines">
                     Wrapping Lines
                   </a>
                 </td>
@@ -472,22 +472,22 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter3formatting/rule38wrappinglines">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulewrappinglines">
                     samples
                   </a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.8.1"/>
-                  <a href="#3.8.1">
+                  <a name="wrapping-class-declarations"/>
+                  <a href="#wrapping-class-declarations">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8.1-wrapping-class-declarations">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#wrapping-class-declarations">
                     Wrapping Class Declarations
                   </a>
                 </td>
@@ -496,15 +496,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a3.8.2"/>
-                  <a href="#3.8.2">
+                  <a name="wrapping-method-declarations"/>
+                  <a href="#wrapping-method-declarations">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8.2-wrapping-method-declarations">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#wrapping-method-declarations">
                     Wrapping Method Declarations
                   </a>
                 </td>
@@ -513,15 +513,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a3.8.3"/>
-                  <a href="#3.8.3">
+                  <a name="wrapping-expressions"/>
+                  <a href="#wrapping-expressions">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8.3-wrapping-expressions">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#wrapping-expressions">
                     Wrapping Expressions
                   </a>
                 </td>
@@ -530,15 +530,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a3.9"/>
-                  <a href="#3.9">
+                  <a name="whitespace"/>
+                  <a href="#whitespace">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.9-whitespace">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#whitespace">
                     Whitespace
                   </a>
                 </td>
@@ -547,15 +547,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a3.9.1"/>
-                  <a href="#3.9.1">
+                  <a name="vertical-whitespace"/>
+                  <a href="#vertical-whitespace">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.9.1-vertical-whitespace">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#vertical-whitespace">
                     Vertical Whitespace
                   </a>
                 </td>
@@ -564,15 +564,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a3.9.2"/>
-                  <a href="#3.9.2">
+                  <a name="horizontal-whitespace"/>
+                  <a href="#horizontal-whitespace">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.9.2-horizontal-whitespace">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#horizontal-whitespace">
                     Horizontal Whitespace
                   </a>
                 </td>
@@ -581,15 +581,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a3.10"/>
-                  <a href="#3.10">
+                  <a name="variable-declarations"/>
+                  <a href="#variable-declarations">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.10-variable-declarations">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#variable-declarations">
                     Variable Declarations
                   </a>
                 </td>
@@ -621,21 +621,21 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter3formatting/rule310variabledeclarations">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulevariabledeclarations">
                     samples</a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.11"/>
-                  <a href="#3.11">
+                  <a name="annotations"/>
+                  <a href="#annotations">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.11-annotations">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#annotations">
                     Annotations
                   </a>
                 </td>
@@ -644,15 +644,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a3.12"/>
-                  <a href="#3.12">
+                  <a name="lambda-expressions"/>
+                  <a href="#lambda-expressions">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.12-lambda-expressions">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#lambda-expressions">
                     Lambda Expressions
                   </a>
                 </td>
@@ -666,22 +666,22 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter3formatting/rule312lambdaexpressions">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulelambdaexpressions">
                     samples
                   </a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.13"/>
-                  <a href="#3.13">
+                  <a name="redundant-parentheses"/>
+                  <a href="#redundant-parentheses">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.13-redundant-parentheses">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#redundant-parentheses">
                     Redundant Parentheses
                   </a>
                 </td>
@@ -690,15 +690,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a3.14"/>
-                  <a href="#3.14">
+                  <a name="literals"/>
+                  <a href="#literals">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.14-literals">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#literals">
                     Literals
                   </a>
                 </td>
@@ -729,22 +729,22 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter3formatting/rule314literals">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/ruleliterals">
                     samples</a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.15"/>
-                  <a href="#3.15">
+                  <a name="javadoc"/>
+                  <a href="#javadoc">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.15-javadoc">
-                    3.15 Javadoc
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#javadoc">
+                    Javadoc
                   </a>
                 </td>
                 <td>???</td>
@@ -753,15 +753,15 @@
               <!-- 4 Naming -->
               <tr>
                 <td>
-                  <a name="a4"/>
-                  <a href="#4">
+                  <a name="naming"/>
+                  <a href="#naming">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4-naming">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#naming">
                     <strong>Naming</strong>
                   </a>
                 </td>
@@ -770,15 +770,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a4.1"/>
-                  <a href="#4.1">
+                  <a name="package-names"/>
+                  <a href="#package-names">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.1-package-names">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#package-names">
                     Package Names
                   </a>
                 </td>
@@ -795,7 +795,7 @@
                     (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">config</a>)
                 </td>
                 <td>
-                    <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter4naming/rule41packagenames">
+                    <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapternaming/rulepackagenames">
                        samples
                     </a>
                 </td>
@@ -803,15 +803,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a4.2"/>
-                  <a href="#4.2">
+                  <a name="class-interface-and-enum-names"/>
+                  <a href="#class-interface-and-enum-names">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.2-class-interface-enum-names">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#class-interface-and-enum-names">
                     Class, Interface and Enum Names
                   </a>
                 </td>
@@ -820,15 +820,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a4.3"/>
-                  <a href="#4.3">
+                  <a name="method-names"/>
+                  <a href="#method-names">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.3-method-names">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#method-names">
                     Method Names
                   </a>
                 </td>
@@ -845,21 +845,21 @@
                   to determine whether a method name is a verb or action description.
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapter4naming/rule43methodnames">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapternaming/rulemethodnames">
                     samples</a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a4.4"/>
-                  <a href="#4.4">
+                  <a name="variables"/>
+                  <a href="#variables">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.4-variables">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#variables">
                     Variables
                   </a>
                 </td>
@@ -868,15 +868,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a4.5"/>
-                  <a href="#4.5">
+                  <a name="type-variables"/>
+                  <a href="#type-variables">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.5-type-variables">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#type-variables">
                     Type Variables
                   </a>
                 </td>
@@ -885,15 +885,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a4.6"/>
-                  <a href="#4.6">
+                  <a name="constants"/>
+                  <a href="#constants">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.6-constants">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#constants">
                     Constants
                   </a>
                 </td>
@@ -903,15 +903,15 @@
               <!-- 5 Programming Practices -->
               <tr>
                 <td>
-                  <a name="a5"/>
-                  <a href="#5">
+                  <a name="programming-practices"/>
+                  <a href="#programming-practices">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s5-programming-practices">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#programming-practices">
                     <strong>Programming Practices</strong>
                   </a>
                 </td>
@@ -920,15 +920,15 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a5.1"/>
-                  <a href="#5.1">
+                  <a name="commenting-code"/>
+                  <a href="#commenting-code">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s5.1-commenting-code">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#commenting-code">
                     Commenting Code
                   </a>
                 </td>
@@ -938,15 +938,15 @@
               <!-- 6 When to reformat code -->
               <tr>
                 <td>
-                  <a name="a6"/>
-                  <a href="#6">
+                  <a name="when-to-reformat-code"/>
+                  <a href="#when-to-reformat-code">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s6-when-to-reformat">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#when-to-reformat-code">
                     <strong>When to reformat code</strong>
                   </a>
                 </td>
@@ -956,15 +956,15 @@
               <!-- 7 Cases not covered -->
               <tr>
                 <td>
-                  <a name="a7"/>
-                  <a href="#7">
+                  <a name="cases-not-covered"/>
+                  <a href="#cases-not-covered">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s7-cases-not-covered">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#cases-not-covered">
                     <strong>Cases not covered</strong>
                   </a>
                 </td>

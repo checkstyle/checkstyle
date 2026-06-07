@@ -82,11 +82,11 @@
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
-    files="rule41packagenames[\\/]InputBadPackageName2\.java"/>
+    files="rulepackagenames[\\/]InputBadPackageName2\.java"/>
   <suppress checks="PackageDeclarationCheck"
-    files="rule41packagenames[\\/]InputPackageBadName3\.java"/>
+    files="rulepackagenames[\\/]InputPackageBadName3\.java"/>
   <suppress checks="PackageDeclarationCheck"
-    files="rule41packagenames[\\/]InputPackageNameBad\.java"/>
+    files="rulepackagenames[\\/]InputPackageNameBad\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="RegexpSingleline"
@@ -164,7 +164,7 @@
   <suppress checks="FileTabCharacter"
     files="[\\/]InputCheckerTabCharacter\.txt"/>
   <suppress checks="FileTabCharacter"
-    files=".*[\\/]src[\\/]it[\\/]resources[\\/]com[\\/]openjdk[\\/]checkstyle[\\/]test[\\/]chapter3formatting[\\/]rule37indentation[\\/]InputFileTabCharacterInvalid\.java"/>
+    files=".*[\\/]src[\\/]it[\\/]resources[\\/]com[\\/]openjdk[\\/]checkstyle[\\/]test[\\/]chapterformatting[\\/]ruleindentation[\\/]InputFileTabCharacterInvalid\.java"/>
   <suppress checks="FileTabCharacter"
     files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]indentation[\\/]Input.*\.java"/>
   <suppress checks="FileTabCharacter"
