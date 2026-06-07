@@ -140,7 +140,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/metrics/classdataabstractioncoupling/ignore/Example9",
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example5",
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example6",
-            "checks/naming/lambdaparametername/Example2",
             "checks/naming/patternvariablename/Example4",
             "checks/naming/typename/Example2",
             "checks/naming/typename/Example3",
