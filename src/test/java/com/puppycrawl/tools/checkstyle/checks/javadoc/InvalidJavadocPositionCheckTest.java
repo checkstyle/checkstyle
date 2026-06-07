@@ -134,4 +134,15 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
             getPath("InputInvalidJavadocPositionOnCompactConstructorsWithAnnotation.java"),
                 expected);
     }
+
+    @Test
+    public void testInvalidJavadocPositionCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "42:5: " + getCheckMessage(MSG_KEY),
+            "59:9: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputInvalidJavadocPositionCompactSourceFile.java"), expected);
+    }
 }
