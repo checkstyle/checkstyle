@@ -2496,6 +2496,9 @@
             <!-- 404 Not Found,
              from broken link check to avoid false positives due to old certificate issues -->
             <excludedLink>https://bugs.eclipse.org/</excludedLink>
+            <!-- permanent 404 -->
+            <excludedLink>https://bytebuddy.net/byte-buddy</excludedLink>
+            <excludedLink>https://bytebuddy.net/byte-buddy-agent</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
