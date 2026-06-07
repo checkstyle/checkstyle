@@ -2454,10 +2454,18 @@ public class XdocsPagesTest {
             final Node row = source.item(position);
             final List<Node> columns = new ArrayList<>(
                     XmlUtil.findChildElementsByTag(row, "td"));
+
             if (columns.isEmpty()) {
                 continue;
             }
             final String ruleName = columns.get(1).getTextContent().trim();
+
+            if (!"--".equals(ruleName)) {
+                validateStyleAnchorsForOpenjdk(
+                    XmlUtil.findChildElementsByTag(columns.getFirst(), "a"),
+                    "openjdk_checks.xml", ruleName);
+            }
+
             validateOpenJdkStyleModules(XmlUtil.findChildElementsByTag(columns.get(2), "a"),
                     XmlUtil.findChildElementsByTag(columns.get(3), "a"), styleChecks, ruleName);
         }
@@ -2568,6 +2576,56 @@ public class XdocsPagesTest {
                 .that(hasChecks)
                 .isFalse();
         }
+    }
+
+    private static void validateStyleAnchorsForOpenjdk(Set<Node> anchors,
+            String fileName, String ruleName) {
+        assertWithMessage("%s rule '%s' must have two row anchors", fileName, ruleName)
+            .that(anchors)
+            .hasSize(2);
+
+        final String anchorUrl = getQualifiedName(ruleName);
+
+        int position = 1;
+
+        for (Node anchor : anchors) {
+            final String actualUrl;
+            final String expectedUrl;
+
+            if (position == 1) {
+                actualUrl = XmlUtil.getNameAttributeOfNode(anchor);
+                expectedUrl = anchorUrl;
+            }
+            else {
+                actualUrl = anchor.getAttributes().getNamedItem("href").getTextContent();
+                expectedUrl = "#" + anchorUrl;
+            }
+
+            assertWithMessage("%s rule '%s' anchor %s should have matching name/url", fileName,
+                ruleName, position)
+                .that(actualUrl)
+                .isEqualTo(expectedUrl);
+
+            position++;
+        }
+    }
+
+    private static String getQualifiedName(String ruleName) {
+
+        final String tempRuleName = ruleName.toLowerCase(Locale.ROOT);
+        final StringBuilder result = new StringBuilder(tempRuleName.length());
+
+        for (int idx = 0; idx < tempRuleName.length(); idx++) {
+            final char current = tempRuleName.charAt(idx);
+
+            if (Character.isLowerCase(current)) {
+                result.append(current);
+            }
+            else if (current == ' ') {
+                result.append('-');
+            }
+        }
+        return result.toString();
     }
 
     /**
