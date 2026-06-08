@@ -25,6 +25,8 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDecla
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class OverloadMethodsDeclarationOrderCheckTest
@@ -82,6 +84,58 @@ public class OverloadMethodsDeclarationOrderCheckTest
                 getPath(
                         "InputOverloadMethodsDeclarationOrderPrivateAndStaticMethods.java"
                 ), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileOverloads() throws Exception {
+        // Uses real compact source file — hits COMPACT_COMPILATION_UNIT branch
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MSG_KEY, 5),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputOverloadMethodsDeclarationOrderCompact.java"),
+            expected);
+    }
+
+    @Test
+    public void testCompactSourceFileOverloadsWrapped() throws Exception {
+        // Uses class-wrapped file — safe for RequireThisCheck
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY, 9),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputOverloadMethodsDeclarationOrderCompactWrapped.java"),
+            expected);
+    }
+
+    @Test
+    public void testCompactSourceFileOverloadsNoViolation() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                "InputOverloadMethodsDeclarationOrderCompactNoViolation.java"),
+            expected);
+    }
+
+    @Test
+    public void testCompactSourceFileFirstMethodIsOverload() throws Exception {
+        final String[] expected = {
+            "8:1: " + getCheckMessage(MSG_KEY, 5),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                "InputOverloadMethodsDeclarationOrderCompactEdge.java"),
+            expected);
+    }
+
+    @Test
+    public void testNullParent() {
+        final OverloadMethodsDeclarationOrderCheck check =
+            new OverloadMethodsDeclarationOrderCheck();
+        final DetailAstImpl ast = new DetailAstImpl();
+        ast.setType(TokenTypes.OBJBLOCK);
+
+        check.visitToken(ast);
     }
 
     @Test
