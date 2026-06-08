@@ -49,9 +49,18 @@
         <p id="Example1-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-  Function&lt;String, String&gt; function1 = s -&gt; s.toLowerCase();
+  Function&lt;String, String&gt; function1 = str -&gt; str.toUpperCase().trim();
+
   Function&lt;String, String&gt; function2 =
-          S -&gt; S.toLowerCase(); // violation 'Name 'S' must match pattern'
+          S -&gt; S.trim();
+  // violation above 'Name 'S' must match pattern'
+
+  public boolean myMethod(String sentence) {
+    return Stream.of(sentence.split(" "))
+            .map(word -&gt; word.trim())
+            .anyMatch(Word -&gt; "in".equals(Word));
+    // violation above 'Name 'Word' must match pattern'
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -71,8 +80,10 @@ class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   Function&lt;String, String&gt; function1 = str -&gt; str.toUpperCase().trim();
-  Function&lt;String, String&gt; function2 = _s -&gt; _s.trim();
-  // violation above 'Name '_s' must match pattern'
+
+  Function&lt;String, String&gt; function2 =
+          S -&gt; S.trim();
+  // violation above 'Name 'S' must match pattern'
 
   public boolean myMethod(String sentence) {
     return Stream.of(sentence.split(" "))
