@@ -666,4 +666,14 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 getPath("InputRequireThisAnnotationOverlappingTrue.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "24:9: " + getCheckMessage(MSG_VARIABLE, "x", ""),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRequireThisCompactSourceFile.java"), expected);
+    }
+
 }
