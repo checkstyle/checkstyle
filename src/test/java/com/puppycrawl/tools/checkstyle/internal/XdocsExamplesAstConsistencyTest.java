@@ -157,7 +157,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/metrics/classdataabstractioncoupling/ignore/Example9",
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example5",
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example6",
-            "checks/metrics/javancss/Example5",
             "checks/metrics/npathcomplexity/Example2",
             "checks/naming/lambdaparametername/Example2",
             "checks/naming/parametername/Example5",
