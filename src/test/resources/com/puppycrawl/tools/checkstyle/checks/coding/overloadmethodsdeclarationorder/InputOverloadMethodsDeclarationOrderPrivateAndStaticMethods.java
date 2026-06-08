@@ -21,4 +21,6 @@ public class InputOverloadMethodsDeclarationOrderPrivateAndStaticMethods {
 
     public void testing(String a, String b) {
     }
+
+    Object obj = new Object();
 }
