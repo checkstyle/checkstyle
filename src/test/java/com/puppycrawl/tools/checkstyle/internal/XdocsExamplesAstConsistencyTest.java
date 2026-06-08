@@ -60,16 +60,22 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * (starting at line 1), line numbers are always section-relative and are safe
  * to compare directly between examples.
  *
+ * <p>Single-line comments starting with {@code ok}, {@code violation}, or
+ * {@code xdoc section} are excluded from comparison as they are documentation
+ * markers. All other single-line comments, as well as Javadoc and block comments,
+ * are included in the structural comparison.
+ *
+ * <p>Block comments used as {@code ok} or {@code violation} markers
+ * (e.g. {@code /* ok, allowMissingReturnTag is true *}{@code /}) are forbidden;
+ * use single-line {@code //} comments instead. The
+ * {@link #testNoBlockCommentMarkers()} test enforces this.
+ *
  */
 public class XdocsExamplesAstConsistencyTest {
 
     private static final Path XDOCS_ROOT = Path.of(
             "src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle"
     );
-
-    private static final String COMMON_PATH =
-            "src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/";
-
     private static final String XDOC_START_MARKER = "// xdoc section -- start";
     private static final String XDOC_END_MARKER = "// xdoc section -- end";
 
@@ -321,6 +327,46 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithplaintextcommentfilter/Example6",
             "filters/suppresswithplaintextcommentfilter/Example7",
             "filters/suppresswithplaintextcommentfilter/Example8",
+            "checks/avoidescapedunicodecharacters/Example2",
+            "checks/avoidescapedunicodecharacters/Example5",
+            "checks/blocks/emptyblock/Example2",
+            "checks/blocks/emptyblock/Example3",
+            "checks/coding/illegalsymbol/Example2",
+            "checks/coding/illegalsymbol/Example4",
+            "checks/coding/multiplestringliterals/Example4",
+            "checks/coding/unnecessaryparentheses/Example2",
+            "checks/indentation/indentation/Example7",
+            "checks/javadoc/javadocmethod/Example2",
+            "checks/javadoc/javadocmethod/Example3",
+            "checks/javadoc/javadocmethod/Example4",
+            "checks/javadoc/javadocmethod/Example6",
+            "checks/javadoc/javadocmethod/Example7",
+            "checks/javadoc/javadocparagraph/Example2",
+            "checks/javadoc/nonemptyatclausedescription/Example2",
+            "checks/lineending/Example2",
+            "checks/lineending/Example3",
+            "checks/metrics/cyclomaticcomplexity/Example2",
+            "checks/metrics/cyclomaticcomplexity/Example3",
+            "checks/newlineatendoffile/Example2",
+            "checks/newlineatendoffile/Example5",
+            "checks/sizes/filelength/Example2",
+            "checks/sizes/filelength/Example3",
+            "checks/sizes/linelength/Example6",
+            "checks/sizes/methodcount/Example2",
+            "checks/sizes/methodcount/Example3",
+            "checks/sizes/methodcount/Example6",
+            "checks/trailingcomment/Example3",
+            "checks/whitespace/whitespacearound/Example11",
+            "checks/whitespace/whitespacearound/Example3",
+            "checks/whitespace/whitespacearound/Example4",
+            "checks/whitespace/whitespacearound/Example5",
+            "checks/whitespace/whitespacearound/Example7",
+            "checks/whitespace/whitespacearound/Example8",
+            "checks/whitespace/whitespacearound/Example9",
+            "filters/suppressioncommentfilter/Example4",
+            "filters/suppressioncommentfilter/Example6",
+            "checks/javadoc/javadocpackage/legacywithboth/Example3",
+            "checks/javadoc/javadocpackage/nonlegacy/Example1",
             // Note: customImport/ImportOrder changes import group ORDER affecting AST structure
             "checks/imports/customimportorder/Example10",
             "checks/imports/customimportorder/Example11",
@@ -343,6 +389,15 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/indentation/commentsindentation/Example6",
             "checks/indentation/commentsindentation/Example7",
             "checks/indentation/commentsindentation/Example8",
+            "checks/regexp/regexp/Example2",
+            "checks/regexp/regexp/Example3",
+            "checks/regexp/regexp/Example4",
+            "checks/regexp/regexp/Example5",
+            "checks/regexp/regexp/Example8",
+            "checks/regexp/regexp/Example9",
+            "checks/regexp/regexp/Example11",
+            "checks/regexp/regexp/Example10",
+            "checks/regexp/regexp/Example6",
             "checks/coding/matchxpath/Example2",
             "checks/coding/matchxpath/Example3",
             "checks/coding/matchxpath/Example4",
@@ -360,13 +415,6 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppressionfilter/Example2",
             "filters/suppressionfilter/Example3",
             "filters/suppressionfilter/Example4",
-            "checks/regexp/regexp/Example2",
-            "checks/regexp/regexp/Example3",
-            "checks/regexp/regexp/Example4",
-            "checks/regexp/regexp/Example5",
-            "checks/regexp/regexp/Example8",
-            "checks/regexp/regexp/Example9",
-            "checks/regexp/regexp/Example11",
             "checks/trailingcomment/Example4",
             "checks/trailingcomment/Example5",
             "checks/trailingcomment/Example6",
@@ -397,7 +445,7 @@ public class XdocsExamplesAstConsistencyTest {
      */
     @Test
     public void testExamplesDifferOnlyByComments() throws IOException {
-        final List<String> violations = new ArrayList<>();
+        final List<Violation> violations = new ArrayList<>();
 
         try (Stream<Path> pathStream = Files.walk(XDOCS_ROOT)) {
             final List<Path> exampleDirs = pathStream
@@ -406,7 +454,7 @@ public class XdocsExamplesAstConsistencyTest {
                     .toList();
 
             for (Path dir : exampleDirs) {
-                final List<String> dirViolations = checkExamplesInDirectory(dir);
+                final List<Violation> dirViolations = checkExamplesInDirectory(dir);
                 violations.addAll(dirViolations);
             }
         }
@@ -423,7 +471,7 @@ public class XdocsExamplesAstConsistencyTest {
                     .append(violations.size())
                     .append(" example files with AST mismatches.\n\n");
 
-            for (String violation : violations) {
+            for (Violation violation : violations) {
                 builder.append(violation)
                         .append("\n\n");
             }
@@ -431,11 +479,9 @@ public class XdocsExamplesAstConsistencyTest {
             builder.append("If these examples have different code intent, "
                     + "add them to SUPPRESSED_EXAMPLES:\n");
 
-            for (String violation : violations) {
-                final String pattern = extractIndependentPattern(violation);
-                if (pattern != null) {
-                    builder.append('"').append(pattern).append("\",\n");
-                }
+            for (Violation violation : violations) {
+                final String pattern = violation.getSuppressionPattern();
+                builder.append('"').append(pattern).append("\",\n");
             }
 
             message = builder.toString();
@@ -447,122 +493,111 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Extracts an independent example pattern from a violation message.
+     * Tests that no example file uses block comments as {@code ok} or
+     * {@code violation} markers. All such markers must use single-line
+     * comments instead. For example:
+     * <pre>
+     *   BAD:  &#47;* ok, allowMissingReturnTag is true *&#47;
+     *   GOOD: // ok, allowMissingReturnTag is true
+     * </pre>
      *
-     * @param violation the violation message
-     * @return the pattern, or null if not found
+     * @throws IOException if an I/O error occurs
      */
-    private static String extractIndependentPattern(String violation) {
-        final String dirPath = extractDirectoryPath(violation);
-        final String fileName = extractMismatchFileName(violation);
-        final String result;
+    @Test
+    public void testNoBlockCommentMarkers() throws IOException {
+        final List<String> violations = new ArrayList<>();
 
-        if (dirPath != null && fileName != null) {
-            result = dirPath + "/" + fileName.replace(".java", "");
+        try (Stream<Path> pathStream = Files.walk(XDOCS_ROOT)) {
+            pathStream
+                    .filter(path -> path.getFileName().toString().matches("Example\\d+\\.java"))
+                    .filter(path -> {
+                        final String relativePath = getRelativePath(path.getParent());
+                        final String fileName = path.getFileName().toString();
+                        return !isExampleIndependent(relativePath, fileName);
+                    })
+                    .sorted()
+                    .forEach(path -> {
+                        try {
+                            checkForBlockCommentMarkers(path, violations);
+                        }
+                        catch (IOException exception) {
+                            throw new IllegalStateException(
+                                    "Failed to read file: " + path, exception);
+                        }
+                    });
+        }
+
+        final String message;
+        if (violations.isEmpty()) {
+            message = "";
         }
         else {
-            result = null;
-        }
+            final StringBuilder builder = new StringBuilder(1024);
+            builder.append("Found ")
+                    .append(violations.size())
+                    .append(
+                            """
+                             example file(s) using block comments as ok/violation markers.
+                            Convert them to single-line comments, e.g.:
+                              BAD:  /* ok, allowMissingReturnTag is true */
+                              GOOD: // ok, allowMissingReturnTag is true
 
-        return result;
-    }
-
-    /**
-     * Extracts the mismatched filename from a violation message.
-     *
-     * @param violation the violation message
-     * @return the filename, or null if not found
-     */
-    private static String extractMismatchFileName(String violation) {
-        final String prefix = "Mismatch:  ";
-        final int startIndex = violation.indexOf(prefix);
-        final String result;
-
-        if (startIndex == -1) {
-            result = null;
-        }
-        else {
-            final int endIndex = violation.indexOf('\n', startIndex);
-            if (endIndex == -1) {
-                result = violation.substring(startIndex + prefix.length()).trim();
+                            """);
+            for (String violation : violations) {
+                builder.append(violation).append('\n');
             }
-            else {
-                result = violation.substring(startIndex + prefix.length(), endIndex).trim();
+            message = builder.toString();
+        }
+
+        assertWithMessage(message)
+                .that(violations)
+                .isEmpty();
+    }
+
+    /**
+     * Checks a single example file for block comments used as ok/violation markers.
+     *
+     * @param file       the example file to check
+     * @param violations the list to append violation messages to
+     * @throws IOException if an I/O error occurs
+     */
+    private static void checkForBlockCommentMarkers(Path file, List<String> violations)
+            throws IOException {
+        final List<String> lines = Files.readAllLines(file, StandardCharsets.UTF_8);
+        boolean inBlockComment = false;
+        final StringBuilder commentContent = new StringBuilder(1000);
+        int commentStartLine = -1;
+
+        for (int index = 0; index < lines.size(); index++) {
+            final String stripped = lines.get(index).strip();
+
+            if (!inBlockComment && stripped.startsWith("/*")) {
+                inBlockComment = true;
+                commentStartLine = index + 1;
+                commentContent.setLength(0);
             }
-        }
 
-        return result;
-    }
+            if (inBlockComment) {
+                commentContent.append(stripped).append(' ');
 
-    /**
-     * Checks if a specific example is marked as unparseable.
-     *
-     * @param relativePath the relative directory path
-     * @param exampleFileName the example filename (e.g., "Example1.java")
-     * @return true if this example cannot be parsed
-     */
-    private static boolean isExampleUnparseable(String relativePath, String exampleFileName) {
-        final String exampleName = exampleFileName.replace(".java", "");
-        final String fullPath = relativePath + "/" + exampleName;
-        return UNPARSEABLE_EXAMPLES.contains(fullPath);
-    }
+                if (stripped.contains("*/")) {
+                    inBlockComment = false;
 
-    /**
-     * Checks if a specific example is marked as independent.
-     *
-     * @param relativePath the relative directory path
-     * @param exampleFileName the example filename (e.g., "Example1.java")
-     * @return true if this example is independent
-     */
-    private static boolean isExampleIndependent(String relativePath, String exampleFileName) {
-        final String exampleName = exampleFileName.replace(".java", "");
-        final String fullPath = relativePath + "/" + exampleName;
-        return SUPPRESSED_EXAMPLES.contains(fullPath);
-    }
+                    final String content = commentContent.toString()
+                            .replaceAll("^/\\*+", "")
+                            .replaceAll("\\*/$", "")
+                            .replace("*", "")
+                            .strip();
 
-    /**
-     * Gets the relative path from the common base path.
-     *
-     * @param dir the directory path
-     * @return the relative path string
-     */
-    private static String getRelativePath(Path dir) {
-        final String fullPath = dir.toString().replace('\\', '/');
-        final String result;
-        if (fullPath.startsWith(COMMON_PATH)) {
-            result = fullPath.substring(COMMON_PATH.length());
-        }
-        else {
-            result = fullPath;
-        }
-        return result;
-    }
-
-    /**
-     * Extracts the directory path from a violation message.
-     *
-     * @param violation the violation message
-     * @return the directory path, or null if not found
-     */
-    private static String extractDirectoryPath(String violation) {
-        final String prefix = "Directory: ";
-        final int startIndex = violation.indexOf(prefix);
-        final String result;
-
-        if (startIndex == -1) {
-            result = null;
-        }
-        else {
-            final int endIndex = violation.indexOf('\n', startIndex);
-            if (endIndex == -1) {
-                result = null;
-            }
-            else {
-                result = violation.substring(startIndex + prefix.length(), endIndex).trim();
+                    if (content.startsWith("ok")
+                            || content.startsWith("violation")) {
+                        violations.add(file + ":" + commentStartLine
+                                + " - use single-line comment instead: // "
+                                + content);
+                    }
+                }
             }
         }
-
-        return result;
     }
 
     /**
@@ -612,8 +647,8 @@ public class XdocsExamplesAstConsistencyTest {
      * @return list of violation messages for mismatches
      * @throws IOException if an I/O error occurs
      */
-    private static List<String> checkExamplesInDirectory(Path dir) throws IOException {
-        final List<String> violations = new ArrayList<>();
+    private static List<Violation> checkExamplesInDirectory(Path dir) throws IOException {
+        final List<Violation> violations = new ArrayList<>();
         final List<Path> examples = getExampleFiles(dir);
 
         if (!examples.isEmpty()) {
@@ -642,16 +677,51 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
+     * Checks if a specific example is marked as unparseable.
+     *
+     * @param relativePath the relative directory path
+     * @param exampleFileName the example filename (e.g., "Example1.java")
+     * @return true if this example cannot be parsed
+     */
+    private static boolean isExampleUnparseable(String relativePath, String exampleFileName) {
+        final String exampleName = exampleFileName.replace(".java", "");
+        final String fullPath = relativePath + "/" + exampleName;
+        return UNPARSEABLE_EXAMPLES.contains(fullPath);
+    }
+
+    /**
+     * Checks if a specific example is marked as independent.
+     *
+     * @param relativePath the relative directory path
+     * @param exampleFileName the example filename (e.g., "Example1.java")
+     * @return true if this example is independent
+     */
+    private static boolean isExampleIndependent(String relativePath, String exampleFileName) {
+        final String exampleName = exampleFileName.replace(".java", "");
+        final String fullPath = relativePath + "/" + exampleName;
+        return SUPPRESSED_EXAMPLES.contains(fullPath);
+    }
+
+    /**
+     * Gets the relative path from the common base path.
+     *
+     * @param dir the directory path
+     * @return the relative path string
+     */
+    private static String getRelativePath(Path dir) {
+        return XDOCS_ROOT.relativize(dir).toString().replace('\\', '/');
+    }
+
+    /**
      * Compares examples: groups by AST, validates groups, reports mismatches.
      *
      * @param dir the directory containing the examples
      * @param examples the list of example files
      * @return list of violation messages for mismatches
-     * @throws IOException if an I/O error occurs
      */
-    private static List<String> compareExamples(Path dir, List<Path> examples)
+    private static List<Violation> compareExamples(Path dir, List<Path> examples)
             throws IOException {
-        final List<String> violations = new ArrayList<>();
+        final List<Violation> violations = new ArrayList<>();
 
         if (!isModuleWithNoProperties(examples)) {
             final String relativePath = getRelativePath(dir);
@@ -681,9 +751,10 @@ public class XdocsExamplesAstConsistencyTest {
      * @return list of violation messages for mismatches
      * @throws IOException if an I/O error occurs
      */
-    private static List<String> validateExamplesByConstructorPresence(Path dir, List<Path> examples)
+    private static List<Violation> validateExamplesByConstructorPresence(Path dir,
+                                                                         List<Path> examples)
             throws IOException {
-        final List<String> violations = new ArrayList<>();
+        final List<Violation> violations = new ArrayList<>();
         final List<Path> constructorExamples = new ArrayList<>();
         final List<Path> nonConstructorExamples = new ArrayList<>();
 
@@ -761,9 +832,9 @@ public class XdocsExamplesAstConsistencyTest {
      * @return list of violation messages for mismatches
      * @throws IOException if an I/O error occurs
      */
-    private static List<String> validateAllMatch(Path dir, List<Path> examples)
+    private static List<Violation> validateAllMatch(Path dir, List<Path> examples)
             throws IOException {
-        final List<String> violations = new ArrayList<>();
+        final List<Violation> violations = new ArrayList<>();
         final Path reference = examples.getFirst();
         final String referenceXdocSection = extractXdocSection(reference);
 
@@ -771,11 +842,12 @@ public class XdocsExamplesAstConsistencyTest {
             final DetailAST referenceDetailAst = parseContent(referenceXdocSection);
             if (referenceDetailAst != null) {
                 final StructuralAstNode referenceAst = toStructuralAst(referenceDetailAst);
-
+                final List<String> referenceComments =
+                        extractComments(referenceXdocSection);
                 for (int index = 1; index < examples.size(); index++) {
                     final Path example = examples.get(index);
-                    final String violation = compareSingleExample(
-                            dir, example, reference, referenceAst
+                    final Violation violation = compareSingleExample(
+                            dir, example, reference, referenceAst, referenceComments
                     );
                     if (violation != null) {
                         violations.add(violation);
@@ -819,11 +891,11 @@ public class XdocsExamplesAstConsistencyTest {
         }
 
         final String result;
-        if (startIndex != -1 && endIndex != -1 && startIndex < endIndex) {
-            result = String.join("\n", lines.subList(startIndex, endIndex));
+        if (startIndex == -1 || endIndex == -1 || startIndex >= endIndex) {
+            result = String.join("\n", lines);
         }
         else {
-            result = String.join("\n", lines);
+            result = String.join("\n", lines.subList(startIndex, endIndex));
         }
 
         return result;
@@ -855,9 +927,10 @@ public class XdocsExamplesAstConsistencyTest {
      * @return violation message if mismatch found, null otherwise
      * @throws IOException if an I/O error occurs
      */
-    private static String compareSingleExample(Path dir, Path example,
-                                               Path reference,
-                                               StructuralAstNode referenceAst)
+    private static Violation compareSingleExample(Path dir, Path example,
+                                                  Path reference,
+                                                  StructuralAstNode referenceAst,
+                                                  List<String> referenceComments)
             throws IOException {
         final String exampleXdocSection = extractXdocSection(example);
         final String relativePath = getRelativePath(dir);
@@ -874,20 +947,26 @@ public class XdocsExamplesAstConsistencyTest {
             }
         }
 
-        final String result;
+        final Violation result;
         if (exampleDetailAst == null) {
             result = null;
         }
         else {
             final StructuralAstNode ast = toStructuralAst(exampleDetailAst);
 
-            if (referenceAst.equals(ast)) {
+            final List<String> exampleComments =
+                    extractComments(exampleXdocSection);
+
+            if (referenceAst.equals(ast) && referenceComments.equals(exampleComments)) {
                 result = null;
             }
+            else if (referenceAst.equals(ast)) {
+                result = new Violation(relativePath, reference.getFileName().toString(),
+                        example.getFileName().toString(), "Comments mismatch");
+            }
             else {
-                result = "Directory: " + relativePath + "\n"
-                        + "Reference: " + reference.getFileName() + "\n"
-                        + "Mismatch:  " + example.getFileName();
+                result = new Violation(relativePath, reference.getFileName().toString(),
+                        example.getFileName().toString(), "AST structure mismatch");
             }
         }
 
@@ -895,53 +974,30 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Converts a DetailAST into a structural representation that excludes comments.
-     *
-     * <p>Each node captures its token type, any semantic literal text, and its
-     * line number within the parsed xdoc section. The line number is intentionally
-     * omitted for class and constructor name identifiers because those names are
-     * allowed to differ across examples.
+     * Converts a DetailAST into a structural representation that excludes only
+     * {@code ok}, {@code violation}, and {@code xdoc section} single-line comments.
+     * All other single-line comments, as well as Javadoc and block comments, are
+     * included in the comparison.
      *
      * @param ast the AST to convert
-     * @return structural representation of the AST, or null if the node is a comment
+     * @return structural representation of the AST, or null if the node is a
+     *         skippable comment
      */
     private static StructuralAstNode toStructuralAst(DetailAST ast) {
-        final StructuralAstNode result;
+        final boolean ignoreName = isClassOrConstructorName(ast);
+        final StructuralAstNode node = new StructuralAstNode(
+                ast.getType(), ast.getText(), ignoreName, ast.getLineNo(), ignoreName
+        );
 
-        if (isCommentNode(ast)) {
-            result = null;
-        }
-        else {
-            final boolean ignoreName = isClassOrConstructorName(ast);
-            final StructuralAstNode node = new StructuralAstNode(
-                    ast.getType(), ast.getText(), ignoreName, ast.getLineNo(), ignoreName
-            );
-
-            for (DetailAST child = ast.getFirstChild();
-                 child != null;
-                 child = child.getNextSibling()) {
-                final StructuralAstNode structuralChild = toStructuralAst(child);
-                if (structuralChild != null) {
-                    node.addChild(structuralChild);
-                }
+        for (DetailAST child = ast.getFirstChild();
+             child != null;
+             child = child.getNextSibling()) {
+            final StructuralAstNode structuralChild = toStructuralAst(child);
+            if (structuralChild != null) {
+                node.addChild(structuralChild);
             }
-            result = node;
         }
-
-        return result;
-    }
-
-    /**
-     * Checks if an AST node represents a comment.
-     *
-     * @param ast the AST node to check
-     * @return true if the node is a comment
-     */
-    private static boolean isCommentNode(DetailAST ast) {
-        final int type = ast.getType();
-        return type == TokenTypes.SINGLE_LINE_COMMENT
-                || type == TokenTypes.BLOCK_COMMENT_BEGIN
-                || type == TokenTypes.COMMENT_CONTENT;
+        return node;
     }
 
     /**
@@ -955,14 +1011,102 @@ public class XdocsExamplesAstConsistencyTest {
         return parent != null
                 && ast.getType() == TokenTypes.IDENT
                 && (parent.getType() == TokenTypes.CLASS_DEF
-                    || parent.getType() == TokenTypes.CTOR_DEF);
+                || parent.getType() == TokenTypes.CTOR_DEF);
     }
 
     /**
-     * Represents a structural AST node without comments or source positions.
-     * This allows for pure structural comparison between example files.
-     * Includes literal text values for semantic comparison and line numbers
-     * for positional consistency validation.
+     * Extracts comments that participate in comparison.
+     *
+     * <p>The following comments are ignored:
+     * <ul>
+     *   <li>{@code ok}</li>
+     *   <li>{@code violation}</li>
+     *   <li>xdoc section markers</li>
+     * </ul>
+     *
+     * <p>All other comments are included in comparison.
+     *
+     * @param content example content
+     * @return comments participating in comparison
+     */
+    private static List<String> extractComments(String content) {
+        final List<String> comments = new ArrayList<>();
+
+        for (String line : content.lines().toList()) {
+            final int commentIndex = findCommentStart(line);
+
+            if (commentIndex >= 0) {
+                final String comment =
+                        line.substring(commentIndex + 2).strip();
+
+                if (!comment.startsWith("ok")
+                        && !comment.startsWith("violation")
+                        && !comment.startsWith("xdoc section")) {
+                    comments.add(comment);
+                }
+            }
+        }
+
+        return comments;
+    }
+
+    /**
+     * Finds the starting index of a single-line comment ({@code //}) in a given line,
+     * ignoring comments within string literals or character literals.
+     *
+     * @param line the string line to search
+     * @return the index of the first {@code //}, or -1 if not found or within a literal
+     */
+    private static int findCommentStart(String line) {
+        boolean inString = false;
+        boolean inChar = false;
+        boolean escaped = false;
+        int result = -1;
+
+        for (int index = 0; index < line.length() - 1; index++) {
+            final char current = line.charAt(index);
+
+            if (escaped) {
+                escaped = false;
+            }
+            else if (current == '\\') {
+                escaped = true;
+            }
+            else if (!inChar && current == '"') {
+                inString = !inString;
+            }
+            else if (!inString && current == '\'') {
+                inChar = !inChar;
+            }
+            else if (isCommentAt(line, index, inString, inChar)) {
+                result = index;
+                break;
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Checks if a single-line comment starts at the given index.
+     *
+     * @param line current line
+     * @param index current index
+     * @param inString whether currently inside a string literal
+     * @param inChar whether currently inside a character literal
+     * @return true if comment starts at index
+     */
+    private static boolean isCommentAt(String line, int index, boolean inString, boolean inChar) {
+        return !inString && !inChar
+                && line.charAt(index) == '/'
+                && line.charAt(index + 1) == '/';
+    }
+
+    /**
+     * Represents a structural AST node without skippable comments.
+     * This allows for structural comparison between example files.
+     * Includes literal text values and identifier names for semantic comparison,
+     * and line numbers for positional consistency validation.
      *
      * <p>Line numbers are section-relative (line 1 = first line of the extracted
      * xdoc section) because {@link #parseContent} re-parses only the extracted
@@ -1007,10 +1151,15 @@ public class XdocsExamplesAstConsistencyTest {
         }
 
         /**
-         * Checks if a token type represents a literal that should have its text compared.
+         * Checks if a token type represents a value whose text should be compared.
+         * This includes numeric, string, boolean, null literals, and identifiers.
+         * Identifiers are included so that differences in variable names, parameter
+         * names, annotation names, etc. are detected as mismatches.
+         * Class and constructor name identifiers are excluded via the
+         * {@code ignoreText} flag set in {@link #toStructuralAst}.
          *
          * @param tokenType the token type
-         * @return true if the token represents a literal with semantic value
+         * @return true if the token text carries semantic value
          */
         private static boolean isLiteralToken(int tokenType) {
             return switch (tokenType) {
@@ -1067,4 +1216,33 @@ public class XdocsExamplesAstConsistencyTest {
             return sb.toString();
         }
     }
+
+    /**
+     * Represents a violation found during consistency check.
+     *
+     * @param relativePath      relative directory path
+     * @param referenceFileName reference file name
+     * @param mismatchFileName  mismatch file name
+     * @param reason            mismatch reason
+     */
+    private record Violation(String relativePath, String referenceFileName,
+                             String mismatchFileName, String reason) {
+        @Override
+        public String toString() {
+            return "Directory: " + relativePath + "\n"
+                    + "Reference: " + referenceFileName + "\n"
+                    + "Mismatch:  " + mismatchFileName + "\n"
+                    + "Reason:    " + reason;
+        }
+
+        /**
+         * Gets the pattern to use for suppression.
+         *
+         * @return the suppression pattern
+         */
+        /* package */ String getSuppressionPattern() {
+            return relativePath + "/" + mismatchFileName.replace(".java", "");
+        }
+    }
+
 }
