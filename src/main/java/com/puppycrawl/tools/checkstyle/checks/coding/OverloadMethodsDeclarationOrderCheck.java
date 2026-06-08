@@ -48,34 +48,49 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return getRequiredTokens();
+        return new int[] {
+            TokenTypes.OBJBLOCK,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
+        };
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return getRequiredTokens();
+        return new int[] {
+            TokenTypes.OBJBLOCK,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
+        };
     }
 
     @Override
     public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.OBJBLOCK,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        final int parentType = ast.getParent().getType();
+        if (ast.getType() == TokenTypes.OBJBLOCK) {
+            final DetailAST parent = ast.getParent();
+            if (parent != null) {
+                final int parentType = parent.getType();
 
-        final int[] tokenTypes = {
-            TokenTypes.CLASS_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.LITERAL_NEW,
-            TokenTypes.RECORD_DEF,
-        };
+                final int[] tokenTypes = {
+                    TokenTypes.CLASS_DEF,
+                    TokenTypes.ENUM_DEF,
+                    TokenTypes.INTERFACE_DEF,
+                    TokenTypes.LITERAL_NEW,
+                    TokenTypes.RECORD_DEF,
+                };
 
-        if (TokenUtil.isOfType(parentType, tokenTypes)) {
+                if (TokenUtil.isOfType(parentType, tokenTypes)) {
+                    checkOverloadMethodsGrouping(ast);
+                }
+            }
+        }
+        else {
             checkOverloadMethodsGrouping(ast);
         }
     }
@@ -89,31 +104,29 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
      */
     private void checkOverloadMethodsGrouping(DetailAST objectBlock) {
         final int allowedDistance = 1;
-        DetailAST currentToken = objectBlock.getFirstChild();
         final Map<String, Integer> methodIndexMap = new HashMap<>();
         final Map<String, Integer> methodLineNumberMap = new HashMap<>();
-        int currentIndex = 0;
-        while (currentToken != null) {
-            if (currentToken.getType() == TokenTypes.METHOD_DEF) {
-                currentIndex++;
-                final String methodName =
-                        currentToken.findFirstToken(TokenTypes.IDENT).getText();
-                final Integer previousIndex = methodIndexMap.get(methodName);
-                final DetailAST previousSibling = currentToken.getPreviousSibling();
-                final boolean isMethod = previousSibling.getType() == TokenTypes.METHOD_DEF;
+        final int[] currentIndex = { 0 };
 
-                if (previousIndex != null
-                        && (!isMethod || currentIndex - previousIndex > allowedDistance)) {
-                    final int previousLineWithOverloadMethod =
-                            methodLineNumberMap.get(methodName);
-                    log(currentToken, MSG_KEY,
-                            previousLineWithOverloadMethod);
-                }
-                methodIndexMap.put(methodName, currentIndex);
-                methodLineNumberMap.put(methodName, currentToken.getLineNo());
+        TokenUtil.forEachChild(objectBlock, TokenTypes.METHOD_DEF, currentToken -> {
+            currentIndex[0]++;
+            final String methodName =
+                    currentToken.findFirstToken(TokenTypes.IDENT).getText();
+            final Integer previousIndex = methodIndexMap.get(methodName);
+            final DetailAST previousSibling = currentToken.getPreviousSibling();
+            final boolean isMethod = previousSibling != null
+                    && previousSibling.getType() == TokenTypes.METHOD_DEF;
+
+            if (previousIndex != null
+                    && (!isMethod || currentIndex[0] - previousIndex > allowedDistance)) {
+                final int previousLineWithOverloadMethod =
+                        methodLineNumberMap.get(methodName);
+                log(currentToken, MSG_KEY,
+                        previousLineWithOverloadMethod);
             }
-            currentToken = currentToken.getNextSibling();
-        }
+            methodIndexMap.put(methodName, currentIndex[0]);
+            methodLineNumberMap.put(methodName, currentToken.getLineNo());
+        });
     }
 
 }
