@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck.MSG_KEY;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -135,7 +137,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(TokenTypes.OBJBLOCK);
 
-        check.visitToken(ast);
+        assertDoesNotThrow(() -> check.visitToken(ast));
     }
 
     @Test

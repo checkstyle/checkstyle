@@ -847,8 +847,8 @@ public class RequireThisCheck extends AbstractCheck {
             fieldUsageFrame != null && fieldUsageFrame.getType() == FrameType.CTOR_FRAME;
 
         final AbstractFrame declarationFrame = findFrame(ast, true);
-        final boolean finalField = declarationFrame instanceof ClassFrame
-                && ((ClassFrame) declarationFrame).hasFinalField(ast);
+        final boolean finalField = declarationFrame instanceof ClassFrame classFrame
+                && classFrame.hasFinalField(ast);
 
         return fieldUsageInConstructor || !finalField;
     }
@@ -868,11 +868,11 @@ public class RequireThisCheck extends AbstractCheck {
                 overlapping = true;
             }
             else {
-                final AbstractFrame classFrame = findFrame(ast, true);
-                if (classFrame instanceof ClassFrame) {
-                    final Set<DetailAST> exprIdents = getAllTokensOfType(sibling, TokenTypes.IDENT);
-                    overlapping = ((ClassFrame) classFrame)
-                            .containsFieldOrVariableDef(exprIdents, ast);
+                final AbstractFrame frame = findFrame(ast, true);
+                if (frame instanceof ClassFrame classFrame) {
+                    final Set<DetailAST> exprIdents =
+                            getAllTokensOfType(sibling, TokenTypes.IDENT);
+                    overlapping = classFrame.containsFieldOrVariableDef(exprIdents, ast);
                 }
             }
         }
@@ -889,12 +889,11 @@ public class RequireThisCheck extends AbstractCheck {
         boolean overlapping = false;
         final DetailAST parent = ast.getParent();
         if (ASSIGN_TOKENS.get(parent.getType())) {
-            final AbstractFrame classFrame = findFrame(ast, true);
-            if (classFrame instanceof ClassFrame) {
+            final AbstractFrame frame = findFrame(ast, true);
+            if (frame instanceof ClassFrame classFrame) {
                 final Set<DetailAST> exprIdents =
                     getAllTokensOfType(ast.getNextSibling(), TokenTypes.IDENT);
-                overlapping = ((ClassFrame) classFrame)
-                        .containsFieldOrVariableDef(exprIdents, ast);
+                overlapping = classFrame.containsFieldOrVariableDef(exprIdents, ast);
             }
         }
         return overlapping;
