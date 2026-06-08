@@ -2463,7 +2463,7 @@ public class XdocsPagesTest {
             if (!"--".equals(ruleName)) {
                 validateStyleAnchorsForOpenjdk(
                     XmlUtil.findChildElementsByTag(columns.getFirst(), "a"),
-                    "openjdk_checks.xml", ruleName);
+                    "openjdk_checks.xml", columns.get(1));
             }
 
             validateOpenJdkStyleModules(XmlUtil.findChildElementsByTag(columns.get(2), "a"),
@@ -2579,12 +2579,19 @@ public class XdocsPagesTest {
     }
 
     private static void validateStyleAnchorsForOpenjdk(Set<Node> anchors,
-            String fileName, String ruleName) {
+            String fileName, Node ruleColumn) {
+
+        final String ruleName = ruleColumn.getTextContent().trim();
         assertWithMessage("%s rule '%s' must have two row anchors", fileName, ruleName)
             .that(anchors)
             .hasSize(2);
 
-        final String anchorUrl = getQualifiedName(ruleName);
+        final Node ruleAnchor = XmlUtil.findChildElementsByTag(ruleColumn, "a")
+                                    .iterator().next();
+        final String ruleHref = ruleAnchor.getAttributes()
+                                    .getNamedItem("href").getTextContent();
+
+        final String anchorUrl = ruleHref.substring(ruleHref.indexOf('#') + 1);
 
         int position = 1;
 
@@ -2608,24 +2615,6 @@ public class XdocsPagesTest {
 
             position++;
         }
-    }
-
-    private static String getQualifiedName(String ruleName) {
-
-        final String tempRuleName = ruleName.toLowerCase(Locale.ROOT);
-        final StringBuilder result = new StringBuilder(tempRuleName.length());
-
-        for (int idx = 0; idx < tempRuleName.length(); idx++) {
-            final char current = tempRuleName.charAt(idx);
-
-            if (Character.isLowerCase(current)) {
-                result.append(current);
-            }
-            else if (current == ' ') {
-                result.append('-');
-            }
-        }
-        return result.toString();
     }
 
     /**
