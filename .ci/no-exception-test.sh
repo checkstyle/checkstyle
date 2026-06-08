@@ -255,7 +255,9 @@ no-exception-samples-gradle)
   checkout_from https://github.com/sevntu-checkstyle/checkstyle-samples
   cd .ci-temp/checkstyle-samples/gradle-project
 
-  sed -i "s/\(project\.ext\.checkstyleVersion = \)'[0-9.]\+'/\\1'${CS_POM_VERSION}'/" \
+  sed -i "s/\(project\.ext\.checkstyleVersion = '\)[^']*/\1${CS_POM_VERSION}/" \
+    build.gradle
+  sed -i "s/\(checkstyleVersion = '\)[^']*/\1${CS_POM_VERSION}/" \
     build.gradle
 
    echo "Checking gradle properties..."

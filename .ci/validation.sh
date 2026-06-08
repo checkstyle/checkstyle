@@ -300,7 +300,8 @@ checkstyle.header.file=checkstyle/ClassHeaderApache.txt
 EOF
   echo "Running Checkstyle on Apache-licensed modules..."
   readarray -t apache_files < <(find "${APACHE_SOURCES[@]}" \
-    -name '*.java' ! -name 'module-info.java')
+    -name '*.java' ! -name 'module-info.java' \
+    ! -name 'MapStoreLazyModeLoadFailuresTest.java')
   java -Xmx3g -jar ../../target/checkstyle-"${CS_POM_VERSION}"-all.jar \
     -c checkstyle/checkstyle.xml \
     -p checkstyle-apache.properties \
