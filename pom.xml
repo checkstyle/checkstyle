@@ -5311,6 +5311,10 @@
                 <!-- 12% mutation in CommonUtil,
                      3% coverage in CommonUtil, 2% coverage in JavadocUtil -->
                 <param>com.puppycrawl.tools.checkstyle.AstTreeStringPrinterTest</param>
+                <!-- CommonUtil.fillTemplateWithStringsByRegexp coverage -->
+                <param>
+                  com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilterTest
+                </param>
                 <!-- 1% mutation in CommonUtil.getUriByFilename -->
                 <param>com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest</param>
                 <!-- 2% mutation in CommonUtil -->

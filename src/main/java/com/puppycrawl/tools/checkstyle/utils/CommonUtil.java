@@ -66,6 +66,9 @@ public final class CommonUtil {
     /** Pseudo URL protocol for loading from the class path. */
     public static final String CLASSPATH_URL_PROTOCOL = "classpath:";
 
+    /** Dollar sign literal used as regex group reference prefix in templates. */
+    private static final String DOLLAR_SIGN = "$";
+
     /** Prefix for the exception when unable to find resource. */
     private static final String UNABLE_TO_FIND_EXCEPTION_PREFIX = "Unable to find: ";
 
@@ -456,6 +459,8 @@ public final class CommonUtil {
     /**
      * Puts part of line, which matches regexp into given template
      * on positions $n where 'n' is number of matched part in line.
+     * Optional groups that did not participate in the match are replaced
+     * with an empty string.
      *
      * @param template the string to expand.
      * @param lineToPlaceInTemplate contains expression which should be placed into string.
@@ -469,7 +474,10 @@ public final class CommonUtil {
         if (matcher.find()) {
             for (int i = 0; i <= matcher.groupCount(); i++) {
                 // $n expands comment match like in Pattern.subst().
-                result = result.replaceAll("\\$" + i, matcher.group(i));
+                // Optional groups that did not participate in the match return null;
+                // we replace them with an empty string to avoid NPE.
+                final String group = Objects.toString(matcher.group(i), "");
+                result = result.replace(DOLLAR_SIGN + i, group);
             }
         }
         return result;
