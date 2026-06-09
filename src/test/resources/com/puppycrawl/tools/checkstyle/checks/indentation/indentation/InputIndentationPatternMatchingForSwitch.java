@@ -18,7 +18,7 @@ public class InputIndentationPatternMatchingForSwitch {                     //in
         Point p = new Point(1, 2);                                          //indent:8 exp:8
         switch (p) {                                                        //indent:8 exp:8
             case Point(int x, int y)                                        //indent:12 exp:12
-            when x > 0 && y > 0 -> System.out.println(x + y);               //indent:12 exp:16 warn
+            when x > 0 && y > 0 -> System.out.println(x + y);               //indent:12 exp:12
             case Point(int x, int y) -> System.out.println("error");        //indent:12 exp:12
         }                                                                   //indent:8 exp:8
         switch (p) {                                                        //indent:8 exp:8
@@ -51,7 +51,7 @@ public class InputIndentationPatternMatchingForSwitch {                     //in
         switch (p) {                                                        //indent:8 exp:8
             case                                                            //indent:12 exp:12
                     Point(int x, int y)                                     //indent:20 exp:20
-            when x > 0 && y > 0 -> System.out.println(x + y);               //indent:12 exp:16 warn
+            when x > 0 && y > 0 -> System.out.println(x + y);               //indent:12 exp:12
             case Point(int x, int y) -> System.out.println("error");        //indent:12 exp:12
         }                                                                   //indent:8 exp:8
     }                                                                       //indent:4 exp:4
@@ -66,14 +66,14 @@ public class InputIndentationPatternMatchingForSwitch {                     //in
         }                                                                   //indent:8 exp:8
         switch (p) {                                                        //indent:8 exp:8
             case                                                            //indent:12 exp:12
-            Point(int x, int y)                                             //indent:12 exp:16 warn
-            when x > 0 && y > 0 -> System.out.println(x + y);               //indent:12 exp:16 warn
+            Point(int x, int y)                                             //indent:12 exp:12
+            when x > 0 && y > 0 -> System.out.println(x + y);               //indent:12 exp:12
             case Point(int x, int y) -> System.out.println("error");        //indent:12 exp:12
         }                                                                   //indent:8 exp:8
         switch (p) {                                                        //indent:8 exp:8
             case                                                            //indent:12 exp:12
-    Point(int x, int y)                                                     //indent:4 exp:16 warn
-    when x > 0 && y > 0 -> System.out.println(x + y);                       //indent:4 exp:16 warn
+    Point(int x, int y)                                                     //indent:4 exp:12 warn
+    when x > 0 && y > 0 -> System.out.println(x + y);                       //indent:4 exp:12 warn
             case Point(int x, int y) -> System.out.println("error");        //indent:12 exp:12
         }                                                                   //indent:8 exp:8
         switch (p) {                                                        //indent:8 exp:8
@@ -84,9 +84,9 @@ public class InputIndentationPatternMatchingForSwitch {                     //in
         }                                                                   //indent:8 exp:8
         switch (p) {                                                        //indent:8 exp:8
             case                                                            //indent:12 exp:12
-Point(int x, int y)                                                         //indent:0 exp:16 warn
-when                                                                        //indent:0 exp:16 warn
-x > 0 && y > 0                                                              //indent:0 exp:16 warn
+Point(int x, int y)                                                         //indent:0 exp:12 warn
+when                                                                        //indent:0 exp:12 warn
+x > 0 && y > 0                                                              //indent:0 exp:12 warn
 ->                                                                          //indent:0 exp:16 warn
 System.out.println(x + y);                                                  //indent:0 exp:20 warn
             case Point(int x, int y) -> System.out.println("error");        //indent:12 exp:12

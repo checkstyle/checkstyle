@@ -86,8 +86,8 @@ ColoredPoint(_,_,_)                                                         //in
     void testSwitch(Object obj) {                                           //indent:4 exp:4
         switch (obj) {                                                      //indent:8 exp:8
             case Rectangle(                                                 //indent:12 exp:12
-        ColoredPoint _,                                                     //indent:8 exp:16 warn
-        ColoredPoint _) -> System.out.println("Rectangle");                 //indent:8 exp:16 warn
+        ColoredPoint _,                                                     //indent:8 exp:12 warn
+        ColoredPoint _) -> System.out.println("Rectangle");                 //indent:8 exp:12 warn
             default -> {}                                                   //indent:12 exp:12
         }                                                                   //indent:8 exp:8
         switch (obj) {                                                      //indent:8 exp:8

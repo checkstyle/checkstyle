@@ -73,12 +73,12 @@ public class InputIndentationInvalidSwitchIndent {                          //in
         switch (s) {                                                        //indent:8 exp:8
 
             case                                                            //indent:12 exp:12
-              CONST:                                                        //indent:14 exp:16 warn
+              CONST:                                                        //indent:14 exp:>=12
                 break;                                                      //indent:16 exp:16
 
             case CONST2:                                                    //indent:12 exp:12
             case                                                            //indent:12 exp:12
-              CONST3:                                                       //indent:14 exp:16 warn
+              CONST3:                                                       //indent:14 exp:>=12
             {                                                               //indent:12 exp:12
                 System.identityHashCode("");                                //indent:16 exp:16
                 break;                                                      //indent:16 exp:16

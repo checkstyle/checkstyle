@@ -90,6 +90,11 @@ public class SwitchRuleHandler extends AbstractExpressionHandler {
         checkCase();
     }
 
+    @Override
+    protected boolean shouldIncreaseIndent() {
+        return false;
+    }
+
     /**
      * Checks if the current SWITCH_RULE node is placed on the same line
      * as the given SWITCH_LITERAL node.

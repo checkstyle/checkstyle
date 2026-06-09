@@ -77,6 +77,11 @@ public class CaseHandler extends AbstractExpressionHandler {
         checkCase();
     }
 
+    @Override
+    protected boolean shouldIncreaseIndent() {
+        return false;
+    }
+
     /**
      * Checks if CASE_GROUP node is placed at the same line as SWITCH_LITERAL node.
      *
