@@ -31,8 +31,8 @@ public class InputMissingJavadocMethodSetterGetter2
     {
         mNumber = mNumber;
     }
-
-    public void setNumber2(int number) // violation 'Missing a Javadoc comment.'
+    // violation below 'Missing a Javadoc comment.'
+    public void setNumber2(int number)
     {
         mNumber = number;
         firePropertyChanged();
@@ -41,8 +41,8 @@ public class InputMissingJavadocMethodSetterGetter2
     public void getNumber2() // violation 'Missing a Javadoc comment.'
     {
     }
-
-    public int getCost1(int forMe) // violation 'Missing a Javadoc comment.'
+    // violation below 'Missing a Javadoc comment.'
+    public int getCost1(int forMe)
     {
         return 666;
     }
