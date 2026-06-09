@@ -317,6 +317,28 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
+     * A file name can contain a double quote on POSIX filesystems, and that character is not
+     * produced by the normal Checker.process(...) file-auditing flow, so the event is built
+     * manually to assert the rendered URI stays inside its JSON string instead of breaking out.
+     */
+    @Test
+    public void testAddErrorWithQuoteInPath() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error");
+        final AuditEvent ev = new AuditEvent(this, "Test\".java", violation);
+        logger.fileStarted(ev);
+        logger.addError(ev);
+        logger.fileFinished(ev);
+        logger.auditFinished(null);
+        verifyContent(getPath("ExpectedSarifLoggerQuoteInPath.sarif"), outStream);
+    }
+
+    /**
      * We keep this test for 100% coverage. Until #12873.
      */
     @Test
