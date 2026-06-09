@@ -660,6 +660,7 @@ javadocstyle
 javadoctagcontinuationindentation
 javadoctags
 javadoctype
+javadocutilizingtrailingspace
 javadocvariable
 Javaee
 javaformat
