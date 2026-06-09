@@ -33,7 +33,7 @@ public class NPathComplexityCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "28:3: " + getCheckMessage(NPathComplexityCheck.MSG_KEY, 217, 200),
+            "26:3: " + getCheckMessage(NPathComplexityCheck.MSG_KEY, 217, 200),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -42,7 +42,8 @@ public class NPathComplexityCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "14:3: " + getCheckMessage(NPathComplexityCheck.MSG_KEY, 128, 100),
+            "15:3: " + getCheckMessage(NPathComplexityCheck.MSG_KEY, 128, 100),
+            "28:3: " + getCheckMessage(NPathComplexityCheck.MSG_KEY, 217, 100),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
