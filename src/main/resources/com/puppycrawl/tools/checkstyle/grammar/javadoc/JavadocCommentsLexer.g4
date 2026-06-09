@@ -105,12 +105,14 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 
     public boolean isJavadocBlockTag() {
         int nextChar = _input.LA(1);
+        int tagStartChar = _input.LA(2);
 
         return (previousTokenType == WS
                 || previousTokenType == LEADING_ASTERISK
                 || previousToken == null
                 || previousTokenType == NEWLINE)
-                && nextChar == '@';
+                && nextChar == '@'
+                && tagStartChar != '@';
     }
 
     @Override
