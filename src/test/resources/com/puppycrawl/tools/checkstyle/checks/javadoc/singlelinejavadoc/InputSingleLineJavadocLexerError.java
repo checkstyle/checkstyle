@@ -11,9 +11,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.singlelinejavadoc;
 
 class InputSingleLineJavadocLexerError {
 
-    /** @@{@return} */
+    /** {@@return} */
     void foo() {
-        // violation 2 lines above 'Javadoc comment at column 4 has parse error.'
+        // violation 2 lines above 'Javadoc comment at column 3 has parse error.'
     }
 
     /** @throws Exception if a problem occurs */
