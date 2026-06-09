@@ -254,6 +254,19 @@ public class Example10 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          Another example of how to configure the check to make sure a copyright
+          statement is included in the file:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Regexp"&gt;
+      &lt;property name="format" value="// This code is copyrighted\."/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
         <p id="Example2-code">Example2 with violation:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /* violation on first line 'Required pattern missing in a file.' */

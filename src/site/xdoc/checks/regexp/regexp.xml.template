@@ -91,6 +91,15 @@
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example10.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
+        <p id="Example2-config">
+          Another example of how to configure the check to make sure a copyright
+          statement is included in the file:
+        </p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
         <p id="Example2-code">Example2 with violation:</p>
         <macro name="example">
           <param name="path"
