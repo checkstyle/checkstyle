@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="WhitespaceAround">
-      <property name="allowEmptyCatches" value="true"/>
+      <property name="ignoreEnhancedForColon" value="false"/>
     </module>
   </module>
 </module>
@@ -29,12 +29,12 @@ class Example9 {
     //  ''}' is not preceded with whitespace'
     try { }
     catch (Exception e){}
-
-    // ok, allowEmptyCatches
-    // is true above
-
+    // 3 violations above:
+    //  ''{' is not followed by whitespace'
+    //  ''{' is not preceded with whitespace'
+    //  ''}' is not preceded with whitespace'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
-    for (char item: vowels) { }
+    for (char item: vowels) { } // violation '':' is not preceded with whitespace'
     for (int i = 0; i < 10; i++){}
     // 3 violations above:
     //  ''{' is not followed by whitespace'
