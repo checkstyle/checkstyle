@@ -75,6 +75,12 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testDoubleAtAsText() throws Exception {
+        verifyJavadocTree(getPath("ExpectedDoubleAtAsText.txt"),
+                getPath("InputDoubleAtAsText.javadoc"));
+    }
+
+    @Test
     public void testAuthorTag() throws Exception {
         verifyJavadocTree(getBlockTagsPath("ExpectedAuthorTag.txt"),
                 getBlockTagsPath("InputAuthorTags.javadoc"));
