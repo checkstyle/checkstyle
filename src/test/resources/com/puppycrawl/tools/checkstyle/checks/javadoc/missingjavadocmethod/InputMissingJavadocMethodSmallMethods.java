@@ -79,7 +79,7 @@ public class InputMissingJavadocMethodSmallMethods extends Some
         foo2();
     }
 
-    void foo9() {
+    void foo9() { // violation 'Missing a Javadoc comment.'
 
 
 
