@@ -1,4 +1,4 @@
-package com.openjdk.checkstyle.test.chapterformatting.ruleimportstatements;
+package com.openjdk.checkstyle.test.chapterformatting.ruleimportstatements.importorder;
 
 import java.util.Arrays;
 import java.util.List;

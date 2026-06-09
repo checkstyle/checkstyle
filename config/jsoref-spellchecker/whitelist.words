@@ -598,6 +598,7 @@ impl
 importcontrol
 importcontrolloader
 importcontroltest
+importnolinewrap
 importorder
 importrule
 imprt
