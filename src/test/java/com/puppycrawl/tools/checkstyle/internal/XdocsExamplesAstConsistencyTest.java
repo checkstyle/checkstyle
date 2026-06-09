@@ -31,6 +31,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
@@ -518,7 +520,7 @@ public class XdocsExamplesAstConsistencyTest {
                     .sorted()
                     .forEach(path -> {
                         try {
-                            checkForBlockCommentMarkers(path, violations);
+                            violations.addAll(checkForBlockCommentMarkers(path));
                         }
                         catch (IOException exception) {
                             throw new IllegalStateException(
@@ -532,21 +534,7 @@ public class XdocsExamplesAstConsistencyTest {
             message = "";
         }
         else {
-            final StringBuilder builder = new StringBuilder(1024);
-            builder.append("Found ")
-                    .append(violations.size())
-                    .append(
-                            """
-                             example file(s) using block comments as ok/violation markers.
-                            Convert them to single-line comments, e.g.:
-                              BAD:  /* ok, allowMissingReturnTag is true */
-                              GOOD: // ok, allowMissingReturnTag is true
-
-                            """);
-            for (String violation : violations) {
-                builder.append(violation).append('\n');
-            }
-            message = builder.toString();
+            message = formatBlockCommentMarkerViolationsMessage(violations);
         }
 
         assertWithMessage(message)
@@ -555,49 +543,66 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
+     * Formats the violation message for block comment markers.
+     *
+     * @param violations the list of violations
+     * @return formatted message
+     */
+    private static String formatBlockCommentMarkerViolationsMessage(List<String> violations) {
+        final StringBuilder builder = new StringBuilder(1024);
+        builder.append("Found ")
+                .append(violations.size())
+                .append(
+                        """
+                         example file(s) using block comments as ok/violation markers.
+                        Convert them to single-line comments, e.g.:
+                          BAD:  /* ok, allowMissingReturnTag is true */
+                          GOOD: // ok, allowMissingReturnTag is true
+
+                        """);
+
+        for (String violation : violations) {
+            builder.append(violation).append('\n');
+        }
+
+        return builder.toString();
+    }
+
+    /**
      * Checks a single example file for block comments used as ok/violation markers.
      *
-     * @param file       the example file to check
-     * @param violations the list to append violation messages to
+     * @param file the example file to check
+     * @return the list of violation messages
      * @throws IOException if an I/O error occurs
      */
-    private static void checkForBlockCommentMarkers(Path file, List<String> violations)
+    private static List<String> checkForBlockCommentMarkers(Path file)
             throws IOException {
-        final List<String> lines = Files.readAllLines(file, StandardCharsets.UTF_8);
-        boolean inBlockComment = false;
-        final StringBuilder commentContent = new StringBuilder(1000);
-        int commentStartLine = -1;
+        final List<String> fileViolations = new ArrayList<>();
+        final String content = Files.readString(file);
+        final Pattern blockCommentPattern = Pattern.compile("(?s)/\\*.*?\\*/");
+        final Matcher matcher = blockCommentPattern.matcher(content);
 
-        for (int index = 0; index < lines.size(); index++) {
-            final String stripped = lines.get(index).strip();
+        while (matcher.find()) {
+            final String block = matcher.group();
+            final String inner = block
+                    .replaceAll("^/\\*+", "")
+                    .replaceAll("\\*/$", "")
+                    .replace("*", "")
+                    .strip();
 
-            if (!inBlockComment && stripped.startsWith("/*")) {
-                inBlockComment = true;
-                commentStartLine = index + 1;
-                commentContent.setLength(0);
-            }
-
-            if (inBlockComment) {
-                commentContent.append(stripped).append(' ');
-
-                if (stripped.contains("*/")) {
-                    inBlockComment = false;
-
-                    final String content = commentContent.toString()
-                            .replaceAll("^/\\*+", "")
-                            .replaceAll("\\*/$", "")
-                            .replace("*", "")
-                            .strip();
-
-                    if (content.startsWith("ok")
-                            || content.startsWith("violation")) {
-                        violations.add(file + ":" + commentStartLine
-                                + " - use single-line comment instead: // "
-                                + content);
+            if (inner.startsWith("ok") || inner.startsWith("violation")) {
+                int lineNo = 1;
+                for (int index = 0; index < matcher.start(); index++) {
+                    if (content.charAt(index) == '\n') {
+                        lineNo++;
                     }
                 }
+                fileViolations.add(file + ":" + lineNo
+                        + " - use single-line comment instead: // "
+                        + inner);
             }
         }
+        return fileViolations;
     }
 
     /**
@@ -1041,6 +1046,8 @@ public class XdocsExamplesAstConsistencyTest {
 
                 if (!comment.startsWith("ok")
                         && !comment.startsWith("violation")
+                        && !comment.contains("// ok")
+                        && !comment.contains("// violation")
                         && !comment.startsWith("xdoc section")) {
                     comments.add(comment);
                 }
