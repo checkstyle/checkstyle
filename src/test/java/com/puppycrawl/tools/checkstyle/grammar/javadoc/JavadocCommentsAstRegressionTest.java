@@ -265,4 +265,16 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getHtmlTagsPath("ExpectedHtmlComment.txt"),
                 getHtmlTagsPath("InputHtmlComment.javadoc"));
     }
+
+    @Test
+    public void testReferencesToUriFragments() throws Exception {
+        verifyJavadocTree(getPath("ExpectedReferencesToUriFragments.txt"),
+                getPath("InputReferencesToUriFragments.javadoc"));
+    }
+
+    @Test
+    public void testReferencesToUriFragments2() throws Exception {
+        verifyJavadocTree(getPath("ExpectedReferencesToUriFragments2.txt"),
+                getPath("InputReferencesToUriFragments2.javadoc"));
+    }
 }
