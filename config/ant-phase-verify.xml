@@ -40,7 +40,8 @@
                includes="**/*"
                excludes="it/resources/**/*,it/resources-noncompilable/**/*,
                test/resources/**/*,test/resources-noncompilable/**/*,**/gen/**,
-               xdocs-examples/resources/**/*,xdocs-examples/resources-noncompilable/**/*"/>
+               xdocs-examples/resources/**/*,xdocs-examples/resources-noncompilable/**/*,
+                 main/java/module-info.java"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="${mvn.project.build.directory}/cs_errors.xml"/>
       <formatter type="sarif" toFile="${mvn.project.build.directory}/cs_errors.sarif"/>
