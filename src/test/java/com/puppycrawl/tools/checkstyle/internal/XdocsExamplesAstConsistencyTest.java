@@ -151,7 +151,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example6",
             "checks/metrics/npathcomplexity/Example2",
             "checks/naming/lambdaparametername/Example2",
-            "checks/naming/parametername/Example5",
             "checks/naming/patternvariablename/Example4",
             "checks/naming/typename/Example2",
             "checks/naming/typename/Example3",
@@ -292,9 +291,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/naming/catchparametername/Example2",
             "checks/naming/methodname/Example4",
             "checks/naming/packagename/Example2",
-            "checks/naming/parametername/Example2",
-            "checks/naming/parametername/Example3",
-            "checks/naming/parametername/Example4",
             "checks/naming/patternvariablename/Example2",
             "checks/naming/patternvariablename/Example3",
             "checks/newlineatendoffile/Example3",
@@ -432,6 +428,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/naming/localfinalvariablename/Example2",
             "checks/blocks/emptycatchblock/Example4",
             "checks/blocks/emptycatchblock/Example5",
+            "checks/naming/parametername/Example4",
             "checks/coding/illegalsymbol/Example3",
             "checks/coding/illegalsymbol/Example5"
             );
