@@ -2368,13 +2368,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference scopeData</message>
-    <lineContent>scopeData.uninitializedVariables.forEach(prevScopeUninitializedVariableData::push);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference scopeStack.peek()</message>
     <lineContent>case TokenTypes.LITERAL_BREAK -&gt; scopeStack.peek().containsBreak = true;</lineContent>
   </checkerFrameworkError>
