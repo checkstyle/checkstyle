@@ -4414,6 +4414,40 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verifyWarns(checkConfig, fileName, expected);
     }
 
+    @Test
+    public void testSwitchExpressionWithWrappedCaseLabels() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "4");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "8");
+        checkConfig.addProperty("tabWidth", "4");
+
+        final String fileName = getPath("InputIndentation17270.java");
+        final String[] expected = {
+            "32:18: " + getCheckMessage(MSG_CHILD_ERROR, "case", 17, 20),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testSwitchExpressionWithWrappedCaseLabelsWithLineWrapping4() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "4");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+
+        final String fileName = getPath("InputIndentation17270b.java");
+        final String[] expected = {
+            "9:15: " + getCheckMessage(MSG_CHILD_ERROR, "case", 14, 16),
+            "13:16: " + getCheckMessage(MSG_CHILD_ERROR, "case", 15, 16),
+            "15:16: " + getCheckMessage(MSG_CHILD_ERROR, "case", 15, 16),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;
