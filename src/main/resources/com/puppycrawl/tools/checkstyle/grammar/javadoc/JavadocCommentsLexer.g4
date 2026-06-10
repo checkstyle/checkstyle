@@ -69,6 +69,7 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
     private boolean hasSeenTagName = false;
     private int braceCounter = 0;
     private boolean inSeeReferencePart = false;
+    private boolean inFragmentReference = false;
 
     private final Deque<Token> openTagNameTokens = new ArrayDeque<>();
     private final Deque<Token> closeTagNameTokens = new ArrayDeque<>();
@@ -113,6 +114,18 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
                 || previousTokenType == NEWLINE)
                 && nextChar == '@'
                 && tagStartChar != '@';
+    }
+
+    private void switchFromReferenceModeOnWhitespace() {
+        int la = _input.LA(1);
+        if (Character.isWhitespace(la) || la == '\n' || la == '\r') {
+            if (inSeeReferencePart) {
+                pushMode(DEFAULT_MODE);
+                inSeeReferencePart = false;
+            } else {
+                pushMode(LINK_TAG_DESCRIPTION);
+            }
+        }
     }
 
     @Override
@@ -451,22 +464,17 @@ EXTENDS: 'extends';
 SUPER: 'super';
 
 IDENTIFIER
-    : ([a-zA-Z0-9_$] | '.')+
+    : ({inFragmentReference}? ~[ \t\r\n}]+ | ([a-zA-Z0-9_$] | '.')+)
       {
-          int la = _input.LA(1);
-          if (Character.isWhitespace(la) || la == '\n' || la == '\r') {
-              if (inSeeReferencePart) {
-                  pushMode(DEFAULT_MODE);
-                  inSeeReferencePart = false;
-              } else {
-                  pushMode(LINK_TAG_DESCRIPTION);
-              }
-          }
+          inFragmentReference = false;
+          switchFromReferenceModeOnWhitespace();
       }
     ;
 
 QUESTION: '?';
-HASH: '#';
+HASH
+    : '#' { inFragmentReference = previousTokenType == HASH; }
+    ;
 LPAREN: '(' -> pushMode(PARAMETER_LIST);
 SLASH: '/';
 
