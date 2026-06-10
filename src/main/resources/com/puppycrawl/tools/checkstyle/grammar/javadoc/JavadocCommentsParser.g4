@@ -213,8 +213,8 @@ customInlineTag
 
 // Components
 reference
-    : HASH memberReference
-    | (module=qualifiedName SLASH)? type=typeName (HASH memberReference)?
+    : HASH (HASH IDENTIFIER | memberReference)
+    | (module=qualifiedName SLASH)? type=typeName (HASH (HASH IDENTIFIER | memberReference))?
     ;
 
 typeName
