@@ -103,6 +103,13 @@
       <property name="sortStaticImportsAlphabetically" value="true"/>
     </module>
 
+    <module name="MatchXpath">
+      <property name="query"
+                value="//LITERAL_RETURN/EXPR[./LPAREN and ./RPAREN
+                       and not(./LPAREN/preceding-sibling::*)]"/>
+      <message key="matchxpath.match" value="Unnecessary parentheses in return statement."/>
+    </module>
+
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
       <property name="file" value="${org.checkstyle.openjdk.suppressionxpathfilter.config}"
