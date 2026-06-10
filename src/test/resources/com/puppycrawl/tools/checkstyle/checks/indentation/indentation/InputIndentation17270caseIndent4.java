@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent:0 exp:0
 
-public class InputIndentation17270b {                                   //indent:0 exp:0
+public class InputIndentation17270caseIndent4 {                                   //indent:0 exp:0
     private void test() {                                               //indent:4 exp:4
         int v = 0;                                                      //indent:8 exp:8
         System.out.println(switch (v) {                                 //indent:8 exp:8
@@ -13,6 +13,8 @@ public class InputIndentation17270b {                                   //indent
                11, 12 -> "under by 1";                                  //indent:15 exp:16 warn
             case 13, 14,                                                //indent:12 exp:12
                15, 16 -> "under by 1";                                  //indent:15 exp:16 warn
+            case 17, 18,                                                //indent:12 exp:12
+                 19, 29 -> "under by 1";                               //indent:17 exp:>=12
             default -> "d";                                             //indent:12 exp:12
         });                                                             //indent:8 exp:8
     }                                                                   //indent:4 exp:4

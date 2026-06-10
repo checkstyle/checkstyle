@@ -4439,7 +4439,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("lineWrappingIndentation", "4");
         checkConfig.addProperty("tabWidth", "4");
 
-        final String fileName = getPath("InputIndentation17270b.java");
+        final String fileName = getPath("InputIndentation17270caseIndent4.java");
         final String[] expected = {
             "9:15: " + getCheckMessage(MSG_CHILD_ERROR, "case", 14, 16),
             "13:16: " + getCheckMessage(MSG_CHILD_ERROR, "case", 15, 16),
