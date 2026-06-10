@@ -1203,6 +1203,7 @@ ruleliterals
 rulemethodnames
 rulepackagedeclaration
 rulepackagenames
+ruleredundantparenthesis
 ruleset
 rulesetfiles
 rulespecialcharacters
