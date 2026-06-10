@@ -1,0 +1,5 @@
+* {@link java.lang##wrapperClass wrapper class}
+* {@link java.util.Map.Entry##api-note API note}
+* {@link java.lang.String##compact_strings:section.1 compact strings}
+* {@link ##thread-safety Thread safety}
+* @see java.lang.String##compact-strings
