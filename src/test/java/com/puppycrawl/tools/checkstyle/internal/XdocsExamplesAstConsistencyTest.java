@@ -163,7 +163,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/whitespace/separatorwrap/Example2",
             "checks/whitespace/separatorwrap/Example3",
             "checks/whitespace/singlespaceseparator/Example2",
-            "checks/whitespace/typecastparenpad/Example2",
+            
             "checks/whitespace/whitespaceafter/Example2",
             "filters/suppressionsinglefilter/Example2",
             "filters/suppressionsinglefilter/Example3",
