@@ -9,5 +9,6 @@
 package com.puppycrawl.tools.checkstyle.checks.newlineatendoffile;
 // xdoc section -- start
 public class Example3 { // ⤶
-} // ␍⤶  it is violation as line ending is different from expected
+// ⤶
+}
 // xdoc section -- end

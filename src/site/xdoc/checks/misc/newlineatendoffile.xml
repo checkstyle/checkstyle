@@ -116,7 +116,7 @@ public class Example1 { // ⤶
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 { // ⤶
 // ⤶
-} // no ⤶ below it is violation
+}
 </code></pre></div><hr class="example-separator"/>
 
         <p id="Example3-config">
@@ -132,7 +132,8 @@ public class Example2 { // ⤶
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 { // ⤶
-} // ␍⤶  it is violation as line ending is different from expected
+// ⤶
+}
 </code></pre></div><hr class="example-separator"/>
 
         <p id="Example4-config">
@@ -156,7 +157,7 @@ int main() { // ⤶
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example5 { // ⤶
 // ⤶
-} // no ⤶ below it is violation
+}
 </code></pre></div><hr class="example-separator"/>
 
         <p id="Example6-code">Text file <code>Example6.txt</code>:</p>
