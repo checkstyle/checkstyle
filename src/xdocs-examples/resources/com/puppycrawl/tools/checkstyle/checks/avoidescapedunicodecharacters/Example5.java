@@ -24,7 +24,7 @@ public class Example5 {
   String unitAbbrev4 = "\u03bc\u03bcs";
   public static int content() {
     char content = 'r';
-    // ok, non-printable escape character below
+    // ok, all control characters are escaped below
     return '\ufeff' + content;
   }
 }
