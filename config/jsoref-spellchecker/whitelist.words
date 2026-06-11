@@ -784,6 +784,7 @@ linebreak
 linecolumn
 lineending
 linelength
+linewrapping
 linkcheck
 linkplain
 linksource
