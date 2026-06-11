@@ -101,6 +101,9 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
     /** A pattern for two backslashes. */
     private static final Pattern A_SPACE_PATTERN = Pattern.compile(" ");
 
+    /** A pattern for a double quote. */
+    private static final Pattern A_QUOTE_PATTERN = Pattern.compile("\"");
+
     /** A pattern for two backslashes. */
     private static final Pattern TWO_BACKSLASHES_PATTERN = Pattern.compile(TWO_BACKSLASHES);
 
@@ -436,10 +439,11 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      * @return the rendered URI for the given file name
      */
     private static String renderFileNameUri(final String fileName) {
-        String normalized =
+        final String withoutSpaces =
                 A_SPACE_PATTERN
                         .matcher(TWO_BACKSLASHES_PATTERN.matcher(fileName).replaceAll("/"))
                         .replaceAll("%20");
+        String normalized = A_QUOTE_PATTERN.matcher(withoutSpaces).replaceAll("%22");
         if (WINDOWS_DRIVE_LETTER_PATTERN.matcher(normalized).find()) {
             normalized = '/' + normalized;
         }
