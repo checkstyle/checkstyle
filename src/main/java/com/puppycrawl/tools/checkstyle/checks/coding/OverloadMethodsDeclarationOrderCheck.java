@@ -104,32 +104,29 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
      */
     private void checkOverloadMethodsGrouping(DetailAST objectBlock) {
         final int allowedDistance = 1;
-        DetailAST currentToken = objectBlock.getFirstChild();
         final Map<String, Integer> methodIndexMap = new HashMap<>();
         final Map<String, Integer> methodLineNumberMap = new HashMap<>();
-        int currentIndex = 0;
-        while (currentToken != null) {
-            if (currentToken.getType() == TokenTypes.METHOD_DEF) {
-                currentIndex++;
-                final String methodName =
-                        currentToken.findFirstToken(TokenTypes.IDENT).getText();
-                final Integer previousIndex = methodIndexMap.get(methodName);
-                final DetailAST previousSibling = currentToken.getPreviousSibling();
-                final boolean isMethod = previousSibling != null
-                        && previousSibling.getType() == TokenTypes.METHOD_DEF;
+        final int[] currentIndex = { 0 };
 
-                if (previousIndex != null
-                        && (!isMethod || currentIndex - previousIndex > allowedDistance)) {
-                    final int previousLineWithOverloadMethod =
-                            methodLineNumberMap.get(methodName);
-                    log(currentToken, MSG_KEY,
-                            previousLineWithOverloadMethod);
-                }
-                methodIndexMap.put(methodName, currentIndex);
-                methodLineNumberMap.put(methodName, currentToken.getLineNo());
+        TokenUtil.forEachChild(objectBlock, TokenTypes.METHOD_DEF, currentToken -> {
+            currentIndex[0]++;
+            final String methodName =
+                    currentToken.findFirstToken(TokenTypes.IDENT).getText();
+            final Integer previousIndex = methodIndexMap.get(methodName);
+            final DetailAST previousSibling = currentToken.getPreviousSibling();
+            final boolean isMethod = previousSibling != null
+                    && previousSibling.getType() == TokenTypes.METHOD_DEF;
+
+            if (previousIndex != null
+                    && (!isMethod || currentIndex[0] - previousIndex > allowedDistance)) {
+                final int previousLineWithOverloadMethod =
+                        methodLineNumberMap.get(methodName);
+                log(currentToken, MSG_KEY,
+                        previousLineWithOverloadMethod);
             }
-            currentToken = currentToken.getNextSibling();
-        }
+            methodIndexMap.put(methodName, currentIndex[0]);
+            methodLineNumberMap.put(methodName, currentToken.getLineNo());
+        });
     }
 
 }
