@@ -62,7 +62,7 @@ public class AvoidEscapedUnicodeCharactersCheckExamplesTest
         final String[] expected = {
             "18:24: " + getCheckMessage(MSG_KEY),
             "20:24: " + getCheckMessage(MSG_KEY),
-            "22:24: " + getCheckMessage(MSG_KEY),
+            "24:24: " + getCheckMessage(MSG_KEY),
             "28:12: " + getCheckMessage(MSG_KEY),
         };
 
