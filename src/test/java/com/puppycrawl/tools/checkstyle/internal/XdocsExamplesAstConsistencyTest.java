@@ -101,10 +101,61 @@ public class XdocsExamplesAstConsistencyTest {
      * <p>Until: <a href="https://github.com/checkstyle/checkstyle/issues/18435">...</a>
      */
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
+            "checks/annotation/annotationlocation/Example2",
+            "checks/annotation/annotationlocation/Example3",
+            "checks/annotation/annotationlocation/Example4",
+            "checks/annotation/annotationonsameline/Example2",
+            "checks/annotation/annotationusestyle/Example2",
+            "checks/annotation/annotationusestyle/Example3",
+            "checks/annotation/annotationusestyle/Example4",
             "checks/annotation/missingoverride/Example2",
-            "checks/annotation/suppresswarningsholder/Example1",
-            "checks/blocks/needbraces/Example6",
+            "checks/annotation/suppresswarnings/Example2",
+            "checks/annotation/suppresswarningsholder/Example2",
+            "checks/annotation/suppresswarningsholder/Example3",
+            "checks/annotation/suppresswarningsholder/Example4",
+            "checks/avoidescapedunicodecharacters/Example2",
+            "checks/avoidescapedunicodecharacters/Example5",
+            "checks/blocks/emptyblock/Example2",
+            "checks/blocks/emptyblock/Example3",
+            "checks/blocks/leftcurly/Example3",
+            "checks/blocks/needbraces/Example2",
+            "checks/blocks/needbraces/Example3",
+            "checks/blocks/needbraces/Example4",
+            "checks/blocks/needbraces/Example5",
+            "checks/blocks/rightcurly/Example2",
+            "checks/coding/equalsavoidnull/Example2",
+            "checks/coding/explicitinitialization/Example2",
+            "checks/coding/fallthrough/Example2",
+            "checks/coding/fallthrough/Example3",
+            "checks/coding/hiddenfield/Example2",
+            "checks/coding/hiddenfield/Example3",
+            "checks/coding/hiddenfield/Example4",
+            "checks/coding/hiddenfield/Example5",
+            "checks/coding/hiddenfield/Example6",
+            "checks/coding/hiddenfield/Example7",
+            "checks/coding/illegalinstantiation/Example2",
+            "checks/coding/illegalinstantiation/Example3",
+            "checks/coding/illegalsymbol/Example4",
+            "checks/coding/illegalthrows/Example2",
+            "checks/coding/illegalthrows/Example3",
+            "checks/coding/illegaltype/Example2",
+            "checks/coding/illegaltype/Example6",
+            "checks/coding/illegaltype/Example7",
+            "checks/coding/illegaltype/Example8",
+            "checks/coding/magicnumber/Example2",
+            "checks/coding/magicnumber/Example3",
+            "checks/coding/magicnumber/Example4",
+            "checks/coding/magicnumber/Example5",
+            "checks/coding/magicnumber/Example6",
+            "checks/coding/nestedfordepth/Example2",
+            "checks/coding/nestedifdepth/Example2",
+            "checks/coding/onestatementperline/Example2",
             "checks/coding/packagedeclaration/Example2",
+            "checks/coding/unnecessarysemicolonafteroutertypedeclaration/Example2",
+            "checks/coding/variabledeclarationusagedistance/Example3",
+            "checks/coding/variabledeclarationusagedistance/Example4",
+            "checks/coding/variabledeclarationusagedistance/Example5",
+            "checks/coding/variabledeclarationusagedistance/Example6",
             "checks/descendanttoken/Example10",
             "checks/descendanttoken/Example11",
             "checks/descendanttoken/Example12",
@@ -119,20 +170,48 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/descendanttoken/Example7",
             "checks/descendanttoken/Example8",
             "checks/descendanttoken/Example9",
+            "checks/design/visibilitymodifier/Example12",
+            "checks/design/visibilitymodifier/Example2",
+            "checks/design/visibilitymodifier/Example3",
+            "checks/design/visibilitymodifier/Example4",
+            "checks/design/visibilitymodifier/Example5",
+            "checks/design/visibilitymodifier/Example6",
+            "checks/design/visibilitymodifier/Example8",
             "checks/imports/importcontrol/Example12",
             "checks/imports/importcontrol/Example5",
             "checks/imports/importcontrol/filters/Example9",
             "checks/imports/importcontrol/someImports/Example11",
             "checks/imports/importcontrol/someImports/Example6",
             "checks/imports/importcontrol/someImports/Example7",
+            "checks/indentation/indentation/Example7",
+            "checks/javadoc/atclauseorder/Example2",
+            "checks/javadoc/atclauseorder/Example3",
+            "checks/javadoc/javadoccontentlocation/Example2",
             "checks/javadoc/javadocleadingasteriskalign/Example2",
             "checks/javadoc/javadocleadingasteriskalign/Example3",
+            "checks/javadoc/javadocmethod/Example2",
+            "checks/javadoc/javadocmethod/Example3",
+            "checks/javadoc/javadocmethod/Example4",
+            "checks/javadoc/javadocmethod/Example6",
+            "checks/javadoc/javadocpackage/legacywithboth/Example3",
+            "checks/javadoc/javadocpackage/nonlegacy/Example1",
+            "checks/javadoc/javadocstyle/Example2",
+            "checks/javadoc/javadocstyle/Example3",
+            "checks/javadoc/javadocstyle/Example4",
+            "checks/javadoc/javadocstyle/Example5",
+            "checks/javadoc/javadocstyle/Example6",
             "checks/javadoc/javadocstyle/Example7",
-            "checks/javadoc/javadoctagcontinuationindentation/Example4",
+            "checks/javadoc/javadocstyle/Example8",
+            "checks/javadoc/javadoctagcontinuationindentation/Example3",
             "checks/javadoc/javadocvariable/Example5",
+            "checks/javadoc/missingjavadoctype/Example3",
             "checks/javadoc/missingjavadoctype/Example4",
             "checks/javadoc/missingjavadoctype/Example5",
-            "checks/metrics/classdataabstractioncoupling/Example11",
+            "checks/javadoc/writetag/Example3",
+            "checks/javadoc/writetag/Example4",
+            "checks/javadoc/writetag/Example5",
+            "checks/metrics/booleanexpressioncomplexity/Example2",
+            "checks/metrics/booleanexpressioncomplexity/Example3",
             "checks/metrics/classdataabstractioncoupling/Example2",
             "checks/metrics/classdataabstractioncoupling/Example3",
             "checks/metrics/classdataabstractioncoupling/ignore/Example7",
@@ -140,22 +219,73 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/metrics/classdataabstractioncoupling/ignore/Example9",
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example5",
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example6",
+            "checks/metrics/classfanoutcomplexity/Example2",
+            "checks/metrics/classfanoutcomplexity/Example3",
+            "checks/metrics/classfanoutcomplexity/Example4",
+            "checks/metrics/classfanoutcomplexity/Example5",
+            "checks/metrics/classfanoutcomplexity/Example6",
+            "checks/metrics/cyclomaticcomplexity/Example2",
+            "checks/metrics/cyclomaticcomplexity/Example3",
+            "checks/modifier/interfacememberimpliedmodifier/Example2",
+            "checks/modifier/interfacememberimpliedmodifier/Example3",
+            "checks/modifier/interfacememberimpliedmodifier/Example4",
+            "checks/modifier/redundantmodifier/Example2",
+            "checks/naming/abstractclassname/Example3",
+            "checks/naming/abstractclassname/Example4",
+            "checks/naming/catchparametername/Example2",
             "checks/naming/lambdaparametername/Example2",
+            "checks/naming/methodname/Example4",
+            "checks/naming/packagename/Example2",
+            "checks/naming/patternvariablename/Example2",
+            "checks/naming/patternvariablename/Example3",
             "checks/naming/patternvariablename/Example4",
             "checks/naming/typename/Example2",
             "checks/naming/typename/Example3",
             "checks/naming/typename/Example4",
+            "checks/newlineatendoffile/Example2",
+            "checks/newlineatendoffile/Example3",
+            "checks/newlineatendoffile/Example5",
+            "checks/regexp/regexp/Example7",
+            "checks/regexp/regexpmultiline/Example5",
             "checks/regexp/regexpsingleline/Example2",
             "checks/regexp/regexpsingleline/Example3",
             "checks/regexp/regexpsingleline/Example4",
-            "checks/regexp/regexpmultiline/Example5",
+            "checks/regexp/regexpsingleline/Example5",
+            "checks/regexp/regexpsingleline/Example6",
+            "checks/regexp/regexpsinglelinejava/Example2",
+            "checks/regexp/regexpsinglelinejava/Example3",
+            "checks/regexp/regexpsinglelinejava/Example4",
+            "checks/regexp/regexpsinglelinejava/Example5",
+            "checks/sizes/filelength/Example2",
+            "checks/sizes/filelength/Example3",
             "checks/sizes/lambdabodylength/Example2",
+            "checks/sizes/methodcount/Example2",
+            "checks/sizes/methodcount/Example3",
+            "checks/sizes/methodcount/Example6",
+            "checks/sizes/methodlength/Example3",
+            "checks/sizes/outertypenumber/Example2",
+            "checks/sizes/parameternumber/Example2",
+            "checks/sizes/parameternumber/Example3",
+            "checks/sizes/parameternumber/Example4",
+            "checks/todocomment/Example2",
             "checks/todocomment/Example3",
+            "checks/trailingcomment/Example3",
+            "checks/uncommentedmain/Example2",
+            "checks/uniqueproperties/Example2",
+            "checks/whitespace/emptyforiteratorpad/Example2",
+            "checks/whitespace/parenpad/Example2",
             "checks/whitespace/separatorwrap/Example2",
             "checks/whitespace/separatorwrap/Example3",
             "checks/whitespace/singlespaceseparator/Example2",
             "checks/whitespace/typecastparenpad/Example2",
             "checks/whitespace/whitespaceafter/Example2",
+            "filters/suppressioncommentfilter/Example2",
+            "filters/suppressioncommentfilter/Example3",
+            "filters/suppressioncommentfilter/Example4",
+            "filters/suppressioncommentfilter/Example5",
+            "filters/suppressioncommentfilter/Example6",
+            "filters/suppressioncommentfilter/Example7",
+            "filters/suppressioncommentfilter/Example8",
             "filters/suppressionsinglefilter/Example2",
             "filters/suppressionsinglefilter/Example3",
             "filters/suppressionsinglefilter/Example4",
@@ -177,6 +307,7 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppressionxpathsinglefilter/Example12",
             "filters/suppressionxpathsinglefilter/Example13",
             "filters/suppressionxpathsinglefilter/Example2",
+            "filters/suppressionxpathsinglefilter/Example3",
             "filters/suppressionxpathsinglefilter/Example4",
             "filters/suppressionxpathsinglefilter/Example5",
             "filters/suppressionxpathsinglefilter/Example6",
@@ -199,113 +330,6 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithnearbytextfilter/Example7",
             "filters/suppresswithnearbytextfilter/Example8",
             "filters/suppresswithnearbytextfilter/Example9",
-            "checks/annotation/annotationlocation/Example2",
-            "checks/annotation/annotationlocation/Example3",
-            "checks/annotation/annotationlocation/Example4",
-            "checks/annotation/annotationonsameline/Example2",
-            "checks/annotation/annotationusestyle/Example2",
-            "checks/annotation/annotationusestyle/Example3",
-            "checks/annotation/annotationusestyle/Example4",
-            "checks/annotation/suppresswarnings/Example2",
-            "checks/blocks/leftcurly/Example3",
-            "checks/blocks/needbraces/Example2",
-            "checks/blocks/needbraces/Example3",
-            "checks/blocks/needbraces/Example4",
-            "checks/blocks/needbraces/Example5",
-            "checks/blocks/rightcurly/Example2",
-            "checks/coding/equalsavoidnull/Example2",
-            "checks/coding/explicitinitialization/Example2",
-            "checks/coding/fallthrough/Example2",
-            "checks/coding/fallthrough/Example3",
-            "checks/coding/hiddenfield/Example2",
-            "checks/coding/hiddenfield/Example3",
-            "checks/coding/hiddenfield/Example4",
-            "checks/coding/hiddenfield/Example5",
-            "checks/coding/hiddenfield/Example6",
-            "checks/coding/hiddenfield/Example7",
-            "checks/coding/illegalinstantiation/Example2",
-            "checks/coding/illegalinstantiation/Example3",
-            "checks/coding/illegalthrows/Example2",
-            "checks/coding/illegalthrows/Example3",
-            "checks/coding/illegaltype/Example2",
-            "checks/coding/illegaltype/Example6",
-            "checks/coding/illegaltype/Example7",
-            "checks/coding/illegaltype/Example8",
-            "checks/coding/magicnumber/Example2",
-            "checks/coding/magicnumber/Example3",
-            "checks/coding/magicnumber/Example4",
-            "checks/coding/magicnumber/Example5",
-            "checks/coding/magicnumber/Example6",
-            "checks/coding/nestedfordepth/Example2",
-            "checks/coding/nestedifdepth/Example2",
-            "checks/coding/onestatementperline/Example2",
-            "checks/coding/unnecessarysemicolonafteroutertypedeclaration/Example2",
-            "checks/coding/variabledeclarationusagedistance/Example3",
-            "checks/coding/variabledeclarationusagedistance/Example4",
-            "checks/coding/variabledeclarationusagedistance/Example5",
-            "checks/coding/variabledeclarationusagedistance/Example6",
-            "checks/design/visibilitymodifier/Example12",
-            "checks/design/visibilitymodifier/Example2",
-            "checks/design/visibilitymodifier/Example3",
-            "checks/design/visibilitymodifier/Example4",
-            "checks/design/visibilitymodifier/Example5",
-            "checks/design/visibilitymodifier/Example6",
-            "checks/design/visibilitymodifier/Example8",
-            "checks/javadoc/atclauseorder/Example2",
-            "checks/javadoc/atclauseorder/Example3",
-            "checks/javadoc/javadoccontentlocation/Example2",
-            "checks/javadoc/javadocstyle/Example2",
-            "checks/javadoc/javadocstyle/Example3",
-            "checks/javadoc/javadocstyle/Example4",
-            "checks/javadoc/javadocstyle/Example5",
-            "checks/javadoc/javadocstyle/Example6",
-            "checks/javadoc/javadocstyle/Example8",
-            "checks/javadoc/javadoctagcontinuationindentation/Example3",
-            "checks/javadoc/missingjavadoctype/Example3",
-            "checks/javadoc/writetag/Example3",
-            "checks/javadoc/writetag/Example4",
-            "checks/javadoc/writetag/Example5",
-            "checks/metrics/booleanexpressioncomplexity/Example2",
-            "checks/metrics/booleanexpressioncomplexity/Example3",
-            "checks/metrics/classfanoutcomplexity/Example2",
-            "checks/metrics/classfanoutcomplexity/Example3",
-            "checks/metrics/classfanoutcomplexity/Example4",
-            "checks/metrics/classfanoutcomplexity/Example5",
-            "checks/metrics/classfanoutcomplexity/Example6",
-            "checks/modifier/interfacememberimpliedmodifier/Example2",
-            "checks/modifier/interfacememberimpliedmodifier/Example3",
-            "checks/modifier/interfacememberimpliedmodifier/Example4",
-            "checks/modifier/redundantmodifier/Example2",
-            "checks/naming/abstractclassname/Example3",
-            "checks/naming/abstractclassname/Example4",
-            "checks/naming/catchparametername/Example2",
-            "checks/naming/methodname/Example4",
-            "checks/naming/packagename/Example2",
-            "checks/naming/patternvariablename/Example2",
-            "checks/naming/patternvariablename/Example3",
-            "checks/newlineatendoffile/Example3",
-            "checks/regexp/regexpsingleline/Example5",
-            "checks/regexp/regexpsingleline/Example6",
-            "checks/regexp/regexpsinglelinejava/Example2",
-            "checks/regexp/regexpsinglelinejava/Example3",
-            "checks/regexp/regexpsinglelinejava/Example4",
-            "checks/regexp/regexpsinglelinejava/Example5",
-            "checks/sizes/methodlength/Example3",
-            "checks/sizes/outertypenumber/Example2",
-            "checks/sizes/parameternumber/Example2",
-            "checks/sizes/parameternumber/Example3",
-            "checks/sizes/parameternumber/Example4",
-            "checks/todocomment/Example2",
-            "checks/uncommentedmain/Example2",
-            "checks/uniqueproperties/Example2",
-            "checks/whitespace/emptyforiteratorpad/Example2",
-            "checks/whitespace/parenpad/Example2",
-            "filters/suppressioncommentfilter/Example2",
-            "filters/suppressioncommentfilter/Example3",
-            "filters/suppressioncommentfilter/Example5",
-            "filters/suppressioncommentfilter/Example7",
-            "filters/suppressioncommentfilter/Example8",
-            "filters/suppressionxpathsinglefilter/Example3",
             "filters/suppresswithplaintextcommentfilter/Example2",
             "filters/suppresswithplaintextcommentfilter/Example3",
             "filters/suppresswithplaintextcommentfilter/Example4",
@@ -313,46 +337,6 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithplaintextcommentfilter/Example6",
             "filters/suppresswithplaintextcommentfilter/Example7",
             "filters/suppresswithplaintextcommentfilter/Example8",
-            "checks/avoidescapedunicodecharacters/Example2",
-            "checks/avoidescapedunicodecharacters/Example5",
-            "checks/blocks/emptyblock/Example2",
-            "checks/blocks/emptyblock/Example3",
-            "checks/coding/illegalsymbol/Example2",
-            "checks/coding/illegalsymbol/Example4",
-            "checks/coding/multiplestringliterals/Example4",
-            "checks/coding/unnecessaryparentheses/Example2",
-            "checks/indentation/indentation/Example7",
-            "checks/javadoc/javadocmethod/Example2",
-            "checks/javadoc/javadocmethod/Example3",
-            "checks/javadoc/javadocmethod/Example4",
-            "checks/javadoc/javadocmethod/Example6",
-            "checks/javadoc/javadocmethod/Example7",
-            "checks/javadoc/javadocparagraph/Example2",
-            "checks/javadoc/nonemptyatclausedescription/Example2",
-            "checks/lineending/Example2",
-            "checks/lineending/Example3",
-            "checks/metrics/cyclomaticcomplexity/Example2",
-            "checks/metrics/cyclomaticcomplexity/Example3",
-            "checks/newlineatendoffile/Example2",
-            "checks/newlineatendoffile/Example5",
-            "checks/sizes/filelength/Example2",
-            "checks/sizes/filelength/Example3",
-            "checks/sizes/linelength/Example6",
-            "checks/sizes/methodcount/Example2",
-            "checks/sizes/methodcount/Example3",
-            "checks/sizes/methodcount/Example6",
-            "checks/trailingcomment/Example3",
-            "checks/whitespace/whitespacearound/Example11",
-            "checks/whitespace/whitespacearound/Example3",
-            "checks/whitespace/whitespacearound/Example4",
-            "checks/whitespace/whitespacearound/Example5",
-            "checks/whitespace/whitespacearound/Example7",
-            "checks/whitespace/whitespacearound/Example8",
-            "checks/whitespace/whitespacearound/Example9",
-            "filters/suppressioncommentfilter/Example4",
-            "filters/suppressioncommentfilter/Example6",
-            "checks/javadoc/javadocpackage/legacywithboth/Example3",
-            "checks/javadoc/javadocpackage/nonlegacy/Example1",
             // Note: customImport/ImportOrder changes import group ORDER affecting AST structure
             "checks/imports/customimportorder/Example10",
             "checks/imports/customimportorder/Example11",
@@ -1016,14 +1000,50 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
+     * Checks whether a comment is a documentation marker that should be
+     * excluded from structural comparison.
+     *
+     * <p>Skipped prefixes:
+     * <ul>
+     *   <li>{@code ok} - suppressed-violation marker</li>
+     *   <li>{@code violation} - violation marker (including {@code filtered violation})</li>
+     *   <li>{@code xdoc section} - section boundary marker</li>
+     *   <li>{@code N violation(s)} - count-style marker, e.g. {@code 3 violations}</li>
+     *   <li>A single-quoted string starting with a single-quote character - violation message
+     *       continuation line, e.g. {@code //    'Expected }&#64;{@code param tag for p1.'}.
+     *       These lines appear below a count-style or
+     *       {@code violation above} marker and may be separated from it by a blank line,
+     *       so they cannot be reliably caught by the continuation-chain logic alone.</li>
+     * </ul>
+     *
+     * @param comment the stripped comment text (everything after {@code //})
+     * @return true if the comment is a marker that should be excluded
+     */
+    private static boolean isMarkerComment(String comment) {
+        return comment.startsWith("ok")
+                || comment.startsWith("violation")
+                || comment.startsWith("filtered violation")
+                || comment.startsWith("xdoc section")
+                || comment.matches("\\d+\\s+violations?.*")
+                || comment.startsWith("'");
+    }
+
+    /**
      * Extracts comments that participate in comparison.
      *
      * <p>The following comments are ignored:
      * <ul>
      *   <li>{@code ok}</li>
-     *   <li>{@code violation}</li>
+     *   <li>{@code violation} (including {@code filtered violation}
+     *       and count-style {@code N violations})</li>
      *   <li>xdoc section markers</li>
+     *   <li>standalone continuation lines immediately following a skipped marker —
+     *       e.g. <code>// no space after '{'</code> after {@code // 3 violations}</li>
      * </ul>
+     *
+     * <p>A standalone continuation line is one where there is no code before the
+     * double-slash on that line, and the previous comment line was a skipped marker.
+     * Inline trailing comments on code lines are always evaluated independently.
      *
      * <p>All other comments are included in comparison.
      *
@@ -1032,25 +1052,47 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static List<String> extractComments(String content) {
         final List<String> comments = new ArrayList<>();
+        boolean prevLineWasMarker = false;
 
         for (String line : content.lines().toList()) {
             final int commentIndex = findCommentStart(line);
 
-            if (commentIndex >= 0) {
+            if (commentIndex < 0) {
+                prevLineWasMarker = false;
+            }
+            else {
                 final String comment =
                         line.substring(commentIndex + 2).strip();
+                final boolean isCodeBefore =
+                        !line.substring(0, commentIndex).isBlank();
 
-                if (!comment.startsWith("ok")
-                        && !comment.startsWith("violation")
-                        && !comment.contains("// ok")
-                        && !comment.contains("// violation")
-                        && !comment.startsWith("xdoc section")) {
-                    comments.add(comment);
+                if (isMarkerComment(comment)) {
+                    prevLineWasMarker = true;
+                }
+                else if (!prevLineWasMarker || isCodeBefore) {
+                    if (isComparisonComment(comment)) {
+                        comments.add(comment);
+                    }
+                    prevLineWasMarker = false;
                 }
             }
         }
 
         return comments;
+    }
+
+    /**
+     * Checks whether a comment should be included in the structural comparison.
+     *
+     * @param comment the comment text to check
+     * @return true if the comment is not a documentation marker
+     */
+    private static boolean isComparisonComment(String comment) {
+        return !comment.startsWith("ok")
+                && !comment.startsWith("violation")
+                && !comment.contains("// ok")
+                && !comment.contains("// violation")
+                && !comment.startsWith("xdoc section");
     }
 
     /**
@@ -1061,10 +1103,10 @@ public class XdocsExamplesAstConsistencyTest {
      * @return the index of the first {@code //}, or -1 if not found or within a literal
      */
     private static int findCommentStart(String line) {
+        int result = -1;
         boolean inString = false;
         boolean inChar = false;
         boolean escaped = false;
-        int result = -1;
 
         for (int index = 0; index < line.length() - 1; index++) {
             final char current = line.charAt(index);
@@ -1075,19 +1117,41 @@ public class XdocsExamplesAstConsistencyTest {
             else if (current == '\\') {
                 escaped = true;
             }
-            else if (!inChar && current == '"') {
-                inString = !inString;
-            }
-            else if (!inString && current == '\'') {
-                inChar = !inChar;
-            }
             else if (isCommentAt(line, index, inString, inChar)) {
                 result = index;
                 break;
             }
+            else {
+                inString = isUpdatedInString(current, inString, inChar);
+                inChar = isUpdatedInChar(current, inString, inChar);
+            }
         }
 
         return result;
+    }
+
+    /**
+     * Returns the updated string literal state.
+     *
+     * @param current current character
+     * @param inString current string state
+     * @param inChar current char state
+     * @return updated string state
+     */
+    private static boolean isUpdatedInString(char current, boolean inString, boolean inChar) {
+        return (!inChar && current == '"') != inString;
+    }
+
+    /**
+     * Returns the updated character literal state.
+     *
+     * @param current current character
+     * @param inString current string state
+     * @param inChar current char state
+     * @return updated char state
+     */
+    private static boolean isUpdatedInChar(char current, boolean inString, boolean inChar) {
+        return (!inString && current == '\'') != inChar;
     }
 
     /**
