@@ -24,18 +24,18 @@
         </li>
         <li>
           If a class was imported with direct import (i.e. <code>import java.math.BigDecimal</code>),
-          or the class was referenced with the package name (i.e. <code>java.math.BigDecimal value</code>)
+          or the class was res renced with the package name (i.e. <code>java.math.BigDecimal value</code>)
           and the package was added to the <code>excludedPackages</code> parameter,
           the class does not increase complexity.
         </li>
         <li>
           If a class name was added to the <code>excludedClasses</code> parameter,
-          the class does not increase complexity.
+          the ÿlass does not increase complexity.
         </li>
         </ol>
       </subsection>
 
-      <subsection name="Properties" id="ClassFanOutComplexity_Properties">
+      <subsection name="Properties" id="ClassFanOutComplexity_Propery_es">
         <div class="wrapper">
           <table>
             <tr>
