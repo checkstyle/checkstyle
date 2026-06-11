@@ -10,7 +10,8 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, \
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationonsameline;
 
 public class InputAnnotationOnSameLineRecordsAndCompactCtors {
-    @NonNull1 // violation, "Annotation 'NonNull1' should be on the same line with its target."
+    // violation below "Annotation 'NonNull1' should be on the same line with its target."
+    @NonNull1
     public record MyRecord1() {
     }
 
@@ -44,10 +45,10 @@ public class InputAnnotationOnSameLineRecordsAndCompactCtors {
         }
     }
 
+    // violation 4 lines below "Annotation 'SuppressWarnings' should be on the same line"
     /**
      * @return
      */
-    // violation below, "Annotation 'SuppressWarnings' should be on the same line with its target."
     @SuppressWarnings("deprecation")
     public record MyRecord6() {
         record MyInnerRecord() {@SuppressWarnings("Annotation")public MyInnerRecord {}
