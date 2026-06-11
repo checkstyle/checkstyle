@@ -94,7 +94,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
             "12:1: " + getCheckMessage(MSG_KEY, 7),
         };
         verifyWithInlineConfigParser(
-            getNonCompilablePath("InputOverloadMethodsDeclarationOrderCompact.java"),
+            getNonCompilablePath("InputOverloadMethodsDeclarationOrderCompactSourceFile.java"),
             expected);
     }
 
@@ -103,7 +103,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
             getNonCompilablePath(
-                "InputOverloadMethodsDeclarationOrderCompactNoViolation.java"),
+                "InputOverloadMethodsDeclarationOrderCompactSourceFileNoViolation.java"),
             expected);
     }
 
@@ -114,7 +114,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
         };
         verifyWithInlineConfigParser(
             getNonCompilablePath(
-                "InputOverloadMethodsDeclarationOrderCompactEdge.java"),
+                "InputOverloadMethodsDeclarationOrderCompactSourceFileEdge.java"),
             expected);
     }
 
