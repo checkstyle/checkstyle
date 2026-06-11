@@ -8,5 +8,5 @@ package com.puppycrawl.tools.checkstyle.checks.newlineatendoffile;
 // xdoc section -- start
 public class Example5 { // ⤶
 // ⤶
-} // no ⤶ below it is violation
+}
 // xdoc section -- end
