@@ -231,14 +231,14 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
             + " @see, @since, @serial, @serialField, @serialData, @deprecated]";
 
         final String[] expected = {
-            "36: " + getCheckMessage(MSG_KEY, tagOrder),
-            "37: " + getCheckMessage(MSG_KEY, tagOrder),
-            "38: " + getCheckMessage(MSG_KEY, tagOrder),
-            "48: " + getCheckMessage(MSG_KEY, tagOrder),
-            "49: " + getCheckMessage(MSG_KEY, tagOrder),
-            "58: " + getCheckMessage(MSG_KEY, tagOrder),
-            "77: " + getCheckMessage(MSG_KEY, tagOrder),
-            "92: " + getCheckMessage(MSG_KEY, tagOrder),
+            "40: " + getCheckMessage(MSG_KEY, tagOrder),
+            "41: " + getCheckMessage(MSG_KEY, tagOrder),
+            "42: " + getCheckMessage(MSG_KEY, tagOrder),
+            "54: " + getCheckMessage(MSG_KEY, tagOrder),
+            "55: " + getCheckMessage(MSG_KEY, tagOrder),
+            "65: " + getCheckMessage(MSG_KEY, tagOrder),
+            "86: " + getCheckMessage(MSG_KEY, tagOrder),
+            "103: " + getCheckMessage(MSG_KEY, tagOrder),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAtclauseOrderRecords.java"), expected);
@@ -249,9 +249,9 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
         final String[] expected = {
-            "20: " + getCheckMessage(MSG_KEY, tagOrder),
-            "32: " + getCheckMessage(MSG_KEY, tagOrder),
-            "33: " + getCheckMessage(MSG_KEY, tagOrder),
+            "21: " + getCheckMessage(MSG_KEY, tagOrder),
+            "35: " + getCheckMessage(MSG_KEY, tagOrder),
+            "36: " + getCheckMessage(MSG_KEY, tagOrder),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAtclauseOrderMethodReturningArrayType.java"), expected);
