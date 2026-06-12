@@ -74,6 +74,17 @@
           </tr>
           <tr>
             <td>
+              <a href="openjdkannotationlocation.html#OpenjdkAnnotationLocation">
+                OpenjdkAnnotationLocation
+              </a>
+            </td>
+            <td>
+              Verifies that annotations are properly placed by <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-annotations">
+              OpenJDK Style</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="packageannotation.html#PackageAnnotation">
                 PackageAnnotation
               </a>

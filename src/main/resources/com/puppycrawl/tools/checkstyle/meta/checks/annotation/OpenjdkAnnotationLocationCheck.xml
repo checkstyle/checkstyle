@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.OpenjdkAnnotationLocationCheck"
+             name="OpenjdkAnnotationLocation"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Verifies that annotations are properly placed by
+ &lt;a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-annotations"&gt;
+ OpenJDK Style&lt;/a&gt;.
+ Declaration annotations must either reside entirely on a single line or
+ have each annotation placed on its own separate line. Annotations should
+ not share a line with the target declaration, except for single-line methods and fields.
+ &lt;/div&gt;</description>
+         <properties>
+            <property default-value="CLASS_DEF,INTERFACE_DEF,PACKAGE_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,METHOD_DEF,CTOR_DEF,VARIABLE_DEF,ANNOTATION_DEF,ANNOTATION_FIELD_DEF,RECORD_DEF,COMPACT_CTOR_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="annotation.alone.or.same"/>
+            <message-key key="annotation.on.target.line"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
