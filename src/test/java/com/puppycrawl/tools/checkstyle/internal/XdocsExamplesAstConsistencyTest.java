@@ -312,8 +312,6 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithplaintextcommentfilter/Example6",
             "filters/suppresswithplaintextcommentfilter/Example7",
             "filters/suppresswithplaintextcommentfilter/Example8",
-            "checks/avoidescapedunicodecharacters/Example2",
-            "checks/avoidescapedunicodecharacters/Example5",
             "checks/blocks/emptyblock/Example2",
             "checks/blocks/emptyblock/Example3",
             "checks/coding/illegalsymbol/Example2",
