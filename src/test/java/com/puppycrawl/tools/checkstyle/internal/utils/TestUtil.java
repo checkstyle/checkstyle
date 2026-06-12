@@ -95,7 +95,7 @@ public final class TestUtil {
      * @return the class' field if found
      */
     private static Field getClassDeclaredField(Class<?> targetClass, String fieldName) {
-        return Stream.<Class<?>>iterate(targetClass, Objects::nonNull, Class::getSuperclass)
+        return Stream.iterate(targetClass, Objects::nonNull, Class::getSuperclass)
             .flatMap(cls -> Arrays.stream(cls.getDeclaredFields()))
             .filter(field -> fieldName.equals(field.getName()))
             .findFirst()
@@ -120,7 +120,7 @@ public final class TestUtil {
     private static Method getClassDeclaredMethod(Class<?> targetClass,
                                                  String methodName,
                                                  int parameters) {
-        final Stream<Method> methods = Stream.<Class<?>>iterate(targetClass, Class::getSuperclass)
+        final Stream<Method> methods = Stream.iterate(targetClass, Class::getSuperclass)
                 .flatMap(cls -> Arrays.stream(cls.getDeclaredMethods()))
                 .filter(method -> {
                     return methodName.equals(method.getName());
