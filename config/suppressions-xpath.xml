@@ -511,4 +511,13 @@
           checks="LocalVariableNameCheck"
           query="//METHOD_DEF[./IDENT[@text='getLineNumbersFromExpected']]
                 //VARIABLE_DEF/IDENT[@text='i']"/>
+
+  <!-- Property orderByIncreasingParameterCount of ConstructorsDeclarationGrouping conflicts
+  with CustomDeclarationOrder.CustomDeclarationOrder intentionally keeps publicly usable
+  constructors before private implementation details, even if it breaks constructor ordering
+  by params for private constructors.      -->
+  <suppress-xpath
+          files="IndentLevel.java"
+          checks="ConstructorsDeclarationGroupingCheck"
+          query="//CTOR_DEF[./IDENT[@text='IndentLevel']][./MODIFIERS/LITERAL_PRIVATE]"/>
 </suppressions>
