@@ -237,6 +237,96 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGetSurroundingAccessModifierForCompactCompilationUnit() {
+        final DetailAstImpl compactCompilationUnit = new DetailAstImpl();
+        compactCompilationUnit.setType(TokenTypes.COMPACT_COMPILATION_UNIT);
+        final DetailAstImpl method = new DetailAstImpl();
+        method.setType(TokenTypes.METHOD_DEF);
+        compactCompilationUnit.addChild(method);
+
+        final Optional<AccessModifierOption> actual =
+                CheckUtil.getSurroundingAccessModifier(method);
+
+        assertWithMessage("Top-level compact source method should have package access")
+                .that(actual)
+                .hasValue(AccessModifierOption.PACKAGE);
+    }
+
+    @Test
+    public void testGetSurroundingAccessModifierForTypeInCompactCompilationUnit() {
+        final DetailAstImpl compactCompilationUnit = new DetailAstImpl();
+        compactCompilationUnit.setType(TokenTypes.COMPACT_COMPILATION_UNIT);
+        final DetailAstImpl classDef = new DetailAstImpl();
+        classDef.setType(TokenTypes.CLASS_DEF);
+        final DetailAstImpl modifiers = new DetailAstImpl();
+        modifiers.setType(TokenTypes.MODIFIERS);
+        final DetailAstImpl privateModifier = new DetailAstImpl();
+        privateModifier.setType(TokenTypes.LITERAL_PRIVATE);
+        modifiers.addChild(privateModifier);
+        classDef.addChild(modifiers);
+        final DetailAstImpl method = new DetailAstImpl();
+        method.setType(TokenTypes.METHOD_DEF);
+        classDef.addChild(method);
+        compactCompilationUnit.addChild(classDef);
+
+        final Optional<AccessModifierOption> actual =
+                CheckUtil.getSurroundingAccessModifier(method);
+
+        assertWithMessage("Nearest type access should take precedence over compact source access")
+                .that(actual)
+                .hasValue(AccessModifierOption.PRIVATE);
+    }
+
+    @Test
+    public void testGetSurroundingAccessModifierForCompactCompilationUnitImports() {
+        final int[] importTypes = {
+            TokenTypes.IMPORT,
+            TokenTypes.STATIC_IMPORT,
+            TokenTypes.MODULE_IMPORT,
+        };
+
+        for (int importType : importTypes) {
+            final DetailAstImpl compactCompilationUnit = new DetailAstImpl();
+            compactCompilationUnit.setType(TokenTypes.COMPACT_COMPILATION_UNIT);
+            final DetailAstImpl importAst = new DetailAstImpl();
+            importAst.setType(importType);
+            compactCompilationUnit.addChild(importAst);
+
+            final Optional<AccessModifierOption> actual =
+                    CheckUtil.getSurroundingAccessModifier(importAst);
+
+            assertWithMessage("Compact source import should not have surrounding access")
+                    .that(actual)
+                    .isEmpty();
+        }
+    }
+
+    @Test
+    public void testGetSurroundingAccessModifierStopsAtLiteralNew() {
+        final DetailAstImpl classDef = new DetailAstImpl();
+        classDef.setType(TokenTypes.CLASS_DEF);
+        final DetailAstImpl modifiers = new DetailAstImpl();
+        modifiers.setType(TokenTypes.MODIFIERS);
+        final DetailAstImpl publicModifier = new DetailAstImpl();
+        publicModifier.setType(TokenTypes.LITERAL_PUBLIC);
+        modifiers.addChild(publicModifier);
+        classDef.addChild(modifiers);
+        final DetailAstImpl literalNew = new DetailAstImpl();
+        literalNew.setType(TokenTypes.LITERAL_NEW);
+        classDef.addChild(literalNew);
+        final DetailAstImpl method = new DetailAstImpl();
+        method.setType(TokenTypes.METHOD_DEF);
+        literalNew.addChild(method);
+
+        final Optional<AccessModifierOption> actual =
+                CheckUtil.getSurroundingAccessModifier(method);
+
+        assertWithMessage("Traversal should stop at an anonymous class boundary")
+                .that(actual)
+                .isEmpty();
+    }
+
+    @Test
     public void testGetFirstNode() throws Exception {
         final DetailAST classDef = getNodeFromFile(TokenTypes.CLASS_DEF);
 

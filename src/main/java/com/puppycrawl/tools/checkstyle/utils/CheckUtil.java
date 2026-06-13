@@ -371,9 +371,10 @@ public final class CheckUtil {
      */
     public static Optional<AccessModifierOption> getSurroundingAccessModifier(DetailAST node) {
         Optional<AccessModifierOption> returnValue = Optional.empty();
+        DetailAST child = null;
         for (DetailAST token = node;
-             returnValue.isEmpty() && !TokenUtil.isRootNode(token);
-             token = token.getParent()) {
+             token != null && returnValue.isEmpty();
+             child = token, token = token.getParent()) {
             final int type = token.getType();
             if (type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.INTERFACE_DEF
@@ -383,6 +384,11 @@ public final class CheckUtil {
             }
             else if (type == TokenTypes.LITERAL_NEW) {
                 break;
+            }
+            else if (type == TokenTypes.COMPACT_COMPILATION_UNIT
+                    && !TokenUtil.isOfType(child, TokenTypes.IMPORT,
+                            TokenTypes.STATIC_IMPORT, TokenTypes.MODULE_IMPORT)) {
+                returnValue = Optional.of(AccessModifierOption.PACKAGE);
             }
         }
 
