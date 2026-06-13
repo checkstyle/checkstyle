@@ -361,6 +361,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/imports/importorder/Example8",
             "checks/imports/importorder/Example9",
             // until https://github.com/checkstyle/checkstyle/issues/19891
+            "checks/whitespace/parenpad/Example3",
             "checks/indentation/commentsindentation/Example3",
             "checks/indentation/commentsindentation/Example4",
             "checks/indentation/commentsindentation/Example5",
