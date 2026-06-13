@@ -589,7 +589,9 @@
     </module>
     <module name="NoFinalizer"/>
     <module name="OneStatementPerLine"/>
-    <module name="OverloadMethodsDeclarationOrder"/>
+    <module name="OverloadMethodsDeclarationOrder">
+      <property name="orderByIncreasingParameterCount" value="true"/>
+    </module>
     <module name="PackageDeclaration"/>
     <module name="ParameterAssignment"/>
     <module name="PatternVariableAssignment"/>
