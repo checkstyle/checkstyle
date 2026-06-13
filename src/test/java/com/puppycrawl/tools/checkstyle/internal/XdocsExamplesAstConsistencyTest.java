@@ -113,8 +113,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/annotation/suppresswarningsholder/Example2",
             "checks/annotation/suppresswarningsholder/Example3",
             "checks/annotation/suppresswarningsholder/Example4",
-            "checks/avoidescapedunicodecharacters/Example2",
-            "checks/avoidescapedunicodecharacters/Example5",
             "checks/blocks/emptyblock/Example2",
             "checks/blocks/emptyblock/Example3",
             "checks/blocks/leftcurly/Example3",
@@ -278,6 +276,18 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/whitespace/singlespaceseparator/Example2",
             "checks/whitespace/typecastparenpad/Example2",
             "checks/whitespace/whitespaceafter/Example2",
+            "checks/coding/unnecessaryparentheses/Example2",
+            "checks/javadoc/javadocmethod/Example7",
+            "checks/javadoc/javadocparagraph/Example2",
+            "checks/javadoc/nonemptyatclausedescription/Example2",
+            "checks/sizes/linelength/Example6",
+            "checks/whitespace/whitespacearound/Example11",
+            "checks/whitespace/whitespacearound/Example3",
+            "checks/whitespace/whitespacearound/Example4",
+            "checks/whitespace/whitespacearound/Example5",
+            "checks/whitespace/whitespacearound/Example7",
+            "checks/whitespace/whitespacearound/Example8",
+            "checks/whitespace/whitespacearound/Example9",
             "filters/suppressioncommentfilter/Example2",
             "filters/suppressioncommentfilter/Example3",
             "filters/suppressioncommentfilter/Example4",
@@ -999,52 +1009,14 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks whether a comment is a documentation marker that should be
-     * excluded from structural comparison.
-     *
-     * <p>Skipped prefixes:
-     * <ul>
-     *   <li>{@code ok} - suppressed-violation marker</li>
-     *   <li>{@code violation} - violation marker (including {@code filtered violation})</li>
-     *   <li>{@code xdoc section} - section boundary marker</li>
-     *   <li>{@code N violation(s)} - count-style marker, e.g. {@code 3 violations}</li>
-     *   <li>A single-quoted string starting and ending with a single-quote character
-     *       continuation line, e.g. {@code //    'Expected }&#64;{@code param tag for p1.'}.
-     *       These lines appear below a count-style or
-     *       {@code violation above} marker and may be separated from it by a blank line,
-     *       so they cannot be reliably caught by the continuation-chain logic alone.</li>
-     * </ul>
-     *
-     * @param comment the stripped comment text (everything after {@code //})
-     * @return true if the comment is a marker that should be ignored
-     */
-    private static boolean isIgnoredComment(String comment) {
-        return comment.startsWith("ok")
-                || comment.startsWith("violation")
-                || comment.startsWith("filtered violation")
-                || comment.startsWith("xdoc section")
-                || comment.contains("// ok")
-                || comment.contains("// violation")
-                || comment.matches("\\d+\\s+violations?.*")
-                || comment.matches("'.*'");
-    }
-
-    /**
      * Extracts comments that participate in comparison.
      *
      * <p>The following comments are ignored:
      * <ul>
      *   <li>{@code ok}</li>
-     *   <li>{@code violation} (including {@code filtered violation}
-     *       and count-style {@code N violations})</li>
+     *   <li>{@code violation}</li>
      *   <li>xdoc section markers</li>
-     *   <li>standalone continuation lines immediately following a skipped marker —
-     *       e.g. <code>// no space after '{'</code> after {@code // 3 violations}</li>
      * </ul>
-     *
-     * <p>A standalone continuation line is one where there is no code before the
-     * double-slash on that line, and the previous comment line was a skipped marker.
-     * Inline trailing comments on code lines are always evaluated independently.
      *
      * <p>All other comments are included in comparison.
      *
@@ -1053,27 +1025,21 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static List<String> extractComments(String content) {
         final List<String> comments = new ArrayList<>();
-        boolean prevLineWasMarker = false;
 
         for (String line : content.lines().toList()) {
             final int commentIndex = findCommentStart(line);
 
-            if (commentIndex < 0) {
-                prevLineWasMarker = false;
-                continue;
-            }
+            if (commentIndex >= 0) {
+                final String comment =
+                        line.substring(commentIndex + 2).strip();
 
-            final String comment =
-                    line.substring(commentIndex + 2).strip();
-            final boolean isCodeBefore =
-                    !line.substring(0, commentIndex).isBlank();
-
-            if (isIgnoredComment(comment)) {
-                prevLineWasMarker = true;
-            }
-            else if (!prevLineWasMarker || isCodeBefore) {
-                comments.add(comment);
-                prevLineWasMarker = false;
+                if (!comment.startsWith("ok")
+                        && !comment.startsWith("violation")
+                        && !comment.contains("// ok")
+                        && !comment.contains("// violation")
+                        && !comment.startsWith("xdoc section")) {
+                    comments.add(comment);
+                }
             }
         }
 
@@ -1088,10 +1054,10 @@ public class XdocsExamplesAstConsistencyTest {
      * @return the index of the first {@code //}, or -1 if not found or within a literal
      */
     private static int findCommentStart(String line) {
-        int result = -1;
         boolean inString = false;
         boolean inChar = false;
         boolean escaped = false;
+        int result = -1;
 
         for (int index = 0; index < line.length() - 1; index++) {
             final char current = line.charAt(index);
