@@ -46,7 +46,7 @@ public class EqualsHashCodeCheckTest
     @Test
     public void testSemantic() throws Exception {
         final String[] expected = {
-            "37:13: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "37:28: " + getCheckMessage(MSG_KEY_HASHCODE),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEqualsHashCodeSemanticTwo.java"), expected);
@@ -55,10 +55,19 @@ public class EqualsHashCodeCheckTest
     @Test
     public void testNoEquals() throws Exception {
         final String[] expected = {
-            "10:5: " + getCheckMessage(MSG_KEY_EQUALS),
+            "10:16: " + getCheckMessage(MSG_KEY_EQUALS),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEqualsHashCodeNoEquals.java"), expected);
+    }
+
+    @Test
+    public void testOverride() throws Exception {
+        final String[] expected = {
+            "11:16: " + getCheckMessage(MSG_KEY_EQUALS),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEqualsHashCodeOveride.java"), expected);
     }
 
     @Test
@@ -74,10 +83,10 @@ public class EqualsHashCodeCheckTest
             createModuleConfig(EqualsHashCodeCheck.class);
 
         final List<String> expectedFirstInputErrors = Collections.singletonList(
-            "10:5: " + getCheckMessage(MSG_KEY_EQUALS)
+            "10:16: " + getCheckMessage(MSG_KEY_EQUALS)
         );
         final List<String> expectedSecondInputErrors = Collections.singletonList(
-            "37:13: " + getCheckMessage(MSG_KEY_HASHCODE)
+            "37:28: " + getCheckMessage(MSG_KEY_HASHCODE)
         );
         final List<String> expectedThirdInputErrors =
             Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
@@ -102,15 +111,15 @@ public class EqualsHashCodeCheckTest
     @Test
     public void testEqualsParameter() throws Exception {
         final String[] expected = {
-            "16:9: " + getCheckMessage(MSG_KEY_EQUALS),
-            "24:9: " + getCheckMessage(MSG_KEY_HASHCODE),
-            "54:9: " + getCheckMessage(MSG_KEY_HASHCODE),
-            "59:9: " + getCheckMessage(MSG_KEY_EQUALS),
-            "71:9: " + getCheckMessage(MSG_KEY_EQUALS),
-            "74:9: " + getCheckMessage(MSG_KEY_HASHCODE),
-            "81:9: " + getCheckMessage(MSG_KEY_EQUALS),
-            "88:9: " + getCheckMessage(MSG_KEY_HASHCODE),
-            "103:9: " + getCheckMessage(MSG_KEY_EQUALS),
+            "16:20: " + getCheckMessage(MSG_KEY_EQUALS),
+            "24:24: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "54:24: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "59:20: " + getCheckMessage(MSG_KEY_EQUALS),
+            "71:27: " + getCheckMessage(MSG_KEY_EQUALS),
+            "74:31: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "81:20: " + getCheckMessage(MSG_KEY_EQUALS),
+            "88:24: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "103:20: " + getCheckMessage(MSG_KEY_EQUALS),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEqualsHashCodeEqualsParameter.java"), expected);
