@@ -30,6 +30,7 @@ on:
 permissions:
   contents: read
   pull-requests: write
+  actions: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ inputs.pr-number || github.event.issue.number || github.ref }}
@@ -175,6 +176,7 @@ jobs:
       - name: Get message
         env:
           MSG: ${{needs.publish_site.outputs.message}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p .ci-temp
           if [ -z  "$MSG" ]; then
