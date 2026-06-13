@@ -35,10 +35,10 @@ public class EqualsHashCodeCheckExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "11:3: " + getCheckMessage(MSG_KEY_EQUALS),
-            "18:3: " + getCheckMessage(MSG_KEY_HASHCODE),
-            "41:3: " + getCheckMessage(MSG_KEY_HASHCODE),
-            "47:3: " + getCheckMessage(MSG_KEY_EQUALS),
+            "11:14: " + getCheckMessage(MSG_KEY_EQUALS),
+            "18:18: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "41:18: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "47:14: " + getCheckMessage(MSG_KEY_EQUALS),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);

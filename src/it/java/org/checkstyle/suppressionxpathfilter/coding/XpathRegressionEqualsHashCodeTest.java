@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -48,20 +47,14 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
         final DefaultConfiguration moduleConfig = createModuleConfig(EqualsHashCodeCheck.class);
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(EqualsHashCodeCheck.class,
+            "4:20: " + getCheckMessage(EqualsHashCodeCheck.class,
                     EqualsHashCodeCheck.MSG_KEY_HASHCODE),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='InputXpathEqualsHashCodeEqualsOnly']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathEqualsHashCodeEqualsOnly']]/OBJBLOCK/"
-                        + "METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathEqualsHashCodeEqualsOnly']]/OBJBLOCK/"
-                        + "METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS/LITERAL_PUBLIC"
+                        + "/OBJBLOCK/METHOD_DEF/IDENT[@text='equals']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -75,20 +68,14 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
         final DefaultConfiguration moduleConfig = createModuleConfig(EqualsHashCodeCheck.class);
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(EqualsHashCodeCheck.class,
+            "4:16: " + getCheckMessage(EqualsHashCodeCheck.class,
                     EqualsHashCodeCheck.MSG_KEY_EQUALS),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathEqualsHashCodeHashCodeOnly']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='hashCode']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathEqualsHashCodeHashCodeOnly']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='hashCode']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathEqualsHashCodeHashCodeOnly']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='hashCode']]/MODIFIERS/LITERAL_PUBLIC"
+        final List<String> expectedXpathQueries = List.of(
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='InputXpathEqualsHashCodeHashCodeOnly']]"
+                        + "/OBJBLOCK/METHOD_DEF/IDENT[@text='hashCode']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -102,24 +89,15 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
         final DefaultConfiguration moduleConfig = createModuleConfig(EqualsHashCodeCheck.class);
 
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(EqualsHashCodeCheck.class,
+            "5:24: " + getCheckMessage(EqualsHashCodeCheck.class,
                     EqualsHashCodeCheck.MSG_KEY_HASHCODE),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='InputXpathEqualsHashCodeNestedCase']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='innerClass']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathEqualsHashCodeNestedCase']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='innerClass']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathEqualsHashCodeNestedCase']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='innerClass']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]"
-                        + "/MODIFIERS/LITERAL_PUBLIC"
+                        + "/OBJBLOCK/METHOD_DEF/IDENT[@text='equals']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
