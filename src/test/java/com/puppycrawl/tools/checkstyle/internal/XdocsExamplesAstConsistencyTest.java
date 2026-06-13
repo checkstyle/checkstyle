@@ -992,10 +992,22 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static boolean isClassOrConstructorName(DetailAST ast) {
         final DetailAST parent = ast.getParent();
-        return parent != null
-                && ast.getType() == TokenTypes.IDENT
-                && (parent.getType() == TokenTypes.CLASS_DEF
-                || parent.getType() == TokenTypes.CTOR_DEF);
+        boolean result = false;
+        if (parent != null && ast.getType() == TokenTypes.IDENT) {
+            if (parent.getType() == TokenTypes.CLASS_DEF
+                    || parent.getType() == TokenTypes.CTOR_DEF) {
+                result = true;
+            }
+            else if (parent.getType() == TokenTypes.EXTENDS_CLAUSE) {
+                final DetailAST classDef = parent.getParent();
+                if (classDef != null && classDef.getType() == TokenTypes.CLASS_DEF) {
+                    final DetailAST className = classDef.findFirstToken(TokenTypes.IDENT);
+                    result = className != null
+                            && className.getText().matches("Example\\d+");
+                }
+            }
+        }
+        return result;
     }
 
     /**
