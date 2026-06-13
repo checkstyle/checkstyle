@@ -332,6 +332,14 @@ public class CommonUtilTest extends AbstractPathTestSupport {
             .that(CommonUtil.fillTemplateWithStringsByRegexp("before $0 after1 $1 after2 $2 after3",
                         "word 123", Pattern.compile("(\\w+) (\\d+)")))
             .isEqualTo("before word 123 after1 word after2 123 after3");
+        assertWithMessage("dollar sign in match must be treated literally")
+            .that(CommonUtil.fillTemplateWithStringsByRegexp("before $0 after",
+                        "pri$ce", Pattern.compile(".+")))
+            .isEqualTo("before pri$ce after");
+        assertWithMessage("backslash in match must be treated literally")
+            .that(CommonUtil.fillTemplateWithStringsByRegexp("before $0 after",
+                        "a\\b", Pattern.compile(".+")))
+            .isEqualTo("before a\\b after");
     }
 
     @Test
