@@ -511,3 +511,164 @@ section#Properties .wrapper table td a {
 html {
   scroll-behavior: smooth;
 }
+
+/**
+ * Search Widget
+ *
+ * Document type color coding:
+ *   #c00     — Check          (Checkstyle red)
+ *   #2e7d32  — Filter         (green)
+ *   #1565c0  — File Filter    (blue)
+ *   #555     — General docs   (grey)
+ */
+
+#checkstyle-search-wrapper {
+    padding: 8px 8px 6px 8px;
+    border-bottom: 1px solid #e3e3e3;
+    margin-bottom: 4px;
+}
+
+#checkstyle-search-wrapper > div {
+    position: relative;
+}
+
+#checkstyle-search-input {
+    width: 100%;
+    height: 30px;
+    padding: 4px 10px;
+    font-size: 13px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+#checkstyle-search-input:focus {
+    border-color: #c00;
+    box-shadow: 0 0 0 2px rgba(204, 0, 0, 0.10);
+}
+
+#checkstyle-search-input::placeholder {
+    color: #bbb;
+}
+
+#checkstyle-search-results {
+    position: absolute;
+    top: calc(100% + 3px);
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.13);
+    z-index: 9999;
+    max-height: 440px;
+    overflow-y: auto;
+    animation: cs-appear 0.1s ease;
+}
+
+@keyframes cs-appear {
+    from { opacity: 0; transform: translateY(-3px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.cs-search-category {
+    padding: 4px 10px 3px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #999;
+    background: #f8f8f8;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.cs-search-result {
+    display: block;
+    padding: 7px 10px 7px 12px;
+    border-bottom: 1px solid #f4f4f4;
+    border-left: 3px solid transparent;
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+    transition: background-color 0.08s ease;
+}
+
+.cs-search-result:last-child {
+    border-bottom: none;
+}
+
+.cs-search-result:hover,
+.cs-search-result:focus {
+    background-color: #fafafa;
+    text-decoration: none;
+}
+
+.cs-search-title-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 2px;
+}
+
+.cs-search-result-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #222;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    min-width: 0;
+}
+
+.cs-search-result-title mark {
+    background-color: #fff3b0;
+    color: inherit;
+    padding: 0 1px;
+    border-radius: 2px;
+    font-weight: 700;
+}
+
+.cs-search-type-badge {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 1px 5px;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+}
+
+.cs-search-result-desc {
+    font-size: 11.5px;
+    color: #888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+}
+
+.cs-search-no-results {
+    padding: 14px 12px;
+    font-size: 13px;
+    color: #999;
+    text-align: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#checkstyle-search-results::-webkit-scrollbar       { width: 5px; }
+#checkstyle-search-results::-webkit-scrollbar-track { background: #f8f8f8; }
+#checkstyle-search-results::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 3px;
+}
+#checkstyle-search-results::-webkit-scrollbar-thumb:hover { background: #bbb; }
