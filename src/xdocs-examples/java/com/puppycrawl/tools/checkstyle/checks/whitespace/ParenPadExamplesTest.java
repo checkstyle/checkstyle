@@ -62,4 +62,10 @@ public class ParenPadExamplesTest extends AbstractExamplesModuleTestSupport {
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
 }
