@@ -611,4 +611,42 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodDoNotAllowInlineReturn.java"), expected);
     }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "19:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "msg"),
+            "21:37: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "recipient"),
+            "21:55: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "message"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocMethodCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceReturn() throws Exception {
+        final String[] expected = {
+            "19: " + getCheckMessage(MSG_RETURN_EXPECTED),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocMethodCompactSourceReturn.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceThrows() throws Exception {
+        final String[] expected = {
+            "19:20: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocMethodCompactSourceThrows.java"), expected);
+    }
+
+    @Test
+    public void testPublicScopeUnusedTag() throws Exception {
+        final String[] expected = {
+            "20:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodPublicScopeUnusedTag.java"), expected);
+    }
 }
