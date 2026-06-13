@@ -966,7 +966,8 @@ public class XdocsExamplesAstConsistencyTest {
      *         skippable comment
      */
     private static StructuralAstNode toStructuralAst(DetailAST ast) {
-        final boolean ignoreName = isClassOrConstructorName(ast);
+        final boolean ignoreName = isClassOrConstructorName(ast)
+                || isExtendsAnExampleClass(ast);
         final StructuralAstNode node = new StructuralAstNode(
                 ast.getType(), ast.getText(), ignoreName, ast.getLineNo(), ignoreName
         );
@@ -993,7 +994,29 @@ public class XdocsExamplesAstConsistencyTest {
         return parent != null
                 && ast.getType() == TokenTypes.IDENT
                 && (parent.getType() == TokenTypes.CLASS_DEF
-                || parent.getType() == TokenTypes.CTOR_DEF);
+                    || parent.getType() == TokenTypes.CTOR_DEF);
+    }
+
+    /**
+     * Checks if an AST node is an identifier in an extends clause of an example class.
+     *
+     * @param ast the AST node to check
+     * @return true if the node is an identifier in an extends clause of an example class
+     */
+    private static boolean isExtendsAnExampleClass(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        boolean result = false;
+        if (parent != null
+                && ast.getType() == TokenTypes.IDENT
+                && parent.getType() == TokenTypes.EXTENDS_CLAUSE) {
+            final DetailAST classDef = parent.getParent();
+            if (classDef != null && classDef.getType() == TokenTypes.CLASS_DEF) {
+                final DetailAST className = classDef.findFirstToken(TokenTypes.IDENT);
+                result = className != null
+                        && className.getText().matches("Example\\d+");
+            }
+        }
+        return result;
     }
 
     /**
