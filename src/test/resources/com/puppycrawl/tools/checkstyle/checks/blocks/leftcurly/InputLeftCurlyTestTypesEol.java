@@ -13,6 +13,10 @@ tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, ENUM_D
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collector;
+
 public class InputLeftCurlyTestTypesEol {}
 
 // violation below ''{' at column 11 should have line break after'
@@ -40,3 +44,8 @@ enum  Bazz { VALUE,
 class Bar2 {{
     int a = 1;
 }}
+
+abstract class AnotherClass<K, R> implements Collector<K,
+        Set<? extends R>,
+        List<R>> {
+}
