@@ -62,6 +62,16 @@ public class InputLeftCurlyTestEolSwitch {
         }
     }
 
+    public void method() {
+        int expression = 2;
+        switch (expression)
+        { case 1 -> { Runnable result1 = () -> System.out.println("r1");  } }
+        // 3 violations above:
+        // ''{' at column 9 should be on the previous line'
+        // ''{' at column 9 should have line break after'
+        // ''{' at column 21 should have line break after'
+    }
+
     public @interface SomeAnnotation {
 
         String value() default "";

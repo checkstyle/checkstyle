@@ -301,7 +301,7 @@ public class LeftCurlyCheck
                 }
             }
             else if (option == LeftCurlyOption.EOL) {
-                validateEol(startToken, brace, braceLine);
+                validateEol(startToken, brace);
             }
             else if (!TokenUtil.areOnSameLine(startToken, brace)) {
                 validateNewLinePosition(brace, startToken, braceLine);
@@ -314,10 +314,9 @@ public class LeftCurlyCheck
      *
      * @param startToken token for start of expression.
      * @param brace brace AST
-     * @param braceLine line content
      */
-    private void validateEol(DetailAST startToken, DetailAST brace, String braceLine) {
-        if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+    private void validateEol(DetailAST startToken, DetailAST brace) {
+        if (!isOnLineWithBlockPreviousToken(brace)) {
             log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
         if (!hasLineBreakAfter(startToken, brace)) {
@@ -374,6 +373,26 @@ public class LeftCurlyCheck
         return nextToken == null
                 || nextToken.getType() == TokenTypes.RCURLY
                 || !TokenUtil.areOnSameLine(curlyBrace, nextToken);
+    }
+
+    /**
+     * Checks if the given brace is with a token of a block.
+     *
+     * @param brace the brace token to check
+     * @return true if the brace is on the same line as its previous token
+     */
+    private static boolean isOnLineWithBlockPreviousToken(DetailAST brace) {
+        DetailAST endToken = brace.getPreviousSibling();
+        if (brace.getParent().getType() == TokenTypes.SLIST) {
+            endToken = brace.getParent().getPreviousSibling();
+        }
+        while (endToken != null && endToken.hasChildren()) {
+            endToken = endToken.getLastChild();
+        }
+        if (endToken == null || brace.getParent().getType() == TokenTypes.LAMBDA) {
+            endToken = brace.getParent();
+        }
+        return TokenUtil.areOnSameLine(brace, endToken);
     }
 
 }
