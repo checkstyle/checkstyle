@@ -18,16 +18,17 @@ import org.junit.jupiter.api.function.ThrowingConsumer;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.*;
-import java.util.List;
 
 public class InputLeftCurlyCommentBeforeLeftCurly2 {
 
     private long[] countList;
 
     void method1() /* comment
-    comment */ { // ok until #11410
+    comment */ {
     }
+    // violation 2 lines above ''{' at column 16 should be on the previous line'
 
+    // violation 2 lines below ''{' at column 16 should be on the previous line'
     void method2() /********
     comment */ {
         if (!Arrays.equals(this.countList, countList)
@@ -36,16 +37,17 @@ public class InputLeftCurlyCommentBeforeLeftCurly2 {
     }
 
     void method3() /*****
-    ********/ { } // ok until #11410
-
+    ********/ { }
+    // violation above ''{' at column 15 should be on the previous line'
 
     InputLeftCurlyCommentBeforeLeftCurly2() /**************/ { }
 
     InputLeftCurlyCommentBeforeLeftCurly2(int data) /*
-     ****** comment *********/ { } // ok until #11410
+     ****** comment *********/ { }
+    // violation above ''{' at column 32 should be on the previous line'
 }
 
-class Class {
+class Class1 {
     private
     class Node /************/{
         int data;
@@ -55,13 +57,11 @@ class Class {
             this.data = data;
         }
     }
-
     String s = "🧐  🧐";
     private void foo3(String s) {
         /*🧐 🧐 🧐*/  /* comment */ if ("🧐".isEmpty()) {
         }
     }
-
     List<ThrowingConsumer<InetSocketAddress>> targets = List.of(
             /* 0 */  (a) -> {Socket s = new Socket();},
             // violation above ''{' at column 29 should have line break after'
@@ -83,13 +83,37 @@ class Nothing {
     }
 
     public void test3(String line) {
-
         int index=0;
         if (line.regionMatches(index, "/**", 0, "/**".length())) {
             index += 2;
         }
         else if (line.regionMatches(index, "*/", 0, 2)) {
             index++;
+        }
+    }
+
+    private boolean isThrowable(String className) /*
+     * throws
+     * ClassNotFoundException
+     */{
+        // violation above ''{' at column 8 should be on the previous line'
+        try {
+            Class<?> clazz = Class.forName(className);
+            return Throwable.class.isAssignableFrom(clazz);
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+    }
+
+    void paint(boolean selected, Object parent, String bColor) {
+        if (selected) {
+            bColor = "selected";
+        } else if (parent != null) /* Pick background color up from parent (which will come from
+        the JTree we're contained in). */ {
+        // violation above ''{' at column 43 should be on the previous line'
+            bColor = "parent";
+        } else {
+            bColor = "default";
         }
     }
 }
