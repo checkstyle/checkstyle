@@ -266,16 +266,33 @@ class Example2 {
     }
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check with default settings:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParenPad"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
 </code></pre></div>
-        <p>
-          The following cases are not checked:
+        <p id="Example3-code">
+          The following cases are intentionally not checked. No check occurs at
+          the right parenthesis after an empty for iterator, at the left
+          parenthesis before an empty for initialization, or at the right
+          parenthesis of a try-with-resources resource specification where the
+          last resource variable has a trailing semicolon:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-for ( ; i &lt; j; i++, j--) // no check after left parenthesis
-for (Iterator it = xs.iterator(); it.hasNext(); ) // no check before right parenthesis
-try (Closeable resource = acquire(); ) // no check before right parenthesis
-        </code></pre></div>
-
+class Example3 {
+  void m(int i, int j, Iterator xs, Closeable resource) throws Exception {
+    for ( ; i &lt; j; i++, j--) {} // ok, no check after left '('
+    for (Iterator it = xs; it.hasNext(); ) {} // ok, no check before right ')'
+    try (Closeable r = resource; ) {} // ok, no check before right ')
+  }
+}
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="ParenPad_Example_of_Usage">
