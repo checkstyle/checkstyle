@@ -43,6 +43,10 @@ import com.puppycrawl.tools.checkstyle.grammar.SimpleToken;
         return VOID_TAGS.contains(tagName.toLowerCase());
     }
 
+    private boolean isNestedClassSuffix() {
+        return _input.LT(1).getText().startsWith(".");
+    }
+
     public JavadocCommentsParser(CommonTokenStream tokens, Set<SimpleToken> unclosed) {
         super(tokens);
         _interp = new ParserATNSimulator(
@@ -218,7 +222,7 @@ reference
     ;
 
 typeName
-    : qualifiedName (typeArguments)?
+    : qualifiedName typeArguments? ({ isNestedClassSuffix() }? qualifiedName typeArguments?)*
     ;
 
 qualifiedName
