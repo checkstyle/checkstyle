@@ -218,7 +218,7 @@ reference
     ;
 
 typeName
-    : qualifiedName (typeArguments)?
+    : (qualifiedName typeArguments?)+
     ;
 
 qualifiedName
