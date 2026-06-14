@@ -167,6 +167,14 @@ public final class InlineConfigParser {
     private static final Pattern VIOLATION_SOME_LINES_BELOW_PATTERN = Pattern
             .compile(".*//\\s*violation (\\d+) lines below\\s*(?:['\"](.*))?$");
 
+    /** A pattern to find the string: "// violation first line". */
+    private static final Pattern VIOLATION_FIRST_LINE_PATTERN = Pattern
+            .compile(".*//\\s*violation first line\\s*(?:['\"](.*))?$");
+
+    /** A pattern to find the string: "// violation last line". */
+    private static final Pattern VIOLATION_LAST_LINE_PATTERN = Pattern
+            .compile(".*//\\s*violation last line\\s*(?:['\"](.*))?$");
+
     /**
      * <div>
      * Multiple violations for above line. Messages are X lines below.
@@ -1109,6 +1117,10 @@ public final class InlineConfigParser {
                 VIOLATION_SOME_LINES_ABOVE_PATTERN.matcher(lines.get(lineNo));
         final Matcher violationSomeLinesBelowMatcher =
                 VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(lines.get(lineNo));
+        final Matcher violationFirstLineMatcher =
+                VIOLATION_FIRST_LINE_PATTERN.matcher(lines.get(lineNo));
+        final Matcher violationLastLineMatcher =
+                VIOLATION_LAST_LINE_PATTERN.matcher(lines.get(lineNo));
         final Matcher violationsAboveMatcherWithMessages =
                 VIOLATIONS_ABOVE_PATTERN_WITH_MESSAGES.matcher(lines.get(lineNo));
         final Matcher violationsSomeLinesAboveMatcher =
@@ -1175,15 +1187,29 @@ public final class InlineConfigParser {
                     violationLineNum);
             inputConfigBuilder.addViolation(violationLineNum, violationMessage);
         }
+        else if (violationFirstLineMatcher.matches()) {
+            final String violationMessage =
+                    extractMessage(violationFirstLineMatcher.group(1), lines, lineNo);
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage, 1);
+            inputConfigBuilder.addViolation(1, violationMessage);
+        }
+        else if (violationLastLineMatcher.matches()) {
+            final String violationMessage =
+                    extractMessage(violationLastLineMatcher.group(1), lines, lineNo);
+            final int lastLineNum = lines.size();
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    lastLineNum);
+            inputConfigBuilder.addViolation(lastLineNum, violationMessage);
+        }
         else if (violationsAboveMatcherWithMessages.matches()) {
             inputConfigBuilder.addViolations(
-                getExpectedViolationsForSpecificLine(
-                    lines, lineNo, lineNo, violationsAboveMatcherWithMessages));
+                    getExpectedViolationsForSpecificLine(
+                            lines, lineNo, lineNo, violationsAboveMatcherWithMessages));
         }
         else if (violationsSomeLinesAboveMatcher.matches()) {
             inputConfigBuilder.addViolations(
-                getExpectedViolations(
-                    lines, lineNo, violationsSomeLinesAboveMatcher, true));
+                    getExpectedViolations(
+                            lines, lineNo, violationsSomeLinesAboveMatcher, true));
         }
         else if (violationsSomeLinesBelowMatcher.matches()) {
             inputConfigBuilder.addViolations(
@@ -1326,6 +1352,8 @@ public final class InlineConfigParser {
                 || VIOLATION_BELOW_PATTERN.matcher(line).matches()
                 || VIOLATION_SOME_LINES_ABOVE_PATTERN.matcher(line).matches()
                 || VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(line).matches()
+                || VIOLATION_FIRST_LINE_PATTERN.matcher(line).matches()
+                || VIOLATION_LAST_LINE_PATTERN.matcher(line).matches()
                 || FILTERED_VIOLATION_PATTERN.matcher(line).matches();
     }
 
