@@ -1081,9 +1081,8 @@ public final class InlineConfigParser {
      *      parser requires giant if/else
      * @throws CheckstyleException if violation message is not specified
      */
-    // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
-    // -@cs[JavaNCSS] splitting this method is not reasonable.
-    // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
+    // -@cs[JavaNCSS|CyclomaticComplexity] splitting this method is not reasonable.
+    // -@cs[MethodLength|ExecutableStatementCount] splitting this method is not reasonable.
     private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
                                       List<String> lines, boolean useFilteredViolations,
                                       int lineNo, boolean specifyViolationMessage)
@@ -1096,39 +1095,26 @@ public final class InlineConfigParser {
         }
 
         final Matcher violationMatcher =
-                VIOLATION_PATTERN.matcher(lines.get(lineNo));
+                VIOLATION_PATTERN.matcher(line);
         final Matcher violationAboveMatcher =
-                VIOLATION_ABOVE_PATTERN.matcher(lines.get(lineNo));
+                VIOLATION_ABOVE_PATTERN.matcher(line);
         final Matcher violationBelowMatcher =
-                VIOLATION_BELOW_PATTERN.matcher(lines.get(lineNo));
+                VIOLATION_BELOW_PATTERN.matcher(line);
         final Matcher violationAboveWithExplanationMatcher =
-                VIOLATION_ABOVE_WITH_EXPLANATION_PATTERN.matcher(lines.get(lineNo));
+                VIOLATION_ABOVE_WITH_EXPLANATION_PATTERN.matcher(line);
         final Matcher violationBelowWithExplanationMatcher =
-                VIOLATION_BELOW_WITH_EXPLANATION_PATTERN.matcher(lines.get(lineNo));
+                VIOLATION_BELOW_WITH_EXPLANATION_PATTERN.matcher(line);
         final Matcher violationWithExplanationMatcher =
-                VIOLATION_WITH_EXPLANATION_PATTERN.matcher(lines.get(lineNo));
-        final Matcher multipleViolationsMatcher =
-                MULTIPLE_VIOLATIONS_PATTERN.matcher(lines.get(lineNo));
-        final Matcher multipleViolationsAboveMatcher =
-                MULTIPLE_VIOLATIONS_ABOVE_PATTERN.matcher(lines.get(lineNo));
-        final Matcher multipleViolationsBelowMatcher =
-                MULTIPLE_VIOLATIONS_BELOW_PATTERN.matcher(lines.get(lineNo));
+                VIOLATION_WITH_EXPLANATION_PATTERN.matcher(line);
         final Matcher violationSomeLinesAboveMatcher =
-                VIOLATION_SOME_LINES_ABOVE_PATTERN.matcher(lines.get(lineNo));
+                VIOLATION_SOME_LINES_ABOVE_PATTERN.matcher(line);
         final Matcher violationSomeLinesBelowMatcher =
-                VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(lines.get(lineNo));
+                VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(line);
         final Matcher violationFirstLineMatcher =
-                VIOLATION_FIRST_LINE_PATTERN.matcher(lines.get(lineNo));
+                VIOLATION_FIRST_LINE_PATTERN.matcher(line);
         final Matcher violationLastLineMatcher =
-                VIOLATION_LAST_LINE_PATTERN.matcher(lines.get(lineNo));
-        final Matcher violationsAboveMatcherWithMessages =
-                VIOLATIONS_ABOVE_PATTERN_WITH_MESSAGES.matcher(lines.get(lineNo));
-        final Matcher violationsSomeLinesAboveMatcher =
-                VIOLATIONS_SOME_LINES_ABOVE_PATTERN.matcher(lines.get(lineNo));
-        final Matcher violationsSomeLinesBelowMatcher =
-                VIOLATIONS_SOME_LINES_BELOW_PATTERN.matcher(lines.get(lineNo));
-        final Matcher violationsDefault =
-                VIOLATION_DEFAULT.matcher(lines.get(lineNo));
+                VIOLATION_LAST_LINE_PATTERN.matcher(line);
+
         if (violationMatcher.matches()) {
             final String violationMessage =
                     extractMessage(violationMatcher.group(1), lines, lineNo);
@@ -1201,15 +1187,52 @@ public final class InlineConfigParser {
                     lastLineNum);
             inputConfigBuilder.addViolation(lastLineNum, violationMessage);
         }
-        else if (violationsAboveMatcherWithMessages.matches()) {
+        else {
+            setViolationsForMultipleAndFiltered(inputConfigBuilder, lines,
+                    useFilteredViolations, lineNo, specifyViolationMessage);
+        }
+    }
+
+    /**
+     * Sets violations for multiple-violation patterns, grouped patterns, and filtered violations.
+     *
+     * @param inputConfigBuilder the builder to add violations to.
+     * @param lines all the lines in the file.
+     * @param useFilteredViolations flag to set filtered violations.
+     * @param lineNo current line number.
+     * @param specifyViolationMessage whether violation message must be specified.
+     * @throws CheckstyleException if violation message is not specified.
+     */
+    private static void setViolationsForMultipleAndFiltered(
+            TestInputConfiguration.Builder inputConfigBuilder,
+            List<String> lines, boolean useFilteredViolations,
+            int lineNo, boolean specifyViolationMessage)
+            throws CheckstyleException {
+        final String line = lines.get(lineNo);
+        final Matcher multipleViolationsMatcher =
+                MULTIPLE_VIOLATIONS_PATTERN.matcher(line);
+        final Matcher multipleViolationsAboveMatcher =
+                MULTIPLE_VIOLATIONS_ABOVE_PATTERN.matcher(line);
+        final Matcher multipleViolationsBelowMatcher =
+                MULTIPLE_VIOLATIONS_BELOW_PATTERN.matcher(line);
+        final Matcher violationsAboveMatcherWithMessages =
+                VIOLATIONS_ABOVE_PATTERN_WITH_MESSAGES.matcher(line);
+        final Matcher violationsSomeLinesAboveMatcher =
+                VIOLATIONS_SOME_LINES_ABOVE_PATTERN.matcher(line);
+        final Matcher violationsSomeLinesBelowMatcher =
+                VIOLATIONS_SOME_LINES_BELOW_PATTERN.matcher(line);
+        final Matcher violationsDefault =
+                VIOLATION_DEFAULT.matcher(line);
+
+        if (violationsAboveMatcherWithMessages.matches()) {
             inputConfigBuilder.addViolations(
-                    getExpectedViolationsForSpecificLine(
-                            lines, lineNo, lineNo, violationsAboveMatcherWithMessages));
+                getExpectedViolationsForSpecificLine(
+                    lines, lineNo, lineNo, violationsAboveMatcherWithMessages));
         }
         else if (violationsSomeLinesAboveMatcher.matches()) {
             inputConfigBuilder.addViolations(
-                    getExpectedViolations(
-                            lines, lineNo, violationsSomeLinesAboveMatcher, true));
+                getExpectedViolations(
+                    lines, lineNo, violationsSomeLinesAboveMatcher, true));
         }
         else if (violationsSomeLinesBelowMatcher.matches()) {
             inputConfigBuilder.addViolations(
