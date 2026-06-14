@@ -105,9 +105,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/annotation/annotationlocation/Example3",
             "checks/annotation/annotationlocation/Example4",
             "checks/annotation/annotationonsameline/Example2",
-            "checks/annotation/annotationusestyle/Example2",
-            "checks/annotation/annotationusestyle/Example3",
-            "checks/annotation/annotationusestyle/Example4",
             "checks/annotation/missingoverride/Example2",
             "checks/annotation/suppresswarnings/Example2",
             "checks/annotation/suppresswarningsholder/Example2",
@@ -358,6 +355,8 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/imports/importorder/Example8",
             "checks/imports/importorder/Example9",
             // until https://github.com/checkstyle/checkstyle/issues/19891
+            "checks/annotation/annotationusestyle/Example3",
+            "checks/annotation/annotationusestyle/Example4",
             "checks/whitespace/parenpad/Example3",
             "checks/indentation/commentsindentation/Example3",
             "checks/indentation/commentsindentation/Example4",

@@ -38,9 +38,9 @@ public class AnnotationUseStyleCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "25:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
-            "26:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
-            "28:40: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "24:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "25:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "27:40: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -51,8 +51,8 @@ public class AnnotationUseStyleCheckExamplesTest extends AbstractExamplesModuleT
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
             "19:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
-            "26:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
-            "28:40: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "25:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "27:40: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
 
         };
 
