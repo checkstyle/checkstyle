@@ -685,8 +685,25 @@
                     Redundant Parentheses
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <p>
+                    Note: Automated enforcement of this rule is not supported, as determining
+                    whether redundant parentheses improve code readability requires human context
+                    and subjective judgment.
+                  </p>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt="" />
+                  </span>
+                  <a href="checks/coding/matchxpath.html#MatchXpath">
+                    MatchXpath</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/ruleredundantparenthesis">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
