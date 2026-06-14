@@ -167,6 +167,14 @@ public final class InlineConfigParser {
     private static final Pattern VIOLATION_SOME_LINES_BELOW_PATTERN = Pattern
             .compile(".*//\\s*violation (\\d+) lines below\\s*(?:['\"](.*))?$");
 
+    /** A pattern to find the string: "// violation first line". */
+    private static final Pattern VIOLATION_FIRST_LINE_PATTERN = Pattern
+            .compile(".*//\\s*violation first line\\s*(?:['\"](.*))?$");
+
+    /** A pattern to find the string: "// violation last line". */
+    private static final Pattern VIOLATION_LAST_LINE_PATTERN = Pattern
+            .compile(".*//\\s*violation last line\\s*(?:['\"](.*))?$");
+
     /**
      * <div>
      * Multiple violations for above line. Messages are X lines below.
@@ -489,7 +497,7 @@ public final class InlineConfigParser {
 
         final Path filePath = Path.of(inputFilePath);
         final List<String> lines = readFile(filePath);
-        if (!checkIsXmlConfig(lines)) {
+        if (!isXmlConfig(lines)) {
             throw new CheckstyleException("Config cannot be parsed as xml.");
         }
 
@@ -524,7 +532,7 @@ public final class InlineConfigParser {
      * @param lines lines of the file
      * @return true if a file provides xml configuration, otherwise false.
      */
-    private static boolean checkIsXmlConfig(List<String> lines) {
+    private static boolean isXmlConfig(List<String> lines) {
         return "/*xml".equals(lines.getFirst());
     }
 
@@ -538,7 +546,7 @@ public final class InlineConfigParser {
 
         final List<String> inlineConfig = getInlineConfig(lines);
 
-        if (checkIsXmlConfig(lines)) {
+        if (isXmlConfig(lines)) {
             final String stringXmlConfig = LATEST_DTD + String.join("", inlineConfig);
             final InputSource inputSource = new InputSource(new StringReader(stringXmlConfig));
             final Configuration xmlConfig = ConfigurationLoader.loadConfiguration(
@@ -1062,20 +1070,16 @@ public final class InlineConfigParser {
     }
 
     /**
-     * Sets the violations.
+     * Sets the violations for a single line by delegating to focused helper methods.
      *
-     * @param inputConfigBuilder the input file path.
+     * @param inputConfigBuilder the builder to add violations to.
      * @param lines all the lines in the file.
      * @param useFilteredViolations flag to set filtered violations.
-     * @param lineNo current line.
-     * @noinspection IfStatementWithTooManyBranches
-     * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
-     *      parser requires giant if/else
-     * @throws CheckstyleException if violation message is not specified
+     * @param lineNo current line number (0-based).
+     * @param specifyViolationMessage whether violation messages must be specified.
+     * @throws CheckstyleException if the line has an invalid marker format, or if a
+     *     required violation message is missing.
      */
-    // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
-    // -@cs[JavaNCSS] splitting this method is not reasonable.
-    // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
     private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
                                       List<String> lines, boolean useFilteredViolations,
                                       int lineNo, boolean specifyViolationMessage)
@@ -1087,139 +1091,283 @@ public final class InlineConfigParser {
                     "Invalid format (must be \"// ok...\" or \"// violation...\"): " + line);
         }
 
-        final Matcher violationMatcher =
-                VIOLATION_PATTERN.matcher(lines.get(lineNo));
-        final Matcher violationAboveMatcher =
-                VIOLATION_ABOVE_PATTERN.matcher(lines.get(lineNo));
-        final Matcher violationBelowMatcher =
-                VIOLATION_BELOW_PATTERN.matcher(lines.get(lineNo));
-        final Matcher violationAboveWithExplanationMatcher =
-                VIOLATION_ABOVE_WITH_EXPLANATION_PATTERN.matcher(lines.get(lineNo));
-        final Matcher violationBelowWithExplanationMatcher =
-                VIOLATION_BELOW_WITH_EXPLANATION_PATTERN.matcher(lines.get(lineNo));
-        final Matcher violationWithExplanationMatcher =
-                VIOLATION_WITH_EXPLANATION_PATTERN.matcher(lines.get(lineNo));
-        final Matcher multipleViolationsMatcher =
-                MULTIPLE_VIOLATIONS_PATTERN.matcher(lines.get(lineNo));
-        final Matcher multipleViolationsAboveMatcher =
-                MULTIPLE_VIOLATIONS_ABOVE_PATTERN.matcher(lines.get(lineNo));
-        final Matcher multipleViolationsBelowMatcher =
-                MULTIPLE_VIOLATIONS_BELOW_PATTERN.matcher(lines.get(lineNo));
-        final Matcher violationSomeLinesAboveMatcher =
-                VIOLATION_SOME_LINES_ABOVE_PATTERN.matcher(lines.get(lineNo));
-        final Matcher violationSomeLinesBelowMatcher =
-                VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(lines.get(lineNo));
-        final Matcher violationsAboveMatcherWithMessages =
-                VIOLATIONS_ABOVE_PATTERN_WITH_MESSAGES.matcher(lines.get(lineNo));
-        final Matcher violationsSomeLinesAboveMatcher =
-                VIOLATIONS_SOME_LINES_ABOVE_PATTERN.matcher(lines.get(lineNo));
-        final Matcher violationsSomeLinesBelowMatcher =
-                VIOLATIONS_SOME_LINES_BELOW_PATTERN.matcher(lines.get(lineNo));
-        final Matcher violationsDefault =
-                VIOLATION_DEFAULT.matcher(lines.get(lineNo));
-        if (violationMatcher.matches()) {
-            final String violationMessage =
-                    extractMessage(violationMatcher.group(1), lines, lineNo);
-            final int violationLineNum = lineNo + 1;
-            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
-                    violationLineNum);
-            inputConfigBuilder.addViolation(violationLineNum, violationMessage);
+        if (!handleSingleViolation(inputConfigBuilder, lines, lineNo, line, specifyViolationMessage)
+                && !handleMultipleViolations(inputConfigBuilder, lineNo, line)
+                && !handleViolationsWithMessages(inputConfigBuilder, lines, lineNo, line)) {
+            if (useFilteredViolations) {
+                setFilteredViolation(inputConfigBuilder, lineNo + 1,
+                        lines, lineNo, specifyViolationMessage);
+            }
+            else if (VIOLATION_DEFAULT.matcher(line).matches()) {
+                inputConfigBuilder.addViolation(lineNo + 1, null);
+            }
+        }
+    }
+
+    /**
+     * Validates and adds a violation to the input configuration.
+     *
+     * @param inputConfigBuilder builder to add violations to
+     * @param specifyViolationMessage whether violation messages must be specified
+     * @param message violation message
+     * @param violationLine line number where violation is expected
+     * @throws CheckstyleException if a required violation message is missing
+     */
+    private static void addViolation(
+            TestInputConfiguration.Builder inputConfigBuilder,
+            boolean specifyViolationMessage,
+            String message,
+            int violationLine)
+            throws CheckstyleException {
+        checkWhetherViolationSpecified(
+                specifyViolationMessage,
+                message,
+                violationLine);
+        inputConfigBuilder.addViolation(violationLine, message);
+    }
+
+    /**
+     * Handles single-violation comment patterns such as {@code // violation},
+     * {@code // violation above}, {@code // violation below},
+     * {@code // violation above, explanation}, {@code // violation below, explanation},
+     * {@code // violation, explanation}, {@code // violation X lines above},
+     * {@code // violation X lines below}, {@code // violation first line},
+     * and {@code // violation last line}.
+     *
+     * @param inputConfigBuilder the builder to add violations to
+     * @param lines all lines in the file
+     * @param lineNo the current line number (0-based)
+     * @param line the current line content
+     * @param specifyViolationMessage whether violation messages must be specified
+     * @return {@code true} if a single-violation pattern was matched and handled,
+     *     {@code false} otherwise
+     * @throws CheckstyleException if a required violation message is missing
+     */
+    private static boolean handleSingleViolation(
+            TestInputConfiguration.Builder inputConfigBuilder,
+            List<String> lines, int lineNo, String line,
+            boolean specifyViolationMessage)
+            throws CheckstyleException {
+        boolean handled = handleStandardViolation(inputConfigBuilder, lines, lineNo, line,
+                specifyViolationMessage);
+
+        if (!handled) {
+            handled = handleRelativeOrAbsoluteViolation(inputConfigBuilder, lines, lineNo, line,
+                    specifyViolationMessage);
+        }
+        return handled;
+    }
+
+    /**
+     * Handles standard single-violation patterns.
+     *
+     * @param inputConfigBuilder the builder to add violations to
+     * @param lines all lines in the file
+     * @param lineNo the current line number (0-based)
+     * @param line the current line content
+     * @param specifyViolationMessage whether violation messages must be specified
+     * @return {@code true} if a standard single-violation pattern was matched and handled,
+     *     {@code false} otherwise
+     * @throws CheckstyleException if a required violation message is missing
+     */
+    private static boolean handleStandardViolation(
+            TestInputConfiguration.Builder inputConfigBuilder,
+            List<String> lines, int lineNo, String line,
+            boolean specifyViolationMessage)
+            throws CheckstyleException {
+        final Matcher violationMatcher = VIOLATION_PATTERN.matcher(line);
+        final Matcher violationAboveMatcher = VIOLATION_ABOVE_PATTERN.matcher(line);
+        final Matcher violationBelowMatcher = VIOLATION_BELOW_PATTERN.matcher(line);
+        final Matcher violationAboveWithExplan =
+                VIOLATION_ABOVE_WITH_EXPLANATION_PATTERN.matcher(line);
+        final Matcher violationBelowWithExplan =
+                VIOLATION_BELOW_WITH_EXPLANATION_PATTERN.matcher(line);
+        final Matcher violationWithExplanMatcher =
+                VIOLATION_WITH_EXPLANATION_PATTERN.matcher(line);
+
+        final boolean handled;
+        if (violationAboveWithExplan.matches()) {
+            final String msg = extractMessage(violationAboveWithExplan.group(1), lines, lineNo);
+            addViolation(inputConfigBuilder, specifyViolationMessage, msg, lineNo);
+            handled = true;
+        }
+        else if (violationBelowWithExplan.matches()) {
+            final String msg = extractMessage(violationBelowWithExplan.group(1), lines, lineNo);
+            addViolation(inputConfigBuilder, specifyViolationMessage, msg, lineNo + 2);
+            handled = true;
+        }
+        else if (violationWithExplanMatcher.matches()) {
+            inputConfigBuilder.addViolation(lineNo + 1, null);
+            handled = true;
         }
         else if (violationAboveMatcher.matches()) {
-            final String violationMessage =
-                    extractMessage(violationAboveMatcher.group(1), lines, lineNo);
-            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage, lineNo);
-            inputConfigBuilder.addViolation(lineNo, violationMessage);
+            final String msg = extractMessage(violationAboveMatcher.group(1), lines, lineNo);
+            addViolation(inputConfigBuilder, specifyViolationMessage, msg, lineNo);
+            handled = true;
         }
         else if (violationBelowMatcher.matches()) {
-            final String violationMessage =
-                    extractMessage(violationBelowMatcher.group(1), lines, lineNo);
-            final int violationLineNum = lineNo + 2;
-            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
-                    violationLineNum);
-            inputConfigBuilder.addViolation(violationLineNum, violationMessage);
+            final String msg = extractMessage(violationBelowMatcher.group(1), lines, lineNo);
+            addViolation(inputConfigBuilder, specifyViolationMessage, msg, lineNo + 2);
+            handled = true;
         }
-        else if (violationAboveWithExplanationMatcher.matches()) {
-            final String violationMessage =
-                    extractMessage(violationAboveWithExplanationMatcher.group(1), lines, lineNo);
-            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage, lineNo);
-            inputConfigBuilder.addViolation(lineNo, violationMessage);
+        else if (violationMatcher.matches()) {
+            final String msg = extractMessage(violationMatcher.group(1), lines, lineNo);
+            addViolation(inputConfigBuilder, specifyViolationMessage, msg, lineNo + 1);
+            handled = true;
         }
-        else if (violationBelowWithExplanationMatcher.matches()) {
-            final String violationMessage =
-                    extractMessage(violationBelowWithExplanationMatcher.group(1), lines, lineNo);
-            final int violationLineNum = lineNo + 2;
-            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
-                    violationLineNum);
-            inputConfigBuilder.addViolation(violationLineNum, violationMessage);
+        else {
+            handled = false;
         }
-        else if (violationWithExplanationMatcher.matches()) {
-            final int violationLineNum = lineNo + 1;
-            inputConfigBuilder.addViolation(violationLineNum, null);
-        }
-        else if (violationSomeLinesAboveMatcher.matches()) {
-            final String violationMessage =
-                    extractMessage(violationSomeLinesAboveMatcher.group(2), lines, lineNo);
-            final int linesAbove = Integer.parseInt(violationSomeLinesAboveMatcher.group(1)) - 1;
-            final int violationLineNum = lineNo - linesAbove;
-            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
-                    violationLineNum);
-            inputConfigBuilder.addViolation(violationLineNum, violationMessage);
+        return handled;
+    }
+
+    /**
+     * Handles relative or absolute single-violation patterns.
+     *
+     * @param inputConfigBuilder the builder to add violations to
+     * @param lines all lines in the file
+     * @param lineNo the current line number (0-based)
+     * @param line the current line content
+     * @param specifyViolationMessage whether violation messages must be specified
+     * @return {@code true} if a relative or absolute single-violation pattern was matched,
+     *     {@code false} otherwise
+     * @throws CheckstyleException if a required violation message is missing
+     */
+    private static boolean handleRelativeOrAbsoluteViolation(
+            TestInputConfiguration.Builder inputConfigBuilder,
+            List<String> lines, int lineNo, String line,
+            boolean specifyViolationMessage)
+            throws CheckstyleException {
+        final Matcher violationSomeLinesAboveMatcher =
+                VIOLATION_SOME_LINES_ABOVE_PATTERN.matcher(line);
+        final Matcher violationSomeLinesBelowMatcher =
+                VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(line);
+        final Matcher violationFirstLineMatcher =
+                VIOLATION_FIRST_LINE_PATTERN.matcher(line);
+        final Matcher violationLastLineMatcher =
+                VIOLATION_LAST_LINE_PATTERN.matcher(line);
+
+        final boolean handled;
+        if (violationSomeLinesAboveMatcher.matches()) {
+            final String msg = extractMessage(violationSomeLinesAboveMatcher.group(2),
+                    lines, lineNo);
+            final int linesAbove = Integer.parseInt(
+                    violationSomeLinesAboveMatcher.group(1)) - 1;
+            addViolation(inputConfigBuilder, specifyViolationMessage, msg, lineNo - linesAbove);
+            handled = true;
         }
         else if (violationSomeLinesBelowMatcher.matches()) {
-            final String violationMessage =
-                    extractMessage(violationSomeLinesBelowMatcher.group(2), lines, lineNo);
-            final int linesBelow = Integer.parseInt(violationSomeLinesBelowMatcher.group(1)) + 1;
-            final int violationLineNum = lineNo + linesBelow;
-            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
-                    violationLineNum);
-            inputConfigBuilder.addViolation(violationLineNum, violationMessage);
+            final String msg = extractMessage(violationSomeLinesBelowMatcher.group(2),
+                    lines, lineNo);
+            final int linesBelow = Integer.parseInt(
+                    violationSomeLinesBelowMatcher.group(1)) + 1;
+            addViolation(inputConfigBuilder, specifyViolationMessage, msg, lineNo + linesBelow);
+            handled = true;
         }
-        else if (violationsAboveMatcherWithMessages.matches()) {
+        else if (violationFirstLineMatcher.matches()) {
+            final String msg = extractMessage(violationFirstLineMatcher.group(1), lines, lineNo);
+            addViolation(inputConfigBuilder, specifyViolationMessage, msg, 1);
+            handled = true;
+        }
+        else if (violationLastLineMatcher.matches()) {
+            final String msg = extractMessage(violationLastLineMatcher.group(1), lines, lineNo);
+            addViolation(inputConfigBuilder, specifyViolationMessage, msg, lines.size());
+            handled = true;
+        }
+        else {
+            handled = false;
+        }
+        return handled;
+    }
+
+    /**
+     * Handles the {@code // X violations}, {@code // X violations above},
+     * and {@code // X violations below} patterns, which each add {@code X} copies
+     * of a messageless violation at a single target line.
+     *
+     * @param inputConfigBuilder the builder to add violations to.
+     * @param lineNo the current line number (0-based).
+     * @param line the current line content.
+     * @return {@code true} if a multiple-violations pattern was matched and handled,
+     *     {@code false} otherwise.
+     */
+    private static boolean handleMultipleViolations(
+            TestInputConfiguration.Builder inputConfigBuilder,
+            int lineNo, String line) {
+        final Matcher multipleViolationsMatcher = MULTIPLE_VIOLATIONS_PATTERN.matcher(line);
+        final Matcher multipleViolationsAboveMatcher =
+                MULTIPLE_VIOLATIONS_ABOVE_PATTERN.matcher(line);
+        final Matcher multipleViolationsBelowMatcher =
+                MULTIPLE_VIOLATIONS_BELOW_PATTERN.matcher(line);
+
+        final boolean handled;
+        if (multipleViolationsMatcher.matches()) {
+            final int count = Integer.parseInt(multipleViolationsMatcher.group(1));
+            Collections.nCopies(count, lineNo + 1)
+                    .forEach(actualLineNo -> inputConfigBuilder.addViolation(actualLineNo, null));
+            handled = true;
+        }
+        else if (multipleViolationsAboveMatcher.matches()) {
+            final int count = Integer.parseInt(multipleViolationsAboveMatcher.group(1));
+            Collections.nCopies(count, lineNo)
+                    .forEach(actualLineNo -> inputConfigBuilder.addViolation(actualLineNo, null));
+            handled = true;
+        }
+        else if (multipleViolationsBelowMatcher.matches()) {
+            final int count = Integer.parseInt(multipleViolationsBelowMatcher.group(1));
+            Collections.nCopies(count, lineNo + 2)
+                    .forEach(actualLineNo -> inputConfigBuilder.addViolation(actualLineNo, null));
+            handled = true;
+        }
+        else {
+            handled = false;
+        }
+        return handled;
+    }
+
+    /**
+     * Handles patterns that carry per-violation messages on the lines that follow:
+     * {@code // X violations above:}, {@code // X violations Y lines above:},
+     * and {@code // X violations Y lines below:}.
+     *
+     * @param inputConfigBuilder the builder to add violations to.
+     * @param lines all lines in the file.
+     * @param lineNo the current line number (0-based).
+     * @param line the current line content.
+     * @return {@code true} if a violations-with-messages pattern was matched and handled,
+     *     {@code false} otherwise.
+     */
+    private static boolean handleViolationsWithMessages(
+            TestInputConfiguration.Builder inputConfigBuilder,
+            List<String> lines, int lineNo, String line) {
+        final Matcher violationsAboveWithMsgs =
+                VIOLATIONS_ABOVE_PATTERN_WITH_MESSAGES.matcher(line);
+        final Matcher violationsSomeLinesAboveMatcher =
+                VIOLATIONS_SOME_LINES_ABOVE_PATTERN.matcher(line);
+        final Matcher violationsSomeLinesBelowMatcher =
+                VIOLATIONS_SOME_LINES_BELOW_PATTERN.matcher(line);
+
+        final boolean handled;
+        if (violationsAboveWithMsgs.matches()) {
             inputConfigBuilder.addViolations(
-                getExpectedViolationsForSpecificLine(
-                    lines, lineNo, lineNo, violationsAboveMatcherWithMessages));
+                    getExpectedViolationsForSpecificLine(lines, lineNo,
+                            lineNo, violationsAboveWithMsgs));
+            handled = true;
         }
         else if (violationsSomeLinesAboveMatcher.matches()) {
             inputConfigBuilder.addViolations(
-                getExpectedViolations(
-                    lines, lineNo, violationsSomeLinesAboveMatcher, true));
+                    getExpectedViolations(lines, lineNo, violationsSomeLinesAboveMatcher, true));
+            handled = true;
         }
         else if (violationsSomeLinesBelowMatcher.matches()) {
             inputConfigBuilder.addViolations(
-                    getExpectedViolations(
-                            lines, lineNo, violationsSomeLinesBelowMatcher, false));
+                    getExpectedViolations(lines, lineNo, violationsSomeLinesBelowMatcher, false));
+            handled = true;
         }
-        else if (multipleViolationsMatcher.matches()) {
-            Collections
-                    .nCopies(Integer.parseInt(multipleViolationsMatcher.group(1)), lineNo + 1)
-                    .forEach(actualLineNumber -> {
-                        inputConfigBuilder.addViolation(actualLineNumber, null);
-                    });
+        else {
+            handled = false;
         }
-        else if (multipleViolationsAboveMatcher.matches()) {
-            Collections
-                    .nCopies(Integer.parseInt(multipleViolationsAboveMatcher.group(1)), lineNo)
-                    .forEach(actualLineNumber -> {
-                        inputConfigBuilder.addViolation(actualLineNumber, null);
-                    });
-        }
-        else if (multipleViolationsBelowMatcher.matches()) {
-            Collections
-                    .nCopies(Integer.parseInt(multipleViolationsBelowMatcher.group(1)),
-                            lineNo + 2)
-                    .forEach(actualLineNumber -> {
-                        inputConfigBuilder.addViolation(actualLineNumber, null);
-                    });
-        }
-        else if (useFilteredViolations) {
-            setFilteredViolation(inputConfigBuilder, lineNo + 1,
-                    lines, lineNo, specifyViolationMessage);
-        }
-        else if (violationsDefault.matches()) {
-            final int violationLineNum = lineNo + 1;
-            inputConfigBuilder.addViolation(violationLineNum, null);
-        }
+        return handled;
     }
 
     private static List<TestInputViolation> getExpectedViolationsForSpecificLine(
@@ -1247,8 +1395,8 @@ public final class InlineConfigParser {
     }
 
     private static List<TestInputViolation> getExpectedViolations(
-                                              List<String> lines, int lineNo,
-                                              Matcher matcher, boolean isAbove) {
+            List<String> lines, int lineNo,
+            Matcher matcher, boolean isAbove) {
         final int violationLine =
             Integer.parseInt(matcher.group(2));
         final int violationLineNum;
@@ -1278,13 +1426,7 @@ public final class InlineConfigParser {
                 FILTERED_VIOLATION_SOME_LINES_ABOVE_PATTERN.matcher(line);
         final Matcher violationSomeLinesBelowMatcher =
                 FILTERED_VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(line);
-        if (violationMatcher.matches()) {
-            final String violationMessage =
-                    extractMessage(violationMatcher.group(1), lines, currentLineNo);
-            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage, lineNo);
-            inputConfigBuilder.addFilteredViolation(lineNo, violationMessage);
-        }
-        else if (violationAboveMatcher.matches()) {
+        if (violationAboveMatcher.matches()) {
             final String violationMessage =
                     extractMessage(violationAboveMatcher.group(1), lines, currentLineNo);
             final int violationLineNum = lineNo - 1;
@@ -1318,6 +1460,12 @@ public final class InlineConfigParser {
                     violationLineNum);
             inputConfigBuilder.addFilteredViolation(violationLineNum, violationMessage);
         }
+        else if (violationMatcher.matches()) {
+            final String violationMessage =
+                    extractMessage(violationMatcher.group(1), lines, currentLineNo);
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage, lineNo);
+            inputConfigBuilder.addFilteredViolation(lineNo, violationMessage);
+        }
     }
 
     private static boolean isViolationComment(String line) {
@@ -1326,6 +1474,8 @@ public final class InlineConfigParser {
                 || VIOLATION_BELOW_PATTERN.matcher(line).matches()
                 || VIOLATION_SOME_LINES_ABOVE_PATTERN.matcher(line).matches()
                 || VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(line).matches()
+                || VIOLATION_FIRST_LINE_PATTERN.matcher(line).matches()
+                || VIOLATION_LAST_LINE_PATTERN.matcher(line).matches()
                 || FILTERED_VIOLATION_PATTERN.matcher(line).matches();
     }
 
