@@ -165,6 +165,12 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testLinkInlineTagGenericInner() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedLinkInlineTagGenericInner.txt"),
+                getInlineTagsPath("InputLinkInlineTagGenericInner.javadoc"));
+    }
+
+    @Test
     public void testValueAndInheritDocInlineTag() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedValueAndInheritDocInlineTag.txt"),
                 getInlineTagsPath("InputValueAndInheritDocInlineTag.javadoc"));
