@@ -342,20 +342,20 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
         if (event.getColumn() > 0) {
             results.add(resultLineColumn
                 .replace(SEVERITY_LEVEL_PLACEHOLDER, renderSeverityLevel(event.getSeverityLevel()))
-                .replace(URI_PLACEHOLDER, renderFileNameUri(event.getFileName()))
                 .replace(COLUMN_PLACEHOLDER, Integer.toString(event.getColumn()))
                 .replace(LINE_PLACEHOLDER, Integer.toString(event.getLine()))
-                .replace(MESSAGE_PLACEHOLDER, message)
                 .replace(RULE_ID_PLACEHOLDER, ruleKey.toRuleId())
+                .replace(MESSAGE_PLACEHOLDER, message)
+                .replace(URI_PLACEHOLDER, renderFileNameUri(event.getFileName()))
             );
         }
         else {
             results.add(resultLineOnly
                 .replace(SEVERITY_LEVEL_PLACEHOLDER, renderSeverityLevel(event.getSeverityLevel()))
-                .replace(URI_PLACEHOLDER, renderFileNameUri(event.getFileName()))
                 .replace(LINE_PLACEHOLDER, Integer.toString(event.getLine()))
-                .replace(MESSAGE_PLACEHOLDER, message)
                 .replace(RULE_ID_PLACEHOLDER, ruleKey.toRuleId())
+                .replace(MESSAGE_PLACEHOLDER, message)
+                .replace(URI_PLACEHOLDER, renderFileNameUri(event.getFileName()))
             );
         }
     }
@@ -413,8 +413,8 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
         else {
             results.add(resultFileOnly
                 .replace(SEVERITY_LEVEL_PLACEHOLDER, renderSeverityLevel(event.getSeverityLevel()))
-                .replace(URI_PLACEHOLDER, renderFileNameUri(event.getFileName()))
                 .replace(MESSAGE_PLACEHOLDER, message)
+                .replace(URI_PLACEHOLDER, renderFileNameUri(event.getFileName()))
             );
         }
     }
