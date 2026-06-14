@@ -104,11 +104,7 @@
 </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-@Deprecated interface Foo1 {
-  void doSomething();
-}
-
-class Example1 implements Foo1 {
+class Example1 {
 
   // violation below, "should be on the same line with its target."
   @SuppressWarnings("deprecation")
@@ -122,22 +118,17 @@ class Example1 implements Foo1 {
   // violation below, "should be on the same line with its target."
   @Nullable
   String s;
-  // violation below, "should be on the same line with its target."
-  @Override
-  public void doSomething() {}
 }
 
-@SuppressWarnings("unchecked") class Test1 extends Example1 {
+@SuppressWarnings("unchecked") class Test1 {
 
-  @Deprecated public Test1() {
-  }
-
-  @Override // violation, "should be on the same line with its target."
+  @Deprecated public Test1() {}
+  // violation below, "should be on the same line with its target."
+  @Before
   public void fun1() {}
-
-  @Before // violation, "should be on the same line with its target."
-  @Override public void fun2() {}
-
+  // violation below, "should be on the same line with its target."
+  @Before
+  @SuppressWarnings("unchecked") public void fun2() {}
   // violation below, "should be on the same line with its target."
   @SuppressWarnings("deprecation")
   @Before public void fun3() {
@@ -161,12 +152,7 @@ class Example1 implements Foo1 {
 </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-@Deprecated interface Foo2 {
-  void doSomething();
-
-}
-
-class Example2 implements Foo2 {
+class Example2 {
 
   // violation below, "should be on the same line with its target."
   @SuppressWarnings("deprecation")
@@ -180,22 +166,18 @@ class Example2 implements Foo2 {
   // violation below, "should be on the same line with its target."
   @Nullable
   String s;
-
-  @Override
-  public void doSomething() {}
 }
 
-@SuppressWarnings("unchecked") class Test2 extends Example2 {
+@SuppressWarnings("unchecked") class Test2 {
 
-  @Deprecated public Test2() {
-  }
-
-  @Override
-  public void fun1() {}
-
+  @Deprecated public Test2() {}
+  // ok below, @Before is not in tokens to check
   @Before
-  @Override public void fun2() {}
-
+  public void fun1() {}
+  // ok below, @Before is not in tokens to check
+  @Before
+  @SuppressWarnings("unchecked") public void fun2() {}
+  // ok below, @SuppressWarnings is not in tokens to check
   @SuppressWarnings("deprecation")
   @Before public void fun3() {
   }
