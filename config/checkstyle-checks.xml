@@ -307,6 +307,22 @@
     <module name="MissingDeprecated"/>
     <module name="MissingOverride"/>
     <module name="MissingOverrideOnRecordAccessor"/>
+    <module name="OpenjdkAnnotationLocation">
+      <!-- we can not use it as it conflicts with AnnotationLocation -->
+      <property name="severity" value="ignore"/>
+      <property name="tokens" value="ANNOTATION_DEF"/>
+      <property name="tokens" value="ANNOTATION_FIELD_DEF"/>
+      <property name="tokens" value="ENUM_CONSTANT_DEF"/>
+      <property name="tokens" value="COMPACT_CTOR_DEF"/>
+      <property name="tokens" value="METHOD_DEF"/>
+      <property name="tokens" value="CTOR_DEF"/>
+      <property name="tokens" value="PACKAGE_DEF"/>
+      <property name="tokens" value="CLASS_DEF"/>
+      <property name="tokens" value="ENUM_DEF"/>
+      <property name="tokens" value="VARIABLE_DEF"/>
+      <property name="tokens" value="INTERFACE_DEF"/>
+      <property name="tokens" value="RECORD_DEF"/>
+    </module>
     <module name="PackageAnnotation"/>
     <module name="SuppressWarnings">
       <property name="format" value="^((?!unchecked|deprecation|rawtypes|resource|InvalidInlineTag|UnrecognisedJavadocTag|InlineMeSuggester|OverlyComplexBooleanExpression|ReferenceEquality).)*$"/>
