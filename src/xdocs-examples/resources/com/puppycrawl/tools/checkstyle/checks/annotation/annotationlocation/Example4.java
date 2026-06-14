@@ -16,22 +16,26 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
-import org.antlr.v4.runtime.misc.NotNull;
+import javax.annotation.Nonnull;
 import org.mockito.Mock;
 
 // xdoc section -- start
 class Example4 {
-  @NotNull private boolean field1; // ok, as 'tokens' property set to METHOD_DEF only
+  @Nonnull
+  private boolean field1;
   @Override public int hashCode() { return 1; }
-  @NotNull
+  // ok above, as 'tokens' property set to METHOD_DEF only
+  @Nonnull
   private boolean field2;
   @Override
   public boolean equals(Object obj) { return true; }
   @Mock
   DataLoader loader1;
-  @SuppressWarnings("deprecation") DataLoader loader;
+  @SuppressWarnings("deprecation") DataLoader loader2;
+  // ok above, as 'tokens' property set to METHOD_DEF only
   @SuppressWarnings("deprecation") public int foo() { return 1; }
-  // violation above, 'Annotation 'SuppressWarnings' should be alone on line.'
-  @NotNull @Mock DataLoader loader2;
+  // violation above, 'Annotation 'SuppressWarnings' should be alone on line'
+  @Nonnull @Mock DataLoader loader3;
+  // ok above, as 'tokens' property set to METHOD_DEF only
 }
 // xdoc section -- end
