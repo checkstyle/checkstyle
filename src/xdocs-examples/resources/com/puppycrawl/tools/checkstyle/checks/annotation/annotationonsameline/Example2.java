@@ -16,12 +16,7 @@ import org.junit.Before;
 import javax.annotation.Nullable;
 
 // xdoc section -- start
-@Deprecated interface Foo2 {
-  void doSomething();
-
-}
-
-class Example2 implements Foo2 {
+class Example2 {
 
   // violation below, "should be on the same line with its target."
   @SuppressWarnings("deprecation")
@@ -35,22 +30,18 @@ class Example2 implements Foo2 {
   // violation below, "should be on the same line with its target."
   @Nullable
   String s;
-
-  @Override
-  public void doSomething() {}
 }
 
-@SuppressWarnings("unchecked") class Test2 extends Example2 {
+@SuppressWarnings("unchecked") class Test2 {
 
-  @Deprecated public Test2() {
-  }
-
-  @Override
-  public void fun1() {}
-
+  @Deprecated public Test2() {}
+  // ok below, @Before is not in tokens to check
   @Before
-  @Override public void fun2() {}
-
+  public void fun1() {}
+  // ok below, @Before is not in tokens to check
+  @Before
+  @SuppressWarnings("unchecked") public void fun2() {}
+  // ok below, @SuppressWarnings is not in tokens to check
   @SuppressWarnings("deprecation")
   @Before public void fun3() {
   }
