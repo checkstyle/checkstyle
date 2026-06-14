@@ -104,7 +104,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/annotation/annotationlocation/Example2",
             "checks/annotation/annotationlocation/Example3",
             "checks/annotation/annotationlocation/Example4",
-            "checks/annotation/annotationonsameline/Example2",
             "checks/annotation/annotationusestyle/Example2",
             "checks/annotation/annotationusestyle/Example3",
             "checks/annotation/annotationusestyle/Example4",
