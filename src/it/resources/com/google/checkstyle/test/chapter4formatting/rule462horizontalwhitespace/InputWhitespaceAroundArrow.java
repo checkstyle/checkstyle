@@ -71,8 +71,8 @@ public class InputWhitespaceAroundArrow {
     //     ''{' is not preceded with whitespace.'
     new LinkedList<Integer>().stream()
         .map(t ->{
-            return t * 2;
-          }
+          return t * 2;
+        }
         )
         .filter(t -> {
           return false;
