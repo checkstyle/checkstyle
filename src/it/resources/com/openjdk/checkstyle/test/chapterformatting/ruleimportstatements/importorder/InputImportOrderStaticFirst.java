@@ -1,4 +1,4 @@
-package com.openjdk.checkstyle.test.chapterformatting.ruleimportstatements;
+package com.openjdk.checkstyle.test.chapterformatting.ruleimportstatements.importorder;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.max;
