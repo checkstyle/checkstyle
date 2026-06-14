@@ -121,7 +121,7 @@ public class NewHandler extends AbstractExpressionHandler {
         IndentLevel result;
         // if our expression isn't first on the line, just use the start
         // of the line
-        if (getLineStart(mainAst) == mainAst.getColumnNo()) {
+        if (isNewOnStartOfLine()) {
             result = super.getIndentImpl();
 
             final boolean isLineWrappedNew = TokenUtil.isOfType(mainAst.getParent().getParent(),
@@ -144,6 +144,17 @@ public class NewHandler extends AbstractExpressionHandler {
         }
 
         return result;
+    }
+
+    /**
+     * Checks if the new keyword is at the start of its line,
+     * using consistent visual column logic to handle both
+     * space and tab indented files.
+     *
+     * @return true if new is the first token on the line
+     */
+    private boolean isNewOnStartOfLine() {
+        return getLineStart(mainAst) == expandedTabsColumnNo(mainAst);
     }
 
     /**
