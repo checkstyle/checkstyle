@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_MISSING_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_MISSING_TAG_GENERAL;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_TAG_FORMAT;
 
 import java.io.File;
@@ -59,7 +60,7 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "6:1: " + getCheckMessage(JavadocTypeCheck.class,
-                MSG_MISSING_TAG, "@author"),
+                MSG_MISSING_TAG_GENERAL, "@author"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -114,7 +115,7 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "8:1: " + getCheckMessage(JavadocTypeCheck.class,
-                MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText() + " <C>"),
+                MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText(), "<C>"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(

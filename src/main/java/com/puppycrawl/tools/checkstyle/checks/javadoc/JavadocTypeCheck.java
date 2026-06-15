@@ -94,6 +94,12 @@ public class JavadocTypeCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    public static final String MSG_MISSING_TAG_GENERAL = "type.missingTagGeneral";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
     public static final String MSG_UNUSED_TAG = "javadoc.unusedTag";
 
     /**
@@ -388,7 +394,7 @@ public class JavadocTypeCheck
                 }
             }
             if (!hasTag) {
-                log(ast, MSG_MISSING_TAG, JAVADOC_TAG_TOKEN + tagName);
+                log(ast, MSG_MISSING_TAG_GENERAL, JAVADOC_TAG_TOKEN + tagName);
             }
         }
     }
@@ -414,8 +420,7 @@ public class JavadocTypeCheck
                 });
 
         if (!found) {
-            log(ast, MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText()
-                + SPACE + recordComponentName);
+            log(ast, MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText(), recordComponentName);
         }
     }
 
@@ -438,8 +443,8 @@ public class JavadocTypeCheck
             .anyMatch(tag -> tag.getFirstArg().indexOf(typeParamNameWithBrackets) == 0);
 
         if (!found) {
-            log(ast, MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText()
-                + SPACE + typeParamNameWithBrackets);
+            log(ast, MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText(),
+                typeParamNameWithBrackets);
         }
     }
 
