@@ -56,14 +56,14 @@ record Record2<T>(int a, int b) {
  * @param <T>
  * @param    <P>     stuff <><><<stuff></></></> stuff
  */
-record Record5<T, U>() {} // violation, 'Type Javadoc comment is missing @param <U> tag.'
+record Record5<T, U>() {} // violation, 'Type Javadoc comment is missing @param '<U>' tag.'
 
 // violation 3 lines below 'Unused @param tag for \'region\'.'
 /**
  *
  * @param region [(<>{@code stuff<stuff🐦‍🔥>🐦‍🔥&lt;stuff&gt;}</>)]{@code {&lt;stuff&gt;}}
  */
-record Record6(int a) {} // violation, 'Type Javadoc comment is missing @param a tag.'
+record Record6(int a) {} // violation, 'Type Javadoc comment is missing @param 'a' tag.'
 
 /**
  *
@@ -79,7 +79,7 @@ record Record7<T>(int a, int b) {}
  * @param b stuff<stuff>:<>:<>:<🐦‍🔥<<🐦‍🔥>>🐦‍🔥>
  * @param e [(<>{@code stuff<stuff🐦[(‍{🔥}])>🐦‍🔥&lt;stuff&gt;}</>)]{@code {&lt;stuff&gt;}}
  */
-record Record8(int a, int b, int c) { // violation, 'Type Javadoc comment is missing @param c tag.'
+record Record8(int a, int b, int c) { // violation, 'missing @param 'c' tag.'
 }
 
 /**
