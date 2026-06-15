@@ -487,8 +487,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private boolean isViolatingEmptyLineBetweenFieldsPolicy(DetailAST detailAST) {
         return detailAST.getType() != TokenTypes.RCURLY
+                && detailAST.getType() != TokenTypes.COMMA
                 && (!allowNoEmptyLineBetweenFields
-                    || !TokenUtil.isOfType(detailAST, TokenTypes.COMMA, TokenTypes.VARIABLE_DEF));
+                    || detailAST.getType() != TokenTypes.VARIABLE_DEF);
     }
 
     /**
