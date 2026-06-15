@@ -50,7 +50,7 @@ public class WriteTagCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_MISSING_TAG = "type.missingTag";
+    public static final String MSG_MISSING_TAG = "type.missingTagGeneral";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
