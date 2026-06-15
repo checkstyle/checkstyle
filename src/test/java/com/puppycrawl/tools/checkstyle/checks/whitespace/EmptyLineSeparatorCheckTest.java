@@ -254,6 +254,23 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testMultiVariableDeclaration() throws Exception {
+        final String[] expected = {
+            "22:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorMultiVariableDeclaration.java"), expected);
+    }
+
+    @Test
+    public void testMultiVariableDeclarationAllowNoEmptyLine() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorMultiVariableDeclarationAllowNoEmptyLine.java"),
+                expected);
+    }
+
+    @Test
     public void testAllowMultipleImportSeparatedFromPackage() throws Exception {
         final String[] expected = {
             "13:78: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
