@@ -104,6 +104,13 @@
     </module>
 
     <module name="UnusedImports"/>
+    <module name="MatchXpath">
+      <property name="id" value="unnecessaryParenthesesInReturn"/>
+      <property name="query"
+                value="//LITERAL_RETURN/EXPR[./LPAREN and ./RPAREN
+                       and not(./LPAREN/preceding-sibling::*)]"/>
+      <message key="matchxpath.match" value="Unnecessary parentheses in return statement."/>
+    </module>
 
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
