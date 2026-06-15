@@ -114,6 +114,9 @@ public class JavadocTypeCheck
     /** Javadoc tag token literal. */
     private static final String JAVADOC_TAG_TOKEN = "@";
 
+    /** Apostrophe literal. */
+    private static final String APOSTROPHE = "'";
+
     /** Pattern to match type name within angle brackets in javadoc param tag. */
     private static final Pattern TYPE_NAME_IN_JAVADOC_TAG =
             Pattern.compile("^<([^>]+)");
@@ -415,7 +418,7 @@ public class JavadocTypeCheck
 
         if (!found) {
             log(ast, MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText()
-                + SPACE + recordComponentName);
+                + SPACE + APOSTROPHE + recordComponentName + APOSTROPHE);
         }
     }
 

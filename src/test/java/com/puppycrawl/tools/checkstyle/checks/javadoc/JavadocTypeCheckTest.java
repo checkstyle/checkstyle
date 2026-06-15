@@ -373,13 +373,13 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testJavadocTypeRecordComponentNameMismatch() throws Exception {
         final String[] expected1 = {
             "21:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "valueExtra"),
-            "23:1: " + getCheckMessage(MSG_MISSING_TAG, "@param value"),
+            "23:1: " + getCheckMessage(MSG_MISSING_TAG, "@param 'value'"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeRecordComponentNameMismatch.java"), expected1);
 
         final String[] expected2 = {
-            "23:1: " + getCheckMessage(MSG_MISSING_TAG, "@param value"),
+            "23:1: " + getCheckMessage(MSG_MISSING_TAG, "@param 'value'"),
             "21:4: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
         };
         verifyWithInlineConfigParser(
@@ -404,9 +404,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "57:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<P>"),
             "59:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <U>"),
             "64:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "region"),
-            "66:1: " + getCheckMessage(MSG_MISSING_TAG, "@param a"),
+            "66:1: " + getCheckMessage(MSG_MISSING_TAG, "@param 'a'"),
             "80:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "e"),
-            "82:1: " + getCheckMessage(MSG_MISSING_TAG, "@param c"),
+            "82:1: " + getCheckMessage(MSG_MISSING_TAG, "@param 'c'"),
         };
 
         verifyWithInlineConfigParser(
@@ -422,15 +422,15 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "44:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <X>"),
             "49:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
             "61:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "notMyString"),
-            "64:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myString"),
-            "64:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myInt"),
+            "64:1: " + getCheckMessage(MSG_MISSING_TAG, "@param 'myString'"),
+            "64:1: " + getCheckMessage(MSG_MISSING_TAG, "@param 'myInt'"),
             "69:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
-            "71:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myList"),
-            "78:1: " + getCheckMessage(MSG_MISSING_TAG, "@param X"),
+            "71:1: " + getCheckMessage(MSG_MISSING_TAG, "@param 'myList'"),
+            "78:1: " + getCheckMessage(MSG_MISSING_TAG, "@param 'X'"),
             "82:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "notMyString"),
             "85:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
-            "85:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myInt"),
-            "85:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myString"),
+            "85:1: " + getCheckMessage(MSG_MISSING_TAG, "@param 'myInt'"),
+            "85:1: " + getCheckMessage(MSG_MISSING_TAG, "@param 'myString'"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeRecordComponents2.java"), expected);

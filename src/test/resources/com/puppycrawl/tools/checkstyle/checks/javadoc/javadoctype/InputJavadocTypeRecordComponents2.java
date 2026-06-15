@@ -68,14 +68,14 @@ record MyRecord6<X>(String myString, int myInt){} // 2 violations
  *
  * @param x
  */
-record MyRecord7(List<String>myList){} // violation 'missing @param myList tag.'
+record MyRecord7(List<String>myList){} // violation 'missing @param 'myList' tag.'
 
 /**
  * @author X
  * @param <X>
  * @param <T>
  */
-record MyRecord8<X, T>(String X){} // violation 'missing @param X tag.'
+record MyRecord8<X, T>(String X){} // violation 'missing @param 'X' tag.'
 
 // violation 2 lines below 'Unused @param tag for 'notMyString'.'
 /**
