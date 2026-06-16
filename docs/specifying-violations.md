@@ -77,6 +77,35 @@ return obj != null && obj instanceof Integer ? (Integer) obj * 2
         // violation 2 lines above 'Unnecessary nullity check'
 ```
 
+### Violation on First or Last Line of File
+
+Some checks report violations on the first or last line of the entire file
+(e.g. `NewlineAtEndOfFile` always reports at line 1 regardless of where
+in the file the comment appears). Using `violation N lines above` with a
+large `N` would be confusing to readers who only see the xdoc snippet.
+Use `violation first line` or `violation last line` instead — they can be
+placed at any visible line within the snippet.
+
+**Example using `violation first line`:**
+
+```java
+// xdoc section -- start
+public class Example2 { // ⤶
+// ⤶
+} // violation first line 'File does not end with a newline.'
+// xdoc section -- end
+```
+
+**Example using `violation last line`:**
+
+```java
+// xdoc section -- start
+public class Example3 { // ⤶
+// ⤶
+} // violation last line 'File ends with extra blank lines.'
+// xdoc section -- end
+```
+
 ## Violation Message Content and Format
 
 ### Content
