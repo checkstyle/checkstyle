@@ -684,6 +684,43 @@ public class HiddenFieldCheckTest
     }
 
     @Test
+    public void testHiddenFieldCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "18:21: " + getCheckMessage(MSG_KEY, "name"),
+            "18:31: " + getCheckMessage(MSG_KEY, "count"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputHiddenFieldCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testHiddenFieldCompactSourceFileStatic() throws Exception {
+        final String[] expected = {
+            "17:21: " + getCheckMessage(MSG_KEY, "name"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputHiddenFieldCompactSourceFileStatic.java"), expected);
+    }
+
+    @Test
+    public void testHiddenFieldCompactSourceFileStaticFieldAndMethod() throws Exception {
+        final String[] expected = {
+            "17:28: " + getCheckMessage(MSG_KEY, "name"),
+        };
+        final String file = "InputHiddenFieldCompactSourceFileStaticFieldAndMethod.java";
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(file), expected);
+    }
+
+    @Test
+    public void testHiddenFieldCompactSourceFileInstanceFieldStaticMethod() throws Exception {
+        final String[] expected = {};
+        final String file = "InputHiddenFieldCompactSourceFileInstanceFieldStaticMethod.java";
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(file), expected);
+    }
+
+    @Test
     public void testHiddenFieldRecordPattern() throws Exception {
 
         final String[] expected = {
