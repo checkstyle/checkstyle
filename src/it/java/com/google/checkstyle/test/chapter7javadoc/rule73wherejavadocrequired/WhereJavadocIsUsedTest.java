@@ -55,4 +55,9 @@ public class WhereJavadocIsUsedTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputJavadocTypeOnRecord2.java"));
     }
 
+    @Test
+    public void testJavadocMethodProtected() throws Exception {
+        verifyWithWholeConfig(getPath("InputJavadocMethodProtected.java"));
+    }
+
 }

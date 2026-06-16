@@ -24,11 +24,17 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocChec
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_DUPLICATE_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_INVALID_INHERIT_DOC;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_JAVADOC_PARSE_RULE_ERROR;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_RETURN_EXPECTED;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG_GENERAL;
 
+import org.itsallcode.io.Capturable;
+import org.itsallcode.junit.sysextensions.SystemErrGuard;
+import org.itsallcode.junit.sysextensions.SystemErrGuard.SysErr;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
@@ -36,11 +42,25 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+@ExtendWith(SystemErrGuard.class)
 public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod";
+    }
+
+    /**
+     * Configures the environment for each test.
+     * <ul>
+     * <li>Start output capture for {@link System#err}</li>
+     * </ul>
+     *
+     * @param systemErr wrapper for {@code System.err}
+     */
+    @BeforeEach
+    public void setUp(@SysErr Capturable systemErr) {
+        systemErr.captureMuted();
     }
 
     @Test
@@ -653,6 +673,23 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Message must include token name")
             .that(exc.getMessage())
             .contains("EQUALS");
+    }
+
+    @Test
+    public void testMalformedJavadoc(@SysErr Capturable systemErr) throws Exception {
+        final String[] expected = {
+            "26: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 13,
+                    "token recognition error at: '@'", " "),
+            "47: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 35,
+                    "token recognition error at: '@'", "abc"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodMalformedJavadoc.java"),
+                expected
+        );
+        assertWithMessage("Error is unexpected")
+                .that(systemErr.getCapturedData())
+                .isEqualTo("");
     }
 
 }
