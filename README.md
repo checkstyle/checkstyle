@@ -94,7 +94,7 @@ https://github.com/checkstyle/checkstyle/blob/master/.github/CONTRIBUTING.md
 
 ## Build Instructions
 
-Please see the [CheckStyle Documentation](https://checkstyle.org/contributing.html#Build) for
+Please see the [BEGINNING_DEVELOPMENT](https://github.com/checkstyle/checkstyle/blob/master/docs/BEGINNING_DEVELOPMENT.md) for
 information on how to build the project.
 
 ## Feedback and Support

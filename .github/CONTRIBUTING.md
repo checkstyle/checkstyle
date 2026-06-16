@@ -30,11 +30,9 @@ This project and everyone participating in it is governed by the
 
 ## Getting Started
 
-- Please see the [CheckStyle Documentation](https://checkstyle.org/beginning_development.html)
+- Please see the [BEGINNING_DEVELOPMENT](https://github.com/checkstyle/checkstyle/blob/master/docs/BEGINNING_DEVELOPMENT.md)
   for information on how to get started with the project. This includes setting up your
   development environment, building the project, and running tests.
-- Take a look at the [Contribution Guidelines](https://checkstyle.org/contributing.html) for
-  on how to contribute to the project.
 - Select an issue to work on from the [Issues Page][issues-page]. We
   have a few issues labeled as [good first issue][goodFirst-Issue] to
   help you get started. Please watch [videos][videos-playlist] on how to
