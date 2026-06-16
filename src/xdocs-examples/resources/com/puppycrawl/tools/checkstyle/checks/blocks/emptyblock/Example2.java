@@ -16,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
 public class Example2 {
   private void emptyLoop() {
     for (int i = 0; i < 10; i++) {
-      // ignored
+
     }
 
     try {
@@ -29,9 +29,7 @@ public class Example2 {
   private void testBadSwitchStatement(int a) {
     switch (a) {
       case 1: { }
-
       case 2: {} {};
-
       case 3: {} { System.out.println(); }
 
       case 4: { System.out.println(); } {}
