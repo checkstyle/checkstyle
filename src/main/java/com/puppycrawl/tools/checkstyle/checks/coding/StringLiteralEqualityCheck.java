@@ -77,8 +77,12 @@ public class StringLiteralEqualityCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final boolean hasStringLiteralChild = hasStringLiteralChild(ast);
+        final DetailAST left = ast.getFirstChild();
+        final DetailAST right = left.getNextSibling();
 
-        if (hasStringLiteralChild) {
+        if (hasStringLiteralChild
+                || isNewStringExpression(left)
+                || isNewStringExpression(right)) {
             log(ast, MSG_KEY, ast.getText());
         }
     }
@@ -103,6 +107,22 @@ public class StringLiteralEqualityCheck extends AbstractCheck {
             }
         }
         return result;
+    }
+
+    /**
+     * Returns true if the node represents a new String(...) expression.
+     *
+     * @param node the AST node to check
+     * @return true if node is a new String(...) construction
+     */
+    private static boolean isNewStringExpression(DetailAST node) {
+        if (node.getType() != TokenTypes.LITERAL_NEW) {
+            return false;
+        }
+        final DetailAST ident = node.getFirstChild();
+        return ident != null
+            && ident.getType() == TokenTypes.IDENT
+            && "String".equals(ident.getText());
     }
 
 }

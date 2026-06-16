@@ -119,4 +119,20 @@ public class StringLiteralEqualityCheckTest
             .isNotNull();
     }
 
+    @Test
+    public void testNewStringExpression() throws Exception {
+        final String[] expected = {
+            "15:39: " + getCheckMessage(MSG_KEY, "=="),
+            "17:27: " + getCheckMessage(MSG_KEY, "=="),
+            "19:39: " + getCheckMessage(MSG_KEY, "!="),
+            "21:31: " + getCheckMessage(MSG_KEY, "=="),
+            "23:39: " + getCheckMessage(MSG_KEY, "=="),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputStringLiteralEqualityNewString.java"),
+            expected
+        );
+    }
+
 }
