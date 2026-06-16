@@ -5412,6 +5412,9 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheckTest
                 </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheckTest
+                </param>
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
