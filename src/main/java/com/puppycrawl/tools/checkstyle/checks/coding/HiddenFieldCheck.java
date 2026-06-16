@@ -25,6 +25,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -135,6 +137,7 @@ public class HiddenFieldCheck
             TokenTypes.LAMBDA,
             TokenTypes.RECORD_DEF,
             TokenTypes.RECORD_COMPONENT_DEF,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
     }
 
@@ -145,6 +148,7 @@ public class HiddenFieldCheck
             TokenTypes.ENUM_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
     }
 
@@ -216,7 +220,7 @@ public class HiddenFieldCheck
         final FieldFrame newFrame = new FieldFrame(frame, isStaticInnerType, frameName);
 
         // add fields to container
-        final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
+        final DetailAST objBlock = getFieldContainer(ast);
         // enum constants may not have bodies
         if (objBlock != null) {
             DetailAST child = objBlock.getFirstChild();
@@ -249,6 +253,25 @@ public class HiddenFieldCheck
         }
         // push container
         frame = newFrame;
+    }
+
+    /**
+     * Gets the member container for field declaration harvesting.
+     *
+     * @param ast the type definition node.
+     * @return the member container, either the compact compilation unit
+     *     itself or the OBJBLOCK child of a standard type definition.
+     */
+    @Nullable
+    private static DetailAST getFieldContainer(DetailAST ast) {
+        final DetailAST result;
+        if (ast.getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
+            result = ast;
+        }
+        else {
+            result = ast.findFirstToken(TokenTypes.OBJBLOCK);
+        }
+        return result;
     }
 
     @Override
