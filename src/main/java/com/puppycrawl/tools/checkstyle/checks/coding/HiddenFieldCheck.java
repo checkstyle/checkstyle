@@ -151,6 +151,22 @@ public class HiddenFieldCheck
     @Override
     public void beginTree(DetailAST rootAST) {
         frame = new FieldFrame(null, true, null);
+        if (rootAST != null) {
+            DetailAST child = rootAST.getFirstChild();
+            while (child != null) {
+                if (child.getType() == TokenTypes.VARIABLE_DEF) {
+                    final String name = child.findFirstToken(TokenTypes.IDENT).getText();
+                    final DetailAST mods = child.findFirstToken(TokenTypes.MODIFIERS);
+                    if (mods.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
+                        frame.addInstanceField(name);
+                    }
+                    else {
+                        frame.addStaticField(name);
+                    }
+                }
+                child = child.getNextSibling();
+            }
+        }
     }
 
     @Override
