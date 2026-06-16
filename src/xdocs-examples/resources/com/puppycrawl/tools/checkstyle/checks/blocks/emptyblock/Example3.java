@@ -27,14 +27,12 @@ public class Example3 {
 
   private void testBadSwitchStatement(int a) {
     switch (a) {
-      case 1: { } // violation 'Must have at least one statement'
-      // the second empty block is 'sequential', skipped.
+      case 1: { }    // violation 'Must have at least one statement'
       case 2: {} {}; // violation 'Must have at least one statement'
-      // violation below, 'Must have at least one statement'
       case 3: {} { System.out.println(); }
-      // the second empty block is 'sequential', skipped.
+      // violation above 'Must have at least one statement'
       case 4: { System.out.println(); } {}
-      default: { } // violation 'Must have at least one statement'
+      default: { }   // violation 'Must have at least one statement'
     }
   }
 
@@ -47,7 +45,7 @@ public class Example3 {
 
   private void testBadSwitchRule(int a) {
     switch (a) {
-      case 1 -> { } // violation 'Must have at least one statement'
+      case 1 -> { }  // violation 'Must have at least one statement'
       default -> { } // violation 'Must have at least one statement'
     }
   }
