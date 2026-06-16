@@ -109,8 +109,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/annotation/suppresswarningsholder/Example2",
             "checks/annotation/suppresswarningsholder/Example3",
             "checks/annotation/suppresswarningsholder/Example4",
-            "checks/blocks/emptyblock/Example2",
-            "checks/blocks/emptyblock/Example3",
             "checks/blocks/leftcurly/Example3",
             "checks/blocks/needbraces/Example2",
             "checks/blocks/needbraces/Example3",
@@ -406,7 +404,8 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/blocks/emptycatchblock/Example5",
             "checks/naming/parametername/Example4",
             "checks/coding/illegalsymbol/Example3",
-            "checks/coding/illegalsymbol/Example5"
+            "checks/coding/illegalsymbol/Example5",
+            "checks/blocks/emptyblock/Example3"
             );
 
     /**
