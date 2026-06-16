@@ -76,12 +76,45 @@ public class StringLiteralEqualityCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final boolean hasStringLiteralChild = hasStringLiteralChild(ast);
+       @Override
+public void visitToken(DetailAST ast) {
+    final DetailAST left  = ast.getFirstChild();
+    final DetailAST right = left.getNextSibling();
 
-        if (hasStringLiteralChild) {
-            log(ast, MSG_KEY, ast.getText());
-        }
+    if (isStringLiteralOrTextBlock(left)
+            || isStringLiteralOrTextBlock(right)
+            || isNewStringExpression(left)
+            || isNewStringExpression(right)) {
+        log(ast, MSG_KEY, ast.getText());
     }
+}
+
+/**
+ * Returns true if the node is a string literal or text block literal.
+ *
+ * @param node the AST node to check
+ * @return true if node is STRING_LITERAL or TEXT_BLOCK_LITERAL_BEGIN
+ */
+private static boolean isStringLiteralOrTextBlock(DetailAST node) {
+    return node.getType() == TokenTypes.STRING_LITERAL
+        || node.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN;
+}
+
+/**
+ * Returns true if the node represents a new String(...) expression.
+ *
+ * @param node the AST node to check
+ * @return true if node is a new String(...) construction
+ */
+private static boolean isNewStringExpression(DetailAST node) {
+    if (node.getType() != TokenTypes.LITERAL_NEW) {
+        return false;
+    }
+    final DetailAST ident = node.getFirstChild();
+    return ident != null
+        && ident.getType() == TokenTypes.IDENT
+        && "String".equals(ident.getText());
+}    }
 
     /**
      * Checks whether string literal or text block literals are concatenated.
@@ -104,5 +137,20 @@ public class StringLiteralEqualityCheck extends AbstractCheck {
         }
         return result;
     }
+@Test
+public void testNewStringExpression() throws Exception {
+    final String[] expected = {
+        "14:22: " + getCheckMessage(MSG_KEY, "=="),
+        "15:22: " + getCheckMessage(MSG_KEY, "=="),
+        "16:22: " + getCheckMessage(MSG_KEY, "=="),
+        "17:22: " + getCheckMessage(MSG_KEY, "!="),
+        "18:22: " + getCheckMessage(MSG_KEY, "=="),
+    };
+
+    verifyWithInlineConfigParser(
+        getPath("InputStringLiteralEqualityNewString.java"),
+        expected
+    );
+}
 
 }
