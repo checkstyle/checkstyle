@@ -12,9 +12,9 @@ package com.puppycrawl.tools.checkstyle.checks.trailingcomment;
 
 // xdoc section -- start
 public class Example3 {
-  int a; // SUPPRESS CHECKSTYLE
-  int b; // NOPMD
-  int c; // NOSONAR
+  int a;
+  int b;
+  int c;
   int d; // violation, not suppressed
 
   public static void main(String[] args) {

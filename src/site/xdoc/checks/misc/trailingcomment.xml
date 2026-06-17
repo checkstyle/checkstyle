@@ -114,7 +114,7 @@ public class Example1 {
   int a;
   int b;
   int c;
-  int d; // violation
+  int d; // violation, not suppressed
 
   public static void main(String[] args) {
     int x = 10;
@@ -191,9 +191,9 @@ public class Example2 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
-  int a; // SUPPRESS CHECKSTYLE
-  int b; // NOPMD
-  int c; // NOSONAR
+  int a;
+  int b;
+  int c;
   int d; // violation, not suppressed
 
   public static void main(String[] args) {
