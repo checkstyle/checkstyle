@@ -28,39 +28,46 @@ class Example12 {
 
   protected String field2; // violation, 'must be private'
 
-  // violation below, 'must be private'
-  public int field3 = 42;
+  public int field3 = 42; // violation, 'must be private'
 
   public long serialVersionUID = 1L;
 
   public static final int field4 = 42;
 
+  // ok, allowPublicFinalFields is true
   public final int field5 = 42;
 
+  // ok, allowPublicFinalFields is true
   public final java.lang.String notes = null;
 
+  // ok, allowPublicFinalFields is true
   public final Set<String> mySet1 = new HashSet<>();
 
+  // ok, allowPublicFinalFields is true
   public final ImmutableSet<String> mySet2 = null;
 
+  // ok, allowPublicFinalFields is true
   public final ImmutableMap<String, Object> objects1 = null;
 
   @java.lang.Deprecated
   String annotatedString; // violation, 'must be private'
 
   @Deprecated
-  // violation below, 'must be private'
   String shortCustomAnnotated;
-
+  // violation above, 'must be private'
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 
+  // ok, allowPublicFinalFields is true
   public final int someIntValue = 0;
 
+  // ok, allowPublicFinalFields is true
   public final ImmutableSet<String> includes = null;
 
+  // ok, allowPublicFinalFields is true
   public final BigDecimal value = null;
 
+  // ok, allowPublicFinalFields is true
   public final List list = null;
 }
 // xdoc section -- end
