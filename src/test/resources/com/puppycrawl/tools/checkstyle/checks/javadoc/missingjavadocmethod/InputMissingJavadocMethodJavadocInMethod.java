@@ -28,10 +28,10 @@ public class InputMissingJavadocMethodJavadocInMethod {
 
     public void foo4() { /** */ } // violation 'Missing a Javadoc comment.'
 
-    @Deprecated
+    @Deprecated // violation 'Missing a Javadoc comment.'
     public void foo5() { /** */ }
 
-    @Deprecated
+    @Deprecated // violation 'Missing a Javadoc comment.'
     /** */
     public void foo6() { /** */ }
 
