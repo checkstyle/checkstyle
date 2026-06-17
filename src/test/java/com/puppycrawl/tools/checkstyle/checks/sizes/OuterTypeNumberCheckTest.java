@@ -110,6 +110,13 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
                 getPath("InputOuterTypeNumberRecords.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputOuterTypeNumberCompactSourceFile.java"), expected);
+    }
+
     /**
      * Checks if the private field {@code currentDepth} and {@code outerNum} is
      * properly cleared during the start of processing the next file in the
