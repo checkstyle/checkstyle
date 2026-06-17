@@ -30,4 +30,9 @@ public class InputMissingJavadocMethodSetterGetter4 {
     {
         return 666;
     }
+
+    public Object getObject1() { // comment
+        return null;
+    }
+
 }
