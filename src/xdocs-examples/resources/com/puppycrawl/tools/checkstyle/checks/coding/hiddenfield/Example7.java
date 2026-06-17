@@ -15,7 +15,7 @@ class Example7 {
   private String field;
   private String testField;
 
-  Example7(String field) { // violation, ''field' hides a field'
+  Example7(String testField) { // violation, ''field' hides a field
   }
   void method(String param) {
     String field = param; // violation, ''field' hides a field'
@@ -23,9 +23,8 @@ class Example7 {
   void setTestField(String testField) { // violation, 'testField' hides a field'
     this.field = field;
   }
-  Example7 setField(String field) { // violation, ''field' hides a field'
+  void setField(String field) { // violation, ''field' hides a field'
     this.field = field;
-    return null;
   }
   abstract class Inner {
     abstract int method(String field); // ok, because ignoreAbstractMethods is true
