@@ -1,3 +1,5 @@
+* {@link Test.Inner}
+* {@link Test.Inner some text}
 * {@link Test<Object, RuntimeException>.Inner}
 * {@link Test<Object, RuntimeException>.Inner inner class}
 * {@link com.example.Test<Object, RuntimeException>.Inner#value()}
