@@ -51,9 +51,8 @@ class Example1 {
   String annotatedString; // violation, annotation not configured 'must be private'
 
   @Deprecated
-  // violation below, annotation not configured 'must be private'
   String shortCustomAnnotated;
-
+  // violation above, annotation not configured 'must be private'
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 
