@@ -26,12 +26,11 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
@@ -198,16 +197,17 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
         };
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/19148
     @Override
-    @SuppressWarnings("deprecation")
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public final void visitToken(DetailAST ast) {
         final Scope theScope = ScopeUtil.getScope(ast);
         if (shouldCheck(ast, theScope)) {
-            final FileContents contents = getFileContents();
-            final TextBlock textBlock = contents.getJavadocBefore(ast.getLineNo());
-
-            if (textBlock == null && !isMissingJavadocAllowed(ast)) {
+            final DetailAST blockCommentNode = JavadocUtil.getAttachedJavadocComment(ast);
+            if (blockCommentNode == null && !isMissingJavadocAllowed(ast)) {
                 log(ast, MSG_JAVADOC_MISSING);
             }
         }
@@ -220,16 +220,13 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * @return Some javadoc.
      */
     private static int getMethodsNumberOfLine(DetailAST methodDef) {
-        final int numberOfLines;
+        int numberOfLines = 1;
         final DetailAST lcurly = methodDef.getLastChild();
         final DetailAST rcurly = lcurly.getLastChild();
-
-        if (lcurly.getFirstChild() == rcurly) {
-            numberOfLines = 1;
-        }
-        else {
+        if (rcurly != null && lcurly.getLineNo() != rcurly.getLineNo()) {
             numberOfLines = rcurly.getLineNo() - lcurly.getLineNo() - 1;
         }
+
         return numberOfLines;
     }
 
