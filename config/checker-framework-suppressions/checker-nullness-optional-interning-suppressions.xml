@@ -8636,6 +8636,88 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter input of Pattern.matcher.</message>
+    <lineContent>final String text = WHITESPACE.matcher(paragraphs.item(index).getTextContent())</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull CharSequence
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter input of Pattern.matcher.</message>
+    <lineContent>final String text = WHITESPACE.matcher(sub.getTextContent())</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull CharSequence
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter section of SearchIndexGenerator.extractDescription.</message>
+    <lineContent>description = extractDescription((Element) sections.item(index));</lineContent>
+    <details>
+      found   : @Initialized @Nullable Element
+      required: @Initialized @NonNull Element
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ((Element)sections.item(0))</message>
+    <lineContent>final String firstSection = ((Element) sections.item(0))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference body</message>
+    <lineContent>final NodeList sections = body.getElementsByTagName(&quot;section&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference paragraphs.item(index)</message>
+    <lineContent>final String text = WHITESPACE.matcher(paragraphs.item(index).getTextContent())</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference section</message>
+    <lineContent>.append(section.getAttribute(NAME_ATTR))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference sub</message>
+    <lineContent>sub.getAttribute(NAME_ATTR).trim().toLowerCase(Locale.ROOT))) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference titles.item(0)</message>
+    <lineContent>title = titles.item(0).getTextContent().trim();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference titles.item(0).getTextContent()</message>
+    <lineContent>title = titles.item(0).getTextContent().trim();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter classLoader of PackageNamesLoader.getPackageNames.</message>
