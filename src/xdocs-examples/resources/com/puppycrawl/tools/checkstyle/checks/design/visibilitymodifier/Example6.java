@@ -31,16 +31,17 @@ class Example6 {
 
   protected String field2; // violation, protected not allowed 'must be private'
 
-  // violation below, not final nor matching pattern 'must be private'
   public int field3 = 42;
-
+  // violation above, not final nor matching pattern 'must be private'
   public long serialVersionUID = 1L;
 
   public static final int field4 = 42;
 
-  public final int field5 = 42; // violation 'must be private'
+  // violation below, public immutable fields are not allowed 'must be private'
+  public final int field5 = 42;
 
-  public final java.lang.String notes = null; // violation 'must be private'
+  // violation below, public immutable fields are not allowed 'must be private'
+  public final java.lang.String notes = null;
 
   // violation below, HashSet is mutable 'must be private'
   public final Set<String> mySet1 = new HashSet<>();
@@ -61,7 +62,9 @@ class Example6 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 
-  public final int someIntValue = 0; // violation 'must be private'
+  // violation below, annotation not configured 'must be private'
+  public final int someIntValue = 0;
+
   // violation below, immutable type not in config 'must be private'
   public final ImmutableSet<String> includes = null;
 
