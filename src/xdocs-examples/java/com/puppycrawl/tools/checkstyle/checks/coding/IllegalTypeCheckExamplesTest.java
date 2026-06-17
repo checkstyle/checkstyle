@@ -49,11 +49,11 @@ public class IllegalTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "20:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
-            "31:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
-            "33:10: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
-            "37:11: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
-            "41:13: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
+            "21:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
+            "32:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
+            "34:10: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
+            "38:11: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
+            "42:13: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -108,13 +108,13 @@ public class IllegalTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-            "43:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Boolean"),
-            "51:25: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Boolean"),
-            "51:56: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Boolean"),
-            "62:28: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Foo"),
-            "62:39: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Boolean"),
-            "68:18: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Foo"),
-            "68:38: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Boolean"),
+            "44:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Boolean"),
+            "52:25: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Boolean"),
+            "52:56: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Boolean"),
+            "63:28: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Foo"),
+            "63:39: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Boolean"),
+            "69:18: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Foo"),
+            "69:38: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Boolean"),
         };
 
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
@@ -123,8 +123,8 @@ public class IllegalTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample7() throws Exception {
         final String[] expected = {
-            "74:10: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Optional"),
-            "76:3: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Optional"),
+            "75:10: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Optional"),
+            "77:3: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Optional"),
         };
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
@@ -133,7 +133,7 @@ public class IllegalTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample8() throws Exception {
         final String[] expected = {
-            "75:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "var"),
+            "76:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "var"),
         };
 
         verifyWithInlineConfigParser(getPath("Example8.java"), expected);

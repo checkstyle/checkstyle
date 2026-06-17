@@ -13,6 +13,7 @@ import java.util.*;
 import java.util.function.Consumer;
 
 // xdoc section -- start
+
 public class Example6 extends TreeSet {
 
   public <T extends java.util.HashSet> void method() {
@@ -67,7 +68,6 @@ public class Example6 extends TreeSet {
   // violation below 'Usage of type 'Foo' is not allowed'
   final Consumer<Foo> consumer = Foo<Boolean>::foo;
   // violation above 'Usage of type 'Boolean' is not allowed'
-
   public void var() {
     var message = "Hello, World!";
   }
