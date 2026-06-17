@@ -28,9 +28,8 @@ class Example2 {
 
   protected String field2; // violation, protected not allowed 'must be private'
 
-  // violation below, not final nor matching pattern 'must be private'
   public int field3 = 42;
-
+  // violation above, not final nor matching pattern 'must be private'
   public long serialVersionUID = 1L;
 
   public static final int field4 = 42;
@@ -51,9 +50,10 @@ class Example2 {
   public final ImmutableMap<String, Object> objects1 = null;
 
   @java.lang.Deprecated
-  String annotatedString;
+  String annotatedString; // ok, annotation not configured
 
   @Deprecated
+  // ok, annotation not configured
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting

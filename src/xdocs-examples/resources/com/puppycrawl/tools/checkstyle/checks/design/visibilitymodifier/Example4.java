@@ -28,12 +28,10 @@ class Example4 {
 
   protected String field2; // violation, protected not allowed 'must be private'
 
-  // violation below, not final nor matching pattern 'must be private'
   public int field3 = 42;
-
-  // violation below, doesn't match the pattern 'must be private'
+  // violation above, not final nor matching pattern 'must be private'
   public long serialVersionUID = 1L;
-
+  // violation above, doesn't match the pattern 'must be private'
   public static final int field4 = 42;
 
   // violation below, public immutable fields are not allowed 'must be private'
