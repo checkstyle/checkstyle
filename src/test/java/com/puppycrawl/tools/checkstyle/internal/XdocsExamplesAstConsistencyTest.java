@@ -250,7 +250,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/whitespace/whitespaceafter/Example2",
             "checks/todocomment/Example2",
             "checks/todocomment/Example3",
-            "checks/trailingcomment/Example3",
             "checks/uncommentedmain/Example2",
             "checks/uniqueproperties/Example2",
             "checks/whitespace/emptyforiteratorpad/Example2",
