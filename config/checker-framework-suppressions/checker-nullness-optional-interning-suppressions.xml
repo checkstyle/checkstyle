@@ -3657,6 +3657,13 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference ident</message>
+    <lineContent>final VariableDesc desc = new VariableDesc(ident.getText(), ident, scope);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ident</message>
     <lineContent>return UNNAMED_VAR.equals(ident.getText());</lineContent>
   </checkerFrameworkError>
 
@@ -3665,13 +3672,6 @@
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference ident</message>
     <lineContent>return allowUnnamedVariables &amp;&amp; UNNAMED_VAR.equals(ident.getText());</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference ident</message>
-    <lineContent>variablesStack.push(new VariableDesc(ident.getText(), ident, scope));</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

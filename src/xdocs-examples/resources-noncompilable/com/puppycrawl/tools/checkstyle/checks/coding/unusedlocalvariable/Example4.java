@@ -3,6 +3,7 @@
   <module name="TreeWalker">
     <module name="UnusedLocalVariable">
         <property name="allowUnnamedVariables" value="false"/>
+        <property name="allowNamedPatternVariables" value="false"/>
     </module>
   </module>
 </module>
