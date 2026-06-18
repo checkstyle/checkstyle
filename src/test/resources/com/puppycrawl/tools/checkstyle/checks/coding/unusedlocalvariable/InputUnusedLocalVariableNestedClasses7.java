@@ -1,6 +1,7 @@
 /*
 UnusedLocalVariable
 allowUnnamedVariables = false
+allowNamedPatternVariables = false
 
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedlocalvariable;

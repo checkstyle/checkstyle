@@ -1,6 +1,7 @@
 /*
 UnusedLocalVariable
 allowUnnamedVariables = (default)true
+allowNamedPatternVariables = false
 
 */
 

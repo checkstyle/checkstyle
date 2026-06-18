@@ -2,6 +2,7 @@
 UnusedLocalVariable
 severity = warning
 allowUnnamedVariables = false
+allowNamedPatternVariables = false
 
 */
 
