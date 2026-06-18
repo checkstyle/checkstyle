@@ -60,7 +60,7 @@ jobs:
             })
 
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Getting PR description
         env:
@@ -108,7 +108,7 @@ jobs:
     steps:
 
       - name: Download checkstyle
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Download files
         env:
@@ -145,7 +145,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Download contribution
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: checkstyle/contribution
           path: .ci-temp/contribution
@@ -218,7 +218,7 @@ jobs:
     if: failure() || success()
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Get message
         env:

@@ -35,7 +35,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Checkout the latest code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup local maven cache
         uses: actions/cache@v5
