@@ -257,7 +257,8 @@ public final class XMLLogger
     }
 
     /**
-     * Escape {@literal <}, {@literal >} &amp; &#39; and &quot; as their entities.
+     * Escape {@literal <}, {@literal >}, {@literal &}, {@literal '} and {@literal "}
+     * as their entities.
      *
      * @param value the value to escape.
      * @return the escaped value if necessary.
