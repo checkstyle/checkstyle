@@ -22,7 +22,7 @@ public class Example3 {
     if (obj instanceof String _) { // ok, '_' is unnamed variable
       System.out.println("string");
     }
-    switch (s) { // violation below, unused named local variable 'c'
+    switch (s) { // violation below, unused local variable 'c'
       case Circle c -> System.out.println("circle");
       case Rect r   -> System.out.println(r); // ok, 'r' is used
       default       -> { }

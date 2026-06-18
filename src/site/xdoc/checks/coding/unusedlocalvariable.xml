@@ -40,6 +40,13 @@
               <td><code>true</code></td>
               <td>10.18.0</td>
             </tr>
+            <tr>
+              <td><a id="jdkVersion"/><a href="#jdkVersion">jdkVersion</a></td>
+              <td>Set the JDK version that you are using. Old JDK version numbering is supported (e.g. 1.8 for Java 8) as well as just the major JDK version alone (e.g. 8) is supported. This property only considers features from officially released Java versions as supported. Features introduced in preview releases are not considered supported until they are included in a non-preview release. Before JDK 22, named pattern variables in switch labels cannot be replaced with <code>_</code>, so violations on them are suppressed when jdkVersion is set below 22.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>22</code></td>
+              <td>13.7.0</td>
+            </tr>
           </table>
         </div>
       </subsection>
@@ -197,7 +204,7 @@ public class Example3 {
     if (obj instanceof String _) { // ok, '_' is unnamed variable
       System.out.println("string");
     }
-    switch (s) { // violation below, unused named local variable 'c'
+    switch (s) { // violation below, unused local variable 'c'
       case Circle c -&gt; System.out.println("circle");
       case Rect r   -&gt; System.out.println(r); // ok, 'r' is used
       default       -&gt; { }
@@ -213,6 +220,7 @@ public class Example3 {
   &lt;module name="TreeWalker"&gt;
     &lt;module name="UnusedLocalVariable"&gt;
         &lt;property name="allowUnnamedVariables" value="false"/&gt;
+        &lt;property name="jdkVersion" value="21"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -235,7 +243,7 @@ public class Example4 {
     if (obj instanceof String _) { // ok, pattern variable '_' is always skipped
       System.out.println("string");
     }
-    switch (s) { // violation below, unused local variable 'c'
+    switch (s) {
       case Circle c -&gt; System.out.println("circle");
       case Rect r   -&gt; System.out.println(r); // ok, 'r' is used
       default       -&gt; { }

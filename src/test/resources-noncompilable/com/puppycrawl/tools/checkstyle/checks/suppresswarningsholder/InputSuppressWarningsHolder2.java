@@ -6,6 +6,7 @@ com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter
 
 com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck
 allowUnnamedVariables = false
+jdkVersion = (default)22
 
 com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck
 format = ^[a-z][_a-zA-Z0-9]{2,}$

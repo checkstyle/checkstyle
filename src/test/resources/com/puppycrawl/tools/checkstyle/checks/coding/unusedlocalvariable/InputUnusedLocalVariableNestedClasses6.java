@@ -1,6 +1,7 @@
 /*
 UnusedLocalVariable
 allowUnnamedVariables = false
+jdkVersion = (default)22
 
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedlocalvariable;
