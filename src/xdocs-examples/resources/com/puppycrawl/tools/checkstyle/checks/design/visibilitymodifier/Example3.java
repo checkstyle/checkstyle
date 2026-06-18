@@ -26,11 +26,10 @@ class Example3 {
 
   int field1; // violation, must have visibility modifier 'must be private'
 
-  protected String field2;
+  protected String field2; // ok, protectedAllowed is true
 
-  // violation below, not final nor matching pattern 'must be private'
   public int field3 = 42;
-
+  // violation above, not final nor matching pattern 'must be private'
   public long serialVersionUID = 1L;
 
   public static final int field4 = 42;
@@ -54,9 +53,8 @@ class Example3 {
   String annotatedString; // violation, annotation not configured 'must be private'
 
   @Deprecated
-  // violation below, annotation not configured 'must be private'
   String shortCustomAnnotated;
-
+  // violation above, annotation not configured 'must be private'
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 
