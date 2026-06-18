@@ -3,6 +3,7 @@
   <module name="TreeWalker">
     <module name="UnusedLocalVariable">
         <property name="allowUnnamedVariables" value="false"/>
+        <property name="jdkVersion" value="21"/>
     </module>
   </module>
 </module>
@@ -24,7 +25,7 @@ public class Example4 {
     if (obj instanceof String _) { // ok, pattern variable '_' is always skipped
       System.out.println("string");
     }
-    switch (s) { // violation below, unused local variable 'c'
+    switch (s) {
       case Circle c -> System.out.println("circle");
       case Rect r   -> System.out.println(r); // ok, 'r' is used
       default       -> { }
