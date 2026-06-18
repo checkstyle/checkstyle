@@ -6,8 +6,8 @@ scope = nothing
 excludeScope = (default)null
 allowMissingPropertyJavadoc = (default)false
 ignoreMethodNamesRegex = (default)null
+ignoreMethodsWithImplementation = (default)false
 tokens = (default)METHOD_DEF , CTOR_DEF , ANNOTATION_FIELD_DEF , COMPACT_CTOR_DEF
-
 
 */
 

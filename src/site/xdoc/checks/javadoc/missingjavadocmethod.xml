@@ -84,6 +84,13 @@ public boolean isSomething()
               <td>8.21</td>
             </tr>
             <tr>
+              <td><a id="ignoreMethodsWithImplementation"/><a href="#ignoreMethodsWithImplementation">ignoreMethodsWithImplementation</a></td>
+              <td>Control whether to ignore methods with implementation.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.4.0</td>
+            </tr>
+            <tr>
               <td><a id="minLineCount"/><a href="#minLineCount">minLineCount</a></td>
               <td>Control the minimal amount of lines in method to allow no documentation.</td>
               <td><a href="../../property_types.html#int">int</a></td>

@@ -118,6 +118,13 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     private Set<String> allowedAnnotations = Set.of("Override");
 
     /**
+     * Control whether to ignore methods with implementation.
+     *
+     * @since 13.4.0
+     */
+    private boolean ignoreMethodsWithImplementation;
+
+    /**
      * Setter to configure annotations that allow missed documentation.
      *
      * @param userAnnotations user's value.
@@ -125,6 +132,16 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      */
     public void setAllowedAnnotations(String... userAnnotations) {
         allowedAnnotations = Set.of(userAnnotations);
+    }
+
+    /**
+     * Setter to control whether to ignore methods with implementation.
+     *
+     * @param value a {@code boolean} value
+     * @since 13.4.0
+     */
+    public void setIgnoreMethodsWithImplementation(final boolean value) {
+        ignoreMethodsWithImplementation = value;
     }
 
     /**
@@ -288,14 +305,18 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * @return whether we should check a given node.
      */
     private boolean shouldCheck(final DetailAST ast, final Scope nodeScope) {
-        return ScopeUtil.getSurroundingScope(ast)
-            .map(surroundingScope -> {
-                return nodeScope != excludeScope
-                    && surroundingScope != excludeScope
-                    && nodeScope.isIn(scope)
-                    && surroundingScope.isIn(scope);
-            })
-            .orElse(Boolean.FALSE);
+        final boolean hasImplementation = ast.findFirstToken(TokenTypes.SLIST) != null;
+        final boolean match = !ignoreMethodsWithImplementation || !hasImplementation;
+
+        return match
+            && ScopeUtil.getSurroundingScope(ast)
+                .map(surroundingScope -> {
+                    return nodeScope != excludeScope
+                        && surroundingScope != excludeScope
+                        && nodeScope.isIn(scope)
+                        && surroundingScope.isIn(scope);
+                })
+                .orElse(Boolean.FALSE);
     }
 
     /**
