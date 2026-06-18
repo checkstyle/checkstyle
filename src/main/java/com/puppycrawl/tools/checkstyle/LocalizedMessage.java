@@ -26,13 +26,12 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
-
-import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * Represents a message that can be localised. The translations come from
@@ -81,7 +80,7 @@ public class LocalizedMessage {
             this.args = null;
         }
         else {
-            this.args = UnmodifiableCollectionUtil.copyOfArray(args, args.length);
+            this.args = Arrays.copyOf(args, args.length);
         }
     }
 
