@@ -183,6 +183,14 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private boolean allowUnnamedVariables = true;
 
     /**
+     * Allow named pattern variables in switch labels.
+     * This is useful for pre-Java 22 code where the unnamed variable
+     * {@code _} is not available and a name must be given even when the
+     * bound value is never used.
+     */
+    private boolean allowNamedPatternVariables = true;
+
+    /**
      * Name of the package.
      */
     private String packageName;
@@ -202,6 +210,16 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     public void setAllowUnnamedVariables(boolean allowUnnamedVariables) {
         this.allowUnnamedVariables = allowUnnamedVariables;
+    }
+
+    /**
+     * Setter to allow named pattern variables in switch lables.
+     *
+     * @param allowNamedPatternVariables true or false.
+     * @since 13.7.0
+     */
+    public void setAllowNamedPatternVariables(boolean allowNamedPatternVariables) {
+        this.allowNamedPatternVariables = allowNamedPatternVariables;
     }
 
     @Override
@@ -398,7 +416,26 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             Deque<VariableDesc> variablesStack) {
         final DetailAST ident = patternVarDefAst.findFirstToken(TokenTypes.IDENT);
         final DetailAST scope = findScopeOfPatternVariable(patternVarDefAst);
-        variablesStack.push(new VariableDesc(ident.getText(), ident, scope));
+        final VariableDesc desc = new VariableDesc(ident.getText(), ident, scope);
+        if (isSwitchCasePatternVariable(patternVarDefAst)) {
+            desc.registerAsNamedPatternVar();
+        }
+        variablesStack.push(desc);
+    }
+
+    /**
+     * Checks whether the pattern variable is declared in a switch labels.
+     *
+     * @param patternVarDefAst ast of type {@link TokenTypes#PATTERN_VARIABLE_DEF}
+     * @return true if the pattern variable is declared in a switch labels
+     */
+    private static boolean isSwitchCasePatternVariable(DetailAST patternVarDefAst) {
+        DetailAST parent = patternVarDefAst.getParent();
+        while (parent != null
+                && parent.getType() != TokenTypes.LITERAL_CASE) {
+            parent = parent.getParent();
+        }
+        return parent != null;
     }
 
     /**
@@ -454,7 +491,10 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             final VariableDesc variableDesc = iterator.next();
             if (variableDesc.getScope() == scopeAst) {
                 iterator.remove();
-                if (!variableDesc.isUsed()
+                final boolean isAllowedNamedPatternVar = allowNamedPatternVariables
+                        && variableDesc.isNamedPatternVar();
+                if (!isAllowedNamedPatternVar
+                        && !variableDesc.isUsed()
                         && !variableDesc.isInstVarOrClassVar()) {
                     final DetailAST typeAst = variableDesc.getTypeAst();
                     if (allowUnnamedVariables) {
@@ -950,6 +990,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         private boolean instVarOrClassVar;
 
         /**
+         * Is an named pattern variable.
+         */
+        private boolean namedPatternVar;
+
+        /**
          * Is the variable used.
          */
         private boolean used;
@@ -1035,6 +1080,14 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         }
 
         /**
+         * Register the variable as a named pattern variable
+         * declared in a switch labels.
+         */
+        /* package */ void registerAsNamedPatternVar() {
+            namedPatternVar = true;
+        }
+
+        /**
          * Is the variable used or not.
          *
          * @return true if variable is used
@@ -1050,6 +1103,16 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          */
         /* package */ boolean isInstVarOrClassVar() {
             return instVarOrClassVar;
+        }
+
+        /**
+         * Is a named pattern variable from a switch labels.
+         *
+         * @return true if this variable was declared via a
+         *         {@link TokenTypes#PATTERN_VARIABLE_DEF} with a non-underscore name
+         */
+        /* package */ boolean isNamedPatternVar() {
+            return namedPatternVar;
         }
     }
 
