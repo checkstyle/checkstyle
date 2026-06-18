@@ -91,18 +91,19 @@
       <property name="format" value="^[a-z]{2,}[a-zA-Z0-9]*$"/>
     </module>
 
-    <!-- §3.3: Import statements should be sorted -->
     <module name="AvoidStarImport">
       <property name="maxAllowedStarImports" value="1"/>
     </module>
+
     <module name="ImportOrder">
-      <property name="groups" value="java,javax"/>
+      <property name="groups" value="java,javax,org,com"/>
       <property name="ordered" value="true"/>
-      <property name="separated" value="true"/>
       <property name="option" value="bottom"/>
+      <property name="separated" value="true"/>
+      <property name="staticGroups" value="java,javax,org,com"/>
+      <property name="separatedStaticGroups" value="true"/>
       <property name="sortStaticImportsAlphabetically" value="true"/>
     </module>
-
     <module name="UnusedImports"/>
 
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
