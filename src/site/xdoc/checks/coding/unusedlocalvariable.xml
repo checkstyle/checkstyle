@@ -33,6 +33,13 @@
               <th>since</th>
             </tr>
             <tr>
+              <td><a id="allowNamedPatternVariables"/><a href="#allowNamedPatternVariables">allowNamedPatternVariables</a></td>
+              <td>Allow named pattern variables in switch rules.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>13.7.0</td>
+            </tr>
+            <tr>
               <td><a id="allowUnnamedVariables"/><a href="#allowUnnamedVariables">allowUnnamedVariables</a></td>
               <td>Allow variables named with a single underscore (known as <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
  unnamed variables</a> in Java 21+).</td>
@@ -197,7 +204,7 @@ public class Example3 {
     if (obj instanceof String _) { // ok, '_' is unnamed variable
       System.out.println("string");
     }
-    switch (s) { // violation below, unused named local variable 'c'
+    switch (s) {
       case Circle c -&gt; System.out.println("circle");
       case Rect r   -&gt; System.out.println(r); // ok, 'r' is used
       default       -&gt; { }
@@ -213,6 +220,7 @@ public class Example3 {
   &lt;module name="TreeWalker"&gt;
     &lt;module name="UnusedLocalVariable"&gt;
         &lt;property name="allowUnnamedVariables" value="false"/&gt;
+        &lt;property name="allowNamedPatternVariables" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
