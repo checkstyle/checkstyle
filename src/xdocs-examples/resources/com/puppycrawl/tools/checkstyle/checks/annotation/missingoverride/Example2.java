@@ -11,48 +11,38 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
 
-class ParentClass2 {
-  public void test(){}
-
-}
-
 // xdoc section -- start
-class Example2 {
+class Example2 extends ParentClass1 {
+
   /** {@inheritDoc} */
-  // violation 2 lines below """Must include @java.lang.Override annotation when
-  //  '@inheritDoc' Javadoc tag exists."""
+  @Override
+  public void test1() {}
+
+  /** {@inheritDoc} */
+  // ok, javaFiveCompatibility is true
+
+  public void test2() {}
+
+  /** {@inheritDoc} */
+  // violation below '{@inheritDoc} tag is not valid at this location.'
+  private void test3() {}
+
+  /** {@inheritDoc} */
+  // violation below '{@inheritDoc} tag is not valid at this location.'
+  public static void test4() {}
+
+  /** {@inheritDoc} */
+  // ok, javaFiveCompatibility is true
+
   public boolean equals(Object o) {
     return o == this;
   }
 }
 
-interface B {
-
+class Example2Impl implements InterfaceB {
   /** {@inheritDoc} */
-  // violation 2 lines below """Must include @java.lang.Override annotation when
-  //  '@inheritDoc' Javadoc tag exists."""
-  void test();
-}
+  // ok, javaFiveCompatibility is true
 
-class C extends ParentClass2 {
-  /** {@inheritDoc} */
-  public void test() { // ok, is ignored because class extends other class
-
-  }
-}
-
-class D implements B {
-  /** {@inheritDoc} */
-  public void test() { // ok, is ignored because class implements interface
-  }
-}
-
-class E {
-  Runnable r = new Runnable() {
-
-    /** {@inheritDoc} */
-    public void run() { // ok, is ignored because class is anonymous class
-    }
-  };
+  public void test() {}
 }
 // xdoc section -- end
