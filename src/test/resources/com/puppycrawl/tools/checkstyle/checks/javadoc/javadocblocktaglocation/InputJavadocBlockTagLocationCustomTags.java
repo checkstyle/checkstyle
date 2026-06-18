@@ -10,12 +10,18 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocblocktaglocation;
 
 public class InputJavadocBlockTagLocationCustomTags {
 
+    // violation 7 lines below
+    // violation 6 lines below
+    // violation 5 lines below
+    // violation 6 lines below
+    // violation 6 lines below
+    // violation 6 lines below
     /**
-     * Text. @apiNote note @implNote note @implSpec spec // 3 violations
+     * Text. @apiNote note @implNote note @implSpec spec
      * {@code @apiNote}
-     * text @apiNote note1 // violation
-     * text text @implNote note2  // violation
-     * text @implSpec  // violation
+     * text @apiNote note1
+     * text text @implNote note2
+     * text @implSpec
      * text @since 1.0
      */
     public void method(int param) {
