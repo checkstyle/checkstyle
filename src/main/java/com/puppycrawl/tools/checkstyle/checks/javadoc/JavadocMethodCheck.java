@@ -269,7 +269,7 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
      *
      * @param shouldReportViolation value to which the field shall be set to
      * @since 8.3
-     * @propertySince 13.6.0
+     * @propertySince 13.7.0
      */
     @Override
     public void setViolateExecutionOnNonTightHtml(boolean shouldReportViolation) {
