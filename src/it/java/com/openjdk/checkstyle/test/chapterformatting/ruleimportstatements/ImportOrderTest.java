@@ -55,4 +55,9 @@ public class ImportOrderTest extends AbstractOpenJdkModuleTestSupport {
         verifyWithWholeConfig(getPath("InputImportOrderMissingSeparator.java"));
     }
 
+    @Test
+    public void testImportOrderForStaticImports() throws Exception {
+        verifyWithWholeConfig(getPath("InputImportOrderInsideStaticGroups.java"));
+    }
+
 }
