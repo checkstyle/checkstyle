@@ -1591,6 +1591,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/javadoc/preferliteraljavadocinlinetag.html#PreferLiteralJavadocInlineTag">
+                PreferLiteralJavadocInlineTag
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc inline tags are preferred over HTML equivalents.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/naming/recordcomponentname.html#RecordComponentName">
                 RecordComponentName
               </a>
