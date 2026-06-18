@@ -17,12 +17,12 @@ class Example3 {
     public Boolean (boolean a) { this.a = a; }
   }
 
-  void Example3 () {
+  Example3 () {
     java.lang.Boolean[] newBoolArray = new java.lang.Boolean[]{true,true,false};
     Integer[] newIntArray = new Integer[]{1,2,3};
   }
 
-  void Example3 (boolean a, int b) {
+  Example3 (boolean a, int b) {
     Boolean c = new Boolean(a);
     java.lang.Boolean d = new java.lang.Boolean(a);
 
