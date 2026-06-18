@@ -44,7 +44,7 @@ jobs:
           groovy --version
 
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup local maven cache
         uses: actions/cache@v5
