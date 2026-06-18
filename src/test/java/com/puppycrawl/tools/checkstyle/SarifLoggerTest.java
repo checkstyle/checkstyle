@@ -270,6 +270,29 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
+     * The file name is taken verbatim from the analysed tree, so it may contain the literal
+     * text of a report placeholder such as {@code ${message}}. The name is substituted last,
+     * after every placeholder is resolved, so it cannot reintroduce one and splice the message
+     * object into the uri string.
+     */
+    @Test
+    public void testAddErrorWithPlaceholderInPath() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error");
+        final AuditEvent ev = new AuditEvent(this, "pwn${message}.java", violation);
+        logger.fileStarted(ev);
+        logger.addError(ev);
+        logger.fileFinished(ev);
+        logger.auditFinished(null);
+        verifyContent(getPath("ExpectedSarifLoggerPlaceholderInPath.sarif"), outStream);
+    }
+
+    /**
      * Checker.process(...) obtains file paths from the current runtime File API, and
      * Checker.fireErrors(...) passes those paths through relativizePathWithCatch(...)
      * / CommonUtil.relativizePath(...). On Linux CI, File.getAbsolutePath() cannot produce
