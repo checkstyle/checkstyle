@@ -3001,6 +3001,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "30:13: " + getCheckMessage(MSG_CHILD_ERROR, "block", 12, 16),
             "31:9: " + getCheckMessage(MSG_ERROR, "block rcurly", 8, 12),
             "65:13: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 12, 8),
+            "68:21: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "method call", 20, "24, 36"),
             "87:13: " + getCheckMessage(MSG_ERROR, "method def rcurly", 12, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationLambda3.java"), expected);
@@ -4444,6 +4445,23 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "9:15: " + getCheckMessage(MSG_CHILD_ERROR, "case", 14, 16),
             "13:16: " + getCheckMessage(MSG_CHILD_ERROR, "case", 15, 16),
             "15:16: " + getCheckMessage(MSG_CHILD_ERROR, "case", 15, 16),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testLambdaStatementMethodCall() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("arrayInitIndent", "4");
+
+        final String fileName = getPath("InputIndentationLambda9.java");
+        final String[] expected = {
+            "10:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }

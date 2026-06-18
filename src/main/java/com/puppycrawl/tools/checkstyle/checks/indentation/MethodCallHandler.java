@@ -197,7 +197,8 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         DetailAST lparen = null;
         if (getMainAst().getType() == TokenTypes.METHOD_CALL) {
             final DetailAST exprNode = getMainAst().getParent();
-            if (exprNode.getParent().getType() == TokenTypes.SLIST) {
+            if (exprNode.getParent().getType() == TokenTypes.SLIST
+                || exprNode.getParent().getType() == TokenTypes.LAMBDA) {
                 checkExpressionSubtree(getMainAst().getFirstChild(), getIndent(), false, false);
                 lparen = getMainAst();
             }
