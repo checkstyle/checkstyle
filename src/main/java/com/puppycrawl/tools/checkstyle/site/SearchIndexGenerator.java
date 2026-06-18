@@ -268,8 +268,8 @@ public final class SearchIndexGenerator {
      *
      * <p>Example ids found in XDoc source:</p>
      * <ul>
-     *   <li>{@code id="Example1-config"} -&gt; label "Example1", type "config"</li>
-     *   <li>{@code id="Example1-code"}   -&gt; label "Example1", type "code"</li>
+     *   <li>{@code id="Example1-config"} -{@literal >} label "Example1", type "config"</li>
+     *   <li>{@code id="Example1-code"}   -{@literal >} label "Example1", type "code"</li>
      * </ul>
      */
     private static final Pattern EXAMPLE_PARAGRAPH_ID =
