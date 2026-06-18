@@ -7,11 +7,12 @@ import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import com.google.common.base.Preconditions;
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.common.base.Preconditions;
 import static java.lang.Math.PI;
 import static java.lang.Math.max;
+
 import static org.junit.Assert.assertEquals;
 
 /**
