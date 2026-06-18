@@ -638,7 +638,9 @@
       -->
       <property name="severity" value="ignore"/>
     </module>
-    <module name="UnusedLocalVariable"/>
+    <module name="UnusedLocalVariable">
+      <property name="jdkVersion" value="${checkstyle.java.version}"/>
+    </module>
     <!-- until https://github.com/checkstyle/checkstyle/issues/19830 -->
     <module name="UnusedTryResourceShouldBeUnnamed">
       <property name="severity" value="ignore"/>
