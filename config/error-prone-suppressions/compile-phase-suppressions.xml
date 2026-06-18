@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedErrors>
   <!-- Temporal suppression. Refactoring to avoid such wrapping results in violations from Checker and inspections -->
+
+  <!-- PreferLiteralJavadocInlineTagCheck file intentionally contains escaped entity -->
+  <suppress files="PreferLiteralJavadocInlineTagCheck\.java" checks="EscapedEntity"/>
 </suppressedErrors>
