@@ -1,6 +1,8 @@
 /*
 UnusedLocalVariable
 allowUnnamedVariables = false
+jdkVersion = (default)22
+
 
 */
 
