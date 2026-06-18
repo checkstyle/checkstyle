@@ -196,4 +196,7 @@
   <!-- MissingCtor only matters for production code (src/main/java) which generates Javadoc -->
   <suppress checks="MissingCtor" files=".*/src/(test|it|xdocs-examples)/.*\.java"/>
 
+  <!-- Suppress PreferJavadocInlineTags for all files -->
+  <suppress checks="PreferJavadocInlineTags"/>
+
 </suppressions>
