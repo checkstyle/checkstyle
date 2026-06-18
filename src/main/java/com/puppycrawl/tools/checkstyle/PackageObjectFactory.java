@@ -170,7 +170,7 @@ public class PackageObjectFactory implements ModuleFactory {
 
     /**
      * Creates a new instance of a class from a given name, or that name
-     * concatenated with &quot;Check&quot;. If the name is
+     * concatenated with {@code "Check"}. If the name is
      * a class name, creates an instance of the named class. Otherwise, creates
      * an instance of a class name obtained by concatenating the given name
      * to a package name from a given list of package names.
@@ -377,7 +377,7 @@ public class PackageObjectFactory implements ModuleFactory {
     }
 
     /**
-     * Searching to class with given name (or name concatenated with &quot;Check&quot;) in existing
+     * Searching to class with given name (or name concatenated with {@code "Check"}) in existing
      * packages. Returns instance if class found or, otherwise, null.
      *
      * @param name the name of a class.
@@ -736,6 +736,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.javadoc.MissingJavadocTypeCheck");
         NAME_TO_FULL_MODULE_NAME.put("NonEmptyAtclauseDescriptionCheck",
                 BASE_PACKAGE + ".checks.javadoc.NonEmptyAtclauseDescriptionCheck");
+        NAME_TO_FULL_MODULE_NAME.put("PreferLiteralJavadocInlineTagCheck",
+                BASE_PACKAGE + ".checks.javadoc.PreferLiteralJavadocInlineTagCheck");
         NAME_TO_FULL_MODULE_NAME.put("RequireEmptyLineBeforeBlockTagGroupCheck",
                 BASE_PACKAGE + ".checks.javadoc.RequireEmptyLineBeforeBlockTagGroupCheck");
         NAME_TO_FULL_MODULE_NAME.put("SingleLineJavadocCheck",

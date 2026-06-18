@@ -86,7 +86,7 @@ public class AllCheckSummaries extends AbstractMacro {
     private static final Pattern SPACE_PATTERN = Pattern.compile(WHITESPACE_REGEX);
 
     /**
-     * Matches '&amp;' characters that are not part of a valid HTML entity.
+     * Matches '{@literal &}' characters that are not part of a valid HTML entity.
      */
     private static final Pattern AMP_PATTERN = Pattern.compile("&(?![a-zA-Z#0-9]+;)");
 

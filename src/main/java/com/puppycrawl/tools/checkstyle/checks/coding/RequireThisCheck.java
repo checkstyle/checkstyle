@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <ol>
  *   <li>
  *     The same notation/habit for C++ and Java (C++ have global methods, so having
- *     &quot;this.&quot; do make sense in it to distinguish call of method of class
+ *     {@code "this"}; do make sense in it to distinguish call of method of class
  *     instead of global).
  *   </li>
  *   <li>

@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * The NPATH metric computes the number of possible execution paths through a
  * function(method). It takes into account the nesting of conditional statements
- * and multipart boolean expressions (A &amp;&amp; B, C || D, E ? F :G and
+ * and multipart boolean expressions ({@code A && B, C || D, E ? F :G} and
  * their combinations).
  * </p>
  *
@@ -58,7 +58,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <blockquote>
  * An NPATH threshold value of 200 has been established for a function.
- * The value 200 is based on studies done at AT&amp;T Bell Laboratories [1988 year].
+ * The value 200 is based on studies done at AT{@literal &}T Bell Laboratories [1988 year].
  * </blockquote>
  * <blockquote>
  * Some of the most effective methods of reducing the NPATH value include:
@@ -71,7 +71,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * <li>
  * creating a separate function for logical expressions with a high count of
- * variables and (&amp;&amp;) and or (||) operators.
+ * variables and ({@literal &&}) and or (||) operators.
  * </li>
  * </ul>
  * </blockquote>
@@ -99,7 +99,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <tr><td>[expr1] ? [expr2] : [expr3]</td><td>NP(expr1) + NP(expr2) + NP(expr3) + 2</td></tr>
  * <tr><td>goto label</td><td>1</td></tr><tr><td>break</td><td>1</td></tr>
  * <tr><td>Expressions</td>
- * <td>Number of &amp;&amp; and || operators in expression. No operators - 0</td></tr>
+ * <td>Number of {@literal &&} and || operators in expression. No operators - 0</td></tr>
  * <tr><td>continue</td><td>1</td></tr><tr><td>return</td><td>1</td></tr>
  * <tr><td>Statement (even sequential statements)</td><td>1</td></tr>
  * <tr><td>Empty block {}</td><td>1</td></tr><tr><td>Function call</td><td>1</td>
@@ -113,7 +113,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * candidates for further decomposition - or at least a closer look.
  * <b>Please do not be fanatic with limit 200</b> - choose number that suites
  * your project style. Limit 200 is empirical number base on some sources of at
- * AT&amp;T Bell Laboratories of 1988 year.
+ * AT{@literal &}T Bell Laboratories of 1988 year.
  * </p>
  *
  * @since 3.4
