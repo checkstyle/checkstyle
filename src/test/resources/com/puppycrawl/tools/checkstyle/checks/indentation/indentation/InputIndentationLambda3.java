@@ -65,7 +65,7 @@ public class InputIndentationLambda3 {                                          
 			return Optional.ofNullable(input)                                       //indent:12 exp:8 warn
 				.filter(in                                                          //indent:16 exp:16
 							->                                                      //indent:28 exp:28
-					in.contains("e"))                                               //indent:20 exp:20
+					in.contains("e"))                                               //indent:20 exp:24,36 warn
 			.filter(inp -> inp.contains("e"))                                       //indent:12 exp:12
 				// only 3 char parameter has violation                              //indent:16 exp:16
 				.orElse(null);                                                      //indent:16 exp:16
