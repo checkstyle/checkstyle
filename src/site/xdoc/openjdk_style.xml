@@ -831,8 +831,33 @@
                     Class, Interface and Enum Names
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt="" />
+                  </span>
+                  <a href="checks/naming/methodname.html#TypeName">TypeName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/methodname.html#AbbreviationAsWordInName">AbbreviationAsWordInName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbbreviationAsWordInName">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Checkstyle is a Static analysis tool and cannot determine whether a name is a
+                  noun, an adjective, or any other grammatical category.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapternaming/ruleclassinterfaceandenumnames">
+                    samples</a>
+                </td>
               </tr>
               <tr>
                 <td>
