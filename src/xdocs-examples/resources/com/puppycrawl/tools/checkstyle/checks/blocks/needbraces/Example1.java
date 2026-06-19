@@ -16,7 +16,7 @@ class Example1 {
   int count = 0;
   int num = 12;
   String o = "O";
-  public boolean Example1() {
+  public boolean test() {
     if (obj.equals(num)) return true;
     // violation above, ''if' construct must use '{}'s.'
     if (true) {
@@ -45,10 +45,4 @@ class Example1 {
     return true;
   }
 }
-
-
-
-
-
-
 // xdoc section -- end
