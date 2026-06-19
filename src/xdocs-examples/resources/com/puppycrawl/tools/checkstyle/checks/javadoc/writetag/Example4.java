@@ -15,6 +15,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 // xdoc section -- start
+
 /**
  * Some class
  * @since 1.2
