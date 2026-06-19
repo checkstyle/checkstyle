@@ -125,9 +125,10 @@ public final class ScopeUtil {
      */
     public static Optional<Scope> getSurroundingScope(DetailAST node) {
         Optional<Scope> returnValue = Optional.empty();
+        DetailAST child = null;
         for (DetailAST token = node;
              token != null;
-             token = token.getParent()) {
+             child = token, token = token.getParent()) {
             final int type = token.getType();
             if (TokenUtil.isTypeDeclaration(type)) {
                 final Scope tokenScope = getScope(token);
@@ -139,6 +140,12 @@ public final class ScopeUtil {
                 returnValue = Optional.of(Scope.ANONINNER);
                 // because Scope.ANONINNER is not in any other Scope
                 break;
+            }
+            else if (type == TokenTypes.COMPACT_COMPILATION_UNIT
+                        && !TokenUtil.isOfType(child, TokenTypes.IMPORT,
+                                TokenTypes.STATIC_IMPORT, TokenTypes.MODULE_IMPORT)
+                        && (returnValue.isEmpty() || returnValue.get().isIn(Scope.PACKAGE))) {
+                returnValue = Optional.of(Scope.PACKAGE);
             }
         }
 
