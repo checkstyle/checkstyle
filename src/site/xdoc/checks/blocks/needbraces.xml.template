@@ -70,6 +70,20 @@
                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example3.java"/>
             <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check to allow loops (<code>while, for</code>) with empty bodies:
+        </p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example5.java"/>
+            <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example5.java"/>
+            <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the check to allow <code>case, default</code> single-line statements
           without braces:
@@ -85,20 +99,6 @@
         <macro name="example">
             <param name="path"
                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example4.java"/>
-            <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example5-config">
-          To configure the check to allow loops (<code>while, for</code>) with empty bodies:
-        </p>
-        <macro name="example">
-            <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example5.java"/>
-            <param name="type" value="config"/>
-        </macro>
-        <p id="Example5-code">Example:</p>
-        <macro name="example">
-            <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example5.java"/>
             <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example6-config">
