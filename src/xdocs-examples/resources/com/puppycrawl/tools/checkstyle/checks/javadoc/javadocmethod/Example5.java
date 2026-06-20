@@ -22,7 +22,6 @@ public class Example5 {
     // 2 violations above:
     //    '@return tag should be present and have description.'
     //    'Expected @param tag for 'p1'.'
-
     throw new IOException();
   }
 

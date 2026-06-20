@@ -188,7 +188,6 @@ public class Example1 {
     // 2 violations above:
     //    '@return tag should be present and have description.'
     //    'Expected @param tag for 'p1'.'
-
     throw new IOException();
   }
 
@@ -237,9 +236,8 @@ public class Example2 {
   /** */
   public int m1(int p1) throws IOException {
     // violation above, '@return tag should be present and have description.'
-    /*
-     ok, allowMissingParamTags is true
-    */
+
+    // ok, allowMissingParamTags is true
     throw new IOException();
   }
 
@@ -285,9 +283,8 @@ public class Example4 {
   /** */
   public int m1(int p1) throws IOException {
     // violation above, 'Expected @param tag for 'p1'.'
-    /*
-     ok, allowMissingReturnTag is true
-    */
+
+    // ok, allowMissingReturnTag is true
     throw new IOException();
   }
 
@@ -335,7 +332,6 @@ public class Example5 {
     // 2 violations above:
     //    '@return tag should be present and have description.'
     //    'Expected @param tag for 'p1'.'
-
     throw new IOException();
   }
 
@@ -380,10 +376,9 @@ public class Example6 {
   // violation above, 'Expected @param tag for 'x''
   /** */
   public int m1(int p1) throws IOException {
-    /*
-     ok, only constructors are checked.
-     Method definitions are ignored for this token set.
-    */
+
+    // ok, only constructors are checked.
+
     throw new IOException();
   }
   // ok, only constructors are checked
@@ -426,10 +421,9 @@ public class Example7 {
   /** */
   Example7(int x) {}
   // violation above, 'Expected @param tag for 'x'.'
-  /** */
+  /** */ // violation below, '@return tag should be present and have description.'
   public int m1(int p1) throws IOException {
-    // 3 violations above:
-    //    '@return tag should be present and have description.'
+    // 2 violations above:
     //    'Expected @param tag for 'p1'.'
     //    'Expected @throws tag for 'IOException'.'
     throw new IOException();
@@ -480,7 +474,6 @@ public class Example8 {
     // 2 violations above:
     //    '@return tag should be present and have description.'
     //    'Expected @param tag for 'p1'.'
-
     throw new IOException();
   }
 
@@ -526,10 +519,9 @@ public class Example3 {
 
   /** */
   public int m1(int p1) throws IOException {
-    /*
-     ok, only private and package access modifiers are checked.
-     Public methods are not validated under this configuration.
-    */
+
+    // ok, only private and package access modifiers are checked.
+
     throw new IOException();
   }
 

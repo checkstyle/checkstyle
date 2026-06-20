@@ -17,10 +17,9 @@ public class Example7 {
   /** */
   Example7(int x) {}
   // violation above, 'Expected @param tag for 'x'.'
-  /** */
+  /** */ // violation below, '@return tag should be present and have description.'
   public int m1(int p1) throws IOException {
-    // 3 violations above:
-    //    '@return tag should be present and have description.'
+    // 2 violations above:
     //    'Expected @param tag for 'p1'.'
     //    'Expected @throws tag for 'IOException'.'
     throw new IOException();
