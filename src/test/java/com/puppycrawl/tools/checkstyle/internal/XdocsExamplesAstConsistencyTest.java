@@ -109,8 +109,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/blocks/rightcurly/Example2",
             "checks/coding/equalsavoidnull/Example2",
             "checks/coding/explicitinitialization/Example2",
-            "checks/coding/fallthrough/Example2",
-            "checks/coding/fallthrough/Example3",
             "checks/coding/illegalsymbol/Example4",
             "checks/coding/illegalthrows/Example2",
             "checks/coding/illegalthrows/Example3",
