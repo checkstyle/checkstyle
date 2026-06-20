@@ -13,8 +13,9 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol;
 
 import java.awt.Image; // violation, 'Disallowed import - java.awt.Image'
 import java.io.File; // violation, 'Disallowed import - java.io.File'
-
-import java.util.Scanner; // ok, allowed on mismatch by default
+import java.io.FileReader;
+import java.util.Date;
+import java.util.List;
 
 public class Example5 {}
 // xdoc section -- end
