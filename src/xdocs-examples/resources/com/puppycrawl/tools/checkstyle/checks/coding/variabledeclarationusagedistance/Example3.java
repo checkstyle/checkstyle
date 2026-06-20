@@ -13,7 +13,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedi
 public class Example3 {
 
   public void foo1() {
+
     int num;        // ok, distance = 4
+
     final double PI;   // ok, final variables not checked
     System.out.println("Statement 1");
     System.out.println("Statement 2");
