@@ -604,7 +604,33 @@ Value_IDENTIFIER
     ;
 
 FORMAT_SPECIFIER
-    : '%' [#+\- 0,(]* [0-9]* ('.' [0-9]+)? [a-zA-Z]
+    : QUOTED_FORMAT_SPECIFIER
+    | FORMAT_CONVERSION
+    ;
+
+fragment QUOTED_FORMAT_SPECIFIER
+    : '"' ~["\r\n%}]* FORMAT_CONVERSION ~["\r\n%}]* '"'
+    ;
+
+fragment FORMAT_CONVERSION
+    : '%' ARGUMENT_INDEX? FORMAT_FLAGS? FORMAT_WIDTH? [tT] [a-zA-Z]
+    | '%' ARGUMENT_INDEX? FORMAT_FLAGS? FORMAT_WIDTH? FORMAT_PRECISION? [a-zA-Z]
+    ;
+
+fragment ARGUMENT_INDEX
+    : [1-9] [0-9]* '$'
+    ;
+
+fragment FORMAT_FLAGS
+    : [#+\- 0,(]+
+    ;
+
+fragment FORMAT_WIDTH
+    : [0-9]+
+    ;
+
+fragment FORMAT_PRECISION
+    : '.' [0-9]+
     ;
 
 Value_HASH: '#' -> type(HASH);
