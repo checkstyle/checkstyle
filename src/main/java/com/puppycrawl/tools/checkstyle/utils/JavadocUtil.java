@@ -417,5 +417,4 @@ public final class JavadocUtil {
                 || BlockCommentPosition.isOnMember(blockComment)
                 || BlockCommentPosition.isOnPackage(blockComment));
     }
-
 }

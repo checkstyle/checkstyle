@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>JavadocParamOrder</title>
+  </head>
+  <body>
+    <section name="JavadocParamOrder">
+      <p>Since Checkstyle 13.3.0</p>
+      <subsection name="Description" id="JavadocParamOrder_Description">
+        <div>
+          Checks that the order of <code>@param</code> tags in a Javadoc comment matches
+          the order of the corresponding parameters in the method or constructor
+          declaration. Type parameters (e.g. <code>&lt;T&gt;</code>) are included and must
+          appear before normal parameters, matching their position in the declaration.
+        </div>
+
+        <p>
+          Only the intersection of documented parameter names and declared parameter
+          names is checked. No violation is raised for extra tags or missing tags.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="JavadocParamOrder_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
+     Tight-HTML Rules</a>.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="JavadocParamOrder_Examples">
+        <p id="Example1-config">
+            Example 1: Correct parameter order with multiple parameters
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocParamOrder"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+            Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+    /**
+     * Two parameters in correct order.
+     *
+     * @param first the first parameter
+     * @param second the second parameter
+     */
+    public void twoParams(String first, String second) {
+    }
+
+    /**
+     * Three parameters in correct order.
+     *
+     * @param first the first parameter
+     * @param second the second parameter
+     * @param third the third parameter
+     */
+    public void threeParams(String first, String second, String third) {
+    }
+
+    /**
+     * Multiple parameters with partial documentation (no violation).
+     *
+     * @param first the first parameter
+     * @param third the third parameter
+     */
+    public void partialDocs(String first, String second, String third) {
+    }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+            Example 2: Violations - parameters out of order
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocParamOrder"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+            Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+    /**
+     * Two parameters out of order.
+     *
+     * @param second the second parameter // violation
+     * @param first the first parameter   // violation
+     */
+    public void twoParamsWrong(String first, String second) {
+    }
+
+    /**
+     * Three parameters out of order.
+     *
+     * @param third the third parameter   // violation
+     * @param first the first parameter   // violation
+     * @param second the second parameter // violation
+     */
+    public void threeParamsWrong(String first, String second, String third) {
+    }
+
+    /**
+     * Constructor with parameters out of order.
+     *
+     * @param age the person's age     // violation
+     * @param name the person's name   // violation
+     */
+    public Example2(String name, int age) {
+    }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+            Example 3: Type parameters and complex cases
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocParamOrder"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+            Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
+    /**
+     * Single type parameter in correct order.
+     *
+     * @param &lt;T&gt; the type parameter
+     * @param value the value
+     */
+    public &lt;T&gt; void singleTypeParam(T value) {
+    }
+
+    /**
+     * Multiple type parameters in correct order.
+     *
+     * @param &lt;K&gt; the key type
+     * @param &lt;V&gt; the value type
+     * @param key the key
+     * @param value the value
+     */
+    public &lt;K, V&gt; void multipleTypeParams(K key, V value) {
+    }
+
+    /**
+     * Type parameter after regular parameter (violation).
+     *
+     * @param value the value              // violation
+     * @param &lt;T&gt; the type parameter      // violation
+     */
+    public &lt;T&gt; void typeParamWrong(T value) {
+    }
+
+    /**
+     * Multiple type parameters with regular parameters, correct order.
+     *
+     * @param &lt;K&gt; the key type
+     * @param &lt;V&gt; the value type
+     * @param key the key
+     * @param value the value
+     * @param operation the operation
+     */
+    public &lt;K, V&gt; void complexMethod(K key, V value, String operation) {
+    }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="JavadocParamOrder_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocParamOrder">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="JavadocParamOrder_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.param.order%22">
+              javadoc.param.order
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+              javadoc.parse.rule.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+              javadoc.unclosedHtml
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="JavadocParamOrder_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="JavadocParamOrder_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
