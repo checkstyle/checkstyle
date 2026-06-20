@@ -35,7 +35,13 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     public void testExample1() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
+            "15:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.io.File"),
+            "17:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
+            "18:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
@@ -209,6 +215,12 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     public void testExample12() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
+            "15:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.io.File"),
+            "16:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.io.FileReader"),
+            "17:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
         };
 
