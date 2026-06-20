@@ -20,9 +20,8 @@ public class Example4 {
   /** */
   public int m1(int p1) throws IOException {
     // violation above, 'Expected @param tag for 'p1'.'
-    /*
-     ok, allowMissingReturnTag is true
-    */
+
+    // ok, allowMissingReturnTag is true
     throw new IOException();
   }
 

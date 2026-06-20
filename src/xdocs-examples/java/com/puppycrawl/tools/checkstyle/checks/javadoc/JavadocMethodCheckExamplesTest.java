@@ -39,9 +39,9 @@ public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSu
             "16:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
             "19: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
             "19:21: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
-            "30: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
-            "36:15: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
-            "41: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
+            "29: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
+            "35:15: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
+            "40: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -51,7 +51,7 @@ public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSu
     public void testExample2() throws Exception {
         final String[] expected = {
             "22: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
-            "44: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
+            "43: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -68,7 +68,7 @@ public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSu
         final String[] expected = {
             "18:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
             "21:21: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
-            "38:15: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
+            "37:15: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -80,8 +80,8 @@ public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSu
             "18:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
             "21: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
             "21:21: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
-            "38:15: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
-            "43: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
+            "37:15: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
+            "42: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
@@ -103,9 +103,9 @@ public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSu
             "21: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
             "21:21: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
             "21:32: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IOException"),
-            "32: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
-            "38:15: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
-            "43: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
+            "31: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
+            "37:15: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
+            "42: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
         };
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
@@ -117,8 +117,8 @@ public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSu
             "18:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
             "21: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
             "21:21: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
-            "32: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
-            "38:15: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
+            "31: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
+            "37:15: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
         };
         verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }

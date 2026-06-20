@@ -19,10 +19,9 @@ public class Example3 {
 
   /** */
   public int m1(int p1) throws IOException {
-    /*
-     ok, only private and package access modifiers are checked.
-     Public methods are not validated under this configuration.
-    */
+
+    // ok, only private and package access modifiers are checked.
+
     throw new IOException();
   }
 
