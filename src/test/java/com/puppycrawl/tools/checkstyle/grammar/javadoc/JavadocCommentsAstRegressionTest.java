@@ -177,6 +177,12 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testValueInlineTagWithQuotedFormat() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedValueInlineTagWithQuotedFormat.txt"),
+                getInlineTagsPath("InputValueInlineTagWithQuotedFormat.javadoc"));
+    }
+
+    @Test
     public void testSystemPropertyInlineTag() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedSystemPropertyTag.txt"),
                 getInlineTagsPath("InputSystemPropertyTag.javadoc"));
