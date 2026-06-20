@@ -32,6 +32,7 @@ public class Example2 {
    * Some description here
    */
   private void testMethod3() {
+
   }
   /**
    * Some description here
@@ -44,16 +45,14 @@ public class Example2 {
    * Second line of description
    */
   private void testMethod5() {
+
   }
   /**
    * Some description here
    * <p
    */
   private void testMethod6() {
+
   }
-  /**
-   *
-   */
-  private void testEmptyMethod() {}
 }
 // xdoc section -- end

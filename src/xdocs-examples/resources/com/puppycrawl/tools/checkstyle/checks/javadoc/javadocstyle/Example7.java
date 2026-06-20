@@ -20,6 +20,7 @@ public class Example7 {
    * Some description here.
    */
   private void testMethod1() {}
+
   /**
    * {@return {@code true} if this object
    * has been initialized, {@code false} otherwise}
@@ -53,10 +54,5 @@ public class Example7 {
   private void testMethod6() { // violation 4 lines above 'should end with a period'
     // violation 3 lines above 'Incomplete HTML tag found'
   }
-  /**
-   *
-   */
-  private void testEmptyMethod() {}
-  // violation 4 lines above 'Javadoc has empty description section'
 }
 // xdoc section -- end
