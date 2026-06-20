@@ -1,0 +1,5 @@
+* The magic number identifying the {@code class} file format, {@value
+* "0x%04x" #MAGIC_NUMBER}. It is a big-endian 4-byte value.
+* Grouped count: {@value "%,d" #COUNT}.
+* External ratio: {@value "ratio=%1$.2f" com.example.Constants#RATIO}.
+* Epoch year: {@value %1$tY #EPOCH_MILLIS}.
