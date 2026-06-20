@@ -19,10 +19,9 @@ public class Example6 {
   // violation above, 'Expected @param tag for 'x''
   /** */
   public int m1(int p1) throws IOException {
-    /*
-     ok, only constructors are checked.
-     Method definitions are ignored for this token set.
-    */
+
+    // ok, only constructors are checked.
+
     throw new IOException();
   }
   // ok, only constructors are checked
