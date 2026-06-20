@@ -25,7 +25,9 @@ public class Example5 {
    * {@return {@code true} if this object
    * has been initialized, {@code false} otherwise}
    */
-  private boolean testMethod2() { return true; }
+  private boolean testMethod2() {
+    return true;
+  }
   /**
    * Some description here
    */
@@ -50,10 +52,7 @@ public class Example5 {
    * <p
    */
   private void testMethod6() { // violation 4 lines above 'should end with a period'
+
   }
-  /**
-   *
-   */
-  private void testEmptyMethod() {}
 }
 // xdoc section -- end

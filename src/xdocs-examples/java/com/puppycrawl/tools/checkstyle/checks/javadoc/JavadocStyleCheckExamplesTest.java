@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_EMPTY;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_INCOMPLETE_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_NO_PERIOD;
 
@@ -50,7 +49,7 @@ public class JavadocStyleCheckExamplesTest extends AbstractExamplesModuleTestSup
     public void testExample2() throws Exception {
         final String[] expected = {
             "12: " + getCheckMessage(MSG_NO_PERIOD),
-            "36: " + getCheckMessage(MSG_NO_PERIOD),
+            "37: " + getCheckMessage(MSG_NO_PERIOD),
         };
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
@@ -58,10 +57,10 @@ public class JavadocStyleCheckExamplesTest extends AbstractExamplesModuleTestSup
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "30: " + getCheckMessage(MSG_NO_PERIOD),
-            "41: " + getCheckMessage(MSG_NO_PERIOD),
-            "48: " + getCheckMessage(MSG_NO_PERIOD),
-            "50: " + getCheckMessage(MSG_INCOMPLETE_TAG, "   * <p"),
+            "32: " + getCheckMessage(MSG_NO_PERIOD),
+            "44: " + getCheckMessage(MSG_NO_PERIOD),
+            "51: " + getCheckMessage(MSG_NO_PERIOD),
+            "53: " + getCheckMessage(MSG_INCOMPLETE_TAG, "   * <p"),
         };
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
@@ -69,7 +68,7 @@ public class JavadocStyleCheckExamplesTest extends AbstractExamplesModuleTestSup
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "48: " + getCheckMessage(MSG_INCOMPLETE_TAG, "   * <p"),
+            "52: " + getCheckMessage(MSG_INCOMPLETE_TAG, "   * <p"),
         };
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
@@ -78,10 +77,10 @@ public class JavadocStyleCheckExamplesTest extends AbstractExamplesModuleTestSup
     public void testExample5() throws Exception {
         final String[] expected = {
             "12: " + getCheckMessage(MSG_NO_PERIOD),
-            "29: " + getCheckMessage(MSG_NO_PERIOD),
-            "35: " + getCheckMessage(MSG_NO_PERIOD),
-            "41: " + getCheckMessage(MSG_NO_PERIOD),
-            "48: " + getCheckMessage(MSG_NO_PERIOD),
+            "31: " + getCheckMessage(MSG_NO_PERIOD),
+            "37: " + getCheckMessage(MSG_NO_PERIOD),
+            "43: " + getCheckMessage(MSG_NO_PERIOD),
+            "50: " + getCheckMessage(MSG_NO_PERIOD),
         };
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
@@ -98,12 +97,11 @@ public class JavadocStyleCheckExamplesTest extends AbstractExamplesModuleTestSup
     public void testExample7() throws Exception {
         final String[] expected = {
             "12: " + getCheckMessage(MSG_NO_PERIOD),
-            "30: " + getCheckMessage(MSG_NO_PERIOD),
-            "36: " + getCheckMessage(MSG_NO_PERIOD),
-            "42: " + getCheckMessage(MSG_NO_PERIOD),
-            "49: " + getCheckMessage(MSG_NO_PERIOD),
-            "51: " + getCheckMessage(MSG_INCOMPLETE_TAG, "   * <p"),
-            "56: " + getCheckMessage(MSG_EMPTY),
+            "31: " + getCheckMessage(MSG_NO_PERIOD),
+            "37: " + getCheckMessage(MSG_NO_PERIOD),
+            "43: " + getCheckMessage(MSG_NO_PERIOD),
+            "50: " + getCheckMessage(MSG_NO_PERIOD),
+            "52: " + getCheckMessage(MSG_INCOMPLETE_TAG, "   * <p"),
         };
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
@@ -111,11 +109,11 @@ public class JavadocStyleCheckExamplesTest extends AbstractExamplesModuleTestSup
     @Test
     public void testExample8() throws Exception {
         final String[] expected = {
-            "28: " + getCheckMessage(MSG_NO_PERIOD),
-            "34: " + getCheckMessage(MSG_NO_PERIOD),
-            "40: " + getCheckMessage(MSG_NO_PERIOD),
-            "47: " + getCheckMessage(MSG_NO_PERIOD),
-            "49: " + getCheckMessage(MSG_INCOMPLETE_TAG, "   * <p"),
+            "32: " + getCheckMessage(MSG_NO_PERIOD),
+            "38: " + getCheckMessage(MSG_NO_PERIOD),
+            "44: " + getCheckMessage(MSG_NO_PERIOD),
+            "51: " + getCheckMessage(MSG_NO_PERIOD),
+            "53: " + getCheckMessage(MSG_INCOMPLETE_TAG, "   * <p"),
         };
         verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
