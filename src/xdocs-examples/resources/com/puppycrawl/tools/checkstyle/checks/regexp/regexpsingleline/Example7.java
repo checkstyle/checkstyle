@@ -18,7 +18,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
 /**
  * This file is copyrighted under CC.
  */
-public class Example6 {
+public class Example7 {
 
   void myFunction() {
     try {

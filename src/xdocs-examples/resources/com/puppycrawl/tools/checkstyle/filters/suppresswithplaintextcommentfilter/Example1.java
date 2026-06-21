@@ -10,7 +10,6 @@
 
 package com.puppycrawl.tools.checkstyle.filters.suppresswithplaintextcommentfilter;
 
-public class Example1 { }
-
 // xdoc section -- start
+public class Example1 { }
 // xdoc section -- end
