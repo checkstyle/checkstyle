@@ -14,24 +14,41 @@ package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
 // xdoc section -- start
 class Example13 {
-  private int field1;
-
-  // Some code
-}
-// violation below, 'Count of 2 for 'CLASS_DEF' descendant'
-class ExampleTest {
-  private int field1;
+  private int field1; // violation above 'Count of 2 for 'CLASS_DEF' descendant'
   private int field2;
 
-  // Some code
-}
-interface Test1 {
-  int FIELD_1 = 1;
-}
-// violation below,'Count of 2 for 'INTERFACE_DEF' descendant'
-interface Test2 {
-  int FIELD_1 = 1;
-  int FIELD_2 = 2;
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
+    }
+    finally {
+      try { }
+      catch (Exception ex) { }
+    }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
+  }
 }
 // xdoc section -- end
-

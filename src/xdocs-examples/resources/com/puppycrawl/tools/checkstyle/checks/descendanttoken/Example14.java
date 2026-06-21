@@ -15,24 +15,41 @@ package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
 // xdoc section -- start
 class Example14 {
-  void testMethod1() {
-    // violation below, 'Total count of 2 exceeds maximum count 1'
-    if (this == null) {
-      System.out.println("xyz");
-    }
-    if (this != null) {
-      // violation above, 'Total count of 2 exceeds maximum count 1'
-      System.out.println("xyz");
+  private int field1;
+  private int field2;
+
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
     }
 
-    Object obj = new Object();
-    if (obj == null) {
-      System.out.println("xyz");
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
     }
-    if (obj != null) {
-      System.out.println("xyz");
+    finally {
+      try { }
+      catch (Exception ex) { }
     }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2; // violation below, 'Total count of 2 exceeds maximum count 1'
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
   }
 }
 // xdoc section -- end
-

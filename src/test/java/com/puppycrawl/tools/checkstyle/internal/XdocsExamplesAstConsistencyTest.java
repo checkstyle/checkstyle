@@ -116,20 +116,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/coding/onestatementperline/Example2",
             "checks/coding/packagedeclaration/Example2",
             "checks/coding/unnecessarysemicolonafteroutertypedeclaration/Example2",
-            "checks/descendanttoken/Example10",
-            "checks/descendanttoken/Example11",
-            "checks/descendanttoken/Example12",
-            "checks/descendanttoken/Example13",
-            "checks/descendanttoken/Example14",
-            "checks/descendanttoken/Example15",
-            "checks/descendanttoken/Example16",
-            "checks/descendanttoken/Example17",
-            "checks/descendanttoken/Example4",
-            "checks/descendanttoken/Example5",
-            "checks/descendanttoken/Example6",
-            "checks/descendanttoken/Example7",
-            "checks/descendanttoken/Example8",
-            "checks/descendanttoken/Example9",
             "checks/imports/importcontrol/filters/Example9",
             "checks/imports/importcontrol/someImports/Example11",
             "checks/imports/importcontrol/someImports/Example6",
@@ -346,7 +332,15 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/blocks/emptycatchblock/Example5",
             "checks/naming/parametername/Example4",
             "checks/coding/illegalsymbol/Example3",
-            "checks/coding/illegalsymbol/Example5"
+            "checks/coding/illegalsymbol/Example5",
+            "checks/descendanttoken/Example5",
+            "checks/descendanttoken/Example8",
+            "checks/descendanttoken/Example9",
+            "checks/descendanttoken/Example10",
+            "checks/descendanttoken/Example11",
+            "checks/descendanttoken/Example13",
+            "checks/descendanttoken/Example15",
+            "checks/descendanttoken/Example16"
             );
 
     /**
