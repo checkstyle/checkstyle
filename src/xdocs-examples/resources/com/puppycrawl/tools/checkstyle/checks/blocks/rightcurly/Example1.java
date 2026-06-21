@@ -33,8 +33,10 @@ public class Example1 {
   }
   private void bar() {
   }
-  public void testSingleLine() { bar(); }
-  public void violate() { Object b = "b"; }
+  public void testSingleLine()
+  { bar(); }
+  public void violate()
+  { Object b = "b"; }
   public void method0() {
     int mode = 0;
     int x;
