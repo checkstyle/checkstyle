@@ -209,8 +209,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/regexp/regexpsinglelinejava/Example3",
             "checks/regexp/regexpsinglelinejava/Example4",
             "checks/regexp/regexpsinglelinejava/Example5",
-            "checks/sizes/filelength/Example2",
-            "checks/sizes/filelength/Example3",
             "checks/sizes/lambdabodylength/Example2",
             "checks/sizes/methodcount/Example2",
             "checks/sizes/methodcount/Example3",
