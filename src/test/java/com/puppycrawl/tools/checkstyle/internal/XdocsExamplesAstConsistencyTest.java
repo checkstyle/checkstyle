@@ -102,9 +102,6 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
             "checks/annotation/suppresswarnings/Example2",
-            "checks/annotation/suppresswarningsholder/Example2",
-            "checks/annotation/suppresswarningsholder/Example3",
-            "checks/annotation/suppresswarningsholder/Example4",
             "checks/blocks/leftcurly/Example3",
             "checks/blocks/rightcurly/Example2",
             "checks/coding/equalsavoidnull/Example2",
@@ -333,6 +330,8 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/regexp/regexp/Example6",
             "checks/javadoc/writetag/Example5",
             "checks/coding/illegalinstantiation/Example3",
+            "checks/annotation/suppresswarningsholder/Example3",
+            "checks/annotation/suppresswarningsholder/Example4",
             "checks/coding/matchxpath/Example2",
             "checks/coding/matchxpath/Example3",
             "checks/coding/matchxpath/Example4",
