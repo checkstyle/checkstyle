@@ -7032,14 +7032,14 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/MethodCountCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>result = latestDefinition == methodDef.getParent().getParent();</lineContent>
+    <lineContent>result = latestDefinition == scopeDefinition;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/MethodCountCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>result = latestDefinition == methodDef.getParent().getParent();</lineContent>
+    <lineContent>result = latestDefinition == scopeDefinition;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
