@@ -11,12 +11,23 @@
 </module>
 */
 
-// xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
-/* violation on first line 'File must contain copyright statement' */
+// xdoc section -- start
 /**
  * MyClass as a configuration example.
  */
-public class Example5 {}
+public class Example5 {
+
+  void myFunction() {
+    try {
+      doSomething();
+      System.exit(0);
+    } catch (Exception e) {
+      System.exit(1);
+    }
+  }
+
+  void doSomething() {}
+}
 // xdoc section -- end
-// violation 21 lines above 'File must contain copyright statement'
+// violation first line 'File must contain copyright statement'
