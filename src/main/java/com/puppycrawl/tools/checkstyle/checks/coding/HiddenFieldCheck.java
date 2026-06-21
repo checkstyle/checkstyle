@@ -135,6 +135,7 @@ public class HiddenFieldCheck
             TokenTypes.LAMBDA,
             TokenTypes.RECORD_DEF,
             TokenTypes.RECORD_COMPONENT_DEF,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
     }
 
@@ -145,6 +146,7 @@ public class HiddenFieldCheck
             TokenTypes.ENUM_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
     }
 
@@ -216,7 +218,9 @@ public class HiddenFieldCheck
         final FieldFrame newFrame = new FieldFrame(frame, isStaticInnerType, frameName);
 
         // add fields to container
-        final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
+        final DetailAST objBlock = ast.getType() == TokenTypes.COMPACT_COMPILATION_UNIT
+                ? ast
+                : ast.findFirstToken(TokenTypes.OBJBLOCK);
         // enum constants may not have bodies
         if (objBlock != null) {
             DetailAST child = objBlock.getFirstChild();
