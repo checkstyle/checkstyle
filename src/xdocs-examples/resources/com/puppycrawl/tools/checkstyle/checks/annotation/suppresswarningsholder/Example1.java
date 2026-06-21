@@ -16,14 +16,17 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarningsholder;
 
 // xdoc section -- start
-class Example1 {
+public class Example1 {
   private int K; // violation, 'Name 'K' must match pattern'
   @SuppressWarnings({"membername"})
   private int J; // violation suppressed
 
-  private static final int i = 0; // violation, 'Name 'i' must match pattern'
-  @SuppressWarnings("checkstyle:constantname")
-  private static final int m = 0; // violation suppressed
+  // violation below, 'More than 7 parameters (found 8)'
+  public void needsLotsOfParameters(
+          int a, int b, int c, int d,
+          int e, int f, int g, int h) {
+    // ...
+  }
 
   @SuppressWarnings("ParamNumberId")
     public void needsLotsOfParameters1 (int a, // violation suppressed
