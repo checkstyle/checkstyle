@@ -43,7 +43,7 @@ public class RegexpSinglelineCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "23: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System.exit\\("),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -52,7 +52,7 @@ public class RegexpSinglelineCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "19: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System.exit\\("),
+            "23: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System.exit\\("),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);

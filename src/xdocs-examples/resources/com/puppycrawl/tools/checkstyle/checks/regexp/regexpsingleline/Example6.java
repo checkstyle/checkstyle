@@ -14,7 +14,21 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
-
-public class Example6 {}
 // xdoc section -- start
+/**
+ * This file is copyrighted under CC.
+ */
+public class Example6 {
+
+  void myFunction() {
+    try {
+      doSomething();
+      System.exit(0);
+    } catch (Exception e) {
+      System.exit(1);
+    }
+  }
+
+  void doSomething() {}
+}
 // xdoc section -- end
