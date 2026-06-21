@@ -39,6 +39,12 @@
     <!-- Tag conventions -->
     <module name="AtclauseOrder"/>
 
+    <!-- Required Tags -->
+    <module name="JavadocMethod">
+      <property name="allowedAnnotations" value=""/>
+      <property name="validateThrows" value="false"/>
+    </module>
+
     <!-- Documenting default constructors -->
     <module name="MissingCtor">
       <message key="missing.ctor" value="Class should define an explicit constructor.
