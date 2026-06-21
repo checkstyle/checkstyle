@@ -10,15 +10,20 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
 // xdoc section -- start
+/**
+ * This file is copyrighted under CC.
+ */
 public class Example2 {
+
   void myFunction() {
     try {
       doSomething();
+      System.exit(0);
     } catch (Exception e) {
-      System.exit(1); // ok, as only there is only one occurrence.
+      System.exit(1); // violation, as there are more than one occurrence.
     }
   }
 
-  void doSomething(){}
+  void doSomething() {}
 }
 // xdoc section -- end
