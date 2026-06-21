@@ -13,15 +13,46 @@ package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
 // xdoc section -- start
 class Example11 {
-  void testMethod1() {
-    int x = 1;
-    int z = x + 2;
-  }
-  // violation below, 'Count of 3 for 'METHOD_DEF' descendant'
-  void testMethod2() {
-    int x = 1;
-    int y = 2;
-    int z = x + y;
+  private int field1;
+  private int field2;
+  // violation below, 'Count of 10 for 'METHOD_DEF' descendant'
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+
+    try {
+    }
+    catch (Exception e) {
+      try {
+      }
+      catch (Exception ex) {
+      }
+      return -1;
+    }
+    finally {
+      try {
+      }
+      catch (Exception ex) {
+      }
+    }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
   }
 }
 // xdoc section -- end

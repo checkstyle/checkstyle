@@ -14,34 +14,46 @@ package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
 // xdoc section -- start
 class Example8 {
-  void testMethod1() {
-    int var1 = 1;
-  }
-  void testMethod2() { // violation 'Count of 2 for 'METHOD_DEF' descendant'
-    int var1 = 1;
-    int var2 = 2;
-  }
+  private int field1;
+  private int field2;
+  // violation below 'Count of 2 for 'METHOD_DEF' descendant'
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
 
-  int testMethod3(int x) {
-    if (x == -1) {
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+
+    try {
+    }
+    catch (Exception e) {
+      try {
+      }
+      catch (Exception ex) {
+      }
       return -1;
     }
-    else if (x == 0) {
+    finally {
+      try {
+      }
+      catch (Exception ex) {
+      }
+    }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
       return 0;
     }
-    return -1;
-  }
-  int testMethod4(int x) {
-    if (x == -1) {
-      return -1;
-    }
-    else if (x == 0) {
-      return 0;
-    }
-    else {
-      return x;
-    }
+    assert a++ == 0;
+    ;
+    return 2;
   }
 }
 // xdoc section -- end
-

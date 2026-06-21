@@ -13,15 +13,48 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
-
 // xdoc section -- start
 class Example16 {
-  void testMethod1() {
-    int a = 5;
-    // violation below, 'Count of 1 for 'LITERAL_ASSERT' descendant'
-    assert a++ == 0 : "is not";
-    System.out.println(a);
-    assert a == 0 : "is not";
+  private int field1;
+  private int field2;
+
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+
+    try {
+    }
+    catch (Exception e) {
+      try {
+      }
+      catch (Exception ex) {
+      }
+      return -1;
+    }
+    finally {
+      try {
+      }
+      catch (Exception ex) {
+      }
+    }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0; // violation, 'Count of 1 for 'LITERAL_ASSERT' descendant'
+    ;
+    return 2;
   }
 }
 // xdoc section -- end
