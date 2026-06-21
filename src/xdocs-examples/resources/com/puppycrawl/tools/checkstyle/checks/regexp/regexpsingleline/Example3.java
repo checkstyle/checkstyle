@@ -10,7 +10,11 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
 // xdoc section -- start
+/**
+ * This file is copyrighted under CC.
+ */
 public class Example3 {
+
   void myFunction() {
     try {
       doSomething();
@@ -20,6 +24,6 @@ public class Example3 {
     }
   }
 
-  void doSomething(){}
+  void doSomething() {}
 }
 // xdoc section -- end
