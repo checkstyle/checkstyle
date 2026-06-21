@@ -114,6 +114,8 @@ public class ExampleClass {
                     ANNOTATION_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
                     RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_COMPILATION_UNIT">
+                    COMPACT_COMPILATION_UNIT</a>
                   .
               </td>
               <td>
@@ -129,6 +131,8 @@ public class ExampleClass {
                     ANNOTATION_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
                     RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_COMPILATION_UNIT">
+                    COMPACT_COMPILATION_UNIT</a>
                   .
               </td>
               <td>5.3</td>
