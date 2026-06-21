@@ -36,6 +36,12 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
         <p>
         This configuration does not match to anything,
         so we do not provide any code example for it
@@ -58,12 +64,6 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example2.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example3-code">Example with violation:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example3.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
@@ -77,6 +77,40 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example6-config">
+          An example of how to configure the check to make sure sql files contains the term
+          'license'.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example6.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example6-raw">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example6.sql"/>
+          <param name="type" value="raw"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example3-config">
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example with violation:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example3.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example5-config">
@@ -94,21 +128,21 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example5.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example6-config">
+        <p id="Example7-config">
           An example of how to configure the check to make sure sql files contains the term
           'license'.
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example6.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example7.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example6-raw">Example:</p>
+        <p id="Example7-code">Example with violation:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example6.sql"/>
-          <param name="type" value="raw"/>
-        </macro><hr class="example-separator"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro>
         <p id="Example7-raw">Example with violation:</p>
         <macro name="example">
           <param name="path"
