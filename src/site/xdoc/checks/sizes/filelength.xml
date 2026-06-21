@@ -61,7 +61,7 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   public void myTest() {
-    // small class less than 2000 lines
+    // small class with more than 5 lines less than 2000 lines
     String test = "Some content";
   }
 }
@@ -80,8 +80,8 @@ public class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   public void myTest() {
-    // small class with more than 5 lines
-    String test = "Some content"; // there is violation
+    // small class with more than 5 lines less than 2000 lines
+    String test = "Some content";
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -100,8 +100,8 @@ public class Example2 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
   public void myTest() {
-    // small class with more than 5 lines
-    String test = "Some content"; // no violation as only txt files are validated
+    // small class with more than 5 lines less than 2000 lines
+    String test = "Some content"; // ok, no violation as only txt file validated
   }
 }
 </code></pre></div>
