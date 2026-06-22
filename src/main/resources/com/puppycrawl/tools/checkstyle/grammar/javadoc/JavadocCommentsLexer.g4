@@ -604,6 +604,15 @@ Value_IDENTIFIER
     ;
 
 FORMAT_SPECIFIER
+    : QUOTED_FORMAT_SPECIFIER
+    | FORMAT_CONVERSION
+    ;
+
+fragment QUOTED_FORMAT_SPECIFIER
+    : '"' ~["\r\n}%]* FORMAT_CONVERSION ~["\r\n}%]* '"'
+    ;
+
+fragment FORMAT_CONVERSION
     : '%' [#+\- 0,(]* [0-9]* ('.' [0-9]+)? [a-zA-Z]
     ;
 
