@@ -252,13 +252,6 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithnearbytextfilter/Example7",
             "filters/suppresswithnearbytextfilter/Example8",
             "filters/suppresswithnearbytextfilter/Example9",
-            "filters/suppresswithplaintextcommentfilter/Example2",
-            "filters/suppresswithplaintextcommentfilter/Example3",
-            "filters/suppresswithplaintextcommentfilter/Example4",
-            "filters/suppresswithplaintextcommentfilter/Example5",
-            "filters/suppresswithplaintextcommentfilter/Example6",
-            "filters/suppresswithplaintextcommentfilter/Example7",
-            "filters/suppresswithplaintextcommentfilter/Example8",
             // Note: customImport/ImportOrder changes import group ORDER affecting AST structure
             "checks/imports/customimportorder/Example10",
             "checks/imports/customimportorder/Example11",
