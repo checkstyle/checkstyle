@@ -2076,8 +2076,9 @@ public class XdocsPagesTest {
         final Iterator<Node> itrChecks = checks.iterator();
         final Iterator<Node> itrConfigs = configs.iterator();
         final boolean isGoogleDocumentation = "google".equals(styleName);
+        final boolean isSunDocumentation = "sun".equals(styleName);
 
-        if (isGoogleDocumentation) {
+        if (isGoogleDocumentation || isSunDocumentation) {
             validateChapterWiseTesting(itrChecks, itrConfigs, styleChecks, styleName, ruleName);
         }
         else {
