@@ -170,7 +170,30 @@ public class RightCurlyCheck extends AbstractCheck {
                                                      Details details) {
         return bracePolicy == RightCurlyOption.SAME
                 && !hasLineBreakBefore(details.rcurly())
-                && !TokenUtil.areOnSameLine(details.lcurly(), details.rcurly());
+                && (!TokenUtil.areOnSameLine(details.lcurly, details.rcurly())
+                || isMultiBlockStatement(details.current(),
+                   details.nextToken()));
+    }
+
+    /**
+     * Checks whether the current block is part of multiblock statement.
+     *
+     * @param current current rcurly block
+     * @param next block after rcurly
+     * @return true if block is a multi-block statement
+     */
+    private static boolean isMultiBlockStatement(DetailAST current, DetailAST next) {
+        final boolean alreadyMultiBlock = current.getType() == TokenTypes.LITERAL_ELSE
+                || current.getType() == TokenTypes.LITERAL_CATCH
+                || current.getType() == TokenTypes.LITERAL_FINALLY;
+
+        final boolean partOfMultiBlock = next != null
+                && (next.getType() == TokenTypes.LITERAL_ELSE
+                || next.getType() == TokenTypes.LITERAL_CATCH
+                || next.getType() == TokenTypes.LITERAL_FINALLY
+        );
+
+        return alreadyMultiBlock || partOfMultiBlock;
     }
 
     /**
@@ -334,12 +357,13 @@ public class RightCurlyCheck extends AbstractCheck {
     /**
      * Structure that contains all details for validation.
      *
+     * @param current               the current block token
      * @param lcurly                the left curly token being analysed
      * @param rcurly                the matching right curly token
      * @param nextToken             the token following the right curly
      * @param shouldCheckLastRcurly flag that indicates if the last right curly should be checked
      */
-    private record Details(DetailAST lcurly, DetailAST rcurly,
+    private record Details(DetailAST current, DetailAST lcurly, DetailAST rcurly,
                            DetailAST nextToken, boolean shouldCheckLastRcurly) {
 
         /**
@@ -389,7 +413,7 @@ public class RightCurlyCheck extends AbstractCheck {
                 rcurly = switchNode.getLastChild();
                 nextToken = getNextToken(switchNode);
             }
-            return new Details(lcurly, rcurly, nextToken, true);
+            return new Details(switchNode, lcurly, rcurly, nextToken, true);
         }
 
         /**
@@ -421,7 +445,8 @@ public class RightCurlyCheck extends AbstractCheck {
                     Optional.ofNullable(lcurly.map(DetailAST::getNextSibling)
                     .orElseGet(() -> getNextToken(caseOrDefaultParent)));
 
-            return new Details(lcurly.orElse(null), rcurly, nextToken.orElse(null), true);
+            return new Details(caseOrDefaultNode, lcurly.orElse(null),
+                    rcurly, nextToken.orElse(null), true);
         }
 
         /**
@@ -477,7 +502,7 @@ public class RightCurlyCheck extends AbstractCheck {
             }
 
             final DetailAST rcurly = lcurly.getLastChild();
-            return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);
+            return new Details(ast, lcurly, rcurly, nextToken, shouldCheckLastRcurly);
         }
 
         /**
@@ -505,7 +530,7 @@ public class RightCurlyCheck extends AbstractCheck {
             if (lcurly.getType() == TokenTypes.SLIST) {
                 rcurly = lcurly.getLastChild();
             }
-            return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);
+            return new Details(ast, lcurly, rcurly, nextToken, shouldCheckLastRcurly);
         }
 
         /**
@@ -531,7 +556,7 @@ public class RightCurlyCheck extends AbstractCheck {
                     rcurly = lcurly.getLastChild();
                 }
             }
-            return new Details(lcurly, rcurly, getNextToken(ast), true);
+            return new Details(ast, lcurly, rcurly, getNextToken(ast), true);
         }
 
         /**
@@ -558,7 +583,7 @@ public class RightCurlyCheck extends AbstractCheck {
             if (lcurly != null) {
                 rcurly = lcurly.getLastChild();
             }
-            return new Details(lcurly, rcurly, nextToken, false);
+            return new Details(ast, lcurly, rcurly, nextToken, false);
         }
 
         /**

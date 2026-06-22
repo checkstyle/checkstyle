@@ -29,11 +29,16 @@ class InputRightCurlyTestTryWithResourceSame {
             ;
         }
         try (BufferedReader br1 = new BufferedReader(null);
-                // violation below ''}' at column 67 should be on the same line as .*/catch'
+                // violation below ''}' at column 67 should have line break before'
                 BufferedReader br2 = new BufferedReader(br1)) { ; }
         catch (IOException e) { ; }
+        // violation above ''}' at column 35 should have line break before'
         try (BufferedReader br1 = new BufferedReader(null);
                 BufferedReader br2 = new BufferedReader(br1)) {} catch (IOException e) { ; }
+        // 2 violations above
+        // ''}' at column 35 should have line break before'
+        // ''}' at column 35 should have line break before'
+
         try (BufferedReader br1 = new BufferedReader(null);
                 BufferedReader br2 = new BufferedReader(br1)) {
             ;
