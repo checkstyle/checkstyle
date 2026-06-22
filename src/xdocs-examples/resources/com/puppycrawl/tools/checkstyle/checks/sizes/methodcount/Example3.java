@@ -19,7 +19,7 @@ class Example3 { // violation, 'Number of public methods is 3 (max allowed is 2)
 
   private void outerMethod4() {
     Runnable r = (new Runnable() {
-      public void run() {} // NOT counted towards Example3
+      public void run() {} // NOT counted towards Example
     });
   }
 
@@ -27,8 +27,8 @@ class Example3 { // violation, 'Number of public methods is 3 (max allowed is 2)
   void outerMethod6(int i, int j) {}
 
   public static class InnerExample{
-    public void innerMethod1() {} // NOT counted towards Example3
-    public void innerMethod2() {} // NOT counted towards Example3
+    public void innerMethod1() {} // NOT counted towards Example
+    public void innerMethod2() {} // NOT counted towards Example
   }
 }
 // xdoc section -- end
