@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_ALONE;
+import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_BREAK_BEFORE;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_SAME;
 
 import org.junit.jupiter.api.Test;
@@ -47,6 +48,7 @@ public class RightCurlyCheckExamplesTest extends AbstractExamplesModuleTestSuppo
         final String[] expected = {
             "40:12: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 12),
             "42:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 21),
+            "48:19: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 19),
         };
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
@@ -54,9 +56,9 @@ public class RightCurlyCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "48:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 22),
-            "50:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
-            "54:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
+            "51:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 22),
+            "53:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
+            "57:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
         };
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
@@ -66,6 +68,7 @@ public class RightCurlyCheckExamplesTest extends AbstractExamplesModuleTestSuppo
         final String[] expected = {
             "26:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
             "29:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 21),
+            "48:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
         };
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
@@ -73,8 +76,19 @@ public class RightCurlyCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "54:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
+            "57:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
         };
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 5),
+            "29:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 21),
+            "32:5: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 5),
+            "48:19: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 19),
+        };
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 }

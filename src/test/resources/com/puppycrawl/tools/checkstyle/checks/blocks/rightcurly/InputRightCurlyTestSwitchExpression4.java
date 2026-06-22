@@ -1,5 +1,6 @@
 /*
 RightCurly
+forbidSingleLineMultiBlock = (default)false
 option = ALONE
 tokens = LITERAL_SWITCH
 
@@ -72,7 +73,6 @@ class InputMissingSwitchDefaultCheckSwitchExpressionsThree {
         TWO,
         THREE
     }
-
     public enum Day {
         SUN,
     }

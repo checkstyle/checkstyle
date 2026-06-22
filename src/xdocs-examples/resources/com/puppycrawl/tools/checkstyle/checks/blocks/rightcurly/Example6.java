@@ -2,8 +2,8 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="RightCurly">
-      <property name="option" value="alone"/>
-      <property name="tokens" value="LITERAL_SWITCH, LITERAL_CASE, LITERAL_DEFAULT"/>
+      <property name="forbidSingleLineMultiBlock" value="true"/>
+      <property name="option" value="same"/>
     </module>
   </module>
 </module>
@@ -12,12 +12,12 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 // xdoc section -- start
-public class Example3 {
+public class Example6 {
   public void test() {
     boolean f = false;
     if (f) {
       bar();
-    }
+    } // violation, 'should be on the same line'
     else {
       bar();
     }
@@ -26,10 +26,10 @@ public class Example3 {
     } else {
       bar();
     }
-    if (f) { bar(); } int i = 0;
+    if (f) { bar(); } int i = 0; // violation, 'should be alone on a line.'
     try {
       bar();
-    }
+    } // violation, 'should be on the same line'
     catch (Exception e) {
       bar();
     }
@@ -45,16 +45,16 @@ public class Example3 {
     int x;
     if (mode == 0) {
       x = 1;
-    } else {x = 4;}
+    } else {x = 4;} // violation 'should have line break before'
     switch (mode) {
       case 1: int y = 1; break;
-      case 2: {x = 1;} // violation, 'should be alone on a line.'
+      case 2: {x = 1;}
       case 3: int z = 0; {break;}
-      default: {x = 0;} // violation, 'should be alone on a line.'
+      default: {x = 0;}
     }
     switch (mode) {
       case 1: x = 1; break;
-      default: x = 0; } // violation, 'should be alone on a line.'
+      default: x = 0; }
   }
 }
 // xdoc section -- end
