@@ -46,7 +46,7 @@ public class MagicNumberCheckTest
     public void testLocalVariables2()
             throws Exception {
         final String[] expected = {
-            "27:17: " + getCheckMessage(MSG_KEY, "8"),
+            "28:17: " + getCheckMessage(MSG_KEY, "8"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputMagicNumberLocalVariables2.java"), expected);
