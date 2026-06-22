@@ -11,14 +11,20 @@ public class InputTryCatchIfElse {
 
     if (a == 1) {
     } else {}
+    // violation above ''}' at column 13 should have line break before'
 
     if (a == 1) {
     } else { }
-    // violation above 'Empty blocks should have no spaces.'
+    // 2 violations above:
+    // 'Empty blocks should have no spaces.'
+    // ''}' at column 14 should have line break before'
 
     if (a == 45) {}
 
     if (a == 9) {} else {}
+    // 2 violations above
+    // ''}' at column 18 should have line break before'
+    // ''}' at column 26 should have line break before'
 
     if (a == 99) {
       System.out.println("test");
@@ -34,17 +40,19 @@ public class InputTryCatchIfElse {
     try (MyResource r = new MyResource()) {}
 
     try (MyResource r = new MyResource()) {} catch (Exception expected) {}
-    // 3 violations above:
+    // 4 violations above:
     //                    'WhitespaceAround: '{' is not followed by whitespace.'
+    //                    ''}' at column 44 should have line break before'
     //                    'Empty catch block'
-    //                    ''}' at column 74 should be alone on a line.'
+    //                    ''}' at column 74 should be alone on a line'
 
     try (MyResource r = new MyResource()) {} catch (Exception expected) { }
-    // 4 violations above:
+    // 5 violations above:
     //                    'Empty blocks should have no spaces.'
     //                    'WhitespaceAround: '{' is not followed by whitespace.'
+    //                     ''}' at column 44 should have line break before'
     //                    'Empty catch block'
-    //                    ''}' at column 75 should be alone on a line.'
+    //                     ''}' at column 75 should be alone on a line'
 
     try (MyResource r = new MyResource()) {
     } catch (Exception expected) {}
