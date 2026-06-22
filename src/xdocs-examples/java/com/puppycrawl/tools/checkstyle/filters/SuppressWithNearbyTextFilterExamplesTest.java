@@ -33,12 +33,12 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testExample1() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "13:20: '24' is a magic number.",
-            "14:20: '7' is a magic number.",
+            "13:11: '42' is a magic number.",
+            "14:11: '43' is a magic number.",
         };
 
         final String[] expectedWithFilter = {
-            "14:20: '7' is a magic number.",
+            "14:11: '43' is a magic number.",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example1.java"),
@@ -65,7 +65,9 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testExample3() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "16: Line is longer than 70 characters (found 74).",
+            "20: Line is longer than 70 characters (found 74).",
+            "23: Line is longer than 70 characters (found 84).",
+            "27: Line is longer than 70 characters (found 72).",
         };
 
         final String[] expectedWithFilter = {
@@ -81,11 +83,19 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
 
         final String[] expectedWithoutFilter = {
             "20:11: '42' is a magic number.",
-            "21: Line is longer than 55 characters (found 65).",
+            "21:11: '43' is a magic number.",
+            "23: Line is longer than 55 characters (found 63).",
+            "24: Line is longer than 55 characters (found 74).",
+            "27: Line is longer than 55 characters (found 84).",
+            "31: Line is longer than 55 characters (found 72).",
         };
 
         final String[] expectedWithFilter = {
-            "21: Line is longer than 55 characters (found 65).",
+            "21:11: '43' is a magic number.",
+            "23: Line is longer than 55 characters (found 63).",
+            "24: Line is longer than 55 characters (found 74).",
+            "27: Line is longer than 55 characters (found 84).",
+            "31: Line is longer than 55 characters (found 72).",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example4.java"),
@@ -169,11 +179,14 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testExample9() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "19: Line is longer than 70 characters (found 72).",
+            "22: Line is longer than 70 characters (found 74).",
+            "25: Line is longer than 70 characters (found 84).",
+            "29: Line is longer than 70 characters (found 72).",
         };
 
         final String[] expectedWithFilter = {
-
+            "22: Line is longer than 70 characters (found 74).",
+            "25: Line is longer than 70 characters (found 84).",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example9.java"),
