@@ -1,5 +1,6 @@
 /*
 RightCurly
+allowSingleLineMultiBlock = (default)true
 option = ALONE
 tokens = LITERAL_CASE
 

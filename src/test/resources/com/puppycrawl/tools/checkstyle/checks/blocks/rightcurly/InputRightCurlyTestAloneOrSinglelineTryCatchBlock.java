@@ -1,5 +1,6 @@
 /*
 RightCurly
+allowSingleLineMultiBlock = (default)true
 option = ALONE_OR_SINGLELINE
 tokens = LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY
 

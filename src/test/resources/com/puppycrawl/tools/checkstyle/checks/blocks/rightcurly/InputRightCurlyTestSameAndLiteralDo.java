@@ -1,5 +1,6 @@
 /*
 RightCurly
+allowSingleLineMultiBlock = (default)true
 option = (default)SAME
 tokens = LITERAL_DO
 
