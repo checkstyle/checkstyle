@@ -17,5 +17,6 @@ public class InputRightCurlyTestSameOmitOneLiners {
         boolean after = false;
         try {
         } finally { after = true; }
+        // violation above ''}' at column 35 should have line break before'
     }
 }

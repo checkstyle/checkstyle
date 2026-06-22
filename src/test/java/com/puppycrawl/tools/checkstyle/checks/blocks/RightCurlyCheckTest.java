@@ -81,7 +81,9 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSameOmitOneLiners() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "19:35: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 35),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSameOmitOneLiners.java"), expected);
     }
@@ -169,7 +171,11 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testForceLineBreakBefore2() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "27:33: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 33),
+            "36:44: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 44),
+            "36:63: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 63),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestForceLineBreakBefore2.java"), expected);
     }
@@ -363,9 +369,12 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     public void testTryWithResourceSame() throws Exception {
         final String[] expected = {
             "19:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
-            "33:67: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 67),
-            "44:15: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 15),
-            "46:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "33:67: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 67),
+            "34:35: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 35),
+            "37:64: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 64),
+            "37:92: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 92),
+            "49:15: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 15),
+            "51:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestTryWithResourceSame.java"), expected);
@@ -1120,5 +1129,25 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         final String fileName =
                 "InputRightCurlyDefaultBlocksWithSwitchExpressionAloneOrSingleline.java";
         verifyWithInlineConfigParser(getPath(fileName), expected);
+    }
+
+    @Test
+    public void testDefaultMultiBlockStatement() throws Exception {
+        final String[] expected = {
+            "22:17: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 17),
+            "27:22: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 22),
+            "27:30: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 30),
+            "35:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
+            "42:64: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 64),
+            "42:75: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 75),
+            "57:68: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 68),
+            "57:79: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 79),
+            "62:14: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 14),
+            "62:37: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 37),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestMultiBlockStatements.java"), expected
+        );
     }
 }
