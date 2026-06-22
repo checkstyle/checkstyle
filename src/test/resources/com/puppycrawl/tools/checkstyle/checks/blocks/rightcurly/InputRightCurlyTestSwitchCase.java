@@ -1,5 +1,6 @@
 /*
 RightCurly
+forbidSingleLineMultiBlock = (default)false
 option = ALONE
 tokens = LITERAL_SWITCH, LITERAL_IF
 
@@ -87,7 +88,6 @@ public class InputRightCurlyTestSwitchCase {
         switch (mode) { case 0: int x = 1; break; case 80: x = 1; break;
         }
     }
-
     public static void method11() {
         int mode = 0;
         int x = 0;
