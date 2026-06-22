@@ -12,15 +12,16 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+@Deprecated
 @interface InputOneTopLevelClassAnnotation2A { // violation
    String author();
    String date();
 }
 
-@CheckForNull // violation
+@CheckForNull
 @TypeQualifierDefault(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@interface InputOneTopLevelClassAnnotation2B {
+@interface InputOneTopLevelClassAnnotation2B {  // violation
    String author();
    int currentRevision() default 1;
 }

@@ -16,7 +16,7 @@ public final class InputFormattedClassAnnotation2 {
   }
 }
 
-// violation 2 lines below 'Top-level class InputClassAnnotation4 has to reside'
+// violation 4 lines below 'Top-level class InputClassAnnotation4 has to reside'
 /** Somejavadoc data. */
 @Deprecated
 @CheckReturnValue
@@ -24,7 +24,7 @@ final class InputClassAnnotation4 {
   void test2() {}
 }
 
-// violation 2 lines below 'Top-level class InputClassAnnotation6 has to reside'
+// violation 5 lines below 'Top-level class InputClassAnnotation6 has to reside'
 /** Some javadoc. */
 @Deprecated
 // testing

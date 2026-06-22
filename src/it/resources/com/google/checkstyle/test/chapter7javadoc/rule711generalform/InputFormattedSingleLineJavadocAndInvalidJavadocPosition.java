@@ -191,13 +191,13 @@ class ExtraInputInvalidJavadocPosition2 {
   }
 }
 
-// violation 2 lines below '.* has to reside in its own source file.'
-// violation 2 lines below 'Javadoc comment is placed in the wrong location.'
+// violation 3 lines below 'Javadoc comment is placed in the wrong location.'
+// violation 3 lines below  '.* has to reside in its own source file.'
 @Deprecated
 /** Invalid javadoc. */
 class ExtraInputInvalidJavadocPosition3 {}
 
-// violation 2 lines below '.* has to reside in its own source file.'
+// violation 3 lines below '.* has to reside in its own source file.'
 /** Valid javadoc. */
 @Deprecated
 class ExtraInputInvalidJavadocPosition4 {}

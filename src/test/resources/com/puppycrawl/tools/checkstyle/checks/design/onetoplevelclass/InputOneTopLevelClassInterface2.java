@@ -14,6 +14,7 @@ public interface InputOneTopLevelClassInterface2 {
     int foo();
 }
 
+@Deprecated
 interface InputOneTopLevelClassInterface2inner2 { // violation
     int foo();
 }
