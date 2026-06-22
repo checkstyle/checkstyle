@@ -21,19 +21,17 @@ class Example1 {
   @SuppressWarnings({"membername"})
   private int J; // violation suppressed
 
-  private static final int i = 0; // violation, 'Name 'i' must match pattern'
-  @SuppressWarnings("checkstyle:constantname")
-  private static final int m = 0; // violation suppressed
-
   @SuppressWarnings("ParamNumberId")
     public void needsLotsOfParameters1 (int a, // violation suppressed
-     int b, int c, int d, int e, int f, int g, int h) {
-     // ...
-  }
+     int b, int c, int d, int e, int f, int g, int h) {}
 
   private int [] ARR; // violation ''int' is followed by whitespace'
   // violation above, 'Name 'ARR' must match pattern'
   @SuppressWarnings("all")
   private int [] ARRAY; // violation suppressed
+  // violation 2 lines below 'More than 7 parameters (found 8)'
+  @SuppressWarnings("paramnum")
+    public void needsLotsOfParameters2 (int a,
+     int b, int c, int d, int e, int f, int g, int h) {}
 }
 // xdoc section -- end
