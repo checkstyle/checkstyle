@@ -25,6 +25,7 @@ class InputRightCurlyTestForceLineBreakBefore2
                 } else if (x < 0) {
                     ;
                 } else { break; }
+                // violation above ''}' at column 33 should have line break before'
                 switch (a)
                 {
                 case 0:
@@ -33,6 +34,9 @@ class InputRightCurlyTestForceLineBreakBefore2
                     break;
                 }
             } catch (Exception e) { break; } finally { break; }
+            // 2 violations above
+            // ''}' at column 44 should have line break before'
+            // ''}' at column 63 should have line break before'
         }
 
         synchronized (this) { do { x = 2; } while (x == 2); }

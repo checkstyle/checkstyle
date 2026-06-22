@@ -41,26 +41,31 @@ class InputEmptyBlocksAndCatchBlocks {
     int a = 90;
 
     if (a == 1) {
-    } else {} // false-negative until #15791
+    } else {}
+    // violation above ''}' at column 13 should have line break before'
 
     if (a == 1) {
     } else { }
-    // violation above 'Empty blocks should have no spaces. .* may only be represented as {}'
+    // 2 violations above
+    // 'Empty blocks should have no spaces. .* may only be represented as {}'
+    // ''}' at column 36 should have line break before'
 
     try (MyResource r = new MyResource()) { }
     // violation above 'Empty blocks should have no spaces. .* may only be represented as {}'
     try (MyResource r = new MyResource()) {}
 
     try (MyResource r = new MyResource()) {} catch (Exception expected) {}
-    // 3 violations above:
+    // 4 violations above:
     //                    'WhitespaceAround: '{' is not followed by whitespace.'
+    //                    ''}' at column 44 should have line break before'
     //                    'Empty catch block'
     //                    ''}' at column 74 should be alone on a line.'
 
     try (MyResource r = new MyResource()) {} catch (Exception expected) { }
-    // 4 violations above:
+    // 5 violations above:
     //                    'Empty blocks should have no spaces.'
     //                    'WhitespaceAround: '{' is not followed by whitespace.'
+    //                    ''}' at column 44 should have line break before'
     //                    'Empty catch block'
     //                    ''}' at column 75 should be alone on a line.'
 
