@@ -272,4 +272,30 @@ public class DeclarationOrderCheckTest
                 expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "21:1: " + getCheckMessage(MSG_ACCESS),
+            "26:1: " + getCheckMessage(MSG_INSTANCE),
+            "28:1: " + getCheckMessage(MSG_STATIC),
+            "35:5: " + getCheckMessage(MSG_INSTANCE),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputDeclarationOrderCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileValid() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputDeclarationOrderCompactSourceFileValid.java"), expected);
+    }
+
+    @Test
+    public void testEmptyFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputDeclarationOrderEmpty.java"), expected);
+    }
+
 }
