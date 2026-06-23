@@ -246,6 +246,62 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNestedMethodCalls() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWarns(checkConfig, getPath("InputIndentationNestedMethodCalls.java"), expected);
+    }
+
+    @Test
+    public void testNestedMethodCallsInvalid() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String[] expected = {
+            "14:9: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 8, 12),
+            "26:9: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 8, 12),
+            "34:9: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 8, 12),
+            "39:9: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 8, 12),
+            "47:9: " + getCheckMessage(MSG_ERROR, "secondMethod", 8, 12),
+            "52:9: " + getCheckMessage(MSG_ERROR, "method call", 8, 12),
+            "60:9: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 8, 12),
+            "66:9: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 8, 12),
+            "70:9: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 8, 12),
+            "75:9: " + getCheckMessage(MSG_ERROR, "method call", 8, 12),
+        };
+        verifyWarns(checkConfig,
+            getPath("InputIndentationNestedMethodCallsInvalid.java"), expected);
+    }
+
+    @Test
+    public void testNestedMethodCallsNonStrict() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig,
+            getPath("InputIndentationNestedMethodCalls.java"), expected);
+    }
+
+    @Test
     public void testThrowsIndentProperty() {
         final IndentationCheck indentationCheck = new IndentationCheck();
 

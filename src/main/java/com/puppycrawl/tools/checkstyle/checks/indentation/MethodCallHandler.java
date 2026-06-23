@@ -63,7 +63,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
             // chained method call which was moved to the next line
             else {
                 indentLevel = new IndentLevel(container.getIndent(),
-                    getIndentCheck().getLineWrappingIndentation());
+                        getIndentCheck().getLineWrappingIndentation());
             }
         }
         else if (getMainAst().getFirstChild().getType() == TokenTypes.LITERAL_NEW) {
@@ -198,7 +198,8 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         if (getMainAst().getType() == TokenTypes.METHOD_CALL) {
             final DetailAST exprNode = getMainAst().getParent();
             if (exprNode.getParent().getType() == TokenTypes.SLIST) {
-                checkExpressionSubtree(getMainAst().getFirstChild(), getIndent(), false, false);
+                checkExpressionSubtree(getMainAst().getFirstChild(), getIndent(),
+                        false, false);
                 lparen = getMainAst();
             }
         }
@@ -212,13 +213,26 @@ public class MethodCallHandler extends AbstractExpressionHandler {
             checkLeftParen(lparen);
 
             if (!TokenUtil.areOnSameLine(rparen, lparen)) {
-                checkExpressionSubtree(
-                    getMainAst().findFirstToken(TokenTypes.ELIST),
-                    new IndentLevel(getIndent(), getBasicOffset()),
-                    false, true);
+                final DetailAST elist = getMainAst().findFirstToken(TokenTypes.ELIST);
+                final boolean hasNestedCallArg =
+                        containsNestedMethodCallOnNewLine(elist, getMainAst());
+                if (hasNestedCallArg) {
+                    processElistExpressions(elist);
+                }
+                else {
+                    // Check each expression in ELIST individually, skipping nested method calls
+                    checkExpressionSubtree(
+                        elist,
+                        new IndentLevel(getIndent(), getBasicOffset()),
+                        false, true);
+                }
 
                 checkRparenIndent(lparen, rparen);
-                checkWrappingIndentation(getMainAst(), getCallLastNode(getMainAst()));
+
+                // Only check wrapping if there are no nested method calls
+                if (!hasNestedCallArg) {
+                    checkWrappingIndentation(getMainAst(), getCallLastNode(getMainAst()));
+                }
             }
         }
     }
@@ -249,6 +263,103 @@ public class MethodCallHandler extends AbstractExpressionHandler {
                 && !enhancedIndent.isAcceptable(rparenLevel)
                 && isOnStartOfLine(rparen)) {
             logError(rparen, "rparen", rparenLevel);
+        }
+    }
+
+    /**
+     * Checks if the ELIST contains a nested method call on a new line.
+     * Detects both direct nested calls (EXPR -> METHOD_CALL) and
+     * DOT-wrapped nested calls (EXPR -> DOT -> METHOD_CALL).
+     *
+     * @param elist the ELIST node to check
+     * @param mainAst the outer method call
+     * @return true if there's a multi-line nested method call on a different line
+     */
+    private static boolean containsNestedMethodCallOnNewLine(DetailAST elist,
+            DetailAST mainAst) {
+        boolean result = false;
+        for (DetailAST expr = elist.getFirstChild();
+                expr != null;
+                expr = expr.getNextSibling()) {
+            if (expr.getType() == TokenTypes.EXPR) {
+                final DetailAST nestedCall = findNestedMethodCall(expr.getFirstChild());
+                if (nestedCall != null
+                        && nestedCall.getLineNo() != mainAst.getLineNo()
+                        && !TokenUtil.areOnSameLine(nestedCall,
+                            nestedCall.findFirstToken(TokenTypes.RPAREN))) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Finds a METHOD_CALL node inside the given AST, handling both direct
+     * METHOD_CALL and DOT-wrapped call detection. For DOT nodes (bare field
+     * access like {@code obj.field}), returns null since the method call is
+     * always the parent of DOT in valid Java AST.
+     *
+     * @param ast the AST to search
+     * @return the METHOD_CALL node if found, null otherwise
+     */
+    private static DetailAST findNestedMethodCall(DetailAST ast) {
+        DetailAST result = null;
+        if (ast.getType() == TokenTypes.METHOD_CALL) {
+            result = ast;
+        }
+        return result;
+    }
+
+    /**
+     * Process each expression in the ELIST, skipping multi-line nested method calls.
+     *
+     * @param elist the ELIST node to process
+     */
+    private void processElistExpressions(DetailAST elist) {
+        final IndentLevel expectedIndent = new IndentLevel(getIndent(), getBasicOffset());
+
+        for (DetailAST expr = elist.getFirstChild();
+            expr != null;
+            expr = expr.getNextSibling()) {
+            if (expr.getType() == TokenTypes.EXPR) {
+                final DetailAST inner = expr.getFirstChild();
+                final DetailAST nestedCall = findNestedMethodCall(inner);
+                final boolean isMultiLineNestedCall =
+                    nestedCall != null
+                    && !TokenUtil.areOnSameLine(nestedCall,
+                        nestedCall.findFirstToken(TokenTypes.RPAREN));
+
+                if (!isMultiLineNestedCall) {
+                    checkElistExpression(expr, inner, expectedIndent);
+                }
+            }
+        }
+    }
+
+    /**
+     * Checks indentation of a single expression in an ELIST.
+     *
+     * @param expr the EXPR node
+     * @param inner the first child of the EXPR node
+     * @param expectedIndent the expected indentation level
+     */
+    private void checkElistExpression(DetailAST expr, DetailAST inner,
+        IndentLevel expectedIndent) {
+        if (inner.getType() == TokenTypes.METHOD_CALL) {
+            final DetailAST firstToken = getFirstAst(inner);
+            final int callStart = expandedTabsColumnNo(firstToken);
+            if (isOnStartOfLine(firstToken) && indentCheck.isForceStrictCondition()
+                && !expectedIndent.isAcceptable(callStart)) {
+                logError(firstToken, "", callStart, expectedIndent);
+            }
+        }
+        else {
+            checkExpressionSubtree(
+                expr,
+                new IndentLevel(getIndent(), getBasicOffset()),
+                false, true);
         }
     }
 
