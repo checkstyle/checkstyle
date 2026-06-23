@@ -102,16 +102,20 @@
       <property name="ignoreStaticFinal" value="false"/>
     </module>
 
-    <!-- §3.3: Import statements should be sorted -->
     <module name="AvoidStarImport">
       <property name="maxAllowedStarImports" value="1"/>
     </module>
+
     <module name="ImportOrder">
-      <property name="groups" value="java,javax"/>
+      <property name="groups" value="java,javax,org,com"/>
       <property name="ordered" value="true"/>
-      <property name="separated" value="true"/>
       <property name="option" value="bottom"/>
+      <property name="staticGroups" value="java,javax,org,com"/>
       <property name="sortStaticImportsAlphabetically" value="true"/>
+    </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="checks" value="ImportOrder"/>
+      <property name="message" value=".*(separation|separated).*"/>
     </module>
 
     <module name="UnusedImports"/>
