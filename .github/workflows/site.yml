@@ -101,7 +101,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup local maven cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
@@ -120,7 +120,7 @@ jobs:
             -Dmaven.javadoc.skip=false -Djdepend.skip=false
 
       - name: Setup local maven cache
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v6
         with:
           path: .ci-temp/checkstyle/target/site
           key: checkstyle-site-cache-${{ github.run_id }}
@@ -138,13 +138,13 @@ jobs:
           repository: checkstyle/checkstyle
 
       - name: Setup local maven cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
       - name: Setup local maven cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .ci-temp/checkstyle/target/site
           key: checkstyle-site-cache-${{ github.run_id }}
