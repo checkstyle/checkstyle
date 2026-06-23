@@ -14,7 +14,8 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 // xdoc section -- start
 class Example3
 { // violation, ''{' at column 1 should be on the previous line.'
-  private interface TestInterface {
+  private interface TestInterface
+  { // violation, ''{' at column 3 should be on the previous line.'
   }
 
   private
