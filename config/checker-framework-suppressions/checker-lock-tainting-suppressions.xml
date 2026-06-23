@@ -1470,6 +1470,21 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
+    <specifier>methodref.receiver</specifier>
+    <message>Incompatible receiver type</message>
+    <lineContent>final File[] categoryDirs = checksDir.listFiles(File::isDirectory);</lineContent>
+    <details>
+      found   : @GuardSatisfied File
+      required: @GuardedBy File
+      Consequence: method in @GuardedBy File
+      @GuardedBy boolean isDirectory(@GuardSatisfied File this)
+      is not a valid method reference for method in @GuardedBy FileFilter
+      @GuardedBy boolean accept(@GuardedBy FileFilter this, @GuardedBy File p0)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>methodref.receiver</specifier>
     <message>Incompatible receiver type</message>
