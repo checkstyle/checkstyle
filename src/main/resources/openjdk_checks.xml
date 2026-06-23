@@ -73,6 +73,16 @@
     </module>
     <module name="AvoidEscapedUnicodeCharacters"/>
 
+    <!-- §3.12: Expression lambdas are preferred over single-line block lambdas -->
+    <module name="MatchXpath">
+      <property name="query"
+        value="//LAMBDA[SLIST[EXPR][count(*)=3][RCURLY[@lineNo = ../@lineNo]]
+                 or SLIST[LITERAL_RETURN[EXPR]][count(*)=2][RCURLY[@lineNo = ../@lineNo]]]"/>
+
+      <message key="matchxpath.match"
+        value="Expression lambdas are preferred over single-line block lambdas."/>
+    </module>
+
     <!-- §3.12: Expression lambda body length check based on OpenJDK style guide -->
     <module name="LambdaBodyLength"/>
     <module name="NoLineWrap">
