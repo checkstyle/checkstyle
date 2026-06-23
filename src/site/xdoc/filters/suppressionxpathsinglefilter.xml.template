@@ -265,6 +265,10 @@
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathSingleFilter">
             Google Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathSingleFilter">
+            OpenJDK Style</a>
+          </li>
         </ul>
       </subsection>
       <subsection name="Fully Qualified Name"
