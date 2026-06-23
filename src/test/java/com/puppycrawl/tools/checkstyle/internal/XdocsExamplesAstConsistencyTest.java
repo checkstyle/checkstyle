@@ -102,7 +102,6 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
             "checks/annotation/suppresswarnings/Example2",
-            "checks/blocks/leftcurly/Example3",
             "checks/coding/equalsavoidnull/Example2",
             "checks/coding/explicitinitialization/Example2",
             "checks/coding/illegalsymbol/Example4",
@@ -259,6 +258,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/imports/importorder/Example8",
             "checks/imports/importorder/Example9",
             // until https://github.com/checkstyle/checkstyle/issues/19891
+            "checks/blocks/leftcurly/Example3",
             "checks/whitespace/parenpad/Example3",
             "checks/indentation/commentsindentation/Example3",
             "checks/indentation/commentsindentation/Example4",
