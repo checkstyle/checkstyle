@@ -125,7 +125,7 @@ jobs:
                forked/${{ steps.get_pr_details.outputs.branch }}
 
       - name: Save cache
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
@@ -153,7 +153,7 @@ jobs:
             })
 
       - name: Restore cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
@@ -209,7 +209,7 @@ jobs:
       label: ${{ steps.create_label.outputs.label }}
     steps:
       - name: Restore cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
@@ -242,7 +242,7 @@ jobs:
       label: ${{ steps.create_label.outputs.label }}
     steps:
       - name: Restore cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
@@ -314,7 +314,7 @@ jobs:
           cat "$CONFIG_FILE_PATH"
 
       - name: Cache Generated Config and Project Files
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ${{ env.GENERATED_CONFIGS_PATH }}
           key: ${{ env.CACHE_KEY }}-generated-configs
@@ -339,7 +339,7 @@ jobs:
       new_module_config_link: ${{ steps.parse_description.outputs.new_module_config_link }}
     steps:
       - name: Restore cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
@@ -373,7 +373,7 @@ jobs:
       project_name: ${{ needs.parse_comment.outputs.project_name }}
     steps:
       - name: Restore cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
@@ -410,7 +410,7 @@ jobs:
       project_name: ${{ needs.parse_comment.outputs.project_name }}
     steps:
       - name: Restore cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
@@ -464,7 +464,7 @@ jobs:
         }}
     steps:
       - name: Restore cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
@@ -472,7 +472,7 @@ jobs:
 
       - name: Restore Generated Config and Project Files
         if: needs.handle_generated_config_bundle.result == 'success'
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ${{ env.GENERATED_CONFIGS_PATH }}
           key: ${{ env.CACHE_KEY }}-generated-configs
@@ -553,7 +553,7 @@ jobs:
           ./.ci/diff-report.sh process-local-repo-config-files-for-baseline-report
 
       - name: Cache config files
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: |
             .ci-temp/*.xml
@@ -570,14 +570,14 @@ jobs:
       message: ${{ steps.out.outputs.message }}
     steps:
       - name: Restore cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
           fail-on-cache-miss: true
 
       - name: Restore config files from cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: |
             .ci-temp/*.xml
@@ -587,7 +587,7 @@ jobs:
           key: ${{ env.CACHE_KEY }}-config-files
 
       - name: Restore local maven cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
@@ -832,7 +832,7 @@ jobs:
           || needs.add_sad_Emoji.result == 'failure')
     steps:
       - name: Restore cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
