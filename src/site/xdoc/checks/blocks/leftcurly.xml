@@ -215,38 +215,6 @@ class Example2
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
-          To configure the check to apply the <code>nlow</code> policy to
-          type blocks:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="LeftCurly"&gt;
-      &lt;property name="option" value="nlow"/&gt;
-      &lt;property name="tokens" value="CLASS_DEF,INTERFACE_DEF"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example3-code">Example: </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3
-{ // violation, ''{' at column 1 should be on the previous line.'
-  private interface TestInterface {
-  }
-
-  private
-    class
-    MyClass { // violation, ''{' at column 13 should be on a new line.'
-  }
-
-  enum Colors {RED,
-    BLUE,
-    GREEN;
-  }
-}
-</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           An example of how to configure the check to validate enum definitions:
         </p>
@@ -273,6 +241,39 @@ class Example4
   }
 
   enum Colors {RED, // violation, ''{' at column 15 should have line break after.'
+    BLUE,
+    GREEN;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to apply the <code>nlow</code> policy to
+          type blocks:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="LeftCurly"&gt;
+      &lt;property name="option" value="nlow"/&gt;
+      &lt;property name="tokens" value="CLASS_DEF,INTERFACE_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example: </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example3
+{ // violation, ''{' at column 1 should be on the previous line.'
+  private interface TestInterface
+  { // violation, ''{' at column 3 should be on the previous line.'
+  }
+
+  private
+    class
+    MyClass { // violation, ''{' at column 13 should be on a new line.'
+  }
+
+  enum Colors {RED,
     BLUE,
     GREEN;
   }
