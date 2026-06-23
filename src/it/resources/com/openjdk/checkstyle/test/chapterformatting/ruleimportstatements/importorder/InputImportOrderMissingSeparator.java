@@ -3,11 +3,9 @@ package com.openjdk.checkstyle.test.chapterformatting.ruleimportstatements.impor
 import java.util.Arrays;
 import java.util.Map;
 import javax.swing.JButton;
-// violation above ''javax.swing.JButton' should be separated from previous imports.'
 
 /**
- * Invalid: missing blank line separator between java.* and javax.* groups.
- * According to OpenJDK style, each group should be separated by a blank line.
+ * Test input to check no error will be thrown for separator.
  */
 public final class InputImportOrderMissingSeparator {
     /** Dummy constant. */
