@@ -142,6 +142,7 @@ public final class MethodCountCheck extends AbstractCheck {
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
     }
 
@@ -185,8 +186,10 @@ public final class MethodCountCheck extends AbstractCheck {
 
         if (!counters.isEmpty()) {
             final DetailAST latestDefinition = counters.peek().getScopeDefinition();
+            final DetailAST methodParent = methodDef.getParent();
 
-            result = latestDefinition == methodDef.getParent().getParent();
+            result = latestDefinition == methodParent
+                || latestDefinition == methodParent.getParent();
         }
 
         return result;
