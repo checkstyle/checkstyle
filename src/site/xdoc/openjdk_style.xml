@@ -390,8 +390,37 @@
                     Modifiers
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/modifier/redundantmodifier.html#RedundantModifier">RedundantModifier</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantModifier">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Modifiers order can not be covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/19513">
+                    #19513
+                  </a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Checkstyle can not determine whether a final modifier increases the readability
+                  of method parameters and local variables and also we can not find is there any
+                  compelling reason present for a field which is declared as final.
+
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulemodifiers">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
