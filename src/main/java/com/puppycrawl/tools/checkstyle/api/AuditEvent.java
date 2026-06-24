@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import javax.annotation.Nullable;
+
 /**
  * Raw event for audit.
  *
@@ -46,6 +48,9 @@ public final class AuditEvent {
     private final String fileName;
     /** Violation associated with the event. */
     private final Violation violation;
+    /** The text of the file associated with the event. */
+    @Nullable
+    private final FileText fileText;
 
     /**
      * Creates a new instance.
@@ -75,6 +80,21 @@ public final class AuditEvent {
      * @throws IllegalArgumentException if {@code src} is {@code null}.
      */
     public AuditEvent(Object src, String fileName, Violation violation) {
+        this(src, fileName, violation, null);
+    }
+
+    /**
+     * Creates a new {@code AuditEvent} instance.
+     *
+     * @param src source of the event
+     * @param fileName file associated with the event
+     * @param violation the actual violation
+     * @param fileText the text of the file associated with the event
+     * @throws IllegalArgumentException if {@code src} is {@code null}.
+     * @since 14.4.0
+     */
+    public AuditEvent(Object src, String fileName, Violation violation,
+                      @Nullable FileText fileText) {
         if (src == null) {
             throw new IllegalArgumentException("null source");
         }
@@ -82,6 +102,7 @@ public final class AuditEvent {
         source = src;
         this.fileName = fileName;
         this.violation = violation;
+        this.fileText = fileText;
     }
 
     /**
@@ -170,6 +191,18 @@ public final class AuditEvent {
      */
     public Violation getViolation() {
         return violation;
+    }
+
+    /**
+     * Gets the text of the file associated with the event.
+     *
+     * @return the text of the file associated with the event, or {@code null}
+     *     if the file source is not available.
+     * @since 14.4.0
+     */
+    @Nullable
+    public FileText getFileText() {
+        return fileText;
     }
 
 }
