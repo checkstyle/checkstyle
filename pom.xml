@@ -5380,6 +5380,9 @@
                   com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
                 </param>
                 <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
+                </param>
+                <param>
                   com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheckTest
                 </param>
                 <param>
