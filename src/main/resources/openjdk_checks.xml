@@ -87,6 +87,12 @@
       <property name="tokens" value="PACKAGE_DEF, IMPORT, STATIC_IMPORT"/>
     </module>
 
+    <module name="DeclarationOrder">
+      <property name="ignoreModifiers" value="true"/>
+      <message key="declaration.order.instance" value="Field declaration is in wrong order"/>
+      <message key="declaration.order.static" value="Field declaration is in wrong order"/>
+    </module>
+
     <module name="UpperEll"/>
     <module name="HexLiteralCase"/>
     <module name="NumericalPrefixesInfixesSuffixesCharacterCase"/>

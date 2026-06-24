@@ -1188,6 +1188,7 @@ RSPEC
 Rtl
 ru
 ruleclassinterfaceandenumnames
+ruleclassstructure
 ruleimportstatements
 ruleindentation
 rulejavasourcefiles
