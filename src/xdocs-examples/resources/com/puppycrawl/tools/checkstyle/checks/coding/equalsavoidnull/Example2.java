@@ -20,6 +20,7 @@ public class Example2 {
     nullString.equals("My_Sweet_String");
     "My_Sweet_String".equals(nullString);
 
+    // ok, ignoreEqualsIgnoreCase is true
     nullString.equalsIgnoreCase("My_Sweet_String");
     "My_Sweet_String".equalsIgnoreCase(nullString);
   }

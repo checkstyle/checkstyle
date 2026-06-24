@@ -103,7 +103,6 @@ public class XdocsExamplesAstConsistencyTest {
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
             "checks/annotation/suppresswarnings/Example2",
             "checks/blocks/leftcurly/Example3",
-            "checks/coding/equalsavoidnull/Example2",
             "checks/coding/explicitinitialization/Example2",
             "checks/coding/illegalsymbol/Example4",
             "checks/coding/illegalthrows/Example2",
@@ -266,6 +265,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/indentation/commentsindentation/Example6",
             "checks/indentation/commentsindentation/Example7",
             "checks/indentation/commentsindentation/Example8",
+            "checks/coding/equalsavoidnull/Example2",
             "checks/blocks/needbraces/Example4",
             "checks/blocks/needbraces/Example6",
             "checks/regexp/regexp/Example2",
