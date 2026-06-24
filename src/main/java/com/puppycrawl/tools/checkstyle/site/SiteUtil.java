@@ -478,15 +478,17 @@ public final class SiteUtil {
      * @param moduleName the name of the module.
      * @param modulePath the module file path.
      * @param instance the instance of the module.
+     * @param checkstylePath path to the checkstyle source code directory
      * @return the property details of the module.
      * @throws MacroExecutionException if an error occurs during processing.
      */
     public static Map<String, PropertyDetails> buildPropertyDetails(Set<String> properties,
                                                              String moduleName, Path modulePath,
-                                                             Object instance)
+                                                             Object instance, Path checkstylePath)
             throws MacroExecutionException {
-        final Map<String, PropertyDetails> superClassPropertyData = buildSuperClassPropertyData();
-        processModule(moduleName, modulePath, instance, properties);
+        final Map<String, PropertyDetails> superClassPropertyData =
+                buildSuperClassPropertyData(checkstylePath);
+        processModule(moduleName, modulePath, instance, properties, checkstylePath);
 
         final Map<String, PropertyDetails> currentPropertiesDetails =
                 new TreeMap<>(JavadocScraperResultUtil.getPropertiesDetails());
@@ -585,10 +587,11 @@ public final class SiteUtil {
      * This method is called once per {@link #buildPropertyDetails} invocation and returns
      * a new local map — it never populates any static field.
      *
+     * @param checkstylePath path to the checkstyle source code directory
      * @return map of property name to PropertyDetails for all known superclasses.
      * @throws MacroExecutionException if an error occurs during processing.
      */
-    private static Map<String, PropertyDetails> buildSuperClassPropertyData()
+    private static Map<String, PropertyDetails> buildSuperClassPropertyData(Path checkstylePath)
             throws MacroExecutionException {
         final Map<String, PropertyDetails> result = new TreeMap<>();
         for (Path superclassPath : MODULE_SUPER_CLASS_PATHS) {
@@ -621,7 +624,7 @@ public final class SiteUtil {
                 throw new MacroExecutionException("Failed to find class: " + classFullName, exc);
             }
 
-            processModule(superclassName, superclassPath, null, properties);
+            processModule(superclassName, superclassPath, null, properties, checkstylePath);
             result.putAll(JavadocScraperResultUtil.getPropertiesDetails());
         }
         return result;
@@ -639,7 +642,7 @@ public final class SiteUtil {
         final Object instance = getModuleInstance(moduleName);
         final Set<String> properties = getPropertiesForDocumentation(instance.getClass(),
                 instance);
-        processModule(moduleName, modulePath, instance, properties);
+        processModule(moduleName, modulePath, instance, properties, Path.of(""));
     }
 
     /**
@@ -650,12 +653,13 @@ public final class SiteUtil {
      * @param modulePath the module Path.
      * @param instance the instance of the module.
      * @param properties the properties of the module.
+     * @param checkstylePath path to the checkstyle source code directory
      * @throws MacroExecutionException if an error occurs during processing.
      */
     private static void processModule(String moduleName, Path modulePath, Object instance,
-                                      Set<String> properties)
+                                      Set<String> properties, Path checkstylePath)
             throws MacroExecutionException {
-        final Path resolvedPath = Path.of("").toAbsolutePath()
+        final Path resolvedPath = checkstylePath.toAbsolutePath()
                 .resolve(modulePath.toString().replace('\\', '/'))
                 .normalize();
         if (!Files.isRegularFile(resolvedPath)) {
