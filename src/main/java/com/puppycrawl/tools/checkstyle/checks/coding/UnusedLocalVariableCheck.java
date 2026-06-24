@@ -606,7 +606,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
                     || parentAst.getType() != TokenTypes.OBJBLOCK) {
                 final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
                 final VariableDesc desc = new VariableDesc(ident.getText(),
-                        varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));
+                        ident, findScopeOfVariable(varDefAst));
                 if (isInstanceVarInInnerClass) {
                     desc.registerAsInstOrClassVar();
                 }
