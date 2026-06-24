@@ -996,6 +996,33 @@
         <version>3.1.4</version>
       </plugin>
 
+      <!-- ./mvnw dependency:copy@copy-checkstyle-files-generator -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-checkstyle-files-generator</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.puppycrawl.tools.checkstyle</groupId>
+                  <artifactId>checkstyle-files-generator</artifactId>
+                  <version>1.0.0</version>
+                  <classifier>all</classifier>
+                  <type>jar</type>
+                  <destFileName>checkstyle-files-generator-1.0.0-all.jar</destFileName>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
@@ -1015,6 +1042,30 @@
                 <argument>--destfile</argument>
                 <argument>
                   ${project.build.outputDirectory}/com/puppycrawl/tools/checkstyle/api/tokentypes.properties
+                </argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <!-- ./mvnw exec:exec@run-checkstyle-files-generator -->
+          <execution>
+            <id>run-checkstyle-files-generator</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>java</executable>
+              <arguments>
+                <argument>-jar</argument>
+                <argument>target/dependency/checkstyle-files-generator-1.0.0-all.jar</argument>
+                <argument>
+                  ${basedir}
+                </argument>
+                <argument>
+                  --generateMetadata
+                </argument>
+                <argument>
+                  --generateXdoc
                 </argument>
               </arguments>
             </configuration>
