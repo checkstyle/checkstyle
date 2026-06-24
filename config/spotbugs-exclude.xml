@@ -52,12 +52,6 @@
     <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
   </Match>
   <Match>
-    <!-- till https://github.com/checkstyle/checkstyle/issues/17933 fails on java11+ -->
-    <Class name="com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil" />
-    <Method name="dumpMetadata" />
-    <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
-  </Match>
-  <Match>
     <!-- There is some empty methods in AbstractCheck/AbstractJavadocCheck.
          Making them abstract requires too much boilerplate in subclasses. -->
     <Bug pattern="ACEM_ABSTRACT_CLASS_EMPTY_METHODS"/>
@@ -322,11 +316,6 @@
   <!-- until https://github.com/spotbugs/spotbugs-maven-plugin/issues/806 -->
   <Match>
     <Class name="com.puppycrawl.tools.checkstyle.site.SiteUtil" />
-    <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
-  </Match>
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil" />
-    <Method name="getTargetFiles" />
     <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
   </Match>
 
