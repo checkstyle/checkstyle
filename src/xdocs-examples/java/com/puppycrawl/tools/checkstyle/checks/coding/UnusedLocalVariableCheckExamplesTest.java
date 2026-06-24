@@ -35,11 +35,11 @@ public class UnusedLocalVariableCheckExamplesTest extends AbstractExamplesModule
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "16:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "k"),
-            "26:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "arr"),
-            "32:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "s"),
-            "39:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "s"),
-            "49:10: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "i"),
+            "16:9: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "k"),
+            "26:11: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "arr"),
+            "32:12: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "s"),
+            "39:12: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "s"),
+            "49:14: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "i"),
         };
 
         verifyWithInlineConfigParser(
@@ -49,13 +49,13 @@ public class UnusedLocalVariableCheckExamplesTest extends AbstractExamplesModule
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "17:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "k"),
-            "27:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "arr"),
-            "33:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
-            "34:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "_"),
-            "40:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
-            "50:10: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "i"),
-            "52:10: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "_"),
+            "17:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "k"),
+            "27:11: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "arr"),
+            "33:12: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+            "34:12: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "_"),
+            "40:12: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+            "50:14: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "i"),
+            "52:19: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "_"),
         };
 
         verifyWithInlineConfigParser(
