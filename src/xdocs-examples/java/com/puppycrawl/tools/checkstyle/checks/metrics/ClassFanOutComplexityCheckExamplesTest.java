@@ -40,7 +40,7 @@ public class ClassFanOutComplexityCheckExamplesTest
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "21:1: " + getCheckMessage(ClassFanOutComplexityCheck.MSG_KEY, 5, 2),
+            "23:1: " + getCheckMessage(ClassFanOutComplexityCheck.MSG_KEY, 5, 2),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -49,7 +49,7 @@ public class ClassFanOutComplexityCheckExamplesTest
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "22:1: " + getCheckMessage(ClassFanOutComplexityCheck.MSG_KEY, 7, 3),
+            "24:1: " + getCheckMessage(ClassFanOutComplexityCheck.MSG_KEY, 7, 3),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -58,7 +58,7 @@ public class ClassFanOutComplexityCheckExamplesTest
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "22:1: " + getCheckMessage(ClassFanOutComplexityCheck.MSG_KEY, 4, 3),
+            "24:1: " + getCheckMessage(ClassFanOutComplexityCheck.MSG_KEY, 4, 3),
         };
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
@@ -72,7 +72,7 @@ public class ClassFanOutComplexityCheckExamplesTest
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-            "22:1: " + getCheckMessage(ClassFanOutComplexityCheck.MSG_KEY, 4, 3),
+            "24:1: " + getCheckMessage(ClassFanOutComplexityCheck.MSG_KEY, 4, 3),
         };
 
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
