@@ -46,6 +46,17 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
     <specifier>argument</specifier>
+    <message>incompatible argument for parameter fileText of Checker.fireErrors.</message>
+    <lineContent>fireErrors(fileName, errors, null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull FileText
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
+    <specifier>argument</specifier>
     <message>incompatible argument for parameter moduleId of Violation constructor.</message>
     <lineContent>new String[] {ioe.getMessage()}, null, getClass(), null));</lineContent>
     <details>
@@ -80,6 +91,17 @@
     <details>
       found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.class) @NonNull Checker
       required: @Initialized @NonNull Checker
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return fileText;</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable FileText
+      method return type: @Initialized @NonNull FileText
     </details>
   </checkerFrameworkError>
 
@@ -1107,6 +1129,17 @@
     <details>
       found   : null (NullType)
       required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AuditEvent.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter fileText of AuditEvent constructor.</message>
+    <lineContent>this(src, fileName, violation, null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull FileText
     </details>
   </checkerFrameworkError>
 
