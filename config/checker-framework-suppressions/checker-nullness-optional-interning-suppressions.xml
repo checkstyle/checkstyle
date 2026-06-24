@@ -8362,17 +8362,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/MetadataGeneratorUtil.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return validationType;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable String
-      method return type: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/ModuleDetails.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: name, fullQualifiedName, parent, description, moduleType</message>
@@ -8647,7 +8636,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter instance of SiteUtil.processModule.</message>
-    <lineContent>processModule(superclassName, superclassPath, null, properties);</lineContent>
+    <lineContent>processModule(superclassName, superclassPath, null, properties, checkstylePath);</lineContent>
     <details>
       found   : null (NullType)
       required: @Initialized @NonNull Object
