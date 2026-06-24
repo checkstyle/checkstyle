@@ -149,7 +149,7 @@ catchparametername
 cba
 cbeaff
 CComments
-cdata
+CDATA
 cde
 Cdi
 Cfg
@@ -290,6 +290,7 @@ descendanttoken
 descr
 Deserializable
 designforextension
+dest
 destfile
 Destructuring
 detailast
@@ -1170,7 +1171,6 @@ requireemptylinebeforeblocktaggroup
 requirethis
 resourceleak
 Rethrown
-Rethrows
 returncount
 returnsreceiver
 reviewdog
@@ -1304,6 +1304,8 @@ stemp
 stext
 sthref
 stmt
+stoyan
+stoyank
 streamapi
 streamreader
 strictfp
