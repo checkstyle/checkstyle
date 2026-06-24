@@ -115,20 +115,20 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVariable() throws Exception {
         final String[] expected = {
-            "28:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "sameName"),
-            "29:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
-            "32:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "testInLambdas"),
-            "34:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "coding"),
-            "35:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE,
+            "28:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "sameName"),
+            "29:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
+            "32:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "testInLambdas"),
+            "34:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "coding"),
+            "35:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE,
                     "InputUnusedLocalVariable"),
-            "51:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
-            "55:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "c"),
-            "66:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
-            "68:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "c"),
-            "72:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "p"),
-            "82:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "f"),
-            "85:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "foo"),
-            "92:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "51:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
+            "55:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "c"),
+            "66:24: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
+            "68:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "c"),
+            "72:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "p"),
+            "82:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "f"),
+            "85:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "foo"),
+            "92:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariable.java"), expected);
@@ -137,15 +137,15 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVar2() throws Exception {
         final String[] expected = {
-            "18:14: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "i"),
-            "20:14: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "j"),
-            "31:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
-            "32:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
-            "40:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
-            "41:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "Test"),
-            "42:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj"),
-            "62:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
-            "77:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
+            "18:18: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "i"),
+            "20:18: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "j"),
+            "31:16: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "32:16: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
+            "40:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
+            "41:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "Test"),
+            "42:15: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj"),
+            "62:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "77:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariable2.java"),
@@ -155,7 +155,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVar3() throws Exception {
         final String[] expected = {
-            "22:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "22:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariable3.java"),
@@ -165,15 +165,15 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarInAnonInnerClasses() throws Exception {
         final String[] expected = {
-            "15:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
-            "16:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
-            "18:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj"),
-            "23:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj"),
-            "33:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj2"),
-            "47:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "m"),
-            "48:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "l"),
-            "60:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "h"),
-            "63:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "v"),
+            "15:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "16:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
+            "18:14: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj"),
+            "23:22: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj"),
+            "33:14: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj2"),
+            "47:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "m"),
+            "48:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "l"),
+            "60:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "h"),
+            "63:25: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "v"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableAnonInnerClasses.java"),
@@ -183,14 +183,14 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarGenericAnonInnerClasses() throws Exception {
         final String[] expected = {
-            "15:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "l"),
-            "16:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj"),
-            "35:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "l"),
-            "36:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj2"),
-            "49:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
-            "69:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "variable"),
-            "71:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "anotherVar"),
-            "80:47: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj2"),
+            "15:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "l"),
+            "16:19: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj"),
+            "35:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "l"),
+            "36:23: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj2"),
+            "49:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+            "69:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "variable"),
+            "71:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "anotherVar"),
+            "80:55: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj2"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableGenericAnonInnerClasses.java"),
@@ -200,10 +200,10 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarDepthOfClasses() throws Exception {
         final String[] expected = {
-            "29:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "r"),
-            "50:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
-            "65:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
-            "95:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "variable"),
+            "29:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "r"),
+            "50:25: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "65:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "95:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "variable"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableDepthOfClasses.java"),
@@ -213,13 +213,13 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarNestedClasses() throws Exception {
         final String[] expected = {
-            "22:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "V"),
-            "24:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "S"),
-            "25:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "Q"),
-            "37:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "variable"),
-            "45:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "anotherVariable"),
-            "68:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
-            "69:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "n"),
+            "22:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "V"),
+            "24:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "S"),
+            "25:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "Q"),
+            "37:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "variable"),
+            "45:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "anotherVariable"),
+            "68:25: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+            "69:25: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "n"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableNestedClasses.java"),
@@ -229,11 +229,11 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarNestedClasses2() throws Exception {
         final String[] expected = {
-            "30:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "q"),
-            "31:51: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj"),
-            "47:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
-            "58:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
-            "109:33: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+            "30:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "q"),
+            "31:54: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj"),
+            "47:25: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
+            "58:25: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
+            "109:37: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableNestedClasses2.java"),
@@ -243,10 +243,10 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarNestedClasses3() throws Exception {
         final String[] expected = {
-            "37:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "p2"),
-            "55:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "o"),
-            "94:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
-            "96:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "37:27: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "p2"),
+            "55:20: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "o"),
+            "94:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
+            "96:20: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
         };
 
         verifyWithInlineConfigParser(
@@ -257,8 +257,8 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarNestedClasses4() throws Exception {
         final String[] expected = {
-            "13:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
-            "14:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
+            "13:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "14:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
         };
 
         verifyWithInlineConfigParser(
@@ -269,9 +269,9 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarNestedClasses5() throws Exception {
         final String[] expected = {
-            "13:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
-            "14:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
-            "20:11: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "abc"),
+            "13:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "14:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
+            "20:15: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "abc"),
         };
 
         verifyWithInlineConfigParser(
@@ -282,8 +282,8 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarNestedClasses6() throws Exception {
         final String[] expected = {
-            "13:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
-            "14:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
+            "13:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "14:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
         };
 
         verifyWithInlineConfigParser(
@@ -294,12 +294,12 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarNestedClasses7() throws Exception {
         final String[] expected = {
-            "11:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
-            "12:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
-            "17:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
-            "24:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
-            "25:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
-            "29:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "11:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "12:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
+            "17:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
+            "24:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "25:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
+            "29:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
         };
 
         verifyWithInlineConfigParser(
@@ -310,7 +310,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarTestWarningSeverity() throws Exception {
         final String[] expected = {
-            "15:19: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "p2"),
+            "16:34: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "p2"),
         };
 
         verifyWithInlineConfigParser(
@@ -321,11 +321,11 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarEnum() throws Exception {
         final String[] expected = {
-            "23:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
-            "51:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
-            "78:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
-            "81:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "j"),
-            "93:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "d"),
+            "23:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "51:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "78:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "81:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "j"),
+            "93:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "d"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableEnum.java"),
@@ -335,16 +335,16 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarLambdas() throws Exception {
         final String[] expected = {
-            "15:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "hoo"),
-            "20:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "j"),
-            "30:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "hoo2"),
-            "31:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "hoo3"),
-            "33:15: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "myComponent"),
-            "35:19: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "myComponent3"),
-            "41:25: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "j"),
-            "53:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "j"),
-            "66:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ja"),
-            "74:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "k"),
+            "15:16: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "hoo"),
+            "20:24: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "j"),
+            "30:16: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "hoo2"),
+            "31:16: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "hoo3"),
+            "33:34: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "myComponent"),
+            "35:38: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "myComponent3"),
+            "41:32: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "j"),
+            "53:28: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "j"),
+            "66:24: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ja"),
+            "74:16: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "k"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableLambdaExpression.java"),
@@ -354,8 +354,8 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVariableLocalClasses() throws Exception {
         final String[] expected = {
-            "15:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
-            "16:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
+            "15:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "16:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableLocalClasses.java"),
@@ -365,10 +365,10 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarRecords() throws Exception {
         final String[] expected = {
-            "17:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "var1"),
-            "26:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "var1"),
-            "27:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj"),
-            "37:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "var2"),
+            "17:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "var1"),
+            "26:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "var1"),
+            "27:16: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj"),
+            "37:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "var2"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableRecords.java"),
@@ -378,9 +378,9 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarWithoutPackageStatement() throws Exception {
         final String[] expected = {
-            "13:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
-            "25:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "var2"),
-            "46:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "var3"),
+            "13:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "25:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "var2"),
+            "46:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "var3"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputUnusedLocalVariableWithoutPackageStatement.java"),
@@ -390,7 +390,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCompactSourceFile() throws Exception {
         final String[] expected = {
-            "13:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "unused"),
+            "13:9: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "unused"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputUnusedLocalVariableCompactSourceFile.java"),
@@ -416,7 +416,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVariableSwitchStatement2() throws Exception {
         final String[] expected = {
-            "61:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "j"),
+            "61:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "j"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableSwitchStatement2.java"),
@@ -426,7 +426,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVariableSwitchExpression() throws Exception {
         final String[] expected = {
-            "17:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "line2"),
+            "17:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "line2"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableSwitchExpression.java"),
@@ -436,10 +436,10 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVariableWithAllowUnnamed() throws Exception {
         final String[] expected = {
-            "22:13: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "_x"),
-            "23:13: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "__"),
-            "37:14: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "__"),
-            "47:14: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "__"),
+            "22:17: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "_x"),
+            "23:17: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "__"),
+            "37:22: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "__"),
+            "47:25: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "__"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputUnusedLocalVariableWithAllowUnnamed.java"),
@@ -449,13 +449,13 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVariableWithAllowUnnamedFalse() throws Exception {
         final String[] expected = {
-            "21:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "_x"),
-            "22:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "__"),
-            "23:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "_"),
-            "33:14: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "_"),
-            "36:14: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "__"),
-            "44:14: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "_"),
-            "47:14: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "__"),
+            "21:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "_x"),
+            "22:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "__"),
+            "23:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "_"),
+            "33:22: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "_"),
+            "36:22: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "__"),
+            "44:25: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "_"),
+            "47:25: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "__"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputUnusedLocalVariableWithAllowUnnamedFalse.java"),
@@ -495,7 +495,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "14:25: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ignored"),
             "15:26: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ignored2"),
-            "21:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "x"),
+            "21:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "x"),
             "22:38: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ignored"),
             "29:30: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "y"),
             "29:37: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "z"),
@@ -508,7 +508,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVariableNamedPatternVariableTrue() throws Exception {
         final String[] expected = {
-            "21:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "x"),
+            "21:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "x"),
             "22:38: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ignored"),
             "30:46: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
         };
@@ -638,7 +638,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarInAnonInnerClasses2() throws Exception {
         final String[] expected = {
-            "21:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+            "21:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableAnonInnerClasses2.java"),
@@ -648,9 +648,9 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarInAnonInnerClasses3() throws Exception {
         final String[] expected = {
-            "14:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
-            "21:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj"),
-            "33:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+            "14:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "21:15: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj"),
+            "33:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableAnonInnerClasses3.java"),
