@@ -50,6 +50,7 @@ environment:
 
 build_script:
   - ps: |
+      $env:Path = "$env:JAVA_HOME\bin;$env:Path"
       $RUN_JOB=1
       if ($RUN_JOB -eq 1) {
         $Expr = (get-content env:CMD)
