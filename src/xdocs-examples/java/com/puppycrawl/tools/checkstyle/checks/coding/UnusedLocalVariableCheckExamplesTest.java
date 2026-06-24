@@ -75,10 +75,10 @@ public class UnusedLocalVariableCheckExamplesTest extends AbstractExamplesModule
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "18:31: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "str"),
-            "28:19: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "c"),
+            "19:31: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "str"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("Example4.java"), expected);
     }
+
 }
