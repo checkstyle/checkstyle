@@ -35,8 +35,8 @@ public class EqualsAvoidNullCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "20:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "24:32: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            "18:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "22:32: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
