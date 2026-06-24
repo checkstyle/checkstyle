@@ -18,20 +18,21 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Date;
 
+// Fan-out count: Date, Time, Place
+// Total = 3
 // xdoc section -- start
-class Example5{
-  Set set = new HashSet(); // Set, HashSet ignored
-  Map map = new HashMap(); // Map, HashMap ignored
-  Date date = new Date(); // Counted, 1
-  Time5 time = new Time5(); // Counted, 2
-  Place5 place = new Place5(); // Counted, 3
-  int value = 10; // int is ignored
-  BufferedReader br; // Ignored
-  File file; // Ignored
+class Example5 {
+  Set set = new HashSet();   // ok, Set and HashSet are ignored
+  Map map = new HashMap();   // ok, Map and HashMap are ignored
+  Date date = new Date();
+  Time time = new Time();
+  Place place = new Place();
+  int value = 10;            // ok, primitive types are ignored
+  BufferedReader br;         // ok, BufferedReader is ignored
+  File file;                 // ok, File is ignored
+
   void method() {
-    var result = "result"; // var is ignored
+    var result = "result";   // ok, var is ignored
   }
 }
-class Place5 {}
-class Time5 {}
 // xdoc section -- end

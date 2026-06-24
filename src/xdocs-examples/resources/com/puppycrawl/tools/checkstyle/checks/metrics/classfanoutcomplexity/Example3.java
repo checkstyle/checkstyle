@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="ClassFanOutComplexity">
-      <property name="excludedClasses" value="HashMap, HashSet, Place3"/>
+      <property name="excludedClasses" value="HashMap, HashSet, Place"/>
       <property name="max" value="3"/>
     </module>
   </module>
@@ -18,20 +18,21 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Date;
 
+// Fan-out count: Set, HashSet, Map, HashMap, Date, Time, Place
+// Total = 7
 // xdoc section -- start
-class Example3{ // violation 'Class Fan-Out Complexity is 7 (max allowed is 3)'
-  Set set = new HashSet(); // Set counted 1, HashSet ignored
-  Map map = new HashMap(); // Map counted 2, HashMap ignored
-  Date date = new Date(); // Counted, 3
-  Time3 time = new Time3(); // Counted, 4
-  Place3 place = new Place3(); // Counted, 5
-  int value = 10; // int is ignored
-  BufferedReader br; // Counted, 6
-  File file; // Counted, 7
+class Example3 { // violation 'Class Fan-Out Complexity is 7 (max allowed is 3)'
+  Set set = new HashSet();
+  Map map = new HashMap();
+  Date date = new Date();
+  Time time = new Time();
+  Place place = new Place();
+  int value = 10;            // ok, int is ignored
+  BufferedReader br;
+  File file;
+
   void method() {
-    var result = "result"; // var is ignored
+    var result = "result";   // ok, var ignored
   }
 }
-class Place3 {}
-class Time3 {}
 // xdoc section -- end
