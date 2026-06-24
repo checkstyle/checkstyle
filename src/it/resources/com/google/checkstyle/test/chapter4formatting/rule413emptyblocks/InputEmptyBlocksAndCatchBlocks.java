@@ -52,15 +52,17 @@ class InputEmptyBlocksAndCatchBlocks {
     try (MyResource r = new MyResource()) {}
 
     try (MyResource r = new MyResource()) {} catch (Exception expected) {}
-    // 3 violations above:
+    // 4 violations above:
     //                    'WhitespaceAround: '{' is not followed by whitespace.'
+    //                    ''}' at column .* should be alone on a line.'
     //                    'Empty catch block'
     //                    ''}' at column 74 should be alone on a line.'
 
     try (MyResource r = new MyResource()) {} catch (Exception expected) { }
-    // 4 violations above:
+    // 5 violations above:
     //                    'Empty blocks should have no spaces.'
     //                    'WhitespaceAround: '{' is not followed by whitespace.'
+    //                    ''}' at column .* should be alone on a line.'
     //                    'Empty catch block'
     //                    ''}' at column 75 should be alone on a line.'
 
