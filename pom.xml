@@ -10,9 +10,12 @@
     <version>9</version>
   </parent>
 
-  <groupId>com.puppycrawl.tools</groupId>
+  <!--./mvnw -B clean deploy \
+    -Pno-validations,sonatype-oss-release,gpg,gpgv2 \
+    -Dmaven.javadoc.skip=false  -->
+  <groupId>io.github.stoyank7</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>13.7.0-SNAPSHOT</version>
+  <version>13.7.0-stoyan-1</version>
   <packaging>jar</packaging>
 
   <!-- Temporary config to publish to my GitHub Packages -->
