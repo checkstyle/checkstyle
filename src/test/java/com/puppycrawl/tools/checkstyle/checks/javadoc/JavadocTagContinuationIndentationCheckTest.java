@@ -104,7 +104,7 @@ public class JavadocTagContinuationIndentationCheckTest
     public void testCheckOthers() throws Exception {
         final String[] expected = {
             "20: " + getCheckMessage(MSG_KEY, 4),
-            "33: " + getCheckMessage(MSG_KEY, 4),
+            "32: " + getCheckMessage(MSG_KEY, 4),
             "34: " + getCheckMessage(MSG_KEY, 4),
             "53: " + getCheckMessage(MSG_KEY, 4),
         };

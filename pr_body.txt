@@ -1,0 +1,13 @@
+Issue: #11163
+
+As part of the effort to enforce the 120-line limit for test input files, this PR splits the oversized `InputJavadocTagContinuationIndentation.java` (previously 355 lines) into 5 smaller, focused input files:
+- `InputJavadocTagContinuationIndentation.java` (trimmed to methods 1-3)
+- `InputJavadocTagContinuationIndentationMethod456.java`
+- `InputJavadocTagContinuationIndentationInnerClass.java`
+- `InputJavadocTagContinuationIndentationAnonymousClass.java`
+- `InputJavadocTagContinuationIndentationOthers.java`
+
+The test suite in `JavadocTagContinuationIndentationCheckTest.java` has been updated with 4 new corresponding test methods to ensure all 14 original violations are precisely asserted on the new files. Finally, the `FileLength` suppression for the original file has been successfully removed from `checkstyle-resources-suppressions.xml`.
+
+Please let me know if any naming or structural adjustments are needed!
+cc @romani
