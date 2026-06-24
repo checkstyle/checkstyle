@@ -1013,9 +1013,9 @@
             <configuration>
               <artifactItems>
                 <artifactItem>
-                  <groupId>com.puppycrawl.tools.checkstyle</groupId>
+                  <groupId>io.github.stoyank7</groupId>
                   <artifactId>checkstyle-files-generator</artifactId>
-                  <version>1.0.0</version>
+                  <version>1.0.0-stoyan-1</version>
                   <classifier>all</classifier>
                   <type>jar</type>
                   <destFileName>checkstyle-files-generator-1.0.0-all.jar</destFileName>
