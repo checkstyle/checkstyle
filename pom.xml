@@ -15,6 +15,22 @@
   <version>13.7.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
+  <!-- Temporary config to publish to my GitHub Packages -->
+  <!-- I do this so that checkstyle-files-generator can download this patched version  -->
+  <distributionManagement>
+    <snapshotRepository>
+      <id>github-stoyanK7-checkstyle</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/stoyanK7/checkstyle</url>
+    </snapshotRepository>
+  </distributionManagement>
+  <repositories>
+    <repository>
+      <id>github-stoyanK7-checkstyle-files-generator</id>
+      <url>https://maven.pkg.github.com/stoyanK7/checkstyle-files-generator</url>
+    </repository>
+  </repositories>
+
   <name>checkstyle</name>
   <description>
     Checkstyle is a development tool to help programmers write Java code
