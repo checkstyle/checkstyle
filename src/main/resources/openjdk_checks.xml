@@ -123,6 +123,8 @@
       <message key="matchxpath.match" value="Unnecessary parentheses in return statement."/>
     </module>
 
+    <module name="RedundantModifier"/>
+
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
       <property name="file" value="${org.checkstyle.openjdk.suppressionxpathfilter.config}"

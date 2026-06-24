@@ -1203,6 +1203,7 @@ rulejavasourcefiles
 rulelambdaexpressions
 ruleliterals
 rulemethodnames
+rulemodifiers
 rulepackagedeclaration
 rulepackagenames
 ruleredundantparenthesis
