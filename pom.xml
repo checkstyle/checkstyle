@@ -341,11 +341,6 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>io.github.stoyank7</groupId>
-      <artifactId>checkstyle-files-generator</artifactId>
-      <version>1.0.0-stoyan-1</version>
-    </dependency>
-    <dependency>
       <groupId>info.picocli</groupId>
       <artifactId>picocli</artifactId>
       <version>4.7.7</version>
