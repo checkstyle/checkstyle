@@ -291,7 +291,8 @@ public final class ScopeUtil {
         for (DetailAST parent = node.getParent();
              parent != null;
              parent = parent.getParent()) {
-            if (TokenUtil.isTypeDeclaration(parent.getType())) {
+            if (TokenUtil.isTypeDeclaration(parent.getType())
+                    || parent.getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
                 returnValue = false;
                 break;
             }
