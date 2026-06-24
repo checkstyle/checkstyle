@@ -180,8 +180,8 @@ public class PropertiesMacro extends AbstractMacro {
         final Class<?> clss = instance.getClass();
 
         final Set<String> properties = SiteUtil.getPropertiesForDocumentation(clss, instance);
-        final Map<String, PropertyDetails> propertiesDetails = SiteUtil
-                .buildPropertyDetails(properties, currentModuleName, currentModulePath, instance);
+        final Map<String, PropertyDetails> propertiesDetails = SiteUtil.buildPropertyDetails(
+                properties, currentModuleName, currentModulePath, instance, Path.of(""));
 
         final List<String> orderedProperties = orderProperties(properties);
 
