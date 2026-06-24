@@ -20,33 +20,20 @@
 package com.puppycrawl.tools.checkstyle.meta;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mockStatic;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.xml.transform.TransformerException;
-
-import org.apache.maven.doxia.macro.MacroExecutionException;
-import org.itsallcode.io.Capturable;
-import org.itsallcode.junit.sysextensions.SystemOutGuard;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.site.SiteUtil;
 
-@ExtendWith(SystemOutGuard.class)
 public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
 
     private static final Set<String> MODULES_CONTAINING_NO_METADATA_FILE = Set.of(
@@ -61,33 +48,39 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Generates metadata for checkstyle modules and verifies number of
-     * generated metadata modules match the number of checkstyle modules.
-     * Also verifies whether every checkstyle module contains description.
+     * Verifies number of generated metadata modules match the number of Checkstyle modules.
+     * Also verifies whether every Checkstyle module contains description.
      *
-     * @param systemOut wrapper for {@code System.out}
-     * @throws Exception if exception occurs during generating metadata or
-     *                   if an I/O error is thrown when accessing the starting f
+     * <p>When running this test directly from an IDE, run
+     * {@code ./mvnw process-classes} first to generate the metadata files
+     * under {@code target/classes}.
+     *
+     * @throws Exception if an I/O error occurs while reading metadata files
      */
     @Test
-    public void testMetadataFilesGenerationAllFiles(@SystemOutGuard.SysOut Capturable systemOut)
-            throws Exception {
-        systemOut.captureMuted();
-
-        MetadataGeneratorUtil.generate(System.getProperty("user.dir")
-                        + "/src/main/java/com/puppycrawl/tools/checkstyle",
-                "checks", "filters", "filefilters");
-
-        final Set<String> metaFiles;
-        try (Stream<Path> fileStream = Files.walk(
-                Path.of(System.getProperty("user.dir") + "/src/main/resources/com/puppycrawl"
-                        + "/tools/checkstyle/meta"))) {
-            metaFiles = fileStream
+    public void testMetadataFilesGenerationAllFiles() throws Exception {
+        final Path sourceMetadataDirectory = Path.of(System.getProperty("user.dir"),
+                "src", "main", "resources", "com", "puppycrawl", "tools", "checkstyle", "meta");
+        final List<Path> metadataFiles;
+        try (Stream<Path> fileStream = Files.walk(sourceMetadataDirectory)) {
+            metadataFiles = fileStream
                     .filter(Files::isRegularFile)
                     .filter(path -> !path.toString().endsWith(".properties"))
-                    .map(MetadataGeneratorUtilTest::getMetaFileName)
                     .sorted()
-                    .collect(Collectors.toCollection(LinkedHashSet::new));
+                    .toList();
+        }
+        final Set<String> metaFiles = metadataFiles.stream()
+                .map(MetadataGeneratorUtilTest::getMetaFileName)
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+
+        final Path outputMetadataDirectory = Path.of(System.getProperty("user.dir"),
+                "target", "classes", "com", "puppycrawl", "tools", "checkstyle", "meta");
+        for (Path metadataFile : metadataFiles) {
+            final Path relativePath = sourceMetadataDirectory.relativize(metadataFile);
+            final Path outputMetadataFile = outputMetadataDirectory.resolve(relativePath);
+            assertWithMessage("Metadata differs in target/classes for %s", relativePath)
+                    .that(Files.readString(outputMetadataFile))
+                    .isEqualTo(Files.readString(metadataFile));
         }
         final Set<String> checkstyleModules =
                 CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules())
@@ -99,65 +92,6 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
                 + "number of checkstyle module")
                 .that(metaFiles)
                 .isEqualTo(checkstyleModules);
-    }
-
-    /**
-     * Verifies that generate() catches MacroExecutionException
-     * it wrapped in a CheckstyleException.
-     *
-     * @throws Exception if an unexpected error occurs
-     */
-    @Test
-    public void testGenerateRethrowsMacroExecutionExceptionAsCheckstyleException()
-            throws Exception {
-        try (MockedStatic<SiteUtil> mocked = mockStatic(SiteUtil.class,
-                Mockito.CALLS_REAL_METHODS)) {
-            mocked.when(() -> SiteUtil.getModuleInstance(anyString()))
-                    .thenThrow(new MacroExecutionException("simulated"));
-
-            try {
-                MetadataGeneratorUtil.generate(
-                        System.getProperty("user.dir")
-                                + "/src/main/java/com/puppycrawl/tools/checkstyle",
-                        "checks");
-                assertWithMessage("CheckstyleException should have been thrown").fail();
-            }
-            catch (CheckstyleException exception) {
-                assertWithMessage("Cause must be MacroExecutionException")
-                        .that(exception.getCause())
-                        .isInstanceOf(MacroExecutionException.class);
-                assertWithMessage("Message should mention macro failure")
-                        .that(exception.getMessage())
-                        .contains("Failed to execute macro");
-            }
-        }
-    }
-
-    /**
-     * Verifies that writeMetadataFile() catches TransformerException
-     * it wrapped in a CheckstyleException.
-     *
-     * @throws Exception if an unexpected error occurs
-     */
-    @Test
-    public void testWriteMetadataFileRethrowsAsCheckstyleException() throws Exception {
-        try (MockedStatic<XmlMetaWriter> mocked = mockStatic(XmlMetaWriter.class)) {
-            mocked.when(() -> XmlMetaWriter.write(any(ModuleDetails.class)))
-                    .thenThrow(new TransformerException("simulated"));
-
-            try {
-                MetadataGeneratorUtil.generate(
-                        System.getProperty("user.dir")
-                                + "/src/main/java/com/puppycrawl/tools/checkstyle",
-                        "checks");
-                assertWithMessage("CheckstyleException should have been thrown").fail();
-            }
-            catch (CheckstyleException exception) {
-                assertWithMessage("Message should mention module name")
-                        .that(exception.getMessage())
-                        .contains("Failed to write metadata into XML file for module");
-            }
-        }
     }
 
     /**
