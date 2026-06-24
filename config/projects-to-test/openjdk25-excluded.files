@@ -32,16 +32,7 @@
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]processing[\\/]model[\\/]util[\\/]elements[\\/]TestGetDocComment_Line.java$"/>
 </module>
 
-<!-- until https://github.com/checkstyle/checkstyle/issues/18462 -->
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ImplicitClass.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]ImplicitClass[\\/]NestedEnum.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]flags[\\/]NoFalseSealedError.java$"/>
-</module>
+
 
 <!-- until https://github.com/checkstyle/checkstyle/issues/13987 -->
 <module name="BeforeExecutionExclusionFileFilter">
