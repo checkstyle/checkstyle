@@ -479,6 +479,14 @@
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentation.java"/>
   <suppress id="noViolationCommentsInJavadoc"
+            files="[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationAnonymousClass.java"/>
+  <suppress id="noViolationCommentsInJavadoc"
+            files="[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationInnerClass.java"/>
+  <suppress id="noViolationCommentsInJavadoc"
+            files="[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationMethod456.java"/>
+  <suppress id="noViolationCommentsInJavadoc"
+            files="[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationOthers.java"/>
+  <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationBlockTag.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationDescription.java"/>
