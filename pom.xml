@@ -18,22 +18,6 @@
   <version>13.7.0-stoyan-1</version>
   <packaging>jar</packaging>
 
-  <!-- Temporary config to publish to my GitHub Packages -->
-  <!-- I do this so that checkstyle-files-generator can download this patched version  -->
-  <distributionManagement>
-    <snapshotRepository>
-      <id>github-stoyanK7-checkstyle</id>
-      <name>GitHub Packages</name>
-      <url>https://maven.pkg.github.com/stoyanK7/checkstyle</url>
-    </snapshotRepository>
-  </distributionManagement>
-  <repositories>
-    <repository>
-      <id>github-stoyanK7-checkstyle-files-generator</id>
-      <url>https://maven.pkg.github.com/stoyanK7/checkstyle-files-generator</url>
-    </repository>
-  </repositories>
-
   <name>checkstyle</name>
   <description>
     Checkstyle is a development tool to help programmers write Java code
@@ -357,9 +341,9 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>com.puppycrawl.tools.checkstyle</groupId>
+      <groupId>io.github.stoyank7</groupId>
       <artifactId>checkstyle-files-generator</artifactId>
-      <version>1.0.0</version>
+      <version>1.0.0-stoyan-1</version>
     </dependency>
     <dependency>
       <groupId>info.picocli</groupId>
