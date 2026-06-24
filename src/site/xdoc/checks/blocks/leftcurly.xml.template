@@ -52,6 +52,18 @@
             <param name="path" value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/Example2.java"/>
             <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+          An example of how to configure the check to validate enum definitions:
+        </p>
+        <macro name="example">
+            <param name="path" value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/Example4.java"/>
+            <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example: </p>
+        <macro name="example">
+            <param name="path" value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/Example4.java"/>
+            <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to apply the <code>nlow</code> policy to
           type blocks:
@@ -63,18 +75,6 @@
         <p id="Example3-code">Example: </p>
         <macro name="example">
             <param name="path" value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/Example3.java"/>
-            <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example4-config">
-          An example of how to configure the check to validate enum definitions:
-        </p>
-        <macro name="example">
-            <param name="path" value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/Example4.java"/>
-            <param name="type" value="config"/>
-        </macro>
-        <p id="Example4-code">Example: </p>
-        <macro name="example">
-            <param name="path" value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/Example4.java"/>
             <param name="type" value="code"/>
         </macro>
       </subsection>
