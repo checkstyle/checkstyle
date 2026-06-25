@@ -147,6 +147,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static final String UNNAMED_VAR = "_";
 
     /**
+     * Constant for JDK 22 version number.
+     */
+    private static final int JDK_22 = 22;
+
+    /**
      * Keeps tracks of the variables declared in file.
      */
     private final Deque<VariableDesc> variables = new ArrayDeque<>();
@@ -183,6 +188,19 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private boolean allowUnnamedVariables = true;
 
     /**
+     * Set the JDK version that you are using.
+     * Old JDK version numbering is supported (e.g. 1.8 for Java 8)
+     * as well as just the major JDK version alone (e.g. 8) is supported.
+     * This property only considers features from officially released
+     * Java versions as supported. Features introduced in preview releases
+     * are not considered supported until they are included in a non-preview release.
+     * Before JDK 22, named pattern variables in switch labels cannot be replaced
+     * with {@code _}, so violations on them are suppressed when jdkVersion is set
+     * below 22.
+     */
+    private int jdkVersion = JDK_22;
+
+    /**
      * Name of the package.
      */
     private String packageName;
@@ -202,6 +220,31 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     public void setAllowUnnamedVariables(boolean allowUnnamedVariables) {
         this.allowUnnamedVariables = allowUnnamedVariables;
+    }
+
+    /**
+     * Setter to set the JDK version that you are using.
+     * Old JDK version numbering is supported (e.g. 1.8 for Java 8)
+     * as well as just the major JDK version alone (e.g. 8) is supported.
+     * This property only considers features from officially released
+     * Java versions as supported. Features introduced in preview releases
+     * are not considered supported until they are included in a non-preview release.
+     * Before JDK 22, named pattern variables in switch labels cannot be replaced
+     * with {@code _}, so violations on them are suppressed when jdkVersion is set
+     * below 22.
+     *
+     * @param jdkVersion the Java version.
+     * @since 13.7.0
+     */
+    public void setJdkVersion(String jdkVersion) {
+        final String singleVersionNumber;
+        if (jdkVersion.startsWith("1.")) {
+            singleVersionNumber = jdkVersion.substring(2);
+        }
+        else {
+            singleVersionNumber = jdkVersion;
+        }
+        this.jdkVersion = Integer.parseInt(singleVersionNumber);
     }
 
     @Override
@@ -398,7 +441,26 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             Deque<VariableDesc> variablesStack) {
         final DetailAST ident = patternVarDefAst.findFirstToken(TokenTypes.IDENT);
         final DetailAST scope = findScopeOfPatternVariable(patternVarDefAst);
-        variablesStack.push(new VariableDesc(ident.getText(), ident, scope));
+        final VariableDesc desc = new VariableDesc(ident.getText(), ident, scope);
+        if (isSwitchCasePatternVariable(patternVarDefAst)) {
+            desc.registerAsNamedPatternVar();
+        }
+        variablesStack.push(desc);
+    }
+
+    /**
+     * Checks whether the pattern variable is declared in a switch labels.
+     *
+     * @param patternVarDefAst ast of type {@link TokenTypes#PATTERN_VARIABLE_DEF}
+     * @return true if the pattern variable is declared in a switch label
+     */
+    private static boolean isSwitchCasePatternVariable(DetailAST patternVarDefAst) {
+        DetailAST current = patternVarDefAst;
+        while (current != null
+                && current.getType() != TokenTypes.LITERAL_CASE) {
+            current = current.getParent();
+        }
+        return current != null;
     }
 
     /**
@@ -455,7 +517,9 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             if (variableDesc.getScope() == scopeAst) {
                 iterator.remove();
                 if (!variableDesc.isUsed()
-                        && !variableDesc.isInstVarOrClassVar()) {
+                        && !variableDesc.isInstVarOrClassVar()
+                        && !(jdkVersion < JDK_22
+                                && variableDesc.isNamedPatternVar())) {
                     final DetailAST typeAst = variableDesc.getTypeAst();
                     if (allowUnnamedVariables) {
                         log(typeAst, MSG_UNUSED_NAMED_LOCAL_VARIABLE, variableDesc.getName());
@@ -950,6 +1014,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         private boolean instVarOrClassVar;
 
         /**
+         * Is a named pattern variable declared in a switch label.
+         */
+        private boolean namedPatternVar;
+
+        /**
          * Is the variable used.
          */
         private boolean used;
@@ -1035,6 +1104,14 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         }
 
         /**
+         * Register the variable as a named pattern variable
+         * declared in a switch label.
+         */
+        /* package */ void registerAsNamedPatternVar() {
+            namedPatternVar = true;
+        }
+
+        /**
          * Is the variable used or not.
          *
          * @return true if variable is used
@@ -1050,6 +1127,17 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          */
         /* package */ boolean isInstVarOrClassVar() {
             return instVarOrClassVar;
+        }
+
+        /**
+         * Is a named pattern variable from a switch label.
+         *
+         * @return true if this variable was declared via a
+         *         {@link TokenTypes#PATTERN_VARIABLE_DEF} with a non-underscore name
+         *         in a switch label
+         */
+        /* package */ boolean isNamedPatternVar() {
+            return namedPatternVar;
         }
     }
 
