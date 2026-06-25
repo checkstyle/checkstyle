@@ -34,10 +34,10 @@ public class ParameterNumberCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "16:3: " + getCheckMessage(MSG_KEY, 7, 8),
-            "20:3: " + getCheckMessage(MSG_KEY, 7, 8),
-            "25:15: " + getCheckMessage(MSG_KEY, 7, 8),
-            "33:15: " + getCheckMessage(MSG_KEY, 7, 8),
+            "15:3: " + getCheckMessage(MSG_KEY, 7, 8),
+            "19:3: " + getCheckMessage(MSG_KEY, 7, 8),
+            "23:15: " + getCheckMessage(MSG_KEY, 7, 8),
+            "31:15: " + getCheckMessage(MSG_KEY, 7, 8),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -55,9 +55,9 @@ public class ParameterNumberCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "18:3: " + getCheckMessage(MSG_KEY, 7, 8),
-            "22:3: " + getCheckMessage(MSG_KEY, 7, 8),
-            "35:15: " + getCheckMessage(MSG_KEY, 7, 8),
+            "17:3: " + getCheckMessage(MSG_KEY, 7, 8),
+            "21:3: " + getCheckMessage(MSG_KEY, 7, 8),
+            "33:15: " + getCheckMessage(MSG_KEY, 7, 8),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -66,9 +66,9 @@ public class ParameterNumberCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "22:3: " + getCheckMessage(MSG_KEY, 7, 8),
-            "27:15: " + getCheckMessage(MSG_KEY, 7, 8),
-            "35:15: " + getCheckMessage(MSG_KEY, 7, 8),
+            "21:3: " + getCheckMessage(MSG_KEY, 7, 8),
+            "25:15: " + getCheckMessage(MSG_KEY, 7, 8),
+            "33:15: " + getCheckMessage(MSG_KEY, 7, 8),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
