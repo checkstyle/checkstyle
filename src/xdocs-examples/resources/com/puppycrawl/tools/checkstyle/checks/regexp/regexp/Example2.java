@@ -7,10 +7,11 @@
   </module>
 </module>
 */
-package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
-// xdoc section -- start
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 // violation first line 'missing in file.'
+// xdoc section -- start
+/* violation on first line 'Required pattern missing in a file.' */
 /*
  * Some Copyright
  */

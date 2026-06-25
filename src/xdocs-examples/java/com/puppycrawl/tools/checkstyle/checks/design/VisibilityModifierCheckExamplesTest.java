@@ -172,7 +172,7 @@ public class VisibilityModifierCheckExamplesTest extends AbstractExamplesModuleT
             "47:37: " + getCheckMessage(MSG_KEY, "mySet2"),
             "50:45: " + getCheckMessage(MSG_KEY, "objects1"),
             "53:10: " + getCheckMessage(MSG_KEY, "annotatedString"),
-            "57:10: " + getCheckMessage(MSG_KEY, "shortCustomAnnotated"),
+            "56:10: " + getCheckMessage(MSG_KEY, "shortCustomAnnotated"),
         };
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
@@ -211,7 +211,7 @@ public class VisibilityModifierCheckExamplesTest extends AbstractExamplesModuleT
             "42:37: " + getCheckMessage(MSG_KEY, "mySet2"),
             "45:45: " + getCheckMessage(MSG_KEY, "objects1"),
             "48:10: " + getCheckMessage(MSG_KEY, "annotatedString"),
-            "52:10: " + getCheckMessage(MSG_KEY, "shortCustomAnnotated"),
+            "51:10: " + getCheckMessage(MSG_KEY, "shortCustomAnnotated"),
         };
 
         verifyWithInlineConfigParser(getPath("Example9.java"), expected);
@@ -229,7 +229,7 @@ public class VisibilityModifierCheckExamplesTest extends AbstractExamplesModuleT
             "44:37: " + getCheckMessage(MSG_KEY, "mySet2"),
             "47:45: " + getCheckMessage(MSG_KEY, "objects1"),
             "50:10: " + getCheckMessage(MSG_KEY, "annotatedString"),
-            "57:17: " + getCheckMessage(MSG_KEY, "testString"),
+            "56:17: " + getCheckMessage(MSG_KEY, "testString"),
         };
 
         verifyWithInlineConfigParser(getPath("Example10.java"), expected);

@@ -43,7 +43,7 @@ public class FileLengthCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY, 18, 5),
+            "1: " + getCheckMessage(MSG_KEY, 19, 5),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
