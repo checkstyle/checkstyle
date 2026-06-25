@@ -5,7 +5,7 @@
   </module>
 </module>
 */
-// violation 7 lines above 'File length is 18 lines (max allowed is 5)'
+// violation first line 'File length is 18 lines (max allowed is 5)'
 package com.puppycrawl.tools.checkstyle.checks.sizes.filelength;
 
 // xdoc section -- start
