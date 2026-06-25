@@ -91,7 +91,7 @@ public class Example1 {
         <p id="Example2-code">Java code:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
-
+// violation 9 lines above 'use SLF4J instead.'
 public class Example2 {
   @SuppressWarnings("checkstyle:systemout")
   public static void foo() {

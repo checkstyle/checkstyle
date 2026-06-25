@@ -14,19 +14,17 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.parameternumber;
 class Example4 extends ExternalService4 {
 
   @JsonCreator
-  // ok below, constructor annotated with JsonCreator annotation is ignored
   Example4(int a, int b, int c, int d,
            int e, int f, int g, int h) {}
-
+  // ok above, constructor annotated with JsonCreator annotation is ignored
   // violation below, 'More than 7 parameters (found 8)'
   Example4(String a, String b, String c, String d,
            String e, String f, String g, String h) {}
 
   @Override
-  // violation below, 'More than 7 parameters (found 8)'
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
-
+  // violation 2 lines above 'More than 7 parameters (found 8)'
 }
 
 class ExternalService4 {
