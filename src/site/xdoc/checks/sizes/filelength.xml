@@ -78,6 +78,7 @@ public class Example1 {
 </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation first line 'File length is 19 lines (max allowed is 5)'
 public class Example2 {
   public void myTest() {
     // small class with more than 5 lines less than 2000 lines
