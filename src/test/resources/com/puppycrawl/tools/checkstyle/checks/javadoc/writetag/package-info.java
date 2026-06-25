@@ -9,11 +9,7 @@ violateExecutionOnNonTightHtml = (default)false
 
 */
 
+/**
+ * Test.
+ */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
-
-class InputWriteTagNoJavadoc
-{
-    public void method()
-    {
-    }
-}
