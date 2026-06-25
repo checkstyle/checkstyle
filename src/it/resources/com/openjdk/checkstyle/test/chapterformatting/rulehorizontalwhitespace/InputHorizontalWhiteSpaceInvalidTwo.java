@@ -18,20 +18,30 @@ public class InputHorizontalWhiteSpaceInvalidTwo {
     void example() {
 
         switch (1) {
-            case 1 : // violation '':' is preceded with whitespace'
+            case 1 : { // violation '':' is preceded with whitespace'
                 break;
-            case 2:
+            }
+            case 2: {
                 break;
-            default : // violation '':' is preceded with whitespace'
+            }
+            default : { // violation '':' is preceded with whitespace'
                 break;
+            }
         }
 
         switch (2) {
-            case 2:
+            case 2: {
                 break;
-            case 3, 4 : break; // violation '':' is preceded with whitespace'
-            case 5, 6: break;
-            default : break; // violation '':' is preceded with whitespace'
+            }
+            case 3, 4 : { // violation '':' is preceded with whitespace'
+                break;
+            }
+            case 5, 6: {
+                break;
+            }
+            default : { // violation '':' is preceded with whitespace'
+                break;
+            }
         }
     }
 
