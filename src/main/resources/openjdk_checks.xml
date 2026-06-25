@@ -151,6 +151,16 @@
       <property name="optional" value="true"/>
     </module>
 
+    <module name="OperatorWrap">
+      <property name="option" value="nl"/>
+      <property name="tokens"
+                value="QUESTION, COLON, EQUAL, NOT_EQUAL, DIV, PLUS, MINUS,
+                  STAR, MOD, SR, BSR, GE, GT, SL, LE, LT, BXOR, BOR, LOR, BAND,
+                  LAND, LITERAL_INSTANCEOF, TYPE_EXTENSION_AND, ASSIGN, DIV_ASSIGN,
+                  PLUS_ASSIGN, MINUS_ASSIGN, STAR_ASSIGN, MOD_ASSIGN, SR_ASSIGN, BSR_ASSIGN,
+                  SL_ASSIGN, BXOR_ASSIGN, BOR_ASSIGN, BAND_ASSIGN, METHOD_REF, LAMBDA"/>
+    </module>
+
     <module name="PackageName">
       <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
     </module>
