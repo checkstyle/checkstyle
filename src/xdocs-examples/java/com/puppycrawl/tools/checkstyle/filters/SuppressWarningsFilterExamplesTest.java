@@ -54,13 +54,13 @@ public class SuppressWarningsFilterExamplesTest extends AbstractExamplesModuleTe
     public void testExample2() throws Exception {
         final String[] expectedWithoutFilter = {
             "9: Dont use System.out/err, use SLF4J instead.",
-            "23: Dont use System.out/err, use SLF4J instead.",
-            "26: Dont use System.out/err, use SLF4J instead.",
+            "22: Dont use System.out/err, use SLF4J instead.",
+            "25: Dont use System.out/err, use SLF4J instead.",
         };
 
         final String[] expectedWithFilter = {
             "9: Dont use System.out/err, use SLF4J instead.",
-            "26: Dont use System.out/err, use SLF4J instead.",
+            "25: Dont use System.out/err, use SLF4J instead.",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example2.java"),

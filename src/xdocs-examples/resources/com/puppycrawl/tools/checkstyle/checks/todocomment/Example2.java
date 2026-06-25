@@ -7,9 +7,9 @@
   </module>
 </module>
 */
-// violation 9 lines above 'matches to-do format'
-package com.puppycrawl.tools.checkstyle.checks.todocomment;
 
+package com.puppycrawl.tools.checkstyle.checks.todocomment;
+// violation first line 'matches to-do format'
 // xdoc section -- start
 public class Example2 {
   int i;
