@@ -9,11 +9,10 @@
   </module>
 </module>
 */
-// violation 11 lines above 'Required pattern 'Copyright' missing in file.'
-
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
 // xdoc section -- start
+// violation first line 'Required pattern 'Copyright' missing in file.'
 /*
  * violation on first line 'Required pattern 'Copyright' missing in file.'
 */

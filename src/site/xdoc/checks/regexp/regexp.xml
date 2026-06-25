@@ -269,7 +269,7 @@ public class Example10 {
 </code></pre></div>
         <p id="Example2-code">Example2 with violation:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/* violation on first line 'Required pattern missing in a file.' */
+// violation first line 'missing in file.'
 /*
  * Some Copyright
  */
@@ -332,6 +332,7 @@ public class Example4 {}
 </code></pre></div>
         <p id="Example5-code">Example5 with violation:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation first line 'Required pattern 'Copyright' missing in file.'
 /*
  * violation on first line 'Required pattern 'Copyright' missing in file.'
 */
