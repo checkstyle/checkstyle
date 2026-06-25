@@ -267,6 +267,28 @@
       <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
     </module>
 
+    <module name="LeftCurly"/>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="checks" value="LeftCurly"/>
+      <property name="query"
+                value="//METHOD_DEF/SLIST[LITERAL_RETURN
+                        or EXPR[following-sibling::SEMI[following-sibling::*[self::RCURLY]]]]"/>
+    </module>
+    <module name="RightCurly">
+      <property name="id" value="RightCurlySame"/>
+      <property name="tokens" value="LITERAL_IF, LITERAL_TRY, LITERAL_DO, LITERAL_CATCH"/>
+    </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="id" value="RightCurlySame"/>
+      <property name="query" value="//RCURLY[parent::SLIST[parent::LITERAL_IF/LITERAL_ELSE
+             /LITERAL_IF or parent::LITERAL_TRY/LITERAL_FINALLY
+             [not(preceding-sibling::LITERAL_CATCH)]
+             or parent::LITERAL_CATCH/following-sibling::LITERAL_FINALLY]]"/>
+    </module>
+    <module name="NeedBraces">
+      <property name="tokens" value="LITERAL_DO, LITERAL_ELSE, LITERAL_FOR,
+                   LITERAL_IF, LITERAL_WHILE, LITERAL_CASE, LITERAL_DEFAULT"/>
+    </module>
   </module>
 
 </module>
