@@ -42,10 +42,12 @@ public class InputHorizontalWhiteSpaceInvalidFour {
      */
     public void fun2() {
         switch ( x) { // violation 'is followed by whitespace'
-            case 2:
+            case 2: {
                 break;
-            default:
+            }
+            default: {
                 break;
+            }
         }
     }
 

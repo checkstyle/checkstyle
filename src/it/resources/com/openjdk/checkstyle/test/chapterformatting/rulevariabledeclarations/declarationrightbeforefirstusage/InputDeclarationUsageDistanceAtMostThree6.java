@@ -90,7 +90,6 @@ public class InputDeclarationUsageDistanceAtMostThree6 {
     }
 
     static class OptionBuilder {
-
         public static Option create(String string) {
             return null;
         }
