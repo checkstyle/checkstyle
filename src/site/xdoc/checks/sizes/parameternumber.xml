@@ -84,19 +84,19 @@
 class Example1 extends ExternalService1 {
 
   @JsonCreator
-  // violation below, 'More than 7 parameters (found 8)'
+
   Example1(int a, int b, int c, int d,
            int e, int f, int g, int h) {}
-
+  // violation 2 lines above 'More than 7 parameters (found 8)'
   // violation below, 'More than 7 parameters (found 8)'
   Example1(String a, String b, String c, String d,
            String e, String f, String g, String h) {}
 
   @Override
-  // violation below, 'More than 7 parameters (found 8)'
+
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
-
+  // violation 2 lines above 'More than 7 parameters (found 8)'
 }
 
 class ExternalService1 {
@@ -125,8 +125,8 @@ class ExternalService1 {
 class Example2 extends ExternalService2 {
 
   @JsonCreator
-  // ok below, constructor is not in tokens to check
-  Example2(int a, int b, int c, int d,
+
+  Example2(int a, int b, int c, int d, // ok, constructor is not in tokens to check
            int e, int f, int g, int h) {}
 
   // ok below, constructor is not in tokens to check
@@ -134,10 +134,10 @@ class Example2 extends ExternalService2 {
            String e, String f, String g, String h) {}
 
   @Override
-  // ok below, less than 10 parameters (found 8)
+
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
-
+  // ok above, less than 10 parameters (found 8)
 }
 
 class ExternalService2 {
@@ -170,9 +170,9 @@ class ExternalService2 {
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 extends ExternalService3 {
-
+  // violation 3 lines below 'More than 7 parameters (found 8)'
   @JsonCreator
-  // violation below, 'More than 7 parameters (found 8)'
+
   Example3(int a, int b, int c, int d,
            int e, int f, int g, int h) {}
 
@@ -181,10 +181,10 @@ class Example3 extends ExternalService3 {
            String e, String f, String g, String h) {}
 
   @Override
-  // ok below, overridden method is ignored
+
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
-
+  // ok above, overridden method is ignored
 }
 
 class ExternalService3 {
@@ -213,19 +213,19 @@ class ExternalService3 {
 class Example4 extends ExternalService4 {
 
   @JsonCreator
-  // ok below, constructor annotated with JsonCreator annotation is ignored
+
   Example4(int a, int b, int c, int d,
            int e, int f, int g, int h) {}
-
+  // ok above, constructor annotated with JsonCreator annotation is ignored
   // violation below, 'More than 7 parameters (found 8)'
   Example4(String a, String b, String c, String d,
            String e, String f, String g, String h) {}
 
   @Override
-  // violation below, 'More than 7 parameters (found 8)'
+
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
-
+  // violation 2 lines above 'More than 7 parameters (found 8)'
 }
 
 class ExternalService4 {
