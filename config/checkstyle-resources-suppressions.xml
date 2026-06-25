@@ -252,8 +252,7 @@
     files="[\\/]it[\\/]resources-noncompilable[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/].*[\\/].*[\\/].*\.java"/>
 
   <!-- Until https://github.com/checkstyle/checkstyle/issues/11163 -->
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentation\.java"/>
+
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeNoJavadoc\.java"/>
   <suppress checks="FileLength"
