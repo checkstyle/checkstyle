@@ -134,6 +134,8 @@
       <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
     </module>
 
+    <module name="LeftCurly"/>
+
   </module>
 
 </module>
