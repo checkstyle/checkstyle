@@ -89,6 +89,7 @@ public class Example1 {
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation first line 'matches to-do format'
 public class Example2 {
   int i;
   int x;

@@ -6,7 +6,7 @@
   <property name="haltOnException" value="false"/>
 </module>
 */
-// violation 8 lines above 'java.lang.IndexOutOfBoundsException: test'
+// violation first line 'java.lang.IndexOutOfBoundsException: test'
 
 package com.puppycrawl.tools.checkstyle.checker;
 /*comment*/
