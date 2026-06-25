@@ -60,6 +60,9 @@
             <property default-value="false" name="forceStrictCondition" type="boolean">
                <description>Force strict indent level in line wrapping case. If value is true, line wrap indent have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent could be bigger on any value user would like.</description>
             </property>
+            <property default-value="false" name="allowVerticalAlignment" type="boolean">
+               <description>Allow continuation lines to be vertically aligned with a reference expression in the same construct, suppressing indentation violations.</description>
+            </property>
             <property default-value="4" name="lineWrappingIndentation" type="int">
                <description>Specify how far continuation line should be indented when line-wrapping is present.</description>
             </property>

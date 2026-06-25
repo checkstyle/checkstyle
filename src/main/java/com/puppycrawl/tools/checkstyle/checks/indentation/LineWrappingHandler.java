@@ -173,7 +173,11 @@ public class LineWrappingHandler {
                 logWarningMessage(node, firstNodeIndent);
             }
             else if (!TokenUtil.isOfType(currentType, IGNORED_LIST)) {
-                logWarningMessage(node, currentIndent);
+                if (!indentCheck.isAllowVerticalAlignment()
+                        || !indentCheck.getVerticalAlignmentHandler()
+                                .isVerticallyAligned(node)) {
+                    logWarningMessage(node, currentIndent);
+                }
             }
         }
     }
@@ -340,7 +344,11 @@ public class LineWrappingHandler {
                 logWarningMessage(node, firstNodeIndent);
             }
             else if (!isArrayInitPresentInAncestors) {
-                logWarningMessage(node, currentIndent);
+                if (!indentCheck.isAllowVerticalAlignment()
+                        || !indentCheck.getVerticalAlignmentHandler()
+                                .isVerticallyAligned(node)) {
+                    logWarningMessage(node, currentIndent);
+                }
             }
             itr.remove();
         }
@@ -432,6 +440,7 @@ public class LineWrappingHandler {
         }
         return CommonUtil.lengthExpandedTabs(line, index, indentCheck.getIndentationTabWidth());
     }
+
 
     /**
      * Logs warning message if indentation is incorrect.
