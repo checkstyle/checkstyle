@@ -62,20 +62,6 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
         // SHOULD BE HERE (distance = 2)
     }
 
-    /** Some javadoc. */
-    public void testForCycle() {
-        int filterCount = 0;
-        for (int i = 0; i < 10; i++, filterCount++) {
-            int abc = 0;
-            System.identityHashCode(abc);
-
-            for (int j = 0; j < 10; j++) {
-                abc = filterCount;
-                System.identityHashCode(abc);
-            }
-        }
-    }
-
     private void showLogLevelColorChangeDialog(JmenuItem j, LogLevel l) {}
 
     void fireAuthTokenChanged(String s, String s1) {}
@@ -94,10 +80,18 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
 
     static class Color {
         Color(int red, int green, int blue, int alpha) {}
-        public double getRed() { return 0; }
-        public int getAlpha() { return 0; }
-        public double getBlue() { return 0; }
-        public double getGreen() { return 0; }
+        public double getRed() {
+            return 0;
+        }
+        public int getAlpha() {
+            return 0;
+        }
+        public double getBlue() {
+            return 0;
+        }
+        public double getGreen() {
+            return 0;
+        }
     }
 
     class AuthUpdateTask {

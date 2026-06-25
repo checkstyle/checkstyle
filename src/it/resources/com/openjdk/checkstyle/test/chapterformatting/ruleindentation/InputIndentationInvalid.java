@@ -5,12 +5,12 @@ public class InputIndentationInvalid {
 
     private void method(int value) {
         switch (value) {
-          case 1:
+          case 1: // violation ''case' construct must use '{}'s.'
           // violation above '.* incorrect indentation level 10, expected .* 12.'
               value++;
               // violation above '.* incorrect indentation level 14, expected .* 16.'
                 break;
-            default:
+            default: // violation ''default' construct must use '{}'s.'
                 value--;
                 break;
         }
