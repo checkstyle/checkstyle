@@ -12,11 +12,10 @@
   <module name="SuppressWarningsFilter" />
 </module>
 */
-// violation 6 lines above 'use SLF4J instead.'
 
 // xdoc section -- start
 package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
-
+// violation 9 lines above 'use SLF4J instead.'
 public class Example2 {
   @SuppressWarnings("checkstyle:systemout")
   public static void foo() {
