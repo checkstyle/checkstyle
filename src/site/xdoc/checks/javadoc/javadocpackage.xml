@@ -67,7 +67,7 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.nonlegacy;
-/* violation on first line 'Missing package-info.java file' */
+// violation first line 'Missing package-info.java file'
 public class Example1 { }
 </code></pre></div><hr class="example-separator"/>
 
@@ -120,7 +120,7 @@ public class Example2 { }
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.legacywithboth;
-/* violation on first line 'Legacy package.html file should be removed' */
+// violation first line 'Legacy package.html file should be removed'
 public class Example3 { }
 </code></pre></div>
       </subsection>
