@@ -34,7 +34,7 @@ public class InvalidJavadocPositionCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "14:1: " + getCheckMessage(MSG_KEY),
+            "15:1: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
