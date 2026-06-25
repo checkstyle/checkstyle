@@ -53,7 +53,11 @@ jobs:
           ||  startsWith(github.event.comment.body,
                          'Github, generate report by config from')
           ||  startsWith(github.event.comment.body,
-                         'GitHub, generate report by config from'))
+                         'GitHub, generate report by config from')
+          ||  startsWith(github.event.comment.body,
+                         'Github, generate baseline report')
+          ||  startsWith(github.event.comment.body,
+                         'GitHub, generate baseline report'))
 
     runs-on: ubuntu-latest
     steps:
@@ -99,13 +103,13 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Checkout PR branch
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: ${{ steps.get_pr_details.outputs.fork_repo }}
           ref: ${{ steps.get_pr_details.outputs.branch }}
 
       - name: Checkout master branch
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: checkstyle/checkstyle
           path: .ci-temp/checkstyle
@@ -121,7 +125,7 @@ jobs:
                forked/${{ steps.get_pr_details.outputs.branch }}
 
       - name: Save cache
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
@@ -149,7 +153,7 @@ jobs:
             })
 
       - name: Restore cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
@@ -165,6 +169,7 @@ jobs:
           PATTERN_LOCAL_CONFIG=$NAME' generate report for ([^[:space:]]+) with (.*)'
           PATTERN_FOR=$NAME' generate report for'
           PATTERN_BY_CONFIG_FROM=$NAME' generate report by config from'
+          PATTERN_FOR_BASELINE_REPORT=$NAME' generate baseline report for ([^[:space:]]+) with (.*)'
 
           if [[ "$COMMENT_BODY" =~ $PATTERN_FOR_DESCRIPTION ]]; then
             ./.ci/append-to-github-output.sh "mode" "configs_in_pr_description"
@@ -184,6 +189,11 @@ jobs:
             INPUT_FILE=$(echo "$COMMENT_BODY" | sed -E "s/$PATTERN_BY_CONFIG_FROM //g")
             ./.ci/append-to-github-output.sh "input_file" "$INPUT_FILE"
 
+          elif [[ "$COMMENT_BODY" =~ $PATTERN_FOR_BASELINE_REPORT ]]; then
+            ./.ci/append-to-github-output.sh "mode" "local_config_for_baseline_report"
+            ./.ci/append-to-github-output.sh "project_name" "${BASH_REMATCH[1]}"
+            ./.ci/append-to-github-output.sh "config_path" "${BASH_REMATCH[2]}"
+
           else
             echo "No recognized pattern found in '$COMMENT_BODY'."
             exit 1
@@ -199,7 +209,7 @@ jobs:
       label: ${{ steps.create_label.outputs.label }}
     steps:
       - name: Restore cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
@@ -232,7 +242,7 @@ jobs:
       label: ${{ steps.create_label.outputs.label }}
     steps:
       - name: Restore cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
@@ -304,7 +314,7 @@ jobs:
           cat "$CONFIG_FILE_PATH"
 
       - name: Cache Generated Config and Project Files
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ${{ env.GENERATED_CONFIGS_PATH }}
           key: ${{ env.CACHE_KEY }}-generated-configs
@@ -329,7 +339,7 @@ jobs:
       new_module_config_link: ${{ steps.parse_description.outputs.new_module_config_link }}
     steps:
       - name: Restore cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
@@ -363,7 +373,7 @@ jobs:
       project_name: ${{ needs.parse_comment.outputs.project_name }}
     steps:
       - name: Restore cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
@@ -389,20 +399,58 @@ jobs:
           LABEL="Diff report for $PROJECT_NAME with $CONFIG_PATH"
           ./.ci/append-to-github-output.sh "label" "$LABEL"
 
+  handle_local_config_for_baseline_report:
+    needs: [ parse_comment, checkout_and_cache ]
+    if: needs.parse_comment.outputs.mode == 'local_config_for_baseline_report'
+    runs-on: ubuntu-latest
+    outputs:
+      config_link: ${{ steps.set_links.outputs.config_link }}
+      projects_link: ${{ steps.set_links.outputs.projects_link }}
+      label: ${{ steps.create_label.outputs.label }}
+      project_name: ${{ needs.parse_comment.outputs.project_name }}
+    steps:
+      - name: Restore cache
+        uses: actions/cache/restore@v6
+        with:
+          path: .
+          key: ${{ env.CACHE_KEY }}
+          fail-on-cache-miss: true
+
+      - name: Set config and project link
+        id: set_links
+        run: |
+          BASE="${{ env.LOCAL_CONFIG_BASE_PATH }}"
+          CONF="${{ needs.parse_comment.outputs.config_path }}"
+          CONFIG_PATH="$BASE/$CONF"
+          PROJECTS_FILE="${{ env.LOCAL_PROJECTS_FILE_PATH }}"
+
+          ./.ci/append-to-github-output.sh "config_link" "$CONFIG_PATH"
+          ./.ci/append-to-github-output.sh "projects_link" "$PROJECTS_FILE"
+
+      - name: Create label
+        id: create_label
+        run: |
+          PROJECT_NAME="${{ needs.parse_comment.outputs.project_name }}"
+          CONFIG_PATH="${{ needs.parse_comment.outputs.config_path }}"
+          LABEL="Baseline report for $PROJECT_NAME with $CONFIG_PATH"
+          ./.ci/append-to-github-output.sh "label" "$LABEL"
+
   download_configs:
     needs: [
       parse_comment,
       handle_existing_config_bundle,
       handle_generated_config_bundle,
       handle_configs_in_pr_description,
-      handle_local_config_for_project
+      handle_local_config_for_project,
+      handle_local_config_for_baseline_report
     ]
     if: |
       always() &&
       (needs.handle_existing_config_bundle.result == 'success'
         || needs.handle_generated_config_bundle.result == 'success'
         || needs.handle_configs_in_pr_description.result == 'success'
-        || needs.handle_local_config_for_project.result == 'success')
+        || needs.handle_local_config_for_project.result == 'success'
+        || needs.handle_local_config_for_baseline_report.result == 'success')
     runs-on: ubuntu-latest
     outputs:
       report_label: >-
@@ -411,11 +459,12 @@ jobs:
           || needs.handle_generated_config_bundle.outputs.label
           || needs.handle_existing_config_bundle.outputs.label
           || needs.handle_local_config_for_project.outputs.label
+          || needs.handle_local_config_for_baseline_report.outputs.label
           || ''
         }}
     steps:
       - name: Restore cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
@@ -423,7 +472,7 @@ jobs:
 
       - name: Restore Generated Config and Project Files
         if: needs.handle_generated_config_bundle.result == 'success'
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ${{ env.GENERATED_CONFIGS_PATH }}
           key: ${{ env.CACHE_KEY }}-generated-configs
@@ -494,8 +543,17 @@ jobs:
         run: |
           ./.ci/diff-report.sh process-local-repo-config-files
 
+      - name: Process local-repo based config file for baseline report
+        if: needs.handle_local_config_for_baseline_report.result == 'success'
+        env:
+          PROJECT_NAME: ${{ needs.handle_local_config_for_baseline_report.outputs.project_name }}
+          CONFIG_LINK: ${{ needs.handle_local_config_for_baseline_report.outputs.config_link }}
+          PROJECTS_LINK: ${{ needs.handle_local_config_for_baseline_report.outputs.projects_link }}
+        run: |
+          ./.ci/diff-report.sh process-local-repo-config-files-for-baseline-report
+
       - name: Cache config files
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: |
             .ci-temp/*.xml
@@ -512,14 +570,14 @@ jobs:
       message: ${{ steps.out.outputs.message }}
     steps:
       - name: Restore cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
           fail-on-cache-miss: true
 
       - name: Restore config files from cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: |
             .ci-temp/*.xml
@@ -529,7 +587,7 @@ jobs:
           key: ${{ env.CACHE_KEY }}-config-files
 
       - name: Restore local maven cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
@@ -613,6 +671,17 @@ jobs:
           fi
           echo "-----------------------------------"
 
+      - name: Print baseline_config.xml
+        run: |
+          echo "Contents of baseline_config.xml:"
+          echo "-----------------------------------"
+          if [ -f .ci-temp/baseline_config.xml ]; then
+            cat .ci-temp/baseline_config.xml
+          else
+            echo "baseline_config.xml not found"
+          fi
+          echo "-----------------------------------"
+
       - name: Generate report
         run: |
           cd .ci-temp
@@ -626,6 +695,7 @@ jobs:
           DIFF_CONFIG="${{ github.workspace }}/.ci-temp/diff_config.xml"
           PATCH_CONFIG="${{ github.workspace }}/.ci-temp/patch_config.xml"
           NEW_MODULE_CONFIG="${{ github.workspace }}/.ci-temp/new_module_config.xml"
+          BASELINE_CONFIG="${{ github.workspace }}/.ci-temp/baseline_config.xml"
 
           # Determine the projects file path
           if [ -f "${{ github.workspace }}/.ci-temp/projects.yml" ]; then
@@ -652,6 +722,17 @@ jobs:
               -r "$REPO" \
               -p "$PR_BRANCH" \
               -pc "$NEW_MODULE_CONFIG" \
+              -m single \
+              -l "$PROJECTS_FILE" \
+              -xm "$EXTRA_MVN_OPTIONS" \
+              --allowExcludes \
+              --diffToolJarPath "$PATCH_DIFF_TOOL_JAR"
+          elif [ -f "$BASELINE_CONFIG" ]; then
+            echo "Generating complete report for config"
+            java -jar "$DIFFTOOL_JAR" \
+              -r "$REPO" \
+              -p "$PR_BRANCH" \
+              -pc "$BASELINE_CONFIG" \
               -m single \
               -l "$PROJECTS_FILE" \
               -xm "$EXTRA_MVN_OPTIONS" \
@@ -731,6 +812,7 @@ jobs:
       handle_generated_config_bundle,
       handle_configs_in_pr_description,
       handle_local_config_for_project,
+      handle_local_config_for_baseline_report,
       download_configs,
       make_report,
       add_sad_Emoji
@@ -743,13 +825,14 @@ jobs:
           || needs.handle_generated_config_bundle.result == 'failure'
           || needs.handle_configs_in_pr_description.result == 'failure'
           || needs.handle_local_config_for_project.result == 'failure'
+          || needs.handle_local_config_for_baseline_report.result == 'failure'
           || needs.check_pr_status.result == 'failure'
           || needs.checkout_and_cache.result == 'failure'
           || needs.parse_comment.result == 'failure'
           || needs.add_sad_Emoji.result == 'failure')
     steps:
       - name: Restore cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
@@ -764,6 +847,7 @@ jobs:
           GENERATED_CONFIG_RESULT: ${{ needs.handle_generated_config_bundle.result }}
           CONFIGS_IN_PR_RESULT: ${{ needs.handle_configs_in_pr_description.result }}
           LOCAL_CONFIG_RESULT: ${{ needs.handle_local_config_for_project.result }}
+          LOCAL_CONFIG_BASELINE_RESULT: ${{needs.handle_local_config_for_baseline_report.result}}
           PR_STATUS_RESULT: ${{ needs.check_pr_status.result }}
           CHECKOUT_RESULT: ${{ needs.checkout_and_cache.result }}
           PARSE_RESULT: ${{ needs.parse_comment.result }}
@@ -818,6 +902,14 @@ jobs:
               echo "Failed to process diff report locally."
               echo "Please verify the config file and project name are correct."
               echo "<br>Usage: 'GitHub, generate report for <project_name> with <config_path>'"
+              echo "<br>Link: $JOBS_LINK"
+            } > .ci-temp/message
+          elif [ "$LOCAL_CONFIG_BASELINE_RESULT" == "failure" ]; then
+            {
+              echo "Failed to process full report locally."
+              echo "Please verify the config file and project name are correct."
+              echo -n "<br>Usage: 'GitHub, generate baseline report for "
+              echo "<project_name> with <config_path>'"
               echo "<br>Link: $JOBS_LINK"
             } > .ci-temp/message
           elif [ "$MAKE_REPORT_RESULT" == "failure" ]; then

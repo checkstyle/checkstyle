@@ -69,6 +69,7 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
     private boolean hasSeenTagName = false;
     private int braceCounter = 0;
     private boolean inSeeReferencePart = false;
+    private boolean inFragmentReference = false;
 
     private final Deque<Token> openTagNameTokens = new ArrayDeque<>();
     private final Deque<Token> closeTagNameTokens = new ArrayDeque<>();
@@ -105,12 +106,26 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 
     public boolean isJavadocBlockTag() {
         int nextChar = _input.LA(1);
+        int tagStartChar = _input.LA(2);
 
         return (previousTokenType == WS
                 || previousTokenType == LEADING_ASTERISK
                 || previousToken == null
                 || previousTokenType == NEWLINE)
-                && nextChar == '@';
+                && nextChar == '@'
+                && tagStartChar != '@';
+    }
+
+    private void switchFromReferenceModeOnWhitespace() {
+        int la = _input.LA(1);
+        if (Character.isWhitespace(la) || la == '\n' || la == '\r') {
+            if (inSeeReferencePart) {
+                pushMode(DEFAULT_MODE);
+                inSeeReferencePart = false;
+            } else {
+                pushMode(LINK_TAG_DESCRIPTION);
+            }
+        }
     }
 
     @Override
@@ -449,22 +464,17 @@ EXTENDS: 'extends';
 SUPER: 'super';
 
 IDENTIFIER
-    : ([a-zA-Z0-9_$] | '.')+
+    : ({inFragmentReference}? ~[ \t\r\n}]+ | ([a-zA-Z0-9_$] | '.')+)
       {
-          int la = _input.LA(1);
-          if (Character.isWhitespace(la) || la == '\n' || la == '\r') {
-              if (inSeeReferencePart) {
-                  pushMode(DEFAULT_MODE);
-                  inSeeReferencePart = false;
-              } else {
-                  pushMode(LINK_TAG_DESCRIPTION);
-              }
-          }
+          inFragmentReference = false;
+          switchFromReferenceModeOnWhitespace();
       }
     ;
 
 QUESTION: '?';
-HASH: '#';
+HASH
+    : '#' { inFragmentReference = previousTokenType == HASH; }
+    ;
 LPAREN: '(' -> pushMode(PARAMETER_LIST);
 SLASH: '/';
 
@@ -594,6 +604,15 @@ Value_IDENTIFIER
     ;
 
 FORMAT_SPECIFIER
+    : QUOTED_FORMAT_SPECIFIER
+    | FORMAT_CONVERSION
+    ;
+
+fragment QUOTED_FORMAT_SPECIFIER
+    : '"' ~["\r\n}%]* FORMAT_CONVERSION ~["\r\n}%]* '"'
+    ;
+
+fragment FORMAT_CONVERSION
     : '%' [#+\- 0,(]* [0-9]* ('.' [0-9]+)? [a-zA-Z]
     ;
 

@@ -11,8 +11,11 @@
 // xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol;
 
-import java.io.File; // violation, 'Disallowed import - java.io.File'
+import java.awt.Image;     // violation, 'Disallowed import - java.awt.Image'
+import java.io.File;       // violation, 'Disallowed import - java.io.File'
 import java.io.FileReader;
+import java.util.Date;     // violation, 'Disallowed import - java.util.Date'
+import java.util.List;     // violation, 'Disallowed import - java.util.List'
 
 public class Example1 {}
 // xdoc section -- end

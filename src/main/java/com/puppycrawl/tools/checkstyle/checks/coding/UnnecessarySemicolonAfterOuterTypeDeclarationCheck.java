@@ -75,9 +75,26 @@ public final class UnnecessarySemicolonAfterOuterTypeDeclarationCheck extends Ab
     public void visitToken(DetailAST ast) {
         final DetailAST nextSibling = ast.getNextSibling();
         if (nextSibling != null
+                && nextSibling.getType() == TokenTypes.SEMI
                 && ScopeUtil.isOuterMostType(ast)
-                && nextSibling.getType() == TokenTypes.SEMI) {
+                && !isInCompactSourceFile(ast)) {
             log(nextSibling, MSG_SEMI);
         }
+    }
+
+    /**
+     * Checks whether the given node belongs to a JEP 512 compact source file.
+     * In a compact source file every top-level type declaration is a member of
+     * the implicit class, so there is no outer type for this check to police.
+     *
+     * @param ast the node to check
+     * @return true if the tree root is a compact compilation unit
+     */
+    private static boolean isInCompactSourceFile(DetailAST ast) {
+        DetailAST root = ast;
+        while (root.getParent() != null) {
+            root = root.getParent();
+        }
+        return root.getType() == TokenTypes.COMPACT_COMPILATION_UNIT;
     }
 }

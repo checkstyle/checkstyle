@@ -142,6 +142,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.METHOD_DEF,
             TokenTypes.SLIST,
             TokenTypes.OBJBLOCK,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
             TokenTypes.LITERAL_BREAK,
             TokenTypes.LITERAL_FOR,
             TokenTypes.EXPR,
@@ -156,6 +157,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.METHOD_DEF,
             TokenTypes.SLIST,
             TokenTypes.OBJBLOCK,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
             TokenTypes.LITERAL_BREAK,
             TokenTypes.LITERAL_FOR,
             TokenTypes.VARIABLE_DEF,
@@ -171,6 +173,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.METHOD_DEF,
             TokenTypes.SLIST,
             TokenTypes.OBJBLOCK,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
             TokenTypes.LITERAL_BREAK,
             TokenTypes.LITERAL_FOR,
             TokenTypes.VARIABLE_DEF,
@@ -184,8 +187,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.OBJBLOCK, TokenTypes.METHOD_DEF,
-                 TokenTypes.CTOR_DEF, TokenTypes.LITERAL_FOR ->
+            case TokenTypes.COMPACT_COMPILATION_UNIT, TokenTypes.OBJBLOCK,
+                 TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF, TokenTypes.LITERAL_FOR ->
                 scopeStack.push(new ScopeData());
 
             case TokenTypes.SLIST -> {

@@ -15,7 +15,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 public class InputMissingJavadocTypeQualifiedAnnotation4 {
     public @interface SomeAnnotation { }
 
-    @SomeAnnotation // violation 'Missing a Javadoc comment.'
+    // violation below 'Missing a Javadoc comment.'
+    @SomeAnnotation
     public interface A { }
 
     // violation below 'Missing a Javadoc comment.'

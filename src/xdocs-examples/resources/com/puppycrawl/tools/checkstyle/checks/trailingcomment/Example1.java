@@ -13,7 +13,7 @@ public class Example1 {
   int a;
   int b;
   int c;
-  int d; // violation
+  int d; // violation, not suppressed
 
   public static void main(String[] args) {
     int x = 10;

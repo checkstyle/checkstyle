@@ -46,7 +46,7 @@ public class MagicNumberCheckTest
     public void testLocalVariables2()
             throws Exception {
         final String[] expected = {
-            "27:17: " + getCheckMessage(MSG_KEY, "8"),
+            "28:17: " + getCheckMessage(MSG_KEY, "8"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputMagicNumberLocalVariables2.java"), expected);
@@ -852,5 +852,15 @@ public class MagicNumberCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputMagicNumberWithOperatorsWithIgnoreFieldsFalse.java"),
                 expected);
+    }
+
+    @Test
+    public void testMagicNumberInCompactSourceFilesWithIgnoreFieldDeclaration() throws Exception {
+        final String[] expected = {
+            "21:24: " + getCheckMessage(MSG_KEY, "456"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMagicNumberCompactSourceFile.java"), expected);
     }
 }

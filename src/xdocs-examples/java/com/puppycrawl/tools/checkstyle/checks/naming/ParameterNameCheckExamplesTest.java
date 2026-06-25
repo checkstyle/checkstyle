@@ -34,7 +34,8 @@ public class ParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "14:20: " + getCheckMessage(MSG_INVALID_PATTERN, "V2", "^[a-z][a-zA-Z0-9]*$"),
+            "15:20: " + getCheckMessage(MSG_INVALID_PATTERN, "V2", "^[a-z][a-zA-Z0-9]*$"),
+            "17:32: " + getCheckMessage(MSG_INVALID_PATTERN, "V3", "^[a-z][a-zA-Z0-9]*$"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -43,7 +44,9 @@ public class ParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "18:32: " + getCheckMessage(MSG_INVALID_PATTERN, "V3", "^[a-z][_a-zA-Z0-9]+$"),
+            "15:20: " + getCheckMessage(MSG_INVALID_PATTERN, "v", "^[a-z][_a-zA-Z0-9]+$"),
+            "17:20: " + getCheckMessage(MSG_INVALID_PATTERN, "V2", "^[a-z][_a-zA-Z0-9]+$"),
+            "19:32: " + getCheckMessage(MSG_INVALID_PATTERN, "V3", "^[a-z][_a-zA-Z0-9]+$"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -52,7 +55,7 @@ public class ParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "16:20: " + getCheckMessage(MSG_INVALID_PATTERN, "V2", "^[a-z][a-zA-Z0-9]*$"),
+            "17:20: " + getCheckMessage(MSG_INVALID_PATTERN, "V2", "^[a-z][a-zA-Z0-9]*$"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -61,8 +64,9 @@ public class ParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "16:20: " + getCheckMessage(MSG_INVALID_PATTERN, "v_2", "^[a-z][a-zA-Z0-9]+$"),
-            "18:32: " + getCheckMessage(MSG_INVALID_PATTERN, "V3", "^[a-z][a-zA-Z0-9]+$"),
+            "15:20: " + getCheckMessage(MSG_INVALID_PATTERN, "v", "^[a-z][a-zA-Z0-9]+$"),
+            "17:20: " + getCheckMessage(MSG_INVALID_PATTERN, "V2", "^[a-z][a-zA-Z0-9]+$"),
+            "19:32: " + getCheckMessage(MSG_INVALID_PATTERN, "V3", "^[a-z][a-zA-Z0-9]+$"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -71,8 +75,10 @@ public class ParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "25:26: " + "Parameter name 'V2' must match pattern '^[a-z]([a-z0-9][a-zA-Z0-9]*)?$'",
-            "27:23: " + "Parameter name 'b' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'",
+            "26:20: Parameter name 'V2' must match pattern "
+                + "'^[a-z]([a-z0-9][a-zA-Z0-9]*)?$'",
+            "28:32: Parameter name 'V3' must match pattern "
+                + "'^[a-z][a-z0-9][a-zA-Z0-9]*$'",
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);

@@ -59,21 +59,6 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example2.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example3-config">
-            To configure the check for methods which are in <code>private</code> and
-          <code>package</code>, but not any other modifier:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example3.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example3-code"> Example:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example3.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
         <p id="Example4-config">
               To configure the check to ignore any missing return tags:
         </p>
@@ -144,6 +129,21 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example8.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example3-config">
+            To configure the check for methods which are in <code>private</code> and
+          <code>package</code>, but not any other modifier:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code"> Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example3.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
       <subsection name="Example of Usage" id="JavadocMethod_Example_of_Usage">
@@ -155,6 +155,10 @@
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
             Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
+            Documentation Comments Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">

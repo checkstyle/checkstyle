@@ -79,6 +79,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     public void newTest() throws Exception {
         final String[] expected = {
             "70:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "82:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputMissingJavadocMethodSmallMethods.java"), expected);
@@ -99,6 +100,23 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
             "23:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(getPath("InputMissingJavadocMethodTags1.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingJavadocMethodCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFilePackageScope() throws Exception {
+        final String[] expected = {
+            "23:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingJavadocMethodCompactSourceFilePackageScope.java"),
+                expected);
     }
 
     @Test
@@ -437,6 +455,8 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
             "22:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "25:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "29:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "31:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "34:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputMissingJavadocMethodJavadocInMethod.java"), expected);
@@ -446,6 +466,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     public void testConstructor() throws Exception {
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "23:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputMissingJavadocMethodConstructor.java"), expected);
@@ -582,5 +603,20 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputMissingJavadocMethodAboveComments.java"),
                 expected);
+    }
+
+    @Test
+    public void testNewCasesAfterAstMigration() throws Exception {
+        final String[] expected = {
+            "27:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "31:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "35:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "39:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "47:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "68:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "71:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMissingJavadocMethodNewCasesAfterAstMigration.java"), expected);
     }
 }

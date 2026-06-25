@@ -75,6 +75,12 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testDoubleAtAsText() throws Exception {
+        verifyJavadocTree(getPath("ExpectedDoubleAtAsText.txt"),
+                getPath("InputDoubleAtAsText.javadoc"));
+    }
+
+    @Test
     public void testAuthorTag() throws Exception {
         verifyJavadocTree(getBlockTagsPath("ExpectedAuthorTag.txt"),
                 getBlockTagsPath("InputAuthorTags.javadoc"));
@@ -159,9 +165,21 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testLinkInlineTagGenericInner() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedLinkInlineTagGenericInner.txt"),
+                getInlineTagsPath("InputLinkInlineTagGenericInner.javadoc"));
+    }
+
+    @Test
     public void testValueAndInheritDocInlineTag() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedValueAndInheritDocInlineTag.txt"),
                 getInlineTagsPath("InputValueAndInheritDocInlineTag.javadoc"));
+    }
+
+    @Test
+    public void testValueInlineTagWithQuotedFormat() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedValueInlineTagWithQuotedFormat.txt"),
+                getInlineTagsPath("InputValueInlineTagWithQuotedFormat.javadoc"));
     }
 
     @Test
@@ -258,5 +276,17 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     public void testHtmlComments() throws Exception {
         verifyJavadocTree(getHtmlTagsPath("ExpectedHtmlComment.txt"),
                 getHtmlTagsPath("InputHtmlComment.javadoc"));
+    }
+
+    @Test
+    public void testReferencesToUriFragments() throws Exception {
+        verifyJavadocTree(getPath("ExpectedReferencesToUriFragments.txt"),
+                getPath("InputReferencesToUriFragments.javadoc"));
+    }
+
+    @Test
+    public void testReferencesToUriFragments2() throws Exception {
+        verifyJavadocTree(getPath("ExpectedReferencesToUriFragments2.txt"),
+                getPath("InputReferencesToUriFragments2.javadoc"));
     }
 }

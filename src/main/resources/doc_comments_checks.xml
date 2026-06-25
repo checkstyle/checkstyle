@@ -39,6 +39,21 @@
     <!-- Tag conventions -->
     <module name="AtclauseOrder"/>
 
+    <!-- Required Tags -->
+    <module name="JavadocMethod">
+      <property name="allowedAnnotations" value=""/>
+    </module>
+
+    <!-- Documenting default constructors -->
+    <module name="MissingCtor">
+      <message key="missing.ctor" value="Class should define an explicit constructor.
+      If this class was already released with an implicit constructor,
+      preserve its generated access modifier for compatibility."/>
+    </module>
+
+    <!-- First Sentence -->
+    <module name="SummaryJavadoc"/>
+
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
       <property name="file" value="${org.checkstyle.openjdk.suppressionxpathfilter.config}"

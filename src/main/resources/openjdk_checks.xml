@@ -76,7 +76,7 @@
     <!-- §3.12: Expression lambda body length check based on OpenJDK style guide -->
     <module name="LambdaBodyLength"/>
     <module name="NoLineWrap">
-      <property name="tokens" value="PACKAGE_DEF"/>
+      <property name="tokens" value="PACKAGE_DEF, IMPORT, STATIC_IMPORT"/>
     </module>
 
     <module name="UpperEll"/>
@@ -90,6 +90,17 @@
     <module name="MethodName">
       <property name="format" value="^[a-z]{2,}[a-zA-Z0-9]*$"/>
     </module>
+    <module name="TypeName">
+      <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF"/>
+      <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
+    </module>
+    <module name="AbbreviationAsWordInName">
+      <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF"/>
+      <property name="allowedAbbreviationLength" value="0"/>
+      <property name="ignoreFinal" value="false"/>
+      <property name="ignoreStatic" value="false"/>
+      <property name="ignoreStaticFinal" value="false"/>
+    </module>
 
     <!-- §3.3: Import statements should be sorted -->
     <module name="AvoidStarImport">
@@ -101,6 +112,15 @@
       <property name="separated" value="true"/>
       <property name="option" value="bottom"/>
       <property name="sortStaticImportsAlphabetically" value="true"/>
+    </module>
+
+    <module name="UnusedImports"/>
+    <module name="MatchXpath">
+      <property name="id" value="unnecessaryParenthesesInReturn"/>
+      <property name="query"
+                value="//LITERAL_RETURN/EXPR[./LPAREN and ./RPAREN
+                       and not(./LPAREN/preceding-sibling::*)]"/>
+      <message key="matchxpath.match" value="Unnecessary parentheses in return statement."/>
     </module>
 
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->

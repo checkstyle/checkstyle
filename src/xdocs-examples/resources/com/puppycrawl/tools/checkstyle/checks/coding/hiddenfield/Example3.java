@@ -23,9 +23,8 @@ class Example3 {
   void setTestField(String testField) { // ok, because it match ignoreFormat
     this.field = field;
   }
-  Example3 setField(String field) { // violation, ''field' hides a field'
+  void setField(String field) { // violation, ''field' hides a field'
     this.field = field;
-    return null;
   }
   abstract class Inner {
     abstract int method(String field); // violation, ''field' hides a field'

@@ -10,8 +10,17 @@
 // xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
 
-public class Example5 {
-  // This record has NCSS = 5, which is OK
+class Example5 {
+
+  public void testMethod1() {
+    System.out.println("m-1:Line 1");
+    System.out.println("m-1:Line 2");
+    System.out.println("m-1:Line 3");
+    System.out.println("m-1:Line 4");
+    System.out.println("m-1:Line 5");
+  }
+
+  // ok, NCSS for this record is 5 (max allowed is 5)
   record ValidRecord(int a, int b) {
     public ValidRecord {
       System.out.println("Line 1");
@@ -31,4 +40,3 @@ public class Example5 {
   }
 }
 // xdoc section -- end
-

@@ -197,9 +197,8 @@ class Example1 {
   String annotatedString; // violation, annotation not configured 'must be private'
 
   @Deprecated
-  // violation below, annotation not configured 'must be private'
   String shortCustomAnnotated;
-
+  // violation above, annotation not configured 'must be private'
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 
@@ -237,9 +236,8 @@ class Example2 {
 
   protected String field2; // violation, protected not allowed 'must be private'
 
-  // violation below, not final nor matching pattern 'must be private'
   public int field3 = 42;
-
+  // violation above, not final nor matching pattern 'must be private'
   public long serialVersionUID = 1L;
 
   public static final int field4 = 42;
@@ -260,9 +258,9 @@ class Example2 {
   public final ImmutableMap&lt;String, Object&gt; objects1 = null;
 
   @java.lang.Deprecated
-  String annotatedString;
+  String annotatedString; // ok, annotation not configured
 
-  @Deprecated
+  @Deprecated   // ok, annotation is ignored
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting
@@ -300,11 +298,10 @@ class Example3 {
 
   int field1; // violation, must have visibility modifier 'must be private'
 
-  protected String field2;
+  protected String field2; // ok, protectedAllowed is true
 
-  // violation below, not final nor matching pattern 'must be private'
   public int field3 = 42;
-
+  // violation above, not final nor matching pattern 'must be private'
   public long serialVersionUID = 1L;
 
   public static final int field4 = 42;
@@ -328,9 +325,8 @@ class Example3 {
   String annotatedString; // violation, annotation not configured 'must be private'
 
   @Deprecated
-  // violation below, annotation not configured 'must be private'
   String shortCustomAnnotated;
-
+  // violation above, annotation not configured 'must be private'
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 
@@ -368,12 +364,10 @@ class Example4 {
 
   protected String field2; // violation, protected not allowed 'must be private'
 
-  // violation below, not final nor matching pattern 'must be private'
   public int field3 = 42;
-
-  // violation below, doesn't match the pattern 'must be private'
+  // violation above, not final nor matching pattern 'must be private'
   public long serialVersionUID = 1L;
-
+  // violation above, doesn't match the pattern 'must be private'
   public static final int field4 = 42;
 
   // violation below, public immutable fields are not allowed 'must be private'
@@ -395,9 +389,8 @@ class Example4 {
   String annotatedString; // violation, annotation not configured 'must be private'
 
   @Deprecated
-  // violation below, annotation not configured 'must be private'
   String shortCustomAnnotated;
-
+  // violation above, annotation not configured 'must be private'
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 
@@ -438,16 +431,17 @@ class Example5 {
 
   protected String field2; // violation, protected not allowed 'must be private'
 
-  // violation below, not final nor matching pattern 'must be private'
   public int field3 = 42;
-
+  // violation above, not final nor matching pattern 'must be private'
   public long serialVersionUID = 1L;
 
   public static final int field4 = 42;
 
-  public final int field5 = 42; // violation 'must be private'
+  // violation below, public immutable fields are not allowed 'must be private'
+  public final int field5 = 42;
 
-  public final java.lang.String notes = null; // violation 'must be private'
+  // violation below, public immutable fields are not allowed 'must be private'
+  public final java.lang.String notes = null;
 
   // violation below, HashSet is mutable 'must be private'
   public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
@@ -462,21 +456,21 @@ class Example5 {
   String annotatedString; // violation, annotation not configured 'must be private'
 
   @Deprecated
-  // violation below, annotation not configured 'must be private'
   String shortCustomAnnotated;
-
+  // violation above, annotation not configured 'must be private'
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 
-  public final int someIntValue = 0; // violation 'must be private'
+  // violation below, annotation not configured 'must be private'
+  public final int someIntValue = 0;
 
-  // violation below, immutable type not in config 'must be private'
+  // violation below, annotation not configured 'must be private'
   public final ImmutableSet&lt;String&gt; includes = null;
 
-  // violation below, immutable type not in config 'must be private'
+  // violation below, annotation not configured 'must be private'
   public final BigDecimal value = null;
 
-  // violation below, mutable 'must be private'
+  // violation below, annotation not configured 'must be private'
   public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
@@ -506,16 +500,17 @@ class Example6 {
 
   protected String field2; // violation, protected not allowed 'must be private'
 
-  // violation below, not final nor matching pattern 'must be private'
   public int field3 = 42;
-
+  // violation above, not final nor matching pattern 'must be private'
   public long serialVersionUID = 1L;
 
   public static final int field4 = 42;
 
-  public final int field5 = 42; // violation 'must be private'
+  // violation below, public immutable fields are not allowed 'must be private'
+  public final int field5 = 42;
 
-  public final java.lang.String notes = null; // violation 'must be private'
+  // violation below, public immutable fields are not allowed 'must be private'
+  public final java.lang.String notes = null;
 
   // violation below, HashSet is mutable 'must be private'
   public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
@@ -530,13 +525,14 @@ class Example6 {
   String annotatedString; // violation, annotation not configured 'must be private'
 
   @Deprecated
-  // violation below, annotation not configured 'must be private'
   String shortCustomAnnotated;
-
+  // violation above, annotation not configured 'must be private'
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 
-  public final int someIntValue = 0; // violation 'must be private'
+  // violation below, annotation not configured 'must be private'
+  public final int someIntValue = 0;
+
   // violation below, immutable type not in config 'must be private'
   public final ImmutableSet&lt;String&gt; includes = null;
 
@@ -544,6 +540,139 @@ class Example6 {
   public final BigDecimal value = null;
 
   // violation below, mutable 'must be private'
+  public final List list = null;
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the Check passing fields annotated with @java.lang.Deprecated:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VisibilityModifier"&gt;
+      &lt;property name="ignoreAnnotationCanonicalNames"
+                value="java.lang.Deprecated"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">
+          Example of allowed field:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example8 {
+  private int myPrivateField1;
+
+  int field1; // violation, must have visibility modifier 'must be private'
+
+  protected String field2; // violation, protected not allowed 'must be private'
+
+  public int field3 = 42;
+  // violation above, not final nor matching pattern 'must be private'
+  public long serialVersionUID = 1L;
+
+  public static final int field4 = 42;
+
+  // violation below, 'must be private'
+  public final int field5 = 42;
+
+  // violation below, 'must be private'
+  public final java.lang.String notes = null;
+
+  // violation below, HashSet is mutable 'must be private'
+  public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableSet&lt;String&gt; mySet2 = null;
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+
+  @java.lang.Deprecated
+  String annotatedString; // ok, annotation is ignored
+
+  @Deprecated
+  String shortCustomAnnotated;
+
+  @com.google.common.annotations.VisibleForTesting
+  public String testString = "";
+  // violation above, annotation not configured 'must be private'
+  // violation below, 'must be private'
+  public final int someIntValue = 0;
+
+  // violation below, 'must be private'
+  public final ImmutableSet&lt;String&gt; includes = null;
+
+  // violation below, 'must be private'
+  public final BigDecimal value = null;
+
+  // violation below, 'must be private'
+  public final List list = null;
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example12-config">
+          2) To configure the check to use only 'allowPublicFinalFields' option:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VisibilityModifier"&gt;
+      &lt;property name="allowPublicFinalFields" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example12-code">
+          Code example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example12 {
+  private int myPrivateField1;
+
+  int field1; // violation, 'must be private'
+
+  protected String field2; // violation, 'must be private'
+
+  public int field3 = 42; // violation, 'must be private'
+
+  public long serialVersionUID = 1L;
+
+  public static final int field4 = 42;
+
+  // ok, allowPublicFinalFields is true
+  public final int field5 = 42;
+
+  // ok, allowPublicFinalFields is true
+  public final java.lang.String notes = null;
+
+  // ok, allowPublicFinalFields is true
+  public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+
+  // ok, allowPublicFinalFields is true
+  public final ImmutableSet&lt;String&gt; mySet2 = null;
+
+  // ok, allowPublicFinalFields is true
+  public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+
+  @java.lang.Deprecated
+  String annotatedString; // violation, 'must be private'
+
+  @Deprecated
+  String shortCustomAnnotated;
+  // violation above, 'must be private'
+  @com.google.common.annotations.VisibleForTesting
+  public String testString = "";
+
+  // ok, allowPublicFinalFields is true
+  public final int someIntValue = 0;
+
+  // ok, allowPublicFinalFields is true
+  public final ImmutableSet&lt;String&gt; includes = null;
+
+  // ok, allowPublicFinalFields is true
+  public final BigDecimal value = null;
+
+  // ok, allowPublicFinalFields is true
   public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
@@ -604,73 +733,6 @@ class Example7 {
 
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example8-config">
-          To configure the Check passing fields annotated with @java.lang.Deprecated:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="VisibilityModifier"&gt;
-      &lt;property name="ignoreAnnotationCanonicalNames"
-                value="java.lang.Deprecated"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example8-code">
-          Example of allowed field:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example8 {
-  private int myPrivateField1;
-
-  int field1; // violation, must have visibility modifier 'must be private'
-
-  protected String field2; // violation, protected not allowed 'must be private'
-
-  // violation below, not final nor matching pattern 'must be private'
-  public int field3 = 42;
-
-  public long serialVersionUID = 1L;
-
-  public static final int field4 = 42;
-
-  public final int field5 = 42; // violation 'must be private'
-
-  public final java.lang.String notes = null; // violation 'must be private'
-
-  // violation below, HashSet is mutable 'must be private'
-  public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
-
-  // violation below, immutable type not in config 'must be private'
-  public final ImmutableSet&lt;String&gt; mySet2 = null;
-
-  // violation below, immutable type not in config 'must be private'
-  public final ImmutableMap&lt;String, Object&gt; objects1 = null;
-
-  @java.lang.Deprecated
-  String annotatedString;
-
-  @Deprecated
-  String shortCustomAnnotated;
-
-  @com.google.common.annotations.VisibleForTesting
-  // violation below, annotation not configured 'must be private'
-  public String testString = "";
-
-  // violation below, 'must be private'
-  public final int someIntValue = 0;
-
-  // violation below, 'must be private'
-  public final ImmutableSet&lt;String&gt; includes = null;
-
-  // violation below, 'must be private'
-  public final BigDecimal value = null;
-
-  // violation below, 'must be private'
-  public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example9-config">
@@ -811,65 +873,6 @@ class Example11 {
   public final BigDecimal value = null; // violation 'must be private'
 
   public final List list = null; // violation 'must be private'
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example12-config">
-          2) To configure the check to use only 'allowPublicFinalFields' option:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="VisibilityModifier"&gt;
-      &lt;property name="allowPublicFinalFields" value="true"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example12-code">
-          Code example:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example12 {
-  private int myPrivateField1;
-
-  int field1; // violation, 'must be private'
-
-  protected String field2; // violation, 'must be private'
-
-  // violation below, 'must be private'
-  public int field3 = 42;
-
-  public long serialVersionUID = 1L;
-
-  public static final int field4 = 42;
-
-  public final int field5 = 42;
-
-  public final java.lang.String notes = null;
-
-  public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
-
-  public final ImmutableSet&lt;String&gt; mySet2 = null;
-
-  public final ImmutableMap&lt;String, Object&gt; objects1 = null;
-
-  @java.lang.Deprecated
-  String annotatedString; // violation, 'must be private'
-
-  @Deprecated
-  // violation below, 'must be private'
-  String shortCustomAnnotated;
-
-  @com.google.common.annotations.VisibleForTesting
-  public String testString = "";
-
-  public final int someIntValue = 0;
-
-  public final ImmutableSet&lt;String&gt; includes = null;
-
-  public final BigDecimal value = null;
-
-  public final List list = null;
 }
 </code></pre></div>
       </subsection>

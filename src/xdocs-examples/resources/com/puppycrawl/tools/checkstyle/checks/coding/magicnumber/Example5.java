@@ -12,35 +12,29 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
 // xdoc section -- start
-@Example5.Annotation(6) // violation, ''6' is a magic number.'
+@Annotation(6)           // violation, ''6' is a magic number.'
 public class Example5 {
   private int field = 7; // violation, ''7' is a magic number.'
 
   void method1() {
     int i = 1;
-    int j = 8; // violation, ''8' is a magic number.'
+    int j = 8;           // violation, ''8' is a magic number.'
   }
   public void method2() {
     final TestClass testObject = new TestClass(62);
     // violation above, ''62' is a magic number.'
-    final int a = 3; // ok as waiver is ASSIGN
-    final int[] b = {4, 5}; // ok as waiver is ARRAY_INIT
-    final int c = -3; // ok as waiver is UNARY_MINUS
-    final int d = +4; // ok as waiver is UNARY_PLUS
-    final int e = method3(10, 20);
-    // 2 violations above:
-    //  ''10' is a magic number.'
-    //  ''20' is a magic number.'
-    final int f = 3 * 4;
-    // 2 violations above:
-    //  ''3' is a magic number.'
-    //  ''4' is a magic number.'
-    final int g = 3 / 4; // ok as waiver is DIV
-    final int h = 3 + 4; // ok as waiver is PLUS
-    final int i = 3 - 4;
-    // 2 violations above:
-    //  ''3' is a magic number.'
-    //  ''4' is a magic number.'
+    final int a = 3;         // ok as waiver is ASSIGN
+    final int[] b = {4, 5};  // ok as waiver is ARRAY_INIT
+    final int c = -3;        // ok as waiver is UNARY_MINUS
+    final int d = +4;        // ok as waiver is UNARY_PLUS
+    final int e = method3(10, 20); // violation, ''10' is a magic number.'
+    // violation above, ''20' is a magic number.'
+    final int f = 3 * 4;                 // violation, ''3' is a magic number.'
+    // violation above, ''4' is a magic number.'
+    final int g = 3 / 4;     // ok as waiver is DIV
+    final int h = 3 + 4;     // ok as waiver is PLUS
+    final int i = 3 - 4;     // violation, ''3' is a magic number.'
+    // violation above, ''4' is a magic number.'
     final int j = (int) 3.4; // ok as waiver is TYPECAST
   }
   private int method3(int a, int b) {

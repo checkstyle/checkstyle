@@ -94,7 +94,7 @@ https://github.com/checkstyle/checkstyle/blob/master/.github/CONTRIBUTING.md
 
 ## Build Instructions
 
-Please see the [CheckStyle Documentation](https://checkstyle.org/contributing.html#Build) for
+Please see the [Build Instructions][build-instructions] for
 information on how to build the project.
 
 ## Feedback and Support
@@ -264,3 +264,6 @@ https://github.com/checkstyle/checkstyle/actions/workflows/qodana.yml/badge.svg
 
 [checks-docs]:
 https://checkstyle.org/checks.html
+
+[build-instructions]:
+https://github.com/checkstyle/checkstyle/blob/master/docs/BEGINNING_DEVELOPMENT.md

@@ -21,9 +21,8 @@ class Example1 {
   void setTestField(String testField) { // violation, ''testField' hides a field'
     this.field = field;
   }
-  Example1 setField(String field) { // violation, ''field' hides a field'
+  void setField(String field) { // violation, ''field' hides a field'
     this.field = field;
-    return null;
   }
   abstract class Inner {
     abstract int method(String field); // violation, ''field' hides a field'

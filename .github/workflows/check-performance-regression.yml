@@ -46,16 +46,16 @@ jobs:
           distribution: 'temurin'
 
       - name: Checkout Pull Request Code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Clone JDK 25 Repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: openjdk/jdk25u
           path: ./.ci-temp/jdk25
 
       - name: Setup local maven cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}

@@ -198,6 +198,7 @@ CNAME
 Cnt
 cobertura
 codacy
+codebases
 codeclimate
 codeconventions
 codecov
@@ -276,6 +277,7 @@ declaredwhenneeded
 Deconstruction
 defau
 defaultcomeslast
+defaultconstructors
 defaultlabelpresence
 defaultlogger
 delims
@@ -315,6 +317,7 @@ dnd
 Dnew
 doccheck
 doccomments
+docdefaultconstr
 Dockter
 doclet
 doclint
@@ -598,6 +601,7 @@ impl
 importcontrol
 importcontrolloader
 importcontroltest
+importnolinewrap
 importorder
 importrule
 imprt
@@ -660,6 +664,7 @@ javadocstyle
 javadoctagcontinuationindentation
 javadoctags
 javadoctype
+javadocutil
 javadocvariable
 Javaee
 javaformat
@@ -779,6 +784,7 @@ linebreak
 linecolumn
 lineending
 linelength
+linewrapping
 linkcheck
 linkplain
 linksource
@@ -879,6 +885,7 @@ multiplevariabledeclarations
 Multiset
 multithreading
 mutableexception
+mutationtest
 MVC
 mvn
 mvnrepository
@@ -923,7 +930,6 @@ nlow
 NMCS
 NMTOKEN
 noarch
-noarg
 noarraytrailingcomma
 noblank
 nobr
@@ -1044,10 +1050,10 @@ pageview
 Paikin
 Papaioannou
 paraception
+paramcounter
 parameterassignment
 parametername
 parameternumber
-paramnum
 Parcelable
 parenpad
 PARM
@@ -1159,6 +1165,7 @@ releasenotes
 RELi
 remkop
 reportyml
+requiredtags
 requireemptylinebeforeblocktaggroup
 requirethis
 resourceleak
@@ -1189,6 +1196,7 @@ Rsa
 RSPEC
 Rtl
 ru
+ruleclassinterfaceandenumnames
 ruleimportstatements
 ruleindentation
 rulejavasourcefiles
@@ -1197,6 +1205,7 @@ ruleliterals
 rulemethodnames
 rulepackagedeclaration
 rulepackagenames
+ruleredundantparenthesis
 ruleset
 rulesetfiles
 rulespecialcharacters

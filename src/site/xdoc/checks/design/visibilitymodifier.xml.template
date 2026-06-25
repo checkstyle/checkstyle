@@ -117,6 +117,38 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example6.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the Check passing fields annotated with @java.lang.Deprecated:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example8.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">
+          Example of allowed field:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example8.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example12-config">
+          2) To configure the check to use only 'allowPublicFinalFields' option:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example12.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example12-code">
+          Code example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example12.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
         <p id="Example7-config">
           Note, if allowPublicImmutableFields is set to true, the check will also check whether
           generic type parameters are immutable. If at least one generic type parameter is mutable,
@@ -133,22 +165,6 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example7.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example8-config">
-          To configure the Check passing fields annotated with @java.lang.Deprecated:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example8.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example8-code">
-          Example of allowed field:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example8.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example9-config">
@@ -203,22 +219,6 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example11.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example12-config">
-          2) To configure the check to use only 'allowPublicFinalFields' option:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example12.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example12-code">
-          Code example:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example12.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

@@ -11,14 +11,21 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocblocktaglocation;
 
 public class InputJavadocBlockTagLocationIncorrect {
 
+    // violation 8 lines below ''@author' should be placed at the beginning'
+    // violation 8 lines below ''@since' should be placed at the beginning'
+    // violation 8 lines below ''@param' should be placed at the beginning'
+    // violation 9 lines below ''@throws' should be placed at the beginning'
+    // violation 9 lines below ''@see' should be placed at the beginning'
+    // violation 9 lines below ''@return' should be placed at the beginning'
+    // violation 8 lines below ''@throws' should be placed at the beginning'
     /**
-     * Summary. @author me // violation
-     * <p>Text</p> @since 1.0 // violation
-     * @param param1 a parameter @param, @custom // violation
+     * Summary. @author me
+     * <p>Text</p> @since 1.0
+     * @param param1 a parameter @param, @custom
      * @param param2 a parameter @custom
-     * * @throws Exception // violation
-    +    * @see PersistenceContext#setReadOnly(Object,boolean) // violation
-     * text @return one more @throws text again. // 2 violations
+     * * @throws Exception
+    +    * @see PersistenceContext#setReadOnly(Object,boolean)
+     * text @return one more @throws text again.
      */
     public void method(int param1, int param2) {
     }

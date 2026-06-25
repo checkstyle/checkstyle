@@ -26,9 +26,7 @@ public class Example1 {
   private void testBadSwitchStatement(int a) {
     switch (a) {
       case 1: { }
-
       case 2: {} {};
-
       case 3: {} { System.out.println(); }
 
       case 4: { System.out.println(); } {}

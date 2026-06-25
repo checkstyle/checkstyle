@@ -15,12 +15,11 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 // xdoc section -- start
 @SuppressWarnings("unchecked") // ok as element style set to compact
 @Deprecated // violation 'Annotation must have closing parenthesis'
+
 @SomeArrays({"unchecked","unused"}) // ok as it's in compact style
-public class Example3
-{
+public class Example3 {
 
 }
-
 // violation below 'Annotation style must be 'COMPACT''
 @SuppressWarnings(value={"unchecked"})
 @Deprecated() // ok as closingParens set to always

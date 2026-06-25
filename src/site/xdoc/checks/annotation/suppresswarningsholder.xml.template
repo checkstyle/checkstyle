@@ -48,7 +48,8 @@
         <p id="Example2-config">
           If <code>aliasList</code> property was provided you can use your own names e.g. below
           code will work if there was provided a
-          <code>com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum</code>
+          <code>
+          com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramcounter</code>
           in the <code>aliasList</code>:
         </p>
         <macro name="example">
@@ -63,7 +64,7 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example3-config">
-          You can also use simple check name like <code>ParameterNumberCheck=paramnum</code>
+          You can also use simple check name like <code>ParameterNumberCheck=paramcounter</code>
           instead to use fully qualified name of check in the <code>aliasList</code>:
         </p>
         <macro name="example">
@@ -79,7 +80,7 @@
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
           The check can also be used without suffix of &quot;Check&quot; like
-          <code>ParameterNumber=paramnum</code> in the <code>aliasList</code>:
+          <code>ParameterNumber=paramcounter</code> in the <code>aliasList</code>:
         </p>
         <macro name="example">
           <param name="path"

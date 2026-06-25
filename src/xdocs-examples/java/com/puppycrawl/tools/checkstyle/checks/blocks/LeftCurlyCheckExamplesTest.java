@@ -56,7 +56,8 @@ public class LeftCurlyCheckExamplesTest extends AbstractExamplesModuleTestSuppor
     public void testExample3() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", "1"),
-            "22:13: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", "13"),
+            "18:3: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", "3"),
+            "23:13: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", "13"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);

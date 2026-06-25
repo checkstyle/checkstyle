@@ -13,27 +13,41 @@ package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
 // xdoc section -- start
 class Example5 {
-  void testMethod1() {
-    for (int i = 0; i != 10; i++) {
-      System.out.println(i);
-    }
-    int k = 0;
-    for (; ; ) { // violation, 'Count of 0 for 'FOR_INIT' descendant'
-      System.out.println(k);
-    }
-  }
+  private int field1;
+  private int field2;
 
-  void testMethod2() {
-    int[] array = new int[] {1, 2, 3, 4, 5};
-    for (int i = 0; i != array.length; i++) {
-      System.out.println(i);
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
     }
-    int j = 0;
-    // violation below, 'Count of 0 for 'FOR_INIT' descendant'
-    for (; j != array.length;) {
-      System.out.println(j);
-      j++;
+
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
     }
+    finally {
+      try { }
+      catch (Exception ex) { }
+    }
+
+    for (;;) {  // violation, 'Count of 0 for 'FOR_INIT' descendant'
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
   }
 }
 // xdoc section -- end

@@ -13,25 +13,43 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
-
 // xdoc section -- start
 class Example17 {
-  void testMethod() {
-    int x = 1;
-    switch (x) { // violation, 'Switch must contain at least one default branch.'
+  private int field1;
+  private int field2;
+
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+    // violation below 'Switch must contain at least one default branch.'
+    switch (x) {
       case 1:
-        System.out.println("hi");
+        break;
+      case 2:
         break;
     }
 
-    switch (x) {
-      case 1:
-        System.out.println("hi");
-        break;
-      default:
-        System.out.println("Default");
-        break;
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
     }
+    finally {
+      try { }
+      catch (Exception ex) { }
+    }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
   }
 }
 // xdoc section -- end

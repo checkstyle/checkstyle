@@ -18,10 +18,11 @@ public class InputAtclauseOrderRecords {
     public record MyRecord(int x) implements Serializable {
         private static final long serialVersionUID = 3928773301716751506L;
 
+        // should be a violatio\u006e, but doesn't work w/ anno
         /**
          * Some text.
          *
-         * @param aString Some text. // should be a violation, but doesn't work w/ anno
+         * @param aString Some text.
          * @return Some text.
          * @throws Exception Some text.
          */
@@ -29,33 +30,39 @@ public class InputAtclauseOrderRecords {
             return "null";
         }
 
+        // violation 7 lines below 'Block tags have to appear in the order'
+        // violation 7 lines below 'Block tags have to appear in the order'
+        // violation 7 lines below 'Block tags have to appear in the order'
         /**
          * Some text.
          *
          * @since the other day
-         * @param aString Some text. // violation
-         * @return Some text. // violation
-         * @throws Exception Some text. // violation
+         * @param aString Some text.
+         * @return Some text.
+         * @throws Exception Some text.
          */
         String method1(String aString) throws Exception {
             return "null";
         }
 
+        // violation 6 lines below 'Block tags have to appear in the order'
+        // violation 6 lines below 'Block tags have to appear in the order'
         /**
          * Some text.
          *
          * @since some time
-         * @param aString Some text. // violation
-         * @throws Exception Some text. // violation
+         * @param aString Some text.
+         * @throws Exception Some text.
          * @serialData Some javadoc.
          */
         void method2(String aString) throws Exception {
         }
 
+        // violation 4 lines below 'Block tags have to appear in the order'
         /**
          * Some text.
          * @since since
-         * @throws Exception Some text. // violation
+         * @throws Exception Some text.
          * @since Some text.
          */
         void method3() throws Exception {
@@ -64,32 +71,36 @@ public class InputAtclauseOrderRecords {
 
 }
 
+// should be a violatio\u006e
 /**
  * Some javadoc.
  *
- * @author max // should be a violation
+ * @author max
  * @version 1.0
  * @since Some javadoc.
  */
 record myOtherOtherRecord() {
+    // violation 3 lines below 'Block tags have to appear in the order'
     /**
      * @since Some javadoc.
-     * @author max // violation
+     * @author max
      **/
     public myOtherOtherRecord{}
 }
 
+// should be a violatio\u006e
 /**
  * Some javadoc.
  *
- * @author max // should be a violation
+ * @author max
  * @version 1.0
  * @since Some javadoc.
  */
 class myOtherOtherClass {
+        // violation 3 lines below 'Block tags have to appear in the order'
         /**
          * @since Some javadoc.
-         * @author max // violation
+         * @author max
          **/
     public myOtherOtherClass() {
     }

@@ -1,0 +1,10 @@
+* {@link Test.Inner}
+* {@link Test.Inner some text}
+* {@link Test<Object, RuntimeException>.Inner}
+* {@link Test<Object, RuntimeException>.Inner inner class}
+* {@link com.example.Test<Object, RuntimeException>.Inner#value()}
+* {@link Test<Object, RuntimeException>.Inner.Nested}
+* {@link Test<Object, RuntimeException>.Inner.Nested#value()}
+* {@link Test<Object, RuntimeException>.Inner.Nested nested inner class}
+* {@link Test<Object>.Inner<Object>.Inner2<Object>}
+* {@link Test<Object>.Inner<Object>.Inner2<Object> deeply generic nested class}

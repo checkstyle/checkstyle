@@ -87,7 +87,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testNumberFormatException() throws Exception {
         final String[] expected = {
             "8: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 52,
-                    "mismatched input '}' expecting IDENTIFIER", "MEMBER_REFERENCE"),
+                    "no viable alternative at input '}'", "REFERENCE"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNumberFormatException.java"), expected);

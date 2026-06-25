@@ -37,8 +37,8 @@ public class HiddenFieldCheckExamplesTest extends AbstractExamplesModuleTestSupp
             "16:19: " + getCheckMessage(MSG_KEY, "testField"),
             "19:12: " + getCheckMessage(MSG_KEY, "field"),
             "21:28: " + getCheckMessage(MSG_KEY, "testField"),
-            "24:28: " + getCheckMessage(MSG_KEY, "field"),
-            "29:32: " + getCheckMessage(MSG_KEY, "field"),
+            "24:24: " + getCheckMessage(MSG_KEY, "field"),
+            "28:32: " + getCheckMessage(MSG_KEY, "field"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -57,8 +57,8 @@ public class HiddenFieldCheckExamplesTest extends AbstractExamplesModuleTestSupp
     public void testExample3() throws Exception {
         final String[] expected = {
             "21:12: " + getCheckMessage(MSG_KEY, "field"),
-            "26:28: " + getCheckMessage(MSG_KEY, "field"),
-            "31:32: " + getCheckMessage(MSG_KEY, "field"),
+            "26:24: " + getCheckMessage(MSG_KEY, "field"),
+            "30:32: " + getCheckMessage(MSG_KEY, "field"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -69,8 +69,8 @@ public class HiddenFieldCheckExamplesTest extends AbstractExamplesModuleTestSupp
         final String[] expected = {
             "21:12: " + getCheckMessage(MSG_KEY, "field"),
             "23:28: " + getCheckMessage(MSG_KEY, "testField"),
-            "26:28: " + getCheckMessage(MSG_KEY, "field"),
-            "31:32: " + getCheckMessage(MSG_KEY, "field"),
+            "26:24: " + getCheckMessage(MSG_KEY, "field"),
+            "30:32: " + getCheckMessage(MSG_KEY, "field"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -81,8 +81,7 @@ public class HiddenFieldCheckExamplesTest extends AbstractExamplesModuleTestSupp
         final String[] expected = {
             "18:19: " + getCheckMessage(MSG_KEY, "testField"),
             "21:12: " + getCheckMessage(MSG_KEY, "field"),
-            "26:28: " + getCheckMessage(MSG_KEY, "field"),
-            "31:32: " + getCheckMessage(MSG_KEY, "field"),
+            "30:32: " + getCheckMessage(MSG_KEY, "field"),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
@@ -93,7 +92,7 @@ public class HiddenFieldCheckExamplesTest extends AbstractExamplesModuleTestSupp
         final String[] expected = {
             "19:19: " + getCheckMessage(MSG_KEY, "testField"),
             "22:12: " + getCheckMessage(MSG_KEY, "field"),
-            "32:32: " + getCheckMessage(MSG_KEY, "field"),
+            "31:32: " + getCheckMessage(MSG_KEY, "field"),
         };
 
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
@@ -102,10 +101,10 @@ public class HiddenFieldCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample7() throws Exception {
         final String[] expected = {
-            "18:19: " + getCheckMessage(MSG_KEY, "field"),
+            "18:19: " + getCheckMessage(MSG_KEY, "testField"),
             "21:12: " + getCheckMessage(MSG_KEY, "field"),
             "23:28: " + getCheckMessage(MSG_KEY, "testField"),
-            "26:28: " + getCheckMessage(MSG_KEY, "field"),
+            "26:24: " + getCheckMessage(MSG_KEY, "field"),
         };
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);

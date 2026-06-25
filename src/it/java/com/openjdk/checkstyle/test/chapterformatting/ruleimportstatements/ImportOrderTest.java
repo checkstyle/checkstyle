@@ -27,7 +27,7 @@ public class ImportOrderTest extends AbstractOpenJdkModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
-        return "com/openjdk/checkstyle/test/chapterformatting/ruleimportstatements";
+        return "com/openjdk/checkstyle/test/chapterformatting/ruleimportstatements/importorder";
     }
 
     @Test

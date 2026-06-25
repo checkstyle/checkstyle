@@ -32,27 +32,27 @@ public class Example6 {
    * Some description here
    */
   private void testMethod3() {
+
   }
   /**
    * Some description here
    */
   public void testMethod4() {
+
   }
   /**
    * Some description here
    * Second line of description
    */
   private void testMethod5() {
+
   }
   /**
    * Some description here
    * <p
    */
   private void testMethod6() {
+
   }
-  /**
-   *
-   */
-  private void testEmptyMethod() {}
 }
 // xdoc section -- end
