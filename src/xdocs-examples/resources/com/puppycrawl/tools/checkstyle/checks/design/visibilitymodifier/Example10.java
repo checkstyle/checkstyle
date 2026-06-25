@@ -51,9 +51,8 @@ class Example10 {
 
   @Deprecated
   String shortCustomAnnotated;
-
+  // violation 2 lines below 'must be private'
   @com.google.common.annotations.VisibleForTesting
-  // violation below, annotation not configured 'must be private'
   public String testString = "";
 }
 // xdoc section -- end
