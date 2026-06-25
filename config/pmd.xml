@@ -553,6 +553,7 @@
                       | //ClassDeclaration[@SimpleName='UnusedImportsCheck']
                       //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml'
                                             or @Name='setJavadocTokens']
+                      | //ClassDeclaration[@SimpleName='WriteTagCheck']
                       | //ClassDeclaration[@SimpleName='JavadocMethodCheck']
                       //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']"/>
     </properties>
