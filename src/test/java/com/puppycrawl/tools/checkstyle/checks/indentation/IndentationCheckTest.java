@@ -719,6 +719,75 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAllowVerticalAlignment() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("throwsIndent", "8");
+        checkConfig.addProperty("lineWrappingIndentation", "8");
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("tabWidth", "4");
+
+        final String fileName = getPath("InputIndentationAllowVerticalAlignment.java");
+        final String[] expected = {
+//            "41:17: " + getCheckMessage(MSG_ERROR, "forRemoval", 16, 12),
+//            "48:19: " + getCheckMessage(MSG_ERROR, "-", 18, 16),
+//            "54:20: " + getCheckMessage(MSG_ERROR, "+", 19, 16),
+//            "55:20: " + getCheckMessage(MSG_ERROR, "+", 19, 16),
+//            "62:24: " + getCheckMessage(MSG_ERROR, "&&", 23, 16),
+//            "63:24: " + getCheckMessage(MSG_ERROR, "&&", 23, 16),
+//            "71:19: " + getCheckMessage(MSG_ERROR, "?", 18, 16),
+//            "72:19: " + getCheckMessage(MSG_ERROR, ":", 18, 16),
+//            "80:15: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 14, 16),
+//            "86:47: " + getCheckMessage(MSG_ERROR, ".", 46, 16),
+//            "92:27: " + getCheckMessage(MSG_ERROR, ".", 26, 16),
+//            "107:13: " + getCheckMessage(MSG_ERROR, "&&", 12, 16),
+//            "108:13: " + getCheckMessage(MSG_ERROR, "&&", 12, 16),
+//            "119:15: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 14, 16),
+//            "149:14: " + getCheckMessage(MSG_ERROR, "i", 13, 16),
+
+//            "150:14: " + getCheckMessage(MSG_ERROR, "i", 13, 16),
+
+//            "156:13: " + getCheckMessage(MSG_ERROR, "b", 12, 16),
+//            "157:13: " + getCheckMessage(MSG_ERROR, "c", 12, 16),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testAllowVerticalAlignmentNegative() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("throwsIndent", "8");
+        checkConfig.addProperty("lineWrappingIndentation", "8");
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("tabWidth", "4");
+
+        final String fileName =
+                getPath("InputIndentationAllowVerticalAlignmentNegative.java");
+        final String[] expected = {
+            "12:7: " + getCheckMessage(MSG_ERROR, "int", 6, 12),
+            "17:10: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 9, 12),
+            "25:26: " + getCheckMessage(MSG_ERROR, "10", 25, 16),
+            "30:7: " + getCheckMessage(MSG_ERROR, "forRemoval", 6, 12),
+            "36:11: " + getCheckMessage(MSG_ERROR, "-", 10, 16),
+            "42:13: " + getCheckMessage(MSG_ERROR, "3", 12, 16),
+            "49:11: " + getCheckMessage(MSG_ERROR, "?", 10, 16),
+            "50:11: " + getCheckMessage(MSG_ERROR, ":", 10, 16),
+            "56:11: " + getCheckMessage(MSG_CHILD_ERROR, "for", 10, 12),
+            "57:11: " + getCheckMessage(MSG_CHILD_ERROR, "for", 10, 12),
+            "63:11: " + getCheckMessage(MSG_ERROR, "b", 10, 16),
+            "64:11: " + getCheckMessage(MSG_ERROR, "c", 10, 16),
+            "70:11: " + getCheckMessage(MSG_ERROR, "try resource", 10, 16),
+        };
+        final Checker checker = createChecker(checkConfig);
+        verify(checker, fileName, expected);
+    }
+
+    @Test
     public void testAnnotationArrayInitTwo() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
