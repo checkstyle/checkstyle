@@ -33,7 +33,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
-
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly";
@@ -665,4 +664,12 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
                 getPath("InputLeftCurlySwitchMutation.java"), expected);
     }
 
+    @Test
+    public void testMultipleBlocksOnSameLine() throws Exception {
+        final String[] expected = {
+            "18:24: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 24),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyMultipleBlocksOnASingleLine.java"), expected);
+    }
 }

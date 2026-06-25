@@ -341,7 +341,10 @@ public class LeftCurlyCheck
      */
     private boolean hasLineBreakAfter(DetailAST leftCurly) {
         DetailAST nextToken = null;
-        if (leftCurly.getType() == TokenTypes.SLIST) {
+
+        final int leftCurlyType = leftCurly.getType();
+        if (leftCurlyType == TokenTypes.SLIST
+                || leftCurlyType == TokenTypes.OBJBLOCK) {
             nextToken = leftCurly.getFirstChild();
         }
         else {
