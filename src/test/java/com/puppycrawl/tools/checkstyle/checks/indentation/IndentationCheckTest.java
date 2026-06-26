@@ -648,6 +648,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "69:5: " + getCheckMessage(MSG_ERROR, "super", 4, 10),
             "70:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
             "76:11: " + getCheckMessage(MSG_ERROR_MULTI, "lambda arguments", 10, "12, 14"),
+            "80:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "81:5: " + getCheckMessage(MSG_ERROR, "method call lparen", 4, 6),
+            "82:5: " + getCheckMessage(MSG_ERROR, "x", 4, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationCtorCall.java"), expected);
     }
@@ -4444,6 +4447,28 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "9:15: " + getCheckMessage(MSG_CHILD_ERROR, "case", 14, 16),
             "13:16: " + getCheckMessage(MSG_CHILD_ERROR, "case", 15, 16),
             "15:16: " + getCheckMessage(MSG_CHILD_ERROR, "case", 15, 16),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testLambdaStatementMethodCall() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("arrayInitIndent", "4");
+
+        final String fileName = getPath("InputIndentationLambda9.java");
+        final String[] expected = {
+            "10:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "21:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "22:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "27:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "28:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "29:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
