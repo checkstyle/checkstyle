@@ -16,6 +16,7 @@ public class Example4 {
   void f2() throws Exception {}
   void f3() throws Error {}  // violation, 'Throwing 'Error' is not allowed'
   void f4() throws Throwable {} // violation, 'Throwing 'Throwable' is not allowed'
+
   void f5() throws NullPointerException {}
   @Override // violation below, 'Throwing 'Error' is not allowed'
   public String toString() throws Error {
