@@ -11,10 +11,16 @@
 // xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports;
 
-import javax.swing.Renderer;
+import javax.swing.Action;
 
-import java.io.File;
-import java.awt.Image; // violation, 'Disallowed import - java.awt.Image'
+import java.awt.Image;    // violation, 'Disallowed import - java.awt.Image'
+import java.util.Date;    // violation, 'Disallowed import - java.util.Date'
+import java.util.List;    // violation, 'Disallowed import - java.util.List'
+// violation below 'Disallowed import - java.util.stream.Collectors'
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+// violation above 'Disallowed import - java.util.stream.Stream'
+import sun.misc.Signal;             // violation, 'Disallowed import - sun.misc.Signal'
 
 public class Example7 {}
 // xdoc section -- end
