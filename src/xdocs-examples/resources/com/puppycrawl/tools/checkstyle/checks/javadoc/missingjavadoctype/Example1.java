@@ -8,12 +8,23 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
 // xdoc section -- start
+/** Documented. */
 class Example1 {
-  /** Javadoc.*/
-  public class testClass0 {}
-  public class testClass1 {}
-  private class testClass2 {}
-  protected class testClass3 {}
-  class testClass4 {}
+  /** Javadoc. */
+  public class A {}
+  /** Javadoc. */
+  private class B {}
+  /** Javadoc. */
+  protected class C {}
+  /** Javadoc. */
+  class D {}
+  /** Javadoc. */
+  @SpringBootApplication
+  private class App {}
+  /** Javadoc. */
+  @Configuration
+  private class Config {}
+  /** Javadoc. */
+  private class E {}
 }
 // xdoc section -- end
