@@ -19,10 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Deque;
 import java.util.Iterator;
+import java.util.List;
 import java.util.NavigableMap;
+import java.util.Optional;
 import java.util.TreeMap;
+import java.util.function.Predicate;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -173,7 +179,9 @@ public class LineWrappingHandler {
                 logWarningMessage(node, firstNodeIndent);
             }
             else if (!TokenUtil.isOfType(currentType, IGNORED_LIST)) {
-                logWarningMessage(node, currentIndent);
+                if (!isVerticallyAligned(node)) {
+                    logWarningMessage(node, currentIndent);
+                }
             }
         }
     }
@@ -340,7 +348,9 @@ public class LineWrappingHandler {
                 logWarningMessage(node, firstNodeIndent);
             }
             else if (!isArrayInitPresentInAncestors) {
-                logWarningMessage(node, currentIndent);
+                if (!isVerticallyAligned(node)) {
+                    logWarningMessage(node, currentIndent);
+                }
             }
             itr.remove();
         }
@@ -431,6 +441,184 @@ public class LineWrappingHandler {
             index++;
         }
         return CommonUtil.lengthExpandedTabs(line, index, indentCheck.getIndentationTabWidth());
+    }
+
+    private static boolean isVerticallyAligned(DetailAST node) {
+        List<Integer> allowedVerticalAlignmentColumns = getAllowedVerticalAlignmentColumns(node);
+        return allowedVerticalAlignmentColumns.contains(node.getColumnNo());
+    }
+
+    private static List<Integer> getAllowedVerticalAlignmentColumns(DetailAST node) {
+        List<Integer> allowedVerticalAlignmentColumns = new ArrayList<>();
+
+        // PARAMETERS children, such as method, constructor and lambda declaration parameters
+        if (findAncestorByPredicate(
+                node,
+                ancestor -> TokenUtil.isOfType(ancestor, TokenTypes.PARAMETER_DEF)
+                        && isAtSamePosition(node, getTopLeftmostNodeInTree(ancestor))
+        ).isPresent()) {
+            findAncestorByPredicate(node,
+                    ast -> ast.getType() == TokenTypes.PARAMETERS)
+                .map(ancestor -> ancestor.findFirstToken(TokenTypes.PARAMETER_DEF))
+                .map(parameterDef -> getTopLeftmostNodeInTree(parameterDef).getColumnNo())
+                .ifPresent(allowedVerticalAlignmentColumns::add);
+        }
+
+        // ELIST children, such as method, new and constructor call arguments
+        if (findAncestorByPredicate(
+                node,
+                ancestor -> TokenUtil.isOfType(ancestor, TokenTypes.EXPR)
+                        && TokenUtil.isOfType(ancestor.getParent(), TokenTypes.ELIST)
+                        && isAtSamePosition(node, getTopLeftmostNodeInTree(ancestor))
+        ).isPresent()) {
+            findAncestorByPredicate(node,
+                    ast -> ast.getType() == TokenTypes.ELIST)
+                .map(ancestor -> ancestor.findFirstToken(TokenTypes.EXPR))
+                .map(expr -> getTopLeftmostNodeInTree(expr).getColumnNo())
+                .ifPresent(allowedVerticalAlignmentColumns::add);
+        }
+
+        // ARRAY_INIT children, such as array initializer elements
+        if (findAncestorByPredicate(
+                node,
+                ancestor -> TokenUtil.isOfType(ancestor, TokenTypes.EXPR)
+                        && TokenUtil.isOfType(ancestor.getParent(), TokenTypes.ARRAY_INIT)
+                        && isAtSamePosition(node, getTopLeftmostNodeInTree(ancestor))
+        ).isPresent()) {
+            findAncestorByPredicate(node,
+                    ast -> ast.getType() == TokenTypes.ARRAY_INIT)
+                .map(ancestor -> ancestor.findFirstToken(TokenTypes.EXPR))
+                .map(expr -> getTopLeftmostNodeInTree(expr).getColumnNo())
+                .ifPresent(allowedVerticalAlignmentColumns::add);
+        }
+
+        // Group 3: Annotation member value pairs
+        if (findAncestorByPredicate(
+                node,
+                ancestor -> TokenUtil.isOfType(ancestor,
+                        TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
+                        && isAtSamePosition(node, getTopLeftmostNodeInTree(ancestor))
+        ).isPresent()) {
+            findAncestorByPredicate(node,
+                    ancestor -> TokenUtil.isOfType(ancestor, TokenTypes.ANNOTATION)
+                ).map(ancestor -> ancestor.findFirstToken(
+                        TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR))
+                .map(pair -> getTopLeftmostNodeInTree(pair).getColumnNo())
+                .ifPresent(allowedVerticalAlignmentColumns::add);
+        }
+
+        // Group 4: Arithmetic/boolean expressions
+        findAncestorByPredicate(
+                node,
+                ancestor -> TokenUtil.isOfType(ancestor, TokenTypes.EXPR)
+        ).map(expr -> getTopLeftmostNodeInTree(expr).getColumnNo())
+         .ifPresent(allowedVerticalAlignmentColumns::add);
+
+        // Group 5: Ternary expressions
+        Optional<DetailAST> questionOpt = findAncestorByPredicate(
+                node,
+                ancestor -> TokenUtil.isOfType(ancestor, TokenTypes.QUESTION)
+        );
+        if (questionOpt.isPresent()) {
+            final DetailAST question = questionOpt.get();
+            boolean conditionMet = false;
+            if (node == question) {
+                conditionMet = true;
+            }
+            else {
+                DetailAST current = node;
+                while (current != null && current.getParent() != question) {
+                    current = current.getParent();
+                }
+                if (current != null
+                        && isAtSamePosition(node, getTopLeftmostNodeInTree(current))) {
+                    conditionMet = true;
+                }
+            }
+            if (conditionMet) {
+                final DetailAST firstChild = question.getFirstChild();
+                if (firstChild != null) {
+                    allowedVerticalAlignmentColumns.add(
+                            getTopLeftmostNodeInTree(firstChild).getColumnNo());
+                }
+            }
+        }
+
+        // Group 6: Chained calls/fields
+        if (TokenUtil.isOfType(node, TokenTypes.DOT)) {
+            final DetailAST firstChild = node.getFirstChild();
+            if (TokenUtil.isOfType(firstChild,
+                    TokenTypes.METHOD_CALL, TokenTypes.DOT)) {
+                DetailAST cur = node;
+                while (true) {
+                    final DetailAST child = cur.getFirstChild();
+                    if (child == null) {
+                        break;
+                    }
+                    if (TokenUtil.isOfType(child, TokenTypes.METHOD_CALL)) {
+                        final DetailAST grandchild = child.getFirstChild();
+                        if (grandchild != null) {
+                            cur = grandchild;
+                        }
+                        else {
+                            break;
+                        }
+                    }
+                    else if (TokenUtil.isOfType(child, TokenTypes.DOT)) {
+                        cur = child;
+                    }
+                    else {
+                        break;
+                    }
+                }
+                allowedVerticalAlignmentColumns.add(cur.getColumnNo());
+            }
+        }
+
+        return allowedVerticalAlignmentColumns;
+    }
+
+    private static Optional<DetailAST> findAncestorByPredicate(
+            DetailAST node, Predicate<DetailAST> predicate) {
+        Optional<DetailAST> matchedAncestor = Optional.empty();
+        DetailAST current = node;
+        while (current != null) {
+            if (predicate.test(current)) {
+                matchedAncestor = Optional.of(current);
+                break;
+            }
+            current = current.getParent();
+        }
+        return matchedAncestor;
+    }
+
+    private static boolean isAtSamePosition(DetailAST node1, DetailAST node2) {
+        return node1.getColumnNo() == node2.getColumnNo()
+                && node1.getLineNo() == node2.getLineNo();
+    }
+
+    private static DetailAST getTopLeftmostNodeInTree(DetailAST root) {
+        DetailAST topLeftmostNode = root;
+        Deque<DetailAST> stack = new ArrayDeque<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            DetailAST current = stack.pop();
+            if (current.getLineNo() < topLeftmostNode.getLineNo()
+                    || current.getLineNo() == topLeftmostNode.getLineNo()
+                    && current.getColumnNo() < topLeftmostNode.getColumnNo()) {
+                topLeftmostNode = current;
+            }
+
+            DetailAST nextSibling = current.getNextSibling();
+            DetailAST firstChild = current.getFirstChild();
+            if (nextSibling != null) {
+                stack.push(nextSibling);
+            }
+            if (firstChild != null) {
+                stack.push(firstChild);
+            }
+        }
+        return topLeftmostNode;
     }
 
     /**
