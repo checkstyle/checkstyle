@@ -11,12 +11,16 @@
 // xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports;
 
-import java.io.FileFilter;
-import java.util.Date; // violation, 'Disallowed import - java.util.Date'
-import java.util.List; // violation, 'Disallowed import - java.util.List'
-import java.util.Optional;
+import javax.swing.Action;
 
-import sun.misc.Signal; // violation, 'sun.misc.Signal'
+import java.awt.Image;
+import java.util.Date;    // violation, 'Disallowed import - java.util.Date'
+import java.util.List;    // violation, 'Disallowed import - java.util.List'
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import sun.misc.Signal;   // violation, 'Disallowed import - sun.misc.Signal'
 
 public class Example11 {}
 // xdoc section -- end
