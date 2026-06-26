@@ -102,7 +102,6 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
             "checks/coding/equalsavoidnull/Example2",
-            "checks/coding/explicitinitialization/Example2",
             "checks/coding/illegalsymbol/Example4",
             "checks/coding/illegalthrows/Example2",
             "checks/coding/illegalthrows/Example3",
