@@ -410,7 +410,8 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
 
   /** Some javadoc. */
   public String foo51() {
-    // violation 4 lines below '.* indentation should be the same level as line 414.'
+    // violation 4 lines below '.* has incorrect indentation level 8, expected level should be 4'
+    // violation 4 lines below '.* indentation should be the same level as line 415.'
     return String
         .valueOf("11"
         );
