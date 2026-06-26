@@ -24,7 +24,7 @@ public class InputCommentsIndentationInSwitchBlockOne {
                 break;
             case "3":
                 // violation below '.* incorrect .* level 12, expected is 16,.* same.* as line 28.'
-            /* violation */
+            /* bla */
                 foo1();
                 /* com */
                 break;

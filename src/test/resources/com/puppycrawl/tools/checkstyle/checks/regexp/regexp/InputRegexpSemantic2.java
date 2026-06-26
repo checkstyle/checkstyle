@@ -9,7 +9,7 @@ ignoreComments = (default)false
 
 
 */
-// violation 11 lines above 'Required pattern .* missing in file.'
+// violation first line 'Required pattern .* missing in file.'
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
 import java.awt.*;

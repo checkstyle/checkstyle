@@ -449,9 +449,9 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         final String[] expected = {
             "17:21: " + getCheckMessage(MSG_KEY),
             "19:22: " + getCheckMessage(MSG_KEY),
-            "31:39: " + getCheckMessage(MSG_KEY),
-            "35:39: " + getCheckMessage(MSG_KEY),
-            "39:39: " + getCheckMessage(MSG_KEY),
+            "31:33: " + getCheckMessage(MSG_KEY),
+            "35:33: " + getCheckMessage(MSG_KEY),
+            "39:33: " + getCheckMessage(MSG_KEY),
             "43:22: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
