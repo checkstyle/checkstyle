@@ -109,10 +109,11 @@
         <p id="Example1-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-  public interface FirstName {}
-  protected class SecondName {}
-  enum Third_Name {} // violation 'Name 'Third_Name' must match pattern'
-  private class FourthName_ {} // violation 'Name 'FourthName_' must match pattern'
+  public interface firstName {} // violation 'Name 'firstName' must match pattern'
+  public class SecondName {}
+  protected class Third_Name {} // violation 'Name 'Third_Name' must match pattern'
+  private class FourthName_ {}  // violation 'Name 'FourthName_' must match pattern'
+  enum Fifth_Name {}            // violation 'Name 'Fifth_Name' must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -133,11 +134,12 @@ class Example1 {
 </code></pre></div>
         <p id="Example2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example2 {   // violation 'Name 'Example2' must match pattern'
+class Example2 {                 // violation 'Name 'Example2' must match pattern'
   public interface firstName {}
-  public class SecondName {} // violation 'Name 'SecondName' must match pattern'
-  protected class ThirdName {}
-  private class FourthName {}
+  public class SecondName {}     // violation 'Name 'SecondName' must match pattern'
+  protected class Third_Name {}
+  private class FourthName_ {}
+  enum Fifth_Name {}             // violation 'Name 'Fifth_Name' must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -160,8 +162,11 @@ class Example2 {   // violation 'Name 'Example2' must match pattern'
         <p id="Example3-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
-  public interface I_firstName {}
-  interface SecondName {} // violation 'Name 'SecondName' must match pattern'
+  public interface firstName {} // violation 'Name 'firstName' must match pattern'
+  public class SecondName {}
+  protected class Third_Name {}
+  private class FourthName_ {}
+  enum Fifth_Name {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -183,10 +188,11 @@ class Example3 {
         <p id="Example4-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
-  public interface FirstName {}
+  public interface firstName {}
   public class SecondName {}
-  protected class ThirdName {}   // violation 'Name 'ThirdName' must match pattern'
-  private class FourthName {}   // violation 'Name 'FourthName' must match pattern'
+  protected class Third_Name {}  // violation 'Name 'Third_Name' must match pattern'
+  private class FourthName_ {}   // violation 'Name 'FourthName_' must match pattern'
+  enum Fifth_Name {}
 }
 </code></pre></div>
       </subsection>

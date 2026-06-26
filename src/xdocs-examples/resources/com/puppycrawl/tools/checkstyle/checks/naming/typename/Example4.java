@@ -14,9 +14,10 @@ package com.puppycrawl.tools.checkstyle.checks.naming.typename;
 
 // xdoc section -- start
 class Example4 {
-  public interface FirstName {}
+  public interface firstName {}
   public class SecondName {}
-  protected class ThirdName {}   // violation 'Name 'ThirdName' must match pattern'
-  private class FourthName {}   // violation 'Name 'FourthName' must match pattern'
+  protected class Third_Name {}  // violation 'Name 'Third_Name' must match pattern'
+  private class FourthName_ {}   // violation 'Name 'FourthName_' must match pattern'
+  enum Fifth_Name {}
 }
 // xdoc section -- end
