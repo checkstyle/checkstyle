@@ -83,7 +83,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockFour {
 
     void foo55() {
         // violation below '.* incorrect .* level 12, expected is 8, .* same .* as line 87.'
-            /* violation */
+            /* bla */
         new Object()
             .toString();
             // violation '.* incorrect .* level 12, expected is 8, .* same .* as line 87.'

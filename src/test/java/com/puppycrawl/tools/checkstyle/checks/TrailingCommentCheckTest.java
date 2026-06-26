@@ -104,7 +104,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
             "37:50: " + getCheckMessage(MSG_KEY),
             "38:62: " + getCheckMessage(MSG_KEY),
             "39:31: " + getCheckMessage(MSG_KEY),
-            "42:39: " + getCheckMessage(MSG_KEY),
+            "42:33: " + getCheckMessage(MSG_KEY),
             "43:9: " + getCheckMessage(MSG_KEY),
             "51:5: " + getCheckMessage(MSG_KEY),
         };

@@ -74,7 +74,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockFive {
             getClass();
         }
         // violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 73.'
-          /* violation */
+          /* bla */
     }
 
     void foo67()  {
@@ -84,7 +84,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockFive {
             hashCode();
         }
         // violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 81.'
-          /* violation */
+          /* bla */
     }
 
     void foo68()  {
@@ -92,7 +92,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockFive {
             getClass();
         }
         // violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 91.'
-          /* violation */
+          /* bla */
     }
 
     void foo69()  {
@@ -100,7 +100,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockFive {
             getClass();
         }
         // violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 99.'
-          /* violation */
+          /* bla */
     }
 
     void foo70()  {
@@ -108,7 +108,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockFive {
             getClass();
         } while (true);
         // violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 107.'
-          /* violation */
+          /* bla */
     }
 
 }
