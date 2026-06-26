@@ -488,9 +488,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testBehaviourWithChecksAndFilters() throws Exception {
 
         final String[] expected = {
-            "22:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "P",
+            "28:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "P",
                     "^[a-z][a-zA-Z0-9]*$"),
-            "17:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "I",
+            "23:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "I",
                     "^[a-z][a-zA-Z0-9]*$"),
         };
 

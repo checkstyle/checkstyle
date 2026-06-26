@@ -8,7 +8,13 @@ applyToPrivate = (default)true
 
 
 com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter
+offCommentFormat = (default)CHECKSTYLE:OFF
+onCommentFormat = (default)CHECKSTYLE:ON
+checkFormat = (default).*
+messageFormat = (default)(null)
+idFormat = (default)(null)
 checkCPP = false
+checkC = (default)true
 
 */
 package com.puppycrawl.tools.checkstyle.treewalker;
