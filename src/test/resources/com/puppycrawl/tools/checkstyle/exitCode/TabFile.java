@@ -1,0 +1,3 @@
+class TabFile {
+	int x;
+}
