@@ -11,6 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegalthrows;
 
 // xdoc section -- start
 public class Example2 {
+
   void f1() throws RuntimeException {}
   void f2() throws Exception {}
   void f3() throws Error {}
