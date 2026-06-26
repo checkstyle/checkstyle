@@ -105,13 +105,24 @@
 
         <p id="Example1-code">Example1:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/** Documented. */
 class Example1 {
-  /** Javadoc.*/
-  public class testClass0 {}
-  public class testClass1 {}
-  private class testClass2 {}
-  protected class testClass3 {}
-  class testClass4 {}
+  /** Javadoc. */
+  public class A {}
+  /** Javadoc. */
+  private class B {}
+  /** Javadoc. */
+  protected class C {}
+  /** Javadoc. */
+  class D {}
+  /** Javadoc. */
+  @SpringBootApplication
+  private class App {}
+  /** Javadoc. */
+  @Configuration
+  private class Config {}
+  /** Javadoc. */
+  private class E {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -129,13 +140,23 @@ class Example1 {
 
         <p id="Example2-code">Example2:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example2 { // violation, 'Missing a Javadoc comment'
-  /** Javadoc.*/
-  public class testClass0 {}
-  public class testClass1 {} // violation, 'Missing a Javadoc comment'
-  private class testClass2 {} // violation, 'Missing a Javadoc comment'
-  protected class testClass3 {} // violation, 'Missing a Javadoc comment'
-  class testClass4 {} // violation, 'Missing a Javadoc comment'
+class Example2 {        // violation, 'Missing a Javadoc comment'
+  /** Javadoc. */
+  public class A {}
+
+  private class B {}    // violation, 'Missing a Javadoc comment'
+
+  protected class C {}  // violation, 'Missing a Javadoc comment'
+
+  class D {}            // violation, 'Missing a Javadoc comment'
+  /** Javadoc. */
+  @SpringBootApplication
+  private class App {}
+  /** Javadoc. */
+  @Configuration
+  private class Config {}
+  /** Javadoc. */
+  private class E {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -154,13 +175,22 @@ class Example2 { // violation, 'Missing a Javadoc comment'
         <p id="Example3-code">Example3:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
-  /** Javadoc.*/
-  public class testClass0 {}
-  public class testClass1 {}
-  private class testClass2 {} // violation, 'Missing a Javadoc comment'
-  protected class testClass3 {}
-  class testClass4 {}
+  /** Javadoc. */
+  public class A {}
 
+  private class B {} // violation, 'Missing a Javadoc comment'
+
+  protected class C {}
+  /** Javadoc. */
+  class D {}
+  /** Javadoc. */
+  @SpringBootApplication
+  private class App {}
+  /** Javadoc. */
+  @Configuration
+  private class Config {}
+  /** Javadoc. */
+  private class E {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -182,14 +212,22 @@ class Example3 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /** Documented. */
 class Example4 {
-  /** Javadoc.*/
+  /** Javadoc. */
+  public class A {}
+  /** Javadoc. */
+  private class B {}
+  /** Javadoc. */
+  protected class C {}
+  /** Javadoc. */
+  class D {}
+  /** Javadoc. */
   @SpringBootApplication
-  private class Application { }
-
+  private class App {}
+  /** Javadoc. */
   @Configuration
-  private class DatabaseConfiguration { }
+  private class Config {}
 
-  private class MissingDoc { } // violation, 'Missing a Javadoc comment'
+  private class E {} // violation, 'Missing a Javadoc comment'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
