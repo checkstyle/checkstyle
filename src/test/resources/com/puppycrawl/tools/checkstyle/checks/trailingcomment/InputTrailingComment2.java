@@ -45,7 +45,7 @@ public class InputTrailingComment2 {
     String NAME3="Some Name"; /*NOI18N
 */
     /* package */ void method3() {
-        /* violation on this block */
+        /* bla on this block */
         // violation here for format NOT FOUND
     }
 
