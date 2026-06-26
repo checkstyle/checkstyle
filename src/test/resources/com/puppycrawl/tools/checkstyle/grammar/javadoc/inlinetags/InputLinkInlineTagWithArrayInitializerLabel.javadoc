@@ -1,0 +1,3 @@
+* {@link #wrap(ByteBuffer[], int, int, ByteBuffer) engine.wrap(new ByteBuffer[] { src }, 0, 1, dst);}
+* {@link #wrap(ByteBuffer[], int, int, ByteBuffer) engine.wrap(new ByteBuffer[] { { src }, { dst } }, 0, 2, out);}
+* {@link #wrap(ByteBuffer[], int, int, ByteBuffer) engine.wrap(new ByteBuffer[] { src }, new ByteBuffer[] { src }, dst);}
