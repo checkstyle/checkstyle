@@ -31,6 +31,9 @@ class InputIndentationCtorCall {                                        //indent
     + 1L);                                                              //indent:4 exp:6 warn
     }                                                                   //indent:4 exp:4
 
+    public Invalid(Function arg) {                                      //indent:4 exp:4
+    }                                                                   //indent:4 exp:4
+
     public Invalid() {                                                  //indent:4 exp:4
     this(                                                               //indent:4 exp:6 warn
     0L);                                                                //indent:4 exp:6 warn
@@ -76,6 +79,11 @@ class InputIndentationCtorCall {                                        //indent
           x -> arg);                                                    //indent:10 exp:12,14 warn
     }                                                                   //indent:4 exp:4
 
+    public Invalid(InputIndentationCtorCall obj) {                      //indent:4 exp:4
+    this                                                                //indent:4 exp:6 warn
+    (                                                                   //indent:4 exp:6 warn
+    x -> x);                                                            //indent:4 exp:8 warn
+    }                                                                   //indent:4 exp:4
   }                                                                     //indent:2 exp:2
 
 }                                                                       //indent:0 exp:0
