@@ -47,8 +47,8 @@ public class ExplicitInitializationCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "26:18: " + getCheckMessage(MSG_KEY, "objField1", "null"),
-            "30:15: " + getCheckMessage(MSG_KEY, "arrField1", "null"),
+            "27:18: " + getCheckMessage(MSG_KEY, "objField1", "null"),
+            "31:15: " + getCheckMessage(MSG_KEY, "arrField1", "null"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
