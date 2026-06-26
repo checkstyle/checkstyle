@@ -545,6 +545,14 @@ LinkDescription_NEWLINE
     : NEWLINE {setAfterNewline();} -> type(NEWLINE), channel(NEWLINES)
     ;
 
+LinkDescription_LBRACE
+    : '{' { braceCounter++; } -> type(TEXT)
+    ;
+
+LinkDescription_RBRACE
+    : '}' { braceCounter > 1 }? { braceCounter--; } -> type(TEXT)
+    ;
+
 LinkDescription_LEADING_ASTERISK
     : [ \t]* '*' {isAfterNewline()}?
       -> channel(LEADING_ASTERISKS), type(LEADING_ASTERISK)
