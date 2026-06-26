@@ -71,6 +71,7 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
     private boolean inSeeReferencePart = false;
     private boolean inFragmentReference = false;
 
+    private final Deque<Integer> braceCounters = new ArrayDeque<>();
     private final Deque<Token> openTagNameTokens = new ArrayDeque<>();
     private final Deque<Token> closeTagNameTokens = new ArrayDeque<>();
 
@@ -125,6 +126,24 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
             } else {
                 pushMode(LINK_TAG_DESCRIPTION);
             }
+        }
+    }
+
+    private void pushBraceCounter() {
+        braceCounters.push(braceCounter);
+        braceCounter = 1;
+    }
+
+    private void finishPlainTextTag() {
+        braceCounter--;
+        if (!braceCounters.isEmpty()) {
+            braceCounter = braceCounters.pop();
+        }
+    }
+
+    private void restoreBraceCounter() {
+        if (!braceCounters.isEmpty()) {
+            braceCounter = braceCounters.pop();
         }
     }
 
@@ -368,7 +387,7 @@ Code_RBRACE
     ;
 
 JAVADOC_INLINE_TAG_END
-    : '}' { braceCounter == 1 }? { braceCounter--; } -> popMode, popMode
+    : '}' { braceCounter == 1 }? { finishPlainTextTag(); } -> popMode, popMode
     ;
 
 Code_TEXT
@@ -403,7 +422,7 @@ SnippetAttribute_WS
     ;
 
 SnippetAttribute_JAVADOC_INLINE_TAG_END
-    : '}' { braceCounter--; } -> type(JAVADOC_INLINE_TAG_END), popMode, popMode
+    : '}' { restoreBraceCounter(); } -> type(JAVADOC_INLINE_TAG_END), popMode, popMode
     ;
 
 SnippetAttribute_LEADING_ASTERISK
@@ -483,7 +502,7 @@ Link_WS
     ;
 
 Link_JAVADOC_INLINE_TAG_END
-    : '}' -> type(JAVADOC_INLINE_TAG_END), popMode, popMode
+    : '}' { restoreBraceCounter(); } -> type(JAVADOC_INLINE_TAG_END), popMode, popMode
     ;
 
 LT
@@ -537,12 +556,20 @@ LinkDescription_TEXT
     ;
 
 LinkDescription_JAVADOC_INLINE_TAG_START
-    : '{@' { braceCounter = 1; } -> pushMode(JAVADOC_INLINE_TAG_MODE),
+    : '{@' { pushBraceCounter(); } -> pushMode(JAVADOC_INLINE_TAG_MODE),
       type(JAVADOC_INLINE_TAG_START)
     ;
 
 LinkDescription_NEWLINE
     : NEWLINE {setAfterNewline();} -> type(NEWLINE), channel(NEWLINES)
+    ;
+
+LinkDescription_LBRACE
+    : '{' { braceCounter++; } -> type(TEXT)
+    ;
+
+LinkDescription_RBRACE
+    : '}' { braceCounter > 1 }? { braceCounter--; } -> type(TEXT)
     ;
 
 LinkDescription_LEADING_ASTERISK
@@ -551,7 +578,7 @@ LinkDescription_LEADING_ASTERISK
     ;
 
 LinkDescription_JAVADOC_INLINE_TAG_END
-    : '}' -> type(JAVADOC_INLINE_TAG_END), popMode, popMode, popMode
+    : '}' { restoreBraceCounter(); } -> type(JAVADOC_INLINE_TAG_END), popMode, popMode, popMode
     ;
 
 LinkDescription_TAG
@@ -632,7 +659,7 @@ Value_LEADING_ASTERISK
     ;
 
 Value_JAVADOC_INLINE_TAG_END
-    : '}' -> type(JAVADOC_INLINE_TAG_END), popMode, popMode
+    : '}' { restoreBraceCounter(); } -> type(JAVADOC_INLINE_TAG_END), popMode, popMode
     ;
 
 // --- INLINE_TAG_DESCRIPTION ---
@@ -665,7 +692,7 @@ InlineDescription_LEADING_ASTERISK
     ;
 
 InlineDescription_JAVADOC_INLINE_TAG_END
-    : '}' -> type(JAVADOC_INLINE_TAG_END), popMode, popMode
+    : '}' { restoreBraceCounter(); } -> type(JAVADOC_INLINE_TAG_END), popMode, popMode
     ;
 
 // --- INDEX_TERM_MODE ---
