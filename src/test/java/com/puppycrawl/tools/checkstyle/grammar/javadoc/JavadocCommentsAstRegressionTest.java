@@ -141,6 +141,12 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testSpecTag() throws Exception {
+        verifyJavadocTree(getBlockTagsPath("ExpectedSpecTag.txt"),
+                getBlockTagsPath("InputSpecTag.javadoc"));
+    }
+
+    @Test
     public void testCodeInlineTag() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedCodeInlineTag.txt"),
                 getInlineTagsPath("InputCodeInlineTag.javadoc"));
