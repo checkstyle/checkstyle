@@ -88,14 +88,14 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockSix {
         }
     }
     void foo78() {
-        /* violation */
+        /* bla */
         new Object()
                 .toString();
             // violation '.* incorrect .* level 12, expected is 8, .* same .* as line 92.'
     }
     void foo79() {
-        /* violation */
-        /* violation */new Object().toString();
+        /* bla */
+        /* bla */new Object().toString();
 
     }
 
