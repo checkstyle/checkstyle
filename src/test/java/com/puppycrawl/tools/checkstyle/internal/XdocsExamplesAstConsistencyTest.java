@@ -125,9 +125,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/javadoc/javadocpackage/nonlegacy/Example1",
             "checks/javadoc/javadoctagcontinuationindentation/Example3",
             "checks/javadoc/javadocvariable/Example5",
-            "checks/javadoc/missingjavadoctype/Example3",
-            "checks/javadoc/missingjavadoctype/Example4",
-            "checks/javadoc/missingjavadoctype/Example5",
             "checks/metrics/booleanexpressioncomplexity/Example2",
             "checks/metrics/booleanexpressioncomplexity/Example3",
             "checks/metrics/classdataabstractioncoupling/Example2",
@@ -254,6 +251,7 @@ public class XdocsExamplesAstConsistencyTest {
             // until https://github.com/checkstyle/checkstyle/issues/19891
             "checks/blocks/leftcurly/Example3",
             "checks/whitespace/parenpad/Example3",
+            "checks/javadoc/missingjavadoctype/Example5",
             "checks/indentation/commentsindentation/Example3",
             "checks/indentation/commentsindentation/Example4",
             "checks/indentation/commentsindentation/Example5",
