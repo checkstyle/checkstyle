@@ -110,6 +110,9 @@
       <property name="ignoreStaticFinal" value="false"/>
     </module>
 
+    <!-- Javadoc checks: verify javadoc formatting, first-sentence punctuation, and HTML tags -->
+    <module name="JavadocStyle"/>
+
     <!-- §3.3: Import statements should be sorted -->
     <module name="AvoidStarImport">
       <property name="maxAllowedStarImports" value="1"/>
