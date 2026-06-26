@@ -86,19 +86,60 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.io.
-          IOException; // ok, dot is on the previous line
+        IOException; // ok, '.' is on the previous line
 
 class Example1 {
   String s;
 
-  public void foo(int a,
-                    int b) { // ok, comma is on the previous line
+  int a,
+          b; // ok, ',' is on the previous line
+
+  void foo(int x,
+           int y) { // ok, ',' is on the previous line
   }
 
-  public void bar(int p
-                    , int q) { // violation '',' should be on the previous line'
+  void bar(int p
+          , int q) { // violation, ',' should be on the previous line
     if (s
-          .isEmpty()) { // violation ''.' should be on the previous line'
+            .isEmpty()) { // violation, '.' should be on the previous line
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check for comma at the new line:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SeparatorWrap"&gt;
+      &lt;property name="tokens" value="COMMA"/&gt;
+      &lt;property name="option" value="nl"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.io.
+        IOException;
+
+class Example3 {
+  String s;
+
+  int a,
+          b; // violation above, ',' should be on a new line
+
+  void foo(int x,
+           int y) { // violation above, ',' should be on a new line
+  }
+
+  void bar(int p
+          , int q) { // ok, ',' is on a new line
+    if (s
+            .isEmpty()) {
     }
   }
 }
@@ -133,40 +174,6 @@ class Example2 {
       compareToIgnoreCase);
     Arrays.sort(stringArray, String
       ::compareTo); // ok, because it is on a new line
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
-          To configure the check for comma at the new line:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="SeparatorWrap"&gt;
-      &lt;property name="tokens" value="COMMA"/&gt;
-      &lt;property name="option" value="nl"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example3-code">
-          Example:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
-  String s;
-
-  int a,
-    b; // violation above '',' should be on a new line'
-
-  void foo(int a,
-                int b) { // violation above '',' should be on a new line'
-    int r
-      , t; // ok, because it is on a new line
-  }
-
-  void bar(int p
-                , int q) { // ok, because it is on a new line
   }
 }
 </code></pre></div>
