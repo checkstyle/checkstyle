@@ -34,17 +34,19 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
         final String[] expectedWithoutFilter = {
             "16:7: Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "19:7: Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "22:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "26:27: Name 'var4' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "32:5: Catching 'Exception' is not allowed.",
-            "37:5: Catching 'Exception' is not allowed.",
-            "39:5: Catching 'Error' is not allowed.",
+            "23:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "30:5: Catching 'Exception' is not allowed.",
+            "31:5: Catching 'Error' is not allowed.",
+            "36:7: Name 'VAR4' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "40:27: Name 'varC' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
 
         final String[] expectedWithFilter = {
             "16:7: Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "22:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "32:5: Catching 'Exception' is not allowed.",
+            "23:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "30:5: Catching 'Exception' is not allowed.",
+            "31:5: Catching 'Error' is not allowed.",
+            "36:7: Name 'VAR4' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example1.java"),
@@ -56,20 +58,20 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
         final String[] expectedWithoutFilter = {
             "21:7: Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "24:7: Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "27:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "31:27: Name 'var4' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "37:5: Catching 'Exception' is not allowed.",
-            "42:5: Catching 'Exception' is not allowed.",
-            "43:5: Catching 'Error' is not allowed.",
+            "28:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "35:5: Catching 'Exception' is not allowed.",
+            "36:5: Catching 'Error' is not allowed.",
+            "41:7: Name 'VAR4' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "45:27: Name 'varC' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
 
         final String[] expectedWithFilter = {
             "21:7: Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "24:7: Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "27:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "37:5: Catching 'Exception' is not allowed.",
-            "42:5: Catching 'Exception' is not allowed.",
-            "43:5: Catching 'Error' is not allowed.",
+            "35:5: Catching 'Exception' is not allowed.",
+            "36:5: Catching 'Error' is not allowed.",
+            "41:7: Name 'VAR4' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "45:27: Name 'varC' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example2.java"),
@@ -81,20 +83,20 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
         final String[] expectedWithoutFilter = {
             "21:7: Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "24:7: Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "27:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "31:27: Name 'var4' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "38:5: Catching 'Exception' is not allowed.",
-            "43:5: Catching 'Exception' is not allowed.",
-            "45:5: Catching 'Error' is not allowed.",
+            "28:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "35:5: Catching 'Exception' is not allowed.",
+            "36:5: Catching 'Error' is not allowed.",
+            "41:7: Name 'VAR4' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "45:27: Name 'varC' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
 
         final String[] expectedWithFilter = {
             "21:7: Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "24:7: Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "27:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "31:27: Name 'var4' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "38:5: Catching 'Exception' is not allowed.",
-            "45:5: Catching 'Error' is not allowed.",
+            "28:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "36:5: Catching 'Error' is not allowed.",
+            "41:7: Name 'VAR4' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "45:27: Name 'varC' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example3.java"),
@@ -151,17 +153,20 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
         final String[] expectedWithoutFilter = {
             "25:7: Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "28:7: Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "31:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "35:27: Name 'var4' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "41:5: Catching 'Exception' is not allowed.",
-            "46:5: Catching 'Exception' is not allowed.",
-            "48:5: Catching 'Error' is not allowed.",
+            "32:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "39:5: Catching 'Exception' is not allowed.",
+            "40:5: Catching 'Error' is not allowed.",
+            "45:7: Name 'VAR4' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "49:27: Name 'varC' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
 
         final String[] expectedWithFilter = {
             "25:7: Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "31:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "41:5: Catching 'Exception' is not allowed.",
+            "28:7: Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "32:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "39:5: Catching 'Exception' is not allowed.",
+            "40:5: Catching 'Error' is not allowed.",
+            "49:27: Name 'varC' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example6.java"),
@@ -194,20 +199,20 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
         final String[] expectedWithoutFilter = {
             "18:7: Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "21:7: Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "24:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "28:27: Name 'var4' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "34:5: Catching 'Exception' is not allowed.",
-            "39:5: Catching 'Exception' is not allowed.",
-            "40:5: Catching 'Error' is not allowed.",
+            "25:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "32:5: Catching 'Exception' is not allowed.",
+            "33:5: Catching 'Error' is not allowed.",
+            "38:7: Name 'VAR4' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "42:27: Name 'varC' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
 
         final String[] expectedWithFilter = {
             "18:7: Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "21:7: Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "24:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "34:5: Catching 'Exception' is not allowed.",
-            "39:5: Catching 'Exception' is not allowed.",
-            "40:5: Catching 'Error' is not allowed.",
+            "25:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "32:5: Catching 'Exception' is not allowed.",
+            "33:5: Catching 'Error' is not allowed.",
+            "38:7: Name 'VAR4' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example8.java"),

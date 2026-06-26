@@ -155,13 +155,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/uniqueproperties/Example2",
             "checks/whitespace/emptyforiteratorpad/Example2",
             "checks/whitespace/parenpad/Example2",
-            "filters/suppressioncommentfilter/Example2",
-            "filters/suppressioncommentfilter/Example3",
-            "filters/suppressioncommentfilter/Example4",
-            "filters/suppressioncommentfilter/Example5",
-            "filters/suppressioncommentfilter/Example6",
-            "filters/suppressioncommentfilter/Example7",
-            "filters/suppressioncommentfilter/Example8",
             "filters/suppressionsinglefilter/Example2",
             "filters/suppressionsinglefilter/Example3",
             "filters/suppressionsinglefilter/Example4",
@@ -314,7 +307,10 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/descendanttoken/Example11",
             "checks/descendanttoken/Example13",
             "checks/descendanttoken/Example15",
-            "checks/descendanttoken/Example16"
+            "checks/descendanttoken/Example16",
+            "filters/suppressioncommentfilter/Example4",
+            "filters/suppressioncommentfilter/Example5",
+            "filters/suppressioncommentfilter/Example7"
             );
 
     /**
