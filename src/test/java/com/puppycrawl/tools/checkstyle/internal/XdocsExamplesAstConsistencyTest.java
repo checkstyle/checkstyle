@@ -110,8 +110,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/coding/unnecessarysemicolonafteroutertypedeclaration/Example2",
             "checks/imports/importcontrol/filters/Example9",
             "checks/indentation/indentation/Example7",
-            "checks/javadoc/atclauseorder/Example2",
-            "checks/javadoc/atclauseorder/Example3",
             "checks/javadoc/javadoccontentlocation/Example2",
             "checks/javadoc/javadocleadingasteriskalign/Example2",
             "checks/javadoc/javadocleadingasteriskalign/Example3",

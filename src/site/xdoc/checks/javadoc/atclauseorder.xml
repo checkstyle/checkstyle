@@ -102,30 +102,32 @@
 * @serialField Field description.
 * @serialData
 */
-public class Example1 {}
+public class Example1 {
+  class Valid implements Serializable {
+  }
 
-class Valid1 implements Serializable {}
+  /**
+   * Some javadoc.
+   *
+   * @version Some javadoc.
+   * @see Some javadoc.
+   * @since Some javadoc.
+   * @deprecated
+   */
+  class Invalid implements Serializable {
+  }
 
-/**
- * Some javadoc.
- *
- * @since Some javadoc.
- * @version Some javadoc. // violation
- * @deprecated
- * @see Some javadoc. // violation
- */
-class Invalid1 implements Serializable {}
-
-/**
- * Some javadoc.
- *
- * @since Some javadoc.
- * @version Some javadoc. // violation
- * @deprecated
- * @see Some javadoc. // violation
- * @author max // violation
- */
-enum Test1 {}
+  /**
+   * Some javadoc.
+   *
+   * @author max
+   * @version Some javadoc.
+   * @see Some javadoc.
+   * @since Some javadoc.
+   * @deprecated
+   */
+  enum Test {}
+}
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
             To configure the check such that it checks in the custom order:
@@ -161,30 +163,32 @@ enum Test1 {}
 * @serialField Field description.
 * @serialData
 */
-public class Example2 {}
+public class Example2 {
+  class Valid implements Serializable {
+  }
 
-class Valid2 implements Serializable {}
+  /**
+   * Some javadoc.
+   *
+   * @version Some javadoc.
+   * @see Some javadoc.
+   * @since Some javadoc. // violation
+   * @deprecated  // violation
+   */
+  class Invalid implements Serializable {
+  }
 
-/**
- * Some javadoc.
- *
- * @since Some javadoc.
- * @version Some javadoc.
- * @deprecated
- * @see Some javadoc.
- */
-class Invalid2 implements Serializable {}
-
-/**
- * Some javadoc.
- *
- * @since Some javadoc.
- * @version Some javadoc.
- * @deprecated Some javadoc.
- * @see Some javadoc.
- * @author max // violation
- */
-enum Test2 {}
+  /**
+   * Some javadoc.
+   *
+   * @author max
+   * @version Some javadoc.
+   * @see Some javadoc.
+   * @since Some javadoc. // violation
+   * @deprecated // violation
+   */
+  enum Test {}
+}
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
             To configure the check such that it targets only enums:
@@ -221,30 +225,32 @@ enum Test2 {}
 * @serialField Field description.
 * @serialData
 */
-public class Example3 {}
+public class Example3 {
+  class Valid implements Serializable {
+  }
 
-class Valid3 implements Serializable {}
+  /**
+   * Some javadoc.
+   *
+   * @version Some javadoc.
+   * @see Some javadoc.
+   * @since Some javadoc.
+   * @deprecated
+   */
+  class Invalid implements Serializable {
+  }
 
-/**
- * Some javadoc.
- *
- * @since Some javadoc.
- * @version Some javadoc.
- * @deprecated
- * @see Some javadoc.
- */
-class Invalid3 implements Serializable {}
-
-/**
- * Some javadoc.
- *
- * @since Some javadoc.
- * @version Some javadoc.
- * @deprecated
- * @see Some javadoc.
- * @author Some javadoc. // violation
- */
-enum Test3 {}
+  /**
+   * Some javadoc.
+   *
+   * @author Some javadoc.
+   * @version Some javadoc.
+   * @see Some javadoc.
+   * @since Some javadoc. // violation
+   * @deprecated // violation
+   */
+  enum Test {}
+}
 </code></pre></div>
       </subsection>
 
