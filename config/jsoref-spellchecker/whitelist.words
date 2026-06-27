@@ -1195,8 +1195,8 @@ rulejavasourcefiles
 rulelambdaexpressions
 ruleliterals
 rulemethodnames
-ruleorderofconstructorsandoverloadedmethods
 rulemodifiers
+ruleorderofconstructorsandoverloadedmethods
 rulepackagedeclaration
 rulepackagenames
 ruleredundantparenthesis
