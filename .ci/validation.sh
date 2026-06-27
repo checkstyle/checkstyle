@@ -220,6 +220,58 @@ versions)
   fi
   ;;
 
+check-dependency-updates-on-pr)
+  # Check if pom.xml has been modified in the PR
+  if ! git diff --quiet origin/master HEAD -- pom.xml; then
+    echo "pom.xml has been modified in this PR."
+    echo "Checking dependency versions..."
+
+    # Generate the dependency updates report for the current branch
+    ./mvnw -e --no-transfer-progress clean versions:dependency-updates-report \
+      versions:plugin-updates-report
+
+    # Get dependencies with newer versions available in the PR
+    DEP_UPDATES_PR=$(xmlstarlet sel \
+      -N d="https://www.mojohaus.org/VERSIONS/DEPENDENCY-UPDATES-REPORT/2.0.0" \
+      -t -m "//d:dependency[d:status!='no new available']" \
+      -v "d:groupId" -o ":" -v "d:artifactId" -o ":" \
+      -v "d:currentVersion" -o ":" -v "d:lastVersion" -n \
+      target/dependency-updates-report.xml)
+
+    # Get plugins with newer versions available in the PR
+    PLUGIN_UPDATES_PR=$(xmlstarlet sel \
+      -N p="https://www.mojohaus.org/VERSIONS/PLUGIN-UPDATES-REPORT/2.0.0" \
+      -t -m "//p:plugin[p:status!='no new available']" \
+      -v "p:groupId" -o ":" -v "p:artifactId" -o ":" \
+      -v "p:currentVersion" -o ":" -v "p:lastVersion" -n \
+      target/plugin-updates-report.xml)
+
+    if [ -n "${DEP_UPDATES_PR}" ] || [ -n "${PLUGIN_UPDATES_PR}" ]; then
+      echo "ERROR: Dependencies/plugins in PR are not using latest versions:"
+      if [ -n "${DEP_UPDATES_PR}" ]; then
+        echo "Dependencies with available updates:"
+        echo "${DEP_UPDATES_PR}" | \
+          while IFS=':' read -r groupId artifactId currentVersion latestVersion; do
+          echo "  $groupId:$artifactId: $currentVersion -> $latestVersion"
+        done
+      fi
+      if [ -n "${PLUGIN_UPDATES_PR}" ]; then
+        echo "Plugins with available updates:"
+        echo "${PLUGIN_UPDATES_PR}" | \
+          while IFS=':' read -r groupId artifactId currentVersion latestVersion; do
+          echo "  $groupId:$artifactId: $currentVersion -> $latestVersion"
+        done
+      fi
+      echo "Please update dependencies to the latest versions."
+      false
+    else
+      echo "All dependencies and plugins in PR are using the latest versions."
+    fi
+  else
+    echo "pom.xml has not been modified in this PR. Skipping dependency checks."
+  fi
+  ;;
+
 markdownlint)
   mdl -g . && echo "All .md files verified"
   ;;
