@@ -116,8 +116,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/javadoc/javadocpackage/nonlegacy/Example1",
             "checks/javadoc/javadoctagcontinuationindentation/Example3",
             "checks/javadoc/javadocvariable/Example5",
-            "checks/metrics/booleanexpressioncomplexity/Example2",
-            "checks/metrics/booleanexpressioncomplexity/Example3",
             "checks/metrics/classdataabstractioncoupling/Example2",
             "checks/metrics/classdataabstractioncoupling/Example3",
             "checks/metrics/classdataabstractioncoupling/ignore/Example7",
