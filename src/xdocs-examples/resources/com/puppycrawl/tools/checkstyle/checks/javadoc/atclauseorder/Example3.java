@@ -31,28 +31,30 @@ import java.io.Serializable;
 * @serialField Field description.
 * @serialData
 */
-public class Example3 {}
+public class Example3 {
+  class Valid implements Serializable {
+  }
 
-class Valid3 implements Serializable {}
+  /**
+   * Some javadoc.
+   *
+   * @version Some javadoc.
+   * @see Some javadoc.
+   * @since Some javadoc.
+   * @deprecated
+   */
+  class Invalid implements Serializable {
+  }
 
-/**
- * Some javadoc.
- *
- * @since Some javadoc.
- * @version Some javadoc.
- * @deprecated
- * @see Some javadoc.
- */
-class Invalid3 implements Serializable {}
-
-/**
- * Some javadoc.
- *
- * @since Some javadoc.
- * @version Some javadoc.
- * @deprecated
- * @see Some javadoc.
- * @author Some javadoc. // violation
- */
-enum Test3 {}
+  /**
+   * Some javadoc.
+   *
+   * @author Some javadoc.
+   * @version Some javadoc.
+   * @see Some javadoc.
+   * @since Some javadoc. // violation
+   * @deprecated // violation
+   */
+  enum Test {}
+}
 // xdoc section -- end

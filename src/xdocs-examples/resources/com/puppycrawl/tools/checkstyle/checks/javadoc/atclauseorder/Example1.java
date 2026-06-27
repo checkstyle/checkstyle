@@ -6,11 +6,6 @@
 </module>
 */
 
-
-
-
-
-
 package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 
 import java.io.Serializable;
@@ -31,28 +26,30 @@ import java.io.Serializable;
 * @serialField Field description.
 * @serialData
 */
-public class Example1 {}
+public class Example1 {
+  class Valid implements Serializable {
+  }
 
-class Valid1 implements Serializable {}
+  /**
+   * Some javadoc.
+   *
+   * @version Some javadoc.
+   * @see Some javadoc.
+   * @since Some javadoc.
+   * @deprecated
+   */
+  class Invalid implements Serializable {
+  }
 
-/**
- * Some javadoc.
- *
- * @since Some javadoc.
- * @version Some javadoc. // violation
- * @deprecated
- * @see Some javadoc. // violation
- */
-class Invalid1 implements Serializable {}
-
-/**
- * Some javadoc.
- *
- * @since Some javadoc.
- * @version Some javadoc. // violation
- * @deprecated
- * @see Some javadoc. // violation
- * @author max // violation
- */
-enum Test1 {}
+  /**
+   * Some javadoc.
+   *
+   * @author max
+   * @version Some javadoc.
+   * @see Some javadoc.
+   * @since Some javadoc.
+   * @deprecated
+   */
+  enum Test {}
+}
 // xdoc section -- end
