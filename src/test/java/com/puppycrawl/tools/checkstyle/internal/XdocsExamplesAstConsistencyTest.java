@@ -121,9 +121,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/metrics/classdataabstractioncoupling/ignore/Example9",
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example5",
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example6",
-            "checks/modifier/interfacememberimpliedmodifier/Example2",
-            "checks/modifier/interfacememberimpliedmodifier/Example3",
-            "checks/modifier/interfacememberimpliedmodifier/Example4",
             "checks/modifier/redundantmodifier/Example2",
             "checks/naming/abstractclassname/Example3",
             "checks/naming/abstractclassname/Example4",
@@ -888,6 +885,7 @@ public class XdocsExamplesAstConsistencyTest {
         return parent != null
                 && ast.getType() == TokenTypes.IDENT
                 && (parent.getType() == TokenTypes.CLASS_DEF
+                    || parent.getType() == TokenTypes.INTERFACE_DEF
                     || parent.getType() == TokenTypes.CTOR_DEF);
     }
 
