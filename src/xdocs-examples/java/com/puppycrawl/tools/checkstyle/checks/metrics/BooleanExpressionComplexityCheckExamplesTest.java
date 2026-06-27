@@ -36,7 +36,7 @@ public class BooleanExpressionComplexityCheckExamplesTest
     public void testExample1() throws Exception {
         final String[] expected = {
             "20:15: " + getCheckMessage(MSG_KEY, 5, 3),
-            "24:15: " + getCheckMessage(MSG_KEY, 6, 3),
+            "23:15: " + getCheckMessage(MSG_KEY, 6, 3),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
