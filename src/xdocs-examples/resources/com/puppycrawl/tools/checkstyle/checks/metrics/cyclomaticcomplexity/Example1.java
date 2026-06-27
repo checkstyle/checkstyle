@@ -11,56 +11,56 @@ package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 class Example1 {
   int a, b, c, d, e, n;
 
-  public void testMethod1() {
-    while (a < b && a > c) {
+  public void testMethod1() { // 1, function declaration
+    while (a < b && a > c) { // 2, while
       fun1();
     }
     if (a == b) {
-      do {
+      do { // 3, do
         fun1();
       } while (d==a);
     } else if (c == d) {
-      while (c > 0) {
+      while (c > 0) { // 4, while
         fun1();
       }
-      do {
+      do { // 5, do-while
         fun1();
       } while (a==d);
     }
   }
   // violation below, 'Cyclomatic Complexity is 13 (max allowed is 10)'
-  public void testMethod2() { // 1, function declaration
-    if (a == b) { // 2, if
+  public void testMethod2() {
+    if (a == b) {
       fun1();
-    } else if (a == 0 // 3, if
-      && b == c) { // 4, && operator
-      if (c == -1) { // 5, if
+    } else if (a == 0
+      && b == c) {
+      if (c == -1) {
         fun1();
       }
-    } else if (a == c // 6, if
-      || a == d) { // 7, || operator
+    } else if (a == c
+      || a == d) {
       fun1();
-    } else if (d == e) { //8, if
+    } else if (d == e) {
       try {
         fun1();
-      } catch (Exception e) { // 9, catch
+      } catch (Exception e) {
       }
     } else {
       switch(n) {
-        case 1: // 10, case
+        case 1:
           fun1();
           break;
-        case 2: // 11, case
+        case 2:
           fun1();
           break;
-        case 3: // 12, case
+        case 3:
           fun1();
           break;
         default:
           break;
       }
     }
-    a = a > 0 ? b : c; // 13, ternary operator
+    a = a > 0 ? b : c;
   }
   private void fun1() {}
 }

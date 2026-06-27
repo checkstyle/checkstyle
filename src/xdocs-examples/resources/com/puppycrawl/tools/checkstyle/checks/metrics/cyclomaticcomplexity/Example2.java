@@ -36,12 +36,12 @@ class Example2 {
     if (a == b) {
       fun1();
     } else if (a == 0
-      && b == c) {
+            && b == c) {
       if (c == -1) {
         fun1();
       }
     } else if (a == c
-      || a == d) {
+            || a == d) {
       fun1();
     } else if (d == e) {
       try {
