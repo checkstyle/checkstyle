@@ -107,7 +107,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/coding/illegalthrows/Example2",
             "checks/coding/illegalthrows/Example3",
             "checks/coding/nestedfordepth/Example2",
-            "checks/coding/nestedifdepth/Example2",
             "checks/coding/onestatementperline/Example2",
             "checks/coding/packagedeclaration/Example2",
             "checks/coding/unnecessarysemicolonafteroutertypedeclaration/Example2",
