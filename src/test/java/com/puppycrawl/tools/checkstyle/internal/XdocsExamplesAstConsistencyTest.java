@@ -126,8 +126,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/metrics/classdataabstractioncoupling/ignore/Example9",
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example5",
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example6",
-            "checks/metrics/cyclomaticcomplexity/Example2",
-            "checks/metrics/cyclomaticcomplexity/Example3",
             "checks/modifier/interfacememberimpliedmodifier/Example2",
             "checks/modifier/interfacememberimpliedmodifier/Example3",
             "checks/modifier/interfacememberimpliedmodifier/Example4",
