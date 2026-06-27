@@ -39,7 +39,8 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expectedWithoutFilter = {
-            "21:17: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "100"),
+            "21:28: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "5"),
+            "24:17: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "100"),
         };
         final String[] expectedWithFilter = {};
 
@@ -50,13 +51,13 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample2() throws Exception {
         final String[] expectedWithoutFilter = {
-            "19:12: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+            "22:12: " + getCheckMessage(NoWhitespaceAfterCheck.class,
                     NoWhitespaceAfterCheck.MSG_KEY, "."),
-            "23:9: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+            "26:9: " + getCheckMessage(NoWhitespaceAfterCheck.class,
                     NoWhitespaceAfterCheck.MSG_KEY, "int"),
         };
         final String[] expectedWithFilter = {
-            "23:9: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+            "26:9: " + getCheckMessage(NoWhitespaceAfterCheck.class,
                     NoWhitespaceAfterCheck.MSG_KEY, "int"),
         };
 
@@ -67,8 +68,9 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample3() throws Exception {
         final String[] expectedWithoutFilter = {
-            "19: " + getCheckMessage(RegexpCheck.class, MSG_ILLEGAL_REGEXP, "example"),
             "4: " + getCheckMessage(RegexpCheck.class, MSG_ILLEGAL_REGEXP, "example"),
+            "19: " + getCheckMessage(RegexpCheck.class, MSG_ILLEGAL_REGEXP, "example"),
+            "28: " + getCheckMessage(RegexpCheck.class, MSG_ILLEGAL_REGEXP, "example"),
         };
         final String[] expectedWithFilter = {};
 
