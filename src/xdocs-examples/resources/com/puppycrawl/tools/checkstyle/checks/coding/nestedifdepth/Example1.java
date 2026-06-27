@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.nestedifdepth;
 
 // xdoc section -- start
 class Example1 {
-  void Example1() {
+  void Test() {
     if (true) {
       if (true) {}
       else {}
