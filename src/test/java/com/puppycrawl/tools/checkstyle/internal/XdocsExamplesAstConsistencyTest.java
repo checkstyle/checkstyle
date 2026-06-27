@@ -128,8 +128,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/javadoc/missingjavadoctype/Example3",
             "checks/javadoc/missingjavadoctype/Example4",
             "checks/javadoc/missingjavadoctype/Example5",
-            "checks/metrics/booleanexpressioncomplexity/Example2",
-            "checks/metrics/booleanexpressioncomplexity/Example3",
             "checks/metrics/classdataabstractioncoupling/Example2",
             "checks/metrics/classdataabstractioncoupling/Example3",
             "checks/metrics/classdataabstractioncoupling/ignore/Example7",
