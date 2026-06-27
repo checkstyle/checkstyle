@@ -173,7 +173,9 @@ public class LineWrappingHandler {
                 logWarningMessage(node, firstNodeIndent);
             }
             else if (!TokenUtil.isOfType(currentType, IGNORED_LIST)) {
-                if (!indentCheck.getVerticalAlignmentHandler().isVerticallyAligned(node)) {
+                if (!indentCheck.isAllowVerticalAlignment()
+                        || !indentCheck.getVerticalAlignmentHandler()
+                                .isVerticallyAligned(node)) {
                     logWarningMessage(node, currentIndent);
                 }
             }
@@ -342,7 +344,9 @@ public class LineWrappingHandler {
                 logWarningMessage(node, firstNodeIndent);
             }
             else if (!isArrayInitPresentInAncestors) {
-                if (!indentCheck.getVerticalAlignmentHandler().isVerticallyAligned(node)) {
+                if (!indentCheck.isAllowVerticalAlignment()
+                        || !indentCheck.getVerticalAlignmentHandler()
+                                .isVerticallyAligned(node)) {
                     logWarningMessage(node, currentIndent);
                 }
             }

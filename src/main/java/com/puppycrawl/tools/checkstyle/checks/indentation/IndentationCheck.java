@@ -176,6 +176,12 @@ public class IndentationCheck extends AbstractCheck {
     private boolean forceStrictCondition;
 
     /**
+     * Whether to allow continuation lines to be vertically aligned with a reference
+     * expression in the same construct, suppressing indentation violations.
+     */
+    private boolean allowVerticalAlignment;
+
+    /**
      * Getter to query strict indent level in line wrapping case. If value is true, line wrap indent
      * have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent
      * could be bigger on any value user would like.
@@ -196,6 +202,27 @@ public class IndentationCheck extends AbstractCheck {
      */
     public void setForceStrictCondition(boolean value) {
         forceStrictCondition = value;
+    }
+
+    /**
+     * Getter to query whether vertical alignment of continuation lines is allowed.
+     *
+     * @return allowVerticalAlignment value.
+     */
+    public boolean isAllowVerticalAlignment() {
+        return allowVerticalAlignment;
+    }
+
+    /**
+     * Setter to allow vertical alignment of continuation lines. If value is true, indentation
+     * violations are suppressed when continuation lines vertically align with a reference
+     * expression in the same construct.
+     *
+     * @param value user's value of allowVerticalAlignment.
+     * @since 13.7.0
+     */
+    public void setAllowVerticalAlignment(boolean value) {
+        allowVerticalAlignment = value;
     }
 
     /**

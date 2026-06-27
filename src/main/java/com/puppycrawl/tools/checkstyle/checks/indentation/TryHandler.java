@@ -104,8 +104,9 @@ public class TryHandler extends BlockParentHandler {
             final IndentLevel expectedIdent = new IndentLevel(getIndent(), 0,
                 getIndentCheck().getLineWrappingIndentation());
 
-            if (!getIndentCheck().getVerticalAlignmentHandler()
-                    .isVerticallyAligned(parenAst)) {
+            if (!getIndentCheck().isAllowVerticalAlignment()
+                    || !getIndentCheck().getVerticalAlignmentHandler()
+                            .isVerticallyAligned(parenAst)) {
                 checkChildIndentation(parenAst, subType, expectedIdent);
             }
         }
@@ -157,8 +158,9 @@ public class TryHandler extends BlockParentHandler {
                     nextSibling = resourceAst.getNextSibling();
                 }
                 if (isOnStartOfLine(resourceAst)) {
-                    if (!getIndentCheck().getVerticalAlignmentHandler()
-                            .isVerticallyAligned(resourceAst)) {
+                    if (!getIndentCheck().isAllowVerticalAlignment()
+                            || !getIndentCheck().getVerticalAlignmentHandler()
+                                    .isVerticallyAligned(resourceAst)) {
                         checkChildIndentation(
                                 resourceAst, subType, expectedResourceIndent);
                     }

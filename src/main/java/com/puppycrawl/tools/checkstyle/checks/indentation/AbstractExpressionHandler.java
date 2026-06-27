@@ -353,7 +353,9 @@ public abstract class AbstractExpressionHandler {
         // the correct indentation level
         if (mustMatch && !indentLevel.isAcceptable(start)
                 || !mustMatch && columnNumber == start && indentLevel.isGreaterThan(start)) {
-            if (!getIndentCheck().getVerticalAlignmentHandler().isVerticallyAligned(ast)) {
+            if (!getIndentCheck().isAllowVerticalAlignment()
+                    || !getIndentCheck().getVerticalAlignmentHandler()
+                            .isVerticallyAligned(ast)) {
                 logChildError(ast, start, indentLevel);
             }
         }
