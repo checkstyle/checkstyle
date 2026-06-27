@@ -50,7 +50,7 @@ public final class VerticalAlignmentHandler {
      *
      * @param instance the IndentationCheck instance using this handler
      */
-    public VerticalAlignmentHandler(IndentationCheck instance) {
+    public VerticalAlignmentHandler(final IndentationCheck instance) {
         indentCheck = instance;
     }
 
@@ -61,7 +61,7 @@ public final class VerticalAlignmentHandler {
      * @param node the node to check
      * @return true if the node's column matches an allowed alignment column
      */
-    public boolean isVerticallyAligned(DetailAST node) {
+    public boolean isVerticallyAligned(final DetailAST node) {
         Set<Integer> allowedVerticalAlignmentColumns = getAllowedVerticalAlignmentColumns(node);
         return allowedVerticalAlignmentColumns.contains(node.getColumnNo());
     }
@@ -73,7 +73,7 @@ public final class VerticalAlignmentHandler {
      * @param node the node to check
      * @return list of allowed alignment column numbers
      */
-    private Set<Integer> getAllowedVerticalAlignmentColumns(DetailAST node) {
+    private Set<Integer> getAllowedVerticalAlignmentColumns(final DetailAST node) {
         Set<Integer> columns = new HashSet<>();
         Stream.of(
                 getAllowedColumnForParameterDefinition(node),
@@ -91,7 +91,7 @@ public final class VerticalAlignmentHandler {
     }
 
     private Set<Integer> getAllowedColumnForParameterDefinition(
-            DetailAST node) {
+            final DetailAST node) {
         Set<Integer> result = new HashSet<>();
         if (findAncestorByPredicate(
                 node,
@@ -110,7 +110,7 @@ public final class VerticalAlignmentHandler {
     }
 
     private Set<Integer> getAllowedColumnForExpressionInElist(
-            DetailAST node) {
+            final DetailAST node) {
         Set<Integer> result = new HashSet<>();
         if (findAncestorByPredicate(
                 node,
@@ -130,7 +130,7 @@ public final class VerticalAlignmentHandler {
     }
 
     private Set<Integer> getAllowedColumnForAnnotationMemberValuePair(
-            DetailAST node) {
+            final DetailAST node) {
         Set<Integer> result = new HashSet<>();
         if (findAncestorByPredicate(
                 node,
@@ -149,7 +149,7 @@ public final class VerticalAlignmentHandler {
     }
 
     private Set<Integer> getAllowedColumnForArithmeticBooleanExpression(
-            DetailAST node) {
+            final DetailAST node) {
         Set<Integer> result = new HashSet<>();
         findAncestorByPredicate(
                 node,
@@ -162,7 +162,7 @@ public final class VerticalAlignmentHandler {
     }
 
     private Set<Integer> getAllowedColumnForTernaryExpression(
-            DetailAST node) {
+            final DetailAST node) {
         Set<Integer> result = new HashSet<>();
         Optional<DetailAST> questionOpt = findAncestorByPredicate(
                 node,
@@ -196,7 +196,7 @@ public final class VerticalAlignmentHandler {
     }
 
     private Set<Integer> getAllowedColumnForCommaSeparatedVar(
-            DetailAST node) {
+            final DetailAST node) {
         Set<Integer> result = new HashSet<>();
         Optional<DetailAST> varDefOpt = findAncestorByPredicate(
                 node,
@@ -235,7 +235,7 @@ public final class VerticalAlignmentHandler {
     }
 
     private Set<Integer> getAllowedColumnForChainedCallOrField(
-            DetailAST node) {
+            final DetailAST node) {
         Set<Integer> result = new HashSet<>();
         if (TokenUtil.isOfType(node, TokenTypes.DOT)) {
             final DetailAST firstChild = node.getFirstChild();
@@ -270,7 +270,7 @@ public final class VerticalAlignmentHandler {
     }
 
     private Set<Integer> getAllowedColumnForForLoopParts(
-            DetailAST node) {
+            final DetailAST node) {
         Set<Integer> result = new HashSet<>();
         findAncestorByPredicate(
                 node,
@@ -290,7 +290,7 @@ public final class VerticalAlignmentHandler {
     }
 
     private Set<Integer> getAllowedColumnForTryResource(
-            DetailAST node) {
+            final DetailAST node) {
         Set<Integer> result = new HashSet<>();
         findAncestorByPredicate(
                 node,
@@ -317,7 +317,7 @@ public final class VerticalAlignmentHandler {
     }
 
     private Set<Integer> getAllowedColumnForExpressionInArrayInit(
-        DetailAST node) {
+        final DetailAST node) {
         Set<Integer> result = new HashSet<>();
         if (findAncestorByPredicate(
             node,
@@ -337,7 +337,7 @@ public final class VerticalAlignmentHandler {
     }
 
     private static Optional<DetailAST> findAncestorByPredicate(
-        DetailAST node, Predicate<DetailAST> predicate) {
+        final DetailAST node, final Predicate<DetailAST> predicate) {
         Optional<DetailAST> matchedAncestor = Optional.empty();
         DetailAST current = node;
         while (current != null) {
@@ -357,7 +357,7 @@ public final class VerticalAlignmentHandler {
      * @param node2 second node
      * @return true if both line and column match
      */
-    private static boolean isAtSamePosition(DetailAST node1, DetailAST node2) {
+    private static boolean isAtSamePosition(final DetailAST node1, final DetailAST node2) {
         return node1.getColumnNo() == node2.getColumnNo()
                 && node1.getLineNo() == node2.getLineNo();
     }
@@ -369,7 +369,7 @@ public final class VerticalAlignmentHandler {
      * @param root the root of the subtree
      * @return the top-leftmost AST node found
      */
-    private DetailAST getTopLeftmostNodeInTree(DetailAST root) {
+    private DetailAST getTopLeftmostNodeInTree(final DetailAST root) {
         DetailAST result = topLeftmostCache.get(root);
         if (result == null) {
             DetailAST best = root;
