@@ -18,8 +18,11 @@ public interface Example3 {
 
   public static final String UNKNOWN = "Unknown";
   String OTHER = "Other";
+  // ok, because 'violateImpliedFinalField' is false
+  // ok, because 'violateImpliedPublicField' is false
+  // ok, because 'violateImpliedStaticField' is false
 
-  public static Example3 instance() { return null; }
+  public static Address instance() {return null;}
 
   public abstract Address createAddress(String addressLine, String city);
   List<Address> findAddresses(String city);

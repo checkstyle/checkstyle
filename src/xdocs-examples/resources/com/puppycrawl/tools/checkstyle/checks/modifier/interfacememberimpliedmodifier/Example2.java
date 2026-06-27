@@ -21,7 +21,7 @@ public interface Example2 {
   //    'Implied modifier 'final' should be explicit'
   //    'Implied modifier 'public' should be explicit'
   //    'Implied modifier 'static' should be explicit'
-  public static Example2 instance() { return null; }
+  public static Address instance() {return null;}
 
   public abstract Address createAddress(String addressLine, String city);
   List<Address> findAddresses(String city);
@@ -29,8 +29,8 @@ public interface Example2 {
   //    'Implied modifier 'abstract' should be explicit'
   //    'Implied modifier 'public' should be explicit'
   interface Address {
-    // ok above because of configured properties
-    // ok above because of configured properties
+    // ok, because violateImpliedPublicNested=false
+    // ok, because violateImpliedStaticNested=false
 
     String getCity();
     // 2 violations above:
