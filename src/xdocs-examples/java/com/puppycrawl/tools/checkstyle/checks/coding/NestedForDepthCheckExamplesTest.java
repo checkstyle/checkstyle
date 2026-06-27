@@ -34,9 +34,9 @@ public class NestedForDepthCheckExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "22:9: " + getCheckMessage(MSG_KEY, 2, 1),
-            "31:9: " + getCheckMessage(MSG_KEY, 2, 1),
-            "32:11: " + getCheckMessage(MSG_KEY, 3, 1),
+            "21:9: " + getCheckMessage(MSG_KEY, 2, 1),
+            "29:9: " + getCheckMessage(MSG_KEY, 2, 1),
+            "30:11: " + getCheckMessage(MSG_KEY, 3, 1),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
