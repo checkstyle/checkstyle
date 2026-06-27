@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.nestedifdepth;
 
 // xdoc section -- start
 class Example2 {
-  void Example2() {
+  void Test() {
     if (true) {
       if (true) {}
       else {}

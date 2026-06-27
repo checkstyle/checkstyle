@@ -104,7 +104,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/coding/explicitinitialization/Example2",
             "checks/coding/illegalsymbol/Example4",
             "checks/coding/nestedfordepth/Example2",
-            "checks/coding/nestedifdepth/Example2",
             "checks/coding/onestatementperline/Example2",
             "checks/coding/packagedeclaration/Example2",
             "checks/coding/unnecessarysemicolonafteroutertypedeclaration/Example2",
