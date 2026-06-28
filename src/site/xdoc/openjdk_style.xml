@@ -630,10 +630,24 @@
                   <span class="wrapper inline">
                     <img src="images/ban_red.png" alt="" />
                   </span>
-                  False positive is prsent for lambda expression:
+                  False positive is present for lambda expression:
                   <a href="https://github.com/checkstyle/checkstyle/issues/20541">
                     #20541
                   </a>
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/separatorwrap.html#SeparatorWrap">SeparatorWrap</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeparatorWrap">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  We can not distinguish whether a line breaks into multiple statements or
+                  expressions or the line is simply wrapped.
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulewrappingexpressions">
