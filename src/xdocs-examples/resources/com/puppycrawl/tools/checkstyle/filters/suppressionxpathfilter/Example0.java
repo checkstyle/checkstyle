@@ -2,23 +2,27 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="SuppressionXpathFilter">
-      <property name="file" value="${config.folder}/suppressions13.xml"/>
+      <property name="file" value="${config.folder}/suppressions0.xml"/>
+      <property name="optional" value="false"/>
     </module>
-    <module name="MethodName"/>
+    <module name="CyclomaticComplexity">
+      <property name="max" value="3"/>
+    </module>
   </module>
 </module>
 */
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
 import javax.annotation.processing.Generated;
+
 // xdoc section -- start
 
-public class Example13 {
-  int age = 23; // violation 2 lines below "Name 'SetSomeVar' must match pattern"
+public class Example0 {
+  int age = 23;
   private int wordCount = 11;
   public void SetSomeVar() {}
   public void DoMATH() {}
-  // violation above, "Name 'DoMATH' must match pattern"
+
   public void throwsMethod() throws RuntimeException {}
 
   final public void legacyMethod() {
@@ -34,7 +38,7 @@ public class Example13 {
     int WeirdName;
   }
 
-  public void sayHelloWorld() {
+  public void sayHelloWorld() { // filtered violation 'Cyclomatic Complexity is 4'
     if (age > 0 && wordCount > 0) {
       System.out.println("Hello");
     }
@@ -42,7 +46,7 @@ public class Example13 {
       System.out.println("World");
     }
   }
-  // filtered violation 2 lines below "Name 'Test1' must match pattern"
+
   @Generated("first")
   public void Test1() {}
 }
