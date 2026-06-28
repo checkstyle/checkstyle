@@ -11,12 +11,41 @@
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
 
-// xdoc section -- start
-public class Example4 {
-  int y = 3;
-  int x = 5; // violation, "'VARIABLE_DEF' should be separated from previous line."
-  public void testMethod() {}
-  // filtered violation above "'METHOD_DEF' should be separated from previous line."
+import javax.annotation.processing.Generated;
 
+// xdoc section -- start
+// violation 3 lines below "'VARIABLE_DEF' should be separated from previous line"
+public class Example4 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {} // filtered violation 'separated from previous line'
+  public void DoMATH() {}     // filtered violation 'separated from previous line'
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age > 0 && wordCount > 0) {
+      System.out.println("Hello");
+    }
+    else if (age < 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
 }
 // xdoc section -- end

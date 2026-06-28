@@ -13,19 +13,41 @@
 */
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
+import javax.annotation.processing.Generated;
 
 // xdoc section -- start
+
 public class Example1 {
-  int a, b, c, d, e, n;
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
 
   public void sayHelloWorld() { // filtered violation 'Cyclomatic Complexity is 4'
-    if (a == b) {
-      System.out.println("Hello World");
+    if (age > 0 && wordCount > 0) {
+      System.out.println("Hello");
     }
-    else if (a == 0 && b == c) {
-      System.out.println("*Silence*");
+    else if (age < 0) {
+      System.out.println("World");
     }
   }
 
+  @Generated("first")
+  public void Test1() {}
 }
 // xdoc section -- end
