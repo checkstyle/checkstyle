@@ -275,6 +275,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BNOT,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
+            TokenTypes.INDEX_OP,
         };
     }
 
@@ -326,6 +327,8 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BOR,
             TokenTypes.BAND,
             TokenTypes.QUESTION,
+            TokenTypes.INDEX_OP,
+            TokenTypes.LITERAL_NEW,
         };
     }
 
@@ -356,24 +359,8 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
                 log(ast, MSG_IDENT, ast.getText());
             }
             // A literal (numeric or string) surrounded by parentheses.
-            else if (surrounded && TokenUtil.isOfType(type, LITERALS)) {
+            else if (checkLiteralSurroundedByParens(ast, type, surrounded)) {
                 parentToSkip = ast.getParent();
-                if (type == TokenTypes.STRING_LITERAL) {
-                    log(ast, MSG_STRING,
-                        chopString(ast.getText()));
-                }
-                else if (type == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
-                    // Strip newline control characters to keep message as single-line, add
-                    // quotes to make string consistent with STRING_LITERAL
-                    final String logString = QUOTE
-                        + NEWLINE.matcher(
-                            ast.getFirstChild().getText()).replaceAll("\\\\n")
-                        + QUOTE;
-                    log(ast, MSG_STRING, chopString(logString));
-                }
-                else {
-                    log(ast, MSG_LITERAL, ast.getText());
-                }
             }
             // The rhs of an assignment surrounded by parentheses.
             else if (TokenUtil.isOfType(type, ASSIGNMENTS)) {
@@ -382,6 +369,9 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
                 if (last.getType() == TokenTypes.RPAREN) {
                     log(ast, MSG_ASSIGN);
                 }
+            }
+            else if (checkArrayOrNewSurroundedByParens(ast, type, surrounded)) {
+                parentToSkip = ast.getParent();
             }
         }
     }
@@ -550,6 +540,63 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         return TokenUtil.isOfType(type, CONDITIONAL_OPERATOR)
                 || TokenUtil.isOfType(type, RELATIONAL_OPERATOR)
                 || TokenUtil.isOfType(type, BITWISE_BINARY_OPERATORS);
+    }
+
+    /**
+     * Check if token type is array access, field/method access, or constructor call.
+     *
+     * @param type Token type to check
+     * @return true if it is INDEX_OP or LITERAL_NEW
+     */
+    private static boolean isArrayOrNew(int type) {
+        return TokenUtil.isOfType(type,
+                TokenTypes.INDEX_OP, TokenTypes.LITERAL_NEW);
+    }
+
+    /**
+     * Check if array access or constructor is surrounded by parentheses and log violation.
+     *
+     * @param ast the AST to check
+     * @param type the token type
+     * @param surrounded true if the token is surrounded by parentheses
+     * @return true if a violation was logged
+     */
+    private boolean checkArrayOrNewSurroundedByParens(DetailAST ast, int type,
+            boolean surrounded) {
+        final boolean result = surrounded && isArrayOrNew(type);
+        if (result) {
+            log(ast, MSG_EXPR);
+        }
+        return result;
+    }
+
+    /**
+     * Check if a literal is surrounded by parentheses and log violation.
+     *
+     * @param ast the AST to check
+     * @param type the token type
+     * @param surrounded true if the token is surrounded by parentheses
+     * @return true if a violation was logged
+     */
+    private boolean checkLiteralSurroundedByParens(DetailAST ast, int type,
+            boolean surrounded) {
+        final boolean result = surrounded && TokenUtil.isOfType(type, LITERALS);
+        if (result) {
+            if (type == TokenTypes.STRING_LITERAL) {
+                log(ast, MSG_STRING, chopString(ast.getText()));
+            }
+            else if (type == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
+                final String logString = QUOTE
+                    + NEWLINE.matcher(
+                        ast.getFirstChild().getText()).replaceAll("\\\\n")
+                    + QUOTE;
+                log(ast, MSG_STRING, chopString(logString));
+            }
+            else {
+                log(ast, MSG_LITERAL, ast.getText());
+            }
+        }
+        return result;
     }
 
     /**
