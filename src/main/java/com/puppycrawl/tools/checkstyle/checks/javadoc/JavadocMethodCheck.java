@@ -446,13 +446,45 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
      * @return {@code true} if the declaration is inside the configured access scope
      */
     private boolean shouldCheck(final DetailAST ast) {
-        final Optional<AccessModifierOption> surroundingAccessModifier = CheckUtil
-                .getSurroundingAccessModifier(ast);
+        final Optional<AccessModifierOption> surroundingAccessModifier =
+                getSurroundingAccessModifier(ast);
         final AccessModifierOption accessModifier = CheckUtil
                 .getAccessModifierFromModifiersToken(ast);
         return surroundingAccessModifier.isPresent() && Arrays.stream(accessModifiers)
                         .anyMatch(modifier -> modifier == surroundingAccessModifier.get())
                 && Arrays.stream(accessModifiers).anyMatch(modifier -> modifier == accessModifier);
+    }
+
+    /**
+     * Returns the access modifier of the block surrounding the given method or constructor.
+     * Top-level methods in a JEP 512 compact source file have no explicit enclosing type
+     * declaration; they are members of an implicit top-level class and are treated as
+     * being surrounded by package-private access.
+     *
+     * @param ast the method or constructor node.
+     * @return the access modifier of the surrounding block, if any.
+     */
+    private static Optional<AccessModifierOption> getSurroundingAccessModifier(
+            final DetailAST ast) {
+        final Optional<AccessModifierOption> result;
+        if (isTopLevelCompactSourceMethod(ast)) {
+            result = Optional.of(AccessModifierOption.PACKAGE);
+        }
+        else {
+            result = CheckUtil.getSurroundingAccessModifier(ast);
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether the given node is a top-level method or constructor declared directly
+     * in a JEP 512 compact source file.
+     *
+     * @param ast the method or constructor node.
+     * @return {@code true} if the node is a top-level member of a compact source file.
+     */
+    private static boolean isTopLevelCompactSourceMethod(final DetailAST ast) {
+        return ast.getParent().getType() == TokenTypes.COMPACT_COMPILATION_UNIT;
     }
 
     /**
