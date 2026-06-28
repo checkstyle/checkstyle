@@ -763,6 +763,8 @@ public class PackageObjectFactory implements ModuleFactory {
      * Fill short-to-full module names map with Checks from modifier package.
      */
     private static void fillChecksFromModifierPackage() {
+        NAME_TO_FULL_MODULE_NAME.put("AnnotatedMethodVisibilityModifierCheck",
+                BASE_PACKAGE + ".checks.modifier.AnnotatedMethodVisibilityModifierCheck");
         NAME_TO_FULL_MODULE_NAME.put("ClassMemberImpliedModifierCheck",
             BASE_PACKAGE + ".checks.modifier.ClassMemberImpliedModifierCheck");
         NAME_TO_FULL_MODULE_NAME.put("InterfaceMemberImpliedModifierCheck",
