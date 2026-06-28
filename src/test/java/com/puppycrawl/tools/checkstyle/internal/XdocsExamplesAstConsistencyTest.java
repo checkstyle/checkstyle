@@ -101,7 +101,6 @@ public class XdocsExamplesAstConsistencyTest {
      * <p>Until: <a href="https://github.com/checkstyle/checkstyle/issues/18435">...</a>
      */
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
-            "checks/coding/illegalsymbol/Example4",
             "checks/coding/onestatementperline/Example2",
             "checks/coding/packagedeclaration/Example2",
             "checks/coding/unnecessarysemicolonafteroutertypedeclaration/Example2",
