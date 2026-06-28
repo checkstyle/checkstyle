@@ -5,6 +5,6 @@
 
 <suppressions>
   <suppress-xpath checks="CyclomaticComplexity"
-  files="Example1.java|Test.java"
+  files="Example0.java|Test.java"
   query="//METHOD_DEF[./IDENT[@text='sayHelloWorld']]"/>
 </suppressions>
