@@ -310,17 +310,37 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  int a, b, c, d, e, n;
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
 
   public void sayHelloWorld() { // filtered violation 'Cyclomatic Complexity is 4'
-    if (a == b) {
-      System.out.println("Hello World");
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
     }
-    else if (a == 0 &amp;&amp; b == c) {
-      System.out.println("*Silence*");
+    else if (age &lt; 0) {
+      System.out.println("World");
     }
   }
 
+  @Generated("first")
+  public void Test1() {}
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -354,10 +374,40 @@ public class Example1 {
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// filtered violation below "'package' should be separated from previous line"
-package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
-public class Example2 { }
-// violation above, "'CLASS_DEF' should be separated from previous line"
+// violation 3 lines below "'VARIABLE_DEF' should be separated from previous line"
+public class Example2 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {} // violation 'should be separated from previous line'
+  public void DoMATH() {}     // violation 'should be separated from previous line'
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
+}
 </code></pre></div><hr class="example-separator"/>
 
         <p id="Example3-config">
@@ -392,20 +442,39 @@ public class Example2 { }
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example3
-{
+// filtered violation below "'{' at column 23 should be on a new line."
+public class Example3 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
 
-  // filtered violation below "'{' at column 31 should be on a new line."
-  public void testMethodOne() {
-    int x = 5;
+  public void throwsMethod() throws RuntimeException {}
+  // violation below, "'{' at column 36 should be on a new line."
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
   }
-
+  // violation below, "'{' at column 27 should be on a new line."
+  public void changeAge() {
+    age = 24;
+  }
+  // violation below, "'{' at column 28 should be on a new line."
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
   // violation below, "'{' at column 31 should be on a new line."
-  public void testMethodTwo() {
-    int z = 17;
-    int y;
+  public void sayHelloWorld() {// violation below, 'should be on a new line."
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    } // violation below, "'{' at column 23 should be on a new line."
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
   }
 
+  @Generated("first")
+  public void Test1() {}
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -440,12 +509,39 @@ public class Example3
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation 3 lines below "'VARIABLE_DEF' should be separated from previous line"
 public class Example4 {
-  int y = 3;
-  int x = 5; // violation, "'VARIABLE_DEF' should be separated from previous line."
-  public void testMethod() {}
-  // filtered violation above "'METHOD_DEF' should be separated from previous line."
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {} // filtered violation 'separated from previous line'
+  public void DoMATH() {}     // filtered violation 'separated from previous line'
 
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -479,12 +575,39 @@ public class Example4 {
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// filtered violation 4 lines below "Name 'SetSomeVar' must match pattern"
 public class Example5 {
-  // filtered violation below "Name 'SetSomeVar' must match pattern"
+  int age = 23;
+  private int wordCount = 11;
   public void SetSomeVar() {}
+  public void DoMATH() {} // violation, "Name 'DoMATH' must match pattern"
 
-  public void TestMethod() {} // violation, "Name 'TestMethod' must match pattern"
+  public void throwsMethod() throws RuntimeException {}
 
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {} // violation, "Name 'Test1' must match pattern"
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -522,14 +645,37 @@ public class Example5 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example6 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
 
   public void testMethod() {
-
     int TestVariable; // filtered violation 'Name 'TestVariable' must match pattern'
-
     int WeirdName; // violation, "Name 'WeirdName' must match pattern"
   }
 
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -567,13 +713,37 @@ public class Example6 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example7 {
-  public void DoMATH() {} // filtered violation "Name 'DoMATH' must match pattern"
-  public void DoEng() {} // violation, "Name 'DoEng' must match pattern"
-}
+  int age = 23; // violation, "'23' is a magic number."
+  private int wordCount = 11; // violation, "'11' is a magic number."
+  public void SetSomeVar() {}  // violation "Name 'SetSomeVar' must match pattern"
+  public void DoMATH() {}  // filtered violation "Name 'DoMATH' must match pattern"
 
-class Main {
-  int someField = 11; // violation, "'11' is a magic number."
-  void FOO() {} // filtered violation "Name 'FOO' must match pattern"
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24; // violation, "'24' is a magic number."
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {} // violation, "Name 'Test1' must match pattern"
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -613,17 +783,37 @@ class Main {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example8 {
-
   int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
 
   public void changeAge() {
     age = 24; // filtered violation 'Reference to instance variable'
   }
 
-  public int getAge() {
-    return age; // violation, 'Reference to instance variable'
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
   }
 
+  public void sayHelloWorld() { // violation below 'Reference to instance variable'
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) { // violation 'Reference to instance variable'
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) { // violation 'Reference to instance variable'
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -667,13 +857,37 @@ public class Example8 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example9 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
   // filtered violation below "Throwing 'RuntimeException' is not allowed."
-  public void throwsMethod() throws RuntimeException {
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
   }
 
-  // violation below, "Throwing 'RuntimeException' is not allowed."
-  public void sampleMethod() throws RuntimeException {
+  public void changeAge() {
+    age = 24;
   }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -713,16 +927,37 @@ public class Example9 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example10 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+
+  public void throwsMethod() throws RuntimeException {}
 
   final public void legacyMethod() { // filtered violation 'modifier out of order'
-    strictfp abstract class legacyClass {}
-    // filtered violation above 'modifier out of order'
+    strictfp abstract class Legacy {} // filtered violation 'modifier out of order'
   }
 
-  public void otherMethod() {
-    strictfp abstract class strangeClass {} // violation, 'modifier out of order'
+  public void changeAge() {
+    age = 24;
   }
 
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -793,7 +1028,37 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example11 {
+  int age = 23;  // violation "'23' is a magic number."
   private int wordCount = 11; // filtered violation "'11' is a magic number."
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;  // violation "'24' is a magic number."
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -837,7 +1102,37 @@ public class Example11 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example12 {
+  int age = 23;  // violation "'23' is a magic number."
   private int wordCount = 11; // filtered violation "'11' is a magic number."
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;  // violation "'24' is a magic number."
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -934,13 +1229,37 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example13 {
+  int age = 23; // violation 2 lines below "Name 'SetSomeVar' must match pattern"
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+  // violation above, "Name 'DoMATH' must match pattern"
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
   // filtered violation 2 lines below "Name 'Test1' must match pattern"
   @Generated("first")
   public void Test1() {}
-
-  // filtered violation 2 lines below "Name 'Test2' must match pattern"
-  @Generated("second")
-  public void Test2() {}
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -986,13 +1305,37 @@ public class Example13 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example14 {
+  int age = 23; // violation 2 lines below "Name 'SetSomeVar' must match pattern"
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+  // violation above "Name 'DoMATH' must match pattern"
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
   // violation 2 lines below "Name 'Test1' must match pattern"
   @Generated("first")
   public void Test1() {}
-
-  // filtered violation 2 lines below "Name 'Test2' must match pattern"
-  @Generated("second")
-  public void Test2() {}
 }
 </code></pre></div><hr class="example-separator"/>
 
