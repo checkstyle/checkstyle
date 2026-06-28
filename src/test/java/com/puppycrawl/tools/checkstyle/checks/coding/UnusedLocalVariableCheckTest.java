@@ -243,10 +243,10 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarNestedClasses3() throws Exception {
         final String[] expected = {
-            "37:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "p2"),
-            "55:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "o"),
-            "94:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
-            "96:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "38:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "p2"),
+            "56:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "o"),
+            "95:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
+            "97:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
         };
 
         verifyWithInlineConfigParser(
@@ -310,7 +310,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVarTestWarningSeverity() throws Exception {
         final String[] expected = {
-            "15:19: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "p2"),
+            "17:19: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "p2"),
         };
 
         verifyWithInlineConfigParser(

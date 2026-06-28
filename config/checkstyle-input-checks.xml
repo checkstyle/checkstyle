@@ -45,7 +45,11 @@
       <property name="query"
                 value="//MODIFIERS/SINGLE_LINE_COMMENT[
                        ./COMMENT_CONTENT[contains(@text, 'violation')]
-                       and preceding-sibling::ANNOTATION]"/>
+                       and preceding-sibling::ANNOTATION
+                       and (@lineNo > preceding-sibling::ANNOTATION/@lineNo or
+                            (@lineNo = preceding-sibling::ANNOTATION/@lineNo
+                             and @columnNo >
+                                 preceding-sibling::ANNOTATION/@columnNo))]"/>
       <message key="matchxpath.match"
                value="Violation comment must not be placed between an annotation and its target.
 Place it before the annotation block instead."/>
