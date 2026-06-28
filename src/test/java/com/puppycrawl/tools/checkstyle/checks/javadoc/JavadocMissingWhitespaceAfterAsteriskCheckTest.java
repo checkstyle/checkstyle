@@ -82,19 +82,19 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
     @Test
     public void testInvalid() throws Exception {
         final String[] expected = {
-            "10:4: " + getCheckMessage(MSG_KEY),
-            "16:7: " + getCheckMessage(MSG_KEY),
-            "21:11: " + getCheckMessage(MSG_KEY),
-            "28:11: " + getCheckMessage(MSG_KEY),
-            "33:13: " + getCheckMessage(MSG_KEY),
-            "39:7: " + getCheckMessage(MSG_KEY),
-            "44:7: " + getCheckMessage(MSG_KEY),
-            "49:7: " + getCheckMessage(MSG_KEY),
+            "11:4: " + getCheckMessage(MSG_KEY),
+            "17:7: " + getCheckMessage(MSG_KEY),
+            "23:11: " + getCheckMessage(MSG_KEY),
+            "30:11: " + getCheckMessage(MSG_KEY),
+            "35:13: " + getCheckMessage(MSG_KEY),
+            "42:7: " + getCheckMessage(MSG_KEY),
+            "48:7: " + getCheckMessage(MSG_KEY),
             "54:7: " + getCheckMessage(MSG_KEY),
-            "56:7: " + getCheckMessage(MSG_KEY),
-            "61:8: " + getCheckMessage(MSG_KEY),
-            "65:8: " + getCheckMessage(MSG_KEY),
-            "69:10: " + getCheckMessage(MSG_KEY),
+            "61:7: " + getCheckMessage(MSG_KEY),
+            "63:7: " + getCheckMessage(MSG_KEY),
+            "68:8: " + getCheckMessage(MSG_KEY),
+            "72:8: " + getCheckMessage(MSG_KEY),
+            "76:10: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMissingWhitespaceAfterAsteriskInvalid.java"), expected);
