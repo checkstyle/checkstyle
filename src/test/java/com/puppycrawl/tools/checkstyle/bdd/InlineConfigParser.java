@@ -800,11 +800,7 @@ public final class InlineConfigParser {
         "filters/suppresswithnearbytextfilter/"
             + "InputSuppressWithNearbyTextFilterNearbyTextPatternCompactVariableCheckPattern.java",
         "treewalker/InputTreeWalkerSuppressionCommentFilter.java",
-        "treewalker/InputTreeWalkerSuppressionXpathFilterAbsolute.java",
-        "utils/annotationutil/InputAnnotationUtil1.java",
-        "utils/annotationutil/InputAnnotationUtil2.java",
-        "utils/annotationutil/InputAnnotationUtilNoMatchingAnnotation.java"
-
+        "treewalker/InputTreeWalkerSuppressionXpathFilterAbsolute.java"
     );
 
     // This is a hack until https://github.com/checkstyle/checkstyle/issues/13845
