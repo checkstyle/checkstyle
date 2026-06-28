@@ -12,7 +12,6 @@ acm
 Aconfig
 actionlint
 addons
-Adoptium
 adr
 AFBR
 AFilter
@@ -554,7 +553,6 @@ hne
 homepage
 horizontalwhitespace
 Hostname
-hotspot
 href
 htaccess
 htag
@@ -1144,7 +1142,6 @@ refactor
 refactoring
 refaster
 refid
-refreshenv
 regex
 regexp
 regexpheader
@@ -1504,7 +1501,6 @@ Wifi
 wiki
 wikipedia
 wiktionary
-windowsservercore
 withgoogle
 wj
 wnd
