@@ -168,6 +168,16 @@
                   SL_ASSIGN, BXOR_ASSIGN, BOR_ASSIGN, BAND_ASSIGN, METHOD_REF"/>
     </module>
 
+    <module name="SeparatorWrap">
+      <property name="id" value="MethodChainDotWrap"/>
+      <property name="tokens" value="DOT"/>
+      <property name="option" value="nl"/>
+    </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="id" value="MethodChainDotWrap"/>
+      <property name="query" value="//DOT[not(parent::METHOD_CALL)]"/>
+    </module>
+
     <module name="PackageName">
       <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
     </module>
