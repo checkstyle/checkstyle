@@ -262,7 +262,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     @Test
     public void testLiteralNewCondition() throws Exception {
         final String[] expected = {
-            "12:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
+            "12:13: " + getCheckMessage(UnusedLocalVariableCheck.class,
                     UnusedLocalVariableCheck.MSG_UNUSED_LOCAL_VARIABLE, "j"),
         };
 

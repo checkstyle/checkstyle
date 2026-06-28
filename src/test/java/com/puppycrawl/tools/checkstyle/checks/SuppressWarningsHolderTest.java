@@ -581,9 +581,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     @Test
     public void testIdent2() throws Exception {
         final String[] expected = {
-            "41:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
+            "41:13: " + getCheckMessage(UnusedLocalVariableCheck.class,
                     MSG_UNUSED_LOCAL_VARIABLE, "a"),
-            "46:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
+            "46:13: " + getCheckMessage(UnusedLocalVariableCheck.class,
                     MSG_UNUSED_LOCAL_VARIABLE, "a"),
         };
         verifyWithInlineConfigParser(
