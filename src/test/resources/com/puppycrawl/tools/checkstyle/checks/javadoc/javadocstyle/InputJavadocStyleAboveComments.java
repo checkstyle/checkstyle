@@ -1,6 +1,7 @@
 /*
 JavadocStyle
 scope = (default)private
+excludeScope = (default)null
 checkFirstSentence = (default)true
 checkHtml = (default)true
 checkEmptyJavadoc = (default)false
