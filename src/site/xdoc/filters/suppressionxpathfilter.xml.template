@@ -47,25 +47,28 @@
       </subsection>
       <subsection name="Examples" id="SuppressionXpathFilter_Examples">
 
-        <p id="Example1-config">
-          For example #1, the following configuration example directs the
+        <p id="Example0-config">
+          For example #0, the following configuration example directs the
           Checker to use a <code>SuppressionXpathFilter</code>
           with suppressions
-          file <code>config/suppressions1.xml</code>:
+          file <code>config/suppressions0.xml</code> and
+          <code>optional</code> property set to <code>false</code>:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example1.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example0.java"/>
           <param name="type" value="config"/>
         </macro>
         <p>
           The following suppressions XML document directs
           a <code>SuppressionXpathFilter</code> to
           reject <code>CyclomaticComplexity</code> violations for
-          all methods with name <i>sayHelloWorld</i> inside <i>Example1</i>
-          and <i>Test</i> files:
+          all methods with name <i>sayHelloWorld</i> inside <i>Example0</i>
+          and <i>Test</i> files.
+          The <code>optional</code> property is set to <code>false</code>,
+          which means the suppressions file must exist, otherwise checkstyle ends with error.
         </p>
-        <p id="suppressions1-raw">
+        <p id="suppressions0-raw">
           Currently, xpath queries support one type of attribute <code>@text</code>.
           <code>@text</code> - addresses to the text value of the node. For example: variable name,
           annotation name, text content, etc.
@@ -81,8 +84,28 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/suppressions1.xml"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/suppressions0.xml"/>
           <param name="type" value="raw"/>
+        </macro>
+        <p id="Example0-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example0.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example1-config">
+          For example #1, the following configuration demonstrates the
+          <code>optional</code> property. The <code>file</code> property points to a
+          non-existent suppressions file and <code>optional</code> is set to <code>true</code>,
+          so suppressions are skipped and violations are reported:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example1.java"/>
+          <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
           Results:
