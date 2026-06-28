@@ -115,6 +115,13 @@
       <property name="ignoreStatic" value="false"/>
       <property name="ignoreStaticFinal" value="false"/>
     </module>
+    <module name="ConstantName">
+      <property name="format" value="^[A-Z]+(_[A-Z]+)*$"/>
+    </module>
+    <module name="IllegalIdentifierName">
+      <property name="tokens" value="ENUM_CONSTANT_DEF"/>
+      <property name="format" value="^[A-Z]+(_[A-Z]+)*$"/>
+    </module>
 
     <module name="AvoidStarImport">
       <property name="maxAllowedStarImports" value="1"/>
