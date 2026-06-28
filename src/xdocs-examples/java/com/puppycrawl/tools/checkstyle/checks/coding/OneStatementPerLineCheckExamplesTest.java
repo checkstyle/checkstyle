@@ -33,11 +33,11 @@ public class OneStatementPerLineCheckExamplesTest extends AbstractExamplesModule
     public void testExample1() throws Exception {
         final String[] expected = {
             "17:59: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
+            "22:23: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
             "23:23: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
-            "24:23: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
-            "30:59: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
-            "32:15: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
-            "34:19: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
+            "29:59: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
+            "31:15: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
+            "33:19: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
