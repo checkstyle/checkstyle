@@ -10,6 +10,217 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 13.7.0">
+      <div class="releaseDate">28.06.2026</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            UnusedLocalVariable: new property jdkVersion to allow unused named pattern matching
+            variables for pre-Java 22 code.
+            Author: Zaheer Ahmad
+            <a href="https://github.com/checkstyle/checkstyle/issues/20357">#20357</a>
+          </li>
+          <li>
+            update MissingJavadocMethodCheck to use AST of javadoc.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19148">#19148</a>
+          </li>
+          <li>
+            update JavadocMethod to use AST of javadoc.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19144">#19144</a>
+          </li>
+          <li>
+            OverloadMethodsDeclarationOrder: new property required to order overloaded methods
+            according to increasing parameter count.
+            Author: Aman Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/19889">#19889</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Javadoc parse error on @link label containing Java array initializer braces.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/20395">#20395</a>
+          </li>
+          <li>
+            Add checks for OpenJDK style §4.6 - Constants.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/20452">#20452</a>
+          </li>
+          <li>
+            Fix default property validation in InlineConfigParser.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/20462">#20462</a>
+          </li>
+          <li>
+            Add checks for Openjdk  style  §3.8.3 - Wrapping Expressions.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/20437">#20437</a>
+          </li>
+          <li>
+            Add checks for OpenJDK Style §3.5 - Modifiers.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/19629">#19629</a>
+          </li>
+          <li>
+            Add checks for OpenJDK  §3.4 - Class structure.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/20428">#20428</a>
+          </li>
+          <li>
+            Add checks for OpenJDK Style  §3.3 - Import statements.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/19623">#19623</a>
+          </li>
+          <li>
+            UnnecessarySemicolonAfterTypeMemberDeclarationCheck: trailing semicolon after nested
+            type not flagged in compact source files (JEP 512).
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/20271">#20271</a>
+          </li>
+          <li>
+            DeclarationOrderCheck: declaration order not enforced on top-level members in compact
+            source files (JEP 512).
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/20223">#20223</a>
+          </li>
+          <li>
+            AnnotationLocationCheck: annotation on top-level variable not flagged in compact source
+            files (JEP 512).
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/20219">#20219</a>
+          </li>
+          <li>
+            Add checks for OpenJDK Style §3.4.1 - Order of Constructors and Overloaded Methods.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/19805">#19805</a>
+          </li>
+          <li>
+            UnnecessarySemicolonAfterOuterTypeDeclarationCheck reports false positive on JEP 512
+            compact source files.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/20269">#20269</a>
+          </li>
+          <li>
+            Javadoc parse error while parsing formatted @value.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/20391">#20391</a>
+          </li>
+          <li>
+            Documentation Comments Style Guide - Required Tags.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19915">#19915</a>
+          </li>
+          <li>
+            RequireThisCheck: NullPointerException on compact source files (JEP 512).
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/19972">#19972</a>
+          </li>
+          <li>
+            Add checks for OpenJDK Style §4.2 - Class, Interface and Enum Names.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/20385">#20385</a>
+          </li>
+          <li>
+            InvalidJavadocPositionCheck: false positive on correctly-placed Javadoc in compact
+            source files (JEP 512).
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/20217">#20217</a>
+          </li>
+          <li>
+            Add checks for OpenJDK Style §3.13 - Redundant Paranthesis.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/20093">#20093</a>
+          </li>
+          <li>
+            OuterTypeNumberCheck reports false positive on JEP 512 compact source files.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/20268">#20268</a>
+          </li>
+          <li>
+            Javadoc parse error for generic outer class inner-class link.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/20283">#20283</a>
+          </li>
+          <li>
+            Documentation Comments Style Guide - First Sentence.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19835">#19835</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Updating properties in Input files to mention all default properties.
+            Author: Dhanush Pothulapati, Vinayak, stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>
+          </li>
+          <li>
+            Remove CirrusCI since it has shut down.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/20473">#20473</a>
+          </li>
+          <li>
+            Move violation comments out of Javadoc for all input files.
+            Author: surajgojanur, BitsToBytes-Saksham
+            <a href="https://github.com/checkstyle/checkstyle/issues/19764">#19764</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: BitsToBytes-Saksham
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Fix xdocs Examples AST Consistency Test (Reduce suppressions list).
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/18435">#18435</a>
+          </li>
+          <li>
+            Use violation message pattern &#39;first line&#39;.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/20356">#20356</a>
+          </li>
+          <li>
+            Xdocs examples should reject violation comments between annotations and declarations.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/20382">#20382</a>
+          </li>
+          <li>
+            Add client-side search functionality to Checkstyle documentation website.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/19507">#19507</a>
+          </li>
+          <li>
+            Move violation comments above of annotated methods.
+            Author: surajgojanur
+            <a href="https://github.com/checkstyle/checkstyle/issues/19803">#19803</a>
+          </li>
+          <li>
+            Update XdocsPagesTest for sun_checks.xml to use chapterwise testing.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/20396">#20396</a>
+          </li>
+          <li>
+            doc: removed contribution guidelines in CONTRIBUTING.md and fixed build instructions
+            hyperlink in README.md.
+            Author: Dhanush Pothulapati
+          </li>
+          <li>
+            Add &#39;first line&#39; and &#39;last line&#39; violation hint patterns to
+            InlineConfigParser.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/20340">#20340</a>
+          </li>
+          <li>
+            Organize openrewrite staticanalysis composite recipes by groups as it is done on
+            openrewrite website.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/18673">#18673</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 13.6.0">
       <div class="releaseDate">15.06.2026</div>
       <p>New:</p>
