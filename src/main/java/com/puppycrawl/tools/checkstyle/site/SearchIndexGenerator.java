@@ -133,6 +133,39 @@ public final class SearchIndexGenerator {
     /** String literal for Property document type. */
     private static final String PROPERTY_TYPE = "Property";
 
+    /** String literal for Check document type. */
+    private static final String CHECK_TYPE = "Check";
+
+    /** String literal for Filter document type. */
+    private static final String FILTER_TYPE = "Filter";
+
+    /** String literal for File Filter document type. */
+    private static final String FILE_FILTER_TYPE = "File Filter";
+
+    /** String literal for p tag. */
+    private static final String P_TAG = "p";
+
+    /** String literal for Since Checkstyle prefix. */
+    private static final String SINCE_CHECKSTYLE = "Since Checkstyle ";
+
+    /** Weight for Check entries. */
+    private static final int WEIGHT_CHECK = 100;
+
+    /** Weight for Filter and File Filter entries. */
+    private static final int WEIGHT_FILTER = 90;
+
+    /** Weight for General entries. */
+    private static final int WEIGHT_GENERAL = 80;
+
+    /** Weight for Property entries. */
+    private static final int WEIGHT_PROPERTY = 70;
+
+    /** Weight for Example entries. */
+    private static final int WEIGHT_EXAMPLE = 60;
+
+    /** Weight for default entries. */
+    private static final int WEIGHT_DEFAULT = 50;
+
     /** String literal for subsection element. */
     private static final String SUBSECTION = "subsection";
 
@@ -346,13 +379,13 @@ public final class SearchIndexGenerator {
         final Path filtersPath = xdocsPath.resolve("filters");
         if (Files.exists(filtersPath)) {
             processDirectory(filtersPath.toFile(), xdocsDir,
-                    "Filters", "Filter");
+                    "Filters", FILTER_TYPE);
         }
 
         final Path fileFiltersPath = xdocsPath.resolve("filefilters");
         if (Files.exists(fileFiltersPath)) {
             processDirectory(fileFiltersPath.toFile(), xdocsDir,
-                    "File Filters", "File Filter");
+                    "File Filters", FILE_FILTER_TYPE);
         }
 
         processGeneralPages(xdocsDir);
@@ -378,7 +411,7 @@ public final class SearchIndexGenerator {
                 final String dirName = categoryDir.getName().toLowerCase(Locale.ROOT);
                 final String category = CATEGORY_MAP.getOrDefault(dirName,
                         capitalise(dirName));
-                processDirectory(categoryDir, xdocsDir, category, "Check");
+                processDirectory(categoryDir, xdocsDir, category, CHECK_TYPE);
             }
         }
     }
@@ -497,8 +530,10 @@ public final class SearchIndexGenerator {
         final String title = extractTitle(doc, xmlFile, sections);
         final String description = extractAggregateDescription(sections);
         final String keywords = extractAggregateKeywords(title, sections);
+        final String since = extractSince(body);
 
-        return new SearchIndexEntry(title, baseUrl, category, type, description, keywords);
+        return new SearchIndexEntry(title, baseUrl, category, type,
+                description, keywords, since, getWeightForType(type));
     }
 
     /**
@@ -529,6 +564,7 @@ public final class SearchIndexGenerator {
             final NodeList sections = body.getElementsByTagName(SECTION);
             final String pageUrl = resolvePageUrl(xmlFile, xmlFile.getParentFile());
             final String pageTitle = derivePageTitle(doc, xmlFile);
+            final int generalWeight = getWeightForType(GENERAL);
 
             if (sections.getLength() == 0) {
                 final String fullText = WHITESPACE.matcher(body.getTextContent())
@@ -537,7 +573,8 @@ public final class SearchIndexGenerator {
                 final String keywords = extractKeywordsFromText(
                         pageTitle + SPACE + fullText);
                 results.add(new SearchIndexEntry(
-                        pageTitle, pageUrl, GENERAL, GENERAL, description, keywords));
+                        pageTitle, pageUrl, GENERAL, GENERAL, description, keywords,
+                        null, generalWeight));
             }
             else {
                 for (int index = 0; index < sections.getLength(); index++) {
@@ -557,7 +594,8 @@ public final class SearchIndexGenerator {
                                     pageTitle + SPACE + sectionName + SPACE + sectionText);
 
                             results.add(new SearchIndexEntry(
-                                    entryTitle, url, GENERAL, GENERAL, description, keywords));
+                                    entryTitle, url, GENERAL, GENERAL, description, keywords,
+                                    null, generalWeight));
                         }
                     }
                 }
@@ -612,7 +650,7 @@ public final class SearchIndexGenerator {
                     continue;
                 }
 
-                final NodeList paragraphs = examplesSubsection.getElementsByTagName("p");
+                final NodeList paragraphs = examplesSubsection.getElementsByTagName(P_TAG);
 
                 for (int paragraphIndex = 0; paragraphIndex < paragraphs.getLength();
                         paragraphIndex++) {
@@ -674,7 +712,7 @@ public final class SearchIndexGenerator {
 
             result = new SearchIndexEntry(
                     title, url, category, EXAMPLE_TYPE,
-                    description, keywords);
+                    description, keywords, null, getWeightForType(EXAMPLE_TYPE));
         }
 
         return result;
@@ -774,7 +812,7 @@ public final class SearchIndexGenerator {
 
             propertyEntries.add(new SearchIndexEntry(
                     title, url, category, PROPERTY_TYPE,
-                    description, keywords));
+                    description, keywords, null, getWeightForType(PROPERTY_TYPE)));
         }
     }
 
@@ -1134,5 +1172,53 @@ public final class SearchIndexGenerator {
             result = Character.toUpperCase(input.charAt(0)) + input.substring(1);
         }
         return result;
+    }
+
+    /**
+     * Extracts the "since" version from the document body, if present.
+     *
+     * @param body the body element to search
+     * @return the version string (e.g. "5.0"), or null if not found
+     */
+    private static String extractSince(Element body) {
+        String since = null;
+        final NodeList paragraphs = body.getElementsByTagName(P_TAG);
+        for (int index = 0; index < paragraphs.getLength(); index++) {
+            final String text = paragraphs.item(index).getTextContent().trim();
+            if (text.startsWith(SINCE_CHECKSTYLE)) {
+                since = text.substring(SINCE_CHECKSTYLE.length()).trim();
+                break;
+            }
+        }
+        return since;
+    }
+
+    /**
+     * Returns a ranking weight based on the document type, prioritizing Checks.
+     *
+     * @param type the document type
+     * @return an integer weight (higher is more important)
+     */
+    private static int getWeightForType(String type) {
+        final int weight;
+        if (CHECK_TYPE.equals(type)) {
+            weight = WEIGHT_CHECK;
+        }
+        else if (FILTER_TYPE.equals(type) || FILE_FILTER_TYPE.equals(type)) {
+            weight = WEIGHT_FILTER;
+        }
+        else if (GENERAL.equals(type)) {
+            weight = WEIGHT_GENERAL;
+        }
+        else if (PROPERTY_TYPE.equals(type)) {
+            weight = WEIGHT_PROPERTY;
+        }
+        else if (EXAMPLE_TYPE.equals(type)) {
+            weight = WEIGHT_EXAMPLE;
+        }
+        else {
+            weight = WEIGHT_DEFAULT;
+        }
+        return weight;
     }
 }
