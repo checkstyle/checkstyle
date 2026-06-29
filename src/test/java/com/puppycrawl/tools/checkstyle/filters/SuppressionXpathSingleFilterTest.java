@@ -41,6 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck;
+import com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -77,6 +78,19 @@ public class SuppressionXpathSingleFilterTest
 
         verifyFilterWithInlineConfigParser(
             getPath("InputSuppressionXpathSingleFilterNonMatchingTokenType.java"), expected,
+            removeSuppressed(expected, suppressed));
+    }
+
+    @Test
+    public void testNonMatchingTokenTypeByXpath() throws Exception {
+        final String[] expected = {
+            "18:5: " + getCheckMessage(RedundantModifierCheck.class, "redundantModifier", "public"),
+        };
+
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressionXpathSingleFilterNonMatchingTokenType2.java"), expected,
             removeSuppressed(expected, suppressed));
     }
 
