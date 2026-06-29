@@ -1,5 +1,6 @@
 /*
 RightCurly
+forbidSingleLineMultiBlock = (default)false
 option = ALONE
 tokens = LITERAL_CASE
 
@@ -117,4 +118,3 @@ public class InputRightCurlyCaseBlocksInSwitchStatementAlone2 {
         }
     }
 }
-
