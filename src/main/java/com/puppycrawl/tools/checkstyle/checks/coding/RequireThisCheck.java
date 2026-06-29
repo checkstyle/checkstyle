@@ -1306,7 +1306,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected FrameType getType() {
+        /* package */ FrameType getType() {
             return FrameType.METHOD_FRAME;
         }
 
@@ -1328,7 +1328,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected FrameType getType() {
+        /* package */ FrameType getType() {
             return FrameType.CTOR_FRAME;
         }
 
@@ -1363,7 +1363,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected FrameType getType() {
+        /* package */ FrameType getType() {
             return FrameType.CLASS_FRAME;
         }
 
@@ -1461,19 +1461,19 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected boolean containsFieldOrVariable(DetailAST identToFind) {
+        /* package */ boolean containsFieldOrVariable(DetailAST identToFind) {
             return containsFieldOrVariableDef(instanceMembers, identToFind)
                     || containsFieldOrVariableDef(staticMembers, identToFind);
         }
 
         @Override
-        protected boolean isProperDefinition(DetailAST ident, DetailAST ast) {
+        /* package */ boolean isProperDefinition(DetailAST ident, DetailAST ast) {
             final String identToFind = ident.getText();
             return identToFind.equals(ast.getText());
         }
 
         @Override
-        protected AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
+        /* package */ AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
             AbstractFrame frame = null;
 
             if (containsMethod(identToFind)
@@ -1559,7 +1559,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected String getFrameName() {
+        /* package */ String getFrameName() {
             return frameName;
         }
 
@@ -1601,7 +1601,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected FrameType getType() {
+        /* package */ FrameType getType() {
             return FrameType.BLOCK_FRAME;
         }
 
@@ -1623,12 +1623,12 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        public FrameType getType() {
+        /* package */ FrameType getType() {
             return FrameType.CATCH_FRAME;
         }
 
         @Override
-        protected AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
+        /* package */ AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
             final AbstractFrame frame;
 
             if (!lookForMethod
@@ -1663,7 +1663,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        public FrameType getType() {
+        /* package */ FrameType getType() {
             return FrameType.FOR_FRAME;
         }
 
@@ -1686,7 +1686,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        public FrameType getType() {
+        /* package */ FrameType getType() {
             return FrameType.TRY_WITH_RESOURCES_FRAME;
         }
 
