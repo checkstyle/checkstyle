@@ -12,21 +12,44 @@
 */
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
+import javax.annotation.processing.Generated;
 
 // xdoc section -- start
-public class Example3
-{
+// filtered violation below "'{' at column 23 should be on a new line."
+public class Example3 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
 
-  // filtered violation below "'{' at column 31 should be on a new line."
-  public void testMethodOne() {
-    int x = 5;
+  public void throwsMethod() throws RuntimeException {}
+  // violation below, "'{' at column 36 should be on a new line."
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
   }
-
+  // violation below, "'{' at column 27 should be on a new line."
+  public void changeAge() {
+    age = 24;
+  }
+  // violation below, "'{' at column 28 should be on a new line."
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
   // violation below, "'{' at column 31 should be on a new line."
-  public void testMethodTwo() {
-    int z = 17;
-    int y;
+  public void sayHelloWorld() {// violation below, 'should be on a new line."
+    if (age > 0 && wordCount > 0) {
+      System.out.println("Hello");
+    } // violation below, "'{' at column 23 should be on a new line."
+    else if (age < 0) {
+      System.out.println("World");
+    }
   }
 
+  @Generated("first")
+  public void Test1() {}
+
+  @Generated("second")
+  public void Test2() {}
 }
 // xdoc section -- end
