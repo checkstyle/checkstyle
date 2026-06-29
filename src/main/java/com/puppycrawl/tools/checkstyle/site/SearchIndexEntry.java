@@ -29,7 +29,7 @@ package com.puppycrawl.tools.checkstyle.site;
  * @param description short description
  * @param keywords comma-separated keywords
  * @param since the version this check was introduced (can be null)
- * @param weight ranking weight for search prioritization
+ * @param weight ranking weight for search results
  */
 public record SearchIndexEntry(String title, String url, String category,
                             String type, String description, String keywords,
