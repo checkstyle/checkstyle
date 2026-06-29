@@ -1442,7 +1442,7 @@ run-test)
   ;;
 
 sevntu)
-  ./mvnw -e --no-transfer-progress clean compile checkstyle:check@sevntu-checkstyle-check
+  ./mvnw -e --no-transfer-progress compile antrun:run@ant-phase-verify-sevntu -Psevntu
   ;;
 
 spotless)
