@@ -492,7 +492,8 @@
             files="[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationOffset3.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationPreTag.java"/>
-
+  <suppress id="noViolationCommentsInJavadoc"
+            files="[\\/]filters[\\/]suppresswithnearbytextfilter[\\/]InputSuppressWithNearbyTextFilterNearbyTextPatternUrlLineLengthSuppression.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocInlineReturn.java"/>
   <suppress id="noViolationCommentsInJavadoc"
@@ -505,8 +506,6 @@
             files="[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorJavadocCommentAfterPackage.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorWithComments.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]filters[\\/]suppresswithnearbytextfilter[\\/]InputSuppressWithNearbyTextFilterNearbyTextPatternUrlLineLengthSuppression.java"/>
   <!-- until https://github.com/checkstyle/checkstyle/issues/19803 -->
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]InputAnnotationLocationRecordsAndCompactCtors\.java"/>

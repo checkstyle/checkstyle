@@ -316,13 +316,13 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         final int expectedLineLength = 90;
 
         final String[] violationMessages = {
-            "32: " + getLineLengthCheckMessage(expectedLineLength, 98),
-            "39: " + getLineLengthCheckMessage(expectedLineLength, 97),
+            "31: " + getLineLengthCheckMessage(expectedLineLength, 98),
+            "38: " + getLineLengthCheckMessage(expectedLineLength, 97),
         };
 
         final String[] suppressedMessages = {
-            "32: " + getLineLengthCheckMessage(expectedLineLength, 98),
-            "39: " + getLineLengthCheckMessage(expectedLineLength, 97),
+            "31: " + getLineLengthCheckMessage(expectedLineLength, 98),
+            "38: " + getLineLengthCheckMessage(expectedLineLength, 97),
         };
 
         verifyFilterWithInlineConfigParser(
