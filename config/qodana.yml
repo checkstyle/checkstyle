@@ -48,7 +48,7 @@ exclude:
 
       - docs/GRAMMAR_UPDATES.md
 
-  # until https://github.com/checkstyle/checkstyle/issues/19895
+  # until https://youtrack.jetbrains.com/projects/QD/issues?preview=QD-15203
   - name: UnnecessaryInheritDoc
     paths:
       - src/main/java/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.java
