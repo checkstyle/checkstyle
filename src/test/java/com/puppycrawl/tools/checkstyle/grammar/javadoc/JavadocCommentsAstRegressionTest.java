@@ -289,4 +289,10 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getPath("ExpectedReferencesToUriFragments2.txt"),
                 getPath("InputReferencesToUriFragments2.javadoc"));
     }
+
+    @Test
+    public void testMethodReferencesWithoutHash() throws Exception {
+        verifyJavadocTree(getPath("ExpectedMethodReferencesWithoutHash.txt"),
+                getPath("InputMethodReferencesWithoutHash.javadoc"));
+    }
 }
