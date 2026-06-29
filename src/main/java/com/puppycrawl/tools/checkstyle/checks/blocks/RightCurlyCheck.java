@@ -67,9 +67,24 @@ public class RightCurlyCheck extends AbstractCheck {
     public static final String MSG_KEY_LINE_SAME = "line.same";
 
     /**
+     * Allow single line multi-block statement.
+     */
+    private boolean allowSingleLineMultiBlock = true;
+
+    /**
      * Specify the policy on placement of a right curly brace (<code>'}'</code>).
      */
     private RightCurlyOption option = RightCurlyOption.SAME;
+
+    /**
+     * Setter to allow multi-block to be single line.
+     *
+     * @param allow whether single line multi-block statement allowed.
+     * @since 13.7.0
+     */
+    public void setAllowSingleLineMultiBlock(boolean allow) {
+        allowSingleLineMultiBlock = allow;
+    }
 
     /**
      * Setter to specify the policy on placement of a right curly brace (<code>'}'</code>).
@@ -166,11 +181,12 @@ public class RightCurlyCheck extends AbstractCheck {
      * @param details details for validation.
      * @return true if a right curly should have a line break before.
      */
-    private static boolean shouldHaveLineBreakBefore(RightCurlyOption bracePolicy,
-                                                     Details details) {
+    private boolean shouldHaveLineBreakBefore(RightCurlyOption bracePolicy,
+                                              Details details) {
         return bracePolicy == RightCurlyOption.SAME
                 && !hasLineBreakBefore(details.rcurly())
-                && !TokenUtil.areOnSameLine(details.lcurly(), details.rcurly());
+                && !isAllowedSingleLineStatement(details.current(),
+                details.nextToken(), details.lcurly(), details.rcurly());
     }
 
     /**
@@ -332,14 +348,47 @@ public class RightCurlyCheck extends AbstractCheck {
     }
 
     /**
+     * Checks if current bock is allowed to be single line block.
+     *
+     * @param current current block
+     * @param next next block
+     * @param lcurly lcurly token of current block
+     * @param rcurly rcurly token of current block
+     * @return true if current block can be on single line
+     */
+    private boolean isAllowedSingleLineStatement(DetailAST current, DetailAST next,
+                                                 DetailAST lcurly, DetailAST rcurly) {
+        return TokenUtil.areOnSameLine(lcurly, rcurly)
+                && (allowSingleLineMultiBlock || !partOfMultiBlockStatement(current, next));
+    }
+
+    /**
+     * Check if block is part of multi-block statement
+     *
+     * @param current current block
+     * @param next next block
+     * @return true if block is part of multi-block statement
+     */
+    private static boolean partOfMultiBlockStatement(DetailAST current, DetailAST next) {
+        final int[] blockContinuationToken = {
+                TokenTypes.LITERAL_ELSE,
+                TokenTypes.LITERAL_CATCH,
+                TokenTypes.LITERAL_FINALLY
+        };
+        return  TokenUtil.isOfType(current.getType(), blockContinuationToken)
+                || next != null && TokenUtil.isOfType(next.getType(), blockContinuationToken);
+    }
+
+    /**
      * Structure that contains all details for validation.
      *
+     * @param current               the current block token
      * @param lcurly                the left curly token being analysed
      * @param rcurly                the matching right curly token
      * @param nextToken             the token following the right curly
      * @param shouldCheckLastRcurly flag that indicates if the last right curly should be checked
      */
-    private record Details(DetailAST lcurly, DetailAST rcurly,
+    private record Details(DetailAST current, DetailAST lcurly, DetailAST rcurly,
                            DetailAST nextToken, boolean shouldCheckLastRcurly) {
 
         /**
@@ -389,7 +438,7 @@ public class RightCurlyCheck extends AbstractCheck {
                 rcurly = switchNode.getLastChild();
                 nextToken = getNextToken(switchNode);
             }
-            return new Details(lcurly, rcurly, nextToken, true);
+            return new Details(switchNode, lcurly, rcurly, nextToken, true);
         }
 
         /**
@@ -421,7 +470,8 @@ public class RightCurlyCheck extends AbstractCheck {
                     Optional.ofNullable(lcurly.map(DetailAST::getNextSibling)
                     .orElseGet(() -> getNextToken(caseOrDefaultParent)));
 
-            return new Details(lcurly.orElse(null), rcurly, nextToken.orElse(null), true);
+            return new Details(caseOrDefaultNode, lcurly.orElse(null),
+                    rcurly, nextToken.orElse(null), true);
         }
 
         /**
@@ -477,7 +527,7 @@ public class RightCurlyCheck extends AbstractCheck {
             }
 
             final DetailAST rcurly = lcurly.getLastChild();
-            return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);
+            return new Details(ast, lcurly, rcurly, nextToken, shouldCheckLastRcurly);
         }
 
         /**
@@ -505,7 +555,7 @@ public class RightCurlyCheck extends AbstractCheck {
             if (lcurly.getType() == TokenTypes.SLIST) {
                 rcurly = lcurly.getLastChild();
             }
-            return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);
+            return new Details(ast, lcurly, rcurly, nextToken, shouldCheckLastRcurly);
         }
 
         /**
@@ -531,7 +581,7 @@ public class RightCurlyCheck extends AbstractCheck {
                     rcurly = lcurly.getLastChild();
                 }
             }
-            return new Details(lcurly, rcurly, getNextToken(ast), true);
+            return new Details(ast, lcurly, rcurly, getNextToken(ast), true);
         }
 
         /**
@@ -558,7 +608,7 @@ public class RightCurlyCheck extends AbstractCheck {
             if (lcurly != null) {
                 rcurly = lcurly.getLastChild();
             }
-            return new Details(lcurly, rcurly, nextToken, false);
+            return new Details(ast, lcurly, rcurly, nextToken, false);
         }
 
         /**

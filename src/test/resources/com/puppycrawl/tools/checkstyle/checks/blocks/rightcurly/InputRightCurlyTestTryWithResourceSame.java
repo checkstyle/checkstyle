@@ -1,5 +1,6 @@
 /*
 RightCurly
+allowSingleLineMultiBlock = (default)true
 option = (default)SAME
 tokens = (default)LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE
 
@@ -29,11 +30,13 @@ class InputRightCurlyTestTryWithResourceSame {
             ;
         }
         try (BufferedReader br1 = new BufferedReader(null);
-                // violation below ''}' at column 67 should be on the same line as .*/catch'
+                // violation below ''}' at column 67 should be on the same line'
                 BufferedReader br2 = new BufferedReader(br1)) { ; }
         catch (IOException e) { ; }
+
         try (BufferedReader br1 = new BufferedReader(null);
                 BufferedReader br2 = new BufferedReader(br1)) {} catch (IOException e) { ; }
+
         try (BufferedReader br1 = new BufferedReader(null);
                 BufferedReader br2 = new BufferedReader(br1)) {
             ;

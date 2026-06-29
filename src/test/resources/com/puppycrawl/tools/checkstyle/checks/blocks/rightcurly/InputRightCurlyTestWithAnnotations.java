@@ -1,5 +1,6 @@
 /*
 RightCurly
+allowSingleLineMultiBlock = (default)true
 option = \tALONE
 tokens = LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, \
          CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, \

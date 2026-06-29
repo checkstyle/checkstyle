@@ -53,11 +53,11 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefault() throws Exception {
         final String[] expected = {
-            "25:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 17),
-            "28:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 17),
-            "40:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
-            "44:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
-            "93:27: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 27),
+            "26:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 17),
+            "29:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 17),
+            "41:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
+            "45:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
+            "94:27: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 27),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyLeftTestDefault.java"), expected);
@@ -66,14 +66,14 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSame() throws Exception {
         final String[] expected = {
-            "26:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 17),
-            "29:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 17),
-            "41:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
-            "45:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
-            "87:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "94:27: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 27),
-            "189:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "190:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
+            "27:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 17),
+            "30:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 17),
+            "42:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
+            "46:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
+            "88:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "95:27: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 27),
+            "190:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "191:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyLeftTestSame.java"), expected);
@@ -96,16 +96,16 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAlone() throws Exception {
         final String[] expected = {
-            "57:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "94:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
-            "98:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
-            "174:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "176:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "178:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "58:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "95:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+            "99:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
+            "175:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "177:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "179:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "184:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "189:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "190:53: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 53),
+            "180:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "185:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "190:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "191:53: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 53),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyLeftTestAlone.java"), expected);
@@ -114,22 +114,22 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNewLine() throws Exception {
         final String[] expected = {
-            "86:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "111:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "111:6: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 6),
-            "122:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "122:6: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 6),
-            "136:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "136:6: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 6),
-            "144:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
-            "149:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
-            "152:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
-            "154:39: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 39),
-            "197:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "202:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
-            "205:39: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 39),
-            "211:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "211:10: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 10),
+            "87:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "112:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "112:6: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 6),
+            "123:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "123:6: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 6),
+            "137:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "137:6: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 6),
+            "145:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
+            "150:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
+            "153:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
+            "155:39: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 39),
+            "198:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "203:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "206:39: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 39),
+            "212:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "212:10: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 10),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyLeftTestNewLine.java"), expected);
@@ -138,17 +138,17 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testShouldStartLine2() throws Exception {
         final String[] expected = {
-            "86:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "111:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "111:6: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 6),
-            "122:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "122:6: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 6),
-            "136:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "136:6: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 6),
-            "197:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "202:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
-            "211:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "211:10: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 10),
+            "87:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "112:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "112:6: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 6),
+            "123:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "123:6: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 6),
+            "137:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "137:6: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 6),
+            "198:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "203:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "212:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "212:10: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 10),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyLeftTestShouldStartLine2.java"), expected);
@@ -157,11 +157,11 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testForceLineBreakBefore() throws Exception {
         final String[] expected = {
-            "38:43: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 43),
-            "41:17: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 17),
-            "44:71: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 71),
-            "46:38: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 38),
-            "50:25: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 25),
+            "39:43: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 43),
+            "42:17: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 17),
+            "45:71: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 71),
+            "47:38: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 38),
+            "51:25: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 25),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestForceLineBreakBefore.java"), expected);
@@ -184,76 +184,76 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithAnnotations() throws Exception {
         final String[] expected = {
-            "18:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
-            "21:65: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 65),
-            "32:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
-            "36:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
-            "39:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
-            "42:36: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 36),
-            "48:73: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 73),
-            "50:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
-            "55:66: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 66),
-            "58:96: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 96),
-            "61:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
-            "64:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
-            "67:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
-            "71:38: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 38),
-            "72:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
-            "78:62: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 62),
-            "87:28: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 28),
-            "89:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 21),
-            "91:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
-            "93:14: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 14),
-            "104:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
-            "105:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
-            "114:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
-            "114:38: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 38),
-            "118:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
-            "118:38: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 38),
-            "122:40: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 40),
-            "122:88: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 88),
-            "125:18: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 18),
-            "129:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
-            "132:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
-            "134:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
-            "138:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
-            "147:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "149:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "149:33: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 33),
-            "161:75: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 75),
-            "162:58: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 58),
-            "162:74: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 74),
+            "19:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
+            "22:65: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 65),
+            "33:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
+            "37:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
+            "40:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
+            "43:36: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 36),
+            "49:73: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 73),
+            "51:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
+            "56:66: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 66),
+            "59:96: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 96),
+            "62:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "65:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "68:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
+            "72:38: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 38),
+            "73:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
+            "79:62: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 62),
+            "88:28: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 28),
+            "90:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 21),
+            "92:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
+            "94:14: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 14),
+            "105:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
+            "106:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
+            "115:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
+            "115:38: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 38),
+            "119:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
+            "119:38: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 38),
+            "123:40: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 40),
+            "123:88: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 88),
+            "126:18: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 18),
+            "130:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
+            "133:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
+            "135:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "139:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
+            "148:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "150:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "150:33: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 33),
+            "162:75: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 75),
             "163:58: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 58),
-            "165:58: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 58),
-            "165:73: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 73),
-            "171:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
-            "178:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
-            "193:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "200:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "200:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "208:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "208:10: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 10),
-            "212:54: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 54),
-            "212:55: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 55),
-            "215:75: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 75),
-            "215:76: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 76),
-            "215:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
-            "219:76: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 76),
-            "227:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
-            "231:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
-            "234:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "236:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
-            "239:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "242:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
-            "245:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "248:39: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 39),
-            "250:56: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 56),
-            "253:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
-            "263:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
-            "265:40: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 40),
-            "269:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "272:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "274:61: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 61),
+            "163:74: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 74),
+            "164:58: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 58),
+            "166:58: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 58),
+            "166:73: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 73),
+            "172:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
+            "179:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
+            "194:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "201:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "201:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "209:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "209:10: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 10),
+            "213:54: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 54),
+            "213:55: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 55),
+            "216:75: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 75),
+            "216:76: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 76),
+            "216:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
+            "220:76: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 76),
+            "228:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+            "232:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
+            "235:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "237:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
+            "240:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "243:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "246:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "249:39: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 39),
+            "251:56: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 56),
+            "254:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
+            "264:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
+            "266:40: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 40),
+            "270:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "273:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "275:61: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 61),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestWithAnnotations.java"), expected);
@@ -262,46 +262,46 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAloneOrSingleLine() throws Exception {
         final String[] expected = {
-            "70:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
-            "84:42: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 42),
-            "87:18: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 18),
-            "95:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
-            "99:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
-            "107:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "109:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "120:75: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 75),
-            "122:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
-            "122:93: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 93),
-            "124:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
-            "126:64: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 64),
-            "126:80: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 80),
-            "132:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
-            "139:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
-            "154:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "161:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "161:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "170:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "170:10: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 10),
-            "174:54: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 54),
-            "174:55: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 55),
-            "177:75: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 75),
-            "177:76: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 76),
-            "177:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
-            "189:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
-            "195:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
-            "198:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
-            "201:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
-            "207:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "209:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "211:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "71:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
+            "85:42: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 42),
+            "88:18: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 18),
+            "96:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "100:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
+            "108:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "110:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "121:75: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 75),
+            "123:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
+            "123:93: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 93),
+            "125:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
+            "127:64: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 64),
+            "127:80: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 80),
+            "133:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
+            "140:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
+            "155:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "162:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "162:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "171:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "171:10: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 10),
+            "175:54: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 54),
+            "175:55: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 55),
+            "178:75: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 75),
+            "178:76: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 76),
+            "178:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
+            "190:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+            "196:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
+            "199:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
+            "202:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
+            "208:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "210:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "212:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "217:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "222:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "223:39: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 39),
-            "231:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
-            "243:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
-            "249:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
-            "249:38: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 38),
+            "213:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "218:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "223:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "224:39: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 39),
+            "232:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
+            "244:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "250:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
+            "250:38: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 38),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestAloneOrSingleline.java"), expected);
@@ -317,7 +317,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCatchWithoutFinally() throws Exception {
         final String[] expected = {
-            "19:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
+            "20:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestWithoutFinally.java"), expected);
@@ -326,7 +326,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSingleLineClass() throws Exception {
         final String[] expected = {
-            "29:56: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 56),
+            "30:56: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 56),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSingleLineClass.java"), expected);
@@ -351,9 +351,9 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRightCurlySameAndLiteralDo() throws Exception {
         final String[] expected = {
-            "70:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
-            "75:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
-            "91:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
+            "71:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
+            "76:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
+            "92:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSameAndLiteralDo.java"), expected);
@@ -362,10 +362,10 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTryWithResourceSame() throws Exception {
         final String[] expected = {
-            "19:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
-            "33:67: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 67),
-            "44:15: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 15),
-            "46:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "20:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
+            "34:67: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 67),
+            "47:15: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 15),
+            "49:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestTryWithResourceSame.java"), expected);
@@ -374,14 +374,14 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTryWithResourceAlone() throws Exception {
         final String[] expected = {
-            "27:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "33:67: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 67),
-            "34:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
-            "37:64: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 64),
-            "37:92: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 92),
-            "44:67: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 67),
-            "46:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
-            "48:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "28:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "34:67: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 67),
+            "35:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
+            "38:64: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 64),
+            "38:92: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 92),
+            "45:67: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 67),
+            "47:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
+            "49:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestTryWithResourceAlone.java"), expected);
@@ -390,9 +390,9 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTryWithResourceAloneSingle() throws Exception {
         final String[] expected = {
-            "27:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "43:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
-            "45:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "28:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "44:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
+            "46:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTryWithResourceAloneSingle.java"), expected);
@@ -401,9 +401,9 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testBracePolicyAloneAndSinglelineIfBlocks() throws Exception {
         final String[] expected = {
-            "13:32: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 32),
-            "15:45: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 45),
-            "15:47: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 47),
+            "14:32: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 32),
+            "16:45: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 45),
+            "16:47: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 47),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSinglelineIfBlocks.java"), expected);
@@ -433,27 +433,27 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testOptionAlone() throws Exception {
         final String[] expected = {
-            "16:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
-            "17:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 21),
-            "21:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
-            "30:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
-            "47:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "51:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
-            "54:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
-            "56:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
-            "58:17: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 17),
-            "60:53: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 53),
-            "62:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
-            "62:52: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 52),
-            "75:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "75:11: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 11),
-            "79:39: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 39),
-            "81:56: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 56),
-            "84:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
-            "96:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
-            "99:39: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 39),
-            "105:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "105:10: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 10),
+            "17:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
+            "18:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 21),
+            "22:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
+            "31:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
+            "48:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "52:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
+            "55:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "57:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+            "59:17: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 17),
+            "61:53: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 53),
+            "63:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+            "63:52: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 52),
+            "76:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "76:11: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 11),
+            "80:39: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 39),
+            "82:56: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 56),
+            "85:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
+            "97:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "100:39: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 39),
+            "106:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "106:10: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 10),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestOptionAlone.java"),
@@ -463,15 +463,15 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testOptionAloneOrSingleLine() throws Exception {
         final String[] expected = {
-            "21:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
-            "30:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
-            "38:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "47:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "51:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
-            "72:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
-            "77:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
-            "86:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "86:10: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 10),
+            "22:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
+            "31:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
+            "39:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "48:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "52:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
+            "73:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
+            "78:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "87:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "87:10: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 10),
         };
         verifyWithInlineConfigParser(
                 getPath(
@@ -481,19 +481,19 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testBlocksEndingWithSemiOptionSame() throws Exception {
         final String[] expected = {
-            "16:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "21:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "27:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "35:29: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 29),
-            "41:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "44:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "51:20: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 20),
-            "57:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "60:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "65:30: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 30),
-            "74:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "74:11: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 11),
-            "78:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "17:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "22:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "28:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "36:29: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 29),
+            "42:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "45:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "52:20: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 20),
+            "58:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "61:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "66:30: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 30),
+            "75:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "75:11: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 11),
+            "79:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestOptSameBlocksWithSemi.java"), expected);
@@ -502,26 +502,26 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testBlocksEndingWithSemiOptionAlone() throws Exception {
         final String[] expected = {
-            "13:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
-            "16:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "18:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
-            "21:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "24:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
-            "27:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "35:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
-            "37:40: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 40),
-            "41:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "44:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "46:61: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 61),
-            "48:19: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 19),
-            "51:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
-            "53:34: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 34),
-            "57:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "60:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "65:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
-            "71:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "71:11: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 11),
-            "75:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "14:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
+            "17:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "19:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
+            "22:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "25:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "28:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "36:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
+            "38:40: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 40),
+            "42:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "45:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "47:61: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 61),
+            "49:19: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 19),
+            "52:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
+            "54:34: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 34),
+            "58:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "61:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "66:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "72:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "72:11: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 11),
+            "76:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestOptAloneBlocksWithSemi.java"), expected);
@@ -530,19 +530,19 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testBlocksEndingWithSemiOptionAloneOrSingleLine() throws Exception {
         final String[] expected = {
-            "16:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "21:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "27:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "35:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
-            "41:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "44:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "51:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
-            "57:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "60:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "65:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
-            "74:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "74:11: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 11),
-            "78:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "17:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "22:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "28:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "36:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
+            "42:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "45:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "52:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
+            "58:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "61:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "66:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "75:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "75:11: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 11),
+            "79:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestOptAloneOrSingleLineBlocksWithSemi.java"), expected);
@@ -551,9 +551,9 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNewTokensAlone() throws Exception {
         final String[] expected = {
-            "13:19: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 19),
-            "16:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
-            "18:34: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 34),
+            "14:19: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 19),
+            "17:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
+            "19:34: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 34),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestNewTokensAlone.java"), expected);
@@ -562,7 +562,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNewTokensAloneOrSingleLine() throws Exception {
         final String[] expected = {
-            "16:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
+            "17:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyNewTokensAloneOrSingleLine.java"), expected);
@@ -571,7 +571,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNewTokensSame() throws Exception {
         final String[] expected = {
-            "16:20: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 20),
+            "17:20: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 20),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSameNewTokens.java"), expected);
@@ -580,8 +580,8 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRightCurlyDoubleBrace() throws Exception {
         final String[] expected = {
-            "14:1: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 1),
-            "14:2: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 2),
+            "15:1: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 1),
+            "15:2: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 2),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestDoubleBrace.java"), expected);
@@ -597,8 +597,8 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRightCurlyEndOfFile() throws Exception {
         final String[] expected = {
-            "16:2: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 2),
-            "16:3: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 3),
+            "17:2: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 2),
+            "17:3: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 3),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestEndOfFile.java"), expected);
@@ -607,12 +607,12 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRightCurlyRecordsAndCompactCtors() throws Exception {
         final String[] expected = {
-            "23:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "23:11: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 11),
-            "27:21: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 21),
-            "32:23: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 23),
-            "34:37: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 37),
-            "41:68: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 68),
+            "24:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "24:11: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 11),
+            "28:21: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 21),
+            "33:23: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 23),
+            "35:37: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 37),
+            "42:68: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 68),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestRecordsAndCompactCtors.java"), expected);
@@ -621,12 +621,12 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRightCurlyWithEmoji() throws Exception {
         final String[] expected = {
-            "24:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
-            "28:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
-            "49:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
-            "69:50: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 50),
-            "78:44: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 44),
-            "84:41: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 41),
+            "25:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
+            "29:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
+            "50:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
+            "70:50: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 50),
+            "79:44: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 44),
+            "85:41: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 41),
 
         };
         verifyWithInlineConfigParser(getPath("InputRightCurlyWithEmoji.java"), expected);
@@ -635,11 +635,11 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRightCurlyWithEmojiAloneOrSingleLine() throws Exception {
         final String[] expected = {
-            "24:38: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 38),
-            "30:43: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 43),
-            "40:45: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 45),
-            "51:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
-            "54:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
+            "25:38: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 38),
+            "31:43: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 43),
+            "41:45: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 45),
+            "52:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
+            "55:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyWithEmojiAloneOrSingleLine.java"), expected);
@@ -648,8 +648,8 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUppercaseOptionProperty() throws Exception {
         final String[] expected = {
-            "16:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
-            "21:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
+            "17:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
+            "22:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyWithUppercaseOptionProperty.java"), expected);
@@ -658,8 +658,8 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRightCurlyWithIfElseAlone() throws Exception {
         final String[] expected = {
-            "19:12: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 12),
-            "27:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "20:12: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 12),
+            "28:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestIfElseAlone.java"), expected);
@@ -668,13 +668,13 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSwitchCase() throws Exception {
         final String[] expected = {
-            "20:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
-            "27:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
-            "51:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
-            "69:68: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 68),
-            "75:74: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 74),
-            "112:17: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 17),
-            "116:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 21),
+            "21:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
+            "28:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+            "52:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
+            "70:68: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 68),
+            "76:74: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 74),
+            "113:17: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 17),
+            "117:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 21),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSwitchCase.java"), expected);
@@ -683,9 +683,9 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSwitchCase2() throws Exception {
         final String[] expected = {
-            "20:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
-            "27:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
-            "114:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "21:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
+            "28:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+            "115:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSwitchCase2.java"), expected);
@@ -694,22 +694,22 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSwitchCase3() throws Exception {
         final String[] expected = {
-            "15:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 22),
-            "17:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "19:36: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 36),
-            "25:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "26:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
-            "28:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 22),
+            "16:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 22),
+            "18:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "20:36: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 36),
+            "26:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "27:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
             "29:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 22),
-            "37:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
-            "37:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
-            "43:40: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 40),
-            "43:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
-            "48:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
-            "50:32: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 32),
-            "50:33: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 33),
-            "52:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "52:14: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 14),
+            "30:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 22),
+            "38:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
+            "38:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+            "44:40: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 40),
+            "44:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
+            "49:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
+            "51:32: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 32),
+            "51:33: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 33),
+            "53:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "53:14: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 14),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSwitchCase3.java"), expected);
@@ -718,15 +718,15 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSwitchCase4() throws Exception {
         final String[] expected = {
-            "17:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "19:36: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 36),
-            "25:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "26:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
-            "28:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 22),
-            "35:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
-            "35:42: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 42),
-            "40:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
-            "42:32: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 32),
+            "18:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "20:36: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 36),
+            "26:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "27:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
+            "29:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 22),
+            "36:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
+            "36:42: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 42),
+            "41:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
+            "43:32: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 32),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSwitchCase4.java"), expected);
@@ -735,16 +735,16 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSwitchCase5() throws Exception {
         final String[] expected = {
-            "17:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "19:36: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 36),
-            "25:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "26:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
-            "28:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 22),
-            "35:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
-            "35:42: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 42),
-            "40:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
-            "42:32: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 32),
-            "65:49: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 49),
+            "18:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "20:36: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 36),
+            "26:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "27:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
+            "29:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 22),
+            "36:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
+            "36:42: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 42),
+            "41:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
+            "43:32: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 32),
+            "66:49: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 49),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSwitchCase5.java"), expected);
@@ -753,9 +753,9 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSwitchExpression() throws Exception {
         final String[] expected = {
-            "48:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "56:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "92:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "49:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "57:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "93:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSwitchExpression.java"), expected);
@@ -764,10 +764,10 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSwitchExpression2() throws Exception {
         final String[] expected = {
-            "46:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "54:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "77:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "90:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "47:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "55:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "78:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "91:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSwitchExpression2.java"), expected);
@@ -783,7 +783,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSwitchExpression4() throws Exception {
         final String[] expected = {
-            "117:28: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 28),
+            "118:28: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 28),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSwitchExpression4.java"), expected);
@@ -799,13 +799,13 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSwitchWithComment() throws Exception {
         final String[] expected = {
-            "16:66: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 66),
-            "23:61: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 61),
-            "24:57: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 57),
-            "31:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
-            "32:19: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 19),
-            "37:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
-            "38:33: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 33),
+            "17:66: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 66),
+            "24:61: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 61),
+            "25:57: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 57),
+            "32:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
+            "33:19: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 19),
+            "38:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
+            "39:33: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 33),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestWithComment.java"), expected);
@@ -828,13 +828,13 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCaseBlocksInSwitchStatementAlone() throws Exception {
         final String[] expected = {
-            "33:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "44:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "73:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "78:44: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 44),
-            "90:39: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 39),
-            "97:42: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 42),
-            "107:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
+            "34:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "45:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "74:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "79:44: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 44),
+            "91:39: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 39),
+            "98:42: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 42),
+            "108:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyCaseBlocksInSwitchStatementAlone.java"), expected);
@@ -843,19 +843,19 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCaseBlocksInSwitchStatementAlone2() throws Exception {
         final String[] expected = {
-            "17:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
-            "26:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "38:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "41:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "49:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
-            "49:45: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 45),
-            "57:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "68:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "68:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
-            "75:34: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 34),
-            "75:47: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 47),
-            "82:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
-            "102:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "18:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
+            "27:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "39:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "42:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "50:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
+            "50:45: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 45),
+            "58:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "69:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "69:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
+            "76:34: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 34),
+            "76:47: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 47),
+            "83:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
+            "103:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyCaseBlocksInSwitchStatementAlone2.java"), expected);
@@ -864,10 +864,10 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCaseBlocksInSwitchStatementAloneOrSingleLine() throws Exception {
         final String[] expected = {
-            "33:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "44:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "73:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "78:51: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 51),
+            "34:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "45:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "74:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "79:51: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 51),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyCaseBlocksInSwitchStatementAloneOrSingleline.java"),
@@ -877,14 +877,14 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCaseBlocksInSwitchStatementAloneOrSingle2() throws Exception {
         final String[] expected = {
-            "18:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
-            "27:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "39:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "42:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
-            "50:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
-            "71:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "80:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
-            "100:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "19:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
+            "28:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "40:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "43:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
+            "51:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
+            "72:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "81:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
+            "101:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyCaseBlocksInSwitchStatementAloneOrSingleline2.java"),
@@ -894,11 +894,11 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCaseBlocksInSwitchStatementSame() throws Exception {
         final String[] expected = {
-            "33:16: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 16),
-            "44:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "73:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "78:51: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 51),
-            "106:23: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 23),
+            "34:16: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 16),
+            "45:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "74:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "79:51: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 51),
+            "107:23: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 23),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyCaseBlocksInSwitchStatementSame.java"), expected);
@@ -907,16 +907,16 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCaseBlocksInSwitchStatementSame2() throws Exception {
         final String[] expected = {
-            "18:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "27:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "39:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "42:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "50:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "70:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "77:34: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 34),
-            "77:47: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 47),
-            "85:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
-            "103:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "19:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "28:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "40:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "43:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "51:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "71:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "78:34: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 34),
+            "78:47: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 47),
+            "86:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
+            "104:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyCaseBlocksInSwitchStatementSame2.java"), expected);
@@ -925,16 +925,16 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCaseBlocksWithSwitchRuleAlone() throws Exception {
         final String[] expected = {
-            "32:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "44:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "45:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
-            "56:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "69:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "74:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
-            "83:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "83:36: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 36),
-            "93:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
+            "33:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "45:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "46:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+            "57:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "70:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "75:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
+            "84:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "84:36: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 36),
             "94:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
+            "95:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyCaseBlocksWithSwitchRuleAlone.java"),
@@ -945,15 +945,15 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     public void testCaseBlocksWithSwitchRuleAloneOrSingleLine() throws Exception {
 
         final String[] expected = {
-            "27:19: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 19),
-            "41:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "53:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
-            "54:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
-            "64:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "77:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "82:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
-            "91:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "102:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
+            "28:19: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 19),
+            "42:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "54:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
+            "55:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+            "65:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "78:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "83:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
+            "92:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "103:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
         };
         final String fileName = "InputRightCurlyCaseBlocksWithSwitchRuleAloneOrSingleline.java";
         verifyWithInlineConfigParser(getPath(fileName), expected);
@@ -962,8 +962,8 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCaseBlocksWithSwitchExpressionAlone() throws Exception {
         final String[] expected = {
-            "63:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
-            "86:42: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 42),
+            "64:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
+            "87:42: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 42),
         };
         final String fileName = "InputRightCurlyCaseBlocksWithSwitchExpressionAlone.java";
         verifyWithInlineConfigParser(getPath(fileName), expected);
@@ -972,7 +972,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCaseBlocksWithSwitchExpressionAloneOrSingleLine() throws Exception {
         final String[] expected = {
-            "63:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
+            "64:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
         };
         final String fileName =
                 "InputRightCurlyCaseBlocksWithSwitchExpressionAloneOrSingleline.java";
@@ -982,11 +982,11 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSwitchWhenGuards() throws Exception {
         final String[] expected = {
-            "25:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
-            "36:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "51:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
-            "64:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "73:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "26:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
+            "37:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "52:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+            "65:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "74:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
         final String fileName = "InputRightCurlySwitchWhen.java";
         verifyWithInlineConfigParser(getNonCompilablePath(fileName), expected);
@@ -995,13 +995,13 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultBlocksInSwitchStatementAlone() throws Exception {
         final String[] expected = {
-            "33:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "44:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "73:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "78:68: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 68),
-            "90:40: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 40),
-            "97:43: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 43),
-            "107:36: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 36),
+            "34:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "45:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "74:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "79:68: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 68),
+            "91:40: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 40),
+            "98:43: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 43),
+            "108:36: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 36),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyDefaultBlocksInSwitchStatementAlone.java"), expected);
@@ -1010,12 +1010,12 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultBlocksInSwitchStatementAlone2() throws Exception {
         final String[] expected = {
-            "17:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
-            "29:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "41:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
-            "53:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "64:25: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 25),
-            "71:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
+            "18:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
+            "30:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "42:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
+            "54:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "65:25: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 25),
+            "72:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyDefaultBlocksInSwitchStatementAlone2.java"), expected);
@@ -1024,10 +1024,10 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultBlocksInSwitchStatementAloneOrSingleline() throws Exception {
         final String[] expected = {
-            "33:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "44:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "73:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "78:74: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 74),
+            "34:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "45:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "74:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "79:74: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 74),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyDefaultBlocksInSwitchStatementAloneOrSingleline.java"),
@@ -1037,10 +1037,10 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultBlocksInSwitchStatementAloneOrSingleline2() throws Exception {
         final String[] expected = {
-            "18:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
-            "30:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "43:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
-            "117:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "19:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
+            "31:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "44:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
+            "118:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyDefaultBlocksInSwitchStatementAloneOrSingleline2.java"),
@@ -1050,11 +1050,11 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultBlocksInSwitchStatementSame() throws Exception {
         final String[] expected = {
-            "35:16: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 16),
-            "46:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "75:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "80:74: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 74),
-            "110:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "36:16: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 16),
+            "47:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "76:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "81:74: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 74),
+            "111:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyDefaultBlocksInSwitchStatementSame.java"), expected);
@@ -1063,11 +1063,11 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultBlocksInSwitchStatementSame2() throws Exception {
         final String[] expected = {
-            "18:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "30:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "42:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "54:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "84:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
+            "19:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "31:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "43:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "55:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "85:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyDefaultBlocksInSwitchStatementSame2.java"), expected);
@@ -1076,10 +1076,10 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultBlocksWithSwitchRuleAlone() throws Exception {
         final String[] expected = {
-            "63:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "68:82: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 82),
-            "78:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
-            "88:32: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 32),
+            "64:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "69:82: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 82),
+            "79:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
+            "89:32: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 32),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyDefaultBlocksWithSwitchRuleAlone.java"),
@@ -1089,10 +1089,10 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultBlocksWithSwitchRuleAloneOrSingleline() throws Exception {
         final String[] expected = {
-            "55:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
-            "68:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "79:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
-            "84:70: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 70),
+            "56:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+            "69:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "80:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "85:70: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 70),
         };
         final String fileName =
                 "InputRightCurlyDefaultBlocksWithSwitchRuleAloneOrSingleline.java";
@@ -1102,9 +1102,9 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultBlocksWithSwitchExpressionAlone() throws Exception {
         final String[] expected = {
-            "62:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
-            "86:42: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 42),
-            "112:34: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 34),
+            "63:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
+            "87:42: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 42),
+            "113:34: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 34),
         };
         final String fileName =
                 "InputRightCurlyDefaultBlocksWithSwitchExpressionAlone.java";
@@ -1114,11 +1114,31 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultBlocksWithSwitchExpressionAloneOrSingleline() throws Exception {
         final String[] expected = {
-            "62:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
-            "113:34: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 34),
+            "63:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
+            "114:34: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 34),
         };
         final String fileName =
                 "InputRightCurlyDefaultBlocksWithSwitchExpressionAloneOrSingleline.java";
         verifyWithInlineConfigParser(getPath(fileName), expected);
+    }
+
+    @Test
+    public void testDefaultMultiBlockStatement() throws Exception {
+        final String[] expected = {
+            "23:17: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 17),
+            "28:22: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 22),
+            "28:30: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 30),
+            "36:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
+            "43:64: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 64),
+            "43:75: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 75),
+            "58:68: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 68),
+            "58:79: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 79),
+            "63:14: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 14),
+            "63:37: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 37),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestMultiBlockStatements.java"), expected
+        );
     }
 }

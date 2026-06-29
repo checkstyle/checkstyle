@@ -1,5 +1,6 @@
 /*
 RightCurly
+allowSingleLineMultiBlock = (default)true
 option = ALONE_OR_SINGLELINE
 tokens = ENUM_DEF
 
