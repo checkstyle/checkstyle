@@ -9,8 +9,10 @@ class InputAbstractJavadocUnclosedTagAndInvalidAtSeeReference {
     /**
      * @see javax.swing.tree.DefaultTreeCellRenderer.getTreeCellRendererComponent()
      */
-    // violation 2 lines above 'Javadoc comment at column 81 has parse error.'
-    // Details: mismatched input '(' expecting <EOF> while parsing JAVADOC
+    // violation 2 lines above 'Javadoc comment at column 12 has parse error.'
+    // Details: no viable alternative at input
+    // 'javax.swing.tree.DefaultTreeCellRenderer.getTreeCellRendererComponent'
+    // while parsing REFERENCE
     void invalidAtSeeReference() {
     }
 }
