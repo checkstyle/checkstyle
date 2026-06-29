@@ -205,7 +205,7 @@ public final class TokenUtil {
         final String tokenTypes =
             "com.puppycrawl.tools.checkstyle.api.tokentypes";
         final ResourceBundle bundle = ResourceBundle.getBundle(tokenTypes, Locale.ROOT);
-        return bundle.getString(name);
+        return String.valueOf(bundle.getObject(name));
     }
 
     /**

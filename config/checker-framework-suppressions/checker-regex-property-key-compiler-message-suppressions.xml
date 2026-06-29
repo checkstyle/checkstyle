@@ -3,8 +3,8 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of ResourceBundle.getString.</message>
-    <lineContent>final String pattern = resourceBundle.getString(key);</lineContent>
+    <message>incompatible argument for parameter key of ResourceBundle.getObject.</message>
+    <lineContent>final String pattern = String.valueOf(resourceBundle.getObject(key));</lineContent>
     <details>
       found   : @UnknownPropertyKey String
       required: @PropertyKey String
@@ -117,8 +117,8 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of ResourceBundle.getString.</message>
-    <lineContent>result.put(key, bundle.getString(key));</lineContent>
+    <message>incompatible argument for parameter key of ResourceBundle.getObject.</message>
+    <lineContent>result.put(key, String.valueOf(bundle.getObject(key)));</lineContent>
     <details>
       found   : @UnknownPropertyKey String
       required: @PropertyKey String
@@ -183,8 +183,8 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of ResourceBundle.getString.</message>
-    <lineContent>return bundle.getString(name);</lineContent>
+    <message>incompatible argument for parameter key of ResourceBundle.getObject.</message>
+    <lineContent>return String.valueOf(bundle.getObject(name));</lineContent>
     <details>
       found   : @UnknownPropertyKey String
       required: @PropertyKey String
