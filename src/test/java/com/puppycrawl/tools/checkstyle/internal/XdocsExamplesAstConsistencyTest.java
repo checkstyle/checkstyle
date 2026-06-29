@@ -119,6 +119,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/metrics/classdataabstractioncoupling/ignore/Example9",
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example5",
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example6",
+            "checks/modifier/annotatedmethodvisibilitymodifier/Example3",
             "checks/modifier/redundantmodifier/Example2",
             "checks/naming/catchparametername/Example2",
             "checks/naming/methodname/Example4",
