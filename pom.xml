@@ -245,7 +245,8 @@
       -Xep:ConstantNaming:ERROR
       -Xep:DefaultCharset:ERROR
       -Xep:DirectReturn:ERROR
-      -Xep:EffectivelyPrivate:ERROR
+      <!-- public access on private nested class is intentional for future top-level extraction -->
+      -Xep:EffectivelyPrivate:OFF
       -Xep:EmptyMethod:ERROR
       -Xep:EnumOrdinal:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
