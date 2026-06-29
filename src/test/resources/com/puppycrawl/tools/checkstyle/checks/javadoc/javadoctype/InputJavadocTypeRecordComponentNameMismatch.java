@@ -21,5 +21,5 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
  * @param valueExtra wrong tag for a different component
  */
 public record InputJavadocTypeRecordComponentNameMismatch(String value) {
-    // violation above 'Type Javadoc comment is missing @param value tag.'
+    // violation above 'Type Javadoc comment is missing @param 'value' tag.'
 }
