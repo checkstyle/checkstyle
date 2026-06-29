@@ -181,14 +181,14 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
                 new HashSet<>(), Thread.currentThread().getContextClassLoader());
 
         treeWalker.setModuleFactory(factory);
-        treeWalker.finishLocalSetup();
+        TestUtil.invokeVoidMethod(treeWalker, "finishLocalSetup");
 
         final DefaultConfiguration writeTagConfig = createModuleConfig(WriteTagCheck.class);
         writeTagConfig.addProperty("tag", "@author");
         writeTagConfig.addProperty("tagFormat", "Mohanad");
         writeTagConfig.addProperty("tagSeverity", "warning");
 
-        treeWalker.setupChild(writeTagConfig);
+        TestUtil.invokeVoidMethod(treeWalker, "setupChild", writeTagConfig);
 
         checker.addFileSetCheck(treeWalker);
 

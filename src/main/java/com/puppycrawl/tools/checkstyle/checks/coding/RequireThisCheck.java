@@ -1177,7 +1177,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param parent parent frame.
          * @param ident frame name ident.
          */
-        /* package */ AbstractFrame(AbstractFrame parent, DetailAST ident) {
+        public AbstractFrame(AbstractFrame parent, DetailAST ident) {
             this.parent = parent;
             frameNameIdent = ident;
             varIdents = new HashSet<>();
@@ -1188,7 +1188,7 @@ public class RequireThisCheck extends AbstractCheck {
          *
          * @return a FrameType.
          */
-        /* package */ abstract FrameType getType();
+        public abstract FrameType getType();
 
         /**
          * Add a name to the frame.
@@ -1204,7 +1204,7 @@ public class RequireThisCheck extends AbstractCheck {
          *
          * @return the parent frame
          */
-        /* package */ AbstractFrame getParent() {
+        public AbstractFrame getParent() {
             return parent;
         }
 
@@ -1213,7 +1213,7 @@ public class RequireThisCheck extends AbstractCheck {
          *
          * @return the name identifier text
          */
-        /* package */ String getFrameName() {
+        public String getFrameName() {
             return frameNameIdent.getText();
         }
 
@@ -1222,7 +1222,7 @@ public class RequireThisCheck extends AbstractCheck {
          *
          * @return the name identifier token
          */
-        /* package */ DetailAST getFrameNameIdent() {
+        public DetailAST getFrameNameIdent() {
             return frameNameIdent;
         }
 
@@ -1232,7 +1232,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param identToFind the IDENT ast of the name we're looking for.
          * @return whether it was found.
          */
-        /* package */ boolean containsFieldOrVariable(DetailAST identToFind) {
+        public boolean containsFieldOrVariable(DetailAST identToFind) {
             return containsFieldOrVariableDef(varIdents, identToFind);
         }
 
@@ -1243,7 +1243,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param lookForMethod whether we are looking for a method name.
          * @return whether it was found.
          */
-        /* package */ AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
+        public AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
             final AbstractFrame frame;
 
             if (!lookForMethod
@@ -1265,7 +1265,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @return true if the set contains a declaration with the text of the specified
          *         IDENT ast and it is declared in a proper position.
          */
-        /* package */ boolean containsFieldOrVariableDef(Set<DetailAST> set, DetailAST ident) {
+        public boolean containsFieldOrVariableDef(Set<DetailAST> set, DetailAST ident) {
             boolean result = false;
             for (DetailAST ast: set) {
                 if (isProperDefinition(ident, ast)) {
@@ -1283,7 +1283,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param ast the IDENT ast of the definition to check.
          * @return true if ast is correspondent to ident.
          */
-        /* package */ boolean isProperDefinition(DetailAST ident, DetailAST ast) {
+        public boolean isProperDefinition(DetailAST ident, DetailAST ast) {
             final String identToFind = ident.getText();
             return identToFind.equals(ast.getText())
                 && CheckUtil.isBeforeInSource(ast, ident);
@@ -1306,7 +1306,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected FrameType getType() {
+        public FrameType getType() {
             return FrameType.METHOD_FRAME;
         }
 
@@ -1328,7 +1328,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected FrameType getType() {
+        public FrameType getType() {
             return FrameType.CTOR_FRAME;
         }
 
@@ -1363,7 +1363,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected FrameType getType() {
+        public FrameType getType() {
             return FrameType.CLASS_FRAME;
         }
 
@@ -1461,19 +1461,19 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected boolean containsFieldOrVariable(DetailAST identToFind) {
+        public boolean containsFieldOrVariable(DetailAST identToFind) {
             return containsFieldOrVariableDef(instanceMembers, identToFind)
                     || containsFieldOrVariableDef(staticMembers, identToFind);
         }
 
         @Override
-        protected boolean isProperDefinition(DetailAST ident, DetailAST ast) {
+        public boolean isProperDefinition(DetailAST ident, DetailAST ast) {
             final String identToFind = ident.getText();
             return identToFind.equals(ast.getText());
         }
 
         @Override
-        protected AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
+        public AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
             AbstractFrame frame = null;
 
             if (containsMethod(identToFind)
@@ -1559,7 +1559,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected String getFrameName() {
+        public String getFrameName() {
             return frameName;
         }
 
@@ -1601,7 +1601,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected FrameType getType() {
+        public FrameType getType() {
             return FrameType.BLOCK_FRAME;
         }
 
@@ -1628,7 +1628,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
+        public AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
             final AbstractFrame frame;
 
             if (!lookForMethod
