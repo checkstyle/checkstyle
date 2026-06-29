@@ -10,14 +10,15 @@ public class InputOneTopLevelClassIndentation {
     // methods
 }
 
- class ViolatingIndentedClass1 { // violation
+// violation below 'Top-level class ViolatingIndentedClass1 has to reside in its own source file.'
+ class ViolatingIndentedClass1 {
     // methods
  }
-
-    class ViolatingIndentedClass2 { // violation
+// violation below 'Top-level class ViolatingIndentedClass2 has to reside in its own source file.'
+    class ViolatingIndentedClass2 {
         // methods
     }
-
-interface ViolatingNonIndentedInterface { // violation
+// violation below 'Top-level class Violating.* has to reside in its own source file.'
+interface ViolatingNonIndentedInterface {
     // methods
 }
