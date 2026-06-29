@@ -68,6 +68,8 @@
   <suppress checks="MethodCount" files="[\\/]VisibilityModifierCheck.java$"/>
   <!-- RequireThisCheck has a hierarchy of nested classes which contains a lot of methods. -->
   <suppress checks="MethodCount" files="[\\/]RequireThisCheck.java$"/>
+  <!-- public access on private nested class is intentional for future top-level extraction -->
+  <suppress checks="RedundantModifier" files="[\\/]RequireThisCheck\.java$"/>
   <!-- Apart from complex logic, there is a nested class which contains many methods.  -->
   <suppress checks="MethodCount" files="[\\/]UnusedLocalVariableCheck.java"/>
   <!-- Utility class is combination of a lot of different methods .  -->
