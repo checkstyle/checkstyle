@@ -3514,9 +3514,13 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessarySemicolonInEnumerationCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference enumBlock</message>
-    <lineContent>final DetailAST semicolon = enumBlock.findFirstToken(TokenTypes.SEMI);</lineContent>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter enumBlock of UnnecessarySemicolonInEnumerationCheck.hasMembersAfterConstants.</message>
+    <lineContent>final boolean hasMembers = hasMembersAfterConstants(enumBlock);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
