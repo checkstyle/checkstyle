@@ -63,11 +63,11 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         };
 
         final List<String> expectedFirstInput = Arrays.asList(
-            "16:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderEnum"),
-            "26:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderAnnotation"));
+            "17:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderEnum"),
+            "27:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderAnnotation"));
         final List<String> expectedSecondInput = Arrays.asList(
-            "9:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface2inner1"),
-            "17:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface2inner2"));
+            "10:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface2inner1"),
+            "18:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface2inner2"));
 
         verify(createChecker(checkConfig), inputs,
             ImmutableMap.of(firstInputFilePath, expectedFirstInput,
@@ -114,7 +114,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileWithNoPublicTopLevelClass() throws Exception {
         final String[] expected = {
-            "14:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassNoPublic2"),
+            "15:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassNoPublic2"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassNoPublic.java"), expected);
@@ -123,8 +123,8 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileWithThreeTopLevelInterface() throws Exception {
         final String[] expected = {
-            "9:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface3inner1"),
-            "17:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface3inner2"),
+            "10:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface3inner1"),
+            "18:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface3inner2"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassInterface3.java"), expected);
@@ -133,8 +133,8 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileWithThreeTopLevelEnum() throws Exception {
         final String[] expected = {
-            "9:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassEnum2inner1"),
-            "17:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassEnum2inner2"),
+            "10:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassEnum2inner1"),
+            "18:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassEnum2inner2"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassEnum2.java"), expected);
@@ -143,8 +143,8 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileWithThreeTopLevelAnnotation() throws Exception {
         final String[] expected = {
-            "15:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassAnnotation2A"),
-            "20:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassAnnotation2B"),
+            "16:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassAnnotation2A"),
+            "21:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassAnnotation2B"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassAnnotation2.java"), expected);
@@ -153,13 +153,13 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileWithFewTopLevelClasses() throws Exception {
         final String[] expected = {
-            "31:1: " + getCheckMessage(MSG_KEY, "NoSuperClone"),
-            "35:1: " + getCheckMessage(MSG_KEY, "InnerClone"),
-            "39:1: " + getCheckMessage(MSG_KEY, "CloneWithTypeArguments"),
-            "43:1: " + getCheckMessage(MSG_KEY, "CloneWithTypeArgumentsAndNoSuper"),
-            "47:1: " + getCheckMessage(MSG_KEY, "MyClassWithGenericSuperMethod"),
-            "51:1: " + getCheckMessage(MSG_KEY, "AnotherClass"),
-            "54:1: " + getCheckMessage(MSG_KEY, "NativeTest"),
+            "32:1: " + getCheckMessage(MSG_KEY, "NoSuperClone"),
+            "36:1: " + getCheckMessage(MSG_KEY, "InnerClone"),
+            "40:1: " + getCheckMessage(MSG_KEY, "CloneWithTypeArguments"),
+            "44:1: " + getCheckMessage(MSG_KEY, "CloneWithTypeArgumentsAndNoSuper"),
+            "48:1: " + getCheckMessage(MSG_KEY, "MyClassWithGenericSuperMethod"),
+            "52:1: " + getCheckMessage(MSG_KEY, "AnotherClass"),
+            "55:1: " + getCheckMessage(MSG_KEY, "NativeTest"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassClone.java"), expected);
@@ -168,8 +168,8 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileWithSecondEnumTopLevelClass() throws Exception {
         final String[] expected = {
-            "16:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderEnum2"),
-            "26:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderAnnotation2"),
+            "17:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderEnum2"),
+            "27:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderAnnotation2"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassDeclarationOrder2.java"), expected);
@@ -185,7 +185,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileWithMultipleSameLine() throws Exception {
         final String[] expected = {
-            "9:47: " + getCheckMessage(MSG_KEY, "ViolatingSecondType"),
+            "10:47: " + getCheckMessage(MSG_KEY, "ViolatingSecondType"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassSameLine.java"), expected);
@@ -194,9 +194,9 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileWithIndentation() throws Exception {
         final String[] expected = {
-            "13:2: " + getCheckMessage(MSG_KEY, "ViolatingIndentedClass1"),
-            "17:5: " + getCheckMessage(MSG_KEY, "ViolatingIndentedClass2"),
-            "21:1: " + getCheckMessage(MSG_KEY, "ViolatingNonIndentedInterface"),
+            "14:2: " + getCheckMessage(MSG_KEY, "ViolatingIndentedClass1"),
+            "18:5: " + getCheckMessage(MSG_KEY, "ViolatingIndentedClass2"),
+            "22:1: " + getCheckMessage(MSG_KEY, "ViolatingNonIndentedInterface"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassIndentation.java"), expected);
@@ -205,8 +205,8 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testOneTopLevelClassRecords() throws Exception {
         final String[] expected = {
-            "13:1: " + getCheckMessage(MSG_KEY, "TestRecord1"),
-            "17:1: " + getCheckMessage(MSG_KEY, "TestRecord2"),
+            "14:1: " + getCheckMessage(MSG_KEY, "TestRecord1"),
+            "18:1: " + getCheckMessage(MSG_KEY, "TestRecord2"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassRecords.java"), expected);

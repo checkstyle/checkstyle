@@ -1,5 +1,6 @@
 /*
 OneTopLevelClass
+violatingClassName = (default)null
 
 
 */
@@ -27,3 +28,4 @@ enum InputDeclarationOrderEnum // violation
 {
 
 }
+

@@ -1,5 +1,6 @@
 /*
 OneTopLevelClass
+violatingClassName = (default)null
 
 
 */
@@ -29,3 +30,4 @@ public @interface InputOneTopLevelClassAnnotation2 {
    String author();
    String date();
 }
+

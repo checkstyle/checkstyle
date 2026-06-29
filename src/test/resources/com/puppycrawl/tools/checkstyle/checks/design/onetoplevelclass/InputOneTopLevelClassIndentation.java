@@ -1,5 +1,6 @@
 /*
 OneTopLevelClass
+violatingClassName = (default)null
 
 
 */
@@ -21,3 +22,4 @@ public class InputOneTopLevelClassIndentation {
 interface ViolatingNonIndentedInterface { // violation
     // methods
 }
+
