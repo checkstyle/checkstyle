@@ -61,6 +61,27 @@ public class UnnecessarySemicolonInEnumerationCheckTest extends AbstractModuleTe
     }
 
     @Test
+    public void doubleSemicolon() throws Exception {
+
+        final String[] expected = {
+            "11:10: " + getCheckMessage(MSG_SEMI),
+            "11:11: " + getCheckMessage(MSG_SEMI),
+            "15:12: " + getCheckMessage(MSG_SEMI),
+            "16:9: " + getCheckMessage(MSG_SEMI),
+            "19:10: " + getCheckMessage(MSG_SEMI),
+            "19:11: " + getCheckMessage(MSG_SEMI),
+            "19:12: " + getCheckMessage(MSG_SEMI),
+            "23:9: " + getCheckMessage(MSG_SEMI),
+            "23:10: " + getCheckMessage(MSG_SEMI),
+            "27:13: " + getCheckMessage(MSG_SEMI),
+            "27:14: " + getCheckMessage(MSG_SEMI),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessarySemicolonInEnumeration2.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final UnnecessarySemicolonInEnumerationCheck check =
                 new UnnecessarySemicolonInEnumerationCheck();
