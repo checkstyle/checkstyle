@@ -356,4 +356,86 @@
     <Field name="xpath" />
     <Bug pattern="SPP_FIELD_COULD_BE_STATIC" />
   </Match>
+
+  <!-- Until https://github.com/checkstyle/checkstyle/issues/20482 -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.TreeWalker" />
+    <Method name="finishLocalSetup" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.TreeWalker" />
+    <Method name="setupChild" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck$AnonymousClassFrame" />
+    <Method name="getFrameName" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck$BlockFrame" />
+    <Method name="getType" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck$CatchFrame" />
+    <Method name="getIfContains" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck$CatchFrame" />
+    <Method name="getType" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck$CatchFrame" />
+    <Method name="containsFieldOrVariable" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck$ClassFrame" />
+    <Method name="containsFieldOrVariable" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck$ClassFrame" />
+    <Method name="getIfContains" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck$ClassFrame" />
+    <Method name="getType" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck$ClassFrame" />
+    <Method name="isProperDefinition" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck$ConstructorFrame" />
+    <Method name="getType" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck$ForFrame" />
+    <Method name="getType" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck$MethodFrame" />
+    <Method name="getType" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck$TryWithResourcesFrame" />
+    <Method name="getType" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.site.XdocsTemplateSinkFactory" />
+    <Method name="createSink" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
 </FindBugsFilter>
