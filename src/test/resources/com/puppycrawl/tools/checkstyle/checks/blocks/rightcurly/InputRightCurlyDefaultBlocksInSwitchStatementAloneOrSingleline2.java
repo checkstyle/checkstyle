@@ -1,5 +1,6 @@
 /*
 RightCurly
+forbidSingleLineMultiBlock = (default)false
 option = ALONE_OR_SINGLELINE
 tokens = LITERAL_DEFAULT
 
@@ -103,7 +104,6 @@ public class InputRightCurlyDefaultBlocksInSwitchStatementAloneOrSingleline2 {
             case 1:
             int z;
             {
-
             } break; case 2: break;
         }
     }

@@ -1,5 +1,6 @@
 /*
 RightCurly
+forbidSingleLineMultiBlock = (default)false
 option = (default)SAME
 tokens = RECORD_DEF, COMPACT_CTOR_DEF, CTOR_DEF, METHOD_DEF
 
