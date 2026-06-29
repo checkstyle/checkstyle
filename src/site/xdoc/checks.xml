@@ -50,6 +50,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/modifier/annotatedmethodvisibilitymodifier.html#AnnotatedMethodVisibilityModifier">
+                AnnotatedMethodVisibilityModifier
+              </a>
+            </td>
+            <td>
+              Checks that elements annotated with specified annotations have only allowed visibility
+              modifiers.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/annotation/annotationlocation.html#AnnotationLocation">
                 AnnotationLocation
               </a>
