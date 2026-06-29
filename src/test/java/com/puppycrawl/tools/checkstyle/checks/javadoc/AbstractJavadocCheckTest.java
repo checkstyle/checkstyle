@@ -116,14 +116,27 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAntlrError(@SysErr Capturable systemErr) throws Exception {
         final String[] expected = {
-            "9: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 77,
-                    "mismatched input '(' expecting <EOF>", "JAVADOC"),
+            "9: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 8,
+                    "no viable alternative at input "
+                        + "'javax.swing.tree.DefaultTreeCellRenderer"
+                        + ".getTreeCellRendererComponent'", "REFERENCE"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocInvalidAtSeeReference.java"), expected);
         assertWithMessage("Error is unexpected")
             .that(systemErr.getCapturedData())
             .isEqualTo("");
+    }
+
+    @Test
+    public void testInvalidInlineMethodReferenceWithoutHash() throws Exception {
+        final String[] expected = {
+            "9: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 10,
+                    "no viable alternative at input 'java.util.List.add'", "REFERENCE"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAbstractJavadocInvalidInlineMethodReferenceWithoutHash.java"),
+                expected);
     }
 
     @Test
@@ -150,8 +163,10 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                 "InputAbstractJavadocParsingErrors2.java"), expectedMessagesForFile1);
 
         final String[] expectedMessagesForFile2 = {
-            "9: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 77,
-                    "mismatched input '(' expecting <EOF>", "JAVADOC"),
+            "9: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 8,
+                    "no viable alternative at input "
+                        + "'javax.swing.tree.DefaultTreeCellRenderer"
+                        + ".getTreeCellRendererComponent'", "REFERENCE"),
         };
         verifyWithInlineConfigParser(getPath(
                 "InputAbstractJavadocInvalidAtSeeReference2.java"), expectedMessagesForFile2);
@@ -165,8 +180,10 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInSingleFile()
             throws Exception {
         final String[] expected = {
-            "10: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 81,
-                    "mismatched input '(' expecting <EOF>", "JAVADOC"),
+            "10: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 12,
+                    "no viable alternative at input "
+                        + "'javax.swing.tree.DefaultTreeCellRenderer"
+                        + ".getTreeCellRendererComponent'", "REFERENCE"),
         };
         verifyWithInlineConfigParser(
             getPath("InputAbstractJavadocUnclosedTagAndInvalidAtSeeReference.java"), expected);

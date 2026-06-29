@@ -8,7 +8,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 /**
  * @see javax.swing.tree.DefaultTreeCellRenderer.getTreeCellRendererComponent()
  */
-// violation 2 lines above 'Javadoc comment at column 77 has parse error.'
-// Details: mismatched input '(' expecting <EOF> while parsing JAVADOC
+// violation 2 lines above 'Javadoc comment at column 8 has parse error.'
+// Details: no viable alternative at input
+// 'javax.swing.tree.DefaultTreeCellRenderer.getTreeCellRendererComponent'
+// while parsing REFERENCE
 class InputAbstractJavadocInvalidAtSeeReference2 {
 }
