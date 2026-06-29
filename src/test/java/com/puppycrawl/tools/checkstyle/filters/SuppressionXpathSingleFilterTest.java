@@ -81,6 +81,19 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
+    public void testNonMatchingTokenTypeByXpath() throws Exception {
+        final String[] expected = {
+            "20:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
+        };
+
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressionXpathSingleFilterNonMatchingTokenType2.java"), expected,
+            removeSuppressed(expected, suppressed));
+    }
+
+    @Test
     public void testNonMatchingLineNumber() throws Exception {
         final String[] expected = {
             "19:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),

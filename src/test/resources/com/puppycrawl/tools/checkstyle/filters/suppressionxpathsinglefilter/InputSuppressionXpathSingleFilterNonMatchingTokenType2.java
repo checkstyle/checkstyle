@@ -1,0 +1,21 @@
+/*
+SuppressionXpathSingleFilter
+files = InputSuppressionXpathSingleFilterNonMatchingTokenType2
+checks = MissingJavadocTypeCheck
+message = (default)(null)
+id = (default)(null)
+query = /COMPILATION_UNIT/CLASS_DEF \
+        [./IDENT[@text='InputSuppressionXpathSingleFilterNonMatchingTokenType2']]/MODIFIERS
+
+com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck
+scope = (default)public
+excludeScope = (default)(null)
+skipAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
+tokens = CLASS_DEF, INTERFACE_DEF
+
+*/
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+
+public class InputSuppressionXpathSingleFilterNonMatchingTokenType2 { // violation
+}

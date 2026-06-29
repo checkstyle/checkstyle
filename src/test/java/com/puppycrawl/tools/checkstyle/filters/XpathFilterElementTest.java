@@ -58,18 +58,6 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonMatchingTokenType() throws Exception {
-        final String xpath = "//METHOD_DEF[./IDENT[@text='countTokens']]";
-        final XpathFilterElement filter = new XpathFilterElement(
-                "InputXpathFilterElementSuppressByXpath", "Test", null, null, xpath);
-        final TreeWalkerAuditEvent ev = getEvent(4, 4,
-                TokenTypes.CLASS_DEF);
-        assertWithMessage("Event should be accepted")
-                .that(filter.accept(ev))
-                .isTrue();
-    }
-
-    @Test
     public void testNonMatchingColumnNumber() throws Exception {
         final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathFilterElementSuppressByXpath']]";
         final XpathFilterElement filter = new XpathFilterElement(
