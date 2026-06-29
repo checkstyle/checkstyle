@@ -287,6 +287,9 @@
     <exclude name="LawOfDemeter"/>
     <!-- We use our ImportControl to control imports in packages and classes. -->
     <exclude name="LoosePackageCoupling"/>
+    <!-- Nested classes are potential candidates to be become top public,
+         so should define what is public from start -->
+    <exclude name="PublicMemberInNonPublicType"/>
   </rule>
   <rule ref="category/java/errorprone.xml/AvoidCatchingGenericException">
     <properties>

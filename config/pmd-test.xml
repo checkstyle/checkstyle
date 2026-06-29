@@ -183,19 +183,6 @@
     </properties>
   </rule>
 
-  <rule ref="category/java/design.xml/UseObjectForClearerAPI">
-    <properties>
-      <!-- This is checking for amount of String arguments more than 3 (hardcoded).
-         Extra abstraction(object) for single method does not make code more readable or
-         easy to maintain. The rule should also only check public methods but has a bug.
-         Suppress the false-positives. -->
-      <property name="violationSuppressXPath"
-               value="//ClassDeclaration[@SimpleName='SuppressionXpathSingleFilterTest']
-                        //MethodDeclaration[@Name='createSuppressionXpathSingleFilter']
-                    | //ClassDeclarationClassDeclaration[@SimpleName='XdocsPagesTest']
-                        //MethodDeclaration[@Name='validateRuleNameOrder']"/>
-    </properties>
-  </rule>
   <rule ref="category/java/errorprone.xml/CloseResource">
     <properties>
       <!-- we do close streams in special methods -->
