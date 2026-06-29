@@ -72,6 +72,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </ol>
  *
  * <p>
+ * ATTENTION: Top-level members of compact source files are skipped from validation by this check.
+ * </p>
+ *
+ * <p>
  * interfaces by definition are abstract so the {@code abstract} modifier is redundant on them.
  * </p>
  *
