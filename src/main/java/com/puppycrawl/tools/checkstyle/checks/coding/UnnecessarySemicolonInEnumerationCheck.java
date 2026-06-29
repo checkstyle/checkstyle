@@ -61,9 +61,13 @@ public final class UnnecessarySemicolonInEnumerationCheck extends AbstractCheck 
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST enumBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
-        final DetailAST semicolon = enumBlock.findFirstToken(TokenTypes.SEMI);
-        if (semicolon != null && isEndOfEnumerationAfter(semicolon)) {
-            log(semicolon, MSG_SEMI);
+        DetailAST sibling = enumBlock.getFirstChild();
+        while (sibling != null) {
+            if (sibling.getType() == TokenTypes.SEMI
+                    && isEndOfEnumerationAfter(sibling)) {
+                log(sibling, MSG_SEMI);
+            }
+            sibling = sibling.getNextSibling();
         }
     }
 
@@ -74,6 +78,7 @@ public final class UnnecessarySemicolonInEnumerationCheck extends AbstractCheck 
      * @return true if there is no code elements, false otherwise.
      */
     private static boolean isEndOfEnumerationAfter(DetailAST ast) {
-        return ast.getNextSibling().getType() == TokenTypes.RCURLY;
+        final int nextType = ast.getNextSibling().getType();
+        return nextType == TokenTypes.RCURLY || nextType == TokenTypes.SEMI;
     }
 }
