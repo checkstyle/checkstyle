@@ -41,7 +41,7 @@ blocks:
       jobs:
         - name: sevntu
           commands:
-            - ./mvnw -e --no-transfer-progress compile antrun:run@ant-phase-verify-sevntu -Psevntu
+            - ./.ci/validation.sh sevntu
 
         - name: codenarc analysis
           commands:
