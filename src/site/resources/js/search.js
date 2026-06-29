@@ -19,6 +19,12 @@
         "File Filter": "File Filter",
         "General":     "Doc"
     };
+    
+    var FILTER_VALUES = {
+        "Checks": ["Check", "Example", "Property"],
+        "Filters": ["Filter", "File Filter"],
+        "Docs": ["General"]
+    };
     var debounceTimer = null;
     var indexLoading = false;
     var postLoadQueue = [];
@@ -99,6 +105,34 @@
         posWrap.appendChild(resultsContainer);
         wrapper.appendChild(posWrap);
 
+        var filterWrap = document.createElement("div");
+        filterWrap.id = "checkstyle-search-filters";
+        filterWrap.className = "cs-search-filters";
+        
+        var filterLabels = ["Checks", "Filters", "Docs"];
+        
+
+        filterLabels.forEach(function(lbl) {
+            var label = document.createElement("label");
+            label.className = "cs-search-filter-label";
+            var cb = document.createElement("input");
+            cb.type = "checkbox";
+            cb.value = lbl;
+            cb.checked = true;
+            cb.className = "cs-search-filter-cb";
+            cb.addEventListener("change", function() {
+                var q = searchInput.value.trim();
+                if (q.length >= MIN_QUERY_LENGTH && window.CHECKSTYLE_SEARCH_INDEX) {
+                    renderResults(search(q, window.CHECKSTYLE_SEARCH_INDEX), q);
+                }
+            });
+            label.appendChild(cb);
+            label.appendChild(document.createTextNode(" " + lbl));
+            filterWrap.appendChild(label);
+        });
+
+        wrapper.appendChild(filterWrap);
+
         sidebar.insertBefore(wrapper, sidebar.firstChild);
 
         searchInput.addEventListener("input",   onInput);
@@ -158,8 +192,23 @@
         var tokens = q.split(/\s+/).filter(Boolean);
         var scored = [];
 
+        var allowedTypes = [];
+        var checkboxes = document.querySelectorAll(".cs-search-filter-cb");
+        for (var c = 0; c < checkboxes.length; c++) {
+            if (checkboxes[c].checked) {
+                var val = checkboxes[c].value;
+                if (FILTER_VALUES[val]) {
+                    allowedTypes = allowedTypes.concat(FILTER_VALUES[val]);
+                }
+            }
+        }
+
         for (var i = 0; i < entries.length; i++) {
             var entry    = entries[i];
+            if (allowedTypes.indexOf(entry.type) === -1) {
+                continue;
+            }
+
             var title    = (entry.title       || "").toLowerCase();
             var desc     = (entry.description || "").toLowerCase();
             var keywords = (entry.keywords    || "").toLowerCase();
@@ -191,6 +240,7 @@
         }
         scored.sort(function (a, b) {
             if (b.score !== a.score) { return b.score - a.score; }
+            if (b.entry.weight !== a.entry.weight) { return b.entry.weight - a.entry.weight; }
             return (a.entry.title || "").localeCompare(b.entry.title || "");
         });
         return scored.slice(0, MAX_RESULTS).map(function (s) { return s.entry; });
@@ -319,6 +369,14 @@
         badge.style.borderColor = color + "44";
 
         titleRow.appendChild(titleEl);
+
+        if (entry.since) {
+            var sinceBadge = document.createElement("span");
+            sinceBadge.className        = "cs-search-since-badge";
+            sinceBadge.textContent      = "Since " + entry.since;
+            titleRow.appendChild(sinceBadge);
+        }
+
         titleRow.appendChild(badge);
         item.appendChild(titleRow);
 
