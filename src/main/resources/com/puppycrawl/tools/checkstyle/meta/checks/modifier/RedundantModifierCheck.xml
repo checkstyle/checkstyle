@@ -45,6 +45,10 @@
  &lt;/ol&gt;
 
  &lt;p&gt;
+ ATTENTION: Top-level members of compact source files are skipped from validation by this check.
+ &lt;/p&gt;
+
+ &lt;p&gt;
  interfaces by definition are abstract so the &lt;code&gt;abstract&lt;/code&gt; modifier is redundant on them.
  &lt;/p&gt;
 
