@@ -194,11 +194,20 @@ public class MethodCallHandler extends AbstractExpressionHandler {
 
     @Override
     public void checkIndentation() {
+        final DetailAST expr = getMainAst().getParent();
+        final DetailAST parent = expr.getParent();
         DetailAST lparen = null;
         if (getMainAst().getType() == TokenTypes.METHOD_CALL) {
-            final DetailAST exprNode = getMainAst().getParent();
-            if (exprNode.getParent().getType() == TokenTypes.SLIST) {
-                checkExpressionSubtree(getMainAst().getFirstChild(), getIndent(), false, false);
+            final boolean directParent = parent.getType() == TokenTypes.SLIST
+                    || parent.getType() == TokenTypes.LAMBDA
+                    || parent.getType() == TokenTypes.LITERAL_RETURN;
+            if (directParent && !nestedMethodCall(getMainAst())) {
+                final IndentLevel standardIndent = getIndent();
+                IndentLevel enhancedIndent = standardIndent;
+                if (parent.getType() == TokenTypes.LITERAL_RETURN) {
+                    enhancedIndent = getIndentLevelForChained(standardIndent);
+                }
+                checkExpressionSubtree(getMainAst().getFirstChild(), enhancedIndent, false, false);
                 lparen = getMainAst();
             }
         }
@@ -208,19 +217,34 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         }
 
         if (lparen != null) {
-            final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
-            checkLeftParen(lparen);
+            checkLparen(lparen, parent);
+        }
+    }
 
-            if (!TokenUtil.areOnSameLine(rparen, lparen)) {
-                checkExpressionSubtree(
+    /**
+     * Checks the indentation of the left parenthesis for method calls.
+     *
+     * @param lparen left parenthesis of method call
+     * @param parent parent of method call expression
+     */
+    private void checkLparen(DetailAST lparen, DetailAST parent) {
+        final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
+        checkLeftParen(lparen);
+
+        if (!TokenUtil.areOnSameLine(rparen, lparen)) {
+            checkExpressionSubtree(
                     getMainAst().findFirstToken(TokenTypes.ELIST),
                     new IndentLevel(getIndent(), getBasicOffset()),
                     false, true);
 
-                checkRparenIndent(lparen, rparen);
+            checkRparenIndent(lparen, rparen);
+            if (parent.getType() == TokenTypes.SLIST
+                    || getMainAst().getType() == TokenTypes.CTOR_CALL
+                    || getMainAst().getType() == TokenTypes.SUPER_CTOR_CALL) {
                 checkWrappingIndentation(getMainAst(), getCallLastNode(getMainAst()));
             }
         }
+
     }
 
     /**
@@ -238,11 +262,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         // For chained method calls, also allow rparen at the line start position
         IndentLevel enhancedIndent = standardIndent;
         if (getParent() instanceof MethodCallHandler) {
-            final int lineStart = getLineStart(getFirstAst(getMainAst()));
-            if (lineStart != standardIndent.getFirstIndentLevel()) {
-                enhancedIndent = IndentLevel.addAcceptable(standardIndent,
-                        new IndentLevel(lineStart));
-            }
+            enhancedIndent = getIndentLevelForChained(standardIndent);
         }
 
         if (rparenLevel != lparenLevel + 1
@@ -267,6 +287,40 @@ public class MethodCallHandler extends AbstractExpressionHandler {
      */
     private static DetailAST getCallLastNode(DetailAST firstNode) {
         return firstNode.getLastChild();
+    }
+
+    /**
+     * Returns indent for chained method call.
+     *
+     * @param standardIndent standard indentation for line
+     * @return indent level for chained method call
+     */
+    private IndentLevel getIndentLevelForChained(IndentLevel standardIndent) {
+        final int lineStart = getLineStart(getFirstAst(getMainAst()));
+        IndentLevel enhancedIndent = standardIndent;
+        if (lineStart != standardIndent.getFirstIndentLevel()) {
+            enhancedIndent = IndentLevel.addAcceptable(standardIndent,
+                    new IndentLevel(lineStart));
+        }
+        return enhancedIndent;
+    }
+
+    /**
+     * Returns true if current method call is nested in another method call.
+     *
+     * @param ast current method call ast
+     * @return true if method call ast is nested
+     */
+    private boolean nestedMethodCall(DetailAST ast) {
+        boolean nested = false;
+        DetailAST current = ast.getParent();
+        while (current != null) {
+            if (current.getType() == TokenTypes.METHOD_CALL) {
+                nested = true;
+            }
+            current = current.getParent();
+        }
+        return nested;
     }
 
 }
