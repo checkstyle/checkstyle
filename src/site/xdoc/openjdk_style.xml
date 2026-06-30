@@ -744,7 +744,15 @@
                     Annotations
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  This section can not be covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20209">
+                    #20209
+                  </a>
+                </td>
                 <td/>
               </tr>
               <tr>
