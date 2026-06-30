@@ -169,8 +169,8 @@ public final class SearchIndexGenerator {
     /** String literal for the Properties subsection name fragment. */
     private static final String PROPERTIES_FRAGMENT = "propert";
 
-    /** Log message for skipping files. */
-    private static final String SKIPPING_MSG = "[SearchIndex] WARN: skipping {0} - {1}";
+    /** Exception message prefix used when an XDoc file fails to parse. */
+    private static final String PARSE_FAILURE_MSG = "Failed to parse XDoc file: ";
 
     /**
      * Suffix label appended to example titles for configuration snippets.
@@ -251,24 +251,31 @@ public final class SearchIndexGenerator {
             "contributing", "limitations", "parameters", "installation"
     ));
 
-    /** Category mapping: XDoc subdirectory name to display label. */
-    private static final Map<String, String> CATEGORY_MAP = new LinkedHashMap<>();
+    /**
+     * Display names for the check category subdirectories under
+     * {@code checks/}, keyed by lowercase directory name. Every directory
+     * that exists under {@code checks/} must have an entry here -
+     * {@link #processChecksDirectory} fails fast if one is missing, so a
+     * contributor adding a new category is forced to register its display
+     * name instead of getting a guessed-at label.
+     */
+    private static final Map<String, String> CHECKS_CATEGORY_DISPLAY_NAMES = new LinkedHashMap<>();
 
     static {
-        CATEGORY_MAP.put("annotation", "Annotation");
-        CATEGORY_MAP.put("blocks", "Block Checks");
-        CATEGORY_MAP.put("coding", "Coding");
-        CATEGORY_MAP.put("design", "Class Design");
-        CATEGORY_MAP.put("header", "Headers");
-        CATEGORY_MAP.put("imports", "Imports");
-        CATEGORY_MAP.put("javadoc", "Javadoc Comments");
-        CATEGORY_MAP.put("metrics", "Metrics");
-        CATEGORY_MAP.put("misc", "Miscellaneous");
-        CATEGORY_MAP.put("modifier", "Modifiers");
-        CATEGORY_MAP.put("naming", "Naming Conventions");
-        CATEGORY_MAP.put("regexp", "Regexp");
-        CATEGORY_MAP.put("sizes", "Size Violations");
-        CATEGORY_MAP.put("whitespace", "Whitespace");
+        CHECKS_CATEGORY_DISPLAY_NAMES.put("annotation", "Annotations");
+        CHECKS_CATEGORY_DISPLAY_NAMES.put("blocks", "Block Checks");
+        CHECKS_CATEGORY_DISPLAY_NAMES.put("coding", "Coding");
+        CHECKS_CATEGORY_DISPLAY_NAMES.put("design", "Class Design");
+        CHECKS_CATEGORY_DISPLAY_NAMES.put("header", "Headers");
+        CHECKS_CATEGORY_DISPLAY_NAMES.put("imports", "Imports");
+        CHECKS_CATEGORY_DISPLAY_NAMES.put("javadoc", "Javadoc Comments");
+        CHECKS_CATEGORY_DISPLAY_NAMES.put("metrics", "Metrics");
+        CHECKS_CATEGORY_DISPLAY_NAMES.put("misc", "Miscellaneous");
+        CHECKS_CATEGORY_DISPLAY_NAMES.put("modifier", "Modifiers");
+        CHECKS_CATEGORY_DISPLAY_NAMES.put("naming", "Naming Conventions");
+        CHECKS_CATEGORY_DISPLAY_NAMES.put("regexp", "Regexp");
+        CHECKS_CATEGORY_DISPLAY_NAMES.put("sizes", "Size Violations");
+        CHECKS_CATEGORY_DISPLAY_NAMES.put("whitespace", "Whitespace");
     }
 
     /** Stop words: too generic to be useful as search keywords. */
@@ -367,19 +374,36 @@ public final class SearchIndexGenerator {
     /**
      * Walks {@code src/xdocs/checks/} and processes each category subdirectory.
      *
+     * <p>Every directory found here must have a corresponding entry in
+     * {@link #CHECKS_CATEGORY_DISPLAY_NAMES}; an unmapped directory likely
+     * means a new check category was added without registering its display
+     * name, so this fails fast rather than guessing a label from the
+     * directory name.</p>
+     *
      * @param checksDir the checks root directory
      * @param xdocsDir  the xdocs root (used for URL building)
+     * @throws IllegalStateException if {@code checksDir} cannot be listed, or
+     *         if one of its subdirectories has no entry in
+     *         {@link #CHECKS_CATEGORY_DISPLAY_NAMES}
      */
     private void processChecksDirectory(File checksDir, File xdocsDir) {
-
         final File[] categoryDirs = checksDir.listFiles(File::isDirectory);
-        if (categoryDirs != null) {
-            for (File categoryDir : categoryDirs) {
-                final String dirName = categoryDir.getName().toLowerCase(Locale.ROOT);
-                final String category = CATEGORY_MAP.getOrDefault(dirName,
-                        capitalise(dirName));
-                processDirectory(categoryDir, xdocsDir, category, "Check");
+        if (categoryDirs == null) {
+            throw new IllegalStateException(
+                    "Unable to list check category directories under: " + checksDir);
+        }
+
+        Arrays.sort(categoryDirs);
+        for (File categoryDir : categoryDirs) {
+            final String dirName = categoryDir.getName().toLowerCase(Locale.ROOT);
+            final String category = CHECKS_CATEGORY_DISPLAY_NAMES.get(dirName);
+            if (category == null) {
+                throw new IllegalStateException(
+                        "No display name registered for check category directory '"
+                                + dirName + "' in CHECKS_CATEGORY_DISPLAY_NAMES. "
+                                + "Please add one.");
             }
+            processDirectory(categoryDir, xdocsDir, category, "Check");
         }
     }
 
@@ -405,7 +429,6 @@ public final class SearchIndexGenerator {
      */
     private void processDirectory(File dir, File xdocsDir,
                                   String category, String type) {
-
         final File[] xmlFiles = dir.listFiles(file -> {
             return file.isFile()
                     && PLAIN_XML.matcher(file.getName()).find()
@@ -415,28 +438,42 @@ public final class SearchIndexGenerator {
         if (xmlFiles != null) {
             Arrays.sort(xmlFiles);
             for (File xmlFile : xmlFiles) {
-                try {
-                    final Document doc = parseXml(xmlFile);
-                    final String baseUrl = buildUrl(xmlFile, xdocsDir);
-
-                    addIfNew(buildMainEntry(doc, xmlFile, category, type, baseUrl));
-
-                    for (SearchIndexEntry entry
-                            : extractExampleEntries(doc, baseUrl, category)) {
-                        addIfNew(entry);
-                    }
-                    for (SearchIndexEntry entry
-                            : extractPropertyEntries(doc, baseUrl, category)) {
-                        addIfNew(entry);
-                    }
-                }
-                catch (IOException | SAXException | ParserConfigurationException exception) {
-                    if (logger.isLoggable(Level.WARNING)) {
-                        logger.log(Level.WARNING, SKIPPING_MSG,
-                                new Object[] {xmlFile.getName(), exception.getMessage()});
-                    }
-                }
+                processXmlFile(xmlFile, xdocsDir, category, type);
             }
+        }
+    }
+
+    /**
+     * Parses a single check/filter XDoc file and adds its main, example, and
+     * property entries to the index.
+     *
+     * <p>A parse failure here means the source XDoc itself is malformed,
+     * which is a real problem with the documentation rather than something
+     * safe to skip - so this fails the build instead of logging a warning
+     * and silently continuing.</p>
+     *
+     * @param xmlFile  the XDoc source file to process
+     * @param xdocsDir xdocs root (used for URL building)
+     * @param category category label for entries from this file
+     * @param type     document type ("Check", "Filter", "File Filter")
+     * @throws IllegalStateException if {@code xmlFile} cannot be parsed
+     */
+    private void processXmlFile(File xmlFile, File xdocsDir, String category, String type) {
+        try {
+            final Document doc = parseXml(xmlFile);
+            final String baseUrl = buildUrl(xmlFile, xdocsDir);
+
+            addIfNew(buildMainEntry(doc, xmlFile, category, type, baseUrl));
+
+            for (SearchIndexEntry entry : extractExampleEntries(doc, baseUrl, category)) {
+                addIfNew(entry);
+            }
+            for (SearchIndexEntry entry : extractPropertyEntries(doc, baseUrl, category)) {
+                addIfNew(entry);
+            }
+        }
+        catch (IOException | SAXException | ParserConfigurationException exception) {
+            throw new IllegalStateException(PARSE_FAILURE_MSG + xmlFile, exception);
         }
     }
 
@@ -452,7 +489,6 @@ public final class SearchIndexGenerator {
      * @param xdocsDir the xdocs root directory
      */
     private void processGeneralPages(File xdocsDir) {
-
         final File[] xmlFiles = xdocsDir.listFiles(file -> {
             final String name = file.getName();
             return file.isFile()
@@ -462,18 +498,29 @@ public final class SearchIndexGenerator {
         if (xmlFiles != null) {
             Arrays.sort(xmlFiles);
             for (File xmlFile : xmlFiles) {
-                try {
-                    for (SearchIndexEntry entry : buildGeneralPageEntries(xmlFile)) {
-                        addIfNew(entry);
-                    }
-                }
-                catch (IOException | SAXException | ParserConfigurationException exception) {
-                    if (logger.isLoggable(Level.WARNING)) {
-                        logger.log(Level.WARNING, SKIPPING_MSG,
-                                new Object[] {xmlFile.getName(), exception.getMessage()});
-                    }
-                }
+                processGeneralPage(xmlFile);
             }
+        }
+    }
+
+    /**
+     * Parses a single general-documentation XDoc page and adds its
+     * per-section entries to the index.
+     *
+     * <p>A parse failure here means the source XDoc itself is malformed, so
+     * this fails the build instead of logging a warning and continuing.</p>
+     *
+     * @param xmlFile the XDoc source file to process
+     * @throws IllegalStateException if {@code xmlFile} cannot be parsed
+     */
+    private void processGeneralPage(File xmlFile) {
+        try {
+            for (SearchIndexEntry entry : buildGeneralPageEntries(xmlFile)) {
+                addIfNew(entry);
+            }
+        }
+        catch (IOException | SAXException | ParserConfigurationException exception) {
+            throw new IllegalStateException(PARSE_FAILURE_MSG + xmlFile, exception);
         }
     }
 
@@ -490,8 +537,7 @@ public final class SearchIndexGenerator {
     private static SearchIndexEntry buildMainEntry(Document doc, File xmlFile,
                                                    String category, String type,
                                                    String baseUrl) {
-        final NodeList bodies = doc.getElementsByTagName(BODY);
-        final Element body = (Element) bodies.item(0);
+        final Element body = requireBody(doc, xmlFile.toString());
         final NodeList sections = body.getElementsByTagName(SECTION);
 
         final String title = extractTitle(doc, xmlFile, sections);
@@ -519,46 +565,41 @@ public final class SearchIndexGenerator {
      */
     private static List<SearchIndexEntry> buildGeneralPageEntries(File xmlFile)
             throws ParserConfigurationException, SAXException, IOException {
-
         final List<SearchIndexEntry> results = new ArrayList<>();
         final Document doc = parseXml(xmlFile);
+        final Element body = requireBody(doc, xmlFile.toString());
+        final NodeList sections = body.getElementsByTagName(SECTION);
+        final String pageUrl = resolvePageUrl(xmlFile, xmlFile.getParentFile());
+        final String pageTitle = derivePageTitle(doc, xmlFile);
 
-        final NodeList bodies = doc.getElementsByTagName(BODY);
-        if (bodies.getLength() != 0) {
-            final Element body = (Element) bodies.item(0);
-            final NodeList sections = body.getElementsByTagName(SECTION);
-            final String pageUrl = resolvePageUrl(xmlFile, xmlFile.getParentFile());
-            final String pageTitle = derivePageTitle(doc, xmlFile);
+        if (sections.getLength() == 0) {
+            final String fullText = WHITESPACE.matcher(body.getTextContent())
+                    .replaceAll(SPACE).trim();
+            final String description = extractFirstSentenceOrTruncated(fullText);
+            final String keywords = extractKeywordsFromText(
+                    pageTitle + SPACE + fullText);
+            results.add(new SearchIndexEntry(
+                    pageTitle, pageUrl, GENERAL, GENERAL, description, keywords));
+        }
+        else {
+            for (int index = 0; index < sections.getLength(); index++) {
+                final Element section = (Element) sections.item(index);
+                if (body.equals(section.getParentNode())) {
+                    final String sectionName = section.getAttribute(NAME_ATTR).trim();
+                    if (!sectionName.isEmpty() && !CONTENT.equalsIgnoreCase(sectionName)) {
 
-            if (sections.getLength() == 0) {
-                final String fullText = WHITESPACE.matcher(body.getTextContent())
-                        .replaceAll(SPACE).trim();
-                final String description = extractFirstSentenceOrTruncated(fullText);
-                final String keywords = extractKeywordsFromText(
-                        pageTitle + SPACE + fullText);
-                results.add(new SearchIndexEntry(
-                        pageTitle, pageUrl, GENERAL, GENERAL, description, keywords));
-            }
-            else {
-                for (int index = 0; index < sections.getLength(); index++) {
-                    final Element section = (Element) sections.item(index);
-                    if (body.equals(section.getParentNode())) {
-                        final String sectionName = section.getAttribute(NAME_ATTR).trim();
-                        if (!sectionName.isEmpty() && !CONTENT.equalsIgnoreCase(sectionName)) {
+                        final String entryTitle = disambiguateTitle(sectionName, pageTitle);
+                        final String anchor = doxiaAnchorFor(sectionName);
+                        final String url = pageUrl + ANCHOR_SEPARATOR + anchor;
 
-                            final String entryTitle = disambiguateTitle(sectionName, pageTitle);
-                            final String anchor = doxiaAnchorFor(sectionName);
-                            final String url = pageUrl + ANCHOR_SEPARATOR + anchor;
+                        final String sectionText = WHITESPACE.matcher(section.getTextContent())
+                                .replaceAll(SPACE).trim();
+                        final String description = extractFirstSentenceOrTruncated(sectionText);
+                        final String keywords = extractKeywordsFromText(
+                                pageTitle + SPACE + sectionName + SPACE + sectionText);
 
-                            final String sectionText = WHITESPACE.matcher(section.getTextContent())
-                                    .replaceAll(SPACE).trim();
-                            final String description = extractFirstSentenceOrTruncated(sectionText);
-                            final String keywords = extractKeywordsFromText(
-                                    pageTitle + SPACE + sectionName + SPACE + sectionText);
-
-                            results.add(new SearchIndexEntry(
-                                    entryTitle, url, GENERAL, GENERAL, description, keywords));
-                        }
+                        results.add(new SearchIndexEntry(
+                                entryTitle, url, GENERAL, GENERAL, description, keywords));
                     }
                 }
             }
@@ -595,33 +636,29 @@ public final class SearchIndexGenerator {
     private static List<SearchIndexEntry> extractExampleEntries(Document doc,
                                                                 String baseUrl,
                                                                 String category) {
-
         final List<SearchIndexEntry> exampleEntries = new ArrayList<>();
-        final NodeList bodies = doc.getElementsByTagName(BODY);
-        if (bodies.getLength() != 0) {
-            final Element body = (Element) bodies.item(0);
-            final NodeList sections = body.getElementsByTagName(SECTION);
+        final Element body = requireBody(doc, baseUrl);
+        final NodeList sections = body.getElementsByTagName(SECTION);
 
-            for (int sectionIdx = 0; sectionIdx < sections.getLength(); sectionIdx++) {
-                final Element section = (Element) sections.item(sectionIdx);
-                final String checkName = section.getAttribute(NAME_ATTR).trim();
-                final Element examplesSubsection =
-                        findSubsectionByPrefix(section, EXAMPLES_SUBSECTION);
+        for (int sectionIdx = 0; sectionIdx < sections.getLength(); sectionIdx++) {
+            final Element section = (Element) sections.item(sectionIdx);
+            final String checkName = section.getAttribute(NAME_ATTR).trim();
+            final Element examplesSubsection =
+                    findSubsectionByPrefix(section, EXAMPLES_SUBSECTION);
 
-                if (examplesSubsection == null) {
-                    continue;
-                }
+            if (examplesSubsection == null) {
+                continue;
+            }
 
-                final NodeList paragraphs = examplesSubsection.getElementsByTagName("p");
+            final NodeList paragraphs = examplesSubsection.getElementsByTagName("p");
 
-                for (int paragraphIndex = 0; paragraphIndex < paragraphs.getLength();
-                        paragraphIndex++) {
-                    final Element paragraph = (Element) paragraphs.item(paragraphIndex);
-                    final SearchIndexEntry entry = buildExampleEntry(
-                            paragraph, checkName, baseUrl, category);
-                    if (entry != null) {
-                        exampleEntries.add(entry);
-                    }
+            for (int paragraphIndex = 0; paragraphIndex < paragraphs.getLength();
+                 paragraphIndex++) {
+                final Element paragraph = (Element) paragraphs.item(paragraphIndex);
+                final SearchIndexEntry entry = buildExampleEntry(
+                        paragraph, checkName, baseUrl, category);
+                if (entry != null) {
+                    exampleEntries.add(entry);
                 }
             }
         }
@@ -695,23 +732,19 @@ public final class SearchIndexGenerator {
     private static List<SearchIndexEntry> extractPropertyEntries(Document doc,
                                                                  String baseUrl,
                                                                  String category) {
-
         final List<SearchIndexEntry> propertyEntries = new ArrayList<>();
-        final NodeList bodies = doc.getElementsByTagName(BODY);
-        if (bodies.getLength() != 0) {
-            final Element body = (Element) bodies.item(0);
-            final NodeList sections = body.getElementsByTagName(SECTION);
+        final Element body = requireBody(doc, baseUrl);
+        final NodeList sections = body.getElementsByTagName(SECTION);
 
-            for (int sectionIdx = 0; sectionIdx < sections.getLength(); sectionIdx++) {
-                final Element section = (Element) sections.item(sectionIdx);
-                final Element propertiesSubsection =
-                        findSubsectionByPrefix(section, PROPERTIES_FRAGMENT);
+        for (int sectionIdx = 0; sectionIdx < sections.getLength(); sectionIdx++) {
+            final Element section = (Element) sections.item(sectionIdx);
+            final Element propertiesSubsection =
+                    findSubsectionByPrefix(section, PROPERTIES_FRAGMENT);
 
-                if (propertiesSubsection != null) {
-                    final String checkName = section.getAttribute(NAME_ATTR).trim();
-                    extractPropertiesFromRows(propertiesSubsection, checkName, baseUrl,
-                            category, propertyEntries);
-                }
+            if (propertiesSubsection != null) {
+                final String checkName = section.getAttribute(NAME_ATTR).trim();
+                extractPropertiesFromRows(propertiesSubsection, checkName, baseUrl,
+                        category, propertyEntries);
             }
         }
 
@@ -837,6 +870,32 @@ public final class SearchIndexGenerator {
         final Document doc = builder.parse(xmlFile);
         doc.getDocumentElement().normalize();
         return doc;
+    }
+
+    /**
+     * Returns the document's {@code <body>} element, failing fast if it is
+     * absent. Every XDoc page processed by this generator is expected to
+     * have one; its absence indicates a malformed source file that should
+     * be fixed rather than silently skipped or producing an empty entry.
+     *
+     * @param doc        the parsed document
+     * @param identifier file path or URL used to identify the source in the
+     *                   error message
+     * @return the body element
+     * @throws IllegalStateException if {@code doc} has no {@code <body>} element
+     */
+    private static Element requireBody(Document doc, String identifier) {
+        final NodeList bodies = doc.getElementsByTagName(BODY);
+        if (bodies.getLength() == 0) {
+            throw new IllegalStateException(
+                    "XDoc file is missing a <body> element: " + identifier);
+        }
+        final Element body = (Element) bodies.item(0);
+        if (body == null) {
+            throw new IllegalStateException(
+                    "XDoc file has a null <body> element: " + identifier);
+        }
+        return body;
     }
 
     /**
@@ -1053,7 +1112,7 @@ public final class SearchIndexGenerator {
         final Matcher matcher = CONFIG_CATEGORY.matcher(xmlFile.getName());
         if (matcher.find()) {
             final String category = matcher.group(1);
-            if (CATEGORY_MAP.containsKey(category)) {
+            if (CHECKS_CATEGORY_DISPLAY_NAMES.containsKey(category)) {
                 url = "checks/" + category + "/index.html";
             }
         }
