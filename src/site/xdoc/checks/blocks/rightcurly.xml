@@ -33,6 +33,13 @@
               <th>since</th>
             </tr>
             <tr>
+              <td><a id="forbidSingleLineMultiBlock"/><a href="#forbidSingleLineMultiBlock">forbidSingleLineMultiBlock</a></td>
+              <td>Control whether to forbid single line multi-block statement.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.8.0</td>
+            </tr>
+            <tr>
               <td><a id="option"/><a href="#option">option</a></td>
               <td>Specify the policy on placement of a right curly brace (<code>'}'</code>).</td>
               <td><a href="../../property_types.html#RightCurlyOption">RightCurlyOption</a></td>
@@ -148,6 +155,9 @@ public class Example1 {
   public void method0() {
     int mode = 0;
     int x;
+    if (mode == 0) {
+      x = 1;
+    } else {x = 4;}
     switch (mode) {
       case 1: int y = 1; break;
       case 2: {x = 1;}
@@ -209,6 +219,9 @@ public class Example2 {
   public void method0() {
     int mode = 0;
     int x;
+    if (mode == 0) {
+      x = 1;
+    } else {x = 4;} // violation, 'should be alone on a line.'
     switch (mode) {
       case 1: int y = 1; break;
       case 2: {x = 1;}
@@ -271,6 +284,9 @@ public class Example4 {
   public void method0() {
     int mode = 0;
     int x;
+    if (mode == 0) {
+      x = 1;
+    } else {x = 4;}  // violation, 'should be alone on a line.'
     switch (mode) {
       case 1: int y = 1; break;
       case 2: {x = 1;}
@@ -332,6 +348,9 @@ public class Example3 {
   public void method0() {
     int mode = 0;
     int x;
+    if (mode == 0) {
+      x = 1;
+    } else {x = 4;}
     switch (mode) {
       case 1: int y = 1; break;
       case 2: {x = 1;} // violation, 'should be alone on a line.'
@@ -393,6 +412,9 @@ public class Example5 {
   public void method0() {
     int mode = 0;
     int x;
+    if (mode == 0) {
+      x = 1;
+    } else {x = 4;}
     switch (mode) {
       case 1: int y = 1; break;
       case 2: {x = 1;}
@@ -404,6 +426,68 @@ public class Example5 {
       default: x = 0; } // violation, 'should be alone on a line.'
   }
 }
+</code></pre></div><hr class="example-separator"/>
+                <p id="Example6-code">Example:</p>
+                <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example6 {
+  public void test() {
+    boolean f = false;
+    if (f) {
+      bar();
+    } // violation, 'should be on the same line'
+    else {
+      bar();
+    }
+    if (f) {
+      bar();
+    } else {
+      bar();
+    }
+    if (f) { bar(); } int i = 0; // violation, 'should be alone on a line.'
+    try {
+      bar();
+    } // violation, 'should be on the same line'
+    catch (Exception e) {
+      bar();
+    }
+  }
+  private void bar() {
+  }
+  public void testSingleLine()
+  { bar(); }
+  public void violate()
+  { Object b = "b"; }
+  public void method0() {
+    int mode = 0;
+    int x;
+    if (mode == 0) {
+      x = 1;
+    } else {x = 4;} // violation 'should have line break before'
+    switch (mode) {
+      case 1: int y = 1; break;
+      case 2: {x = 1;}
+      case 3: int z = 0; {break;}
+      default: {x = 0;}
+    }
+    switch (mode) {
+      case 1: x = 1; break;
+      default: x = 0; }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+                <p id="Example6-config">
+                  To configure the check with policy <code>same</code>
+                  and property forbidSingleLineMultiBlock value to true.
+                </p>
+                <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RightCurly"&gt;
+      &lt;property name="forbidSingleLineMultiBlock" value="true"/&gt;
+      &lt;property name="option" value="same"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
 </code></pre></div>
       </subsection>
 
