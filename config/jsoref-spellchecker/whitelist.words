@@ -1288,6 +1288,7 @@ stackoverflow
 stackoverflowerror
 stacktrace
 standalone
+Statescope
 staticvariablename
 stdin
 Stdlib
@@ -1442,6 +1443,10 @@ unusedcatchparametershouldbeunnamed
 unusedimports
 unusedlambdaparametershouldbeunnamed
 unusedlocalvariable
+Unusedprivate
+unusedprivatefield
+Unusedprivatefieldnames
+Unusedprivatefieldthis
 unusedtryresourceshouldbeunnamed
 uppercased
 upperell
