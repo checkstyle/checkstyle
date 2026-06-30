@@ -128,7 +128,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     }
 
     @Override
-    public void finishLocalSetup() {
+    protected void finishLocalSetup() {
         final DefaultContext checkContext = new DefaultContext();
         checkContext.add("severity", getSeverity());
         checkContext.add("tabWidth", String.valueOf(getTabWidth()));
@@ -139,7 +139,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      * {@inheritDoc} Creates child module.
      */
     @Override
-    public void setupChild(Configuration childConf)
+    protected void setupChild(Configuration childConf)
             throws CheckstyleException {
         final String name = childConf.getName();
         final Object module;
