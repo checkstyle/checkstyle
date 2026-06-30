@@ -11,7 +11,9 @@ steps:
     command: "./mvnw -e --no-transfer-progress clean test"
     plugins:
       - docker#v5.0.0:
-          image: "maven:3.9-eclipse-temurin-21"
+          image: "mcr.microsoft.com/openjdk/jdk:21-ubuntu"
+          drop-caps:
+            - DAC_OVERRIDE
           volumes:
             - "/tmp/buildkite-maven-cache:/root/.m2"
 
