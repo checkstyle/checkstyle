@@ -126,6 +126,22 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
+    public void testNonMatchingColumnNumberByXpath() throws Exception {
+        final String[] expected = {
+            "22:13: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "11"),
+            "22:18: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "12"),
+        };
+
+        final String[] suppressed = {
+            "22:18: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "12"),
+        };
+
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressionXpathSingleFilterNonMatchingColumnNumber2.java"), expected,
+            removeSuppressed(expected, suppressed));
+    }
+
+    @Test
     public void testComplexQuery() throws Exception {
         final String[] expected = {
             "27:21: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "3.14"),
