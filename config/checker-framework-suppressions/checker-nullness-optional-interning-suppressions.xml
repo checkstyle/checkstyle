@@ -8618,7 +8618,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of Map.containsKey.</message>
-    <lineContent>if (CATEGORY_MAP.containsKey(category)) {</lineContent>
+    <lineContent>if (CHECKS_CATEGORY_DISPLAY_NAMES.containsKey(category)) {</lineContent>
     <details>
       found   : @Initialized @Nullable String
       required: @Initialized @NonNull Object
@@ -8740,34 +8740,6 @@
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference ((Element)sections.item(0))</message>
     <lineContent>((Element) sections.item(0)).getAttribute(NAME_ATTR).trim();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference body</message>
-    <lineContent>final NodeList sections = body.getElementsByTagName(SECTION);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference body</message>
-    <lineContent>final NodeList sections = body.getElementsByTagName(SECTION);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference body</message>
-    <lineContent>final NodeList sections = body.getElementsByTagName(SECTION);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference body</message>
-    <lineContent>final NodeList sections = body.getElementsByTagName(SECTION);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

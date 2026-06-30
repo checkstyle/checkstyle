@@ -71,6 +71,12 @@
     </file>
   </subpackage>
 
+  <subpackage name="site">
+    <file name="SearchIndexGeneratorTest">
+      <allow class="java.lang.reflect.Field" />
+    </file>
+  </subpackage>
+
   <subpackage name="utils" >
     <file name="CommonUtilTest">
       <!-- CommonUtil.getConstructor returns a Constructor, so the test needs this import too. -->
