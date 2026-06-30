@@ -431,6 +431,12 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     @Override
+    public JavadocNodeImpl visitMethodReferenceWithoutHash(
+            JavadocCommentsParser.MethodReferenceWithoutHashContext ctx) {
+        return buildImaginaryNode(JavadocCommentsTokenTypes.MEMBER_REFERENCE, ctx);
+    }
+
+    @Override
     public JavadocNodeImpl visitParameterTypeList(
             JavadocCommentsParser.ParameterTypeListContext ctx) {
         return buildImaginaryNode(JavadocCommentsTokenTypes.PARAMETER_TYPE_LIST, ctx);
