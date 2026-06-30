@@ -82,11 +82,11 @@ public interface Configuration extends Serializable {
     String getName();
 
     /**
-     * Returns an unmodifiable map instance containing the custom messages
+     * Returns an unmodifiable map instance containing the custom violation messages
      * for this configuration.
      *
-     * @return unmodifiable map containing custom messages
+     * @return unmodifiable map containing custom violation messages
      */
-    Map<String, String> getMessages();
+    Map<String, String> getViolations();
 
 }

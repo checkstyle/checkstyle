@@ -178,10 +178,10 @@ public final class DefaultConfiguration implements Configuration {
      * Returns an unmodifiable map instance containing the custom messages
      * for this configuration.
      *
-     * @return unmodifiable map containing custom messages
+     * @return unmodifiable map containing custom violation messages
      */
     @Override
-    public Map<String, String> getMessages() {
+    public Map<String, String> getViolations() {
         return new HashMap<>(messages);
     }
 
