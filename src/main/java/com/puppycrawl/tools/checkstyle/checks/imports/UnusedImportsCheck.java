@@ -332,7 +332,8 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
      * @param ast the Javadoc parameter type node
      */
     private void processParameterType(DetailNode ast) {
-        String parameterTypeText = topLevelType(ast.getText());
+        String parameterTypeText = stripTypeArguments(ast.getText());
+        parameterTypeText = topLevelType(parameterTypeText);
         if (parameterTypeText.endsWith("[]")) {
             parameterTypeText = parameterTypeText.substring(0, parameterTypeText.length() - 2);
         }
@@ -367,6 +368,20 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
             result = type.substring(0, dotIndex);
         }
         return result;
+    }
+
+    /**
+     * Strips generic type arguments from a type string.
+     *
+     * @param type A type string possibly containing type arguments
+     * @return The type string with type arguments removed
+     */
+    private static String stripTypeArguments(final String type) {
+        final int index = type.indexOf('<');
+        if (index == -1) {
+            return type;
+        }
+        return type.substring(0, index);
     }
 
     /**
