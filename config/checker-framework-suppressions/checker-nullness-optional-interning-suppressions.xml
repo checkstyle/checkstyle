@@ -3516,7 +3516,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessarySemicolonInEnumerationCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference enumBlock</message>
-    <lineContent>final DetailAST semicolon = enumBlock.findFirstToken(TokenTypes.SEMI);</lineContent>
+    <lineContent>DetailAST sibling = enumBlock.getFirstChild();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
