@@ -18,7 +18,9 @@ class Example2 {
     // violation above, 'Name 'STRING' must match pattern*.'
     if (o1 instanceof Integer num) {}
     if (o1 instanceof Integer num_1) {}
+
     if (o1 instanceof Integer n) {}
+
   }
 }
 // xdoc section -- end
