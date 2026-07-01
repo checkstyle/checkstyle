@@ -123,9 +123,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/naming/catchparametername/Example2",
             "checks/naming/methodname/Example4",
             "checks/naming/packagename/Example2",
-            "checks/naming/patternvariablename/Example2",
-            "checks/naming/patternvariablename/Example3",
-            "checks/naming/patternvariablename/Example4",
             "checks/regexp/regexp/Example7",
             "checks/regexp/regexpmultiline/Example5",
             "checks/regexp/regexpsinglelinejava/Example2",
@@ -192,6 +189,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/imports/importorder/Example9",
             // until https://github.com/checkstyle/checkstyle/issues/19891
             "checks/blocks/leftcurly/Example3",
+            "checks/naming/patternvariablename/Example3",
             "checks/whitespace/parenpad/Example3",
             "checks/javadoc/missingjavadoctype/Example5",
             "checks/indentation/commentsindentation/Example3",
