@@ -20,6 +20,11 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="^$"
+                      name="forbiddenInlineReturnFragments"
+                      type="java.util.regex.Pattern">
+               <description>Specify the regexp for forbidden fragments in inline return tags.</description>
+            </property>
+            <property default-value="^$"
                       name="forbiddenSummaryFragments"
                       type="java.util.regex.Pattern">
                <description>Specify the regexp for forbidden summary fragments.</description>

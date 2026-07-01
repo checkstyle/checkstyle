@@ -49,11 +49,11 @@ public class SummaryJavadocCheckExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "21:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "25:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "30:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "39:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-            "45:5: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "23:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "27:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "32:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "41:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "47:5: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
