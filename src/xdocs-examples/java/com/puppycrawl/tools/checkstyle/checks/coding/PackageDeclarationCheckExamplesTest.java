@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck.MSG_KEY_MISSING;
+import static com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck.MSG_KEY_MISMATCH;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +35,7 @@ public class PackageDeclarationCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "10:1: " + getCheckMessage(MSG_KEY_MISSING),
+            "10:1: " + getCheckMessage(MSG_KEY_MISMATCH),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
