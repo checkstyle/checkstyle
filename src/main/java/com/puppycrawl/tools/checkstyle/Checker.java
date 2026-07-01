@@ -125,6 +125,9 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     /** Name of a charset. */
     private String charset = StandardCharsets.UTF_8.name();
 
+    /** The text of the file currently being processed, shared with audit events. */
+    private FileText fileText;
+
     /** Cache file. **/
     @XdocsPropertyType(PropertyType.FILE)
     private PropertyCacheFile cacheFile;
@@ -336,9 +339,9 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     private SortedSet<Violation> processFile(File file) throws CheckstyleException {
         final SortedSet<Violation> fileMessages = new TreeSet<>();
         try {
-            final FileText theText = new FileText(file.getAbsoluteFile(), charset);
+            fileText = new FileText(file.getAbsoluteFile(), charset);
             for (final FileSetCheck fsc : fileSetChecks) {
-                fileMessages.addAll(fsc.process(file, theText));
+                fileMessages.addAll(fsc.process(file, fileText));
             }
         }
         catch (final IOException ioe) {
@@ -404,9 +407,13 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     @Override
     public void fireErrors(String fileName, SortedSet<Violation> errors) {
         final String stripped = relativizePathWithCatch(fileName);
+        FileText eventFileText = null;
+        if (fileText != null && fileText.getFile().getAbsolutePath().equals(fileName)) {
+            eventFileText = fileText;
+        }
         boolean hasNonFilteredViolations = false;
         for (final Violation element : errors) {
-            final AuditEvent event = new AuditEvent(this, stripped, element);
+            final AuditEvent event = new AuditEvent(this, stripped, element, eventFileText);
             if (filters.accept(event)) {
                 hasNonFilteredViolations = true;
                 for (final AuditListener listener : listeners) {
