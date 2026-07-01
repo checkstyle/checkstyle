@@ -28,29 +28,36 @@ public class InputOneTopLevelClassClone
     }
 }
 
-class NoSuperClone // violation
+// violation below 'Top-level class NoSuperClone has to reside in its own source file.'
+class NoSuperClone
 {
 }
 
-class InnerClone // violation
+// violation below 'Top-level class InnerClone has to reside in its own source file.'
+class InnerClone
 {
 }
 
-class CloneWithTypeArguments<T> extends CloneWithTypeArgumentsAndNoSuper<T> // violation
+// violation below 'Top-level class CloneWithTypeArguments has to reside in its own source file.'
+class CloneWithTypeArguments<T> extends CloneWithTypeArgumentsAndNoSuper<T>
 {
 }
 
-class CloneWithTypeArgumentsAndNoSuper<T> // violation
+// violation below 'Top-level class Clone.* has to reside in its own source file.'
+class CloneWithTypeArgumentsAndNoSuper<T>
 {
 }
 
-class MyClassWithGenericSuperMethod // violation
+// violation below 'Top-level class My.* has to reside in its own source file.'
+class MyClassWithGenericSuperMethod
 {
 }
 
-class AnotherClass { // violation
+// violation below 'Top-level class AnotherClass has to reside in its own source file.'
+class AnotherClass {
 }
 
-class NativeTest { // violation
+// violation below 'Top-level class NativeTest has to reside in its own source file.'
+class NativeTest {
     public native Object clone();
 }
