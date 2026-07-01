@@ -136,7 +136,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/sizes/methodlength/Example3",
             "checks/sizes/outertypenumber/Example2",
             "checks/whitespace/singlespaceseparator/Example2",
-            "checks/whitespace/typecastparenpad/Example2",
             "checks/whitespace/whitespaceafter/Example2",
             "checks/todocomment/Example2",
             "checks/todocomment/Example3",
