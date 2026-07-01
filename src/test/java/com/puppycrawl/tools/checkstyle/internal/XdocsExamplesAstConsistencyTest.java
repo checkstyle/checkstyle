@@ -272,6 +272,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/coding/requirethis/Example5",
             "checks/coding/requirethis/Example6",
             "checks/whitespace/nolinewrap/Example3",
+            "checks/whitespace/whitespacearound/Example3",
             "checks/naming/abbreviationaswordinname/Example4",
             "checks/naming/abbreviationaswordinname/Example6",
             "checks/naming/abbreviationaswordinname/Example7",
