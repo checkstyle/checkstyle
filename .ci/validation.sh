@@ -23,6 +23,26 @@ function list_tasks() {
   cat "${0}" | sed -E -n 's/^([a-zA-Z0-9\-]*)\)$/\1/p' | sort
 }
 
+function get_outdated_dependencies() {
+  local report_xml=$1
+  xmlstarlet sel \
+    -N d="https://www.mojohaus.org/VERSIONS/DEPENDENCY-UPDATES-REPORT/2.0.0" \
+    -t -m "//d:dependency[d:status!='no new available']" \
+    -v "d:groupId" -o ":" -v "d:artifactId" -o " " \
+    -v "d:currentVersion" -o " -> " -v "d:lastVersion" -n \
+    "$report_xml" | sort
+}
+
+function get_outdated_plugins() {
+  local report_xml=$1
+  xmlstarlet sel \
+    -N p="https://www.mojohaus.org/VERSIONS/PLUGIN-UPDATES-REPORT/2.0.0" \
+    -t -m "//p:plugin[p:status!='no new available']" \
+    -v "p:groupId" -o ":" -v "p:artifactId" -o " " \
+    -v "p:currentVersion" -o " -> " -v "p:lastVersion" -n \
+    "$report_xml" | sort
+}
+
 case $1 in
 
 all-sevntu-checks)
@@ -196,18 +216,8 @@ test-al)
 versions)
   ./mvnw -e --no-transfer-progress clean versions:dependency-updates-report \
     versions:plugin-updates-report
-  DEP_UPDATES=$(xmlstarlet sel \
-    -N d="https://www.mojohaus.org/VERSIONS/DEPENDENCY-UPDATES-REPORT/2.0.0" \
-    -t -m "//d:dependency[d:status!='no new available']" \
-    -v "d:groupId" -o ":" -v "d:artifactId" -o " " \
-    -v "d:currentVersion" -o " -> " -v "d:lastVersion" -n \
-    target/dependency-updates-report.xml)
-  PLUGIN_UPDATES=$(xmlstarlet sel \
-    -N p="https://www.mojohaus.org/VERSIONS/PLUGIN-UPDATES-REPORT/2.0.0" \
-    -t -m "//p:plugin[p:status!='no new available']" \
-    -v "p:groupId" -o ":" -v "p:artifactId" -o " " \
-    -v "p:currentVersion" -o " -> " -v "p:lastVersion" -n \
-    target/plugin-updates-report.xml)
+  DEP_UPDATES=$(get_outdated_dependencies "target/dependency-updates-report.xml")
+  PLUGIN_UPDATES=$(get_outdated_plugins "target/plugin-updates-report.xml")
   if [ -n "${DEP_UPDATES}" ] || [ -n "${PLUGIN_UPDATES}" ]; then
     echo "New dependency versions:"
     echo "${DEP_UPDATES}"
@@ -217,6 +227,67 @@ versions)
     false
   else
     echo "No new versions found"
+  fi
+  ;;
+
+versions-on-pr)
+  MASTER_WORKTREE=".ci-temp/versions-on-pr-master"
+  mkdir -p .ci-temp
+
+  echo "=== Running versions report on origin/master ==="
+  git worktree add "$MASTER_WORKTREE" origin/master
+
+  (
+    cd "$MASTER_WORKTREE"
+    ./mvnw -e --no-transfer-progress clean versions:dependency-updates-report \
+      versions:plugin-updates-report
+  )
+
+  MASTER_DEPS=$(get_outdated_dependencies "$MASTER_WORKTREE/target/dependency-updates-report.xml")
+  MASTER_PLUGINS=$(get_outdated_plugins "$MASTER_WORKTREE/target/plugin-updates-report.xml")
+
+  git worktree remove --force "$MASTER_WORKTREE"
+
+  echo "Master - outdated dependencies:"
+  echo "${MASTER_DEPS:-(none)}"
+  echo "Master - outdated plugins:"
+  echo "${MASTER_PLUGINS:-(none)}"
+
+  echo "=== Running versions report on PR branch ==="
+  ./mvnw -e --no-transfer-progress clean versions:dependency-updates-report \
+    versions:plugin-updates-report
+
+  PR_DEPS=$(get_outdated_dependencies "target/dependency-updates-report.xml")
+  PR_PLUGINS=$(get_outdated_plugins "target/plugin-updates-report.xml")
+
+  echo "PR - outdated dependencies:"
+  echo "${PR_DEPS:-(none)}"
+  echo "PR - outdated plugins:"
+  echo "${PR_PLUGINS:-(none)}"
+
+  echo "=== Checking for NEW outdated dependencies introduced by PR ==="
+  # comm -13: suppress lines only-in-master and common lines; keep only PR-only lines
+  # i.e. deps that are outdated in PR but were NOT already outdated in master
+  NEW_OUTDATED_DEPS=$(comm -13 \
+    <(echo "${MASTER_DEPS}") \
+    <(echo "${PR_DEPS}"))
+  NEW_OUTDATED_PLUGINS=$(comm -13 \
+    <(echo "${MASTER_PLUGINS}") \
+    <(echo "${PR_PLUGINS}"))
+
+  if [ -n "${NEW_OUTDATED_DEPS}" ] || [ -n "${NEW_OUTDATED_PLUGINS}" ]; then
+    echo "FAILURE: PR introduces outdated dependencies not already present in master."
+    if [ -n "${NEW_OUTDATED_DEPS}" ]; then
+      echo "New outdated dependencies (please update to latest):"
+      echo "${NEW_OUTDATED_DEPS}"
+    fi
+    if [ -n "${NEW_OUTDATED_PLUGINS}" ]; then
+      echo "New outdated plugins (please update to latest):"
+      echo "${NEW_OUTDATED_PLUGINS}"
+    fi
+    false
+  else
+    echo "SUCCESS: PR does not introduce any new outdated dependencies."
   fi
   ;;
 
