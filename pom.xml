@@ -203,7 +203,7 @@
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.13.2</antlr4.version>
     <site.plugin.version>3.22.0</site.plugin.version>
-    <spotbugs.plugin.version>4.9.8.5</spotbugs.plugin.version>
+    <spotbugs.plugin.version>4.10.2.0</spotbugs.plugin.version>
     <pmd.plugin.version>3.28.0</pmd.plugin.version>
     <pmd.version>7.25.0</pmd.version>
     <jacoco.plugin.version>0.8.15</jacoco.plugin.version>
