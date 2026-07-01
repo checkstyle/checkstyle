@@ -40,7 +40,7 @@ class Example7 {
     }
 
     void handleValue(String aFooString,
-                     int aFooInt) {             // indent:8 ; expected: > 4;
+                     int aFooInt) {
 
         boolean cond1,cond2,cond3,cond4,cond5,cond6;
 
