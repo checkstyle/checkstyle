@@ -3560,13 +3560,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLambdaParameterShouldBeUnnamedCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference lambdaParameters.peek()</message>
-    <lineContent>&amp;&amp; ast.equals(lambdaParameters.peek().enclosingLambda)) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg1 of Map.put.</message>
@@ -3905,28 +3898,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/VariableDeclarationUsageDistanceCheck.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
-    <lineContent>return new SimpleEntry&lt;&gt;(variableUsageAst, dist);</lineContent>
-    <details>
-      type of expression: @Initialized @NonNull SimpleEntry&lt;@Initialized @Nullable DetailAST, @Initialized @NonNull Integer&gt;
-      method return type: @Initialized @NonNull Entry&lt;@Initialized @NonNull DetailAST, @Initialized @NonNull Integer&gt;
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/VariableDeclarationUsageDistanceCheck.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return new SimpleEntry&lt;&gt;(variableUsageAst, dist);</lineContent>
-    <details>
-      type of expression: @Initialized @NonNull SimpleEntry&lt;@Initialized @Nullable DetailAST, @Initialized @NonNull Integer&gt;
-      method return type: @Initialized @NonNull Entry&lt;@Initialized @NonNull DetailAST, @Initialized @NonNull Integer&gt;
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/VariableDeclarationUsageDistanceCheck.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
     <lineContent>return firstNodeInsideBlock;</lineContent>
     <details>
       type of expression: @Initialized @Nullable DetailAST
@@ -3974,7 +3945,7 @@
     <lineContent>return new SimpleEntry&lt;&gt;(variableUsageAst, dist);</lineContent>
     <details>
       unsatisfiable constraint: @Initialized @Nullable DetailAST &lt;: @Initialized @NonNull DetailAST
-      use of K from new SimpleEntry&lt;&gt;(variableUsageAst, dist) &lt;: @Initialized @NonNull DetailAST
+      use of K from new SimpleEntry&lt;&gt;(variableUsageAst, dist) = @Initialized @NonNull DetailAST
       From complementary bound.: use of K from new SimpleEntry&lt;&gt;(variableUsageAst, dist) &lt;= @Initialized @NonNull DetailAST
       inference type: java.util.AbstractMap.SimpleEntry&lt;K,V&gt; &lt;: @Initialized @NonNull Entry&lt;@Initialized @NonNull DetailAST, @Initialized @NonNull Integer&gt;
       inference type: java.util.AbstractMap.SimpleEntry&lt;K,V&gt; -&gt; @Initialized @NonNull Entry&lt;@Initialized @NonNull DetailAST, @Initialized @NonNull Integer&gt;
@@ -3989,7 +3960,7 @@
     <lineContent>return new SimpleEntry&lt;&gt;(variableUsageAst, dist);</lineContent>
     <details>
       unsatisfiable constraint: @Initialized @Nullable DetailAST &lt;: @Initialized @NonNull DetailAST
-      use of K from new SimpleEntry&lt;&gt;(variableUsageAst, dist) &lt;: @Initialized @NonNull DetailAST
+      use of K from new SimpleEntry&lt;&gt;(variableUsageAst, dist) = @Initialized @NonNull DetailAST
       From complementary bound.: use of K from new SimpleEntry&lt;&gt;(variableUsageAst, dist) &lt;= @Initialized @NonNull DetailAST
       inference type: java.util.AbstractMap.SimpleEntry&lt;K,V&gt; &lt;: @Initialized @NonNull Entry&lt;@Initialized @NonNull DetailAST, @Initialized @NonNull Integer&gt;
       inference type: java.util.AbstractMap.SimpleEntry&lt;K,V&gt; -&gt; @Initialized @NonNull Entry&lt;@Initialized @NonNull DetailAST, @Initialized @NonNull Integer&gt;
@@ -5138,7 +5109,7 @@
     <lineContent>handlerCtor, indentCheck, ast, parent);</lineContent>
     <details>
       found   : @Initialized @Nullable Constructor&lt;capture extends @Initialized @Nullable Object&gt;
-      required: @Initialized @NonNull Constructor&lt;@Initialized @Nullable Object&gt;
+      required: @Initialized @NonNull Constructor&lt;capture extends @Initialized @Nullable Object&gt;
     </details>
   </checkerFrameworkError>
 
@@ -5579,6 +5550,17 @@
     <details>
       type of expression: @Initialized @Nullable AbstractExpressionHandler
       method return type: @Initialized @NonNull AbstractExpressionHandler
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
+    <specifier>type.argument</specifier>
+    <message>incompatible type argument for type parameter T extends Object of CommonUtil.invokeConstructor.</message>
+    <lineContent>resultHandler = (AbstractExpressionHandler) CommonUtil.invokeConstructor(</lineContent>
+    <details>
+      found   : capture[ extends @UnknownKeyFor Object super @KeyForBottom Void]
+      required: [extends @UnknownKeyFor Object super @UnknownKeyFor NullType]
     </details>
   </checkerFrameworkError>
 
