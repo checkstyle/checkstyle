@@ -35,7 +35,7 @@ class Example1 {
   }
 
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example1.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second");
     logger.info("third");
