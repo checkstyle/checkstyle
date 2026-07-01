@@ -432,6 +432,20 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java</fileName>
+    <specifier>lockingfree.synchronized.method</specifier>
+    <message>A synchronized method cannot be SIDEEFFECTFREE. It may only be annotated with @ReleasesNoLocks or @MayReleaseLocks.</message>
+    <lineContent>public synchronized Enumeration&lt;Object&gt; keys() {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>method keys is @SideEffectFree but calls enumeration which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <lineContent>return Collections.enumeration(keyList);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public synchronized Object put(Object key, Object value) {</lineContent>
