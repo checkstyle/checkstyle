@@ -8894,6 +8894,7 @@
     </details>
   </checkerFrameworkError>
 
+
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
