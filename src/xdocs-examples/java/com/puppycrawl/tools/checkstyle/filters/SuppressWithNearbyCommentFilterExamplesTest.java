@@ -35,7 +35,7 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
 
         };
         final String[] expectedWithoutFilter = {
-            "13:15: 'int' is followed by whitespace.",
+            "13:27: 'int' is followed by whitespace.",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example1.java"), expectedWithoutFilter,
@@ -45,10 +45,11 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
     @Test
     public void testExample2() throws Exception {
         final String[] expectedWithFilter = {
-
+            "17:30: Name 'array' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
         final String[] expectedWithoutFilter = {
-            "17:27: Name 'lowerCaseConstant' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "17:30: Name 'array' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "19:27: Name 'lowerCaseConstant' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example2.java"), expectedWithoutFilter,
@@ -61,7 +62,7 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
 
         };
         final String[] expectedWithoutFilter = {
-            "23:5: Catching 'RuntimeException' is not allowed.",
+            "27:5: Catching 'RuntimeException' is not allowed.",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example3.java"), expectedWithoutFilter,
