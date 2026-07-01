@@ -63,7 +63,7 @@ public class PatternVariableNameCheckExamplesTest extends AbstractExamplesModule
 
         final String[] expected = {
             "17:30: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", pattern),
-            "21:31: " + getCheckMessage(MSG_INVALID_PATTERN, "n", pattern),
+            "22:31: " + getCheckMessage(MSG_INVALID_PATTERN, "n", pattern),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -73,8 +73,8 @@ public class PatternVariableNameCheckExamplesTest extends AbstractExamplesModule
     public void testExample4() throws Exception {
 
         final String[] expected = {
-            "37:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD", "^([a-z][a-zA-Z0-9]*|_)$"),
-            "40:36: " + getCheckMessage(MSG_INVALID_PATTERN, "bad", "^[A-Z][A-Z0-9]*$"),
+            "37:30: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", "^([a-z][a-zA-Z0-9]*|_)$"),
+            "40:31: " + getCheckMessage(MSG_INVALID_PATTERN, "num_1", "^([a-z][a-zA-Z0-9]*|_)$"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);

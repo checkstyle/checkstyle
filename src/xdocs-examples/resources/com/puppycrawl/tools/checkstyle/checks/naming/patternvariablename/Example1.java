@@ -18,6 +18,7 @@ class Example1 {
     if (o1 instanceof Integer num_1) {}
     // violation above, 'Name 'num_1' must match pattern*.'
     if (o1 instanceof Integer n) {}
+
   }
 }
 // xdoc section -- end
