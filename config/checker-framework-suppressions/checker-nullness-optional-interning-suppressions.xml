@@ -2201,6 +2201,28 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsHashCodeCheck.java</fileName>
     <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of AbstractCheck.log.</message>
+    <lineContent>log(equalsAST.findFirstToken(TokenTypes.IDENT), MSG_KEY_EQUALS);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsHashCodeCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of AbstractCheck.log.</message>
+    <lineContent>log(equalsAST.findFirstToken(TokenTypes.IDENT), MSG_KEY_HASHCODE);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsHashCodeCheck.java</fileName>
+    <specifier>argument</specifier>
     <message>incompatible argument for parameter ast of FullIdent.createFullIdentBelow.</message>
     <lineContent>final FullIdent fullIdent = FullIdent.createFullIdentBelow(typeNode);</lineContent>
     <details>

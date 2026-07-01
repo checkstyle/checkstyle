@@ -156,9 +156,11 @@ public class EqualsHashCodeCheck
                 return objBlockWithHashCode.remove(detailASTDetailASTEntry.getKey()) == null;
             }).forEach(detailASTDetailASTEntry -> {
                 final DetailAST equalsAST = detailASTDetailASTEntry.getValue();
-                log(equalsAST, MSG_KEY_HASHCODE);
+                log(equalsAST.findFirstToken(TokenTypes.IDENT), MSG_KEY_HASHCODE);
             });
-        objBlockWithHashCode.forEach((key, equalsAST) -> log(equalsAST, MSG_KEY_EQUALS));
+        objBlockWithHashCode.forEach((key, equalsAST) -> {
+            log(equalsAST.findFirstToken(TokenTypes.IDENT), MSG_KEY_EQUALS);
+        });
     }
 
 }
