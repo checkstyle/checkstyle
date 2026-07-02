@@ -32,16 +32,16 @@ public class SuppressWarningsFilterExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testExample1() throws Exception {
         final String[] expectedWithoutFilter = {
-            "16:7: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "17:7: Name 'JJ' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "20:7: 'int' is followed by whitespace.",
-            "20:10: Name 'ARRAY' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "17:7: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "18:7: Name 'JJ' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "21:7: 'int' is followed by whitespace.",
+            "21:10: Name 'ARRAY' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "23:7: 'int' is followed by whitespace.",
             "23:10: Name 'ARRAY2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
 
         final String[] expectedWithFilter = {
-            "17:7: Name 'JJ' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "18:7: Name 'JJ' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "23:7: 'int' is followed by whitespace.",
             "23:10: Name 'ARRAY2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
@@ -54,13 +54,13 @@ public class SuppressWarningsFilterExamplesTest extends AbstractExamplesModuleTe
     public void testExample2() throws Exception {
         final String[] expectedWithoutFilter = {
             "9: Dont use System.out/err, use SLF4J instead.",
-            "22: Dont use System.out/err, use SLF4J instead.",
-            "25: Dont use System.out/err, use SLF4J instead.",
+            "32: Dont use System.out/err, use SLF4J instead.",
+            "36: Dont use System.out/err, use SLF4J instead.",
         };
 
         final String[] expectedWithFilter = {
             "9: Dont use System.out/err, use SLF4J instead.",
-            "25: Dont use System.out/err, use SLF4J instead.",
+            "36: Dont use System.out/err, use SLF4J instead.",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example2.java"),
