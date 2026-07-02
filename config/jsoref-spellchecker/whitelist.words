@@ -1203,6 +1203,7 @@ ruleset
 rulesetfiles
 rulespecialcharacters
 rulevariabledeclarations
+rulevariables
 rulewildcardimports
 rulewrappingexpressions
 rulewrappinglines
