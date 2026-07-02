@@ -17,10 +17,21 @@
 package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
 // violation 9 lines above 'use SLF4J instead.'
 public class Example2 {
+
+  @SuppressWarnings("memberName")
+  int J;
+  int JJ;
+
+  @SuppressWarnings({"MemberName", "NoWhitespaceAfter"})
+  int [] ARRAY;
+
+  int [] ARRAY2;
+
   @SuppressWarnings("checkstyle:systemout")
   public static void foo() {
     System.out.println("Debug info."); // filtered violation 'use SLF4J instead.'
   }
+
   public static void boo() {
     System.out.println("Some info."); // violation 'use SLF4J instead.'
   }

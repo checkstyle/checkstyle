@@ -132,7 +132,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/todocomment/Example3",
             "checks/whitespace/emptyforiteratorpad/Example2",
             "checks/whitespace/parenpad/Example2",
-            "filters/suppresswarningsfilter/Example2",
             // Note: customImport/ImportOrder changes import group ORDER affecting AST structure
             "checks/imports/customimportorder/Example10",
             "checks/imports/customimportorder/Example11",
