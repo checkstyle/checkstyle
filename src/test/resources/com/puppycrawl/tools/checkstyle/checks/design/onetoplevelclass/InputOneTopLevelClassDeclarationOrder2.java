@@ -13,7 +13,7 @@ public class InputOneTopLevelClassDeclarationOrder2
     }
 }
 
-enum InputDeclarationOrderEnum2 // violation
+enum InputDeclarationOrderEnum2 // violation 'Top-level class InputDeclarationOrderEnum2 has to reside in its own source file.'
 {
     ENUM_VALUE_1;
 
@@ -23,7 +23,7 @@ enum InputDeclarationOrderEnum2 // violation
     }
 }
 
-@interface InputDeclarationOrderAnnotation2 // violation
+@interface InputDeclarationOrderAnnotation2 // violation 'Top-level class InputDeclarationOrderAnnotation2 has to reside in its own source file.'
 {
 
 }
