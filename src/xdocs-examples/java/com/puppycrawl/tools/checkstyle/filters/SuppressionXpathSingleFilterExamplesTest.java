@@ -55,10 +55,19 @@ public class SuppressionXpathSingleFilterExamplesTest extends AbstractExamplesMo
     @Test
     public void testExample1() throws Exception {
         final String[] expectedWithoutFilter = {
-            "21:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+            "22:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
             "MyMethod", "^[a-z][a-zA-Z0-9]*$"),
+            "24:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+            "MyMethod2", "^[a-z][a-zA-Z0-9]*$"),
+            "26:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+            "MyMethodA", "^[a-z][a-zA-Z0-9]*$"),
         };
-        final String[] expectedWithFilter = {};
+        final String[] expectedWithFilter = {
+            "24:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+            "MyMethod2", "^[a-z][a-zA-Z0-9]*$"),
+            "26:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+            "MyMethodA", "^[a-z][a-zA-Z0-9]*$"),
+        };
 
         verifyFilterWithInlineConfigParser(getPath("Example1.java"),
                 expectedWithoutFilter, expectedWithFilter);
@@ -67,15 +76,17 @@ public class SuppressionXpathSingleFilterExamplesTest extends AbstractExamplesMo
     @Test
     public void testExample2() throws Exception {
         final String[] expectedWithoutFilter = {
-            "18:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
-            "MyMethod1", "^[a-z][a-zA-Z0-9]*$"),
-            "20:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+            "17:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+            "MyMethod", "^[a-z][a-zA-Z0-9]*$"),
+            "19:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
             "MyMethod2", "^[a-z][a-zA-Z0-9]*$"),
-            "22:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+            "21:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
             "MyMethodA", "^[a-z][a-zA-Z0-9]*$"),
         };
         final String[] expectedWithFilter = {
-            "22:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+            "17:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+            "MyMethod", "^[a-z][a-zA-Z0-9]*$"),
+            "21:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
             "MyMethodA", "^[a-z][a-zA-Z0-9]*$"),
         };
 
@@ -88,6 +99,10 @@ public class SuppressionXpathSingleFilterExamplesTest extends AbstractExamplesMo
         final String[] expectedWithoutFilter = {
             "20:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
             "MyMethod", "^[a-z][a-zA-Z0-9]*$"),
+            "22:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+            "MyMethod2", "^[a-z][a-zA-Z0-9]*$"),
+            "24:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+            "MyMethodA", "^[a-z][a-zA-Z0-9]*$"),
         };
         final String[] expectedWithFilter = {};
 
@@ -123,7 +138,7 @@ public class SuppressionXpathSingleFilterExamplesTest extends AbstractExamplesMo
     @Test
     public void testExample6() throws Exception {
         final String[] expectedWithoutFilter = {
-            "17:23: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY,
+            "23:23: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY,
                 "177"),
         };
         final String[] expectedWithFilter = {};

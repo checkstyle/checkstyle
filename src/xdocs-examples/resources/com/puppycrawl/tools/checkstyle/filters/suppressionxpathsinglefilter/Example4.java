@@ -18,6 +18,13 @@
 // xdoc section -- start
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 // filtered violation above 'must match pattern'
+public class Example4 {
 
-public class Example4 {}
+  public void MyMethod() {}
+
+  public void MyMethod2() {}
+
+  public void MyMethodA() {}
+  private int field = 177;
+}
 // xdoc section -- end
