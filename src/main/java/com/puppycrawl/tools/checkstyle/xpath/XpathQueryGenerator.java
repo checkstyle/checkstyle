@@ -379,7 +379,29 @@ public class XpathQueryGenerator {
             case '\'' -> "&apos;&apos;";
             case '\"' -> "&quot;";
             case '&' -> "&amp;";
-            default -> String.valueOf(chr);
+            default -> encodeControlCharacter(chr);
         };
+    }
+
+    /**
+     * Renders C0 control characters that are illegal in XML 1.0 as {@code #xNN;} text so the
+     * value stays well-formed when written into an XML attribute, mirroring
+     * {@link com.puppycrawl.tools.checkstyle.XMLLogger#encode}. Tab, line feed and carriage
+     * return are legal and kept as is
+     * (line feed and carriage return are already normalised earlier by
+     * {@link com.puppycrawl.tools.checkstyle.utils.XpathUtil#getTextAttributeValue}).
+     *
+     * @param chr the character to render.
+     * @return the rendered character.
+     */
+    private static String encodeControlCharacter(char chr) {
+        final String result;
+        if (chr < ' ' && chr != '\t' && chr != '\n' && chr != '\r') {
+            result = "#x" + Integer.toHexString(chr) + ";";
+        }
+        else {
+            result = String.valueOf(chr);
+        }
+        return result;
     }
 }
