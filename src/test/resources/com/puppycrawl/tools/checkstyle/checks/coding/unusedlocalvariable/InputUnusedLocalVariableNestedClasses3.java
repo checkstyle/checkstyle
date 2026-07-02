@@ -32,8 +32,9 @@ class Outer {
 
 class Test {
     void m() {
+        // violation 3 lines below 'Unused local variable 'p2'.'
         @A Outer p1 = new @A Outer();
-        // violation below 'Unused local variable 'p2'.'
+
         @A Outer.@B Inner p2 = p1.new @B Inner();
     }
 
