@@ -31,7 +31,7 @@
          </properties>
          <message-keys>
             <message-key key="javadoc.writeTag"/>
-            <message-key key="type.missingTag"/>
+            <message-key key="type.missingTagGeneral"/>
             <message-key key="type.tagFormat"/>
          </message-keys>
       </check>
