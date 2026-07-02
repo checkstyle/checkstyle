@@ -39,8 +39,8 @@ public class MethodLengthCheckExamplesTest extends AbstractExamplesModuleTestSup
         final String[] expected = {
             "18:3: " + getCheckMessage(MSG_KEY, 5, max, "Example1"),
             "31:3: " + getCheckMessage(MSG_KEY, 6, max, "firstMethod"),
-            "44:3: " + getCheckMessage(MSG_KEY, 5, max, "thirdMethod"),
-            "52:5: " + getCheckMessage(MSG_KEY, 5, max, "MyBadRecord"),
+            "43:3: " + getCheckMessage(MSG_KEY, 5, max, "thirdMethod"),
+            "51:5: " + getCheckMessage(MSG_KEY, 5, max, "MyBadRecord"),
         };
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
@@ -52,7 +52,7 @@ public class MethodLengthCheckExamplesTest extends AbstractExamplesModuleTestSup
 
         final String[] expected = {
             "32:3: " + getCheckMessage(MSG_KEY, 6, max, "firstMethod"),
-            "45:3: " + getCheckMessage(MSG_KEY, 5, max, "thirdMethod"),
+            "44:3: " + getCheckMessage(MSG_KEY, 5, max, "thirdMethod"),
         };
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
