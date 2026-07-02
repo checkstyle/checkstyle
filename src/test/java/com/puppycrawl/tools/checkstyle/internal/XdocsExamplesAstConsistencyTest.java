@@ -141,7 +141,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/todocomment/Example2",
             "checks/todocomment/Example3",
             "checks/uncommentedmain/Example2",
-            "checks/uniqueproperties/Example2",
             "checks/whitespace/emptyforiteratorpad/Example2",
             "checks/whitespace/parenpad/Example2",
             "filters/suppressionxpathsinglefilter/Example10",
