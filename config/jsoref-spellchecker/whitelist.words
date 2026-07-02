@@ -1189,6 +1189,7 @@ ru
 ruleclassinterfaceandenumnames
 ruleclassstructure
 ruleconstants
+rulehorizontalwhitespace
 ruleimportstatements
 ruleindentation
 rulejavasourcefiles
