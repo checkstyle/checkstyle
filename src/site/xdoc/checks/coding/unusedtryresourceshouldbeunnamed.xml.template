@@ -54,7 +54,8 @@
           to learn how to.
         </p>
       </subsection>
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name"
+               id="UnusedTryResourceShouldBeUnnamed_Fully_Qualified_Name">
         <p>com.puppycrawl.tools.checkstyle.checks.coding.UnusedTryResourceShouldBeUnnamedCheck</p>
         <p>
           Use this fully qualified class name in configuration when an exact class reference is
