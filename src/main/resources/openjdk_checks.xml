@@ -93,6 +93,34 @@
       <message key="declaration.order.static" value="Field declaration is in wrong order"/>
     </module>
 
+    <module name="WhitespaceAround">
+      <property name="allowEmptyCatches" value="true"/>
+      <property name="allowEmptyConstructors" value="true"/>
+      <property name="allowEmptyMethods" value="true"/>
+      <property name="allowEmptyTypes" value="true"/>
+      <property name="allowEmptyLoops" value="true"/>
+      <property name="allowEmptyLambdas" value="true"/>
+      <property name="allowEmptySwitchBlockStatements" value="true"/>
+      <property name="ignoreEnhancedForColon" value="false"/>
+    </module>
+    <module name="NoWhitespaceBefore">
+      <property name="tokens" value="LABELED_STAT"/>
+    </module>
+    <module name="NoWhitespaceBeforeCaseDefaultColon"/>
+    <module name="WhitespaceAfter">
+      <property name="tokens" value="COMMA, SEMI, TYPECAST"/>
+    </module>
+    <module name="ParenPad"/>
+    <module name="TypecastParenPad"/>
+    <module name="MatchXpath">
+      <property name="id" value="singleLineCommentStartWithSpace"/>
+      <property name="query"
+                value="//SINGLE_LINE_COMMENT[./COMMENT_CONTENT[not(starts-with(@text, ' '))
+                       and not(starts-with(@text, '/'))
+                       and not(@text = '\n') and not(ends-with(@text, '//\n'))]]"/>
+      <message key="matchxpath.match" value="''//'' must be followed by a whitespace."/>
+    </module>
+
     <module name="UpperEll"/>
     <module name="HexLiteralCase"/>
     <module name="NumericalPrefixesInfixesSuffixesCharacterCase"/>
