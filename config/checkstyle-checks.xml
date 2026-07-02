@@ -738,6 +738,7 @@
       <property name="sortStaticImportsAlphabetically" value="true"/>
     </module>
     <module name="RedundantImport"/>
+    <module name="UnnecessaryFullyQualifiedType"/>
     <module name="UnusedImports"/>
 
     <!-- Javadoc Comments -->
