@@ -715,8 +715,61 @@
                     Horizontal Whitespace
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/whitespacearound.html#WhitespaceAround">WhitespaceAround</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAround">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/whitespaceafter.html#WhitespaceAfter">WhitespaceAfter</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAfter">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/nowhitespacebefore.html#NoWhitespaceBefore">NoWhitespaceBefore</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/nowhitespacebeforecasedefaultcolon.html#NoWhitespaceBeforeCaseDefaultColon">NoWhitespaceBeforeCaseDefaultColon</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBeforeCaseDefaultColon">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/parenpad.html#ParenPad">ParenPad</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParenPad">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/typecastparenpad.html#TypecastParenPad">TypecastParenPad</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypecastParenPad">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/coding/matchxpath.html#MatchXpath">MatchXpath</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulehorizontalwhitespace">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
