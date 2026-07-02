@@ -9,16 +9,16 @@
   </module>
 </module>
 */
-
+// xdoc section -- start
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 
-// xdoc section -- start
 public class Example2 {
-  // filtered violation below 'Name 'MyMethod1' must match pattern'
-  public void MyMethod1() {}
+  // violation below 'Name 'MyMethod' must match pattern'
+  public void MyMethod() {}
   // filtered violation below 'Name 'MyMethod2' must match pattern'
   public void MyMethod2() {}
   // violation below 'Name 'MyMethodA' must match pattern'
   public void MyMethodA() {}
+  private int field = 177;
 }
 // xdoc section -- end

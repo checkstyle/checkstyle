@@ -10,10 +10,16 @@
 </module>
 */
 
+// xdoc section -- start
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 
-// xdoc section -- start
 public class Example6 {
+
+  public void MyMethod() {}
+
+  public void MyMethod2() {}
+
+  public void MyMethodA() {}
   private int field = 177; // filtered violation ''177' is a magic number.'
 }
 // xdoc section -- end
