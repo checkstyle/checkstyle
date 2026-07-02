@@ -124,7 +124,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/regexp/regexp/Example7",
             "checks/regexp/regexpmultiline/Example5",
             "checks/sizes/lambdabodylength/Example2",
-            "checks/sizes/methodlength/Example3",
             "checks/sizes/outertypenumber/Example2",
             "checks/whitespace/singlespaceseparator/Example2",
             "checks/whitespace/typecastparenpad/Example2",

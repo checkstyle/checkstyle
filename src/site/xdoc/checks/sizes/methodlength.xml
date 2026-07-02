@@ -111,14 +111,13 @@ public class Example1 {
   }
 
   public void secondMethod() {
-    // comments are counted by default
+
     System.out.println("line 3");
   }
-
   // violation below, 'Method thirdMethod length is 5 lines (max allowed is 4)'
   public void thirdMethod() {
 
-    // empty line above is counted by default,just like this comment
+    // ok, empty line above is counted by default,just like this comment
     System.out.println("line 4");
   }
 
@@ -172,14 +171,13 @@ public class Example2 {
   }
 
   public void secondMethod() {
-    // comments are counted by default
+
     System.out.println("line 3");
   }
-
   // violation below, 'Method thirdMethod length is 5 lines (max allowed is 4)'
   public void thirdMethod() {
 
-    // empty line above is counted by default,just like this comment
+    // ok, empty line above is counted by default,just like this comment
     System.out.println("line 4");
   }
 
@@ -234,13 +232,13 @@ public class Example3 {
   }
 
   public void secondMethod() {
-    // countEmpty property is false,so this line doesn't count
+    // ok, countEmpty property is false,so this line doesn't count
     System.out.println("line 3");
   }
 
   public void thirdMethod() {
 
-    // countEmpty property is false,so this line and the line above don't count
+    // ok, countEmpty property is false,so this line and the line above don't count
     System.out.println("line 4");
   }
 
