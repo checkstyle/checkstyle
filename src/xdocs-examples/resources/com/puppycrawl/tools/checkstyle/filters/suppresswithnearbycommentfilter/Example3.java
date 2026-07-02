@@ -15,12 +15,16 @@
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
 // xdoc section -- start
 public class Example3 {
-  public void doStuff() {
+
+  public static final int [] array = {}; // SUPPRESS CHECKSTYLE NoWhitespaceAfter
+
+  public static final int lowerCaseConstant = 1; // CHECKSTYLE IGNORE THIS LINE
+
+  public void testMethod() {
     try {
-      // blah blah blah
     }
     // filtered violation below 'Catching 'RuntimeException' is not allowed'
-    catch(RuntimeException re) {
+    catch (RuntimeException ex) {
       // ok, allowed to catch RuntimeException here
     }
   }
