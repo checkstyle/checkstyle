@@ -113,7 +113,7 @@ class Example1 {
   }
 
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example1.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second");
     logger.info("third");
@@ -161,7 +161,7 @@ class Example2 {
   }
 
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example2.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second");
     logger.info("third");
@@ -209,7 +209,7 @@ class Example3 {
   }
 
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example3.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second");
     logger.info("third");
@@ -257,7 +257,7 @@ class Example4 {
   }
 
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example3.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second");
     logger.info("third");
@@ -304,7 +304,7 @@ class Example5 {
   }
 
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example5.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second"); // violation, 'Line matches the illegal pattern'
     logger.info("third");  // violation, 'Line matches the illegal pattern'
@@ -355,7 +355,7 @@ class Example6 {
   }
   // violation below, 'public member found'
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example1.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second");
     logger.info("third");
@@ -406,7 +406,7 @@ class Example7 {
   }
 
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example1.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second");
     logger.info("third");
