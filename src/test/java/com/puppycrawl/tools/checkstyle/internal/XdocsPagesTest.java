@@ -693,11 +693,6 @@ public class XdocsPagesTest {
                     sectionName = "Documentation Comments";
                     expectedId = (sectionName + "_" + nameString).replace(' ', '_');
                 }
-                else if ((path.toString().contains("filters")
-                        || path.toString().contains("checks"))
-                        && !subsectionId.startsWith(sectionName)) {
-                    expectedId = nameString.replace(' ', '_');
-                }
                 else {
                     expectedId = (sectionName + "_" + nameString).replace(' ', '_');
                 }
