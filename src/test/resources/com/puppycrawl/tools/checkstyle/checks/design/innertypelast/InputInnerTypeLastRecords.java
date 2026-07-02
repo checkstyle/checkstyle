@@ -14,11 +14,11 @@ public class InputInnerTypeLastRecords {
         record InnerTest1() {
         }
 
-        public void test() { // violation
+        public void test() { // violation 'Init blocks, constructors, fields and methods should be before inner types.'
         }
     }
 
-    public void test() { // violation
+    public void test() { // violation 'Init blocks, constructors, fields and methods should be before inner types.'
     }
 
     record Test3() {
@@ -27,7 +27,7 @@ public class InputInnerTypeLastRecords {
         class InnerTest1 {
         }
 
-        public void test() { // violation
+        public void test() { // violation 'Init blocks, constructors, fields and methods should be before inner types.'
         }
     }
 
@@ -37,19 +37,19 @@ public class InputInnerTypeLastRecords {
         record MyInnerRecord() {
             void foo() {}
             class InnerInnerClass{}
-            public MyInnerRecord{} // violation
+            public MyInnerRecord{} // violation 'Init blocks, constructors, fields and methods should be before inner types.'
         }
 
         class MyInnerClass {
             void foo (){}
             class InnerInnerClass{}
-            public MyInnerClass(){} // violation
+            public MyInnerClass(){} // violation 'Init blocks, constructors, fields and methods should be before inner types.'
 
         }
 
-        static Test3 innerRecord = new Test3(); // violation
+        static Test3 innerRecord = new Test3(); // violation 'Init blocks, constructors, fields and methods should be before inner types.'
 
-        public void test() { // violation
+        public void test() { // violation 'Init blocks, constructors, fields and methods should be before inner types.'
         }
     }
 
