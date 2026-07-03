@@ -44,7 +44,11 @@
       <property name="id" value="violationBetweenAnnotationAndMethod"/>
       <property name="query"
                 value="//*[self::METHOD_DEF or self::CTOR_DEF
-                              or self::COMPACT_CTOR_DEF]/MODIFIERS/SINGLE_LINE_COMMENT[
+                              or self::COMPACT_CTOR_DEF or self::CLASS_DEF
+                              or self::INTERFACE_DEF or self::ENUM_DEF
+                              or self::ANNOTATION_DEF or self::RECORD_DEF
+                              or self::ANNOTATION_FIELD_DEF
+                              or self::ENUM_CONSTANT_DEF]/MODIFIERS/SINGLE_LINE_COMMENT[
                        ./COMMENT_CONTENT[contains(@text, 'violation')]
                        and preceding-sibling::ANNOTATION]"/>
       <message key="matchxpath.match"
@@ -55,7 +59,11 @@ Place it before the annotation block instead."/>
       <property name="id" value="violationBetweenJavadocAndMethod"/>
       <property name="query"
                 value="//*[self::METHOD_DEF or self::CTOR_DEF
-                              or self::COMPACT_CTOR_DEF]/MODIFIERS/SINGLE_LINE_COMMENT[
+                              or self::COMPACT_CTOR_DEF or self::CLASS_DEF
+                              or self::INTERFACE_DEF or self::ENUM_DEF
+                              or self::ANNOTATION_DEF or self::RECORD_DEF
+                              or self::ANNOTATION_FIELD_DEF
+                              or self::ENUM_CONSTANT_DEF]/MODIFIERS/SINGLE_LINE_COMMENT[
                        ./COMMENT_CONTENT[contains(@text, 'violation')]
                        and preceding-sibling::BLOCK_COMMENT_BEGIN[
                        ./COMMENT_CONTENT[starts-with(@text, '*')]]]"/>
