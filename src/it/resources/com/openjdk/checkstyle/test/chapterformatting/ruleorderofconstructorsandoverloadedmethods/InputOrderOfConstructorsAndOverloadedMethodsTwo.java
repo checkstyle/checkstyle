@@ -15,7 +15,7 @@ public class InputOrderOfConstructorsAndOverloadedMethodsTwo {
 
     void notSame() {}
 
-    interface notSame{}
+    interface NotSame{}
 
     void otherSame(String s) {}
 
