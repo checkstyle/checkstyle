@@ -80,8 +80,6 @@ jobs:
     outputs:
       pr_branch: ${{ steps.get_pr_details.outputs.branch }}
       commit_sha: ${{ steps.get_pr_details.outputs.commit_sha }}
-    env:
-      CACHE_KEY: "regression-report-${{ github.sha }}-${{ github.event.comment.id }}"
     steps:
       - name: Create .ci-temp directory
         run: mkdir -p .ci-temp
@@ -124,11 +122,17 @@ jobs:
           git checkout -b ${{ steps.get_pr_details.outputs.branch }} \
                forked/${{ steps.get_pr_details.outputs.branch }}
 
-      - name: Save cache
-        uses: actions/cache/save@v6
+      - name: Tar workspace artifact
+        run: |
+          tar -cvf "$RUNNER_TEMP/workspace.tar" .
+
+      - name: Upload workspace artifact
+        uses: actions/upload-artifact@v7
         with:
-          path: .
-          key: ${{ env.CACHE_KEY }}
+          name: ${{ env.CACHE_KEY }}
+          path: ${{ runner.temp }}/workspace.tar
+          retention-days: 1
+          if-no-files-found: error
 
   parse_comment:
     runs-on: ubuntu-latest
@@ -152,12 +156,16 @@ jobs:
               content: 'rocket'
             })
 
-      - name: Restore cache
-        uses: actions/cache/restore@v6
+      - name: Download workspace artifact
+        uses: actions/download-artifact@v8
         with:
+          name: ${{ env.CACHE_KEY }}
           path: .
-          key: ${{ env.CACHE_KEY }}
-          fail-on-cache-miss: true
+
+      - name: Extract workspace artifact
+        run: |
+          tar -xvf workspace.tar
+          rm workspace.tar
 
       - name: Parse comment
         id: parse
@@ -208,12 +216,16 @@ jobs:
       projects_link: ${{ steps.set_links.outputs.projects_link }}
       label: ${{ steps.create_label.outputs.label }}
     steps:
-      - name: Restore cache
-        uses: actions/cache/restore@v6
+      - name: Download workspace artifact
+        uses: actions/download-artifact@v8
         with:
+          name: ${{ env.CACHE_KEY }}
           path: .
-          key: ${{ env.CACHE_KEY }}
-          fail-on-cache-miss: true
+
+      - name: Extract workspace artifact
+        run: |
+          tar -xvf workspace.tar
+          rm workspace.tar
 
       - name: Set config and projects links
         id: set_links
@@ -241,12 +253,16 @@ jobs:
       projects_link: ${{ steps.generated_config_bundle.outputs.projects_link }}
       label: ${{ steps.create_label.outputs.label }}
     steps:
-      - name: Restore cache
-        uses: actions/cache/restore@v6
+      - name: Download workspace artifact
+        uses: actions/download-artifact@v8
         with:
+          name: ${{ env.CACHE_KEY }}
           path: .
-          key: ${{ env.CACHE_KEY }}
-          fail-on-cache-miss: true
+
+      - name: Extract workspace artifact
+        run: |
+          tar -xvf workspace.tar
+          rm workspace.tar
 
       - name: Find input file
         id: find_input_file
@@ -313,11 +329,17 @@ jobs:
           echo "Contents of CONFIG_FILE_PATH:"
           cat "$CONFIG_FILE_PATH"
 
-      - name: Cache Generated Config and Project Files
-        uses: actions/cache@v6
+      - name: Tar generated config and project files
+        run: |
+          tar -cvf "$RUNNER_TEMP/generated-configs.tar" "${{ env.GENERATED_CONFIGS_PATH }}"
+
+      - name: Upload generated config and project files
+        uses: actions/upload-artifact@v7
         with:
-          path: ${{ env.GENERATED_CONFIGS_PATH }}
-          key: ${{ env.CACHE_KEY }}-generated-configs
+          name: ${{ env.CACHE_KEY }}-generated-configs
+          path: ${{ runner.temp }}/generated-configs.tar
+          retention-days: 1
+          if-no-files-found: error
 
       - name: Extract filename and create label
         id: create_label
@@ -338,12 +360,16 @@ jobs:
       patch_config_link: ${{ steps.parse_description.outputs.patch_config_link }}
       new_module_config_link: ${{ steps.parse_description.outputs.new_module_config_link }}
     steps:
-      - name: Restore cache
-        uses: actions/cache/restore@v6
+      - name: Download workspace artifact
+        uses: actions/download-artifact@v8
         with:
+          name: ${{ env.CACHE_KEY }}
           path: .
-          key: ${{ env.CACHE_KEY }}
-          fail-on-cache-miss: true
+
+      - name: Extract workspace artifact
+        run: |
+          tar -xvf workspace.tar
+          rm workspace.tar
 
       - name: Getting PR description
         env:
@@ -372,12 +398,16 @@ jobs:
       label: ${{ steps.create_label.outputs.label }}
       project_name: ${{ needs.parse_comment.outputs.project_name }}
     steps:
-      - name: Restore cache
-        uses: actions/cache/restore@v6
+      - name: Download workspace artifact
+        uses: actions/download-artifact@v8
         with:
+          name: ${{ env.CACHE_KEY }}
           path: .
-          key: ${{ env.CACHE_KEY }}
-          fail-on-cache-miss: true
+
+      - name: Extract workspace artifact
+        run: |
+          tar -xvf workspace.tar
+          rm workspace.tar
 
       - name: Set config and projects links
         id: set_links
@@ -409,12 +439,16 @@ jobs:
       label: ${{ steps.create_label.outputs.label }}
       project_name: ${{ needs.parse_comment.outputs.project_name }}
     steps:
-      - name: Restore cache
-        uses: actions/cache/restore@v6
+      - name: Download workspace artifact
+        uses: actions/download-artifact@v8
         with:
+          name: ${{ env.CACHE_KEY }}
           path: .
-          key: ${{ env.CACHE_KEY }}
-          fail-on-cache-miss: true
+
+      - name: Extract workspace artifact
+        run: |
+          tar -xvf workspace.tar
+          rm workspace.tar
 
       - name: Set config and project link
         id: set_links
@@ -463,19 +497,29 @@ jobs:
           || ''
         }}
     steps:
-      - name: Restore cache
-        uses: actions/cache/restore@v6
+      - name: Download workspace artifact
+        uses: actions/download-artifact@v8
         with:
+          name: ${{ env.CACHE_KEY }}
           path: .
-          key: ${{ env.CACHE_KEY }}
-          fail-on-cache-miss: true
 
-      - name: Restore Generated Config and Project Files
+      - name: Extract workspace artifact
+        run: |
+          tar -xvf workspace.tar
+          rm workspace.tar
+
+      - name: Download generated config and project files
         if: needs.handle_generated_config_bundle.result == 'success'
-        uses: actions/cache@v6
+        uses: actions/download-artifact@v8
         with:
-          path: ${{ env.GENERATED_CONFIGS_PATH }}
-          key: ${{ env.CACHE_KEY }}-generated-configs
+          name: ${{ env.CACHE_KEY }}-generated-configs
+          path: .
+
+      - name: Extract generated config and project files
+        if: needs.handle_generated_config_bundle.result == 'success'
+        run: |
+          tar -xvf generated-configs.tar
+          rm generated-configs.tar
 
       - name: Process local-based generated Config and Project File
         if: needs.handle_generated_config_bundle.result == 'success'
@@ -552,15 +596,23 @@ jobs:
         run: |
           ./.ci/diff-report.sh process-local-repo-config-files-for-baseline-report
 
-      - name: Cache config files
-        uses: actions/cache@v6
+      - name: Tar config files artifact
+        run: |
+          files=(.ci-temp/*.xml .ci-temp/*.header)
+          for path in .ci-temp/projects.yml .ci-temp/projects.properties; do
+            if [ -f "$path" ]; then
+              files+=("$path")
+            fi
+          done
+          tar -cvf "$RUNNER_TEMP/config-files.tar" "${files[@]}"
+
+      - name: Upload config files artifact
+        uses: actions/upload-artifact@v7
         with:
-          path: |
-            .ci-temp/*.xml
-            .ci-temp/*.header
-            .ci-temp/projects.yml
-            .ci-temp/projects.properties
-          key: ${{ env.CACHE_KEY }}-config-files
+          name: ${{ env.CACHE_KEY }}-config-files
+          path: ${{ runner.temp }}/config-files.tar
+          retention-days: 1
+          if-no-files-found: error
 
   make_report:
     needs: [ download_configs, checkout_and_cache ]
@@ -569,22 +621,27 @@ jobs:
     outputs:
       message: ${{ steps.out.outputs.message }}
     steps:
-      - name: Restore cache
-        uses: actions/cache/restore@v6
+      - name: Download workspace artifact
+        uses: actions/download-artifact@v8
         with:
+          name: ${{ env.CACHE_KEY }}
           path: .
-          key: ${{ env.CACHE_KEY }}
-          fail-on-cache-miss: true
 
-      - name: Restore config files from cache
-        uses: actions/cache/restore@v6
+      - name: Extract workspace artifact
+        run: |
+          tar -xvf workspace.tar
+          rm workspace.tar
+
+      - name: Download config files artifact
+        uses: actions/download-artifact@v8
         with:
-          path: |
-            .ci-temp/*.xml
-            .ci-temp/*.header
-            .ci-temp/projects.yml
-            .ci-temp/projects.properties
-          key: ${{ env.CACHE_KEY }}-config-files
+          name: ${{ env.CACHE_KEY }}-config-files
+          path: .
+
+      - name: Extract config files artifact
+        run: |
+          tar -xvf config-files.tar
+          rm config-files.tar
 
       - name: Restore local maven cache
         uses: actions/cache/restore@v6
@@ -763,6 +820,19 @@ jobs:
               --diffToolJarPath "$PATCH_DIFF_TOOL_JAR"
           fi
 
+      - name: Tar report artifact
+        run: |
+          tar -cvf "$RUNNER_TEMP/regression-report.tar" -C .ci-temp/reports diff
+
+      - name: Upload report artifact
+        id: upload_report
+        uses: actions/upload-artifact@v7
+        with:
+          name: checkstyle-regression-report-${{ needs.checkout_and_cache.outputs.commit_sha }}
+          path: ${{ runner.temp }}/regression-report.tar
+          retention-days: 1
+          if-no-files-found: error
+
       - name: Copy Report to AWS S3 Bucket
         env:
           LABEL: ${{ needs.download_configs.outputs.report_label }}
@@ -831,12 +901,16 @@ jobs:
           || needs.parse_comment.result == 'failure'
           || needs.add_sad_Emoji.result == 'failure')
     steps:
-      - name: Restore cache
-        uses: actions/cache/restore@v6
+      - name: Download workspace artifact
+        uses: actions/download-artifact@v8
         with:
+          name: ${{ env.CACHE_KEY }}
           path: .
-          key: ${{ env.CACHE_KEY }}
-          fail-on-cache-miss: true
+
+      - name: Extract workspace artifact
+        run: |
+          tar -xvf workspace.tar
+          rm workspace.tar
 
       - name: Get message
         env:
