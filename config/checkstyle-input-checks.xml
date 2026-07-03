@@ -43,7 +43,8 @@
     <module name="MatchXpath">
       <property name="id" value="violationBetweenAnnotationAndMethod"/>
       <property name="query"
-                value="//MODIFIERS/SINGLE_LINE_COMMENT[
+                value="//*[self::METHOD_DEF or self::CTOR_DEF
+                              or self::COMPACT_CTOR_DEF]/MODIFIERS/SINGLE_LINE_COMMENT[
                        ./COMMENT_CONTENT[contains(@text, 'violation')]
                        and preceding-sibling::ANNOTATION]"/>
       <message key="matchxpath.match"
@@ -53,7 +54,8 @@ Place it before the annotation block instead."/>
     <module name="MatchXpath">
       <property name="id" value="violationBetweenJavadocAndMethod"/>
       <property name="query"
-                value="//MODIFIERS/SINGLE_LINE_COMMENT[
+                value="//*[self::METHOD_DEF or self::CTOR_DEF
+                              or self::COMPACT_CTOR_DEF]/MODIFIERS/SINGLE_LINE_COMMENT[
                        ./COMMENT_CONTENT[contains(@text, 'violation')]
                        and preceding-sibling::BLOCK_COMMENT_BEGIN[
                        ./COMMENT_CONTENT[starts-with(@text, '*')]]]"/>
