@@ -558,4 +558,18 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
                 getPath("InputAbbreviationAsWordInNameAnnotation.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final int expectedCapitalCount = 4;
+
+        final String[] expected = {
+            "18:5: " + getWarningMessage("useHTTPSConnection", expectedCapitalCount),
+            "24:9: " + getWarningMessage("localHTTPSConnection", expectedCapitalCount),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputAbbreviationAsWordInNameCompactSourceFile.java"), expected);
+    }
+
 }
