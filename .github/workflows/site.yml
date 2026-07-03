@@ -119,12 +119,13 @@ jobs:
           mvn -e --no-transfer-progress clean site -Pno-validations \
             -Dmaven.javadoc.skip=false -Djdepend.skip=false
 
-      - name: Setup local maven cache
-        uses: actions/cache/save@v6
+      - name: Upload generated site artifact
+        uses: actions/upload-artifact@v7
         with:
+          name: checkstyle-site-artifact-${{ github.run_id }}
           path: .ci-temp/checkstyle/target/site
-          key: checkstyle-site-cache-${{ github.run_id }}
-
+          retention-days: 1
+          if-no-files-found: error
 
   publish_site:
     needs: [ parse_pr_info, generate_site ]
@@ -143,11 +144,11 @@ jobs:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
-      - name: Setup local maven cache
-        uses: actions/cache/restore@v6
+      - name: Download generated site artifact
+        uses: actions/download-artifact@v8
         with:
+          name: checkstyle-site-artifact-${{ github.run_id }}
           path: .ci-temp/checkstyle/target/site
-          key: checkstyle-site-cache-${{ github.run_id }}
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v6
