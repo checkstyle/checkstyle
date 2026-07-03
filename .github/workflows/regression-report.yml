@@ -77,6 +77,8 @@ jobs:
   checkout_and_cache:
     runs-on: ubuntu-latest
     needs: [ check_pr_status ]
+    permissions:
+      contents: write
     outputs:
       pr_branch: ${{ steps.get_pr_details.outputs.branch }}
       commit_sha: ${{ steps.get_pr_details.outputs.commit_sha }}
