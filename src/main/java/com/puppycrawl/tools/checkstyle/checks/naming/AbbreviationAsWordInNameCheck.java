@@ -289,11 +289,14 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     private static boolean isInterfaceDeclaration(DetailAST variableDefAst) {
         boolean result = false;
         final DetailAST astBlock = variableDefAst.getParent();
-        final DetailAST astParent2 = astBlock.getParent();
 
-        if (astParent2.getType() == TokenTypes.INTERFACE_DEF
-                || astParent2.getType() == TokenTypes.ANNOTATION_DEF) {
-            result = true;
+        if (astBlock.getType() != TokenTypes.COMPACT_COMPILATION_UNIT) {
+            final DetailAST astParent2 = astBlock.getParent();
+
+            if (astParent2.getType() == TokenTypes.INTERFACE_DEF
+                    || astParent2.getType() == TokenTypes.ANNOTATION_DEF) {
+                result = true;
+            }
         }
         return result;
     }
