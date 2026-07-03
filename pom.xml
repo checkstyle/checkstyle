@@ -1800,6 +1800,8 @@
         <configuration>
           <includes>
             <include>com/google/**/*.java</include>
+            <include>com/openjdk/**/*.java</include>
+            <include>com/sun/**/*.java</include>
             <include>org/checkstyle/**/*.java</include>
           </includes>
         </configuration>

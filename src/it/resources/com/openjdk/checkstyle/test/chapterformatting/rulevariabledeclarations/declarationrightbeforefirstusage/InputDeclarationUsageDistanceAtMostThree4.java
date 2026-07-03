@@ -1,9 +1,5 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulevariabledeclarations.declarationrightbeforefirstusage;
 
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
-
 /** Some javadoc. */
 public class InputDeclarationUsageDistanceAtMostThree4 {
 

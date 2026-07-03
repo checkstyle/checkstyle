@@ -11,7 +11,7 @@ public class InputOrderOfConstructorsAndOverloadedMethodsOne {
     InputOrderOfConstructorsAndOverloadedMethodsOne(int x) {}
     // violation above 'Constructors should be ordered by increasing parameter count.'
 
-    int a = 0;
+    int a = 0; // violation, Field declaration is in wrong order
 
     // violation 2 lines below """Constructors should be grouped together.
     // The last grouped constructor is declared at line '11'."""
@@ -29,11 +29,12 @@ public class InputOrderOfConstructorsAndOverloadedMethodsOne {
         // violation 2 lines below """Constructors should be grouped together.
         // The last grouped constructor is declared at line '25'."""
         ExampleEnum(int x, int y) {}
+        // violation above 'Constructor definition in wrong order.'
 
         // violation 2 lines below """Constructors should be grouped together.
         // The last grouped constructor is declared at line '25'."""
         ExampleEnum(String s, int x) {}
-
+        // violation above 'Constructor definition in wrong order.'
     }
 
     class InputWithOrderedCtors {
