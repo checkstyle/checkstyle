@@ -15,4 +15,8 @@ void m() {
     System.out.println(used);
 }
 
+Runnable r = new Runnable() {
+    public void run() {}
+};
+
 void main() { }
