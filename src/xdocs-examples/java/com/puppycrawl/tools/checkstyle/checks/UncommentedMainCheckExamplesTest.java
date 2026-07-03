@@ -33,7 +33,7 @@ public class UncommentedMainCheckExamplesTest extends AbstractExamplesModuleTest
     public void testExample1() throws Exception {
         final String[] expected = {
             "14:3: " + getCheckMessage(UncommentedMainCheck.MSG_KEY),
-            "19:3: " + getCheckMessage(UncommentedMainCheck.MSG_KEY),
+            "38:3: " + getCheckMessage(UncommentedMainCheck.MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
