@@ -194,9 +194,9 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * This property only considers features from officially released
      * Java versions as supported. Features introduced in preview releases
      * are not considered supported until they are included in a non-preview release.
-     * Before JDK 22, named pattern variables in switch labels cannot be replaced
-     * with {@code _}, so violations on them are suppressed when jdkVersion is set
-     * below 22.
+     * Before JDK 22, named pattern variables in switch labels and instanceof
+     * record destructuring cannot be replaced with {@code _}, so violations
+     * on them are suppressed when jdkVersion is set below 22.
      */
     private int jdkVersion = JDK_22;
 
@@ -229,9 +229,9 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * This property only considers features from officially released
      * Java versions as supported. Features introduced in preview releases
      * are not considered supported until they are included in a non-preview release.
-     * Before JDK 22, named pattern variables in switch labels cannot be replaced
-     * with {@code _}, so violations on them are suppressed when jdkVersion is set
-     * below 22.
+     * Before JDK 22, named pattern variables in switch labels and instanceof
+     * record destructuring cannot be replaced with {@code _}, so violations
+     * on them are suppressed when jdkVersion is set below 22.
      *
      * @param jdkVersion the Java version.
      * @since 13.7.0
@@ -442,25 +442,20 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         final DetailAST ident = patternVarDefAst.findFirstToken(TokenTypes.IDENT);
         final DetailAST scope = findScopeOfPatternVariable(patternVarDefAst);
         final VariableDesc desc = new VariableDesc(ident.getText(), ident, scope);
-        if (isSwitchCasePatternVariable(patternVarDefAst)) {
+        if (isForcedNamePatternVariable(patternVarDefAst)) {
             desc.registerAsNamedPatternVar();
         }
         variablesStack.push(desc);
     }
 
     /**
-     * Checks whether the pattern variable is declared in a switch labels.
+     * Checks whether the pattern variable is declared in a switch labels & instance of.
      *
      * @param patternVarDefAst ast of type {@link TokenTypes#PATTERN_VARIABLE_DEF}
-     * @return true if the pattern variable is declared in a switch label
+     * @return true if the pattern variable is in a forced-name context
      */
-    private static boolean isSwitchCasePatternVariable(DetailAST patternVarDefAst) {
-        DetailAST current = patternVarDefAst;
-        while (current != null
-                && current.getType() != TokenTypes.LITERAL_CASE) {
-            current = current.getParent();
-        }
-        return current != null;
+    private static boolean isForcedNamePatternVariable(DetailAST patternVarDefAst) {
+        return patternVarDefAst.getParent().getType() != TokenTypes.LITERAL_INSTANCEOF;
     }
 
     /**
@@ -1104,8 +1099,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         }
 
         /**
-         * Register the variable as a named pattern variable
-         * declared in a switch label.
+         * Register the variable as a forced-name pattern variable declared
+         * in a switch label or instanceof record destructuring.
          */
         /* package */ void registerAsNamedPatternVar() {
             namedPatternVar = true;
@@ -1130,11 +1125,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         }
 
         /**
-         * Is a named pattern variable from a switch label.
+         * Is a forced-name pattern variable from a switch label or
+         * instanceof record destructuring.
          *
-         * @return true if this variable was declared via a
-         *         {@link TokenTypes#PATTERN_VARIABLE_DEF} with a non-underscore name
-         *         in a switch label
+         * @return true if this variable was declared in a context where
+         *         pre-JDK 22 forces a name to be given even when unused
          */
         /* package */ boolean isNamedPatternVar() {
             return namedPatternVar;
