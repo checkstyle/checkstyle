@@ -174,6 +174,10 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
             "48:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "l"),
             "60:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "h"),
             "63:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "v"),
+            "88:10: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "o"),
+            "97:18: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "o"),
+            "102:18: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "o"),
+            "106:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "o"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableAnonInnerClasses.java"),
@@ -493,12 +497,14 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVariableNamedPatternVariable() throws Exception {
         final String[] expected = {
-            "14:25: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ignored"),
-            "15:26: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ignored2"),
-            "21:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "x"),
-            "22:38: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ignored"),
-            "29:30: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "y"),
-            "29:37: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "z"),
+            "21:25: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ignored"),
+            "22:26: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ignored2"),
+            "28:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "x"),
+            "29:38: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ignored"),
+            "36:30: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "y"),
+            "36:37: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "z"),
+            "42:57: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ignoredAge"),
+            "51:43: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "inner"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableAllowNamedPatternVariables.java"),
@@ -514,6 +520,16 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableAllowNamedPatternVariablesTrue.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnusedLocalVariableNamedPatternVariableInstanceof() throws Exception {
+        final String[] expected = {
+            "21:38: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableAllowNamedPatternVariablesInstanceOf.java"),
                 expected);
     }
 
