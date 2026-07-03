@@ -156,7 +156,6 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppressionxpathsinglefilter/Example7",
             "filters/suppressionxpathsinglefilter/Example8",
             "filters/suppressionxpathsinglefilter/Example9",
-            "filters/suppresswarningsfilter/Example2",
             "filters/suppresswithnearbycommentfilter/Example2",
             "filters/suppresswithnearbycommentfilter/Example3",
             "filters/suppresswithnearbycommentfilter/Example4",

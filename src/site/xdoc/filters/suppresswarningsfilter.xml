@@ -52,7 +52,10 @@
 </code></pre></div>
         <p id="Example1-code">Java code:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
+
 public class Example1 {
+
   @SuppressWarnings("memberName")
   int J; // filtered violation 'must match pattern'
   int JJ; // violation 'must match pattern'
@@ -60,9 +63,16 @@ public class Example1 {
   @SuppressWarnings({"MemberName", "NoWhitespaceAfter"})
   int [] ARRAY; // filtered violation
   // filtered violation above
-
   int [] ARRAY2; // violation
   // violation above
+  @SuppressWarnings("checkstyle:systemout")
+  public static void foo() {
+    System.out.println("Debug info.");
+  }
+
+  public static void boo() {
+    System.out.println("Some info.");
+  }
 }
 </code></pre></div>
         <hr class="example-separator"/>
@@ -93,10 +103,21 @@ public class Example1 {
 package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
 // violation 9 lines above 'use SLF4J instead.'
 public class Example2 {
+
+  @SuppressWarnings("memberName")
+  int J;
+  int JJ;
+
+  @SuppressWarnings({"MemberName", "NoWhitespaceAfter"})
+  int [] ARRAY;
+
+  int [] ARRAY2;
+
   @SuppressWarnings("checkstyle:systemout")
   public static void foo() {
     System.out.println("Debug info."); // filtered violation 'use SLF4J instead.'
   }
+
   public static void boo() {
     System.out.println("Some info."); // violation 'use SLF4J instead.'
   }
