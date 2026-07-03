@@ -238,6 +238,7 @@ ctc
 ctor
 ctx
 customimportorder
+cvf
 CVS
 cyclomatic
 cyclomaticcomplexity
@@ -1569,6 +1570,7 @@ xsl
 xslt
 xsltproc
 XSO
+xvf
 xwiki
 XXE
 XXXX
