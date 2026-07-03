@@ -1,9 +1,5 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulevariabledeclarations.declarationrightbeforefirstusage;
 
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
-
 /** Some javadoc. */
 public class InputDeclarationUsageDistanceAtMostThree5 {
 
@@ -51,8 +47,7 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
         final long intervalMs = 30 * 60000L;
         Object authCheckUrl = null;
         Object authInfo = null;
-        task =
-                new AuthUpdateTask(
+        task = new AuthUpdateTask(
                         authCheckUrl,
                         authInfo,
                         new IauthListener() {
@@ -86,7 +81,7 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
     void fireAuthTokenChanged(String s, String s1) {}
 
     class JmenuItem {
-        public JmenuItem(String string) {}
+        JmenuItem(String string) {}
         public void addActionListener(ActionListener actionListener) {}
         public void setMnemonic(char charAt) {}
     }
@@ -98,7 +93,7 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
     class ActionEvent {}
 
     static class Color {
-        public Color(int red, int green, int blue, int alpha) {}
+        Color(int red, int green, int blue, int alpha) {}
         public double getRed() { return 0; }
         public int getAlpha() { return 0; }
         public double getBlue() { return 0; }
@@ -106,7 +101,7 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
     }
 
     class AuthUpdateTask {
-        public AuthUpdateTask(Object authCheckUrl, Object authInfo, IauthListener authListener) {}
+        AuthUpdateTask(Object authCheckUrl, Object authInfo, IauthListener authListener) {}
     }
 
     interface IauthListener {
@@ -114,7 +109,7 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
     }
 
     class Timer {
-        public Timer(String string, boolean b) {}
+        Timer(String string, boolean b) {}
         public void schedule(AuthUpdateTask authUpdateTask, long l, long intervalMs) {}
     }
 }

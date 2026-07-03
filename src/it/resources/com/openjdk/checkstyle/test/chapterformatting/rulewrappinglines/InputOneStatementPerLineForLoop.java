@@ -21,9 +21,9 @@ public final class InputOneStatementPerLineForLoop {
     public void multilineFor() {
         int sum = 0;
         for (int i = 0,
-             j = 1;
-             i < 2;
-             i++, j--) {
+                j = 1;
+                i < 2;
+                i++, j--) {
             sum += i;
         }
     }
