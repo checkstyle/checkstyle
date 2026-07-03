@@ -13,12 +13,13 @@ public class InputModifiersRedundant {
 
     // violation below, 'Redundant 'abstract' modifier'
     abstract interface I {
+
+        public int TEMP = 0; // violation, 'Redundant 'public' modifier'
+
         public abstract void method();
         // 2 violations above:
         //    'Redundant 'public' modifier'
         //    'Redundant 'abstract' modifier'
-
-        public int x = 0; // violation, 'Redundant 'public' modifier'
     }
 
     static enum E { // violation, 'Redundant 'static' modifier'

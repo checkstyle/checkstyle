@@ -6,7 +6,7 @@ public class InputClassStructureInvalidOrder {
     static int a = 1;
     private int x;
 
-    public InputClassStructureInvalidOrder() {
+    InputClassStructureInvalidOrder() {
     }
 
     public int c; // violation, Field declaration is in wrong order
@@ -14,8 +14,8 @@ public class InputClassStructureInvalidOrder {
 
     void foo() {}
 
-    public InputClassStructureInvalidOrder(int x) {
-    } // violation above, 'Constructor definition in wrong order.'
+    InputClassStructureInvalidOrder(int x) { // 2 violations
+    } // 'Constructor definition in wrong order.'
 
     void foo1() {}
 
