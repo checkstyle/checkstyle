@@ -112,6 +112,27 @@ public class FinalClassCheckTest
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "19:1: " + getCheckMessage(MSG_KEY, "Bar"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalClassCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileAnonymousNestedResolution() throws Exception {
+        final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_KEY, "Inner"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputFinalClassCompactSourceFileAnonymousNestedResolution.java"),
+                expected);
+    }
+
+    @Test
     public void testFinalClassConstructorInRecord() throws Exception {
 
         final String[] expected = {

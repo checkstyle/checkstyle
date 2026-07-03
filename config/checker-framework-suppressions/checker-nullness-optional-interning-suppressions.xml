@@ -4146,14 +4146,14 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/FinalClassCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference typeDeclarations.peek()</message>
-    <lineContent>.put(ast, typeDeclarations.peek().getQualifiedName());</lineContent>
+    <lineContent>outerTypeDeclarationQualifiedName = typeDeclarations.peek().getQualifiedName();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/FinalClassCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference typeDeclarations.peek()</message>
-    <lineContent>outerTypeDeclarationQualifiedName = typeDeclarations.peek().getQualifiedName();</lineContent>
+    <lineContent>outerTypeName = typeDeclarations.peek().getQualifiedName();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
