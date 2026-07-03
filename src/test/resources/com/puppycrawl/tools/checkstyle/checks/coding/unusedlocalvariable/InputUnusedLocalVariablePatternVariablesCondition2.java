@@ -73,4 +73,22 @@ public class InputUnusedLocalVariablePatternVariablesCondition2 {
             }
         }
     }
+
+   void namedloops() {
+        int[] orderIDs = {34, 45, 23, 27, 15};
+        int total = 0;
+        for (int id : orderIDs) { // violation, 'Unused local variable'
+            total++;
+        }
+        System.out.println("Total: " + total);
+   }
+
+   void unnamedloops() {
+        int[] orderIDs = {34, 45, 23, 27, 15};
+        int total = 0;
+        for (int _ : orderIDs) { // violation, unused named local variable '_'
+            total++;
+        }
+        System.out.println("Total: " + total);
+   }
 }

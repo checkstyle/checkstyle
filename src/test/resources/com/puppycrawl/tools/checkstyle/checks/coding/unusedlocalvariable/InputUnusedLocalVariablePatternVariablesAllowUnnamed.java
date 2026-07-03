@@ -51,5 +51,22 @@ public class InputUnusedLocalVariablePatternVariablesAllowUnnamed {
         }
     }
 
+   void namedloops() {
+        int[] orderIDs = {34, 45, 23, 27, 15};
+        int total = 0;
+        for (int id : orderIDs) { // violation, unused named local variable 'id'
+            total++;
+        }
+        System.out.println("Total: " + total);
+   }
+   void unnamedloops() {
+        int[] orderIDs = {34, 45, 23, 27, 15};
+        int total = 0;
+        for (int _ : orderIDs) {
+            total++;
+        }
+        System.out.println("Total: " + total);
+   }
+
     void process(Object o) {}
 }
