@@ -1,9 +1,5 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulevariabledeclarations.declarationrightbeforefirstusage;
 
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
-
 /** Some javadoc. */
 public class InputDeclarationUsageDistanceAtMostThree7 {
 
@@ -104,11 +100,11 @@ public class InputDeclarationUsageDistanceAtMostThree7 {
     }
 
     class TreeMapNode {
-        public TreeMapNode(String label, double d, DefaultValue defaultValue) {}
-        public TreeMapNode(String label) {}
+        TreeMapNode(String label) {}
+        TreeMapNode(String label, double d, DefaultValue defaultValue) {}
     }
 
     class DefaultValue {
-        public DefaultValue(double d) {}
+        DefaultValue(double d) {}
     }
 }
