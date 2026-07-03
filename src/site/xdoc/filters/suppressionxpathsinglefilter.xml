@@ -112,9 +112,16 @@
 </code></pre></div>
         <p id="Example1-code">Code example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+
 public class Example1 {
+  // filtered violation below 'Name 'MyMethod' must match pattern'
   public void MyMethod() {}
-  // filtered violation above 'Name 'MyMethod' must match pattern'
+  // violation below 'Name 'MyMethod2' must match pattern'
+  public void MyMethod2() {}
+  // violation below 'Name 'MyMethodA' must match pattern'
+  public void MyMethodA() {}
+  private int field = 177;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -133,13 +140,16 @@ public class Example1 {
 </code></pre></div>
         <p id="Example2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+
 public class Example2 {
-  // filtered violation below 'Name 'MyMethod1' must match pattern'
-  public void MyMethod1() {}
+  // violation below 'Name 'MyMethod' must match pattern'
+  public void MyMethod() {}
   // filtered violation below 'Name 'MyMethod2' must match pattern'
   public void MyMethod2() {}
   // violation below 'Name 'MyMethodA' must match pattern'
   public void MyMethodA() {}
+  private int field = 177;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -160,9 +170,16 @@ public class Example2 {
 </code></pre></div>
         <p id="Example3-code">Code example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+
 public class Example3 {
   // filtered violation below 'Name 'MyMethod' must match pattern'
   public void MyMethod() {}
+  // filtered violation below 'Name 'MyMethod2' must match pattern'
+  public void MyMethod2() {}
+  // filtered violation below 'Name 'MyMethodA' must match pattern'
+  public void MyMethodA() {}
+  private int field = 177;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -188,8 +205,43 @@ public class Example3 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 // filtered violation above 'must match pattern'
+public class Example4 {
 
-public class Example4 {}
+  public void MyMethod() {}
+
+  public void MyMethod2() {}
+
+  public void MyMethodA() {}
+  private int field = 177;
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example6-config">
+          To suppress checks in the Example6 file by non-query:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MagicNumber"/&gt;
+    &lt;module name="SuppressionXpathSingleFilter"&gt;
+      &lt;property name="files" value="Example6"/&gt;
+      &lt;property name="checks" value="MagicNumber"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">Code example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+
+public class Example6 {
+
+  public void MyMethod() {}
+
+  public void MyMethod2() {}
+
+  public void MyMethodA() {}
+  private int field = 177; // filtered violation ''177' is a magic number.'
+}
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           To suppress RedundantModifier check for interface definitions:
@@ -209,26 +261,6 @@ public class Example4 {}
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public interface Example5 {
   public int CONSTANT1 = 1; // filtered violation 'Redundant 'public' modifier.'
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example6-config">
-          To suppress checks in the Example6 file by non-query:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="MagicNumber"/&gt;
-    &lt;module name="SuppressionXpathSingleFilter"&gt;
-      &lt;property name="files" value="Example6"/&gt;
-      &lt;property name="checks" value="MagicNumber"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example6-code">Code example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example6 {
-  private int field = 177; // filtered violation ''177' is a magic number.'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example7-config">
