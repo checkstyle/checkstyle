@@ -13,18 +13,17 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoccontentlocation;
 // xdoc section -- start
 class Example2 {
 
-  /** This comment is OK because it starts on the first line.
-   * There may be additional text.
+  /** This is a multi-line Javadoc.
+   * Additional description.
    */
   private int field1;
-
-  // violation below, 'Javadoc content should start from the same line.'
+  // violation below 'Javadoc content should start from the same line.'
   /**
-   * This comment causes a violation because it starts on the second line.
+   * This is another multi-line Javadoc.
    */
   private int field2;
 
-  /** This single-line comment also is OK. */
+  /** This is a single-line Javadoc. */
   private int field3;
 
 }
