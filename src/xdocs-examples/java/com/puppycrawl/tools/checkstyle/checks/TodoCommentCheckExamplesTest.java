@@ -34,7 +34,7 @@ public class TodoCommentCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "16:14: " + getCheckMessage(MSG_KEY, "TODO:"),
+            "24:7: " + getCheckMessage(MSG_KEY, "TODO:"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -44,9 +44,9 @@ public class TodoCommentCheckExamplesTest extends AbstractExamplesModuleTestSupp
     public void testExample2() throws Exception {
         final String[] expected = {
             "1:3: " + getCheckMessage(MSG_KEY, "(?i)(TODO)|(FIXME)"),
-            "20:14: " + getCheckMessage(MSG_KEY, "(?i)(TODO)|(FIXME)"),
-            "22:14: " + getCheckMessage(MSG_KEY, "(?i)(TODO)|(FIXME)"),
-            "24:14: " + getCheckMessage(MSG_KEY, "(?i)(TODO)|(FIXME)"),
+            "27:7: " + getCheckMessage(MSG_KEY, "(?i)(TODO)|(FIXME)"),
+            "31:7: " + getCheckMessage(MSG_KEY, "(?i)(TODO)|(FIXME)"),
+            "35:7: " + getCheckMessage(MSG_KEY, "(?i)(TODO)|(FIXME)"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -55,10 +55,10 @@ public class TodoCommentCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "17:3: Comment uses box-like repetitive character pattern.",
-            "26:5: Comment uses box-like repetitive character pattern.",
-            "32:5: Comment uses box-like repetitive character pattern.",
-            "38:5: Comment uses box-like repetitive character pattern.",
+            "18:3: Comment uses box-like repetitive character pattern.",
+            "27:5: Comment uses box-like repetitive character pattern.",
+            "42:5: Comment uses box-like repetitive character pattern.",
+            "47:5: Comment uses box-like repetitive character pattern.",
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
