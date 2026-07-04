@@ -35,7 +35,7 @@ public class JavadocContentLocationCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "15:3: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
+            "14:3: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -44,7 +44,7 @@ public class JavadocContentLocationCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "22:3: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
+            "21:3: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
