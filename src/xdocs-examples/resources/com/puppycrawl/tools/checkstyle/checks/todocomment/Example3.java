@@ -14,40 +14,44 @@
 package com.puppycrawl.tools.checkstyle.checks.todocomment;
 
 // xdoc section -- start
-/** // violation 'Comment uses box-like repetitive character pattern'
+// violation below 'Comment uses box-like repetitive character pattern'
+/**
  =========================================
  Box comment with equals
  =========================================
  */
-
 public class Example3 {
+  int i;
+  int x;
 
-  // violation below 'Comment uses box-like repetitive character pattern'
   // =========
-  void method1() {
+  // violation above 'Comment uses box-like repetitive character pattern'
+  public void test() {
+    // TODO: do differently in future
+
+    i++;
+
+    // todo: do differently in future
+
+    i++;
+
+    // FIXME: handle x = 0 case
+
+    i = i / x;
+  }
+  // *********
+  // violation above 'Comment uses box-like repetitive character pattern'
+  public void method1() {
     int y = 2;
   }
-
-  // violation below 'Comment uses box-like repetitive character pattern'
-  // *********
-  void method2() {
+  // #########
+  // violation above 'Comment uses box-like repetitive character pattern'
+  public void method2() {
     int z = 3;
   }
-
-  // violation below 'Comment uses box-like repetitive character pattern'
-  // #########
-  void method3() {
-    int a = 4;
-  }
-
-  // normal comment
-  void method4() {
+  // ###### (only 6 chars)
+  public void method4() {
     int b = 5;
-  }
-
-  // ###### (only 6 chars - below 9-char threshold)
-  void method5() {
-    int c = 6;
   }
 }
 // xdoc section -- end
