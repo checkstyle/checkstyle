@@ -37,6 +37,13 @@
               <th>since</th>
             </tr>
             <tr>
+              <td><a id="forbiddenReturnFragments"/><a href="#forbiddenReturnFragments">forbiddenReturnFragments</a></td>
+              <td>Specify the regexp for forbidden fragments in inline return tags.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>^$</code></td>
+              <td>13.8.0</td>
+            </tr>
+            <tr>
               <td><a id="forbiddenSummaryFragments"/><a href="#forbiddenSummaryFragments">forbiddenSummaryFragments</a></td>
               <td>Specify the regexp for forbidden summary fragments.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
@@ -81,8 +88,8 @@ class Example1 {
    * {@inheritDoc}
    */
   public String m1(){ return ""; }
-  // violation below, 'Summary javadoc is missing'
-  /** */
+
+  /** {@return the empty string} */
   public String m2(){ return ""; }
 
   /**
@@ -144,8 +151,8 @@ class Example2 {
    * {@inheritDoc}
    */
   public String m1(){ return ""; }
-  // violation below, 'Summary javadoc is missing'
-  /** */
+
+  /** {@return the empty string} */
   public String m2(){ return ""; }
 
   /**
@@ -205,8 +212,8 @@ class Example3 {
    * {@inheritDoc}
    */
   public String m1(){ return ""; }
-  // violation below, 'Summary javadoc is missing'
-  /** */
+
+  /** {@return the empty string} */
   public String m2(){ return ""; }
 
   /**
@@ -244,6 +251,69 @@ class Example3 {
   */
   public void m8() {}
   // violation 8 lines above 'Summary of Javadoc is missing an ending period'
+}
+</code></pre></div><hr class="example-separator"/>
+          <p id="Example4-config">
+            To ensure that inline return tag does not contain phrase like &quot;the empty string&quot;, use
+            following config:
+          </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SummaryJavadoc"&gt;
+      &lt;property name="forbiddenReturnFragments"
+        value="^the empty string*"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code"> Example4: </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+
+  /**
+   * {@inheritDoc}
+   */
+  public String m1(){ return ""; }
+  // violation below 'Forbidden summary fragment'
+  /** {@return the empty string} */
+  public String m2(){ return ""; }
+
+  /**
+   * {@summary  }
+   */
+  public String m3(){ return ""; }
+  // violation 3 lines above 'Summary javadoc is missing'
+  /**
+   * {@summary &lt;p&gt; &lt;p/&gt;}
+   */
+  public String m4() { return ""; }
+  // violation 3 lines above 'Summary javadoc is missing'
+  /**
+   * {@summary &lt;p&gt;This is a javadoc with period.&lt;p/&gt;}
+   */
+  public void m5() {}
+
+  /**
+   * This method returns nothing.
+   */
+  void m6() {}
+
+  /**
+  * {@summary This is a java doc with period symbol。}
+  */
+  public void m7() {}
+  // violation 3 lines above 'Summary of Javadoc is missing an ending period'
+  /**
+  * {@summary First sentence is normally the summary.
+  * Use of html tags:
+  * &lt;ul&gt;
+  * &lt;li&gt;Item one.&lt;/li&gt;
+  * &lt;li&gt;Item two.&lt;/li&gt;
+  * &lt;/ul&gt;}
+  */
+  public void m8() {}
+
 }
 </code></pre></div>
       </subsection>

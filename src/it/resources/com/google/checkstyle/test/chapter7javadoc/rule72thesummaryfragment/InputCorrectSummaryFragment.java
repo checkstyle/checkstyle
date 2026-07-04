@@ -101,11 +101,8 @@ class InputCorrectSummaryFragment {
         /** An especially short bit of Javadoc. */
         void foo6() {}
 
-        /**
-         * This is valid.
-         *
-         * @return Some Javadoc the customer ID.
-         */
+        // This is valid
+        /** {@return the customer ID some javadoc.} */
         int geId() {
           return 666;
         }
