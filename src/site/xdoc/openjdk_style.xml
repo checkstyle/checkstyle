@@ -630,7 +630,7 @@
                   <span class="wrapper inline">
                     <img src="images/ban_red.png" alt="" />
                   </span>
-                  False positive is prsent for lambda expression:
+                  False positive is present for lambda expression:
                   <a href="https://github.com/checkstyle/checkstyle/issues/20541">
                     #20541
                   </a>
