@@ -10,10 +10,19 @@
 
 // xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.filters;
+// violation below 'Disallowed import - com.google.common.io.Files'
+import com.google.common.io.Files;
+import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
+// violation above, 'Disallowed import'
 
+import java.lang.ref.ReferenceQueue;
+// violation above, 'Disallowed import - java.lang.ref.ReferenceQueue'
+import java.lang.ref.SoftReference;
+// violation above 'Disallowed import - java.lang.ref.SoftReference'
 import java.util.Date;
 import java.util.List;
-import java.util.Map; // violation, 'Disallowed import - java.util.Map'
+import java.util.Map;
+// violation above, 'Disallowed import - java.util.Map'
 
 public class Example9 {}
 // xdoc section -- end
