@@ -10,8 +10,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.todocomment;
 
-// xdoc section -- start
 // violation first line 'matches to-do format'
+// xdoc section -- start
 public class Example2 {
   int i;
   int x;
