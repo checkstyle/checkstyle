@@ -81,7 +81,6 @@ public class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.naming.packagename;
 // violation above 'must match pattern'
-
 public class Example2 {
 }
 </code></pre></div>

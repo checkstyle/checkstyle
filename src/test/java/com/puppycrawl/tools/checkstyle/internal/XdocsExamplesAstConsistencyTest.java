@@ -117,7 +117,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example5",
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example6",
             "checks/naming/methodname/Example4",
-            "checks/naming/packagename/Example2",
             "checks/regexp/regexp/Example7",
             "checks/regexp/regexpmultiline/Example5",
             "checks/sizes/lambdabodylength/Example2",
