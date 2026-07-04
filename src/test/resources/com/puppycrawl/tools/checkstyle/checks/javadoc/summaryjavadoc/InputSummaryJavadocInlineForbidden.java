@@ -2,6 +2,7 @@
 SummaryJavadoc
 violateExecutionOnNonTightHtml = (default)false
 forbiddenSummaryFragments = @return the *|This method returns
+forbiddenReturnFragments = (default)^$
 period = (default).
 
 
