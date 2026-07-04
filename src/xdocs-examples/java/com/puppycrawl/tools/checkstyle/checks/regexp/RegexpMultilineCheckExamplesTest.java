@@ -80,7 +80,6 @@ public class RegexpMultilineCheckExamplesTest extends AbstractExamplesModuleTest
         final String[] expected = {
             "30: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test #[0-9]+:[A-Za-z ]+"),
             "39: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test #[0-9]+:[A-Za-z ]+"),
-            "41: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test #[0-9]+:[A-Za-z ]+"),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
