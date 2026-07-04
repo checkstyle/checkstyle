@@ -105,7 +105,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/javadoc/javadocleadingasteriskalign/Example2",
             "checks/javadoc/javadocleadingasteriskalign/Example3",
             "checks/javadoc/javadocpackage/legacywithboth/Example3",
-            "checks/javadoc/javadocpackage/nonlegacy/Example1",
             "checks/javadoc/javadoctagcontinuationindentation/Example3",
             "checks/javadoc/javadocvariable/Example5",
             "checks/metrics/classdataabstractioncoupling/Example2",
