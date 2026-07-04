@@ -1,7 +1,9 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="JavadocVariable"/>
+    <module name="JavadocVariable">
+      <property name="accessModifiers" value="public,protected,package,private"/>
+    </module>
   </module>
 </module>
 */
@@ -9,10 +11,10 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 // xdoc section -- start
 public class Example5 {
-  public int variablePublic; // violation, 'Missing a Javadoc comment'
+  public int variablePublic;       // violation, 'Missing a Javadoc comment'
   protected int variableProtected; // violation, 'Missing a Javadoc comment'
-  int variablePackage; // violation, 'Missing a Javadoc comment'
-  private int variablePrivate; // violation, 'Missing a Javadoc comment'
+  int variablePackage;             // violation, 'Missing a Javadoc comment'
+  private int variablePrivate;     // violation, 'Missing a Javadoc comment'
 
   public enum PublicEnum {
     CONSTANT // violation, 'Missing a Javadoc comment'
