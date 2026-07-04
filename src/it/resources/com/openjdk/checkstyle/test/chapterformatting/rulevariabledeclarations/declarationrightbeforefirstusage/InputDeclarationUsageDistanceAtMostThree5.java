@@ -94,10 +94,18 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
 
     static class Color {
         Color(int red, int green, int blue, int alpha) {}
-        public double getRed() { return 0; }
-        public int getAlpha() { return 0; }
-        public double getBlue() { return 0; }
-        public double getGreen() { return 0; }
+        public double getRed() {
+            return 0;
+        }
+        public int getAlpha() {
+            return 0;
+        }
+        public double getBlue() {
+            return 0;
+        }
+        public double getGreen() {
+            return 0;
+        }
     }
 
     class AuthUpdateTask {
