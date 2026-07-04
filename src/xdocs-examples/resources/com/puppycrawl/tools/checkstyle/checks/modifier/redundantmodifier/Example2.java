@@ -12,8 +12,8 @@ package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
 // xdoc section -- start
 public class Example2 {
-
   void test() {
+
     try (final var a = lock()) {
 
     } catch (Exception e) {
@@ -30,7 +30,7 @@ public class Example2 {
   }
 
   static enum E {
-        A, B, C
+    A, B, C
   }
 
   public strictfp class Test { }
