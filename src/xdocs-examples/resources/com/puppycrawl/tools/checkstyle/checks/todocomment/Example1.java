@@ -8,13 +8,16 @@
 package com.puppycrawl.tools.checkstyle.checks.todocomment;
 
 // xdoc section -- start
+
 public class Example1 {
   int i;
   int x;
   public void test() {
     // violation below 'matches to-do format'
     i++;   // TODO: do differently in future
+
     i++;   // todo: do differently in future
+
     i=i/x; // FIXME: handle x = 0 case
     i=i/x; // FIX :  handle x = 0 case
   }

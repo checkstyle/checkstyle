@@ -34,7 +34,7 @@ public class TodoCommentCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "16:14: " + getCheckMessage(MSG_KEY, "TODO:"),
+            "17:14: " + getCheckMessage(MSG_KEY, "TODO:"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
