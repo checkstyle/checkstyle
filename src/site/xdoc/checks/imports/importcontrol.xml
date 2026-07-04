@@ -264,6 +264,11 @@ import java.lang.ref.ReferenceQueue;
 // violation above, 'Disallowed import - java.lang.ref.ReferenceQueue'
 import java.lang.ref.SoftReference; // ok, specifically allowed by regex expression
 
+import java.util.Date; // violation 'Disallowed import - java.util.Date'
+import java.util.List; // violation 'Disallowed import - java.util.List'
+import java.util.Map;
+// violation above, 'Disallowed import - java.util.Map'
+
 public class Example3 {}
 </code></pre></div><hr class="example-separator"/>
 
@@ -538,10 +543,19 @@ public class Example8 {}
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.filters;
+// violation below 'Disallowed import - com.google.common.io.Files'
+import com.google.common.io.Files;
+import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
+// violation above, 'Disallowed import'
 
+import java.lang.ref.ReferenceQueue;
+// violation above, 'Disallowed import - java.lang.ref.ReferenceQueue'
+import java.lang.ref.SoftReference;
+// violation above 'Disallowed import - java.lang.ref.SoftReference'
 import java.util.Date;
 import java.util.List;
-import java.util.Map; // violation, 'Disallowed import - java.util.Map'
+import java.util.Map;
+// violation above, 'Disallowed import - java.util.Map'
 
 public class Example9 {}
 </code></pre></div><hr class="example-separator"/>

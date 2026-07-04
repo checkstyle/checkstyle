@@ -66,6 +66,12 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                 "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"),
             "18:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.lang.ref.ReferenceQueue"),
+            "22:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
+            "23:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
+            "24:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.Map"),
         };
 
         final String examplePath = new File("src/" + getResourceLocation()
@@ -182,7 +188,15 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample9() throws Exception {
         final String[] expected = {
-            "16:1: " + getCheckMessage(ImportControlCheck.MSG_DISALLOWED, "java.util.Map"),
+            "14:1: " + getCheckMessage(ImportControlCheck.MSG_DISALLOWED,
+                    "com.google.common.io.Files"),
+            "15:1: " + getCheckMessage(ImportControlCheck.MSG_DISALLOWED,
+                    "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"),
+            "18:1: " + getCheckMessage(ImportControlCheck.MSG_DISALLOWED,
+                    "java.lang.ref.ReferenceQueue"),
+            "20:1: " + getCheckMessage(ImportControlCheck.MSG_DISALLOWED,
+                    "java.lang.ref.SoftReference"),
+            "24:1: " + getCheckMessage(ImportControlCheck.MSG_DISALLOWED, "java.util.Map"),
         };
 
         final String examplePath = new File("src/" + getResourceLocation()

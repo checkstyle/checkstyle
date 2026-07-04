@@ -19,5 +19,10 @@ import java.lang.ref.ReferenceQueue;
 // violation above, 'Disallowed import - java.lang.ref.ReferenceQueue'
 import java.lang.ref.SoftReference; // ok, specifically allowed by regex expression
 
+import java.util.Date; // violation 'Disallowed import - java.util.Date'
+import java.util.List; // violation 'Disallowed import - java.util.List'
+import java.util.Map;
+// violation above, 'Disallowed import - java.util.Map'
+
 public class Example3 {}
 // xdoc section -- end
