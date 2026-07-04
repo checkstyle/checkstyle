@@ -19,9 +19,12 @@ public class Example2 {
       // violation above, 'Name 'e' must match pattern'
     } catch (ArrayIndexOutOfBoundsException ex) {
     } catch (IndexOutOfBoundsException e123) {
+
     } catch (NullPointerException ab) {
+
     } catch (ArrayStoreException abc) {
     } catch (InterruptedException aBC) {
+
     } catch (RuntimeException abC) {
     } catch (Exception EighthException) {
       // violation above, 'Name 'EighthException' must match pattern'
