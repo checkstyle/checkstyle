@@ -143,28 +143,6 @@ class Example3 {
   public void Example3() {}
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
-          An example of how to configure the check to disallow method names to be equal to the
-          residing class name is:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="MethodName"&gt;
-       &lt;property name="format" value="^[a-zA-Z](_?[a-zA-Z0-9]+)*$"/&gt;
-       &lt;property name="allowClassName" value="false"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example4-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 {
-  public Example4() {}
-  // violation below 'Name 'Example4' must not equal the enclosing class name.'
-  public void Example4() {}
-}
-</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           An example of how to suppress the check to public and protected methods:
         </p>
@@ -234,6 +212,28 @@ class Example7 {
   private void Method3() {} // violation 'Name 'Method3' must match pattern'
   public void Method4() {} // violation 'Name 'Method4' must match pattern'
   void Method5() {}  // ok because , 'Property 'applyToPackage' is set to false'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          An example of how to configure the check to disallow method names to be equal to the
+          residing class name is:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodName"&gt;
+       &lt;property name="format" value="^[a-zA-Z](_?[a-zA-Z0-9]+)*$"/&gt;
+       &lt;property name="allowClassName" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+  public Example4() {}
+  // violation below 'Name 'Example4' must not equal the enclosing class name.'
+  public void Example4() {}
 }
 </code></pre></div>
       </subsection>
