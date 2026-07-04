@@ -124,8 +124,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/sizes/outertypenumber/Example2",
             "checks/whitespace/singlespaceseparator/Example2",
             "checks/whitespace/typecastparenpad/Example2",
-            "checks/todocomment/Example2",
-            "checks/todocomment/Example3",
             "checks/whitespace/emptyforiteratorpad/Example2",
             "checks/whitespace/parenpad/Example2",
             // Note: customImport/ImportOrder changes import group ORDER affecting AST structure
@@ -275,7 +273,8 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithnearbycommentfilter/Example8",
             "filters/suppressioncommentfilter/Example4",
             "filters/suppressioncommentfilter/Example5",
-            "filters/suppressioncommentfilter/Example7"
+            "filters/suppressioncommentfilter/Example7",
+            "checks/todocomment/Example3"
             );
 
     /**
