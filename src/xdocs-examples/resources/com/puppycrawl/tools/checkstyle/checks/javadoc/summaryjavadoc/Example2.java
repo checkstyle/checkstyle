@@ -17,8 +17,8 @@ class Example2 {
    * {@inheritDoc}
    */
   public String m1(){ return ""; }
-  // violation below, 'Summary javadoc is missing'
-  /** */
+
+  /** {@return the empty string} */
   public String m2(){ return ""; }
 
   /**
