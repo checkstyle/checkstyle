@@ -1,7 +1,8 @@
 /*
 SummaryJavadoc
 violateExecutionOnNonTightHtml = (default)false
-forbiddenSummaryFragments = the .*|This method returns
+forbiddenSummaryFragments = (default)^$
+forbiddenReturnFragments = the .*|This method returns
 period = (default).
 
 */

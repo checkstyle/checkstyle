@@ -104,7 +104,7 @@ class InputCorrectSummaryFragment {
         /**
          * This is valid.
          *
-         * @return Some Javadoc the customer ID.
+         * {@return the customer ID some javadoc.}
          */
         int geId() {
           return 666;

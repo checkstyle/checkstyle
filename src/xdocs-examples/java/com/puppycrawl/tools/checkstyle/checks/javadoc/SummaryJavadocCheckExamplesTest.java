@@ -37,7 +37,6 @@ public class SummaryJavadocCheckExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "18:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "22:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "27:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "42:5: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
@@ -49,7 +48,6 @@ public class SummaryJavadocCheckExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "21:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "25:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "30:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "39:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
@@ -62,7 +60,6 @@ public class SummaryJavadocCheckExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "20:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "24:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "29:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "34:6: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
@@ -71,5 +68,17 @@ public class SummaryJavadocCheckExamplesTest extends AbstractExamplesModuleTestS
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "21:7: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "25:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "30:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "45:5: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }
