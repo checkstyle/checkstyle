@@ -9,43 +9,39 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocleadingasteriskalign;
 
 // xdoc section -- start
-/** Title
-* Javadoc for class // violation
-    */ // violation
+/**
+ * Title
+ */
 public class Example2 {
-  /**
-    *  Javadoc for instance variable. // violation
-    */ // violation
-  private String name;
 
   /**
-  *  Javadoc for method. // violation
-  */ // violation
+   * Javadoc for instance variable
+   *
+   */
+  private int ball;
+
+  /**
+   *
+   */
+  private int age;
+
+  /**
+   * Javadoc for foo.
+   */
   private void foo() {}
 
   /**
-   Javadoc for Constructor.
-*/ // violation
-  private Example2() {}
-
-  /**
-    * Javadoc for enum. // violation
+   * Javadoc for enum.
    */
-  private enum incorrectJavadocEnum {
-
+  private enum sampleEnum {
     /**
-    *  // violation
      */
     ONE,
 
     /**
-        * Incorrect indentation for leading asterisk. */ // violation
-    TWO,
-
-    /**
- *    // violation
+     * Wrong Alignment
      */
-    THREE
+    TWO
   }
 }
 // xdoc section -- end

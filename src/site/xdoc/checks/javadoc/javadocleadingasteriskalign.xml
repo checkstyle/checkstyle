@@ -63,39 +63,38 @@
           Example with correct alignment:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/** Title
- * Javadoc for class
+/**
+ * Title
  */
 public class Example1 {
 
-  /** javadoc for instance variable. */
+  /**
+     * Javadoc for instance variable
+   * // violation above '6, expected is 4.'
+   */
   private int ball;
 
   /**
-   * Javadoc for instance variable
+  * // violation '3, expected is 4.'
    */
   private int age;
 
   /**
-   Javadoc for method. */
-  private void foo() {}
-
-  /**
-    Javadoc for Constructor.
-    This javadoc is allowed because there is no leading asterisk.
+   * Javadoc for foo.
    */
-  public Example1() {}
+  private void foo() {}
 
   /**
    * Javadoc for enum.
    */
-  private enum correctJavadocEnum {
+  private enum sampleEnum {
     /**
-     * Correct Indentation for leading asterisk */
+     */
     ONE,
 
-    /**
-     Allowed because there are non-whitespace characters before the ending block. */
+    /** // violation below '8, expected is 6.'
+       * Wrong Alignment
+   */ // violation '4, expected is 6.'
     TWO
   }
 }
@@ -105,43 +104,39 @@ public class Example1 {
           Example with incorrect alignment:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/** Title
-* Javadoc for class // violation
-    */ // violation
+/**
+ * Title
+ */
 public class Example2 {
-  /**
-    *  Javadoc for instance variable. // violation
-    */ // violation
-  private String name;
 
   /**
-  *  Javadoc for method. // violation
-  */ // violation
+   * Javadoc for instance variable
+   *
+   */
+  private int ball;
+
+  /**
+   *
+   */
+  private int age;
+
+  /**
+   * Javadoc for foo.
+   */
   private void foo() {}
 
   /**
-   Javadoc for Constructor.
-*/ // violation
-  private Example2() {}
-
-  /**
-    * Javadoc for enum. // violation
+   * Javadoc for enum.
    */
-  private enum incorrectJavadocEnum {
-
+  private enum sampleEnum {
     /**
-    *  // violation
      */
     ONE,
 
     /**
-        * Incorrect indentation for leading asterisk. */ // violation
-    TWO,
-
-    /**
- *    // violation
+     * Wrong Alignment
      */
-    THREE
+    TWO
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -162,33 +157,37 @@ public class Example2 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
- * Example with `tabWidth` property.
- * This example contains Tabs as well as Spaces.
+ * Title
  */
 public class Example3 {
-  /** &lt;- Preceded with Tabs.
-   * &lt;- Preceded with Tabs &amp; Spaces.
-   */ // &lt;- Preceded with Tabs &amp; Spaces.
-  private String name;
 
-  /** &lt;- Preceded with Spaces.
-   * &lt;- Preceded with Tabs.
-   */ // &lt;- Preceded with Tabs.
+  /**
+     * Javadoc for instance variable
+   * // violation above '6, expected is 4.'
+   */
+  private int ball;
+
+  /**
+  *  // violation '3, expected is 4.'
+   */
+  private int age;
+
+  /**
+   * Javadoc for foo.
+   */
   private void foo() {}
 
   /**
-    * // violation
-  */ // violation
-  private Example3() {}
-
-  private enum tabsExample {
+   * Javadoc for enum.
+   */
+  private enum sampleEnum {
     /**
-       * Incorrect indentation for leading asterisk. // violation */
+     */
     ONE,
 
-    /**
-      This javadoc is allowed because there is no leading asterisk.
-     */
+    /** // violation below '8, expected is 6.'
+       * Wrong Alignment
+   */ // violation '4, expected is 6.'
     TWO
   }
 }

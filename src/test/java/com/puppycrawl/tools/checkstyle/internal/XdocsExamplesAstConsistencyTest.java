@@ -102,8 +102,6 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
             "checks/coding/unnecessarysemicolonafteroutertypedeclaration/Example2",
-            "checks/javadoc/javadocleadingasteriskalign/Example2",
-            "checks/javadoc/javadocleadingasteriskalign/Example3",
             "checks/metrics/classdataabstractioncoupling/Example2",
             "checks/metrics/classdataabstractioncoupling/Example3",
             "checks/metrics/classdataabstractioncoupling/ignore/Example7",
@@ -140,6 +138,8 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/imports/importorder/Example7",
             "checks/imports/importorder/Example8",
             "checks/imports/importorder/Example9",
+            // default config to contrast correct vs incorrect leading-asterisk alignment
+            "checks/javadoc/javadocleadingasteriskalign/Example2",
             // until https://github.com/checkstyle/checkstyle/issues/19891
             "checks/blocks/leftcurly/Example3",
             "checks/naming/patternvariablename/Example3",
