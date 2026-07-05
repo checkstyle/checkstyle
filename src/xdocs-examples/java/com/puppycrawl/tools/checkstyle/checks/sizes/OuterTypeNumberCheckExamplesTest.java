@@ -35,7 +35,7 @@ public class OuterTypeNumberCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "9:1: " + getCheckMessage(MSG_KEY, 3, 1),
+            "9:1: " + getCheckMessage(MSG_KEY, 2, 1),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
