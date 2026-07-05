@@ -8,15 +8,15 @@
 </module>
 */
 
-package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber;
 // xdoc section -- start
+package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber;
+
 public class Example2 {
+  enum outer {
+  }
 }
 
-class Examples {
+class ExampleTwo {
   void exampleMethod() {}
-}
-
-enum outer1 {
 }
 // xdoc section -- end
