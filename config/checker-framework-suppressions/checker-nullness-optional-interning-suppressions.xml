@@ -6383,17 +6383,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
-    <specifier>method.invocation</specifier>
-    <message>call to parseTags(java.lang.String[],int) not allowed on the given receiver.</message>
-    <lineContent>parseTags(text, lineNo);</lineContent>
-    <details>
-      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser.class) @NonNull TagParser
-      required: @Initialized @NonNull TagParser
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/WriteTagCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference modifiers</message>

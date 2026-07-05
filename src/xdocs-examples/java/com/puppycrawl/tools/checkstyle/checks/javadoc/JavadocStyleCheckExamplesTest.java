@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_INCOMPLETE_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_NO_PERIOD;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocStyleCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
@@ -40,7 +40,6 @@ public class JavadocStyleCheckExamplesTest extends AbstractExamplesModuleTestSup
             "35: " + getCheckMessage(MSG_NO_PERIOD),
             "41: " + getCheckMessage(MSG_NO_PERIOD),
             "48: " + getCheckMessage(MSG_NO_PERIOD),
-            "50: " + getCheckMessage(MSG_INCOMPLETE_TAG, "   * <p"),
         };
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
@@ -60,27 +59,24 @@ public class JavadocStyleCheckExamplesTest extends AbstractExamplesModuleTestSup
             "32: " + getCheckMessage(MSG_NO_PERIOD),
             "44: " + getCheckMessage(MSG_NO_PERIOD),
             "51: " + getCheckMessage(MSG_NO_PERIOD),
-            "53: " + getCheckMessage(MSG_INCOMPLETE_TAG, "   * <p"),
         };
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
-        final String[] expected = {
-            "52: " + getCheckMessage(MSG_INCOMPLETE_TAG, "   * <p"),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "12: " + getCheckMessage(MSG_NO_PERIOD),
-            "31: " + getCheckMessage(MSG_NO_PERIOD),
-            "37: " + getCheckMessage(MSG_NO_PERIOD),
-            "43: " + getCheckMessage(MSG_NO_PERIOD),
-            "50: " + getCheckMessage(MSG_NO_PERIOD),
+            "10: " + getCheckMessage(MSG_NO_PERIOD),
+            "29: " + getCheckMessage(MSG_NO_PERIOD),
+            "35: " + getCheckMessage(MSG_NO_PERIOD),
+            "41: " + getCheckMessage(MSG_NO_PERIOD),
+            "48: " + getCheckMessage(MSG_NO_PERIOD),
         };
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
@@ -101,7 +97,6 @@ public class JavadocStyleCheckExamplesTest extends AbstractExamplesModuleTestSup
             "37: " + getCheckMessage(MSG_NO_PERIOD),
             "43: " + getCheckMessage(MSG_NO_PERIOD),
             "50: " + getCheckMessage(MSG_NO_PERIOD),
-            "52: " + getCheckMessage(MSG_INCOMPLETE_TAG, "   * <p"),
         };
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
@@ -113,7 +108,6 @@ public class JavadocStyleCheckExamplesTest extends AbstractExamplesModuleTestSup
             "38: " + getCheckMessage(MSG_NO_PERIOD),
             "44: " + getCheckMessage(MSG_NO_PERIOD),
             "51: " + getCheckMessage(MSG_NO_PERIOD),
-            "53: " + getCheckMessage(MSG_INCOMPLETE_TAG, "   * <p"),
         };
         verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }

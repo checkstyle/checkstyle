@@ -34,22 +34,7 @@
           such as <code>@param</code> and <code>@return</code>.
         </li>
         <li>
-          Check text for incomplete HTML tags. Verifies that HTML tags have
-          corresponding end tags and issues an "Unclosed HTML tag found:" error if not.
-          An "Extra HTML tag found:" error is issued if an end tag is found without
-          a previous open tag.
-        </li>
-        <li>
           Check that a package Javadoc comment is well-formed (as described above).
-        </li>
-        <li>
-          Check for allowed HTML tags. The list of allowed HTML tags is
-          "a", "abbr", "acronym", "address", "area", "b", "bdo", "big", "blockquote",
-          "br", "caption", "cite", "code", "colgroup", "dd", "del", "dfn", "div", "dl",
-          "dt", "em", "fieldset", "font", "h1", "h2", "h3", "h4", "h5", "h6", "hr",
-          "i", "img", "ins", "kbd", "li", "ol", "p", "pre", "q", "samp", "small",
-          "span", "strong", "sub", "sup", "table", "tbody", "td", "tfoot", "th",
-          "thead", "tr", "tt", "u", "ul", "var".
         </li>
         </ul>
 
@@ -85,13 +70,6 @@
               <td>3.2</td>
             </tr>
             <tr>
-              <td><a id="checkHtml"/><a href="#checkHtml">checkHtml</a></td>
-              <td>Control whether to check for incomplete HTML tags.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
               <td><a id="endOfSentenceFormat"/><a href="#endOfSentenceFormat">endOfSentenceFormat</a></td>
               <td>Specify the format for matching the end of a sentence.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
@@ -111,6 +89,13 @@
               <td><a href="../../property_types.html#Scope">Scope</a></td>
               <td><code>private</code></td>
               <td>3.2</td>
+            </tr>
+            <tr>
+              <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.7.0</td>
             </tr>
             <tr>
               <td><a id="tokens"/><a href="#tokens">tokens</a></td>
@@ -230,10 +215,8 @@ public class Example1 {
   }
   /**
    * Some description here
-   * &lt;p
    */
-  private void testMethod6() { // violation 4 lines above 'should end with a period'
-    // violation 3 lines above 'Incomplete HTML tag found'
+  private void testMethod6() { // violation 3 lines above 'should end with a period'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -291,7 +274,6 @@ public class Example2 {
   }
   /**
    * Some description here
-   * &lt;p
    */
   private void testMethod6() {
 
@@ -355,10 +337,8 @@ public class Example3 {
   }
   /**
    * Some description here
-   * &lt;p
    */
-  private void testMethod6() { // violation 4 lines above 'should end with a period'
-    // violation 3 lines above 'Incomplete HTML tag'
+  private void testMethod6() { // violation 3 lines above 'should end with a period'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -417,22 +397,18 @@ public class Example4 {
   }
   /**
    * Some description here
-   * &lt;p
    */
   private void testMethod6() {
-    // violation 3 lines above 'Incomplete HTML tag'
   }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
-          To configure the check to turn off validation of incomplete html tags:
+          To configure the check with default settings:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="JavadocStyle"&gt;
-      &lt;property name="checkHtml" value="false"/&gt;
-    &lt;/module&gt;
+    &lt;module name="JavadocStyle"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -479,10 +455,8 @@ public class Example5 {
   }
   /**
    * Some description here
-   * &lt;p
    */
-  private void testMethod6() { // violation 4 lines above 'should end with a period'
-
+  private void testMethod6() { // violation 3 lines above 'should end with a period'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -541,7 +515,6 @@ public class Example6 {
   }
   /**
    * Some description here
-   * &lt;p
    */
   private void testMethod6() {
 
@@ -603,10 +576,8 @@ public class Example7 {
   }
   /**
    * Some description here
-   * &lt;p
    */
-  private void testMethod6() { // violation 4 lines above 'should end with a period'
-    // violation 3 lines above 'Incomplete HTML tag found'
+  private void testMethod6() { // violation 3 lines above 'should end with a period'
   }
 }
 </code></pre></div>
@@ -668,10 +639,8 @@ public class Example8 {
   }
   /**
    * Some description here
-   * &lt;p
    */
-  private void testMethod6() { // violation 4 lines above 'should end with a period'
-    // violation 3 lines above 'Incomplete HTML tag found'
+  private void testMethod6() { // violation 3 lines above 'should end with a period'
   }
 }
 </code></pre></div>
@@ -698,18 +667,13 @@ public class Example8 {
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.extraHtml%22">
-              javadoc.extraHtml
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.incompleteTag%22">
-              javadoc.incompleteTag
-            </a>
-          </li>
-          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.noPeriod%22">
               javadoc.noPeriod
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+              javadoc.parse.rule.error
             </a>
           </li>
           <li>

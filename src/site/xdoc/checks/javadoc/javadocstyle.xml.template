@@ -90,7 +90,7 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example5-config">
-          To configure the check to turn off validation of incomplete html tags:
+          To configure the check with default settings:
         </p>
         <macro name="example">
           <param name="path"

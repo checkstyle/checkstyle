@@ -22,9 +22,11 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_RETURN_EXPECTED;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_NO_PERIOD;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
+import java.io.File;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -36,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
@@ -459,5 +462,76 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilCompactCtorDefComments.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForTypeDefinitions() throws Exception {
+        final String[] expected = {
+            "18: " + getCheckMessage(JavadocStyleCheck.class, MSG_NO_PERIOD),
+            "22: " + getCheckMessage(JavadocStyleCheck.class, MSG_NO_PERIOD),
+            "35: " + getCheckMessage(JavadocStyleCheck.class, MSG_NO_PERIOD),
+            "39: " + getCheckMessage(JavadocStyleCheck.class, MSG_NO_PERIOD),
+            "43: " + getCheckMessage(JavadocStyleCheck.class, MSG_NO_PERIOD),
+            "47: " + getCheckMessage(JavadocStyleCheck.class, MSG_NO_PERIOD),
+            "52: " + getCheckMessage(JavadocStyleCheck.class, MSG_NO_PERIOD),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilTypeDefComments.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForVariableDefinitions() throws Exception {
+        final String[] expected = {
+            "18: " + getCheckMessage(JavadocStyleCheck.class, MSG_NO_PERIOD),
+            "22: " + getCheckMessage(JavadocStyleCheck.class, MSG_NO_PERIOD),
+            "26: " + getCheckMessage(JavadocStyleCheck.class, MSG_NO_PERIOD),
+            "35: " + getCheckMessage(JavadocStyleCheck.class, MSG_NO_PERIOD),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilVariableDefComments.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForEnumConstantDefinitions()
+            throws Exception {
+        final String[] expected = {
+            "18: " + getCheckMessage(JavadocStyleCheck.class, MSG_NO_PERIOD),
+            "22: " + getCheckMessage(JavadocStyleCheck.class, MSG_NO_PERIOD),
+            "37: " + getCheckMessage(JavadocStyleCheck.class, MSG_NO_PERIOD),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilEnumConstantDefComments.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackageInfo1() throws Exception {
+        final String[] expected = {
+            "16: " + getCheckMessage(JavadocStyleCheck.class,
+                    MSG_NO_PERIOD),
+        };
+        verifyWithInlineConfigParser(
+                getPath("pkginfo" + File.separator + "package1" + File.separator
+                   + "package-info.java"),
+               expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackageInfo2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("pkginfo" + File.separator + "package1" + File.separator
+                   + "package-info.java"),
+                getPath("pkginfo" + File.separator + "package2" + File.separator
+                   + "package-info.java"),
+               expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackageInfo3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("pkginfo" + File.separator + "package3" + File.separator
+                   + "package-info.java"),
+               expected);
     }
 }

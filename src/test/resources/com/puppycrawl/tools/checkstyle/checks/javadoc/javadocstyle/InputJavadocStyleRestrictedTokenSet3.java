@@ -1,13 +1,12 @@
 /*
 JavadocStyle
-scope = public
-excludeScope = (default)null
+checkEmptyJavadoc = (default)false
 checkFirstSentence = (default)true
 endOfSentenceFormat = (default)([.?!][ \t\n\r\f<])|([.?!]$)
-checkEmptyJavadoc = (default)false
-checkHtml = false
+excludeScope = (default)null
+scope = public
+violateExecutionOnNonTightHtml = (default)false
 tokens = METHOD_DEF
-
 
 */
 
@@ -97,7 +96,7 @@ public class InputJavadocStyleRestrictedTokenSet3
      * Checks generics javadoc.
      *
      * @param strings this is a List<String>
-     * @param test Map<String, List<String>> a map indexed on String of Lists of Strings.
+     * @param test {@code Map<String, List<String>>} a map indexed on String of Lists of Strings.
      */
     public void method20() {}
 

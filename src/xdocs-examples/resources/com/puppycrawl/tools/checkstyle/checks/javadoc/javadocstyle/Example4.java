@@ -49,10 +49,8 @@ public class Example4 {
   }
   /**
    * Some description here
-   * <p
    */
   private void testMethod6() {
-    // violation 3 lines above 'Incomplete HTML tag'
   }
 }
 // xdoc section -- end

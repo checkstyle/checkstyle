@@ -1,15 +1,14 @@
 /*
 JavadocStyle
-scope = (default)private
-excludeScope = (default)null
+checkEmptyJavadoc = (default)false
 checkFirstSentence = (default)true
 endOfSentenceFormat = (default)([.?!][ \t\n\r\f<])|([.?!]$)
-checkEmptyJavadoc = (default)false
-checkHtml = (default)true
+excludeScope = (default)null
+scope = (default)private
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
          ENUM_CONSTANT_DEF, ENUM_DEF, INTERFACE_DEF, METHOD_DEF, PACKAGE_DEF, \
          VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
-
 
 */
 
@@ -24,13 +23,6 @@ public class InputJavadocStyleDefaultSettingsFour
      */
     void tagInTwoLines() {}
 
-    // violation 3 lines below 'Unclosed HTML tag found: <code>'
-    /**
-     * This Javadoc contains unclosed tag.
-     * <code>unclosed 'code' tag<code>
-     */
-    private void unclosedTag() {}
-
     void javadocLikeCommentInMethod() {
         /**
          * It pretends to be Javadoc without dot, but it's just comment in method
@@ -38,17 +30,10 @@ public class InputJavadocStyleDefaultSettingsFour
         final int i = 0;
     }
 
-    // violation below 'First sentence should end with a period.'
     /**
      * {@inheritDoc}
      */
     private void inheritDoc() {}
-
-    // violation 2 lines below 'Unclosed HTML tag found: <b>Note:<b> it's unterminated tag.</p>'
-    /**
-     * <p><b>Note:<b> it's unterminated tag.</p>
-     */
-    private void unterminatedTag() {}
 
     // violation below 'First sentence should end with a period.'
     /**

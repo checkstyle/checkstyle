@@ -1,15 +1,14 @@
 /*
 JavadocStyle
-scope = (default)private
-excludeScope = (default)null
+checkEmptyJavadoc = (default)false
 checkFirstSentence = (default)true
 endOfSentenceFormat = (default)([.?!][ \t\n\r\f<])|([.?!]$)
-checkEmptyJavadoc = (default)false
-checkHtml = (default)true
+excludeScope = (default)null
+scope = (default)private
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
          ENUM_CONSTANT_DEF, ENUM_DEF, INTERFACE_DEF, METHOD_DEF, PACKAGE_DEF, \
          VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
-
 
 */
 
@@ -52,42 +51,21 @@ public class InputJavadocStyleDefaultSettingsOne
     */
    private void method4() {}
 
-   // violation 7 lines below 'Unclosed HTML tag found: <b>'
-   // violation 9 lines below 'Extra HTML tag found: </td>'
-   // violation 9 lines below 'Extra HTML tag found: </style>'
-   // violation 9 lines below 'Unclosed HTML tag found: <code>dummy'
+   // violation below 'First sentence should end with a period.'
    /**
-    * Test HTML in Javadoc comment
-    * <dl>
-    * <dt><b>
-    * <dd>The dt and dd don't require end tags.
-    * </dl>
-    * </td>
-    * <style>this tag isn't supported in Javadoc</style>
-    * @param arg1 <code>dummy
-    */
-   private void method5(int arg1) {}
-
-   // violation 2 lines below 'First sentence should end with a period.'
-   // violation 2 lines below 'Unclosed HTML tag found: <b>'
-   /**
-    * Protected check <b>
+    * Protected check
     */
    protected void method6() {}
 
-   // violation 2 lines below 'First sentence should end with a period.'
-   // violation 2 lines below 'Unclosed HTML tag found: <b>'
+   // violation below 'First sentence should end with a period.'
    /**
-    * Package protected check <b>
+    * Package protected check
     */
    void method7() {}
 
-   // violation 3 lines below 'First sentence should end with a period.'
-   // violation 3 lines below 'Extra HTML tag found: </code>'
-   // violation 3 lines below 'should fail <'
+   // violation below 'First sentence should end with a period.'
    /**
-    * Public check should fail</code>
-    * should fail <
+    * Public check should fail
     */
    public void method8() {}
 

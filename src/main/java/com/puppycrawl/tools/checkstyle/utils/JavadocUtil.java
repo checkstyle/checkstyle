@@ -201,10 +201,30 @@ public final class JavadocUtil {
     @Nullable
     public static DetailAST getAttachedJavadocComment(final DetailAST ast) {
         DetailAST result = null;
+        if (ast.getType() == TokenTypes.PACKAGE_DEF) {
+            result = getPreviousSiblingJavadocComment(ast);
+        }
         DetailAST child = ast.getFirstChild();
-        while (result == null && child != null && !isDeclarationBody(child)) {
+        while (result == null && child != null && !isAttachedJavadocSearchBoundary(child)) {
             result = findJavadocComment(child);
             child = child.getNextSibling();
+        }
+        return result;
+    }
+
+    /**
+     * Finds a Javadoc block comment immediately before the given AST node.
+     *
+     * @param ast the AST node to check
+     * @return the previous sibling Javadoc block comment, or {@code null} if none is found
+     */
+    @Nullable
+    private static DetailAST getPreviousSiblingJavadocComment(DetailAST ast) {
+        DetailAST result = null;
+        final DetailAST previousSibling = ast.getPreviousSibling();
+        if (previousSibling != null
+                && isJavadocComment(previousSibling)) {
+            result = previousSibling;
         }
         return result;
     }
@@ -232,14 +252,14 @@ public final class JavadocUtil {
     }
 
     /**
-     * Checks whether the node starts a declaration body.
+     * Checks whether the node stops attached Javadoc search.
      *
      * @param ast the AST node to check
-     * @return {@code true} when the node starts a declaration body
+     * @return {@code true} when attached Javadoc search should stop at this node
      */
-    private static boolean isDeclarationBody(DetailAST ast) {
+    private static boolean isAttachedJavadocSearchBoundary(DetailAST ast) {
         final int tokenType = ast.getType();
-        return tokenType == TokenTypes.SLIST;
+        return tokenType == TokenTypes.IDENT;
     }
 
     /**

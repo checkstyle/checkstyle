@@ -1,15 +1,14 @@
 /*
 JavadocStyle
-scope = (default)private
-excludeScope = (default)null
+checkEmptyJavadoc = (default)false
 checkFirstSentence = (default)true
 endOfSentenceFormat = (default)([.?!][ \t\n\r\f<])|([.?!]$)
-checkEmptyJavadoc = (default)false
-checkHtml = (default)true
+excludeScope = (default)null
+scope = (default)private
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
          ENUM_CONSTANT_DEF, ENUM_DEF, INTERFACE_DEF, METHOD_DEF, PACKAGE_DEF, \
          VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
-
 
 */
 
@@ -17,16 +16,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
 public class InputJavadocStyleDefaultSettingsTwo
 {
-    // violation 6 lines below  'Extra HTML tag found: </img>'
-    /**
-     * Real men don't use XHTML.
-     * <br />
-     * <hr/>
-     * < br/>
-     * <img src="schattenparker.jpg"/></img>
-     */
-    private void method12() {}
-
     /**
      * First sentence.
      * <pre>
@@ -66,13 +55,6 @@ public class InputJavadocStyleDefaultSettingsTwo
      */
     private void method13() {}
 
-    // violation 3 lines below 'Unclosed HTML tag found: <blockquote>'
-    /**
-     * Some problematic javadoc. Sample usage:
-     * <blockquote>
-     */
-    private void method14() {}
-
     // violation below 'First sentence should end with a period.'
     /**
      * Empty line between javadoc and method declaration cause wrong
@@ -103,16 +85,6 @@ public class InputJavadocStyleDefaultSettingsTwo
 
     /** @see java.lang.Object */
     public void method19() {}
-
-    // violation 5 lines below 'Extra HTML tag found: </string>'
-    /**
-     * Checks HTML tags in javadoc.
-     *
-     * HTML no good tag
-     * <string>Tests</string>
-     *
-     */
-    public void method20() {}
 
     /** Set of all class field names.*/
     public String field;

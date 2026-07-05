@@ -1,15 +1,14 @@
 /*
 JavadocStyle
-scope = (default)private
-excludeScope = (default)null
-checkFirstSentence = (default)true
-checkHtml = (default)true
 checkEmptyJavadoc = (default)false
+checkFirstSentence = (default)true
 endOfSentenceFormat = (default)([.?!][ \t\n\r\f<])|([.?!]$)
+excludeScope = (default)null
+scope = (default)private
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
          ENUM_CONSTANT_DEF, ENUM_DEF, INTERFACE_DEF, METHOD_DEF, PACKAGE_DEF, \
          VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
-
 
 */
 
@@ -22,11 +21,8 @@ public class InputJavadocStyleCheck1 {
    /** NM Webapp address.**/
    public static final String NM_WEBAPP_ADDRESS = "webapp.address";
 
-    // violation 2 lines below 'First sentence should end with a period'
-    // violation 3 lines below 'Unclosed HTML tag found: .*'
     /**
      * <thead> <br> </thead>
-     * <tfoot> <AREA ALT="alt" Coordination="100,0,200,50" HREF="/href/"> </tfoot> comment
      * <p> </p>
      * @param field4 value to which {@link #field4} is to be set to
      */

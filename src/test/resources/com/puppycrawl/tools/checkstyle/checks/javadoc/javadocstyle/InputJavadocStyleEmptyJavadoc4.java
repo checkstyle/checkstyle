@@ -1,15 +1,14 @@
 /*
 JavadocStyle
-scope = (default)private
-excludeScope = (default)null
+checkEmptyJavadoc = true
 checkFirstSentence = false
 endOfSentenceFormat = (default)([.?!][ \t\n\r\f<])|([.?!]$)
-checkEmptyJavadoc = true
-checkHtml = false
+excludeScope = (default)null
+scope = (default)private
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
          ENUM_CONSTANT_DEF, ENUM_DEF, INTERFACE_DEF, METHOD_DEF, PACKAGE_DEF, \
          VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
-
 
 */
 
@@ -36,15 +35,11 @@ public class InputJavadocStyleEmptyJavadoc4 {
         final int i = 0;
     }
 
+    // violation below 'Javadoc has empty description section'
     /**
      * {@inheritDoc}
      */
     private void inheritDoc() {}
-
-    /**
-     * <p><b>Note:<b> it's unterminated tag.</p>
-     */
-    private void unterminatedTag() {}
 
     /**
      * Javadoc without dot
@@ -110,4 +105,10 @@ public class SampleTest {
 }</code></pre>
      */
     public void test3() {}
+
+    // violation below 'Javadoc has empty description section'
+    /**
+     * {@link test3}
+     */
+    public void test4() {}
 }
