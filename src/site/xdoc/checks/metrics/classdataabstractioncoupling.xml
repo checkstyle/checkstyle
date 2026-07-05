@@ -130,32 +130,12 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  private Set&lt;Object&gt; set = new HashSet&lt;&gt;(); // Ignored by default
+  private Set&lt;Object&gt; set = new HashSet&lt;&gt;();        // Ignored by default
   private Map&lt;Object,Object&gt; map = new HashMap&lt;&gt;(); // Ignored by default
-  private Object object = new Object(); // Ignored by default
+  private Object object = new Object();             // Ignored by default
 
-  private Instant instant = Instant.now(); // Counted 1
-  private LocalTime localTime = LocalTime.now(); // Counted 2
-}
-</code></pre></div><hr class="example-separator"/>
-
-        <p id="Example2-code">
-          The check results in a violation in the following:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
-public class Example2 {
-  Set set = new HashSet(); // Ignored by default
-  Map map = new HashMap(); // Ignored by default
-
-  AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
-  BigInteger bigInteger = new BigInteger("0");
-  Example1 example1 = new Example1();
-  Example3 example3 = new Example3();
-  Example4 example4 = new Example4();
-  Example5 example5 = new Example5();
-  Example6 example6 = new Example6();
-  Example7 example7 = new Example7(); // Counted 8
+  private Instant instant = Instant.now();          // Counted 1
+  private LocalTime localTime = LocalTime.now();    // Counted 2
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -180,10 +160,12 @@ public class Example2 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
-  Set set = new HashSet(); // Ignored by default
-  Map map = new HashMap(); // Ignored by default
-  Instant instant = Instant.now(); // Counted 1
-  LocalTime localTime = LocalTime.now(); // Counted 2
+  private Set&lt;Object&gt; set = new HashSet&lt;&gt;();        // Ignored by default
+  private Map&lt;Object,Object&gt; map = new HashMap&lt;&gt;(); // Ignored by default
+  private Object object = new Object();             // Ignored by default
+
+  private Instant instant = Instant.now();          // Counted 1
+  private LocalTime localTime = LocalTime.now();    // Counted 2
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -481,6 +463,40 @@ class Example11 {
           The <code>data</code> and <code>foo</code> members will be counted, as they are
           inside same file.
         </p>
+        <hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ClassDataAbstractionCoupling"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p>
+          Example:
+        </p>
+        <p id="Example2-code">
+          The check results in a violation in the following:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
+public class Example2 {
+  Set set = new HashSet(); // Ignored by default
+  Map map = new HashMap(); // Ignored by default
+
+  AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
+  BigInteger bigInteger = new BigInteger("0");
+  Example1 example1 = new Example1();
+  Example3 example3 = new Example3();
+  Example4 example4 = new Example4();
+  Example5 example5 = new Example5();
+  Example6 example6 = new Example6();
+  Example7 example7 = new Example7(); // Counted 8
+}
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="ClassDataAbstractionCoupling_Example_of_Usage">
