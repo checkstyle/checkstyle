@@ -19,9 +19,11 @@ import java.time.LocalTime;
 
 // xdoc section -- start
 public class Example3 {
-  Set set = new HashSet(); // Ignored by default
-  Map map = new HashMap(); // Ignored by default
-  Instant instant = Instant.now(); // Counted 1
-  LocalTime localTime = LocalTime.now(); // Counted 2
+  private Set<Object> set = new HashSet<>();        // Ignored by default
+  private Map<Object,Object> map = new HashMap<>(); // Ignored by default
+  private Object object = new Object();             // Ignored by default
+
+  private Instant instant = Instant.now();          // Counted 1
+  private LocalTime localTime = LocalTime.now();    // Counted 2
 }
 // xdoc section -- end

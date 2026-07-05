@@ -49,15 +49,6 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p id="Example2-code">
-          The check results in a violation in the following:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example2.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-
         <p id="Example3-config">
           To configure the check with a threshold of 2:
         </p>
@@ -79,6 +70,18 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
+        <p id="Example4-config">
+          To configure the check with a threshold of 2:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/deeper/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p>
+          Example:
+        </p>
         <p id="Example4-code">
           The check results in a violation in the following:
         </p>
@@ -234,6 +237,27 @@
           The <code>data</code> and <code>foo</code> members will be counted, as they are
           inside same file.
         </p>
+        <hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p>
+          Example:
+        </p>
+        <p id="Example2-code">
+          The check results in a violation in the following:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="ClassDataAbstractionCoupling_Example_of_Usage">
