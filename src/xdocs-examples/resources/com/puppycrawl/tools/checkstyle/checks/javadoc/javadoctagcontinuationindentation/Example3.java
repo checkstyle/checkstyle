@@ -15,7 +15,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationind
    */
 class Example3 {
   // violation 3 lines above 'Unclosed HTML tag found: a'
-
   /**
    * @param input comment with
    *     indentation spacing for the tag
