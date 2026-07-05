@@ -12,16 +12,11 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.lambdabodylength;
 
 // xdoc section -- start
 class Example1 {
-  Runnable r = () -> { // ok, length is 10
-    System.out.println(2); // line 2 of lambda
+  Runnable r = () -> { // ok, length is 5
+    System.out.println(2);
     System.out.println(3);
     System.out.println(4);
-    System.out.println(5);
-    System.out.println(6);
-    System.out.println(7);
-    System.out.println(8);
-    System.out.println(9);
-  }; // line 10
+  };
   // violation below 'Lambda body length is 11 lines (max allowed is 10).'
   Runnable r2 = () -> {
     System.out.println(2); // line 2 of lambda
