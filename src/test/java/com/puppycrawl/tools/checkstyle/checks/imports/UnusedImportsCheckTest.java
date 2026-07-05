@@ -153,6 +153,22 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testProcessJavadocWithLinkAndGenericMethodParametersWithInnerTypes()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsWithLinkAndGenericMethodParameters2.java"), expected);
+    }
+
+    @Test
+    public void testProcessJavadocWithLinkAndGenericMethodParametersWithInnerTypesOnly()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsWithLinkAndGenericMethodParameters3.java"), expected);
+    }
+
+    @Test
     public void testAnnotations() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
