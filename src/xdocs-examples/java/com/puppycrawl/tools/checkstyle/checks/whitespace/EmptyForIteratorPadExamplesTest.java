@@ -35,7 +35,7 @@ public class EmptyForIteratorPadExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "22:66: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
+            "23:66: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
