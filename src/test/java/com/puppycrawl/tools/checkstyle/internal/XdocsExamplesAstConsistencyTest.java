@@ -120,7 +120,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/regexp/regexpmultiline/Example5",
             "checks/sizes/lambdabodylength/Example2",
             "checks/sizes/outertypenumber/Example2",
-            "checks/whitespace/singlespaceseparator/Example2",
             "checks/whitespace/typecastparenpad/Example2",
             "checks/whitespace/emptyforiteratorpad/Example2",
             "checks/whitespace/parenpad/Example2",

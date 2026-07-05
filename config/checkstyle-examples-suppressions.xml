@@ -124,7 +124,7 @@
     files="avoidstarimport[\\/]Example[1-6].java"/>
 
   <suppress checks="CommentsIndentation"
-    files="singlespaceseparator[\\/]Example2.java"/>
+    files="singlespaceseparator[\\/]Example[12].java"/>
 
   <!-- violation required by to show behavior of Check -->
   <suppress checks="CommentsIndentation"
