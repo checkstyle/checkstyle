@@ -145,6 +145,8 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/naming/patternvariablename/Example3",
             "checks/javadoc/javadocvariable/Example3",
             "checks/javadoc/javadocvariable/Example5",
+            "checks/javadoc/javadocstyle/Example2",
+            "checks/javadoc/javadocstyle/Example6",
             "checks/whitespace/parenpad/Example3",
             "checks/javadoc/missingjavadoctype/Example5",
             "checks/indentation/commentsindentation/Example3",

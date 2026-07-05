@@ -1,9 +1,7 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="JavadocStyle">
-      <property name="checkHtml" value="false"/>
-    </module>
+    <module name="JavadocStyle"/>
   </module>
 </module>
 */
@@ -49,10 +47,8 @@ public class Example5 {
   }
   /**
    * Some description here
-   * <p
    */
-  private void testMethod6() { // violation 4 lines above 'should end with a period'
-
+  private void testMethod6() { // violation 3 lines above 'should end with a period'
   }
 }
 // xdoc section -- end

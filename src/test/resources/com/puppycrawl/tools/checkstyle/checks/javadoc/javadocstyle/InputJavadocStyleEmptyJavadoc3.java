@@ -1,15 +1,14 @@
 /*
 JavadocStyle
-scope = (default)private
-excludeScope = (default)null
+checkEmptyJavadoc = true
 checkFirstSentence = false
 endOfSentenceFormat = (default)([.?!][ \t\n\r\f<])|([.?!]$)
-checkEmptyJavadoc = true
-checkHtml = false
+excludeScope = (default)null
+scope = (default)private
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
          ENUM_CONSTANT_DEF, ENUM_DEF, INTERFACE_DEF, METHOD_DEF, PACKAGE_DEF, \
          VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
-
 
 */
 
@@ -91,7 +90,7 @@ public class InputJavadocStyleEmptyJavadoc3 {
      * Checks generics javadoc.
      *
      * @param strings this is a List<String>
-     * @param test Map<String, List<String>> a map indexed on String of Lists of Strings.
+     * @param test {@code Map<String, List<String>>} a map indexed on String of Lists of Strings.
      */
     public void method20() {}
 

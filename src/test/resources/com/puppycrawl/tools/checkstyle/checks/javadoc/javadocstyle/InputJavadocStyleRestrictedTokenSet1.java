@@ -1,13 +1,12 @@
 /*
 JavadocStyle
-scope = public
-excludeScope = (default)null
+checkEmptyJavadoc = (default)false
 checkFirstSentence = (default)true
 endOfSentenceFormat = (default)([.?!][ \t\n\r\f<])|([.?!]$)
-checkEmptyJavadoc = (default)false
-checkHtml = false
+excludeScope = (default)null
+scope = public
+violateExecutionOnNonTightHtml = (default)false
 tokens = METHOD_DEF
-
 
 */
 
@@ -49,47 +48,23 @@ public class InputJavadocStyleRestrictedTokenSet1
    private void method4() {}
 
    /**
-    * Test HTML in Javadoc comment
-    * <dl>
-    * <dt><b>This guy is missing end of bold tag
-    * <dd>The dt and dd don't require end tags.
-    * </dl>
-    * </td>Extra tag shouldn't be here
-    * <style>this tag isn't supported in Javadoc</style>
-    * @param arg1 <code>dummy.
-    */
-   private void method5(int arg1) {}
-
-   /**
-    * Protected check <b>should fail
+    * Protected check should fail.
     */
    protected void method6() {}
 
    /**
-    * Package protected check <b>should fail
+    * Package protected check should fail.
     */
    void method7() {}
 
    // violation below 'First sentence should end with a period.'
    /**
-    * Public check should fail</code>
-    * should fail <
+    * Public check should fail
     */
    public void method8() {}
 
    /** {@inheritDoc} **/
    public void method9() {}
-
-    // Testcases to exercise the Tag parser (bug 843887)
-
-    /**
-     * Real men don't use XHTML.
-     * <br />
-     * <hr/>
-     * < br/>
-     * <img src="schattenparker.jpg"/></img>
-     */
-    private void method10() {}
 
     /**
      * Tag content can be really mean.

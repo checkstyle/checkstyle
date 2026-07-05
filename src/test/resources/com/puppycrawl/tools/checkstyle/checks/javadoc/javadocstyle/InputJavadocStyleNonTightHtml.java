@@ -1,11 +1,11 @@
 /*
 JavadocStyle
 checkEmptyJavadoc = (default)false
-checkFirstSentence = (default)true
-endOfSentenceFormat = \n
+checkFirstSentence = false
+endOfSentenceFormat = (default)([.?!][ \t\n\r\f<])|([.?!]$)
 excludeScope = (default)null
 scope = (default)private
-violateExecutionOnNonTightHtml = (default)false
+violateExecutionOnNonTightHtml = true
 tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
          ENUM_CONSTANT_DEF, ENUM_DEF, INTERFACE_DEF, METHOD_DEF, PACKAGE_DEF, \
          VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
@@ -14,8 +14,12 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
-public class InputJavadocStyleCheck5 {
+public class InputJavadocStyleNonTightHtml {
 
-    /**             Set of all class field names.        */
-    public String field; // violation above 'First sentence should end with a period'
+    // violation 2 lines below 'Unclosed HTML tag found: p'
+    /**
+     * <p>
+     */
+    public void method() {}
+
 }

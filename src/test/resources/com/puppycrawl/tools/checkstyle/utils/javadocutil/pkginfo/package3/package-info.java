@@ -5,17 +5,14 @@ excludeScope = (default)null
 checkFirstSentence = (default)true
 endOfSentenceFormat = (default)([.?!][ \t\n\r\f<])|([.?!]$)
 checkEmptyJavadoc = (default)false
-checkHtml = (default)true
 tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
          ENUM_CONSTANT_DEF, ENUM_DEF, INTERFACE_DEF, METHOD_DEF, PACKAGE_DEF, \
          VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
-
+violateExecutionOnNonTightHtml = (default)false
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
-
-public class InputJavadocStyleNeverEndingXmlComment {
-    /** DTD: <!--. */
-    public int i;
-}
+/*
+ * Comment
+ */
+package com.puppycrawl.tools.checkstyle.utils.javadocutil.pkginfo.package3;

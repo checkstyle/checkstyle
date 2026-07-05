@@ -1,15 +1,14 @@
 /*
 JavadocStyle
-scope = protected
-excludeScope = (default)null
+checkEmptyJavadoc = true
 checkFirstSentence = (default)true
 endOfSentenceFormat = (default)([.?!][ \t\n\r\f<])|([.?!]$)
-checkEmptyJavadoc = true
-checkHtml = (default)true
+excludeScope = (default)null
+scope = protected
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
          ENUM_CONSTANT_DEF, ENUM_DEF, INTERFACE_DEF, METHOD_DEF, PACKAGE_DEF, \
          VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
-
 
 */
 
@@ -50,53 +49,20 @@ public class InputJavadocStyleScopeProtected1
     */
    private void method4() {}
 
+   // violation below 'First sentence should end with a period.'
    /**
-    * Test HTML in Javadoc comment
-    * <dl>
-    * <dt><b>This guy is missing end of bold tag
-    * <dd>The dt and dd don't require end tags.
-    * </dl>
-    * </td>Extra tag shouldn't be here
-    * <style>this tag isn't supported in Javadoc</style>
-    * @param arg1 <code>dummy.
-    */
-   private void method5(int arg1) {}
-
-   // violation 2 lines below 'First sentence should end with a period.'
-   // violation 2 lines below 'Unclosed HTML tag found: <b>'
-   /**
-    * Protected check <b>
+    * Protected check
     */
    protected void method6() {}
 
+   // violation below 'First sentence should end with a period.'
    /**
-    * Package protected check <b>should fail
-    */
-   void method7() {}
-
-   // violation 3 lines below 'First sentence should end with a period.'
-   // violation 3 lines below 'Extra HTML tag found: </code>'
-   // violation 3 lines below 'should fail <'
-   /**
-    * Public check should fail</code>
-    * should fail <
+    * Public check should fail
     */
    public void method8() {}
 
    /** {@inheritDoc} **/
    public void method9() {}
-
-
-    // Testcases to exercise the Tag parser (bug 843887)
-
-    /**
-     * Real men don't use XHTML.
-     * <br />
-     * <hr/>
-     * < br/>
-     * <img src="schattenparker.jpg"/></img>
-     */
-    private void method10() {}
 
     /**
      * Tag content can be really mean.

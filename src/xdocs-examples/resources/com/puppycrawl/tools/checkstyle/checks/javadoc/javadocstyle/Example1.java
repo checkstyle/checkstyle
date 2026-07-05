@@ -47,10 +47,8 @@ public class Example1 {
   }
   /**
    * Some description here
-   * <p
    */
-  private void testMethod6() { // violation 4 lines above 'should end with a period'
-    // violation 3 lines above 'Incomplete HTML tag found'
+  private void testMethod6() { // violation 3 lines above 'should end with a period'
   }
 }
 // xdoc section -- end

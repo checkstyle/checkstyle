@@ -29,22 +29,7 @@
  such as &lt;code&gt;@param&lt;/code&gt; and &lt;code&gt;@return&lt;/code&gt;.
  &lt;/li&gt;
  &lt;li&gt;
- Check text for incomplete HTML tags. Verifies that HTML tags have
- corresponding end tags and issues an "Unclosed HTML tag found:" error if not.
- An "Extra HTML tag found:" error is issued if an end tag is found without
- a previous open tag.
- &lt;/li&gt;
- &lt;li&gt;
  Check that a package Javadoc comment is well-formed (as described above).
- &lt;/li&gt;
- &lt;li&gt;
- Check for allowed HTML tags. The list of allowed HTML tags is
- "a", "abbr", "acronym", "address", "area", "b", "bdo", "big", "blockquote",
- "br", "caption", "cite", "code", "colgroup", "dd", "del", "dfn", "div", "dl",
- "dt", "em", "fieldset", "font", "h1", "h2", "h3", "h4", "h5", "h6", "hr",
- "i", "img", "ins", "kbd", "li", "ol", "p", "pre", "q", "samp", "small",
- "span", "strong", "sub", "sup", "table", "tbody", "td", "tfoot", "th",
- "thead", "tr", "tt", "u", "ul", "var".
  &lt;/li&gt;
  &lt;/ul&gt;
 
@@ -59,9 +44,6 @@
             </property>
             <property default-value="true" name="checkFirstSentence" type="boolean">
                <description>Control whether to check the first sentence for proper end of sentence.</description>
-            </property>
-            <property default-value="true" name="checkHtml" type="boolean">
-               <description>Control whether to check for incomplete HTML tags.</description>
             </property>
             <property default-value="([.?!][ \t\n\r\f&lt;])|([.?!]$)"
                       name="endOfSentenceFormat"
@@ -82,12 +64,16 @@
                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
+            <property default-value="false"
+                      name="violateExecutionOnNonTightHtml"
+                      type="boolean">
+               <description>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at &lt;a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules"&gt;Tight-HTML Rules&lt;/a&gt;.</description>
+            </property>
          </properties>
          <message-keys>
             <message-key key="javadoc.empty"/>
-            <message-key key="javadoc.extraHtml"/>
-            <message-key key="javadoc.incompleteTag"/>
             <message-key key="javadoc.noPeriod"/>
+            <message-key key="javadoc.parse.rule.error"/>
             <message-key key="javadoc.unclosedHtml"/>
          </message-keys>
       </check>

@@ -1,15 +1,14 @@
 /*
 JavadocStyle
-scope = (default)private
-excludeScope = protected
+checkEmptyJavadoc = (default)false
 checkFirstSentence = (default)true
 endOfSentenceFormat = (default)([.?!][ \t\n\r\f<])|([.?!]$)
-checkEmptyJavadoc = (default)false
-checkHtml = (default)true
+excludeScope = protected
+scope = (default)private
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
          ENUM_CONSTANT_DEF, ENUM_DEF, INTERFACE_DEF, METHOD_DEF, PACKAGE_DEF, \
          VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
-
 
 */
 
@@ -52,54 +51,24 @@ public class InputJavadocStyleExcludeScope1
     */
    private void method4() {}
 
-   // violation 7 lines below 'Unclosed HTML tag found: <b>'
-   // violation 9 lines below 'Extra HTML tag found: </td>'
-   // violation 9 lines below 'Extra HTML tag found: </style>'
-   // violation 9 lines below 'Unclosed HTML tag found: <code>dummy'
    /**
-    * Test HTML in Javadoc comment
-    * <dl>
-    * <dt><b>
-    * <dd>The dt and dd don't require end tags.
-    * </dl>
-    * </td>
-    * <style>this tag isn't supported in Javadoc</style>
-    * @param arg1 <code>dummy
-    */
-   private void method5(int arg1) {}
-
-   /**
-    * Protected check <b>should fail
+    * Protected check should fail.
     */
    protected void method6() {}
 
-   // violation 2 lines below 'First sentence should end with a period.'
-   // violation 2 lines below 'Unclosed HTML tag found:'
+   // violation below 'First sentence should end with a period.'
    /**
-    * Package protected check <b>
+    * Package protected check
     */
    void method7() {}
 
    /**
-    * Public check should fail</code>
-    * should fail <
+    * Public check should fail.
     */
    public void method8() {}
 
    /** {@inheritDoc} **/
    public void method9() {}
-
-
-   // Testcases to exercise the Tag parser (bug 843887)
-   // violation 6 lines below  'Extra HTML tag found: </img>'
-    /**
-     * Real men don't use XHTML.
-     * <br />
-     * <hr/>
-     * < br/>
-     * <img src="schattenparker.jpg"/></img>
-     */
-    private void method10() {}
 
     /**
      * Tag content can be really mean.

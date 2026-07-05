@@ -49,7 +49,6 @@ public class Example2 {
   }
   /**
    * Some description here
-   * <p
    */
   private void testMethod6() {
 
