@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd">
+<suppressions>
+  <suppress-xpath files="ThisPatternWillNotMatchTheFileName"
+                  checks="ConstantNameCheck"
+                  query="/COMPILATION_UNIT/CLASS_DEF[./IDENT
+                  [@text='InputSuppressionXpathFilterNonMatchingFile']]/
+                  OBJBLOCK/VARIABLE_DEF/IDENT[@text='bad_name']"/>
+</suppressions>
