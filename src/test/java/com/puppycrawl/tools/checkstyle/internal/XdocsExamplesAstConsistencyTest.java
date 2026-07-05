@@ -122,7 +122,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/sizes/outertypenumber/Example2",
             "checks/whitespace/singlespaceseparator/Example2",
             "checks/whitespace/typecastparenpad/Example2",
-            "checks/whitespace/emptyforiteratorpad/Example2",
             "checks/whitespace/parenpad/Example2",
             // Note: customImport/ImportOrder changes import group ORDER affecting AST structure
             "checks/imports/customimportorder/Example10",
