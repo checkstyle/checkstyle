@@ -10,13 +10,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber;
 // xdoc section -- start
+
+
 public class Example2 {
+    enum outer {
+    }
 }
 
-class Examples {
-  void exampleMethod() {}
-}
-
-enum outer1 {
+class ExampleTwo {
+    void exampleMethod() {}
 }
 // xdoc section -- end
