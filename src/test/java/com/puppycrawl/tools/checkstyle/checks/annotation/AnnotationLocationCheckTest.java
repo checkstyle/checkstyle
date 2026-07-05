@@ -50,7 +50,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getPath("InputAnnotationLocationCorrect.java"), expected);
+                getNonCompilablePath("InputAnnotationLocationCorrect.java"), expected);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "17:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_21", 0, 3),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAnnotationLocationIncorrectTwo.java"), expected);
+                getNonCompilablePath("InputAnnotationLocationIncorrectTwo.java"), expected);
     }
 
     @Test
@@ -130,7 +130,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "17:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_23", 0, 3),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAnnotationLocationIncorrect3Two.java"), expected);
+                getNonCompilablePath("InputAnnotationLocationIncorrect3Two.java"), expected);
     }
 
     @Test
@@ -189,7 +189,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "17:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_22", 0, 3),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAnnotationLocationIncorrect2Two.java"), expected);
+                getNonCompilablePath("InputAnnotationLocationIncorrect2Two.java"), expected);
     }
 
     @Test
