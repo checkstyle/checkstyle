@@ -80,9 +80,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * JavadocParagraph
  * </li>
  * <li>
- * JavadocStyle
- * </li>
- * <li>
  * JavadocTagContinuationIndentation
  * </li>
  * <li>

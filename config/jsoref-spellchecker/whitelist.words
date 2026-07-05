@@ -101,7 +101,6 @@ baz
 bc
 bdc
 bdd
-bdo
 beanutils
 beforeexecutionexclusionfilefilter
 bestpractices
@@ -204,7 +203,7 @@ codenarc
 codeql
 codeselectorpresentation
 codestyle
-colgroup
+COLGROUP
 columnlimit
 Combobox
 commentsindentation
@@ -297,7 +296,6 @@ Dexec
 dfa
 DFFF
 Dfile
-dfn
 Dforbiddenapis
 Dgpg
 Dhttp
@@ -431,7 +429,6 @@ Fgoogle
 Fheader
 fht
 fieldannotations
-fieldset
 filebasic
 filechooser
 filefilter
@@ -557,7 +554,6 @@ horizontalwhitespace
 Hostname
 href
 htaccess
-htag
 htdocs
 html
 HTMLJS
@@ -621,8 +617,6 @@ interfaceistype
 interfacememberimpliedmodifier
 interfacetypeparametername
 interp
-invalidformat
-invalidinherit
 invalidjavadocposition
 ioe
 ioffset
@@ -656,7 +650,6 @@ javadocmissingwhitespaceafterasterisk
 javadocpackage
 javadocparagraph
 javadocpropertiesgenerator
-javadocstyle
 javadoctagcontinuationindentation
 javadoctags
 javadoctype
@@ -748,7 +741,6 @@ jxr
 kailasam
 Kansara
 kazgroup
-kbd
 kclee
 KDoc
 keyname
@@ -845,7 +837,6 @@ missingjavadoctype
 missingnullcaseinswitch
 missingoverride
 missingoverrideonrecordaccessor
-missingperiod
 missingswitchdefault
 missingtag
 mixin
@@ -1078,7 +1069,6 @@ pipefail
 PIPESTATUS
 pitest
 pkgextra
-pkginfo
 pkx
 PLHM
 plugin
@@ -1226,6 +1216,7 @@ sbt
 scache
 Schneeberger
 scm
+scopeutil
 scp
 screenshot
 Scss
@@ -1368,7 +1359,7 @@ textblock
 textblockgooglestyleformatting
 tfij
 Tfo
-tfoot
+TFOOT
 Thauvin
 thead
 thesummaryfragment

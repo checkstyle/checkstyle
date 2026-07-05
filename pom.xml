@@ -2121,7 +2121,6 @@
                 <exclude>**/JavadocMissingLeadingAsteriskCheck.class</exclude>
                 <exclude>**/JavadocMissingWhitespaceAfterAsteriskCheck.class</exclude>
                 <exclude>**/JavadocParagraphCheck.class</exclude>
-                <exclude>**/JavadocStyleCheck.class</exclude>
                 <exclude>**/JavadocTagContinuationIndentationCheck.class</exclude>
                 <exclude>**/JavadocTypeCheck.class</exclude>
                 <exclude>**/MissingDeprecatedCheck.class</exclude>
@@ -5352,10 +5351,6 @@
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheckTest
-                </param>
-                <!-- 2% mutation in ScopeUtil -->
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheckTest
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheckTest

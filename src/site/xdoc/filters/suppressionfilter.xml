@@ -131,7 +131,7 @@
     &lt;property name="optional" value="false"/&gt;
   &lt;/module&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="JavadocStyle"/&gt;
+    &lt;module name="MemberName"/&gt;
     &lt;module name="MagicNumber"/&gt;
     &lt;module name="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck"/&gt;
   &lt;/module&gt;
@@ -140,11 +140,11 @@
         <p id="suppressionexample1-raw">
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
-          reject <code>JavadocStyleCheck</code> violations for
-          line 4 of
+          reject <code>MemberNameCheck</code> violations for
+          line 20 of
           file <code>Example1.java</code>,
           and <code>MagicNumberCheck</code> violations for lines
-          7 and 11 of file <code>Example1.java</code>,
+          22 and 26 of file <code>Example1.java</code>,
           and <code>'Missing a Javadoc comment'</code> violations
           for all lines and files:
         </p>
@@ -156,12 +156,12 @@
   "https://checkstyle.org/dtds/suppressions_1_2.dtd"&gt;
 
 &lt;suppressions&gt;
-  &lt;suppress checks="JavadocStyle"
+  &lt;suppress checks="MemberName"
     files="Example1.java"
     lines="20"/&gt;
   &lt;suppress checks="MagicNumber"
     files="Example1.java"
-    lines="23,27"/&gt;
+    lines="22,26"/&gt;
   &lt;suppress message="Missing a Javadoc comment"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
@@ -169,10 +169,9 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
 
-  // filtered violation below 'First sentence should end with a period.'
-  /**
-   * This field a is missing period
-   */
+  // filtered violation below 'Name 'MyVariable' must match pattern'
+  int MyVariable;
+
   int a = 10; // filtered violation ''10' is a magic number.'
 
   public void exampleMethod() {
