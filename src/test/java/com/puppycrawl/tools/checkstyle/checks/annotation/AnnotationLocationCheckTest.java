@@ -50,7 +50,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getPath("InputAnnotationLocationCorrect.java"), expected);
+                getNonCompilablePath("InputAnnotationLocationCorrect.java"), expected);
     }
 
     @Test
