@@ -131,7 +131,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             "79:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAnnotationOnSameLineCheckInterfaceAndEnum.java"), expected);
+                getNonCompilablePath("InputAnnotationOnSameLineCheckInterfaceAndEnum.java"), expected);
     }
 
     @Test
