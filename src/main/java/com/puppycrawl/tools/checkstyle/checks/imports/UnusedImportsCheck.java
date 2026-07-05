@@ -19,8 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -332,12 +334,34 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
      * @param ast the Javadoc parameter type node
      */
     private void processParameterType(DetailNode ast) {
-        String parameterTypeText = stripTypeArguments(ast.getText());
-        parameterTypeText = topLevelType(parameterTypeText);
-        if (parameterTypeText.endsWith("[]")) {
-            parameterTypeText = parameterTypeText.substring(0, parameterTypeText.length() - 2);
+        addReferencedTypesFromType(ast.getText());
+    }
+
+    /**
+     * Recursively registers all type names referenced in a type string.
+     * Handles generic type arguments, wildcard bounds, and array suffixes.
+     *
+     * @param type the type string to process
+     */
+    private void addReferencedTypesFromType(String type) {
+        String currentType = type;
+        if (currentType.endsWith("[]")) {
+            currentType = currentType.substring(0, currentType.length() - 2);
         }
-        currentFrame.addReferencedType(parameterTypeText);
+        String outerType = stripTypeArguments(currentType);
+        outerType = stripTrailingGt(outerType);
+        outerType = topLevelType(outerType);
+        currentFrame.addReferencedType(outerType);
+        final int openIndex = currentType.indexOf('<');
+        if (openIndex != -1) {
+            final int closeIndex = findMatchingCloseAngle(currentType, openIndex);
+            if (closeIndex != -1) {
+                final String typeArgs = currentType.substring(openIndex + 1, closeIndex);
+                for (String arg : splitTypeArguments(typeArgs)) {
+                    addReferencedTypesFromType(arg);
+                }
+            }
+        }
     }
 
     /**
@@ -385,6 +409,63 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
         else {
             result = type.substring(0, index);
         }
+        return result;
+    }
+
+    /**
+     * Strips trailing {@code >} characters from a type string.
+     * This handles tokenization artifacts where the closing angle bracket
+     * of an enclosing generic is attached to the last parameter type.
+     *
+     * @param type A type string possibly ending with {@code >}
+     * @return The type string with trailing {@code >} characters removed
+     */
+    private static String stripTrailingGt(String type) {
+        String result = type;
+        while (result.endsWith(">")) {
+            result = result.substring(0, result.length() - 1);
+        }
+        return result;
+    }
+
+    /**
+     * Finds the matching close angle bracket for the angle bracket at the given index.
+     * Correctly handles nested angle brackets by tracking depth.
+     *
+     * @param str the string to search in
+     * @param openIndex the index of the opening angle bracket
+     * @return the index of the matching close angle bracket, or -1 if not found
+     */
+    private static int findMatchingCloseAngle(String str, int openIndex) {
+        int depth = 0;
+        int result = -1;
+        for (int idx = openIndex; idx < str.length(); idx++) {
+            if (str.charAt(idx) == '<') {
+                depth++;
+            }
+            else if (str.charAt(idx) == '>') {
+                depth--;
+                if (depth == 0) {
+                    result = idx;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Splits a type argument string into individual type argument strings.
+     * Comma handling is deferred to a follow-up issue that absorbs commas into
+     * PARAMETER_TYPE; currently commas are token boundaries so only one type
+     * argument ever appears here.
+     *
+     * @param typeArgs the type argument string (content between angle brackets)
+     * @return the list of individual type argument strings
+     */
+    private static List<String> splitTypeArguments(String typeArgs) {
+        final List<String> result = new ArrayList<>();
+        result.add(typeArgs);
         return result;
     }
 
