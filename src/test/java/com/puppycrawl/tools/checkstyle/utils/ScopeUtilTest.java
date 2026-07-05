@@ -26,12 +26,19 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class ScopeUtilTest {
+public class ScopeUtilTest
+    extends AbstractModuleTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/utils/scopeutil";
+    }
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
@@ -132,6 +139,13 @@ public class ScopeUtilTest {
         assertWithMessage("invalid result")
                 .that(ScopeUtil.isInCodeBlock(getNode(TokenTypes.LAMBDA, TokenTypes.ASSIGN)))
                 .isTrue();
+    }
+
+    @Test
+    public void testIsInCodeBlockWithCompactCtor() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputScopeUtilJavadocVariableCompactCtor.java"), expected);
     }
 
     @Test
@@ -325,6 +339,16 @@ public class ScopeUtilTest {
         assertWithMessage("Invalid surrounding scope")
             .that(scope)
             .isEqualTo(Optional.of(Scope.ANONINNER));
+    }
+
+    @Test
+    public void testGetScopeOfEnumConstantIsPublic() {
+        final Scope scope = ScopeUtil.getScope(
+                getNode(TokenTypes.ENUM_DEF, TokenTypes.OBJBLOCK, TokenTypes.ENUM_CONSTANT_DEF));
+
+        assertWithMessage("Invalid enum constant scope")
+                .that(scope)
+                .isEqualTo(Scope.PUBLIC);
     }
 
     @Test
