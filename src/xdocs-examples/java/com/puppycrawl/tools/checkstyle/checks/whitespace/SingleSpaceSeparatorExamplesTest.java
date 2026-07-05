@@ -45,10 +45,12 @@ public class SingleSpaceSeparatorExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "18:19: " + getCheckMessage(MSG_KEY),
-            "20:28: " + getCheckMessage(MSG_KEY),
-            "22:47: " + getCheckMessage(MSG_KEY),
-            "28:8: " + getCheckMessage(MSG_KEY),
+            "17:15: " + getCheckMessage(MSG_KEY),
+            "18:13: " + getCheckMessage(MSG_KEY),
+            "23:9: " + getCheckMessage(MSG_KEY),
+            "23:29: " + getCheckMessage(MSG_KEY),
+            "25:47: " + getCheckMessage(MSG_KEY),
+            "31:8: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
