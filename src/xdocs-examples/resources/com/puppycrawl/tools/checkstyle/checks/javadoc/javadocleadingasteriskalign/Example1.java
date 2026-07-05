@@ -7,42 +7,54 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocleadingasteriskalign;
-
 // xdoc section -- start
-/** Title
- * Javadoc for class
+// violation 2 lines below '1, expected is 2.'
+/**
+* Javadoc for class.
  */
 public class Example1 {
-
-  /** javadoc for instance variable. */
-  private int ball;
-
+  // violation 2 lines below '5, expected is 4.'
   /**
-   * Javadoc for instance variable
+    * Javadoc for instance variable, over-indented.
    */
-  private int age;
+  private int wrongIndentField;
 
   /**
-   Javadoc for method. */
-  private void foo() {}
-
-  /**
-    Javadoc for Constructor.
-    This javadoc is allowed because there is no leading asterisk.
+   * Javadoc for instance variable, correctly aligned.
    */
-  public Example1() {}
+  private int goodIndentField;
+  // violation 2 lines below '3, expected is 4.'
+  /**
+  *  Javadoc for method, under-indented.
+  */
+  private void wrongIndentMethod() {}
+  // violation 2 lines above '3, expected is 4.'
+  /**
+   * Javadoc for method, correctly aligned.
+   */
+  private void goodIndentMethod() {}
+  // violation 3 lines below '1, expected is 4.'
+  /**
+   Javadoc for constructor, missing leading asterisk alignment on closing tag.
+*/
+  private Example1() {}
 
   /**
-   * Javadoc for enum.
+   * Javadoc for constructor, correctly aligned.
    */
-  private enum correctJavadocEnum {
+  public Example1(int value) {}
+
+  private enum indentedEnum {
+    // violation 2 lines below '5, expected is 6.'
     /**
-     * Correct Indentation for leading asterisk */
-    ONE,
+    *  Wrong alignment for enum constant.
+     */
+    WRONG,
 
     /**
-     Allowed because there are non-whitespace characters before the ending block. */
-    TWO
+     * Correct alignment for enum constant.
+     */
+    GOOD
   }
 }
 // xdoc section -- end
