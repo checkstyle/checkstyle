@@ -251,8 +251,12 @@ no-error-pmd)
   echo "CS_version: ${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  checkout_from "https://github.com/pmd/build-tools.git"
+  # Temporary checkout of PR code until upstream merges JavadocStyle removal:
+  # https://github.com/pmd/build-tools/pull/174
+  checkout_from "https://github.com/gianmarcoschifone/build-tools.git" "remove-javadocstyle"
   cd .ci-temp/build-tools/
+  PMD_BUILD_TOOLS_VERSION="$(mvn -q --no-transfer-progress help:evaluate \
+    -Dexpression=project.version -DforceStdout)"
   mvn -e --no-transfer-progress install
   cd ..
   git clone https://github.com/pmd/pmd.git
@@ -267,6 +271,7 @@ no-error-pmd)
                 -Dcyclonedx.skip=true \
                 -Ddokka.skip=true \
                 -Dcheckstyle.skip=false \
+                -Dpmd.build-tools.version="${PMD_BUILD_TOOLS_VERSION}" \
                 -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..
   removeFolderWithProtectedFiles build-tools
@@ -278,7 +283,10 @@ no-error-hazelcast)
   echo "CS_version: ${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
   echo "Checkout Hazelcast sources..."
-  checkout_from "https://github.com/hazelcast/hazelcast.git"
+  # Temporary checkout of commit that imported JavadocStyle removal:
+  # https://github.com/hazelcast/hazelcast/commit/34f625a17dec69da0467ad0bd601d0072de7a000
+  checkout_from "https://github.com/hazelcast/hazelcast.git" \
+    "34f625a17dec69da0467ad0bd601d0072de7a000"
   cd .ci-temp/hazelcast
 
   # Modules using Apache License header
@@ -831,14 +839,10 @@ no-error-orekit)
   git checkout $SHA_HIPPARCHUS
   mvn -e --no-transfer-progress install -DskipTests
   cd -
-  checkout_from https://github.com/CS-SI/Orekit.git
+  # Temporary checkout of PR code until upstream merges JavadocStyle removal:
+  # https://github.com/CS-SI/Orekit/pull/37
+  checkout_from https://github.com/gianmarcoschifone/Orekit.git "remove-javadocstyle"
   cd .ci-temp/Orekit
-  # no CI is enforced in project, so to make our build stable we should
-  # checkout to latest release/development (annotated tag or hash) or sha that have fix we need
-  # git checkout $(git describe --abbrev=0 --tags)
-  SHA_OREKIT="fd""d9ce1bc4fa0d2765""f4""5d33db""f32253d1abb85f"
-  git fetch --depth 1 origin "$SHA_OREKIT"
-  git checkout "$SHA_OREKIT"
   echo "checkstyle.header.file=license-header.txt" > checkstyle.properties
   readarray -t files < <(find src/main/java -name "*.java")
   java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
@@ -936,7 +940,9 @@ no-error-equalsverifier)
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
   echo "Checkout target sources ..."
-  checkout_from https://github.com/jqno/equalsverifier.git
+  # Temporary checkout of PR code until upstream merges JavadocStyle removal:
+  # https://github.com/jqno/equalsverifier/pull/1224
+  checkout_from https://github.com/gianmarcoschifone/equalsverifier.git "remove-javadocstyle"
   cd .ci-temp/equalsverifier
   readarray -t files < <(find . \( -path '*/src/main/java/*.java' \
     -o -path '*/src/test/java/*.java' \))
@@ -986,9 +992,10 @@ no-error-htmlunit)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
-  HTMLUNIT_STABLE_SHA="6b12be""aa""c15a445cd99af061b17c028a""ee1c41b7"
   echo "Checkout target sources ..."
-  checkout_from https://github.com/HtmlUnit/htmlunit.git "$HTMLUNIT_STABLE_SHA"
+  # Temporary checkout of PR code until upstream merges JavadocStyle removal:
+  # https://github.com/HtmlUnit/htmlunit/pull/1149
+  checkout_from https://github.com/gianmarcoschifone/htmlunit.git "remove-javadocstyle"
   cd .ci-temp/htmlunit
   echo "checkstyle.suppressions.file=checkstyle_suppressions.xml" > checkstyle.properties
   find src/main/java src/test/java -name "*.java" -print0 | \
