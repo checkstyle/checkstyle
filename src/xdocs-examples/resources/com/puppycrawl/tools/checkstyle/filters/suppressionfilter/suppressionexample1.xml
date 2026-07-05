@@ -5,11 +5,11 @@
   "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 
 <suppressions>
-  <suppress checks="JavadocStyle"
+  <suppress checks="MemberName"
     files="Example1.java"
     lines="20"/>
   <suppress checks="MagicNumber"
     files="Example1.java"
-    lines="23,27"/>
+    lines="22,26"/>
   <suppress message="Missing a Javadoc comment"/>
 </suppressions>

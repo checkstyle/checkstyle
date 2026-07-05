@@ -33,7 +33,7 @@
       </subsection>
       <subsection name="Examples" id="SuppressionSingleFilter_Examples">
         <p id="Example1-config">
-          To configure a filter to suppress violations of <code>JavadocStyle</code> and
+          To configure a filter to suppress violations of <code>NoWhitespaceAfter</code> and
           <code>MagicNumber</code> checks in <code>Example1.java</code> for specific line ranges
           using <code>SuppressionSingleFilter</code>:
         </p>

@@ -41,6 +41,10 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
         final String[] expectedWithoutFilter = {
             "21:28: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "5"),
             "24:17: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "100"),
+            "26:12: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+                    NoWhitespaceAfterCheck.MSG_KEY, "."),
+            "30:9: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
         };
         final String[] expectedWithFilter = {};
 
