@@ -111,7 +111,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/metrics/classdataabstractioncoupling/ignore/Example9",
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example5",
             "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example6",
-            "checks/regexp/regexp/Example7",
             "checks/sizes/outertypenumber/Example2",
             "checks/whitespace/parenpad/Example2",
             // Note: customImport/ImportOrder changes import group ORDER affecting AST structure
