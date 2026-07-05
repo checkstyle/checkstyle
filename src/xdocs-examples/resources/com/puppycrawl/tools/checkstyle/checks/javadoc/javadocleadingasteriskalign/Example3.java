@@ -12,33 +12,37 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocleadingasteriskali
 
 // xdoc section -- start
 /**
- * Example with `tabWidth` property.
- * This example contains Tabs as well as Spaces.
+ * Title
  */
 public class Example3 {
-  /** <- Preceded with Tabs.
-   * <- Preceded with Tabs & Spaces.
-   */ // <- Preceded with Tabs & Spaces.
-  private String name;
 
-  /** <- Preceded with Spaces.
-   * <- Preceded with Tabs.
-   */ // <- Preceded with Tabs.
+  /**
+     * Javadoc for instance variable
+   * // violation above '6, expected is 4.'
+   */
+  private int ball;
+
+  /**
+  *  // violation '3, expected is 4.'
+   */
+  private int age;
+
+  /**
+   * Javadoc for foo.
+   */
   private void foo() {}
 
   /**
-    * // violation
-  */ // violation
-  private Example3() {}
-
-  private enum tabsExample {
+   * Javadoc for enum.
+   */
+  private enum sampleEnum {
     /**
-       * Incorrect indentation for leading asterisk. // violation */
+     */
     ONE,
 
-    /**
-      This javadoc is allowed because there is no leading asterisk.
-     */
+    /** // violation below '8, expected is 6.'
+       * Wrong Alignment
+   */ // violation '4, expected is 6.'
     TWO
   }
 }
