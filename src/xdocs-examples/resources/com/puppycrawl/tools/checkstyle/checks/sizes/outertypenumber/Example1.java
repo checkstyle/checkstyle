@@ -6,17 +6,15 @@
 </module>
 */
 
-package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber;
 // xdoc section -- start
-// violation 2 lines above 'Outer types defined is 3 (max allowed is 1)'
-
+package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber;
+// violation above 'Outer types defined is 2 (max allowed is 1)'
 public class Example1 {
+  enum outer {
+  }
 }
 
-class Example {
+class ExampleOne {
   void exampleMethod() {}
-}
-
-enum outer {
 }
 // xdoc section -- end
