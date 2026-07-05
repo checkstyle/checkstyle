@@ -69,17 +69,6 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonMatchingFileRegexp() throws Exception {
-        final XpathFilterElement filter =
-                new XpathFilterElement("NonMatchingRegexp", "Test", null, null, null);
-        final TreeWalkerAuditEvent ev = getEvent(3, 0,
-                TokenTypes.CLASS_DEF);
-        assertWithMessage("Event should be accepted")
-                .that(filter.accept(ev))
-                .isTrue();
-    }
-
-    @Test
     public void testNullViolation() {
         final XpathFilterElement filter = new XpathFilterElement(
                 "InputXpathFilterElementSuppressByXpath", "Test", null, null, null);
@@ -126,15 +115,6 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         assertWithMessage("Error: %s", ev.getMessage())
                 .that(ev.isSuccessful())
                 .isTrue();
-    }
-
-    private TreeWalkerAuditEvent getEvent(int line, int column, int tokenType)
-            throws Exception {
-        final Violation message =
-                new Violation(line, column, tokenType, "", "", null, null, null,
-                        getClass(), null);
-        return new TreeWalkerAuditEvent(fileContents, file.getName(), message,
-                JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
     }
 
 }

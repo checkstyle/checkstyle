@@ -273,4 +273,13 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
                                            ALL_MESSAGES,
                                            removeSuppressed(ALL_MESSAGES, suppressed));
     }
+
+    @Test
+    public void testNonMatchingFileRegexpByXpath() throws Exception {
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressionXpathFilterNonMatchingFile.java"),
+            ALL_MESSAGES,
+            removeSuppressed(ALL_MESSAGES, suppressed));
+    }
 }
