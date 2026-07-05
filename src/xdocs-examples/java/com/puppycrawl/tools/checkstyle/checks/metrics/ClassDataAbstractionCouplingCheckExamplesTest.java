@@ -63,7 +63,15 @@ public class ClassDataAbstractionCouplingCheckExamplesTest
 
     @Test
     public void testExample3() throws Exception {
-        final String[] expected = {};
+        final String expectedClasses = List.of(
+            "BigDecimal",
+            "BigInteger",
+            "MathContext"
+        ).toString();
+
+        final String[] expected = {
+            "23:1: " + getCheckMessage(MSG_KEY, 3, 2, expectedClasses),
+        };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
