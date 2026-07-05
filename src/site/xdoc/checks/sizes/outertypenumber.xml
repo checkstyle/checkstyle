@@ -52,16 +52,15 @@
 </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation 2 lines above 'Outer types defined is 3 (max allowed is 1)'
+// violation 2 lines above 'Outer types defined is 2 (max allowed is 1)'
 
 public class Example1 {
+    enum outer {
+    }
 }
 
-class Example {
-  void exampleMethod() {}
-}
-
-enum outer {
+class ExampleOne {
+    void exampleMethod() {}
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -80,13 +79,12 @@ enum outer {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
+    enum outer {
+    }
 }
 
-class Examples {
-  void exampleMethod() {}
-}
-
-enum outer1 {
+class ExampleTwo {
+    void exampleMethod() {}
 }
 </code></pre></div>
 
