@@ -33,14 +33,14 @@ public class SuppressionFilterExamplesTest extends AbstractExamplesModuleTestSup
     public void testExample1() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "20: First sentence should end with a period.",
-            "23:11: '10' is a magic number.",
-            "27:15: '100' is a magic number.",
-            "29:15: Must have at least one statement.",
+            "20:7: Name 'MyVariable' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "22:11: '10' is a magic number.",
+            "26:15: '100' is a magic number.",
+            "28:15: Must have at least one statement.",
         };
 
         final String[] expectedWithFilter = {
-            "29:15: Must have at least one statement.",
+            "28:15: Must have at least one statement.",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example1.java"),
