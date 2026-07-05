@@ -46,7 +46,6 @@ import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
@@ -72,7 +71,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                     "JavadocLeadingAsteriskAlign",
                     "JavadocMissingWhitespaceAfterAsterisk",
                     "JavadocParagraph",
-                    "JavadocStyle",
                     "JavadocTagContinuationIndentation",
                     "JavadocType",
                     "MissingDeprecated",
@@ -86,7 +84,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     // Older regex-based checks that are under INCOMPATIBLE_JAVADOC_CHECK_NAMES
     // but not subclasses of AbstractJavadocCheck.
     private static final Set<Class<?>> REGEXP_JAVADOC_CHECKS = Set.of(
-                    JavadocStyleCheck.class,
                     JavadocMethodCheck.class,
                     JavadocTypeCheck.class,
                     WriteTagCheck.class

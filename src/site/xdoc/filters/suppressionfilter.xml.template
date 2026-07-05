@@ -43,11 +43,11 @@
         <p id="suppressionexample1-raw">
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
-          reject <code>JavadocStyleCheck</code> violations for
-          line 4 of
+          reject <code>MemberNameCheck</code> violations for
+          line 20 of
           file <code>Example1.java</code>,
           and <code>MagicNumberCheck</code> violations for lines
-          7 and 11 of file <code>Example1.java</code>,
+          22 and 26 of file <code>Example1.java</code>,
           and <code>'Missing a Javadoc comment'</code> violations
           for all lines and files:
         </p>
