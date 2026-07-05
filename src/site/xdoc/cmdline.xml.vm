@@ -1042,7 +1042,7 @@ java -jar checkstyle-${projectVersion}-all.jar -c config.xml -G -o suppressions.
     &lt;module name="MethodName"/&gt;
       &lt;property name="id" value="MethodNaming" /&gt;
     &lt;/module&gt;
-    &lt;module name="JavadocStyle"/&gt;
+    &lt;module name="MagicNumber"/&gt;
     &lt;module name="MethodParamPad"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -1072,8 +1072,7 @@ class Test {
    * Some summary on method
    */
   public void foo1() {
-    int i = 0;
-    // violation 4 lines above 'First sentence should end with a period'
+    int i = 7; // violation ''7' is a magic number'
   }
 }
   </code></pre>
@@ -1097,7 +1096,7 @@ class Test {
       id="MethodNaming"/&gt;
   &lt;suppress
       files="Test.java"
-      checks="JavadocStyleCheck"/&gt;
+      checks="MagicNumberCheck"/&gt;
 &lt;/suppressions&gt;
   </code></pre>
 </div>
