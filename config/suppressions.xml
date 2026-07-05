@@ -51,7 +51,7 @@
               |AbbreviationAsWordInNameCheckTest\.java)"/>
 
   <!-- Fixing these cases will decrease code readability -->
-  <suppress checks="MultipleStringLiterals" files="JavadocStyleCheck\.java|XMLLogger\.java"/>
+  <suppress checks="MultipleStringLiterals" files="XMLLogger\.java"/>
 
   <!-- For test cases need larger file length -->
   <suppress checks="FileLength" files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]MainTest.java" />
@@ -129,8 +129,6 @@
   <suppress id="noConsecutiveLines" files="[\\/]emptylineseparator.xml"/>
   <suppress id="noConsecutiveLines" files="[\\/]javadocparagraph.xml"/>
 
-  <!-- until #19145 -->
-  <suppress id="noUsageOfGetFileContentsMethod" files="JavadocStyleCheck.java"/>
   <!-- until #19146 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocTypeCheck.java"/>
   <!-- until #19147 -->
@@ -188,7 +186,4 @@
             id="MatchXpathForbidTryCatchFail"
             files=".*[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/](?!utils|xpath|checks[\\/]coding|checks[\\/]design|checks[\\/]modifier|checks[\\/]naming|checks[\\/]annotation|checks[\\/]indentation|checks[\\/]metrics|checks[\\/]whitespace|checks[\\/]javadoc|checks[\\/]NewlineAtEndOfFileCheckTest|checks[\\/]SuppressWarningsHolderTest|checks[\\/]UncommentedMainCheckTest|CheckerTest|ConfigurationLoaderTest|DetailNodeTreeStringPrinterTest|JavadocPropertiesGeneratorTest|MainTest|PackageNamesLoaderTest|SarifLoggerTest|SuppressionsStringPrinterTest|ThreadModeSettingsTest|TreeWalkerTest).*"/>
 
-  <!-- JavadocStyle incorrectly parses HTML tags inside {@literal}, {@code} blocks as real HTML,
-          until #19145 -->
-  <suppress checks="JavadocStyle" files="JavadocParagraphCheck\.java"/>
 </suppressions>
