@@ -36,7 +36,21 @@ public class ClassDataAbstractionCouplingCheckExamplesTest
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {};
+        final String expectedClasses = List.of(
+            "AtomicInteger",
+            "BigDecimal",
+            "BigInteger",
+            "BufferedReader",
+            "ByteArrayInputStream",
+            "CharArrayWriter",
+            "Example2",
+            "MathContext",
+            "PipedReader"
+        ).toString();
+
+        final String[] expected = {
+            "26:1: " + getCheckMessage(MSG_KEY, 9, 7, expectedClasses),
+        };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
@@ -63,7 +77,22 @@ public class ClassDataAbstractionCouplingCheckExamplesTest
 
     @Test
     public void testExample3() throws Exception {
-        final String[] expected = {};
+        final String expectedClasses = List.of(
+            "AtomicInteger",
+            "BigDecimal",
+            "BigInteger",
+            "BufferedReader",
+            "ByteArrayInputStream",
+            "CharArrayWriter",
+            "Example1",
+            "Example2",
+            "MathContext",
+            "PipedReader"
+        ).toString();
+
+        final String[] expected = {
+            "28:1: " + getCheckMessage(MSG_KEY, 10, 2, expectedClasses),
+        };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
@@ -79,7 +108,23 @@ public class ClassDataAbstractionCouplingCheckExamplesTest
 
     @Test
     public void testExample5() throws Exception {
-        final String[] expected = {};
+        final String expectedClasses = List.of(
+            "AtomicInteger",
+            "BigDecimal",
+            "BigInteger",
+            "BufferedReader",
+            "ByteArrayInputStream",
+            "CharArrayWriter",
+            "Example2",
+            "MathContext",
+            "Object",
+            "PipedReader",
+            "byte"
+        ).toString();
+
+        final String[] expected = {
+            "32:1: " + getCheckMessage(MSG_KEY, 11, 7, expectedClasses),
+        };
 
         verifyWithInlineConfigParser(getPath("ignore/deeper/Example5.java"), expected);
     }
@@ -106,7 +151,20 @@ public class ClassDataAbstractionCouplingCheckExamplesTest
 
     @Test
     public void testExample7() throws Exception {
-        final String[] expected = {};
+        final String expectedClasses = List.of(
+            "AtomicInteger",
+            "BigDecimal",
+            "BigInteger",
+            "ByteArrayInputStream",
+            "CharArrayWriter",
+            "Example1",
+            "Example2",
+            "MathContext"
+        ).toString();
+
+        final String[] expected = {
+            "31:1: " + getCheckMessage(MSG_KEY, 8, 7, expectedClasses),
+        };
 
         verifyWithInlineConfigParser(getPath("ignore/Example7.java"), expected);
     }
