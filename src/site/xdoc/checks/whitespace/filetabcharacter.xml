@@ -8,6 +8,20 @@
   <body>
     <section name="FileTabCharacter">
       <p>Since Checkstyle 5.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#FileTabCharacter_Description">Description</a></li>
+<li><a href="#FileTabCharacter_Notes">Notes</a></li>
+<li><a href="#FileTabCharacter_Properties">Properties</a></li>
+<li><a href="#FileTabCharacter_Examples">Examples</a></li>
+<li><a href="#FileTabCharacter_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#FileTabCharacter_Violation_Messages">Violation Messages</a></li>
+<li><a href="#FileTabCharacter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#FileTabCharacter_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="FileTabCharacter_Description">
         <div>
           Checks that there are no tab characters (<code>'\t'</code>) in the source code.

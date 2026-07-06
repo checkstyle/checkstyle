@@ -8,6 +8,19 @@
   <body>
     <section name="SeverityMatchFilter">
       <p>Since Checkstyle 3.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#SeverityMatchFilter_Description">Description</a></li>
+<li><a href="#SeverityMatchFilter_Notes">Notes</a></li>
+<li><a href="#SeverityMatchFilter_Properties">Properties</a></li>
+<li><a href="#SeverityMatchFilter_Examples">Examples</a></li>
+<li><a href="#SeverityMatchFilter_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#SeverityMatchFilter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#SeverityMatchFilter_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="SeverityMatchFilter_Description">
         <div>
           Filter <code>SeverityMatchFilter</code> decides audit events according to the

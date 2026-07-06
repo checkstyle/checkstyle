@@ -8,6 +8,19 @@
   <body>
     <section name="FallThrough">
       <p>Since Checkstyle 3.4</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#FallThrough_Description">Description</a></li>
+<li><a href="#FallThrough_Properties">Properties</a></li>
+<li><a href="#FallThrough_Examples">Examples</a></li>
+<li><a href="#FallThrough_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#FallThrough_Violation_Messages">Violation Messages</a></li>
+<li><a href="#FallThrough_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#FallThrough_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="FallThrough_Description">
         <div>
           Checks for fall-through in <code>switch</code> statements.

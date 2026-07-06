@@ -8,6 +8,19 @@
   <body>
     <section name="RegexpSingleline">
       <p>Since Checkstyle 5.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#RegexpSingleline_Description">Description</a></li>
+<li><a href="#RegexpSingleline_Properties">Properties</a></li>
+<li><a href="#RegexpSingleline_Examples">Examples</a></li>
+<li><a href="#RegexpSingleline_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#RegexpSingleline_Violation_Messages">Violation Messages</a></li>
+<li><a href="#RegexpSingleline_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#RegexpSingleline_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="RegexpSingleline_Description">
         <div>
           Checks that a specified pattern matches a single-line in any file type.

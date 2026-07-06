@@ -11,6 +11,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/JavaNCSSCheck.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="JavaNCSS"/>
+        <param name="sections"
+               value="Description,Properties,Examples,ExampleOfUsage,ViolationMessages,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="JavaNCSS_Description">
         <macro name="description">
             <param name="modulePath"

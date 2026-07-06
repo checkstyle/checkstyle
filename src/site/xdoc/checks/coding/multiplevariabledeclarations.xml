@@ -8,6 +8,18 @@
   <body>
     <section name="MultipleVariableDeclarations">
       <p>Since Checkstyle 3.4</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#MultipleVariableDeclarations_Description">Description</a></li>
+<li><a href="#MultipleVariableDeclarations_Examples">Examples</a></li>
+<li><a href="#MultipleVariableDeclarations_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#MultipleVariableDeclarations_Violation_Messages">Violation Messages</a></li>
+<li><a href="#MultipleVariableDeclarations_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#MultipleVariableDeclarations_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="MultipleVariableDeclarations_Description">
         <div>
           Checks that each variable declaration is in its own statement

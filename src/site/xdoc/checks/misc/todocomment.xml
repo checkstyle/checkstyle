@@ -8,6 +8,20 @@
   <body>
     <section name="TodoComment">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#TodoComment_Description">Description</a></li>
+<li><a href="#TodoComment_Notes">Notes</a></li>
+<li><a href="#TodoComment_Properties">Properties</a></li>
+<li><a href="#TodoComment_Examples">Examples</a></li>
+<li><a href="#TodoComment_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#TodoComment_Violation_Messages">Violation Messages</a></li>
+<li><a href="#TodoComment_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#TodoComment_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="TodoComment_Description">
         <div>
           Checks for <code>TODO:</code> comments. Actually it is a generic

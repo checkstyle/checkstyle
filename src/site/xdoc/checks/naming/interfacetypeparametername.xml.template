@@ -11,6 +11,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/InterfaceTypeParameterNameCheck.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="InterfaceTypeParameterName"/>
+        <param name="sections"
+               value="Description,Properties,Examples,ExampleOfUsage,ViolationMessages,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="InterfaceTypeParameterName_Description">
         <macro name="description">
             <param name="modulePath"

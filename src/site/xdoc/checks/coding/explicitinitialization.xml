@@ -8,6 +8,19 @@
   <body>
     <section name="ExplicitInitialization">
       <p>Since Checkstyle 3.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#ExplicitInitialization_Description">Description</a></li>
+<li><a href="#ExplicitInitialization_Properties">Properties</a></li>
+<li><a href="#ExplicitInitialization_Examples">Examples</a></li>
+<li><a href="#ExplicitInitialization_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#ExplicitInitialization_Violation_Messages">Violation Messages</a></li>
+<li><a href="#ExplicitInitialization_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#ExplicitInitialization_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="ExplicitInitialization_Description">
         <div>
           Checks if any class or object member is explicitly initialized

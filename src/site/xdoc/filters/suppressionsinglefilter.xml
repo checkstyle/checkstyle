@@ -8,6 +8,19 @@
   <body>
     <section name="SuppressionSingleFilter">
       <p>Since Checkstyle 8.23</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#SuppressionSingleFilter_Description">Description</a></li>
+<li><a href="#SuppressionSingleFilter_Notes">Notes</a></li>
+<li><a href="#SuppressionSingleFilter_Properties">Properties</a></li>
+<li><a href="#SuppressionSingleFilter_Examples">Examples</a></li>
+<li><a href="#SuppressionSingleFilter_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#SuppressionSingleFilter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#SuppressionSingleFilter_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="SuppressionSingleFilter_Description">
         <div>
           Filter <code>SuppressionSingleFilter</code> suppresses audit events for Checks violations in the

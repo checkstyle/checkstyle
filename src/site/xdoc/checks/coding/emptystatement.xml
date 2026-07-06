@@ -8,6 +8,18 @@
   <body>
     <section name="EmptyStatement">
       <p>Since Checkstyle 3.1</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#EmptyStatement_Description">Description</a></li>
+<li><a href="#EmptyStatement_Examples">Examples</a></li>
+<li><a href="#EmptyStatement_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#EmptyStatement_Violation_Messages">Violation Messages</a></li>
+<li><a href="#EmptyStatement_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#EmptyStatement_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="EmptyStatement_Description">
         <div>
           Detects empty statements (standalone <code>";"</code> semicolon).

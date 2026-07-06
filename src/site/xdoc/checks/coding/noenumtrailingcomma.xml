@@ -8,6 +8,18 @@
   <body>
     <section name="NoEnumTrailingComma">
       <p>Since Checkstyle 8.29</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#NoEnumTrailingComma_Description">Description</a></li>
+<li><a href="#NoEnumTrailingComma_Examples">Examples</a></li>
+<li><a href="#NoEnumTrailingComma_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#NoEnumTrailingComma_Violation_Messages">Violation Messages</a></li>
+<li><a href="#NoEnumTrailingComma_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#NoEnumTrailingComma_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="NoEnumTrailingComma_Description">
         <div>
           Checks that enum definition does not contain a trailing comma.

@@ -8,6 +8,19 @@
   <body>
     <section name="MethodLength">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#MethodLength_Description">Description</a></li>
+<li><a href="#MethodLength_Properties">Properties</a></li>
+<li><a href="#MethodLength_Examples">Examples</a></li>
+<li><a href="#MethodLength_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#MethodLength_Violation_Messages">Violation Messages</a></li>
+<li><a href="#MethodLength_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#MethodLength_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="MethodLength_Description">
         <div>
           Checks for long methods and constructors.

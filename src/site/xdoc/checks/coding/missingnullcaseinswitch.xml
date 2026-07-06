@@ -8,6 +8,18 @@
   <body>
     <section name="MissingNullCaseInSwitch">
       <p>Since Checkstyle 10.18.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#MissingNullCaseInSwitch_Description">Description</a></li>
+<li><a href="#MissingNullCaseInSwitch_Examples">Examples</a></li>
+<li><a href="#MissingNullCaseInSwitch_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#MissingNullCaseInSwitch_Violation_Messages">Violation Messages</a></li>
+<li><a href="#MissingNullCaseInSwitch_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#MissingNullCaseInSwitch_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="MissingNullCaseInSwitch_Description">
         <div>
           Checks that a given switch statement or expression that use a reference type in its selector

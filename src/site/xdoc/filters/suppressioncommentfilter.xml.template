@@ -11,6 +11,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="SuppressionCommentFilter"/>
+        <param name="sections"
+               value="Description,Notes,Properties,Examples,ExampleOfUsage,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="SuppressionCommentFilter_Description">
         <macro name="description">
             <param name="modulePath"

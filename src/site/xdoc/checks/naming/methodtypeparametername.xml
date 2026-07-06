@@ -8,6 +8,19 @@
   <body>
     <section name="MethodTypeParameterName">
       <p>Since Checkstyle 5.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#MethodTypeParameterName_Description">Description</a></li>
+<li><a href="#MethodTypeParameterName_Properties">Properties</a></li>
+<li><a href="#MethodTypeParameterName_Examples">Examples</a></li>
+<li><a href="#MethodTypeParameterName_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#MethodTypeParameterName_Violation_Messages">Violation Messages</a></li>
+<li><a href="#MethodTypeParameterName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#MethodTypeParameterName_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="MethodTypeParameterName_Description">
         <div>
           Checks that method type parameter names conform to a specified pattern.

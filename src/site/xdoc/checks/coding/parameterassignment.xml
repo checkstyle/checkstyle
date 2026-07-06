@@ -8,6 +8,18 @@
   <body>
     <section name="ParameterAssignment">
       <p>Since Checkstyle 3.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#ParameterAssignment_Description">Description</a></li>
+<li><a href="#ParameterAssignment_Examples">Examples</a></li>
+<li><a href="#ParameterAssignment_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#ParameterAssignment_Violation_Messages">Violation Messages</a></li>
+<li><a href="#ParameterAssignment_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#ParameterAssignment_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="ParameterAssignment_Description">
         <div>
           Disallows assignment of parameters.

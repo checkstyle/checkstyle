@@ -8,6 +8,19 @@
   <body>
     <section name="IllegalCatch">
       <p>Since Checkstyle 3.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#IllegalCatch_Description">Description</a></li>
+<li><a href="#IllegalCatch_Properties">Properties</a></li>
+<li><a href="#IllegalCatch_Examples">Examples</a></li>
+<li><a href="#IllegalCatch_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#IllegalCatch_Violation_Messages">Violation Messages</a></li>
+<li><a href="#IllegalCatch_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#IllegalCatch_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="IllegalCatch_Description">
         <div>
           Checks that certain exception types do not appear in a <code>catch</code> statement.

@@ -8,6 +8,20 @@
   <body>
     <section name="JavadocBlockTagLocation">
       <p>Since Checkstyle 8.24</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#JavadocBlockTagLocation_Description">Description</a></li>
+<li><a href="#JavadocBlockTagLocation_Notes">Notes</a></li>
+<li><a href="#JavadocBlockTagLocation_Properties">Properties</a></li>
+<li><a href="#JavadocBlockTagLocation_Examples">Examples</a></li>
+<li><a href="#JavadocBlockTagLocation_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#JavadocBlockTagLocation_Violation_Messages">Violation Messages</a></li>
+<li><a href="#JavadocBlockTagLocation_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#JavadocBlockTagLocation_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="JavadocBlockTagLocation_Description">
         <div>
           Checks that a

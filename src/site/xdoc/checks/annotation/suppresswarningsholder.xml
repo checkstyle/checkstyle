@@ -9,6 +9,18 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="SuppressWarningsHolder">
       <p>Since Checkstyle 5.7</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#SuppressWarningsHolder_Description">Description</a></li>
+<li><a href="#SuppressWarningsHolder_Properties">Properties</a></li>
+<li><a href="#SuppressWarningsHolder_Examples">Examples</a></li>
+<li><a href="#SuppressWarningsHolder_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#SuppressWarningsHolder_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#SuppressWarningsHolder_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="SuppressWarningsHolder_Description">
         <div>
           Maintains a set of check suppressions from <code>@SuppressWarnings</code> annotations.

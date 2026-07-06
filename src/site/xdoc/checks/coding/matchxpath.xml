@@ -8,6 +8,19 @@
   <body>
     <section name="MatchXpath">
       <p>Since Checkstyle 8.39</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#MatchXpath_Description">Description</a></li>
+<li><a href="#MatchXpath_Properties">Properties</a></li>
+<li><a href="#MatchXpath_Examples">Examples</a></li>
+<li><a href="#MatchXpath_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#MatchXpath_Violation_Messages">Violation Messages</a></li>
+<li><a href="#MatchXpath_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#MatchXpath_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="MatchXpath_Description">
         <div>
           Evaluates Xpath query and report violation on all matching AST nodes. This check allows

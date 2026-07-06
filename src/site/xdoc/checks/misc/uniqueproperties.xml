@@ -8,6 +8,19 @@
   <body>
     <section name="UniqueProperties">
       <p>Since Checkstyle 5.7</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#UniqueProperties_Description">Description</a></li>
+<li><a href="#UniqueProperties_Properties">Properties</a></li>
+<li><a href="#UniqueProperties_Examples">Examples</a></li>
+<li><a href="#UniqueProperties_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#UniqueProperties_Violation_Messages">Violation Messages</a></li>
+<li><a href="#UniqueProperties_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#UniqueProperties_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="UniqueProperties_Description">
         <div>
           Detects duplicated keys in properties files.

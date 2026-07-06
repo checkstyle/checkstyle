@@ -11,6 +11,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/EmptyLineSeparatorCheck.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="EmptyLineSeparator"/>
+        <param name="sections"
+               value="Description,Properties,Examples,ExampleOfUsage,ViolationMessages,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="EmptyLineSeparator_Description">
         <macro name="description">
             <param name="modulePath"

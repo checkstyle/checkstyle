@@ -8,6 +8,18 @@
   <body>
     <section name="NoWhitespaceBeforeCaseDefaultColon">
       <p>Since Checkstyle 8.45</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#NoWhitespaceBeforeCaseDefaultColon_Description">Description</a></li>
+<li><a href="#NoWhitespaceBeforeCaseDefaultColon_Examples">Examples</a></li>
+<li><a href="#NoWhitespaceBeforeCaseDefaultColon_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#NoWhitespaceBeforeCaseDefaultColon_Violation_Messages">Violation Messages</a></li>
+<li><a href="#NoWhitespaceBeforeCaseDefaultColon_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#NoWhitespaceBeforeCaseDefaultColon_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="NoWhitespaceBeforeCaseDefaultColon_Description">
         <div>
           Checks that there is no whitespace before the colon in a switch block.

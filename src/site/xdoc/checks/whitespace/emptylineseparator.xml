@@ -8,6 +8,19 @@
   <body>
     <section name="EmptyLineSeparator">
       <p>Since Checkstyle 5.8</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#EmptyLineSeparator_Description">Description</a></li>
+<li><a href="#EmptyLineSeparator_Properties">Properties</a></li>
+<li><a href="#EmptyLineSeparator_Examples">Examples</a></li>
+<li><a href="#EmptyLineSeparator_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#EmptyLineSeparator_Violation_Messages">Violation Messages</a></li>
+<li><a href="#EmptyLineSeparator_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#EmptyLineSeparator_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="EmptyLineSeparator_Description">
         <div>
           Checks for empty line separators after,

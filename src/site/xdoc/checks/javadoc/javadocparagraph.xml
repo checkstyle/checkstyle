@@ -8,6 +8,19 @@
   <body>
     <section name="JavadocParagraph">
       <p>Since Checkstyle 6.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#JavadocParagraph_Description">Description</a></li>
+<li><a href="#JavadocParagraph_Properties">Properties</a></li>
+<li><a href="#JavadocParagraph_Examples">Examples</a></li>
+<li><a href="#JavadocParagraph_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#JavadocParagraph_Violation_Messages">Violation Messages</a></li>
+<li><a href="#JavadocParagraph_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#JavadocParagraph_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="JavadocParagraph_Description">
         <div>
           Checks the Javadoc paragraph.

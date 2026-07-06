@@ -9138,6 +9138,13 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/TocMacro.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference displayName</message>
+    <lineContent>final String anchorSuffix = displayName.replace(&apos; &apos;, &apos;_&apos;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ViolationMessagesMacro.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference clss.getPackage()</message>

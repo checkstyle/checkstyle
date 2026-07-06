@@ -8,6 +8,19 @@
   <body>
     <section name="JavadocVariable">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#JavadocVariable_Description">Description</a></li>
+<li><a href="#JavadocVariable_Properties">Properties</a></li>
+<li><a href="#JavadocVariable_Examples">Examples</a></li>
+<li><a href="#JavadocVariable_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#JavadocVariable_Violation_Messages">Violation Messages</a></li>
+<li><a href="#JavadocVariable_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#JavadocVariable_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="JavadocVariable_Description">
         <div>
           Checks that a variable has a Javadoc comment. Ignores <code>serialVersionUID</code> fields.

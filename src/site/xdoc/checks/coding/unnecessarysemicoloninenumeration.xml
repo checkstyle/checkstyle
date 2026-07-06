@@ -8,6 +8,18 @@
   <body>
     <section name="UnnecessarySemicolonInEnumeration">
       <p>Since Checkstyle 8.22</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#UnnecessarySemicolonInEnumeration_Description">Description</a></li>
+<li><a href="#UnnecessarySemicolonInEnumeration_Examples">Examples</a></li>
+<li><a href="#UnnecessarySemicolonInEnumeration_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#UnnecessarySemicolonInEnumeration_Violation_Messages">Violation Messages</a></li>
+<li><a href="#UnnecessarySemicolonInEnumeration_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#UnnecessarySemicolonInEnumeration_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="UnnecessarySemicolonInEnumeration_Description">
         <div>
           Checks if unnecessary semicolon is in enum definitions.

@@ -11,6 +11,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/VisibilityModifierCheck.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="VisibilityModifier"/>
+        <param name="sections"
+               value="Description,Properties,Examples,ExampleOfUsage,ViolationMessages,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="VisibilityModifier_Description">
         <macro name="description">
             <param name="modulePath"

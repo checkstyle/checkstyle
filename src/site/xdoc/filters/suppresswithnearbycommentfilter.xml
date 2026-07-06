@@ -8,6 +8,19 @@
   <body>
     <section name="SuppressWithNearbyCommentFilter">
       <p>Since Checkstyle 5.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#SuppressWithNearbyCommentFilter_Description">Description</a></li>
+<li><a href="#SuppressWithNearbyCommentFilter_Notes">Notes</a></li>
+<li><a href="#SuppressWithNearbyCommentFilter_Properties">Properties</a></li>
+<li><a href="#SuppressWithNearbyCommentFilter_Examples">Examples</a></li>
+<li><a href="#SuppressWithNearbyCommentFilter_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#SuppressWithNearbyCommentFilter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#SuppressWithNearbyCommentFilter_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="SuppressWithNearbyCommentFilter_Description">
         <div>
           Filter <code>SuppressWithNearbyCommentFilter</code> uses nearby comments to suppress audit events.

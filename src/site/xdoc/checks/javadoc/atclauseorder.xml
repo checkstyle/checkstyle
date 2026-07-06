@@ -8,6 +8,19 @@
   <body>
     <section name="AtclauseOrder">
       <p>Since Checkstyle 6.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#AtclauseOrder_Description">Description</a></li>
+<li><a href="#AtclauseOrder_Properties">Properties</a></li>
+<li><a href="#AtclauseOrder_Examples">Examples</a></li>
+<li><a href="#AtclauseOrder_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#AtclauseOrder_Violation_Messages">Violation Messages</a></li>
+<li><a href="#AtclauseOrder_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#AtclauseOrder_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="AtclauseOrder_Description">
         <div>
           Checks the order of

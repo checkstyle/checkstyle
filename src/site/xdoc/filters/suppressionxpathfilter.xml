@@ -8,6 +8,19 @@
   <body>
     <section name="SuppressionXpathFilter">
       <p>Since Checkstyle 8.6</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#SuppressionXpathFilter_Description">Description</a></li>
+<li><a href="#SuppressionXpathFilter_Notes">Notes</a></li>
+<li><a href="#SuppressionXpathFilter_Properties">Properties</a></li>
+<li><a href="#SuppressionXpathFilter_Examples">Examples</a></li>
+<li><a href="#SuppressionXpathFilter_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#SuppressionXpathFilter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#SuppressionXpathFilter_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="SuppressionXpathFilter_Description">
         <div>
           Filter <code>SuppressionXpathFilter</code> works as

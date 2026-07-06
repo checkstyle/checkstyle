@@ -8,6 +8,19 @@
   <body>
     <section name="TypeName">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#TypeName_Description">Description</a></li>
+<li><a href="#TypeName_Properties">Properties</a></li>
+<li><a href="#TypeName_Examples">Examples</a></li>
+<li><a href="#TypeName_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#TypeName_Violation_Messages">Violation Messages</a></li>
+<li><a href="#TypeName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#TypeName_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="TypeName_Description">
         <div>
           Checks that type names conform to a specified pattern.
