@@ -234,7 +234,7 @@
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <checkerframework.version>4.2.1</checkerframework.version>
     <error-prone.version>2.49.0</error-prone.version>
-    <error-prone-support.version>0.29.0</error-prone-support.version>
+    <error-prone-support.version>0.30.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
     <error-prone.configuration-args>
       -Xep:AmbiguousJsonCreator:ERROR
