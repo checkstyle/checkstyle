@@ -8,6 +8,19 @@
   <body>
     <section name="LambdaBodyLength">
       <p>Since Checkstyle 8.37</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#LambdaBodyLength_Description">Description</a></li>
+<li><a href="#LambdaBodyLength_Properties">Properties</a></li>
+<li><a href="#LambdaBodyLength_Examples">Examples</a></li>
+<li><a href="#LambdaBodyLength_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#LambdaBodyLength_Violation_Messages">Violation Messages</a></li>
+<li><a href="#LambdaBodyLength_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#LambdaBodyLength_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="LambdaBodyLength_Description">
         <div>
           Checks lambda body length.

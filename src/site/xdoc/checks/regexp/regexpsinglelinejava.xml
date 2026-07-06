@@ -8,6 +8,19 @@
   <body>
     <section name="RegexpSinglelineJava">
       <p>Since Checkstyle 5.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#RegexpSinglelineJava_Description">Description</a></li>
+<li><a href="#RegexpSinglelineJava_Properties">Properties</a></li>
+<li><a href="#RegexpSinglelineJava_Examples">Examples</a></li>
+<li><a href="#RegexpSinglelineJava_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#RegexpSinglelineJava_Violation_Messages">Violation Messages</a></li>
+<li><a href="#RegexpSinglelineJava_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#RegexpSinglelineJava_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="RegexpSinglelineJava_Description">
         <div>
           Checks that a specified pattern matches a single-line in Java files.

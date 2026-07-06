@@ -9,6 +9,18 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="TextBlockGoogleStyleFormatting">
       <p>Since Checkstyle 12.3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#TextBlockGoogleStyleFormatting_Description">Description</a></li>
+<li><a href="#TextBlockGoogleStyleFormatting_Examples">Examples</a></li>
+<li><a href="#TextBlockGoogleStyleFormatting_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#TextBlockGoogleStyleFormatting_Violation_Messages">Violation Messages</a></li>
+<li><a href="#TextBlockGoogleStyleFormatting_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#TextBlockGoogleStyleFormatting_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="TextBlockGoogleStyleFormatting_Description">
         <div>
           Checks correct format of

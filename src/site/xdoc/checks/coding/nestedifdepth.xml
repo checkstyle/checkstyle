@@ -8,6 +8,19 @@
   <body>
     <section name="NestedIfDepth">
       <p>Since Checkstyle 3.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#NestedIfDepth_Description">Description</a></li>
+<li><a href="#NestedIfDepth_Properties">Properties</a></li>
+<li><a href="#NestedIfDepth_Examples">Examples</a></li>
+<li><a href="#NestedIfDepth_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#NestedIfDepth_Violation_Messages">Violation Messages</a></li>
+<li><a href="#NestedIfDepth_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#NestedIfDepth_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="NestedIfDepth_Description">
         <div>
           Restricts nested if-else blocks to a specified depth.

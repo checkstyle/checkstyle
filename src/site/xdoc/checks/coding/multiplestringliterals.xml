@@ -8,6 +8,19 @@
   <body>
     <section name="MultipleStringLiterals">
       <p>Since Checkstyle 3.5</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#MultipleStringLiterals_Description">Description</a></li>
+<li><a href="#MultipleStringLiterals_Properties">Properties</a></li>
+<li><a href="#MultipleStringLiterals_Examples">Examples</a></li>
+<li><a href="#MultipleStringLiterals_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#MultipleStringLiterals_Violation_Messages">Violation Messages</a></li>
+<li><a href="#MultipleStringLiterals_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#MultipleStringLiterals_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="MultipleStringLiterals_Description">
         <div>
           Checks for multiple occurrences of the same string literal within a single file.

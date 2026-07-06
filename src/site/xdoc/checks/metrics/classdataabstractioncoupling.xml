@@ -8,6 +8,19 @@
   <body>
     <section name="ClassDataAbstractionCoupling">
       <p>Since Checkstyle 3.4</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#ClassDataAbstractionCoupling_Description">Description</a></li>
+<li><a href="#ClassDataAbstractionCoupling_Properties">Properties</a></li>
+<li><a href="#ClassDataAbstractionCoupling_Examples">Examples</a></li>
+<li><a href="#ClassDataAbstractionCoupling_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#ClassDataAbstractionCoupling_Violation_Messages">Violation Messages</a></li>
+<li><a href="#ClassDataAbstractionCoupling_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#ClassDataAbstractionCoupling_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="ClassDataAbstractionCoupling_Description">
         <div>
           Measures the number of distinct classes that are instantiated

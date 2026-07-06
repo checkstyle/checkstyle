@@ -8,6 +8,19 @@
   <body>
     <section name="ThrowsCount">
       <p>Since Checkstyle 3.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#ThrowsCount_Description">Description</a></li>
+<li><a href="#ThrowsCount_Properties">Properties</a></li>
+<li><a href="#ThrowsCount_Examples">Examples</a></li>
+<li><a href="#ThrowsCount_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#ThrowsCount_Violation_Messages">Violation Messages</a></li>
+<li><a href="#ThrowsCount_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#ThrowsCount_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="ThrowsCount_Description">
         <div>
           Restricts throws statements to a specified count.

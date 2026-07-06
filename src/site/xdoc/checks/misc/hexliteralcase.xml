@@ -8,6 +8,18 @@
   <body>
     <section name="HexLiteralCase">
       <p>Since Checkstyle 12.1.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#HexLiteralCase_Description">Description</a></li>
+<li><a href="#HexLiteralCase_Examples">Examples</a></li>
+<li><a href="#HexLiteralCase_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#HexLiteralCase_Violation_Messages">Violation Messages</a></li>
+<li><a href="#HexLiteralCase_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#HexLiteralCase_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="HexLiteralCase_Description">
         <div> Checks that hexadecimal literals are defined using uppercase letters <code>(A-F)</code>
           rather than lowercase <code>(a-f)</code>.

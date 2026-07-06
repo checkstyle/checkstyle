@@ -8,6 +8,19 @@
   <body>
     <section name="IllegalIdentifierName">
       <p>Since Checkstyle 8.36</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#IllegalIdentifierName_Description">Description</a></li>
+<li><a href="#IllegalIdentifierName_Properties">Properties</a></li>
+<li><a href="#IllegalIdentifierName_Examples">Examples</a></li>
+<li><a href="#IllegalIdentifierName_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#IllegalIdentifierName_Violation_Messages">Violation Messages</a></li>
+<li><a href="#IllegalIdentifierName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#IllegalIdentifierName_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="IllegalIdentifierName_Description">
         <div>
           Checks identifiers against a regular expression pattern to detect illegal names. Since this

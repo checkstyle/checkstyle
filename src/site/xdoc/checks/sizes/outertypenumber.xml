@@ -8,6 +8,19 @@
   <body>
     <section name="OuterTypeNumber">
       <p>Since Checkstyle 5.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#OuterTypeNumber_Description">Description</a></li>
+<li><a href="#OuterTypeNumber_Properties">Properties</a></li>
+<li><a href="#OuterTypeNumber_Examples">Examples</a></li>
+<li><a href="#OuterTypeNumber_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#OuterTypeNumber_Violation_Messages">Violation Messages</a></li>
+<li><a href="#OuterTypeNumber_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#OuterTypeNumber_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="OuterTypeNumber_Description">
         <div>
           Checks for the number of types declared at the <i>outer</i> (or <i>root</i>) level in a file.

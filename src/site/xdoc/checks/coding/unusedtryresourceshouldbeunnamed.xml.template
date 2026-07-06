@@ -11,6 +11,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedTryResourceShouldBeUnnamedCheck.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="UnusedTryResourceShouldBeUnnamed"/>
+        <param name="sections"
+               value="Description,Examples,ExampleOfUsage,ViolationMessages,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="UnusedTryResourceShouldBeUnnamed_Description">
         <macro name="description">
             <param name="modulePath"

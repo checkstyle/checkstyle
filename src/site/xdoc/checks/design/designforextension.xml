@@ -8,6 +8,19 @@
   <body>
     <section name="DesignForExtension">
       <p>Since Checkstyle 3.1</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#DesignForExtension_Description">Description</a></li>
+<li><a href="#DesignForExtension_Properties">Properties</a></li>
+<li><a href="#DesignForExtension_Examples">Examples</a></li>
+<li><a href="#DesignForExtension_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#DesignForExtension_Violation_Messages">Violation Messages</a></li>
+<li><a href="#DesignForExtension_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#DesignForExtension_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="DesignForExtension_Description">
         <div>
           Checks that classes are designed for extension (subclass creation).

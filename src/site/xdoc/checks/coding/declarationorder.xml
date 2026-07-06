@@ -8,6 +8,19 @@
   <body>
     <section name="DeclarationOrder">
       <p>Since Checkstyle 3.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#DeclarationOrder_Description">Description</a></li>
+<li><a href="#DeclarationOrder_Properties">Properties</a></li>
+<li><a href="#DeclarationOrder_Examples">Examples</a></li>
+<li><a href="#DeclarationOrder_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#DeclarationOrder_Violation_Messages">Violation Messages</a></li>
+<li><a href="#DeclarationOrder_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#DeclarationOrder_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="DeclarationOrder_Description">
         <div>
           Checks that the parts of a class, record, or interface declaration appear in the order

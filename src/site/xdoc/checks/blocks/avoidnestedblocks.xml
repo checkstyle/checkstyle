@@ -8,6 +8,19 @@
   <body>
     <section name="AvoidNestedBlocks">
       <p>Since Checkstyle 3.1</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#AvoidNestedBlocks_Description">Description</a></li>
+<li><a href="#AvoidNestedBlocks_Properties">Properties</a></li>
+<li><a href="#AvoidNestedBlocks_Examples">Examples</a></li>
+<li><a href="#AvoidNestedBlocks_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#AvoidNestedBlocks_Violation_Messages">Violation Messages</a></li>
+<li><a href="#AvoidNestedBlocks_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#AvoidNestedBlocks_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="AvoidNestedBlocks_Description">
         <div>
           Finds nested blocks (blocks that are used freely in the code).

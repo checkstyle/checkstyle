@@ -12,6 +12,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/SuppressWarningsCheck.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="SuppressWarnings"/>
+        <param name="sections"
+               value="Description,Properties,Examples,ExampleOfUsage,ViolationMessages,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="SuppressWarnings_Description">
         <macro name="description">
             <param name="modulePath"

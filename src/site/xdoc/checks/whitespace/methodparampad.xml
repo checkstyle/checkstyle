@@ -8,6 +8,19 @@
   <body>
     <section name="MethodParamPad">
       <p>Since Checkstyle 3.4</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#MethodParamPad_Description">Description</a></li>
+<li><a href="#MethodParamPad_Properties">Properties</a></li>
+<li><a href="#MethodParamPad_Examples">Examples</a></li>
+<li><a href="#MethodParamPad_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#MethodParamPad_Violation_Messages">Violation Messages</a></li>
+<li><a href="#MethodParamPad_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#MethodParamPad_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="MethodParamPad_Description">
         <div>
           Checks the padding between the identifier of a method definition,

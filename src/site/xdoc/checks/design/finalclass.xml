@@ -8,6 +8,18 @@
   <body>
     <section name="FinalClass">
       <p>Since Checkstyle 3.1</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#FinalClass_Description">Description</a></li>
+<li><a href="#FinalClass_Examples">Examples</a></li>
+<li><a href="#FinalClass_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#FinalClass_Violation_Messages">Violation Messages</a></li>
+<li><a href="#FinalClass_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#FinalClass_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="FinalClass_Description">
         <div>
           Ensures that identifies classes that can be effectively declared as final are explicitly

@@ -8,6 +8,19 @@
   <body>
     <section name="OperatorWrap">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#OperatorWrap_Description">Description</a></li>
+<li><a href="#OperatorWrap_Properties">Properties</a></li>
+<li><a href="#OperatorWrap_Examples">Examples</a></li>
+<li><a href="#OperatorWrap_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#OperatorWrap_Violation_Messages">Violation Messages</a></li>
+<li><a href="#OperatorWrap_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#OperatorWrap_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="OperatorWrap_Description">
         <div>
           Checks the policy on how to wrap lines on

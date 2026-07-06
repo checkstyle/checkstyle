@@ -8,6 +8,19 @@
   <body>
     <section name="NestedForDepth">
       <p>Since Checkstyle 5.3</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#NestedForDepth_Description">Description</a></li>
+<li><a href="#NestedForDepth_Properties">Properties</a></li>
+<li><a href="#NestedForDepth_Examples">Examples</a></li>
+<li><a href="#NestedForDepth_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#NestedForDepth_Violation_Messages">Violation Messages</a></li>
+<li><a href="#NestedForDepth_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#NestedForDepth_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="NestedForDepth_Description">
         <div>
           Restricts nested <code>for</code> blocks to a specified depth.

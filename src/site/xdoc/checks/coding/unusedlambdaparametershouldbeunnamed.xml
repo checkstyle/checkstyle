@@ -8,6 +8,18 @@
   <body>
     <section name="UnusedLambdaParameterShouldBeUnnamed">
       <p>Since Checkstyle 10.18.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#UnusedLambdaParameterShouldBeUnnamed_Description">Description</a></li>
+<li><a href="#UnusedLambdaParameterShouldBeUnnamed_Examples">Examples</a></li>
+<li><a href="#UnusedLambdaParameterShouldBeUnnamed_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#UnusedLambdaParameterShouldBeUnnamed_Violation_Messages">Violation Messages</a></li>
+<li><a href="#UnusedLambdaParameterShouldBeUnnamed_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#UnusedLambdaParameterShouldBeUnnamed_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="UnusedLambdaParameterShouldBeUnnamed_Description">
         <div>
           Ensures that lambda parameters that are not used are declared as an unnamed variable.

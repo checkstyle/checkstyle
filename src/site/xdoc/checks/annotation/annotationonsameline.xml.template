@@ -12,6 +12,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationOnSameLineCheck.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="AnnotationOnSameLine"/>
+        <param name="sections"
+               value="Description,Properties,Examples,ExampleOfUsage,ViolationMessages,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="AnnotationOnSameLine_Description">
         <macro name="description">
             <param name="modulePath"

@@ -8,6 +8,18 @@
   <body>
     <section name="MissingSwitchDefault">
       <p>Since Checkstyle 3.1</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#MissingSwitchDefault_Description">Description</a></li>
+<li><a href="#MissingSwitchDefault_Examples">Examples</a></li>
+<li><a href="#MissingSwitchDefault_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#MissingSwitchDefault_Violation_Messages">Violation Messages</a></li>
+<li><a href="#MissingSwitchDefault_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#MissingSwitchDefault_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="MissingSwitchDefault_Description">
         <div>
           Checks that switch statement has a <code>default</code> clause.

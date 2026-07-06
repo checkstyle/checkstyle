@@ -8,6 +8,19 @@
   <body>
     <section name="MultiFileRegexpHeader">
       <p>Since Checkstyle 10.24.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#MultiFileRegexpHeader_Description">Description</a></li>
+<li><a href="#MultiFileRegexpHeader_Properties">Properties</a></li>
+<li><a href="#MultiFileRegexpHeader_Examples">Examples</a></li>
+<li><a href="#MultiFileRegexpHeader_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#MultiFileRegexpHeader_Violation_Messages">Violation Messages</a></li>
+<li><a href="#MultiFileRegexpHeader_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#MultiFileRegexpHeader_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="MultiFileRegexpHeader_Description">
         <div>
           Checks the header of a source file against multiple header files that contain a

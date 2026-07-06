@@ -11,6 +11,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="SuppressWithNearbyCommentFilter"/>
+        <param name="sections"
+               value="Description,Notes,Properties,Examples,ExampleOfUsage,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="SuppressWithNearbyCommentFilter_Description">
         <macro name="description">
             <param name="modulePath"

@@ -8,6 +8,20 @@
   <body>
     <section name="UnnecessarySemicolonAfterTypeMemberDeclaration">
       <p>Since Checkstyle 8.24</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#UnnecessarySemicolonAfterTypeMemberDeclaration_Description">Description</a></li>
+<li><a href="#UnnecessarySemicolonAfterTypeMemberDeclaration_Notes">Notes</a></li>
+<li><a href="#UnnecessarySemicolonAfterTypeMemberDeclaration_Properties">Properties</a></li>
+<li><a href="#UnnecessarySemicolonAfterTypeMemberDeclaration_Examples">Examples</a></li>
+<li><a href="#UnnecessarySemicolonAfterTypeMemberDeclaration_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#UnnecessarySemicolonAfterTypeMemberDeclaration_Violation_Messages">Violation Messages</a></li>
+<li><a href="#UnnecessarySemicolonAfterTypeMemberDeclaration_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#UnnecessarySemicolonAfterTypeMemberDeclaration_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description"
             id="UnnecessarySemicolonAfterTypeMemberDeclaration_Description">
         <div>

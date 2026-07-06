@@ -11,6 +11,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/ThrowsCountCheck.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="ThrowsCount"/>
+        <param name="sections"
+               value="Description,Properties,Examples,ExampleOfUsage,ViolationMessages,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="ThrowsCount_Description">
         <macro name="description">
             <param name="modulePath"

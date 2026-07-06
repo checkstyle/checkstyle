@@ -8,6 +8,18 @@
   <body>
     <section name="InnerAssignment">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#InnerAssignment_Description">Description</a></li>
+<li><a href="#InnerAssignment_Examples">Examples</a></li>
+<li><a href="#InnerAssignment_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#InnerAssignment_Violation_Messages">Violation Messages</a></li>
+<li><a href="#InnerAssignment_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#InnerAssignment_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="InnerAssignment_Description">
         <div>
           Checks for assignments in subexpressions, such as in

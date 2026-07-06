@@ -9,6 +9,18 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PackageAnnotation">
       <p>Since Checkstyle 5.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#PackageAnnotation_Description">Description</a></li>
+<li><a href="#PackageAnnotation_Examples">Examples</a></li>
+<li><a href="#PackageAnnotation_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#PackageAnnotation_Violation_Messages">Violation Messages</a></li>
+<li><a href="#PackageAnnotation_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#PackageAnnotation_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="PackageAnnotation_Description">
         <div>
           Checks that all package annotations are in the package-info.java file.

@@ -8,6 +8,20 @@
   <body>
     <section name="LineEnding">
       <p>Since Checkstyle 13.3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#LineEnding_Description">Description</a></li>
+<li><a href="#LineEnding_Notes">Notes</a></li>
+<li><a href="#LineEnding_Properties">Properties</a></li>
+<li><a href="#LineEnding_Examples">Examples</a></li>
+<li><a href="#LineEnding_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#LineEnding_Violation_Messages">Violation Messages</a></li>
+<li><a href="#LineEnding_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#LineEnding_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="LineEnding_Description">
         <div>
           Checks whether file uses a specific line-ending sequence

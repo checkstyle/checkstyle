@@ -8,6 +8,19 @@
   <body>
     <section name="RedundantModifier">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#RedundantModifier_Description">Description</a></li>
+<li><a href="#RedundantModifier_Properties">Properties</a></li>
+<li><a href="#RedundantModifier_Examples">Examples</a></li>
+<li><a href="#RedundantModifier_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#RedundantModifier_Violation_Messages">Violation Messages</a></li>
+<li><a href="#RedundantModifier_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#RedundantModifier_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="RedundantModifier_Description">
         <div>
           Checks for redundant modifiers.

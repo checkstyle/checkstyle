@@ -8,6 +8,20 @@
   <body>
     <section name="EmptyCatchBlock">
       <p>Since Checkstyle 6.4</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#EmptyCatchBlock_Description">Description</a></li>
+<li><a href="#EmptyCatchBlock_Notes">Notes</a></li>
+<li><a href="#EmptyCatchBlock_Properties">Properties</a></li>
+<li><a href="#EmptyCatchBlock_Examples">Examples</a></li>
+<li><a href="#EmptyCatchBlock_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#EmptyCatchBlock_Violation_Messages">Violation Messages</a></li>
+<li><a href="#EmptyCatchBlock_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#EmptyCatchBlock_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="EmptyCatchBlock_Description">
         <div>
           Checks for empty catch blocks.

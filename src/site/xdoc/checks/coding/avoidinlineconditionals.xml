@@ -8,6 +8,18 @@
   <body>
     <section name="AvoidInlineConditionals">
       <p>Since Checkstyle 3.1</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#AvoidInlineConditionals_Description">Description</a></li>
+<li><a href="#AvoidInlineConditionals_Examples">Examples</a></li>
+<li><a href="#AvoidInlineConditionals_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#AvoidInlineConditionals_Violation_Messages">Violation Messages</a></li>
+<li><a href="#AvoidInlineConditionals_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#AvoidInlineConditionals_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="AvoidInlineConditionals_Description">
         <div>
           Detects inline conditionals. Here is one example of an inline conditional:

@@ -8,6 +8,18 @@
   <body>
     <section name="GoogleNonConstantFieldName">
       <p>Since Checkstyle 13.3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#GoogleNonConstantFieldName_Description">Description</a></li>
+<li><a href="#GoogleNonConstantFieldName_Examples">Examples</a></li>
+<li><a href="#GoogleNonConstantFieldName_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#GoogleNonConstantFieldName_Violation_Messages">Violation Messages</a></li>
+<li><a href="#GoogleNonConstantFieldName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#GoogleNonConstantFieldName_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="GoogleNonConstantFieldName_Description">
         <div>
           Checks that non-constant field names conform to the
