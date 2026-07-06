@@ -30,7 +30,7 @@ class Example2 {
     }
     catch(Exception e ) {}
     for ( int i = 0; i < x; i++ ) {
-    // violation 2 lines above 'not followed by whitespace'
+      // violation 2 lines above 'not followed by whitespace'
 
     }
   }
@@ -44,11 +44,11 @@ class Example2 {
     }
   }
 
-  class Bar extends Example2 {
-    public Bar() {
+  class Example3 extends Example2 {
+    public Example3() {
       super(1 ); // violation 'not followed by whitespace'
     }
-    public Bar(int k) {
+    public Example3(int k) {
       super( k );
 
       // violation below 'not preceded with whitespace'
