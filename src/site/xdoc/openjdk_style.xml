@@ -672,8 +672,26 @@
                     Vertical Whitespace
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/emptylineseparator.html#EmptyLineSeparator">EmptyLineSeparator</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyLineSeparator">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Checkstyle can not determine whether the members are related or not so
+                  it is not possible to determine whether multiple consecutive blank lines
+                  are correct or not.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/ruleverticalwhitespace">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
