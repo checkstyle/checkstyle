@@ -8,6 +8,19 @@
   <body>
     <section name="AbstractClassName">
       <p>Since Checkstyle 3.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#AbstractClassName_Description">Description</a></li>
+<li><a href="#AbstractClassName_Properties">Properties</a></li>
+<li><a href="#AbstractClassName_Examples">Examples</a></li>
+<li><a href="#AbstractClassName_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#AbstractClassName_Violation_Messages">Violation Messages</a></li>
+<li><a href="#AbstractClassName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#AbstractClassName_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="AbstractClassName_Description">
         <div>
           Ensures that the names of abstract classes conforming to some pattern

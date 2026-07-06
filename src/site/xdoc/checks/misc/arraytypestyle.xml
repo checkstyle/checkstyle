@@ -8,6 +8,19 @@
   <body>
     <section name="ArrayTypeStyle">
       <p>Since Checkstyle 3.1</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#ArrayTypeStyle_Description">Description</a></li>
+<li><a href="#ArrayTypeStyle_Properties">Properties</a></li>
+<li><a href="#ArrayTypeStyle_Examples">Examples</a></li>
+<li><a href="#ArrayTypeStyle_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#ArrayTypeStyle_Violation_Messages">Violation Messages</a></li>
+<li><a href="#ArrayTypeStyle_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#ArrayTypeStyle_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="ArrayTypeStyle_Description">
         <div>
           Checks the style of array type definitions.

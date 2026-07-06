@@ -8,6 +8,19 @@
   <body>
     <section name="LeftCurly">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#LeftCurly_Description">Description</a></li>
+<li><a href="#LeftCurly_Properties">Properties</a></li>
+<li><a href="#LeftCurly_Examples">Examples</a></li>
+<li><a href="#LeftCurly_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#LeftCurly_Violation_Messages">Violation Messages</a></li>
+<li><a href="#LeftCurly_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#LeftCurly_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="LeftCurly_Description">
         <div>
           Checks for the placement of left curly braces (<code>'{'</code>) for code blocks.

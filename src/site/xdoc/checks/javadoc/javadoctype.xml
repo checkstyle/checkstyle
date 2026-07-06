@@ -8,6 +8,19 @@
   <body>
     <section name="JavadocType">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#JavadocType_Description">Description</a></li>
+<li><a href="#JavadocType_Properties">Properties</a></li>
+<li><a href="#JavadocType_Examples">Examples</a></li>
+<li><a href="#JavadocType_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#JavadocType_Violation_Messages">Violation Messages</a></li>
+<li><a href="#JavadocType_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#JavadocType_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="JavadocType_Description">
         <div>
           Checks the Javadoc comments for type definitions. By default, does

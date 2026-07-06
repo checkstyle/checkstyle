@@ -8,6 +8,19 @@
   <body>
     <section name="IllegalSymbol">
       <p>Since Checkstyle 13.4.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#IllegalSymbol_Description">Description</a></li>
+<li><a href="#IllegalSymbol_Properties">Properties</a></li>
+<li><a href="#IllegalSymbol_Examples">Examples</a></li>
+<li><a href="#IllegalSymbol_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#IllegalSymbol_Violation_Messages">Violation Messages</a></li>
+<li><a href="#IllegalSymbol_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#IllegalSymbol_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="IllegalSymbol_Description">
         <div>
           Checks that specified symbols (by Unicode code points or ranges) are not used in code.

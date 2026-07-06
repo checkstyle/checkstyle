@@ -8,6 +8,20 @@
   <body>
     <section name="FinalLocalVariable">
       <p>Since Checkstyle 3.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#FinalLocalVariable_Description">Description</a></li>
+<li><a href="#FinalLocalVariable_Notes">Notes</a></li>
+<li><a href="#FinalLocalVariable_Properties">Properties</a></li>
+<li><a href="#FinalLocalVariable_Examples">Examples</a></li>
+<li><a href="#FinalLocalVariable_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#FinalLocalVariable_Violation_Messages">Violation Messages</a></li>
+<li><a href="#FinalLocalVariable_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#FinalLocalVariable_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="FinalLocalVariable_Description">
         <div>
           Checks that local variables that never have their values changed are declared final.

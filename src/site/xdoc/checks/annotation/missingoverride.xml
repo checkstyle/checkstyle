@@ -9,6 +9,19 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="MissingOverride">
       <p>Since Checkstyle 5.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#MissingOverride_Description">Description</a></li>
+<li><a href="#MissingOverride_Properties">Properties</a></li>
+<li><a href="#MissingOverride_Examples">Examples</a></li>
+<li><a href="#MissingOverride_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#MissingOverride_Violation_Messages">Violation Messages</a></li>
+<li><a href="#MissingOverride_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#MissingOverride_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="MissingOverride_Description">
         <div>
           Verifies that the <code>@Override</code> annotation is present

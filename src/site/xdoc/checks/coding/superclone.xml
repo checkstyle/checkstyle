@@ -8,6 +8,18 @@
   <body>
     <section name="SuperClone">
       <p>Since Checkstyle 3.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#SuperClone_Description">Description</a></li>
+<li><a href="#SuperClone_Examples">Examples</a></li>
+<li><a href="#SuperClone_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#SuperClone_Violation_Messages">Violation Messages</a></li>
+<li><a href="#SuperClone_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#SuperClone_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="SuperClone_Description">
         <div>
           Checks that an overriding <code>clone()</code> method invokes <code>super.clone()</code>.

@@ -8,6 +8,19 @@
   <body>
     <section name="AnonInnerLength">
       <p>Since Checkstyle 3.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#AnonInnerLength_Description">Description</a></li>
+<li><a href="#AnonInnerLength_Properties">Properties</a></li>
+<li><a href="#AnonInnerLength_Examples">Examples</a></li>
+<li><a href="#AnonInnerLength_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#AnonInnerLength_Violation_Messages">Violation Messages</a></li>
+<li><a href="#AnonInnerLength_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#AnonInnerLength_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="AnonInnerLength_Description">
         <div>
           Checks for long anonymous inner classes.

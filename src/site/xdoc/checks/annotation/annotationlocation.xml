@@ -9,6 +9,20 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="AnnotationLocation">
       <p>Since Checkstyle 6.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#AnnotationLocation_Description">Description</a></li>
+<li><a href="#AnnotationLocation_Notes">Notes</a></li>
+<li><a href="#AnnotationLocation_Properties">Properties</a></li>
+<li><a href="#AnnotationLocation_Examples">Examples</a></li>
+<li><a href="#AnnotationLocation_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#AnnotationLocation_Violation_Messages">Violation Messages</a></li>
+<li><a href="#AnnotationLocation_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#AnnotationLocation_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="AnnotationLocation_Description">
         <div>
           Checks location of annotation on language elements.

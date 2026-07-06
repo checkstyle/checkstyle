@@ -8,6 +8,20 @@
   <body>
     <section name="AvoidStaticImport">
       <p>Since Checkstyle 5.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#AvoidStaticImport_Description">Description</a></li>
+<li><a href="#AvoidStaticImport_Notes">Notes</a></li>
+<li><a href="#AvoidStaticImport_Properties">Properties</a></li>
+<li><a href="#AvoidStaticImport_Examples">Examples</a></li>
+<li><a href="#AvoidStaticImport_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#AvoidStaticImport_Violation_Messages">Violation Messages</a></li>
+<li><a href="#AvoidStaticImport_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#AvoidStaticImport_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="AvoidStaticImport_Description">
         <div>
           Checks that there are no static import statements.

@@ -8,6 +8,18 @@
   <body>
     <section name="OneTopLevelClass">
       <p>Since Checkstyle 5.8</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#OneTopLevelClass_Description">Description</a></li>
+<li><a href="#OneTopLevelClass_Examples">Examples</a></li>
+<li><a href="#OneTopLevelClass_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#OneTopLevelClass_Violation_Messages">Violation Messages</a></li>
+<li><a href="#OneTopLevelClass_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#OneTopLevelClass_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="OneTopLevelClass_Description">
         <div>
           Checks that each top-level class, interface, enum

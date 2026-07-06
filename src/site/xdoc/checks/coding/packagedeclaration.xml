@@ -8,6 +8,19 @@
   <body>
     <section name="PackageDeclaration">
       <p>Since Checkstyle 3.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#PackageDeclaration_Description">Description</a></li>
+<li><a href="#PackageDeclaration_Properties">Properties</a></li>
+<li><a href="#PackageDeclaration_Examples">Examples</a></li>
+<li><a href="#PackageDeclaration_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#PackageDeclaration_Violation_Messages">Violation Messages</a></li>
+<li><a href="#PackageDeclaration_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#PackageDeclaration_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="PackageDeclaration_Description">
         <div>
           Ensures that a class has a package declaration, and (optionally) whether

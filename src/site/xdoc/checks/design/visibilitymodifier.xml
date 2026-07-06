@@ -8,6 +8,19 @@
   <body>
     <section name="VisibilityModifier">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#VisibilityModifier_Description">Description</a></li>
+<li><a href="#VisibilityModifier_Properties">Properties</a></li>
+<li><a href="#VisibilityModifier_Examples">Examples</a></li>
+<li><a href="#VisibilityModifier_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#VisibilityModifier_Violation_Messages">Violation Messages</a></li>
+<li><a href="#VisibilityModifier_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#VisibilityModifier_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="VisibilityModifier_Description">
         <div>
           Checks visibility of class members. Only static final, immutable or annotated

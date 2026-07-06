@@ -8,6 +8,19 @@
   <body>
     <section name="ReturnCount">
       <p>Since Checkstyle 3.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#ReturnCount_Description">Description</a></li>
+<li><a href="#ReturnCount_Properties">Properties</a></li>
+<li><a href="#ReturnCount_Examples">Examples</a></li>
+<li><a href="#ReturnCount_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#ReturnCount_Violation_Messages">Violation Messages</a></li>
+<li><a href="#ReturnCount_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#ReturnCount_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="ReturnCount_Description">
         <div>
           Restricts the number of return statements in methods, constructors and lambda expressions.

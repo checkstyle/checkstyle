@@ -11,6 +11,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="UncommentedMain"/>
+        <param name="sections"
+               value="Description,Properties,Examples,ExampleOfUsage,ViolationMessages,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="UncommentedMain_Description">
         <macro name="description">
             <param name="modulePath"

@@ -8,6 +8,19 @@
   <body>
     <section name="ParenPad">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#ParenPad_Description">Description</a></li>
+<li><a href="#ParenPad_Properties">Properties</a></li>
+<li><a href="#ParenPad_Examples">Examples</a></li>
+<li><a href="#ParenPad_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#ParenPad_Violation_Messages">Violation Messages</a></li>
+<li><a href="#ParenPad_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#ParenPad_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="ParenPad_Description">
         <div>
           Checks the policy on the padding of parentheses; that is whether a space is required

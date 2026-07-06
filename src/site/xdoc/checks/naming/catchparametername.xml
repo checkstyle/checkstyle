@@ -8,6 +8,19 @@
   <body>
     <section name="CatchParameterName">
       <p>Since Checkstyle 6.14</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#CatchParameterName_Description">Description</a></li>
+<li><a href="#CatchParameterName_Properties">Properties</a></li>
+<li><a href="#CatchParameterName_Examples">Examples</a></li>
+<li><a href="#CatchParameterName_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#CatchParameterName_Violation_Messages">Violation Messages</a></li>
+<li><a href="#CatchParameterName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#CatchParameterName_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="CatchParameterName_Description">
         <div>
           Checks that <code>catch</code> parameter names conform to a specified pattern.

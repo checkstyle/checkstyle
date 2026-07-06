@@ -11,6 +11,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EmptyStatementCheck.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="EmptyStatement"/>
+        <param name="sections"
+               value="Description,Examples,ExampleOfUsage,ViolationMessages,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="EmptyStatement_Description">
         <macro name="description">
             <param name="modulePath"

@@ -11,6 +11,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/filefilters/BeforeExecutionExclusionFileFilter.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="BeforeExecutionExclusionFileFilter"/>
+        <param name="sections"
+               value="Description,Properties,Examples,ExampleOfUsage,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="BeforeExecutionExclusionFileFilter_Description">
         <macro name="description">
             <param name="modulePath"

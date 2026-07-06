@@ -9,6 +9,18 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="MissingOverrideOnRecordAccessor">
       <p>Since Checkstyle 13.1.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#MissingOverrideOnRecordAccessor_Description">Description</a></li>
+<li><a href="#MissingOverrideOnRecordAccessor_Examples">Examples</a></li>
+<li><a href="#MissingOverrideOnRecordAccessor_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#MissingOverrideOnRecordAccessor_Violation_Messages">Violation Messages</a></li>
+<li><a href="#MissingOverrideOnRecordAccessor_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#MissingOverrideOnRecordAccessor_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="MissingOverrideOnRecordAccessor_Description">
         <div>
           Verifies that explicitly declared record accessor methods include

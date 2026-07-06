@@ -8,6 +8,19 @@
   <body>
     <section name="VariableDeclarationUsageDistance">
       <p>Since Checkstyle 5.8</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#VariableDeclarationUsageDistance_Description">Description</a></li>
+<li><a href="#VariableDeclarationUsageDistance_Properties">Properties</a></li>
+<li><a href="#VariableDeclarationUsageDistance_Examples">Examples</a></li>
+<li><a href="#VariableDeclarationUsageDistance_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#VariableDeclarationUsageDistance_Violation_Messages">Violation Messages</a></li>
+<li><a href="#VariableDeclarationUsageDistance_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#VariableDeclarationUsageDistance_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="VariableDeclarationUsageDistance_Description">
         <div>
           Checks the distance between declaration of variable and its first usage.

@@ -8,6 +8,18 @@
   <body>
     <section name="PatternVariableAssignment">
       <p>Since Checkstyle 10.26.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#PatternVariableAssignment_Description">Description</a></li>
+<li><a href="#PatternVariableAssignment_Examples">Examples</a></li>
+<li><a href="#PatternVariableAssignment_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#PatternVariableAssignment_Violation_Messages">Violation Messages</a></li>
+<li><a href="#PatternVariableAssignment_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#PatternVariableAssignment_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="PatternVariableAssignment_Description">
         <div>
           Checks for assignment of pattern variables.

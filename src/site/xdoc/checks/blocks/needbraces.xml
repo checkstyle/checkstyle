@@ -8,6 +8,19 @@
   <body>
     <section name="NeedBraces">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#NeedBraces_Description">Description</a></li>
+<li><a href="#NeedBraces_Properties">Properties</a></li>
+<li><a href="#NeedBraces_Examples">Examples</a></li>
+<li><a href="#NeedBraces_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#NeedBraces_Violation_Messages">Violation Messages</a></li>
+<li><a href="#NeedBraces_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#NeedBraces_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="NeedBraces_Description">
         <div>
           Checks for braces around code blocks.

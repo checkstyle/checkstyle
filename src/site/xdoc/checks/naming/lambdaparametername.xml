@@ -8,6 +8,19 @@
   <body>
     <section name="LambdaParameterName">
       <p>Since Checkstyle 8.11</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#LambdaParameterName_Description">Description</a></li>
+<li><a href="#LambdaParameterName_Properties">Properties</a></li>
+<li><a href="#LambdaParameterName_Examples">Examples</a></li>
+<li><a href="#LambdaParameterName_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#LambdaParameterName_Violation_Messages">Violation Messages</a></li>
+<li><a href="#LambdaParameterName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#LambdaParameterName_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="LambdaParameterName_Description">
         <div>
           Checks lambda parameter names.

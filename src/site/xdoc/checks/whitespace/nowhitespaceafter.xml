@@ -8,6 +8,19 @@
   <body>
     <section name="NoWhitespaceAfter">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#NoWhitespaceAfter_Description">Description</a></li>
+<li><a href="#NoWhitespaceAfter_Properties">Properties</a></li>
+<li><a href="#NoWhitespaceAfter_Examples">Examples</a></li>
+<li><a href="#NoWhitespaceAfter_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#NoWhitespaceAfter_Violation_Messages">Violation Messages</a></li>
+<li><a href="#NoWhitespaceAfter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#NoWhitespaceAfter_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="NoWhitespaceAfter_Description">
         <div>
           Checks that there is no whitespace after a token.

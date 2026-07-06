@@ -8,6 +8,19 @@
   <body>
     <section name="ConstructorsDeclarationGrouping">
       <p>Since Checkstyle 10.17.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#ConstructorsDeclarationGrouping_Description">Description</a></li>
+<li><a href="#ConstructorsDeclarationGrouping_Properties">Properties</a></li>
+<li><a href="#ConstructorsDeclarationGrouping_Examples">Examples</a></li>
+<li><a href="#ConstructorsDeclarationGrouping_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#ConstructorsDeclarationGrouping_Violation_Messages">Violation Messages</a></li>
+<li><a href="#ConstructorsDeclarationGrouping_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#ConstructorsDeclarationGrouping_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="ConstructorsDeclarationGrouping_Description">
         <div>
           Checks that all constructors are grouped together.

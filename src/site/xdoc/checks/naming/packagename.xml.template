@@ -11,6 +11,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/PackageNameCheck.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="PackageName"/>
+        <param name="sections"
+               value="Description,Properties,Examples,ExampleOfUsage,ViolationMessages,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="PackageName_Description">
         <macro name="description">
             <param name="modulePath"

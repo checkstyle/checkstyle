@@ -8,6 +8,18 @@
   <body>
     <section name="UseEnhancedSwitch">
       <p>Since Checkstyle 13.3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#UseEnhancedSwitch_Description">Description</a></li>
+<li><a href="#UseEnhancedSwitch_Examples">Examples</a></li>
+<li><a href="#UseEnhancedSwitch_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#UseEnhancedSwitch_Violation_Messages">Violation Messages</a></li>
+<li><a href="#UseEnhancedSwitch_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#UseEnhancedSwitch_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="UseEnhancedSwitch_Description">
         <div>
           Ensures that the enhanced switch (using <code>-&gt;</code> for case labels) is used

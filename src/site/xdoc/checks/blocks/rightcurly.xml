@@ -8,6 +8,19 @@
   <body>
     <section name="RightCurly">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#RightCurly_Description">Description</a></li>
+<li><a href="#RightCurly_Properties">Properties</a></li>
+<li><a href="#RightCurly_Examples">Examples</a></li>
+<li><a href="#RightCurly_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#RightCurly_Violation_Messages">Violation Messages</a></li>
+<li><a href="#RightCurly_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#RightCurly_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="RightCurly_Description">
         <div>
           Checks the placement of right curly braces (<code>'}'</code>) for code blocks. This check

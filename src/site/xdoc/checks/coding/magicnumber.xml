@@ -8,6 +8,19 @@
   <body>
     <section name="MagicNumber">
       <p>Since Checkstyle 3.1</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#MagicNumber_Description">Description</a></li>
+<li><a href="#MagicNumber_Properties">Properties</a></li>
+<li><a href="#MagicNumber_Examples">Examples</a></li>
+<li><a href="#MagicNumber_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#MagicNumber_Violation_Messages">Violation Messages</a></li>
+<li><a href="#MagicNumber_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#MagicNumber_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="MagicNumber_Description">
         <div>
           Checks that there are no
