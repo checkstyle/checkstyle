@@ -1,5 +1,6 @@
 package com.openjdk.checkstyle.test.chapte$rnaming.rul$epac$kagenames;
-// violation above 'Name
+
+// violation 2 lines above 'Name
 // 'com.openjdk.checkstyle.test.chapte$rnaming.rul$epac$kagenames'
 // must match pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'.'
 

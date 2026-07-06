@@ -9,7 +9,6 @@ public class InputConstantsInvalid {
     protected final static int logger = 50; // violation 'must match pattern'
     final static int loggerMYSELF = 5; // violation 'must match pattern'
 
-
     interface Inter {
         int MAx_ATTEMPTS = 5; // violation 'must match pattern'
     }

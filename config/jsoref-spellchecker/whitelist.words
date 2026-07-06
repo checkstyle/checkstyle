@@ -1212,6 +1212,7 @@ rulespecialcharacters
 ruletypevariables
 rulevariabledeclarations
 rulevariables
+ruleverticalwhitespace
 rulewildcardimports
 rulewrappingexpressions
 rulewrappinglines
