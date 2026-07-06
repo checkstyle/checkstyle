@@ -39,8 +39,11 @@ public class InputOrderOfConstructorsAndOverloadedMethodsOne {
 
     class InputWithOrderedCtors {
         InputWithOrderedCtors() {}
+
         InputWithOrderedCtors(String s) {}
+
         InputWithOrderedCtors(int x) {}
+
         InputWithOrderedCtors(String s, int x) {}
     }
 }
