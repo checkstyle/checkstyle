@@ -1,0 +1,26 @@
+package com.openjdk.checkstyle.test.chapterformatting.ruleverticalwhitespace;
+public class InputVerticalWhiteSpaceTwo {
+    // violation above ''CLASS_DEF' should be separated from previous line'
+    int var1 = 0;
+    int var2 = 0;
+
+    int var3 = 0;
+    enum Temp { // violation ''ENUM_DEF' should be separated from previous line'
+
+    } // violation below ''RECORD_DEF' should be separated from previous line'
+    record Order(int id, int param) {
+
+        Order(int id) {
+            this.id = id;
+            this.param = 1;
+        } // violation below ''CTOR_DEF' should be separated from previous line'
+        Order(int id, int param) {
+            this.id = id;
+            this.param = param;
+        }
+
+    }
+    interface Test { // violation ''INTERFACE_DEF' should be separated from previous line'
+    }
+
+}

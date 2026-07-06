@@ -180,6 +180,13 @@
 
     <module name="RedundantModifier"/>
 
+    <module name="EmptyLineSeparator"/>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="checks" value="EmptyLineSeparator"/>
+      <property name="query"
+                value="//IMPORT | //STATIC_IMPORT | //MODULE_IMPORT | //VARIABLE_DEF"/>
+    </module>
+
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
       <property name="file" value="${org.checkstyle.openjdk.suppressionxpathfilter.config}"
