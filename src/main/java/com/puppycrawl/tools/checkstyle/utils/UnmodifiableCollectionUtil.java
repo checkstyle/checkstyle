@@ -42,19 +42,10 @@ public final class UnmodifiableCollectionUtil {
     }
 
     /**
-     * Creates an unmodifiable list based on the provided collection.
-     *
-     * @param collection the collection to create an unmodifiable list from
-     * @param <T> the type of elements in the set
-     * @return an unmodifiable list containing the elements from the provided collection
-     */
-    public static <T> List<T> unmodifiableList(List<T> collection) {
-        return Collections.unmodifiableList(collection);
-    }
-
-    /**
      * Creates an unmodifiable list from the provided collection.
      * If the collection is null, returns an empty unmodifiable list.
+     * See <a href="https://github.com/hcoles/pitest/issues/1462">pitest issue #1462</a> for why
+     * this utility exists and what to check before removing it.
      *
      * @param collection the collection to create an unmodifiable list from
      * @param <T> the type of elements in the list
