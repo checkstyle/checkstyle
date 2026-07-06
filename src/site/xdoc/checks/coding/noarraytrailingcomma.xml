@@ -8,6 +8,18 @@
   <body>
     <section name="NoArrayTrailingComma">
       <p>Since Checkstyle 8.28</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#NoArrayTrailingComma_Description">Description</a></li>
+<li><a href="#NoArrayTrailingComma_Examples">Examples</a></li>
+<li><a href="#NoArrayTrailingComma_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#NoArrayTrailingComma_Violation_Messages">Violation Messages</a></li>
+<li><a href="#NoArrayTrailingComma_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#NoArrayTrailingComma_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="NoArrayTrailingComma_Description">
         <div>
           Checks that array initialization do not contain a trailing comma.

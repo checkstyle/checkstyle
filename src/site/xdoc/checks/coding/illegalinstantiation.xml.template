@@ -11,6 +11,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalInstantiationCheck.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="IllegalInstantiation"/>
+        <param name="sections"
+               value="Description,Notes,Properties,Examples,ExampleOfUsage,ViolationMessages,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="IllegalInstantiation_Description">
         <macro name="description">
           <param name="modulePath"

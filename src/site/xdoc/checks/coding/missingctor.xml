@@ -8,6 +8,18 @@
   <body>
     <section name="MissingCtor">
       <p>Since Checkstyle 3.4</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#MissingCtor_Description">Description</a></li>
+<li><a href="#MissingCtor_Examples">Examples</a></li>
+<li><a href="#MissingCtor_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#MissingCtor_Violation_Messages">Violation Messages</a></li>
+<li><a href="#MissingCtor_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#MissingCtor_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="MissingCtor_Description">
         <div>
           Checks that classes (except abstract ones) define a constructor and don't rely

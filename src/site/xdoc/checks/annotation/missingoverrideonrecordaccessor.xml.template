@@ -12,6 +12,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingOverrideOnRecordAccessorCheck.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="MissingOverrideOnRecordAccessor"/>
+        <param name="sections"
+               value="Description,Examples,ExampleOfUsage,ViolationMessages,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="MissingOverrideOnRecordAccessor_Description">
         <macro name="description">
             <param name="modulePath"

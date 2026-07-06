@@ -11,6 +11,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="UnusedLocalVariable"/>
+        <param name="sections"
+               value="Description,Properties,Examples,ExampleOfUsage,ViolationMessages,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="UnusedLocalVariable_Description">
         <macro name="description">
             <param name="modulePath"

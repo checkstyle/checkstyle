@@ -8,6 +8,19 @@
   <body>
     <section name="RegexpMultiline">
       <p>Since Checkstyle 5.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#RegexpMultiline_Description">Description</a></li>
+<li><a href="#RegexpMultiline_Properties">Properties</a></li>
+<li><a href="#RegexpMultiline_Examples">Examples</a></li>
+<li><a href="#RegexpMultiline_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#RegexpMultiline_Violation_Messages">Violation Messages</a></li>
+<li><a href="#RegexpMultiline_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#RegexpMultiline_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="RegexpMultiline_Description">
         <div>
           Checks that a specified pattern matches across multiple lines in any file type.

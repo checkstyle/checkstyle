@@ -8,6 +8,19 @@
   <body>
     <section name="InterfaceMemberImpliedModifier">
       <p>Since Checkstyle 8.12</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#InterfaceMemberImpliedModifier_Description">Description</a></li>
+<li><a href="#InterfaceMemberImpliedModifier_Properties">Properties</a></li>
+<li><a href="#InterfaceMemberImpliedModifier_Examples">Examples</a></li>
+<li><a href="#InterfaceMemberImpliedModifier_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#InterfaceMemberImpliedModifier_Violation_Messages">Violation Messages</a></li>
+<li><a href="#InterfaceMemberImpliedModifier_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#InterfaceMemberImpliedModifier_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="InterfaceMemberImpliedModifier_Description">
         <div>
           Checks for implicit modifiers on interface members and nested types.

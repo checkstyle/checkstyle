@@ -8,6 +8,19 @@
   <body>
     <section name="RecordComponentName">
       <p>Since Checkstyle 8.40</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#RecordComponentName_Description">Description</a></li>
+<li><a href="#RecordComponentName_Properties">Properties</a></li>
+<li><a href="#RecordComponentName_Examples">Examples</a></li>
+<li><a href="#RecordComponentName_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#RecordComponentName_Violation_Messages">Violation Messages</a></li>
+<li><a href="#RecordComponentName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#RecordComponentName_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="RecordComponentName_Description">
         <div>
           Checks that record component names conform to a specified pattern.

@@ -8,6 +8,18 @@
   <body>
     <section name="NoFinalizer">
       <p>Since Checkstyle 5.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#NoFinalizer_Description">Description</a></li>
+<li><a href="#NoFinalizer_Examples">Examples</a></li>
+<li><a href="#NoFinalizer_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#NoFinalizer_Violation_Messages">Violation Messages</a></li>
+<li><a href="#NoFinalizer_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#NoFinalizer_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="NoFinalizer_Description">
         <div>
           Checks that there is no method <code>finalize</code> with zero parameters.

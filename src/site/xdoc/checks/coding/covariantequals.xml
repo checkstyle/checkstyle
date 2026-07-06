@@ -8,6 +8,18 @@
   <body>
     <section name="CovariantEquals">
       <p>Since Checkstyle 3.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#CovariantEquals_Description">Description</a></li>
+<li><a href="#CovariantEquals_Examples">Examples</a></li>
+<li><a href="#CovariantEquals_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#CovariantEquals_Violation_Messages">Violation Messages</a></li>
+<li><a href="#CovariantEquals_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#CovariantEquals_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="CovariantEquals_Description">
         <div>
           Checks that classes and records which define a covariant <code>equals()</code> method

@@ -8,6 +8,18 @@
   <body>
     <section name="WhenShouldBeUsed">
       <p>Since Checkstyle 10.18.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#WhenShouldBeUsed_Description">Description</a></li>
+<li><a href="#WhenShouldBeUsed_Examples">Examples</a></li>
+<li><a href="#WhenShouldBeUsed_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#WhenShouldBeUsed_Violation_Messages">Violation Messages</a></li>
+<li><a href="#WhenShouldBeUsed_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#WhenShouldBeUsed_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="WhenShouldBeUsed_Description">
         <div>
           Ensures that <code>when</code> is used instead of a single <code>if</code>

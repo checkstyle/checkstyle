@@ -8,6 +8,19 @@
   <body>
     <section name="CyclomaticComplexity">
       <p>Since Checkstyle 3.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#CyclomaticComplexity_Description">Description</a></li>
+<li><a href="#CyclomaticComplexity_Properties">Properties</a></li>
+<li><a href="#CyclomaticComplexity_Examples">Examples</a></li>
+<li><a href="#CyclomaticComplexity_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#CyclomaticComplexity_Violation_Messages">Violation Messages</a></li>
+<li><a href="#CyclomaticComplexity_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#CyclomaticComplexity_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="CyclomaticComplexity_Description">
         <div>
           Checks cyclomatic complexity against a specified limit. It is a measure of

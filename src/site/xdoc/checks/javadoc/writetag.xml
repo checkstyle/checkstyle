@@ -8,6 +8,19 @@
   <body>
     <section name="WriteTag">
       <p>Since Checkstyle 4.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#WriteTag_Description">Description</a></li>
+<li><a href="#WriteTag_Properties">Properties</a></li>
+<li><a href="#WriteTag_Examples">Examples</a></li>
+<li><a href="#WriteTag_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#WriteTag_Violation_Messages">Violation Messages</a></li>
+<li><a href="#WriteTag_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#WriteTag_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="WriteTag_Description">
         <div>
           Requires user defined Javadoc tag to be present in Javadoc comment with defined format.

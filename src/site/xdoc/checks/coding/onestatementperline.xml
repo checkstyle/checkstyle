@@ -8,6 +8,19 @@
   <body>
     <section name="OneStatementPerLine">
       <p>Since Checkstyle 5.3</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#OneStatementPerLine_Description">Description</a></li>
+<li><a href="#OneStatementPerLine_Properties">Properties</a></li>
+<li><a href="#OneStatementPerLine_Examples">Examples</a></li>
+<li><a href="#OneStatementPerLine_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#OneStatementPerLine_Violation_Messages">Violation Messages</a></li>
+<li><a href="#OneStatementPerLine_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#OneStatementPerLine_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="OneStatementPerLine_Description">
         <div>
           Checks that there is only one statement per line.

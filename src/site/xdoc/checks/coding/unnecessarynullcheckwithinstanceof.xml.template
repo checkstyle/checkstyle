@@ -11,6 +11,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessaryNullCheckWithInstanceOfCheck.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="UnnecessaryNullCheckWithInstanceOf"/>
+        <param name="sections"
+               value="Description,Examples,ExampleOfUsage,ViolationMessages,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="UnnecessaryNullCheckWithInstanceOf_Description">
         <macro name="description">
             <param name="modulePath"

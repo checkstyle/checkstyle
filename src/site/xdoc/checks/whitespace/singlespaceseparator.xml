@@ -8,6 +8,19 @@
   <body>
     <section name="SingleSpaceSeparator">
       <p>Since Checkstyle 6.19</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#SingleSpaceSeparator_Description">Description</a></li>
+<li><a href="#SingleSpaceSeparator_Properties">Properties</a></li>
+<li><a href="#SingleSpaceSeparator_Examples">Examples</a></li>
+<li><a href="#SingleSpaceSeparator_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#SingleSpaceSeparator_Violation_Messages">Violation Messages</a></li>
+<li><a href="#SingleSpaceSeparator_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#SingleSpaceSeparator_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="SingleSpaceSeparator_Description">
         <div>
           Checks that non-whitespace characters are separated by no more than one

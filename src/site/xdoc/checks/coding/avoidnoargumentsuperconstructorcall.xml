@@ -8,6 +8,18 @@
   <body>
     <section name="AvoidNoArgumentSuperConstructorCall">
       <p>Since Checkstyle 8.29</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#AvoidNoArgumentSuperConstructorCall_Description">Description</a></li>
+<li><a href="#AvoidNoArgumentSuperConstructorCall_Examples">Examples</a></li>
+<li><a href="#AvoidNoArgumentSuperConstructorCall_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#AvoidNoArgumentSuperConstructorCall_Violation_Messages">Violation Messages</a></li>
+<li><a href="#AvoidNoArgumentSuperConstructorCall_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#AvoidNoArgumentSuperConstructorCall_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="AvoidNoArgumentSuperConstructorCall_Description">
         <div>
           Checks if call to superclass constructor without arguments is present.

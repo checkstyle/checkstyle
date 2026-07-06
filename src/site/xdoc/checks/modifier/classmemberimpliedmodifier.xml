@@ -8,6 +8,19 @@
   <body>
     <section name="ClassMemberImpliedModifier">
       <p>Since Checkstyle 8.16</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#ClassMemberImpliedModifier_Description">Description</a></li>
+<li><a href="#ClassMemberImpliedModifier_Properties">Properties</a></li>
+<li><a href="#ClassMemberImpliedModifier_Examples">Examples</a></li>
+<li><a href="#ClassMemberImpliedModifier_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#ClassMemberImpliedModifier_Violation_Messages">Violation Messages</a></li>
+<li><a href="#ClassMemberImpliedModifier_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#ClassMemberImpliedModifier_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="ClassMemberImpliedModifier_Description">
         <div>
           Checks for implicit modifiers on nested types in classes and records.

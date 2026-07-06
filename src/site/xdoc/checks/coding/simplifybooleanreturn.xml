@@ -8,6 +8,18 @@
   <body>
     <section name="SimplifyBooleanReturn">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#SimplifyBooleanReturn_Description">Description</a></li>
+<li><a href="#SimplifyBooleanReturn_Examples">Examples</a></li>
+<li><a href="#SimplifyBooleanReturn_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#SimplifyBooleanReturn_Violation_Messages">Violation Messages</a></li>
+<li><a href="#SimplifyBooleanReturn_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#SimplifyBooleanReturn_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="SimplifyBooleanReturn_Description">
         <div>
           Checks for over-complicated boolean return or yield statements.

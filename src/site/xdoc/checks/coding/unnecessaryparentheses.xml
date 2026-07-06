@@ -8,6 +8,20 @@
   <body>
     <section name="UnnecessaryParentheses">
       <p>Since Checkstyle 3.4</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#UnnecessaryParentheses_Description">Description</a></li>
+<li><a href="#UnnecessaryParentheses_Notes">Notes</a></li>
+<li><a href="#UnnecessaryParentheses_Properties">Properties</a></li>
+<li><a href="#UnnecessaryParentheses_Examples">Examples</a></li>
+<li><a href="#UnnecessaryParentheses_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#UnnecessaryParentheses_Violation_Messages">Violation Messages</a></li>
+<li><a href="#UnnecessaryParentheses_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#UnnecessaryParentheses_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="UnnecessaryParentheses_Description">
         <div>
           Checks if unnecessary parentheses are used in a statement or expression.

@@ -8,6 +8,19 @@
   <body>
     <section name="UnnecessarySemicolonInTryWithResources">
       <p>Since Checkstyle 8.22</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#UnnecessarySemicolonInTryWithResources_Description">Description</a></li>
+<li><a href="#UnnecessarySemicolonInTryWithResources_Properties">Properties</a></li>
+<li><a href="#UnnecessarySemicolonInTryWithResources_Examples">Examples</a></li>
+<li><a href="#UnnecessarySemicolonInTryWithResources_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#UnnecessarySemicolonInTryWithResources_Violation_Messages">Violation Messages</a></li>
+<li><a href="#UnnecessarySemicolonInTryWithResources_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#UnnecessarySemicolonInTryWithResources_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="UnnecessarySemicolonInTryWithResources_Description">
         <div>
           Checks if unnecessary semicolon is used in last resource declaration.

@@ -9,6 +9,19 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="AnnotationOnSameLine">
       <p>Since Checkstyle 8.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#AnnotationOnSameLine_Description">Description</a></li>
+<li><a href="#AnnotationOnSameLine_Properties">Properties</a></li>
+<li><a href="#AnnotationOnSameLine_Examples">Examples</a></li>
+<li><a href="#AnnotationOnSameLine_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#AnnotationOnSameLine_Violation_Messages">Violation Messages</a></li>
+<li><a href="#AnnotationOnSameLine_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#AnnotationOnSameLine_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="AnnotationOnSameLine_Description">
         <div>
           Checks that annotations are located on the same line with their targets.

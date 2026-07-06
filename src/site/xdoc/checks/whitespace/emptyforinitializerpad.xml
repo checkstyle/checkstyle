@@ -8,6 +8,19 @@
   <body>
     <section name="EmptyForInitializerPad">
       <p>Since Checkstyle 3.4</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#EmptyForInitializerPad_Description">Description</a></li>
+<li><a href="#EmptyForInitializerPad_Properties">Properties</a></li>
+<li><a href="#EmptyForInitializerPad_Examples">Examples</a></li>
+<li><a href="#EmptyForInitializerPad_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#EmptyForInitializerPad_Violation_Messages">Violation Messages</a></li>
+<li><a href="#EmptyForInitializerPad_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#EmptyForInitializerPad_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="EmptyForInitializerPad_Description">
         <div>
           Checks the padding of an empty for initializer; that is whether a white

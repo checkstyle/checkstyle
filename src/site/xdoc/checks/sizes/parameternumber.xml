@@ -8,6 +8,19 @@
   <body>
     <section name="ParameterNumber">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#ParameterNumber_Description">Description</a></li>
+<li><a href="#ParameterNumber_Properties">Properties</a></li>
+<li><a href="#ParameterNumber_Examples">Examples</a></li>
+<li><a href="#ParameterNumber_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#ParameterNumber_Violation_Messages">Violation Messages</a></li>
+<li><a href="#ParameterNumber_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#ParameterNumber_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="ParameterNumber_Description">
         <div>
           Checks the number of parameters of a method or constructor.

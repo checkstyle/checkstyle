@@ -8,6 +8,18 @@
   <body>
     <section name="UnnecessaryNullCheckWithInstanceOf">
       <p>Since Checkstyle 10.25.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#UnnecessaryNullCheckWithInstanceOf_Description">Description</a></li>
+<li><a href="#UnnecessaryNullCheckWithInstanceOf_Examples">Examples</a></li>
+<li><a href="#UnnecessaryNullCheckWithInstanceOf_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#UnnecessaryNullCheckWithInstanceOf_Violation_Messages">Violation Messages</a></li>
+<li><a href="#UnnecessaryNullCheckWithInstanceOf_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#UnnecessaryNullCheckWithInstanceOf_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="UnnecessaryNullCheckWithInstanceOf_Description">
         <div>
           Checks for redundant null checks with the instanceof operator.

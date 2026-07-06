@@ -8,6 +8,19 @@
   <body>
     <section name="IllegalTokenText">
       <p>Since Checkstyle 3.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#IllegalTokenText_Description">Description</a></li>
+<li><a href="#IllegalTokenText_Properties">Properties</a></li>
+<li><a href="#IllegalTokenText_Examples">Examples</a></li>
+<li><a href="#IllegalTokenText_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#IllegalTokenText_Violation_Messages">Violation Messages</a></li>
+<li><a href="#IllegalTokenText_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#IllegalTokenText_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="IllegalTokenText_Description">
         <div>
           Checks specified tokens text for matching an illegal pattern.

@@ -8,6 +8,19 @@
   <body>
     <section name="FinalParameters">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#FinalParameters_Description">Description</a></li>
+<li><a href="#FinalParameters_Properties">Properties</a></li>
+<li><a href="#FinalParameters_Examples">Examples</a></li>
+<li><a href="#FinalParameters_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#FinalParameters_Violation_Messages">Violation Messages</a></li>
+<li><a href="#FinalParameters_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#FinalParameters_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="FinalParameters_Description">
         <div>
           Checks that parameters for methods, constructors, catch and for-each blocks are final.

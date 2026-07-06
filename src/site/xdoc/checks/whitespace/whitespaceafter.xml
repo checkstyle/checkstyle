@@ -8,6 +8,19 @@
   <body>
     <section name="WhitespaceAfter">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#WhitespaceAfter_Description">Description</a></li>
+<li><a href="#WhitespaceAfter_Properties">Properties</a></li>
+<li><a href="#WhitespaceAfter_Examples">Examples</a></li>
+<li><a href="#WhitespaceAfter_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#WhitespaceAfter_Violation_Messages">Violation Messages</a></li>
+<li><a href="#WhitespaceAfter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#WhitespaceAfter_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="WhitespaceAfter_Description">
         <div>
           Checks that a token is followed by whitespace, with the exception that it

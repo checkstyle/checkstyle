@@ -8,6 +8,20 @@
   <body>
     <section name="RequireThis">
       <p>Since Checkstyle 3.4</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#RequireThis_Description">Description</a></li>
+<li><a href="#RequireThis_Notes">Notes</a></li>
+<li><a href="#RequireThis_Properties">Properties</a></li>
+<li><a href="#RequireThis_Examples">Examples</a></li>
+<li><a href="#RequireThis_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#RequireThis_Violation_Messages">Violation Messages</a></li>
+<li><a href="#RequireThis_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#RequireThis_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="RequireThis_Description">
         <div>
           Checks that references to instance variables and methods of the present

@@ -8,6 +8,19 @@
   <body>
     <section name="UnusedImports">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#UnusedImports_Description">Description</a></li>
+<li><a href="#UnusedImports_Properties">Properties</a></li>
+<li><a href="#UnusedImports_Examples">Examples</a></li>
+<li><a href="#UnusedImports_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#UnusedImports_Violation_Messages">Violation Messages</a></li>
+<li><a href="#UnusedImports_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#UnusedImports_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="UnusedImports_Description">
         <div>
           Checks for unused import statements. An import statement

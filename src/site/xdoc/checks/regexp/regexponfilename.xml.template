@@ -11,6 +11,11 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpOnFilenameCheck.java"/>
       </macro>
+      <macro name="toc">
+        <param name="id" value="RegexpOnFilename"/>
+        <param name="sections"
+               value="Description,Properties,Examples,ExampleOfUsage,ViolationMessages,FullyQualifiedName,ParentModule"/>
+      </macro>
       <subsection name="Description" id="RegexpOnFilename_Description">
         <macro name="description">
             <param name="modulePath"

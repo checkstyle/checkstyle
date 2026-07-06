@@ -8,6 +8,20 @@
   <body>
     <section name="HiddenField">
       <p>Since Checkstyle 3.0</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#HiddenField_Description">Description</a></li>
+<li><a href="#HiddenField_Notes">Notes</a></li>
+<li><a href="#HiddenField_Properties">Properties</a></li>
+<li><a href="#HiddenField_Examples">Examples</a></li>
+<li><a href="#HiddenField_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#HiddenField_Violation_Messages">Violation Messages</a></li>
+<li><a href="#HiddenField_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#HiddenField_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="HiddenField_Description">
         <div>
           Checks that a local variable or a parameter does not shadow

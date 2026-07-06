@@ -8,6 +8,19 @@
   <body>
     <section name="ArrayTrailingComma">
       <p>Since Checkstyle 3.2</p>
+      <div class="in-this-article">
+<p><b>In this article:</b></p>
+<ul>
+<li><a href="#ArrayTrailingComma_Description">Description</a></li>
+<li><a href="#ArrayTrailingComma_Properties">Properties</a></li>
+<li><a href="#ArrayTrailingComma_Examples">Examples</a></li>
+<li><a href="#ArrayTrailingComma_Example_of_Usage">Example of Usage</a></li>
+<li><a href="#ArrayTrailingComma_Violation_Messages">Violation Messages</a></li>
+<li><a href="#ArrayTrailingComma_Fully_Qualified_Name">Fully Qualified Name</a></li>
+<li><a href="#ArrayTrailingComma_Parent_Module">Parent Module</a></li>
+</ul>
+</div>
+
       <subsection name="Description" id="ArrayTrailingComma_Description">
         <div>
           Checks that array initialization contains a trailing comma.
