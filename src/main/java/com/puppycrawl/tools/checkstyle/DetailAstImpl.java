@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.util.BitSet;
+import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -526,7 +527,7 @@ public final class DetailAstImpl implements DetailAST {
      *
      * @param hiddenBefore comment token preceding this DetailAstImpl
      */
-    public void setHiddenBefore(List<Token> hiddenBefore) {
+    public void setHiddenBefore(Collection<Token> hiddenBefore) {
         this.hiddenBefore = UnmodifiableCollectionUtil.unmodifiableList(hiddenBefore);
     }
 
@@ -535,7 +536,7 @@ public final class DetailAstImpl implements DetailAST {
      *
      * @param hiddenAfter comment token following this DetailAstImpl
      */
-    public void setHiddenAfter(List<Token> hiddenAfter) {
+    public void setHiddenAfter(Collection<Token> hiddenAfter) {
         this.hiddenAfter = UnmodifiableCollectionUtil.unmodifiableList(hiddenAfter);
     }
 }
