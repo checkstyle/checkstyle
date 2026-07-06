@@ -40,11 +40,11 @@ class Example1 {
     }
   }
 
-  class Bar extends Example1 {
-    public Bar() {
+  class Example3 extends Example1 {
+    public Example3() {
       super(1 ); // violation '')' is preceded with whitespace'
     }
-    public Bar(int k) {
+    public Example3(int k) {
       super( k ); // 2 violations
       // ''(' is followed by whitespace'
       // '')' is preceded with whitespace'
