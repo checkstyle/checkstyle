@@ -38,8 +38,6 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckExamplesTest
         final String[] expected = {
             "17:2: " + getCheckMessage(MSG_SEMI),
             "21:2: " + getCheckMessage(MSG_SEMI),
-            "25:2: " + getCheckMessage(MSG_SEMI),
-            "29:2: " + getCheckMessage(MSG_SEMI),
         };
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
