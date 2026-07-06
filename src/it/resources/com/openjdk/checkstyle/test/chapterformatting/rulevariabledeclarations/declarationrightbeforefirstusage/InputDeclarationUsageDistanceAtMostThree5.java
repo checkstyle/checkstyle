@@ -15,7 +15,6 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
                         // DECLARATION OF VARIABLE 'logLevel', SHOULD BE HERE (distance = 2)
                     }
                 });
-
         return result;
     }
 
@@ -56,7 +55,6 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
                                 fireAuthTokenChanged(cookie, token);
                             }
                         });
-
         Timer timer = new Timer("Auth Guard", true);
         timer.schedule(task, intervalMs / 2, intervalMs); // DECLARATION OF VARIABLE 'intervalMs'
         // SHOULD BE HERE (distance = 2)
@@ -68,7 +66,6 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
         for (int i = 0; i < 10; i++, filterCount++) {
             int abc = 0;
             System.identityHashCode(abc);
-
             for (int j = 0; j < 10; j++) {
                 abc = filterCount;
                 System.identityHashCode(abc);
@@ -82,7 +79,9 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
 
     class JmenuItem {
         JmenuItem(String string) {}
+
         public void addActionListener(ActionListener actionListener) {}
+
         public void setMnemonic(char charAt) {}
     }
 
@@ -94,9 +93,13 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
 
     static class Color {
         Color(int red, int green, int blue, int alpha) {}
+
         public double getRed() { return 0; }
+
         public int getAlpha() { return 0; }
+
         public double getBlue() { return 0; }
+
         public double getGreen() { return 0; }
     }
 
@@ -110,6 +113,7 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
 
     class Timer {
         Timer(String string, boolean b) {}
+
         public void schedule(AuthUpdateTask authUpdateTask, long l, long intervalMs) {}
     }
 }
