@@ -130,6 +130,8 @@ public class XdocsExamplesAstConsistencyTest {
             // until https://github.com/checkstyle/checkstyle/issues/19891
             "checks/blocks/leftcurly/Example3",
             "checks/naming/patternvariablename/Example3",
+            "checks/javadoc/atclauseorder/Example2",
+            "checks/javadoc/atclauseorder/Example3",
             "checks/javadoc/javadocvariable/Example3",
             "checks/javadoc/javadocvariable/Example5",
             "checks/whitespace/parenpad/Example3",
