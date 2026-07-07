@@ -328,6 +328,16 @@ public class ScopeUtilTest {
     }
 
     @Test
+    public void testGetScopeOfEnumConstantIsPublic() {
+        final Scope scope = ScopeUtil.getScope(
+                getNode(TokenTypes.ENUM_DEF, TokenTypes.OBJBLOCK, TokenTypes.ENUM_CONSTANT_DEF));
+
+        assertWithMessage("Invalid enum constant scope")
+                .that(scope)
+                .isEqualTo(Scope.PUBLIC);
+    }
+
+    @Test
     public void testIsInInterfaceBlock() {
         final DetailAST ast = getNode(TokenTypes.INTERFACE_DEF, TokenTypes.OBJBLOCK,
                 TokenTypes.CLASS_DEF, TokenTypes.MODIFIERS);
