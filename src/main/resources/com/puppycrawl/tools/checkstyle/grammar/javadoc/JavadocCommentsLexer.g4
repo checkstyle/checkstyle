@@ -593,7 +593,7 @@ fragment LinkDescription_TEXT_CHAR
 mode PARAMETER_LIST;
 
 ParameterList_WS
-    : [ \t]+ -> type(WS), channel(WHITESPACES)
+    : [ \t]+ -> skip
     ;
 
 ParameterList_NEWLINE
