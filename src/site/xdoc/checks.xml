@@ -1200,6 +1200,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/misc/multilinecommentleadingasteriskpresence.html#MultilineCommentLeadingAsteriskPresence">
+                MultilineCommentLeadingAsteriskPresence
+              </a>
+            </td>
+            <td>
+              Checks if the <a href="https://www.oracle.com/java/technologies/javase/codeconventions-comments.html">
+              multi-line comments</a> have leading asterisks on each line.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/multiplestringliterals.html#MultipleStringLiterals">
                 MultipleStringLiterals
               </a>
