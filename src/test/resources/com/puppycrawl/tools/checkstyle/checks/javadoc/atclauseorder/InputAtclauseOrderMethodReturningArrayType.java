@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 import java.sql.SQLException;
 
 public interface InputAtclauseOrderMethodReturningArrayType {
-    // violation 5 lines below 'Block tags have to appear in the order'
+    // violation 5 lines below 'Block tags have to appear in the order .\[@author.*'
     /**
      * @return int array
      * @exception SQLException
@@ -25,8 +25,8 @@ public interface InputAtclauseOrderMethodReturningArrayType {
      */
     int[] executeBatch() throws SQLException;
 
-    // violation 7 lines below 'Block tags have to appear in the order'
-    // violation 7 lines below 'Block tags have to appear in the order'
+    // violation 7 lines below 'Block tags have to appear in the order .\[@author.*'
+    // violation 7 lines below 'Block tags have to appear in the order .\[@author.*'
     /**
       * {@code selected} is an array that will contain
       * the indices of items that have been selected.
