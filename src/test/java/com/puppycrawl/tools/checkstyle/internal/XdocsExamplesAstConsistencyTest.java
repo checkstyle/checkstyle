@@ -98,7 +98,7 @@ public class XdocsExamplesAstConsistencyTest {
      *
      * <p>Format: "directory/ExampleN" where the example has unique code.
      *
-     * <p>Until: <a href="https://github.com/checkstyle/checkstyle/issues/18435">...</a>
+     * <p>Until: <a href="https://github.com/checkstyle/checkstyle/issues/19891">...</a>
      */
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
             // Note: customImport/ImportOrder changes import group ORDER affecting AST structure
