@@ -47,7 +47,8 @@ public class InputInnerTypeLastClass {
 		}
 	}
 
-	void methodTest2() { // violation
+	// violation below 'Init blocks, constructors, fields and methods should be before inner types.'
+	void methodTest2() {
 		System.identityHashCode("test2");
 	}
 }
@@ -68,11 +69,13 @@ class Temp2 {
 		}
 	}
 
-	void methodTest2() { // violation
+	// violation below 'Init blocks, constructors, fields and methods should be before inner types.'
+	void methodTest2() {
 		System.identityHashCode("test2");
 	}
 
-	private int i = 0; // violation
+	// violation below 'Init blocks, constructors, fields and methods should be before inner types.'
+	private int i = 0;
 }
 
 class Temp3 {
@@ -81,7 +84,8 @@ class Temp3 {
         private int I = 0;
     }
 
-    public int[] getDefaultTokens() // violation
+	// violation below 'Init blocks, constructors, fields and methods should be before inner types.'
+	public int[] getDefaultTokens()
     {
         return new int[]{1, };
     }
@@ -98,6 +102,7 @@ class Temp4 {
             private int a = 0;
         }
 
-        private int I = 0; // violation
+		// violation below 'Init blocks, constructors, fields and methods should be before inner types.'
+		private int I = 0;
     }
 }
