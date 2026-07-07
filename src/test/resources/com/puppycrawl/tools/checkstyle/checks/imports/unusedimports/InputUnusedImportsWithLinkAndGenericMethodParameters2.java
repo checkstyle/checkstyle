@@ -18,6 +18,8 @@ import java.util.Set;
  * {@link #method(Set<List<Integer>>)}
  * {@link #method(Class<? extends BigDecimal>)}
  * {@link #method(Class<? super RoundingMode>)}
+ * {@link #method(?)}
+ * {@link #method(int>)}
  */
 public class InputUnusedImportsWithLinkAndGenericMethodParameters2 {
 

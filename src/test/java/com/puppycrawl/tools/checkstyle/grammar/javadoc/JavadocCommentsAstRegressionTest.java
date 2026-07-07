@@ -190,6 +190,13 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testLinkInlineTagGenericParameterTypeWithWhitespace() throws Exception {
+        verifyJavadocTree(
+                getInlineTagsPath("ExpectedLinkInlineTagGenericParameterTypeWithWhitespace.txt"),
+                getInlineTagsPath("InputLinkInlineTagGenericParameterTypeWithWhitespace.javadoc"));
+    }
+
+    @Test
     public void testValueAndInheritDocInlineTag() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedValueAndInheritDocInlineTag.txt"),
                 getInlineTagsPath("InputValueAndInheritDocInlineTag.javadoc"));
