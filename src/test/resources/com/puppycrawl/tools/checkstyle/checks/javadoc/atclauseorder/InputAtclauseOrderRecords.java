@@ -30,9 +30,9 @@ public class InputAtclauseOrderRecords {
             return "null";
         }
 
-        // violation 7 lines below 'Block tags have to appear in the order'
-        // violation 7 lines below 'Block tags have to appear in the order'
-        // violation 7 lines below 'Block tags have to appear in the order'
+        // violation 7 lines below 'Block tags have to appear in the order .\[@author.*'
+        // violation 7 lines below 'Block tags have to appear in the order .\[@author.*'
+        // violation 7 lines below 'Block tags have to appear in the order .\[@author.*'
         /**
          * Some text.
          *
@@ -45,8 +45,8 @@ public class InputAtclauseOrderRecords {
             return "null";
         }
 
-        // violation 6 lines below 'Block tags have to appear in the order'
-        // violation 6 lines below 'Block tags have to appear in the order'
+        // violation 6 lines below 'Block tags have to appear in the order .\[@author.*'
+        // violation 6 lines below 'Block tags have to appear in the order .\[@author.*'
         /**
          * Some text.
          *
@@ -57,8 +57,7 @@ public class InputAtclauseOrderRecords {
          */
         void method2(String aString) throws Exception {
         }
-
-        // violation 4 lines below 'Block tags have to appear in the order'
+        // violation 4 lines below 'Block tags have to appear in the order .\[@author.*'
         /**
          * Some text.
          * @since since
@@ -80,7 +79,7 @@ public class InputAtclauseOrderRecords {
  * @since Some javadoc.
  */
 record myOtherOtherRecord() {
-    // violation 3 lines below 'Block tags have to appear in the order'
+    // violation 3 lines below 'Block tags have to appear in the order .\[@author.*'
     /**
      * @since Some javadoc.
      * @author max
@@ -97,7 +96,7 @@ record myOtherOtherRecord() {
  * @since Some javadoc.
  */
 class myOtherOtherClass {
-        // violation 3 lines below 'Block tags have to appear in the order'
+    // violation 3 lines below 'Block tags have to appear in the order .\[@author.*'
         /**
          * @since Some javadoc.
          * @author max
