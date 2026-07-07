@@ -109,6 +109,12 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";
 
+    /** Prefix for wildcard extends bound. */
+    private static final String WILDCARD_EXTENDS_PREFIX = "? extends ";
+
+    /** Prefix for wildcard super bound. */
+    private static final String WILDCARD_SUPER_PREFIX = "? super ";
+
     /** Set of the imports. */
     private final Set<FullIdent> imports = new HashSet<>();
 
@@ -338,13 +344,22 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Recursively registers all type names referenced in a type string.
+     * Registers all type names referenced in a type string.
      * Handles generic type arguments, wildcard bounds, and array suffixes.
      *
      * @param type the type string to process
      */
     private void addReferencedTypesFromType(String type) {
         String currentType = type;
+        while (currentType.startsWith(WILDCARD_EXTENDS_PREFIX)
+                || currentType.startsWith(WILDCARD_SUPER_PREFIX)) {
+            if (currentType.startsWith(WILDCARD_EXTENDS_PREFIX)) {
+                currentType = currentType.substring(WILDCARD_EXTENDS_PREFIX.length());
+            }
+            else {
+                currentType = currentType.substring(WILDCARD_SUPER_PREFIX.length());
+            }
+        }
         if (currentType.endsWith("[]")) {
             currentType = currentType.substring(0, currentType.length() - 2);
         }
