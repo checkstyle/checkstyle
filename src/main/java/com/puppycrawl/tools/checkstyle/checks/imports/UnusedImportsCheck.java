@@ -109,6 +109,12 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";
 
+    /** Prefix for wildcard extends bound. */
+    private static final String WILDCARD_EXTENDS_PREFIX = "? extends ";
+
+    /** Prefix for wildcard super bound. */
+    private static final String WILDCARD_SUPER_PREFIX = "? super ";
+
     /** Set of the imports. */
     private final Set<FullIdent> imports = new HashSet<>();
 
@@ -334,7 +340,7 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
      * @param ast the Javadoc parameter type node
      */
     private void processParameterType(DetailNode ast) {
-        addReferencedTypesFromType(ast.getText());
+        addReferencedTypesFromType(ast.getText().trim());
     }
 
     /**
@@ -344,21 +350,31 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
      * @param type the type string to process
      */
     private void addReferencedTypesFromType(String type) {
-        String currentType = type;
-        if (currentType.endsWith("[]")) {
-            currentType = currentType.substring(0, currentType.length() - 2);
+        String currentType = type.trim();
+        if (currentType.startsWith(WILDCARD_EXTENDS_PREFIX)) {
+            addReferencedTypesFromType(
+                currentType.substring(WILDCARD_EXTENDS_PREFIX.length()).trim());
         }
-        String outerType = stripTypeArguments(currentType);
-        outerType = stripTrailingGt(outerType);
-        outerType = topLevelType(outerType);
-        currentFrame.addReferencedType(outerType);
-        final int openIndex = currentType.indexOf('<');
-        if (openIndex != -1) {
-            final int closeIndex = findMatchingCloseAngle(currentType, openIndex);
-            if (closeIndex != -1) {
-                final String typeArgs = currentType.substring(openIndex + 1, closeIndex);
-                for (String arg : splitTypeArguments(typeArgs)) {
-                    addReferencedTypesFromType(arg);
+        else if (currentType.startsWith(WILDCARD_SUPER_PREFIX)) {
+            addReferencedTypesFromType(
+                currentType.substring(WILDCARD_SUPER_PREFIX.length()).trim());
+        }
+        else if (!"?".equals(currentType)) {
+            if (currentType.endsWith("[]")) {
+                currentType = currentType.substring(0, currentType.length() - 2);
+            }
+            String outerType = stripTypeArguments(currentType);
+            outerType = stripTrailingGt(outerType);
+            outerType = topLevelType(outerType);
+            currentFrame.addReferencedType(outerType);
+            final int openIndex = currentType.indexOf('<');
+            if (openIndex != -1) {
+                final int closeIndex = findMatchingCloseAngle(currentType, openIndex);
+                if (closeIndex != -1) {
+                    final String typeArgs = currentType.substring(openIndex + 1, closeIndex);
+                    for (String arg : splitTypeArguments(typeArgs)) {
+                        addReferencedTypesFromType(arg);
+                    }
                 }
             }
         }
