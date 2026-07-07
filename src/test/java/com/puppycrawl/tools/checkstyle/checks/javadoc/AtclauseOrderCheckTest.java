@@ -90,20 +90,20 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
         final String[] expected = {
-            "20: " + getCheckMessage(MSG_KEY, tagOrder),
-            "22: " + getCheckMessage(MSG_KEY, tagOrder),
             "23: " + getCheckMessage(MSG_KEY, tagOrder),
-            "51: " + getCheckMessage(MSG_KEY, tagOrder),
-            "61: " + getCheckMessage(MSG_KEY, tagOrder),
-            "62: " + getCheckMessage(MSG_KEY, tagOrder),
-            "63: " + getCheckMessage(MSG_KEY, tagOrder),
-            "73: " + getCheckMessage(MSG_KEY, tagOrder),
-            "80: " + getCheckMessage(MSG_KEY, tagOrder),
-            "97: " + getCheckMessage(MSG_KEY, tagOrder),
-            "98: " + getCheckMessage(MSG_KEY, tagOrder),
-            "110: " + getCheckMessage(MSG_KEY, tagOrder),
-            "111: " + getCheckMessage(MSG_KEY, tagOrder),
-            "112: " + getCheckMessage(MSG_KEY, tagOrder),
+            "25: " + getCheckMessage(MSG_KEY, tagOrder),
+            "26: " + getCheckMessage(MSG_KEY, tagOrder),
+            "54: " + getCheckMessage(MSG_KEY, tagOrder),
+            "66: " + getCheckMessage(MSG_KEY, tagOrder),
+            "67: " + getCheckMessage(MSG_KEY, tagOrder),
+            "68: " + getCheckMessage(MSG_KEY, tagOrder),
+            "78: " + getCheckMessage(MSG_KEY, tagOrder),
+            "85: " + getCheckMessage(MSG_KEY, tagOrder),
+            "103: " + getCheckMessage(MSG_KEY, tagOrder),
+            "104: " + getCheckMessage(MSG_KEY, tagOrder),
+            "118: " + getCheckMessage(MSG_KEY, tagOrder),
+            "119: " + getCheckMessage(MSG_KEY, tagOrder),
+            "120: " + getCheckMessage(MSG_KEY, tagOrder),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAtclauseOrderIncorrect1.java"), expected);
@@ -114,20 +114,20 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
         final String[] expected = {
-            "20: " + getCheckMessage(MSG_KEY, tagOrder),
-            "22: " + getCheckMessage(MSG_KEY, tagOrder),
             "23: " + getCheckMessage(MSG_KEY, tagOrder),
-            "33: " + getCheckMessage(MSG_KEY, tagOrder),
-            "41: " + getCheckMessage(MSG_KEY, tagOrder),
-            "42: " + getCheckMessage(MSG_KEY, tagOrder),
-            "52: " + getCheckMessage(MSG_KEY, tagOrder),
-            "53: " + getCheckMessage(MSG_KEY, tagOrder),
-            "63: " + getCheckMessage(MSG_KEY, tagOrder),
-            "64: " + getCheckMessage(MSG_KEY, tagOrder),
+            "25: " + getCheckMessage(MSG_KEY, tagOrder),
+            "26: " + getCheckMessage(MSG_KEY, tagOrder),
+            "37: " + getCheckMessage(MSG_KEY, tagOrder),
+            "47: " + getCheckMessage(MSG_KEY, tagOrder),
+            "48: " + getCheckMessage(MSG_KEY, tagOrder),
+            "60: " + getCheckMessage(MSG_KEY, tagOrder),
+            "61: " + getCheckMessage(MSG_KEY, tagOrder),
+            "73: " + getCheckMessage(MSG_KEY, tagOrder),
             "74: " + getCheckMessage(MSG_KEY, tagOrder),
-            "77: " + getCheckMessage(MSG_KEY, tagOrder),
-            "88: " + getCheckMessage(MSG_KEY, tagOrder),
-            "98: " + getCheckMessage(MSG_KEY, tagOrder),
+            "86: " + getCheckMessage(MSG_KEY, tagOrder),
+            "89: " + getCheckMessage(MSG_KEY, tagOrder),
+            "101: " + getCheckMessage(MSG_KEY, tagOrder),
+            "112: " + getCheckMessage(MSG_KEY, tagOrder),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAtclauseOrderIncorrect2.java"), expected);
@@ -138,14 +138,14 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
         final String[] expected = {
-            "20: " + getCheckMessage(MSG_KEY, tagOrder),
-            "22: " + getCheckMessage(MSG_KEY, tagOrder),
             "23: " + getCheckMessage(MSG_KEY, tagOrder),
-            "33: " + getCheckMessage(MSG_KEY, tagOrder),
-            "40: " + getCheckMessage(MSG_KEY, tagOrder),
-            "48: " + getCheckMessage(MSG_KEY, tagOrder),
-            "61: " + getCheckMessage(MSG_KEY, tagOrder),
+            "25: " + getCheckMessage(MSG_KEY, tagOrder),
+            "26: " + getCheckMessage(MSG_KEY, tagOrder),
+            "37: " + getCheckMessage(MSG_KEY, tagOrder),
+            "45: " + getCheckMessage(MSG_KEY, tagOrder),
+            "54: " + getCheckMessage(MSG_KEY, tagOrder),
             "68: " + getCheckMessage(MSG_KEY, tagOrder),
+            "76: " + getCheckMessage(MSG_KEY, tagOrder),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAtclauseOrderIncorrect3.java"), expected);
@@ -156,21 +156,21 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
         final String[] expected = {
-            "20: " + getCheckMessage(MSG_KEY, tagOrder),
-            "22: " + getCheckMessage(MSG_KEY, tagOrder),
             "23: " + getCheckMessage(MSG_KEY, tagOrder),
-            "33: " + getCheckMessage(MSG_KEY, tagOrder),
-            "40: " + getCheckMessage(MSG_KEY, tagOrder),
-            "50: " + getCheckMessage(MSG_KEY, tagOrder),
-            "52: " + getCheckMessage(MSG_KEY, tagOrder),
-            "65: " + getCheckMessage(MSG_KEY, tagOrder),
-            "66: " + getCheckMessage(MSG_KEY, tagOrder),
-            "76: " + getCheckMessage(MSG_KEY, tagOrder),
-            "78: " + getCheckMessage(MSG_KEY, tagOrder),
-            "91: " + getCheckMessage(MSG_KEY, tagOrder),
-            "93: " + getCheckMessage(MSG_KEY, tagOrder),
-            "94: " + getCheckMessage(MSG_KEY, tagOrder),
-            "104: " + getCheckMessage(MSG_KEY, tagOrder),
+            "25: " + getCheckMessage(MSG_KEY, tagOrder),
+            "26: " + getCheckMessage(MSG_KEY, tagOrder),
+            "37: " + getCheckMessage(MSG_KEY, tagOrder),
+            "45: " + getCheckMessage(MSG_KEY, tagOrder),
+            "57: " + getCheckMessage(MSG_KEY, tagOrder),
+            "59: " + getCheckMessage(MSG_KEY, tagOrder),
+            "74: " + getCheckMessage(MSG_KEY, tagOrder),
+            "75: " + getCheckMessage(MSG_KEY, tagOrder),
+            "87: " + getCheckMessage(MSG_KEY, tagOrder),
+            "89: " + getCheckMessage(MSG_KEY, tagOrder),
+            "105: " + getCheckMessage(MSG_KEY, tagOrder),
+            "107: " + getCheckMessage(MSG_KEY, tagOrder),
+            "108: " + getCheckMessage(MSG_KEY, tagOrder),
+            "119: " + getCheckMessage(MSG_KEY, tagOrder),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAtclauseOrderIncorrect4.java"), expected);
@@ -189,7 +189,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final String tagOrder = "[@since, @version, @param, @return, @throws, @exception,"
                 + " @deprecated, @see, @serial, @serialField, @serialData, @author]";
         final String[] expected = {
-            "30: " + getCheckMessage(MSG_KEY, tagOrder),
+            "31: " + getCheckMessage(MSG_KEY, tagOrder),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAtclauseOrderIncorrectCustom2.java"), expected);
@@ -200,7 +200,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final String tagOrder = "[@since, @version, @param, @return, @throws, @exception,"
                 + " @deprecated, @see, @serial, @serialField, @serialData, @author]";
         final String[] expected = {
-            "30: " + getCheckMessage(MSG_KEY, tagOrder),
+            "31: " + getCheckMessage(MSG_KEY, tagOrder),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAtclauseOrderIncorrectCustom3.java"), expected);
@@ -211,7 +211,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final String tagOrder = "[@since, @version, @param, @return, @throws, @exception,"
                 + " @deprecated, @see, @serial, @serialField, @serialData, @author]";
         final String[] expected = {
-            "30: " + getCheckMessage(MSG_KEY, tagOrder),
+            "31: " + getCheckMessage(MSG_KEY, tagOrder),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAtclauseOrderIncorrectCustom4.java"), expected);
@@ -236,9 +236,9 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
             "42: " + getCheckMessage(MSG_KEY, tagOrder),
             "54: " + getCheckMessage(MSG_KEY, tagOrder),
             "55: " + getCheckMessage(MSG_KEY, tagOrder),
-            "65: " + getCheckMessage(MSG_KEY, tagOrder),
-            "86: " + getCheckMessage(MSG_KEY, tagOrder),
-            "103: " + getCheckMessage(MSG_KEY, tagOrder),
+            "64: " + getCheckMessage(MSG_KEY, tagOrder),
+            "85: " + getCheckMessage(MSG_KEY, tagOrder),
+            "102: " + getCheckMessage(MSG_KEY, tagOrder),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAtclauseOrderRecords.java"), expected);
@@ -294,27 +294,27 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
         final String[] expected = {
-            "20: " + getCheckMessage(MSG_KEY, tagOrder),
-            "21: " + getCheckMessage(MSG_KEY, tagOrder),
-            "22: " + getCheckMessage(MSG_KEY, tagOrder),
-            "32: " + getCheckMessage(MSG_KEY, tagOrder),
-            "33: " + getCheckMessage(MSG_KEY, tagOrder),
-            "34: " + getCheckMessage(MSG_KEY, tagOrder),
-            "44: " + getCheckMessage(MSG_KEY, tagOrder),
-            "45: " + getCheckMessage(MSG_KEY, tagOrder),
-            "46: " + getCheckMessage(MSG_KEY, tagOrder),
-            "59: " + getCheckMessage(MSG_KEY, tagOrder),
-            "60: " + getCheckMessage(MSG_KEY, tagOrder),
-            "61: " + getCheckMessage(MSG_KEY, tagOrder),
+            "23: " + getCheckMessage(MSG_KEY, tagOrder),
+            "24: " + getCheckMessage(MSG_KEY, tagOrder),
+            "25: " + getCheckMessage(MSG_KEY, tagOrder),
+            "38: " + getCheckMessage(MSG_KEY, tagOrder),
+            "39: " + getCheckMessage(MSG_KEY, tagOrder),
+            "40: " + getCheckMessage(MSG_KEY, tagOrder),
+            "53: " + getCheckMessage(MSG_KEY, tagOrder),
+            "54: " + getCheckMessage(MSG_KEY, tagOrder),
+            "55: " + getCheckMessage(MSG_KEY, tagOrder),
+            "71: " + getCheckMessage(MSG_KEY, tagOrder),
+            "72: " + getCheckMessage(MSG_KEY, tagOrder),
             "73: " + getCheckMessage(MSG_KEY, tagOrder),
-            "74: " + getCheckMessage(MSG_KEY, tagOrder),
-            "75: " + getCheckMessage(MSG_KEY, tagOrder),
             "88: " + getCheckMessage(MSG_KEY, tagOrder),
             "89: " + getCheckMessage(MSG_KEY, tagOrder),
             "90: " + getCheckMessage(MSG_KEY, tagOrder),
-            "100: " + getCheckMessage(MSG_KEY, tagOrder),
-            "101: " + getCheckMessage(MSG_KEY, tagOrder),
-            "102: " + getCheckMessage(MSG_KEY, tagOrder),
+            "105: " + getCheckMessage(MSG_KEY, tagOrder),
+            "106: " + getCheckMessage(MSG_KEY, tagOrder),
+            "107: " + getCheckMessage(MSG_KEY, tagOrder),
+            "120: " + getCheckMessage(MSG_KEY, tagOrder),
+            "121: " + getCheckMessage(MSG_KEY, tagOrder),
+            "122: " + getCheckMessage(MSG_KEY, tagOrder),
         };
 
         verifyWithInlineConfigParser(
@@ -327,11 +327,11 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
 
         final String[] expected = {
-            "41: " + getCheckMessage(MSG_KEY, tagOrder),
-            "58: " + getCheckMessage(MSG_KEY, tagOrder),
-            "78: " + getCheckMessage(MSG_KEY, tagOrder),
-            "79: " + getCheckMessage(MSG_KEY, tagOrder),
-            "80: " + getCheckMessage(MSG_KEY, tagOrder),
+            "42: " + getCheckMessage(MSG_KEY, tagOrder),
+            "60: " + getCheckMessage(MSG_KEY, tagOrder),
+            "83: " + getCheckMessage(MSG_KEY, tagOrder),
+            "84: " + getCheckMessage(MSG_KEY, tagOrder),
+            "85: " + getCheckMessage(MSG_KEY, tagOrder),
         };
 
         verifyWithInlineConfigParser(
