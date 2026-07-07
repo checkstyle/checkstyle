@@ -54,15 +54,18 @@ comment.
 
 **Example from**
 [`src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/
-javadocstyle/InputJavadocStyleHtml4.java`][example-input-javadocstyle-html4]
+javadocmethod/InputJavadocMethodTags1Three.java`][example-input-javadocmethod-tags1three]
 
 ```java
-// violation 3 lines below 'Unclosed HTML tag found: <code>'
 /**
- * This Javadoc contains unclosed tag.
- * <code>unclosed 'code' tag<code>
+ * Bug 841942, "ArrayIndexOutOfBounds in Javadoc handling".
+ * @param aParam there is no such param in the method.
+ * The problem should be reported with correct line number.
  */
-private void unclosedTag() {}
+// violation 3 lines above 'Un.* @param .* 'aParam'.'
+void method25()
+{
+}
 ```
 
 **Example from**
@@ -348,8 +351,8 @@ https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e
 https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/InputLeftCurlyTestNewLineOptionWithLambda.java#L23
 [example-finallocalvariable-constructor]:
 https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/InputFinalLocalVariableConstructor.java#L23
-[example-input-javadocstyle-html4]:
-https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/InputJavadocStyleHtml4.java#L26
+[example-input-javadocmethod-tags1three]:
+https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodTags1Three.java#L76
 [example-unnecessarynullcheckwithinstanceof-ternary]:
 https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarynullcheckwithinstanceof/InputUnnecessaryNullCheckWithInstanceOfTernary.java#L36
 [example-input-illegaltype-plain-arrays]:
