@@ -350,16 +350,17 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
      * @param type the type string to process
      */
     private void addReferencedTypesFromType(String type) {
-        String currentType = type.trim();
-        if (currentType.startsWith(WILDCARD_EXTENDS_PREFIX)) {
-            addReferencedTypesFromType(
-                currentType.substring(WILDCARD_EXTENDS_PREFIX.length()).trim());
+        String currentType = type;
+        while (currentType.startsWith(WILDCARD_EXTENDS_PREFIX)
+                || currentType.startsWith(WILDCARD_SUPER_PREFIX)) {
+            if (currentType.startsWith(WILDCARD_EXTENDS_PREFIX)) {
+                currentType = currentType.substring(WILDCARD_EXTENDS_PREFIX.length());
+            }
+            else {
+                currentType = currentType.substring(WILDCARD_SUPER_PREFIX.length());
+            }
         }
-        else if (currentType.startsWith(WILDCARD_SUPER_PREFIX)) {
-            addReferencedTypesFromType(
-                currentType.substring(WILDCARD_SUPER_PREFIX.length()).trim());
-        }
-        else if (!"?".equals(currentType)) {
+        if (!"?".equals(currentType)) {
             if (currentType.endsWith("[]")) {
                 currentType = currentType.substring(0, currentType.length() - 2);
             }

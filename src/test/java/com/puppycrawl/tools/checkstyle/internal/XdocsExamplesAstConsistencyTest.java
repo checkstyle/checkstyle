@@ -98,16 +98,9 @@ public class XdocsExamplesAstConsistencyTest {
      *
      * <p>Format: "directory/ExampleN" where the example has unique code.
      *
-     * <p>Until: <a href="https://github.com/checkstyle/checkstyle/issues/18435">...</a>
+     * <p>Until: <a href="https://github.com/checkstyle/checkstyle/issues/19891">...</a>
      */
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
-            "checks/metrics/classdataabstractioncoupling/Example2",
-            "checks/metrics/classdataabstractioncoupling/Example3",
-            "checks/metrics/classdataabstractioncoupling/ignore/Example7",
-            "checks/metrics/classdataabstractioncoupling/ignore/Example8",
-            "checks/metrics/classdataabstractioncoupling/ignore/Example9",
-            "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example5",
-            "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example6",
             // Note: customImport/ImportOrder changes import group ORDER affecting AST structure
             "checks/imports/customimportorder/Example10",
             "checks/imports/customimportorder/Example11",
@@ -140,6 +133,12 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/javadoc/javadocvariable/Example3",
             "checks/javadoc/javadocvariable/Example5",
             "checks/whitespace/parenpad/Example3",
+            "checks/metrics/classdataabstractioncoupling/Example2",
+            "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example4",
+            "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example6",
+            "checks/metrics/classdataabstractioncoupling/ignore/Example8",
+            "checks/metrics/classdataabstractioncoupling/ignore/Example10",
+            "checks/metrics/classdataabstractioncoupling/Example11",
             "checks/javadoc/missingjavadoctype/Example5",
             "checks/indentation/commentsindentation/Example3",
             "checks/indentation/commentsindentation/Example4",
