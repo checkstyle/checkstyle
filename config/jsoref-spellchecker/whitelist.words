@@ -875,6 +875,7 @@ MTAGLIST
 multicharacter
 multifileregexpheader
 multiline
+multilinecommentleadingasteriskpresence
 Multimap
 multiplestringliterals
 multiplevariabledeclarations
