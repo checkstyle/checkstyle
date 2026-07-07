@@ -422,7 +422,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
                 new ByteArrayInputStream(stream.toByteArray());
             LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-            int previousLineNumber = 0;
+            Integer previousLineNumber = 0;
             for (int index = 0; index < expected.length; index++) {
                 final String expectedResult = messageFileName + ":" + expected[index];
                 final String actual = lnr.readLine();
@@ -434,12 +434,12 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
                 String parseInt = removeDeviceFromPathOnWindows(actual);
                 parseInt = parseInt.substring(parseInt.indexOf(':') + 1);
                 parseInt = parseInt.substring(0, parseInt.indexOf(':'));
-                final int lineNumber = Integer.parseInt(parseInt);
+                final Integer lineNumber = Integer.parseInt(parseInt);
                 assertWithMessage(
                         "input file is expected to have a warning comment on line number %s",
                         lineNumber)
-                    .that(previousLineNumber == lineNumber
-                            || theWarnings.remove((Integer) lineNumber))
+                    .that(previousLineNumber.equals(lineNumber)
+                            || theWarnings.remove(/* element */lineNumber))
                     .isTrue();
                 previousLineNumber = lineNumber;
             }
