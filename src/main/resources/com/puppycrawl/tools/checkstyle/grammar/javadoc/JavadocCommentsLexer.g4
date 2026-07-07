@@ -607,6 +607,10 @@ ParameterList_LEADING_ASTERISK
 
 PARAMETER_TYPE
     : ([a-zA-Z0-9_$] | '.' | '[' | ']' | '<' | '>' | '?')+
+      (
+          ' '
+          ([a-zA-Z0-9_$] | '.' | '[' | ']' | '<' | '>' | '?')+
+      )*
     ;
 
 COMMA: ',';
