@@ -2125,6 +2125,7 @@
                 <exclude>**/JavadocTagContinuationIndentationCheck.class</exclude>
                 <exclude>**/JavadocTypeCheck.class</exclude>
                 <exclude>**/MissingDeprecatedCheck.class</exclude>
+                <exclude>**/MultilineCommentLeadingAsteriskPresence.class</exclude>
                 <exclude>**/NonEmptyAtclauseDescriptionCheck.class</exclude>
                 <exclude>**/RequireEmptyLineBeforeBlockTagGroupCheck.class</exclude>
                 <exclude>**/SingleLineJavadocCheck.class</exclude>
@@ -3387,6 +3388,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.LineEndingOption*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.MultilineCommentLeadingAsteriskPresenceCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck*</param>
@@ -3409,6 +3411,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.LineEndingCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.FinalParametersCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.MultilineCommentLeadingAsteriskPresenceCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheckTest</param>
