@@ -847,6 +847,7 @@
       <property name="caseIndent" value="4"/>
       <property name="throwsIndent" value="8"/>
     </module>
+    <module name="MultilineCommentLeadingAsteriskPresence"/>
     <module name="OuterTypeFilename"/>
     <module name="TodoComment">
       <property name="format" value="(TODO)|(FIXME)" />
