@@ -484,4 +484,11 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         }
     }
 
+    @Test
+    public void testSeeReferenceWithParameterNames() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsWithSeeReferenceAndParameterNames.java"), expected);
+    }
+
 }
