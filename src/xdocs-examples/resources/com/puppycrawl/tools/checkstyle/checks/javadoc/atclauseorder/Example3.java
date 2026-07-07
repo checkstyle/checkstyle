@@ -46,14 +46,16 @@ public class Example3 {
   class Invalid implements Serializable {
   }
 
+  // violation 8 lines below 'Block tags have to appear in the order'
+  // violation 8 lines below 'Block tags have to appear in the order'
   /**
    * Some javadoc.
    *
    * @author Some javadoc.
    * @version Some javadoc.
    * @see Some javadoc.
-   * @since Some javadoc. // violation
-   * @deprecated // violation
+   * @since Some javadoc.
+   * @deprecated
    */
   enum Test {}
 }

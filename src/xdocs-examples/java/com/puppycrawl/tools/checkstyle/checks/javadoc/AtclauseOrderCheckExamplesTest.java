@@ -46,11 +46,11 @@ public class AtclauseOrderCheckExamplesTest extends AbstractExamplesModuleTestSu
             + " @deprecated, @see, @serial, @serialField, @serialData]";
 
         final String[] expected = {
-            "29: " + getCheckMessage(MSG_KEY, tagOrder),
-            "43: " + getCheckMessage(MSG_KEY, tagOrder),
-            "44: " + getCheckMessage(MSG_KEY, tagOrder),
-            "55: " + getCheckMessage(MSG_KEY, tagOrder),
-            "56: " + getCheckMessage(MSG_KEY, tagOrder),
+            "30: " + getCheckMessage(MSG_KEY, tagOrder),
+            "46: " + getCheckMessage(MSG_KEY, tagOrder),
+            "47: " + getCheckMessage(MSG_KEY, tagOrder),
+            "60: " + getCheckMessage(MSG_KEY, tagOrder),
+            "61: " + getCheckMessage(MSG_KEY, tagOrder),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -63,8 +63,8 @@ public class AtclauseOrderCheckExamplesTest extends AbstractExamplesModuleTestSu
             + " @deprecated, @see, @serial, @serialField, @serialData]";
 
         final String[] expected = {
-            "55: " + getCheckMessage(MSG_KEY, tagOrder),
-            "56: " + getCheckMessage(MSG_KEY, tagOrder),
+            "57: " + getCheckMessage(MSG_KEY, tagOrder),
+            "58: " + getCheckMessage(MSG_KEY, tagOrder),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
