@@ -78,10 +78,16 @@ public class InputDeclarationUsageDistanceAtMostThree3 {
     }
 
     class Session {
-        public Transaction beginTransaction() { return null; }
+        public Transaction beginTransaction() {
+            return null;
+        }
         public void close() {}
-        public Serializable save(E d2) { return null; }
-        public Serializable save(A a) { return null; }
+        public Serializable save(E d2) {
+            return null;
+        }
+        public Serializable save(A a) {
+            return null;
+        }
     }
 
     class Transaction {

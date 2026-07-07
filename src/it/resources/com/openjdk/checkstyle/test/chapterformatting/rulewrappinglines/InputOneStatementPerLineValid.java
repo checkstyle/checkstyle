@@ -56,7 +56,6 @@ public final class InputOneStatementPerLineValid {
 
         do {
             two++;
-        }
-        while (two < 2);
+        } while (two < 2);
     }
 }
