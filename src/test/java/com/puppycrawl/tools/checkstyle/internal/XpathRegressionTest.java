@@ -54,6 +54,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     // Checks that not compatible with SuppressionXpathFilter
     public static final Set<String> INCOMPATIBLE_CHECK_NAMES = Set.of(
+            "MultilineCommentLeadingAsteriskPresence (reason violation is on token text)",
             "NoCodeInFile (reason is that AST is not generated for a file not containing code)",
             "Regexp (reason is at  #7759)",
             "RegexpSinglelineJava (reason is at  #7759)"
@@ -206,7 +207,8 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         final Set<String> allChecks = new HashSet<>(SIMPLE_CHECK_NAMES);
         allChecks.removeAll(INCOMPATIBLE_JAVADOC_CHECK_NAMES);
         allChecks.removeAll(INCOMPATIBLE_CHECK_NAMES);
-        allChecks.removeAll(Set.of("Regexp", "RegexpSinglelineJava", "NoCodeInFile"));
+        allChecks.removeAll(Set.of("Regexp", "RegexpSinglelineJava", "NoCodeInFile",
+                "MultilineCommentLeadingAsteriskPresence"));
         allChecks.removeAll(NO_VIOLATION_MODULES);
         allChecks.removeAll(compatibleChecks);
         allChecks.removeAll(INTERNAL_MODULES);
