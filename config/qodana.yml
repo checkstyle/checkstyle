@@ -56,4 +56,3 @@ exclude:
       - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo.java
       - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java
       - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java
-      - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java
