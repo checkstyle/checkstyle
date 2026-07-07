@@ -54,11 +54,11 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMembersBeforeInner() throws Exception {
         final String[] expected = {
-            "50:9: " + getCheckMessage(MSG_KEY),
-            "71:9: " + getCheckMessage(MSG_KEY),
-            "75:9: " + getCheckMessage(MSG_KEY),
-            "84:5: " + getCheckMessage(MSG_KEY),
-            "101:9: " + getCheckMessage(MSG_KEY),
+            "51:9: " + getCheckMessage(MSG_KEY),
+            "73:9: " + getCheckMessage(MSG_KEY),
+            "78:9: " + getCheckMessage(MSG_KEY),
+            "88:9: " + getCheckMessage(MSG_KEY),
+            "106:17: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastClass.java"), expected);
@@ -92,9 +92,9 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testInnerTypeBeforeCtor() throws Exception {
         final String[] expected = {
-            "13:5: " + getCheckMessage(MSG_KEY),
-            "22:5: " + getCheckMessage(MSG_KEY),
-            "31:5: " + getCheckMessage(MSG_KEY),
+            "14:5: " + getCheckMessage(MSG_KEY),
+            "24:5: " + getCheckMessage(MSG_KEY),
+            "34:5: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastClassCtorsInitBlocks.java"), expected);
@@ -104,13 +104,13 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     public void testInnerTypeLastRecords() throws Exception {
 
         final String[] expected = {
-            "17:9: " + getCheckMessage(MSG_KEY),
-            "21:5: " + getCheckMessage(MSG_KEY),
-            "30:9: " + getCheckMessage(MSG_KEY),
-            "40:13: " + getCheckMessage(MSG_KEY),
-            "46:13: " + getCheckMessage(MSG_KEY),
-            "50:9: " + getCheckMessage(MSG_KEY),
-            "52:9: " + getCheckMessage(MSG_KEY),
+            "18:9: " + getCheckMessage(MSG_KEY),
+            "23:5: " + getCheckMessage(MSG_KEY),
+            "33:9: " + getCheckMessage(MSG_KEY),
+            "44:13: " + getCheckMessage(MSG_KEY),
+            "51:13: " + getCheckMessage(MSG_KEY),
+            "56:9: " + getCheckMessage(MSG_KEY),
+            "59:9: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastRecords.java"), expected);
@@ -119,10 +119,10 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testInnerTypeLastCstyleArray() throws Exception {
         final String[] expected = {
-            "11:5: " + getCheckMessage(MSG_KEY),
             "12:5: " + getCheckMessage(MSG_KEY),
-            "13:5: " + getCheckMessage(MSG_KEY),
             "14:5: " + getCheckMessage(MSG_KEY),
+            "16:5: " + getCheckMessage(MSG_KEY),
+            "18:5: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastArray.java"), expected);
