@@ -506,7 +506,7 @@ public final class Main {
      * @param format format of the audit listener
      * @param outputLocation the location of output
      * @return a fresh new {@code AuditListener}
-     * @exception IOException when provided output location is not found
+     * @throws IOException when provided output location is not found
      */
     private static AuditListener createListener(OutputFormat format, Path outputLocation)
             throws IOException {
