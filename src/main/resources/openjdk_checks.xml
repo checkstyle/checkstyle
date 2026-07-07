@@ -61,6 +61,7 @@
       <property name="lineWrappingIndentation" value="8"/>
       <property name="arrayInitIndent" value="4"/>
     </module>
+    <module name="OneTopLevelClass"/>
 
     <module name="OneStatementPerLine"/>
     <module name="OuterTypeFilename"/>
