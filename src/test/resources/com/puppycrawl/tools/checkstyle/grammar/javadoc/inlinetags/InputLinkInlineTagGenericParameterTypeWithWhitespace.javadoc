@@ -1,0 +1,15 @@
+ * {@link #m(Class<? extends Number>)}
+ * {@link #m(Class<? super Integer>)}
+ * {@link #m(List<? extends Comparable<String>>)}
+ * {@link #m(int, Class<? extends Number>)}
+ * {@link #m(Map<String, ? extends Number>)}
+ * {@link #m(Class<? extends Number>, List<? super Integer>)}
+ * {@link #m(int , String)}
+ * {@link #m(int,  Class<? extends Number>)}
+ * {@link #m(Class<? extends Number>,
+ *           List<? super Integer>)}
+ * {@link #m(   List    ,   Map)}
+ * {@link #m(List,    Map)}
+ * {@link #m(   List    ,    Map    )}
+ * {@link #m(   Class<? extends Number>)}
+ * {@link #m(Class<? extends Number>    )}
