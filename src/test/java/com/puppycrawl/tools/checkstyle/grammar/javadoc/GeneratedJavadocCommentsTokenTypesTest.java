@@ -341,7 +341,7 @@ public class GeneratedJavadocCommentsTokenTypesTest {
             .isEqualTo(107);
         assertWithMessage(MSG)
             .that(JavadocCommentsLexer.TAG_ATTR_NAME)
-            .isEqualTo(114);
+            .isEqualTo(115);
 
         final Set<String> modeNames = Set.of(JavadocCommentsLexer.modeNames);
         final Set<String> channelNames = Set.of(JavadocCommentsLexer.channelNames);
@@ -358,7 +358,7 @@ public class GeneratedJavadocCommentsTokenTypesTest {
                         + " 'GeneratedJavadocTokenTypesTest' and verified"
                         + " that their old numbering didn't change")
             .that(tokenCount)
-            .isEqualTo(88);
+            .isEqualTo(89);
     }
 
     /**

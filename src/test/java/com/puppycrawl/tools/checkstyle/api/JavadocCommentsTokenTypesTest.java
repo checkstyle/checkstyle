@@ -289,7 +289,7 @@ public class JavadocCommentsTokenTypesTest {
                 .isEqualTo(107);
         assertWithMessage(msg)
                 .that(JavadocCommentsTokenTypes.TAG_ATTR_NAME)
-                .isEqualTo(114);
+                .isEqualTo(115);
     }
 
 }
