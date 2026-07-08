@@ -82,23 +82,29 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
     public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.OBJBLOCK,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        final int parentType = ast.getParent().getType();
-
-        final int[] tokenTypes = {
-            TokenTypes.CLASS_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.LITERAL_NEW,
-            TokenTypes.RECORD_DEF,
-        };
-
-        if (TokenUtil.isOfType(parentType, tokenTypes)) {
+        if (ast.getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
             checkOverloadMethodsGrouping(ast);
+        }
+        else {
+            final int parentType = ast.getParent().getType();
+
+            final int[] tokenTypes = {
+                TokenTypes.CLASS_DEF,
+                TokenTypes.ENUM_DEF,
+                TokenTypes.INTERFACE_DEF,
+                TokenTypes.LITERAL_NEW,
+                TokenTypes.RECORD_DEF,
+            };
+
+            if (TokenUtil.isOfType(parentType, tokenTypes)) {
+                checkOverloadMethodsGrouping(ast);
+            }
         }
     }
 
@@ -107,7 +113,8 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
      * separated from each other.
      *
      * @param objectBlock
-     *        is a class, interface or enum object block.
+     *        is a class, interface, enum object block, or a compact
+     *        compilation unit for a JEP 512 compact source file.
      */
     private void checkOverloadMethodsGrouping(DetailAST objectBlock) {
         final int allowedDistance = 1;
