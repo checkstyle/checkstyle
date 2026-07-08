@@ -17,7 +17,8 @@ public class InputNPathComplexityOverflow {
      *          (if-range[5]=9) * (if-range[6]=9) * (if-range[7]=9) * (if-range[8]=9)
      *          (if-range[9]=9) * (if-range[10]=9) = 3486784401
      */
-    public void provokeNpathIntegerOverflow() // violation
+    // violation below 'NPath Complexity is 3,486,784,401 (max allowed is 0).'
+    public void provokeNpathIntegerOverflow()
     {
         // NP = (if-range=8) + 1 + (expr=0) = 9
         if (true) {
