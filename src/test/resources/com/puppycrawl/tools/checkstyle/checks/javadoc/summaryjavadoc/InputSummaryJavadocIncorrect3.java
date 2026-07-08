@@ -77,8 +77,7 @@ public class InputSummaryJavadocIncorrect3 {
     public void testBreakTag() {
     }
 
-    // Until https://github.com/checkstyle/checkstyle/issues/11425
-    // violation below 'Summary javadoc is missing'
+    // violation below 'First sentence of Javadoc is missing an ending period.'
     /**
      * <ul>
      *   <li><i>This is the summary</i></li>
