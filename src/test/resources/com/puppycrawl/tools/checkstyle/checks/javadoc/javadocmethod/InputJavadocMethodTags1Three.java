@@ -69,7 +69,7 @@ public class InputJavadocMethodTags1Three {
     }
 
     /**
-     * Bug 841942, "ArrayIndexOutOfBounds in JavadocStyle".
+     * Bug 841942, "ArrayIndexOutOfBounds in Javadoc handling".
      * @param aParam there is no such param in the method.
      * The problem should be reported with correct line number.
      */

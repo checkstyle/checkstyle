@@ -53,16 +53,17 @@ If the violation is further away, you can specify the exact number of lines abov
 comment.
 
 **Example from**
-[`src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/
-javadocstyle/InputJavadocStyleHtml4.java`][example-input-javadocstyle-html4]
+[`src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/coding/
+nestedfordepth/Example1.java`][example-nestedfordepth]
 
 ```java
-// violation 3 lines below 'Unclosed HTML tag found: <code>'
-/**
- * This Javadoc contains unclosed tag.
- * <code>unclosed 'code' tag<code>
- */
-private void unclosedTag() {}
+// violation 3 lines below 'Nested for depth is 2 (max allowed is 1).'
+for(int i=0; i<10; i++) {
+  for(int j=0; j<i; j++) {
+    for(int k=0; k<j; k++) {
+    }
+  }
+}
 ```
 
 **Example from**
@@ -348,8 +349,8 @@ https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e
 https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/InputLeftCurlyTestNewLineOptionWithLambda.java#L23
 [example-finallocalvariable-constructor]:
 https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/InputFinalLocalVariableConstructor.java#L23
-[example-input-javadocstyle-html4]:
-https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/InputJavadocStyleHtml4.java#L26
+[example-nestedfordepth]:
+https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/coding/nestedfordepth/Example1.java#L18
 [example-unnecessarynullcheckwithinstanceof-ternary]:
 https://github.com/checkstyle/checkstyle/blob/e9e67c42120524ea613d960af4e443375e37e799/src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarynullcheckwithinstanceof/InputUnnecessaryNullCheckWithInstanceOfTernary.java#L36
 [example-input-illegaltype-plain-arrays]:
