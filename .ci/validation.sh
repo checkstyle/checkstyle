@@ -407,7 +407,7 @@ verify-no-exception-configs)
   curl -s --fail-with-body -o "$working_dir/checks-only-javadoc-error.xml" \
     -H "Authorization: token $GITHUB_TOKEN" \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-only-javadoc-error.xml
-  MODULES_WITH_EXTERNAL_FILES="Filter|ImportControl"
+  MODULES_WITH_EXTERNAL_FILES="Filter|ImportControl|JavadocStyle"
   xmlstarlet fo -D \
     -n $working_dir/checks-nonjavadoc-error.xml \
     | xmlstarlet sel --net --template -m .//module -n -v "@name" \
