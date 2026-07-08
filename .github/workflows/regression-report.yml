@@ -598,8 +598,8 @@ jobs:
 
       - name: Tar config files artifact
         run: |
-          files=(.ci-temp/*.xml .ci-temp/*.header)
-          for path in .ci-temp/projects.yml .ci-temp/projects.properties; do
+          files=()
+          for path in .ci-temp/*.{xml,header} .ci-temp/projects.{yml,properties}; do
             if [ -f "$path" ]; then
               files+=("$path")
             fi
