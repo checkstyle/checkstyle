@@ -8,21 +8,21 @@ max = 0
 package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
 // Advise: for lack of ambiguity try to make all factors prime numbers
 public class InputNPathComplexity {
-    //NP = 5
-    void testIfWithExpression() { // violation
+    // violation below 'NPath Complexity is 5 (max allowed is 0).'
+    void testIfWithExpression() {
         // NP = (if-range=1) + 1 + (expr=3) = 5
         if (true && true || (true || true)) { }
     }
 
-    //NP = 5
-    void testIfElseWithExpression() { // violation
+    // violation below 'NPath Complexity is 5 (max allowed is 0).'
+    void testIfElseWithExpression() {
         // NP = (if-range=1) + (else-range=1) + (expr=3) = 5
         if (true && true || (true || true)) { }
         else { }
     }
 
-    //NP = 4
-    int testSimpleSwitch() { // violation
+    // violation below 'NPath Complexity is 4 (max allowed is 0).'
+    int testSimpleSwitch() {
         int a = 0;
         // NP = (case-range[1]=1) + (case-range[2]=1) + (case-range[3]=1)
         //         + (default-range=1) + (expr=0) = 4
@@ -36,8 +36,8 @@ public class InputNPathComplexity {
         return a;
     }
 
-    //NP = 4
-    void testSimpleSwitchWithDefault() { // violation
+    // violation below 'NPath Complexity is 4 (max allowed is 0).'
+    void testSimpleSwitchWithDefault() {
         int a = 0;
         // NP = (case-range[1]=1) + (case-range[2]=1) + (case-range[3]=1)
         //         + (default-range=1) + (expr=0) = 4
@@ -52,8 +52,8 @@ public class InputNPathComplexity {
         }
     }
 
-    //NP = 6
-    void testSwitchWithExpression() { // violation
+    // violation below 'NPath Complexity is 6 (max allowed is 0).'
+    void testSwitchWithExpression() {
         int a = 0;
         // NP = (case-range[1]=1) + (case-range[2]=1) + (case-range[3]=1)
         //         + (default-range=1) + (expr=2) = 6
@@ -68,8 +68,8 @@ public class InputNPathComplexity {
         }
     }
 
-    //NP = 15
-    void testComplexSwitch() { // violation
+    // violation below 'NPath Complexity is 15 (max allowed is 0).'
+    void testComplexSwitch() {
         int a = 0;
         // NP = (case-range[1]=2) + (case-range[2]=5*2) + (case-range[3]=2)
         //         + (default-range=1) + (expr=0) = 15
@@ -93,8 +93,8 @@ public class InputNPathComplexity {
         }
     }
 
-    // NP = 11
-    void testComplexIfElse() { // violation
+    // violation below 'NPath Complexity is 11 (max allowed is 0).'
+    void testComplexIfElse() {
         // NP = (if-range=1) + (else-range=9) + (expr=1) = 11
         if (true && true) { }
         // NP(else-range) = (if-range=1) + (else-range=6) + (expr=2) = 9
@@ -103,8 +103,8 @@ public class InputNPathComplexity {
         else if (true && true && true || true || true) { }
     }
 
-    // NP = 8
-    boolean testComplexReturn() { // violation
+    // violation below 'NPath Complexity is 8 (max allowed is 0).'
+    boolean testComplexReturn() {
         // NP = (if-range=3) + (else-range=4) + (expr=1) = 8
         if (true && true) {
             // NP(if-range) = 3
@@ -117,7 +117,8 @@ public class InputNPathComplexity {
 
     // NP = (for-statement[1]=2) * (for-statement[2]=3)
     //         * (for-statement[3]=4) * (for-statement[4]=5) = 120
-    void testForCyclesComplex() { // violation
+    // violation below 'NPath Complexity is 120 (max allowed is 0).'
+    void testForCyclesComplex() {
         // NP(for-statement) = (for-range=1) + (expr(1)=0) + (expr(2)=0) + (expr(3)=0) + 1 = 2
         for (int i = 0; i < 10; i++);
         // NP(for-statement) = (for-range=1) + (expr(1)=0) + (expr(2)=1) + (expr(3)=0) + 1 = 3
@@ -129,7 +130,8 @@ public class InputNPathComplexity {
     }
 
     // NP = (while-statement[1]=2) * (while-statement[2]=3) = 6
-    boolean testWhileCyclesComplex() { // violation
+    // violation below 'NPath Complexity is 6 (max allowed is 0).'
+    boolean testWhileCyclesComplex() {
         int a = 0;
         // NP(while-statement) = (while-range=1) + (expr=0) + 1 = 2
         while (a != 0) { }
@@ -139,7 +141,8 @@ public class InputNPathComplexity {
     }
 
     // NP = (do-statement[1]=6) * (do-statement[2]=3) = 21
-    void testDoWhileCyclesComplex() { // violation
+    // violation below 'NPath Complexity is 21 (max allowed is 0).'
+    void testDoWhileCyclesComplex() {
         int a = 0;
         // NP(do-statement) = (do-range=1) + (expr=1) + 1 = 3
         do { } while (a < 10 && true);
@@ -152,7 +155,8 @@ public class InputNPathComplexity {
     }
 
     // NP = (question-statement[1]=5) * (question-statement[2]=7) = 35
-    void testComplexTernaryOperator() { // violation
+    // violation below 'NPath Complexity is 35 (max allowed is 0).'
+    void testComplexTernaryOperator() {
         // NP(question-statement) = (expr(1)=0) + (expr(2)=2) + (expr(3)=1+2) + 2 = 7
         boolean a = true ? (true ? true : true) : (false ? (true || false) : true);
         // NP(question-statement) = (expr(1)=0) + (expr(2)=2) + (expr(3)=1) + 2 = 5;
@@ -160,7 +164,8 @@ public class InputNPathComplexity {
     }
 
     // NP = (if-expression[1]=5) * (if-expression[2]=5) = 25
-    void testSimpleTernaryBadFormatting() { // violation
+    // violation below 'NPath Complexity is 25 (max allowed is 0).'
+    void testSimpleTernaryBadFormatting() {
         // NP(if-expression) = (if-range=2) + 1 + (expr=2) = 5
         if(
            true ? true : true
@@ -175,7 +180,8 @@ public class InputNPathComplexity {
 
     //Calculation for try-catch is wrong now
     //See issue #3814 https://github.com/checkstyle/checkstyle/issues/3814
-    void testTryCatch() { // violation
+    // violation below 'NPath Complexity is 2 (max allowed is 0).'
+    void testTryCatch() {
        try {
        }
        catch (Exception e) {
