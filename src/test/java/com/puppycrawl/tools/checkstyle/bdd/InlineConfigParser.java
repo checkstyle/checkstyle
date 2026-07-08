@@ -266,7 +266,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc."
                     + "AbstractJavadocCheckTest$TokenIsNotInAcceptablesCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc"

@@ -203,4 +203,10 @@
   <suppress checks="LineLength"
             files="overloadmethodsdeclarationorder[\\/]Example2.java"/>
 
+  <!-- Examples contain important violations that need to be shown -->
+  <suppress checks="FileLength"
+    files="atclauseorder[\\/]Example2\.java"/>
+  <suppress checks="FileLength"
+    files="atclauseorder[\\/]Example3\.java"/>
+
 </suppressions>
