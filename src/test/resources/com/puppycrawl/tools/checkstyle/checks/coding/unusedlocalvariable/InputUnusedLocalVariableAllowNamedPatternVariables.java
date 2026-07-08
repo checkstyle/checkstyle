@@ -8,6 +8,13 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unusedlocalvariable;
 
 public class InputUnusedLocalVariableAllowNamedPatternVariables {
     record Ignored(int x, int y) {}
+    sealed interface Customer {}
+    record Person(String name, int age) implements Customer {}
+    record Company(String name) implements Customer {}
+    sealed interface Maybe<T> {}
+    record None<T>() implements Maybe<T> {}
+    record Some<T>(T value) implements Maybe<T> {}
+
 
     String whatClass(Object object) {
         return switch (object) {
@@ -30,4 +37,28 @@ public class InputUnusedLocalVariableAllowNamedPatternVariables {
             default -> "other";
         };
     }
+
+    String nameWithoutIgnored(Customer customer) { // violation below, 'Unused local variable'
+        if (customer instanceof Person(String name, int ignoredAge)) {
+            return name;
+        } else if (customer instanceof Company(String companyName)) {
+            return companyName;
+        }
+
+        if (customer instanceof Person nameWithoutIgnored) {
+            return nameWithoutIgnored.name();
+        }
+        else if (customer instanceof Company company) {
+            return company.name();
+        }
+        throw new IllegalStateException();
+    }
+
+    boolean isNested(Maybe<?> maybe) {
+        if (maybe instanceof Some(Some<?> inner)) { // violation, 'Unused local variable'
+            return true;
+        }
+        return false;
+    }
+
 }
