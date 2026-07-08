@@ -117,16 +117,6 @@
           </tr>
           <tr>
             <td>
-              <a href="javadocstyle.html#JavadocStyle">
-                JavadocStyle
-              </a>
-            </td>
-            <td>
-              Validates Javadoc comments to help ensure they are well formed.
-            </td>
-          </tr>
-          <tr>
-            <td>
               <a href="javadoctagcontinuationindentation.html#JavadocTagContinuationIndentation">
                 JavadocTagContinuationIndentation
               </a>
