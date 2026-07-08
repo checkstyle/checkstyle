@@ -1,5 +1,6 @@
 package com.openjdk.checkstyle.test.chapternaming.rule_packagenames;
-// violation above 'Name
+
+// violation 2 lines above 'Name
 // 'com.openjdk.checkstyle.test.chapternaming.rule_packagenames'
 // must match pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'.'
 

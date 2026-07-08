@@ -95,12 +95,15 @@ public class InputDeclarationUsageDistanceAtMostThree7 {
 
     class Options {
         public void addBindFile(Object object) {}
+
         public void addOption(Option srcDdlFile, Option logDdlFile, Option help) {}
+
         public void something() {}
     }
 
     class TreeMapNode {
         TreeMapNode(String label) {}
+
         TreeMapNode(String label, double d, DefaultValue defaultValue) {}
     }
 
