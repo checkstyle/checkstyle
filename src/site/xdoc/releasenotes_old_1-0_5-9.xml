@@ -564,7 +564,7 @@
           Thanks to Steve McKay for patch #2953936.
         </li>
         <li>
-          Fixed <a href="checks/javadoc/javadocstyle.html#JavadocStyle">JavadocStyle</a>
+          Fixed <code>JavadocStyle</code>
           not handling package declarations that have annotations.
           (bug #2911363)
         </li>
@@ -861,8 +861,7 @@
           FileSetCheck. Removed CrossLanguageRegexpHeader as a result.
         </li>
         <li>
-          Enhanced <a
-          href="checks/javadoc/javadocstyle.html#JavadocStyle">JavadocStyle</a> to
+          Enhanced <code>JavadocStyle</code> to
           check for allowed HTML tags. Thanks to Nicolas Dordet for
           providing patch #2214251.
         </li>
@@ -1037,7 +1036,7 @@
         <li>
           Applied patch #1993103 to make the format of end of sentence
           configurable in the
-          <a href="checks/javadoc/javadocstyle.html#JavadocStyle">JavadocStyle</a>
+          <code>JavadocStyle</code>
           check.
         </li>
         <li>

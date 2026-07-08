@@ -759,9 +759,6 @@
     <module name="JavadocLeadingAsteriskAlign"/>
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
     <module name="JavadocParagraph"/>
-    <module name="JavadocStyle">
-      <property name="scope" value="public"/>
-    </module>
     <module name="JavadocTagContinuationIndentation"/>
     <module name="JavadocType">
       <!-- avoid errors on tag '@noinspection' -->

@@ -41,20 +41,20 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
 
     @Test
     public void test() {
-        assertThat(XmlMetaReader.readAllModulesIncludingThirdPartyIfAny()).hasSize(219);
+        assertThat(XmlMetaReader.readAllModulesIncludingThirdPartyIfAny()).hasSize(218);
     }
 
     @Test
     public void testDuplicatePackage() {
         assertThat(XmlMetaReader
-                    .readAllModulesIncludingThirdPartyIfAny("com.puppycrawl.tools.checkstyle.meta"))
-                .hasSize(219);
+                .readAllModulesIncludingThirdPartyIfAny("com.puppycrawl.tools.checkstyle.meta"))
+                .hasSize(218);
     }
 
     @Test
     public void testBadPackage() {
         assertThat(XmlMetaReader.readAllModulesIncludingThirdPartyIfAny("DOES.NOT.EXIST"))
-                .hasSize(219);
+                .hasSize(218);
     }
 
     @Test
