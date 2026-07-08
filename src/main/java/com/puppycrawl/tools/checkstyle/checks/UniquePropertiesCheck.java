@@ -60,10 +60,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
      */
     public static final String MSG_IO_EXCEPTION_KEY = "unable.open.cause";
 
-    /**
-     * Pattern matching single space.
-     */
-    private static final Pattern SPACE_PATTERN = Pattern.compile(" ");
+
 
     /**
      * Construct the check with default values.
@@ -143,8 +140,9 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
      * @return regular expression pattern given key name
      */
     private static Pattern getKeyPattern(String keyName) {
-        final String keyPatternString = "^" + SPACE_PATTERN.matcher(keyName)
-                .replaceAll(Matcher.quoteReplacement("\\\\ ")) + "[\\s:=].*$";
+        final String keyPatternString = "^"
+                + Pattern.quote(keyName)
+                + "[\\s:=].*$";
         return Pattern.compile(keyPatternString);
     }
 
