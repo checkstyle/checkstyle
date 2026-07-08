@@ -115,6 +115,21 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testDuplicatedPropertyWithRegexCharacters() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(UniquePropertiesCheck.class);
+
+        final String[] expected = {
+                "1: " + getCheckMessage(MSG_KEY,
+                        "some.key[index-with-dash]", 2),
+        };
+
+        verify(checkConfig,
+                getPath("InputUniquePropertiesWithRegexCharacters.properties"),
+                expected);
+    }
+
+    @Test
     public void testShouldNotProcessFilesWithWrongFileExtension() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
