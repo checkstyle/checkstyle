@@ -38,11 +38,11 @@ public class InputVariablesInvalid {
         // violation above 'Name 'Word' must match pattern'
     }
 
-    void foo(Object o1){
-        if (o1 instanceof String STRING) {}
+    void foo(Object o1) {
+        if (o1 instanceof String STRING) { }
         // violation above, 'Name 'STRING' must match pattern*.'
-        if (o1 instanceof Integer num) {}
-        if (o1 instanceof Integer num_1) {}
+        if (o1 instanceof Integer num) { }
+        if (o1 instanceof Integer num_1) { }
         // violation above, 'Name 'num_1' must match pattern*.'
     }
 
