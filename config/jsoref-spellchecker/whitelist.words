@@ -311,6 +311,7 @@ Djdepend
 Dlinkcheck
 DMail
 Dmaven
+Dmdep
 dnd
 Dnew
 doccheck
@@ -1538,6 +1539,7 @@ XDadd
 XDcompile
 xdeadbeef
 xdoc
+Xdoclint
 xdocspagetitle
 Xep
 Xerces

@@ -637,6 +637,7 @@
               </includes>
               <excludes>
                 <exclude>src/**/resources-noncompilable/**</exclude>
+                <exclude>src/**/resources-with-javadoc-error/**</exclude>
                 <exclude>src/it/resources/**</exclude>
                 <exclude>src/test/resources/**</exclude>
                 <exclude>src/xdocs-examples/**</exclude>
@@ -671,6 +672,7 @@
             <exclusions>
               <exclusion>**.ci-temp**</exclusion>
               <exclusion>**resources-noncompilable**</exclusion>
+              <exclusion>**resources-with-javadoc-error**</exclusion>
               <exclusion>**src/it/resources**</exclusion>
               <exclusion>**src/test/resources**</exclusion>
               <exclusion>**xdocs-examples**</exclusion>
@@ -680,6 +682,7 @@
               <plainTextMask>**/*.xml</plainTextMask>
               <plainTextMask>**/*.yml</plainTextMask>
               <plainTextMask>**/resources-noncompilable/**</plainTextMask>
+              <plainTextMask>**/resources-with-javadoc-error/**</plainTextMask>
               <plainTextMask>**/resources/**</plainTextMask>
             </plainTextMasks>
           </configuration>

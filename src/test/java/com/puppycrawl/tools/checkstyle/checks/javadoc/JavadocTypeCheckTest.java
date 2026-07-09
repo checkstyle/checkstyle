@@ -264,7 +264,8 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "81:5: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL, "@param"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputJavadocTypeTypeParamsTags_1.java"), expected);
+                getJavadocWithErrorPath("InputJavadocTypeTypeParamsTags_1.java"),
+                expected);
     }
 
     @Test
@@ -275,7 +276,8 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "76:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputJavadocTypeTypeParamsTags.java"), expected);
+                getJavadocWithErrorPath("InputJavadocTypeTypeParamsTags.java"),
+                expected);
     }
 
     @Test
@@ -286,7 +288,8 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "25:4: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL, "@param"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputJavadocTypeUnusedParamInJavadocForClass.java"),
+                getJavadocWithErrorPath(
+                    "InputJavadocTypeUnusedParamInJavadocForClass.java"),
                 expected);
     }
 
@@ -383,7 +386,8 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "21:4: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
         };
         verifyWithInlineConfigParser(
-                getPath("InputJavadocTypeRecordComponentNameMismatch2.java"), expected2);
+                getJavadocWithErrorPath(
+                    "InputJavadocTypeRecordComponentNameMismatch2.java"), expected2);
     }
 
     @Test
@@ -453,7 +457,8 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "22:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputJavadocTypeTestTrimProperty.java"), expected);
+                getJavadocWithErrorPath("InputJavadocTypeTestTrimProperty.java"),
+                expected);
     }
 
     @Test
@@ -478,7 +483,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "28:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputJavadocType3.java"), expected);
+                getJavadocWithErrorPath("InputJavadocType3.java"), expected);
     }
 
     @Test
