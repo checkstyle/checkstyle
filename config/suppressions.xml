@@ -131,7 +131,7 @@
 
   <!-- until #20610 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocStyleCheck.java"/>
-  <!-- until #20610 -->
+  <!-- until #19146 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocTypeCheck.java"/>
   <!-- until #19147 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocVariableCheck.java"/>
@@ -189,6 +189,6 @@
             files=".*[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/](?!utils|xpath|checks[\\/]coding|checks[\\/]design|checks[\\/]modifier|checks[\\/]naming|checks[\\/]annotation|checks[\\/]indentation|checks[\\/]metrics|checks[\\/]whitespace|checks[\\/]javadoc|checks[\\/]NewlineAtEndOfFileCheckTest|checks[\\/]SuppressWarningsHolderTest|checks[\\/]UncommentedMainCheckTest|CheckerTest|ConfigurationLoaderTest|DetailNodeTreeStringPrinterTest|JavadocPropertiesGeneratorTest|MainTest|PackageNamesLoaderTest|SarifLoggerTest|SuppressionsStringPrinterTest|ThreadModeSettingsTest|TreeWalkerTest).*"/>
 
   <!-- JavadocStyle incorrectly parses HTML tags inside {@literal}, {@code} blocks as real HTML,
-          until #19145 -->
+          until #20610 -->
   <suppress checks="JavadocStyle" files="JavadocParagraphCheck\.java"/>
 </suppressions>
