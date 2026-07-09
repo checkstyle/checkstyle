@@ -279,13 +279,16 @@ public class Example6 {
     }
   }
 }
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="VariableDeclarationUsageDistance_Use_Cases">
         <p>
           Check is able to detect a block of initialization methods, as a single point for distance.
           If a variable is used in such a block and there are no other statements after
           variable declaration, then distance = 1.
         </p>
-        <p id="Example2-config">
+        <p id="UseCase1-config">
           Configure the check to default:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -295,9 +298,9 @@ public class Example6 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example2-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example2 {
+public class UseCase1 {
 
   public void case1(long timeNow, int hh, int min) {
     int minutes = min + 5; // ok, No violation reported

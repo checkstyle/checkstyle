@@ -111,31 +111,6 @@ class Example3 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
-          An example of how to configure the check for names that begin with
-          a lower case letter, followed by letters and digits is:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="ParameterName"&gt;
-      &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example4-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 {
-  void method0(int v) {}             // violation 'Name 'v' must match pattern'
-  void method1(int v1) {}
-  void method2(int V2) {}            // violation 'Name 'V2' must match pattern'
-  @Override
-  public boolean equals(Object V3) { // violation 'Name 'V3' must match pattern'
-    return true;
-  }
-}
-</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           The following configuration checks that the parameters always start with two
           lowercase characters and, in addition, that public method parameters cannot be one
@@ -187,6 +162,34 @@ class Example5 {
         <p id="Example2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
+  void method0(int v) {}             // violation 'Name 'v' must match pattern'
+  void method1(int v1) {}
+  void method2(int V2) {}            // violation 'Name 'V2' must match pattern'
+  @Override
+  public boolean equals(Object V3) { // violation 'Name 'V3' must match pattern'
+    return true;
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="ParameterName_Use_Cases">
+        <p id="UseCase1-config">
+          An example of how to configure the check for names that begin with
+          a lower case letter, followed by letters and digits is:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParameterName"&gt;
+      &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase1 {
   void method0(int v) {}             // violation 'Name 'v' must match pattern'
   void method1(int v1) {}
   void method2(int V2) {}            // violation 'Name 'V2' must match pattern'
