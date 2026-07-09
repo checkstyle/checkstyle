@@ -41,12 +41,12 @@ public class ClassMemberImpliedModifierCheckTest
     @Test
     public void testMethodsOnClass() throws Exception {
         final String[] expected = {
-            "51:9: " + getCheckMessage(MSG_KEY, "static"),
-            "58:9: " + getCheckMessage(MSG_KEY, "static"),
-            "62:5: " + getCheckMessage(MSG_KEY, "static"),
-            "69:9: " + getCheckMessage(MSG_KEY, "static"),
-            "76:9: " + getCheckMessage(MSG_KEY, "static"),
-            "83:5: " + getCheckMessage(MSG_KEY, "static"),
+            "52:9: " + getCheckMessage(MSG_KEY, "static"),
+            "60:9: " + getCheckMessage(MSG_KEY, "static"),
+            "65:5: " + getCheckMessage(MSG_KEY, "static"),
+            "73:9: " + getCheckMessage(MSG_KEY, "static"),
+            "81:9: " + getCheckMessage(MSG_KEY, "static"),
+            "89:5: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputClassMemberImpliedModifierOnClass.java"),
@@ -70,9 +70,9 @@ public class ClassMemberImpliedModifierCheckTest
     @Test
     public void testMethodsOnClassNoImpliedStaticEnum() throws Exception {
         final String[] expected = {
-            "59:9: " + getCheckMessage(MSG_KEY, "static"),
-            "77:9: " + getCheckMessage(MSG_KEY, "static"),
-            "84:5: " + getCheckMessage(MSG_KEY, "static"),
+            "60:9: " + getCheckMessage(MSG_KEY, "static"),
+            "79:9: " + getCheckMessage(MSG_KEY, "static"),
+            "87:5: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputClassMemberImpliedModifierOnClassSetEnumFalse.java"),
@@ -82,9 +82,9 @@ public class ClassMemberImpliedModifierCheckTest
     @Test
     public void testMethodsOnClassNoImpliedStaticInterface() throws Exception {
         final String[] expected = {
-            "52:9: " + getCheckMessage(MSG_KEY, "static"),
-            "63:5: " + getCheckMessage(MSG_KEY, "static"),
-            "70:9: " + getCheckMessage(MSG_KEY, "static"),
+            "53:9: " + getCheckMessage(MSG_KEY, "static"),
+            "65:5: " + getCheckMessage(MSG_KEY, "static"),
+            "73:9: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputClassMemberImpliedModifierOnClassSetInterfaceFalse.java"),
@@ -102,12 +102,12 @@ public class ClassMemberImpliedModifierCheckTest
     @Test
     public void testMethodsOnInterface() throws Exception {
         final String[] expected = {
-            "60:13: " + getCheckMessage(MSG_KEY, "static"),
-            "67:13: " + getCheckMessage(MSG_KEY, "static"),
-            "71:9: " + getCheckMessage(MSG_KEY, "static"),
-            "78:13: " + getCheckMessage(MSG_KEY, "static"),
-            "85:13: " + getCheckMessage(MSG_KEY, "static"),
-            "92:9: " + getCheckMessage(MSG_KEY, "static"),
+            "61:13: " + getCheckMessage(MSG_KEY, "static"),
+            "69:13: " + getCheckMessage(MSG_KEY, "static"),
+            "74:9: " + getCheckMessage(MSG_KEY, "static"),
+            "82:13: " + getCheckMessage(MSG_KEY, "static"),
+            "90:13: " + getCheckMessage(MSG_KEY, "static"),
+            "98:9: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputClassMemberImpliedModifierOnInterface.java"),
