@@ -19,76 +19,79 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
           """;
       final String r4 = // violation below 'Consider using special escape sequence'
           """
-          \\u000c
+          \u000c
           """;
       final String r5 = // violation below 'Consider using special escape sequence'
           """
-          \\u000d
+          \u000d
           """;
+      // violation 2 lines below 'Unicode escape(s) usage should be avoided.'
       final String r6 = // violation below 'Consider using special escape sequence'
           """
-          \\u0022
+          \u0022
           """;
+      // violation 2 lines below 'Unicode escape(s) usage should be avoided.'
       final String r7 = // violation below 'Consider using special escape sequence'
           """
-          \\u0027
+          \u0027
           """;
+      // violation 2 lines below 'Unicode escape(s) usage should be avoided.'
       final String r8 = // violation below 'Consider using special escape sequence'
           """
-          \\u005c
+          \u005c
           """;
       // The following have no escape sequences, should not cause violations
       final String r9 =
           """
-          \\u000b
+          \u000b
           """;
       final String r10 =
           """
-          \\u001c
+          \u001c
           """;
       final String r11 =
           """
-          \\u001D
+          \u001D
           """;
       final String r12 =
           """
-          \\u001E
+          \u001E
           """;
       final String r13 =
           """
-          \\u001F
+          \u001F
           """;
       final String r14 =
           """
-          \\u1680
+          \u1680
           """;
       final String r15 =
           """
-          \\u2000
+          \u2000
           """;
       final String r16 =
           """
-          \\u200A
+          \u200A
           """;
       final String r17 =
           """
-          \\u2028
+          \u2028
           """;
       final String r18 =
           """
-          \\u2029
+          \u2029
           """;
       final String r19 =
           """
-          \\u202F
+          \u202F
           """;
       final String r20 =
           """
-          \\u205F
+          \u205F
           """;
       final String r21 =
           """
-          \\u3000
+          \u3000
           """;
     }
   }
@@ -97,44 +100,47 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
   public void specialCharsWithWarnUnicode() {
     String r1 = // violation below 'Consider using special escape sequence'
         """
-        \\u0008
+        \u0008
         """;
     String r2 = // violation below 'Consider using special escape sequence'
         """
-        \\u0009
+        \u0009
         """;
     String r3 = // violation below 'Consider using special escape sequence'
         """
-        \\u000a
+        \u000a
         """;
     String r4 = // violation below 'Consider using special escape sequence'
         """
-        \\u000c
+        \u000c
         """;
     String r5 = // violation below 'Consider using special escape sequence'
         """
-        \\u000d
+        \u000d
         """;
     String r6 = // violation below 'Consider using special escape sequence'
         """
-        \\u0020
+        \u0020
         """;
+    // violation 2 lines below 'Unicode escape(s) usage should be avoided.'
     String r7 = // violation below 'Consider using special escape sequence'
         """
-        \\u0022
+        \u0022
         """;
+    // violation 2 lines below 'Unicode escape(s) usage should be avoided.'
     String r8 = // violation below 'Consider using special escape sequence'
         """
-        \\u0027
+        \u0027
         """;
+    // violation 2 lines below 'Unicode escape(s) usage should be avoided.'
     String r9 = // violation below 'Consider using special escape sequence'
         """
-        \\u005c
+        \u005c
         """;
     // The following have no escape sequences, should not cause violations
     String r10 =
         """
-        \\u000b
+        \u000b
         """;
     String r11 =
         """
@@ -142,15 +148,15 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
         """;
     String r12 =
         """
-        \\u1680
+        \u1680
         """;
     String r13 =
         """
-        \\u2000
+        \u2000
         """;
     String r14 =
         """
-        \\u3000
+        \u3000
         """;
   }
 
@@ -201,39 +207,42 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
   private static void specialCharsWithWarn() {
     String r1 = // violation below 'Consider using special escape sequence'
         """
-        \\u0008
+        \u0008
         """;
     String r2 = // violation below 'Consider using special escape sequence'
         """
-        \\u0009
+        \u0009
         """;
     String r3 = // violation below 'Consider using special escape sequence'
         """
-        \\u000a
+        \u000a
         """;
     String r4 = // violation below 'Consider using special escape sequence'
         """
-        \\u000c
+        \u000c
         """;
     String r5 = // violation below 'Consider using special escape sequence'
         """
-        \\u000d
+        \u000d
         """;
     String r6 = // violation below 'Consider using special escape sequence'
         """
-        \\u0020
+        \u0020
         """;
+    // violation 2 lines below 'Unicode escape(s) usage should be avoided.'
     String r7 = // violation below 'Consider using special escape sequence'
         """
-        \\u0022
+        \u0022
         """;
+    // violation 2 lines below 'Unicode escape(s) usage should be avoided.'
     String r8 = // violation below 'Consider using special escape sequence'
         """
-        \\u0027
+        \u0027
         """;
+    // violation 2 lines below 'Unicode escape(s) usage should be avoided.'
     String r9 = // violation below 'Consider using special escape sequence'
         """
-        \\u005c
+        \u005c
         """;
   }
 
@@ -261,60 +270,66 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
         public void specialCharsWithWarn() {
           String r1 = // violation below 'Consider using special escape sequence'
               """
-              \\u0008
+              \u0008
               """;
           String r2 = // violation below 'Consider using special escape sequence'
               """
-              \\u0009
+              \u0009
               """;
           String r3 = // violation below 'Consider using special escape sequence'
               """
-              \\u000a
+              \u000a
               """;
           String r4 = // violation below 'Consider using special escape sequence'
               """
-              \\u000c
+              \u000c
               """;
           String r5 = // violation below 'Consider using special escape sequence'
               """
-              \\u000d
+              \u000d
               """;
           String r6 = // violation below 'Consider using special escape sequence'
               """
-              \\u0020
+              \u0020
               """;
+
+          // violation 2 lines below 'Unicode escape(s) usage should be avoided.'
           String r7 = // violation below 'Consider using special escape sequence'
               """
-              \\u0022
+              \u0022
               """;
+
+          // violation 2 lines below 'Unicode escape(s) usage should be avoided.'
           String r8 = // violation below 'Consider using special escape sequence'
               """
-              \\u0027
+              \u0027
               """;
+
+          // violation 2 lines below 'Unicode escape(s) usage should be avoided.'
           String r9 = // violation below 'Consider using special escape sequence'
               """
-              \\u005c
+              \u005c
               """;
           // The following have no escape sequences, should not cause violations
           String r10 =
               """
-              \\u000b
+              \u000b
               """;
           String r11 =
               """
-              \\u001c
+              \u001c
               """;
           String r12 =
               """
-              \\u1680
+              \u1680
               """;
           String r13 =
               """
-              \\u2000
+              \u2000
               """;
           String r14 =
               """
-              \\u3000
+              \u3000
               """;
         }
       };

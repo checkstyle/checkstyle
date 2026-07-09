@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.BitSet;
 import java.util.Objects;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -45,6 +47,10 @@ public class IllegalTokenTextCheck
      * file.
      */
     public static final String MSG_KEY = "illegal.token.text";
+
+    /** Pattern for escape sequence. */
+    private static final Pattern ESCAPE_SEQUENCE =
+            Pattern.compile("\\\\(u+[0-9a-fA-F]{4}|[0-3][0-7]{2}|[0-7]{1,2}|[\\s\\S])");
 
     /**
      * Define the message which is used to notify about violations;
@@ -94,15 +100,18 @@ public class IllegalTokenTextCheck
     @Override
     public void visitToken(DetailAST ast) {
         final String text = ast.getText();
-        if (format.matcher(text).find()) {
+        final boolean matched = switch (ast.getType()) {
+            case TokenTypes.STRING_LITERAL,
+                 TokenTypes.CHAR_LITERAL,
+                 TokenTypes.TEXT_BLOCK_CONTENT -> matchesAnyEscapeSpan(text);
+            default -> format.matcher(text).find();
+        };
+        if (matched) {
             String customMessage = message;
             if (customMessage.isEmpty()) {
                 customMessage = MSG_KEY;
             }
-            log(
-                ast,
-                customMessage,
-                formatString);
+            log(ast, customMessage, formatString);
         }
     }
 
@@ -153,6 +162,51 @@ public class IllegalTokenTextCheck
             compileFlags = 0;
         }
         format = CommonUtil.createPattern(formatString, compileFlags);
+    }
+
+    /**
+     * Checks whether the format pattern matches without splitting the interior of
+     * an escape sequence. A match is valid only if it either avoids escape
+     * interiors entirely, covers an escape interior completely, or exactly matches
+     * the interior of a single escape sequence.
+     *
+     * @param text the text to inspect
+     * @return {@code true} if a valid match is found; {@code false} otherwise
+     */
+    private boolean matchesAnyEscapeSpan(String text) {
+        final BitSet escapeInterior = buildEscapeInteriorPositions(text);
+        final Matcher matcher = format.matcher(text);
+
+        boolean matched = false;
+        while (!matched && matcher.find()) {
+            final int start = matcher.start();
+            final int end = matcher.end();
+
+            if (!escapeInterior.get(start)) {
+                final int firstInterior = escapeInterior.nextSetBit(start);
+
+                matched = firstInterior == -1
+                        || firstInterior >= end
+                        || end >= escapeInterior.nextClearBit(firstInterior);
+            }
+        }
+        return matched;
+    }
+
+    /**
+     * Builds a bit set marking the interior characters of every escape sequence in
+     * the given text. The leading backslash is excluded from the marked range.
+     *
+     * @param text the text to analyze
+     * @return a bit set whose set bits correspond to escape sequence interiors
+     */
+    private static BitSet buildEscapeInteriorPositions(String text) {
+        final BitSet interior = new BitSet(text.length());
+        final Matcher matcher = ESCAPE_SEQUENCE.matcher(text);
+        while (matcher.find()) {
+            interior.set(matcher.start() + 1, matcher.end());
+        }
+        return interior;
     }
 
 }
