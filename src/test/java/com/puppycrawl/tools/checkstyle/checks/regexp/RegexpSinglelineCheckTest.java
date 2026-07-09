@@ -45,7 +45,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIt() throws Exception {
         final String[] expected = {
-            "77: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "System\\.(out)|(err)\\.print(ln)?\\("),
+            "78: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineSemantic.java"), expected);
@@ -55,7 +55,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     public void testMessageProperty()
             throws Exception {
         final String[] expected = {
-            "78: Bad line :(",
+            "79: Bad line :(",
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineSemantic2.java"), expected);
@@ -65,7 +65,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     public void testIgnoreCaseTrue() throws Exception {
 
         final String[] expected = {
-            "78: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
+            "79: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineSemantic3.java"), expected);
@@ -140,7 +140,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     public void testMessage() throws Exception {
 
         final String[] expected = {
-            "17: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
+            "18: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineSemantic10.java"), expected);
