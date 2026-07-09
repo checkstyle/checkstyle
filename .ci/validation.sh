@@ -766,6 +766,22 @@ javac25)
   fi
   ;;
 
+jdeprscan)
+  ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
+  ./mvnw -e --no-transfer-progress dependency:build-classpath \
+    -Dmdep.outputFile=target/classpath.txt
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo "CS_version: ${CS_POM_VERSION}"
+  mkdir -p .ci-temp
+  jdeprscan --class-path "$(cat target/classpath.txt)" --release 25 \
+        target/checkstyle-"$CS_POM_VERSION".jar > .ci-temp/jdeprscan.log 2>&1 || true
+  if grep -vE '(^Jar file)|(^$)' .ci-temp/jdeprscan.log ; then
+    echo "jdeprscan reported deprecated API usage or errors."
+    exit 1
+  fi
+  rm .ci-temp/jdeprscan.log
+  ;;
+
 package-site)
   export MAVEN_OPTS="-Xmx5g"
   ./mvnw -e --no-transfer-progress package -Passembly,no-validations
