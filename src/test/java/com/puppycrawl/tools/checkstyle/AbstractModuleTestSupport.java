@@ -183,6 +183,19 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Returns canonical path for the Javadoc file that intentionally contains errors.
+     *
+     * @param filename file name.
+     * @return canonical path for the file with Javadoc errors.
+     * @throws IOException if I/O exception occurs while forming the path.
+     */
+    protected final String getJavadocWithErrorPath(String filename) throws IOException {
+        return new File("src/" + getResourceLocation()
+                + "/resources-with-javadoc-error/" + getPackageLocation() + "/"
+                + filename).getCanonicalPath();
+    }
+
+    /**
      * Creates a RootNode for non-compilable test files.
      *
      * @param fileName name of the test file
