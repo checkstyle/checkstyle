@@ -59,4 +59,9 @@ public class HorizontalWhiteSpaceTest extends AbstractOpenJdkModuleTestSupport {
     public void testHorizontalWhiteSpaceDosAndDonts() throws Exception {
         verifyWithWholeConfig(getPath("InputHorizontalWhiteSpaceDosAndDonts.java"));
     }
+
+    @Test
+    public void testHorizontalWhiteSpaceInvalidFive() throws Exception {
+        verifyWithWholeConfig(getPath("InputHorizontalWhiteSpaceInvalidFive.java"));
+    }
 }

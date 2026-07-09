@@ -25,10 +25,11 @@ public class InputHorizontalWhiteSpaceDosAndDonts {
     }
 
     public void styleGuideDonts() {
-        int    someInt; // no vioaltion until SingleSpaceSeparator is enabled
-        String myString; // no vioaltion until SingleSpaceSeparator is enabled
-        char   aChar; // no vioaltion until SingleSpaceSeparator is enabled
-        long   sixtyfourFlags; // no vioaltion until SingleSpaceSeparator is enabled
+        int    someInt; // violation 'Use a single space to separate non-whitespace characters.'
+        String myString;
+        char   aChar; // violation 'Use a single space to separate non-whitespace characters.'
+        long   sixtyfourFlags;
+        // violation above 'Use a single space to separate non-whitespace characters.'
 
         if ( isFlagSet( "GO" ) ) { // 4 violations
             // ''(' is followed by whitespace.'

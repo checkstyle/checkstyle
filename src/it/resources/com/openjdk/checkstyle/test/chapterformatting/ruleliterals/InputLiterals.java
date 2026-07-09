@@ -9,8 +9,8 @@ public class InputLiterals {
      * Test hex literal case.
      */
     public void testHexLiteralCase() {
-        byte b1  = 0x1b;          // violation  'Should use uppercase hexadecimal letters.'
-        byte b2  = 0x1B;
+        byte b1 = 0x1b;          // violation  'Should use uppercase hexadecimal letters.'
+        byte b2 = 0x1B;
 
         short s1 = 0xF5f;         // violation  'Should use uppercase hexadecimal letters.'
         short s2 = 0xF5F;
