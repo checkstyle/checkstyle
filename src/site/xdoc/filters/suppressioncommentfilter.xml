@@ -262,7 +262,7 @@ class Example3 {
   /*CHECKSTYLE:ON*/
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="UseCase1-config">
           To configure a filter so that name of suppressed check mentioned
           in comment <code>CSOFF: <i>regexp</i></code>
           and <code>CSON: <i>regexp</i></code> mark a matching check:
@@ -281,9 +281,9 @@ class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4
+class UseCase1
 {
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
@@ -315,7 +315,7 @@ class Example4
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="UseCase2-config">
           To configure a filter to suppress all audit events between a comment
           containing <code>CHECKSTYLE_OFF: ALMOST_ALL</code> and a comment containing
           <code>CHECKSTYLE_OFF: ALMOST_ALL</code> except for the <em>ConstantName</em> check:
@@ -334,9 +334,9 @@ class Example4
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">Example:</p>
+        <p id="UseCase2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5
+class UseCase2
 {
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
@@ -430,7 +430,7 @@ class Example6 {
   /*CHECKSTYLE:ON*/
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example7-config">
+        <p id="UseCase3-config">
           Example of how to configure the check to suppress checks by name defined in comment.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -447,9 +447,9 @@ class Example6 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example7-code">Example:</p>
+        <p id="UseCase3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example7
+class UseCase3
 {
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 

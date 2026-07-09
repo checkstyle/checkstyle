@@ -130,8 +130,11 @@ class Example2 {
     Integer f = Integer.valueOf(b);
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="IllegalInstantiation_Use_Cases">
+        <p id="UseCase1-config">
           Finally, there is a limitation that it is currently not possible to specify array classes:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -144,20 +147,20 @@ class Example2 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
+class UseCase1 {
   class Boolean {
     boolean a;
     public Boolean (boolean a) { this.a = a; }
   }
 
-  Example3 () {
+  UseCase1 () {
     java.lang.Boolean[] newBoolArray = new java.lang.Boolean[]{true,true,false};
     Integer[] newIntArray = new Integer[]{1,2,3};
   }
 
-  Example3 (boolean a, int b) {
+  UseCase1 (boolean a, int b) {
     Boolean c = new Boolean(a);
     java.lang.Boolean d = new java.lang.Boolean(a);
 

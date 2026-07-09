@@ -11,7 +11,7 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore;
 
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.Example1;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.Example2;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.UseCase1;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -39,7 +39,7 @@ public class Example9 {
   private MathContext mathContext = new MathContext(0);
 
   private Example1 example1 = new Example1(); // ok, ignored
-  private Example2 example2 = new Example2();
+  private UseCase1 useCase1 = new UseCase1();
 
   private ByteArrayInputStream byteArrayInputStream =
       new ByteArrayInputStream(new byte[1]); // ok, ignored

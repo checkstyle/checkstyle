@@ -69,11 +69,11 @@ public class MissingJavadocTypeCheckExamplesTest extends AbstractExamplesModuleT
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "32:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 }

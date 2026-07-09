@@ -69,19 +69,22 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespacebefore/Example3.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example4-config">
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="NoWhitespaceBefore_Use_Cases">
+        <p id="UseCase1-config">
            To configure the check to allow linebreak before METHOD_REF and DOT tokens:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespacebefore/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespacebefore/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespacebefore/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespacebefore/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

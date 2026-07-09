@@ -82,36 +82,36 @@
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example3.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="UseCase1-config">
           To configure a filter so that name of suppressed check mentioned
           in comment <code>CSOFF: <i>regexp</i></code>
           and <code>CSON: <i>regexp</i></code> mark a matching check:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="UseCase2-config">
           To configure a filter to suppress all audit events between a comment
           containing <code>CHECKSTYLE_OFF: ALMOST_ALL</code> and a comment containing
           <code>CHECKSTYLE_OFF: ALMOST_ALL</code> except for the <em>ConstantName</em> check:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/UseCase2.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example5-code">Example:</p>
+        <p id="UseCase2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/UseCase2.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example6-config">
@@ -134,18 +134,18 @@
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example6.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example7-config">
+        <p id="UseCase3-config">
           Example of how to configure the check to suppress checks by name defined in comment.
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example7.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/UseCase3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example7-code">Example:</p>
+        <p id="UseCase3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example7.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/UseCase3.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example8-config">

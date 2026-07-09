@@ -210,9 +210,12 @@ public class Example3 {
   private static void doSomething(String param) {
   }
 }
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
+      </subsection>
 
-        <p id="Example4-config">
+      <subsection name="Use Cases" id="TrailingComment_Use_Cases">
+
+        <p id="UseCase1-config">
           To configure check so that trailing comment starting with &quot;SUPPRESS CHECKSTYLE&quot;,
           &quot;NOPMD&quot;, &quot;NOSONAR&quot; are suppressed:
         </p>
@@ -226,11 +229,11 @@ public class Example3 {
 &lt;/module&gt;
 </code></pre></div>
 
-        <p id="Example4-code">
+        <p id="UseCase1-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
+public class UseCase1 {
   int a; // SUPPRESS CHECKSTYLE - OK, comment starts with " SUPPRESS CHECKSTYLE"
   int b; // NOPMD - OK, comment starts with " NOPMD"
   int c; // NOSONAR - OK, comment starts with " NOSONAR"
@@ -238,7 +241,7 @@ public class Example4 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example5-config">
+        <p id="UseCase2-config">
           To configure the check to allow trailing comments that match a specific pattern:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -251,11 +254,11 @@ public class Example4 {
 &lt;/module&gt;
 </code></pre></div>
 
-        <p id="Example5-code">
+        <p id="UseCase2-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example5 {
+public class UseCase2 {
   public static void main(String[] args) {
     int x = 10;
 
@@ -274,7 +277,7 @@ public class Example5 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example6-config">
+        <p id="UseCase3-config">
           To configure the check to allow trailing multiline comments that match a specific pattern:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -293,11 +296,11 @@ public class Example5 {
 &lt;/module&gt;
 </code></pre></div>
 
-        <p id="Example6-code">
+        <p id="UseCase3-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example6 {
+public class UseCase3 {
   int a; /* SUPPRESS CHECKSTYLE */
   int b; /* NOPMD */
   int c; /* NOSONAR */
@@ -305,7 +308,6 @@ public class Example6 {
   // violation above
 }
 </code></pre></div>
-
       </subsection>
 
       <subsection name="Example of Usage" id="TrailingComment_Example_of_Usage">

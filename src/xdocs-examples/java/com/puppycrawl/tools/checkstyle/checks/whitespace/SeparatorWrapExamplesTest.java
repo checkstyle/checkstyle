@@ -43,12 +43,12 @@ public class SeparatorWrapExamplesTest extends AbstractExamplesModuleTestSupport
     }
 
     @Test
-    public void testExample2() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "23:36: " + getCheckMessage(MSG_LINE_NEW, "::"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test

@@ -43,11 +43,11 @@ public class EqualsAvoidNullCheckExamplesTest extends AbstractExamplesModuleTest
     }
 
     @Test
-    public void testExample2() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "20:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 }

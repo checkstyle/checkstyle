@@ -126,8 +126,11 @@ class Example3 {
     }
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example2-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="LocalFinalVariableName_Use_Cases">
+        <p id="UseCase1-config">
           An example of how to configure the check for names that are only upper case letters and
           digits is:
         </p>
@@ -140,9 +143,9 @@ class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example2-code">Code Example:</p>
+        <p id="UseCase1-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example2 {
+class UseCase1 {
   void MyMethod() {
     try (Scanner scanner = new Scanner(System.in)) {
       // violation above 'Name 'scanner' must match pattern'
