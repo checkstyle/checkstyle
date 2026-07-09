@@ -18,46 +18,58 @@ public interface InputInterfaceMemberImpliedModifierNestedOnInterface {
     public static interface NestedInterfacePublicStatic {
     }
 
-    public interface NestedInterfacePublic { // violation
+    // violation below 'Implied modifier 'static' should be explicit.'
+    public interface NestedInterfacePublic {
     }
 
-    static interface NestedInterfaceStatic { // violation
+    // violation below 'Implied modifier 'public' should be explicit.'
+    static interface NestedInterfaceStatic {
     }
 
-    interface NestedInterface { // 2 violations
-    }
+    interface NestedInterface {}
+    // 2 violations above:
+    //     'Implied modifier 'public' should be explicit.'
+    //     'Implied modifier 'static' should be explicit.'
 
     public static enum NestedEnumPublicStatic {
         TRUE,
         FALSE
     }
 
-    public enum NestedEnumPublic { // violation
+    // violation below 'Implied modifier 'static' should be explicit.'
+    public enum NestedEnumPublic {
         TRUE,
         FALSE
     }
 
-    static enum NestedEnumStatic { // violation
+    // violation below 'Implied modifier 'public' should be explicit.'
+    static enum NestedEnumStatic {
         TRUE,
         FALSE
     }
 
-    enum NestedEnum { // 2 violations
+    enum NestedEnum {
         TRUE,
         FALSE
     }
+    // 2 violations 4 lines above:
+    //     'Implied modifier 'public' should be explicit.'
+    //     'Implied modifier 'static' should be explicit.'
 
     public static class NestedClassPublicStatic {
     }
 
-    public class NestedClassPublic { // violation
+    // violation below 'Implied modifier 'static' should be explicit.'
+    public class NestedClassPublic {
     }
 
-    static class NestedClassStatic { // violation
-    }
+    // violation below 'Implied modifier 'public' should be explicit.'
+    static class NestedClassStatic {}
 
-    class NestedClass { // 2 violations
-    }
+    class NestedClass {}
+    // 2 violations above:
+    //     'Implied modifier 'public' should be explicit.'
+    //     'Implied modifier 'static' should be explicit.'
 
     public default boolean methodWithLocalClass(String input) {
         class LocalClass {
