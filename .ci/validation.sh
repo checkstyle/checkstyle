@@ -253,6 +253,8 @@ no-error-pmd)
   echo "Checkout target sources ..."
   checkout_from "https://github.com/pmd/build-tools.git"
   cd .ci-temp/build-tools/
+  PMD_BUILD_TOOLS_VERSION="$(mvn -e --no-transfer-progress -q help:evaluate \
+    -Dexpression=project.version -DforceStdout)"
   mvn -e --no-transfer-progress install
   cd ..
   git clone https://github.com/pmd/pmd.git
@@ -267,6 +269,7 @@ no-error-pmd)
                 -Dcyclonedx.skip=true \
                 -Ddokka.skip=true \
                 -Dcheckstyle.skip=false \
+                -Dpmd.build-tools.version="${PMD_BUILD_TOOLS_VERSION}" \
                 -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..
   removeFolderWithProtectedFiles build-tools
@@ -407,7 +410,7 @@ verify-no-exception-configs)
   curl -s --fail-with-body -o "$working_dir/checks-only-javadoc-error.xml" \
     -H "Authorization: token $GITHUB_TOKEN" \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-only-javadoc-error.xml
-  MODULES_WITH_EXTERNAL_FILES="Filter|ImportControl|JavadocStyle"
+  MODULES_WITH_EXTERNAL_FILES="Filter|ImportControl"
   xmlstarlet fo -D \
     -n $working_dir/checks-nonjavadoc-error.xml \
     | xmlstarlet sel --net --template -m .//module -n -v "@name" \
@@ -831,14 +834,9 @@ no-error-orekit)
   git checkout $SHA_HIPPARCHUS
   mvn -e --no-transfer-progress install -DskipTests
   cd -
-  checkout_from https://github.com/CS-SI/Orekit.git
+  checkout_from https://github.com/CS-SI/Orekit.git \
+    "c25721337d7ea92f76fc5883d84e5745a""af2786f"
   cd .ci-temp/Orekit
-  # no CI is enforced in project, so to make our build stable we should
-  # checkout to latest release/development (annotated tag or hash) or sha that have fix we need
-  # git checkout $(git describe --abbrev=0 --tags)
-  SHA_OREKIT="fd""d9ce1bc4fa0d2765""f4""5d33db""f32253d1abb85f"
-  git fetch --depth 1 origin "$SHA_OREKIT"
-  git checkout "$SHA_OREKIT"
   echo "checkstyle.header.file=license-header.txt" > checkstyle.properties
   readarray -t files < <(find src/main/java -name "*.java")
   java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
@@ -986,10 +984,14 @@ no-error-htmlunit)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
-  HTMLUNIT_STABLE_SHA="6b12be""aa""c15a445cd99af061b17c028a""ee1c41b7"
   echo "Checkout target sources ..."
-  checkout_from https://github.com/HtmlUnit/htmlunit.git "$HTMLUNIT_STABLE_SHA"
+  checkout_from https://github.com/HtmlUnit/htmlunit.git
   cd .ci-temp/htmlunit
+  # HtmlUnit is incrementally resolving violations from its new SummaryJavadoc check.
+  sed -i'' '/<module name="SummaryJavadoc">/,/<\/module>/ {
+    s|<module name="SummaryJavadoc">|<!-- <module name="SummaryJavadoc">|
+    s|</module>|</module> -->|
+  }' checkstyle.xml
   echo "checkstyle.suppressions.file=checkstyle_suppressions.xml" > checkstyle.properties
   find src/main/java src/test/java -name "*.java" -print0 | \
     xargs -0 -n 200 java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
