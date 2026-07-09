@@ -92,6 +92,7 @@ public final class Main {
      * {@link #main(String[])} method instead.
      */
     private Main() {
+        Runtime.getRuntime().runFinalization();
     }
 
     /**
