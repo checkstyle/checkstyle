@@ -1196,6 +1196,7 @@ ruleformatting
 rulehorizontalwhitespace
 ruleimportstatements
 ruleindentation
+rulejavadoc
 rulejavasourcefiles
 rulelambdaexpressions
 ruleliterals

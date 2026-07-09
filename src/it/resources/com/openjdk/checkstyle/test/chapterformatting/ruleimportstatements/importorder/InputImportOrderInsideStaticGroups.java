@@ -14,7 +14,7 @@ import javax.swing.JButton;
 // relative order between static and non-static import'
 
 /**
- * Test file for static import order
+ * Test file for static import order.
  */
 public final class InputImportOrderInsideStaticGroups {
     /** Dummy constant. */

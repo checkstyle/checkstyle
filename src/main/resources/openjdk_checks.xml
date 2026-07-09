@@ -249,6 +249,9 @@
       <property name="query" value="//DOT[not(parent::METHOD_CALL)]"/>
     </module>
 
+    <module name="SummaryJavadoc"/>
+    <module name="JavadocContentLocation"/>
+
     <module name="PackageName">
       <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
     </module>
