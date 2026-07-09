@@ -24,7 +24,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class InputClassFanOutComplexityMultiCatchBitwiseOr { // violation 'Complexity is 5'
+// violation below 'Class Fan-Out Complexity is 5 (max allowed is 4).'
+public class InputClassFanOutComplexityMultiCatchBitwiseOr {
     public static void main(String[] args) {
         try {
             System.out.println(args[7]);

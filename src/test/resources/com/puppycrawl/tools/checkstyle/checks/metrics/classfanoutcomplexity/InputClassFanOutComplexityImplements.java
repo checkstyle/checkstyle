@@ -20,6 +20,7 @@ excludedPackages = (default)
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 
-public class InputClassFanOutComplexityImplements implements Interface {} // violation
+// violation below 'Class Fan-Out Complexity is 1 (max allowed is 0).'
+public class InputClassFanOutComplexityImplements implements Interface {}
 
 interface Interface {}

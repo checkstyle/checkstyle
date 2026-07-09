@@ -21,14 +21,14 @@ excludedPackages = (default)
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 
-// violation below, 'Class Fan-Out Complexity is 2 (max allowed is 0)'
+// violation below 'Class Fan-Out Complexity is 2 (max allowed is 0)'
 public class InputClassFanOutComplexitySealedClasses implements I, J {
 }
 
 // ok below, sealed classes don't rely on the permitted subclasses
 sealed class A permits B { }
 
-// violation below, 'Class Fan-Out Complexity is 1 (max allowed is 0)'
+// violation below 'Class Fan-Out Complexity is 1 (max allowed is 0)'
 final class B extends A { }
 
 interface I {
