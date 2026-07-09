@@ -145,6 +145,15 @@ public final class SearchIndexGenerator {
     /** String literal for index.xml. */
     private static final String INDEX_XML = "index.xml";
 
+    /** Constant for the filters directory. */
+    private static final String FILTERS_DIR = "filters";
+
+    /** Constant for the filefilters directory. */
+    private static final String FILEFILTERS_DIR = "filefilters";
+
+    /** Constant for the index file name. */
+    private static final String INDEX_HTML = "index.html";
+
     /** String literal for Content. */
     private static final String CONTENT = "Content";
 
@@ -165,6 +174,9 @@ public final class SearchIndexGenerator {
 
     /** String literal for anchor separator. */
     private static final String ANCHOR_SEPARATOR = "#";
+
+    /** String literal for path separator in URLs. */
+    private static final String PATH_SEPARATOR = "/";
 
     /** String literal for the Properties subsection name fragment. */
     private static final String PROPERTIES_FRAGMENT = "propert";
@@ -350,13 +362,13 @@ public final class SearchIndexGenerator {
             processChecksDirectory(checksPath.toFile(), xdocsDir);
         }
 
-        final Path filtersPath = xdocsPath.resolve("filters");
+        final Path filtersPath = xdocsPath.resolve(FILTERS_DIR);
         if (Files.exists(filtersPath)) {
             processDirectory(filtersPath.toFile(), xdocsDir,
                     "Filters", "Filter");
         }
 
-        final Path fileFiltersPath = xdocsPath.resolve("filefilters");
+        final Path fileFiltersPath = xdocsPath.resolve(FILEFILTERS_DIR);
         if (Files.exists(fileFiltersPath)) {
             processDirectory(fileFiltersPath.toFile(), xdocsDir,
                     "File Filters", "File Filter");
@@ -1113,7 +1125,10 @@ public final class SearchIndexGenerator {
         if (matcher.find()) {
             final String category = matcher.group(1);
             if (CHECKS_CATEGORY_DISPLAY_NAMES.containsKey(category)) {
-                url = "checks/" + category + "/index.html";
+                url = CHECKS + PATH_SEPARATOR + category + PATH_SEPARATOR + INDEX_HTML;
+            }
+            else if (FILTERS_DIR.equals(category) || FILEFILTERS_DIR.equals(category)) {
+                url = category + PATH_SEPARATOR + INDEX_HTML;
             }
         }
         return url;
