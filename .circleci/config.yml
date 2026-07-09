@@ -88,6 +88,27 @@ jobs:
           name: Run yamllint
           command: yamllint -f parsable -c config/yamllint.yaml .
 
+  javadoc-tool-validate:
+    docker:
+      - image: cimg/openjdk:25.0
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Maven repo and wrapper cache
+          keys:
+            - mvn-cache-{{ checksum "pom.xml" }}
+      - run:
+          name: Validate Javadoc inputs with JDK javadoc
+          command: ./.ci/validation.sh javadoc-tool-validate
+      - store_artifacts:
+          path: .ci-temp/javadoc
+      - save_cache:
+          name: Save Maven repo and wrapper cache
+          key: mvn-cache-{{ checksum "pom.xml" }}
+          paths:
+            - .m2
+            - .mvn/wrapper
+
 workflows:
   #  sonarqube:
   #    jobs:
@@ -308,6 +329,7 @@ workflows:
           name: javac25
           image-name: cimg/openjdk:25.0
           command: ./.ci/validation.sh javac25
+      - javadoc-tool-validate
   site-validation:
     jobs:
       - validate-with-maven-script:
