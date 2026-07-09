@@ -23,12 +23,12 @@
   <module name="RegexpOnFilename">
     <property name="id" value="resourceFileName"/>
     <property name="folderPattern"
-             value="[\\/]src[\\/](it|test)[\\/]resources(-noncompilable?)[\\/]"/>
+             value="[\\/]src[\\/](it|test)[\\/]resources-(noncompilable?|with-javadoc-error)[\\/]"/>
     <property name="fileNamePattern"
              value="^(package-info.java)|(Input\w+\.java)|(Expected\w+\.txt)|(.*\.properties)$"/>
     <property name="match" value="false"/>
     <message key="regexp.filename.mismatch"
-           value="All files in the ''src/(it|test)/resources'' folder should be named
+           value="All files in the ''src/(it|test)/resources-*'' folders should be named
                  ''Input*.java'' or ''Expected*.java''
                  or ''package-info.java'' or ''*.properties''."/>
   </module>

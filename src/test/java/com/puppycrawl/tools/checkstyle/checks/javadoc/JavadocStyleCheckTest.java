@@ -87,7 +87,9 @@ public class JavadocStyleCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyleDefaultSettingsOne.java"), expected);
+            getJavadocWithErrorPath(
+                "InputJavadocStyleDefaultSettingsOne.java"),
+            expected);
     }
 
     @Test
@@ -112,7 +114,9 @@ public class JavadocStyleCheckTest
         };
 
         verifyWithInlineConfigParser(
-            getPath("InputJavadocStyleDefaultSettingsThree.java"), expected);
+            getJavadocWithErrorPath(
+                "InputJavadocStyleDefaultSettingsThree.java"),
+            expected);
     }
 
     @Test
@@ -163,7 +167,9 @@ public class JavadocStyleCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyleFirstSentenceOne.java"), expected);
+            getJavadocWithErrorPath(
+                "InputJavadocStyleFirstSentenceOne.java"),
+            expected);
     }
 
     @Test
@@ -182,7 +188,9 @@ public class JavadocStyleCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-            getPath("InputJavadocStyleFirstSentenceThree.java"), expected);
+            getJavadocWithErrorPath(
+                "InputJavadocStyleFirstSentenceThree.java"),
+            expected);
     }
 
     @Test
@@ -213,7 +221,9 @@ public class JavadocStyleCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyleFirstSentenceFormatOne.java"), expected);
+            getJavadocWithErrorPath(
+                "InputJavadocStyleFirstSentenceFormatOne.java"),
+            expected);
     }
 
     @Test
@@ -232,7 +242,9 @@ public class JavadocStyleCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-            getPath("InputJavadocStyleFirstSentenceFormatThree.java"), expected);
+            getJavadocWithErrorPath(
+                "InputJavadocStyleFirstSentenceFormatThree.java"),
+            expected);
     }
 
     @Test
@@ -265,7 +277,7 @@ public class JavadocStyleCheckTest
         };
 
         verifyWithInlineConfigParser(
-            getPath("InputJavadocStyleHtml1.java"), expected);
+            getJavadocWithErrorPath("InputJavadocStyleHtml1.java"), expected);
     }
 
     @Test
@@ -285,7 +297,7 @@ public class JavadocStyleCheckTest
         };
 
         verifyWithInlineConfigParser(
-            getPath("InputJavadocStyleHtml3.java"), expected);
+            getJavadocWithErrorPath("InputJavadocStyleHtml3.java"), expected);
     }
 
     @Test
@@ -333,7 +345,9 @@ public class JavadocStyleCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyleScopePublic1.java"), expected);
+            getJavadocWithErrorPath(
+                "InputJavadocStyleScopePublic1.java"),
+            expected);
     }
 
     @Test
@@ -357,7 +371,9 @@ public class JavadocStyleCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyleScopePublic3.java"), expected);
+            getJavadocWithErrorPath(
+                "InputJavadocStyleScopePublic3.java"),
+            expected);
     }
 
     @Test
@@ -385,7 +401,9 @@ public class JavadocStyleCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyleScopeProtected1.java"), expected);
+            getJavadocWithErrorPath(
+                "InputJavadocStyleScopeProtected1.java"),
+            expected);
     }
 
     @Test
@@ -410,7 +428,9 @@ public class JavadocStyleCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyleScopeProtected3.java"), expected);
+            getJavadocWithErrorPath(
+                "InputJavadocStyleScopeProtected3.java"),
+            expected);
     }
 
     @Test
@@ -440,7 +460,9 @@ public class JavadocStyleCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyleScopePackage1.java"), expected);
+            getJavadocWithErrorPath(
+                "InputJavadocStyleScopePackage1.java"),
+            expected);
     }
 
     @Test
@@ -466,7 +488,9 @@ public class JavadocStyleCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyleScopePackage3.java"), expected);
+            getJavadocWithErrorPath(
+                "InputJavadocStyleScopePackage3.java"),
+            expected);
     }
 
     @Test
@@ -489,7 +513,7 @@ public class JavadocStyleCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-            getPath("InputJavadocStyleEmptyJavadoc1.java"), expected);
+            getJavadocWithErrorPath("InputJavadocStyleEmptyJavadoc1.java"), expected);
     }
 
     @Test
@@ -511,7 +535,7 @@ public class JavadocStyleCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-            getPath("InputJavadocStyleEmptyJavadoc3.java"), expected);
+            getJavadocWithErrorPath("InputJavadocStyleEmptyJavadoc3.java"), expected);
     }
 
     @Test
@@ -538,7 +562,9 @@ public class JavadocStyleCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyleExcludeScope1.java"), expected);
+            getJavadocWithErrorPath(
+                "InputJavadocStyleExcludeScope1.java"),
+            expected);
     }
 
     @Test
@@ -559,7 +585,9 @@ public class JavadocStyleCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyleExcludeScope3.java"), expected);
+            getJavadocWithErrorPath(
+                "InputJavadocStyleExcludeScope3.java"),
+            expected);
     }
 
     @Test
@@ -607,8 +635,7 @@ public class JavadocStyleCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getPath("pkginfo" + File.separator + "annotation" + File.separator
-                   + "package-info.java"),
+                getJavadocWithErrorPath("pkginfo/annotation/package-info.java"),
                expected);
     }
 
@@ -646,8 +673,7 @@ public class JavadocStyleCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-               getPath("pkginfo" + File.separator + "valid"
-                       + File.separator + "package-info.java"),
+               getJavadocWithErrorPath("pkginfo/valid/package-info.java"),
                expected);
     }
 
@@ -659,7 +685,9 @@ public class JavadocStyleCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyleRestrictedTokenSet1.java"), expected);
+            getJavadocWithErrorPath(
+                "InputJavadocStyleRestrictedTokenSet1.java"),
+            expected);
     }
 
     @Test
@@ -677,7 +705,9 @@ public class JavadocStyleCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyleRestrictedTokenSet3.java"), expected);
+            getJavadocWithErrorPath(
+                "InputJavadocStyleRestrictedTokenSet3.java"),
+            expected);
     }
 
     @Test
@@ -709,7 +739,8 @@ public class JavadocStyleCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyleRecordsAndCompactCtors.java"),
+            getJavadocWithErrorPath(
+                "InputJavadocStyleRecordsAndCompactCtors.java"),
             expected);
     }
 
@@ -727,7 +758,9 @@ public class JavadocStyleCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyleNeverEndingXmlComment.java"), expected);
+            getJavadocWithErrorPath(
+                "InputJavadocStyleNeverEndingXmlComment.java"),
+            expected);
     }
 
     @Test
