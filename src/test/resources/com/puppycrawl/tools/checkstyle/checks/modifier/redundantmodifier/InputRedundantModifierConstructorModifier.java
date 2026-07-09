@@ -13,7 +13,8 @@ package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 public enum InputRedundantModifierConstructorModifier {
     VAL1, VAL2;
 
-    private InputRedundantModifierConstructorModifier() { } // violation
+    // violation below 'Redundant 'private' modifier.'
+    private InputRedundantModifierConstructorModifier() { }
 
     InputRedundantModifierConstructorModifier(int i) { }
 

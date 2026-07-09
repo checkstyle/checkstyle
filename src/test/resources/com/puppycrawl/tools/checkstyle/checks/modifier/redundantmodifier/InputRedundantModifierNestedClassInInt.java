@@ -21,11 +21,14 @@ public interface InputRedundantModifierNestedClassInInt {
     class PublicClassInsideInt {
         private interface PrivateNestedInt {
             class ClassInPrivateNestedInt {
-                public ClassInPrivateNestedInt() { } // violation
+                // violation below 'Redundant 'public' modifier.'
+                public ClassInPrivateNestedInt() { }
             }
-            public interface PrivateNestedIntWithPublicModifier { // violation
+            // violation below 'Redundant 'public' modifier.'
+            public interface PrivateNestedIntWithPublicModifier {
                 class ClassInPrivateNestedInt {
-                    public ClassInPrivateNestedInt() { } // violation
+                    // violation below 'Redundant 'public' modifier.'
+                    public ClassInPrivateNestedInt() { }
                 }
             }
         }
@@ -36,7 +39,8 @@ public interface InputRedundantModifierNestedClassInInt {
         }
         protected interface PublicInnerInnerProtectedInterface {
           class PublicInnerClassInNestedProtectedInt {
-           public PublicInnerClassInNestedProtectedInt() { } // violation
+           // violation below 'Redundant 'public' modifier.'
+           public PublicInnerClassInNestedProtectedInt() { }
           }
         }
     }
@@ -44,7 +48,8 @@ public interface InputRedundantModifierNestedClassInInt {
         public PublicNestedClassInInterfaceWithPublicConst() { } // ok in public class
         private class PrivateClassInPublicNestedClass {
             public class PublicInPrivateClass {
-                public PublicInPrivateClass() { } // violation
+                // violation below 'Redundant 'public' modifier.'
+                public PublicInPrivateClass() { }
             }
         }
     }
