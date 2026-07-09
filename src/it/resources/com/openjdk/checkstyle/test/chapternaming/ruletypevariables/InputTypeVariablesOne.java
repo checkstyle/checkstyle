@@ -10,6 +10,8 @@ public class InputTypeVariablesOne {
 
     class MyClass4<LISTENER> {}
 
+    class MyClass5<K1, K2> {}
+
     interface FirstInterface<T> {}
 
     interface SecondInterface<t> {} // violation 'Name 't' must match pattern'
@@ -18,11 +20,15 @@ public class InputTypeVariablesOne {
 
     interface FourthInterface<VERTEX_ONE> {}
 
+    interface FifthInterface<K1, K2> {}
+
     record Record1<T>() {}
 
     record Record2<t>() {} // violation, Name 't' must match pattern'
 
     record Record3<abc>() {} // violation, Name 'abc' must match pattern'
+
+    record Record4<K1, K2>() {}
 
     public <T> void method1() {}
 
