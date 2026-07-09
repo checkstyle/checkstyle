@@ -52,7 +52,7 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     }
 
     @Test
-    public void testExample2() throws Exception {
+    public void testUseCase1() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "15:11: '42' is a magic number.",
@@ -63,7 +63,7 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
             "16:11: '43' is a magic number.",
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example2.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase1.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
 
@@ -131,7 +131,7 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     }
 
     @Test
-    public void testExample6() throws Exception {
+    public void testUseCase2() throws Exception {
 
         final String[] expectedWithoutFilters = {
             "2: Duplicated property 'key.one' (2 occurrence(s)).",
@@ -143,14 +143,14 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
         };
 
         verifyFilterWithInlineConfigParserSeparateConfigAndTarget(
-                getPath("Example6.java"),
-                getPath("Example6.properties"),
+                getPath("UseCase2.java"),
+                getPath("UseCase2.properties"),
                 expectedWithoutFilters,
                 expectedWithFilters);
     }
 
     @Test
-    public void testExample7() throws Exception {
+    public void testUseCase3() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "17:11: '42' is a magic number.",
@@ -161,12 +161,12 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
             "18:11: '43' is a magic number.",
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example7.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase3.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
-    public void testExample8() throws Exception {
+    public void testUseCase4() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "18:11: '42' is a magic number.",
@@ -180,7 +180,7 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
             "22:11: '46' is a magic number.",
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example8.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase4.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
 

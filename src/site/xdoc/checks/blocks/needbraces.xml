@@ -288,8 +288,11 @@ class Example5 {
     return true;
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="NeedBraces_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to allow <code>case, default</code> single-line statements
           without braces:
         </p>
@@ -303,11 +306,11 @@ class Example5 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">
+        <p id="UseCase1-code">
         Next statements won't be violated by check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 {
+class UseCase1 {
   String obj = new String();
   String value = new String();
   int counter = 1;
@@ -344,7 +347,7 @@ class Example4 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example6-config">
+        <p id="UseCase2-config">
           To configure the check to lambdas:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -357,13 +360,13 @@ class Example4 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example6-code">Results in following:</p>
+        <p id="UseCase2-code">Results in following:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example6 {
+class UseCase2 {
   enum HttpMethod {GET, OPTIONS}
   Object result = new Object();
   private CustomCompletableFuture&lt;Object&gt; allowedFuture;
-  Example6() {
+  UseCase2() {
     allowedFuture = new CustomCompletableFuture&lt;&gt;();
     // violation below ''-&gt;' construct must use '{}'s'
     allowedFuture.addCallback(result -&gt; assertEquals("Invalid response",

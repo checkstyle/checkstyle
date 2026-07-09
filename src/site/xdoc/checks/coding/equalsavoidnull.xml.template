@@ -43,21 +43,24 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/equalsavoidnull/Example1.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example2-config">
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="EqualsAvoidNull_Use_Cases">
+        <p id="UseCase1-config">
          To configure the check to allow ignoreEqualsIgnoreCase:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/equalsavoidnull/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/equalsavoidnull/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example2-code">
+        <p id="UseCase1-code">
          Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/equalsavoidnull/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/equalsavoidnull/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

@@ -66,12 +66,12 @@ public class MethodNameCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
-            "18:15: " + getCheckMessage(MSG_KEY, "Example4"),
+            "18:15: " + getCheckMessage(MSG_KEY, "UseCase1"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test

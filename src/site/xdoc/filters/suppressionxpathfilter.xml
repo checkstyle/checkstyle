@@ -411,7 +411,7 @@ public class Example1 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example2-config">
+        <p id="UseCase4-config">
           For example #2, To configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -437,12 +437,12 @@ public class Example1 {
   &lt;suppress-xpath checks=".*" query="/COMPILATION_UNIT/PACKAGE_DEF"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example2-code">
+        <p id="UseCase4-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation 3 lines below "'VARIABLE_DEF' should be separated from previous line"
-public class Example2 {
+public class UseCase4 {
   int age = 23;
   private int wordCount = 11;
   public void SetSomeVar() {} // violation 'should be separated from previous line'
@@ -480,7 +480,7 @@ public class Example2 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example3-config">
+        <p id="UseCase5-config">
           For example #3, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -508,12 +508,12 @@ public class Example2 {
   &lt;suppress-xpath checks=".*" query="descendant::VARIABLE_DEF[1]/.."/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example3-code">
+        <p id="UseCase5-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // filtered violation below "'{' at column 23 should be on a new line."
-public class Example3 {
+public class UseCase5 {
   int age = 23;
   private int wordCount = 11;
   public void SetSomeVar() {}
@@ -551,7 +551,7 @@ public class Example3 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example4-config">
+        <p id="UseCase6-config">
           For example #4, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -578,12 +578,12 @@ public class Example3 {
   &lt;suppress-xpath checks=".*" query="//CLASS_DEF | //METHOD_DEF"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example4-code">
+        <p id="UseCase6-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation 3 lines below "'VARIABLE_DEF' should be separated from previous line"
-public class Example4 {
+public class UseCase6 {
   int age = 23;
   private int wordCount = 11;
   public void SetSomeVar() {} // filtered violation 'separated from previous line'
@@ -621,7 +621,7 @@ public class Example4 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example5-config">
+        <p id="UseCase7-config">
           For example #5, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -647,12 +647,12 @@ public class Example4 {
   &lt;suppress-xpath checks=".*" query="//METHOD_DEF/IDENT[@text='GetSomeVar' or @text='SetSomeVar']"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example5-code">
+        <p id="UseCase7-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // filtered violation 4 lines below "Name 'SetSomeVar' must match pattern"
-public class Example5 {
+public class UseCase7 {
   int age = 23;
   private int wordCount = 11;
   public void SetSomeVar() {}
@@ -690,7 +690,7 @@ public class Example5 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example6-config">
+        <p id="UseCase8-config">
           For example #6, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -705,7 +705,7 @@ public class Example5 {
 </code></pre></div>
         <p id="suppressions6-raw">
           In order to suppress checks for variable <i>TestVariable</i> inside <i>testMethod</i>
-          method inside <i>Example6</i> class.
+          method inside <i>UseCase8</i> class.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;?xml version="1.0"?&gt;
@@ -714,16 +714,16 @@ public class Example5 {
 "https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
 
 &lt;suppressions&gt;
-  &lt;suppress-xpath checks=".*" query="//CLASS_DEF[./IDENT[@text='Example6']]
+  &lt;suppress-xpath checks=".*" query="//CLASS_DEF[./IDENT[@text='UseCase8']]
           //METHOD_DEF[./IDENT[@text='testMethod']]
           //VARIABLE_DEF/IDENT[@text='TestVariable']"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example6-code">
+        <p id="UseCase8-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example6 {
+public class UseCase8 {
   int age = 23;
   private int wordCount = 11;
   public void SetSomeVar() {}
@@ -761,7 +761,7 @@ public class Example6 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example7-config">
+        <p id="UseCase9-config">
           For example #7, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -790,11 +790,11 @@ public class Example6 {
           | //METHOD_DEF[./IDENT[@text='DoMATH']]/*"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example7-code">
+        <p id="UseCase9-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example7 {
+public class UseCase9 {
   int age = 23; // violation, "'23' is a magic number."
   private int wordCount = 11; // violation, "'11' is a magic number."
   public void SetSomeVar() {}  // violation "Name 'SetSomeVar' must match pattern"
@@ -832,7 +832,7 @@ public class Example7 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example8-config">
+        <p id="UseCase10-config">
           For example #8, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -859,15 +859,15 @@ public class Example7 {
 
 &lt;suppressions&gt;
   &lt;suppress-xpath checks="RequireThis"
-     query="//CLASS_DEF[./IDENT[@text='Example8']]
+     query="//CLASS_DEF[./IDENT[@text='UseCase10']]
           //METHOD_DEF[./IDENT[@text='changeAge']]//ASSIGN/IDENT[@text='age']"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example8-code">
+        <p id="UseCase10-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example8 {
+public class UseCase10 {
   int age = 23;
   private int wordCount = 11;
   public void SetSomeVar() {}
@@ -905,7 +905,7 @@ public class Example8 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example9-config">
+        <p id="UseCase11-config">
           For example 9, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -940,11 +940,11 @@ public class Example8 {
           ./ancestor::METHOD_DEF[./IDENT[@text='throwsMethod']]]"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example9-code">
+        <p id="UseCase11-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example9 {
+public class UseCase11 {
   int age = 23;
   private int wordCount = 11;
   public void SetSomeVar() {}
@@ -982,7 +982,7 @@ public class Example9 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example10-config">
+        <p id="UseCase12-config">
           For example #10, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -1013,11 +1013,11 @@ public class Example9 {
           /descendant-or-self::node()"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example10-code">
+        <p id="UseCase12-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example10 {
+public class UseCase12 {
   int age = 23;
   private int wordCount = 11;
   public void SetSomeVar() {}
@@ -1085,7 +1085,7 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
 |   `--SEMI -&gt; ; [2:30]
 `--RCURLY -&gt; } [3:0]
         </code></pre></div>
-        <p id="Example11-config">
+        <p id="UseCase13-config">
           For example #11, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -1117,11 +1117,11 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
             ./IDENT[@text='wordCount']]//*"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example11-code">
+        <p id="UseCase13-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example11 {
+public class UseCase13 {
   int age = 23;  // violation "'23' is a magic number."
   private int wordCount = 11; // filtered violation "'11' is a magic number."
   public void SetSomeVar() {}
@@ -1162,7 +1162,7 @@ public class Example11 {
         <p>
           Another way is to suppress by variable value.
         </p>
-        <p id="Example12-config">
+        <p id="UseCase1-config">
           For example #12, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -1194,11 +1194,11 @@ public class Example11 {
     &lt;suppress-xpath checks="." query="//VARIABLE_DEF//NUM_INT[@text=11]"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example12-code">
+        <p id="UseCase1-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example12 {
+public class UseCase1 {
   int age = 23;  // violation "'23' is a magic number."
   private int wordCount = 11; // filtered violation "'11' is a magic number."
   public void SetSomeVar() {}
@@ -1295,7 +1295,7 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
 |       `--RCURLY -&gt; } [8:4]
 `--RCURLY -&gt; } [9:0]
         </code></pre></div>
-        <p id="Example13-config">
+        <p id="UseCase2-config">
           For example #13, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -1324,11 +1324,11 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
             .//ANNOTATION/IDENT[@text='Generated']]//*"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example13-code">
+        <p id="UseCase2-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example13 {
+public class UseCase2 {
   int age = 23; // violation 2 lines below "Name 'SetSomeVar' must match pattern"
   private int wordCount = 11;
   public void SetSomeVar() {}
@@ -1370,7 +1370,7 @@ public class Example13 {
           The problem with query above that it will suppress violations for all methods with
           annotation <code>@Generated</code>.
         </p>
-        <p id="Example14-config">
+        <p id="UseCase3-config">
           For next example #14, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -1403,11 +1403,11 @@ public class Example13 {
             ./IDENT[@text='Generated'] and ./EXPR/STRING_LITERAL[@text='second']]]//*"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example14-code">
+        <p id="UseCase3-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example14 {
+public class UseCase3 {
   int age = 23; // violation 2 lines below "Name 'SetSomeVar' must match pattern"
   private int wordCount = 11;
   public void SetSomeVar() {}

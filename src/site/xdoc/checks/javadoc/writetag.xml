@@ -235,8 +235,11 @@ public class Example4 {
   public void testMethod2() {}
   // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="WriteTag_Use_Cases">
+        <p id="UseCase1-config">
           To configure Check to demand <code>@since</code> tag
           and in the same time print violation with specific severity on each presence of such tag.
         </p>
@@ -254,7 +257,7 @@ public class Example4 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">
+        <p id="UseCase1-code">
         Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -263,7 +266,7 @@ public class Example4 {
  * Some class
  * @since 1.2
  */
-public class Example5 {
+public class UseCase1 {
   // violation 3 lines below 'Type Javadoc tag @since'
   /**
    * some doc

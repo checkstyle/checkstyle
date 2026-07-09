@@ -91,12 +91,12 @@ public class RegexpSinglelineJavaCheckExamplesTest extends AbstractExamplesModul
     }
 
     @Test
-    public void testExample7() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "23: " + "private member found",
             "30: " + "private member found",
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 }
