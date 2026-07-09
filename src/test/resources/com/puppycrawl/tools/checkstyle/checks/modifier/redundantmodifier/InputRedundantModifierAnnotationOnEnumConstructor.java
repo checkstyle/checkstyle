@@ -20,7 +20,9 @@ public enum InputRedundantModifierAnnotationOnEnumConstructor {
 enum InputRedundantModifierAnnotationOnEnumConstructor2 {
     ;
 
+
+    // violation 2 lines below 'Redundant 'private' modifier.'
     @SuppressWarnings("checkstyle:name")
-    private InputRedundantModifierAnnotationOnEnumConstructor2() { // violation
+    private InputRedundantModifierAnnotationOnEnumConstructor2() {
     }
 }

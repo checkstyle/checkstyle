@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
 
 public interface InputRedundantModifierFinalInInterface {
-        final int k = 5; // violation
+        final int k = 5; // violation 'Redundant 'final' modifier.'
 
     default int defaultMethod(final int x) {
             if (k == 5) {

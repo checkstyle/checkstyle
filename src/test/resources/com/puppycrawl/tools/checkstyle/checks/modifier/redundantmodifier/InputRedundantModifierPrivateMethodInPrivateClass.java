@@ -12,6 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
 public class InputRedundantModifierPrivateMethodInPrivateClass {
     private class Inner {
-        private final void example() {} // violation
+        // violation below 'Redundant 'final' modifier.'
+        private final void example() {}
     }
 }

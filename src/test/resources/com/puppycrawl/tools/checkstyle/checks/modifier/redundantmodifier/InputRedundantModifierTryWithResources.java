@@ -17,7 +17,8 @@ import java.io.OutputStreamWriter;
 public class InputRedundantModifierTryWithResources {
     public static void main(String[] args) {
         OutputStreamWriter out = null;
-        try (out; final OutputStreamWriter out2 = null;) { // violation
+        // violation below 'Redundant 'final' modifier.'
+        try (out; final OutputStreamWriter out2 = null;) {
             out.write(1);
         } catch (IOException ex) {
             System.err.println(ex);

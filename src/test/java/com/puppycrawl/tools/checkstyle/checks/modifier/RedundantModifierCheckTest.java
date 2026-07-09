@@ -54,15 +54,15 @@ public class RedundantModifierCheckTest
     @Test
     public void testItOne() throws Exception {
         final String[] expected = {
-            "58:12: " + getCheckMessage(MSG_KEY, "static"),
-            "61:9: " + getCheckMessage(MSG_KEY, "public"),
-            "67:9: " + getCheckMessage(MSG_KEY, "abstract"),
-            "70:9: " + getCheckMessage(MSG_KEY, "public"),
-            // "72:9: Redundant 'abstract' modifier.",
-            "76:9: " + getCheckMessage(MSG_KEY, "final"),
-            "83:13: " + getCheckMessage(MSG_KEY, "final"),
-            "92:12: " + getCheckMessage(MSG_KEY, "final"),
-            "103:1: " + getCheckMessage(MSG_KEY, "abstract"),
+            "59:12: " + getCheckMessage(MSG_KEY, "static"),
+            "62:9: " + getCheckMessage(MSG_KEY, "public"),
+            "68:9: " + getCheckMessage(MSG_KEY, "abstract"),
+            "72:9: " + getCheckMessage(MSG_KEY, "public"),
+            // "75:9: Redundant 'abstract' modifier.",
+            "79:9: " + getCheckMessage(MSG_KEY, "final"),
+            "86:13: " + getCheckMessage(MSG_KEY, "final"),
+            "95:12: " + getCheckMessage(MSG_KEY, "final"),
+            "105:1: " + getCheckMessage(MSG_KEY, "abstract"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierItOne.java"), expected);
@@ -103,7 +103,7 @@ public class RedundantModifierCheckTest
     @Test
     public void testEnumConstructorIsImplicitlyPrivate() throws Exception {
         final String[] expected = {
-            "16:5: " + getCheckMessage(MSG_KEY, "private"),
+            "17:5: " + getCheckMessage(MSG_KEY, "private"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierConstructorModifier.java"), expected);
@@ -135,11 +135,11 @@ public class RedundantModifierCheckTest
     public void testNestedClassConsInPublicInterfaceHasValidPublicModifier() throws Exception {
 
         final String[] expected = {
-            "24:17: " + getCheckMessage(MSG_KEY, "public"),
-            "26:13: " + getCheckMessage(MSG_KEY, "public"),
-            "28:21: " + getCheckMessage(MSG_KEY, "public"),
-            "39:12: " + getCheckMessage(MSG_KEY, "public"),
-            "47:17: " + getCheckMessage(MSG_KEY, "public"),
+            "25:17: " + getCheckMessage(MSG_KEY, "public"),
+            "28:13: " + getCheckMessage(MSG_KEY, "public"),
+            "31:21: " + getCheckMessage(MSG_KEY, "public"),
+            "43:12: " + getCheckMessage(MSG_KEY, "public"),
+            "52:17: " + getCheckMessage(MSG_KEY, "public"),
         };
 
         verifyWithInlineConfigParser(
@@ -200,8 +200,8 @@ public class RedundantModifierCheckTest
     public void testNestedStaticEnum() throws Exception {
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY, "static"),
-            "18:9: " + getCheckMessage(MSG_KEY, "static"),
-            "22:9: " + getCheckMessage(MSG_KEY, "static"),
+            "19:9: " + getCheckMessage(MSG_KEY, "static"),
+            "24:9: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierStaticModifierInNestedEnum.java"),
@@ -212,7 +212,7 @@ public class RedundantModifierCheckTest
     public void testFinalInAnonymousClass()
             throws Exception {
         final String[] expected = {
-            "24:20: " + getCheckMessage(MSG_KEY, "final"),
+            "25:20: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInAnonymousClass.java"),
@@ -223,8 +223,8 @@ public class RedundantModifierCheckTest
     public void testFinalInTryWithResource() throws Exception {
         final String[] expected = {
             "40:14: " + getCheckMessage(MSG_KEY, "final"),
-            "45:14: " + getCheckMessage(MSG_KEY, "final"),
-            "46:17: " + getCheckMessage(MSG_KEY, "final"),
+            "46:14: " + getCheckMessage(MSG_KEY, "final"),
+            "48:17: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInTryWithResource.java"),
@@ -235,10 +235,10 @@ public class RedundantModifierCheckTest
     public void testFinalInAbstractMethods() throws Exception {
         final String[] expected = {
             "14:33: " + getCheckMessage(MSG_KEY, "final"),
-            "18:49: " + getCheckMessage(MSG_KEY, "final"),
-            "21:17: " + getCheckMessage(MSG_KEY, "final"),
-            "26:24: " + getCheckMessage(MSG_KEY, "final"),
-            "35:33: " + getCheckMessage(MSG_KEY, "final"),
+            "19:49: " + getCheckMessage(MSG_KEY, "final"),
+            "23:17: " + getCheckMessage(MSG_KEY, "final"),
+            "29:24: " + getCheckMessage(MSG_KEY, "final"),
+            "39:33: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInAbstractMethods.java"),
@@ -258,7 +258,7 @@ public class RedundantModifierCheckTest
     @Test
     public void testEnumStaticMethodsInPublicClass() throws Exception {
         final String[] expected = {
-            "22:23: " + getCheckMessage(MSG_KEY, "final"),
+            "23:23: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInEnumStaticMethods.java"), expected);
@@ -267,7 +267,7 @@ public class RedundantModifierCheckTest
     @Test
     public void testAnnotationOnEnumConstructor() throws Exception {
         final String[] expected = {
-            "24:5: " + getCheckMessage(MSG_KEY, "private"),
+            "26:5: " + getCheckMessage(MSG_KEY, "private"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierAnnotationOnEnumConstructor.java"),
@@ -277,7 +277,7 @@ public class RedundantModifierCheckTest
     @Test
     public void testPrivateMethodInPrivateClass() throws Exception {
         final String[] expected = {
-            "15:17: " + getCheckMessage(MSG_KEY, "final"),
+            "16:17: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierPrivateMethodInPrivateClass.java"),
@@ -287,7 +287,7 @@ public class RedundantModifierCheckTest
     @Test
     public void testTryWithResourcesBlock() throws Exception {
         final String[] expected = {
-            "20:19: " + getCheckMessage(MSG_KEY, "final"),
+            "21:19: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierTryWithResources.java"),
@@ -301,25 +301,25 @@ public class RedundantModifierCheckTest
             "14:5: " + getCheckMessage(MSG_KEY, "static"),
             "15:5: " + getCheckMessage(MSG_KEY, "public"),
             "15:12: " + getCheckMessage(MSG_KEY, "static"),
-            "16:5: " + getCheckMessage(MSG_KEY, "static"),
-            "16:12: " + getCheckMessage(MSG_KEY, "public"),
-            "19:9: " + getCheckMessage(MSG_KEY, "public"),
-            "22:5: " + getCheckMessage(MSG_KEY, "public"),
-            "22:12: " + getCheckMessage(MSG_KEY, "static"),
-            "25:5: " + getCheckMessage(MSG_KEY, "public"),
-            "25:12: " + getCheckMessage(MSG_KEY, "abstract"),
-            "25:21: " + getCheckMessage(MSG_KEY, "static"),
-            "29:1: " + getCheckMessage(MSG_KEY, "abstract"),
-            "31:5: " + getCheckMessage(MSG_KEY, "public"),
-            "31:12: " + getCheckMessage(MSG_KEY, "static"),
-            "35:9: " + getCheckMessage(MSG_KEY, "public"),
-            "35:16: " + getCheckMessage(MSG_KEY, "static"),
-            "37:13: " + getCheckMessage(MSG_KEY, "public"),
-            "37:20: " + getCheckMessage(MSG_KEY, "static"),
-            "40:13: " + getCheckMessage(MSG_KEY, "public"),
-            "40:20: " + getCheckMessage(MSG_KEY, "static"),
-            "43:13: " + getCheckMessage(MSG_KEY, "public"),
-            "43:20: " + getCheckMessage(MSG_KEY, "static"),
+            "19:5: " + getCheckMessage(MSG_KEY, "static"),
+            "19:12: " + getCheckMessage(MSG_KEY, "public"),
+            "25:9: " + getCheckMessage(MSG_KEY, "public"),
+            "28:5: " + getCheckMessage(MSG_KEY, "public"),
+            "28:12: " + getCheckMessage(MSG_KEY, "static"),
+            "34:5: " + getCheckMessage(MSG_KEY, "public"),
+            "34:12: " + getCheckMessage(MSG_KEY, "abstract"),
+            "34:21: " + getCheckMessage(MSG_KEY, "static"),
+            "42:1: " + getCheckMessage(MSG_KEY, "abstract"),
+            "44:5: " + getCheckMessage(MSG_KEY, "public"),
+            "44:12: " + getCheckMessage(MSG_KEY, "static"),
+            "51:9: " + getCheckMessage(MSG_KEY, "public"),
+            "51:16: " + getCheckMessage(MSG_KEY, "static"),
+            "56:13: " + getCheckMessage(MSG_KEY, "public"),
+            "56:20: " + getCheckMessage(MSG_KEY, "static"),
+            "62:13: " + getCheckMessage(MSG_KEY, "public"),
+            "62:20: " + getCheckMessage(MSG_KEY, "static"),
+            "68:13: " + getCheckMessage(MSG_KEY, "public"),
+            "68:20: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(getPath(
                 "InputRedundantModifierNestedDef.java"), expected);
@@ -331,15 +331,15 @@ public class RedundantModifierCheckTest
             "16:5: " + getCheckMessage(MSG_KEY, "static"),
             "20:9: " + getCheckMessage(MSG_KEY, "final"),
             "20:15: " + getCheckMessage(MSG_KEY, "static"),
-            "25:9: " + getCheckMessage(MSG_KEY, "static"),
-            "31:9: " + getCheckMessage(MSG_KEY, "final"),
-            "31:15: " + getCheckMessage(MSG_KEY, "static"),
-            "36:13: " + getCheckMessage(MSG_KEY, "static"),
-            "42:1: " + getCheckMessage(MSG_KEY, "final"),
-            "44:5: " + getCheckMessage(MSG_KEY, "final"),
-            "47:5: " + getCheckMessage(MSG_KEY, "static"),
-            "51:9: " + getCheckMessage(MSG_KEY, "final"),
-            "51:15: " + getCheckMessage(MSG_KEY, "static"),
+            "28:9: " + getCheckMessage(MSG_KEY, "static"),
+            "34:9: " + getCheckMessage(MSG_KEY, "final"),
+            "34:15: " + getCheckMessage(MSG_KEY, "static"),
+            "42:13: " + getCheckMessage(MSG_KEY, "static"),
+            "48:1: " + getCheckMessage(MSG_KEY, "final"),
+            "50:5: " + getCheckMessage(MSG_KEY, "final"),
+            "53:5: " + getCheckMessage(MSG_KEY, "static"),
+            "57:9: " + getCheckMessage(MSG_KEY, "final"),
+            "57:15: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierRecords.java"), expected);
