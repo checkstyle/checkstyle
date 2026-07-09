@@ -2,6 +2,7 @@
 SummaryJavadoc
 violateExecutionOnNonTightHtml = true
 forbiddenSummaryFragments = ^Returns the customer ID. This method returns. $
+forbiddenReturnFragments = ^(default)^$
 period = (default).
 
 */
