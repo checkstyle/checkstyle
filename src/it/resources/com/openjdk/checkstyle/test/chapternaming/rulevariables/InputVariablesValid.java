@@ -38,9 +38,9 @@ public class InputVariablesValid {
     }
 
     void foo(Object o1) {
-        if (o1 instanceof String string) {}
-        if (o1 instanceof Integer num) {}
-        if (o1 instanceof Integer num1) {}
+        if (o1 instanceof String string) { }
+        if (o1 instanceof Integer num) { }
+        if (o1 instanceof Integer num1) { }
     }
 
     record Rec2(String values) {}
