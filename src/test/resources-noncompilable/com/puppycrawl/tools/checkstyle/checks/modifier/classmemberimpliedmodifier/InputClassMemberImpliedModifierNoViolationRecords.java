@@ -12,12 +12,12 @@ package com.puppycrawl.tools.checkstyle.checks.modifier.classmemberimpliedmodifi
 
 public class InputClassMemberImpliedModifierNoViolationRecords {
     public static interface GoodInterface {}
-    // Implied modifier 'static' should be explicit. [ClassMemberImpliedModifier]
-    public interface BadInterface {} // violation
+    // violation below 'Implied modifier 'static' should be explicit.'
+    public interface BadInterface {}
 
     public static enum GoodEnum {}
-    // Implied modifier 'static' should be explicit. [ClassMemberImpliedModifier]
-    public enum BadEnum {} // violation
+    // violation below 'Implied modifier 'static' should be explicit.'
+    public enum BadEnum {}
 
     public static record GoodRecord() {}
 
@@ -29,12 +29,12 @@ public class InputClassMemberImpliedModifierNoViolationRecords {
         public record InnerRecord2(){}
 
         public static interface InnerInterface1 {}
-        // Implied modifier 'static' should be explicit. [ClassMemberImpliedModifier]
-        public interface InnerInterface2 {} // violation
+        // violation below 'Implied modifier 'static' should be explicit.'
+        public interface InnerInterface2 {}
 
         public static enum InnerEnum1{}
-        // Implied modifier 'static' should be explicit. [ClassMemberImpliedModifier]
-        public enum InnerEnum2{} // violation
+        // violation below 'Implied modifier 'static' should be explicit.'
+        public enum InnerEnum2{}
     }
 
     Object obj = new Object() {

@@ -50,8 +50,8 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     public void test() throws Exception {
 
         final String[] expected = {
-            "27:1: " + getCheckMessage(MSG_KEY, 3, 0),
-            "59:1: " + getCheckMessage(MSG_KEY, 1, 0),
+            "28:1: " + getCheckMessage(MSG_KEY, 3, 0),
+            "61:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
         verifyWithInlineConfigParser(
@@ -61,7 +61,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testExcludedPackagesDirectPackages() throws Exception {
         final String[] expected = {
-            "29:1: " + getCheckMessage(MSG_KEY, 2, 0),
+            "30:1: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
         verifyWithInlineConfigParser(
@@ -71,9 +71,9 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testExcludedPackagesCommonPackages() throws Exception {
         final String[] expected = {
-            "28:1: " + getCheckMessage(MSG_KEY, 2, 0),
-            "32:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "38:1: " + getCheckMessage(MSG_KEY, 1, 0),
+            "29:1: " + getCheckMessage(MSG_KEY, 2, 0),
+            "34:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "41:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
         verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityExcludedPackagesCommonPackage.java"), expected);
@@ -113,7 +113,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     public void test15() throws Exception {
 
         final String[] expected = {
-            "29:1: " + getCheckMessage(MSG_KEY, 1, 0),
+            "30:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
         verifyWithInlineConfigParser(
@@ -159,8 +159,8 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     public void testRegularExpression() throws Exception {
 
         final String[] expected = {
-            "44:1: " + getCheckMessage(MSG_KEY, 2, 0),
-            "76:1: " + getCheckMessage(MSG_KEY, 1, 0),
+            "45:1: " + getCheckMessage(MSG_KEY, 2, 0),
+            "78:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
         verifyWithInlineConfigParser(
@@ -171,8 +171,8 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     public void testEmptyRegularExpression() throws Exception {
 
         final String[] expected = {
-            "44:1: " + getCheckMessage(MSG_KEY, 3, 0),
-            "76:1: " + getCheckMessage(MSG_KEY, 1, 0),
+            "45:1: " + getCheckMessage(MSG_KEY, 3, 0),
+            "78:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
         verifyWithInlineConfigParser(
@@ -198,7 +198,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testExtends() throws Exception {
         final String[] expected = {
-            "23:1: " + getCheckMessage(MSG_KEY, 1, 0),
+            "24:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
         verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityExtends.java"), expected);
@@ -207,7 +207,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testImplements() throws Exception {
         final String[] expected = {
-            "23:1: " + getCheckMessage(MSG_KEY, 1, 0),
+            "24:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
         verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityImplements.java"), expected);
@@ -216,13 +216,13 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAnnotation() throws Exception {
         final String[] expected = {
-            "29:1: " + getCheckMessage(MSG_KEY, 2, 0),
-            "45:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "54:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "64:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "79:1: " + getCheckMessage(MSG_KEY, 1, 0),
-            "99:1: " + getCheckMessage(MSG_KEY, 1, 0),
-            "102:1: " + getCheckMessage(MSG_KEY, 1, 0),
+            "30:1: " + getCheckMessage(MSG_KEY, 2, 0),
+            "47:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "57:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "68:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "84:1: " + getCheckMessage(MSG_KEY, 1, 0),
+            "105:1: " + getCheckMessage(MSG_KEY, 1, 0),
+            "109:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
         verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityAnnotations.java"), expected);
@@ -231,7 +231,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testImplementsAndNestedCount() throws Exception {
         final String[] expected = {
-            "26:1: " + getCheckMessage(MSG_KEY, 3, 0),
+            "27:1: " + getCheckMessage(MSG_KEY, 3, 0),
         };
         verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityImplementsAndNestedCount.java"), expected);
@@ -240,8 +240,8 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testClassFanOutComplexityRecords() throws Exception {
         final String[] expected = {
-            "32:1: " + getCheckMessage(MSG_KEY, 4, 2),
-            "53:1: " + getCheckMessage(MSG_KEY, 4, 2),
+            "33:1: " + getCheckMessage(MSG_KEY, 4, 2),
+            "55:1: " + getCheckMessage(MSG_KEY, 4, 2),
         };
         verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityRecords.java"), expected);
@@ -272,7 +272,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testClassFanOutComplexityMultiCatchBitwiseOr() throws Exception {
         final String[] expected = {
-            "27:1: " + getCheckMessage(MSG_KEY, 5, 4),
+            "28:1: " + getCheckMessage(MSG_KEY, 5, 4),
         };
 
         verifyWithInlineConfigParser(
@@ -389,7 +389,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testLambdaNew() throws Exception {
         final String[] expected = {
-            "29:1: " + getCheckMessage(MSG_KEY, 2, 0),
+            "30:1: " + getCheckMessage(MSG_KEY, 2, 0),
         };
         verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityLambdaNew.java"), expected);

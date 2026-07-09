@@ -26,7 +26,8 @@ import com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inpu
 import com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.b.BClass;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.c.CClass;
 
-public class InputClassFanOutComplexityExcludedPackagesDirectPackages { // violation
+// violation below 'Class Fan-Out Complexity is 2 (max allowed is 0).'
+public class InputClassFanOutComplexityExcludedPackagesDirectPackages {
     public AAClass aa;
     public ABClass ab;
 
