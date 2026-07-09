@@ -1,6 +1,6 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleclassstructure;
 
-/** Input file with class structure violations */
+/** Input file with class structure violations. */
 public class InputClassStructureValidOrder {
 
     public int b;
