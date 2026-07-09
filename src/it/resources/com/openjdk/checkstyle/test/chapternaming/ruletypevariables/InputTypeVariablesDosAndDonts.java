@@ -14,8 +14,8 @@ public class InputTypeVariablesDosAndDonts {
 
     public void styleGuideDonts() {
         interface SpecialMap<Key, Value> extends Map<Key, Value> { // 2 violations
-            // 'Name 'Key' must match pattern '^[A-Z]+(_[A-Z]+)*$'.'
-            // 'Name 'Value' must match pattern '^[A-Z]+(_[A-Z]+)*$'.'
+            // 'Name 'Key' must match pattern'
+            // 'Name 'Value' must match pattern'
         }
 
         class GraphMapper<S, T, U, V> {
