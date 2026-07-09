@@ -174,32 +174,6 @@ public class Example1 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example6-config">
-          Configure the check to make sure there are no calls to <code>System.out.println</code>:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="Regexp"&gt;
-      &lt;property name="format" value="System\.out\.println"/&gt;
-      &lt;property name="illegalPattern" value="true"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example6-code">Example6:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// This code is copyrighted.
-public class Example6 {
-
-  private void foo() {
-    System.out.println(""); // violation, 'Line matches the illegal pattern'
-    // System.out.println("debug");
-    // fix me. // violation above, 'Line matches the illegal pattern'
-    // fix me.
-  }
-}
-</code></pre></div><hr class="example-separator"/>
         <p id="Example7-config">Configure to ignore comments:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -224,8 +198,37 @@ public class Example7 {
     // fix me.
   }
 }
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="Regexp_Use_Cases">
+        <p id="UseCase9-config">
+          Configure the check to make sure there are no calls to <code>System.out.println</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Regexp"&gt;
+      &lt;property name="format" value="System\.out\.println"/&gt;
+      &lt;property name="illegalPattern" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase9-code">UseCase9:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// This code is copyrighted.
+public class UseCase9 {
+
+  private void foo() {
+    System.out.println(""); // violation, 'Line matches the illegal pattern'
+    // System.out.println("debug");
+    // fix me. // violation above, 'Line matches the illegal pattern'
+    // fix me.
+  }
+}
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example10-config">
+        <p id="UseCase8-config">
           There is also a feature to limit the number of violations reported.
           When the limit is reached the check aborts with a message
           reporting that the limit has been reached.
@@ -241,10 +244,10 @@ public class Example7 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example10-code">Example10:</p>
+        <p id="UseCase8-code">UseCase8:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // This code is copyrighted.
-public class Example10 {
+public class UseCase8 {
 
   private void foo() {
     System.out.println("");
@@ -254,7 +257,7 @@ public class Example10 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example2-config">
+        <p id="UseCase1-config">
           Another example of how to configure the check to make sure a copyright
           statement is included in the file:
         </p>
@@ -267,15 +270,15 @@ public class Example10 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example2-code">Example2 with violation:</p>
+        <p id="UseCase1-code">UseCase1 with violation:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation first line 'missing in file.'
 /*
  * Some Copyright
  */
-public class Example2 {}
+public class UseCase1 {}
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config"> Your statement may be multiline. </p>
+        <p id="UseCase2-config"> Your statement may be multiline. </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
@@ -286,14 +289,14 @@ public class Example2 {}
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Example3:</p>
+        <p id="UseCase2-code">UseCase2:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // This code is copyrighted
 // (c) MyCompany
 
-public class Example3 {}
+public class UseCase2 {}
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">Configure Check to make sure that it appear only once:</p>
+        <p id="UseCase3-config">Configure Check to make sure that it appear only once:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
@@ -305,7 +308,7 @@ public class Example3 {}
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-code">Example4:</p>
+        <p id="UseCase3-code">UseCase3:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // This code is copyrighted
 // (c) MyCompany
@@ -314,9 +317,9 @@ public class Example3 {}
 // This code is copyrighted
 // (c) MyCompany
 
-public class Example4 {}
+public class UseCase3 {}
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">Instead of printing whole regexp that might be unnecessary for
+        <p id="UseCase4-config">Instead of printing whole regexp that might be unnecessary for
           user, you can substitute it to some static text:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -330,15 +333,15 @@ public class Example4 {}
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">Example5 with violation:</p>
+        <p id="UseCase4-code">UseCase4 with violation:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation first line 'Required pattern 'Copyright' missing in file.'
 /*
  * violation on first line 'Required pattern 'Copyright' missing in file.'
 */
-public class Example5 {}
+public class UseCase4 {}
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example8-config">
+        <p id="UseCase5-config">
           Configure the check to find trailing whitespace at the end of a line:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -352,15 +355,15 @@ public class Example5 {}
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example8-code">Example8:</p>
+        <p id="UseCase5-code">UseCase5:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example8 {
+public class UseCase5 {
   private void foo() { 
     // violation above 'Trailing whitespace'
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example9-config">
+        <p id="UseCase6-config">
           Configure the check to find case-insensitive occurrences of &quot;debug&quot;:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -377,16 +380,16 @@ public class Example8 {
           <b>Note:</b> The (?i) at the beginning of the regular expression
           tells the regexp engine to ignore the case.
         </p>
-        <p id="Example9-code">Example9:</p>
+        <p id="UseCase6-code">UseCase6:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example9 {
+public class UseCase6 {
   private void foo() {
     // fix me.
     // violation above, 'Line matches the illegal pattern.'
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example11-config">
+        <p id="UseCase7-config">
           To configure the check to verify that each file has the
           multiline header where year could be any digits.
         </p>
@@ -401,11 +404,11 @@ public class Example9 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example11-code">Example:</p>
+        <p id="UseCase7-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // Copyright (C) 2004 MyCompany
 // All rights reserved
-public class Example11 {}
+public class UseCase7 {}
 </code></pre></div>
         <p>
           To configure the check to verify that each file start with the

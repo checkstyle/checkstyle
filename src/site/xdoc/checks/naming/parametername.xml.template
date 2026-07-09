@@ -57,21 +57,6 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/parametername/Example3.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example4-config">
-          An example of how to configure the check for names that begin with
-          a lower case letter, followed by letters and digits is:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/parametername/Example4.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example4-code">Code Example:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/parametername/Example4.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
         <p id="Example5-config">
           The following configuration checks that the parameters always start with two
           lowercase characters and, in addition, that public method parameters cannot be one
@@ -101,6 +86,24 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/parametername/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="ParameterName_Use_Cases">
+        <p id="UseCase1-config">
+          An example of how to configure the check for names that begin with
+          a lower case letter, followed by letters and digits is:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/parametername/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/parametername/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

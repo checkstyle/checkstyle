@@ -72,12 +72,12 @@ public class NoWhitespaceBeforeExamplesTest extends AbstractExamplesModuleTestSu
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "21:11: " + getCheckMessage(MSG_KEY, "."),
             "23:40: " + getCheckMessage(MSG_KEY, "::"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 }

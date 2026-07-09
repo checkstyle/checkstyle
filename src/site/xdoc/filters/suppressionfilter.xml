@@ -185,13 +185,13 @@ public class Example1 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example2-config">
+        <p id="UseCase1-config">
             Suppress certain checks by their module id:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionFilter"&gt;
-    &lt;property name="file" value="suppressionexample2.xml"/&gt;
+    &lt;property name="file" value="suppressionUseCase1.xml"/&gt;
     &lt;property name="optional" value="false"/&gt;
   &lt;/module&gt;
   &lt;module name="TreeWalker"&gt;
@@ -205,13 +205,13 @@ public class Example1 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="suppressionexample2-raw">
+        <p id="suppressionUseCase1-raw">
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
           reject <code>EqualsAvoidNullCheck</code> by
           <a href="../config.html#Id">module id</a>
           <code>stringEqual</code> violations for
-          all lines of file <code>Example2.java</code>:
+          all lines of file <code>UseCase1.java</code>:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;?xml version="1.0"?&gt;
@@ -221,12 +221,12 @@ public class Example1 {
   "https://checkstyle.org/dtds/suppressions_1_2.dtd"&gt;
 
 &lt;suppressions&gt;
-  &lt;suppress id="stringEqual" files="Example2.java"/&gt;
+  &lt;suppress id="stringEqual" files="UseCase1.java"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example2-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example2 {
+public class UseCase1 {
 
   // violation below, 'Line is longer than 80 characters'
   String line = "This line is long and exceeds the default limit of 80 characters.";
@@ -245,7 +245,7 @@ public class Example2 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+        <p id="UseCase2-config">
             Suppress all checks for hidden files and folders:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -253,14 +253,14 @@ public class Example2 {
   &lt;property name="fileExtensions" value="properties"/&gt;
 
   &lt;module name="SuppressionFilter"&gt;
-    &lt;property name="file" value="suppressionexample3.xml"/&gt;
+    &lt;property name="file" value="suppressionUseCase2.xml"/&gt;
   &lt;/module&gt;
 
   &lt;module name="OrderedProperties"/&gt;
   &lt;module name="UniqueProperties"/&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="suppressionexample3-raw">
+        <p id="suppressionUseCase2-raw">
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
           reject all checks for hidden files and folders:
@@ -288,13 +288,13 @@ keyB=value2
 keyC=value4
 keyC=value5
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="UseCase3-config">
             Suppress checks by violation message:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionFilter"&gt;
-    &lt;property name="file" value="suppressionexample4.xml"/&gt;
+    &lt;property name="file" value="suppressionUseCase3.xml"/&gt;
     &lt;property name="optional" value="false"/&gt;
   &lt;/module&gt;
   &lt;module name="TreeWalker"&gt;
@@ -305,7 +305,7 @@ keyC=value5
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="suppressionexample4-raw">
+        <p id="suppressionUseCase3-raw">
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
           reject violations on variable named
@@ -322,9 +322,9 @@ keyC=value5
   &lt;suppress message="Name 'log' must match pattern"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
+public class UseCase3 {
 
   public int log;
   // filtered violation above 'Name 'log' must match pattern'

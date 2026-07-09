@@ -69,12 +69,12 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "40:10: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "FOR_INIT", "EXPR"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
@@ -97,39 +97,39 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
     }
 
     @Test
-    public void testExample8() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expected = {
             "20:3: " + getCheckMessage(MSG_KEY_MAX, 2, 1, "METHOD_DEF", "VARIABLE_DEF"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
 
     @Test
-    public void testExample9() throws Exception {
+    public void testUseCase3() throws Exception {
         final String[] expected = {
             "19:3: " + getCheckMessage(MSG_KEY_MAX, 3, 2, "METHOD_DEF", "LITERAL_RETURN"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase3.java"), expected);
     }
 
     @Test
-    public void testExample10() throws Exception {
+    public void testUseCase4() throws Exception {
         final String[] expected = {
             "20:11: " + getCheckMessage(MSG_KEY_MAX, 2, 1, "LITERAL_THROWS", "IDENT"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example10.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase4.java"), expected);
     }
 
     @Test
-    public void testExample11() throws Exception {
+    public void testUseCase5() throws Exception {
         final String[] expected = {
             "19:3: " + getCheckMessage(MSG_KEY_MAX, 10, 2, "METHOD_DEF", "EXPR"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example11.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase5.java"), expected);
     }
 
     @Test
@@ -142,12 +142,12 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
     }
 
     @Test
-    public void testExample13() throws Exception {
+    public void testUseCase6() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_KEY_MAX, 2, 1, "CLASS_DEF", "VARIABLE_DEF"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example13.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase6.java"), expected);
     }
 
     @Test
@@ -160,21 +160,21 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
     }
 
     @Test
-    public void testExample15() throws Exception {
+    public void testUseCase7() throws Exception {
         final String[] expected = {
             "46:29: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "EQUAL", "STRING_LITERAL"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example15.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase7.java"), expected);
     }
 
     @Test
-    public void testExample16() throws Exception {
+    public void testUseCase8() throws Exception {
         final String[] expected = {
             "50:5: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_ASSERT", "POST_INC"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example16.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase8.java"), expected);
     }
 
     @Test
