@@ -1,4 +1,4 @@
-/* // violation
+/*
 RegexpSingleline
 format = \\r
 message = (default)
@@ -9,6 +9,7 @@ fileExtensions = (default)""
 
 
 */
+// violation first line 'File does not contain at least 500 matches for pattern'
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
 
