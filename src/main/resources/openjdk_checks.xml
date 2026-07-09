@@ -107,6 +107,7 @@
     <module name="NoWhitespaceBefore">
       <property name="tokens" value="LABELED_STAT"/>
     </module>
+    <module name="SingleSpaceSeparator"/>
     <module name="NoWhitespaceBeforeCaseDefaultColon"/>
     <module name="WhitespaceAfter">
       <property name="tokens" value="COMMA, SEMI, TYPECAST"/>
