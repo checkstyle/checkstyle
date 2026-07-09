@@ -104,8 +104,6 @@ public class IllegalTokenTextCheckTest
         final String[] expected = {
             "16:28: " + getCheckMessage(MSG_KEY, "\""),
             "18:33: " + getCheckMessage(MSG_KEY, "\""),
-            "20:32: " + getCheckMessage(MSG_KEY, "\""),
-            "22:36: " + getCheckMessage(MSG_KEY, "\""),
             "32:37: " + getCheckMessage(MSG_KEY, "\""),
             "37:37: " + getCheckMessage(MSG_KEY, "\""),
             "44:42: " + getCheckMessage(MSG_KEY, "\""),
@@ -196,4 +194,33 @@ public class IllegalTokenTextCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextDefaultFormat.java"), expected);
     }
+
+    @Test
+    public void testIllegalTokenTextEscapeSequences() throws Exception {
+
+        final String[] expected = {
+            "16:22: " + getCheckMessage(MSG_KEY, "\\\\12"),
+            "17:20: " + getCheckMessage(MSG_KEY, "\\\\12"),
+            "18:20: " + getCheckMessage(MSG_KEY, "\\\\12"),
+            "20:20: " + getCheckMessage(MSG_KEY, "\\\\12"),
+            "23:22: " + getCheckMessage(MSG_KEY, "\\\\12"),
+            "26:24: " + getCheckMessage(MSG_KEY, "\\\\12"),
+            "29:21: " + getCheckMessage(MSG_KEY, "\\\\12"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTokenTextEscapeSequences.java"), expected);
+    }
+
+    @Test
+    public void testIllegalTokenNoMatchInEscapeSequence() throws Exception {
+
+        final String[] expected = {
+            "16:22: " + getCheckMessage(MSG_KEY, 12),
+            "24:23: " + getCheckMessage(MSG_KEY, 12),
+            "25:24: " + getCheckMessage(MSG_KEY, 12),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTokenTextEscapeSequences2.java"), expected);
+    }
+
 }

@@ -21,7 +21,9 @@ public class Example3 {
     String test2 = "A href";
     String link = "href";
     final String quote = """
-            \""""; // violation above 'Token text matches the illegal pattern '"'.'
+            " """; // violation above 'Token text matches the illegal pattern '"'.'
+    final String escapedQuote = """
+            \" """;
     int num1 = 0;
     int num2 = 0x111;
     int num3 = 0X111;

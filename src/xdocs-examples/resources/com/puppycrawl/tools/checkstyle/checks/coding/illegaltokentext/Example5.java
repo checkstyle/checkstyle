@@ -21,7 +21,9 @@ public class Example5 {
     String test2 = "A href"; // violation 'Custom illegal text found'
     String link = "href";    // violation 'Custom illegal text found'
     final String quote = """
-            \"""";
+            " """;
+    final String escapedQuote = """
+            \" """;
     int num1 = 0;
     int num2 = 0x111;
     int num3 = 0X111;

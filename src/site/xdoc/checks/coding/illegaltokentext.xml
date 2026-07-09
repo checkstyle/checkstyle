@@ -102,7 +102,9 @@ public class Example1 {
     String test2 = "A href"; // ok, case is sensitive
     String link = "href";
     final String quote = """
-            \"""";
+            " """;
+    final String escapedQuote = """
+            \" """;
     int num1 = 0;
     int num2 = 0x111;
     int num3 = 0X111;
@@ -137,7 +139,9 @@ public class Example2 {
     String test2 = "A href";
     String link = "href";
     final String quote = """
-            \"""";
+            " """;
+    final String escapedQuote = """
+            \" """;
     int num1 = 0;
     int num2 = 0x111;
     int num3 = 0X111;
@@ -172,7 +176,9 @@ public class Example5 {
     String test2 = "A href"; // violation 'Custom illegal text found'
     String link = "href";    // violation 'Custom illegal text found'
     final String quote = """
-            \"""";
+            " """;
+    final String escapedQuote = """
+            \" """;
     int num1 = 0;
     int num2 = 0x111;
     int num3 = 0X111;
@@ -206,7 +212,9 @@ public class Example3 {
     String test2 = "A href";
     String link = "href";
     final String quote = """
-            \""""; // violation above 'Token text matches the illegal pattern '"'.'
+            " """; // violation above 'Token text matches the illegal pattern '"'.'
+    final String escapedQuote = """
+            \" """;
     int num1 = 0;
     int num2 = 0x111;
     int num3 = 0X111;
@@ -241,7 +249,9 @@ public class Example4 {
     String test2 = "A href";
     String link = "href";
     final String quote = """
-            \"""";
+            " """;
+    final String escapedQuote = """
+            \" """;
     int num1 = 0;
     int num2 = 0x111;
     int num3 = 0X111; // ok, case is ignored
