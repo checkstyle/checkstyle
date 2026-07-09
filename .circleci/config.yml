@@ -308,6 +308,10 @@ workflows:
           name: javac25
           image-name: cimg/openjdk:25.0
           command: ./.ci/validation.sh javac25
+      - validate-with-maven-script:
+          name: jdeprscan
+          image-name: cimg/openjdk:25.0
+          command: ./.ci/validation.sh jdeprscan
   site-validation:
     jobs:
       - validate-with-maven-script:
