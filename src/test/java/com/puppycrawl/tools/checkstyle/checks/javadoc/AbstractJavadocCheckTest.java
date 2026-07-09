@@ -80,7 +80,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                     "no viable alternative at input '}'", "REFERENCE"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAbstractJavadocJavadocTagsWithoutArgs.java"), expected);
+                getJavadocWithErrorPath(
+                    "InputAbstractJavadocJavadocTagsWithoutArgs.java"), expected);
     }
 
     @Test

@@ -104,8 +104,8 @@ public class JavadocPackageCheckTest
     public void testAnnotation() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-            getPath("annotation"
-                    + File.separator + "package-info.java"), expected);
+                getJavadocWithErrorPath("annotation/package-info.java"),
+                expected);
     }
 
     /**
@@ -144,7 +144,7 @@ public class JavadocPackageCheckTest
     public void testWithFileWithoutParent() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("annotation" + File.separator + "package-info.java"),
+                getJavadocWithErrorPath("annotation/package-info.java"),
                 expected);
     }
 

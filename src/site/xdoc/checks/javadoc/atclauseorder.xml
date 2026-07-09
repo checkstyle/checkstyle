@@ -99,7 +99,7 @@
 * @see Some javadoc.
 * @since Some javadoc.
 * @serial Some javadoc.
-* @serialField Field description.
+* @serialField field Object Field description.
 * @serialData
 */
 public class Example1 {
@@ -161,7 +161,7 @@ public class Example1 {
 * @see Some javadoc.
 * @since Some javadoc.
 * @serial Some javadoc.
-* @serialField Field description.
+* @serialField field Object Field description.
 * @serialData
 */
 public class Example2 {
@@ -223,7 +223,7 @@ public class Example2 {
 * @see Some javadoc.
 * @since Some javadoc.
 * @serial Some javadoc.
-* @serialField Field description.
+* @serialField field Object Field description.
 * @serialData
 */
 public class Example3 {

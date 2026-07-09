@@ -766,6 +766,58 @@ javac25)
   fi
   ;;
 
+javadoc-tool-validate)
+  output_dir=.ci-temp/javadoc
+  classpath_file=.ci-temp/javadoc-test-classpath.txt
+  test_source_dir=src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc
+  mkdir -p "$output_dir/test-resources" "$output_dir/xdocs-examples"
+
+  ./mvnw -e --no-transfer-progress -q dependency:build-classpath \
+    -Dmdep.outputFile="$classpath_file"
+  test_classpath=$(<"$classpath_file")
+
+  test_files=($(find "$test_source_dir" -type f -name '*.java' -print | sort))
+
+  custom_tags=(
+    -tag 'apiNote:a:API Note:'
+    -tag 'customTag:a:Custom tag:'
+    -tag 'doubletag:a:Double tag:'
+    -tag 'emptytag:a:Empty tag:'
+    -tag 'implNote:a:Implementation Note:'
+    -tag 'incomplete:a:Incomplete:'
+    -tag 'mytag:a:Custom tag:'
+    -tag 'todo:a:Todo:'
+    -tag 'unknownTag:a:Unknown tag:'
+  )
+
+  echo "Validating Javadoc syntax in test resources"
+  if ! javadoc -quiet \
+    -sourcepath src/test/resources \
+    -classpath "$test_classpath" \
+    -Xdoclint:syntax \
+    "${custom_tags[@]}" \
+    -d "$output_dir/test-resources" \
+    "${test_files[@]}" 2> "$output_dir/test-resources.log"
+  then
+    cat "$output_dir/test-resources.log"
+    exit 1
+  fi
+
+  echo "Validating Javadoc syntax in Xdoc examples"
+  if ! javadoc -quiet \
+    -sourcepath src/xdocs-examples/resources \
+    -Xdoclint:syntax \
+    "${custom_tags[@]}" \
+    -subpackages com.puppycrawl.tools.checkstyle.checks.javadoc \
+    -d "$output_dir/xdocs-examples" 2> "$output_dir/xdocs-examples.log"
+  then
+    cat "$output_dir/xdocs-examples.log"
+    exit 1
+  fi
+
+  rm "$classpath_file"
+  ;;
+
 package-site)
   export MAVEN_OPTS="-Xmx5g"
   ./mvnw -e --no-transfer-progress package -Passembly,no-validations
