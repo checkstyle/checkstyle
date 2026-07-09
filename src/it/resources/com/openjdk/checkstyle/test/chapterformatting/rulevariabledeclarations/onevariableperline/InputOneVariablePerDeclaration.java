@@ -71,7 +71,6 @@ public class InputOneVariablePerDeclaration {
                     .String string1; java.lang.String[]
                             strings1;
 
-
             void method2() {
                 for (int i = 0, j = 0; i < 10; i++, j--) { // ok, in for loop initializer
                 }
