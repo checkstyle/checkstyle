@@ -18,23 +18,30 @@ public interface InputInterfaceMemberImpliedModifierMethodsOnInterface {
     public static void methodPublicStatic() {
     }
 
-    static void methodStatic() { // violation
+    // violation below 'Implied modifier 'public' should be explicit.'
+    static void methodStatic() {
     }
 
     public default void methodPublicDefault() {
     }
 
-    default int methodDefault() { // violation
+    // violation below 'Implied modifier 'public' should be explicit.'
+    default int methodDefault() {
         int foo = 6;
         return foo;
     }
 
     public abstract void methodPublicAbstract();
 
-    abstract void methodAbstract(); // violation
+    // violation below 'Implied modifier 'public' should be explicit.'
+    abstract void methodAbstract();
 
-    public void methodPublic(); // violation
+    // violation below 'Implied modifier 'abstract' should be explicit.'
+    public void methodPublic();
 
-    void method(); // 2 violations
+    void method();
+    // 2 violations above:
+    //    'Implied modifier 'abstract' should be explicit.'
+    //    'Implied modifier 'public' should be explicit.'
 
 }
