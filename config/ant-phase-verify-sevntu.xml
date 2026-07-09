@@ -30,7 +30,8 @@
                excludes="**/it/resources/**/*,**/it/resources-noncompilable/**/*,
                ,**/test/resources/**/*,**/test/resources-noncompilable/**/*,
                ,**/xdocs-examples/resources/**/*,**/xdocs-examples/resources-noncompilable/**/*,
-               ,**/gen/**"/>
+               ,**/gen/**,
+                 main/java/module-info.java"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="${mvn.project.build.directory}/cs_sevntu_errors.xml"/>
       <property key="checkstyle.sevntu.cache.file"
