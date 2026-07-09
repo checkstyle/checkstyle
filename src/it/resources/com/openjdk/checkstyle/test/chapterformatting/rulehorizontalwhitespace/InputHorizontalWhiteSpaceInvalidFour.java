@@ -3,20 +3,20 @@ package com.openjdk.checkstyle.test.chapterformatting.rulehorizontalwhitespace;
 import java.io.IOException;
 
 /**
- * Dummy input
+ * Dummy input.
  */
 public class InputHorizontalWhiteSpaceInvalidFour {
 
     int x;
 
     /**
-     * Dummy input
+     * Dummy input.
      */
     public InputHorizontalWhiteSpaceInvalidFour(int n) {
     }
 
     /**
-     * Dummy input
+     * Dummy input.
      */
     public void fun() {
 
@@ -38,7 +38,7 @@ public class InputHorizontalWhiteSpaceInvalidFour {
     }
 
     /**
-     * Dummy input
+     * Dummy input.
      */
     public void fun2() {
         switch ( x) { // violation 'is followed by whitespace'
@@ -50,19 +50,19 @@ public class InputHorizontalWhiteSpaceInvalidFour {
     }
 
     /**
-     * Dummy input
+     * Dummy input.
      */
     class Bar extends InputHorizontalWhiteSpaceInvalidFour {
 
         /**
-         * Dummy input
+         * Dummy input.
          */
         Bar() {
             super(1 ); // violation '')' is preceded with whitespace'
         }
 
         /**
-         * Dummy input
+         * Dummy input.
          */
         Bar(int k) {
             super( k ); // 2 violations
