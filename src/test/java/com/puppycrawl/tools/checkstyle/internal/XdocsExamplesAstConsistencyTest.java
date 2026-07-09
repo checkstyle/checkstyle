@@ -21,21 +21,37 @@ package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.apache.maven.doxia.macro.MacroExecutionException;
 import org.junit.jupiter.api.Test;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -43,10 +59,13 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.site.SiteUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * Ensures xdocs Java examples for the same check differ only by comments.
+ * Ensures xdocs Java examples for the same check differ only by comments, and that
+ * the number of AST-consistent examples matches the number of documented properties.
  *
  * <p>This test validates that examples with the same code structure maintain
  * consistency. Examples are grouped explicitly - either all examples must match,
@@ -80,6 +99,7 @@ public class XdocsExamplesAstConsistencyTest {
     );
     private static final String XDOC_START_MARKER = "// xdoc section -- start";
     private static final String XDOC_END_MARKER = "// xdoc section -- end";
+    private static final Pattern BLOCK_COMMENT_PATTERN = Pattern.compile("(?s)/\\*.*?\\*/");
 
     /**
      * Examples that cannot be parsed as valid Java.
@@ -90,6 +110,110 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/regexp/regexponfilename/Example1",
             "checks/translation/Example1",
             "filters/suppressionxpathsinglefilter/Example14"
+    );
+
+    /**
+     * Cache for module property counts to avoid repeated, expensive reflective lookups
+     * during test execution.
+     */
+    private static final ConcurrentMap<String, Integer> PROPERTY_COUNT_CACHE =
+        new ConcurrentHashMap<>();
+
+    /**
+     * Cache mapping a lower-cased xdocs directory name (e.g. {@code declarationorder}) to
+     * the check's simple class name (e.g. {@code DeclarationOrderCheck}), built once from
+     * the full list of checkstyle module classes. Avoids repeated classpath scans.
+     */
+    private static final ConcurrentMap<String, String> MODULE_SIMPLE_NAME_CACHE =
+        buildModuleSimpleNameIndex();
+
+    /**
+     * Modules where the example-count-matches-property-count validation should be skipped,
+     * e.g. because the directory intentionally demonstrates use-cases rather than a strict
+     * one-example-per-property mapping.
+     */
+    private static final Set<String> EXAMPLE_COUNT_SUPPRESSED_MODULES = Set.of(
+        // until https://github.com/checkstyle/checkstyle/issues/XXXX
+        "checks/annotation/annotationlocation",
+        "checks/annotation/suppresswarnings",
+        "checks/blocks/leftcurly",
+        "checks/coding/illegaltokentext",
+        "checks/coding/magicnumber",
+        "checks/descendanttoken",
+        "checks/imports/importcontrol",
+        "checks/imports/unusedimports",
+        "checks/javadoc/atclauseorder",
+        "checks/javadoc/javadocblocktaglocation",
+        "checks/javadoc/javadocmethod",
+        "checks/javadoc/javadocparagraph",
+        "checks/javadoc/javadoctype",
+        "checks/javadoc/javadocvariable",
+        "checks/javadoc/missingjavadocmethod",
+        "checks/javadoc/missingjavadoctype",
+        "checks/javadoc/nonemptyatclausedescription",
+        "checks/javadoc/summaryjavadoc",
+        "checks/javadoc/writetag",
+        "checks/metrics/classdataabstractioncoupling",
+        "checks/metrics/cyclomaticcomplexity",
+        "checks/modifier/interfacememberimpliedmodifier",
+        "checks/naming/abbreviationaswordinname",
+        "checks/naming/constantname",
+        "checks/naming/illegalidentifiername",
+        "checks/naming/localfinalvariablename",
+        "checks/naming/membername",
+        "checks/naming/methodname",
+        "checks/naming/staticvariablename",
+        "checks/naming/typename",
+        "checks/regexp/regexp",
+        "checks/regexp/regexpmultiline",
+        "checks/regexp/regexponfilename",
+        "checks/regexp/regexpsingleline",
+        "checks/regexp/regexpsinglelinejava",
+        "checks/sizes/methodcount",
+        "checks/sizes/methodlength",
+        "checks/sizes/parameternumber",
+        "checks/translation",
+        "checks/whitespace/methodparampad",
+        "checks/whitespace/nowhitespaceafter",
+        "checks/whitespace/operatorwrap",
+        "checks/whitespace/parenpad",
+        "checks/whitespace/separatorwrap",
+        "filters/suppressioncommentfilter",
+        "filters/suppressionsinglefilter",
+        "filters/suppressionxpathfilter",
+        "filters/suppressionxpathsinglefilter",
+        "filters/suppresswithnearbycommentfilter",
+        "filters/suppresswithnearbytextfilter"
+    );
+
+    /**
+     * Modules where the every-property-has-an-example validation should be skipped,
+     * pending individual fixes.
+     */
+    private static final Set<String> EXAMPLE_PROPERTY_COVERAGE_SUPPRESSED_MODULES = Set.of(
+            // until https://github.com/checkstyle/checkstyle/issues/XXXX
+            "checks/imports/illegalimport",
+            "checks/imports/unusedimports",
+            "checks/javadoc/atclauseorder",
+            "checks/javadoc/javadocblocktaglocation",
+            "checks/javadoc/javadocmethod",
+            "checks/javadoc/javadocparagraph",
+            "checks/javadoc/javadoctype",
+            "checks/javadoc/javadocvariable",
+            "checks/javadoc/missingjavadocmethod",
+            "checks/javadoc/missingjavadoctype",
+            "checks/javadoc/nonemptyatclausedescription",
+            "checks/javadoc/summaryjavadoc",
+            "checks/lineending",
+            "checks/metrics/classdataabstractioncoupling",
+            "checks/modifier/classmemberimpliedmodifier",
+            "checks/naming/illegalidentifiername",
+            "checks/newlineatendoffile",
+            "checks/regexp/regexpmultiline",
+            "checks/regexp/regexponfilename",
+            "checks/sizes/methodcount",
+            "filters/suppressionsinglefilter",
+            "filters/suppresswithnearbycommentfilter"
     );
 
     /**
@@ -275,9 +399,9 @@ public class XdocsExamplesAstConsistencyTest {
 
         try (Stream<Path> pathStream = Files.walk(XDOCS_ROOT)) {
             final List<Path> exampleDirs = pathStream
-                    .filter(Files::isDirectory)
-                    .filter(XdocsExamplesAstConsistencyTest::containsMultipleExamples)
-                    .toList();
+                .filter(Files::isDirectory)
+                .filter(XdocsExamplesAstConsistencyTest::containsMultipleExamples)
+                .toList();
 
             for (Path dir : exampleDirs) {
                 final List<Violation> dirViolations = checkExamplesInDirectory(dir);
@@ -367,6 +491,600 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
+     * Tests that the number of AST-consistent examples matches the number of
+     * documented properties plus one (one example per property + one baseline
+     * example with no properties set). Unlike a raw file count, this groups
+     * examples by actual structural AST equality, so a directory that merely
+     * has the "right number" of files but where one of them is structurally
+     * different will correctly fail.
+     *
+     * @throws IOException if an I/O error occurs
+     */
+    @Test
+    public void testExampleCountMatchesPropertyCount() throws IOException {
+        final List<String> violations = Collections.synchronizedList(new ArrayList<>());
+
+        try (Stream<Path> pathStream = Files.walk(XDOCS_ROOT)) {
+            pathStream
+                .filter(Files::isDirectory)
+                .parallel()
+                .forEach(dir -> processDirectory(dir, violations));
+        }
+
+        final String message = formatViolationsMessage(violations);
+
+        assertWithMessage(message)
+            .that(violations)
+            .isEmpty();
+    }
+
+    /**
+     * Tests that every documented property of a module is actually configured
+     * by at least one of its AST-matching examples. Unlike
+     * {@link #testExampleCountMatchesPropertyCount}, which only checks the count
+     * of matching examples, this test checks semantic coverage: it is possible
+     * for the count to be correct while one property is demonstrated twice and
+     * another isn't demonstrated at all. This test catches that gap.
+     *
+     * @throws IOException if an I/O error occurs
+     */
+    @Test
+    public void testEveryPropertyHasAnExample() throws IOException {
+        final List<String> violations = Collections.synchronizedList(new ArrayList<>());
+
+        try (Stream<Path> pathStream = Files.walk(XDOCS_ROOT)) {
+            pathStream
+                .filter(Files::isDirectory)
+                .parallel()
+                .forEach(dir -> processDirectoryForPropertyCoverage(dir, violations));
+        }
+
+        final String message = formatPropertyCoverageViolationsMessage(violations);
+
+        assertWithMessage(message)
+            .that(violations)
+            .isEmpty();
+    }
+
+    /**
+     * Processes a directory to identify properties with no covering example.
+     *
+     * @param dir the directory containing example files
+     * @param violations a thread-safe list to collect any discovered violations
+     */
+    private static void processDirectoryForPropertyCoverage(Path dir, List<String> violations) {
+        try {
+            final List<Path> examples = getExampleFiles(dir);
+            if (examples.size() > 1) {
+                final String violation = checkPropertyCoverage(dir, examples);
+                if (violation != null) {
+                    violations.add(violation);
+                }
+            }
+        }
+        catch (IOException exception) {
+            throw new IllegalStateException("Failed processing directory: " + dir, exception);
+        }
+    }
+
+    /**
+     * Formats property-coverage violations into a single, readable error message.
+     *
+     * @param violations the list of violation strings
+     * @return a formatted string detailing all found gaps
+     */
+    private static String formatPropertyCoverageViolationsMessage(List<String> violations) {
+        final StringBuilder builder = new StringBuilder(1024);
+        if (!violations.isEmpty()) {
+            builder.append("Found ").append(violations.size())
+                .append(" module(s) with a documented property not covered by any example.\n\n");
+
+            violations.stream()
+                .sorted()
+                .forEach(violation -> builder.append(violation).append("\n\n"));
+
+            builder.append("If intentional add to EXAMPLE_PROPERTY_COVERAGE_SUPPRESSED_MODULES.\n");
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Checks a single module directory: unions the properties configured across
+     * all of its AST-matching examples and compares that against the full set of
+     * documented properties for the module, reporting any that aren't covered.
+     *
+     * @param dir the directory to check
+     * @param examples the list of pre-fetched example files
+     * @return a violation message, or null if every property is covered / not applicable
+     * @throws IOException if an I/O error occurs
+     */
+    private static String checkPropertyCoverage(Path dir, List<Path> examples)
+            throws IOException {
+        final String relativePath = getRelativePath(dir);
+        String result = null;
+
+        if (!EXAMPLE_PROPERTY_COVERAGE_SUPPRESSED_MODULES.contains(relativePath)
+            && !isModuleWithNoProperties(examples)) {
+
+            final String moduleName = toModuleClassSimpleName(dir.getFileName().toString());
+
+            if (moduleName != null) {
+                final Set<String> documentedProperties = resolveDocumentedPropertyNames(dir);
+
+                if (!documentedProperties.isEmpty()) {
+                    final String xmlModuleName = stripCheckSuffix(moduleName);
+
+                    final List<Path> candidateExamples = examples.stream()
+                        .filter(example -> {
+                            return !isExampleUnparseable(
+                                relativePath, example.getFileName().toString());
+                        })
+                        .toList();
+
+                    final Set<String> configuredProperties = new HashSet<>();
+                    for (Path example : candidateExamples) {
+                        configuredProperties.addAll(
+                            extractConfiguredPropertyNames(example, xmlModuleName));
+                    }
+
+                    final Set<String> uncoveredProperties = new HashSet<>(documentedProperties);
+                    uncoveredProperties.removeAll(configuredProperties);
+
+                    if (!uncoveredProperties.isEmpty()) {
+                        result = "Directory: " + relativePath
+                            + "\nDocumented properties: " + documentedProperties
+                            + "\nProperties with no covering example: " + uncoveredProperties;
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Resolves the full set of documented property names for the module associated
+     * with the given xdocs directory.
+     *
+     * @param dir the example directory
+     * @return the set of documented property names, or an empty set if the module
+     *         could not be resolved
+     */
+    private static Set<String> resolveDocumentedPropertyNames(Path dir) {
+        final String moduleName = toModuleClassSimpleName(dir.getFileName().toString());
+        Set<String> result = Set.of();
+
+        if (moduleName != null) {
+            try {
+                final Object instance = SiteUtil.getModuleInstance(moduleName);
+                result = SiteUtil.getPropertiesForDocumentation(instance.getClass(), instance);
+            }
+            catch (MacroExecutionException exception) {
+                // Failure to resolve is expected for some non-check modules
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Extracts the set of property names actually configured for the given module
+     * within an example's embedded {@code /*xml ... *}{@code /} config block.
+     *
+     * <p>Uses a plain, non-validating DOM parse rather than
+     * {@code ConfigurationLoader}, since the latter is designed to fully execute
+     * a configuration (DTD validation, {@code ${...}} property substitution such
+     * as {@code config.folder}) which several example configs intentionally use
+     * and which isn't relevant here — this method only needs the property
+     * <em>names</em>, not a runnable configuration.
+     *
+     * @param example the example file
+     * @param moduleName the module's simple name as it appears in the embedded XML
+     * @return the set of property names configured for that module in this example,
+     *         or an empty set if the module doesn't appear in the example's config
+     * @throws IOException if reading the file fails
+     */
+    private static Set<String> extractConfiguredPropertyNames(Path example, String moduleName)
+            throws IOException {
+        Set<String> result = Set.of();
+        final String xmlBlock = extractXmlConfigBlock(example);
+
+        if (xmlBlock != null) {
+            try {
+                final Element moduleElement = parseConfigModuleElement(xmlBlock, moduleName);
+                if (moduleElement != null) {
+                    result = collectPropertyNames(moduleElement);
+                }
+            }
+            catch (ParserConfigurationException | SAXException exception) {
+                throw new IllegalStateException(
+                    "Failed to parse example config XML: " + example, exception);
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Parses the given XML config fragment (non-validating, no external DTD or
+     * entity resolution) and finds the {@code <module>} element with the given
+     * simple name anywhere in the tree.
+     *
+     * @param xmlBlock the raw XML content, rooted at {@code <module name="Checker">}
+     * @param moduleName the module simple name to find
+     * @return the matching module {@link Element}, or null if not found
+     * @throws ParserConfigurationException if a document builder cannot be created
+     * @throws IOException if an I/O error occurs during parsing
+     * @throws SAXException if the XML content is malformed
+     */
+    private static Element parseConfigModuleElement(String xmlBlock, String moduleName)
+            throws ParserConfigurationException, IOException, SAXException {
+        final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setValidating(false);
+        factory.setNamespaceAware(false);
+        factory.setFeature(
+            "http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+        factory.setFeature(
+            "http://xml.org/sax/features/external-general-entities", false);
+        factory.setFeature(
+            "http://xml.org/sax/features/external-parameter-entities", false);
+
+        final DocumentBuilder builder = factory.newDocumentBuilder();
+        final Document document = builder.parse(
+            new ByteArrayInputStream(xmlBlock.getBytes(StandardCharsets.UTF_8)));
+
+        return findModuleElement(document.getDocumentElement(), moduleName);
+    }
+
+    /**
+     * Recursively searches an XML {@link Element} tree for a {@code <module>}
+     * element with the given {@code name} attribute.
+     *
+     * @param element the element to search from
+     * @param moduleName the module simple name to find
+     * @return the matching element, or null if not found
+     */
+    private static Element findModuleElement(Element element, String moduleName) {
+        Element result = null;
+
+        if (moduleName.equals(element.getAttribute("name"))) {
+            result = element;
+        }
+        else {
+            final NodeList children = element.getChildNodes();
+            for (int index = 0; index < children.getLength() && result == null; index++) {
+                final Node node = children.item(index);
+                if (node instanceof Element childElement
+                    && "module".equals(node.getNodeName())) {
+                    result = findModuleElement(childElement, moduleName);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Collects the {@code name} attribute of every direct {@code <property>}
+     * child of the given module element.
+     *
+     * @param moduleElement the module element to read properties from
+     * @return the set of configured property names
+     */
+    private static Set<String> collectPropertyNames(Element moduleElement) {
+        final Set<String> names = new HashSet<>();
+        final NodeList children = moduleElement.getChildNodes();
+
+        for (int index = 0; index < children.getLength(); index++) {
+            final Node node = children.item(index);
+            if (node instanceof Element childElement
+                && "property".equals(node.getNodeName())) {
+                names.add(childElement.getAttribute("name"));
+            }
+        }
+
+        return names;
+    }
+
+    /**
+     * Extracts the embedded {@code /*xml ... *}{@code /} configuration block from the
+     * top of an example file, if present.
+     *
+     * @param file the example file to read
+     * @return the XML content between the {@code /*xml} and closing {@code *}{@code /}
+     *         markers, or null if no such block is present
+     * @throws IOException if an I/O error occurs
+     */
+    private static String extractXmlConfigBlock(Path file) throws IOException {
+        final String content = Files.readString(file);
+        String result = null;
+
+        final int startMarker = content.indexOf("/*xml");
+        if (startMarker >= 0) {
+            final int contentStart = startMarker + "/*xml".length();
+            final int endMarker = content.indexOf("*/", contentStart);
+            if (endMarker >= 0) {
+                result = content.substring(contentStart, endMarker).strip();
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Processes a directory to identify example-count-vs-property-count violations.
+     *
+     * @param dir the directory containing example files
+     * @param violations a thread-safe list to collect any discovered violations
+     */
+    private static void processDirectory(Path dir, List<String> violations) {
+        try {
+            final List<Path> examples = getExampleFiles(dir);
+            if (examples.size() > 1) {
+                final String violation = checkExampleCount(dir, examples);
+                if (violation != null) {
+                    violations.add(violation);
+                }
+            }
+        }
+        catch (IOException exception) {
+            throw new IllegalStateException("Failed processing directory: " + dir, exception);
+        }
+    }
+
+    /**
+     * Formats the collection of violations into a single, readable error message.
+     *
+     * @param violations the list of violation strings
+     * @return a formatted string detailing all found inconsistencies
+     */
+    private static String formatViolationsMessage(List<String> violations) {
+        final StringBuilder builder = new StringBuilder(1024);
+        if (!violations.isEmpty()) {
+            builder.append("Found ").append(violations.size())
+                .append(" module(s) whose example count does not match property count + 1.\n\n");
+
+            violations.stream()
+                .sorted()
+                .forEach(violation -> builder.append(violation).append("\n\n"));
+
+            builder.append("If intentional, add to EXAMPLE_COUNT_SUPPRESSED_MODULES.\n");
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Checks a single module directory: resolves the check class, counts its
+     * documented properties, and compares that against the size of the *actual*
+     * AST-matching example group (not just the raw file count).
+     *
+     * @param dir the directory to check
+     * @param examples the list of pre-fetched example files
+     * @return a violation message, or null if consistent / not applicable
+     * @throws IOException if an I/O error occurs
+     */
+    private static String checkExampleCount(Path dir, List<Path> examples) throws IOException {
+        final String relativePath = getRelativePath(dir);
+        String result = null;
+
+        if (!EXAMPLE_COUNT_SUPPRESSED_MODULES.contains(relativePath)
+            && !isModuleWithNoProperties(examples)) {
+
+            final List<Path> regularExamples = examples.stream()
+                .filter(example -> {
+                    return !isExampleIndependent(
+                        relativePath, example.getFileName().toString());
+                })
+                .filter(example -> {
+                    return !isExampleUnparseable(
+                        relativePath, example.getFileName().toString());
+                })
+                .toList();
+
+            final int propertyCount = resolvePropertyCount(dir);
+
+            if (propertyCount >= 0 && regularExamples.size() > 1) {
+                final int largestAstGroupSize = findLargestAstMatchingGroupSize(regularExamples);
+                final int expected = propertyCount + 1;
+
+                // only flag when there are too few matching examples.
+                if (largestAstGroupSize < expected) {
+                    result = "Directory: " + relativePath
+                        + "\nProperties: " + propertyCount
+                        + "\nExpected AST-matching examples (at least): " + expected
+                        + "\nActual largest AST-matching group: " + largestAstGroupSize
+                        + " (of " + regularExamples.size() + " total example files)";
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Groups examples by structural AST equality and returns the size of the
+     * largest group found. Constructor-presence is used to pre-split the
+     * examples, mirroring {@link #validateExamplesByConstructorPresence}, since
+     * that split represents an intentionally separate AST family, not a mismatch.
+     * Examples that fail to parse are skipped from grouping (they are validated
+     * elsewhere by the unparseable-examples allowance).
+     *
+     * @param examples candidate example files (already filtered for suppression)
+     * @return size of the largest AST-identical group, or 0 if none parse
+     * @throws IOException if reading a file fails
+     */
+    private static int findLargestAstMatchingGroupSize(List<Path> examples) throws IOException {
+        final List<Path> ctorExamples = new ArrayList<>();
+        final List<Path> nonCtorExamples = new ArrayList<>();
+
+        for (Path example : examples) {
+            if (containsConstructorDefinition(example)) {
+                ctorExamples.add(example);
+            }
+            else {
+                nonCtorExamples.add(example);
+            }
+        }
+
+        return Math.max(
+            largestGroupWithinSubset(nonCtorExamples),
+            largestGroupWithinSubset(ctorExamples)
+        );
+    }
+
+    /**
+     * Finds the size of the largest group of structurally-identical ASTs within
+     * a single subset of examples (already split by constructor presence).
+     *
+     * @param examples the subset of examples to group
+     * @return size of the largest AST-identical group, or 0 if none parse
+     * @throws IOException if reading a file fails
+     */
+    private static int largestGroupWithinSubset(List<Path> examples) throws IOException {
+        final List<StructuralAstNode> asts = new ArrayList<>();
+
+        for (Path example : examples) {
+            try {
+                final String xdocSection = extractXdocSection(example);
+                final DetailAST detailAst = parseContent(xdocSection);
+                if (detailAst != null) {
+                    asts.add(toStructuralAst(detailAst));
+                }
+            }
+            catch (CheckstyleException exception) {
+                // unparseable excluded from grouping, handled by UNPARSEABLE_EXAMPLES elsewhere
+            }
+        }
+
+        int best = 0;
+        for (StructuralAstNode candidate : asts) {
+            int count = 0;
+            for (StructuralAstNode other : asts) {
+                if (candidate.equals(other)) {
+                    count++;
+                }
+            }
+            best = Math.max(best, count);
+        }
+        return best;
+    }
+
+    /**
+     * Checks whether none of the examples in this directory define any module properties.
+     * When a module has no configurable properties, its examples may intentionally use
+     * very different code to demonstrate different behaviours, so consistency checking
+     * is not meaningful.
+     *
+     * @param examples the list of example files in the directory
+     * @return true if no example file contains a {@code <property} element in its XML config
+     * @throws IOException if an I/O error occurs reading an example file
+     */
+    private static boolean isModuleWithNoProperties(List<Path> examples) throws IOException {
+        boolean noProperties = true;
+
+        for (Path example : examples) {
+            final String content = Files.readString(example);
+
+            if (content.contains("<property ")) {
+                noProperties = false;
+                break;
+            }
+        }
+
+        return noProperties;
+    }
+
+    /**
+     * Retrieves the documented property count for a module using a cache to optimize performance.
+     *
+     * @param dir the directory path associated with the module
+     * @return the number of properties, or -1 if the module cannot be resolved
+     */
+    private static int resolvePropertyCount(Path dir) {
+        final String moduleName = toModuleClassSimpleName(dir.getFileName().toString());
+        int result = -1;
+
+        if (moduleName != null) {
+            result = PROPERTY_COUNT_CACHE.computeIfAbsent(moduleName,
+                XdocsExamplesAstConsistencyTest::loadPropertyCount);
+        }
+
+        return result;
+    }
+
+    /**
+     * Helper method to load property count via reflection.
+     *
+     * @param moduleName the simple class name of the check
+     * @return the property count, or -1 on failure
+     */
+    private static int loadPropertyCount(String moduleName) {
+        int count = -1;
+        try {
+            final Object instance = SiteUtil.getModuleInstance(moduleName);
+            final Set<String> properties = SiteUtil.getPropertiesForDocumentation(
+                instance.getClass(), instance);
+            count = properties.size();
+        }
+        catch (MacroExecutionException exception) {
+            // Failure to resolve is expected for some non-check modules
+        }
+        return count;
+    }
+
+    /**
+     * Converts a lower-cased directory name (e.g. {@code declarationorder}) into
+     * the check's simple class name (e.g. {@code DeclarationOrderCheck}) as expected by
+     * {@link SiteUtil#getModuleInstance}, using an index built once from all known
+     * checkstyle module classes.
+     *
+     * @param dirName the last path segment of the example directory
+     * @return the resolved module simple name, or null if no matching module class was found
+     */
+    private static String toModuleClassSimpleName(String dirName) {
+        return MODULE_SIMPLE_NAME_CACHE.get(dirName.toLowerCase(Locale.ROOT));
+    }
+
+    /**
+     * Builds a one-time index mapping lower-cased simple class name stem
+     * (i.e. class simple name with any trailing {@code Check} removed, lower-cased)
+     * to the actual module simple name expected by {@link SiteUtil#getModuleInstance}.
+     * Built once to avoid repeating an expensive classpath scan per directory.
+     *
+     * @return the populated index
+     */
+    private static ConcurrentMap<String, String> buildModuleSimpleNameIndex() {
+        final ConcurrentMap<String, String> index = new ConcurrentHashMap<>();
+
+        try {
+            for (Class<?> moduleClass : CheckUtil.getCheckstyleModules()) {
+                final String simpleName = moduleClass.getSimpleName();
+                final String stem = stripCheckSuffix(simpleName);
+                index.putIfAbsent(stem.toLowerCase(Locale.ROOT), simpleName);
+            }
+        }
+        catch (IOException exception) {
+            throw new IllegalStateException("Failed to build module simple name index",
+                exception);
+        }
+
+        return index;
+    }
+
+    /**
+     * Removes a trailing {@code Check} suffix from a class simple name, if present.
+     *
+     * @param simpleName the class simple name
+     * @return the name with any trailing {@code Check} removed
+     */
+    private static String stripCheckSuffix(String simpleName) {
+        String result = simpleName;
+        if (simpleName.endsWith("Check")) {
+            result = simpleName.substring(0, simpleName.length() - "Check".length());
+        }
+        return result;
+    }
+
+    /**
      * Formats the violation message for block comment markers.
      *
      * @param violations the list of violations
@@ -403,16 +1121,15 @@ public class XdocsExamplesAstConsistencyTest {
             throws IOException {
         final List<String> fileViolations = new ArrayList<>();
         final String content = Files.readString(file);
-        final Pattern blockCommentPattern = Pattern.compile("(?s)/\\*.*?\\*/");
-        final Matcher matcher = blockCommentPattern.matcher(content);
+        final Matcher matcher = BLOCK_COMMENT_PATTERN.matcher(content);
 
         while (matcher.find()) {
             final String block = matcher.group();
             final String inner = block
-                    .replaceAll("^/\\*+", "")
-                    .replaceAll("\\*/$", "")
-                    .replace("*", "")
-                    .strip();
+                .replaceAll("^/\\*+", "")
+                .replaceAll("\\*/$", "")
+                .replace("*", "")
+                .strip();
 
             if (inner.startsWith("ok") || inner.startsWith("violation")) {
                 int lineNo = 1;
@@ -422,8 +1139,8 @@ public class XdocsExamplesAstConsistencyTest {
                     }
                 }
                 fileViolations.add(file + ":" + lineNo
-                        + " - use single-line comment instead: // "
-                        + inner);
+                    + " - use single-line comment instead: // "
+                    + inner);
             }
         }
         return fileViolations;
@@ -438,35 +1155,13 @@ public class XdocsExamplesAstConsistencyTest {
     private static boolean containsMultipleExamples(Path dir) {
         try (Stream<Path> pathStream = Files.list(dir)) {
             return pathStream
-                    .filter(path -> path.getFileName().toString().matches("Example\\d+\\.java"))
-                    .count() > 1;
+                .filter(path -> path.getFileName().toString().matches("Example\\d+\\.java"))
+                .count() > 1;
         }
         catch (IOException exception) {
             throw new IllegalStateException("Failed to list files in directory: " + dir,
-                    exception);
+                exception);
         }
-    }
-
-    /**
-     * Checks whether none of the examples in this directory define any module properties.
-     * When a module has no configurable properties, its examples may intentionally use
-     * very different code to demonstrate different behaviours, so consistency checking
-     * is not meaningful.
-     *
-     * @param examples the list of example files in the directory
-     * @return true if no example file contains a {@code <property} element in its XML config
-     * @throws IOException if an I/O error occurs reading an example file
-     */
-    private static boolean isModuleWithNoProperties(List<Path> examples) throws IOException {
-        boolean result = true;
-        for (Path example : examples) {
-            final String content = Files.readString(example);
-            if (content.contains("<property ")) {
-                result = false;
-                break;
-            }
-        }
-        return result;
     }
 
     /**
