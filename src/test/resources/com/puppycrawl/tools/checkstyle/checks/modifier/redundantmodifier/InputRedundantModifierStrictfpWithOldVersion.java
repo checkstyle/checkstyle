@@ -24,15 +24,15 @@ public class InputRedundantModifierStrictfpWithOldVersion {
     abstract strictfp class MyAbstractClass { }
 
     abstract strictfp interface MyStrictFPInterface {
-        // violation above, 'Redundant 'abstract' modifier'
+        // violation above 'Redundant 'abstract' modifier.'
         public static strictfp enum MyInnerEnum { }
         // 2 violations above:
-        //                   'Redundant 'public' modifier'
-        //                   'Redundant 'static' modifier'
+        //                   'Redundant 'public' modifier.'
+        //                   'Redundant 'static' modifier.'
     }
 
     final class OtherClass {
         final strictfp void m1() {}
-        // violation above, 'Redundant 'final' modifier'
+        // violation above 'Redundant 'final' modifier.'
     }
 }

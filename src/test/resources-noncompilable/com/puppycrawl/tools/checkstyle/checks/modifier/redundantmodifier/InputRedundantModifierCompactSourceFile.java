@@ -10,7 +10,7 @@ tokens = (default)METHOD_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, INTERFACE_DEF,
 
 // non-compiled with javac: Compilable with Java25
 class Helper {
-    public Helper() { } // violation, 'Redundant .public. modifier'
+    public Helper() { } // violation 'Redundant 'public' modifier.'
 }
 
 void main() { }

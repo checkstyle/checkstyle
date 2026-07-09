@@ -14,7 +14,7 @@ public enum InputRedundantModifierFinalInEnumMethods {
     E1,
     E2 {
         @Override
-        public final void v() { // violation
+        public final void v() { // violation 'Redundant 'final' modifier.'
         }
     };
 
@@ -29,7 +29,7 @@ public enum InputRedundantModifierFinalInEnumMethods {
 enum InputRedundantModifierFinalInEnumMethods2 {
     E1 {
         @Override
-        public final void v() { // violation
+        public final void v() { // violation 'Redundant 'final' modifier.'
         }
     },
     E2 {

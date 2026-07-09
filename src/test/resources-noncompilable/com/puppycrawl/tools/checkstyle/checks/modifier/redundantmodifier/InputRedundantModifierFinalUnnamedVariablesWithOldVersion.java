@@ -37,14 +37,14 @@ public class InputRedundantModifierFinalUnnamedVariablesWithOldVersion {
     }
 
     void m3() {
-        // violation below, 'Redundant 'final' modifier'
+        // violation below 'Redundant 'final' modifier.'
         try (final var a = lock();) {
 
         } catch (final Exception e) {
 
         }
 
-        // violation below, 'Redundant 'final' modifier'
+        // violation below 'Redundant 'final' modifier.'
         try (final var _ = lock();) {
 
         } catch (final Exception _) {
