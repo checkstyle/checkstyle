@@ -1207,6 +1207,7 @@ ruleredundantparenthesis
 ruleset
 rulesetfiles
 rulespecialcharacters
+ruletypevariables
 rulevariabledeclarations
 rulevariables
 rulewildcardimports
