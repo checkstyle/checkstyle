@@ -95,78 +95,78 @@ public class InputSpecialEscapeSequencesInTextBlockForOctalValues {
   private void specialCharsWithWarn2() {
     String r1 = // violation below 'Consider using special escape sequence'
         """
-        \\010
+        \010
         """;
     String r2 = // violation below 'Consider using special escape sequence'
         """
-        \\011
+        \011
         """;
     String r3 = // violation below 'Consider using special escape sequence'
         """
-        \\012
+        \012
         """;
     String r4 = // violation below 'Consider using special escape sequence'
         """
-        \\014
+        \014
         """;
     String r5 = // violation below 'Consider using special escape sequence'
         """
-        \\015
+        \015
         """;
     String r6 = // violation below 'Consider using special escape sequence'
         """
-        \\042
+        \042
         """;
     String r7 = // violation below 'Consider using special escape sequence'
         """
-        \\047
+        \047
         """;
     String r8 = // violation below 'Consider using special escape sequence'
         """
-        \\134
+        \134
         """;
     String r9 = // violation below 'Consider using special escape sequence'
         """
-        \\040
+        \040
         """;
   }
 
   private static void specialCharsWithWarn3() {
     String r1 = // violation below 'Consider using special escape sequence'
         """
-        \\010
+        \010
         """;
     String r2 = // violation below 'Consider using special escape sequence'
         """
-        \\011
+        \011
         """;
     String r3 = // violation below 'Consider using special escape sequence'
         """
-        \\012
+        \012
         """;
     String r4 = // violation below 'Consider using special escape sequence'
         """
-        \\014
+        \014
         """;
     String r5 = // violation below 'Consider using special escape sequence'
         """
-        \\015
+        \015
         """;
     String r6 = // violation below 'Consider using special escape sequence'
         """
-        \\040
+        \040
         """;
     String r7 = // violation below 'Consider using special escape sequence'
         """
-        \\042
+        \042
         """;
     String r8 = // violation below 'Consider using special escape sequence'
         """
-        \\047
+        \047
         """;
     String r9 = // violation below 'Consider using special escape sequence'
         """
-        \\134
+        \134
         """;
   }
 
@@ -214,39 +214,39 @@ public class InputSpecialEscapeSequencesInTextBlockForOctalValues {
         public void specialCharsWithWarn2() {
           String r1 = // violation below 'Consider using special escape sequence'
               """
-              \\010
+              \010
               """;
           String r2 = // violation below 'Consider using special escape sequence'
               """
-              \\011
+              \011
               """;
           String r3 = // violation below 'Consider using special escape sequence'
               """
-              \\012
+              \012
               """;
           String r4 = // violation below 'Consider using special escape sequence'
               """
-              \\014
+              \014
               """;
           String r5 = // violation below 'Consider using special escape sequence'
               """
-              \\015
+              \015
               """;
           String r6 = // violation below 'Consider using special escape sequence'
               """
-              \\040
+              \040
               """;
           String r7 = // violation below 'Consider using special escape sequence'
               """
-              \\042
+              \042
               """;
           String r8 = // violation below 'Consider using special escape sequence'
               """
-              \\047
+              \047
               """;
           String r9 = // violation below 'Consider using special escape sequence'
               """
-              \\134
+              \134
               """;
         }
       };

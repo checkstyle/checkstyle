@@ -35,28 +35,28 @@ public class InputSpecialEscapeSequences {
 
   /** Some javadoc. */
   public void specialCharsWithWarn() {
-    String r1 = "\\u0008"; // violation 'Consider using special escape sequence'
-    String r2 = "\\u0009"; // violation 'Consider using special escape sequence .*'
-    String r3 = "\\u000a"; // violation 'Consider using special escape sequence .*'
-    String r4 = "\\u000c"; // violation 'Consider using special escape sequence .*'
-    String r5 = "\\u000d"; // violation 'Consider using special escape sequence .*'
-    String r6 = "\\u0020"; // violation 'Consider using special escape sequence'
-    String r7 = "\\u0022"; // violation 'Consider using special escape sequence'
-    String r8 = "\\u0027"; // violation 'Consider using special escape sequence'
-    String r9 = "\\u005c"; // violation 'Consider using special escape sequence'
+    String r1 = "\u0008"; // violation 'Consider using special escape sequence'
+    String r2 = "\u0009"; // violation 'Consider using special escape sequence .*'
+    String r3 = "\u000a"; // violation 'Consider using special escape sequence .*'
+    String r4 = "\u000c"; // violation 'Consider using special escape sequence .*'
+    String r5 = "\u000d"; // violation 'Consider using special escape sequence .*'
+    String r6 = "\u0020"; // violation 'Consider using special escape sequence'
+    String r7 = "\u0022"; // violation 'Consider using special escape sequence'
+    String r8 = "\u0027"; // violation 'Consider using special escape sequence'
+    String r9 = "\u005c"; // violation 'Consider using special escape sequence'
   }
 
   /** Some javadoc. */
   public void specialCharsWithWarn2() {
-    String r1 = "\\010"; // violation 'Consider using special escape sequence .*'
-    String r2 = "\\011"; // violation 'Consider using special escape sequence .*'
-    String r3 = "\\012"; // violation 'Consider using special escape sequence .*'
-    String r4 = "\\014"; // violation 'Consider using special escape sequence .*'
-    String r5 = "\\015"; // violation 'Consider using special escape sequence .*'
-    String r6 = "\\040"; // violation 'Consider using special escape sequence'
-    String r7 = "\\042"; // violation 'Consider using special escape sequence .*'
-    String r8 = "\\047"; // violation 'Consider using special escape sequence .*'
-    String r9 = "\\134"; // violation 'Consider using special escape sequence .*'
+    String r1 = "\010"; // violation 'Consider using special escape sequence .*'
+    String r2 = "\011"; // violation 'Consider using special escape sequence .*'
+    String r3 = "\012"; // violation 'Consider using special escape sequence .*'
+    String r4 = "\014"; // violation 'Consider using special escape sequence .*'
+    String r5 = "\015"; // violation 'Consider using special escape sequence .*'
+    String r6 = "\040"; // violation 'Consider using special escape sequence'
+    String r7 = "\042"; // violation 'Consider using special escape sequence .*'
+    String r8 = "\047"; // violation 'Consider using special escape sequence .*'
+    String r9 = "\134"; // violation 'Consider using special escape sequence .*'
   }
 
   class Inner {
@@ -84,27 +84,27 @@ public class InputSpecialEscapeSequences {
     }
 
     public void specialCharsWithWarn() {
-      String r1 = "\\u0008"; // violation 'Consider using special escape sequence'
-      String r2 = "\\u0009"; // violation 'Consider using special escape sequence .*'
-      String r3 = "\\u000a"; // violation 'Consider using special escape sequence .*'
-      String r4 = "\\u000c"; // violation 'Consider using special escape sequence .*'
-      String r5 = "\\u000d"; // violation 'Consider using special escape sequence .*'
-      String r6 = "\\u0020"; // violation 'Consider using special escape sequence .*'
-      String r7 = "\\u0022"; // violation 'Consider using special escape sequence'
-      String r8 = "\\u0027"; // violation 'Consider using special escape sequence .*'
-      String r9 = "\\u005c"; // violation 'Consider using special escape sequence .*'
+      String r1 = "\u0008"; // violation 'Consider using special escape sequence'
+      String r2 = "\u0009"; // violation 'Consider using special escape sequence .*'
+      String r3 = "\u000a"; // violation 'Consider using special escape sequence .*'
+      String r4 = "\u000c"; // violation 'Consider using special escape sequence .*'
+      String r5 = "\u000d"; // violation 'Consider using special escape sequence .*'
+      String r6 = "\u0020"; // violation 'Consider using special escape sequence .*'
+      String r7 = "\u0022"; // violation 'Consider using special escape sequence'
+      String r8 = "\u0027"; // violation 'Consider using special escape sequence .*'
+      String r9 = "\u005c"; // violation 'Consider using special escape sequence .*'
     }
 
     public void specialCharsWithWarn2() {
-      String r1 = "\\010"; // violation 'Consider using special escape sequence .*'
-      String r2 = "\\011"; // violation 'Consider using special escape sequence .*'
-      String r3 = "\\012"; // violation 'Consider using special escape sequence .*'
-      String r4 = "\\014"; // violation 'Consider using special escape sequence .*'
-      String r5 = "\\015"; // violation 'Consider using special escape sequence .*'
-      String r6 = "\\040"; // violation 'Consider using special escape sequence'
-      String r7 = "\\042"; // violation 'Consider using special escape sequence .*'
-      String r8 = "\\047"; // violation 'Consider using special escape sequence .*'
-      String r9 = "\\134"; // violation 'Consider using special escape sequence .*'
+      String r1 = "\010"; // violation 'Consider using special escape sequence .*'
+      String r2 = "\011"; // violation 'Consider using special escape sequence .*'
+      String r3 = "\012"; // violation 'Consider using special escape sequence .*'
+      String r4 = "\014"; // violation 'Consider using special escape sequence .*'
+      String r5 = "\015"; // violation 'Consider using special escape sequence .*'
+      String r6 = "\040"; // violation 'Consider using special escape sequence'
+      String r7 = "\042"; // violation 'Consider using special escape sequence .*'
+      String r8 = "\047"; // violation 'Consider using special escape sequence .*'
+      String r9 = "\134"; // violation 'Consider using special escape sequence .*'
     }
 
     Inner anoInner =
@@ -133,27 +133,27 @@ public class InputSpecialEscapeSequences {
           }
 
           public void specialCharsWithWarn() {
-            String r1 = "\\u0008"; // violation 'Consider using special escape sequence'
-            String r2 = "\\u0009"; // violation 'Consider using special escape sequence .*'
-            String r3 = "\\u000a"; // violation 'Consider using special escape sequence .*'
-            String r4 = "\\u000c"; // violation 'Consider using special escape sequence .*'
-            String r5 = "\\u000d"; // violation 'Consider using special escape sequence .*'
-            String r6 = "\\u0020"; // violation 'Consider using special escape sequence'
-            String r7 = "\\u0022"; // violation 'Consider using special escape sequence .*'
-            String r8 = "\\u0027"; // violation 'Consider using special escape sequence .*'
-            String r9 = "\\u005c"; // violation 'Consider using special escape sequence .*'
+            String r1 = "\u0008"; // violation 'Consider using special escape sequence'
+            String r2 = "\u0009"; // violation 'Consider using special escape sequence .*'
+            String r3 = "\u000a"; // violation 'Consider using special escape sequence .*'
+            String r4 = "\u000c"; // violation 'Consider using special escape sequence .*'
+            String r5 = "\u000d"; // violation 'Consider using special escape sequence .*'
+            String r6 = "\u0020"; // violation 'Consider using special escape sequence'
+            String r7 = "\u0022"; // violation 'Consider using special escape sequence .*'
+            String r8 = "\u0027"; // violation 'Consider using special escape sequence .*'
+            String r9 = "\u005c"; // violation 'Consider using special escape sequence .*'
           }
 
           public void specialCharsWithWarn2() {
-            String r1 = "\\010"; // violation 'Consider using special escape sequence .*'
-            String r2 = "\\011"; // violation 'Consider using special escape sequence .*'
-            String r3 = "\\012"; // violation 'Consider using special escape sequence .*'
-            String r4 = "\\014"; // violation 'Consider using special escape sequence .*'
-            String r5 = "\\015"; // violation 'Consider using special escape sequence .*'
-            String r6 = "\\040"; // violation 'Consider using special escape sequence'
-            String r7 = "\\042"; // violation 'Consider using special escape sequence .*'
-            String r8 = "\\047"; // violation 'Consider using special escape sequence .*'
-            String r9 = "\\134"; // violation 'Consider using special escape sequence .*'
+            String r1 = "\010"; // violation 'Consider using special escape sequence .*'
+            String r2 = "\011"; // violation 'Consider using special escape sequence .*'
+            String r3 = "\012"; // violation 'Consider using special escape sequence .*'
+            String r4 = "\014"; // violation 'Consider using special escape sequence .*'
+            String r5 = "\015"; // violation 'Consider using special escape sequence .*'
+            String r6 = "\040"; // violation 'Consider using special escape sequence'
+            String r7 = "\042"; // violation 'Consider using special escape sequence .*'
+            String r8 = "\047"; // violation 'Consider using special escape sequence .*'
+            String r9 = "\134"; // violation 'Consider using special escape sequence .*'
           }
         };
   }

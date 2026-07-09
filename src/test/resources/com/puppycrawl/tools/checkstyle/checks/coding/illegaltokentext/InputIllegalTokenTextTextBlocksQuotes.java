@@ -18,9 +18,9 @@ public class InputIllegalTokenTextTextBlocksQuotes {
         final String refCase1 = "<A hReF=\"";
 
         final String ref2 = """
-                <a href=\""""; // violation above 'Token text matches the illegal pattern '"''
+                <a href=\"""";
         final String refCase2 = """
-                <A hReF=\""""; // violation above 'Token text matches the illegal pattern '"''
+                <A hReF=\"""";
 
         String escape = """
                 <html>\u000D\u000A\n
