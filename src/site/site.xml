@@ -219,6 +219,8 @@
           <item name="ImportControl" href="checks/imports/importcontrol.html"/>
           <item name="ImportOrder" href="checks/imports/importorder.html"/>
           <item name="RedundantImport" href="checks/imports/redundantimport.html"/>
+          <item name="UnnecessaryFullyQualifiedType"
+                href="checks/imports/unnecessaryfullyqualifiedtype.html"/>
           <item name="UnusedImports" href="checks/imports/unusedimports.html"/>
         </item>
         <item name="Javadoc Comments" href="checks/javadoc/index.html" collapse="true">
