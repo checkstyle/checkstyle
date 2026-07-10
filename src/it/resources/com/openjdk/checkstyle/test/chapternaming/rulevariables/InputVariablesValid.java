@@ -4,11 +4,11 @@ import java.util.stream.Stream;
 
 public class InputVariablesValid {
 
-    public static int itStatic1 = 2;
+    static int itStatic1 = 2;
     protected static int itStatic2 = 2;
     private static int itStatic3 = 2;
-    public static int itStatic4 = 2;
-    public static int itStatic5 = 2;
+    static int itStatic4 = 2;
+    static int itStatic5 = 2;
     private static int itStatic6 = 2;
 
     public int num1;

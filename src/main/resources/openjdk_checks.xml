@@ -263,6 +263,22 @@
     <module name="SummaryJavadoc"/>
     <module name="JavadocContentLocation"/>
 
+    <module name="MissingOverride"/>
+    <module name="MissingOverrideOnRecordAccessor"/>
+    <module name="TodoComment"/>
+    <module name="ParameterAssignment"/>
+    <module name="FallThrough"/>
+    <module name="MethodLength">
+      <property name="tokens" value="METHOD_DEF"/>
+    </module>
+    <module name="MatchXpath">
+      <property name="id" value="PublicStaticFinalVariable"/>
+      <property name="query"
+        value="//VARIABLE_DEF[MODIFIERS[LITERAL_PUBLIC and LITERAL_STATIC and not(FINAL)]]"/>
+      <message key="matchxpath.match"
+        value="Public static variable must be final."/>
+    </module>
+
     <module name="PackageName">
       <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
     </module>
