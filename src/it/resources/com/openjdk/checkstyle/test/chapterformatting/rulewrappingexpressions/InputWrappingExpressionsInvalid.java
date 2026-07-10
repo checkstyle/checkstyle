@@ -26,7 +26,8 @@ public class InputWrappingExpressionsInvalid {
                     ::compareToIgnoreCase);
     }
 
-    String typeGuardAfterParenthesizedTrueIfStatement2(Object o) {
+    String typeGuardAfterParenthesizedTrueIfStatement2(Object p) {
+        Object o = p;
         if (o != null && // violation ''&&' should be on a new line.'
                 o instanceof Integer i && // violation ''&&' should be on a new line.'
                         i == 0) {
