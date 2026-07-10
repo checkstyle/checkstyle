@@ -81,14 +81,6 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example3.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example4-code">
-          But if forceStrictCondition = false, this code is valid:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example4.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
         <p id="Example5-config">
           To configure the check with custom basicOffset (2 spaces instead of default 4):
         </p>
@@ -171,6 +163,17 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example9.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="Indentation_Use_Cases">
+        <p id="UseCase1-code">
+          But if forceStrictCondition = false, this code is valid:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

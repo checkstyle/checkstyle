@@ -56,20 +56,23 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/Example3.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example2-config">
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="LocalFinalVariableName_Use_Cases">
+        <p id="UseCase1-config">
           An example of how to configure the check for names that are only upper case letters and
           digits is:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example2-code">Code Example:</p>
+        <p id="UseCase1-code">Code Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

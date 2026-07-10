@@ -20,7 +20,7 @@
   <!-- Regexp -->
   <module name="RegexpOnFilename">
     <property name="id" value="exampleFileName"/>
-    <property name="fileNamePattern" value="^Example\d+$"/>
+    <property name="fileNamePattern" value="^(Example|UseCase)\d+$"/>
     <property name="ignoreFileNameExtensions" value="true"/>
     <property name="match" value="false"/>
     <message key="regexp.filename.mismatch"
@@ -142,7 +142,7 @@ block, or inline on the same line as the closing '*/'."/>
   <module name="TreeWalker">
 
     <module name="SuppressionXpathSingleFilter">
-      <property name="files" value="Example\d+.java"/>
+      <property name="files" value="(Example|UseCase)\d+.java"/>
       <property name="id" value="exampleClassName"/>
       <property name="query" value="//CLASS_DEF//CLASS_DEF/IDENT
                                     | COMPILATION_UNIT/CLASS_DEF[position() > 1]/IDENT"/>
@@ -163,7 +163,7 @@ block, or inline on the same line as the closing '*/'."/>
     <!-- Regexp -->
     <module name="TypeName">
       <property name="id" value="exampleClassName"/>
-      <property name="format" value="Example\d+"/>
+      <property name="format" value="(Example|UseCase)\d+"/>
       <property name="tokens" value="CLASS_DEF"/>
       <property name="applyToPrivate" value="false"/>
       <property name="applyToPublic" value="true"/>

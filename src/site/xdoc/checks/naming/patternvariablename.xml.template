@@ -72,20 +72,23 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/Example4.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example3-config">
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="PatternVariableName_Use_Cases">
+        <p id="UseCase1-config">
           An example of how to configure the check to that all variables have 3 or more
           chars in name:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example3-code">Code Example:</p>
+        <p id="UseCase1-code">Code Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

@@ -53,13 +53,13 @@ public class NoLineWrapExamplesTest extends AbstractExamplesModuleTestSupport {
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_KEY, "CLASS_DEF"),
             "24:3: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
             "26:3: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 }
