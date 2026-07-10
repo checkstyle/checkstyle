@@ -42,7 +42,7 @@ public class LocalFinalVariableNameCheckExamplesTest extends AbstractExamplesMod
     }
 
     @Test
-    public void testExample2() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "18:18: " + getCheckMessage(MSG_INVALID_PATTERN, "scanner", "^[A-Z][A-Z0-9]*$"),
             "21:17: " + getCheckMessage(MSG_INVALID_PATTERN, "var1", "^[A-Z][A-Z0-9]*$"),
@@ -50,7 +50,7 @@ public class LocalFinalVariableNameCheckExamplesTest extends AbstractExamplesMod
             "26:17: " + getCheckMessage(MSG_INVALID_PATTERN, "var2", "^[A-Z][A-Z0-9]*$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test

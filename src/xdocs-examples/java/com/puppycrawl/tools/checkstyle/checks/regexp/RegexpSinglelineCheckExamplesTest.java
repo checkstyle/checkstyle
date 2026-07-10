@@ -50,12 +50,12 @@ public class RegexpSinglelineCheckExamplesTest extends AbstractExamplesModuleTes
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "23: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System.exit\\("),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
@@ -68,12 +68,12 @@ public class RegexpSinglelineCheckExamplesTest extends AbstractExamplesModuleTes
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expected = {
             "1: File must contain copyright statement",
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
 
     @Test
