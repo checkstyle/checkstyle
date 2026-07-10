@@ -253,7 +253,9 @@ class Example5 {
   }
 }
 </code></pre></div>
-        <hr class="example-separator"/>
+      </subsection>
+
+      <subsection name="Use Cases" id="ClassFanOutComplexity_Use_Cases">
         <p>
           Override property <code>excludedPackages</code> to mark some packages as excluded.
           Each member of <code>excludedPackages</code> should be a valid identifier:
@@ -280,7 +282,7 @@ class Example5 {
           wildcard (e.g. <code>import java.math.*</code>). Instead of wildcard import you should
           use direct import (e.g. <code>import java.math.BigDecimal</code>).
         </p>
-        <p id="Example6-config">
+        <p id="UseCase1-config">
           Also note, that checkstyle will not exclude classes within the same file
           even if it was listed in the <code>excludedPackages</code> parameter. For example,
           assuming the config is
@@ -296,13 +298,13 @@ class Example5 {
 &lt;/module&gt;
 </code></pre></div>
         <p>
-          Example6:
+          UseCase1:
         </p>
-        <p id="Example6-code">
+        <p id="UseCase1-code">
           And the file is:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example6 { // violation 'Class Fan-Out Complexity is 4 (max allowed is 3)'
+class UseCase1 { // violation 'Class Fan-Out Complexity is 4 (max allowed is 3)'
   Set set = new HashSet();   // ok, Set and HashSet are ignored
   Map map = new HashMap();   // ok, Map and HashMap are ignored
   Date date = new Date();    // ok, java.util package is ignored

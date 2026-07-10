@@ -675,8 +675,11 @@ class Example12 {
   // ok, allowPublicFinalFields is true
   public final List list = null;
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example7-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="VisibilityModifier_Use_Cases">
+        <p id="UseCase1-config">
           Note, if allowPublicImmutableFields is set to true, the check will also check whether
           generic type parameters are immutable. If at least one generic type parameter is mutable,
           there will be a violation.
@@ -693,13 +696,12 @@ class Example12 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example7-code">
+        <p id="UseCase1-code">
           Example of how the check works:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example7 {
+class UseCase1 {
   private int myPrivateField1;
-
   int field1; // violation, must have visibility modifier 'must be private'
 
   protected String field2; // violation, protected not allowed 'must be private'
@@ -734,7 +736,7 @@ class Example7 {
   public String testString = "";
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example9-config">
+        <p id="UseCase2-config">
           To configure the Check passing fields annotated with @org.junit.Rule,
           @org.junit.ClassRule and @com.google.common.annotations.VisibleForTesting annotations:
         </p>
@@ -745,11 +747,11 @@ class Example7 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example9-code">
+        <p id="UseCase2-code">
           Example of allowed fields:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example9 {
+class UseCase2 {
   private int myPrivateField1;
 
   int field1; // violation, must have visibility modifier 'must be private'
@@ -786,7 +788,7 @@ class Example9 {
   public String testString = "";
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example10-config">
+        <p id="UseCase3-config">
           To configure the Check passing fields annotated with short annotation name:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -798,11 +800,11 @@ class Example9 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example10-code">
+        <p id="UseCase3-code">
           Example of allowed fields:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example10 {
+class UseCase3 {
   private int myPrivateField1;
 
   int field1; // violation, must have visibility modifier 'must be private'
@@ -844,7 +846,7 @@ class Example10 {
           To understand the difference between allowPublicImmutableFields and
           allowPublicFinalFields options, please, study the following examples.
         </p>
-        <p id="Example11-config">
+        <p id="UseCase4-config">
            1) To configure the check to use only 'allowPublicImmutableFields' option:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -856,11 +858,11 @@ class Example10 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example11-code">
+        <p id="UseCase4-code">
           Code example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example11 {
+class UseCase4 {
   public final int someIntValue = 0; // violation 'must be private'
 
   public final ImmutableSet&lt;String&gt; includes = null; // violation 'must be private'

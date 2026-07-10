@@ -266,8 +266,11 @@ class Example2 {
     }
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="ParenPad_Use_Cases">
+        <p id="UseCase1-config">
           When the check is configured with default settings:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -277,7 +280,7 @@ class Example2 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">
+        <p id="UseCase1-code">
           The following cases are intentionally not checked. No check occurs at
           the right parenthesis after an empty for iterator, at the left
           parenthesis before an empty for initialization, or at the right
@@ -285,7 +288,7 @@ class Example2 {
           last resource variable has a trailing semicolon:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
+class UseCase1 {
   void m(int i, int j, Iterator xs, Closeable resource) throws Exception {
     for ( ; i &lt; j; i++, j--) {}               // ok, no check after left '('
     for (Iterator it = xs; it.hasNext(); ) {} // ok, no check before right ')'
