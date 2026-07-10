@@ -25,7 +25,8 @@ public class InputAbbreviationAsWordInNameIgnoreFinal {
     abstract class FactoryWithHARDName {
     }
 
-    abstract class AbstractCLASSName { // violation
+    // violation below 'Abbreviation in name 'AbstractCLASSName''
+    abstract class AbstractCLASSName {
         abstract class NonAbstractInnerClass {
         }
     }
@@ -45,13 +46,16 @@ public class InputAbbreviationAsWordInNameIgnoreFinal {
     }
 
     abstract class AbstractClassName3 {
-        class AbstractINNERSClass { // violation
+        // violation below 'Abbreviation in name 'AbstractINNERSClass''
+        class AbstractINNERSClass {
         }
     }
 
     abstract class Class3Factory {
-        class WellNamedFACTORY { // violation
-            public void systematicMETHODName() { // violation
+        // violation below 'Abbreviation in name 'WellNamedFACTORY''
+        class WellNamedFACTORY {
+            // violation below 'Abbreviation in name 'systematicMETHODName''
+            public void systematicMETHODName() {
                 int systematicVARIABLEName = 2;
                 int SYSTEMATICVariableName = 1;
             }
@@ -71,9 +75,11 @@ public class InputAbbreviationAsWordInNameIgnoreFinal {
     }
 
     abstract static class NonAAAAbstractClassName2 {
-        public int serialNUMBER = 6; // violation
+        // violation below 'Abbreviation in name 'serialNUMBER''
+        public int serialNUMBER = 6;
         public final int s1erialNUMBER = 6;
-        private static int s2erialNUMBER = 6; // violation
+        // violation below 'Abbreviation in name 's2erialNUMBER''
+        private static int s2erialNUMBER = 6;
         private static final int s3erialNUMBER = 6;
     }
 

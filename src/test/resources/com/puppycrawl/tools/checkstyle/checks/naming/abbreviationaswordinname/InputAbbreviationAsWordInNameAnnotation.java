@@ -22,5 +22,6 @@ public interface InputAbbreviationAsWordInNameAnnotation extends BaseClass {
     String readMETHOD();
 }
 abstract interface BaseClass {
-    String readMETHOD(); // violation 'name 'readMETHOD' must contain no more than '4' .* cap.*.'
+    // violation below 'Abbreviation in name 'readMETHOD''
+    String readMETHOD();
 }
