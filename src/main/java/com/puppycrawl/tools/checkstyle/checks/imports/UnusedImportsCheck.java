@@ -109,6 +109,12 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";
 
+    /** Prefix for wildcard extends bound. */
+    private static final String WILDCARD_EXTENDS_PREFIX = "? extends ";
+
+    /** Prefix for wildcard super bound. */
+    private static final String WILDCARD_SUPER_PREFIX = "? super ";
+
     /** Set of the imports. */
     private final Set<FullIdent> imports = new HashSet<>();
 
@@ -334,17 +340,35 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
      * @param ast the Javadoc parameter type node
      */
     private void processParameterType(DetailNode ast) {
-        addReferencedTypesFromType(ast.getText());
+        final String paramTypeText = ast.getText();
+        if (paramTypeText.startsWith(WILDCARD_EXTENDS_PREFIX)
+                || paramTypeText.startsWith(WILDCARD_SUPER_PREFIX)) {
+            addReferencedTypesFromType(paramTypeText);
+        }
+        else {
+            for (String part : paramTypeText.split(" ")) {
+                addReferencedTypesFromType(part);
+            }
+        }
     }
 
     /**
-     * Recursively registers all type names referenced in a type string.
+     * Registers all type names referenced in a type string.
      * Handles generic type arguments, wildcard bounds, and array suffixes.
      *
      * @param type the type string to process
      */
     private void addReferencedTypesFromType(String type) {
         String currentType = type;
+        if (currentType.startsWith(WILDCARD_EXTENDS_PREFIX)
+                || currentType.startsWith(WILDCARD_SUPER_PREFIX)) {
+            if (currentType.startsWith(WILDCARD_EXTENDS_PREFIX)) {
+                currentType = currentType.substring(WILDCARD_EXTENDS_PREFIX.length());
+            }
+            else {
+                currentType = currentType.substring(WILDCARD_SUPER_PREFIX.length());
+            }
+        }
         if (currentType.endsWith("[]")) {
             currentType = currentType.substring(0, currentType.length() - 2);
         }
@@ -380,7 +404,8 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
     /**
      * If the given type string contains "." (e.g. "Map.Entry"), returns the
      * top level type (e.g. "Map"), as that is what must be imported for the
-     * type to resolve. Otherwise, returns the type as-is.
+     * type to resolve. For fully qualified names (starting with lowercase
+     * package name), returns the full name. Otherwise, returns the type as-is.
      *
      * @param type A possibly qualified type name
      * @return The simple name of the top level type
@@ -389,7 +414,14 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
         String result = type;
         final int dotIndex = type.indexOf('.');
         if (dotIndex != -1) {
-            result = type.substring(0, dotIndex);
+            // If the first character is lowercase, it's a fully qualified name (package starts with lowercase)
+            // e.g., "com.example.Foo" -> return full name "com.example.Foo"
+            // If it starts with uppercase, it's a nested class like "Map.Entry" -> return "Map"
+            if (Character.isLowerCase(type.charAt(0))) {
+                result = type;
+            } else {
+                result = type.substring(0, dotIndex);
+            }
         }
         return result;
     }
