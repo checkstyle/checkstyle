@@ -31,8 +31,9 @@ abstract class InputAbbreviationAsWordInNameOverridableMethod extends Class1 {
 }
 
 class Class1 {
+    // violation 2 lines below 'Abbreviation in name 'overRIDDENMethod''
     @SuppressWarnings(value = { "" })
-    protected void overRIDDENMethod(){ // violation
+    protected void overRIDDENMethod(){
         int a = 0;
         // blah-blah
     }
