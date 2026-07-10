@@ -14,8 +14,8 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 
 import java.io.Serializable;
-
 // xdoc section -- start
+
 /**
 * Some javadoc.
 *
@@ -33,6 +33,7 @@ import java.io.Serializable;
 */
 public class Example3 {
   class Valid implements Serializable {}
+  // ok below 'Block tags have to appear in the order'
 
   /**
    * Some javadoc.
