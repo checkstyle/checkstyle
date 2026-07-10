@@ -17,13 +17,14 @@ package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 abstract class InputAbbreviationAsWordInNameType6 {
 }
 
-abstract class NonAAAAbstractClassName6 { // violation
-}
+// violation below 'Abbreviation in name 'NonAAAAbstractClassName6''
+abstract class NonAAAAbstractClassName6 {}
 
-abstract class FactoryWithHARDName66 { // violation
-}
+// violation below 'Abbreviation in name 'FactoryWithHARDName66''
+abstract class FactoryWithHARDName66 {}
 
-abstract class AbstractCLASSName6 { // violation
+// violation below 'Abbreviation in name 'AbstractCLASSName6''
+abstract class AbstractCLASSName6 {
     abstract class NonAbstractInnerClass {
     }
 }
@@ -33,76 +34,82 @@ abstract class ClassFactory16 {
     }
 }
 
-class NonAbstractClass16 {
-}
+class NonAbstractClass16 {}
 
-class AbstractClass16 {
-}
+class AbstractClass16 {}
 
-class Class1Factory16 {
-}
+class Class1Factory16 {}
 
 abstract class AbstractClassName36 {
-    class AbstractINNERSClass { // violation
+    // violation below 'Abbreviation in name 'AbstractINNERSClass''
+    class AbstractINNERSClass {
     }
 }
 
 abstract class Class3Factory6 {
-    class WellNamedFACTORY { // violation
-        public void systematicMETHODName() { // violation
-            int systematicVARIABLEName = 2; // violation
-            int SYSTEMATICVariableName = 1; // violation
+    // violation below 'Abbreviation in name 'WellNamedFACTORY''
+    class WellNamedFACTORY {
+        // violation below 'Abbreviation in name 'systematicMETHODName''
+        public void systematicMETHODName() {
+            // violation below 'Abbreviation in name 'systematicVARIABLEName''
+            int systematicVARIABLEName = 2;
+            // violation below 'Abbreviation in name 'SYSTEMATICVariableName''
+            int SYSTEMATICVariableName = 1;
         }
     }
 }
 
 interface Directions6 {
-  int RIGHT=1; // violation
-  int LEFT=2; // violation
-  int UP=3; // violation
-  int DOWN=4; // violation
+  // violation below 'Abbreviation in name 'RIGHT''
+  int RIGHT=1;
+  // violation below 'Abbreviation in name 'LEFT''
+  int LEFT=2;
+  // violation below 'Abbreviation in name 'UP''
+  int UP=3;
+  // violation below 'Abbreviation in name 'DOWN''
+  int DOWN=4;
 }
 
-interface BadNameForInterface6
-{
+interface BadNameForInterface6 {
    void interfaceMethod();
 }
 
-abstract class NonAAAAbstractClassName26 { // violation
-    public int serialNUMBER = 6; // violation
-    public final int s1erialNUMBER = 6; // violation
-    private static int s2erialNUMBER = 6; // violation
-    private static final int s3erialNUMBER = 6; // violation
+// violation below 'Abbreviation in name 'NonAAAAbstractClassName26''
+abstract class NonAAAAbstractClassName26 {
+    // violation below 'Abbreviation in name 'serialNUMBER''
+    public int serialNUMBER = 6;
+    // violation below 'Abbreviation in name 's1erialNUMBER''
+    public final int s1erialNUMBER = 6;
+    // violation below 'Abbreviation in name 's2erialNUMBER''
+    private static int s2erialNUMBER = 6;
+    // violation below 'Abbreviation in name 's3erialNUMBER''
+    private static final int s3erialNUMBER = 6;
 }
 
 interface Interface16 {
-
-    String VALUELONG = "value"; // violation
-
+    // violation below 'Abbreviation in name 'VALUELONG''
+    String VALUELONG = "value";
 }
 
 interface Interface26 {
-
-    static String VALUELONG = "value"; // violation
-
+    // violation below 'Abbreviation in name 'VALUELONG''
+    static String VALUELONG = "value";
 }
 
 interface Interface36 {
-
-    final String VALUELONG = "value"; // violation
-
+    // violation below 'Abbreviation in name 'VALUELONG''
+    final String VALUELONG = "value";
 }
 
 interface Interface46 {
-
-    final static String VALUELONG = "value"; // violation
-
+    // violation below 'Abbreviation in name 'VALUELONG''
+    final static String VALUELONG = "value";
 }
 
-class FIleNameFormatException6 extends Exception { // violation
-
-    private static final long serialVersionUID = 1L; // violation
-
+// violation below 'Abbreviation in name 'FIleNameFormatException6''
+class FIleNameFormatException6 extends Exception {
+    // violation below 'Abbreviation in name 'serialVersionUID''
+    private static final long serialVersionUID = 1L;
     public FIleNameFormatException6(Exception e) {
         super(e);
     }

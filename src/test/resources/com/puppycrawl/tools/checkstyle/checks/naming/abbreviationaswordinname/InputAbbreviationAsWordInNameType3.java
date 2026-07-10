@@ -42,7 +42,8 @@ class Class1Factory13 {
 }
 
 abstract class AbstractClassName33 {
-    class AbstractINNERSClass { // violation
+    // violation below 'Abbreviation in name 'AbstractINNERSClass''
+    class AbstractINNERSClass {
     }
 }
 

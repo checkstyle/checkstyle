@@ -45,13 +45,16 @@ public class InputAbbreviationAsWordInNameIgnore {
     }
 
     abstract class AbstractClassName3 {
-        class AbstractINNERSClass { // violation
+        // violation below 'Abbreviation in name 'AbstractINNERSClass''
+        class AbstractINNERSClass {
         }
     }
 
     abstract class Class3Factory {
-        class WellNamedFACTORY { // violation
-            public void systematicMETHODName() { // violation
+        // violation below 'Abbreviation in name 'WellNamedFACTORY''
+        class WellNamedFACTORY {
+            // violation below 'Abbreviation in name 'systematicMETHODName''
+            public void systematicMETHODName() {
                 int systematicVARIABLEName = 2;
                 int SYSTEMATICVariableName = 1;
             }
