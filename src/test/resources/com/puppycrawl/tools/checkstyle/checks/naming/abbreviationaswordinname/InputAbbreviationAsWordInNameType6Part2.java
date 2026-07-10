@@ -17,7 +17,8 @@ package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 abstract class InputAbbreviationAsWordInNameType6Part2{}
 
 class StateX6 {
-    int userID; // violation
+    // violation below 'Abbreviation in name 'userID''
+    int userID;
     int scaleX, scaleY, scaleZ;
 
     int getScaleX() {
@@ -26,17 +27,21 @@ class StateX6 {
 }
 
 @interface Annotation16 {
-    String VALUE = "value"; // violation
+    // violation below 'Abbreviation in name 'VALUE''
+    String VALUE = "value";
 }
 
 @interface Annotation26 {
-    static String VALUE = "value"; // violation
+    // violation below 'Abbreviation in name 'VALUE''
+    static String VALUE = "value";
 }
 
 @interface Annotation36 {
-    final String VALUE = "value"; // violation
+    // violation below 'Abbreviation in name 'VALUE''
+    final String VALUE = "value";
 }
 
 @interface Annotation46 {
-    final static String VALUE = "value"; // violation
+    // violation below 'Abbreviation in name 'VALUE''
+    final static String VALUE = "value";
 }

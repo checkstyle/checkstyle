@@ -41,15 +41,18 @@ public class InputAbbreviationAsWordInNameIgnorePart2{
         final static String VALUE = "value"; // in @interface this is final/static
     }
 
-    final class InnerClassOneVIOLATION { // violation
+    // violation below 'Abbreviation in name 'InnerClassOneVIOLATION''
+    final class InnerClassOneVIOLATION {
         // only variable definitions are affected by ignore static/final properties
     }
 
-    static class InnerClassTwoVIOLATION { // violation
+    // violation below 'Abbreviation in name 'InnerClassTwoVIOLATION''
+    static class InnerClassTwoVIOLATION {
         // only variable definitions are affected by ignore static/final properties
     }
 
-    static final class InnerClassThreeVIOLATION { // violation
+    // violation below 'Abbreviation in name 'InnerClassThreeVIOLATION''
+    static final class InnerClassThreeVIOLATION {
         // only variable definitions are affected by ignore static/final properties
     }
 

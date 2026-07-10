@@ -25,30 +25,37 @@ public class InputAbbreviationAsWordInNameIgnoreNonStaticFinalPart2 {
     }
 
     @interface Annotation1 {
-        String VALUELONG = "value"; // violation
+        // violation below 'Abbreviation in name 'VALUELONG''
+        String VALUELONG = "value";
     }
 
     @interface Annotation2 {
-        static String VALUELONG = "value"; // violation
+        // violation below 'Abbreviation in name 'VALUELONG''
+        static String VALUELONG = "value";
     }
 
     @interface Annotation3 {
-        final String VALUELONG = "value"; // violation
+        // violation below 'Abbreviation in name 'VALUELONG''
+        final String VALUELONG = "value";
     }
 
     @interface Annotation4 {
-        final static String VALUELONG = "value"; // violation
+        // violation below 'Abbreviation in name 'VALUELONG''
+        final static String VALUELONG = "value";
     }
 
-    final class InnerClassOneVIOLATION { // violation
+    // violation below 'Abbreviation in name 'InnerClassOneVIOLATION''
+    final class InnerClassOneVIOLATION {
         // only variable definitions are affected by ignore static/final properties
     }
 
-    static class InnerClassTwoVIOLATION { // violation
+    // violation below 'Abbreviation in name 'InnerClassTwoVIOLATION''
+    static class InnerClassTwoVIOLATION {
         // only variable definitions are affected by ignore static/final properties
     }
 
-    static final class InnerClassThreeVIOLATION { // violation
+    // violation below 'Abbreviation in name 'InnerClassThreeVIOLATION''
+    static final class InnerClassThreeVIOLATION {
         // only variable definitions are affected by ignore static/final properties
     }
 

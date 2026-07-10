@@ -15,12 +15,12 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION
 
 // non-compiled with javac: Compilable with Java25
 
+// violation below 'Abbreviation in name 'useHTTPSConnection''
 int useHTTPSConnection = 1;
-// violation above, ''useHTTPSConnection' must contain no more than '4' consecutive capital letters'
 
 static final int anotherHTTPSConnection = 2;
 
 void main() {
+    // violation below 'Abbreviation in name 'localHTTPSConnection''
     int localHTTPSConnection = 3;
-    // violation above, 'must contain no more than '4' consecutive capital letters'
 }
