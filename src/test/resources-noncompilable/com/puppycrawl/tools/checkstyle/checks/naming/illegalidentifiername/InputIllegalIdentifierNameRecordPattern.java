@@ -13,15 +13,16 @@ package com.puppycrawl.tools.checkstyle.checks.naming.illegalidentifiername;
 public class InputIllegalIdentifierNameRecordPattern {
 
     void m(Object o) {
-        if (o instanceof Point(int var, int _)) { } // violation, 'Name 'var' must match pattern'
+        // violation below 'Name 'var' must match pattern'
+        if (o instanceof Point(int var, int _)) { }
         if (o instanceof ColorPoint(Point(int record, int yield), String sealed)) { }
     }
 
     void m2(Object o) {
         switch (o) {
             case Point(int permits, int yield): {} break;
+            // violation below 'Name 'permit\$' must match pattern'
             case ColorPoint(Point(int permit$, int _), String _): {}
-            // violation above, 'must match pattern'
             default: {}
         }
     }

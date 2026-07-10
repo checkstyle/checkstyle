@@ -15,5 +15,6 @@ public class InputIllegalIdentifierNameUnderscore {
     String _string = "_string";
     String string_ = "string_";
     String another_string = "string";
-    String _; // violation
+    // violation below 'Name '_' must match pattern'
+    String _;
 }
