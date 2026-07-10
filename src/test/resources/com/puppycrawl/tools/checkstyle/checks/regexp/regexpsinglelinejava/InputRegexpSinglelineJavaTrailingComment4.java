@@ -27,7 +27,8 @@ public class InputRegexpSinglelineJavaTrailingComment4 {
     /*
       Let's check multi-line comments.
     */
-    /* c-style */ // cpp-style // violation below
+    /* c-style */ // cpp-style
+    // violation below 'Line matches the illegal pattern 'c-style'
     /* c-style 1 */ /*c-style 2 */
 
     void method2(long ms /* we should ignore this */) {
