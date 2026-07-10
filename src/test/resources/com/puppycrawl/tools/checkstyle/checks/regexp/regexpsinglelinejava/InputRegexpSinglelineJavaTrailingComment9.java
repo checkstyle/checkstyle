@@ -31,7 +31,8 @@ public class InputRegexpSinglelineJavaTrailingComment9 {
     /* c-style 1 */ /*c-style 2 */
 
     void method2(long ms /* we should ignore this */) {
-        /* comment before text */int z; // violation below
+        /* comment before text */int z;
+        // violation below 'Line matches the illegal pattern 'int'
         /* int y */int y/**/;
     }
 
