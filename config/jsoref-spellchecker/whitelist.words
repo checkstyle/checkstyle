@@ -1207,6 +1207,7 @@ rulemodifiers
 ruleorderofconstructorsandoverloadedmethods
 rulepackagedeclaration
 rulepackagenames
+ruleprogrammingpractices
 ruleredundantparenthesis
 ruleset
 rulesetfiles
