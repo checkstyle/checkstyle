@@ -5,10 +5,10 @@ public class InputIndentationValid {
 
     private void method(int value) {
         switch (value) {
-            case 1:
+            case 1: // violation ''case' construct must use '{}'s.'
                 value++;
                 break;
-            default:
+            default: // violation ''default' construct must use '{}'s.'
                 value--;
                 break;
         }
