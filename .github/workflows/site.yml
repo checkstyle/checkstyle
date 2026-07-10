@@ -24,7 +24,7 @@ on:
     inputs:
       pr-number:
         description: 'PR number'
-        required: true
+        required: false
         type: string
 
 permissions:
@@ -95,8 +95,15 @@ jobs:
       # ref - branch to checkout.
       - name: Download checkstyle for PR
         uses: actions/checkout@v7
+        if: ${{ inputs.pr-number != '' || github.event_name != 'workflow_dispatch'}}
         with:
           ref: refs/pull/${{ inputs.pr-number || github.event.issue.number }}/head
+          path: .ci-temp/checkstyle
+          fetch-depth: 0
+      - name: Download checkstyle for user defined branch
+        uses: actions/checkout@v7
+        if: ${{ inputs.pr-number == '' && github.event_name == 'workflow_dispatch'}}
+        with:
           path: .ci-temp/checkstyle
           fetch-depth: 0
 
