@@ -622,7 +622,24 @@
                     Wrapping Method Declarations
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Parameter alignment rule can not be covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20638">
+                    #20638
+                  </a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Throws clause alignment rule can not be covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20639">
+                    #20639
+                  </a>
+                </td>
                 <td/>
               </tr>
               <tr>
