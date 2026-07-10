@@ -40,6 +40,9 @@ public class Example1 {
   public void method0() {
     int mode = 0;
     int x;
+    if (mode == 0) {
+      x = 1;
+    } else {x = 4;}
     switch (mode) {
       case 1: int y = 1; break;
       case 2: {x = 1;}

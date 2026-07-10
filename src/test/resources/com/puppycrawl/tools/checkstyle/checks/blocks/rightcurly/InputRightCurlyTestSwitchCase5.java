@@ -1,5 +1,6 @@
 /*
 RightCurly
+forbidSingleLineMultiBlock = (default)false
 option = SAME
 tokens = LITERAL_SWITCH, LITERAL_IF
 
