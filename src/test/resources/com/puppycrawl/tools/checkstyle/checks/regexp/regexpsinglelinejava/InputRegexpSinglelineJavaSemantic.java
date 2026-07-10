@@ -73,7 +73,8 @@ class InputRegexpSinglelineJavaSemantic
             }
             // can never happen, empty compound statement is another workaround
         }
-        catch (UnsupportedOperationException handledException) { // violation below
+        catch (UnsupportedOperationException handledException) {
+            // violation below 'Line matches the illegal pattern 'System'
             System.out.println(handledException.getMessage());
         }
         catch (SecurityException ex) { /* hello */ }
