@@ -4,11 +4,11 @@ import java.util.stream.Stream;
 
 public class InputVariablesInvalid {
 
-    public static int ItStatic1 = 2; // violation, 'must match pattern'
+    static int ItStatic1 = 2; // violation, 'must match pattern'
     protected static int ItStatic2 = 2; // violation, 'must match pattern'
     private static int ItStatic = 2; // violation, 'must match pattern'
-    public static int it_static = 2; // violation, 'must match pattern'
-    public static int It_Static = 2; // violation, 'must match pattern'
+    static int it_static = 2; // violation, 'must match pattern'
+    static int It_Static = 2; // violation, 'must match pattern'
     private static int It_Static1 = 2; // violation, 'must match pattern'
 
     public int NUM1; // violation 'Name 'NUM1' must match pattern'
