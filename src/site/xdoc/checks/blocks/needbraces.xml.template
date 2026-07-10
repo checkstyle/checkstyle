@@ -83,36 +83,39 @@
             <param name="path"
                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example5.java"/>
             <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example4-config">
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="NeedBraces_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to allow <code>case, default</code> single-line statements
           without braces:
         </p>
         <macro name="example">
              <param name="path"
-                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example4.java"/>
+                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/UseCase1.java"/>
              <param name="type" value="config"/>
         </macro>
-        <p id="Example4-code">
+        <p id="UseCase1-code">
         Next statements won't be violated by check:
         </p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example4.java"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/UseCase1.java"/>
             <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example6-config">
+        <p id="UseCase2-config">
           To configure the check to lambdas:
         </p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example6.java"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/UseCase2.java"/>
             <param name="type" value="config"/>
         </macro>
-        <p id="Example6-code">Results in following:</p>
+        <p id="UseCase2-code">Results in following:</p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example6.java"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/UseCase2.java"/>
             <param name="type" value="code"/>
         </macro>
       </subsection>

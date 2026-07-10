@@ -74,28 +74,31 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example4.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example3-code">
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="LocalVariableName_Use_Cases">
+        <p id="UseCase1-code">
           An example of one character variable name in initialization expression(like "i")
           in FOR loop:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="UseCase2-config">
         An example of how to configure the check to that all variables have 3 or more chars in name:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/UseCase2.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example5-code">Code Example:</p>
+        <p id="UseCase2-code">Code Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/UseCase2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
