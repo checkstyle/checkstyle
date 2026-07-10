@@ -642,8 +642,11 @@ class Example17 {
     return 2;
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="DescendantToken_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to produce a violation on an initializer in
           <code>for</code> performs no setup (where a <code>while</code>
           statement could be used instead):
@@ -659,11 +662,11 @@ class Example17 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">
+        <p id="UseCase1-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5 {
+class UseCase1 {
   private int field1;
   private int field2;
 
@@ -703,7 +706,7 @@ class Example5 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example8-config">
+        <p id="UseCase2-config">
           To configure the check to produce a violation on a method with
           too many local variables:
         </p>
@@ -719,11 +722,11 @@ class Example5 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example8-code">
+        <p id="UseCase2-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example8 {
+class UseCase2 {
   private int field1;
   private int field2;
   // violation below 'Count of 2 for 'METHOD_DEF' descendant'
@@ -763,7 +766,7 @@ class Example8 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example9-config">
+        <p id="UseCase3-config">
           To configure the check to produce a violation on a method
           with too many returns:
         </p>
@@ -778,11 +781,11 @@ class Example8 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example9-code">
+        <p id="UseCase3-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example9 {
+class UseCase3 {
   private int field1;
   private int field2;
   // violation below 'Count of 3 for 'METHOD_DEF' descendant'
@@ -822,7 +825,7 @@ class Example9 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example10-config">
+        <p id="UseCase4-config">
           To configure the check to produce a violation on a method
           which throws too many exceptions:
         </p>
@@ -837,11 +840,11 @@ class Example9 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example10-code">
+        <p id="UseCase4-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example10 {
+class UseCase4 {
   private int field1;
   private int field2;
 
@@ -881,7 +884,7 @@ class Example10 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example11-config">
+        <p id="UseCase5-config">
           To configure the check to produce a violation on a method
           with too many expressions:
         </p>
@@ -896,11 +899,11 @@ class Example10 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example11-code">
+        <p id="UseCase5-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example11 {
+class UseCase5 {
   private int field1;
   private int field2;
   // violation below, 'Count of 10 for 'METHOD_DEF' descendant'
@@ -940,7 +943,7 @@ class Example11 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example13-config">
+        <p id="UseCase6-config">
           To configure the check to produce a violation on a class or interface
           with too many fields:
         </p>
@@ -956,11 +959,11 @@ class Example11 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example13-code">
+        <p id="UseCase6-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example13 {
+class UseCase6 {
   private int field1; // violation above 'Count of 2 for 'CLASS_DEF' descendant'
   private int field2;
 
@@ -1000,7 +1003,7 @@ class Example13 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example15-config">
+        <p id="UseCase7-config">
           To configure the check to produce a violation on a <code>String</code>
           literal equality check:
         </p>
@@ -1016,11 +1019,11 @@ class Example13 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example15-code">
+        <p id="UseCase7-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example15 {
+class UseCase7 {
   private int field1;
   private int field2;
 
@@ -1060,7 +1063,7 @@ class Example15 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example16-config">
+        <p id="UseCase8-config">
           To configure the check to produce a violation on an assert statement
           that may have side effects:
         </p>
@@ -1078,11 +1081,11 @@ class Example15 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example16-code">
+        <p id="UseCase8-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example16 {
+class UseCase8 {
   private int field1;
   private int field2;
 

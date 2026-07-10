@@ -301,39 +301,6 @@ class Example3 extends SuperClass {
 </code></pre></div>
         <hr class="example-separator"/>
         <p>
-          To configure to check variables, excluding fields with
-          the static modifier, and allow abbreviations up to 2
-          consecutive capital letters ignoring the longer word 'CSV'.
-        </p>
-        <p id="Example4-config">Configuration:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="AbbreviationAsWordInName"&gt;
-      &lt;property name="allowedAbbreviationLength" value="1"/&gt;
-      &lt;property name="allowedAbbreviations" value="CSV"/&gt;
-      &lt;property name="ignoreStatic" value="true"/&gt;
-      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example4-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 { // ok, ignore checking the class name
-  int firstNum; // ok, abbreviation "N" is of allowed length 1
-  int secondNUm;
-  int secondMYNum; // violation 'no more than '2' consecutive capital letters'
-  int thirdNUM; // violation 'no more than '2' consecutive capital letters'
-  static int fourthNUM; // ok, variables with static modifier would be ignored
-  String firstCSV; // ok, CSV abbreviation is allowed
-  String firstXML; // violation 'no more than '2' consecutive capital letters'
-  final int TOTAL = 5; // ok, final is ignored
-  static final int LIMIT = 10; // ok, static final is ignored
-}
-</code></pre></div>
-        <hr class="example-separator"/>
-        <p>
           To configure to check variables, enforcing no abbreviations
           except for variables that are both static and final.
         </p>
@@ -385,12 +352,47 @@ class Example5 extends SuperClass {
   static void incrementGLOBAL() {}
 }
 </code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="AbbreviationAsWordInName_Use_Cases">
+        <p>
+          To configure to check variables, excluding fields with
+          the static modifier, and allow abbreviations up to 2
+          consecutive capital letters ignoring the longer word 'CSV'.
+        </p>
+        <p id="UseCase1-config">Configuration:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AbbreviationAsWordInName"&gt;
+      &lt;property name="allowedAbbreviationLength" value="1"/&gt;
+      &lt;property name="allowedAbbreviations" value="CSV"/&gt;
+      &lt;property name="ignoreStatic" value="true"/&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase1 { // ok, ignore checking the class name
+  int firstNum; // ok, abbreviation "N" is of allowed length 1
+  int secondNUm;
+  int secondMYNum; // violation 'no more than '2' consecutive capital letters'
+  int thirdNUM; // violation 'no more than '2' consecutive capital letters'
+  static int fourthNUM; // ok, variables with static modifier would be ignored
+  String firstCSV; // ok, CSV abbreviation is allowed
+  String firstXML; // violation 'no more than '2' consecutive capital letters'
+  final int TOTAL = 5; // ok, final is ignored
+  static final int LIMIT = 10; // ok, static final is ignored
+}
+</code></pre></div>
         <hr class="example-separator"/>
         <p>
           To configure to check variables, enforcing no abbreviations
           and ignoring static (but non-final) variables only.
         </p>
-        <p id="Example6-config">Configuration:</p>
+        <p id="UseCase2-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
@@ -404,9 +406,9 @@ class Example5 extends SuperClass {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example6-code">Example:</p>
+        <p id="UseCase2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example6 {
+class UseCase2 {
   int counterXYZ = 1; // violation 'no more than '1' consecutive capital letters'
   // violation below 'no more than '1' consecutive capital letters'
   final int customerID = 2;
@@ -421,7 +423,7 @@ class Example6 {
           no abbreviations (essentially camel case) except for
           words like 'ALLOWED'.
         </p>
-        <p id="Example7-config">Configuration:</p>
+        <p id="UseCase3-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
@@ -432,9 +434,9 @@ class Example6 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example7-code">Example:</p>
+        <p id="UseCase3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example7 {
+class UseCase3 {
   int counterXYZ = 1;
   final int customerID = 2;
   static int nextID = 3;

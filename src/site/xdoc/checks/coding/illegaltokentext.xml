@@ -181,8 +181,11 @@ public class Example5 {
     long num6 = 010L;
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="IllegalTokenText_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to forbid string literal text blocks containing
           <code>&quot;</code>:
         </p>
@@ -196,9 +199,9 @@ public class Example5 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example3 {
+public class UseCase1 {
   public void myTest() {
 
     String test  = "a href";
@@ -216,7 +219,7 @@ public class Example3 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="UseCase2-config">
           To configure the check to forbid leading zeros in an integer
           literal, other than zero and a hex literal:
         </p>
@@ -231,9 +234,9 @@ public class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
+public class UseCase2 {
   public void myTest() {
 
     String test  = "a href";

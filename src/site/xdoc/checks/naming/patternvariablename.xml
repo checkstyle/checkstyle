@@ -132,8 +132,11 @@ class Example4 {
 
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="PatternVariableName_Use_Cases">
+        <p id="UseCase1-config">
           An example of how to configure the check to that all variables have 3 or more
           chars in name:
         </p>
@@ -146,9 +149,9 @@ class Example4 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Code Example:</p>
+        <p id="UseCase1-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
+class UseCase1 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {}
     // violation above, 'Name 'STRING' must match pattern*.'

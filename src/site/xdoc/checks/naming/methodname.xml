@@ -213,8 +213,11 @@ class Example7 {
   public void Method4() {} // violation 'Name 'Method4' must match pattern'
   void Method5() {}  // ok because , 'Property 'applyToPackage' is set to false'
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="MethodName_Use_Cases">
+        <p id="UseCase1-config">
           An example of how to configure the check to disallow method names to be equal to the
           residing class name is:
         </p>
@@ -228,12 +231,12 @@ class Example7 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Code Example:</p>
+        <p id="UseCase1-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 {
-  public Example4() {}
-  // violation below 'Name 'Example4' must not equal the enclosing class name.'
-  public void Example4() {}
+class UseCase1 {
+  public UseCase1() {}
+  // violation below 'Name 'UseCase1' must not equal the enclosing class name.'
+  public void UseCase1() {}
 }
 </code></pre></div>
       </subsection>

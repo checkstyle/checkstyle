@@ -110,24 +110,27 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example6.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="VariableDeclarationUsageDistance_Use_Cases">
         <p>
           Check is able to detect a block of initialization methods, as a single point for distance.
           If a variable is used in such a block and there are no other statements after
           variable declaration, then distance = 1.
         </p>
-        <p id="Example2-config">
+        <p id="UseCase1-config">
           Configure the check to default:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example2-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
