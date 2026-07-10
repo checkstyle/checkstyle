@@ -917,7 +917,10 @@ public class XdocsPagesTest {
                 validatePropertySection(fileName, sectionName, null, instance);
                 subSectionPos++;
             }
-            if (subSectionPos == 4 && !"Violation Messages".equals(subSectionName)) {
+            if (subSectionPos == 3 && !"Use Cases".equals(subSectionName)) {
+                subSectionPos++;
+            }
+            if (subSectionPos == 5 && !"Violation Messages".equals(subSectionName)) {
                 validateViolationSection(fileName, sectionName, null, instance);
                 subSectionPos++;
             }
@@ -929,11 +932,11 @@ public class XdocsPagesTest {
             switch (subSectionPos) {
                 case 0 -> validateDescriptionSection(fileName, sectionName, subSection);
                 case 1 -> validatePropertySection(fileName, sectionName, subSection, instance);
-                case 3 -> validateUsageExample(fileName, sectionName, subSection);
-                case 4 -> validateViolationSection(fileName, sectionName, subSection, instance);
-                case 5 -> validateFullyQualifiedNameSection(
+                case 4 -> validateUsageExample(fileName, sectionName, subSection);
+                case 5 -> validateViolationSection(fileName, sectionName, subSection, instance);
+                case 6 -> validateFullyQualifiedNameSection(
                         fileName, sectionName, subSection, instance);
-                case 6 -> validateParentSection(fileName, sectionName, subSection);
+                case 7 -> validateParentSection(fileName, sectionName, subSection);
                 default -> {
                     // no code by design
                 }
@@ -946,13 +949,13 @@ public class XdocsPagesTest {
             assertWithMessage("%s section '%s' should contain up to 'Package' sub-section",
                 fileName, sectionName)
                     .that(subSectionPos)
-                    .isGreaterThan(5);
+                    .isGreaterThan(6);
         }
         else {
             assertWithMessage("%s section '%s' should contain up to 'Parent' sub-section", fileName,
                 sectionName)
                     .that(subSectionPos)
-                    .isGreaterThan(6);
+                    .isGreaterThan(7);
         }
     }
 
@@ -970,10 +973,11 @@ public class XdocsPagesTest {
             case 0 -> "Description";
             case 1 -> "Properties";
             case 2 -> "Examples";
-            case 3 -> "Example of Usage";
-            case 4 -> "Violation Messages";
-            case 5 -> "Fully Qualified Name";
-            case 6 -> "Parent Module";
+            case 3 -> "Use Cases";
+            case 4 -> "Example of Usage";
+            case 5 -> "Violation Messages";
+            case 6 -> "Fully Qualified Name";
+            case 7 -> "Parent Module";
             default -> null;
         };
     }
@@ -2726,7 +2730,9 @@ public class XdocsPagesTest {
 
             for (int index = 0; index < subsectionList.getLength(); index++) {
                 final Element subsection = (Element) subsectionList.item(index);
-                if (!"Examples".equals(subsection.getAttribute("name"))) {
+                final String subSectionName = subsection.getAttribute("name");
+
+                if (!"Examples".equals(subSectionName) && !"Use Cases".equals(subSectionName)) {
                     continue;
                 }
 
@@ -2748,7 +2754,8 @@ public class XdocsPagesTest {
                     }
 
                     final String currentId = element.getAttribute("id");
-                    if (currentId != null && currentId.startsWith("Example")) {
+                    if (currentId != null && (currentId.startsWith("Example")
+                        || currentId.startsWith("UseCase"))) {
                         final String currentExPrefix = getExamplePrefix(currentId);
                         if (lastExampleIdPrefix != null
                                 && !lastExampleIdPrefix.equals(currentExPrefix)) {
@@ -2842,6 +2849,69 @@ public class XdocsPagesTest {
                 .that(firstChild.getAttributes().getNamedItem("name").getTextContent())
                 .isEqualTo("since");
         }
+    }
+
+    @Test
+    public void testUseCasesSectionExistsWhenUseCaseIdsPresent() throws Exception {
+        final List<Path> templates = collectAllXmlTemplatesUnderSrcSite();
+        final List<Path> violations = new ArrayList<>();
+
+        for (final Path template : templates) {
+            final Document doc = parseXmlToDomDocument(template);
+
+            if (hasAnyUseCaseId(doc) && !hasUseCasesSubsection(doc)) {
+                violations.add(template);
+            }
+        }
+
+        final String message;
+        if (violations.isEmpty()) {
+            message = "";
+        }
+        else {
+            final StringBuilder builder = new StringBuilder(256);
+            builder.append("Found ")
+                .append(violations.size())
+                .append(" template(s) with 'UseCase' ids but no "
+                    + "<subsection name=\"Use Cases\" .../> to hold them:\n");
+            for (Path violation : violations) {
+                builder.append("  ").append(violation).append('\n');
+            }
+            message = builder.toString();
+        }
+
+        assertWithMessage(message)
+            .that(violations)
+            .isEmpty();
+    }
+
+    private static boolean hasAnyUseCaseId(Document doc) {
+        final NodeList allElements = doc.getElementsByTagName("*");
+        boolean found = false;
+
+        for (int index = 0; !found && index < allElements.getLength(); index++) {
+            final Element element = (Element) allElements.item(index);
+            final String id = element.getAttribute("id");
+            if (id != null && id.startsWith("UseCase")) {
+                found = true;
+            }
+        }
+
+        return found;
+    }
+
+    private static boolean hasUseCasesSubsection(Document doc) {
+        final NodeList subsections = doc.getElementsByTagName("subsection");
+        boolean found = false;
+
+        for (int index = 0; !found && index < subsections.getLength(); index++) {
+            final Element subsection = (Element) subsections.item(index);
+            if ("Use Cases".equals(subsection.getAttribute("name"))) {
+                found = true;
+            }
+        }
+
+        return found;
     }
 
     @FunctionalInterface
