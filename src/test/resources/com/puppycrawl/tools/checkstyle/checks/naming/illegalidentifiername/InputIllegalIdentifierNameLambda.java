@@ -16,8 +16,10 @@ import java.util.function.Function;
 public class InputIllegalIdentifierNameLambda {
 
     public static void main(String... args) {
-        Function<String, String> f1 = param$ -> param$; // violation, 'must match pattern'
-        Function<String, String> f2 = (var) -> var; // violation, 'Name 'var' must match pattern'
+        // violation below 'Name 'param\$' must match pattern'
+        Function<String, String> f1 = param$ -> param$;
+        // violation below 'Name 'var' must match pattern'
+        Function<String, String> f2 = (var) -> var;
         Function<String, String> f3 = myLambdaParam -> myLambdaParam;
     }
 
@@ -29,7 +31,8 @@ public class InputIllegalIdentifierNameLambda {
         FRI,
         SAT,
         SUN,
-        var, // violation, 'Name 'var' must match pattern'
+        // violation below 'Name 'var' must match pattern'
+        var,
     }
 
     int yield(Day day) {
@@ -39,7 +42,8 @@ public class InputIllegalIdentifierNameLambda {
             case THU, SAT, FRI, SUN -> 0;
             case var -> 23; // ok, caught above in initialization
             default -> {
-                Function<String, String> f4 = te$t -> te$t; // violation, 'must match pattern'
+                // violation below 'Name 'te\$t' must match pattern'
+                Function<String, String> f4 = te$t -> te$t;
                 yield Math.addExact(2, 1);
             }
         };
