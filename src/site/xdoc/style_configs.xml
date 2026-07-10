@@ -17,6 +17,7 @@
       <ul>
         <li><a href="google_style.html">Google's style</a></li>
         <li><a href="sun_style.html">Sun's style</a></li>
+        <li><a href="openjdk_style.html">OpenJDK's style</a></li>
       </ul>
     </section>
   </body>
