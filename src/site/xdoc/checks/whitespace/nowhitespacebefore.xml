@@ -252,8 +252,11 @@ class Example3 {
     }
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="NoWhitespaceBefore_Use_Cases">
+        <p id="UseCase1-config">
            To configure the check to allow linebreak before METHOD_REF and DOT tokens:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -266,9 +269,9 @@ class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 {
+class UseCase1 {
   void example() {
     Lists .charactersOf("foo") // violation ''.' is preceded with whitespace'
           .listIterator()
