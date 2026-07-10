@@ -104,12 +104,6 @@ public class Example1 {
   void doSomething() {}
 }
 </code></pre></div><hr class="example-separator"/>
-        <p>
-        This configuration does not match to anything,
-        so we do not provide any code example for it
-        as no violation will ever be reported.
-        </p>
-        <hr class="example-separator"/>
         <p id="Example2-config">
         To configure the check to find occurrences of 'System.exit('
         with some <i>slack</i> of allowing only one occurrence per file:
@@ -222,72 +216,6 @@ public class Example6 {
 */
 CREATE DATABASE MyDB;
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="RegexpSingleline"&gt;
-    &lt;property name="format" value="System.exit\("/&gt;
-    &lt;!-- next line not required as 0 is the default --&gt;
-    &lt;property name="minimum" value="0"/&gt;
-    &lt;property name="maximum" value="1"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example3-code">Example with violation:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/**
- * This file is copyrighted under CC.
- */
-public class Example3 {
-
-  void myFunction() {
-    try {
-      doSomething();
-      System.exit(0);
-    } catch (Exception e) {
-      System.exit(1); // violation, as there are more than one occurrence.
-    }
-  }
-
-  void doSomething() {}
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
-          An example of how to configure the check to make sure a copyright
-          statement is included in the file:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="RegexpSingleline"&gt;
-    &lt;property name="format" value="^[ ]*\* This file is copyrighted"/&gt;
-    &lt;property name="minimum" value="1"/&gt;
-    &lt;!--  Need to specify a maximum, so 10 times is more than enough. --&gt;
-    &lt;property name="maximum" value="10"/&gt;
-    &lt;property name="message"
-              value="File must contain copyright statement"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example5-code">Example with violation:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/**
- * MyClass as a configuration example.
- */
-public class Example5 {
-
-  void myFunction() {
-    try {
-      doSomething();
-      System.exit(0);
-    } catch (Exception e) {
-      System.exit(1);
-    }
-  }
-
-  void doSomething() {}
-}
-</code></pre></div><hr class="example-separator"/>
         <p id="Example7-config">
           An example of how to configure the check to make sure sql files contains the term
           'license'.
@@ -332,6 +260,81 @@ public class Example7 {
  Example sql file.
 */
 CREATE DATABASE MyDB;
+</code></pre></div>
+      <hr class="example-separator"/>
+        <p>
+        This configuration does not match to anything,
+        so we do not provide any code example for it
+        as no violation will ever be reported.
+        </p>
+      </subsection>
+
+      <subsection name="Use Cases" id="RegexpSingleline_Use_Cases">
+        <p id="UseCase1-config">
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpSingleline"&gt;
+    &lt;property name="format" value="System.exit\("/&gt;
+    &lt;!-- next line not required as 0 is the default --&gt;
+    &lt;property name="minimum" value="0"/&gt;
+    &lt;property name="maximum" value="1"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Example with violation:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+ * This file is copyrighted under CC.
+ */
+public class UseCase1 {
+
+  void myFunction() {
+    try {
+      doSomething();
+      System.exit(0);
+    } catch (Exception e) {
+      System.exit(1); // violation, as there are more than one occurrence.
+    }
+  }
+
+  void doSomething() {}
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          An example of how to configure the check to make sure a copyright
+          statement is included in the file:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpSingleline"&gt;
+    &lt;property name="format" value="^[ ]*\* This file is copyrighted"/&gt;
+    &lt;property name="minimum" value="1"/&gt;
+    &lt;!--  Need to specify a maximum, so 10 times is more than enough. --&gt;
+    &lt;property name="maximum" value="10"/&gt;
+    &lt;property name="message"
+              value="File must contain copyright statement"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">Example with violation:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+ * MyClass as a configuration example.
+ */
+public class UseCase2 {
+
+  void myFunction() {
+    try {
+      doSomething();
+      System.exit(0);
+    } catch (Exception e) {
+      System.exit(1);
+    }
+  }
+
+  void doSomething() {}
+}
 </code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="RegexpSingleline_Example_of_Usage">

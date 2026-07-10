@@ -304,19 +304,6 @@ class Example3 {
     }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-code">
-          But if forceStrictCondition = false, this code is valid:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 {
-      int a;               // violation, 'level 6, expected level should be 4'
-
-    void method() {
-        int b = 0;
-          int c = 1;       // violation, 'level 10, expected level should be 8'
-    }
-}
-</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           To configure the check with custom basicOffset (2 spaces instead of default 4):
         </p>
@@ -629,6 +616,22 @@ class Example9 {
     void methodBrace()
     {                       // violation, 'level 4, expected level should be 6'
     }                       // violation, 'level 4, expected level should be 6'
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="Indentation_Use_Cases">
+        <p id="UseCase1-code">
+          But if forceStrictCondition = false, this code is valid:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase1 {
+      int a;               // violation, 'level 6, expected level should be 4'
+
+    void method() {
+        int b = 0;
+          int c = 1;       // violation, 'level 10, expected level should be 8'
+    }
 }
 </code></pre></div>
       </subsection>
