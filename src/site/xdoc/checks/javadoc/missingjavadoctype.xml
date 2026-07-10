@@ -229,8 +229,11 @@ class Example4 {
 
   private class E {} // violation, 'Missing a Javadoc comment'
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="MissingJavadocType_Use_Cases">
+        <p id="UseCase1-config">
           To configure a check that allows missing comments for classes annotated with
           <code>@Annotation</code> and <code>@MyClass.Annotation</code>:
         </p>
@@ -244,12 +247,12 @@ class Example4 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">
-          Example5:
+        <p id="UseCase1-code">
+          UseCase1:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /** Documented. */
-class Example5 {
+class UseCase1 {
   /** Javadoc.*/
   @Annotation
   private class Class1 { }

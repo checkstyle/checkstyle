@@ -180,13 +180,16 @@ class Example4 {
     }
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-code">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="LocalVariableName_Use_Cases">
+        <p id="UseCase1-code">
           An example of one character variable name in initialization expression(like &quot;i&quot;)
           in FOR loop:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
+class UseCase1 {
   void myMethod () {
     for(int i = 1; i &lt; 10; i++) {}
     for(int K = 1; K &lt; 10; K++) {} // violation, 'Name 'K' must match pattern*'
@@ -196,7 +199,7 @@ class Example3 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="UseCase2-config">
         An example of how to configure the check to that all variables have 3 or more chars in name:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -208,9 +211,9 @@ class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">Code Example:</p>
+        <p id="UseCase2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5 {
+class UseCase2 {
   void MyMethod() {
     int goodName = 0;
     int i = 1; // violation, 'Name 'i' must match pattern*'

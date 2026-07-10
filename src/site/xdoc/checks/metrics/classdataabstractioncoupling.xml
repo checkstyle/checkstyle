@@ -141,7 +141,7 @@ public class Example1 {
   private MathContext mathContext = new MathContext(0);
 
   private Example1 example1 = new Example1(); // ok, ignored
-  private Example2 example2 = new Example2();
+  private UseCase1 useCase1 = new UseCase1();
 
   private ByteArrayInputStream byteArrayInputStream =
           new ByteArrayInputStream(new byte[1]);
@@ -184,7 +184,7 @@ public class Example3 {
   private MathContext mathContext = new MathContext(0);
 
   private Example1 example1 = new Example1(); // ok, ignored
-  private Example2 example2 = new Example2();
+  private UseCase1 useCase1 = new UseCase1();
 
   private ByteArrayInputStream byteArrayInputStream =
           new ByteArrayInputStream(new byte[1]);
@@ -228,7 +228,7 @@ public class Example5 {
   private MathContext mathContext = new MathContext(0);
 
   private Example1 example1 = new Example1();        // ok, ignored
-  private Example2 example2 = new Example2();
+  private UseCase1 useCase1 = new UseCase1();
 
   private ByteArrayInputStream byteArrayInputStream =
           new ByteArrayInputStream(new byte[1]);
@@ -272,7 +272,7 @@ public class Example7 {
   private MathContext mathContext = new MathContext(0);
 
   private Example1 example1 = new Example1();        // ok, ignored
-  private Example2 example2 = new Example2();
+  private UseCase1 useCase1 = new UseCase1();
 
   private ByteArrayInputStream byteArrayInputStream =
       new ByteArrayInputStream(new byte[1]);
@@ -316,7 +316,7 @@ public class Example9 {
   private MathContext mathContext = new MathContext(0);
 
   private Example1 example1 = new Example1(); // ok, ignored
-  private Example2 example2 = new Example2();
+  private UseCase1 useCase1 = new UseCase1();
 
   private ByteArrayInputStream byteArrayInputStream =
       new ByteArrayInputStream(new byte[1]); // ok, ignored
@@ -326,9 +326,12 @@ public class Example9 {
   private BufferedReader bufferedReader =
       new BufferedReader(pipedReader); // ok, ignored
 }
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
+      </subsection>
 
-        <p id="Example2-config">
+      <subsection name="Use Cases" id="ClassDataAbstractionCoupling_Use_Cases">
+
+        <p id="UseCase1-config">
           To configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -339,12 +342,12 @@ public class Example9 {
 &lt;/module&gt;
 </code></pre></div>
 
-        <p id="Example2-code">
+        <p id="UseCase1-code">
           The check results in a violation in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
-public class Example2 {
+public class UseCase1 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
 
@@ -352,14 +355,14 @@ public class Example2 {
   BigInteger bigInteger = new BigInteger("0");
   Example1 example1 = new Example1();
   Example3 example3 = new Example3();
-  Example4 example4 = new Example4();
+  UseCase2 useCase2 = new UseCase2();
   Example5 example5 = new Example5();
-  Example6 example6 = new Example6();
+  UseCase3 useCase3 = new UseCase3();
   Example7 example7 = new Example7(); // Counted 8
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example4-config">
+        <p id="UseCase2-config">
           To configure the check with a threshold of 2:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -372,12 +375,12 @@ public class Example2 {
 &lt;/module&gt;
 </code></pre></div>
 
-        <p id="Example4-code">
+        <p id="UseCase2-code">
           The check results in a violation in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation below, "Class Data Abstraction Coupling is 3 (max allowed is 2)."
-public class Example4 {
+public class UseCase2 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
   AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
@@ -386,7 +389,7 @@ public class Example4 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example6-config">
+        <p id="UseCase3-config">
           To configure the check with three excluded classes <code>HashMap</code>,
           <code>HashSet</code> and <code>Example1</code>:
         </p>
@@ -400,27 +403,27 @@ public class Example4 {
 &lt;/module&gt;
 </code></pre></div>
 
-        <p id="Example6-code">
+        <p id="UseCase3-code">
           The check results in a violation in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
-public class Example6 {
+public class UseCase3 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
 
   AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
   BigInteger bigInteger = new BigInteger("0");
-  Example2 example2 = new Example2();
+  UseCase1 useCase1 = new UseCase1();
   Example3 example3 = new Example3();
-  Example4 example4 = new Example4();
+  UseCase2 useCase2 = new UseCase2();
   Example5 example5 = new Example5();
   Example7 example7 = new Example7();
-  Example8 example8 = new Example8(); // Counted 8
+  UseCase4 useCase4 = new UseCase4(); // Counted 8
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example8-config">
+        <p id="UseCase4-config">
           To configure the check to exclude classes with a regular expression
           <code>.*Reader$</code>:
         </p>
@@ -434,12 +437,12 @@ public class Example6 {
 &lt;/module&gt;
 </code></pre></div>
 
-        <p id="Example8-code">
+        <p id="UseCase4-code">
           The check results in a violation in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
-public class Example8 {
+public class UseCase4 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
 
@@ -454,7 +457,7 @@ public class Example8 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example10-config">
+        <p id="UseCase5-config">
           To configure the check with an excluded package <code>java.io</code>:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -467,14 +470,14 @@ public class Example8 {
 &lt;/module&gt;
 </code></pre></div>
 
-        <p id="Example10-code">
+        <p id="UseCase5-code">
           The check results in a violation in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.Example2;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.UseCase1;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.Example3;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.Example4;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.Example6;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.UseCase2;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.UseCase3;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -490,7 +493,7 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 // violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
-class Example10 {
+class UseCase5 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
 
@@ -498,10 +501,10 @@ class Example10 {
   BigInteger bigInteger = new BigInteger("0");
   BigDecimal bigDecimal = new BigDecimal("0");
   MathContext mathContext = new MathContext(0);
-  Example2 example3 = new Example2();
+  UseCase1 example3 = new UseCase1();
   Example3 example4 = new Example3();
-  Example4 example5 = new Example4();
-  Example6 example6 = new Example6(); // Counted 8
+  UseCase2 example5 = new UseCase2();
+  UseCase3 useCase3 = new UseCase3(); // Counted 8
 
   // Ignored using module excludedPackages property
   ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(new byte[1]);
@@ -538,7 +541,7 @@ class Example10 {
           use direct import (e.g. <code>import java.math.BigDecimal</code>).
         </p>
         <hr class="example-separator"/>
-        <p id="Example11-config">
+        <p id="UseCase6-config">
           Checkstyle will not exclude classes within the same file
           even if it was listed in the <code>excludedPackages</code> parameter. For example,
           assuming the config is
@@ -552,35 +555,35 @@ class Example10 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example11-code">
+        <p id="UseCase6-code">
           And the file <code>a.b.Foo.java</code> is:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.Example7;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.Example8;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.UseCase4;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.Example9;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.Example4;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.UseCase2;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.Example5;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.Example6;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.UseCase3;
 
-class Example11 {
+class UseCase6 {
   // Ignored, located inside classdataabstractioncoupling.ignore package
   Example7 example7 = new Example7();
-  Example8 example8 = new Example8();
+  UseCase4 useCase4 = new UseCase4();
   Example9 example9 = new Example9();
 
   // Counted, located outside of classdataabstractioncoupling.ignore package
   Example1 example1 = new Example1();
-  Example2 example2 = new Example2();
+  UseCase1 useCase1 = new UseCase1();
   Example3 example3 = new Example3();
-  Example4 example4 = new Example4();
+  UseCase2 useCase2 = new UseCase2();
   Example5 example5 = new Example5();
-  Example6 example6 = new Example6();
+  UseCase3 useCase3 = new UseCase3();
   Data data = new Data(); // Counted 7
 
   class Data {
     public Data() {
-      Example11 example11 = new Example11(); // Ignored same file
+      UseCase6 useCase6 = new UseCase6(); // Ignored same file
     }
   }
 }

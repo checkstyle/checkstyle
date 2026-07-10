@@ -128,8 +128,11 @@ class Example2 {
   public void needsLotsOfParameters2 (int a, // violation suppressed
     int b, int c, int d, int e, int f, int g, int h) {}
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="SuppressWarningsHolder_Use_Cases">
+        <p id="UseCase1-config">
           You can also use simple check name like <code>ParameterNumberCheck=paramcounter</code>
           instead to use fully qualified name of check in the <code>aliasList</code>:
         </p>
@@ -144,9 +147,9 @@ class Example2 {
   &lt;module name="SuppressWarningsFilter"/&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example3 {
+public class UseCase1 {
 
   private int K;
 
@@ -180,7 +183,7 @@ public class Example3 {
   private int [] ARRAY;
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="UseCase2-config">
           The check can also be used without suffix of &quot;Check&quot; like
           <code>ParameterNumber=paramcounter</code> in the <code>aliasList</code>:
         </p>
@@ -195,9 +198,9 @@ public class Example3 {
   &lt;module name="SuppressWarningsFilter"/&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
+public class UseCase2 {
 
   private int K;
 
@@ -231,7 +234,6 @@ public class Example4 {
   private int [] ARRAY;
 }
 </code></pre></div>
-
       </subsection>
 
       <subsection name="Example of Usage" id="SuppressWarningsHolder_Example_of_Usage">
