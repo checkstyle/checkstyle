@@ -3119,9 +3119,11 @@
                   <version>${checkerframework.version}</version>
                 </path>
               </annotationProcessorPaths>
-              <annotationProcessors>
+              <!-- I18nFormatterChecker disabled until Checker Framework fixes false positive
+                      key.not.found, see https://github.com/typetools/checker-framework/issues/7619 -->
+              <!-- <annotationProcessors>
                 <annotationProcessor>org.checkerframework.checker.i18nformatter.I18nFormatterChecker</annotationProcessor>
-              </annotationProcessors>
+              </annotationProcessors> -->
               <compilerArgs combine.children="append">
                 <!-- -Awarns turns type-checking errors into warnings. -->
                 <arg>-Awarns</arg>
