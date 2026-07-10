@@ -113,40 +113,6 @@ class Example1 {
           because methods cannot be overlapped in java.
         </p>
         <hr class="example-separator"/>
-        <p id="Example4-config">
-            To configure the check demand methods and fields to have 'this.'
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="RequireThis"&gt;
-      &lt;property name="validateOnlyOverlapping" value="false"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example4-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 {
-  int field1,field2,field3;
-
-  Example4(int field1) {
-    this.field1 = field1;
-    field2 = 0; // violation, reference to instance variable "field2" requires "this"
-    foo(5); // violation, method call "foo(5)" requires "this"
-  }
-
-  void method2(int i) {
-    foo(i); // violation, 'Method call to 'foo' needs "this.".'
-  }
-
-  void foo(int field3) {
-    // violation below, reference to instance variable "field3" requires "this"
-    field3 = field3;
-  }
-}
-</code></pre></div>
-        <hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check demand fields only to have 'this.'
         </p>
@@ -217,15 +183,51 @@ class Example3 {
 }
 </code></pre></div>
         <hr class="example-separator"/>
+        <p id="Example4-config">
+            To configure the check demand methods and fields to have 'this.'
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RequireThis"&gt;
+      &lt;property name="validateOnlyOverlapping" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+  int field1,field2,field3;
+
+  Example4(int field1) {
+    this.field1 = field1;
+    field2 = 0; // violation, reference to instance variable "field2" requires "this"
+    foo(5); // violation, method call "foo(5)" requires "this"
+  }
+
+  void method2(int i) {
+    foo(i); // violation, 'Method call to 'foo' needs "this.".'
+  }
+
+  void foo(int field3) {
+    // violation below, reference to instance variable "field3" requires "this"
+    field3 = field3;
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="RequireThis_Use_Cases">
         <p>
           Please, be aware of the following logic, which is implemented in the check:
         </p>
-        <p id="Example5-code">
+        <p id="UseCase1-code">
           1) If you arrange 'this' in your code on your own, the check will not raise violation for
           variables which use 'this' to reference a class field, for example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5 {
+class UseCase1 {
   int field1,field2;
 
   public void foo(int field1) {
@@ -240,12 +242,12 @@ class Example5 {
 }
 </code></pre></div>
         <hr class="example-separator"/>
-        <p id="Example6-code">
+        <p id="UseCase2-code">
           2) If method parameter is returned from the method, the check will not raise violation for
              returned variable/parameter, for example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example6 {
+class UseCase2 {
   String prefix;
 
   String modifyPrefix(String prefix) {
@@ -254,7 +256,6 @@ class Example6 {
   }
 }
 </code></pre></div>
-        <hr class="example-separator"/>
       </subsection>
 
       <subsection name="Example of Usage" id="RequireThis_Example_of_Usage">

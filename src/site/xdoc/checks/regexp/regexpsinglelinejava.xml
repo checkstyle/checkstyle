@@ -363,8 +363,11 @@ class Example6 {
     logger.info("fifth");
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example7-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="RegexpSinglelineJava_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to find all occurrences of
           &quot;private&quot;. We want to ignore comments,
           display &quot;private member found&quot; for each violation
@@ -382,9 +385,9 @@ class Example6 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example7-code">Example7:</p>
+        <p id="UseCase1-code">UseCase1:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example7 {
+class UseCase1 {
   // violation below, 'private member found'
   private void testMethod1() {
     int debug = 0;
