@@ -70,7 +70,7 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expectedWithFilter = {
             "26:20: Name 'lowerCaseConstant5' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
@@ -82,12 +82,12 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
             "26:20: Name 'lowerCaseConstant5' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example4.java"), expectedWithoutFilter,
+        verifyFilterWithInlineConfigParser(getPath("UseCase1.java"), expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expectedWithFilter = {
 
         };
@@ -95,12 +95,12 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
             "17:15: Name 'D2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example5.java"), expectedWithoutFilter,
+        verifyFilterWithInlineConfigParser(getPath("UseCase2.java"), expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample6() throws Exception {
+    public void testUseCase3() throws Exception {
         final String[] expectedWithFilters = {
 
         };
@@ -109,12 +109,12 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
             "19:30: Name 'array' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example6.java"), expectedWithoutFilters,
+        verifyFilterWithInlineConfigParser(getPath("UseCase3.java"), expectedWithoutFilters,
                 expectedWithFilters);
     }
 
     @Test
-    public void testExample7() throws Exception {
+    public void testUseCase4() throws Exception {
         final String[] expectedWithFilter = {
 
         };
@@ -122,12 +122,12 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
 
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example7.java"), expectedWithoutFilter,
+        verifyFilterWithInlineConfigParser(getPath("UseCase4.java"), expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample8() throws Exception {
+    public void testUseCase5() throws Exception {
         final String[] expectedWithFilter = {
 
         };
@@ -137,7 +137,7 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
             "24:23: '10022' is a magic number.",
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example8.java"), expectedWithoutFilter,
+        verifyFilterWithInlineConfigParser(getPath("UseCase5.java"), expectedWithoutFilter,
                 expectedWithFilter);
     }
 }

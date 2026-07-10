@@ -104,7 +104,7 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expectedWithoutFilter = {
             "20:7: Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "23:7: Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -121,12 +121,12 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
             "36:5: Catching 'Exception' is not allowed.",
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example4.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase1.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expectedWithoutFilter = {
             "20:7: Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "23:7: Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -144,7 +144,7 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
             "37:5: Catching 'Exception' is not allowed.",
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example5.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase2.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
 
@@ -174,7 +174,7 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
     }
 
     @Test
-    public void testExample7() throws Exception {
+    public void testUseCase3() throws Exception {
         final String[] expectedWithoutFilter = {
             "19:7: Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "22:7: Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -190,7 +190,7 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
             "25:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example7.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase3.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
 

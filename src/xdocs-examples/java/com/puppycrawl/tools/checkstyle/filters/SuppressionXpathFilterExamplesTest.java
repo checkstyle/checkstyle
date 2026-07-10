@@ -65,7 +65,7 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     }
 
     @Test
-    public void testExample2() throws Exception {
+    public void testUseCase4() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "13:1: 'package' should be separated from previous line.",
@@ -82,13 +82,13 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example2.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase4.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase5() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "19:23: '{' at column 23 should be on a new line.",
@@ -111,13 +111,13 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example3.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase5.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase6() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "20:3: 'VARIABLE_DEF' should be separated from previous line.",
@@ -131,13 +131,13 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example4.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase6.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase7() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "20:15: Name 'SetSomeVar' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -154,13 +154,13 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example5.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase7.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample6() throws Exception {
+    public void testUseCase8() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "34:9: Name 'TestVariable' must match pattern '^([a-z][a-zA-Z0-9]*|_)$'.",
@@ -173,13 +173,13 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example6.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase8.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample7() throws Exception {
+    public void testUseCase9() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "19:13: '23' is a magic number.",
@@ -205,13 +205,13 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example7.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase9.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample8() throws Exception {
+    public void testUseCase10() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "32:5: Reference to instance variable 'age' needs \"this.\".",
@@ -228,13 +228,13 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example8.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase10.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample9() throws Exception {
+    public void testUseCase11() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "23:37: Throwing 'RuntimeException' is not allowed.",
@@ -244,13 +244,13 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example9.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase11.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample10() throws Exception {
+    public void testUseCase12() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "25:9: 'public' modifier out of order with the JLS suggestions.",
@@ -261,13 +261,13 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example10.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase12.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample11() throws Exception {
+    public void testUseCase13() throws Exception {
         final String[] expectedWithoutFilter = {
             "18:13: '23' is a magic number.",
             "19:27: '11' is a magic number.",
@@ -281,13 +281,13 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example11.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase13.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample12() throws Exception {
+    public void testUseCase1() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "18:13: '23' is a magic number.",
@@ -302,13 +302,13 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example12.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase1.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample13() throws Exception {
+    public void testUseCase2() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "19:15: Name 'SetSomeVar' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -324,13 +324,13 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example13.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase2.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample14() throws Exception {
+    public void testUseCase3() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "19:15: Name 'SetSomeVar' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -347,7 +347,7 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example14.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase3.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }

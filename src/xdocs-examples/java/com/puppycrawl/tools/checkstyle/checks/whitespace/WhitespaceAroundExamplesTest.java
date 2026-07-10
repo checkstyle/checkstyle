@@ -62,7 +62,7 @@ public class WhitespaceAroundExamplesTest extends AbstractExamplesModuleTestSupp
     }
 
     @Test
-    public void testExample2() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "21:10: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
             "21:10: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "="),
@@ -82,7 +82,7 @@ public class WhitespaceAroundExamplesTest extends AbstractExamplesModuleTestSupp
             "42:6: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ">>>="),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
