@@ -78,24 +78,6 @@
         </macro>
         <hr class="example-separator"/>
         <p>
-          To configure to check variables, excluding fields with
-          the static modifier, and allow abbreviations up to 2
-          consecutive capital letters ignoring the longer word 'CSV'.
-        </p>
-        <p id="Example4-config">Configuration:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example4.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example4-code">Example:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example4.java"/>
-          <param name="type" value="code"/>
-        </macro>
-        <hr class="example-separator"/>
-        <p>
           To configure to check variables, enforcing no abbreviations
           except for variables that are both static and final.
         </p>
@@ -111,21 +93,41 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="AbbreviationAsWordInName_Use_Cases">
+        <p>
+          To configure to check variables, excluding fields with
+          the static modifier, and allow abbreviations up to 2
+          consecutive capital letters ignoring the longer word 'CSV'.
+        </p>
+        <p id="UseCase1-config">Configuration:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro>
         <hr class="example-separator"/>
         <p>
           To configure to check variables, enforcing no abbreviations
           and ignoring static (but non-final) variables only.
         </p>
-        <p id="Example6-config">Configuration:</p>
+        <p id="UseCase2-config">Configuration:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example6.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/UseCase2.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example6-code">Example:</p>
+        <p id="UseCase2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example6.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/UseCase2.java"/>
           <param name="type" value="code"/>
         </macro>
         <hr class="example-separator"/>
@@ -134,16 +136,16 @@
           no abbreviations (essentially camel case) except for
           words like 'ALLOWED'.
         </p>
-        <p id="Example7-config">Configuration:</p>
+        <p id="UseCase3-config">Configuration:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example7.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/UseCase3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example7-code">Example:</p>
+        <p id="UseCase3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example7.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/UseCase3.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
