@@ -49,7 +49,7 @@ public class SuppressionFilterExamplesTest extends AbstractExamplesModuleTestSup
     }
 
     @Test
-    public void testExample2() throws Exception {
+    public void testUseCase1() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "24: Line is longer than 80 characters (found 84).",
@@ -62,13 +62,13 @@ public class SuppressionFilterExamplesTest extends AbstractExamplesModuleTestSup
             "24: Line is longer than 80 characters (found 84).",
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example2.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase1.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase2() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "1: Duplicated property 'keyB' (2 occurrence(s)).",
@@ -78,14 +78,14 @@ public class SuppressionFilterExamplesTest extends AbstractExamplesModuleTestSup
         final String[] expectedWithFilter = {};
 
         verifyFilterWithInlineConfigParserSeparateConfigAndTarget(
-                getPath("Example3.java"),
+                getPath("UseCase2.java"),
                 getPath(".hidden/hidden.properties"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase3() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "20:14: Name 'log' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
@@ -99,7 +99,7 @@ public class SuppressionFilterExamplesTest extends AbstractExamplesModuleTestSup
             "32:30: Name 'line' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example4.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase3.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
 }

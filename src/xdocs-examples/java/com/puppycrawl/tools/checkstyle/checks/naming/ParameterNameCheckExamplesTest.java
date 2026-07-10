@@ -62,14 +62,14 @@ public class ParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSu
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_INVALID_PATTERN, "v", "^[a-z][a-zA-Z0-9]+$"),
             "17:20: " + getCheckMessage(MSG_INVALID_PATTERN, "V2", "^[a-z][a-zA-Z0-9]+$"),
             "19:32: " + getCheckMessage(MSG_INVALID_PATTERN, "V3", "^[a-z][a-zA-Z0-9]+$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test

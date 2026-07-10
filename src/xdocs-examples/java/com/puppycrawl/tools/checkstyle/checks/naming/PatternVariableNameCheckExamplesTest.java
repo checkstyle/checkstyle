@@ -57,7 +57,7 @@ public class PatternVariableNameCheckExamplesTest extends AbstractExamplesModule
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase1() throws Exception {
 
         final String pattern = "^[a-z][_a-zA-Z0-9]{2,}$";
 
@@ -66,7 +66,7 @@ public class PatternVariableNameCheckExamplesTest extends AbstractExamplesModule
             "22:31: " + getCheckMessage(MSG_INVALID_PATTERN, "n", pattern),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
