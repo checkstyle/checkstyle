@@ -1210,6 +1210,7 @@ rulepackagenames
 ruleredundantparenthesis
 ruleset
 rulesetfiles
+ruleshortforms
 rulespecialcharacters
 ruletypevariables
 rulevariabledeclarations
