@@ -149,6 +149,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/indentation/commentsindentation/Example7",
             "checks/indentation/commentsindentation/Example8",
             "checks/regexp/regexpsinglelinejava/Example7",
+            "checks/sizes/javalinelength/Example2",
             "filters/suppressionxpathfilter/Example12",
             "filters/suppressionxpathfilter/Example13",
             "filters/suppressionxpathfilter/Example14",
