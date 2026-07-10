@@ -161,21 +161,21 @@ public class VisibilityModifierCheckExamplesTest extends AbstractExamplesModuleT
     }
 
     @Test
-    public void testExample7() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
-            "28:7: " + getCheckMessage(MSG_KEY, "field1"),
-            "30:20: " + getCheckMessage(MSG_KEY, "field2"),
-            "33:14: " + getCheckMessage(MSG_KEY, "field3"),
-            "39:20: " + getCheckMessage(MSG_KEY, "field5"),
-            "41:33: " + getCheckMessage(MSG_KEY, "notes"),
-            "44:28: " + getCheckMessage(MSG_KEY, "mySet1"),
-            "47:37: " + getCheckMessage(MSG_KEY, "mySet2"),
-            "50:45: " + getCheckMessage(MSG_KEY, "objects1"),
-            "53:10: " + getCheckMessage(MSG_KEY, "annotatedString"),
-            "56:10: " + getCheckMessage(MSG_KEY, "shortCustomAnnotated"),
+            "27:7: " + getCheckMessage(MSG_KEY, "field1"),
+            "29:20: " + getCheckMessage(MSG_KEY, "field2"),
+            "32:14: " + getCheckMessage(MSG_KEY, "field3"),
+            "38:20: " + getCheckMessage(MSG_KEY, "field5"),
+            "40:33: " + getCheckMessage(MSG_KEY, "notes"),
+            "43:28: " + getCheckMessage(MSG_KEY, "mySet1"),
+            "46:37: " + getCheckMessage(MSG_KEY, "mySet2"),
+            "49:45: " + getCheckMessage(MSG_KEY, "objects1"),
+            "52:10: " + getCheckMessage(MSG_KEY, "annotatedString"),
+            "55:10: " + getCheckMessage(MSG_KEY, "shortCustomAnnotated"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
@@ -200,7 +200,7 @@ public class VisibilityModifierCheckExamplesTest extends AbstractExamplesModuleT
     }
 
     @Test
-    public void testExample9() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expected = {
             "23:7: " + getCheckMessage(MSG_KEY, "field1"),
             "25:20: " + getCheckMessage(MSG_KEY, "field2"),
@@ -214,11 +214,11 @@ public class VisibilityModifierCheckExamplesTest extends AbstractExamplesModuleT
             "51:10: " + getCheckMessage(MSG_KEY, "shortCustomAnnotated"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
 
     @Test
-    public void testExample10() throws Exception {
+    public void testUseCase3() throws Exception {
         final String[] expected = {
             "25:7: " + getCheckMessage(MSG_KEY, "field1"),
             "27:20: " + getCheckMessage(MSG_KEY, "field2"),
@@ -232,11 +232,11 @@ public class VisibilityModifierCheckExamplesTest extends AbstractExamplesModuleT
             "56:17: " + getCheckMessage(MSG_KEY, "testString"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example10.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase3.java"), expected);
     }
 
     @Test
-    public void testExample11() throws Exception {
+    public void testUseCase4() throws Exception {
         final String[] expected = {
             "22:20: " + getCheckMessage(MSG_KEY, "someIntValue"),
             "24:37: " + getCheckMessage(MSG_KEY, "includes"),
@@ -245,7 +245,7 @@ public class VisibilityModifierCheckExamplesTest extends AbstractExamplesModuleT
             "30:21: " + getCheckMessage(MSG_KEY, "list"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example11.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase4.java"), expected);
     }
 
     @Test

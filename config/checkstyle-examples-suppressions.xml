@@ -128,11 +128,11 @@
 
   <!-- violation required by to show behavior of Check -->
   <suppress checks="CommentsIndentation"
-    files="commentsindentation[\\/]Example[1-9].java"/>
+    files="commentsindentation[\\/](Example|UseCase)[1-9].java"/>
 
   <!-- violation required by to show behavior of Check -->
   <suppress checks="Indentation"
-    files="indentation[\\/]Example[1-9].java"/>
+    files="indentation[\\/](Example|UseCase)[1-9].java"/>
 
   <!-- To match the behavior with Google style guide -->
   <suppress checks="Indentation"
@@ -170,7 +170,7 @@
 
   <!-- Example must show line length violations and filtered violations -->
   <suppress checks="LineLength"
-    files="suppresswithplaintextcommentfilter[\\/]Example9.java"/>
+    files="suppresswithplaintextcommentfilter[\\/]UseCase1.java"/>
   <suppress checks="LineLength"
     files="linelength[\\/]Example\d+.*"/>
   <!-- it prints user regexp -->
@@ -181,7 +181,7 @@
             files="regexponfilename[\\/]Example[14].java"/>
 
   <!-- Example needs to exclude fully qualified name longer than 85 characters  -->
-  <suppress checks="LineLength" files="classdataabstractioncoupling[\\/]Example11.java"/>
+  <suppress checks="LineLength" files="classdataabstractioncoupling[\\/]UseCase6.java"/>
 
   <!-- Example needs to have really long regex format properly shown in config  -->
   <suppress checks="LineLength" files="illegalidentifiername[\\/]Example[2].java"/>

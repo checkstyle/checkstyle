@@ -67,12 +67,12 @@ public class IndentationCheckExamplesTest extends AbstractExamplesModuleTestSupp
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "13:7: " + getCheckMessage(MSG_ERROR, "member def type", 6, 4),
             "17:11: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 10, 8),
         };
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
