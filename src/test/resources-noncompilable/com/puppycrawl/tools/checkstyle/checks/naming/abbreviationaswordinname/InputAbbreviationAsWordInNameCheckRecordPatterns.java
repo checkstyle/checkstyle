@@ -19,28 +19,28 @@ package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 public class InputAbbreviationAsWordInNameCheckRecordPatterns {
 
     void m(Object o) {
-        // violation below, 'Abbreviation in name 'POINT'*.'
+        // violation below 'Abbreviation in name 'POINT' .*'
         if (o instanceof ColoredPoint POINT) {
 
         }
-        // violation below,  'Abbreviation in name 'COLOR'*.'
+        // violation below 'Abbreviation in name 'COLOR' .*'
         if (o instanceof ColoredPoint(int x, int y, String COLOR)) {
 
         }
 
         if (o instanceof Rectangle(ColoredPoint(int INTEGER,_, String STRING),ColoredPoint _)) {}
         // 2 violations above:
-        //                'Abbreviation in name 'INTEGER'*.'
-        //               'Abbreviation in name 'STRING'*.'
+        //    'Abbreviation in name 'INTEGER' .*'
+        //    'Abbreviation in name 'STRING' .*'
     }
     void m2(Object o) {
         switch (o) {
-            // violation below, 'Abbreviation in name 'COLOR'*.'
+            // violation below 'Abbreviation in name 'COLOR' .*'
             case ColoredPoint(int x, int y, String COLOR)  -> {}
             case Rectangle(ColoredPoint(int x, int INTEGER, String COLOR), _)  -> {}
             // 2 violations above:
-            //                  'Abbreviation in name 'INTEGER'*.'
-            //                 'Abbreviation in name 'COLOR'*.'
+            //    'Abbreviation in name 'INTEGER' .*'
+            //    'Abbreviation in name 'COLOR' .*'
             default -> {}
         }
     }
