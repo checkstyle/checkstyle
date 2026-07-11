@@ -17,10 +17,11 @@ public class InputDesignForExtensionRequiredJavadocPhraseMultiLine {
         return a * b;
     }
 
+    // violation 4 lines below 'Class 'InputDesignForExtensionRequiredJa'
     /**
      * This method can safely be overridden.
      */
-    public int foo2(int a, int b) {  // violation
+    public int foo2(int a, int b) {
         return a + b;
     }
 }
