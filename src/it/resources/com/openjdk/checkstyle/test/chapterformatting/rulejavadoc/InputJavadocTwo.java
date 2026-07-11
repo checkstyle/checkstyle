@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulejavadoc;
 
+// violation 2 lines above 'Header is missing*'
+
 public class InputJavadocTwo {
 
     // violation below 'Javadoc content should start from the next line.'

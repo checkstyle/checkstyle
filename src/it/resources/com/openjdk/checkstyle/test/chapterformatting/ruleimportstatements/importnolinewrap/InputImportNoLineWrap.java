@@ -1,5 +1,6 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleimportstatements.importnolinewrap;
 
+// violation 2 lines above 'Header is missing*'
 // violation below 'should not be line-wrapped'
 import java.util.
         HashMap;

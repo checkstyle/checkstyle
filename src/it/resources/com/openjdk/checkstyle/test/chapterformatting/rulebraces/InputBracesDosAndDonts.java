@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulebraces;
 
+// violation 2 lines above 'Header is missing*'
+
 public class InputBracesDosAndDonts {
     int[][] matrix;
     void method() {

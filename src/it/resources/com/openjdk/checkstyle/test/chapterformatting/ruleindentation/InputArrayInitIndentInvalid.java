@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleindentation;
 
+// violation 2 lines above 'Header is missing*'
+
 public class InputArrayInitIndentInvalid {
 
     int[] values = {

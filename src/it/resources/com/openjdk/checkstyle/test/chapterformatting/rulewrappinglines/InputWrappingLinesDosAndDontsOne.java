@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulewrappinglines;
 
+// violation above 'Header mismatch*'
+
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.joining;
 

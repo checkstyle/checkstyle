@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleformatting;
 
+// violation 2 lines above 'Header is missing*'
+
 public interface InputFormattingTwo {
 }
 

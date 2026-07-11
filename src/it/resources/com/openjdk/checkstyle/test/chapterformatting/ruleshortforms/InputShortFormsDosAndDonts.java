@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleshortforms;
 
+// violation 2 lines above 'Header is missing*'
+
 public class InputShortFormsDosAndDonts {
 
     enum Response { YES, NO, MAYBE }
