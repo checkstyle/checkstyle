@@ -1819,6 +1819,9 @@
             <include>com/doccomments/**/*.java</include>
             <include>org/checkstyle/**/*.java</include>
           </includes>
+          <systemPropertyVariables>
+            <header_file_paths_separated_by_coma>${project.basedir}/config/openjdk-style.header</header_file_paths_separated_by_coma>
+          </systemPropertyVariables>
         </configuration>
         <executions>
           <execution>
@@ -2024,6 +2027,7 @@
                 <exclude>intellij-idea-inspections.properties</exclude>
                 <exclude>java-regexp.header</exclude>
                 <exclude>java.header</exclude>
+                <exclude>openjdk-style.header</exclude>
                 <exclude>jsoref-spellchecker/**</exclude>
                 <exclude>list-of-projects.yml</exclude>
                 <exclude>markdownlint.rb</exclude>
