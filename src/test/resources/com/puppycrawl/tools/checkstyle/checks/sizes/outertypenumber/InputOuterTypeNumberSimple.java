@@ -5,8 +5,8 @@ max = (default)1
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber; // violation
-                                                 // 'Outer type number is 3 (max allowed is 1).'
+// violation below 'Outer types defined is 3 (max allowed is 1).'
+package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber;
 
 /**
  * Test input with 3 outer types to trigger OuterTypeNumber violation.
