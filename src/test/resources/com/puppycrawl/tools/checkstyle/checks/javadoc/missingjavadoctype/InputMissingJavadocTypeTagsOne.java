@@ -12,7 +12,8 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 import java.io.IOException;
 // Tests for Javadoc tags.
-class InputMissingJavadocTypeTags1One // violation
+// violation below 'Missing a Javadoc comment.'
+class InputMissingJavadocTypeTags1One
 {
      /**
      * @exception WrongException exception w/o class info but matched by name
@@ -42,7 +43,8 @@ class InputMissingJavadocTypeTags1One // violation
         }
 }
 
-enum InputJavadocTypeTagsEnum // violation
+// violation below 'Missing a Javadoc comment.'
+enum InputJavadocTypeTagsEnum
 {
     CONSTANT_A,
 
@@ -67,7 +69,8 @@ enum InputJavadocTypeTagsEnum // violation
     }
 }
 
-@interface InputJavadocTypeTagsAnnotation // violation
+// violation below 'Missing a Javadoc comment.'
+@interface InputJavadocTypeTagsAnnotation
 {
     String someField();
     int A_CONSTANT = 0;
