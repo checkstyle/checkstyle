@@ -59,17 +59,17 @@ public class ExecutableStatementCountCheckTest
     public void testMaxZero() throws Exception {
 
         final String[] expected = {
-            "12:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "15:17: " + getCheckMessage(MSG_KEY, 1, 0),
-            "25:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "35:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "42:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "56:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "66:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "75:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "84:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "87:13: " + getCheckMessage(MSG_KEY, 1, 0),
-            "98:29: " + getCheckMessage(MSG_KEY, 1, 0),
+            "13:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "17:17: " + getCheckMessage(MSG_KEY, 1, 0),
+            "28:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "39:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "47:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "62:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "73:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "83:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "93:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "97:13: " + getCheckMessage(MSG_KEY, 1, 0),
+            "109:29: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
         verifyWithInlineConfigParser(
@@ -80,12 +80,12 @@ public class ExecutableStatementCountCheckTest
     public void testMethodDef() throws Exception {
 
         final String[] expected = {
-            "12:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "15:17: " + getCheckMessage(MSG_KEY, 1, 0),
-            "25:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "35:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "42:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "60:13: " + getCheckMessage(MSG_KEY, 1, 0),
+            "13:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "17:17: " + getCheckMessage(MSG_KEY, 1, 0),
+            "28:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "39:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "47:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "66:13: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
         verifyWithInlineConfigParser(
@@ -96,8 +96,8 @@ public class ExecutableStatementCountCheckTest
     public void testCtorDef() throws Exception {
 
         final String[] expected = {
-            "12:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "22:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "13:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "24:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
         verifyWithInlineConfigParser(
@@ -108,7 +108,7 @@ public class ExecutableStatementCountCheckTest
     public void testStaticInit() throws Exception {
 
         final String[] expected = {
-            "13:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "14:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
         verifyWithInlineConfigParser(
@@ -119,7 +119,7 @@ public class ExecutableStatementCountCheckTest
     public void testInstanceInit() throws Exception {
 
         final String[] expected = {
-            "13:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "14:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
         verifyWithInlineConfigParser(
@@ -170,12 +170,12 @@ public class ExecutableStatementCountCheckTest
         final int max = 1;
 
         final String[] expected = {
-            "15:9: " + getCheckMessage(MSG_KEY, 3, max),
-            "24:9: " + getCheckMessage(MSG_KEY, 3, max),
-            "33:9: " + getCheckMessage(MSG_KEY, 3, max),
-            "41:9: " + getCheckMessage(MSG_KEY, 4, max),
-            "51:9: " + getCheckMessage(MSG_KEY, 6, max),
-            "65:17: " + getCheckMessage(MSG_KEY, 6, max),
+            "16:9: " + getCheckMessage(MSG_KEY, 3, max),
+            "26:9: " + getCheckMessage(MSG_KEY, 3, max),
+            "36:9: " + getCheckMessage(MSG_KEY, 3, max),
+            "45:9: " + getCheckMessage(MSG_KEY, 4, max),
+            "56:9: " + getCheckMessage(MSG_KEY, 6, max),
+            "71:17: " + getCheckMessage(MSG_KEY, 6, max),
         };
 
         verifyWithInlineConfigParser(
@@ -189,10 +189,10 @@ public class ExecutableStatementCountCheckTest
         final int max = 1;
 
         final String[] expected = {
-            "16:22: " + getCheckMessage(MSG_KEY, 6, max),
-            "25:22: " + getCheckMessage(MSG_KEY, 2, max),
-            "26:26: " + getCheckMessage(MSG_KEY, 2, max),
-            "30:26: " + getCheckMessage(MSG_KEY, 4, max),
+            "17:22: " + getCheckMessage(MSG_KEY, 6, max),
+            "27:22: " + getCheckMessage(MSG_KEY, 2, max),
+            "29:26: " + getCheckMessage(MSG_KEY, 2, max),
+            "34:26: " + getCheckMessage(MSG_KEY, 4, max),
         };
 
         verifyWithInlineConfigParser(
