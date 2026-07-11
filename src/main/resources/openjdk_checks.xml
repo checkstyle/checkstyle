@@ -133,6 +133,8 @@
                 value="//IMPORT | //STATIC_IMPORT | //MODULE_IMPORT | //VARIABLE_DEF"/>
     </module>
 
+    <module name="HiddenField"/>
+
     <module name="UpperEll"/>
     <module name="HexLiteralCase"/>
     <module name="NumericalPrefixesInfixesSuffixesCharacterCase"/>
