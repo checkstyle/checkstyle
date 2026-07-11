@@ -1,9 +1,8 @@
-///////////////////////////////////////////////////
-// HEADER
-///////////////////////////////////////////////////
 package com.openjdk.checkstyle.test.chapterformatting.ruleverticalwhitespace;
 
-// violation 2 lines above ''package' should be separated from previous line'
+// violation first line 'Header mismatch*'
+
+// violation 4 lines above ''package' should be separated from previous line'
 import java.util.List;
 public class InputVerticalWhiteSpaceOne {
     // violation above ''CLASS_DEF' should be separated from previous line'

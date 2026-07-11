@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleverticalwhitespace;
 
+// violation first line 'Header mismatch*'
+
 public class InputVerticalWhiteSpaceFour {
     int id;
 

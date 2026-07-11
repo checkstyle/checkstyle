@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleindentation;
 
+// violation first line 'Header is missing*'
+
 public class InputLineWrappingIndentationInvalid {
 
     void method(int a,

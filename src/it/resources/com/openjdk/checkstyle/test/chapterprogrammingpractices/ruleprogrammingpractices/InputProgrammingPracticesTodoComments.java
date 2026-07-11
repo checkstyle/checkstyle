@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterprogrammingpractices.ruleprogrammingpractices;
 
+// violation first line 'Header is missing*'
+
 public class InputProgrammingPracticesTodoComments {
     int i;
     int x;

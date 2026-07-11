@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterprogrammingpractices.ruleprogrammingpractices;
 
+// violation first line 'Header mismatch*'
+
 import java.util.function.IntBinaryOperator;
 import java.util.function.IntPredicate;
 

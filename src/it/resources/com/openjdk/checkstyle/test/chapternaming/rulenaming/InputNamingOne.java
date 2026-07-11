@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapternaming.rulenaming;
 
+// violation first line 'Header mismatch*'
+
 public class InputNamingOne {
     private String field;
     private String testField;
