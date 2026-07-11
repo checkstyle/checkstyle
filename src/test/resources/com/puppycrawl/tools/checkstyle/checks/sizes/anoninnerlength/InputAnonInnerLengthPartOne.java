@@ -49,7 +49,8 @@ public class InputAnonInnerLengthPartOne {
     /**
      anon inner in member variable initialization which is 21 lines long
      */
-    private Runnable mRunnable1 = new Runnable() { // violation
+    // violation below 'Anonymous inner class length is 21 lines'
+    private Runnable mRunnable1 = new Runnable() {
         public void run() // should not have to be documented, class is anon.
         {
             System.identityHashCode("running");
