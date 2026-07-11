@@ -273,7 +273,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck",
             "com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck",
             "com.puppycrawl.tools.checkstyle.api.AbstractCheckTest$ViolationAstCheck",
