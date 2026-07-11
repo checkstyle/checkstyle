@@ -36,10 +36,10 @@ public class InputSuppressWarningsExpandedNonConstant3
 
             @SuppressWarnings(value={"unused"})
             Object o = new InputSuppressWarningsExpandedNonConstant3() {
+                // violation 2 lines below, 'The warning 'unchecked' cannot be suppressed at this location'
 
                 @Override
                 @SuppressWarnings(value={"unchecked"})
-                // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
                 public String toString() {
                     return "";
                 }

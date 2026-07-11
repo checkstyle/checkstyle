@@ -38,10 +38,10 @@ public class InputSuppressWarningsCompact5
             // violation below, 'The warning 'unused' cannot be suppressed at this location'
             @SuppressWarnings({"unused"})
             Object o = new InputSuppressWarningsCompact5() {
+                // violation 2 lines below, 'The warning 'unchecked' cannot be suppressed at this location'
 
                 @Override
                 @SuppressWarnings({"unchecked"})
-                // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
                 public String toString() {
                     return "";
                 }
