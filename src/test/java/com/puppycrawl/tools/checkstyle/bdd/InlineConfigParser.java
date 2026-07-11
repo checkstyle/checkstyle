@@ -264,18 +264,13 @@ public final class InlineConfigParser {
      */
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
             "com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc."
-                    + "AbstractJavadocCheckTest$TokenIsNotInAcceptablesCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc"
                     + ".RequireEmptyLineBeforeBlockTagGroupCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck",
             "com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck",
             "com.puppycrawl.tools.checkstyle.api.AbstractCheckTest$ViolationAstCheck",
             "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet"
     );
