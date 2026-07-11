@@ -25,15 +25,18 @@ public class InputRecordComponentNumberMax1 {
         }
     }
 
-    public record TestRecord2(int x, int y){ // violation
+    // violation below 'Number of record components is 2'
+    public record TestRecord2(int x, int y){
 
     }
 
-    public record TestRecord3(String str, int x, int y){ // violation
+    // violation below 'Number of record components is 3'
+    public record TestRecord3(String str, int x, int y){
 
     }
 
-    public record TestRecord4(Node node, // violation
+    // violation below 'Number of record components is 5'
+    public record TestRecord4(Node node,
                               Point x,
                               Point y,
                               int translation,
@@ -49,32 +52,38 @@ public class InputRecordComponentNumberMax1 {
         }
     }
 
-    public record TestRecord5(int x, int y, int z, // violation
+    // violation below 'Number of record components is 7'
+    public record TestRecord5(int x, int y, int z,
                               int a, int b, int c, int d){
 
     }
 
-    public record TestRecord6(int x, int y, int z, // violation
-                              int a, int b, int c, int d, int e,
-                              int f, int g, int h, int i, int j,
+    // violation below 'Number of record components is 14'
+    public record TestRecord6(int x, int y, int z,
+                              int a, int b, int c, int d, int e, int f,
+                              int g, int h, int i, int j,
                               int k){
 
     }
     public record TestRecord7(int y){
 
-        record InnerRecordOk(int x, int y, int z){ // violation
+        // violation below 'Number of record components is 3'
+        record InnerRecordOk(int x, int y, int z){
 
         }
 
-        private record InnerRecordBad(int x, int y, int z, // violation
-                                      int a, int b, int c, int d, int e,
-                                      int f, int g, int h, int i, int j, int k){
+        // violation below 'Number of record components is 14'
+        private record InnerRecordBad(int x, int y, int z,
+                                      int a, int b, int c, int d, int e, int f,
+                                      int g, int h, int i, int j, int k){
 
-            private record InnerRecordCeptionBad(int x, int y, int z, // violation
-                                      int a, int b, int c, int d, int e,
-                                      int f, int g, int h, int i, int j, int k){
+            // violation below 'Number of record components is 14'
+            private record InnerRecordCeptionBad(int x, int y, int z,
+                                      int a, int b, int c, int d, int e, int f,
+                                      int g, int h, int i, int j, int k){
 
-                public record InnerPublicBad(int[] arr, // violation
+                // violation below 'Number of record components is 6'
+                public record InnerPublicBad(int[] arr,
                                              LinkedHashMap<String, Node> linkedHashMap,
                                              int x,
                                              ArrayDeque<Node> arrayDeque,
@@ -87,9 +96,11 @@ public class InputRecordComponentNumberMax1 {
         }
     }
 
-    public record TestRecord8(int x, int y, int z, String... myVarargs){} // violation
+    // violation below 'Number of record components is 4'
+    public record TestRecord8(int x, int y, int z, String... myVarargs){}
 
-    public record TestRecord9(int x, int y, int z, // violation
+    // violation below 'Number of record components is 15'
+    public record TestRecord9(int x, int y, int z,
                               int a, int b, int c,
                               int d, int e, int f,
                               int g, int h, int i,
@@ -99,11 +110,13 @@ public class InputRecordComponentNumberMax1 {
 
     public record TestRecord10(String... myVarargs){}
 
-    public record TestRecord11(int[] arr, // violation
+    // violation below 'Number of record components is 3'
+    public record TestRecord11(int[] arr,
                                LinkedHashMap<String, Node> linkedHashMap,
                                int x){}
 
-    public record TestRecord12(int[] arr, // violation
+    // violation below 'Number of record components is 6'
+    public record TestRecord12(int[] arr,
                                LinkedHashMap<String, Node> linkedHashMap,
                                int x,
                                ArrayDeque<Node> arrayDeque,
@@ -114,6 +127,7 @@ public class InputRecordComponentNumberMax1 {
 
     private static record MyPrivateRecord1() {}
 
-    private static record MyPrivateRecord2(int x, int y) {} // violation
+    // violation below 'Number of record components is 2'
+    private static record MyPrivateRecord2(int x, int y) {}
 
 }

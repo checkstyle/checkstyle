@@ -70,11 +70,11 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
         final int max = 8;
 
         final String[] expected = {
-            "57:5: " + getCheckMessage(MSG_KEY, 14, max),
-            "70:9: " + getCheckMessage(MSG_KEY, 14, max),
-            "76:13: " + getCheckMessage(MSG_KEY, 14, max),
-            "82:17: " + getCheckMessage(MSG_KEY, 11, max),
-            "101:5: " + getCheckMessage(MSG_KEY, 15, max),
+            "58:5: " + getCheckMessage(MSG_KEY, 14, max),
+            "72:9: " + getCheckMessage(MSG_KEY, 14, max),
+            "79:13: " + getCheckMessage(MSG_KEY, 14, max),
+            "86:17: " + getCheckMessage(MSG_KEY, 11, max),
+            "106:5: " + getCheckMessage(MSG_KEY, 15, max),
         };
 
         verifyWithInlineConfigParser(
@@ -87,8 +87,8 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
         final int max = 8;
 
         final String[] expected = {
-            "38:3: " + getCheckMessage(MSG_KEY, 15, max),
-            "48:3: " + getCheckMessage(MSG_KEY, 15, max),
+            "39:3: " + getCheckMessage(MSG_KEY, 15, max),
+            "50:3: " + getCheckMessage(MSG_KEY, 15, max),
         };
 
         verifyWithInlineConfigParser(
@@ -101,7 +101,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
         final int max = 8;
 
         final String[] expected = {
-            "12:1: " + getCheckMessage(MSG_KEY, 15, max),
+            "13:1: " + getCheckMessage(MSG_KEY, 15, max),
         };
 
         verifyWithInlineConfigParser(
@@ -125,20 +125,20 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
         final int max = 1;
 
         final String[] expected = {
-            "28:5: " + getCheckMessage(MSG_KEY, 2, max),
-            "32:5: " + getCheckMessage(MSG_KEY, 3, max),
-            "36:5: " + getCheckMessage(MSG_KEY, 5, max),
-            "52:5: " + getCheckMessage(MSG_KEY, 7, max),
-            "57:5: " + getCheckMessage(MSG_KEY, 14, max),
-            "65:9: " + getCheckMessage(MSG_KEY, 3, max),
-            "69:9: " + getCheckMessage(MSG_KEY, 14, max),
-            "73:13: " + getCheckMessage(MSG_KEY, 14, max),
-            "77:17: " + getCheckMessage(MSG_KEY, 6, max),
-            "90:5: " + getCheckMessage(MSG_KEY, 4, max),
-            "92:5: " + getCheckMessage(MSG_KEY, 15, max),
-            "102:5: " + getCheckMessage(MSG_KEY, 3, max),
-            "106:5: " + getCheckMessage(MSG_KEY, 6, max),
-            "117:5: " + getCheckMessage(MSG_KEY, 2, max),
+            "29:5: " + getCheckMessage(MSG_KEY, 2, max),
+            "34:5: " + getCheckMessage(MSG_KEY, 3, max),
+            "39:5: " + getCheckMessage(MSG_KEY, 5, max),
+            "56:5: " + getCheckMessage(MSG_KEY, 7, max),
+            "62:5: " + getCheckMessage(MSG_KEY, 14, max),
+            "71:9: " + getCheckMessage(MSG_KEY, 3, max),
+            "76:9: " + getCheckMessage(MSG_KEY, 14, max),
+            "81:13: " + getCheckMessage(MSG_KEY, 14, max),
+            "86:17: " + getCheckMessage(MSG_KEY, 6, max),
+            "100:5: " + getCheckMessage(MSG_KEY, 4, max),
+            "103:5: " + getCheckMessage(MSG_KEY, 15, max),
+            "114:5: " + getCheckMessage(MSG_KEY, 3, max),
+            "119:5: " + getCheckMessage(MSG_KEY, 6, max),
+            "131:5: " + getCheckMessage(MSG_KEY, 2, max),
         };
 
         verifyWithInlineConfigParser(
@@ -159,8 +159,8 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
         final int max = 8;
 
         final String[] expected = {
-            "70:9: " + getCheckMessage(MSG_KEY, 14, max),
-            "76:13: " + getCheckMessage(MSG_KEY, 14, max),
+            "71:9: " + getCheckMessage(MSG_KEY, 14, max),
+            "78:13: " + getCheckMessage(MSG_KEY, 14, max),
         };
 
         verifyWithInlineConfigParser(
@@ -173,12 +173,11 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
         final int max = 8;
 
         final String[] expected = {
-            "70:9: " + getCheckMessage(MSG_KEY, 14, max),
-            "76:13: " + getCheckMessage(MSG_KEY, 14, max),
+            "49:5: " + getCheckMessage(MSG_KEY, 15, max),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputRecordComponentNumberPrivateModifierOne.java"), expected);
+                getPath("InputRecordComponentNumberPrivateModifierTwo.java"), expected);
     }
 
     /**
