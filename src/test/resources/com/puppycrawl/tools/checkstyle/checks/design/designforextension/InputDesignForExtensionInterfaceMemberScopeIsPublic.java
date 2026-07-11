@@ -12,7 +12,8 @@ public interface InputDesignForExtensionInterfaceMemberScopeIsPublic {
 
     class Inner {
 
-        public String getProperty() { // violation
+        // violation below 'Class 'Inner' looks like designed'
+        public String getProperty() {
             return null;
         }
 
