@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleimportstatements.importorder;
 
+// violation first line 'Header mismatch'
+
 import java.util.Arrays;
 import java.util.Map;
 import javax.swing.JButton;

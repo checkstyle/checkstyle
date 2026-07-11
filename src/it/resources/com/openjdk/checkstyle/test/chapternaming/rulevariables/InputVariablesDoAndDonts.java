@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapternaming.rulevariables;
 
+// violation first line 'Header is missing'
+
 public class InputVariablesDoAndDonts {
     int currentIndex;
     boolean dataAvailable;

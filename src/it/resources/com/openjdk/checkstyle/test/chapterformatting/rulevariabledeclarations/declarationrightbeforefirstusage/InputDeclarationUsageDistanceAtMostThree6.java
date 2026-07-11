@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulevariabledeclarations.declarationrightbeforefirstusage;
 
+// violation first line 'Header mismatch'
+
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -14,8 +16,6 @@ public class InputDeclarationUsageDistanceAtMostThree6 {
         Option help = OptionBuilder.create("h");
 
         Options options = new Options();
-        options.something();
-        options.something();
         options.something();
         options.something();
         options.addOption(srcDdlFile, logDdlFile, help); // distance=1

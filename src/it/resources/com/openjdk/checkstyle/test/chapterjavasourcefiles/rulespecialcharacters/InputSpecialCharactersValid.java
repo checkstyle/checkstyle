@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterjavasourcefiles.rulespecialcharacters;
 
+// violation first line 'Header is missing'
+
 public class InputSpecialCharactersValid {
 
     private final char apostrophe = '\'';

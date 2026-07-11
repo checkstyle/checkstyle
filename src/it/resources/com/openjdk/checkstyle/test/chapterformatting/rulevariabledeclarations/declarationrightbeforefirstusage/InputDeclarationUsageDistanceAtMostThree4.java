@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulevariabledeclarations.declarationrightbeforefirstusage;
 
+// violation first line 'Header mismatch'
+
 /** Some javadoc. */
 public class InputDeclarationUsageDistanceAtMostThree4 {
 
