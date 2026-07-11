@@ -10,7 +10,7 @@ public class InputVerticalWhiteSpaceOne {
     int var1 = 10;
     List<Integer> list; // violation below ''CTOR_DEF' should be separated from previous line'
     InputVerticalWhiteSpaceOne() {}
-    InputVerticalWhiteSpaceOne(int var1) {}
+    InputVerticalWhiteSpaceOne(int var2) {}
     // violation above ''CTOR_DEF' should be separated from previous line'
 
     void method() {}

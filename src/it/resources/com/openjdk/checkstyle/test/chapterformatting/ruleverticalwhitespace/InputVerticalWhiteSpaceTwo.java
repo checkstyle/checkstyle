@@ -10,8 +10,8 @@ public class InputVerticalWhiteSpaceTwo {
     } // violation below ''RECORD_DEF' should be separated from previous line'
     record Order(int id, int param) {
 
-        Order(int id) {
-            this(id, 1);
+        Order(int ids) {
+            this(ids, 1);
         } // violation below ''CTOR_DEF' should be separated from previous line'
         Order(int id, int param) {
             this.id = id;
