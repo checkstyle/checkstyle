@@ -828,8 +828,6 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck");
         MODULE_MAPPINGS.put("EqualsAvoidNull",
                 "com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck");
-        MODULE_MAPPINGS.put("JavadocStyle",
-                "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck");
         MODULE_MAPPINGS.put("CyclomaticComplexity",
                 "com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck");
         MODULE_MAPPINGS.put("EmptyLineSeparator",

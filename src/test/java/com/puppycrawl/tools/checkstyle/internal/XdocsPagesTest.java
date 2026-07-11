@@ -199,7 +199,6 @@ public class XdocsPagesTest {
             "InterfaceIsType",
             "JavadocMethod",
             "JavadocPackage",
-            "JavadocStyle",
             "JavadocType",
             "JavadocVariable",
             "LeftCurly",
