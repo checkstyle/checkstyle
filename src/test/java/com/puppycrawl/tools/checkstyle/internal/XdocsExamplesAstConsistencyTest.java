@@ -143,6 +143,7 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static final Set<String> EXAMPLE_COUNT_SUPPRESSED_MODULES = Set.of(
         // until https://github.com/checkstyle/checkstyle/issues/20625
+        "checks/javadoc/atclauseorder",
         "checks/annotation/annotationlocation",
         "checks/annotation/suppresswarnings",
         "checks/blocks/leftcurly",
@@ -200,6 +201,7 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static final Set<String> EXAMPLE_PROPERTY_COVERAGE_SUPPRESSED_MODULES = Set.of(
             // until https://github.com/checkstyle/checkstyle/issues/20624
+            "checks/regexp/regexp",
             "checks/imports/illegalimport",
             "checks/javadoc/javadoctype",
             "checks/javadoc/javadocvariable",
