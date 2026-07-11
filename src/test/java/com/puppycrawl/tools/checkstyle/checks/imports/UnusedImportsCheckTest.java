@@ -177,6 +177,13 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testSeeTagWithParameterNames() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsWithSeeTagAndParameterNames.java"), expected);
+    }
+
+    @Test
     public void testAnnotations() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
