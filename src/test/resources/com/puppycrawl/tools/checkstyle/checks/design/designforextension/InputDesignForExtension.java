@@ -47,7 +47,8 @@ public abstract class InputDesignForExtension
 
     // this one is bad: neither abstract, final, nor empty
 
-    protected void doh() // violation
+    // violation below 'Class 'InputDesignForExtension' looks like designed'
+    protected void doh()
     {
         System.identityHashCode("nonempty and overriding possible");
     }
@@ -101,7 +102,8 @@ public abstract class InputDesignForExtension
     {
     // nonPrivate ctor
     public anotherNonFinalClass(){}
-        public void someMethod() // violation
+        // violation below 'Class 'anotherNonFinalClass' looks like designed'
+        public void someMethod()
         {
         System.identityHashCode("nonempty and overriding is possible");
         }
