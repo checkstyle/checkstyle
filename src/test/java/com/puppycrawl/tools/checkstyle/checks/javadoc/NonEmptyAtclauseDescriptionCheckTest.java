@@ -101,10 +101,7 @@ public class NonEmptyAtclauseDescriptionCheckTest
             "88: " + getCheckMessage(MSG_KEY),
             "97: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(
-                getJavadocWithErrorPath(
-                    "InputNonEmptyAtclauseDescriptionTwo.java"),
-                expected);
+        verifyWithInlineConfigParser(getPath("InputNonEmptyAtclauseDescriptionTwo.java"), expected);
     }
 
     /**

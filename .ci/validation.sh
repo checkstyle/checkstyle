@@ -840,14 +840,20 @@ javac25)
 javadoc-tool-validate)
   output_dir=.ci-temp/javadoc
   classpath_file=.ci-temp/javadoc-test-classpath.txt
-  test_source_dir=src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc
-  mkdir -p "$output_dir/test-resources" "$output_dir/xdocs-examples"
+  source ./.ci/javadoc-tool-excluded-packages.sh
+  mkdir -p "$output_dir"
 
+  ./mvnw -e --no-transfer-progress -q -Djacoco.skip=true -DskipTests clean test-compile
   ./mvnw -e --no-transfer-progress -q dependency:build-classpath \
     -Dmdep.outputFile="$classpath_file"
-  test_classpath=$(<"$classpath_file")
+  dependency_classpath=$(<"$classpath_file")
+  project_classpath="${dependency_classpath}:target/classes::target/test-classes"
+  project_classpath="${project_classpath}:target/generated-classes"
 
-  test_files=($(find "$test_source_dir" -type f -name '*.java' -print | sort))
+  javadoc_source_version=$(java -version 2>&1 \
+    | sed -n 's/.* version "\([0-9][0-9]*\).*/\1/p' \
+    | head -n 1)
+  javadoc_preview_args=(--enable-preview --source "$javadoc_source_version")
 
   custom_tags=(
     -tag 'apiNote:a:API Note:'
@@ -861,29 +867,104 @@ javadoc-tool-validate)
     -tag 'unknownTag:a:Unknown tag:'
   )
 
-  echo "Validating Javadoc syntax in test resources"
-  if ! javadoc -quiet \
-    -sourcepath src/test/resources \
-    -classpath "$test_classpath" \
-    -Xdoclint:syntax \
-    "${custom_tags[@]}" \
-    -d "$output_dir/test-resources" \
-    "${test_files[@]}" 2> "$output_dir/test-resources.log"
-  then
-    cat "$output_dir/test-resources.log"
-    exit 1
-  fi
+  validate_javadoc_packages() {
+    local description=$1
+    local source_root=$2
+    local subpackages=$3
+    local output_name=$4
+    local log_file="$output_dir/$output_name.log"
+    local root
+    local package_name
+    local excluded_packages=()
 
-  echo "Validating Javadoc syntax in Xdoc examples"
-  if ! javadoc -quiet \
-    -sourcepath src/xdocs-examples/resources \
-    -Xdoclint:syntax \
-    "${custom_tags[@]}" \
-    -subpackages com.puppycrawl.tools.checkstyle.checks.javadoc \
-    -d "$output_dir/xdocs-examples" 2> "$output_dir/xdocs-examples.log"
-  then
-    cat "$output_dir/xdocs-examples.log"
-    exit 1
+    for excluded_package in "${JAVADOC_TOOL_EXCLUDED_PACKAGES[@]}"
+    do
+      read -r root package_name _ <<< "$excluded_package"
+      if [[ -n $root && $root != \#* && $root == "$source_root" ]]; then
+        excluded_packages+=(-exclude "$package_name")
+      fi
+    done
+
+    echo "Validating Javadoc syntax in $description"
+    if ! javadoc -quiet \
+      "${javadoc_preview_args[@]}" \
+      -sourcepath "$source_root" \
+      -classpath "$project_classpath" \
+      -Xdoclint:syntax \
+      "${custom_tags[@]}" \
+      "${excluded_packages[@]}" \
+      -subpackages "$subpackages" \
+      -d "$output_dir/$output_name" 2> "$log_file"
+    then
+      cat "$log_file"
+      exit 1
+    fi
+  }
+
+  validate_javadoc_java25_noncompilable_files() {
+    local description=$1
+    local source_root=$2
+    local output_name=$3
+    local log_file="$output_dir/$output_name.log"
+    local files=()
+    local file
+
+    while IFS= read -r file
+    do
+      files+=("$file")
+    done < <(grep -Rli --include='*.java' ': Compilable with Java25' "$source_root" \
+      | sort || true)
+
+    if [[ ${#files[@]} -eq 0 ]]; then
+      echo "No Java25 noncompilable files to validate in $description"
+      return
+    fi
+
+    echo "Validating Javadoc syntax in $description"
+    if ! javadoc -quiet \
+      "${javadoc_preview_args[@]}" \
+      -classpath "$dependency_classpath" \
+      -Xdoclint:syntax \
+      "${custom_tags[@]}" \
+      -d "$output_dir/$output_name" \
+      "${files[@]}" 2> "$log_file"
+    then
+      cat "$log_file"
+      exit 1
+    fi
+  }
+
+  validate_javadoc_packages \
+    "test resources" \
+    src/test/resources \
+    com \
+    test-resources
+  validate_javadoc_packages \
+    "IT resources" \
+    src/it/resources \
+    com \
+    it-resources
+  validate_javadoc_packages \
+    "Xdoc Javadoc examples" \
+    src/xdocs-examples/resources \
+    com.puppycrawl.tools.checkstyle.checks.javadoc \
+    xdocs-examples
+
+  if [[ $javadoc_source_version -ge 25 ]]; then
+    validate_javadoc_java25_noncompilable_files \
+      "Java25 test noncompilable resources" \
+      src/test/resources-noncompilable \
+      test-resources-noncompilable-java25
+    validate_javadoc_java25_noncompilable_files \
+      "Java25 IT noncompilable resources" \
+      src/it/resources-noncompilable \
+      it-resources-noncompilable-java25
+    validate_javadoc_java25_noncompilable_files \
+      "Java25 Xdoc noncompilable examples" \
+      src/xdocs-examples/resources-noncompilable \
+      xdocs-examples-noncompilable-java25
+  else
+    echo "Skipping Java25 noncompilable resources on JDK $javadoc_source_version"
   fi
 
   rm "$classpath_file"
