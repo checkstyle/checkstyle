@@ -1197,6 +1197,7 @@ rulelambdaexpressions
 ruleliterals
 rulemethodnames
 rulemodifiers
+rulenaming
 ruleorderofconstructorsandoverloadedmethods
 rulepackagedeclaration
 rulepackagenames

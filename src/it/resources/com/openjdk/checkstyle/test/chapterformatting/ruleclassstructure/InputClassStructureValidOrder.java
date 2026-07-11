@@ -10,7 +10,7 @@ public class InputClassStructureValidOrder {
     public InputClassStructureValidOrder() {
     }
 
-    public InputClassStructureValidOrder(int x) {
+    public InputClassStructureValidOrder(int z) {
     }
 
     void foo() {}
