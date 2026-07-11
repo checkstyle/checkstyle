@@ -259,16 +259,6 @@ public final class InlineConfigParser {
     );
 
     /**
-     *  Checks in which violation message is not specified in input files.
-     *  Until <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>.
-     */
-    private static final Set<String> SUPPRESSED_CHECKS = Set.of(
-            "com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc"
-                    + ".RequireEmptyLineBeforeBlockTagGroupCheck"
-    );
-
-    /**
      * Input files where violation messages are intentionally not specified,
      * because they would be too big or impractical to maintain.
      */
@@ -1478,9 +1468,7 @@ public final class InlineConfigParser {
         if (moduleLists.size() == 1) {
             final String moduleName = moduleLists.getFirst().getModuleName();
 
-            if (!PERMANENT_SUPPRESSED_CHECKS.contains(moduleName)
-                    && !SUPPRESSED_CHECKS.contains(moduleName)) {
-
+            if (!PERMANENT_SUPPRESSED_CHECKS.contains(moduleName)) {
                 final String fileName = Path.of(inputFilePath).getFileName().toString();
                 if (!SUPPRESSED_FILES.contains(fileName)) {
                     result = true;
