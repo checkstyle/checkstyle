@@ -34,6 +34,15 @@
     <property name="optional" value="true"/>
   </module>
 
+  <!-- To configure this check uncomment the headerFiles property and update the
+       folder path value to match your project structure.
+      -->
+  <module name="MultiFileRegexpHeader">
+    <property name="fileExtensions" value="java"/>
+    <!-- <property name="headerFiles"
+              value="${config.folder}/java.header, ${config.folder}/oracle.header"/> -->
+  </module>
+
   <module name="LineEnding">
     <property name="lineEnding" value="lf"/>
     <property name="fileExtensions" value="java"/>
