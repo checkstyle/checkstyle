@@ -605,8 +605,12 @@ ParameterList_LEADING_ASTERISK
       -> channel(LEADING_ASTERISKS), type(LEADING_ASTERISK)
     ;
 
+fragment PARAMETER_TYPE_CHAR
+    : [a-zA-Z0-9_$.<>[\]?]
+    ;
+
 PARAMETER_TYPE
-    : ([a-zA-Z0-9_$] | '.' | '[' | ']' | '<' | '>' | '?')+
+    : PARAMETER_TYPE_CHAR+ (' ' PARAMETER_TYPE_CHAR+)*
     ;
 
 COMMA: ',';
