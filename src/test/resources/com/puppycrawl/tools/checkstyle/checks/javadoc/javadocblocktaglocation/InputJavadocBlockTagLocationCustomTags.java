@@ -10,12 +10,13 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocblocktaglocation;
 
 public class InputJavadocBlockTagLocationCustomTags {
 
-    // violation 7 lines below ''@apiNote' should be placed at the beginning'
-    // violation 6 lines below ''@implNote' should be placed at the beginning'
-    // violation 5 lines below ''@implSpec' should be placed at the beginning'
-    // violation 6 lines below ''@apiNote' should be placed at the beginning'
-    // violation 6 lines below ''@implNote' should be placed at the beginning'
-    // violation 6 lines below ''@implSpec' should be placed at the beginning'
+    // 3 violations 8 lines below:
+    //     'The Javadoc block tag '@apiNote' should be placed'
+    //     'The Javadoc block tag '@implNote' should be placed'
+    //     'The Javadoc block tag '@implSpec' should be placed'
+    // violation 6 lines below 'The Javadoc block tag '@apiNote' should be placed'
+    // violation 6 lines below 'The Javadoc block tag '@implNote' should be placed'
+    // violation 6 lines below 'The Javadoc block tag '@implSpec' should be placed'
     /**
      * Text. @apiNote note @implNote note @implSpec spec
      * {@code @apiNote}
