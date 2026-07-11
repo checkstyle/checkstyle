@@ -1,7 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleorderofconstructorsandoverloadedmethods;
 
 public class InputOrderOfConstructorsAndOverloadedMethodsOne {
-    int x;
+    int l;
 
     InputOrderOfConstructorsAndOverloadedMethodsOne() {}
 
