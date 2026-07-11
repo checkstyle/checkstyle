@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterprogrammingpractices.ruleprogrammingpractices;
 
+// violation first line 'Header mismatch'
+
 public class InputProgrammingPracticesFallThrough {
     public void foo() throws Exception {
         int i = 0;
