@@ -830,8 +830,11 @@ class Example11 {
   // no space after '{', no space before '}'
   void myFunction2() { }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example2-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="WhitespaceAround_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check for whitespace only around assignment operators:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -846,9 +849,9 @@ class Example11 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example2-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example2 {
+class UseCase1 {
   void example() {
     int b=10; // 2 violations
     // no space before and after'='

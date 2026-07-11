@@ -103,8 +103,8 @@
 * @serialData
 */
 public class Example1 {
-  class Valid implements Serializable {
-  }
+  class Valid implements Serializable {}
+  // ok below 'Block tags have to appear in the order'
 
   /**
    * Some javadoc.
@@ -114,8 +114,8 @@ public class Example1 {
    * @since Some javadoc.
    * @deprecated
    */
-  class Invalid implements Serializable {
-  }
+  class Invalid implements Serializable {}
+  // ok below 'Block tags have to appear in the order'
 
   /**
    * Some javadoc.
@@ -228,6 +228,7 @@ public class Example2 {
 */
 public class Example3 {
   class Valid implements Serializable {}
+  // ok below 'Block tags have to appear in the order'
 
   /**
    * Some javadoc.

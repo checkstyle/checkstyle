@@ -276,7 +276,7 @@ public class Example9 {
   public static final boolean SOME_FLAG = false;
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example2-config">
+        <p id="UseCase1-config">
           To configure the filter to suppress audit events on any line that contains
           <code>DO NOT CHECK THIS LINE</code>:
         </p>
@@ -289,18 +289,20 @@ public class Example9 {
     &lt;module name="MagicNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
-        <p id="Example2-code">
+</code></pre></div><hr class="example-separator"/>
+        </subsection>
+        <subsection name="Use Cases" id="SuppressWithNearbyTextFilter_Use_Cases">
+        <p id="UseCase1-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example2 {
+public class UseCase1 {
   // filtered violation below ''42' is a magic number'
   int a = 42; // DO NOT CHECK THIS LINE
   int b = 43; // violation, "'43' is a magic number."
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example6-config">
+        <p id="UseCase2-config">
           To configure the filter to suppress audit events for the current and previous line:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -311,7 +313,7 @@ public class Example2 {
   &lt;module name="UniqueProperties"/&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example6-raw">
+        <p id="UseCase2-raw">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -321,7 +323,7 @@ key.one=42 # SUPPRESS CHECKSTYLE because I want to
 key.two=43 # // violation 'Duplicated property 'key.two' (2 occurrence(s)).'
 key.two=44
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example7-config">
+        <p id="UseCase3-config">
           To configure the filter with a more compact <code>nearbyTextPattern</code>
           to accept variable <code>checkPattern</code>:
         </p>
@@ -336,18 +338,18 @@ key.two=44
     &lt;module name="MagicNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
-        <p id="Example7-code">
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase3-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example7 {
+public class UseCase3 {
   // filtered violation below ''42' is a magic number'
   int a = 42; // -@cs[MagicNumber] We do not consider this number as magic.
   int b = 43; // violation "'43' is a magic number."
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example8-config">
+        <p id="UseCase4-config">
           To configure the filter to accept variable <code>checkPattern</code>
           and <code>lineRange</code>:
         </p>
@@ -363,12 +365,12 @@ public class Example7 {
     &lt;module name="MagicNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
-        <p id="Example8-code">
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase4-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example8 {
+public class UseCase4 {
   // filtered violation below ''42' is a magic number'
   int a = 42; // @cs-: MagicNumber for +3 lines
   int b = 43; // filtered violation ''43' is a magic number'

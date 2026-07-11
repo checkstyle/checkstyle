@@ -173,19 +173,22 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example11.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example2-config">
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="WhitespaceAround_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check for whitespace only around assignment operators:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example2-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

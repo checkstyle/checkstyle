@@ -143,8 +143,11 @@ class Example3 {
     }
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example2-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="SeparatorWrap_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check for
           <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
             METHOD_REF</a> at new line:
@@ -159,13 +162,13 @@ class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example2-code">
+        <p id="UseCase1-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.util.Arrays;
 
-class Example2 {
+class UseCase1 {
   String[] stringArray = {"foo", "bar"};
 
   void fun() {
