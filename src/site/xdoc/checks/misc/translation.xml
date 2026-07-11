@@ -190,10 +190,10 @@ ok=OK
 </code></pre></div>
         <p id="Example3-code">Validation for Example3:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-messages_home.properties   // violation,
-                          'Properties file 'messages_home_fr.properties' missing.'
-messages_home.translations // violation,
-                          'Properties file 'messages_home_fr.translations' missing.'
+messages_home.properties
+// violation above 'Properties file 'messages_home_fr.properties' missing.'
+messages_home.translations
+// violation above 'Properties file 'messages_home_fr.translations' missing.'
 </code></pre></div>
       </subsection>
 
