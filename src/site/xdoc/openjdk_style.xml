@@ -1129,7 +1129,31 @@
                     <strong>Naming</strong>
                   </a>
                 </td>
-                <td>↓</td>
+                <td>
+                  <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt="" />
+                  </span>
+                  <a href="checks/coding/hiddenfield.html#HiddenField">HiddenField</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Method and Type Variables shadowing can not be covered due to
+                  checkstyle limitations:
+                  <br />
+                  <br />
+                  Checkstyle is a Static analysis tool. It lacks the linguistic dictionary and
+                  contextual awareness required to identify verbosity of a names and determine
+                  whether a name is descriptive or not.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapternaming/rulenaming">
+                    samples</a>
+                </td>
+                </td>
                 <td/>
               </tr>
               <tr>
