@@ -33,7 +33,8 @@ public class InputMissingJavadocTypeEnum {
                 T value);
     }
 
-     enum Test2 { // violation 'Missing a Javadoc comment.'
+    // violation below 'Missing a Javadoc comment.'
+     enum Test2 {
         TEST_2 {
             @Override
             <T> void method(
@@ -46,7 +47,8 @@ public class InputMissingJavadocTypeEnum {
 
     ; /** @deprecated */ ;
 
-    static class A { // violation 'Missing a Javadoc comment.'
+    // violation below 'Missing a Javadoc comment.'
+    static class A {
 
     }
 
