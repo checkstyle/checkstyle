@@ -133,6 +133,11 @@
                 value="//IMPORT | //STATIC_IMPORT | //MODULE_IMPORT | //VARIABLE_DEF"/>
     </module>
 
+    <module name="HiddenField">
+      <property name="ignoreAbstractMethods" value="true"/>
+      <property name="ignoreConstructorParameter" value="true"/>
+    </module>
+
     <module name="UpperEll"/>
     <module name="HexLiteralCase"/>
     <module name="NumericalPrefixesInfixesSuffixesCharacterCase"/>
