@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulewrappingexpressions;
 
+// violation first line 'Header mismatch*'
+
 import java.util.ArrayList;
 import java.util.List;
 
