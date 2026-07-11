@@ -13,5 +13,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
 class InputMissingJavadocTypeNoJavadocOnInterface { // no violation,
     // CLASS_DEF not in the list of tokens
-    interface NoJavadoc {} // violation
+    // violation below 'Missing a Javadoc comment.'
+    interface NoJavadoc {}
 }

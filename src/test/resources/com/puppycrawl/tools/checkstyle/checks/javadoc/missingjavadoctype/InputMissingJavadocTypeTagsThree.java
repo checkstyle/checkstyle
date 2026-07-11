@@ -18,7 +18,8 @@ import java.io.IOException;
 public class InputMissingJavadocTypeTagsThree {}
 
 // Tests for Javadoc tags.
-class InputMissingJavadocTypeTags1Three // violation
+// violation below 'Missing a Javadoc comment.'
+class InputMissingJavadocTypeTags1Three
 {
 
     /**
