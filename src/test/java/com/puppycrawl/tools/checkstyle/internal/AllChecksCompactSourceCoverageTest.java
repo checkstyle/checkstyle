@@ -213,7 +213,6 @@ public class AllChecksCompactSourceCoverageTest {
         "OneStatementPerLineCheck",
         "OneTopLevelClassCheck",
         "OperatorWrapCheck",
-        "OuterTypeFilenameCheck",
         "OuterTypeNumberCheck",
         "OverloadMethodsDeclarationOrderCheck",
         "PackageAnnotationCheck",
