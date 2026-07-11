@@ -36,7 +36,8 @@ public class InputDesignForExtensionIgnoredAnnotations {
         return super.toString();
     }
 
-    public int foo1() {return  1;} // violation
+    // violation below 'Class 'InputDesignForExtensionIgnoredAnnotations'
+    public int foo1() {return  1;}
 
     /**
      *
@@ -146,12 +147,14 @@ public class InputDesignForExtensionIgnoredAnnotations {
     @InputDesignForExtensionsLocalAnnotations.ClassRule
     public void foo20() { return; }
 
-    @InputDesignForExtensionsLocalAnnotations.ClassRule // violation
+    // violation below 'Class 'InputDesignForExtensionIgnoredAnnotations'
+    @InputDesignForExtensionsLocalAnnotations.ClassRule
     public void foo21() { return; }
 
     private int age;
 
-    @Inject // violation
+    // violation below 'Class 'InputDesignForExtensionIgnoredAnnotations'
+    @Inject
     public void setAge(int age) {
         this.age = age;
     }
@@ -166,14 +169,16 @@ public class InputDesignForExtensionIgnoredAnnotations {
         foo1();
     }
 
-    public void foo24(@MyAnnotation int a) { // violation
+    // violation below 'Class 'InputDesignForExtensionIgnoredAnnotations'
+    public void foo24(@MyAnnotation int a) {
         foo1();
     }
 
     /**
      * @deprecated
      */
-    <T> T dontUse4() { // violation 'method 'dontUse4' does not have javadoc'
+    // violation below 'Class 'InputDesignForExtensionIgnoredAnnotations'
+    <T> T dontUse4() {
         return null;
     }
 
