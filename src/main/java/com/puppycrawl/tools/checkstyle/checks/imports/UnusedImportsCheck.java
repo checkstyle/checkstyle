@@ -109,6 +109,16 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";
 
+    /** Prefix for wildcard extends bound. */
+    private static final String WILDCARD_EXTENDS_PREFIX = "? extends ";
+
+    /** Prefix for wildcard super bound. */
+    private static final String WILDCARD_SUPER_PREFIX = "? super ";
+
+    /** Pattern for a valid Java identifier (parameter name). */
+    private static final Pattern PARAM_NAME_PATTERN =
+            Pattern.compile("[a-zA-Z_$][a-zA-Z0-9_$]*");
+
     /** Set of the imports. */
     private final Set<FullIdent> imports = new HashSet<>();
 
@@ -338,13 +348,22 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Recursively registers all type names referenced in a type string.
+     * Registers all type names referenced in a type string.
      * Handles generic type arguments, wildcard bounds, and array suffixes.
      *
      * @param type the type string to process
      */
     private void addReferencedTypesFromType(String type) {
         String currentType = type;
+        if (currentType.startsWith(WILDCARD_EXTENDS_PREFIX)) {
+            currentType = currentType.substring(WILDCARD_EXTENDS_PREFIX.length());
+        }
+        else if (currentType.startsWith(WILDCARD_SUPER_PREFIX)) {
+            currentType = currentType.substring(WILDCARD_SUPER_PREFIX.length());
+        }
+        else {
+            currentType = stripTrailingParameterName(currentType);
+        }
         if (currentType.endsWith("[]")) {
             currentType = currentType.substring(0, currentType.length() - 2);
         }
@@ -424,6 +443,32 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
         String result = type;
         while (result.endsWith(">")) {
             result = result.substring(0, result.length() - 1);
+        }
+        return result;
+    }
+
+    /**
+     * Strips a trailing parameter name (e.g. &quot;outputTarget&quot; in
+     * &quot;Result outputTarget&quot;) from a type token when the
+     * Javadoc lexer merges the type and parameter name into a
+     * single PARAMETER_TYPE token.
+     *
+     * <p>Only strips if the substring after the last space is a valid
+     * Java identifier, which is true for a parameter name but false
+     * for generic content such as {@code BigDecimal>} in
+     * {@code Class<? extends BigDecimal>}.</p>
+     *
+     * @param type the raw token text
+     * @return the type portion with any trailing parameter name removed
+     */
+    private static String stripTrailingParameterName(String type) {
+        final int lastSpace = type.lastIndexOf(' ');
+        String result = type;
+        if (lastSpace != -1) {
+            final String after = type.substring(lastSpace + 1);
+            if (PARAM_NAME_PATTERN.matcher(after).matches()) {
+                result = type.substring(0, lastSpace);
+            }
         }
         return result;
     }
