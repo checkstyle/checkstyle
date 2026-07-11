@@ -270,7 +270,6 @@ public final class InlineConfigParser {
                     + ".RequireEmptyLineBeforeBlockTagGroupCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck",
-            "com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck",
             "com.puppycrawl.tools.checkstyle.api.AbstractCheckTest$ViolationAstCheck",
             "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet"
     );
