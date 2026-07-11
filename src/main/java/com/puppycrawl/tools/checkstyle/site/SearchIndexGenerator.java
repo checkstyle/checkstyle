@@ -34,8 +34,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -300,9 +298,6 @@ public final class SearchIndexGenerator {
             "check", CHECKS, "checkstyle"
     ));
 
-    /** Logger for this class. */
-    private final Logger logger = Logger.getLogger(getClass().getName());
-
     /** Accumulated search index entries. */
     private List<SearchIndexEntry> entries;
 
@@ -350,10 +345,6 @@ public final class SearchIndexGenerator {
             throw new IllegalStateException(error);
         }
 
-        if (logger.isLoggable(Level.INFO)) {
-            logger.log(Level.INFO, "[SearchIndex] Reading XDocs from: {0}", xdocsPath);
-        }
-
         seenUrls = new LinkedHashSet<>();
         entries = new ArrayList<>();
 
@@ -377,10 +368,6 @@ public final class SearchIndexGenerator {
         processGeneralPages(xdocsDir);
         writeJson(entries, outputFilePath);
 
-        if (logger.isLoggable(Level.INFO)) {
-            logger.log(Level.INFO, "[SearchIndex] Done - {0} entries indexed.",
-                    entries.size());
-        }
     }
 
     /**
@@ -1163,7 +1150,7 @@ public final class SearchIndexGenerator {
      * @param outputFilePath the full path to the output file
      * @throws IOException on file write failure
      */
-    private void writeJson(List<SearchIndexEntry> indexEntries, Path outputFilePath)
+    private static void writeJson(List<SearchIndexEntry> indexEntries, Path outputFilePath)
             throws IOException {
 
         final Path outputPath = outputFilePath.getParent();
@@ -1187,11 +1174,6 @@ public final class SearchIndexGenerator {
                 writer.println("  " + indexEntries.get(index).toJson() + comma);
             }
             writer.println("]");
-        }
-
-        if (logger.isLoggable(Level.INFO)) {
-            logger.log(Level.INFO,
-                    "[SearchIndex] Written: {0}", outputFilePath.toAbsolutePath());
         }
     }
 
