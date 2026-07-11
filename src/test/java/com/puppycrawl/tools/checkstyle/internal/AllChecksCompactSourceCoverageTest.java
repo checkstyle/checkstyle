@@ -195,7 +195,6 @@ public class AllChecksCompactSourceCoverageTest {
         "MultipleVariableDeclarationsCheck",
         "MutableExceptionCheck",
         "NPathComplexityCheck",
-        "NeedBracesCheck",
         "NestedForDepthCheck",
         "NestedIfDepthCheck",
         "NestedTryDepthCheck",
