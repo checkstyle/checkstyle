@@ -268,7 +268,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc"
                     + ".RequireEmptyLineBeforeBlockTagGroupCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck",
             "com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck",
             "com.puppycrawl.tools.checkstyle.api.AbstractCheckTest$ViolationAstCheck",
