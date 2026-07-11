@@ -60,16 +60,19 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/Example2.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example3-config">
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="ParenPad_Use_Cases">
+        <p id="UseCase1-config">
           When the check is configured with default settings:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example3-code">
+        <p id="UseCase1-code">
           The following cases are intentionally not checked. No check occurs at
           the right parenthesis after an empty for iterator, at the left
           parenthesis before an empty for initialization, or at the right
@@ -78,7 +81,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

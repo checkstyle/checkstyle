@@ -59,23 +59,26 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap/Example3.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example2-config">
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="SeparatorWrap_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check for
           <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
             METHOD_REF</a> at new line:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example2-code">
+        <p id="UseCase1-code">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
