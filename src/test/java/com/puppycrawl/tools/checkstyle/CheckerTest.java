@@ -1394,8 +1394,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testTabViolationDefault() throws Exception {
         final String[] expected = {
-            "17:17: violation",
-            "21:49: violation",
+            "18:17: violation",
+            "22:49: violation",
         };
         verifyWithInlineConfigParser(getPath("InputCheckerTabCharacter.java"),
             expected);
@@ -1404,8 +1404,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testTabViolationCustomWidth() throws Exception {
         final String[] expected = {
-            "18:17: violation",
-            "22:37: violation",
+            "19:17: violation",
+            "23:37: violation",
         };
 
         verifyWithInlineXmlConfig(getPath("InputCheckerTabCharacterCustomWidth.java"), expected);
