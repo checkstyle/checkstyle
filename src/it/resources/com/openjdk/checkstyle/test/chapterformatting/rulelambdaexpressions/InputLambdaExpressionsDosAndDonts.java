@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulelambdaexpressions;
 
+// violation first line 'Header mismatch*'
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -34,6 +34,11 @@
     <property name="optional" value="true"/>
   </module>
 
+  <module name="MultiFileRegexpHeader">
+    <property name="fileExtensions" value="java"/>
+    <property name="headerFiles" value="${header-file-paths-separated-by-coma}"/>
+  </module>
+
   <module name="LineEnding">
     <property name="lineEnding" value="lf"/>
     <property name="fileExtensions" value="java"/>

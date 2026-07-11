@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulewrappinglines;
 
+// violation first line 'Header mismatch*'
+
 import java.util.stream.IntStream;
 
 public class InputWrappingLinesDosAndDontsTwo {

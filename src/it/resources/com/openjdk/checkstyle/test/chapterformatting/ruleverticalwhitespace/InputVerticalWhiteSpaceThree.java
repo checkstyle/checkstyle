@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleverticalwhitespace;
 
+// violation first line 'Header is missing*'
+
 import java.util.List;
 import static java.lang.Math.PI;
 import static java.lang.Math.abs;

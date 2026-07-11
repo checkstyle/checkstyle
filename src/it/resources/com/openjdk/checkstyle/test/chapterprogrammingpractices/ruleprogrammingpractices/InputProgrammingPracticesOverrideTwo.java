@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterprogrammingpractices.ruleprogrammingpractices;
 
+// violation first line 'Header mismatch*'
+
 public class InputProgrammingPracticesOverrideTwo {
 
     record Person(String name, int age) {
