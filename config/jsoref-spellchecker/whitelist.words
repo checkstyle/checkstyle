@@ -1196,6 +1196,7 @@ ruleclassinterfaceandenumnames
 ruleclassstructure
 ruleconstants
 ruleformatting
+ruleheader
 rulehorizontalwhitespace
 ruleimportstatements
 ruleindentation
