@@ -1168,6 +1168,7 @@ resourceleak
 Rethrown
 Rethrows
 returncount
+returntag
 returnsreceiver
 reviewdog
 revwalk

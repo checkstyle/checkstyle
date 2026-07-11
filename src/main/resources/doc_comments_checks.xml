@@ -44,6 +44,12 @@
       <property name="allowedAnnotations" value=""/>
     </module>
 
+    <!-- @return -->
+    <module name="JavadocMethod">
+      <property name="allowMissingParamTags" value="true"/>
+      <property name="allowedAnnotations" value=""/>
+    </module>
+
     <!-- Documenting default constructors -->
     <module name="MissingCtor">
       <message key="missing.ctor" value="Class should define an explicit constructor.
