@@ -13,13 +13,13 @@ public class Example1 {
   int a;
   int b;
   int c;
-  int d; // violation, not suppressed
+  int d; // violation 'Don't use trailing comments.'
 
   public static void main(String[] args) {
     int x = 10;
 
     if (/* OK */ x > 5) {}
-    int a = 5; // violation
+    int a = 5; // violation 'Don't use trailing comments.'
     doSomething(
             "param1"
     ); // ok, by default such trailing of method/code-block ending is allowed

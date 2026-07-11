@@ -22,6 +22,6 @@ public class Example6 {
   int b; /* NOPMD */
   int c; /* NOSONAR */
   int d; /* there is violation because of illegal content */
-  // violation above
+  // violation above 'Don't use trailing comments.'
 }
 // xdoc section -- end
