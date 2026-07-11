@@ -22,7 +22,7 @@ public class UseCase2 {
     ); // FIXME: handle edge cases - ok, matches legalComment pattern
 
     int b = 10; // trailingcomment - ok, matches legalComment pattern
-    int c = 15; // violation, regular comment doesn't match pattern
+    int c = 15; // violation 'Don't use trailing comments.'
   }
 
   private static void doSomething(String param) {
