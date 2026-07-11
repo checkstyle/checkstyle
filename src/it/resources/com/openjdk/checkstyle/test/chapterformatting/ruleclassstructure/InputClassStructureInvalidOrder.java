@@ -14,7 +14,7 @@ public class InputClassStructureInvalidOrder {
 
     void foo() {}
 
-    InputClassStructureInvalidOrder(int x) { // 2 violations
+    InputClassStructureInvalidOrder(int z) { // 2 violations
     } // 'Constructor definition in wrong order.'
 
     void foo1() {}

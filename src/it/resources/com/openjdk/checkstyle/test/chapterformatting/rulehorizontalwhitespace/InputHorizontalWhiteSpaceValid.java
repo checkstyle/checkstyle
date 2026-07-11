@@ -32,7 +32,7 @@ public class InputHorizontalWhiteSpaceValid {
             System.out.println("True");
         }
 
-        int a = 4;
+        int w = 4;
     }
 
     /** Test record. */
