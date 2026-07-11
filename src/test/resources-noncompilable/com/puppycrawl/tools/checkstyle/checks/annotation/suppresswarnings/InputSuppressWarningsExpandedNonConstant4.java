@@ -72,7 +72,6 @@ public class InputSuppressWarningsExpandedNonConstant4
 
     // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
     @SuppressWarnings(value={(false) ? "unchecked" : "", (false) ? "unchecked" : ""})
-    // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
     class Cond {
 
         @SuppressWarnings(value={(false) ? "" : "unchecked"})
