@@ -278,8 +278,15 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     public void testNonMatchingFileRegexpByXpath() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifyFilterWithInlineConfigParser(
-            getPath("InputSuppressionXpathFilterNonMatchingFile.java"),
-            ALL_MESSAGES,
-            removeSuppressed(ALL_MESSAGES, suppressed));
+                getPath("InputSuppressionXpathFilterNonMatchingFile.java"),
+                ALL_MESSAGES,
+                removeSuppressed(ALL_MESSAGES, suppressed));
+    }
+
+    @Test
+    public void testNoStackoverflowError() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithLimitedXpathResources(
+                getPath("InputSuppressionXpathFilterNoStackoverflowError.java"), expected);
     }
 }
