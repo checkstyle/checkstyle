@@ -36,10 +36,10 @@ public class InputDeclarationUsageDistanceAtMostThree1 {
     }
 
     /** Some javadoc. */
-    public InputDeclarationUsageDistanceAtMostThree1(int test1) {
+    public InputDeclarationUsageDistanceAtMostThree1(int test2) {
         int temp = -1;
-        this.test1 = test1;
-        temp = test1; // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
+        this.test2 = test2;
+        temp = test2; // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
     }
 
     /** Some javadoc. */
