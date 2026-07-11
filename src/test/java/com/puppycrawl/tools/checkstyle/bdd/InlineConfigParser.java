@@ -267,8 +267,7 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc"
-                    + ".RequireEmptyLineBeforeBlockTagGroupCheck",
-            "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet"
+                    + ".RequireEmptyLineBeforeBlockTagGroupCheck"
     );
 
     /**
