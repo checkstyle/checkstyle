@@ -14,11 +14,12 @@ public class InputCheckerTabCharacter {
     int sum = numOne + numTwo;
 
     // has a tab after  ';'
-    numOne ++;	// violation 'violation'
+    // violation below 'violation'
+    numOne ++;	// has tab
 
-    // violation 2 lines below 'violation'
     // has 2 tabs after ';' and after 'comment'
-    numTwo ++;		// comment		violation
+    // violation below 'violation'
+    numTwo ++;		// comment		last tab
 
     return sum;
   }
