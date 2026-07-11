@@ -115,8 +115,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
                     "RuntimeException"),
         };
         verifyWithInlineConfigParser(
-                getJavadocWithErrorPath(
-                    "InputJavadocMethodThrowsDetectionTwo.java"), expected);
+                getPath("InputJavadocMethodThrowsDetectionTwo.java"), expected);
     }
 
     @Test
@@ -345,8 +344,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "69:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<Z>"),
         };
         verifyWithInlineConfigParser(
-                getJavadocWithErrorPath("InputJavadocMethodTypeParamsTags.java"),
-                expected);
+                getPath("InputJavadocMethodTypeParamsTags.java"), expected);
     }
 
     @Test
@@ -550,7 +548,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "26:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<X>"),
         };
         verifyWithInlineConfigParser(
-                getJavadocWithErrorPath("InputJavadocMethod2.java"), expected);
+                getPath("InputJavadocMethod2.java"), expected);
     }
 
     @Test

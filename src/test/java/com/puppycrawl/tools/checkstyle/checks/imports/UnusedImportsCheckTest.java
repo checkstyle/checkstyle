@@ -383,6 +383,18 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testStaticMethodRefImportsWithJavadocErrorAndJavadocDisabled() throws Exception {
+        final String[] expected = {
+            "10:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+            "11:15: " + getCheckMessage(MSG_KEY, "java.lang.Integer.parseInt"),
+        };
+        verifyWithInlineConfigParser(
+                getJavadocWithErrorPath(
+                    "InputUnusedImportsFromStaticMethodRefJavadocDisabled.java"),
+                expected);
+    }
+
+    @Test
     public void testUnusedImportsJavadocAboveComments() throws Exception {
         final String[] expected = {
             "11:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
