@@ -1,6 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleverticalwhitespace;
 public class InputVerticalWhiteSpaceTwo {
-    // violation above ''CLASS_DEF' should be separated from previous line'
+    // violation first line 'Header mismatch*'
+    // violation 2 lines above ''CLASS_DEF' should be separated from previous line'
     int var1 = 0;
     int var2 = 0;
 
@@ -21,5 +22,4 @@ public class InputVerticalWhiteSpaceTwo {
     }
     interface Test { // violation ''INTERFACE_DEF' should be separated from previous line'
     }
-
 }
