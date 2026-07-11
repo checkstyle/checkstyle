@@ -58,7 +58,6 @@ recipeList:
   # composite list org.openrewrite.staticanalysis.CodeCleanup
   # https://docs.openrewrite.org/recipes/staticanalysis/codecleanup
   # ###
-  # all suppressions until https://github.com/checkstyle/checkstyle/issues/18952
   # Kept excluded: OpenRewrite's DefaultComesLast always moves default to
   # the end of a switch statement, ignoring Checkstyle's
   # DefaultComesLastCheck option `skipIfLastAndSharedWithCase`. When set
@@ -76,8 +75,7 @@ recipeList:
   # loop update clauses, but Checkstyle has no equivalent check for this.
   # Both forms are functionally identical in for loops, and some style
   # guides prefer pre-increment.
-  # until https://github.com/checkstyle/checkstyle/issues/18952
-  #- org.openrewrite.staticanalysis.ForLoopControlVariablePostfixOperators
+  - org.openrewrite.staticanalysis.ForLoopControlVariablePostfixOperators
   # Kept excluded: OpenRewrite's FinalizePrivateFields automatically adds
   # final to private instance fields, but Checkstyle has no equivalent
   # check for private fields (FinalLocalVariable only covers local
