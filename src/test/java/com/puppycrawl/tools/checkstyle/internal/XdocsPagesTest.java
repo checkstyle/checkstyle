@@ -2886,11 +2886,11 @@ public class XdocsPagesTest {
     }
 
     private static boolean hasAnyUseCaseId(Document doc) {
-        final NodeList allElements = doc.getElementsByTagName("*");
+        final NodeList allParagraphElements = doc.getElementsByTagName("p");
         boolean found = false;
 
-        for (int index = 0; !found && index < allElements.getLength(); index++) {
-            final Element element = (Element) allElements.item(index);
+        for (int index = 0; !found && index < allParagraphElements.getLength(); index++) {
+            final Element element = (Element) allParagraphElements.item(index);
             final String id = element.getAttribute("id");
             if (id != null && id.startsWith("UseCase")) {
                 found = true;
