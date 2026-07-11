@@ -666,6 +666,7 @@
             <configLocation>config/rewrite.yml</configLocation>
             <exportDatatables>true</exportDatatables>
             <skipMavenParsing>true</skipMavenParsing>
+            <failOnInvalidActiveRecipes>true</failOnInvalidActiveRecipes>
             <activeRecipes>
               <recipe>org.checkstyle.AllAutoFixes</recipe>
             </activeRecipes>
