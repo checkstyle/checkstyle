@@ -276,7 +276,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck",
             "com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck",
-            "com.puppycrawl.tools.checkstyle.api.AbstractCheckTest$ViolationAstCheck",
             "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet"
     );
 
