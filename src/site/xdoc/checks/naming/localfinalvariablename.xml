@@ -165,6 +165,10 @@ class UseCase1 {
       <subsection name="Example of Usage" id="LocalFinalVariableName_Example_of_Usage">
         <ul>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalFinalVariableName">
+            Google Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalFinalVariableName">
             Sun Style</a>
           </li>
