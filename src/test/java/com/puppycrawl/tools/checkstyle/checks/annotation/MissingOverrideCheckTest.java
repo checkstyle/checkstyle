@@ -45,14 +45,19 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "36:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "46:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "51:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "74:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "26:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "36:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "41:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "64:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
         verifyWithInlineConfigParser(
                 getPath("InputMissingOverrideBadOverrideFromObject.java"), expected);
+
+        verifyWithInlineConfigParser(
+                getJavadocWithErrorPath("InputMissingOverrideBad"
+                        + "OverrideFromObjectJavadocError.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     /**
@@ -64,13 +69,18 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "36:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "46:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "55:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "26:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "36:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "45:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
         verifyWithInlineConfigParser(
                 getPath("InputMissingOverrideBadOverrideFromObjectJava5.java"), expected);
+
+        verifyWithInlineConfigParser(
+                getJavadocWithErrorPath("InputMissingOverride"
+                        + "BadOverrideFromObjectJava5JavadocError.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     /**
@@ -163,6 +173,11 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputMissingOverrideGoodOverrideFromObject.java"), expected);
+
+        verifyWithInlineConfigParser(
+                getJavadocWithErrorPath("InputMissingOverride"
+                        + "GoodOverrideFromObjectJavadocError.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     /**
@@ -176,6 +191,11 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputMissingOverrideGoodOverrideFromObjectJava5.java"), expected);
+
+        verifyWithInlineConfigParser(
+                getJavadocWithErrorPath("InputMissingOverride"
+                        + "GoodOverrideFromObjectJava5JavadocError.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     /**
