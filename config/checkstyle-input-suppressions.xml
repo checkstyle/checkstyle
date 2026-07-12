@@ -570,8 +570,7 @@
             files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsSingle7\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineSingleLineSmallTalkStyle\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting[\\/]InputTextBlockGoogleStyleFormatting9\.java"/>
+
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]coding[\\/]unusedlocalvariable[\\/]InputUnusedLocalVariableNestedClasses3\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
