@@ -202,7 +202,8 @@ recipeList:
   - org.openrewrite.staticanalysis.StaticMethodNotFinal
   - org.openrewrite.staticanalysis.StringLiteralEquality
   - org.openrewrite.staticanalysis.UnnecessaryCloseInTryWithResources
-  - org.openrewrite.staticanalysis.UnnecessaryExplicitTypeArguments
+  # cause changes that are not compiled
+  # - org.openrewrite.staticanalysis.UnnecessaryExplicitTypeArguments
   # managed by org.openrewrite.staticanalysis.CodeCleanup
   # - org.openrewrite.staticanalysis.UnnecessaryParentheses
   - org.openrewrite.staticanalysis.UnnecessaryPrimitiveAnnotations
@@ -247,6 +248,5 @@ recipeList:
   - org.openrewrite.staticanalysis.SimplifyTernaryRecipes
   - org.openrewrite.staticanalysis.URLEqualsHashCodeRecipes
   - org.openrewrite.staticanalysis.UnnecessaryCloseInTryWithResources
-  - org.openrewrite.staticanalysis.UnnecessaryExplicitTypeArguments
   - org.openrewrite.staticanalysis.UnnecessaryReturnAsLastStatement
   - org.openrewrite.staticanalysis.UseLambdaForFunctionalInterface
