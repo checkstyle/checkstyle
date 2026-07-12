@@ -721,88 +721,18 @@ compile-test-resources)
   -Dmaven.compiler.enablePreview=true
   ;;
 
-javac17_standard)
-  # InputCustomImportOrderNoPackage2 - nothing is required in front of first import
-  # InputIllegalTypePackageClassName - bad import for testing
-  # InputVisibilityModifierPackageClassName - bad import for testing
-  files=($(grep -RELi --include='*.java' \
-        --exclude='InputCustomImportOrderNoPackage2.java' \
-        --exclude='InputIllegalTypePackageClassName.java' \
-        --exclude='InputVisibilityModifierPackageClassName.java' \
-        '// non-compiled (syntax|with javac|with eclipse)?\:' \
-        src/test/resources-noncompilable \
-        src/it/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable))
+javac21-standard)
+  files=($(find \
+        src/test/resources \
+        src/it/resources \
+        src/xdocs-examples/resources \
+        -name '*.java'))
   mkdir -p target
   for file in "${files[@]}"
   do
-    echo "Compiling ${file} with standard JDK17"
+    echo "Compiling ${file} with standard JDK21"
     javac -d target "${file}"
   done
-  ;;
-
-javac17)
-  files=($(grep -Rli --include='*.java' ': Compilable with Java17' \
-        src/test/resources-noncompilable \
-        src/it/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable \
-        | grep -v 'importorder/' || true))
-  if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java17 files to process"
-  else
-      mkdir -p target
-      for file in "${files[@]}"
-      do
-        javac --release 17 -d target "${file}"
-      done
-  fi
-  ;;
-
-javac19)
-  files=($(grep -Rli --include='*.java' ': Compilable with Java19' \
-        src/test/resources-noncompilable \
-        src/it/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable || true))
-  if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java19 files to process"
-  else
-      mkdir -p target
-      for file in "${files[@]}"
-      do
-        javac --release 19 -d target "${file}"
-      done
-  fi
-  ;;
-
-javac20)
-  files=($(grep -Rli --include='*.java' ': Compilable with Java20' \
-        src/test/resources-noncompilable \
-        src/it/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable || true))
-  if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java20 files to process"
-  else
-      mkdir -p target
-      for file in "${files[@]}"
-      do
-        javac --release 20 -d target "${file}"
-      done
-  fi
-  ;;
-javac21)
-  files=($(grep -Rli --include='*.java' ': Compilable with Java21' \
-        src/test/resources-noncompilable \
-        src/it/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable || true))
-  if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java21 files to process"
-  else
-    mkdir -p target
-    for file in "${files[@]}"
-    do
-      javac --release 21 -d target "${file}"
-    done
-  fi
   ;;
 
 javac22)
