@@ -45,10 +45,10 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "36:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "46:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "51:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "74:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "26:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "36:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "41:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "64:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
         verifyWithInlineConfigParser(
@@ -64,9 +64,9 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "36:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "46:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "55:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "26:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "36:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "45:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
         verifyWithInlineConfigParser(
