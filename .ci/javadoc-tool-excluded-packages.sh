@@ -9,7 +9,6 @@ javadoc_package=$checks_package.javadoc
 
 JAVADOC_TOOL_EXCLUDED_PACKAGES=(
   "$source_root $checks_package.annotation.missingdeprecated"
-  "$source_root $checks_package.annotation.missingoverride"
   "$source_root $javadoc_package.abstractjavadoc"
   "$source_root $javadoc_package.javadocmethod"
   "$source_root $javadoc_package.javadocpackage.annotation"
