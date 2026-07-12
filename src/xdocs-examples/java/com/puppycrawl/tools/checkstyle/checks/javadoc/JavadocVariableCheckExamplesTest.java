@@ -55,14 +55,15 @@ public class JavadocVariableCheckExamplesTest extends AbstractExamplesModuleTest
     }
 
     @Test
-    public void testUseCase1() throws Exception {
+    public void testExample3() throws Exception {
         final String[] expected = {
             "14:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "20:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "21:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "22:15: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "29:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 
-        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
@@ -77,6 +78,17 @@ public class JavadocVariableCheckExamplesTest extends AbstractExamplesModuleTest
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
+    @Test
+    public void testUseCase1() throws Exception {
+        final String[] expected = {
+            "14:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "22:15: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "29:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
