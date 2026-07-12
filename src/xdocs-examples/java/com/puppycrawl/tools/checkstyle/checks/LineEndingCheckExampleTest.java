@@ -71,6 +71,7 @@ public class LineEndingCheckExampleTest extends AbstractExamplesModuleTestSuppor
             "13: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
             "14: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
             "15: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
+            "16: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
         };
 
         final DefaultConfiguration checkConfig = createModuleConfig(LineEndingCheck.class);
@@ -79,6 +80,15 @@ public class LineEndingCheckExampleTest extends AbstractExamplesModuleTestSuppor
 
         verify(checkConfig,
                 getPath("Example3.java"), expected
+        );
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("Example4.java"), expected
         );
     }
 }
