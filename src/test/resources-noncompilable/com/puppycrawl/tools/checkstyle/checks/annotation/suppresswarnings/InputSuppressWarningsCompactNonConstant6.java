@@ -37,10 +37,10 @@ public class InputSuppressWarningsCompactNonConstant6
             // violation below, 'The warning 'unused' cannot be suppressed at this location'
             @SuppressWarnings({"unused"})
             Object o = new InputSuppressWarningsCompactNonConstant6() {
+                // violation 2 lines below, 'The warning 'unchecked' cannot be suppressed at this location'
 
                 @Override
                 @SuppressWarnings({"unchecked"})
-                // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
                 public String toString() {
                     return "";
                 }
@@ -54,10 +54,10 @@ public class InputSuppressWarningsCompactNonConstant6
     @interface Sweet {
         int cool();
     }
+    // violation 2 lines below, 'The warning '' cannot be suppressed at this location'
 
     @Documented
     @SuppressWarnings({})
-    // violation above, 'The warning '' cannot be suppressed at this location'
     @interface MoreSweetness {
 
         @SuppressWarnings({"unused", "ignore"}) // 2 violations
