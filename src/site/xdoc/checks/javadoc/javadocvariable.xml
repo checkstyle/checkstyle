@@ -132,6 +132,42 @@ public class Example2 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check for <code>VARIABLE_DEF</code> tokens only:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocVariable"&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+          Example3:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
+  private int a;     // violation, 'Missing a Javadoc comment'
+
+  /**
+   * Some description here
+   */
+  private int b;
+  protected int c;   // violation, 'Missing a Javadoc comment'
+  public int d;      // violation, 'Missing a Javadoc comment'
+  /*package*/ int e; // violation, 'Missing a Javadoc comment'
+
+  public enum PublicEnum {
+    CONSTANT
+  }
+
+  private enum PrivateEnum {
+    CONSTANT
+  }
+}
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To ignore absence of Javadoc comments for fields with names <code>log</code> or
           <code>logger</code>:
