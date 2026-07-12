@@ -155,7 +155,6 @@ public class XdocsExamplesAstConsistencyTest {
         "checks/javadoc/javadocblocktaglocation",
         "checks/javadoc/javadocmethod",
         "checks/javadoc/javadocparagraph",
-        "checks/javadoc/javadoctype",
         "checks/javadoc/javadocvariable",
         "checks/javadoc/missingjavadocmethod",
         "checks/javadoc/missingjavadoctype",
@@ -203,7 +202,6 @@ public class XdocsExamplesAstConsistencyTest {
             // until https://github.com/checkstyle/checkstyle/issues/20624
             "checks/regexp/regexp",
             "checks/imports/illegalimport",
-            "checks/javadoc/javadoctype",
             "checks/javadoc/javadocvariable",
             "checks/javadoc/missingjavadocmethod",
             "checks/javadoc/missingjavadoctype",
