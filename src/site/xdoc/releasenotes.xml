@@ -10,6 +10,290 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 13.8.0">
+      <div class="releaseDate">12.07.2026</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            MethodCountCheck: top-level methods not counted toward limits in compact source files
+            (JEP 512).
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/20225">#20225</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Javadoc Ast: PARAMETER_TYPE has problems during parsing of generic methods.
+            Author: Carbon14-48
+            <a href="https://github.com/checkstyle/checkstyle/issues/20527">#20527</a>
+          </li>
+          <li>
+            UnusedLocalVariable: jdkVersion pre-22 should allow unused named pattern matched
+            destructured variables via `instanceof` for pre-Java 22 code.
+            Author: Zaheer Ahmad
+            <a href="https://github.com/checkstyle/checkstyle/issues/20490">#20490</a>
+          </li>
+          <li>
+            Add checks for Openjdk style chapter - Programming Practices.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/20641">#20641</a>
+          </li>
+          <li>
+            Add checks for OpenJDK Style chapter - Braces.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/19670">#19670</a>
+          </li>
+          <li>
+            Add checks for Openjdk style chapter - Horizontal WhiteSpace.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/20526">#20526</a>
+          </li>
+          <li>
+            Add checks for openjdk style - Vertical WhiteSpace.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/20588">#20588</a>
+          </li>
+          <li>
+            Add checks for openjdk style - Type Variables.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/20622">#20622</a>
+          </li>
+          <li>
+            FinalClassCheck: NullPointerException on compact source files (JEP 512).
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/20523">#20523</a>
+          </li>
+          <li>
+            Javadoc summary not processed inside html tags.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/9806">#9806</a>
+          </li>
+          <li>
+            OverloadMethodsDeclarationOrderCheck: split top-level overloads not flagged in compact
+            source files (JEP 512).
+            Author: Ved Darji
+            <a href="https://github.com/checkstyle/checkstyle/issues/20228">#20228</a>
+          </li>
+          <li>
+            Add checks for Openjdk style chapter - Wrapping Expressions.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/20437">#20437</a>
+          </li>
+          <li>
+            False negative in UnnecessarySemicolonInEnumeration for multiple semicolons in enum
+            body.
+            Author: Zaheer Ahmad
+            <a href="https://github.com/checkstyle/checkstyle/issues/20470">#20470</a>
+          </li>
+          <li>
+            Add checks for Openjdk style chapter - Formatting.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/20597">#20597</a>
+          </li>
+          <li>
+            AbbreviationAsWordInNameCheck: NullPointerException on compact source files (JEP 512).
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/20524">#20524</a>
+          </li>
+          <li>
+            Javadoc parse error while parsing reference.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/20392">#20392</a>
+          </li>
+          <li>
+            UnusedImports: imported types inside Javadoc generic method-reference arguments are
+            reported as unused.
+            Author: Carbon14-48
+            <a href="https://github.com/checkstyle/checkstyle/issues/20547">#20547</a>
+          </li>
+          <li>
+            Add checks for Openjdk style chapter -  Variables.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/20471">#20471</a>
+          </li>
+          <li>
+            Javadoc parse error on @link method reference containing generic parameter type.
+            Author: Carbon14-48
+            <a href="https://github.com/checkstyle/checkstyle/issues/20446">#20446</a>
+          </li>
+          <li>
+            HiddenFieldCheck: parameter shadowing top-level field not flagged in compact source
+            files (JEP 512).
+            Author: Carbon14-48
+            <a href="https://github.com/checkstyle/checkstyle/issues/20222">#20222</a>
+          </li>
+          <li>
+            EmptyLineSeparator: false positive &quot;&#39;,&#39; should be separated from previous
+            line&quot; on multi-variable field declaration.
+            Author: surajgojanur, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/20330">#20330</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Define violation messages for all violations.
+            Author: Dhanush Pothulapati
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            JEP 512: compact source input coverage for all Checks.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/20590">#20590</a>
+          </li>
+          <li>
+            unexpected output to logs from XdocsExamplesAstConsistencyTest.
+            Author: smita.prajapati082@gmail.com
+            <a href="https://github.com/checkstyle/checkstyle/issues/20653">#20653</a>
+          </li>
+          <li>
+            Unexpected output in maven build from SearchIndexGenerator.
+            Author: smita.prajapati082@gmail.com
+            <a href="https://github.com/checkstyle/checkstyle/issues/20654">#20654</a>
+          </li>
+          <li>
+            Use cases examples should not be named as Examples.
+            Author: smita.prajapati082@gmail.com
+            <a href="https://github.com/checkstyle/checkstyle/issues/19933">#19933</a>
+          </li>
+          <li>
+            CI job to validatate that inputs of javadoc Checks pass javadoc jdk yool.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19613">#19613</a>
+          </li>
+          <li>
+            Validation of amount of Example that should be same by AST.
+            Author: smita.prajapati082@gmail.com
+            <a href="https://github.com/checkstyle/checkstyle/issues/20585">#20585</a>
+          </li>
+          <li>
+            StackOverflowError in CI during execution over
+            InputIndentationLongConcatenatedString.java.
+            Author: ayushactiveat
+            <a href="https://github.com/checkstyle/checkstyle/issues/10897">#10897</a>
+          </li>
+          <li>
+            Issues with bump maven-source-plugin from 3.2.1 to 3.3.0.
+            Author: ayushactiveat
+            <a href="https://github.com/checkstyle/checkstyle/issues/13518">#13518</a>
+          </li>
+          <li>
+            Improve XdocGenerator to generate file in temp folder and replace xdoc only on success.
+            Author: Parthib Basu
+            <a href="https://github.com/checkstyle/checkstyle/issues/13869">#13869</a>
+          </li>
+          <li>
+            review suppresions of org.openrewrite.staticanalysis.CodeCleanup.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/18952">#18952</a>
+          </li>
+          <li>
+            jobs openrewrite-static-analysis is not working.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/20651">#20651</a>
+          </li>
+          <li>
+            Organize openrewrite staticanalysis composite recipes by groups as it is done on
+            openrewrite website.
+            Author: Carbon14-48
+            <a href="https://github.com/checkstyle/checkstyle/issues/18673">#18673</a>
+          </li>
+          <li>
+            CI execution to catch not latest dependency introduction in Pull.
+            Author: Saad Haider
+            <a href="https://github.com/checkstyle/checkstyle/issues/12193">#12193</a>
+          </li>
+          <li>
+            Add test enforcing JEP 512 compact source input coverage for all Checks.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/20591">#20591</a>
+          </li>
+          <li>
+            Resolve CheckerFramework violations.
+            Author: Carbon14-48
+            <a href="https://github.com/checkstyle/checkstyle/issues/14084">#14084</a>
+          </li>
+          <li>
+            investigate usage of jdeprscan tool in our CI.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/6137">#6137</a>
+          </li>
+          <li>
+            Add checks for Openjdk style chapter - Javadoc.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/20558">#20558</a>
+          </li>
+          <li>
+            Broken links in Checkstyle searchbar.
+            Author: smita.prajapati082@gmail.com
+            <a href="https://github.com/checkstyle/checkstyle/issues/20601">#20601</a>
+          </li>
+          <li>
+            RedundantModifierCheck: redundant final on top-level method not flagged in compact
+            source files (JEP 512).
+            Author: surajgojanur
+            <a href="https://github.com/checkstyle/checkstyle/issues/20226">#20226</a>
+          </li>
+          <li>
+            Error in report generation by regression-report.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/20608">#20608</a>
+          </li>
+          <li>
+            Prepare for Remove JavadocStyle as it fully covered by SummaryJavadoc.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19145">#19145</a>
+          </li>
+          <li>
+            Fix xdocs Examples AST Consistency Test (Reduce suppressions list).
+            Author: smita_1078, smita.prajapati082@gmail.com
+            <a href="https://github.com/checkstyle/checkstyle/issues/18435">#18435</a>
+          </li>
+          <li>
+            Address review feedback on SearchIndexGenerator.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/20480">#20480</a>
+          </li>
+          <li>
+            Conver test from XpathFilterElementTest to SuppressionXpathSingleFilterTest to use
+            inlined config in Input files.
+            Author: Carbon14-48
+            <a href="https://github.com/checkstyle/checkstyle/issues/11440">#11440</a>
+          </li>
+          <li>
+            added spotbug bump induced violations to suppressions.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/20486">#20486</a>
+          </li>
+          <li>
+            JavadocStyleCheck: Javadoc style rules not applied to top-level members in compact
+            source files (JEP 512).
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/20224">#20224</a>
+          </li>
+          <li>
+            regression-report fails because required cache is not saved from issue_comment workflow.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/20538">#20538</a>
+          </li>
+          <li>
+            Add It tests of openjdk and sun style sheets in pom.xml.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/20531">#20531</a>
+          </li>
+          <li>
+            Anchor name &quot;Fully_Qualified_Name&quot; used more than once.
+            Author: Carbon14-48
+            <a href="https://github.com/checkstyle/checkstyle/issues/20512">#20512</a>
+          </li>
+          <li>
+            Buildkite is failing on `master`.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/20475">#20475</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 13.7.0">
       <div class="releaseDate">28.06.2026</div>
       <p>New:</p>
