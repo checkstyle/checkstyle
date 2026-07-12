@@ -13,13 +13,13 @@ public class InputHorizontalWhiteSpaceInvalidThree {
     /**
      * Dummy Test method.
      */
-    public void test(int a,int b) { // violation '',' is not followed by whitespace.'
+    public void test(int x,int y) { // violation '',' is not followed by whitespace.'
     }
 
     /**
      * Dummy Test method.
      */
-    public void method(int a,int b,int c) { // 2 violations
+    public void method(int x,int y,int z) { // 2 violations
         // '',' is not followed by whitespace.'
         // '',' is not followed by whitespace.'
 
@@ -33,9 +33,9 @@ public class InputHorizontalWhiteSpaceInvalidThree {
      * Dummy Test inner class.
      */
     class Inner {
-        Inner(int a,int b) {} // violation 'not followed by whitespace'
+        Inner(int e,int f) {} // violation 'not followed by whitespace'
 
-        Inner(int a,int b,int c) {} // 2 violations
+        Inner(int e,int f,int g) {} // 2 violations
         // '',' is not followed by whitespace.'
         // '',' is not followed by whitespace.'
     }

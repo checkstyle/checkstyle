@@ -38,7 +38,7 @@ public class InputHorizontalWhiteSpaceInvalidOne {
             System.out.println("True");
         }
 
-        int a=4; // 2 violations
+        int s=4; // 2 violations
         // '=' is not followed by whitespace.
         // '=' is not preceded with whitespace.
     }
