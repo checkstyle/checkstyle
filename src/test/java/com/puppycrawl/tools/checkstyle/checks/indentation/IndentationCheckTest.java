@@ -878,6 +878,62 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAnnotationArrayInitWithTextBlockAfterLeftCurly() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+
+        final String[] expected = {
+            "38:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "8, 26, 68"),
+            "47:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "8, 26, 68"),
+            "49:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "12, 30, 72"),
+            "79:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "8, 12, 68"),
+            "81:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "12, 16, 72"),
+            "89:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "8, 12, 68"),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationAnnArrInitTextBlock.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationArrayInitWithTextBlockAfterLeftCurly2() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+
+        final String[] expected = {
+            "13:13: " + getCheckMessage(MSG_CHILD_ERROR,
+                "annotation array initialization", 12, 8),
+            "17:13: " + getCheckMessage(MSG_CHILD_ERROR,
+                "annotation array initialization", 12, 8),
+            "21:13: " + getCheckMessage(MSG_CHILD_ERROR,
+                "annotation array initialization", 12, 8),
+            "37:13: " + getCheckMessage(MSG_CHILD_ERROR,
+                "annotation array initialization", 12, 8),
+            "39:5: " + getCheckMessage(MSG_CHILD_ERROR,
+                "annotation array initialization", 4, 12),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationAnnArrInitTextBlock2.java"), expected);
+    }
+
+    @Test
     public void testInvalidLabel() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
