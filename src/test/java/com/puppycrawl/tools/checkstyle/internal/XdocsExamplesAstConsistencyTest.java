@@ -143,6 +143,7 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static final Set<String> EXAMPLE_COUNT_SUPPRESSED_MODULES = Set.of(
         // until https://github.com/checkstyle/checkstyle/issues/20625
+        "checks/javadoc/javadocvariable",
         "checks/javadoc/atclauseorder",
         "checks/annotation/annotationlocation",
         "checks/annotation/suppresswarnings",
@@ -247,7 +248,17 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/imports/importorder/Example6",
             "checks/imports/importorder/Example7",
             "checks/imports/importorder/Example8",
-            "checks/imports/importorder/Example9"
+            "checks/imports/importorder/Example9",
+            // until https://github.com/checkstyle/checkstyle/issues/XXXX
+            "checks/annotation/missingdeprecated/Example2",
+            "checks/javadoc/atclauseorder/Example3",
+            "checks/javadoc/javadocvariable/Example4",
+            "checks/javadoc/missingjavadoctype/Example2",
+            "checks/javadoc/missingjavadoctype/Example3",
+            "checks/javadoc/missingjavadoctype/Example4",
+            "checks/javadoc/missingjavadoctype/Example5",
+            "checks/javadoc/summaryjavadoc/Example3",
+            "checks/javadoc/writetag/Example4"
         );
 
     /**
@@ -1485,12 +1496,82 @@ public class XdocsExamplesAstConsistencyTest {
      * double-slash on that line, and the previous comment line was a skipped marker.
      * Inline trailing comments on code lines are always evaluated independently.
      *
-     * <p>All other comments are included in comparison.
+     * <p>All other comments, including javadoc comments, are included in comparison.
+     * Inline {@code // violation}, {@code // ok}, and other marker comments within
+     * javadoc are excluded, per {@link #isIgnoredComment}.
      *
      * @param content example content
      * @return comments participating in comparison
      */
     private static List<String> extractComments(String content) {
+        final List<String> comments = new ArrayList<>();
+        comments.addAll(extractJavadocComments(content));
+        comments.addAll(extractSingleLineComments(content));
+        return comments;
+    }
+
+    /**
+     * Extracts javadoc comments, stripping any trailing inline marker comment
+     * (ok/violation/etc., per {@link #isIgnoredComment}) from each line rather
+     * than dropping the whole line. Javadocs that become empty after stripping
+     * are excluded entirely.
+     *
+     * @param content example content
+     * @return filtered javadoc comments, excluding any that become empty
+     */
+    private static List<String> extractJavadocComments(String content) {
+        final List<String> javadocComments = new ArrayList<>();
+        final Matcher javadocMatcher = Pattern.compile("/\\*\\*[\\s\\S]*?\\*/").matcher(content);
+
+        while (javadocMatcher.find()) {
+            final String originalJavadoc = javadocMatcher.group().strip();
+            final StringBuilder filteredJavadoc = new StringBuilder(256);
+
+            for (String line : originalJavadoc.split("\n")) {
+                filteredJavadoc.append(stripInlineMarkers(line)).append('\n');
+            }
+
+            final String filteredJavadocStr = filteredJavadoc.toString().strip();
+            if (!filteredJavadocStr.isEmpty()) {
+                javadocComments.add(filteredJavadocStr);
+            }
+        }
+
+        return javadocComments;
+    }
+
+    /**
+     * Removes a trailing inline marker comment (ok/violation/filtered violation/
+     * N violations/etc., per {@link #isIgnoredComment}) from a single line,
+     * keeping the code (or whitespace) that precedes it. Lines whose trailing
+     * {@code //} comment is not a recognized marker are returned unchanged.
+     *
+     * @param line the line to strip
+     * @return the line with any trailing marker comment removed
+     */
+    private static String stripInlineMarkers(String line) {
+        String result = line;
+        final int commentIndex = findCommentStart(line);
+
+        if (commentIndex >= 0) {
+            final String comment = line.substring(commentIndex + 2).strip();
+            if (isIgnoredComment(comment)) {
+                result = line.substring(0, commentIndex).stripTrailing();
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Extracts single-line ({@code //}) comments that participate in comparison,
+     * skipping ok/violation/xdoc-section markers and standalone continuation
+     * lines that immediately follow such a marker.
+     *
+     * @param content example content
+     * @return single-line comments participating in comparison
+     */
+    private static List<String> extractSingleLineComments(String content) {
         final List<String> comments = new ArrayList<>();
         boolean prevLineWasMarker = false;
 
@@ -1502,10 +1583,8 @@ public class XdocsExamplesAstConsistencyTest {
                 continue;
             }
 
-            final String comment =
-                    line.substring(commentIndex + 2).strip();
-            final boolean isCodeBefore =
-                    !line.substring(0, commentIndex).isBlank();
+            final String comment = line.substring(commentIndex + 2).strip();
+            final boolean isCodeBefore = !line.substring(0, commentIndex).isBlank();
 
             if (isIgnoredComment(comment)) {
                 prevLineWasMarker = true;
