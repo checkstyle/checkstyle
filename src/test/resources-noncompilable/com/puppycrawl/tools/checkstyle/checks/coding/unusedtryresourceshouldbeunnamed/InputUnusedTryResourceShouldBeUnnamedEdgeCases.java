@@ -2,7 +2,7 @@
 UnusedTryResourceShouldBeUnnamed
 
 */
-
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedtryresourceshouldbeunnamed;
 
 import java.io.IOException;
