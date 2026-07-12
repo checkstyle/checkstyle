@@ -96,6 +96,8 @@ public class JavadocVariableCheckTest
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "22:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "41:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "85:34: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "85:43: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableTagsEnums.java"), expected);
