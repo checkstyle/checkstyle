@@ -972,6 +972,24 @@
                     LambdaBodyLength</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaBodyLength">
                   config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Expressions over single line lambda not covered until: 
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20692">
+                    #20692
+                  </a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Method Reference over lambda expressions not covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20693">
+                    #20693
+                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulelambdaexpressions">
