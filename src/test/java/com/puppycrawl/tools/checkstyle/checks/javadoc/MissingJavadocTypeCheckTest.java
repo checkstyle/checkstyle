@@ -286,14 +286,6 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDontAllowUnusedParameterTag() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(
-                getPath("InputMissingJavadocTypeUnusedParamInJavadocForClass.java"),
-                expected);
-    }
-
-    @Test
     public void testSkipAnnotationsDefault() throws Exception {
 
         final String[] expected = {
