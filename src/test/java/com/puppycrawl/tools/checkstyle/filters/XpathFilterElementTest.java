@@ -48,6 +48,11 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         return "com/puppycrawl/tools/checkstyle/filters/xpathfilterelement";
     }
 
+    /**
+     * This test should remain as a low level pure unit test, purely for coverage.
+     * It tests defensive null-guard in {@link XpathFilterElement#accept} that can never
+     * be reached through the pipeline, as it always produces non-null filenames and violations.
+     */
     @Test
     public void testNullFileName() {
         final XpathFilterElement filter = new XpathFilterElement(
@@ -59,6 +64,11 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    /**
+     * This test should remain as a low level pure unit test, purely for coverage.
+     * It tests defensive null-guard in {@link XpathFilterElement#accept} that can never
+     * be reached through the pipeline, as it always produces non-null filenames and violations.
+     */
     @Test
     public void testNullViolation() {
         final XpathFilterElement filter = new XpathFilterElement(
