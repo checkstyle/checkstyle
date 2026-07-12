@@ -93,12 +93,13 @@ public class Example2 { // ␍␊  // ok line ending is CRLF
 </code></pre></div><hr class="example-separator"/>
 
         <p id="Example3-config">
-          To configure the check to enforce CR line endings:
+          To configure the check to enforce CR line endings for Java files only:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="LineEnding"&gt;
     &lt;property name="lineEnding" value="cr"/&gt;
+    &lt;property name="fileExtensions" value="java"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
