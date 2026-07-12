@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_RETURN_EXPECTED;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck.MSG_JAVADOC_MISSING;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
@@ -39,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
 
 public class JavadocUtilTest extends AbstractModuleTestSupport {
 
@@ -459,6 +461,30 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilCompactCtorDefComments.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForVariableDefinitions() throws Exception {
+        final String[] expected = {
+            "17:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
+            "20:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
+            "24:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
+            "32:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilVariableDefComments.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForEnumConstantDefinitions()
+            throws Exception {
+        final String[] expected = {
+            "21:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
+            "28:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
+            "31:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilEnumConstantDefComments.java"), expected);
     }
 
 }
