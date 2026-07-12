@@ -296,8 +296,12 @@ public class XdocsExamplesAstConsistencyTest {
                         .append("\n\n");
             }
 
-            builder.append("If these examples have different code intent, "
-                    + "add them to SUPPRESSED_EXAMPLES:\n");
+            builder.append(
+                    """
+                    Note: a mismatch reason of "line numbers differ only" usually means \
+                    an example has an extra/missing blank line or shifted code relative to its \
+                    reference - fix the line alignment before considering suppression.
+                    """);
 
             for (Violation violation : violations) {
                 final String pattern = violation.getSuppressionPattern();
@@ -1359,6 +1363,12 @@ public class XdocsExamplesAstConsistencyTest {
                 result = new Violation(relativePath, reference.getFileName().toString(),
                         example.getFileName().toString(), "Comments mismatch");
             }
+            else if (referenceAst.equalsIgnoringLineNumbers(ast)) {
+                result = new Violation(relativePath, reference.getFileName().toString(),
+                    example.getFileName().toString(),
+                    "AST structure mismatch (line numbers differ only - "
+                        + "check for added/removed blank lines or shifted code)");
+            }
             else {
                 result = new Violation(relativePath, reference.getFileName().toString(),
                         example.getFileName().toString(), "AST structure mismatch");
@@ -1651,6 +1661,32 @@ public class XdocsExamplesAstConsistencyTest {
             final boolean lineNoMatch = Objects.equals(lineNo, other.lineNo);
             final boolean childrenMatch = children.equals(other.children);
             return typeMatch && textMatch && lineNoMatch && childrenMatch;
+        }
+
+        /**
+         * Compares this node against another, ignoring line-number differences.
+         * Used to distinguish a genuine structural mismatch from one caused purely
+         * by a shift in line numbers (e.g. an added or removed blank line), so the
+         * violation message can point reviewers toward the right kind of fix.
+         *
+         * @param other the node to compare against
+         * @return true if the two nodes (and their children) are structurally
+         *         identical except possibly for line numbers
+         */
+        private boolean equalsIgnoringLineNumbers(StructuralAstNode other) {
+            final boolean typeMatch = type == other.type;
+            final boolean textMatch = Objects.equals(text, other.text);
+            boolean childrenMatch = children.size() == other.children.size();
+            if (childrenMatch) {
+                for (int index = 0; index < children.size(); index++) {
+                    if (!children.get(index)
+                        .equalsIgnoringLineNumbers(other.children.get(index))) {
+                        childrenMatch = false;
+                        break;
+                    }
+                }
+            }
+            return typeMatch && textMatch && childrenMatch;
         }
 
         @Override
