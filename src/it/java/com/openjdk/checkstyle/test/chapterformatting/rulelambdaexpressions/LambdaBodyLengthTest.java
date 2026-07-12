@@ -40,4 +40,9 @@ public class LambdaBodyLengthTest extends AbstractOpenJdkModuleTestSupport {
         verifyWithWholeConfig(getPath("InputLambdaExpressionsBodyLengthValid.java"));
     }
 
+    @Test
+    public void lambdaExpressionDosAndDontsTest() throws Exception {
+        verifyWithWholeConfig(getPath("InputLambdaExpressionsDosAndDonts.java"));
+    }
+
 }
