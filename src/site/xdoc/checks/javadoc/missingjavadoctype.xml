@@ -106,7 +106,7 @@
         <p id="Example1-code">Example1:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /** Documented. */
-class Example1 {
+public class Example1 {
   /** Javadoc. */
   public class A {}
   /** Javadoc. */
@@ -123,6 +123,10 @@ class Example1 {
   private class Config {}
   /** Javadoc. */
   private class E {}
+  /** Javadoc. */
+  public interface F {}
+  /** Javadoc. */
+  public interface G {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -140,7 +144,7 @@ class Example1 {
 
         <p id="Example2-code">Example2:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example2 {        // violation, 'Missing a Javadoc comment'
+public class Example2 {        // violation, 'Missing a Javadoc comment'
   /** Javadoc. */
   public class A {}
 
@@ -157,6 +161,10 @@ class Example2 {        // violation, 'Missing a Javadoc comment'
   private class Config {}
   /** Javadoc. */
   private class E {}
+
+  public interface F {} // violation, 'Missing a Javadoc comment'
+  /** Javadoc. */
+  public interface G {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -174,7 +182,7 @@ class Example2 {        // violation, 'Missing a Javadoc comment'
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-code">Example3:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
+public class Example3 {
   /** Javadoc. */
   public class A {}
 
@@ -191,6 +199,10 @@ class Example3 {
   private class Config {}
   /** Javadoc. */
   private class E {}
+
+  public interface F {}
+  /** Javadoc. */
+  public interface G {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -211,7 +223,7 @@ class Example3 {
         <p id="Example4-code">Example4:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /** Documented. */
-class Example4 {
+public class Example4 {
   /** Javadoc. */
   public class A {}
   /** Javadoc. */
@@ -227,7 +239,48 @@ class Example4 {
   @Configuration
   private class Config {}
 
-  private class E {} // violation, 'Missing a Javadoc comment'
+  private class E {}    // violation, 'Missing a Javadoc comment'
+
+  public interface F {} // violation, 'Missing a Javadoc comment'
+  /** Javadoc. */
+  public interface G {}
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check for <code>INTERFACE_DEF</code> tokens only:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocType"&gt;
+      &lt;property name="tokens" value="INTERFACE_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example5:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example5 {
+  /** Javadoc. */
+  public class A {}
+
+  private class B {}
+
+  protected class C {}
+  /** Javadoc. */
+  class D {}
+  /** Javadoc. */
+  @SpringBootApplication
+  private class App {}
+  /** Javadoc. */
+  @Configuration
+  private class Config {}
+  /** Javadoc. */
+  private class E {}
+
+  public interface F {} // violation, 'Missing a Javadoc comment'
+  /** Javadoc. */
+  public interface G {}
 }
 </code></pre></div>
       </subsection>

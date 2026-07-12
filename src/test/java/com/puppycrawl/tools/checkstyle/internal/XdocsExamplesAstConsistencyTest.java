@@ -201,7 +201,6 @@ public class XdocsExamplesAstConsistencyTest {
             // until https://github.com/checkstyle/checkstyle/issues/20624
             "checks/regexp/regexp",
             "checks/imports/illegalimport",
-            "checks/javadoc/missingjavadoctype",
             "checks/lineending",
             "checks/metrics/classdataabstractioncoupling",
             "checks/modifier/classmemberimpliedmodifier",
