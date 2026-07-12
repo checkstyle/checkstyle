@@ -62,4 +62,14 @@ public class LocalVariableNamesTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getNonCompilablePath("InputPatternVariableNameUnnamed.java"));
     }
 
+    @Test
+    public void testLocalFinalVariableNames() throws Exception {
+        verifyWithWholeConfig(getPath("InputLocalFinalVariableName.java"));
+    }
+
+    @Test
+    public void testLocalFinalVariableUnnamed() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("InputUnnamedFinalVariables.java"));
+    }
+
 }
