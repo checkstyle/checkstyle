@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="MissingJavadocType">
-      <property name="scope" value="private"/>
+      <property name="tokens" value="INTERFACE_DEF"/>
     </module>
   </module>
 </module>
@@ -11,15 +11,15 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
 // xdoc section -- start
 
-public class Example2 {        // violation, 'Missing a Javadoc comment'
+public class Example5 {
   /** Javadoc. */
   public class A {}
 
-  private class B {}    // violation, 'Missing a Javadoc comment'
+  private class B {}
 
-  protected class C {}  // violation, 'Missing a Javadoc comment'
-
-  class D {}            // violation, 'Missing a Javadoc comment'
+  protected class C {}
+  /** Javadoc. */
+  class D {}
   /** Javadoc. */
   @SpringBootApplication
   private class App {}
