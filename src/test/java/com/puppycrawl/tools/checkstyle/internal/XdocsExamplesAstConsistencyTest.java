@@ -203,7 +203,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/regexp/regexp",
             "checks/imports/illegalimport",
             "checks/javadoc/javadocvariable",
-            "checks/javadoc/missingjavadocmethod",
             "checks/javadoc/missingjavadoctype",
             "checks/lineending",
             "checks/metrics/classdataabstractioncoupling",
