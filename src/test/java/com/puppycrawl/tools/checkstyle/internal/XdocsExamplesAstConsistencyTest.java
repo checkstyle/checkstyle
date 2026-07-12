@@ -206,7 +206,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/javadoc/javadoctype",
             "checks/javadoc/javadocvariable",
             "checks/javadoc/missingjavadocmethod",
-            "checks/javadoc/missingjavadoctype",
             "checks/lineending",
             "checks/metrics/classdataabstractioncoupling",
             "checks/modifier/classmemberimpliedmodifier",
