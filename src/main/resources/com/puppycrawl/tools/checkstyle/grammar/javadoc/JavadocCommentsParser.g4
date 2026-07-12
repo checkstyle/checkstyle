@@ -238,7 +238,6 @@ typeArgument
     : typeName
     | QUESTION
     | QUESTION EXTENDS typeName
-    | QUESTION SUPER typeName
     ;
 
 memberReference
