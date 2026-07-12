@@ -201,12 +201,6 @@ public class XdocsExamplesAstConsistencyTest {
             // until https://github.com/checkstyle/checkstyle/issues/20624
             "checks/regexp/regexp",
             "checks/imports/illegalimport",
-<<<<<<< HEAD
-            "checks/javadoc/javadocvariable",
-=======
-            "checks/javadoc/javadoctype",
-            "checks/javadoc/missingjavadocmethod",
->>>>>>> 33a2a12015 (Issue #20624: Adding Example for missing property - javadocvariable)
             "checks/javadoc/missingjavadoctype",
             "checks/lineending",
             "checks/metrics/classdataabstractioncoupling",
