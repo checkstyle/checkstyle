@@ -96,6 +96,8 @@
   <suppress checks="OuterTypeFilename"
     files="[\\/]InputOuterType.*\.java"/>
   <suppress checks="OuterTypeFilename"
+    files="[\\/]InputSuppressionXpathFilterDecideByMessage\.java"/>
+  <suppress checks="OuterTypeFilename"
     files="rule522classnames[\\/]Input.*ClassNames\.java"/>
   <suppress checks="OuterTypeFilename"
     files="[\\/]package-info\.java"/>
