@@ -3,13 +3,14 @@ MissingNullCaseInSwitch
 
 */
 
-// Java21
+// non-compiled with javac: Compilable with Java21
 package com.puppycrawl.tools.checkstyle.checks.coding.missingnullcaseinswitch;
 
 public class InputMissingNullCaseInSwitchWithPattern {
 
     void testSwitchRule(Object obj) {
-        switch (obj) { // violation, 'Switch using reference types should have a null case.'
+        // violation below, 'Switch using reference types should have a null case.'
+        switch (obj) {
             case Integer i when i > 0 -> {}
             case String s when s.length() > 0 -> {}
             default -> {}
@@ -28,7 +29,8 @@ public class InputMissingNullCaseInSwitchWithPattern {
 
     }
     void testSwitchStatments(Object obj) {
-        switch (obj) {  // violation, 'Switch using reference types should have a null case.'
+        // violation below, 'Switch using reference types should have a null case.'
+        switch (obj) {
             case Integer i when i > 10 : {}break;
             case String s: {}break;
             default: {}
@@ -100,7 +102,6 @@ public class InputMissingNullCaseInSwitchWithPattern {
             case null, default : {}
         }
     }
-
     public void testCaseNullInCaseGroup(Object obj) {
          switch (obj) {
             case Integer _:
