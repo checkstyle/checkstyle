@@ -14,7 +14,6 @@ JAVADOC_TOOL_EXCLUDED_PACKAGES=(
   "$source_root $javadoc_package.javadocmethod"
   "$source_root $javadoc_package.javadocpackage.annotation"
   "$source_root $javadoc_package.javadoctype"
-  "$source_root $javadoc_package.missingjavadoctype"
   "$source_root $javadoc_package.nonemptyatclausedescription"
   "$source_root com.puppycrawl.tools.checkstyle.javadocpropertiesgenerator"
 )
