@@ -115,4 +115,15 @@ public class JavadocTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
         verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
+
+    @Test
+    public void testExample9() throws Exception {
+        final String[] expected = {
+            "31:6: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknownTag"),
+            "39:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "42:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
+    }
 }
