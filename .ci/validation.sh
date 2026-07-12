@@ -857,7 +857,7 @@ javadoc-tool-validate)
   javadoc_source_version=$(java -version 2>&1 \
     | sed -n 's/.* version "\([0-9][0-9]*\).*/\1/p' \
     | head -n 1)
-  javadoc_preview_args=(--enable-preview --source "$javadoc_source_version")
+  javadoc_preview_args=(--source "$javadoc_source_version")
 
   custom_tags=(
     -tag 'apiNote:a:API Note:'
