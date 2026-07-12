@@ -478,7 +478,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
             "81:30: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "lr"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputUnusedLocalVariablePatternVariablesCondition.java"),
+                getNonCompilablePath("InputUnusedLocalVariablePatternVariablesCondition.java"),
                 expected);
     }
 
@@ -492,7 +492,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
             "89:14: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "_"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputUnusedLocalVariablePatternVariablesCondition2.java"),
+                getNonCompilablePath("InputUnusedLocalVariablePatternVariablesCondition2.java"),
                 expected);
     }
 
@@ -684,7 +684,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
             "44:32: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "r"),
         };
         verifyWithInlineConfigParser(
-                getPath(
+                getNonCompilablePath(
                     "InputUnusedLocalVariablePatternVariables.java"),
                 expected);
     }
@@ -713,7 +713,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
             "57:14: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "id"),
         };
         verifyWithInlineConfigParser(
-                getPath(
+                getNonCompilablePath(
                     "InputUnusedLocalVariablePatternVariablesAllowUnnamed.java"),
                 expected);
     }
@@ -724,7 +724,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
             "28:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "_"),
         };
         verifyWithInlineConfigParser(
-                getPath(
+                getNonCompilablePath(
                     "InputUnusedLocalVariableUnnamedTryCatch.java"),
                 expected);
     }
@@ -733,7 +733,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     public void testUnusedLocalVariablePatternVariablesAllowUnnamedTry() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath(
+                getNonCompilablePath(
                     "InputUnusedLocalVariableAllowUnnamedTryCatch.java"),
                 expected);
     }
