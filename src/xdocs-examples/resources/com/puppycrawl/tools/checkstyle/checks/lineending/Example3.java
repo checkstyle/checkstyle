@@ -2,6 +2,7 @@
 <module name="Checker">
   <module name="LineEnding">
     <property name="lineEnding" value="cr"/>
+    <property name="fileExtensions" value="java"/>
   </module>
 </module>
 */

@@ -71,6 +71,7 @@ public class LineEndingCheckExampleTest extends AbstractExamplesModuleTestSuppor
             "13: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
             "14: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
             "15: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
+            "16: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
         };
 
         final DefaultConfiguration checkConfig = createModuleConfig(LineEndingCheck.class);
