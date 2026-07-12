@@ -134,10 +134,6 @@
   <suppress id="presenceOfCompilationComment"
             files="[\\/]checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberMagicNumberWithUnnamedVariables.java"/>
   <suppress id="presenceOfCompilationComment"
-            files="[\\/]checks[\\/]coding[\\/]missingnullcaseinswitch[\\/]InputMissingNullCaseInSwitchWithPattern.java"/>
-  <suppress id="presenceOfCompilationComment"
-            files="[\\/]checks[\\/]coding[\\/]missingnullcaseinswitch[\\/]InputMissingNullCaseInSwitchWithRecordPattern.java"/>
-  <suppress id="presenceOfCompilationComment"
             files="[\\/]checks[\\/]coding[\\/]missingswitchdefault[\\/]InputMissingSwitchDefaultRecordPattern.java"/>
   <suppress id="presenceOfCompilationComment"
             files="[\\/]checks[\\/]coding[\\/]modifiedcontrolvariable[\\/]InputModifiedControlVariableRecordDecomposition.java"/>
