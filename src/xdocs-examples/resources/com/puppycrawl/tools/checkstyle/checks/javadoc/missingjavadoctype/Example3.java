@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
 // xdoc section -- start
 
-class Example3 {
+public class Example3 {
   /** Javadoc. */
   public class A {}
 
@@ -29,5 +29,9 @@ class Example3 {
   private class Config {}
   /** Javadoc. */
   private class E {}
+
+  public interface F {}
+  /** Javadoc. */
+  public interface G {}
 }
 // xdoc section -- end
