@@ -67,7 +67,7 @@ public class UnusedTryResourceShouldBeUnnamedCheckTest extends AbstractModuleTes
             "56:28: " + getCheckMessage(MSG_UNUSED_TRY_RESOURCE, "autoCloseable2"),
         };
         verifyWithInlineConfigParser(
-            getPath("InputUnusedTryResourceShouldBeUnnamed.java"),
+            getNonCompilablePath("InputUnusedTryResourceShouldBeUnnamed.java"),
             expected);
     }
 
@@ -81,7 +81,7 @@ public class UnusedTryResourceShouldBeUnnamedCheckTest extends AbstractModuleTes
             "86:26: " + getCheckMessage(MSG_UNUSED_TRY_RESOURCE, "a"),
         };
         verifyWithInlineConfigParser(
-            getPath("InputUnusedTryResourceShouldBeUnnamed2.java"),
+            getNonCompilablePath("InputUnusedTryResourceShouldBeUnnamed2.java"),
             expected);
     }
 
@@ -153,7 +153,7 @@ public class UnusedTryResourceShouldBeUnnamedCheckTest extends AbstractModuleTes
             "99:28: " + getCheckMessage(MSG_UNUSED_TRY_RESOURCE, "close"),
         };
         verifyWithInlineConfigParser(
-            getPath("InputUnusedTryResourceShouldBeUnnamedEdgeCases.java"),
+            getNonCompilablePath("InputUnusedTryResourceShouldBeUnnamedEdgeCases.java"),
             expected);
     }
 
@@ -180,7 +180,7 @@ public class UnusedTryResourceShouldBeUnnamedCheckTest extends AbstractModuleTes
                 new UnusedTryResourceShouldBeUnnamedCheck();
 
         final DetailAST root = JavaParser.parseFile(
-                new File(getPath(
+                new File(getNonCompilablePath(
                         "InputUnusedTryResourceShouldBeUnnamed.java")),
                 JavaParser.Options.WITHOUT_COMMENTS);
 
