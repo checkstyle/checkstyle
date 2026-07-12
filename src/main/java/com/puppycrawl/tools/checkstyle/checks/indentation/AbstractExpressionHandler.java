@@ -330,7 +330,14 @@ public abstract class AbstractExpressionHandler {
             // checked by a child expression)
 
             if (col != null) {
-                checkLineIndent(astSet.getAst(index), level, false);
+                final DetailAST ast = astSet.getAst(index);
+                final boolean textBlockEndAligned =
+                    ast.getType() == TokenTypes.TEXT_BLOCK_LITERAL_END
+                        && isOnStartOfLine(ast.getParent())
+                        && indentLevel.isAcceptable(expandedTabsColumnNo(ast));
+                if (!textBlockEndAligned) {
+                    checkLineIndent(ast, level, false);
+                }
             }
         }
     }
