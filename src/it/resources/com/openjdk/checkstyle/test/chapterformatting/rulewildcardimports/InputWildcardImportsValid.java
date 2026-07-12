@@ -10,8 +10,8 @@ public class InputWildcardImportsValid {
 
     private final List<String> items;
 
-    public InputWildcardImportsValid(List<String> items) {
-        this.items = items;
+    public InputWildcardImportsValid(List<String> item) {
+        this.items = item;
     }
 
     public Map<String, String> getItems() {
