@@ -164,6 +164,7 @@ public class XdocsExamplesAstConsistencyTest {
         "checks/javadoc/writetag",
         "checks/metrics/classdataabstractioncoupling",
         "checks/metrics/cyclomaticcomplexity",
+        "checks/modifier/annotateddeclarationvisibility",
         "checks/modifier/interfacememberimpliedmodifier",
         "checks/naming/abbreviationaswordinname",
         "checks/naming/constantname",
@@ -228,6 +229,7 @@ public class XdocsExamplesAstConsistencyTest {
      * <p>Until: <a href="https://github.com/checkstyle/checkstyle/issues/19891">...</a>
      */
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
+            "checks/modifier/annotateddeclarationvisibility/Example3",
             // Note: customImport/ImportOrder changes import group ORDER affecting AST structure
             "checks/imports/customimportorder/Example10",
             "checks/imports/customimportorder/Example11",
