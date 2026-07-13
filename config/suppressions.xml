@@ -16,6 +16,9 @@
   <suppress checks="FileLength"
              files="TokenTypes.java|IndentationCheckTest.java|XdocsPagesTest|CheckerTest.java"
              lines="1"/>
+  <!-- Until reduce the suppression data blocks -->
+  <suppress checks="FileLength"
+            files="[\\/]bdd[\\/]InlineConfigParser\.java"/>
 
   <!-- illegal words are part of Javadoc -->
   <suppress checks="TodoComment" files=".*TodoCommentCheck\.java"/>
