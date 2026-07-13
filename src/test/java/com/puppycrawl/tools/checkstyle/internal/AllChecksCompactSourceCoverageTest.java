@@ -123,7 +123,6 @@ public class AllChecksCompactSourceCoverageTest {
         "EmptyForInitializerPadCheck",
         "EmptyForIteratorPadCheck",
         "EmptyLineSeparatorCheck",
-        "EmptyStatementCheck",
         "EqualsAvoidNullCheck",
         "EqualsHashCodeCheck",
         "ExecutableStatementCountCheck",
