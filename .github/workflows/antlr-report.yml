@@ -49,7 +49,7 @@ jobs:
             })
 
       - name: Download checkstyle
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Resolve PR branch and SHA
         id: branch
@@ -90,7 +90,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Download contribution
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: checkstyle/contribution
           path: .ci-temp/contribution
@@ -161,7 +161,7 @@ jobs:
     if: failure() || success()
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Get message
         env:
