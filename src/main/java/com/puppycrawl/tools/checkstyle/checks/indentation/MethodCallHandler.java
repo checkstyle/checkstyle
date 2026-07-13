@@ -174,7 +174,8 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         final DetailAST ident = getMethodIdentAst();
         final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
         IndentLevel suggestedLevel = new IndentLevel(getLineStart(ident));
-        if (!TokenUtil.areOnSameLine(child.getMainAst().getFirstChild(), ident)) {
+        if (!TokenUtil.areOnSameLine(child.getMainAst().getFirstChild(), ident)
+                && !isInvocationTarget(child)) {
             suggestedLevel = new IndentLevel(suggestedLevel,
                     getBasicOffset(),
                     getIndentCheck().getLineWrappingIndentation());
@@ -190,6 +191,27 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         }
 
         return suggestedLevel;
+    }
+
+    /**
+     * Returns true if the given child handler represents the invocation target
+     * of this method call (the expression before the dot), rather than one of
+     * the call's arguments.
+     *
+     * @param child the child handler to classify
+     * @return true if the child is the invocation target, not an argument
+     */
+    private boolean isInvocationTarget(AbstractExpressionHandler child) {
+        boolean crossedElist = false;
+        DetailAST node = child.getMainAst().getParent();
+        while (node != null && node != getMainAst()) {
+            if (node.getType() == TokenTypes.ELIST) {
+                crossedElist = true;
+                break;
+            }
+            node = node.getParent();
+        }
+        return !crossedElist;
     }
 
     @Override
