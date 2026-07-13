@@ -17,32 +17,21 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.openjdk.checkstyle.test.chapternaming.ruleconstants;
+package com.openjdk.checkstyle.test.chapterformatting.ruleannotations;
 
 import org.junit.jupiter.api.Test;
 
 import com.openjdk.checkstyle.test.base.AbstractOpenJdkModuleTestSupport;
 
-public class ConstantsTest extends AbstractOpenJdkModuleTestSupport {
+public class AnnotationsTest extends AbstractOpenJdkModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
-        return "com/openjdk/checkstyle/test/chapternaming/ruleconstants";
+        return "com/openjdk/checkstyle/test/chapterformatting/ruleannotations";
     }
 
     @Test
-    public void testConstantsInvalid() throws Exception {
-        verifyWithWholeConfig(getPath("InputConstantsInvalid.java"));
+    public void testAnnotationsOne() throws Exception {
+        verifyWithWholeConfig(getPath("InputAnnotationsDoAndDonts.java"));
     }
-
-    @Test
-    public void testConstantsValid() throws Exception {
-        verifyWithWholeConfig(getPath("InputConstantsValid.java"));
-    }
-
-    @Test
-    public void testConstantsDoAndDonts() throws Exception {
-        verifyWithWholeConfig(getPath("InputConstantsDoAndDonts.java"));
-    }
-
 }
