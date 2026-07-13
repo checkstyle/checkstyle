@@ -222,7 +222,7 @@ public final class InlineConfigParser {
 
     /** A pattern that matches any comment by default. */
     private static final Pattern VIOLATION_DEFAULT = Pattern
-            .compile("//.*violation.*");
+            .compile(".*//.*violation.*");
 
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
@@ -256,6 +256,27 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck",
             "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck",
             "com.puppycrawl.tools.checkstyle.checks.TranslationCheck"
+    );
+
+    /**
+     *  Checks in which violation message is not specified in input files.
+     *  Until <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>.
+     */
+    private static final Set<String> SUPPRESSED_CHECKS = Set.of(
+            "com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsHolder",
+            "com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck",
+            "com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck",
+            "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck",
+            "com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPad",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparator",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPad",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAround",
+            "com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyTextFilter",
+            "com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter",
+            "com.puppycrawl.tools.checkstyle.filters.SuppressionFilter"
     );
 
     /**
@@ -1466,7 +1487,9 @@ public final class InlineConfigParser {
         if (moduleLists.size() == 1) {
             final String moduleName = moduleLists.getFirst().getModuleName();
 
-            if (!PERMANENT_SUPPRESSED_CHECKS.contains(moduleName)) {
+            if (!PERMANENT_SUPPRESSED_CHECKS.contains(moduleName)
+                    && !SUPPRESSED_CHECKS.contains(moduleName)) {
+
                 final String fileName = Path.of(inputFilePath).getFileName().toString();
                 if (!SUPPRESSED_FILES.contains(fileName)) {
                     result = true;
@@ -1650,22 +1673,23 @@ public final class InlineConfigParser {
         if (violationsAboveMatcherWithMessages.matches()) {
             inputConfigBuilder.addViolations(
                 getExpectedViolationsForSpecificLine(
-                    lines, lineNo, lineNo, violationsAboveMatcherWithMessages));
+                    lines, lineNo, lineNo, violationsAboveMatcherWithMessages, specifyViolationMessage));
         }
         else if (violationsSomeLinesAboveMatcher.matches()) {
             inputConfigBuilder.addViolations(
                 getExpectedViolations(
-                    lines, lineNo, violationsSomeLinesAboveMatcher, true));
+                    lines, lineNo, violationsSomeLinesAboveMatcher, true, specifyViolationMessage));
         }
         else if (violationsSomeLinesBelowMatcher.matches()) {
             inputConfigBuilder.addViolations(
                     getExpectedViolations(
-                            lines, lineNo, violationsSomeLinesBelowMatcher, false));
+                            lines, lineNo, violationsSomeLinesBelowMatcher, false, specifyViolationMessage));
         }
         else if (multipleViolationsMatcher.matches()) {
             Collections
                     .nCopies(Integer.parseInt(multipleViolationsMatcher.group(1)), lineNo + 1)
                     .forEach(actualLineNumber -> {
+                        //checkWhetherViolationSpecified(specifyViolationMessage, null, actualLineNumber);
                         inputConfigBuilder.addViolation(actualLineNumber, null);
                     });
         }
@@ -1673,6 +1697,7 @@ public final class InlineConfigParser {
             Collections
                     .nCopies(Integer.parseInt(multipleViolationsAboveMatcher.group(1)), lineNo)
                     .forEach(actualLineNumber -> {
+                        //checkWhetherViolationSpecified(specifyViolationMessage, null, actualLineNumber);
                         inputConfigBuilder.addViolation(actualLineNumber, null);
                     });
         }
@@ -1681,6 +1706,7 @@ public final class InlineConfigParser {
                     .nCopies(Integer.parseInt(multipleViolationsBelowMatcher.group(1)),
                             lineNo + 2)
                     .forEach(actualLineNumber -> {
+                        //checkWhetherViolationSpecified(specifyViolationMessage, null, actualLineNumber);
                         inputConfigBuilder.addViolation(actualLineNumber, null);
                     });
         }
@@ -1690,13 +1716,14 @@ public final class InlineConfigParser {
         }
         else if (violationsDefault.matches()) {
             final int violationLineNum = lineNo + 1;
+            checkWhetherViolationSpecified(specifyViolationMessage, null, violationLineNum);
             inputConfigBuilder.addViolation(violationLineNum, null);
         }
     }
 
     private static List<TestInputViolation> getExpectedViolationsForSpecificLine(
-                                              List<String> lines, int lineNo, int violationLineNum,
-                                              Matcher matcher) {
+            List<String> lines, int lineNo, int violationLineNum,
+            Matcher matcher, boolean specifyViolationMessage) {
         final List<TestInputViolation> results = new ArrayList<>();
 
         final int expectedMessageCount =
@@ -1706,6 +1733,7 @@ public final class InlineConfigParser {
             final Matcher messageMatcher = VIOLATION_MESSAGE_PATTERN.matcher(lineWithMessage);
             if (messageMatcher.find()) {
                 final String violationMessage = messageMatcher.group(1);
+                checkWhetherViolationSpecified(specifyViolationMessage, violationMessage, lineNo);
                 results.add(new TestInputViolation(violationLineNum, violationMessage));
             }
         }
@@ -1719,8 +1747,8 @@ public final class InlineConfigParser {
     }
 
     private static List<TestInputViolation> getExpectedViolations(
-                                              List<String> lines, int lineNo,
-                                              Matcher matcher, boolean isAbove) {
+            List<String> lines, int lineNo,
+            Matcher matcher, boolean isAbove, boolean specifyViolationMessage) {
         final int violationLine =
             Integer.parseInt(matcher.group(2));
         final int violationLineNum;
@@ -1731,7 +1759,7 @@ public final class InlineConfigParser {
             violationLineNum = lineNo + violationLine + 1;
         }
         return getExpectedViolationsForSpecificLine(lines,
-            lineNo, violationLineNum, matcher);
+            lineNo, violationLineNum, matcher, specifyViolationMessage);
     }
 
     private static void setFilteredViolation(TestInputConfiguration.Builder inputConfigBuilder,
@@ -1874,12 +1902,12 @@ public final class InlineConfigParser {
      * @param shouldViolationMsgBeSpecified should violation messages be specified.
      * @param violationMessage violation message
      * @param lineNum line number
-     * @throws CheckstyleException if violation message is not specified
+     * @throws IllegalStateException if violation message is not specified
      */
     private static void checkWhetherViolationSpecified(boolean shouldViolationMsgBeSpecified,
-            String violationMessage, int lineNum) throws CheckstyleException {
+            String violationMessage, int lineNum) throws IllegalStateException {
         if (shouldViolationMsgBeSpecified && violationMessage == null) {
-            throw new CheckstyleException(
+            throw new IllegalStateException(
                     "Violation message should be specified on line " + lineNum);
         }
     }
