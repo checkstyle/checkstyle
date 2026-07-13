@@ -67,7 +67,7 @@ public final class UnmodifiableCollectionUtil {
     public static <T> List<T> unmodifiableList(Collection<? extends T> collection) {
         final List<T> result;
         if (collection == null) {
-            result = Collections.emptyList();
+            result = List.of();
         }
         else {
             result = List.copyOf(collection);
@@ -110,6 +110,6 @@ public final class UnmodifiableCollectionUtil {
      * @return immutable set
      */
     public static <T> Set<T> singleton(T obj) {
-        return Collections.singleton(obj);
+        return Set.of(obj);
     }
 }

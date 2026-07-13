@@ -48,7 +48,7 @@
   <!-- Till https://github.com/checkstyle/checkstyle/issues/1854 -->
   <suppress checks="TrailingComment"
        files="(InnerAssignmentCheck\.java|OperatorWrapCheck\.java|
-              |AbbreviationAsWordInNameCheckTest\.java)"/>
+              |AbbreviationAsWordInNameCheckTest\.java|AbstractItModuleTestSupport\.java)"/>
 
   <!-- Fixing these cases will decrease code readability -->
   <suppress checks="MultipleStringLiterals" files="XMLLogger\.java"/>

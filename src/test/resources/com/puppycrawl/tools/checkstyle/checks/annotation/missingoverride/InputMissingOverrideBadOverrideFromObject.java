@@ -18,16 +18,6 @@ public class InputMissingOverrideBadOverrideFromObject
         return false;
     }
 
-    /**
-     * {@inheritDoc no violation}
-     *
-     * @inheritDocs}
-     *
-     * {@inheritDoc
-     */
-    public int hashCode() {
-        return 1;
-    }
 
     class Junk {
 

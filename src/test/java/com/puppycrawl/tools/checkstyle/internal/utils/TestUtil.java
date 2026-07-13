@@ -234,7 +234,7 @@ public final class TestUtil {
                 }
             }
 
-            if (curNode == toVisit || curNode == root.getParent()) {
+            if (Objects.equals(curNode, toVisit) || Objects.equals(curNode, root.getParent())) {
                 curNode = null;
                 break;
             }

@@ -205,7 +205,7 @@
     <site.plugin.version>3.22.0</site.plugin.version>
     <spotbugs.plugin.version>4.10.2.0</spotbugs.plugin.version>
     <pmd.plugin.version>3.28.0</pmd.plugin.version>
-    <pmd.version>7.25.0</pmd.version>
+    <pmd.version>7.26.0</pmd.version>
     <jacoco.plugin.version>0.8.15</jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
     <slf4j.version>2.0.18</slf4j.version>
@@ -233,7 +233,7 @@
     <forbiddenapis.version>3.10</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <checkerframework.version>4.2.1</checkerframework.version>
-    <error-prone.version>2.49.0</error-prone.version>
+    <error-prone.version>2.50.0</error-prone.version>
     <error-prone-support.version>0.30.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
     <error-prone.configuration-args>
@@ -293,7 +293,8 @@
       -Xep:PrimitiveComparison:ERROR
       -Xep:RedundantStringConversion:ERROR
       -Xep:RedundantStringEscape:ERROR
-      -Xep:ReferenceEquality:ERROR
+      <!-- too much usage of == for AST nodes, but we can consider it to fix in future -->
+      -Xep:ReferenceEquality:OFF
       -Xep:Slf4jLogStatement:ERROR
       <!-- We prefer to qualify all static method calls with class name. -->
       -Xep:StaticImport:OFF
@@ -310,6 +311,8 @@
       -Xep:UnsynchronizedOverridesSynchronized:ERROR
       -Xep:UnusedMethod:ERROR
       -Xep:VoidUsed:ERROR
+      <!-- conflict with our desire to use suppression of IDEA inspections by javadoc tags -->
+      -Xep:NotJavadoc:OFF
     </error-prone.configuration-args>
   </properties>
 
@@ -661,7 +664,7 @@
         <plugin>
           <groupId>org.openrewrite.maven</groupId>
           <artifactId>rewrite-maven-plugin</artifactId>
-          <version>6.40.0</version>
+          <version>6.41.0</version>
           <configuration>
             <configLocation>config/rewrite.yml</configLocation>
             <exportDatatables>true</exportDatatables>
@@ -696,17 +699,17 @@
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-migrate-java</artifactId>
-              <version>3.35.0</version>
+              <version>3.36.0</version>
             </dependency>
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-static-analysis</artifactId>
-              <version>2.35.0</version>
+              <version>2.36.0</version>
             </dependency>
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-rewrite</artifactId>
-              <version>0.25.0</version>
+              <version>0.26.0</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -894,7 +897,7 @@
       <plugin>
         <groupId>org.gaul</groupId>
         <artifactId>modernizer-maven-plugin</artifactId>
-        <version>3.3.0</version>
+        <version>3.4.0</version>
         <configuration>
           <javaVersion>${java.version}</javaVersion>
           <includeTestClasses>false</includeTestClasses>
@@ -5266,6 +5269,7 @@
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+                <avoidCallsTo>java.util.Comparator</avoidCallsTo>
               </avoidCallsTo>
               <features>
                 <feature>+funmodifiablecollection</feature>
