@@ -637,10 +637,48 @@
                   <span class="wrapper inline">
                     <img src="images/ok_blue.png" alt=""/>
                   </span>
+                  <a href="checks/sizes/linelength.html#LineLength">
+                    LineLength</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
+                  config</a>)
+                  <br />
+                  Checkstyle is a static tool it can only inforced strict cloumn limit it can not
+                  inforce column limit on basis of readibility.
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Wrapping at a higher syntactical level rule not covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20716">
+                    #20716
+                  </a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
                   <a href="checks/coding/onestatementperline.html#OneStatementPerLine">
                     OneStatementPerLine</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneStatementPerLine">
                   config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/misc/indentation.html#Indentation">
+                    Indentation</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Not completely covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20714">
+                    #20714
+                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulewrappinglines">
