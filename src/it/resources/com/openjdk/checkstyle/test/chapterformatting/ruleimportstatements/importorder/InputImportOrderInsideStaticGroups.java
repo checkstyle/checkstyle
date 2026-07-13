@@ -6,12 +6,12 @@ import static java.lang.Math.PI;
 import static java.lang.Math.abs;
 import static org.mockito.Mockito.mock;
 import static java.util.Collections.emptyList;
-// violation above 'Import statement for 'java.util.Collections.emptyList'
-// violates the configured import group order.'
+// violation above """Import statement for 'java.util.Collections.emptyList'
+// violates the configured import group order."""
 
 import javax.swing.JButton;
-// violation above 'Import 'javax.swing.JButton' violates the configured
-// relative order between static and non-static import'
+// violation above """Import 'javax.swing.JButton' violates the configured
+// relative order between static and non-static import"""
 
 /**
  * Test file for static import order.
