@@ -14,7 +14,7 @@ import java.util.Calendar;
 public class UseCase1 {
 
   public void case1(long timeNow, int hh, int min) {
-    int minutes = min + 5; // ok, No violation reported
+    int minutes = min + 5;
     Calendar cal = Calendar.getInstance();
     cal.setTimeInMillis(timeNow);
     cal.set(Calendar.SECOND, 0);

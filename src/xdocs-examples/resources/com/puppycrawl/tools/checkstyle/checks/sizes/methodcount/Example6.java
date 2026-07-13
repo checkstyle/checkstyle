@@ -10,7 +10,7 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
 
 // xdoc section -- start
-class Example6 { // ok, no violation there are no protected methods in this class
+class Example6 { // ok, there are no protected methods in this class
 
   public void outerMethod1(int i) {}
   public void outerMethod2() {}
