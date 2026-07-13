@@ -216,7 +216,7 @@ public class InputDesignForExtensionOverridableMethods {
         @Deprecated /** */
         public void foo39() {return; }
 
-        void foo40() { // no violation: empty body
+        void foo40() { // ok, empty body
             /** */
         }
 
@@ -226,7 +226,7 @@ public class InputDesignForExtensionOverridableMethods {
         }
 
         /** */
-        void foo42() { // no violation: has javadoc comment
+        void foo42() { // ok, has javadoc comment
         }
 
         /** */

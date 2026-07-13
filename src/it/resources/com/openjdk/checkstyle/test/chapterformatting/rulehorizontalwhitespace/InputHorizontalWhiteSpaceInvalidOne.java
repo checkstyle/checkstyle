@@ -12,9 +12,10 @@ public class InputHorizontalWhiteSpaceInvalidOne {
      */
     void example() {
         int b = 0;
-        switch(b){ // 2 violations
-            // ''{' is not preceded with whitespace.'
+        switch(b){
+            // 2 violations above:
             // ''switch' is not followed by whitespace.'
+            // ''{' is not preceded with whitespace.'
             case 1: {
                 System.out.println("hello");
                 break;
@@ -38,9 +39,10 @@ public class InputHorizontalWhiteSpaceInvalidOne {
             System.out.println("True");
         }
 
-        int s=4; // 2 violations
-        // '=' is not followed by whitespace.
-        // '=' is not preceded with whitespace.
+        int s=4;
+        // 2 violations above:
+        // ''=' is not followed by whitespace.'
+        // ''=' is not preceded with whitespace.'
     }
 
     /**
@@ -49,10 +51,11 @@ public class InputHorizontalWhiteSpaceInvalidOne {
     record MyRecord3() {
         void method (){ // violation ''{' is not preceded with whitespace'
             final int a = 1;
-            int b= 1; // violation ''=' is not preceded with whitespace'
-            b=1; // 2 violations
-            // '=' is not followed by whitespace.
-            // '=' is not preceded with whitespace.
+            int b= 1;  // violation ''=' is not preceded with whitespace'
+            b=1;
+            // 2 violations above:
+            // ''=' is not followed by whitespace.'
+            // ''=' is not preceded with whitespace.'
         }
     }
 }

@@ -16,7 +16,7 @@ class InputModifiedControlVariableBothForLoops
     int k;
     void method1()
     {
-        // violation :
+
         for (int i = 0; i < 1; i++) {
             i++; // violation 'Control variable 'i' is modified.'
         }

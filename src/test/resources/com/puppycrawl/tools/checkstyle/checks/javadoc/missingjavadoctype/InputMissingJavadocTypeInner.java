@@ -16,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
  **/
 class InputMissingJavadocTypeInner
 {
-    // Ignore - two violations
+
     // violation below 'Missing a Javadoc comment.'
     class InnerInner2
     {
@@ -24,7 +24,7 @@ class InputMissingJavadocTypeInner
         public int fData;
     }
 
-    // Ignore - 2 violations
+
     // violation below 'Missing a Javadoc comment.'
     interface InnerInterface2
     {

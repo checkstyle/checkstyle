@@ -7,7 +7,7 @@ tokens = (default)ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT,
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter; // ^ 2 violations above
+package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 
 public class InputNoWhitespaceAfterTestAssignment {
 

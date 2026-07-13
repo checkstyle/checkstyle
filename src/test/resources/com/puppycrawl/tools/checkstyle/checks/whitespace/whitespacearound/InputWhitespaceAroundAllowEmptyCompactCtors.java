@@ -83,7 +83,7 @@ class foo2 {
 
 class foo3 {
     public foo3(){System.out.println();} // 3 violations
-                                    //-^--- violation, no WS before '}'
+                                    // ok, no WS before '}'
 }
 
 record TestRecord8(int a, int b) {

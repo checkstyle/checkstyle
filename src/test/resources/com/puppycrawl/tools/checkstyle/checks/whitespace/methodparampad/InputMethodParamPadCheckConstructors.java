@@ -31,7 +31,7 @@ public class InputMethodParamPadCheckConstructors extends ArrayList {
 
     public InputMethodParamPadCheckConstructors(String a, String b) {
         this
-            (a.length() + b.length()); // line break is ok, no violation
+            (a.length() + b.length()); // line break is ok
     }
 
     public InputMethodParamPadCheckConstructors(String a, String b, Object c) {

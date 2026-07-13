@@ -46,9 +46,10 @@ public class InputHorizontalWhiteSpaceInvalidTwo {
     }
 
     // violation below ''//' must be followed by a whitespace.'
-    //this comment cause violation
+    //this comment cause
     void testMethod(float f1) {
-        int n = ( int ) f1; // 2 violations
+        int n = ( int ) f1;
+        // 2 violations above:
         // ''(' is followed by whitespace.'
         // '')' is preceded with whitespace.'
 

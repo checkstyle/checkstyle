@@ -102,7 +102,7 @@ interface NothingHidden6
 {
     public static int notHidden = 0;
 
-    // not a violation
+
     public void noShadow(int notHidden);
 }
 

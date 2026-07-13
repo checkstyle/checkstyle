@@ -27,7 +27,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
  **/
 class InputVisibilityModifierInner1
 {
-    // Ignore - two violations
+
     class InnerInner2
     {
         // Ignore
@@ -35,7 +35,7 @@ class InputVisibilityModifierInner1
         // violation above 'Variable 'fData' must be private and have accessor methods.'
     }
 
-    // Ignore - 2 violations
+
     interface InnerInterface2
     {
         // Ignore - should be all upper case

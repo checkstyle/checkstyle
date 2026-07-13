@@ -42,15 +42,15 @@ public class InputLambdaExpressionsDosAndDonts {
 
     public void styleGuideDonts(List<String> list) {
 
-        // no violation for block until https://github.com/checkstyle/checkstyle/issues/20692
+        // ok, for block until https://github.com/checkstyle/checkstyle/issues/20692
         Runnable r = () -> { System.out.println("Hello World"); };
         // violation above, ''{' at column 28 should have line break after.'
 
-        // no violation for block until https://github.com/checkstyle/checkstyle/issues/20692
+        // ok, for block until https://github.com/checkstyle/checkstyle/issues/20692
         Supplier<String> supp = () -> { return "Hello World"; };
         // violation above, ''{' at column 39 should have line break after.'
 
-        // no violation until https://github.com/checkstyle/checkstyle/issues/20693
+        // ok, until https://github.com/checkstyle/checkstyle/issues/20693
         appendFilter(s -> list.contains(s));
 
         // this can not be determined it is a subjective case
@@ -60,7 +60,7 @@ public class InputLambdaExpressionsDosAndDonts {
         Function<Person, String> nameFunc = (Person p) -> p.getFirstName() + " " + p.getLastName();
 
         class Util {
-            // no violation here because the current max allowed length of lambda is 10 or now
+            // ok, here because the current max allowed length of lambda is 10 or now
             static void printAllPersons(List<Person> persons) {
                 persons.stream()
                         .map(p -> {
