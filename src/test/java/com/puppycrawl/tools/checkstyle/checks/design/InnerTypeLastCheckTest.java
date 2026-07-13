@@ -141,4 +141,29 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
             .isEqualTo(expected);
     }
 
+    @Test
+    public void testInnerTypeLastCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputInnerTypeLastCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testInnerTypeLastCompactSourceFileNested() throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputInnerTypeLastCompactSourceFileNested.java"),
+                expected);
+    }
+
+    @Test
+    public void testInnerTypeLastEmpty() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputInnerTypeLastEmpty.java"), expected);
+    }
 }
