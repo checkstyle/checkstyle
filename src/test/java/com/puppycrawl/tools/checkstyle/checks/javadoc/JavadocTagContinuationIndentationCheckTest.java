@@ -57,7 +57,7 @@ public class JavadocTagContinuationIndentationCheckTest
     @Test
     public void testCheck() throws Exception {
         final String[] expected = {
-            "55: " + getCheckMessage(MSG_KEY, 4),
+            "56: " + getCheckMessage(MSG_KEY, 4),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTagContinuationIndentation.java"),
