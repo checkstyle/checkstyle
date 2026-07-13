@@ -29,6 +29,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestSupport {
 
@@ -460,5 +461,12 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
         };
         verifyWithInlineConfigParser(
                 getPath("InputTextBlockGoogleStyleFormatting11.java"), expected);
+    }
+
+    @Test
+    public void testTextBlockInAnnotationType() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputTextBlockGoogleStyleFormattingType.java"), expected);
     }
 }
