@@ -165,7 +165,10 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
                     TokenTypes.METHOD_DEF,
                     TokenTypes.CTOR_DEF,
                     TokenTypes.ENUM_DEF,
-                    TokenTypes.CLASS_DEF)) {
+                    TokenTypes.CLASS_DEF,
+                    TokenTypes.RECORD_DEF,
+                    TokenTypes.INTERFACE_DEF,
+                    TokenTypes.ANNOTATION_DEF)) {
                 break;
             }
         }
