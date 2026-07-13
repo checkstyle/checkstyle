@@ -40,4 +40,9 @@ public class ClassInterfaceAndEnumNamesTest extends AbstractOpenJdkModuleTestSup
         verifyWithWholeConfig(getPath("InputClassInterfaceAndEnumNamesValid.java"));
     }
 
+    @Test
+    public void testClassInterfaceAndEnumNamesDoAndDonts() throws Exception {
+        verifyWithWholeConfig(getPath("InputClassInterfaceAndEnumsDoAndDonts.java"));
+    }
+
 }
