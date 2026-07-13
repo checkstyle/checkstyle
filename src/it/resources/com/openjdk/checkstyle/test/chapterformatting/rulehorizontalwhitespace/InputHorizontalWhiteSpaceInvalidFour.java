@@ -21,7 +21,8 @@ public class InputHorizontalWhiteSpaceInvalidFour {
     public void fun() {
 
         boolean a = true;
-        if ( a ) { // 2 violations
+        if ( a ) {
+        // 2 violations above:
         // ''(' is followed by whitespace'
         // '')' is preceded with whitespace'
         }
@@ -31,7 +32,8 @@ public class InputHorizontalWhiteSpaceInvalidFour {
         } catch ( IOException e) { // violation 'is followed by whitespace'
         } catch (Exception e ) {}  // violation 'is preceded with whitespace'
 
-        for ( int i = 0; i < x; i++ ) { // 2 violations
+        for ( int i = 0; i < x; i++ ) {
+        // 2 violations above:
         // ''(' is followed by whitespace'
         // '')' is preceded with whitespace'
         }
@@ -67,7 +69,8 @@ public class InputHorizontalWhiteSpaceInvalidFour {
          * Dummy input.
          */
         Bar(int k) {
-            super( k ); // 2 violations
+            super( k );
+            // 2 violations above:
             // ''(' is followed by whitespace'
             // '')' is preceded with whitespace'
             for ( int i = 0; i < k; i++) { // violation ''(' is followed by whitespace'

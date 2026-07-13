@@ -23,7 +23,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarningsholder
 class Example2 {
   private int K; // violation, 'Name 'K' must match pattern'
   @SuppressWarnings({"membername"})
-  private int J; // violation suppressed
+  private int J;
 
   @SuppressWarnings("ParamListShouldBeShort")
   public void needsLotsOfParameters1 (int a,
@@ -32,10 +32,10 @@ class Example2 {
   private int [] ARR; // violation ''int' is followed by whitespace'
   // violation above, 'Name 'ARR' must match pattern'
   @SuppressWarnings("all")
-  private int [] ARRAY; // violation suppressed
+  private int [] ARRAY;
 
   @SuppressWarnings("paramcounter")
-  public void needsLotsOfParameters2 (int a, // violation suppressed
+  public void needsLotsOfParameters2 (int a,
     int b, int c, int d, int e, int f, int g, int h) {}
 }
 // xdoc section -- end

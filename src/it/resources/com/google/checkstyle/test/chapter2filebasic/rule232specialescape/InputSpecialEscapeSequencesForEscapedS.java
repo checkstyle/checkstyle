@@ -6,7 +6,7 @@ class InputSpecialEscapeSequencesForEscapedS {
     final String r0 = "\s";
     final String r1 = "\u0020"; // violation 'Consider using special escape sequence'
     final String r2 = "\u0008"; // violation 'Consider using special escape sequence'
-    // These have no escape sequences, should not cause violations
+    // ok, These have no escape sequences
     final String r3 = "\u000b";
     final String r4 = "\u001c";
     final String r5 = "\u001D";

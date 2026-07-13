@@ -43,7 +43,7 @@ public class InputEmptyLineSeparatorPostFixCornerCases {
             "String One", 13,
 
 
-            "String Two", // violation above this line.
+            "String Two",
         };
     }
 }

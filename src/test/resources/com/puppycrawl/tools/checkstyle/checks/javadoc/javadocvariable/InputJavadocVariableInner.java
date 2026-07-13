@@ -14,14 +14,14 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
  */
 class InputJavadocVariableInner
 {
-    // Ignore - two violations
+
     class InnerInner2
     {
         // Ignore
         public int fData; // violation, 'Missing a Javadoc comment'
     }
 
-    // Ignore - 2 violations
+
     interface InnerInterface2
     {
         // Ignore - should be all upper case

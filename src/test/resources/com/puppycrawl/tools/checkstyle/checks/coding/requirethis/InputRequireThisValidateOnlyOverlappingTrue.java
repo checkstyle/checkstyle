@@ -276,7 +276,7 @@ public class InputRequireThisValidateOnlyOverlappingTrue {
     }
 
     String foo32(String field1) {
-        field1 = addSuf2F(field1); //no violation! modification of parameter which is returned
+        field1 = addSuf2F(field1); //ok, modification of parameter which is returned
         return field1;
     }
 

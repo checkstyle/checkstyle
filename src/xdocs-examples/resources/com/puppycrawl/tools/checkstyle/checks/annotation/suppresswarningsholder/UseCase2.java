@@ -39,7 +39,7 @@ public class UseCase2 {
   @SuppressWarnings("paramcounter")
   public void needsLotsOfParameters2(
           int a, int b, int c, int d,
-          int e, int f, int g, int h) {} // violation suppressed
+          int e, int f, int g, int h) {}
 
   private int [] ARR;
 

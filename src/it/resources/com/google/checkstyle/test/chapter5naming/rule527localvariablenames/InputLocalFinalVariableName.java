@@ -12,12 +12,12 @@ public class InputLocalFinalVariableName {
     final int BadName = 1;
     // violation above 'Local final variable name 'BadName' must match pattern'
     final int VARIABLE2 = 2;
-    // 2 violations above
-    // 'VARIABLE2' must contain no more than '1' consecutive capital letters.
+    // 2 violations above:
+    // 'VARIABLE2' must contain no more than '1' consecutive capital letters.'
     // 'Local final variable name 'VARIABLE2' must match pattern'
     final String FOO_2 = "foo";
-    // 2 violations above
-    // 'FOO2' must contain no more than '1' consecutive capital letters.
+    // 2 violations above:
+    // 'FOO_2' must contain no more than '1' consecutive capital letters.'
     // 'Local final variable name 'FOO_2' must match pattern'
     final String A = "a";
     // violation above 'Local final variable name 'A' must match pattern'
@@ -30,8 +30,8 @@ public class InputLocalFinalVariableName {
     final boolean aA = false;
     // violation above 'Local final variable name 'aA' must match pattern'
     final boolean SOLVE6X6 = true;
-    // 2 violations above
-    // 'SOLVE6X6' must contain no more than '1' consecutive capital letters.
+    // 2 violations above:
+    // 'SOLVE6X6' must contain no more than '1' consecutive capital letters.'
     // 'Local final variable name 'SOLVE6X6' must match pattern'
   }
 
@@ -58,9 +58,9 @@ public class InputLocalFinalVariableName {
 
   /** Some javadoc. */
   void foo(final String Name, final int Age) {
-    // 2 violations above
-    // 'Local final variable name 'Name' must match pattern'
-    // 'Local final variable name 'Age' must match pattern'
+    // 2 violations above:
+    // 'Parameter name 'Name' must match pattern'
+    // 'Parameter name 'Age' must match pattern'
     try (final InputStreamReader In = new InputStreamReader(System.in);
         final OutputStreamWriter Out = new OutputStreamWriter(System.out)) {
       // violation 2 lines above 'Local final variable name 'In' must match pattern'

@@ -19,7 +19,7 @@ class InputJavadocVariableInner2
         int fData;
     }
 
-    // Ignore - 1 violations
+
     interface InnerInterface2
     {
 

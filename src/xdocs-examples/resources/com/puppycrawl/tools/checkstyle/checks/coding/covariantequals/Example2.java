@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.covariantequals;
 
 // xdoc section -- start
 public class Example2 {
-  public boolean equals(Example2 same) {  // no violation
+  public boolean equals(Example2 same) {
     return false;
   }
 
@@ -19,7 +19,7 @@ public class Example2 {
   }
 
   record Test(String str) {
-    public boolean equals(Test same) {  // no violation
+    public boolean equals(Test same) {
       return false;
     }
 

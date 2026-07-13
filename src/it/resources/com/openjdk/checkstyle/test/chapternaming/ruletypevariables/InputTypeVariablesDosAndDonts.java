@@ -13,7 +13,8 @@ public class InputTypeVariablesDosAndDonts {
     }
 
     public void styleGuideDonts() {
-        interface SpecialMap<Key, Value> extends Map<Key, Value> { // 2 violations
+        interface SpecialMap<Key, Value> extends Map<Key, Value> {
+            // 2 violations above:
             // 'Name 'Key' must match pattern'
             // 'Name 'Value' must match pattern'
         }
