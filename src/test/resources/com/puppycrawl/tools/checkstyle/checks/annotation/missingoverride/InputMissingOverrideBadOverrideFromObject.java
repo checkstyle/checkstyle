@@ -9,10 +9,11 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
 
 public class InputMissingOverrideBadOverrideFromObject
 {
+    // violation 4 lines below 'include @java.lang.Override annotation when '@inheritDoc''
     /**
      * {@inheritDoc}
      */
-    public boolean // violation 'include @java.lang.Override annotation when '@inheritDoc''
+    public boolean
     equals(Object obj) {
         return false;
     }
@@ -30,25 +31,28 @@ public class InputMissingOverrideBadOverrideFromObject
 
     class Junk {
 
+        // violation 4 lines below 'include @java.lang.Override annotation when '@inheritDoc''
         /**
          * {@inheritDoc}
          */
-        protected void // violation 'include @java.lang.Override annotation when '@inheritDoc''
+        protected void
         finalize() throws Throwable {}
     }
 }
 
 interface HashEq2 {
 
+    // violation 4 lines below 'include @java.lang.Override annotation when '@inheritDoc''
     /**
      * {@inheritDoc}
      */
-    public int hashCode(); // violation 'include @java.lang.Override annotation when '@inheritDoc''
+    public int hashCode();
 
+    // violation 4 lines below 'include @java.lang.Override annotation when '@inheritDoc''
     /**
      * {@inheritDoc}
      */
-    @Deprecated // violation 'include @java.lang.Override annotation when '@inheritDoc''
+    @Deprecated
     public String toString();
 
     @SuppressWarnings("")
@@ -68,11 +72,11 @@ interface HashEq2 {
 enum enum3 {
     B;
 
+    // violation 4 lines below 'include @java.lang.Override annotation when '@inheritDoc''
     /**
      * {@inheritDoc}
      */
     public String toString(){
-        // violation above 'include @java.lang.Override annotation when '@inheritDoc''
         return "B";
     }
 

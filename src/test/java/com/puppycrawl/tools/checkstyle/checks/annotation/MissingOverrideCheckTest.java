@@ -44,11 +44,11 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
     public void testBadOverrideFromObject() throws Exception {
 
         final String[] expected = {
-            "15:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "36:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "46:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "51:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "74:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "16:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "38:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "49:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "55:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "79:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
         verifyWithInlineConfigParser(
