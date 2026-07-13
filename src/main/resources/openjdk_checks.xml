@@ -52,6 +52,13 @@
     <property name="eachLine" value="true"/>
   </module>
 
+  <module name="LineLength">
+    <property name="fileExtensions" value="java"/>
+    <property name="max" value="100"/>
+    <property name="ignorePattern"
+          value="^package.*|^import.*|href\s*=\s*&quot;[^&quot;]*&quot;|http://|https://|ftp://"/>
+  </module>
+
   <module name="TreeWalker">
     <!-- Add TreeWalker checks based on OpenJDK style guide -->
     <module name="Indentation">
@@ -147,7 +154,7 @@
     <module name="VariableDeclarationUsageDistance"/>
 
     <module name="MethodName">
-      <property name="format" value="^[a-z]{2,}[a-zA-Z0-9]*$"/>
+      <property name="format" value="^[a-z][a-zA-Z0-9]+$"/>
     </module>
 
     <module name="MemberName">
