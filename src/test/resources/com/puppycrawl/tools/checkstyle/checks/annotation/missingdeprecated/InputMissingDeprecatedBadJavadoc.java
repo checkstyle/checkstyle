@@ -12,13 +12,6 @@ import java.lang.annotation.Inherited;
 @Deprecated
 public class InputMissingDeprecatedBadJavadoc
 {
-    /**
-     * @Deprecated this is not the same
-     */
-    @Deprecated // violation '.*@java.lang.Deprecated annotation and @deprecated.*description.'
-    protected InputMissingDeprecatedBadJavadoc() {
-
-    }
 
     @Deprecated
     @Override
