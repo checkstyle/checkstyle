@@ -29,7 +29,6 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
 
@@ -66,14 +65,19 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIfRootClassChecked() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MSG_KEY),
+            "23:5: " + getCheckMessage(MSG_KEY),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastClassRootClass.java"), expected);
     }
 
     @Test
     public void testIfRootClassChecked2() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "25:5: " + getCheckMessage(MSG_KEY),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastClassRootClass2.java"), expected);
     }
@@ -82,11 +86,16 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     public void testIfRootClassChecked3() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InnerTypeLastCheck.class);
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MSG_KEY),
+            "23:5: " + getCheckMessage(MSG_KEY),
+            "20:5: " + getCheckMessage(MSG_KEY),
+            "23:5: " + getCheckMessage(MSG_KEY),
+        };
         verify(createChecker(checkConfig), new File[] {
             new File(getPath("InputInnerTypeLastClassRootClass.java")),
             new File(getPath("InputInnerTypeLastClassRootClass.java")),
-        }, "InputInnerTypeLastClassRootClass.java", expected);
+        }, getPath("InputInnerTypeLastClassRootClass.java"), expected);
     }
 
     @Test
@@ -141,4 +150,22 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
             .isEqualTo(expected);
     }
 
+    @Test
+    public void testInnerTypeLastCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputInnerTypeLastCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testInnerTypeLastCompactSourceFileNested() throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputInnerTypeLastCompactSourceFileNested.java"),
+                expected);
+    }
 }
