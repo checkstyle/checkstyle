@@ -4,7 +4,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import java.util.Arrays;
-// violation above 'Import statement for 'java.util.Arrays' violates the configured import group order.'
+// violation above 'Import statement for 'java.util.Arrays' violates
+// the configured import group order.'
 
 /**
  * Invalid: javax.* imports appear before java.* imports.
