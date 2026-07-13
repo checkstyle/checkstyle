@@ -58,7 +58,10 @@ jobs:
 
       - name: Install Groovy
         run: |
-          curl --fail-with-body -s "https://get.sdkman.io" | bash
+          for i in {1..3}; do
+            curl --fail-with-body -s "https://get.sdkman.io" | bash && break
+            if [ "$i" -lt 3 ]; then sleep 10; fi
+          done
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy
           echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"

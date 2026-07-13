@@ -800,4 +800,45 @@ public class SuppressWithNearbyCommentFilterTest
         return TestUtil.getInternalState(filter, "tags", List.class);
     }
 
+    @Test
+    public void testOptionalGroupUnreferenced() throws Exception {
+        final String[] expectedUnfiltered = {
+            "25:17: "
+                + getCheckMessage(MemberNameCheck.class,
+                    MSG_INVALID_PATTERN, "MemberName", "^[a-z][a-zA-Z0-9]*$"),
+        };
+        final String[] expectedFiltered = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithNearbyCommentFilterOptionalGroup.java"),
+            expectedUnfiltered,
+            expectedFiltered);
+    }
+
+    @Test
+    public void testOptionalGroupReferencedMatched() throws Exception {
+        final String[] expectedUnfiltered = {
+            "25:17: "
+                + getCheckMessage(MemberNameCheck.class,
+                    MSG_INVALID_PATTERN, "MemberName", "^[a-z][a-zA-Z0-9]*$"),
+        };
+        final String[] expectedFiltered = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithNearbyCommentFilterOptionalGroupReferencedMatched.java"),
+            expectedUnfiltered,
+            expectedFiltered);
+    }
+
+    @Test
+    public void testOptionalGroupReferencedUnmatched() throws Exception {
+        final String[] expectedUnfiltered = {
+            "25:17: "
+                + getCheckMessage(MemberNameCheck.class,
+                    MSG_INVALID_PATTERN, "MemberName", "^[a-z][a-zA-Z0-9]*$"),
+        };
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithNearbyCommentFilterOptionalGroupReferencedUnmatched.java"),
+            expectedUnfiltered,
+            CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
 }
