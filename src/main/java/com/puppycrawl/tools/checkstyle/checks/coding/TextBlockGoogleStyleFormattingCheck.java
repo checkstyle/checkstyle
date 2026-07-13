@@ -140,13 +140,12 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      * @return true if the opening quotes are on the new line.
      */
     private static boolean openingQuotesAreAloneOnTheLine(DetailAST openingQuotes) {
-        DetailAST parent = openingQuotes;
         boolean quotesAreNotPreceded = true;
-        while (quotesAreNotPreceded || parent.getType() == TokenTypes.ELIST
-                || parent.getType() == TokenTypes.EXPR) {
-
-            parent = parent.getParent();
-
+        for (DetailAST parent = openingQuotes.getParent(); parent != null;
+             parent = parent.getParent()) {
+            if (parent.getType() == TokenTypes.ELIST || parent.getType() == TokenTypes.EXPR) {
+                continue;
+            }
             if (parent.getType() == TokenTypes.METHOD_DEF) {
                 quotesAreNotPreceded = !quotesArePrecededWithComma(openingQuotes);
             }
@@ -158,14 +157,7 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
             else {
                 quotesAreNotPreceded = !TokenUtil.areOnSameLine(openingQuotes, parent);
             }
-
-            if (TokenUtil.isOfType(parent.getType(),
-                    TokenTypes.LITERAL_RETURN,
-                    TokenTypes.VARIABLE_DEF,
-                    TokenTypes.METHOD_DEF,
-                    TokenTypes.CTOR_DEF,
-                    TokenTypes.ENUM_DEF,
-                    TokenTypes.CLASS_DEF)) {
+            if (!quotesAreNotPreceded) {
                 break;
             }
         }
