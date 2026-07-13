@@ -205,7 +205,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/metrics/classdataabstractioncoupling",
             "checks/modifier/classmemberimpliedmodifier",
             "checks/naming/illegalidentifiername",
-            "checks/newlineatendoffile",
             "checks/regexp/regexpmultiline",
             "checks/regexp/regexponfilename",
             "checks/sizes/methodcount",

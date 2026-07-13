@@ -99,6 +99,21 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example6.txt"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example7-config">
+          To configure the check to work only on Java files:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example7.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 

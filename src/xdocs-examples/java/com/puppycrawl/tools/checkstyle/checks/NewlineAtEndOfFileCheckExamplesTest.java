@@ -82,4 +82,13 @@ public class NewlineAtEndOfFileCheckExamplesTest extends AbstractExamplesModuleT
 
         verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
     }
+
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+    }
 }

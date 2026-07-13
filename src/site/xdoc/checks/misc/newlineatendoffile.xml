@@ -163,6 +163,23 @@ public class Example5 { // ⤶
         <p id="Example6-code">Text file <code>Example6.txt</code>:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 Sample txt file. // ok, this file is not specified in the config.
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example7-config">
+          To configure the check to work only on Java files:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="NewlineAtEndOfFile"&gt;
+    &lt;property name="fileExtensions" value="java"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example7 { // ⤶
+// ⤶
+} // violation first line 'File does not end with a newline.'
 </code></pre></div>
       </subsection>
 
