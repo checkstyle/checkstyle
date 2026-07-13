@@ -76,6 +76,8 @@
   <suppress id="lineLength"
          files="src[\\/]it[\\/]resources[\\/].*[\\/]InputNoLineWrapping\.java"/>
   <suppress id="lineLength"
+         files="src[\\/]it[\\/]resources[\\/].*[\\/]InputWrappingLinesLineLimit\.java"/>
+  <suppress id="lineLength"
          files="src[\\/]it[\\/]resources[\\/].*[\\/]InputFormattedNoLineWrapping\.java"/>
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputLineLength.*\.java"/>
