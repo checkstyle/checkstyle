@@ -40,6 +40,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -244,7 +245,7 @@ public class MainTest {
             boolean found = false;
 
             for (Handler savedHandler : HANDLERS) {
-                if (handler == savedHandler) {
+                if (Objects.equals(handler, savedHandler)) {
                     found = true;
                     break;
                 }
