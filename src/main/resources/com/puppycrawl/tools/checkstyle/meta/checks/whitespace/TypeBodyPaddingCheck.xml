@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.TypeBodyPaddingCheck"
+             name="TypeBodyPadding"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks the padding of the body of type definitions (classes, interfaces,
+ enums, records).
+ That is, whether a blank line is required immediately after the opening brace
+ and/or immediately before the closing brace of type bodies.
+ Empty type bodies are exempt from this check by default.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ A blank line (padding) line is a line containing only whitespace characters.
+ &lt;/p&gt;
+
+ &lt;ul&gt;
+ &lt;li&gt;
+ Property &lt;code&gt;starting&lt;/code&gt; - Require a blank line after the type body opening
+ brace.
+ Type: &lt;code&gt;boolean&lt;/code&gt;.
+ Default value: &lt;code&gt;true&lt;/code&gt;.
+ &lt;/li&gt;
+ &lt;li&gt;
+ Property &lt;code&gt;ending&lt;/code&gt; - Require a blank line before the type body closing
+ brace.
+ Type: &lt;code&gt;boolean&lt;/code&gt;.
+ Default value: &lt;code&gt;true&lt;/code&gt;.
+ &lt;/li&gt;
+ &lt;li&gt;
+ Property &lt;code&gt;allowEmpty&lt;/code&gt; - Allow empty type bodies (no members) to omit
+ the blank lines.
+ Type: &lt;code&gt;boolean&lt;/code&gt;.
+ Default value: &lt;code&gt;true&lt;/code&gt;.
+ &lt;/li&gt;
+ &lt;li&gt;
+ Property &lt;code&gt;skipInner&lt;/code&gt; - Control whether to skip checking of inner types.
+ Type: &lt;code&gt;boolean&lt;/code&gt;.
+ Default value: &lt;code&gt;true&lt;/code&gt;.
+ &lt;/li&gt;
+ &lt;li&gt;
+ Property &lt;code&gt;skipLocal&lt;/code&gt; - Control whether to skip checking of local types.
+ Type: &lt;code&gt;boolean&lt;/code&gt;.
+ Default value: &lt;code&gt;true&lt;/code&gt;.
+ &lt;/li&gt;
+ &lt;li&gt;
+ Property &lt;code&gt;tokens&lt;/code&gt; - tokens to check
+ Type: &lt;code&gt;java.lang.String[]&lt;/code&gt;.
+ Validation type: &lt;code&gt;tokenSet&lt;/code&gt;.
+ Default value:
+ &lt;a href=
+ "https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF"&gt;
+ CLASS_DEF&lt;/a&gt;,
+ &lt;a href=
+ "https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF"&gt;
+ INTERFACE_DEF&lt;/a&gt;,
+ &lt;a href=
+ "https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF"&gt;
+ ENUM_DEF&lt;/a&gt;,
+ &lt;a href=
+ "https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF"&gt;
+ RECORD_DEF&lt;/a&gt;,
+ &lt;a href=
+ "https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF"&gt;
+ ANNOTATION_DEF&lt;/a&gt;.
+ &lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;
+ Parent is &lt;code&gt;com.puppycrawl.tools.checkstyle.TreeWalker&lt;/code&gt;
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Violation Message Keys:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ &lt;code&gt;type.body.padding.after.lcurly&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;code&gt;type.body.padding.before.rcurly&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;/ul&gt;</description>
+         <properties>
+            <property default-value="true" name="allowEmpty" type="boolean">
+               <description>Allow empty type bodies to omit blank line padding.</description>
+            </property>
+            <property default-value="true" name="ending" type="boolean">
+               <description>Require a blank line before the type body closing brace.</description>
+            </property>
+            <property default-value="true" name="skipInner" type="boolean">
+               <description>Control whether to skip checking of inner types.</description>
+            </property>
+            <property default-value="true" name="skipLocal" type="boolean">
+               <description>Control whether to skip checking of local types.</description>
+            </property>
+            <property default-value="true" name="starting" type="boolean">
+               <description>Require a blank line after the type body opening brace.</description>
+            </property>
+            <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,RECORD_DEF,ANNOTATION_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="type.body.padding.after.lcurly"/>
+            <message-key key="type.body.padding.before.rcurly"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
