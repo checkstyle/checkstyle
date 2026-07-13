@@ -80,4 +80,9 @@ public class IndentationTest extends AbstractOpenJdkModuleTestSupport {
         verifyWithWholeConfig(getPath("InputArrayInitIndentInvalid.java"));
     }
 
+    @Test
+    public void testStyleGuideDosAndDonts() throws Exception {
+        verifyWithWholeConfig(getPath("InputIdentationDoAndDonts.java"));
+    }
+
 }

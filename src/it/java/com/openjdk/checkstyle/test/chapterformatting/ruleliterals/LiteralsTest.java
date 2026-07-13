@@ -35,4 +35,9 @@ public class LiteralsTest extends AbstractOpenJdkModuleTestSupport {
         verifyWithWholeConfig(getPath("InputLiterals.java"));
     }
 
+    @Test
+    public void testLiteralsDoAndDonts() throws Exception {
+        verifyWithWholeConfig(getPath("InputLiteralsDoAndDonts.java"));
+    }
+
 }
