@@ -56,9 +56,6 @@ public class InnerTypeLastCheck extends AbstractCheck {
             TokenTypes.COMPACT_CTOR_DEF
     );
 
-    /** Meet a root class. */
-    private boolean rootClass;
-
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -78,18 +75,20 @@ public class InnerTypeLastCheck extends AbstractCheck {
         };
     }
 
-    @Override
-    public void beginTree(DetailAST rootAST) {
-        rootClass = true;
+    /**
+     * Checks whether the given type declaration is the real, ordinary outer type of a
+     * compilation unit.
+     *
+     * @param ast a CLASS_DEF, INTERFACE_DEF, or RECORD_DEF node
+     * @return true if ast is the outer type declaration of an ordinary compilation unit
+     */
+    private static boolean isTopLevelType(DetailAST ast) {
+        return ast.getParent().getType() == TokenTypes.COMPILATION_UNIT;
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        // First root class
-        if (rootClass) {
-            rootClass = false;
-        }
-        else {
+        if (!isTopLevelType(ast)) {
             DetailAST nextSibling = ast;
             while (nextSibling != null) {
                 if (!ScopeUtil.isInCodeBlock(ast)
@@ -98,13 +97,6 @@ public class InnerTypeLastCheck extends AbstractCheck {
                 }
                 nextSibling = nextSibling.getNextSibling();
             }
-        }
-    }
-
-    @Override
-    public void leaveToken(DetailAST ast) {
-        if (TokenUtil.isRootNode(ast.getParent())) {
-            rootClass = true;
         }
     }
 
