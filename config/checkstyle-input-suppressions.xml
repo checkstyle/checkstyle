@@ -464,11 +464,6 @@
             files="[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityRemoveIncorrectAnnotationToken.java"/>
 
 
-  <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]javadoc[\\/]javadocleadingasteriskalign[\\/]InputJavadocLeadingAsteriskAlignIncorrect.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
-            files="[\\/]checks[\\/]javadoc[\\/]javadocleadingasteriskalign[\\/]InputJavadocLeadingAsteriskAlignTabs.java"/>
-
 
   <suppress id="noViolationCommentsInJavadoc"
             files="[\\/]checks[\\/]javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocInlineReturn.java"/>
