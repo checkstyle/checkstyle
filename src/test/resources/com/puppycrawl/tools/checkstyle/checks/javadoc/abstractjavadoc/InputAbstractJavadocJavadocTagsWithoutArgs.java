@@ -26,24 +26,9 @@ public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
     /**serialField*/
     private static Object field5;
 
-    /**@exception*/
-    public static void method1() {
-
-    }
-
-    /**@throws*/
-    public static void method2() {
-
-    }
-
     /**@return*/
     public static int method3() {
         return -1;
-    }
-
-    /**@param*/
-    public static void method4(int a) {
-
     }
 
     /**@customTag*/

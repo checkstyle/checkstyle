@@ -74,9 +74,9 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 4,
                     "no viable alternative at input 'see'", "SEE_TAG"),
-            "65: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 13,
+            "50: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 13,
                     "no viable alternative at input '}'", "REFERENCE"),
-            "73: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 19,
+            "58: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 19,
                     "no viable alternative at input '}'", "REFERENCE"),
         };
         verifyWithInlineConfigParser(
