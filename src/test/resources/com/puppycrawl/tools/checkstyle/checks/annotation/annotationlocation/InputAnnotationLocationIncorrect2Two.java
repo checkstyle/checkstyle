@@ -24,3 +24,9 @@ public class InputAnnotationLocationIncorrect2Two {
         }
    }
 }
+
+@interface MyAnnotation_12 {
+    String value();
+}
+@interface MyAnn_22 {}
+@interface MyAnnotation_32 {}

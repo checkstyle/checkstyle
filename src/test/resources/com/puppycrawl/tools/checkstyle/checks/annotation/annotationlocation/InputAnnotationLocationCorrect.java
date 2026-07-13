@@ -111,6 +111,10 @@ class InputAnnotationLocationCorrect
 @MyAnnotation6
 class _Foo {}
 
+@interface MyAnnotation3 {}
+
+@interface MyAnnotation4 {}
+
 @interface MyAnnotation5 {}
 
 @interface MyAnnotation6 {}
