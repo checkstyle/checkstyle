@@ -36,4 +36,9 @@ public class RedundantParenForReturnTest extends AbstractOpenJdkModuleTestSuppor
         verifyWithWholeConfig(getPath("InputRedundantParenForReturn.java"));
     }
 
+    @Test
+    public void testForDoAndDonts() throws Exception {
+        verifyWithWholeConfig(getPath("InputRedundantParenDoAndDonts.java"));
+    }
+
 }

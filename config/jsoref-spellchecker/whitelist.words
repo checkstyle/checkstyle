@@ -573,6 +573,7 @@ iae
 IAOM
 ico
 icu
+Identation
 identifiernames
 Idref
 idx
@@ -1185,6 +1186,7 @@ Rsa
 RSPEC
 Rtl
 ru
+ruleannotations
 rulebraces
 ruleclassinterfaceandenumnames
 ruleclassstructure
@@ -1214,8 +1216,10 @@ rulevariabledeclarations
 rulevariables
 ruleverticalwhitespace
 rulewildcardimports
+rulewrappingclassdeclarations
 rulewrappingexpressions
 rulewrappinglines
+rulewrappingmethoddeclarations
 Ruslan
 rw
 rx
