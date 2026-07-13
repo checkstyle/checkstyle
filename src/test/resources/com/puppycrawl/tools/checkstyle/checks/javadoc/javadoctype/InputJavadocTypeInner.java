@@ -20,7 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
  **/
 class InputJavadocTypeInner
 {
-    // ok , two violations
+
     class InnerInner2
     {
         // ok , Ignore

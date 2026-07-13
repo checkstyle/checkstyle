@@ -115,7 +115,7 @@ public class InputRightCurlyTestAloneOrSingleline {
             put("first", "second");
             put("polygene", "lubricants");
             put("alpha", "betical");
-        }}; //NO violation
+        }};
         // violation below ''}' at column 75 should be alone on a line'
         Thread t = new Thread() {@Override public void run() {super.run();}};
         // 2 violations below

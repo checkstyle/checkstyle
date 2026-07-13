@@ -31,7 +31,8 @@ public class InputHorizontalWhiteSpaceDosAndDonts {
         long   sixtyfourFlags;
         // violation above 'Use a single space to separate non-whitespace characters.'
 
-        if ( isFlagSet( "GO" ) ) { // 4 violations
+        if ( isFlagSet( "GO" ) ) {
+            // 4 violations above:
             // ''(' is followed by whitespace.'
             // ''(' is followed by whitespace.'
             // '')' is preceded with whitespace.'

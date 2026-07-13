@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructo
  **/
 public abstract class InputHideUtilityClassConstructorDesignForExtension
 {
-    // some methods that are OK
+    // some methods that are ok
 
     public interface InterfaceOK
     {
@@ -67,7 +67,7 @@ public abstract class InputHideUtilityClassConstructorDesignForExtension
     {
         public int compare(Object o1, Object o2)
         {
-            // some complex stuff that would normally trigger a violation report
+            // some complex stuff
             if (o1.hashCode() > o2.hashCode()) {
                 return -1;
             }

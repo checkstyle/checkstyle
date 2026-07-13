@@ -41,13 +41,13 @@ public abstract class InputEmptyLineSeparatorMultipleEmptyLinesInside
     private static void foo() { // violation 'There is more than 1 empty line after this line.'
 
 
-        // 1 empty line above should cause a violation
+        // 1 empty line above
 
         // violation 'There is more than 1 empty line after this line.'
 
 
 
-        // 2 empty lines above should cause violations
+        // 2 empty lines above
     }
 }
 class // violation ''CLASS_DEF' should be separated from previous line.'

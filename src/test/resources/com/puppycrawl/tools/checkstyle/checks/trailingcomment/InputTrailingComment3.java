@@ -57,7 +57,7 @@ public class InputTrailingComment3 {
         // violation below 'Don't use trailing comments.'
         /* bla on this block */
         // violation below 'Don't use trailing comments.'
-        // violation here for format NOT FOUND
+        // ok, format NOT FOUND
     }
 
     private static class TimerEntry {

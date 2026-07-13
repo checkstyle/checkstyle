@@ -54,7 +54,7 @@ public class InputAnnotationsDoAndDonts {
         }
     }
 
-    // No violation until https://github.com/checkstyle/checkstyle/issues/20209
+    // ok until https://github.com/checkstyle/checkstyle/issues/20209
     class Donts extends Temp {
 
         @Override @Deprecated public void foo() {

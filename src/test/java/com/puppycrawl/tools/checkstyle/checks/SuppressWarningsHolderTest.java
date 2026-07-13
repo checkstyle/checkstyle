@@ -528,8 +528,8 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
             "23: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 80, 83),
             "33: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 96),
             "33: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 80, 96),
-            "63: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 76),
-            "70: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 87),
+            "62: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 76),
+            "69: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 87),
         };
 
         verifyWithInlineConfigParser(

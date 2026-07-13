@@ -96,10 +96,10 @@ public class InputEmptyLineSeparatorWithComments2 {
     public int testNoViolationWithoutComment = 2;
 
 
-    // Should have violation
+
     public int testViolationWithSingleLineComment = 3;
 
-    // Should not have violations
+
     public int testNoViolationWithSingleLineComment = 4;
 
 

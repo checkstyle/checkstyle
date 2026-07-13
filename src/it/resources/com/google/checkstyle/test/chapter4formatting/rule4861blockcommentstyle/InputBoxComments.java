@@ -27,21 +27,21 @@ public class InputBoxComments {
   // =========================================
   // violation above 'Comment uses box-like repetitive character pattern.'
 
-  // box with only 9 chars triggers violation
+  // box with only 9 chars
   void myFunc2() {
     // violation below 'Comment uses box-like repetitive character pattern.'
     // =========
     int y = 2;
   }
 
-  // box with only 9 chars triggers violation
+  // box with only 9 chars
   // violation below 'Comment uses box-like repetitive character pattern.'
   // *********
   void myFunc3() {
     int z = 3;
   }
 
-  // box with only 9 chars triggers violation
+  // box with only 9 chars
   void myFunc4() {
     // violation below 'Comment uses box-like repetitive character pattern.'
     // #########

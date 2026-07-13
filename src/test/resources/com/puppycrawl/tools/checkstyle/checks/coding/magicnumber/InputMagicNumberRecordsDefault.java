@@ -23,11 +23,11 @@ public class InputMagicNumberRecordsDefault {
         private static int myInt = 7; // violation ''7' is a magic number'
 
         public MyRecord{
-            int i = myInt + 1; // no violation, 1 is defined as non-magic
+            int i = myInt + 1; // ok, 1 is defined as non-magic
             int j = myInt + 8; // violation ''8' is a magic number'
         }
         void foo() {
-            int i = myInt + 1; // no violation, 1 is defined as non-magic
+            int i = myInt + 1; // ok, 1 is defined as non-magic
             int j = myInt + 8; // violation ''8' is a magic number'
         }
 
@@ -37,7 +37,7 @@ public class InputMagicNumberRecordsDefault {
     }
 
     @interface anno {
-        int value() default 10; // no violation
+        int value() default 10;
     }
 
 }
