@@ -80,7 +80,7 @@ public class InnerTypeLastCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        rootClass = true;
+        rootClass = rootAST.getType() != TokenTypes.COMPACT_COMPILATION_UNIT;
     }
 
     @Override
@@ -103,7 +103,7 @@ public class InnerTypeLastCheck extends AbstractCheck {
 
     @Override
     public void leaveToken(DetailAST ast) {
-        if (TokenUtil.isRootNode(ast.getParent())) {
+        if (ast.getParent().getType() == TokenTypes.COMPILATION_UNIT) {
             rootClass = true;
         }
     }
