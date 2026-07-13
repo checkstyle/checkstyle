@@ -45,6 +45,7 @@ class InputJavadocTagContinuationIndentation implements Serializable
      */
     private String tThirdName;
 
+    // violation 8 lines below 'Line continuation .* expected level should be 4'
     /**
      * Some text.
      * @param aString Some javadoc.
@@ -52,7 +53,7 @@ class InputJavadocTagContinuationIndentation implements Serializable
      * @return Some text.
      * @serialData Some javadoc.
      * @see Some text.
-     *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
+     *    Some javadoc.
      * @throws Exception Some text.
      */
     String method(String aString) throws Exception
