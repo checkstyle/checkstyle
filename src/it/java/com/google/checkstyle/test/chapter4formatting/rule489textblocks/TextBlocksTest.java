@@ -49,4 +49,14 @@ public class TextBlocksTest extends AbstractGoogleModuleTestSupport {
     public void testFormattedTextBlocksIndentation() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedTextBlocksIndentation.java"));
     }
+
+    @Test
+    public void testTextBlocksInAnnotation() throws Exception {
+        verifyWithWholeConfig(getPath("InputTextBlocksInAnnotation.java"));
+    }
+
+    @Test
+    public void testFormattedTextBlocksInAnnotation() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedTextBlocksInAnnotation.java"));
+    }
 }
