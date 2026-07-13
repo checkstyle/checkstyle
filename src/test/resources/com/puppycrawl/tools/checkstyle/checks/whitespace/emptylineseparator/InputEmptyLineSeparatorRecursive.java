@@ -23,7 +23,7 @@ public class InputEmptyLineSeparatorRecursive {
             if (a != b) {
                 throw new IOException();
             }
-            // empty lines below should cause a violation
+            // empty lines below
             // violation 'There is more than 1 empty line after this line.'
 
 

@@ -16,12 +16,12 @@ public interface InputRedundantModifierFinalInInterface {
 
     default int defaultMethod(final int x) {
             if (k == 5) {
-                    final int t = 24;  //No violation here!
+                    final int t = 24;
                     for (; ;) {
-                            final String s = "some";  //No violation here!
+                            final String s = "some";
                     }
             }
-        final int square = x * x;  //No violation here!
+        final int square = x * x;
         return square;
     }
 }

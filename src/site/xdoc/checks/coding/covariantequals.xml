@@ -95,7 +95,7 @@ public class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
-  public boolean equals(Example2 same) {  // no violation
+  public boolean equals(Example2 same) {
     return false;
   }
 
@@ -104,7 +104,7 @@ public class Example2 {
   }
 
   record Test(String str) {
-    public boolean equals(Test same) {  // no violation
+    public boolean equals(Test same) {
       return false;
     }
 

@@ -9,13 +9,15 @@ public class InputClassStructureInvalidOrder {
     InputClassStructureInvalidOrder() {
     }
 
-    public int c; // violation, Field declaration is in wrong order
-    static Long s; // violation, Field declaration is in wrong order
+    public int c;  // violation, 'Field declaration is in wrong order'
+    static Long s; // violation, 'Field declaration is in wrong order'
 
     void foo() {}
 
-    InputClassStructureInvalidOrder(int z) { // 2 violations
-    } // 'Constructor definition in wrong order.'
+    InputClassStructureInvalidOrder(int z) {
+      // 2 violations above:
+    } // 'Constructors should be grouped together.'
+      // 'Constructor definition in wrong order.'
 
     void foo1() {}
 

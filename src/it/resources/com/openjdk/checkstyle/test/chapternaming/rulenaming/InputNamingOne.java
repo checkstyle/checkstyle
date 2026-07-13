@@ -4,7 +4,7 @@ public class InputNamingOne {
     private String field;
     private String testField;
 
-    InputNamingOne(String testField) { // no violation constructor param is allowed
+    InputNamingOne(String testField) { // ok, constructor param is allowed
     }
 
     void method(String param) {
@@ -20,6 +20,6 @@ public class InputNamingOne {
     }
 
     abstract class Inner {
-        abstract int method(String field); // no violation abstract method parameter are allowed
+        abstract int method(String field); // ok, abstract method parameter are allowed
     }
 }

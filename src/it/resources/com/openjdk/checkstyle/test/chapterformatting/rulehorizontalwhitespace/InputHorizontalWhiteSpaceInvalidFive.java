@@ -12,12 +12,14 @@ public class InputHorizontalWhiteSpaceInvalidFive {
     void  fun2() {} // violation 'Use a single space'
 
     public void temp() {
-        if  (1 > 2)  { // 2 violations
+        if  (1 > 2)  {
+            // 2 violations above:
             // 'Use a single space'
             // 'Use a single space'
         }
 
-        for  (int i = 0; i < 10;  i++)  { // 3 violations
+        for  (int i = 0; i < 10;  i++)  {
+            // 3 violations above:
             // 'Use a single space'
             // 'Use a single space'
             // 'Use a single space'
@@ -25,7 +27,8 @@ public class InputHorizontalWhiteSpaceInvalidFive {
 
         int a = 0;
 
-        switch  (a)  { // 2 violations
+        switch  (a)  {
+            // 2 violations above:
             // 'Use a single space'
             // 'Use a single space'
             case 1:  { // violation 'Use a single space'

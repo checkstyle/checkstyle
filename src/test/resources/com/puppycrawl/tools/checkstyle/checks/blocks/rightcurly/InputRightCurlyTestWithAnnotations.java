@@ -156,7 +156,7 @@ class InputRightCurlyTestWithAnnotations
             put("first", "second");
             put("polygene", "lubricants");
             put("alpha", "betical");
-        }}; //NO violation
+        }};
         // violation below ''}' at col.* 75 should be alone on a line'
         Thread t = new Thread() {@Override public void run() {super.run();}};
         new Object() { public int hashCode() { return 1; }  { int a = 5; }}; // 2 violations

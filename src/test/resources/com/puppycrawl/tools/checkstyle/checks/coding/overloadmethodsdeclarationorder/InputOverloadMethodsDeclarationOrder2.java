@@ -48,7 +48,7 @@ class InputOverloadMethodsDeclarationOrder2 {
 
         }
 
-        // violation : because overloads never split
+        // because overloads never split
         // violation below 'All overloaded methods should be placed next to each other.'
         public void overloadMethod(String s, Boolean b, int i)
         {
