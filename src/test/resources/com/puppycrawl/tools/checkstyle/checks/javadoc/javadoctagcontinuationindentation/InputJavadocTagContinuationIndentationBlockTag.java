@@ -12,38 +12,35 @@ import java.io.Serializable;
 
 public class InputJavadocTagContinuationIndentationBlockTag {
 
+    // violation 7 lines below 'Line continuation .* expected level should be 4'
     /**
      * Example from issue 5711.
      * Returns the value represented by the specified string of the specified
      * type. Returns 0 for types other than float, double, int, and long.
      * @param text the string to be parsed.
      * @param type the token type of the text. Should be a constant of
-     * {@link TokenTypes}. // violation, 'Line continuation .* expected level should be 4'
+     * {@link TokenTypes}.
      * @return the double value represented by the string argument.
      */
-    public static double parseDouble(String text, int type) {
-        return 0;
-    }
+    public static double parseDouble(String text, int type) { return 0; }
 
+    // violation 5 lines below 'Line continuation .* expected level should be 4'
     /**
      * Javadoc.
      *
      * @param x this line is normal
      * {@code this} line is wrongly indented
-     */ // violation above 'Line continuation .* expected level should be 4'
-    public void newlineThenBlockTag(int x) {
-        // do stuff
-    }
+     */
+    public void newlineThenBlockTag(int x) { }
 
+    // violation 5 lines below 'Line continuation .* expected level should be 4'
     /**
      * Not enough indentation.
      *
      * @param x this line is normal
      *   {@code this} line is wrongly indented
-     */ // violation above 'Line continuation .* expected level should be 4'
-    public void partialIndent(int x) {
-        // do stuff
-    }
+     */
+    public void partialIndent(int x) { }
 
     /**
      * There can be a newline but nothing follows it.
@@ -51,21 +48,18 @@ public class InputJavadocTagContinuationIndentationBlockTag {
      * @param x input
      * @return itself
      * */
-    public int identity(int x) {
-        return x;
-    }
+    public int identity(int x) { return x; }
 
+    // violation 5 lines below 'Line continuation .* expected level should be 4'
     /**
      * Javadoc.
      *
      * @param args
      * {@code this} line is not correctly indented
-     *     {@code this} // violation above 'Line continuation .* expected level should be 4'
+     *     {@code this}
      * <pre>pre tags are skipped</pre>
      */
-    public void multipleLines1(String args) {
-        // do stuff
-    }
+    public void multipleLines1(String args) { }
 
     /**
      * Javadoc.
@@ -75,41 +69,51 @@ public class InputJavadocTagContinuationIndentationBlockTag {
      * {@code this} line is not correctly indented
      * <pre>pre tags are skipped</pre>
      */
-    public boolean isMultipleLines2() {
-        return false;
-    }
-    // violation 7 lines above 'Line continuation .* expected level should be 4'
-    // violation 7 lines above 'Line continuation .* expected level should be 4'
-    // violation 6 lines below 'Line continuation .* expected level should be 4'
+    public boolean isMultipleLines2() { return false; }
+    // violation 5 lines above 'Line continuation .* expected level should be 4'
+    // violation 5 lines above 'Line continuation .* expected level should be 4'
+    // violation 20 lines below 'Line continuation .* expected level should be 4'
 
+    // violation 19 lines below 'Line continuation .* expected level should be 4'
+    // violation 19 lines below 'Line continuation .* expected level should be 4'
+    // violation 19 lines below 'Line continuation .* expected level should be 4'
+    // violation 19 lines below 'Line continuation .* expected level should be 4'
+    // violation 19 lines below 'Line continuation .* expected level should be 4'
+    // violation 19 lines below 'Line continuation .* expected level should be 4'
+    // violation 19 lines below 'Line continuation .* expected level should be 4'
+    // violation 19 lines below 'Line continuation .* expected level should be 4'
+    // violation 19 lines below 'Line continuation .* expected level should be 4'
+    // violation 19 lines below 'Line continuation .* expected level should be 4'
+    // violation 19 lines below 'Line continuation .* expected level should be 4'
+    // violation 19 lines below 'Line continuation .* expected level should be 4'
+    // violation 19 lines below 'Line continuation .* expected level should be 4'
+    // violation 23 lines below 'Line continuation .* expected level should be 4'
+    // violation 23 lines below 'Line continuation .* expected level should be 4'
     /**
      * Javadoc from regression test case (apache-ant).
-     * // violation 3 lines below 'Line continuation .* expected level should be 4'
      * @param c the command line which will be configured
      * if the commandline is initially null, the function is a noop
      * otherwise the function append to the commandline arguments concerning
-     * <ul> // violation, 'Line continuation .* expected level should be 4'
-     * <li> // violation, 'Line continuation .* expected level should be 4'
-     * cvs package // violation, 'Line continuation .* expected level should be 4'
-     * </li> // violation, 'Line continuation .* expected level should be 4'
-     * <li> // violation, 'Line continuation .* expected level should be 4'
-     * compression // violation, 'Line continuation .* expected level should be 4'
-     * </li> // violation, 'Line continuation .* expected level should be 4'
-     * <li> // violation, 'Line continuation .* expected level should be 4'
-     * quiet or reallyquiet // violation, 'Line continuation .* expected level should be 4'
-     * </li> // violation, 'Line continuation .* expected level should be 4'
-     * <li>cvsroot</li> // violation, 'Line continuation .* expected level should be 4'
-     * <li>noexec</li> // violation, 'Line continuation .* expected level should be 4'
+     * <ul>
+     * <li>
+     * cvs package
+     * </li>
+     * <li>
+     * compression
+     * </li>
+     * <li>
+     * quiet or reallyquiet
+     * </li>
+     * <li>cvsroot</li>
+     * <li>noexec</li>
      *     <li>
      *     another item
      *     </li>
      *     <li> yet another item </li>
-     * </ul> // violation, 'Line continuation .* expected level should be 4'
+     * </ul>
      * some text <i>word</i> more text.
      *     some text <i>word</i> more text.
-     */ // violation 2 lines above 'Line continuation .* expected level should be 4'
-    public String regressionNestedHtml(CharSequence c) {
-        return "";
-    }
+     */
+    public String regressionNestedHtml(CharSequence c) { return ""; }
 
 }

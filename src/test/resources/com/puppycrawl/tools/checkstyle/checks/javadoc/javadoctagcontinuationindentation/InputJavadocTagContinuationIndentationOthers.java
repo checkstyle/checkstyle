@@ -8,6 +8,7 @@ offset = (default)4
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationindentation;
 
+// violation 10 lines below 'Line continuation .* expected level should be 4'
 /**
  * Some javadoc.
  *
@@ -17,11 +18,13 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationind
  *     Some javadoc.
  *     Some javadoc.
  * @see Some javadoc.
- *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
+ *    Some javadoc.
  * @author max
  */
 enum InputJavadocTagContinuationIndentationOthers {}
 
+// violation 9 lines below 'Line continuation .* expected level should be 4'
+// violation 10 lines below 'Line continuation .* expected level should be 4'
 /**
  * Some javadoc.
  *
@@ -30,8 +33,8 @@ enum InputJavadocTagContinuationIndentationOthers {}
  *     Some javadoc.
  * @serialData Some javadoc.
  *   Line below is empty on purpose.
- * @see Some Text. // violation above 'Line continuation .* expected level should be 4'
- * L. // violation, 'Line continuation .* expected level should be 4'
+ * @see Some Text.
+ * L.
  *
  * @author max
  * @customTag {@link com.puppycrawl.tools.checkstyle.AllChecksPresentOnAvailableChecksPageTest
@@ -46,11 +49,12 @@ interface FooIn1 {}
 interface FooIn2 {}
 
 class ShortNextLine {
+    // violation 5 lines below 'Line continuation .* expected level should be 4'
     /**
      * Test.
      *
      * @return Test
-     * tt <code>null</code>. // violation, 'Line continuation .* expected level should be 4'
+     * tt <code>null</code>.
      */
     public void example() {
     }
