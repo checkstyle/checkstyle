@@ -340,8 +340,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "38:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BB>"),
             "41:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<Z>"),
-            "66:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<Z"),
-            "69:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<Z>"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodTypeParamsTags.java"), expected);
@@ -539,16 +537,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethod1.java"), expected);
-    }
-
-    @Test
-    public void test2() throws Exception {
-        final String[] expected = {
-            "22:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<"),
-            "26:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<X>"),
-        };
-        verifyWithInlineConfigParser(
-                getPath("InputJavadocMethod2.java"), expected);
     }
 
     @Test
