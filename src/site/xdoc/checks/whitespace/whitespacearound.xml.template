@@ -44,6 +44,7 @@
         </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check for whitespace only around curly braces:
+          Note: '{' can be parsed either to LCURLY or SLIST.
         </p>
         <macro name="example">
           <param name="path"
