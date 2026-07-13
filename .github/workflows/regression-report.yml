@@ -20,7 +20,7 @@ env:
   DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/test-configs/main/extractor/src/main/resources/list-of-projects.yml"
   BASE_TEST_CONFIGS_URL: "https://raw.githubusercontent.com/checkstyle/test-configs/main"
   EXTRACTOR_VERSION: 2024-10-08
-  DIFF_TOOL_VERSION: "1.0-2025-01-30"
+  DIFF_TOOL_VERSION: "1.0-2026-07-13"
   PATCH_DIFF_TOOL_VERSION: "0.1-SNAPSHOT"
   CACHE_KEY: "regression-report-${{ github.sha }}-${{ github.event.comment.id }}"
   GENERATED_CONFIGS_PATH: generated_configs
