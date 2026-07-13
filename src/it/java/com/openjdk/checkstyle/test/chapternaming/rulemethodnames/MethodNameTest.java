@@ -40,4 +40,9 @@ public class MethodNameTest extends AbstractOpenJdkModuleTestSupport {
         verifyWithWholeConfig(getPath("InputMethodNameValid.java"));
     }
 
+    @Test
+    public void testMethodNameDoAndDonts() throws Exception {
+        verifyWithWholeConfig(getPath("InputMethodNamesDoAndDonts.java"));
+    }
+
 }
