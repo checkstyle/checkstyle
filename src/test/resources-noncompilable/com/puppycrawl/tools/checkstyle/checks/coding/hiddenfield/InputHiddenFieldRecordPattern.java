@@ -9,7 +9,7 @@ tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, REC
 
 */
 
-// Java21
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
 public class InputHiddenFieldRecordPattern {
