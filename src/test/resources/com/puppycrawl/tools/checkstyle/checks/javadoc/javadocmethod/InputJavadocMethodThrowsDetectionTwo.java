@@ -86,4 +86,10 @@ public class InputJavadocMethodThrowsDetectionTwo {
             }
         }
     }
+
+    /**
+     * No identifier for this throws.
+     * @throws
+     */
+    public void Label() {}
 }

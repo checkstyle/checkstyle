@@ -1,7 +1,7 @@
 /*
 JavadocMethod
 allowedAnnotations = (default)Override
-validateThrows = true
+validateThrows = (default)false
 accessModifiers = (default)public, protected, package, private
 allowMissingParamTags = (default)false
 allowMissingReturnTag = (default)false
@@ -13,11 +13,17 @@ tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-public class InputJavadocMethodThrowsNoIdentifier {
+public class InputJavadocMethod2 {
 
+    // violation 4 lines below 'Unused @param tag for '<''
     /**
-     * No identifier for this throws.
-     * @throws
+     * Some explanation.
+     *
+     * @param < X >  A type param
+     * @param <Y1> Another type param
+     * @return a string
      */
-    public void Label() {}
+    public <X, Y1> String doSomething() { // violation 'Expected @param tag for '<X>''
+        return null;
+    }
 }
