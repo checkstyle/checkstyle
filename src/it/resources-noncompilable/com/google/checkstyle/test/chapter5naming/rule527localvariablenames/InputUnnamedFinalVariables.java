@@ -1,4 +1,4 @@
-// non-compiled with javac: Compilable with Java22
+// non-compiled with javac: Compilable with Java25
 
 package com.google.checkstyle.test.chapter5naming.rule527localvariablenames;
 
