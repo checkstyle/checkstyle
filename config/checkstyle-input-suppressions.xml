@@ -745,8 +745,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberWaiverParentToken3\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]superfinalize[\\/]InputSuperFinalizeVariations\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]design[\\/]designforextension[\\/]InputDesignForExtensionIgnoredAnnotations\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]design[\\/]designforextension[\\/]InputDesignForExtensionOverridableMethods\.java"/>
