@@ -6,7 +6,7 @@
   </module>
 </module>
 */
-// Java21
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedtryresourceshouldbeunnamed;
 // xdoc section -- start
 public class Example1 {

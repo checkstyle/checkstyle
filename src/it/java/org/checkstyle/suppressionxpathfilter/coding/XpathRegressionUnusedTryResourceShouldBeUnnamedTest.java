@@ -49,7 +49,7 @@ public class XpathRegressionUnusedTryResourceShouldBeUnnamedTest
     @Test
     public void testSimple() throws Exception {
         final File fileToProcess =
-                new File(getPath(
+                new File(getNonCompilablePath(
                         "InputXpathUnusedTryResourceShouldBeUnnamedSimple.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -75,7 +75,7 @@ public class XpathRegressionUnusedTryResourceShouldBeUnnamedTest
     @Test
     public void testNested() throws Exception {
         final File fileToProcess =
-                new File(getPath(
+                new File(getNonCompilablePath(
                         "InputXpathUnusedTryResourceShouldBeUnnamedNested.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -129,7 +129,7 @@ public class XpathRegressionUnusedTryResourceShouldBeUnnamedTest
     @Test
     public void testVar() throws Exception {
         final File fileToProcess =
-                new File(getPath(
+                new File(getNonCompilablePath(
                         "InputXpathUnusedTryResourceShouldBeUnnamedVar.java"));
 
         final DefaultConfiguration moduleConfig =
