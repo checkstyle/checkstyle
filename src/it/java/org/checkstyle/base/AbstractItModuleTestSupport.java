@@ -33,6 +33,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -413,8 +414,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         stream.reset();
         final List<File> theFiles = new ArrayList<>();
         Collections.addAll(theFiles, processedFiles);
-        final List<Integer> theWarnings = new ArrayList<>();
-        Collections.addAll(theWarnings, warnsExpected);
+        final List<Integer> expectedWarnings = Arrays.asList(warnsExpected);
+        final List<Integer> actualWarnings = new ArrayList<>();
         final int errs = checker.process(theFiles);
 
         // process each of the lines
@@ -435,21 +436,19 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
                 parseInt = parseInt.substring(parseInt.indexOf(':') + 1);
                 parseInt = parseInt.substring(0, parseInt.indexOf(':'));
                 final Integer lineNumber = Integer.parseInt(parseInt);
-                assertWithMessage(
-                        "input file is expected to have a warning comment on line number %s",
-                        lineNumber)
-                    .that(previousLineNumber.equals(lineNumber)
-                            || theWarnings.remove(lineNumber)) // remove by element
-                    .isTrue();
+                if (!previousLineNumber.equals(lineNumber)) {
+                    actualWarnings.add(lineNumber);
+                }
                 previousLineNumber = lineNumber;
             }
 
             assertWithMessage("unexpected output: %s", lnr.readLine())
                 .that(errs)
                 .isEqualTo(expected.length);
-            assertWithMessage("unexpected warnings %s", theWarnings)
-                .that(theWarnings)
-                .isEmpty();
+            assertWithMessage("warning line numbers should match expected")
+                .that(actualWarnings)
+                .containsExactlyElementsIn(expectedWarnings)
+                .inOrder();
         }
 
         checker.destroy();
