@@ -31,10 +31,16 @@ public class InputWhitespaceAroundDoubleBraceInitialization {
         new Properties() {{
             setProperty("", "");}}; // violation  ''}' is not preceded with whitespace'
         new Properties() {{setProperty("", ""); // violation ''{' is not followed by whitespace'
-        }}; // 2 violations below
+        }};
+        // 2 violations 3 lines below:
+        // ''{' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
         new Properties() {{setProperty("double curly braces", "are not a style error");}};
         new Properties() {{
             setProperty("double curly braces", "are not a style error");
-        }private int i;}; // 2 violations
+        }private int i;};
+        // 2 violations above:
+        // ''}' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
     }
 }

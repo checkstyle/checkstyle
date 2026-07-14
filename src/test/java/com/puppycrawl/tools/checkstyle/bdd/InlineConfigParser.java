@@ -266,11 +266,6 @@ public final class InlineConfigParser {
     private static final Set<String> SUPPRESSED_FILES = Set.of(
             "checks/avoidescapedunicodecharacters/"
                     + "InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java",
-            "sariflogger/InputSarifLoggerSingleException.java",
-            "sariflogger/InputSarifLoggerLineOnly.java",
-            "sariflogger/InputSarifLoggerMultipleMessages.java",
-            "checks/arraytypestyle/InputArrayTypeStyleOff.java",
-            "checks/arraytypestyle/InputArrayTypeStyle.java",
             "checks/descendanttoken/InputDescendantTokenLastTokenType.java",
             "checks/descendanttoken/InputDescendantTokenLastTokenType2.java",
             "checks/descendanttoken/InputDescendantTokenReturnFromFinally3.java",
@@ -320,8 +315,6 @@ public final class InlineConfigParser {
             "whitespace/typecastparenpad/InputTypecastParenPadWhitespaceTestSpace.java",
             "whitespace/typecastparenpad/Example1.java",
             "whitespace/typecastparenpad/Example2.java",
-            "whitespace/whitespacearound/"
-                    + "InputWhitespaceAroundDoubleBraceInitialization.java",
             "whitespace/whitespacearound/"
                     + "InputWhitespaceAroundAllowEmptyLambdaExpressions2.java",
             "whitespace/whitespacearound/"

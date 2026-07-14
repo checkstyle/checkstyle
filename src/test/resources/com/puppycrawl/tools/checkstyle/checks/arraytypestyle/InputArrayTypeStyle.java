@@ -47,7 +47,7 @@ public class InputArrayTypeStyle
         }
 
         public Test getOldTests()[][]
-        // 2 violations above
+        // 2 violations above:
         // 'Array brackets at illegal position'
         // 'Array brackets at illegal position'
         {
@@ -56,7 +56,7 @@ public class InputArrayTypeStyle
 
         public Test[]
             getMoreTests()[][]
-        // 2 violations above
+        // 2 violations above:
         // 'Array brackets at illegal position'
         // 'Array brackets at illegal position'
         {
