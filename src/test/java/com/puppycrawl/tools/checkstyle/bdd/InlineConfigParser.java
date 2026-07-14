@@ -266,15 +266,6 @@ public final class InlineConfigParser {
     private static final Set<String> SUPPRESSED_FILES = Set.of(
             "checks/avoidescapedunicodecharacters/"
                     + "InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java",
-            "annotation/annotationlocation/InputAnnotationLocationParameterized.java",
-            "annotation/annotationlocation/InputAnnotationLocationSingleParameterless.java",
-            "annotation/annotationlocation/InputAnnotationLocationIncorrect3One.java",
-            "annotation/annotationlocation/InputAnnotationLocationIncorrectOne.java",
-            "annotation/annotationlocation/"
-                    + "InputAnnotationLocationCustomAnnotationsDeclared.java",
-            "annotation/annotationusestyle/InputAnnotationUseStyleNoTrailingComma.java",
-            "annotation/annotationusestyle/InputAnnotationUseStyleWithTrailingCommaNever.java",
-            "annotation/annotationusestyle/InputAnnotationUseStyleWithParens.java",
             "annotation/suppresswarnings/InputSuppressWarningsCompact2.java",
             "annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant2.java",
             "annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant1.java",
@@ -300,8 +291,6 @@ public final class InlineConfigParser {
             "annotation/suppresswarnings/InputSuppressWarningsSingle6.java",
             "annotation/suppresswarnings/InputSuppressWarningsSingle7.java",
             "annotation/suppresswarnings/InputSuppressWarningsRecords.java",
-            "whitespace/parenpad/Example1.java",
-            "whitespace/singlespaceseparator/Example2.java",
             "whitespace/typecastparenpad/InputTypecastParenPadWhitespace.java",
             "whitespace/typecastparenpad/InputTypecastParenPadWhitespaceTestSpace.java",
             "whitespace/typecastparenpad/Example1.java",
