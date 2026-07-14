@@ -36,7 +36,7 @@ public class InputDesignForExtensionIgnoredAnnotations {
         return super.toString();
     }
 
-    // violation below 'Class 'InputDesignForExtensionIgnoredAnnotations'
+    // violation below ''foo1' does not have javadoc that explains how to do that safely'
     public int foo1() {return  1;}
 
     /**
@@ -147,13 +147,13 @@ public class InputDesignForExtensionIgnoredAnnotations {
     @InputDesignForExtensionsLocalAnnotations.ClassRule
     public void foo20() { return; }
 
-    // violation below 'Class 'InputDesignForExtensionIgnoredAnnotations'
+    // violation below ''foo21' does not have javadoc that explains how to do that safely'
     @InputDesignForExtensionsLocalAnnotations.ClassRule
     public void foo21() { return; }
 
     private int age;
 
-    // violation below 'Class 'InputDesignForExtensionIgnoredAnnotations'
+    // violation below ''setAge' does not have javadoc that explains how to do that safely'
     @Inject
     public void setAge(int age) {
         this.age = age;
@@ -169,7 +169,7 @@ public class InputDesignForExtensionIgnoredAnnotations {
         foo1();
     }
 
-    // violation below 'Class 'InputDesignForExtensionIgnoredAnnotations'
+    // violation below ''foo24' does not have javadoc that explains how to do that safely'
     public void foo24(@MyAnnotation int a) {
         foo1();
     }
@@ -177,7 +177,7 @@ public class InputDesignForExtensionIgnoredAnnotations {
     /**
      * @deprecated
      */
-    // violation below 'Class 'InputDesignForExtensionIgnoredAnnotations'
+    // violation below ''dontUse4' does not have javadoc that explains how to do that safely'
     <T> T dontUse4() {
         return null;
     }
