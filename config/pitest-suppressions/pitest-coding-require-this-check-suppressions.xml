@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>getPatternVariablesDeclaredBy</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Set::size</description>
+    <lineContent>final int patternCount = patternVariables.size() + recordPatterns.size();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>isPatternVariableInScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>for (DetailAST parent = ident.getParent(); parent != null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>isPatternVariableInScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>getPatternVariablesIntroducedWhenFalse(parent.getFirstChild()));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>isPatternVariableInScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>getPatternVariablesIntroducedWhenTrue(parent.getFirstChild()));</lineContent>
+  </mutation>
+</suppressedMutations>
