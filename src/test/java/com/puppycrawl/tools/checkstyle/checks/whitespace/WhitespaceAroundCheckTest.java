@@ -252,10 +252,10 @@ public class WhitespaceAroundCheckTest
         final String[] expected = {
             "32:33: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
             "33:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
-            "35:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
-            "35:88: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
-            "38:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "}"),
-            "38:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "38:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "38:88: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "41:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "}"),
+            "41:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundDoubleBraceInitialization.java"),
