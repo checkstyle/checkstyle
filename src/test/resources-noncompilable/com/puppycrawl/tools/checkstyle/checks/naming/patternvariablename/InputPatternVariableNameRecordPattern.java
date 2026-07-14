@@ -5,7 +5,7 @@ format = (default)^([a-z][a-zA-Z0-9]*|_)$
 
 */
 
-// Java21
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.naming.patternvariablename;
 
 public class InputPatternVariableNameRecordPattern {
