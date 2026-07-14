@@ -5,14 +5,14 @@ jdkVersion = (default)22
 
 */
 
-// No package statement for testing purposes.
-public class InputUnusedLocalVariableWithoutPackageStatement {
+// non-compiled with javac:  No package statement for testing purposes.
+public class InputUnusedLocalVariableNoPackageStatement {
     int a = 12;
 
     void method() {
         int a = 1; // violation, 'Unused local variable'
-        InputUnusedLocalVariableWithoutPackageStatement obj =
-                new InputUnusedLocalVariableWithoutPackageStatement() {
+        InputUnusedLocalVariableNoPackageStatement obj =
+                new InputUnusedLocalVariableNoPackageStatement() {
                     void method() {
                         a += 1;
                     }

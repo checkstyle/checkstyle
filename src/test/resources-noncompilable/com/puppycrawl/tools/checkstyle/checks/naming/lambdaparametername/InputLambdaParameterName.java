@@ -4,7 +4,7 @@ format = ^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$
 
 
 */
-
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.naming.lambdaparametername;
 
 import java.util.function.BiFunction;

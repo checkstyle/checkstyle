@@ -196,7 +196,7 @@ public class InputJava14InstanceofWithPatternMatching {
 
         do {
             L4: break L4;
-        } while (!(o1 instanceof java.util.logging.Logger log));
+        } while (!(o1 instanceof java.lang.Double log));
     }
 
     static class Pattern_Simple {
