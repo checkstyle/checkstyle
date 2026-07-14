@@ -116,6 +116,7 @@
             files="googlenonconstantfieldname[\\/]Example1.java"/>
 
   <!-- Example is longer than FileLength limit by design -->
+  <suppress checks="FileLength" files="typebodypadding[\\/]Example\d+.*"/>
   <suppress checks="FileLength"
             files="googlenonconstantfieldname[\\/]Example1.java"/>
 
