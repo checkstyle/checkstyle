@@ -15,17 +15,15 @@ import java.io.IOException;
 // xdoc section -- start
 class Example1 {
   int x;
-  public Example1(int n) {
-  }
+  public Example1(int n) {}
 
   public void fun() {
     try {
       throw new IOException();
-    }
-    catch( IOException e) { // violation 'is followed by whitespace'
-    }
+    } catch( IOException e) {} // violation 'is followed by whitespace'
     catch(Exception e ) {}  // violation 'is preceded with whitespace'
-    for ( int i = 0; i < x; i++ ) { // 2 violations
+    for ( int i = 0; i < x; i++ ) {
+      // 2 violations above:
       // ''(' is followed by whitespace'
       // '')' is preceded with whitespace'
     }
@@ -45,7 +43,8 @@ class Example1 {
       super(1 ); // violation '')' is preceded with whitespace'
     }
     public Example3(int k) {
-      super( k ); // 2 violations
+      super( k );
+      // 2 violations above:
       // ''(' is followed by whitespace'
       // '')' is preceded with whitespace'
       for ( int i = 0; i < k; i++) { // violation ''(' is followed by whitespace'

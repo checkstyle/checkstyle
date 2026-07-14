@@ -19,18 +19,16 @@ import java.io.IOException;
 // xdoc section -- start
 class Example2 {
   int x;
-  public Example2(int n) {
-  }
+  public Example2(int n) {}
 
   public void fun() {
     try {
       throw new IOException();
-    }
-    catch( IOException e) { // violation 'not preceded with whitespace'
-    }
-    catch(Exception e ) {}
+    } catch( IOException e) {} // violation 'not preceded with whitespace'
+    catch(Exception e ) {} // violation 'not followed by whitespace'
     for ( int i = 0; i < x; i++ ) {
-      // violation 2 lines above 'not followed by whitespace'
+
+
 
     }
   }
@@ -50,6 +48,7 @@ class Example2 {
     }
     public Example3(int k) {
       super( k );
+
 
       // violation below 'not preceded with whitespace'
       for ( int i = 0; i < k; i++) {

@@ -131,6 +131,8 @@
   <!-- Examples are not intended to be formatted -->
   <suppress id="noConsecutiveLines" files="[\\/]emptylineseparator.xml"/>
   <suppress id="noConsecutiveLines" files="[\\/]javadocparagraph.xml"/>
+  <suppress id="noConsecutiveLines" files="[\\/]parenpad.xml"/>
+  <suppress id="noConsecutiveLines" files="[\\/]singlespaceseparator.xml"/>
 
   <!-- until #19146 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocTypeCheck.java"/>
