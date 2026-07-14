@@ -249,13 +249,11 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/imports/importorder/Example8",
             "checks/imports/importorder/Example9",
             // until https://github.com/checkstyle/checkstyle/issues/20711
-            "checks/javadoc/javadocvariable/Example4",
             "checks/javadoc/missingjavadoctype/Example2",
             "checks/javadoc/missingjavadoctype/Example3",
             "checks/javadoc/missingjavadoctype/Example4",
             "checks/javadoc/missingjavadoctype/Example5",
-            "checks/javadoc/summaryjavadoc/Example3",
-            "checks/javadoc/writetag/Example4"
+            "checks/javadoc/summaryjavadoc/Example3"
         );
 
     /**

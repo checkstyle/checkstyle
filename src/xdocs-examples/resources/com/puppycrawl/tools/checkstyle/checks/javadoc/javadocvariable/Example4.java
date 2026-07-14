@@ -15,7 +15,7 @@ public class Example4 {
 
   /**
    * Some description here
-  */
+   */
   private int b;
   protected int c; // violation, 'Missing a Javadoc comment'
   public int d; // violation, 'Missing a Javadoc comment'
