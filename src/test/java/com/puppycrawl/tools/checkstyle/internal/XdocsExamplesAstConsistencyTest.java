@@ -252,8 +252,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/javadoc/missingjavadoctype/Example2",
             "checks/javadoc/missingjavadoctype/Example3",
             "checks/javadoc/missingjavadoctype/Example4",
-            "checks/javadoc/missingjavadoctype/Example5",
-            "checks/javadoc/summaryjavadoc/Example3"
+            "checks/javadoc/missingjavadoctype/Example5"
         );
 
     /**
