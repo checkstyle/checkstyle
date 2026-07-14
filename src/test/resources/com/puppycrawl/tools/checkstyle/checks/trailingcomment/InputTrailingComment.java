@@ -56,7 +56,7 @@ public class InputTrailingComment {
     }
 
     /**
-     * violation above this line.
+     * should be above this line.
      **/
     /* package */ void addError() {
     }

@@ -67,7 +67,7 @@ public class InputTrailingComment3 {
 
     // violation below 'Don't use trailing comments.'
     /**
-     * violation above this line.
+     * should be above this line.
      **/
     /* package */ void addError() {
     }

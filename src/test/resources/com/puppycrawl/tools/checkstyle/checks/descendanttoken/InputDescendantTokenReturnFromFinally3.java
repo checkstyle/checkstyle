@@ -34,8 +34,14 @@ public class InputDescendantTokenReturnFromFinally3 {
         }
     }
     public void thisNull() {
-        boolean result = (this == null) || (null == this); // 2 violations
-        boolean result2 = (this != null) && (null != this); // 2 violations
+        boolean result = (this == null) || (null == this);
+        // 2 violations above:
+        // 'this cannot be null.'
+        // 'this cannot be null.'
+        boolean result2 = (this != null) && (null != this);
+        // 2 violations above:
+        // 'this cannot be null.'
+        // 'this cannot be null.'
         boolean result3 = (this.getClass().getName()
             == String.valueOf(null == System.getProperty("abc")));
     }
