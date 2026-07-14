@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 
 import com.openjdk.checkstyle.test.base.AbstractOpenJdkModuleTestSupport;
 
-public class OneStatementPerLineTest extends AbstractOpenJdkModuleTestSupport {
+public class WrappingLinesTest extends AbstractOpenJdkModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
@@ -48,6 +48,21 @@ public class OneStatementPerLineTest extends AbstractOpenJdkModuleTestSupport {
     @Test
     public void testOneStatementPerLineForLoop() throws Exception {
         verifyWithWholeConfig(getPath("InputOneStatementPerLineForLoop.java"));
+    }
+
+    @Test
+    public void testWrappingLinesLineLimit() throws Exception {
+        verifyWithWholeConfig(getPath("InputWrappingLinesLineLimit.java"));
+    }
+
+    @Test
+    public void testWrappingLinesDosAndDontsOne() throws Exception {
+        verifyWithWholeConfig(getPath("InputWrappingLinesDosAndDontsOne.java"));
+    }
+
+    @Test
+    public void testWrappingLinesDosAndDontsTwo() throws Exception {
+        verifyWithWholeConfig(getPath("InputWrappingLinesDosAndDontsTwo.java"));
     }
 
 }
