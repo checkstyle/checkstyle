@@ -1094,6 +1094,7 @@ prebuilts
 prefs
 PRESIZE
 prettyprint
+pri
 printf
 println
 PRINTSTACKTRACE
