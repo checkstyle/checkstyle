@@ -249,8 +249,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/imports/importorder/Example8",
             "checks/imports/importorder/Example9",
             // until https://github.com/checkstyle/checkstyle/issues/20711
-            "checks/annotation/missingdeprecated/Example2",
-            "checks/javadoc/atclauseorder/Example3",
             "checks/javadoc/javadocvariable/Example4",
             "checks/javadoc/missingjavadoctype/Example2",
             "checks/javadoc/missingjavadoctype/Example3",
