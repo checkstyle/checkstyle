@@ -68,7 +68,7 @@ public class InputJavadocMethodIgnoreThrowsOne {
                 throw new IllegalArgumentException("null"); // ok, try
             }
         } catch (IllegalArgumentException ex) {
-            throw ex; // no violation
+            throw ex;
         }
     }
 

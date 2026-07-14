@@ -11,7 +11,8 @@ public class InputConstantsDoAndDonts {
     // violation below 'Name 'CURRENT_WORDS' must match pattern'
     public final List<String> CURRENT_WORDS = new ArrayList<>();
 
-    enum ApplicationModeOne { Running, Paused, Terminated } // 3 violations
+    enum ApplicationModeOne { Running, Paused, Terminated }
+    // 3 violations above:
     // 'must match pattern'
     // 'must match pattern'
     // 'must match pattern'

@@ -222,7 +222,7 @@ public final class InlineConfigParser {
 
     /** A pattern that matches any comment by default. */
     private static final Pattern VIOLATION_DEFAULT = Pattern
-            .compile("//.*violation.*");
+            .compile(".*//.*violation.*");
 
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
@@ -259,11 +259,168 @@ public final class InlineConfigParser {
     );
 
     /**
-     * Input files where violation messages are intentionally not specified,
-     * because they would be too big or impractical to maintain.
+     * Checks in which violation message is not yet fully specified in all input files.
+     * Temporary suppression until
+     * <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
      */
     private static final Set<String> SUPPRESSED_FILES = Set.of(
-            "InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java"
+            "checks/avoidescapedunicodecharacters/"
+                    + "InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java",
+            "sariflogger/InputSarifLoggerSingleException.java",
+            "sariflogger/InputSarifLoggerLineOnly.java",
+            "sariflogger/InputSarifLoggerMultipleMessages.java",
+            "checks/arraytypestyle/InputArrayTypeStyleOff.java",
+            "checks/arraytypestyle/InputArrayTypeStyle.java",
+            "checks/descendanttoken/InputDescendantTokenLastTokenType.java",
+            "checks/descendanttoken/InputDescendantTokenLastTokenType2.java",
+            "checks/descendanttoken/InputDescendantTokenReturnFromFinally3.java",
+            "checks/descendanttoken/InputDescendantTokenReturnFromFinally4.java",
+            "checks/descendanttoken/InputDescendantTokenReturnFromFinally5.java",
+            "checks/descendanttoken/InputDescendantTokenReturnFromFinally6.java",
+            "checks/trailingcomment/InputTrailingComment.java",
+            "checks/trailingcomment/InputTrailingComment3.java",
+            "checks/trailingcomment/InputTrailingComment2.java",
+            "annotation/annotationlocation/InputAnnotationLocationParameterized.java",
+            "annotation/annotationlocation/InputAnnotationLocationSingleParameterless.java",
+            "annotation/annotationlocation/InputAnnotationLocationIncorrect3One.java",
+            "annotation/annotationlocation/InputAnnotationLocationIncorrectOne.java",
+            "annotation/annotationlocation/"
+                    + "InputAnnotationLocationCustomAnnotationsDeclared.java",
+            "annotation/annotationusestyle/InputAnnotationUseStyleNoTrailingComma.java",
+            "annotation/annotationusestyle/InputAnnotationUseStyleWithTrailingCommaNever.java",
+            "annotation/annotationusestyle/InputAnnotationUseStyleWithParens.java",
+            "annotation/suppresswarnings/InputSuppressWarningsCompact2.java",
+            "annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant2.java",
+            "annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant1.java",
+            "annotation/suppresswarnings/InputSuppressWarningsCompact5.java",
+            "annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant4.java",
+            "annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant3.java",
+            "annotation/suppresswarnings/InputSuppressWarningsCompact6.java",
+            "annotation/suppresswarnings/InputSuppressWarningsCompact7.java",
+            "annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant6.java",
+            "annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant5.java",
+            "annotation/suppresswarnings/InputSuppressWarningsExpanded2.java",
+            "annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant2.java",
+            "annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant1.java",
+            "annotation/suppresswarnings/InputSuppressWarningsExpanded5.java",
+            "annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant5.java",
+            "annotation/suppresswarnings/InputSuppressWarningsExpanded6.java",
+            "annotation/suppresswarnings/InputSuppressWarningsExpanded7.java",
+            "annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant7.java",
+            "annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant6.java",
+            "annotation/suppresswarnings/InputSuppressWarningsSingle2.java",
+            "annotation/suppresswarnings/InputSuppressWarningsSingle1.java",
+            "annotation/suppresswarnings/InputSuppressWarningsSingle5.java",
+            "annotation/suppresswarnings/InputSuppressWarningsSingle6.java",
+            "annotation/suppresswarnings/InputSuppressWarningsSingle7.java",
+            "annotation/suppresswarnings/InputSuppressWarningsRecords.java",
+            "whitespace/parenpad/Example1.java",
+            "whitespace/singlespaceseparator/Example2.java",
+            "whitespace/typecastparenpad/InputTypecastParenPadWhitespace.java",
+            "whitespace/typecastparenpad/InputTypecastParenPadWhitespaceTestSpace.java",
+            "whitespace/typecastparenpad/Example1.java",
+            "whitespace/typecastparenpad/Example2.java",
+            "whitespace/whitespacearound/"
+                    + "InputWhitespaceAroundDoubleBraceInitialization.java",
+            "whitespace/whitespacearound/"
+                    + "InputWhitespaceAroundAllowEmptyLambdaExpressions2.java",
+            "whitespace/whitespacearound/"
+                    + "InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses.java",
+            "whitespace/whitespacearound/"
+                    + "InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses2.java",
+            "whitespace/whitespacearound/InputWhitespaceAroundArrayInitialization.java",
+            "whitespace/whitespacearound/InputWhitespaceAroundBraces2Part2.java",
+            "whitespace/whitespacearound/InputWhitespaceAroundBracesPart2.java",
+            "whitespace/whitespacearound/InputWhitespaceAroundEmptyTypesAndCycles2.java",
+            "whitespace/whitespacearound/InputWhitespaceAroundEmptyTypesAndCycles.java",
+            "whitespace/whitespacearound/InputWhitespaceAroundGenerics.java",
+            "whitespace/whitespacearound/InputWhitespaceAroundKeywordsAndOperators.java",
+            "whitespace/whitespacearound/InputWhitespaceAroundAllowEmptyLambdaExpressions.java",
+            "whitespace/whitespacearound/InputWhitespaceAroundAfterEmoji.java",
+            "whitespace/whitespacearound/InputWhitespaceAroundAfterPermitsList.java",
+            "whitespace/whitespacearound/InputWhitespaceAroundAllTokens.java",
+            "whitespace/whitespacearound/InputWhitespaceAroundAllowEmptyCompactCtors.java",
+            "whitespace/whitespacearound/InputWhitespaceAroundLambda.java",
+            "whitespace/whitespacearound/InputWhitespaceAroundRecords.java",
+            "whitespace/whitespacearound/InputWhitespaceAroundVarargs.java",
+            "whitespace/whitespacearound/Example1.java",
+            "whitespace/whitespacearound/Example10.java",
+            "whitespace/whitespacearound/Example11.java",
+            "whitespace/whitespacearound/Example4.java",
+            "whitespace/whitespacearound/Example5.java",
+            "whitespace/whitespacearound/Example6.java",
+            "whitespace/whitespacearound/Example7.java",
+            "whitespace/whitespacearound/Example8.java",
+            "whitespace/whitespacearound/Example9.java",
+            "whitespace/whitespacearound/UseCase1.java"
+    );
+
+    /**
+     * Checks in which violation message is not yet fully specified in all input files.
+     * Temporary suppression until
+     * <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+     * is fully resolved for these checks. Remove entries here as their input files
+     * are updated with proper violation messages.
+     */
+    private static final Set<String> SUPPRESSED_CHECKS = Set.of(
+            "com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsHolder",
+            "com.puppycrawl.tools.checkstyle.checks.arraytypestyle.ArrayTypeStyleCheck",
+            "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck",
+            "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck",
+            "com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck",
+            "com.puppycrawl.tools.checkstyle.checks.descendanttoken.DescendantTokenCheck",
+            "com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck",
+            "com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck",
+            "com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck",
+            "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
+            "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck",
+            "com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck",
+            "com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck",
+            "com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck",
+            "com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck",
+            "com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck",
+            "com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck",
+            "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck",
+            "com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck",
+            "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck",
+            "com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck",
+            "com.puppycrawl.tools.checkstyle.checks.trailingcomment.TrailingCommentCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPad",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparator",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPad",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAround",
+            "com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyTextFilter",
+            "com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter",
+            "com.puppycrawl.tools.checkstyle.filters.SuppressionFilter",
+            "com.puppycrawl.tools.checkstyle.sariflogger.SarifLogger"
     );
 
     /**
@@ -1466,9 +1623,15 @@ public final class InlineConfigParser {
         if (moduleLists.size() == 1) {
             final String moduleName = moduleLists.getFirst().getModuleName();
 
-            if (!PERMANENT_SUPPRESSED_CHECKS.contains(moduleName)) {
-                final String fileName = Path.of(inputFilePath).getFileName().toString();
-                if (!SUPPRESSED_FILES.contains(fileName)) {
+            if (!PERMANENT_SUPPRESSED_CHECKS.contains(moduleName)
+                    && !SUPPRESSED_CHECKS.contains(moduleName)) {
+
+                final String normalizedPath = inputFilePath.replace('\\', '/');
+
+                final boolean isSuppressed = SUPPRESSED_FILES.stream()
+                        .anyMatch(normalizedPath::endsWith);
+
+                if (!isSuppressed) {
                     result = true;
                 }
             }
@@ -1632,71 +1795,111 @@ public final class InlineConfigParser {
             int lineNo, boolean specifyViolationMessage)
             throws CheckstyleException {
         final String line = lines.get(lineNo);
-        final Matcher multipleViolationsMatcher =
-                MULTIPLE_VIOLATIONS_PATTERN.matcher(line);
-        final Matcher multipleViolationsAboveMatcher =
-                MULTIPLE_VIOLATIONS_ABOVE_PATTERN.matcher(line);
-        final Matcher multipleViolationsBelowMatcher =
-                MULTIPLE_VIOLATIONS_BELOW_PATTERN.matcher(line);
+
+        boolean matched = isRelativeLineViolationProcessed(inputConfigBuilder, lines, line, lineNo,
+                specifyViolationMessage);
+
+        if (!matched) {
+            matched = isMultipleViolationProcessed(inputConfigBuilder, line, lineNo,
+                    specifyViolationMessage);
+        }
+
+        if (!matched) {
+            if (useFilteredViolations) {
+                setFilteredViolation(inputConfigBuilder, lineNo + 1,
+                        lines, lineNo, specifyViolationMessage);
+            }
+            else if (!isFilteredViolationComment(line)) {
+                final Matcher violationsDefault = VIOLATION_DEFAULT.matcher(line);
+                if (violationsDefault.matches()) {
+                    final int violationLineNum = lineNo + 1;
+                    checkWhetherViolationSpecified(specifyViolationMessage, null, violationLineNum);
+                    inputConfigBuilder.addViolation(violationLineNum, null);
+                }
+            }
+        }
+    }
+
+    private static boolean isRelativeLineViolationProcessed(
+            TestInputConfiguration.Builder inputConfigBuilder, List<String> lines,
+            String line, int lineNo, boolean specifyViolationMessage) throws CheckstyleException {
         final Matcher violationsAboveMatcherWithMessages =
                 VIOLATIONS_ABOVE_PATTERN_WITH_MESSAGES.matcher(line);
         final Matcher violationsSomeLinesAboveMatcher =
                 VIOLATIONS_SOME_LINES_ABOVE_PATTERN.matcher(line);
         final Matcher violationsSomeLinesBelowMatcher =
                 VIOLATIONS_SOME_LINES_BELOW_PATTERN.matcher(line);
-        final Matcher violationsDefault =
-                VIOLATION_DEFAULT.matcher(line);
 
+        boolean processed = true;
         if (violationsAboveMatcherWithMessages.matches()) {
             inputConfigBuilder.addViolations(
-                getExpectedViolationsForSpecificLine(
-                    lines, lineNo, lineNo, violationsAboveMatcherWithMessages));
+                    getExpectedViolationsForSpecificLine(
+                            lines, lineNo, lineNo, violationsAboveMatcherWithMessages,
+                            specifyViolationMessage));
         }
         else if (violationsSomeLinesAboveMatcher.matches()) {
             inputConfigBuilder.addViolations(
-                getExpectedViolations(
-                    lines, lineNo, violationsSomeLinesAboveMatcher, true));
+                    getExpectedViolations(
+                            lines, lineNo, violationsSomeLinesAboveMatcher, true,
+                            specifyViolationMessage));
         }
         else if (violationsSomeLinesBelowMatcher.matches()) {
             inputConfigBuilder.addViolations(
                     getExpectedViolations(
-                            lines, lineNo, violationsSomeLinesBelowMatcher, false));
+                            lines, lineNo, violationsSomeLinesBelowMatcher, false,
+                            specifyViolationMessage));
         }
-        else if (multipleViolationsMatcher.matches()) {
-            Collections
-                    .nCopies(Integer.parseInt(multipleViolationsMatcher.group(1)), lineNo + 1)
+        else {
+            processed = false;
+        }
+        return processed;
+    }
+
+    private static boolean isMultipleViolationProcessed(
+            TestInputConfiguration.Builder inputConfigBuilder, String line,
+            int lineNo, boolean specifyViolationMessage) throws CheckstyleException {
+        final Matcher multipleViolationsMatcher = MULTIPLE_VIOLATIONS_PATTERN.matcher(line);
+        final Matcher multipleViolationsAboveMatcher =
+                MULTIPLE_VIOLATIONS_ABOVE_PATTERN.matcher(line);
+        final Matcher multipleViolationsBelowMatcher =
+                MULTIPLE_VIOLATIONS_BELOW_PATTERN.matcher(line);
+
+        boolean processed = true;
+        if (multipleViolationsMatcher.matches()) {
+            final int violationLineNum = lineNo + 1;
+            final int count = Integer.parseInt(multipleViolationsMatcher.group(1));
+            checkWhetherViolationSpecified(specifyViolationMessage, null, violationLineNum);
+            Collections.nCopies(count, violationLineNum)
                     .forEach(actualLineNumber -> {
                         inputConfigBuilder.addViolation(actualLineNumber, null);
                     });
         }
         else if (multipleViolationsAboveMatcher.matches()) {
-            Collections
-                    .nCopies(Integer.parseInt(multipleViolationsAboveMatcher.group(1)), lineNo)
+            final int count = Integer.parseInt(multipleViolationsAboveMatcher.group(1));
+            checkWhetherViolationSpecified(specifyViolationMessage, null, lineNo);
+            Collections.nCopies(count, lineNo)
                     .forEach(actualLineNumber -> {
                         inputConfigBuilder.addViolation(actualLineNumber, null);
                     });
         }
         else if (multipleViolationsBelowMatcher.matches()) {
-            Collections
-                    .nCopies(Integer.parseInt(multipleViolationsBelowMatcher.group(1)),
-                            lineNo + 2)
+            final int violationLineNum = lineNo + 2;
+            final int count = Integer.parseInt(multipleViolationsBelowMatcher.group(1));
+            checkWhetherViolationSpecified(specifyViolationMessage, null, violationLineNum);
+            Collections.nCopies(count, violationLineNum)
                     .forEach(actualLineNumber -> {
                         inputConfigBuilder.addViolation(actualLineNumber, null);
                     });
         }
-        else if (useFilteredViolations) {
-            setFilteredViolation(inputConfigBuilder, lineNo + 1,
-                    lines, lineNo, specifyViolationMessage);
+        else {
+            processed = false;
         }
-        else if (violationsDefault.matches()) {
-            final int violationLineNum = lineNo + 1;
-            inputConfigBuilder.addViolation(violationLineNum, null);
-        }
+        return processed;
     }
 
     private static List<TestInputViolation> getExpectedViolationsForSpecificLine(
-                                              List<String> lines, int lineNo, int violationLineNum,
-                                              Matcher matcher) {
+            List<String> lines, int lineNo, int violationLineNum,
+            Matcher matcher, boolean specifyViolationMessage) throws CheckstyleException {
         final List<TestInputViolation> results = new ArrayList<>();
 
         final int expectedMessageCount =
@@ -1706,6 +1909,8 @@ public final class InlineConfigParser {
             final Matcher messageMatcher = VIOLATION_MESSAGE_PATTERN.matcher(lineWithMessage);
             if (messageMatcher.find()) {
                 final String violationMessage = messageMatcher.group(1);
+                checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                        violationLineNum);
                 results.add(new TestInputViolation(violationLineNum, violationMessage));
             }
         }
@@ -1719,8 +1924,9 @@ public final class InlineConfigParser {
     }
 
     private static List<TestInputViolation> getExpectedViolations(
-                                              List<String> lines, int lineNo,
-                                              Matcher matcher, boolean isAbove) {
+            List<String> lines, int lineNo,
+            Matcher matcher, boolean isAbove, boolean specifyViolationMessage)
+                    throws CheckstyleException {
         final int violationLine =
             Integer.parseInt(matcher.group(2));
         final int violationLineNum;
@@ -1731,7 +1937,7 @@ public final class InlineConfigParser {
             violationLineNum = lineNo + violationLine + 1;
         }
         return getExpectedViolationsForSpecificLine(lines,
-            lineNo, violationLineNum, matcher);
+            lineNo, violationLineNum, matcher, specifyViolationMessage);
     }
 
     private static void setFilteredViolation(TestInputConfiguration.Builder inputConfigBuilder,
@@ -1800,7 +2006,22 @@ public final class InlineConfigParser {
                 || VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(line).matches()
                 || VIOLATION_FIRST_LINE_PATTERN.matcher(line).matches()
                 || VIOLATION_LAST_LINE_PATTERN.matcher(line).matches()
-                || FILTERED_VIOLATION_PATTERN.matcher(line).matches();
+                || isFilteredViolationComment(line);
+    }
+
+    /**
+     * Checks whether the given line is a well-formed "filtered violation" comment,
+     * in any of its recognized forms (bare, above, below, N-lines-above, N-lines-below).
+     *
+     * @param line the line to check.
+     * @return true if the line matches any filtered-violation comment pattern.
+     */
+    private static boolean isFilteredViolationComment(String line) {
+        return FILTERED_VIOLATION_PATTERN.matcher(line).matches()
+                || FILTERED_VIOLATION_ABOVE_PATTERN.matcher(line).matches()
+                || FILTERED_VIOLATION_BELOW_PATTERN.matcher(line).matches()
+                || FILTERED_VIOLATION_SOME_LINES_ABOVE_PATTERN.matcher(line).matches()
+                || FILTERED_VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(line).matches();
     }
 
     private static String assembleTripleQuoteMessage(String firstPart,

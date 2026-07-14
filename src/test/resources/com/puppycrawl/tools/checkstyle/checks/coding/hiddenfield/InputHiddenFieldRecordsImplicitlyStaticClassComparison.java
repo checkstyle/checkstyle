@@ -41,7 +41,7 @@ class Test {
         public void m(int x) {}
     }
 
-    // non-static class, should have a violation
+    // non-static class
     public class C2 {
         public void m(int x) {} // violation ''x' hides a field'
     }

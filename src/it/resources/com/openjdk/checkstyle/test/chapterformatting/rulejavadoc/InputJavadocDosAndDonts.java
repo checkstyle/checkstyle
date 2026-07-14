@@ -22,7 +22,7 @@ public class InputJavadocDosAndDonts {
     public void styleGuideDonts1() {
     }
 
-    // no violation until https://github.com/checkstyle/checkstyle/issues/18570
+    // ok, until https://github.com/checkstyle/checkstyle/issues/18570
     /**
      * The String below may interfere with the HTML.
      *

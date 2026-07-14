@@ -140,8 +140,8 @@ public class InputEmptyLineSeparatorWithComments {
     public void testViolationWithSingleLineComment() {
     }
 
-    // Should not have
-    // a violation
+    // Should be ok
+
     public void testNoViolationWithSingleLineComment() {
     }
 

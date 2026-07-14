@@ -47,7 +47,8 @@ public class InputNamingTwo {
             }
         }
 
-        private void shadowParam(int innerHidden, int hidden) { // 2 violations
+        private void shadowParam(int innerHidden, int hidden) {
+            // 2 violations above:
             // ''innerHidden' hides a field'
             // ''hidden' hides a field'
         }

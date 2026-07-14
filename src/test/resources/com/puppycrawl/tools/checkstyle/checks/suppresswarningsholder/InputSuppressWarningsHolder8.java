@@ -20,5 +20,5 @@ public class InputSuppressWarningsHolder8 {
 
    // violation below 'Name 'K' must match pattern'
    private int K;   @SuppressWarnings("membername")
-   private int J; // violation suppressed
+   private int J;
 }

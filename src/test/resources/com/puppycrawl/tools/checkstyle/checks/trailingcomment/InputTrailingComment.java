@@ -47,7 +47,7 @@ public class InputTrailingComment {
 */
     /* package */ void method3() {
 
-        // violation here for format NOT FOUND
+        // ok, format NOT FOUND
     }
 
     private static class TimerEntry {

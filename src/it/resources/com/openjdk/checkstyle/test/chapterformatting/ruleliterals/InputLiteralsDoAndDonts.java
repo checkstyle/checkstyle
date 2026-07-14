@@ -14,8 +14,9 @@ public class InputLiteralsDoAndDonts {
 
     public void styleGuideDonts() {
         long l = 5432l; // violation 'Should use uppercase 'L'.'
-        int i = 0X123 + 0xabc; // 2 violations
-        // 'Numerical prefix should be in uppercase.'
+        int i = 0X123 + 0xabc;
+        // 2 violations above:
+        // 'Numerical prefix should be in lowercase.'
         // 'Should use uppercase hexadecimal letters.'
         byte b = 0B1010; // violation 'Numerical prefix should be in lowercase.'
         float f1 = 1 / 5432F; // violation 'Numerical suffix should be in lowercase.'
