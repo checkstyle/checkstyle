@@ -10,7 +10,7 @@ sortImportsInGroupAlphabetically = true
 
 */
 
-
+// non-compiled with javac:  No package statement for testing purposes.
 import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtil.containsAnnotation;
 import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtil.getAnnotation;
 
