@@ -186,6 +186,7 @@ public class XdocsExamplesAstConsistencyTest {
         "checks/whitespace/operatorwrap",
         "checks/whitespace/parenpad",
         "checks/whitespace/separatorwrap",
+        "checks/whitespace/typebodypadding",
         "filters/suppressioncommentfilter",
         "filters/suppressionsinglefilter",
         "filters/suppressionxpathfilter",
@@ -257,7 +258,14 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/javadoc/missingjavadoctype/Example4",
             "checks/javadoc/missingjavadoctype/Example5",
             "checks/javadoc/summaryjavadoc/Example3",
-            "checks/javadoc/writetag/Example4"
+            "checks/javadoc/writetag/Example4",
+            "checks/whitespace/typebodypadding/Example2",
+            "checks/whitespace/typebodypadding/Example3",
+            "checks/whitespace/typebodypadding/Example4",
+            "checks/whitespace/typebodypadding/Example5",
+            "checks/whitespace/typebodypadding/Example6",
+            "checks/whitespace/typebodypadding/Example7",
+            "checks/whitespace/typebodypadding/Example8"
         );
 
     /**

@@ -1,0 +1,23 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="TypeBodyPadding">
+      <property name="starting" value="false"/>
+    </module>
+  </module>
+</module>
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.whitespace.typebodypadding;
+
+// xdoc section -- start
+class Example4 {
+  int x;
+} // violation 'Blank line required before the closing brace of type definition.'
+
+class Example4b {
+
+  int x;
+
+}
+// xdoc section -- end
