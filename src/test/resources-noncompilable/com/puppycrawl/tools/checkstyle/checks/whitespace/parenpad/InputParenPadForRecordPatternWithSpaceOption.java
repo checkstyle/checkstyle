@@ -5,7 +5,7 @@ tokens = RECORD_PATTERN_DEF
 
 */
 
-// Java21
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 public class InputParenPadForRecordPatternWithSpaceOption {

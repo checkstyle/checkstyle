@@ -7,7 +7,7 @@ tokens = (default)ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT,
 
 */
 
-// Java21
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 
 public class InputNoWhitespaceAfterUnnamedPattern {
