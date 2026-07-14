@@ -3,7 +3,7 @@ MissingNullCaseInSwitch
 
 */
 
-// non-compiled with javac: Compilable with Java22
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.coding.missingnullcaseinswitch;
 
 public class InputMissingNullCaseInSwitchWithRecordPattern {
