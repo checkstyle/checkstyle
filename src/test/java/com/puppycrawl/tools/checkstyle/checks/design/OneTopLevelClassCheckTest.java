@@ -179,7 +179,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     public void testPackageInfoWithNoTypesDeclared() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("package-info.java"), expected);
+                getPath("package-info.java"), expected);
     }
 
     @Test
@@ -216,6 +216,6 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     public void testOneTopLevelClassEmpty() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputOneTopLevelClassEmpty.java"), expected);
+                getPath("InputOneTopLevelClassEmpty.java"), expected);
     }
 }
