@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.TypeBodyPaddingCheck"
+             name="TypeBodyPadding"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks the padding of the body of type definitions (classes, interfaces,
+ enums, records).
+ That is, whether a blank line is required immediately after the opening brace
+ and/or immediately before the closing brace of type bodies.
+ Empty type bodies are exempt from this check by default.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ A blank line (padding) line is a line containing only whitespace characters.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="true" name="allowEmpty" type="boolean">
+               <description>Allow empty type bodies to omit blank line padding.</description>
+            </property>
+            <property default-value="true" name="atEndOfBody" type="boolean">
+               <description>Require a blank line before the type body closing brace.</description>
+            </property>
+            <property default-value="true" name="atStartOfBody" type="boolean">
+               <description>Require a blank line after the type body opening brace.</description>
+            </property>
+            <property default-value="true" name="skipInner" type="boolean">
+               <description>Control whether to skip checking of inner types.</description>
+            </property>
+            <property default-value="true" name="skipLocal" type="boolean">
+               <description>Control whether to skip checking of local types.</description>
+            </property>
+            <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,RECORD_DEF,ANNOTATION_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="type.body.padding.after.lcurly"/>
+            <message-key key="type.body.padding.before.rcurly"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

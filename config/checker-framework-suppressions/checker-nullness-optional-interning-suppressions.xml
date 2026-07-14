@@ -7274,6 +7274,45 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypeBodyPaddingCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter rcurly of TypeBodyPaddingCheck.requirePaddingAfterLcurly.</message>
+    <lineContent>if (requirePaddingAfterLcurly(lcurly, rcurly)) {</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypeBodyPaddingCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference lcurly</message>
+    <lineContent>final boolean isEmpty = lcurly.getNextSibling() == rcurly;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypeBodyPaddingCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference objBlock</message>
+    <lineContent>final DetailAST lcurly = objBlock.findFirstToken(TokenTypes.LCURLY);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypeBodyPaddingCheck.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>final boolean isEmpty = lcurly.getNextSibling() == rcurly;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypeBodyPaddingCheck.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>final boolean isEmpty = lcurly.getNextSibling() == rcurly;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypecastParenPadCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
