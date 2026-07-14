@@ -6,8 +6,8 @@ treatTryResourcesAsStatement = (default)false
 */
 
 // non-compiled with eclipse: extra semicolumn in imports
+// non-compiled with javac: but was compiled on jdk before 21, so we need to continue to support
 package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
-
 /**
  * This file contains test inputs for InputOneStatementPerLine
  * which cause compilation problem in Eclipse 4.2.2 but still must be tested.
