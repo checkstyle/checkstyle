@@ -21,13 +21,14 @@ class Example2 {
   int b = (int ) d; // violation 'not followed by whitespace'
 
   int c = ( int) d; // violation 'not preceded with whitespace'
-
-  int e = (int) d;  // 2 violations
-
+  // violation below ''(' is not followed by whitespace.'
+  int e = (int) d;
+  // violation above '')' is not preceded with whitespace.'
   double d2 = 9.8;
-
-  int f = (int) d2; // 2 violations
-
+  // violation below ''(' is not followed by whitespace.'
+  int f = (int) d2;
+  // violation above '')' is not preceded with whitespace.'
   int g = ( int ) d2;
+
 }
 // xdoc section -- end

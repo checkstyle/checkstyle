@@ -264,8 +264,6 @@ public final class InlineConfigParser {
      * <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
      */
     private static final Set<String> SUPPRESSED_FILES = Set.of(
-            "checks/avoidescapedunicodecharacters/"
-                    + "InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java",
             "annotation/suppresswarnings/InputSuppressWarningsCompact2.java",
             "annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant2.java",
             "annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant1.java",
@@ -291,10 +289,6 @@ public final class InlineConfigParser {
             "annotation/suppresswarnings/InputSuppressWarningsSingle6.java",
             "annotation/suppresswarnings/InputSuppressWarningsSingle7.java",
             "annotation/suppresswarnings/InputSuppressWarningsRecords.java",
-            "whitespace/typecastparenpad/InputTypecastParenPadWhitespace.java",
-            "whitespace/typecastparenpad/InputTypecastParenPadWhitespaceTestSpace.java",
-            "whitespace/typecastparenpad/Example1.java",
-            "whitespace/typecastparenpad/Example2.java",
             "whitespace/whitespacearound/"
                     + "InputWhitespaceAroundAllowEmptyLambdaExpressions2.java",
             "whitespace/whitespacearound/"
