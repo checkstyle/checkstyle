@@ -168,4 +168,5 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("compact/InputInnerTypeLastCompactSourceFileNested.java"),
                 expected);
     }
+
 }
