@@ -13,7 +13,7 @@ tokens = (default)STATIC_IMPORT
 
 
 */
-
+// non-compiled with javac: special imports
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import
     java.awt.Button;

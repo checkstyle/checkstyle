@@ -724,19 +724,23 @@ compile-test-resources)
   ;;
 
 javac21)
-  files=($(grep -Rli --include='*.java' ': Compilable with Java21' \
+  # InputCustomImportOrderNoPackage2 - nothing is required in front of first import
+  # InputIllegalTypePackageClassName - bad import for testing
+  # InputVisibilityModifierPackageClassName - bad import for testing
+  files=($(grep -RELi --include='*.java' \
+        --exclude='InputCustomImportOrderNoPackage2.java' \
+        --exclude='InputIllegalTypePackageClassName.java' \
+        --exclude='InputVisibilityModifierPackageClassName.java' \
+        '// non-compiled (syntax|with javac|with eclipse)?\:' \
         src/test/resources-noncompilable \
         src/it/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable || true))
-  if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java21 files to process"
-  else
-    mkdir -p target
-    for file in "${files[@]}"
-    do
-      javac --release 21 -d target "${file}"
-    done
-  fi
+        src/xdocs-examples/resources-noncompilable))
+  mkdir -p target
+  for file in "${files[@]}"
+  do
+    echo "Compiling ${file} with standard JDK21"
+    javac -d target "${file}"
+  done
   ;;
 
 javac25)
