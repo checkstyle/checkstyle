@@ -60,6 +60,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
                  "InputNoCodeInFile3.java",
                  "InputNoCodeInFile5.java",
                  "InputOuterTypeFilenameEmpty.java",
+                 "InputOneTopLevelClassEmpty.java",
                  "InputMethodCountEmpty.java",
                  "InputDeclarationOrderEmpty.java"
         );

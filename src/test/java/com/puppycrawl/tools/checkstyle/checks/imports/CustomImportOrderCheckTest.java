@@ -697,7 +697,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 "java.util.Map"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputCustomImportOrderSingleLine2.java"),
+                getPath("InputCustomImportOrderSingleLine2.java"),
             expected);
     }
 
