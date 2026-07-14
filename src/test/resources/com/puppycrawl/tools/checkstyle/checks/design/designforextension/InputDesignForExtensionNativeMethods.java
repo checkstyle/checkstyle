@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
 public class InputDesignForExtensionNativeMethods {
 
-    // violation below 'Class 'InputDesignForExtensionNativeMethods'
+    // violation below 'Method 'foo1' does not have javadoc that explains'
     public native void foo1();
 
     public static native void foo2();
@@ -27,7 +27,7 @@ public class InputDesignForExtensionNativeMethods {
     /*
      * Violation. Block-commend doc for native method.
      */
-    // violation below 'Class 'InputDesignForExtensionNativeMethods'
+    // violation below 'Method 'foo6' does not have javadoc that explains'
     public native void foo6();
 
     @Deprecated

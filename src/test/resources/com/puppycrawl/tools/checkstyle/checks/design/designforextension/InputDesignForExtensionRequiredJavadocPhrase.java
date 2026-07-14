@@ -37,7 +37,7 @@ public class InputDesignForExtensionRequiredJavadocPhrase {
      */
     public int foo4(int a, int b) {return a + b;}  // ok, required comment pattern in javadoc
 
-    // violation 2 lines below 'Class 'InputDesignForExtensionRequiredJa'
+    // violation 2 lines below 'Method 'foo5' does not have javadoc that explains'
     /** This method can safely be overridden. */
     public int foo5(int a, int b) {return a + b;}
 
@@ -45,12 +45,12 @@ public class InputDesignForExtensionRequiredJavadocPhrase {
 
     protected final int foo7(int a) {return a - 2;} // ok, final
 
-    // violation 2 lines below 'Class 'InputDesignForExtensionRequiredJa'
+    // violation 2 lines below 'Method 'foo8' does not have javadoc that explains'
     /** */
     public int foo8(int a) {return a - 2;}
 
     // This implementation
-    // violation below 'Class 'InputDesignForExtensionRequiredJa'
+    // violation below 'Method 'foo9' does not have javadoc that explains'
     public int foo9(int a, int b) {return a + b;}
 
     @Deprecated
@@ -66,7 +66,7 @@ public class InputDesignForExtensionRequiredJavadocPhrase {
      */
     public int foo11(int a, int b) {return a + b;} // ok, required comment pattern in javadoc
 
-    // violation 2 lines below 'Class 'InputDesignForExtensionRequiredJa'
+    // violation 2 lines below 'Method 'foo12' does not have javadoc that explains'
     /**This method can safely be overridden. */
     public int foo12(int a, int b) {
         return a + b;

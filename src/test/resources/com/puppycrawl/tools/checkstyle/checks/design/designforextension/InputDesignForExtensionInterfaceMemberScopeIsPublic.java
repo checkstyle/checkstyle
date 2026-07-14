@@ -12,7 +12,7 @@ public interface InputDesignForExtensionInterfaceMemberScopeIsPublic {
 
     class Inner {
 
-        // violation below 'Class 'Inner' looks like designed'
+        // violation below 'Method 'getProperty' does not have javadoc that explains'
         public String getProperty() {
             return null;
         }
