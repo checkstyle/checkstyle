@@ -17,7 +17,7 @@ public class InputDesignForExtensionRequiredJavadocPhraseMultiLine {
         return a * b;
     }
 
-    // violation 4 lines below 'Class 'InputDesignForExtensionRequiredJa'
+    // violation 4 lines below 'Method 'foo2' does not have javadoc that explains'
     /**
      * This method can safely be overridden.
      */

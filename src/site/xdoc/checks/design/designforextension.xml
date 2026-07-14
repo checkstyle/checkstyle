@@ -180,10 +180,10 @@ public abstract class Plant {
 public abstract class Example1 {
   private int bar;
 
-  // violation below 'Class 'Example1' looks like designed for extension'
+  // violation below ''m1' does not have javadoc that explains'
   public int m1() {return 2;}
 
-  // violation below 'Class 'Example1' looks like designed for extension'
+  // violation below ''m2' does not have javadoc that explains'
   public int m2() {return 8;}
 
   private void m3() {m4();}  // ok, Private method.
@@ -208,7 +208,7 @@ public abstract class Example1 {
    * implementation ...
    */
   public int m8() {return 2;}  // ok, Have javadoc on overridable method.
-  // violation below 'Class 'Example1' looks like designed for extension'
+  // violation below ''toString' does not have javadoc that explains'
   @Override
   public String toString() {
     return "";
@@ -233,10 +233,10 @@ public abstract class Example1 {
 public abstract class Example2 {
   private int bar;
 
-  // violation below 'Class 'Example2' looks like designed for extension'
+  // violation below ''m1' does not have javadoc that explains'
   public int m1() {return 2;}
 
-  // violation below 'Class 'Example2' looks like designed for extension'
+  // violation below ''m2' does not have javadoc that explains'
   public int m2() {return 8;}
 
   private void m3() {m4();}  // ok, Private method.
@@ -286,10 +286,10 @@ public abstract class Example2 {
 public abstract class Example3 {
   private int bar;
 
-  // violation below 'Class 'Example3' looks like designed for extension'
+  // violation below ''m1' does not have javadoc that explains'
   public int m1() {return 2;}
 
-  // violation below 'Class 'Example3' looks like designed for extension'
+  // violation below ''m2' does not have javadoc that explains'
   public int m2() {return 8;}
 
   private void m3() {m4();}  // ok, Private method.
@@ -306,15 +306,15 @@ public abstract class Example3 {
 
   /**
    * Some comments ...
-   */ // violation below 'Class 'Example3' looks like designed for extension'
+   */ // violation below ''m7' does not have javadoc that explains'
   public int m7() {return 1;}
 
   /**
    * This
    * implementation ...
-   */ // violation below 'Class 'Example3' looks like designed for extension'
+   */ // violation below ''m8' does not have javadoc that explains'
   public int m8() {return 2;}
-  // violation below 'Class 'Example3' looks like designed for extension'
+  // violation below ''toString' does not have javadoc that explains'
   @Override
   public String toString() {
     return "";
@@ -340,10 +340,10 @@ public abstract class Example3 {
 public abstract class Example4 {
   private int bar;
 
-  // violation below 'Class 'Example4' looks like designed for extension'
+  // violation below ''m1' does not have javadoc that explains'
   public int m1() {return 2;}
 
-  // violation below 'Class 'Example4' looks like designed for extension'
+  // violation below ''m2' does not have javadoc that explains'
   public int m2() {return 8;}
 
   private void m3() {m4();}
@@ -360,7 +360,7 @@ public abstract class Example4 {
 
   /**
    * Some comments ...
-   */ // violation below 'Class 'Example4' looks like designed for extension'
+   */ // violation below ''m7' does not have javadoc that explains'
   public int m7() {return 1;}
 
   /**
@@ -368,7 +368,7 @@ public abstract class Example4 {
    * implementation ...
    */
   public int m8() {return 2;}  // ok, Have required javadoc.
-  // violation below 'Class 'Example4' looks like designed for extension'
+  // violation below ''toString' does not have javadoc that explains'
   @Override
   public String toString() {
     return "";

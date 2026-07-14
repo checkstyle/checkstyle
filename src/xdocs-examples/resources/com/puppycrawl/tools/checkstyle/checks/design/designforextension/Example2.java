@@ -13,10 +13,10 @@ package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 public abstract class Example2 {
   private int bar;
 
-  // violation below 'Class 'Example2' looks like designed for extension'
+  // violation below ''m1' does not have javadoc that explains'
   public int m1() {return 2;}
 
-  // violation below 'Class 'Example2' looks like designed for extension'
+  // violation below ''m2' does not have javadoc that explains'
   public int m2() {return 8;}
 
   private void m3() {m4();}  // ok, Private method.

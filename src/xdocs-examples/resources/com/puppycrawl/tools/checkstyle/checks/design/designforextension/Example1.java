@@ -11,10 +11,10 @@ package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 public abstract class Example1 {
   private int bar;
 
-  // violation below 'Class 'Example1' looks like designed for extension'
+  // violation below ''m1' does not have javadoc that explains'
   public int m1() {return 2;}
 
-  // violation below 'Class 'Example1' looks like designed for extension'
+  // violation below ''m2' does not have javadoc that explains'
   public int m2() {return 8;}
 
   private void m3() {m4();}  // ok, Private method.
@@ -39,7 +39,7 @@ public abstract class Example1 {
    * implementation ...
    */
   public int m8() {return 2;}  // ok, Have javadoc on overridable method.
-  // violation below 'Class 'Example1' looks like designed for extension'
+  // violation below ''toString' does not have javadoc that explains'
   @Override
   public String toString() {
     return "";
