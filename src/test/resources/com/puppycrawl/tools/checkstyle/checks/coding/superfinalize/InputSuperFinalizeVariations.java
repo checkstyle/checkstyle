@@ -79,7 +79,8 @@ class FinalizeWithArgs {
 }
 
 class OverrideClass extends FinalizeWithArgs {
-    @Override // violation below, Method 'finalize' should call 'super.finalize'
+    // violation 2 lines below "Method 'finalize' should call 'super.finalize'"
+    @Override
     protected void finalize() throws Throwable {
         super.finalize(new Object());
     }
