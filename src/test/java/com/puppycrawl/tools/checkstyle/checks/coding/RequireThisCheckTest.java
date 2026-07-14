@@ -721,4 +721,53 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 getPath("InputRequireThisAnnotationOverlappingTrue.java"), expected);
     }
 
+    /**
+     * Verifies that pattern variables in scope are not treated as instance fields,
+     * while actual instance field references are still reported.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testPatternVariables() throws Exception {
+        final String[] expected = {
+            "24:17: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "25:13: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "29:13: " + getCheckMessage(MSG_VARIABLE, "s", ""),
+            "30:13: " + getCheckMessage(MSG_VARIABLE, "n", ""),
+            "42:45: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "43:13: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "52:34: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "53:13: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisPatternVariables.java"),
+                expected);
+    }
+
+    @Test
+    public void testPatternVariablesRecordPattern() throws Exception {
+        final String[] expected = {
+            "21:13: " + getCheckMessage(MSG_VARIABLE, "s", ""),
+            "22:13: " + getCheckMessage(MSG_VARIABLE, "x", ""),
+            "23:13: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisPatternVariablesRecordPattern.java"),
+                expected);
+    }
+
+    @Test
+    public void testPatternVariablesRecordPatternBinding() throws Exception {
+        final String[] expected = {
+            "25:13: " + getCheckMessage(MSG_VARIABLE, "component", ""),
+            "26:13: " + getCheckMessage(MSG_VARIABLE, "binding", ""),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputRequireThisPatternVariablesRecordPatternBinding.java"),
+                expected);
+    }
 }
