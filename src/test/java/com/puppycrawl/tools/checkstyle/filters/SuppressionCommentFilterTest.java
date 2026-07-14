@@ -275,6 +275,19 @@ public class SuppressionCommentFilterTest
         verifySuppressedWithParser("InputSuppressionCommentFilter9.java", suppressed);
     }
 
+    @Test
+    public void testDollarSignInMatchedText() throws Exception {
+        final String[] messages = {
+            "29:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "pri$ce", "^[a-z][a-zA-Z0-9]*$"),
+        };
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifySuppressedWithParser(getPath("InputSuppressionCommentFilter12.java"),
+                messages, suppressed);
+    }
+
     private void verifySuppressedWithParser(String fileName, String... suppressed)
             throws Exception {
         verifyFilterWithInlineConfigParser(getPath(fileName), ALL_MESSAGES,
