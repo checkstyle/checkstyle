@@ -83,7 +83,10 @@ class InputTypecastParenPadWhitespace
     {
         Object o = (Object) new Object();
         o = (Object)o;
-        o = ( Object ) o; // 2 violations
+        o = ( Object ) o;
+        // 2 violations above:
+        // ''(' is followed by whitespace.'
+        // '')' is preceded with whitespace.'
         o = (Object)
             o;
     }
