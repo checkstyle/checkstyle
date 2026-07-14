@@ -19,7 +19,9 @@ class Example2 {
   }
 
   void fun1() {}
-  // 2 violations below
+  // 2 violations 3 lines below:
+  // 'Use a single space to separate non-whitespace characters.'
+  // 'Use a single space to separate non-whitespace characters.'
   void  fun2() { return; }  /* 2 whitespaces before the comment starts */
   // violation below 'Use a single space'
   /* 2 whitespaces after the comment ends */  int a;

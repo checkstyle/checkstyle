@@ -10,8 +10,11 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, PACKAGE_DEF, ENUM_CONSTANT_DEF, \
 */
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
-
-@MyAnnotation11 @MyAnnotation12 @MyAnnotation13 // 3 violations
+// 3 violations 4 lines below:
+// 'Annotation 'MyAnnotation11' should be alone on line.'
+// 'Annotation 'MyAnnotation12' should be alone on line.'
+// 'Annotation 'MyAnnotation13' should be alone on line.'
+@MyAnnotation11 @MyAnnotation12 @MyAnnotation13
 public class InputAnnotationLocationCustomAnnotationsDeclared {
 
     @MyAnnotation13

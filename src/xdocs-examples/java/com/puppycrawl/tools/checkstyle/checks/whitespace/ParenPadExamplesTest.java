@@ -37,15 +37,15 @@ public class ParenPadExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "25:10: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "27:23: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "28:9: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "28:33: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "35:11: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "45:15: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "48:12: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "48:16: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "51:11: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "23:12: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "24:23: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "25:9: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "25:33: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "33:11: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "43:15: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "46:12: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "46:16: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "50:11: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -54,10 +54,10 @@ public class ParenPadExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "29:25: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
-            "31:10: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "49:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "55:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "27:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "28:10: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "47:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "54:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
