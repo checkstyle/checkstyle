@@ -109,8 +109,8 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
     public void testNotIgnoreOverriddenMethods() throws Exception {
 
         final String[] expected = {
-            "17:36: " + getCheckMessage(MSG_KEY, "RuntimeException"),
-            "22:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "18:36: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "24:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
         };
 
         verifyWithInlineConfigParser(
