@@ -14,10 +14,10 @@ package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 public abstract class Example4 {
   private int bar;
 
-  // violation below 'Class 'Example4' looks like designed for extension'
+  // violation below ''m1' does not have javadoc that explains how to do that safely'
   public int m1() {return 2;}
 
-  // violation below 'Class 'Example4' looks like designed for extension'
+  // violation below ''m2' does not have javadoc that explains how to do that safely'
   public int m2() {return 8;}
 
   private void m3() {m4();}
@@ -34,7 +34,7 @@ public abstract class Example4 {
 
   /**
    * Some comments ...
-   */ // violation below 'Class 'Example4' looks like designed for extension'
+   */ // violation below ''m7' does not have javadoc that explains
   public int m7() {return 1;}
 
   /**
@@ -42,7 +42,7 @@ public abstract class Example4 {
    * implementation ...
    */
   public int m8() {return 2;}  // ok, Have required javadoc.
-  // violation below 'Class 'Example4' looks like designed for extension'
+  // violation below ''toString' does not have javadoc that explains
   @Override
   public String toString() {
     return "";
