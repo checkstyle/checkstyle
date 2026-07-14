@@ -387,7 +387,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
             "46:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "var3"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputUnusedLocalVariableWithoutPackageStatement.java"),
+                getNonCompilablePath("InputUnusedLocalVariableNoPackageStatement.java"),
                 expected);
     }
 
