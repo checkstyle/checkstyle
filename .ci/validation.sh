@@ -723,24 +723,42 @@ compile-test-resources)
   -Dmaven.compiler.release=21
   ;;
 
-javac21)
-  # InputCustomImportOrderNoPackage2 - nothing is required in front of first import
-  # InputIllegalTypePackageClassName - bad import for testing
-  # InputVisibilityModifierPackageClassName - bad import for testing
+javac21-exceptional)
+  # InputPackageDeclarationEmptyFile - empty file, no ability to put explanation comment
+  # beforeexecutionexclusionfilefilter - exceptional hack for examples
   files=($(grep -RELi --include='*.java' \
-        --exclude='InputCustomImportOrderNoPackage2.java' \
-        --exclude='InputIllegalTypePackageClassName.java' \
-        --exclude='InputVisibilityModifierPackageClassName.java' \
-        '// non-compiled (syntax|with javac|with eclipse)?\:' \
+        --exclude='module-info.java' \
+        --exclude='InputPackageDeclarationEmptyFile.java' \
+        --exclude-dir="beforeexecutionexclusionfilefilter" \
+        '// non-compiled (syntax|with javac)?\:' \
         src/test/resources-noncompilable \
         src/it/resources-noncompilable \
         src/xdocs-examples/resources-noncompilable))
   mkdir -p target
   for file in "${files[@]}"
   do
+    echo ""
     echo "Compiling ${file} with standard JDK21"
+    echo "Reason: " "$(grep "non-compiled" "${file}")"
     javac -d target "${file}"
   done
+
+  files=($(grep -Rli --include='*.java' ': No package statement for testing purposes.' \
+        src/test/resources-noncompilable \
+        src/it/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable || true))
+  if [[  ${#files[@]} -eq 0 ]]; then
+    echo "No Java files to process"
+  else
+    mkdir -p target
+    for file in "${files[@]}"
+    do
+      echo ""
+      echo "Compiling ${file} with standard JDK21"
+      echo "Reason: " "$(grep "non-compiled" "${file}")"
+      javac -d target "${file}"
+    done
+  fi
   ;;
 
 javac25)

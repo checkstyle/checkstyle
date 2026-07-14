@@ -1,4 +1,5 @@
 // non-compiled with eclipse: extra semicolumn in imports
+// non-compiled with javac: contains specially crafted set of imports that requires classpath
 
 package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
 
