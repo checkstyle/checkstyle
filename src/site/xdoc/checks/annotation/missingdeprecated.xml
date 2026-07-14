@@ -96,12 +96,12 @@ class Example1 {
    * &lt;p&gt;&lt;/p&gt;
    */
   @Deprecated
-    public static final int NUM = 123456;
+  public static final int NUM = 123456;
 
   /**
    * @deprecated
-   *  &lt;p&gt;
-   */
+   * &lt;p&gt;
+  */
   @Deprecated
   public static final int CONST = 12;
 }

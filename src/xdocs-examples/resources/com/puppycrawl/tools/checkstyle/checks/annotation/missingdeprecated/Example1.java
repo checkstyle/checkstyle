@@ -24,12 +24,12 @@ class Example1 {
    * <p></p>
    */
   @Deprecated
-    public static final int NUM = 123456;
+  public static final int NUM = 123456;
 
   /**
    * @deprecated
-   *  <p>
-   */
+   * <p>
+  */
   @Deprecated
   public static final int CONST = 12;
 }
