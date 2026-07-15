@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class SuppressWarningsFilterExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppresswarningsfilter";
@@ -66,4 +67,5 @@ public class SuppressWarningsFilterExamplesTest extends AbstractExamplesModuleTe
         verifyFilterWithInlineConfigParser(getPath("Example2.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
+
 }

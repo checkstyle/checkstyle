@@ -52,7 +52,7 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
                 createModuleConfig(MultipleVariableDeclarationsCheck.class);
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(MultipleVariableDeclarationsCheck.class,
+            "5:5: " + getCheckMessage(MultipleVariableDeclarationsCheck.class,
                 MultipleVariableDeclarationsCheck.MSG_MULTIPLE_COMMA),
         };
 
@@ -96,7 +96,7 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
                 createModuleConfig(MultipleVariableDeclarationsCheck.class);
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(MultipleVariableDeclarationsCheck.class,
+            "5:5: " + getCheckMessage(MultipleVariableDeclarationsCheck.class,
                 MultipleVariableDeclarationsCheck.MSG_MULTIPLE),
         };
 
@@ -128,7 +128,7 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
                 createModuleConfig(MultipleVariableDeclarationsCheck.class);
 
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(MultipleVariableDeclarationsCheck.class,
+            "6:9: " + getCheckMessage(MultipleVariableDeclarationsCheck.class,
                 MultipleVariableDeclarationsCheck.MSG_MULTIPLE_COMMA),
         };
 
@@ -170,4 +170,5 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

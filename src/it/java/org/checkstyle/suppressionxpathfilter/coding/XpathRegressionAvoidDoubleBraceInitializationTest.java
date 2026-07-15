@@ -52,7 +52,7 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "6:41: " + getCheckMessage(CLAZZ, AvoidDoubleBraceInitializationCheck.MSG_KEY),
+            "7:41: " + getCheckMessage(CLAZZ, AvoidDoubleBraceInitializationCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -77,7 +77,7 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "7:31: " + getCheckMessage(CLAZZ, AvoidDoubleBraceInitializationCheck.MSG_KEY),
+            "8:31: " + getCheckMessage(CLAZZ, AvoidDoubleBraceInitializationCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -104,7 +104,7 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "9:76: " + getCheckMessage(CLAZZ, AvoidDoubleBraceInitializationCheck.MSG_KEY),
+            "10:76: " + getCheckMessage(CLAZZ, AvoidDoubleBraceInitializationCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(

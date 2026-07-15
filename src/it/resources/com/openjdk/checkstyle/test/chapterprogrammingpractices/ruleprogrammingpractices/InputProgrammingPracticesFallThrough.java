@@ -1,6 +1,7 @@
 package com.openjdk.checkstyle.test.chapterprogrammingpractices.ruleprogrammingpractices;
 
 public class InputProgrammingPracticesFallThrough {
+
     public void foo() throws Exception {
         int i = 0;
         while (i >= 0) {
@@ -37,4 +38,5 @@ public class InputProgrammingPracticesFallThrough {
             }
         }
     }
+
 }

@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.blocks.needbraces;
 
 public class InputXpathNeedBracesDo {
+
     /** @return helper func **/
     boolean condition()
     {
@@ -12,4 +13,5 @@ public class InputXpathNeedBracesDo {
         // Invalid
         do test(); while (condition()); // warn
     }
+
 }

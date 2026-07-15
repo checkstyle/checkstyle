@@ -9,6 +9,7 @@ import java.math.BigInteger;
 import java.math.MathContext;
 
 public enum InputXpathClassDataAbstractionCouplingEnum { // warn
+
     Dummy;
 
     Thread create() {
@@ -31,5 +32,6 @@ public enum InputXpathClassDataAbstractionCouplingEnum { // warn
 
     BigDecimal bigDecimal = new BigDecimal("0");
     File file = new File("path");
+
 }
 

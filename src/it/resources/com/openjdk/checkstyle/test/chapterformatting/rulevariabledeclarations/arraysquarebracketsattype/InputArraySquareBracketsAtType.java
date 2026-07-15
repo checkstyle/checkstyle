@@ -2,6 +2,7 @@ package com.openjdk.checkstyle.test.chapterformatting.rulevariabledeclarations.a
 
 /** Test case for ArrayTypeStyle (Java vs C). */
 public class InputArraySquareBracketsAtType {
+
     private int[] javastyle = new int[0];
     private int cstyle[] = new int[0]; // violation 'Array brackets at illegal position.'
 

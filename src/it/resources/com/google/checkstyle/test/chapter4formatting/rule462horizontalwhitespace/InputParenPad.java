@@ -6,6 +6,7 @@ import java.io.Writer;
 
 /** Some javadoc. */
 public class InputParenPad {
+
   boolean fooo = this.bar(( true && false ) && true);
   // 2 violations above:
   //  ''(' is followed by whitespace.'
@@ -354,4 +355,5 @@ public class InputParenPad {
     //  ''(' is followed by whitespace.'
     //  '')' is preceded with whitespace.'
   }
+
 }

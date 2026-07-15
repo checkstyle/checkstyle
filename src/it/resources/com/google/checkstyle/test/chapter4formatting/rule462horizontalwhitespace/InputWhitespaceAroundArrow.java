@@ -10,6 +10,7 @@ import javax.swing.JCheckBox;
 
 /** Some javadoc. */
 public class InputWhitespaceAroundArrow {
+
   static {
     // violation below ''->' is not preceded with whitespace.'
     new JCheckBox().addActionListener((final ActionEvent e)-> {
@@ -113,4 +114,5 @@ public class InputWhitespaceAroundArrow {
     /** Some javadoc. */
     public boolean get();
   }
+
 }

@@ -474,4 +474,5 @@ public class FinalLocalVariableCheckTest
                 getNonCompilablePath("InputFinalLocalVariableCompactSourceFile.java"),
             expected);
     }
+
 }

@@ -39,4 +39,5 @@ public class ClassStructureTest extends AbstractOpenJdkModuleTestSupport {
     public void testClassStructureInvalidOrder() throws Exception {
         verifyWithWholeConfig(getPath("InputClassStructureInvalidOrder.java"));
     }
+
 }

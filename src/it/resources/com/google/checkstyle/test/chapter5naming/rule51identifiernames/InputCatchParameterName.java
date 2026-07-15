@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter5naming.rule51identifiernames;
 
 /** Some javadoc. */
 public class InputCatchParameterName {
+
   {
     try {
       /* foo */
@@ -112,4 +113,5 @@ public class InputCatchParameterName {
     } catch (Exception kName) { // violation 'Catch parameter name 'kName' must match pattern'
     }
   }
+
 }

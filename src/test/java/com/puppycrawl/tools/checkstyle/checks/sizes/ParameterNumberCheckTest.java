@@ -170,4 +170,5 @@ public class ParameterNumberCheckTest
                 getPath("InputParameterNumberIgnoreAnnotatedByFullyQualifiedClassName.java"),
                 expected);
     }
+
 }

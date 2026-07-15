@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.defaultcomeslast;
 
 public class InputXpathDefaultComesLastNonEmptyCase {
+
     public void test() {
         String lang = "Java";
         int id = 0;
@@ -10,4 +11,5 @@ public class InputXpathDefaultComesLastNonEmptyCase {
             case "Python" : id = 2; break;
         }
     }
+
 }

@@ -79,4 +79,5 @@ public class InputNoWrappingAfterRecordName2 {
       this.from = from;
     }
   }
+
 }

@@ -56,4 +56,5 @@ public class InputFormattedRightCurlySwitchCase {
         int x = 0;
     }
   }
+
 }

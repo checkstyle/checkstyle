@@ -145,7 +145,7 @@ public class XpathRegressionUnusedLambdaParameterShouldBeUnnamedTest
                 createModuleConfig(UnusedLambdaParameterShouldBeUnnamedCheck.class);
 
         final String[] expectedViolation = {
-            "8:41: " + getCheckMessage(UnusedLambdaParameterShouldBeUnnamedCheck.class,
+            "9:41: " + getCheckMessage(UnusedLambdaParameterShouldBeUnnamedCheck.class,
                     UnusedLambdaParameterShouldBeUnnamedCheck.MSG_UNUSED_LAMBDA_PARAMETER,
                     "x"),
         };
@@ -176,4 +176,5 @@ public class XpathRegressionUnusedLambdaParameterShouldBeUnnamedTest
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.parameterassignment;
 
 public class InputXpathParameterAssignmentCtor {
+
     int field;
     InputXpathParameterAssignmentCtor(int field) {
         int i = field;
@@ -13,4 +14,5 @@ public class InputXpathParameterAssignmentCtor {
     InputXpathParameterAssignmentCtor() {
         field = 0;
     }
+
 }

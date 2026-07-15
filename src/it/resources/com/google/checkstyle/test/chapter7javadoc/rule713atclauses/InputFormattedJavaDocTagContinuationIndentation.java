@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author max Some javadoc.
  */
 class InputFormattedJavaDocTagContinuationIndentation implements Serializable {
+
   /**
    * The client's first name.
    *
@@ -372,4 +373,5 @@ class InputFormattedJavaDocTagContinuationIndentation implements Serializable {
    * @author max
    */
   interface FooIn5 {}
+
 }

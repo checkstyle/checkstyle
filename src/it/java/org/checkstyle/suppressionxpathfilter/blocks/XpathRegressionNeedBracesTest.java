@@ -54,7 +54,7 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
                 createModuleConfig(NeedBracesCheck.class);
 
         final String[] expectedViolation = {
-            "13:9: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "do"),
+            "14:9: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "do"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -77,7 +77,7 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("allowSingleLineStatement", "true");
 
         final String[] expectedViolation = {
-            "16:9: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "if"),
+            "17:9: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "if"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -101,7 +101,7 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("allowSingleLineStatement", "true");
 
         final String[] expectedViolation = {
-            "4:29: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "->"),
+            "5:29: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "->"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -123,7 +123,7 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
                 createModuleConfig(NeedBracesCheck.class);
 
         final String[] expectedViolation = {
-            "9:9: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "while"),
+            "10:9: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "while"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -135,4 +135,5 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

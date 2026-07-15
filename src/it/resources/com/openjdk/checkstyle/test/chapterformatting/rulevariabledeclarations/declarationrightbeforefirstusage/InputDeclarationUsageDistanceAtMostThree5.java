@@ -116,4 +116,5 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
 
         public void schedule(AuthUpdateTask authUpdateTask, long l, long intervalMs) {}
     }
+
 }

@@ -41,4 +41,5 @@ public class InputFormattedWhitespaceBeforeLeftCurlyOfEmptyBlock {
 
     public Record2 {}
   }
+
 }

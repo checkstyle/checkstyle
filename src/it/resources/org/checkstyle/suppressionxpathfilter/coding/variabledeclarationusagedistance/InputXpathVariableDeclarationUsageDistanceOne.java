@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.variabledeclarationusagedistance;
 
 public class InputXpathVariableDeclarationUsageDistanceOne {
+
     private int test1;
 
     public void test(int test1) {
@@ -8,4 +9,5 @@ public class InputXpathVariableDeclarationUsageDistanceOne {
         this.test1 = test1;
         temp = test1; // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
     }
+
 }

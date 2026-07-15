@@ -165,4 +165,5 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputIllegalIdentifierNameRecordPattern.java"), expected);
     }
+
 }

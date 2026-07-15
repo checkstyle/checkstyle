@@ -4,6 +4,7 @@ import java.io.IOException;
 
 /** Some javadoc. */
 public class InputEmptyCatchBlockViolationsByComment {
+
   private void foo() {
     try {
       throw new RuntimeException();
@@ -105,4 +106,5 @@ public class InputEmptyCatchBlockViolationsByComment {
       // This is expected
     }
   }
+
 }

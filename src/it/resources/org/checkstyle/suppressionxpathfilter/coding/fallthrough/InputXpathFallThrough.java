@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.fallthrough;
 
 public class InputXpathFallThrough {
+
     public void test() {
         int id = 0;
         switch (id) {
@@ -11,4 +12,5 @@ public class InputXpathFallThrough {
             case 2: break; //warn
         }
     }
+
 }

@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MethodCountCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/methodcount";
@@ -78,4 +79,5 @@ public class MethodCountCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
+
 }

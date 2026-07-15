@@ -2,6 +2,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.whenshouldbeused;
 
 public class InputXpathWhenShouldBeUsedStaticInit {
+
     static Object obj = "test";
     static {
         switch (obj) {
@@ -13,4 +14,5 @@ public class InputXpathWhenShouldBeUsedStaticInit {
             default -> {}
         }
     }
+
 }

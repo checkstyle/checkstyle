@@ -25,4 +25,5 @@ public record InputOverrideAlwaysUsedForRecordMixed(String name, int age) {
   public void customMethod() {
     System.out.println(name);
   }
+
 }

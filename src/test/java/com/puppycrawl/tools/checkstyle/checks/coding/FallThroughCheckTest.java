@@ -448,4 +448,5 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputFallThroughWithPatternMatchingCheckLastCase.java"),
                 expected);
     }
+
 }

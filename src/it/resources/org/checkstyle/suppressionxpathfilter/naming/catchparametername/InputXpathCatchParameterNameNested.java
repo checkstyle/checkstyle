@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.naming.catchparametername;
 
 public class InputXpathCatchParameterNameNested {
+
     public static class NestedClass {
         void method() {
             if (true) {
@@ -13,4 +14,5 @@ public class InputXpathCatchParameterNameNested {
             }
         }
     }
+
 }

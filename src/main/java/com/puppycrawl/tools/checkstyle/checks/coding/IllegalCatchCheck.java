@@ -106,4 +106,5 @@ public final class IllegalCatchCheck extends AbstractCheck {
             currentNode = currentNode.getNextSibling();
         }
     }
+
 }

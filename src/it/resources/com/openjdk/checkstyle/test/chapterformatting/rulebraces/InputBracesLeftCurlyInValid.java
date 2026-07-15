@@ -88,4 +88,5 @@ public class InputBracesLeftCurlyInValid {
         } // violation, 'should be on the same line'
         while (i > 0);
     }
+
 }

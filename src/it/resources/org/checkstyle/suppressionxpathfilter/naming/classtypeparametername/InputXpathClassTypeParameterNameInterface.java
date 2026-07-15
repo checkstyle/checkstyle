@@ -13,4 +13,5 @@ interface InputXpathClassTypeParameterNameInterface {
     class MyClass3<REQUESTA> {
         public void myTest3() {}
     }
+
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputConstantsDoAndDonts {
+
     public static final int BUFFER_SIZE = 1024;
 
     enum ApplicationMode { RUNNING, PAUSED, TERMINATED }
@@ -16,4 +17,5 @@ public class InputConstantsDoAndDonts {
     // 'must match pattern'
     // 'must match pattern'
     // 'must match pattern'
+
 }

@@ -208,4 +208,5 @@ public final class TestInputConfiguration {
             return Collections.unmodifiableList(childrenModules);
         }
     }
+
 }

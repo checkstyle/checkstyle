@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author max
  */
 class InputIncorrectAtClauseOrderCheck1 implements Serializable {
+
   /**
    * The client's first name.
    *
@@ -117,4 +118,5 @@ class InputIncorrectAtClauseOrderCheck1 implements Serializable {
           return "null";
         }
       };
+
 }

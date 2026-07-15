@@ -55,4 +55,5 @@ public class InputFormattedJavadocPositionOnCompactConstructorsWithAnnotation {
     @SizeType(max = 2)
     public MyRecord {}
   }
+
 }

@@ -13,6 +13,7 @@ import java.util.concurrent.AbstractExecutorService;
 
 /** Some javadoc. */
 public class InputFormattedOrderingAndSpacing4 {
+
   /** Some javadoc. */
   public static void main(String[] args) {
     // Use of static imports
@@ -63,4 +64,5 @@ public class InputFormattedOrderingAndSpacing4 {
           public void execute(Runnable command) {}
         };
   }
+
 }

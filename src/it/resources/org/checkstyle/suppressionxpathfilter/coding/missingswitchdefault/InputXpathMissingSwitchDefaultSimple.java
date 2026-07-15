@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.missingswitchdefault;
 
 public class InputXpathMissingSwitchDefaultSimple {
+
     public static void test1() {
         int key = 2;
         switch (key) { // warn
@@ -10,4 +11,5 @@ public class InputXpathMissingSwitchDefaultSimple {
                 break;
         }
     }
+
 }

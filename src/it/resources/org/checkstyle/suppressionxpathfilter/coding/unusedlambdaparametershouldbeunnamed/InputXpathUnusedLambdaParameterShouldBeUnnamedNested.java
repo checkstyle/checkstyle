@@ -11,4 +11,5 @@ public class InputXpathUnusedLambdaParameterShouldBeUnnamedNested {
             return 2;
         };
     }
+
 }

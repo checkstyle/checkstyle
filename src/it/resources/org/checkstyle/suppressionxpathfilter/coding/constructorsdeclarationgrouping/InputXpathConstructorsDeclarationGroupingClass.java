@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.constructorsdeclarationgrouping;
 
 public class InputXpathConstructorsDeclarationGroupingClass {
+
     InputXpathConstructorsDeclarationGroupingClass() {}
 
     InputXpathConstructorsDeclarationGroupingClass(int a) {}
@@ -8,4 +9,5 @@ public class InputXpathConstructorsDeclarationGroupingClass {
     int x;
 
     InputXpathConstructorsDeclarationGroupingClass(String str) {} // warn
+
 }

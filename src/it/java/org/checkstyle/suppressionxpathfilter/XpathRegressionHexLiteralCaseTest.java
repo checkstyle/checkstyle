@@ -45,7 +45,7 @@ public class XpathRegressionHexLiteralCaseTest extends AbstractXpathTestSupport 
                 createModuleConfig(HexLiteralCaseCheck.class);
 
         final String[] expected = {
-            "4:14: " + getCheckMessage(HexLiteralCaseCheck.class,
+            "5:14: " + getCheckMessage(HexLiteralCaseCheck.class,
                       HexLiteralCaseCheck.MSG_KEY),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -70,7 +70,7 @@ public class XpathRegressionHexLiteralCaseTest extends AbstractXpathTestSupport 
                 createModuleConfig(HexLiteralCaseCheck.class);
 
         final String[] expected = {
-            "4:15: " + getCheckMessage(HexLiteralCaseCheck.class,
+            "5:15: " + getCheckMessage(HexLiteralCaseCheck.class,
                     HexLiteralCaseCheck.MSG_KEY),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -95,7 +95,7 @@ public class XpathRegressionHexLiteralCaseTest extends AbstractXpathTestSupport 
                 createModuleConfig(HexLiteralCaseCheck.class);
 
         final String[] expected = {
-            "4:14: " + getCheckMessage(HexLiteralCaseCheck.class,
+            "5:14: " + getCheckMessage(HexLiteralCaseCheck.class,
                     HexLiteralCaseCheck.MSG_KEY),
         };
         final List<String> expectedXpathQueries = Arrays.asList(

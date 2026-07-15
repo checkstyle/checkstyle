@@ -3,6 +3,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.illegalinstantiation;
 
 public class InputXpathIllegalInstantiationAnonymous {
+
     int b = 5;
      class Inner{
         public void test() {
@@ -10,4 +11,5 @@ public class InputXpathIllegalInstantiationAnonymous {
             Integer e = new Integer(b); // warn
         }
      }
+
 }

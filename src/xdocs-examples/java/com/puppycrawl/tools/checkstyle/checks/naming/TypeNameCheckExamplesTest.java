@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class TypeNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/typename";

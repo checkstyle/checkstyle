@@ -120,7 +120,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
         moduleConfig.addProperty("max", "2");
 
         final String[] expectedViolations = {
-            "15:34: " + getCheckMessage(ParameterNumberCheck.class, MSG_KEY, 2, 3),
+            "16:34: " + getCheckMessage(ParameterNumberCheck.class, MSG_KEY, 2, 3),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -135,4 +135,5 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
 
         runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
     }
+
 }

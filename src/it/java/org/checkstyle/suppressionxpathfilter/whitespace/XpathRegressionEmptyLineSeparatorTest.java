@@ -97,7 +97,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
         moduleConfig.addProperty("tokens", "METHOD_DEF");
 
         final String[] expectedViolation = {
-            "9:5: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+            "10:5: " + getCheckMessage(EmptyLineSeparatorCheck.class,
                     EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
         };
 
@@ -131,7 +131,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
         moduleConfig.addProperty("allowMultipleEmptyLines", "false");
 
         final String[] expectedViolation = {
-            "12:25: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+            "13:25: " + getCheckMessage(EmptyLineSeparatorCheck.class,
                     EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES_AFTER, "}"),
         };
 
@@ -169,4 +169,5 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

@@ -122,4 +122,5 @@ public class HexLiteralCaseCheck extends AbstractCheck {
 
         return result;
     }
+
 }

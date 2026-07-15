@@ -357,4 +357,5 @@ public class LeftCurlyCheck
                 || nextToken.getType() == TokenTypes.RCURLY
                 || !TokenUtil.areOnSameLine(leftCurly, nextToken);
     }
+
 }

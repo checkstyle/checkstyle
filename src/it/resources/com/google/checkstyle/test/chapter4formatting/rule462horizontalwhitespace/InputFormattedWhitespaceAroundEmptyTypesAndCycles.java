@@ -19,4 +19,5 @@ class InputFormattedWhitespaceAroundEmptyTypesAndCycles {
   interface SupplierFunction<T> extends Function<Supplier<T>, T> {}
 
   class EmptyFoo {}
+
 }

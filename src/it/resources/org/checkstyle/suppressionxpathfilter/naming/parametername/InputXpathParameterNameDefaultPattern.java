@@ -4,4 +4,5 @@ class InputXpathParameterNameDefaultPattern {
 
     void method1(int v_1) { // warn
     }
+
 }

@@ -50,7 +50,7 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
                 createModuleConfig(NoFinalizerCheck.class);
 
         final String[] expectedViolation = {
-            "8:5: " + getCheckMessage(NoFinalizerCheck.class,
+            "9:5: " + getCheckMessage(NoFinalizerCheck.class,
                     NoFinalizerCheck.MSG_KEY),
         };
 
@@ -79,7 +79,7 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
                 createModuleConfig(NoFinalizerCheck.class);
 
         final String[] expectedViolation = {
-            "10:9: " + getCheckMessage(NoFinalizerCheck.class,
+            "11:9: " + getCheckMessage(NoFinalizerCheck.class,
                     NoFinalizerCheck.MSG_KEY),
         };
 
@@ -117,7 +117,7 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
                 createModuleConfig(NoFinalizerCheck.class);
 
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(NoFinalizerCheck.class,
+            "6:9: " + getCheckMessage(NoFinalizerCheck.class,
                     NoFinalizerCheck.MSG_KEY),
         };
 

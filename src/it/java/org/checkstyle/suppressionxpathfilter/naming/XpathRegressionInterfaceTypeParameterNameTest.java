@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.InterfaceTypeParameterNameCheck;
 
 public class XpathRegressionInterfaceTypeParameterNameTest extends AbstractXpathTestSupport {
+
     private final String checkName = InterfaceTypeParameterNameCheck.class.getSimpleName();
 
     @Override
@@ -55,7 +56,7 @@ public class XpathRegressionInterfaceTypeParameterNameTest extends AbstractXpath
                 createModuleConfig(InterfaceTypeParameterNameCheck.class);
 
         final String[] expectedViolations = {
-            "5:29: " + getCheckMessage(InterfaceTypeParameterNameCheck.class,
+            "6:29: " + getCheckMessage(InterfaceTypeParameterNameCheck.class,
                     MSG_INVALID_PATTERN,
                     "t", "^[A-Z]$"),
         };
@@ -89,7 +90,7 @@ public class XpathRegressionInterfaceTypeParameterNameTest extends AbstractXpath
                 createModuleConfig(InterfaceTypeParameterNameCheck.class);
 
         final String[] expectedViolations = {
-            "5:37: " + getCheckMessage(InterfaceTypeParameterNameCheck.class,
+            "6:37: " + getCheckMessage(InterfaceTypeParameterNameCheck.class,
                     MSG_INVALID_PATTERN,
                     "t", "^[A-Z]$"),
         };
@@ -143,4 +144,5 @@ public class XpathRegressionInterfaceTypeParameterNameTest extends AbstractXpath
 
         runVerifications(configuration, fileToCheck, expectedViolations, expectedXpathQueries);
     }
+
 }

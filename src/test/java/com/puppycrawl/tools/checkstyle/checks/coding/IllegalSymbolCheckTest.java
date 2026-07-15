@@ -533,4 +533,5 @@ public class IllegalSymbolCheckTest extends AbstractModuleTestSupport {
             getPath("InputIllegalSymbolOverlap.java"),
             expected);
     }
+
 }

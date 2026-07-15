@@ -4,6 +4,7 @@ package com.openjdk.checkstyle.test.chapterformatting.rulewrappinglines;
  * Test input for multiple statements per line.
  */
 public final class InputOneStatementPerLineMultiple {
+
     /** Dummy variable. */
     private int one = 0;
 
@@ -43,4 +44,5 @@ public final class InputOneStatementPerLineMultiple {
     public void callMethod() {
         toString(); toString(); // violation 'Only one statement'
     }
+
 }

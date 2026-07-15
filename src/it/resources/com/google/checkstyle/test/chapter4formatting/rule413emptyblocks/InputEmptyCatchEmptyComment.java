@@ -4,6 +4,7 @@ import java.io.IOException;
 
 /** Some javadoc. */
 public class InputEmptyCatchEmptyComment {
+
   private void foo() {
     try {
       throw new RuntimeException();
@@ -94,4 +95,5 @@ public class InputEmptyCatchEmptyComment {
     } catch (IOException | NullPointerException | ArithmeticException e) { /**/
     }
   }
+
 }

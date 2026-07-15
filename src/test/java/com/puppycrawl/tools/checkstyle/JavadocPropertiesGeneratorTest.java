@@ -379,4 +379,5 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             .that(fileContent.trim())
             .isEqualTo(expectedContent.trim());
     }
+
 }

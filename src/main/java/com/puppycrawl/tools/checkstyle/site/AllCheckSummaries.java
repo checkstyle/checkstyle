@@ -820,4 +820,5 @@ public class AllCheckSummaries extends AbstractMacro {
      */
     private record CheckInfo(String simpleName, String link, String summary) {
     }
+
 }

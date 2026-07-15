@@ -22,4 +22,5 @@ public class InputXpathTextBlockGoogleStyleFormatting3 {
     }
 
     public static void getData(String data) {}
+
 }

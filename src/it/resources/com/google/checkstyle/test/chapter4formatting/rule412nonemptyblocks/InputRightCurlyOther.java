@@ -1,6 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
 class InputRightCurlyOther {
+
   /**
    * Summary.
    *
@@ -74,48 +75,60 @@ class InputRightCurlyOther {
       System.identityHashCode("some foo");
     }
   }
+
 }
 
 /**
  * Test input for closing brace if that brace terminates a statement or the body of a constructor.
  */
 class FooCtorAlone {
-  // violation above 'Top-level class FooCtorAlone has to reside in its own source file.'
+
+  // violation 2 lines above 'Top-level class FooCtorAlone has to reside in its own source file.'
   int test;
 
   public FooCtorAlone() {
     test = 1;
-  } } // violation ''}' at column 3 should be alone on a line.'
+  }
+
+}
 
 /** Test input for closing brace if that brace terminates a statement or the body of a method. */
 class FooMethodAlone {
-  // violation above 'Top-level class FooMethodAlone has to reside in its own source file.'
+
+  // violation 2 lines above 'Top-level class FooMethodAlone has to reside in its own source file.'
   public void fooMethod() {
     int i = 1;
-  } } // violation ''}' at column 3 should be alone on a line.'
+  }
+
+}
 
 /**
  * Test input for closing brace if that brace terminates a statement or the body of a named class.
  */
 class FooInnerAlone {
-  // violation above 'Top-level class FooInnerAlone has to reside in its own source file.'
+
+  // violation 2 lines above 'Top-level class FooInnerAlone has to reside in its own source file.'
   class InnerFoo {
     public void fooInnerMethod() {}
   }
+
 }
 
 // violation below 'Top-level class EnumContainerAlone has to reside in its own source file.'
 class EnumContainerAlone {
+
   private enum Suit {
     CLUBS,
     HEARTS,
     SPADES,
     DIAMONDS
   }
+
 }
 
 // violation below 'Top-level class WithArraysAlone has to reside in its own source file.'
 class WithArraysAlone {
+
   String[] ss = {""};
   String[] empty = {};
   String[] s1 = {
@@ -128,10 +141,12 @@ class WithArraysAlone {
     "foo", "foo",
   };
   String[] s4 = {"foo", "foo"};
+
 }
 
 // violation below 'Top-level class Interface has to reside in its own source file.'
 class Interface {
+
   public @interface TestAnnotation {}
 
   public @interface TestAnnotation1 {
@@ -149,6 +164,7 @@ class Interface {
   public @interface TestAnnotation4 {
     String someValue();
   }
+
 }
 
 // violation below 'Top-level class TestEnum has to reside in its own source file.'
@@ -156,20 +172,28 @@ enum TestEnum {}
 
 // violation below 'Top-level class TestEnum1 has to reside in its own source file.'
 enum TestEnum1 {
+
   SOME_VALUE;
+
 }
 
 // violation below 'Top-level class TestEnum2 has to reside in its own source file.'
 enum TestEnum2 {
+
   SOME_VALUE;
+
 }
 
 // violation below 'Top-level class TestEnum3 has to reside in its own source file.'
 enum TestEnum3 {
+
   SOME_VALUE;
+
 }
 
 // violation below 'Top-level class TestEnum4 has to reside in its own source file.'
 enum TestEnum4 {
+
   SOME_VALUE;
+
 }

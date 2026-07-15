@@ -16,4 +16,5 @@ public record InputOverrideAlwaysUsedForRecordViolation(String name, int age) {
   public int age() {
     return age;
   }
+
 }

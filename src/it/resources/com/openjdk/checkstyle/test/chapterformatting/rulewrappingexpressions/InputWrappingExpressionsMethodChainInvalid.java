@@ -86,4 +86,5 @@ public class InputWrappingExpressionsMethodChainInvalid {
                 Rule 3: Keep it simple.
                 """.formatted("user");
     }
+
 }

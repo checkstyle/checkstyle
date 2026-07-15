@@ -77,4 +77,5 @@ public record ThreadModeSettings(int checkerThreadsNumber,
 
         return name;
     }
+
 }

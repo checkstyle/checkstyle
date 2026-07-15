@@ -83,4 +83,5 @@ public class InputFormattedRightCurlyDoWhile2 {
   public void foo9() {
     do {} while (true);
   }
+
 }
