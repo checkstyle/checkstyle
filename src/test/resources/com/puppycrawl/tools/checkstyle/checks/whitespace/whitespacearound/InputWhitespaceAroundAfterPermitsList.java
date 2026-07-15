@@ -23,7 +23,19 @@ tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, B
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 public class InputWhitespaceAroundAfterPermitsList {
-    sealed interface Shape permits Circle, Rectangle{} // 3 violations
-    final class Circle implements Shape{} // 3 violations
-    non-sealed class Rectangle implements Shape{} // 3 violations
+    sealed interface Shape permits Circle, Rectangle{}
+    // 3 violations above:
+    // ''{' is not followed by whitespace.'
+    // ''{' is not preceded with whitespace.'
+    // ''}' is not preceded with whitespace.'
+    final class Circle implements Shape{}
+    // 3 violations above:
+    // ''{' is not followed by whitespace.'
+    // ''{' is not preceded with whitespace.'
+    // ''}' is not preceded with whitespace.'
+    non-sealed class Rectangle implements Shape{}
+    // 3 violations above:
+    // ''{' is not followed by whitespace.'
+    // ''{' is not preceded with whitespace.'
+    // ''}' is not preceded with whitespace.'
 }
