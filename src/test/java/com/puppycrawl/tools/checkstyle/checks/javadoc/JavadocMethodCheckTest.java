@@ -116,6 +116,10 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodThrowsDetectionTwo.java"), expected);
+    }
+
+    @Test
+    public void testThrowsNoIdentifier() throws Exception {
         verifyWithInlineConfigParser(
                 getJavadocWithErrorPath("InputJavadocMethodThrowsDetectionTwo.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
