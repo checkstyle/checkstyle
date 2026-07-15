@@ -25,5 +25,7 @@ class
     Example2() {}
   public void
     doSomething() {}
+  @Deprecated
+  private void doNothing() {}
 }
 // xdoc section -- end
