@@ -264,21 +264,6 @@ public final class InlineConfigParser {
      * <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
      */
     private static final Set<String> SUPPRESSED_FILES = Set.of(
-            "annotation/suppresswarnings/InputSuppressWarningsExpanded2.java",
-            "annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant2.java",
-            "annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant1.java",
-            "annotation/suppresswarnings/InputSuppressWarningsExpanded5.java",
-            "annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant5.java",
-            "annotation/suppresswarnings/InputSuppressWarningsExpanded6.java",
-            "annotation/suppresswarnings/InputSuppressWarningsExpanded7.java",
-            "annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant7.java",
-            "annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant6.java",
-            "annotation/suppresswarnings/InputSuppressWarningsSingle2.java",
-            "annotation/suppresswarnings/InputSuppressWarningsSingle1.java",
-            "annotation/suppresswarnings/InputSuppressWarningsSingle5.java",
-            "annotation/suppresswarnings/InputSuppressWarningsSingle6.java",
-            "annotation/suppresswarnings/InputSuppressWarningsSingle7.java",
-            "annotation/suppresswarnings/InputSuppressWarningsRecords.java",
             "whitespace/whitespacearound/"
                     + "InputWhitespaceAroundAllowEmptyLambdaExpressions2.java",
             "whitespace/whitespacearound/"
