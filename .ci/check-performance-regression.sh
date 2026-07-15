@@ -94,7 +94,8 @@ compare_results() {
 
 # start benchmark
 echo "Benchmark launching..."
-AVERAGE_IN_SECONDS="$(execute_benchmark "$(find "./target/" -type f -name "checkstyle-*-all.jar")")"
+AVERAGE_IN_SECONDS="$(execute_benchmark "$(find "./target/" -type f -name "checkstyle-*-all.jar" \
+  ! -name "checkstyle-files-generator-all.jar")")"
 
 # print the command execution result
 echo "================ MOST RECENT COMMAND RESULT ================="

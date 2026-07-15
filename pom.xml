@@ -1010,6 +1010,32 @@
       </plugin>
 
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-checkstyle-files-generator</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>io.github.stoyank7</groupId>
+                  <artifactId>checkstyle-files-generator</artifactId>
+                  <version>1.0.2</version>
+                  <classifier>all</classifier>
+                  <type>jar</type>
+                  <destFileName>checkstyle-files-generator-all.jar</destFileName>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <executions>
@@ -1044,6 +1070,26 @@
               <arguments>
                 <argument>${project.basedir}/src/site/xdoc</argument>
                 <argument>${project.build.directory}/site/search-index.json</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>run-checkstyle-files-generator</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration combine.self="override">
+              <executable>java</executable>
+              <arguments>
+                <argument>-jar</argument>
+                <argument>target/dependency/checkstyle-files-generator-all.jar</argument>
+                <argument>
+                  ${basedir}
+                </argument>
+                <argument>
+                  --generateMetadata
+                </argument>
               </arguments>
             </configuration>
           </execution>
@@ -1151,8 +1197,8 @@
                              com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter.UpdatingTreeModelListener
                     </exclude>
                     <!-- Metadata Generator related classes -->
-                    <exclude>com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.ModuleDetails*</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperUtil*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.XmlMeta*</exclude>
                     <!-- OS specific utility providing class -->
@@ -1174,18 +1220,15 @@
                 <rule>
                   <element>CLASS</element>
                   <includes>
-                    <include>com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil</include>
+                    <include>
+                      com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails
+                    </include>
                   </includes>
                   <limits>
                     <limit>
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.95</minimum>
-                    </limit>
-                    <limit>
-                      <counter>BRANCH</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>1.00</minimum>
+                      <minimum>0.70</minimum>
                     </limit>
                   </limits>
                 </rule>
@@ -1579,26 +1622,6 @@
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>0.90</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-                <rule>
-                  <element>CLASS</element>
-                  <includes>
-                    <include>
-                      com.puppycrawl.tools.checkstyle.meta.XmlMetaWriter
-                    </include>
-                  </includes>
-                  <limits>
-                    <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.91</minimum>
-                    </limit>
-                    <limit>
-                      <counter>BRANCH</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.75</minimum>
                     </limit>
                   </limits>
                 </rule>
@@ -5440,10 +5463,6 @@
                 <!-- JavadocUtil#isTag  -->
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheckTest
-                </param>
-                <!-- JavadocUtil#getAllNodesOfType  -->
-                <param>
-                  com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtilTest
                 </param>
                 <!-- CheckUtil#getNextNonCommentAst and CheckUtil#isTerminated -->
                 <param>

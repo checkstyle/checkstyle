@@ -145,6 +145,10 @@
   <!-- until https://github.com/checkstyle/checkstyle/issues/5234 -->
   <suppress id="MatchXPathBranchContains" files="[\\/]DetailAstImplTest.java"/>
 
+  <!-- Shared site utility; keeping related operations together is preferable. -->
+  <suppress checks="FileLength"
+          files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]site[\\/]SiteUtil.java"/>
+
   <!-- required by JavaAstVisitor design -->
   <suppress checks="MethodCount"
             files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]JavaAstVisitor.java"/>

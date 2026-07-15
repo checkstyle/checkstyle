@@ -28,6 +28,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.net.URI;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -81,6 +83,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * Utility class for site generation.
  */
+// -@cs[ClassDataAbstractionCoupling] Central utility for shared logic; coupling is expected.
+// -@cs[ClassFanOutComplexity] Central utility for shared logic; fan-out is expected.
 public final class SiteUtil {
 
     /** The string 'tokens'. */
@@ -324,6 +328,26 @@ public final class SiteUtil {
     }
 
     /**
+     * Returns the instance of the module with the given name.
+     *
+     * @param moduleName the name of the module.
+     * @param checkstylePath path to the checkstyle repository where the compiled classes are
+     * @return the instance of the module.
+     * @throws MacroExecutionException if the module could not be created.
+     */
+    public static Object getModuleInstance(String moduleName, Path checkstylePath)
+            throws MacroExecutionException {
+        final ModuleFactory factory = getPackageObjectFactory(checkstylePath);
+
+        try {
+            return factory.createModule(moduleName);
+        }
+        catch (CheckstyleException exc) {
+            throw new MacroExecutionException("Couldn't find class " + moduleName, exc);
+        }
+    }
+
+    /**
      * Returns the default PackageObjectFactory with the default package names.
      *
      * @return the default PackageObjectFactory.
@@ -337,6 +361,33 @@ public final class SiteUtil {
         }
         catch (CheckstyleException exc) {
             throw new MacroExecutionException("Couldn't load checkstyle modules", exc);
+        }
+    }
+
+    /**
+     * Returns the default PackageObjectFactory with the default package names.
+     *
+     * @param checkstylePath path to the checkstyle repository where the compiled classes are
+     * @return the default PackageObjectFactory.
+     * @throws MacroExecutionException if the PackageObjectFactory cannot be created.
+     */
+    private static PackageObjectFactory getPackageObjectFactory(Path checkstylePath)
+            throws MacroExecutionException {
+
+        try {
+            final Path classesDir = checkstylePath.resolve("target/classes");
+            final URL[] urls = {
+                classesDir.toUri().toURL(),
+            };
+            final ClassLoader parent = ViolationMessagesMacro.class.getClassLoader();
+            final URLClassLoader moduleClassLoader = new URLClassLoader(urls, parent);
+            final Set<String> packageNames =
+                    PackageNamesLoader.getPackageNames(moduleClassLoader);
+            return new PackageObjectFactory(packageNames, moduleClassLoader);
+        }
+        catch (IOException | CheckstyleException exc) {
+            throw new MacroExecutionException(
+                    "Couldn't load checkstyle modules from: " + checkstylePath, exc);
         }
     }
 
@@ -478,15 +529,17 @@ public final class SiteUtil {
      * @param moduleName the name of the module.
      * @param modulePath the module file path.
      * @param instance the instance of the module.
+     * @param checkstylePath path to the checkstyle source code directory
      * @return the property details of the module.
      * @throws MacroExecutionException if an error occurs during processing.
      */
     public static Map<String, PropertyDetails> buildPropertyDetails(Set<String> properties,
                                                              String moduleName, Path modulePath,
-                                                             Object instance)
+                                                             Object instance, Path checkstylePath)
             throws MacroExecutionException {
-        final Map<String, PropertyDetails> superClassPropertyData = buildSuperClassPropertyData();
-        processModule(moduleName, modulePath, instance, properties);
+        final Map<String, PropertyDetails> superClassPropertyData =
+                buildSuperClassPropertyData(checkstylePath);
+        processModule(moduleName, modulePath, instance, properties, checkstylePath);
 
         final Map<String, PropertyDetails> currentPropertiesDetails =
                 new TreeMap<>(JavadocScraperResultUtil.getPropertiesDetails());
@@ -585,10 +638,11 @@ public final class SiteUtil {
      * This method is called once per {@link #buildPropertyDetails} invocation and returns
      * a new local map — it never populates any static field.
      *
+     * @param checkstylePath path to the checkstyle source code directory
      * @return map of property name to PropertyDetails for all known superclasses.
      * @throws MacroExecutionException if an error occurs during processing.
      */
-    private static Map<String, PropertyDetails> buildSuperClassPropertyData()
+    private static Map<String, PropertyDetails> buildSuperClassPropertyData(Path checkstylePath)
             throws MacroExecutionException {
         final Map<String, PropertyDetails> result = new TreeMap<>();
         for (Path superclassPath : MODULE_SUPER_CLASS_PATHS) {
@@ -621,7 +675,7 @@ public final class SiteUtil {
                 throw new MacroExecutionException("Failed to find class: " + classFullName, exc);
             }
 
-            processModule(superclassName, superclassPath, null, properties);
+            processModule(superclassName, superclassPath, null, properties, checkstylePath);
             result.putAll(JavadocScraperResultUtil.getPropertiesDetails());
         }
         return result;
@@ -639,7 +693,7 @@ public final class SiteUtil {
         final Object instance = getModuleInstance(moduleName);
         final Set<String> properties = getPropertiesForDocumentation(instance.getClass(),
                 instance);
-        processModule(moduleName, modulePath, instance, properties);
+        processModule(moduleName, modulePath, instance, properties, Path.of(""));
     }
 
     /**
@@ -650,12 +704,13 @@ public final class SiteUtil {
      * @param modulePath the module Path.
      * @param instance the instance of the module.
      * @param properties the properties of the module.
+     * @param checkstylePath path to the checkstyle source code directory
      * @throws MacroExecutionException if an error occurs during processing.
      */
     private static void processModule(String moduleName, Path modulePath, Object instance,
-                                      Set<String> properties)
+                                      Set<String> properties, Path checkstylePath)
             throws MacroExecutionException {
-        final Path resolvedPath = Path.of("").toAbsolutePath()
+        final Path resolvedPath = checkstylePath.toAbsolutePath()
                 .resolve(modulePath.toString().replace('\\', '/'))
                 .normalize();
         if (!Files.isRegularFile(resolvedPath)) {

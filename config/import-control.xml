@@ -307,11 +307,6 @@
     <allow class="java.lang.reflect.Field"/>
     <allow class="org.apache.maven.doxia.macro.MacroExecutionException"/>
 
-    <file name="MetadataGeneratorUtil">
-      <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions"/>
-      <allow class="com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger"/>
-    </file>
-
   </subpackage>
 
   <subpackage name="xpath">
