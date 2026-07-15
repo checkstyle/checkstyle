@@ -22,7 +22,7 @@
   <property name="fileExtensions" value="java, properties, xml"/>
     <module name="MultiFileRegexpHeader">
       <property name="fileExtensions" value="java"/>
-      <property name="headerFiles" value="${header-file-paths-separted-by-coma}"/>
+      <property name="headerFiles" value="${header-file-paths-separated-by-coma}"/>
     </module>
 
 
