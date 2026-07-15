@@ -6,42 +6,54 @@
     </module>
   </module>
 </module>
-
-
 */
-
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
-
 // xdoc section -- start
 class Example5 {
-  public Example5(){} // violation, no space after ')'
+  interface Empty {}
+  // 2 violations above:
+  //  ''{' is not followed by whitespace'
+  //  ''}' is not preceded with whitespace'
+  public Example5(){}
+  // violation above ''{' is not preceded with whitespace.
+
+  // ok, allowEmptyConstructors is true
 
   int y = 0;
-  int a = 4;
-
   void example() {
-    Runnable noop = () ->{}; // 4 violations
-    // no space after '->' and '{', no space before '{' and '}'
+    Runnable noop = () ->{};
+    // 4 violations above:
+    //  ''->' is not followed by whitespace'
+    //  ''{' is not followed by whitespace'
+    //  ''{' is not preceded with whitespace'
+    //  ''}' is not preceded with whitespace'
     try { }
-    catch (Exception e){} // 3 violations
-    // no space after ')' and '{', no space before '}'
+    catch (Exception e){}
+    // 3 violations above:
+    //  ''{' is not followed by whitespace'
+    //  ''{' is not preceded with whitespace'
+    //  ''}' is not preceded with whitespace'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 100;i > 10; i--){} // 3 violations
-    // no space before '{', no space after '{', no space before '}'
-    do {} while (y == 1); // 2 violations
-    // no space after '{', no space before '}'
-    int i = 0;
-    switch (i) {
-      case 1: {} // 2 violations
-      // no space after '{', no space before '}'
+    for (int i = 0; i < 10; i++){}
+    // 3 violations above:
+    //  ''{' is not followed by whitespace'
+    //  ''{' is not preceded with whitespace'
+    //  ''}' is not preceded with whitespace'
+    do {} while (y == 1);
+    // 2 violations above:
+    //  ''{' is not followed by whitespace'
+    //  ''}' is not preceded with whitespace'
+    switch (y) {
+      case 1: {}
+      // 2 violations above:
+      //  ''{' is not followed by whitespace'
+      //  ''}' is not preceded with whitespace'
     }
-    int a=4; // 2 violations
-    // no space before '=', no space after '='
   }
-
-  void myFunction() {} // 2 violations
-  // no space after '{', no space before '}'
-  void myFunction2() { }
+  void myFunction() {}
+  // 2 violations above:
+  //  ''{' is not followed by whitespace'
+  //  ''}' is not preceded with whitespace'
 }
 // xdoc section -- end

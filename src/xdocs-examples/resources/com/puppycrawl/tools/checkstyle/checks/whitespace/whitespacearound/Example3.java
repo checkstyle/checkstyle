@@ -6,42 +6,54 @@
     </module>
   </module>
 </module>
-
-
 */
-
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
-
 // xdoc section -- start
 class Example3 {
-  public Example3(){} // violation ''}' is not preceded with whitespace'
+  interface Empty {}
+  // 2 violations above:
+  //  ''{' is not followed by whitespace'
+  //  ''}' is not preceded with whitespace'
+  public Example3(){}
+  // violation above ''}' is not preceded with whitespace'
+
+  // ok, ')' is not in the tokens list
 
   int y = 0;
-  int a = 4;
-
   void example() {
-    Runnable noop = () ->{}; // violation ''}' is not preceded with whitespace'
+    Runnable noop = () ->{};
+    // violation above ''}' is not preceded with whitespace'
 
+    // ok, '->' is not in the tokens list
+
+    // ok, ')' is not in the tokens list
     try { }
-    catch (Exception e){} // violation ''}' is not preceded with whitespace'
+    catch (Exception e){}
+    // violation above ''}' is not preceded with whitespace'
+
+    // ok, ')' is not in the tokens list
 
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 100;i > 10; i--){}
+    for (int i = 0; i < 10; i++){}
     // violation above ''}' is not preceded with whitespace'
-    do {} while (y == 1); // violation ''}' is not preceded with whitespace'
 
-    int i = 0;
-    switch (i) {
-      case 1: {} // violation ''}' is not preceded with whitespace'
+    // ok, ')' is not in the tokens list
 
+    do {} while (y == 1);
+    // violation above ''}' is not preceded with whitespace'
+
+    // ok, ')' is not in the tokens list
+    switch (y) {
+      case 1: {}
+      // violation above ''}' is not preceded with whitespace'
+
+      // ok, ':' is not in the tokens list
     }
-    int a=4;
-
   }
+  void myFunction() {}
+  // violation above ''}' is not preceded with whitespace'
 
-  void myFunction() {} // violation ''}' is not preceded with whitespace'
-
-  void myFunction2() { }
+  // ok, ')' is not in the tokens list
 }
 // xdoc section -- end
