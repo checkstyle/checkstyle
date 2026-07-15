@@ -1273,7 +1273,7 @@ public class XdocsExamplesAstConsistencyTest {
      * @throws IOException if an I/O error occurs
      */
     private static String extractXdocSection(Path file) throws IOException {
-        final List<String> lines = Files.readAllLines(file, StandardCharsets.UTF_8);
+        final List<String> lines = Files.readAllLines(file);
         int startIndex = -1;
         int endIndex = -1;
 
