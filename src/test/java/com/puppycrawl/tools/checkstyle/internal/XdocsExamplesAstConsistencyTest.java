@@ -247,7 +247,8 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/imports/importorder/Example6",
             "checks/imports/importorder/Example7",
             "checks/imports/importorder/Example8",
-            "checks/imports/importorder/Example9"
+            "checks/imports/importorder/Example9",
+            "checks/sizes/javalinelength/Example2"
     );
 
     /**
@@ -1268,7 +1269,7 @@ public class XdocsExamplesAstConsistencyTest {
      * @throws IOException if an I/O error occurs
      */
     private static String extractXdocSection(Path file) throws IOException {
-        final List<String> lines = Files.readAllLines(file);
+        final List<String> lines = Files.readAllLines(file, StandardCharsets.UTF_8);
         int startIndex = -1;
         int endIndex = -1;
 
