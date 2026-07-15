@@ -100,4 +100,5 @@ public final class SuppressionsStringPrinter {
         return suppressions.stream().collect(Collectors.joining(LINE_SEPARATOR,
                 "", LINE_SEPARATOR));
     }
+
 }

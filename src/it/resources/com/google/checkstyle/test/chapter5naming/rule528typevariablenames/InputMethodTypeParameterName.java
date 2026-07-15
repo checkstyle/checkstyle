@@ -3,10 +3,12 @@ package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 import java.io.Serializable;
 
 class InputMethodTypeParameterName<T> {
+
   public <TT> void foo() {}
 
   <e_e> void foo(int i) { // violation 'Method type name 'e_e' must match pattern'
   }
+
 }
 
 // violation below 'Top-level class Other2 has to reside in its own source file.'
@@ -31,6 +33,7 @@ class Other2<T extends Serializable & Cloneable> {
       // violation above 'Method type name '_abc' must match pattern'
     }
   }
+
 }
 
 // violation below 'Top-level class MoreOther3 has to reside in its own source file.'
@@ -48,4 +51,5 @@ class MoreOther3<T extends Cloneable> {
           }
         };
   }
+
 }

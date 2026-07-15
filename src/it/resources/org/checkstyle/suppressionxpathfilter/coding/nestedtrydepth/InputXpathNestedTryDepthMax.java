@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.nestedtrydepth;
 
 public class InputXpathNestedTryDepthMax {
+
     public void test() {
         try {
             try {
@@ -14,4 +15,5 @@ public class InputXpathNestedTryDepthMax {
             } catch (Exception e) {}
         } catch (Exception e) {}
     }
+
 }

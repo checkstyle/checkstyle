@@ -8,4 +8,5 @@ public class InputXpathIllegalCatchThree {
         } catch (Throwable e ) { // warn
         }
     }
+
 }

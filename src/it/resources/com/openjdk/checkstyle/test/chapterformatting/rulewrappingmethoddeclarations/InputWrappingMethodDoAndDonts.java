@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class InputWrappingMethodDoAndDonts {
+
     class Do {
         public void someMethod(String aString,
                        List<Integer> aList,
@@ -58,4 +59,5 @@ public class InputWrappingMethodDoAndDonts {
         }
 
     }
+
 }

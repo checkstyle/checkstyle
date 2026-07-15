@@ -6,4 +6,5 @@ public class InputThrowsIndentInvalid {
         throws Exception {
     // violation above '.* incorrect indentation level 8, expected .* 12.'
     }
+
 }

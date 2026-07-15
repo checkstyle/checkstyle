@@ -147,4 +147,5 @@ public class SeparatorWrapCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputSeparatorWrapForTestTrailingWhitespace.java"), expected);
     }
+
 }

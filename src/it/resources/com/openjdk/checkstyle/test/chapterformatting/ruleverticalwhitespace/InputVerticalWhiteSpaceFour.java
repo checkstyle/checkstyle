@@ -1,6 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleverticalwhitespace;
 
 public class InputVerticalWhiteSpaceFour {
+
     int id;
 
     int score1;

@@ -5,4 +5,5 @@ public class InputArrayInitIndentValid {
     int[] values = {
         1, 2, 3
     };
+
 }

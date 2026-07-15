@@ -19,4 +19,5 @@ public class InputXpathClassTypeParameterNameMethod {
         public void test() {}
     }
 }
+
 }

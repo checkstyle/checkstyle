@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 class InputFormattedMethodParamPad {
+
   class Inner {
     void testGenerics1() {
       Comparable<String> c = new String();
@@ -23,26 +24,32 @@ class InputFormattedMethodParamPad {
           int init = 9;
         }
       };
+
 }
 
 // violation below 'Top-level class ExtraAsInput1 has to reside in its own source file.'
 class ExtraAsInput1 {
+
   int abc = 0;
   String string = "string";
   double pi = 3.1415;
+
 }
 
 // violation below 'Top-level class ExtraTernary2 has to reside in its own source file.'
 class ExtraTernary2 {
+
   void foo() {
     boolean flag = true;
     int i2 = flag == true ? 1 : 2;
     int i3 = flag == true ? 1 : 2;
   }
+
 }
 
 // violation below 'Top-level class ExtraAssignClass3 has to reside in its own source file.'
 class ExtraAssignClass3 {
+
   void foo() {
     int i = 0;
     int j = 0;
@@ -134,4 +141,5 @@ class ExtraAssignClass3 {
 
     SECOND() {}
   }
+
 }

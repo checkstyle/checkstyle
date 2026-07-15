@@ -240,4 +240,5 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
 
         return localizedMessage.getMessage();
     }
+
 }

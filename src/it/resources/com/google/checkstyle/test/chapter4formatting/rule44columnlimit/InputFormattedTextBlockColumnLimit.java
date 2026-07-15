@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule44columnlimit;
 
 /** Somejavadoc. */
 public class InputFormattedTextBlockColumnLimit {
+
   static final String SAMPLE =
       """
       locationId,label,regionId,regionLabel,vendorId,vendorLabel,address,address2,city,stateProvinceCode,zipCode,countryCode,latitude,longitude
@@ -61,4 +62,5 @@ public class InputFormattedTextBlockColumnLimit {
   public static String getSampleTest() {
     return "sampleTest";
   }
+
 }

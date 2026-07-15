@@ -25,4 +25,5 @@ public class InputPatternVariableNameUnnamed {
       System.out.println(st_);
     }
   }
+
 }

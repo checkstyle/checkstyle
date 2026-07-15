@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.multiplestringliterals;
 
 public class InputXpathMultipleStringLiteralsIgnoreOccurrenceContext {
+
     String a = "StringContents";
     String a1 = "unchecked"; // warn
 
@@ -9,4 +10,5 @@ public class InputXpathMultipleStringLiteralsIgnoreOccurrenceContext {
        String a3 = "DoubleString";
        String a5 = "unchecked";
     }
+
 }

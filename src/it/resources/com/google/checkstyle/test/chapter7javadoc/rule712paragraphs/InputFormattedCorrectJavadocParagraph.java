@@ -91,4 +91,5 @@ class InputFormattedCorrectJavadocParagraph {
           return false;
         }
       };
+
 }

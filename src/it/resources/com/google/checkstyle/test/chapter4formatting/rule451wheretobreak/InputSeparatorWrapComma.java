@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule451wheretobreak;
 
 /** Some javadoc. */
 public class InputSeparatorWrapComma {
+
   /** Some javadoc. */
   public void goodCase() {
     int i = 0;
@@ -14,6 +15,7 @@ public class InputSeparatorWrapComma {
 
   /** Some javadoc. */
   public static void foo(int i, String s) {}
+
 }
 
 // violation below 'Top-level class BadCaseComma has to reside in its own source file.'
@@ -43,4 +45,5 @@ class BadCaseComma {
             .append(truncationIndicator)
             .toString();
   }
+
 }

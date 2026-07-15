@@ -109,4 +109,5 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

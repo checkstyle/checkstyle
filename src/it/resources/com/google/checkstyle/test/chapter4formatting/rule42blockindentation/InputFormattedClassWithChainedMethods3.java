@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule42blockindentation;
 
 /** Some javadoc. */
 public class InputFormattedClassWithChainedMethods3 {
+
   /** Some javadoc. */
   public InputFormattedClassWithChainedMethods3() {
 
@@ -22,4 +23,5 @@ public class InputFormattedClassWithChainedMethods3 {
   public String doNothing(String something) {
     return something;
   }
+
 }

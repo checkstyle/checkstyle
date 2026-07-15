@@ -1,6 +1,7 @@
 package com.openjdk.checkstyle.test.chapternaming.rulenaming;
 
 public class InputNamingOne {
+
     private String field;
     private String testField;
 
@@ -22,4 +23,5 @@ public class InputNamingOne {
     abstract class Inner {
         abstract int method(String field); // ok, abstract method parameter are allowed
     }
+
 }

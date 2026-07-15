@@ -57,4 +57,5 @@ public class InputJavadocPositionOnCompactConstructorsWithAnnotation {
     /** Invalid javadoc.*/
     // violation above 'Javadoc comment is placed in the wrong location.'
   }
+
 }

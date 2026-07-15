@@ -13,4 +13,5 @@ class InputClassNamesWithUnderscore {
   class ConvertToKotlinVersion10_0 {}
 
   class ConvertToKotlinVersion__ {} // violation, two _s at the end, 'must match'
+
 }

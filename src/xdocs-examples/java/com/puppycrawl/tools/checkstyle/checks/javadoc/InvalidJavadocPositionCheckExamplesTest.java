@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class InvalidJavadocPositionCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/invalidjavadocposition";
@@ -39,4 +40,5 @@ public class InvalidJavadocPositionCheckExamplesTest extends AbstractExamplesMod
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

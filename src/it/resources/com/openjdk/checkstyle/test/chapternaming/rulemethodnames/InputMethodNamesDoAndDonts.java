@@ -1,6 +1,7 @@
 package com.openjdk.checkstyle.test.chapternaming.rulemethodnames;
 
 public class InputMethodNamesDoAndDonts {
+
     public void expand() {
     }
 

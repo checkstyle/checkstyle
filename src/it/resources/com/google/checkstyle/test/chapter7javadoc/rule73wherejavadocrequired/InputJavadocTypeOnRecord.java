@@ -50,4 +50,5 @@ public record InputJavadocTypeOnRecord(String name) {
 
     protected Multi5 {}
   }
+
 }

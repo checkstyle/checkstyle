@@ -5,6 +5,7 @@ import java.util.List;
 
 /** Some javadoc. */
 public class InputFormattedFieldAnnotations {
+
   /** Some javadoc. */
   public @interface SomeAnnotation1 {}
 
@@ -57,4 +58,5 @@ public class InputFormattedFieldAnnotations {
 
   @SomeAnnotation3(x = 78)
   void test3() {}
+
 }

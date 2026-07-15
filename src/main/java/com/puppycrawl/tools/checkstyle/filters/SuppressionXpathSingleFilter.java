@@ -57,6 +57,7 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
  */
 public class SuppressionXpathSingleFilter extends AbstractAutomaticBean implements
         TreeWalkerFilter {
+
     /**
      * XpathFilterElement instance.
      */

@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck;
 
 public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSupport {
+
     private final String checkName = SuppressWarningsCheck.class.getSimpleName();
 
     @Override
@@ -346,4 +347,5 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
 
         runVerifications(configuration, fileToCheck, expectedViolations, expectedXpathQueries);
     }
+
 }

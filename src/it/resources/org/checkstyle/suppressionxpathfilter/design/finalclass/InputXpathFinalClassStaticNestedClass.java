@@ -5,4 +5,5 @@ public class InputXpathFinalClassStaticNestedClass {
     static class StaticNestedClass { // warn
         private StaticNestedClass() {}
     }
+
 }

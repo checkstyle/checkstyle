@@ -1,5 +1,6 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleverticalwhitespace;
 public class InputVerticalWhiteSpaceTwo {
+
     // violation above ''CLASS_DEF' should be separated from previous line'
     int var1 = 0;
     int var2 = 0;

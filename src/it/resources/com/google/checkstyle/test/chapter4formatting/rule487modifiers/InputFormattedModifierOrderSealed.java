@@ -5,6 +5,7 @@ public sealed class InputFormattedModifierOrderSealed
     permits InputFormattedModifierOrderSealed.Four1,
         InputFormattedModifierOrderSealed.Three1,
         InputFormattedModifierOrderSealed.Two1 {
+
   final class Two1 extends InputFormattedModifierOrderSealed implements Five1 {}
 
   sealed class Four1 extends InputFormattedModifierOrderSealed {}
@@ -20,4 +21,5 @@ public sealed class InputFormattedModifierOrderSealed
   public final class FilledFour1 extends Four1 {}
 
   abstract sealed interface Five1 permits Two1, Three1 {}
+
 }

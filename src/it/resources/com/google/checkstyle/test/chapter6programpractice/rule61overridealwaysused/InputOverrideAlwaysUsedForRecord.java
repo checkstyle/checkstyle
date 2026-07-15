@@ -10,6 +10,7 @@ public record InputOverrideAlwaysUsedForRecord(String name, int age) {
   public String name() {
     return name.toUpperCase(Locale.ROOT);
   }
+
 }
 
 // violation below 'Top-level class Container has to reside in its own source file'
@@ -19,4 +20,5 @@ record Container(String fileName, int port) {
   public int port() {
     return port;
   }
+
 }

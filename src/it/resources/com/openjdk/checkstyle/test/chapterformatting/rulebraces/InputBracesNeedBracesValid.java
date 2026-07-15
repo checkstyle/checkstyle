@@ -1,6 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulebraces;
 
 public class InputBracesNeedBracesValid {
+
     String obj = new String();
     String value = new String();
     int counter = 1;
@@ -41,4 +42,5 @@ public class InputBracesNeedBracesValid {
 
         return true;
     }
+
 }

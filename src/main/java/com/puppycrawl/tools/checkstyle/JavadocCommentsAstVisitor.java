@@ -761,4 +761,5 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
             }
         }
     }
+
 }

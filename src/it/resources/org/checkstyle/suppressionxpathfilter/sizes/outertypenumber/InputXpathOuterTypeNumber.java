@@ -1,10 +1,13 @@
 package org.checkstyle.suppressionxpathfilter.sizes.outertypenumber; //warn
 
 public class InputXpathOuterTypeNumber {
+
     int i; int j;
+
 }
 class InputOuterTypeNumberSimple2
 {
+
     /** Some more Javadoc. */
     public void doSomething()
     {
@@ -14,11 +17,13 @@ class InputOuterTypeNumberSimple2
 
         }
     }
+
 }
 
 /** Test enum for member naming check */
 enum MyEnum1
 {
+
     /** ABC constant */
     ABC,
 
@@ -27,4 +32,5 @@ enum MyEnum1
 
     /** Should be mSomeMember */
     private int someMember;
+
 }

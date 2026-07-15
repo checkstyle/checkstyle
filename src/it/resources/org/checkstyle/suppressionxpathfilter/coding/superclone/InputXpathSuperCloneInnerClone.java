@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.superclone;
 
 public class InputXpathSuperCloneInnerClone {
+
     class InnerClone
     {
         public Object clone() // warn
@@ -15,4 +16,5 @@ public class InputXpathSuperCloneInnerClone {
             return null;
         }
     }
+
 }

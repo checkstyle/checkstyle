@@ -7,4 +7,5 @@ public class InputXpathNoArrayTrailingCommaThree {
     }
 
     void print(int[][] arr) { }
+
 }

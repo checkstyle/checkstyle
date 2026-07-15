@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter3filestructure.rule341onetoplevel;
 
 /** Some javadoc. */
 public class InputOneTopLevelClassBasic {
+
   /** Some javadoc. */
   public InputOneTopLevelClassBasic() throws CloneNotSupportedException {
     super.equals(new String());
@@ -21,17 +22,21 @@ public class InputOneTopLevelClassBasic {
   {
     super.clone();
   }
+
 }
 
 // violation below 'Top-level class NoSuperClone has to reside in its own source file.'
 class NoSuperClone {
+
   public Object clone() {
     return null;
   }
+
 }
 
 // violation below 'Top-level class InnerClone has to reside in its own source file.'
 class InnerClone {
+
   public Object clone() {
     class Inner {
       public Object clone() throws CloneNotSupportedException {
@@ -41,6 +46,7 @@ class InnerClone {
 
     return null;
   }
+
 }
 
 // This could not pass as valid semantically but tests that
@@ -56,6 +62,7 @@ class CloneWithTypeArgumentsAndNoSuper {}
 // Check that super keyword isn't snagged here
 // violation below '.* class MyClassWithGenericSuperMethod has to reside in its own source file.'
 class MyClassWithGenericSuperMethod {
+
   void someMethod(java.util.List<? super java.util.Map> l) {
     // Some code
   }
@@ -69,6 +76,7 @@ class MyClassWithGenericSuperMethod {
   public static Object clone(Object o) {
     return null;
   }
+
 }
 
 // violation below 'Top-level class AnotherClass has to reside in its own source file.'
@@ -84,4 +92,5 @@ class AnotherClass {
   public <T> T clone(T t) {
     return null;
   }
+
 }

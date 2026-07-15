@@ -19,6 +19,7 @@ import org.apache.commons.beanutils.converters.ArrayConverter;
 
 /** Some javadoc. */
 public class InputFormattedOrderingAndSpacingValid {
+
   /** Some javadoc. */
   public static void main(String[] args) {
     // Use of static imports
@@ -48,4 +49,5 @@ public class InputFormattedOrderingAndSpacingValid {
     // Use of org.apache.commons.beanutils.converters classes
     ArrayConverter arrayConverter = new ArrayConverter(int[].class, null);
   }
+
 }

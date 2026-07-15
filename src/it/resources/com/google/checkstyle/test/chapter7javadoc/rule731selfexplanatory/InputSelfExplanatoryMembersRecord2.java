@@ -105,4 +105,5 @@ public record InputSelfExplanatoryMembersRecord2(int card1, int card2, int card3
     foo1();
     foo3();
   }
+
 }

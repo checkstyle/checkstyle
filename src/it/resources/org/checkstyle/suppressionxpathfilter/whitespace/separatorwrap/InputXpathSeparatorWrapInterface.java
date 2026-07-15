@@ -7,4 +7,5 @@ interface InputXpathSeparatorWrapInterface {
 
     public void testMethod2(String
             ...parameters); // warn
+
 }

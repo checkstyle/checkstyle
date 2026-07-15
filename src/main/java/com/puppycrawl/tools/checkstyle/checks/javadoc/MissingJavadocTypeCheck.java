@@ -252,4 +252,5 @@ public final class MissingJavadocTypeCheck extends AbstractJavadocCheck {
             })
             .orElse(Boolean.FALSE);
     }
+
 }

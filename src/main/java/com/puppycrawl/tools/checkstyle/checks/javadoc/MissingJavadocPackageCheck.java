@@ -132,4 +132,5 @@ public class MissingJavadocPackageCheck extends AbstractCheck {
     private static boolean isJavadoc(DetailAST ast) {
         return ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN && JavadocUtil.isJavadocComment(ast);
     }
+
 }

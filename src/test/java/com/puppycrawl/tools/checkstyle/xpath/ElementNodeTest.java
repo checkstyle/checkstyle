@@ -287,4 +287,5 @@ public class ElementNodeTest extends AbstractPathTestSupport {
                     .isInstanceOf(EmptyIterator.class);
         }
     }
+
 }

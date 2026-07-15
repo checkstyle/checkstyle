@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.naming.catchparametername;
 
 public class InputXpathCatchParameterNameStaticInit {
+
     static {
         do {
             try {
@@ -11,4 +12,5 @@ public class InputXpathCatchParameterNameStaticInit {
             }
         } while (false);
     }
+
 }

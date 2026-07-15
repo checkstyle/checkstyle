@@ -10,6 +10,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
       "this property is lineWrappingIndenation of Indentation Check")
 })
 public class InputAnnotationArrayInitMultilineCorrect {
+
   int testMethod1(int val) {
     return val + 1;
   }
@@ -23,4 +24,5 @@ public class InputAnnotationArrayInitMultilineCorrect {
   @interface AnnotList {
     InputAnnotationArrayInitMultilineCorrect.Annot[] value();
   }
+
 }

@@ -246,4 +246,5 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

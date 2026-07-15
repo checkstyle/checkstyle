@@ -28,4 +28,5 @@ public class InputUnnamedFinalVariables {
     // violation below 'Local final variable name 'name_' must match pattern'
     final var name_ = "test";
   }
+
 }

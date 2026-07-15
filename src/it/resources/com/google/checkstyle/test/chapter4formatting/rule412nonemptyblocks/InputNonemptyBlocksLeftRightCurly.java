@@ -1,7 +1,9 @@
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
 class InputNonemptyBlocksLeftRightCurly
-  { // violation ''{' at column 3 should be on the previous line.'
+  {
+
+ // violation ''{' at column 3 should be on the previous line.'
     /**
      * Summary.
      *
@@ -123,20 +125,24 @@ class InputNonemptyBlocksLeftRightCurly
 
     /** Empty method block. */
     public void emptyImplementation() {}
-  }
+
+}
 
 // violation below 'Top-level class EnumContainerLeft has to reside in its own source file.'
 class EnumContainerLeft {
+
   private enum Suit {
     CLUBS,
     HEARTS,
     SPADES,
     DIAMONDS
   }
+
 }
 
 // violation below 'Top-level class WithArraysLeft has to reside in its own source file.'
 class WithArraysLeft {
+
   String[] s1 = {""};
   String[] empty = {};
   String[] s2 = {
@@ -149,11 +155,14 @@ class WithArraysLeft {
     "foo", "foo",
   };
   String[] s5 = {"foo", "foo"};
+
 }
 
 // violation below 'Top-level class InputRightCurlyOther2 has to reside in its own source file.'
 class InputRightCurlyOther2
-  { // violation ''{' at column 3 should be on the previous line.'
+  {
+
+ // violation ''{' at column 3 should be on the previous line.'
     /**
      * Summary.
      *
@@ -241,56 +250,71 @@ class InputRightCurlyOther2
       if (flag) { System.identityHashCode("some foo"); }
       // violation above ''{' at column 17 should have line break after.'
     }
-  }
+
+}
 
 /**
  * Test input for closing brace if that brace terminates a statement or the body of a constructor.
  */
 // violation below 'Top-level class FooCtor has to reside in its own source file.'
 class FooCtor
-  { // violation ''{' at column 3 should be on the previous line.'
+  {
+
+ // violation ''{' at column 3 should be on the previous line.'
   int i3;
 
   public FooCtor()
     { // violation ''{' at column 5 should be on the previous line.'
       i3 = 1;
-    } } // violation ''}' at column 5 should be alone on a line.'
+    } 
+
+} // violation ''}' at column 5 should be alone on a line.'
 
 /** Test input for closing brace if that brace terminates a statement or the body of a method. */
 // violation below 'Top-level class FooMethod has to reside in its own source file.'
 class FooMethod
-  { // violation ''{' at column 3 should be on the previous line.'
+  {
+
+ // violation ''{' at column 3 should be on the previous line.'
     public void fooMethod()
     { // violation ''{' at column 5 should be on the previous line.'
       int i = 1;
-    } } // violation ''}' at column 5 should be alone on a line.'
+    } 
+
+} // violation ''}' at column 5 should be alone on a line.'
 
 /**
  * Test input for closing brace if that brace terminates a statement or the body of a named class.
  */
 // violation below 'Top-level class FooInner has to reside in its own source file.'
 class FooInner
-  { // violation ''{' at column 3 should be on the previous line.'
+  {
+
+ // violation ''{' at column 3 should be on the previous line.'
   class InnerFoo
     { // violation ''{' at column 5 should be on the previous line.'
       public void fooInnerMethod()
         { // violation ''{' at column 9 should be on the previous line.'
         }
     }
-  }
+
+}
 
 // violation below 'Top-level class EnumContainer has to reside in its own source file.'
 class EnumContainer {
+
   private enum Suit {
     CLUBS,
     HEARTS,
     SPADES,
     DIAMONDS
   }
+
 }
 
 // violation below 'Top-level class WithArrays has to reside in its own source file.'
 class WithArrays {
+
   String[] test = {""};
   String[] empty = {};
   String[] s1 = {
@@ -303,4 +327,5 @@ class WithArrays {
     "foo", "foo",
   };
   String[] s4 = {"foo", "foo"};
+
 }

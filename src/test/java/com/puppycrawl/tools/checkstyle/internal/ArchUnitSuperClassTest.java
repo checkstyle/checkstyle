@@ -170,4 +170,5 @@ public class ArchUnitSuperClassTest {
             }
         }
     }
+
 }

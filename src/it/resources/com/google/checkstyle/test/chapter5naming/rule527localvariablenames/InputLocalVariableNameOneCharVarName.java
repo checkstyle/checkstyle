@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 class InputLocalVariableNameOneCharVarName {
+
   /** Some javadoc. */
   public void fooMethod() {
     for (int i = 1; i < 10; i++) {
@@ -63,4 +64,5 @@ class InputLocalVariableNameOneCharVarName {
       // violation above 'Local variable name .* must match pattern'
     }
   }
+
 }

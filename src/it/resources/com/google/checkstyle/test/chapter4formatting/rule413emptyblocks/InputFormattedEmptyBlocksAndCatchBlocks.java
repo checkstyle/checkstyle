@@ -1,6 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
 class InputFormattedEmptyBlocksAndCatchBlocks {
+
   static {
   }
 
@@ -79,13 +80,16 @@ class InputFormattedEmptyBlocksAndCatchBlocks {
       System.out.println("Closed MyResource");
     }
   }
+
 }
 
 // violation below 'Top-level class ExtraIo has to reside in its own source file.'
 class ExtraIo {
+
   public InputEmptyBlocksAndCatchBlocks read() {
     return new InputEmptyBlocksAndCatchBlocks();
   }
+
 }
 
 // violation below 'Top-level class ExtraEmpty has to reside in its own source file.'
@@ -96,6 +100,7 @@ interface ExtraEmptyImplement {}
 
 // violation below 'Top-level class ExtraWithInner has to reside in its own source file.'
 class ExtraWithInner {
+
   static {
   }
 
@@ -127,10 +132,12 @@ class ExtraWithInner {
       int[] z = {};
     }
   }
+
 }
 
 // violation below 'Top-level class ExtraWithAnon has to reside in its own source file.'
 class ExtraWithAnon {
+
   interface AnonWithEmpty {
     public void fooEmpty();
   }
@@ -167,6 +174,7 @@ class ExtraWithAnon {
           }
         };
   }
+
 }
 
 // violation below 'Top-level class ExtraNewClass has to reside in its own source file.'
@@ -391,6 +399,7 @@ class ExtraNewClass {
           }
         };
   }
+
 }
 
 // violation below 'Top-level class ExtraExample has to reside in its own source file.'
@@ -399,10 +408,12 @@ class ExtraExample {
   void doNothing() {}
 
   void doNothingElse() {}
+
 }
 
 // violation below '.* ExtraTestingEmptyBlockCatch has to reside in its own source file.'
 class ExtraTestingEmptyBlockCatch {
+
   boolean flag;
 
   void doSm() {}
@@ -488,4 +499,5 @@ class ExtraTestingEmptyBlockCatch {
           }
         }
       };
+
 }

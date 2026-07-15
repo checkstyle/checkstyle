@@ -15,4 +15,5 @@ public class InputNoWhitespaceBeforeColonOfLabel {
     while (true) {
     }
   }
+
 }

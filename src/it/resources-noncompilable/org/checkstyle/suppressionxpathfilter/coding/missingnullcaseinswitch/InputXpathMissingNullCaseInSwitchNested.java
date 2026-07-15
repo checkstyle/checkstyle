@@ -2,6 +2,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.missingnullcaseinswitch;
 
 public class InputXpathMissingNullCaseInSwitchNested {
+
     void test(Object obj) {
        int x =  switch (obj) {
             case Rectangle(ColoredPoint _, ColoredPoint _) -> 1;
@@ -19,4 +20,5 @@ public class InputXpathMissingNullCaseInSwitchNested {
     }
     record ColoredPoint(int p, int x, String c) { }
     record Rectangle(ColoredPoint upperLeft, ColoredPoint lowerRight) { }
+
 }

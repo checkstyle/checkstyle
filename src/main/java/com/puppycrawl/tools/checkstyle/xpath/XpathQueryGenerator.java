@@ -382,4 +382,5 @@ public class XpathQueryGenerator {
             default -> String.valueOf(chr);
         };
     }
+
 }

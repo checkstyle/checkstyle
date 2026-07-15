@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class ModifierOrderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/modifier/modifierorder";
@@ -41,4 +42,5 @@ public class ModifierOrderCheckExamplesTest extends AbstractExamplesModuleTestSu
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

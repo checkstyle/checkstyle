@@ -4,6 +4,7 @@ import java.util.List;
 
 /** Some javadoc. */
 public class InputSwitchWrappingIndentationCorrect {
+
   String testMethod1(int i) {
     String name = "";
     name =
@@ -48,4 +49,5 @@ public class InputSwitchWrappingIndentationCorrect {
       default -> "outer default";
     };
   }
+
 }

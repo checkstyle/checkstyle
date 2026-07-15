@@ -6,6 +6,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
 class InputEmptyFinallyBlocks {
+
   boolean flag;
 
   void doSm() {}
@@ -91,4 +92,5 @@ class InputEmptyFinallyBlocks {
           }
         }
       };
+
 }

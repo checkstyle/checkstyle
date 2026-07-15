@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.nestedifdepth;
 
 public class InputXpathNestedIfDepthStaticBlock {
+
     static {
         int a = 1;
         int b = 2;
@@ -12,4 +13,5 @@ public class InputXpathNestedIfDepthStaticBlock {
             }
         }
     }
+
 }

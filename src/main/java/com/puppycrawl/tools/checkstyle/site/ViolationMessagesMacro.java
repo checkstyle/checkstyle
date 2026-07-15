@@ -36,6 +36,7 @@ import org.codehaus.plexus.component.annotations.Component;
  */
 @Component(role = Macro.class, hint = "violation-messages")
 public class ViolationMessagesMacro extends AbstractMacro {
+
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
         // until https://github.com/checkstyle/checkstyle/issues/13426
@@ -125,4 +126,5 @@ public class ViolationMessagesMacro extends AbstractMacro {
         return "https://github.com/search?q="
                 + URLEncoder.encode(query, StandardCharsets.UTF_8);
     }
+
 }

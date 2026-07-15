@@ -34,18 +34,22 @@ public class InputAnnotationArrayInitMultiline {
   @interface AnnotList {
     InputAnnotationArrayInitMultiline.Annot[] value();
   }
+
 }
 
 // violation below 'Top-level class FilterType has to reside in its own source file.'
 enum FilterType {
+
   REGEX,
   ANNOTATION,
   ASSIGNABLE_TYPE
+
 }
 
 // violation below 'Top-level class ComponentScan has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface ComponentScan {
+
   String[] basePackages() default {};
 
   Filter[] excludeFilters() default {};
@@ -55,4 +59,5 @@ enum FilterType {
 
     String pattern();
   }
+
 }

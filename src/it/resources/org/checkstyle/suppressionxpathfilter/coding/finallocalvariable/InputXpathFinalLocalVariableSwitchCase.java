@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.finallocalvariable;
 
 public class InputXpathFinalLocalVariableSwitchCase {
+
     class InnerClass {
         public void method(final int i) {
             switch (i) {
@@ -20,4 +21,5 @@ public class InputXpathFinalLocalVariableSwitchCase {
             }
         }
     }
+
 }

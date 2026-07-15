@@ -324,4 +324,5 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
       default:
     }
   }
+
 }

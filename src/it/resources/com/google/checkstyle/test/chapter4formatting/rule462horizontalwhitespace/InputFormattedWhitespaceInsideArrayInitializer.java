@@ -28,4 +28,5 @@ public class InputFormattedWhitespaceInsideArrayInitializer {
     Orange,
     Midori
   }
+
 }

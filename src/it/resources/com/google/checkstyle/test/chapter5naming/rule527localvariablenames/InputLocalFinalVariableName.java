@@ -79,4 +79,5 @@ public class InputLocalFinalVariableName {
       e.printStackTrace();
     }
   }
+
 }

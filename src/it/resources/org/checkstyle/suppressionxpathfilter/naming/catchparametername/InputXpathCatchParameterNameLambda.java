@@ -3,6 +3,7 @@ package org.checkstyle.suppressionxpathfilter.naming.catchparametername;
 import java.util.function.Function;
 
 abstract class InputXpathCatchParameterNameLambda {
+
     abstract void abstracMethod();
 
     private final Function<Integer, Integer> lambdaFunction = a -> {
@@ -14,4 +15,5 @@ abstract class InputXpathCatchParameterNameLambda {
         }
         return i;
     };
+
 }

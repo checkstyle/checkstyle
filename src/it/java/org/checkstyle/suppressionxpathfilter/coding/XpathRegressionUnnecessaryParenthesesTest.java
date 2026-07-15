@@ -258,4 +258,5 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

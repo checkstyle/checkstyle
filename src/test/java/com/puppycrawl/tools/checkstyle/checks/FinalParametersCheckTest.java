@@ -245,4 +245,5 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             expected
         );
     }
+
 }

@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.finallocalvariable;
 
 public class InputXpathFinalLocalVariableForLoop {
+
     public void method2() {
         for (int i = 0; i < 5; i++) {
             int x; // warn
@@ -17,4 +18,5 @@ public class InputXpathFinalLocalVariableForLoop {
             }
         }
     }
+
 }

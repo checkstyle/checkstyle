@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @deprecated Some javadoc.
  */
 class InputCorrectAtClauseOrderCheck2 implements Serializable {
+
   /**
    * Some text.
    *
@@ -125,4 +126,5 @@ class InputCorrectAtClauseOrderCheck2 implements Serializable {
    * @deprecated Some javadoc.
    */
   interface FooIn {}
+
 }

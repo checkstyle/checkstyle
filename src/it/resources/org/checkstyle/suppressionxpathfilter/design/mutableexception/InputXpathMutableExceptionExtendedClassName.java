@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.design.mutableexception;
 
 public class InputXpathMutableExceptionExtendedClassName {
+
     public class FooException extends Throwable {
         private final int finalErrorCode;
         private int code = 1; // warn
@@ -9,4 +10,5 @@ public class InputXpathMutableExceptionExtendedClassName {
             finalErrorCode = 1;
         }
     }
+
 }

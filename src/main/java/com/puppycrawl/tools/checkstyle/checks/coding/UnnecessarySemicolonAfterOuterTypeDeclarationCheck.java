@@ -80,4 +80,5 @@ public final class UnnecessarySemicolonAfterOuterTypeDeclarationCheck extends Ab
             log(nextSibling, MSG_SEMI);
         }
     }
+
 }

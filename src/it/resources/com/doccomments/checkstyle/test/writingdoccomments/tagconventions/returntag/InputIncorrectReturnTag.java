@@ -28,4 +28,5 @@ public class InputIncorrectReturnTag {
     public int emptyReturnDescription() {
         return 2;
     }
+
 }

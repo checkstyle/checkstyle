@@ -83,4 +83,5 @@ public class InputCommentsIndentationInEmptyBlock {
   private static class MyClass extends Object {
     // no members
   }
+
 }
