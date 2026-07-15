@@ -254,7 +254,6 @@
     files="[\\/]it[\\/]resources-noncompilable[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/].*[\\/].*[\\/].*\.java"/>
 
   <!-- Until https://github.com/checkstyle/checkstyle/issues/11163 -->
-
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeNoJavadoc\.java"/>
   <suppress checks="FileLength"
@@ -523,6 +522,12 @@
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]java14[\\/]InputJava14Records\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]antlr4[\\/]InputAntlr4AstRegressionUncommon\.java"/>
+  <suppress checks="FileLength"
+    files="[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsCompactNonConstant2.java"/>
+  <suppress checks="FileLength"
+    files="[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsCompactNonConstant5.java"/>
+  <suppress checks="FileLength"
+    files="[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsCompactNonConstant6.java"/>
   <suppress checks="OuterTypeFilename"
     files=".*[\\/]sariflogger[\\/]InputSarifLogger Space\.java"/>
   <suppress id="resourceFileName"
