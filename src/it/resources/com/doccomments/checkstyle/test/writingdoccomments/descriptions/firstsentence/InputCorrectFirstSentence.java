@@ -3,6 +3,9 @@ package com.doccomments.checkstyle.test.writingdoccomments.descriptions.firstsen
 /** Some Javadoc A {@code Foo} is a simple Javadoc. */
 class InputCorrectFirstSentence {
 
+  /** Creates a sample instance. */
+  InputCorrectFirstSentence() {}
+
   /** Some Javadoc This method returns. */
   public static final byte NUL = 0;
 
@@ -25,13 +28,20 @@ class InputCorrectFirstSentence {
   /** This is valid. <a href="mailto:vlad@htmlbook.ru"/> */
   class InnerInputCorrectJavaDocParagraphCheck {
 
+    /** Creates a sample instance. */
+    InnerInputCorrectJavaDocParagraphCheck() {}
+
     /** Foooo@foooo. */
     public static final byte NUL = 0;
 
     /** Some java@doc. This method returns. */
     public static final byte NUL_2 = 0;
 
-    /** Returns the customer ID. This method returns. */
+    /**
+     * Returns the customer ID. This method returns.
+     *
+     * @return the customer ID
+     */
     int getId() {
       return 666;
     }
