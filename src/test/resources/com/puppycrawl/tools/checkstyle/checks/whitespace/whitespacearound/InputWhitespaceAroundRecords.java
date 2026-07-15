@@ -24,7 +24,10 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 public class InputWhitespaceAroundRecords {
     // simple record def
-    record MyRecord() {} // 2 violations
+    record MyRecord() {}
+    // 2 violations above:
+    // ''{' is not followed by whitespace.'
+    // ''}' is not preceded with whitespace.'
 
     // simple record def
     record MyRecord1() {
@@ -32,9 +35,18 @@ public class InputWhitespaceAroundRecords {
 
     // nested constructs
     record MyRecord2() {
-        class MyClass {} // 2 violations
-        interface Foo {} // 2 violations
-        record MyRecord () {} // 2 violations
+        class MyClass {}
+        // 2 violations above:
+        // ''{' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
+        interface Foo {}
+        // 2 violations above:
+        // ''{' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
+        record MyRecord () {}
+        // 2 violations above:
+        // ''{' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
     }
 
     // method
@@ -42,7 +54,10 @@ public class InputWhitespaceAroundRecords {
         void method (){ // violation ''{' is not preceded with whitespace'
             final int a = 1;
             int b= 1; // violation ''=' is not preceded with whitespace'
-            b=1; // 2 violations
+            b=1;
+            // 2 violations above:
+            // ''=' is not followed by whitespace.'
+            // ''=' is not preceded with whitespace.'
         }
 
     }
@@ -52,7 +67,10 @@ public class InputWhitespaceAroundRecords {
         public MyRecord4() {
             final int a = 1;
             int b= 1; // violation ''=' is not preceded with whitespace'
-            b=1; // 2 violations
+            b=1;
+            // 2 violations above:
+            // ''=' is not followed by whitespace.'
+            // ''=' is not preceded with whitespace.'
         }
     }
 
@@ -61,7 +79,10 @@ public class InputWhitespaceAroundRecords {
         public MyRecord5 {
             final int a = 1;
             int b= 1; // violation ''=' is not preceded with whitespace'
-            b=1; // 2 violations
+            b=1;
+            // 2 violations above:
+            // ''=' is not followed by whitespace.'
+            // ''=' is not preceded with whitespace.'
         }
     }
 
@@ -72,30 +93,28 @@ public class InputWhitespaceAroundRecords {
     }
 
     record TestRecord7() {
-        public TestRecord7 {} // 2 violations
+        public TestRecord7 {}
+        // 2 violations above:
+        // ''{' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
     }
 
     record TestRecord8() {
         public TestRecord8 () {
-
         }
     }
 
     class TestClass {
         public TestClass () {
-
         }
     }
 
     record TestRecord9() {
         public TestRecord9() {
-
         }
     }
 
     class TestClass2 {
-        public TestClass2() {
-
-        }
+        public TestClass2() {}
     }
 }

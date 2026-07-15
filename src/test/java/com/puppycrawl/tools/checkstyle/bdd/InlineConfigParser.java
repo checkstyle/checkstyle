@@ -264,27 +264,6 @@ public final class InlineConfigParser {
      * <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
      */
     private static final Set<String> SUPPRESSED_FILES = Set.of(
-            "whitespace/whitespacearound/"
-                    + "InputWhitespaceAroundAllowEmptyLambdaExpressions2.java",
-            "whitespace/whitespacearound/"
-                    + "InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses.java",
-            "whitespace/whitespacearound/"
-                    + "InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses2.java",
-            "whitespace/whitespacearound/InputWhitespaceAroundArrayInitialization.java",
-            "whitespace/whitespacearound/InputWhitespaceAroundBraces2Part2.java",
-            "whitespace/whitespacearound/InputWhitespaceAroundBracesPart2.java",
-            "whitespace/whitespacearound/InputWhitespaceAroundEmptyTypesAndCycles2.java",
-            "whitespace/whitespacearound/InputWhitespaceAroundEmptyTypesAndCycles.java",
-            "whitespace/whitespacearound/InputWhitespaceAroundGenerics.java",
-            "whitespace/whitespacearound/InputWhitespaceAroundKeywordsAndOperators.java",
-            "whitespace/whitespacearound/InputWhitespaceAroundAllowEmptyLambdaExpressions.java",
-            "whitespace/whitespacearound/InputWhitespaceAroundAfterEmoji.java",
-            "whitespace/whitespacearound/InputWhitespaceAroundAfterPermitsList.java",
-            "whitespace/whitespacearound/InputWhitespaceAroundAllTokens.java",
-            "whitespace/whitespacearound/InputWhitespaceAroundAllowEmptyCompactCtors.java",
-            "whitespace/whitespacearound/InputWhitespaceAroundLambda.java",
-            "whitespace/whitespacearound/InputWhitespaceAroundRecords.java",
-            "whitespace/whitespacearound/InputWhitespaceAroundVarargs.java",
             "whitespace/whitespacearound/Example1.java",
             "whitespace/whitespacearound/Example10.java",
             "whitespace/whitespacearound/Example11.java",

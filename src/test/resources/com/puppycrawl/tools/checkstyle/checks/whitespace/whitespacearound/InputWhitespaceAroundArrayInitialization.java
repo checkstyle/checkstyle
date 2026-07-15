@@ -34,9 +34,15 @@ public class InputWhitespaceAroundArrayInitialization {
                                        { {"Green", "Brown", "Magneta"}},
                                        { {"Red", "Purple", "Violet"}} }; //valid
 
-        final String[][][] COLORS32 = { {{"Red", "Green"},{"Pink"}} }; // 2 violations
+        final String[][][] COLORS32 = { {{"Red", "Green"},{"Pink"}} };
+        // 2 violations above:
+        // ''{' is not preceded with whitespace.'
+        // ''{' is not preceded with whitespace.'
 
-        final String[][][] COLORS33 = {{{"White"}}}; // 2 violations
+        final String[][][] COLORS33 = {{{"White"}}};
+        // 2 violations above:
+        // ''{' is not preceded with whitespace.'
+        // ''{' is not preceded with whitespace.'
 
         final String[][][][] COLORS41 = { { { {"Green"}}, { {"Purple"}}}, { { {"Yellow"}}} };//valid
 

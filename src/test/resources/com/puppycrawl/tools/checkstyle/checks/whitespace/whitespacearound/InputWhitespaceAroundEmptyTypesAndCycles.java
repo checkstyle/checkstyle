@@ -43,9 +43,18 @@ class InputWhitespaceAroundEmptyTypesAndCycles
 		String[][] x = { {"foo"} };
 		int len = 0;
 		String sequence = null;
-		for (int first = 0; first < len && matches(sequence.charAt(first)); first++) {} // 2 violations
-		while (i == 1) {} // 2 violations
-		do {} while (i == 1); // 2 violations
+		for (int first = 0; first < len && matches(sequence.charAt(first)); first++) {}
+        // 2 violations above:
+        // ''{' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
+		while (i == 1) {}
+        // 2 violations above:
+        // ''{' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
+		do {} while (i == 1);
+        // 2 violations above:
+        // ''{' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
 	}
 
 	private boolean matches(char charAt)

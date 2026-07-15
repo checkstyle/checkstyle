@@ -24,7 +24,10 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 public class InputWhitespaceAroundAllowEmptyCompactCtors {
     //simple record def
-    record MyRecord() {} // 2 violations
+    record MyRecord() {}
+    // 2 violations above:
+    // ''{' is not followed by whitespace.'
+    // ''}' is not preceded with whitespace.'
 
     // simple record def
     record MyRecord1() {
@@ -32,9 +35,18 @@ public class InputWhitespaceAroundAllowEmptyCompactCtors {
 
     // nested constructs
     record MyRecord2() {
-        class MyClass {} // 2 violations
-        interface Foo {} // 2 violations
-        record MyRecord () {} // 2 violations
+        class MyClass {}
+        // 2 violations above:
+        // ''{' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
+        interface Foo {}
+        // 2 violations above:
+        // ''{' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
+        record MyRecord () {}
+        // 2 violations above:
+        // ''{' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
     }
 
     // method
@@ -42,7 +54,10 @@ public class InputWhitespaceAroundAllowEmptyCompactCtors {
         void method (){ // violation ''{' is not preceded with whitespace'
             final int a = 1;
             int b= 1; // violation ''=' is not preceded with whitespace'
-            b=1; // 2 violations
+            b=1;
+            // 2 violations above:
+            // ''=' is not followed by whitespace.'
+            // ''=' is not preceded with whitespace.'
         }
 
     }
@@ -52,7 +67,10 @@ public class InputWhitespaceAroundAllowEmptyCompactCtors {
         public MyRecord4() {
             final int a = 1;
             int b= 1; // violation ''=' is not preceded with whitespace'
-            b=1; // 2 violations
+            b=1;
+            // 2 violations above:
+            // ''=' is not followed by whitespace.'
+            // ''=' is not preceded with whitespace.'
         }
     }
 
@@ -82,7 +100,11 @@ class foo2 {
 }
 
 class foo3 {
-    public foo3(){System.out.println();} // 3 violations
+    public foo3(){System.out.println();}
+    // 3 violations above:
+    // ''{' is not followed by whitespace.'
+    // ''{' is not preceded with whitespace.'
+    // ''}' is not preceded with whitespace.'
                                     // ok, no WS before '}'
 }
 

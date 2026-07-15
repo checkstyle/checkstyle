@@ -25,8 +25,11 @@ import java.util.Collection;
 import java.util.Map;
 
 public class InputWhitespaceAroundGenerics<A, B extends Collection<?>,
-    C extends D&E, F extends Collection<? extends InputWhitespaceAroundGenerics[]>> // 2 violations
+    C extends D&E, F extends Collection<? extends InputWhitespaceAroundGenerics[]>>
 {
+    // 2 violations 2 lines above:
+    // ''&' is not followed by whitespace.'
+    // ''&' is not preceded with whitespace.'
 }
 
 //No whitespace after commas
