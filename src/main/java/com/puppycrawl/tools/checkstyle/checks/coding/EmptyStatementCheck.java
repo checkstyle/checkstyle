@@ -53,12 +53,15 @@ public class EmptyStatementCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.EMPTY_STAT};
+        return new int[] {TokenTypes.EMPTY_STAT, TokenTypes.SEMI};
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        log(ast, MSG_KEY);
+        if (ast.getType() == TokenTypes.EMPTY_STAT
+                || ast.getParent().getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
+            log(ast, MSG_KEY);
+        }
     }
 
 }
