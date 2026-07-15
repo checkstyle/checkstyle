@@ -264,16 +264,6 @@ public final class InlineConfigParser {
      * <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
      */
     private static final Set<String> SUPPRESSED_FILES = Set.of(
-            "annotation/suppresswarnings/InputSuppressWarningsCompact2.java",
-            "annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant2.java",
-            "annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant1.java",
-            "annotation/suppresswarnings/InputSuppressWarningsCompact5.java",
-            "annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant4.java",
-            "annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant3.java",
-            "annotation/suppresswarnings/InputSuppressWarningsCompact6.java",
-            "annotation/suppresswarnings/InputSuppressWarningsCompact7.java",
-            "annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant6.java",
-            "annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant5.java",
             "annotation/suppresswarnings/InputSuppressWarningsExpanded2.java",
             "annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant2.java",
             "annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant1.java",
