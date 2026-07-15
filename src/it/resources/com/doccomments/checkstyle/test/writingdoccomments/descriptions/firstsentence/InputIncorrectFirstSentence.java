@@ -3,6 +3,9 @@ package com.doccomments.checkstyle.test.writingdoccomments.descriptions.firstsen
 /** A {@code Foo. Foo} is a simple Javadoc. Some javadoc. */
 class InputIncorrectFirstSentence {
 
+  /** Creates a sample instance. */
+  InputIncorrectFirstSentence() {}
+
   // violation below 'First sentence of Javadoc is missing an ending period.'
   /** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)} */
   void foo3() {}
@@ -25,6 +28,9 @@ class InputIncorrectFirstSentence {
   // violation below 'Summary javadoc is missing.'
   /** <a href="mailto:vlad@htmlbook.ru"/> */
   class InnerInputCorrectJavaDocParagraphCheck {
+
+    /** Creates a sample instance. */
+    InnerInputCorrectJavaDocParagraphCheck() {}
 
     // violation below 'First sentence of Javadoc is missing an ending period.'
     /** Foooo@foooo */
