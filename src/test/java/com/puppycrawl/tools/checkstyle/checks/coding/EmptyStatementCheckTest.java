@@ -77,6 +77,7 @@ public class EmptyStatementCheckTest
     @Test
     public void testCompactSourceFile() throws Exception {
         final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_KEY),
             "12:5: " + getCheckMessage(MSG_KEY),
             "15:18: " + getCheckMessage(MSG_KEY),
             "17:14: " + getCheckMessage(MSG_KEY),

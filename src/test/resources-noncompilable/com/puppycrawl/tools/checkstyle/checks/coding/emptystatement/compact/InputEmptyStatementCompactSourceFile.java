@@ -6,7 +6,7 @@ EmptyStatement
 
 // non-compiled with javac: Compilable with Java25
 
-; // ok until https://github.com/checkstyle/checkstyle/issues/20749
+; // violation 'Empty statement'
 
 void main() {
     ; // violation 'Empty statement'
