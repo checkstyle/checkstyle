@@ -29,7 +29,8 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck;
 
-public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupport {
+public class
+XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupport {
 
     private final String checkName = AnnotationLocationCheck.class.getSimpleName();
 
