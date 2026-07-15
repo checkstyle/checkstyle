@@ -216,4 +216,5 @@ public final class XpathUtil {
         final List<Item> items = xpathExpression.evaluate(xpathDynamicContext);
         return UnmodifiableCollectionUtil.unmodifiableList(items, NodeInfo.class);
     }
+
 }

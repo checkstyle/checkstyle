@@ -801,4 +801,5 @@ public final class CheckUtil {
         return isTerminated(
             synchronizedAst.findFirstToken(TokenTypes.SLIST), useBreak, useContinue, labels);
     }
+
 }

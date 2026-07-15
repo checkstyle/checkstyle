@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/writetag";
@@ -79,4 +80,5 @@ public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport
 
         verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
+
 }

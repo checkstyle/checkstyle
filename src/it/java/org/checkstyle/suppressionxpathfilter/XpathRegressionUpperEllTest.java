@@ -119,4 +119,5 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                          expectedXpathQueries);
     }
+
 }

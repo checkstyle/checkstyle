@@ -90,4 +90,5 @@ public class WhenShouldBeUsedCheckTest
                 getPath("InputWhenShouldBeUsedNonPatternsSwitch.java"),
                 expected);
     }
+
 }

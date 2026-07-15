@@ -111,4 +111,5 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

@@ -95,4 +95,5 @@ public class IllegalSymbolCheckExamplesTest extends AbstractExamplesModuleTestSu
         verifyWithInlineConfigParser(
                 getPath("UseCase2.java"), expected);
     }
+
 }

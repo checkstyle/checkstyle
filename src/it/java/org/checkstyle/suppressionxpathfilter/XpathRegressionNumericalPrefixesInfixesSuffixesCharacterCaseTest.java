@@ -158,4 +158,5 @@ public class XpathRegressionNumericalPrefixesInfixesSuffixesCharacterCaseTest
 
         runVerifications(config, fileProcess, expected, expectedXpathQueries);
     }
+
 }

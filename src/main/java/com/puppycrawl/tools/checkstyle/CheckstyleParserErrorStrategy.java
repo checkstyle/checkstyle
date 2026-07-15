@@ -38,4 +38,5 @@ public class CheckstyleParserErrorStrategy extends BailErrorStrategy {
         reportError(recognizer, new InputMismatchException(recognizer));
         return super.recoverInline(recognizer);
     }
+
 }

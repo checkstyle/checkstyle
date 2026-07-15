@@ -99,4 +99,5 @@ public class XpathRegressionEmptyStatementTest extends AbstractXpathTestSupport 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

@@ -115,4 +115,5 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

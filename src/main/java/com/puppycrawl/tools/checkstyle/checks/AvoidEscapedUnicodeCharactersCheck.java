@@ -387,4 +387,5 @@ public class AvoidEscapedUnicodeCharactersCheck
         return allowIfAllCharactersEscaped
                 && ALL_ESCAPED_CHARS.matcher(literal).find();
     }
+
 }

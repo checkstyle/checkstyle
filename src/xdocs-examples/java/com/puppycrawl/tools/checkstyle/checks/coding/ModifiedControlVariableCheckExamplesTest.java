@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class ModifiedControlVariableCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/modifiedcontrolvariable";
@@ -47,4 +48,5 @@ public class ModifiedControlVariableCheckExamplesTest extends AbstractExamplesMo
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

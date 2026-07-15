@@ -169,4 +169,5 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

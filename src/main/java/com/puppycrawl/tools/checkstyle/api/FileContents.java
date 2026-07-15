@@ -378,4 +378,5 @@ public final class FileContents implements CommentListener {
     public boolean inPackageInfo() {
         return "package-info.java".equals(text.getFile().getName());
     }
+
 }

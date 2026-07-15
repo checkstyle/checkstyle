@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter";
@@ -140,4 +141,5 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
         verifyFilterWithInlineConfigParser(getPath("UseCase5.java"), expectedWithoutFilter,
                 expectedWithFilter);
     }
+
 }

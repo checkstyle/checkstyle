@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class JavadocContentLocationCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadoccontentlocation";
@@ -49,4 +50,5 @@ public class JavadocContentLocationCheckExamplesTest extends AbstractExamplesMod
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

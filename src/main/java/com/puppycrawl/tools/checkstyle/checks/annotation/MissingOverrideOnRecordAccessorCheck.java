@@ -126,4 +126,5 @@ public class MissingOverrideOnRecordAccessorCheck extends AbstractCheck {
         }
         return names;
     }
+
 }

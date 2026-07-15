@@ -102,4 +102,5 @@ public class XpathRegressionIllegalImportTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

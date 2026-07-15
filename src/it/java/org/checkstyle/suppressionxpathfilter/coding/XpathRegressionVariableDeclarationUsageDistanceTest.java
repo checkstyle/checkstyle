@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
 
 public class XpathRegressionVariableDeclarationUsageDistanceTest extends AbstractXpathTestSupport {
+
     private final String checkName = VariableDeclarationUsageDistanceCheck.class.getSimpleName();
 
     @Override

@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck;
 
 public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupport {
+
     private final String checkName = CatchParameterNameCheck.class.getSimpleName();
 
     @Override
@@ -233,4 +234,5 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

@@ -1235,4 +1235,5 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             instanceAndClassVarStack.push(variableDesc);
         }
     }
+
 }

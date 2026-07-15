@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class SeparatorWrapExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap";
@@ -60,4 +61,5 @@ public class SeparatorWrapExamplesTest extends AbstractExamplesModuleTestSupport
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
 }

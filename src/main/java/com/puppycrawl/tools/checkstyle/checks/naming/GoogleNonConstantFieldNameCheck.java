@@ -173,4 +173,5 @@ public class GoogleNonConstantFieldNameCheck extends AbstractCheck {
             log(nameAst, MSG_KEY_INVALID_FORMAT, fieldName);
         }
     }
+
 }

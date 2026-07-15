@@ -352,4 +352,5 @@ public class RegexpCheck extends AbstractCheck {
 
         return msg;
     }
+
 }
