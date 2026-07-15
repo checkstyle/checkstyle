@@ -78,4 +78,14 @@ public class MethodCountCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
+
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MethodCountCheck.MSG_MANY_METHODS, 6, 2),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+    }
+
 }
