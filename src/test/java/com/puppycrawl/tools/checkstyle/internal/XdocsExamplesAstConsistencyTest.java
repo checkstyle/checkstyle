@@ -209,7 +209,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/naming/illegalidentifiername",
             "checks/regexp/regexpmultiline",
             "checks/regexp/regexponfilename",
-            "checks/sizes/methodcount",
             "filters/suppressionsinglefilter",
             "filters/suppresswithnearbycommentfilter"
     );

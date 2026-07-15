@@ -113,6 +113,20 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example6.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check to use tokens:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="MethodCount_Example_of_Usage">
