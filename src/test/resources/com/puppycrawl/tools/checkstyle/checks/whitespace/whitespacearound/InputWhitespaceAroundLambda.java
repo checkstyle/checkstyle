@@ -26,6 +26,9 @@ import java.util.function.Function;
 
 class InputWhitespaceAroundLambda {
     public void foo() {
-        Function<Object, String> function = (o)->o.toString(); // 2 violations
+        Function<Object, String> function = (o)->o.toString();
+        // 2 violations above:
+        // ''->' is not followed by whitespace.'
+        // ''->' is not preceded with whitespace.'
     }
 }

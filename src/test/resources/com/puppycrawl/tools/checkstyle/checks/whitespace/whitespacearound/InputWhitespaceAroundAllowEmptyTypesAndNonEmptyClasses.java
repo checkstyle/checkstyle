@@ -39,18 +39,31 @@ public class InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses {
 
     class MyClass{ int a; } // violation ''{' is not preceded with whitespace'
 
-    class SomeTestClass{int a;} // 3 violations
+    class SomeTestClass{int a;}
+    // 3 violations above:
+    // ''{' is not followed by whitespace.'
+    // ''{' is not preceded with whitespace.'
+    // ''}' is not preceded with whitespace.'
 
     class TestClass { int a; }int b; // violation ''}' is not followed by whitespace'
 
-    class Table {} // 2 violations
+    class Table {}
+    // 2 violations above:
+    // ''{' is not followed by whitespace.'
+    // ''}' is not preceded with whitespace.'
 
-    interface SupplierFunction<T> extends Function<Supplier<T>, T> {} // 2 violations
+    interface SupplierFunction<T> extends Function<Supplier<T>, T> {}
+    // 2 violations above:
+    // ''{' is not followed by whitespace.'
+    // ''}' is not preceded with whitespace.'
 
     class NoMtyCls{ void foo1() { foo2(); } } // violation ''{' is not preceded with whitespace'
 
     public void foo2() {
-        do {} while (true); // 2 violations
+        do {} while (true);
+        // 2 violations above:
+        // ''{' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
     }
 }
 
