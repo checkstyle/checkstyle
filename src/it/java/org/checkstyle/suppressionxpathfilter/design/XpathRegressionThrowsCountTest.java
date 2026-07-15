@@ -50,7 +50,7 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ThrowsCountCheck.class);
         final String[] expectedViolation = {
-            "4:30: " + getCheckMessage(ThrowsCountCheck.class,
+            "5:30: " + getCheckMessage(ThrowsCountCheck.class,
                         ThrowsCountCheck.MSG_KEY, 5, 4),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -75,7 +75,7 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("max", "2");
 
         final String[] expectedViolation = {
-            "4:30: " + getCheckMessage(ThrowsCountCheck.class,
+            "5:30: " + getCheckMessage(ThrowsCountCheck.class,
                         ThrowsCountCheck.MSG_KEY, 3, 2),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -100,7 +100,7 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("ignorePrivateMethods", "false");
 
         final String[] expectedViolation = {
-            "9:40: " + getCheckMessage(ThrowsCountCheck.class,
+            "10:40: " + getCheckMessage(ThrowsCountCheck.class,
                         ThrowsCountCheck.MSG_KEY, 5, 4),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -117,4 +117,5 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

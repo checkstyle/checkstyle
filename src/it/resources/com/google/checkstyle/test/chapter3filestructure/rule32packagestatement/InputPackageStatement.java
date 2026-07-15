@@ -3,6 +3,7 @@ package com.google.checkstyle.test. // violation 'package statement should not b
 
 /** Some javadoc. */
 public class InputPackageStatement {
+
   // Long line
   // -----------------------------------------------------------------------------------------------------
   // violation above 'Line is longer than 100 characters (found 106).'

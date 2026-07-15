@@ -4,6 +4,7 @@ import java.io.IOException;
 
 /** Some javadoc. */
 public class InputEmptyCatchBlockViolationsByVariableName {
+
   private void foo() {
     try {
       throw new RuntimeException();

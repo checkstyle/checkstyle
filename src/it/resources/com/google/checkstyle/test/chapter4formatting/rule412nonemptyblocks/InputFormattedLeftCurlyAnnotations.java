@@ -7,6 +7,7 @@ import java.util.List;
 
 @TestClassAnnotation2
 class InputFormattedLeftCurlyAnnotations {
+
   private static final int X = 10;
 
   @Override
@@ -33,6 +34,7 @@ class InputFormattedLeftCurlyAnnotations {
 // violation below '.* InputFormattedLeftCurlyAnnotations2 has to reside in its own source file.'
 @TestClassAnnotation2
 class InputFormattedLeftCurlyAnnotations2 {
+
   private static final int X = 10;
 
   @Override

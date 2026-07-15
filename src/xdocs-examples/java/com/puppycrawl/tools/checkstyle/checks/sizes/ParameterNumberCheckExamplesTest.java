@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class ParameterNumberCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber";
@@ -73,4 +74,5 @@ public class ParameterNumberCheckExamplesTest extends AbstractExamplesModuleTest
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
 }

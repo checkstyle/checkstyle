@@ -79,7 +79,7 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("format", "^[a-z](_?[a-zA-Z0-9]+)*$");
 
         final String[] expectedViolation = {
-            "7:21: " + getCheckMessage(MethodNameCheck.class,
+            "8:21: " + getCheckMessage(MethodNameCheck.class,
                         AbstractNameCheck.MSG_INVALID_PATTERN, "MyMethod2", pattern),
         };
 
@@ -107,7 +107,7 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("applyToProtected", "false");
 
         final String[] expectedViolation = {
-            "7:19: " + getCheckMessage(MethodNameCheck.class,
+            "8:19: " + getCheckMessage(MethodNameCheck.class,
                         AbstractNameCheck.MSG_INVALID_PATTERN,
                         "ThirdMethod", pattern),
         };

@@ -6,6 +6,7 @@ import javax.annotation.CheckReturnValue;
 @Deprecated
 @CheckReturnValue
 public final class InputFormattedClassAnnotation2 {
+
   void test1() {}
 
   /** Somejavadoc data. */
@@ -21,6 +22,7 @@ public final class InputFormattedClassAnnotation2 {
 @Deprecated
 @CheckReturnValue
 final class InputClassAnnotation4 {
+
   void test2() {}
 }
 
@@ -30,5 +32,6 @@ final class InputClassAnnotation4 {
 // testing
 @CheckReturnValue
 final class InputClassAnnotation6 {
+
   void test3() {}
 }

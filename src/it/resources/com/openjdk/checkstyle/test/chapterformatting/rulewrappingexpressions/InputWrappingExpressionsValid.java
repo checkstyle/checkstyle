@@ -37,4 +37,5 @@ public class InputWrappingExpressionsValid {
         c
                 <<= 1;
     }
+
 }

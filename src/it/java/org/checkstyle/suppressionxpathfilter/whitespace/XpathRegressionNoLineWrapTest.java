@@ -73,7 +73,7 @@ public class XpathRegressionNoLineWrapTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("tokens", "METHOD_DEF");
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(NoLineWrapCheck.class,
+            "5:5: " + getCheckMessage(NoLineWrapCheck.class,
                     NoLineWrapCheck.MSG_KEY, "METHOD_DEF"),
         };
 
@@ -108,7 +108,7 @@ public class XpathRegressionNoLineWrapTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("tokens", "CTOR_DEF");
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(NoLineWrapCheck.class,
+            "5:5: " + getCheckMessage(NoLineWrapCheck.class,
                     NoLineWrapCheck.MSG_KEY, "CTOR_DEF"),
         };
 

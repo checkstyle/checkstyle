@@ -9,6 +9,7 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 
 /** Class for testing whitespace issues. violation missing author tag. */
 class InputWhitespaceAroundBasic {
+
   private final int var1= 1; // violation ''=' is not preceded with whitespace.'
   private final int var2 =1; // violation ''=' is not followed by whitespace.'
 
@@ -235,4 +236,5 @@ class InputWhitespaceAroundBasic {
       new Object().toString();
     }
   }
+
 }

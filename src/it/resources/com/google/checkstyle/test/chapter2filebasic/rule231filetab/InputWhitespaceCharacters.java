@@ -1,6 +1,7 @@
 package com.google.checkstyle.test.chapter2filebasic.rule231filetab;
 
 final class InputWhitespaceCharacters {
+
   // Long line ----------------------------------------------------------------
   // Contains a tab ->	<- // violation 'Line contains a tab character.'
   // Contains trailing whitespace ->
@@ -52,4 +53,5 @@ final class InputWhitespaceCharacters {
    //  'Line contains a tab character.'
    //  ''method def' child has incorrect indentation level 8, expected level should be 4.'
   }
+
 }

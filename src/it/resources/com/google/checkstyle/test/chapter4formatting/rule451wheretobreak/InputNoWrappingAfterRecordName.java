@@ -2,7 +2,8 @@ package com.google.checkstyle.test.chapter4formatting.rule451wheretobreak;
 
 /** Some javadoc. */
 public record InputNoWrappingAfterRecordName (String name) {
-  // violation above ''(' is preceded with whitespace'
+
+  // violation 2 lines above ''(' is preceded with whitespace'
   record Multi (String main, Record rec) { // violation ''(' is preceded with whitespace'
     private static boolean isSent (Object obj) { // violation ''(' is preceded with whitespace'
       int value = 0;
@@ -68,4 +69,5 @@ public record InputNoWrappingAfterRecordName (String name) {
       this.from = from;
     }
   }
+
 }

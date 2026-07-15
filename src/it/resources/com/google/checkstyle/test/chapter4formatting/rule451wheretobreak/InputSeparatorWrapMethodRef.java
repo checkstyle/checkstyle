@@ -21,4 +21,5 @@ public class InputSeparatorWrapMethodRef {
         String:: // violation ''::' should be on a new line.'
             compareToIgnoreCase);
   }
+
 }

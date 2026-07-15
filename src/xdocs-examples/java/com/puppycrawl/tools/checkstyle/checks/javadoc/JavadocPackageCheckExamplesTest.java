@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocPackageCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocpackage";

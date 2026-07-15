@@ -93,6 +93,7 @@ class InputStaticFinalizer {
 
 // violation below 'Top-level class WithoutFinalize has to reside in its own source file.'
 class WithoutFinalize {
+
   public void doStuff() {
     // This method do some stuff
   }
@@ -143,5 +144,6 @@ class WithAnonymousClass {
 
 // violation below 'Top-level class WithFinalizer has to reside in its own source file.'
 interface WithFinalizer {
+
   void finalize(); // violation 'Avoid using finalizer method.'
 }

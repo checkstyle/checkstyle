@@ -145,4 +145,5 @@ public class MatchXpathCheck extends AbstractCheck {
             throw new IllegalStateException("Evaluation of Xpath query failed: " + query, exc);
         }
     }
+
 }

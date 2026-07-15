@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
 
 public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
+
     private final String checkName = IndentationCheck.class.getSimpleName();
 
     @Override
@@ -52,7 +53,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
                 createModuleConfig(IndentationCheck.class);
 
         final String[] expectedViolation = {
-            "4:1: " + getCheckMessage(IndentationCheck.class,
+            "5:1: " + getCheckMessage(IndentationCheck.class,
                     IndentationCheck.MSG_ERROR, "method def modifier", 0, 4),
         };
 
@@ -95,7 +96,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("throwsIndent", "4");
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(IndentationCheck.class,
+            "5:5: " + getCheckMessage(IndentationCheck.class,
                     IndentationCheck.MSG_ERROR, "method def modifier", 4, 10),
         };
 
@@ -138,7 +139,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("throwsIndent", "4");
 
         final String[] expectedViolation = {
-            "7:9: " + getCheckMessage(IndentationCheck.class,
+            "8:9: " + getCheckMessage(IndentationCheck.class,
                     IndentationCheck.MSG_CHILD_ERROR, "case", 8, 12),
         };
 
@@ -175,7 +176,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("throwsIndent", "4");
 
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(IndentationCheck.class,
+            "7:9: " + getCheckMessage(IndentationCheck.class,
                     IndentationCheck.MSG_ERROR, "(", 8, 12),
         };
 
@@ -207,7 +208,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("throwsIndent", "4");
 
         final String[] expectedViolation = {
-            "14:15: " + getCheckMessage(IndentationCheck.class,
+            "17:15: " + getCheckMessage(IndentationCheck.class,
                     IndentationCheck.MSG_CHILD_ERROR_MULTI, "block", 14, "12, 16"),
         };
 
@@ -240,7 +241,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("throwsIndent", "4");
 
         final String[] expectedViolation = {
-            "8:9: " + getCheckMessage(IndentationCheck.class,
+            "9:9: " + getCheckMessage(IndentationCheck.class,
                 IndentationCheck.MSG_CHILD_ERROR, "if", 8, 12),
         };
 
@@ -273,7 +274,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("throwsIndent", "4");
 
         final String[] expectedViolation = {
-            "12:9: " + getCheckMessage(IndentationCheck.class,
+            "13:9: " + getCheckMessage(IndentationCheck.class,
                 IndentationCheck.MSG_CHILD_ERROR, "else", 8, 12),
         };
 
@@ -287,4 +288,5 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
             expectedXpathQueries);
     }
+
 }

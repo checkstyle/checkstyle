@@ -454,4 +454,5 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         }
         return nextSibling;
     }
+
 }

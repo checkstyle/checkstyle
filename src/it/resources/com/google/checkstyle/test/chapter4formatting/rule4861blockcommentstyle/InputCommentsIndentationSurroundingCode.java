@@ -7,12 +7,13 @@ import java.util.Arrays;
 // some
 /** Some javadoc. */
 public class InputCommentsIndentationSurroundingCode {
+
   private void foo1() {
     if (true) {
       // here initialize some variables
       int k = 0; // trailing comment
         // odd indentation comment
-      // violation above '.* indentation should be the same level as line 16.'
+      // violation above '.* indentation should be the same level as line 17.'
       int b = 10;
       // sss
     }
@@ -24,16 +25,16 @@ public class InputCommentsIndentationSurroundingCode {
       int k = 0;
           /* // odd indentation comment
            */
-      // violation 2 lines above '.* indentation should be the same level as line 28.'
+      // violation 2 lines above '.* indentation should be the same level as line 29.'
       int b = 10;
           /* // odd indentation comment
            * */
-      // violation 2 lines above '.* indentation should be the same level as line 32.'
+      // violation 2 lines above '.* indentation should be the same level as line 33.'
       double d; /* trailing comment */
            /* // odd indentation comment
        *
        */
-      // violation 3 lines above '.* indentation should be the same level as line 37.'
+      // violation 3 lines above '.* indentation should be the same level as line 38.'
       boolean bb;
       /* my comment*/
       /*
@@ -57,8 +58,8 @@ public class InputCommentsIndentationSurroundingCode {
                 /// // odd indentation comment
           /* // odd indentation comment
            * one fine day ... */
-            // violation 3 lines above '.* indentation should.* as line 62.'
-            // violation 3 lines above '.* indentation should.* as line 62.'
+            // violation 3 lines above '.* indentation should.* as line 63.'
+            // violation 3 lines above '.* indentation should.* as line 63.'
             && b == 1)) { /* foo */ }
   }
 
@@ -101,7 +102,7 @@ public class InputCommentsIndentationSurroundingCode {
     // block
     // ...
           // odd indentation comment
-    // violation above '.* indentation should be the same level as line 105.'
+    // violation above '.* indentation should be the same level as line 106.'
     String someStr = new String();
   }
 
@@ -112,7 +113,7 @@ public class InputCommentsIndentationSurroundingCode {
     // block
         // odd indentation comment
     // comment
-    // violation 2 lines above'.* indentation should be the same level as line 116.'
+    // violation 2 lines above'.* indentation should be the same level as line 117.'
     String someStr = new String();
   }
 
@@ -123,7 +124,7 @@ public class InputCommentsIndentationSurroundingCode {
     // block
     // ...
             // odd indentation comment
-    // violation above '.* indentation should be the same level as line 127.'
+    // violation above '.* indentation should be the same level as line 128.'
     String someStr = new String();
   }
 
@@ -142,5 +143,6 @@ public class InputCommentsIndentationSurroundingCode {
         // comment
     };
   }
+
 } // The Check should not throw NPE here!
 // The Check should not throw NPE here!

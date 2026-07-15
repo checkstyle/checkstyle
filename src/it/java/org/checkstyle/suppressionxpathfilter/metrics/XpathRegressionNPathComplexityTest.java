@@ -55,7 +55,7 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
         moduleConfig.addProperty("max", "0");
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(NPathComplexityCheck.class,
+            "5:5: " + getCheckMessage(NPathComplexityCheck.class,
                 NPathComplexityCheck.MSG_KEY, 3, 0),
         };
 
@@ -85,7 +85,7 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
         moduleConfig.addProperty("max", "0");
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(NPathComplexityCheck.class,
+            "5:5: " + getCheckMessage(NPathComplexityCheck.class,
                 NPathComplexityCheck.MSG_KEY, 3, 0),
         };
 
@@ -109,7 +109,7 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
         moduleConfig.addProperty("max", "0");
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(NPathComplexityCheck.class,
+            "5:5: " + getCheckMessage(NPathComplexityCheck.class,
                 NPathComplexityCheck.MSG_KEY, 2, 0),
         };
 
@@ -130,4 +130,5 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

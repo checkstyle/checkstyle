@@ -20,6 +20,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule461verticalwhitespace;
 import java.util.concurrent.Callable; // violation ''import' should be separated from previous line.'
 class InputVerticalWhitespace { // violation ''CLASS_DEF' should be separated from previous line.'
+
   public static final double FOO_PI = 3.1415;
   private boolean flag = true;
   static { // violation ''STATIC_INIT' should be separated from previous line.'
@@ -99,4 +100,5 @@ class InputVerticalWhitespace { // violation ''CLASS_DEF' should be separated fr
               }
             };
   }
+
 }

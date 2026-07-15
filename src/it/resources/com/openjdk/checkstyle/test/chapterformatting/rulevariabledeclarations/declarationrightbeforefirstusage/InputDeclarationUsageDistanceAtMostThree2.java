@@ -98,4 +98,5 @@ public class InputDeclarationUsageDistanceAtMostThree2 {
             a++;
         }
     }
+
 }

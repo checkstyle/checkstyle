@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule451wheretobreak;
 
 /** Some javadoc. */
 public class InputFormattedSeparatorWrapComma {
+
   /** Some javadoc. */
   public void goodCase() {
     int i = 0;

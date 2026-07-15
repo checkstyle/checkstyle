@@ -16,6 +16,7 @@ import java.util.concurrent.ThreadFactory;
 
 /** Some javadoc. */
 public class InputFormattedOrderingAndSpacing3 {
+
   /** Some javadoc. */
   public static void main(String[] args) {
     // Use of static imports

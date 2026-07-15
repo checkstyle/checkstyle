@@ -16,7 +16,8 @@ public class InputWhitespaceAroundGenerics {}
 // No whitespace after commas
 // violation below 'Top-level class BadCommas has to reside in its own source file.'
 class BadCommas < A, B, C extends Map < A, String > > {
-  // 7 violations above:
+
+  // 7 violations 2 lines above:
   //  ''\<' is followed by whitespace.'
   //  ''\<' is preceded with whitespace.'
   //  ''\<' is followed by whitespace.'
@@ -34,10 +35,12 @@ class BadCommas < A, B, C extends Map < A, String > > {
       //  ''\<' is followed by whitespace.'
       //  ''\<' is preceded with whitespace.'
       //  ''\>' is preceded with whitespace.'
+
 }
 
 // violation below 'Top-level class Wildcard has to reside in its own source file.'
 class Wildcard {
+
   public static void foo(Collection < ? extends Wildcard[] > collection) {
     // 3 violations above:
     //  ''\<' is followed by whitespace.'
@@ -53,4 +56,5 @@ class Wildcard {
     // issues with parsing the wildcard in the signature
     collection.size();
   }
+
 }

@@ -3,7 +3,9 @@ package org.checkstyle.suppressionxpathfilter.coding.avoiddoublebraceinitializat
 import java.util.*;
 
 public class InputXpathAvoidDoubleBraceInitializationClassFields {
+
     List list = new ArrayList<Object>() { //warn
         {}
     };
+
 }

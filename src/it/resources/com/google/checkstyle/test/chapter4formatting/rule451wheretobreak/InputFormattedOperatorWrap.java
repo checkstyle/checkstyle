@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 class InputFormattedOperatorWrap {
+
   void test() {
     int x = 1 + 2 - 3 - 4;
     x = x + 2;

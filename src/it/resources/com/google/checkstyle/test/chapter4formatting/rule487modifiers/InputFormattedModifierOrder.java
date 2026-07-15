@@ -1,6 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule487modifiers;
 
 abstract strictfp class InputFormattedModifierOrder {
+
   private transient String dontSaveMe;
 
   public volatile int whatImReading;
@@ -93,6 +94,7 @@ abstract strictfp class InputFormattedModifierOrder {
 
 // violation below 'Top-level class RedundantFinalClass2 has to reside in its own source file.'
 final class RedundantFinalClass2 {
+
   public final void finalMethod() {}
 
   public void method() {}
@@ -126,11 +128,13 @@ final class RedundantFinalClass2 {
 
   private static synchronized native @MyAnnotationFormatted void fooMethod7();
   // violation above '.* annotation modifier does not precede non-annotation modifiers.'
+
 }
 
 // violation 2 lines below 'Top-level class .* has to reside in its own source file.'
 /** Holder for redundant modifiers of inner implementation. */
 interface InnerImplementation2 {
+
   InnerImplementation2 inner =
       new InnerImplementation2() {
         /** Compiler requires 'public' modifier. */
@@ -142,6 +146,7 @@ interface InnerImplementation2 {
 
 // violation below 'Top-level class WithInner2 has to reside in its own source file.'
 class WithInner2 {
+
   /**
    * Inner class.
    *
@@ -277,6 +282,7 @@ class WithInner2 {
 // violation 2 lines below 'Top-level class Annotation2 has to reside in its own source file.'
 /** Holder for redundant modifiers of annotation fields/variables. */
 @interface Annotation2 {
+
   public String s1 = "";
   final String s2 = "";
   static String s3 = "";
@@ -296,6 +302,7 @@ class WithInner2 {
 // violation 2 lines below 'Top-level class .* has to reside in its own source file.'
 /** Illegal order of modifiers for interface methods. */
 interface InputModifierOrderInterface2 {
+
   default strictfp void abc1() {}
 
   default strictfp void abc2() {}

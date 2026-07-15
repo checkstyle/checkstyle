@@ -78,4 +78,5 @@ public class InputJavadocPositionOnConstructorInRecord {
       this.to = to;
     }
   }
+
 }

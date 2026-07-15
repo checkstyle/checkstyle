@@ -8,6 +8,7 @@ import java.util.Locale;
 
 /** Some javadoc. */
 public class InputFormattedPatternVariableNameEnhancedInstanceofTestDefault {
+
   private Object obj;
 
   static boolean doStuff(Object obj) {

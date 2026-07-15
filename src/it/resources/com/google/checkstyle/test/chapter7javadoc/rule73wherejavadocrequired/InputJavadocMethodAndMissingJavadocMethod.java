@@ -6,6 +6,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule73wherejavadocrequired;
  * @mytag Hello
  */
 public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClass {
+
   // with comments
 
   /**

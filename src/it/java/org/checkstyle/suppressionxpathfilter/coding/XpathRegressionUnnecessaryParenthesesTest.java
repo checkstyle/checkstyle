@@ -52,7 +52,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
             createModuleConfig(UnnecessaryParenthesesCheck.class);
 
         final String[] expectedViolation = {
-            "4:13: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
+            "5:13: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
                 UnnecessaryParenthesesCheck.MSG_ASSIGN),
         };
 
@@ -81,7 +81,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
             createModuleConfig(UnnecessaryParenthesesCheck.class);
 
         final String[] expectedViolation = {
-            "5:13: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
+            "6:13: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
                 UnnecessaryParenthesesCheck.MSG_EXPR),
         };
 
@@ -110,7 +110,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
             createModuleConfig(UnnecessaryParenthesesCheck.class);
 
         final String[] expectedViolation = {
-            "7:35: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
+            "8:35: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
                 UnnecessaryParenthesesCheck.MSG_LAMBDA),
         };
 
@@ -134,7 +134,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
             createModuleConfig(UnnecessaryParenthesesCheck.class);
 
         final String[] expectedViolation = {
-            "5:18: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
+            "6:18: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
                 UnnecessaryParenthesesCheck.MSG_IDENT, "a"),
         };
 
@@ -159,7 +159,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
             createModuleConfig(UnnecessaryParenthesesCheck.class);
 
         final String[] expectedViolation = {
-            "5:23: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
+            "6:23: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
                 UnnecessaryParenthesesCheck.MSG_STRING, "\"Checkstyle\""),
         };
 
@@ -184,7 +184,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
             createModuleConfig(UnnecessaryParenthesesCheck.class);
 
         final String[] expectedViolation = {
-            "5:18: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
+            "6:18: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
                 UnnecessaryParenthesesCheck.MSG_LITERAL, "10"),
         };
 
@@ -209,7 +209,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
             createModuleConfig(UnnecessaryParenthesesCheck.class);
 
         final String[] expectedViolation = {
-            "5:16: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
+            "6:16: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
                 UnnecessaryParenthesesCheck.MSG_RETURN),
         };
 
@@ -238,7 +238,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
             createModuleConfig(UnnecessaryParenthesesCheck.class);
 
         final String[] expectedViolation = {
-            "5:17: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
+            "6:17: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
                 UnnecessaryParenthesesCheck.MSG_ASSIGN),
         };
 
@@ -258,4 +258,5 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

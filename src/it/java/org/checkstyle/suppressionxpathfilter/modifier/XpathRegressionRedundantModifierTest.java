@@ -52,7 +52,7 @@ public class XpathRegressionRedundantModifierTest extends AbstractXpathTestSuppo
                 createModuleConfig(RedundantModifierCheck.class);
 
         final String[] expected = {
-            "7:10: " + getCheckMessage(RedundantModifierCheck.class,
+            "8:10: " + getCheckMessage(RedundantModifierCheck.class,
                     RedundantModifierCheck.MSG_KEY,
                     "final"),
         };
@@ -152,7 +152,7 @@ public class XpathRegressionRedundantModifierTest extends AbstractXpathTestSuppo
         moduleConfig.addProperty("jdkVersion", "11");
 
         final String[] expected = {
-            "5:9: " + getCheckMessage(RedundantModifierCheck.class,
+            "6:9: " + getCheckMessage(RedundantModifierCheck.class,
                     RedundantModifierCheck.MSG_KEY,
                     "static"),
         };

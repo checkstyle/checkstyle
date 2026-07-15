@@ -53,7 +53,7 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
                 createModuleConfig(EmptyForInitializerPadCheck.class);
 
         final String[] expectedViolation = {
-            "5:15: " + getCheckMessage(EmptyForInitializerPadCheck.class,
+            "6:15: " + getCheckMessage(EmptyForInitializerPadCheck.class,
                     EmptyForInitializerPadCheck.MSG_PRECEDED, ";"),
         };
 
@@ -80,7 +80,7 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
         moduleConfig.addProperty("option", PadOption.SPACE.toString());
 
         final String[] expectedViolation = {
-            "5:14: " + getCheckMessage(EmptyForInitializerPadCheck.class,
+            "6:14: " + getCheckMessage(EmptyForInitializerPadCheck.class,
                     EmptyForInitializerPadCheck.MSG_NOT_PRECEDED, ";"),
         };
 
@@ -106,7 +106,7 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
                 createModuleConfig(EmptyForInitializerPadCheck.class);
 
         final String[] expectedViolation = {
-            "6:15: " + getCheckMessage(EmptyForInitializerPadCheck.class,
+            "7:15: " + getCheckMessage(EmptyForInitializerPadCheck.class,
                     EmptyForInitializerPadCheck.MSG_PRECEDED, ";"),
         };
 

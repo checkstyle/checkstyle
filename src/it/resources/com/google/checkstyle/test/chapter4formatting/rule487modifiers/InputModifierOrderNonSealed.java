@@ -43,4 +43,5 @@ sealed public class InputModifierOrderNonSealed
   non-sealed interface Ellipse1 extends SquircleOne1 {}
 
   class Oval1 implements Ellipse1 {}
+
 }

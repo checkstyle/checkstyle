@@ -51,7 +51,7 @@ public class XpathRegressionIllegalTypeTest extends AbstractXpathTestSupport {
             createModuleConfig(IllegalTypeCheck.class);
         moduleConfig.addProperty("tokens", "METHOD_DEF");
         final String[] expectedViolation = {
-            "4:23: " + getCheckMessage(IllegalTypeCheck.class,
+            "5:23: " + getCheckMessage(IllegalTypeCheck.class,
                                       IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -76,7 +76,7 @@ public class XpathRegressionIllegalTypeTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("illegalClassNames", "Boolean");
 
         final String[] expectedViolation = {
-            "6:20: " + getCheckMessage(IllegalTypeCheck.class,
+            "7:20: " + getCheckMessage(IllegalTypeCheck.class,
                                       IllegalTypeCheck.MSG_KEY, "Boolean"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -99,7 +99,7 @@ public class XpathRegressionIllegalTypeTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("tokens", "METHOD_DEF");
 
         final String[] expectedViolation = {
-            "5:27: " + getCheckMessage(IllegalTypeCheck.class,
+            "6:27: " + getCheckMessage(IllegalTypeCheck.class,
                                       IllegalTypeCheck.MSG_KEY, "java.util.HashMap"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -114,4 +114,5 @@ public class XpathRegressionIllegalTypeTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                          expectedXpathQueries);
     }
+
 }

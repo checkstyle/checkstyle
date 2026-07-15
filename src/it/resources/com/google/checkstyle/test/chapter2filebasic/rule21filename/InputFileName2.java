@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter2filebasic.rule21filename;
 
 /** Test for illegal tokens. */
 public class InputFileName2 {
+
   /** Some javadoc. */
   public void defaultMethod() {
     int i = 0;

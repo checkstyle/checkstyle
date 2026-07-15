@@ -29,6 +29,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class ParenPadExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad";
@@ -68,4 +69,5 @@ public class ParenPadExamplesTest extends AbstractExamplesModuleTestSupport {
         final String[] expected = {};
         verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
+
 }

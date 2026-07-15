@@ -4,6 +4,7 @@ import java.util.List;
 
 /** Some javadoc. */
 public class InputFormattedSwitchWrappingIndentation {
+
   String testMethod1(int i) {
     String name = "";
     name =

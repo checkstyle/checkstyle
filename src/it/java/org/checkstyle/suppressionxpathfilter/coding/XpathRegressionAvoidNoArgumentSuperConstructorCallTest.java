@@ -54,7 +54,7 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
                 createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(CLASS,
+            "6:9: " + getCheckMessage(CLASS,
                 AvoidNoArgumentSuperConstructorCallCheck.MSG_CTOR),
         };
 
@@ -79,7 +79,7 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
                 createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
-            "7:17: " + getCheckMessage(CLASS,
+            "8:17: " + getCheckMessage(CLASS,
                 AvoidNoArgumentSuperConstructorCallCheck.MSG_CTOR),
         };
 
@@ -104,7 +104,7 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
                 createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
-            "6:13: " + getCheckMessage(CLASS,
+            "7:13: " + getCheckMessage(CLASS,
                 AvoidNoArgumentSuperConstructorCallCheck.MSG_CTOR),
         };
 
@@ -118,4 +118,5 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

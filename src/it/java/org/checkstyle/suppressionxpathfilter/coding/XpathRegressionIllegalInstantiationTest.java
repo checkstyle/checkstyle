@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck;
 
 public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSupport {
+
     @Override
     protected String getCheckName() {
         return IllegalInstantiationCheck.class.getSimpleName();
@@ -52,7 +53,7 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
         moduleConfig.addProperty("classes", "java.lang.Boolean");
 
         final String[] expectedViolation = {
-            "8:21: " + getCheckMessage(IllegalInstantiationCheck.class, MSG_KEY,
+            "9:21: " + getCheckMessage(IllegalInstantiationCheck.class, MSG_KEY,
                     "java.lang.Boolean"),
         };
 
@@ -81,7 +82,7 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
         moduleConfig.addProperty("classes", "java.lang.Integer");
 
         final String[] expectedViolation = {
-            "10:25: " + getCheckMessage(IllegalInstantiationCheck.class, MSG_KEY,
+            "11:25: " + getCheckMessage(IllegalInstantiationCheck.class, MSG_KEY,
                     "java.lang.Integer"),
         };
 
@@ -111,7 +112,7 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
         moduleConfig.addProperty("classes", "java.lang.String");
 
         final String[] expectedViolation = {
-            "10:24: " + getCheckMessage(IllegalInstantiationCheck.class, MSG_KEY,
+            "11:24: " + getCheckMessage(IllegalInstantiationCheck.class, MSG_KEY,
                     "java.lang.String"),
         };
 
@@ -131,4 +132,5 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

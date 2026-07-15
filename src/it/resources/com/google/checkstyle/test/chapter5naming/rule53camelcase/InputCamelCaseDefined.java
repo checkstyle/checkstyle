@@ -96,4 +96,5 @@ class InputCamelCaseDefined {
               //  'Method name 'XMLHTTPRequest' must match pattern'
             };
   }
+
 }

@@ -18,4 +18,5 @@ public class InputClassStructureValidOrder {
     void foo1() {}
 
     void bar() {}
+
 }

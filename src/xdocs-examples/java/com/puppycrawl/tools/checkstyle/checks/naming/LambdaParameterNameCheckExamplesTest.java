@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class LambdaParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/lambdaparametername";
@@ -51,4 +52,5 @@ public class LambdaParameterNameCheckExamplesTest extends AbstractExamplesModule
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter5naming.rule525nonconstantfieldnames;
 
 /** Some javadoc. */
 public class InputNonConstantNamesBasic {
+
   // violation below, ''mPublic' must .* avoid single lowercase letter followed by uppercase'
   public int mPublic;
   // violation below, ''mProtected' must .* avoid single lowercase letter followed by uppercase'

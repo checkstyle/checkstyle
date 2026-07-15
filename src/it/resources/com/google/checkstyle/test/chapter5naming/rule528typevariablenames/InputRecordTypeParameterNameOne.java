@@ -5,7 +5,8 @@ import java.util.LinkedHashMap;
 
 /** Some javadoc. Config: pattern = "(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)" */
 public record InputRecordTypeParameterNameOne<t>(Integer x, String str) {
-  // violation above 'Record type name 't' must match pattern'
+
+  // violation 2 lines above 'Record type name 't' must match pattern'
   /** Some javadoc. */
   public <TT> void foo() {}
 

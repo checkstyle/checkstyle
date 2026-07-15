@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheck;
 
 public class XpathRegressionPatternVariableAssignmentTest extends AbstractXpathTestSupport {
+
     private final String checkName = PatternVariableAssignmentCheck.class.getSimpleName();
 
     @Override
@@ -74,7 +75,7 @@ public class XpathRegressionPatternVariableAssignmentTest extends AbstractXpathT
                 createModuleConfig(PatternVariableAssignmentCheck.class);
 
         final String[] expectedViolation = {
-            "12:17: " + getCheckMessage(PatternVariableAssignmentCheck.class,
+            "13:17: " + getCheckMessage(PatternVariableAssignmentCheck.class,
                     PatternVariableAssignmentCheck.MSG_KEY,
                     "x"),
         };
@@ -98,7 +99,7 @@ public class XpathRegressionPatternVariableAssignmentTest extends AbstractXpathT
                 createModuleConfig(PatternVariableAssignmentCheck.class);
 
         final String[] expectedViolation = {
-            "10:21: " + getCheckMessage(PatternVariableAssignmentCheck.class,
+            "11:21: " + getCheckMessage(PatternVariableAssignmentCheck.class,
                     PatternVariableAssignmentCheck.MSG_KEY,
                     "x"),
         };

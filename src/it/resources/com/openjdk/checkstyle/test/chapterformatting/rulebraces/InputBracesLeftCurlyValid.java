@@ -2,6 +2,7 @@ package com.openjdk.checkstyle.test.chapterformatting.rulebraces;
 
 /** Input file for Valid Left Curly: Valid. */
 public class InputBracesLeftCurlyValid {
+
     public void testMethod() {
         if (true) {
             System.out.println("Hello");
@@ -74,4 +75,5 @@ public class InputBracesLeftCurlyValid {
             System.out.println("hello");
         } while (i > 0);
     }
+
 }

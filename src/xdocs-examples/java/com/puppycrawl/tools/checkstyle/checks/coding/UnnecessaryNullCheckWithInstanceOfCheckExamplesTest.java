@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class UnnecessaryNullCheckWithInstanceOfCheckExamplesTest
     extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/unnecessarynullcheckwithinstanceof";
@@ -43,4 +44,5 @@ public class UnnecessaryNullCheckWithInstanceOfCheckExamplesTest
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

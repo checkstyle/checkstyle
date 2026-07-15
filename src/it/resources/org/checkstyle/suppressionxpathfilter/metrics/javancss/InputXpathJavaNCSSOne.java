@@ -60,4 +60,5 @@ public class InputXpathJavaNCSSOne {
         int a2 = 1;
         int a3 = 1;
     }
+
 }

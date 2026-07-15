@@ -6,4 +6,5 @@ public class InputXpathNoEnumTrailingCommaOne {
         FOO,
         BAR, //warn
     }
+
 }

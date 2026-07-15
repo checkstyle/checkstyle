@@ -9,6 +9,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule734nonrequiredjavadoc;
  * @param options path
  */
 public record InputFormattedInvalidJavadocPositionRecord(String containerPath, String... options) {
+
   /** Odd javadoc */
   // violation above 'Javadoc comment is placed in the wrong location.'
 
@@ -65,12 +66,14 @@ public record InputFormattedInvalidJavadocPositionRecord(String containerPath, S
  * @param text the text
  */
 record MyRecord1(String text) {
-  // violation above 'Top-level class MyRecord1 has to reside in its own source file'
+
+  // violation 2 lines above 'Top-level class MyRecord1 has to reside in its own source file'
 
   /** Some javadoc. */
   MyRecord1 {}
   /** Invalid comment. */
   // violation above 'Javadoc comment is placed in the wrong location.'
+
 }
 
 /** Some javadoc. */

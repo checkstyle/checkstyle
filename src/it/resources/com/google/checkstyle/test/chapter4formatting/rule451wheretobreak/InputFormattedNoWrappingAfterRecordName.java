@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule451wheretobreak;
 
 /** Some javadoc. */
 public record InputFormattedNoWrappingAfterRecordName(String name) {
+
   record Multi(String main, Record rec) {
     private static boolean isSent(Object obj) {
       int value = 0;

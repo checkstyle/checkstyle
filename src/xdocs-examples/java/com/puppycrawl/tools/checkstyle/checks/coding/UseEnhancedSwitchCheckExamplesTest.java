@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class UseEnhancedSwitchCheckExamplesTest
     extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/useenhancedswitch";
@@ -49,4 +50,5 @@ public class UseEnhancedSwitchCheckExamplesTest
         verifyWithInlineConfigParser(
             getPath("Example2.java"), expected);
     }
+
 }

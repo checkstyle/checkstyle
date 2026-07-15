@@ -81,7 +81,7 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
                 createModuleConfig(AbstractClassNameCheck.class);
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(AbstractClassNameCheck.class,
+            "5:5: " + getCheckMessage(AbstractClassNameCheck.class,
                 AbstractClassNameCheck.MSG_ILLEGAL_ABSTRACT_CLASS_NAME,
                     "MyClass", "^Abstract.+$"),
         };
@@ -111,7 +111,7 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
                 createModuleConfig(AbstractClassNameCheck.class);
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(AbstractClassNameCheck.class,
+            "5:5: " + getCheckMessage(AbstractClassNameCheck.class,
                 AbstractClassNameCheck.MSG_NO_ABSTRACT_CLASS_MODIFIER,
                     "AbstractMyClass"),
         };

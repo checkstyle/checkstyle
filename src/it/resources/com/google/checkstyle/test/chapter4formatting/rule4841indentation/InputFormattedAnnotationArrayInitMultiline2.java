@@ -6,6 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 // violation below 'Top-level class TagNameAndDescription has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface TagNameAndDescription {
+
   String name();
 
   String description() default "";
@@ -16,6 +17,7 @@ import java.lang.annotation.RetentionPolicy;
 // violation below 'Top-level class OptionalCase has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface OptionalCase {
+
   String description() default "";
 
   String url() default "";
@@ -24,18 +26,21 @@ import java.lang.annotation.RetentionPolicy;
 // violation below 'Top-level class Operation has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface Operation {
+
   String summary() default "";
 }
 
 // violation below 'Top-level class ApiResponsesOne has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface ApiResponsesOne {
+
   ApiResponsesTwo[] value();
 }
 
 // violation below 'Top-level class ApiResponsesTwo has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface ApiResponsesTwo {
+
   String responseCode();
 
   String description() default "";
@@ -46,6 +51,7 @@ import java.lang.annotation.RetentionPolicy;
 // violation below 'Top-level class ContentSchemaOne has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface ContentSchemaOne {
+
   String mediaType() default "";
 
   SchemaStatusShow schema() default @SchemaStatusShow;
@@ -54,12 +60,14 @@ import java.lang.annotation.RetentionPolicy;
 // violation below 'Top-level class SchemaStatusShow has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface SchemaStatusShow {
+
   Class<?> implementation() default Void.class;
 }
 
 // violation below 'Top-level class ResponseValueShow has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface ResponseValueShow {
+
   DummyHttp value();
 }
 

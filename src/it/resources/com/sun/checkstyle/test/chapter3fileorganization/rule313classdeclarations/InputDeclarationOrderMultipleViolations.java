@@ -39,4 +39,5 @@ public final class InputDeclarationOrderMultipleViolations {
     /** Static variable after method. */
     private static int staticVar = 0;
     // violation above 'Static variable definition in wrong order.'
+
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 /** Some javadoc. */
 public class InputFormattedFieldAnnotations {
+
   /** Some javadoc. */
   public @interface SomeAnnotation1 {}
 

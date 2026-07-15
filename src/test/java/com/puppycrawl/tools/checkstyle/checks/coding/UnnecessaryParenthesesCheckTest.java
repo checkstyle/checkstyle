@@ -375,4 +375,5 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
                 getPath("InputUnnecessaryParenthesesConditionalExpression.java"), expected);
 
     }
+
 }

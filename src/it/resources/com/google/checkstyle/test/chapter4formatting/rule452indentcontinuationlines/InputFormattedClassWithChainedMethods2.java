@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule452indentcontinuationl
 
 /** Some javadoc. */
 public class InputFormattedClassWithChainedMethods2 {
+
   /** Some javadoc. */
   public InputFormattedClassWithChainedMethods2() {
 

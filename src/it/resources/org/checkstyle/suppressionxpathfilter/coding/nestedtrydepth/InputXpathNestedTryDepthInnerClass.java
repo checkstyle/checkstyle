@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.nestedtrydepth;
 
 public class InputXpathNestedTryDepthInnerClass {
+
     class Inner {
         public void test() {
             try {
@@ -12,4 +13,5 @@ public class InputXpathNestedTryDepthInnerClass {
             } catch (Exception e) {}
         }
     }
+
 }

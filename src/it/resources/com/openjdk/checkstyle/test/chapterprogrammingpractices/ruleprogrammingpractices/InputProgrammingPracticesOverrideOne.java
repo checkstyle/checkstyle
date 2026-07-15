@@ -42,4 +42,5 @@ public class InputProgrammingPracticesOverrideOne {
         public void test4() {
         }
     }
+
 }

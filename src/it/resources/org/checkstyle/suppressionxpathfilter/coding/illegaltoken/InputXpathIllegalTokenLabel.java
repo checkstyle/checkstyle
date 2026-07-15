@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.illegaltoken;
 
 public class InputXpathIllegalTokenLabel {
+
   public void myTest() {
     outer: // warn
     for (int i = 0; i < 5; i++) {
@@ -9,4 +10,5 @@ public class InputXpathIllegalTokenLabel {
       }
     }
   }
+
 }

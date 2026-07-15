@@ -2,6 +2,7 @@ package com.openjdk.checkstyle.test.chapterformatting.rulevariabledeclarations.o
 
 /** Some javadoc. */
 public class InputOneVariablePerDeclaration {
+
     int mnp, efg; // violation 'Each variable declaration must be in its own statement.'
     int i1; int j1;
     // 2 violations above:
@@ -114,4 +115,5 @@ public class InputOneVariablePerDeclaration {
         @SuppressWarnings("unused") long q4, q5, q6;
         // violation above 'Each variable declaration must be in its own statement.'
     }
+
 }

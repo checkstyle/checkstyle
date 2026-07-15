@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule711generalform;
 
 /** Extra violations are kept in this file to cover edge cases. */
 public class InputFormattedIncorrectJavadocLeadingAsteriskAlignment {
+
   /** Javadoc for instance variable. */
   private int age;
 

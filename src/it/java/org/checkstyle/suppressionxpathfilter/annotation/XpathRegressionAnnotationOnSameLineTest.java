@@ -59,7 +59,7 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
                 + "ANNOTATION_FIELD_DEF");
 
         final String[] expectedViolation = {
-            "6:5: " + getCheckMessage(AnnotationOnSameLineCheck.class,
+            "7:5: " + getCheckMessage(AnnotationOnSameLineCheck.class,
                      AnnotationOnSameLineCheck.MSG_KEY_ANNOTATION_ON_SAME_LINE,
                      "Deprecated"),
         };
@@ -95,7 +95,7 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
                 createModuleConfig(AnnotationOnSameLineCheck.class);
 
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(AnnotationOnSameLineCheck.class,
+            "8:5: " + getCheckMessage(AnnotationOnSameLineCheck.class,
                     AnnotationOnSameLineCheck.MSG_KEY_ANNOTATION_ON_SAME_LINE,
                     "Deprecated"),
         };
@@ -157,4 +157,5 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

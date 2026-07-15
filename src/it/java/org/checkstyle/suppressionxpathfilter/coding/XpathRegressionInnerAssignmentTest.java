@@ -72,7 +72,7 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
         final DefaultConfiguration moduleConfig = createModuleConfig(InnerAssignmentCheck.class);
 
         final String[] expectedViolation = {
-            "6:55: " + getCheckMessage(InnerAssignmentCheck.class, InnerAssignmentCheck.MSG_KEY),
+            "7:55: " + getCheckMessage(InnerAssignmentCheck.class, InnerAssignmentCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -99,7 +99,7 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
         final DefaultConfiguration moduleConfig = createModuleConfig(InnerAssignmentCheck.class);
 
         final String[] expectedViolation = {
-            "6:46: " + getCheckMessage(InnerAssignmentCheck.class, InnerAssignmentCheck.MSG_KEY),
+            "7:46: " + getCheckMessage(InnerAssignmentCheck.class, InnerAssignmentCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -123,4 +123,5 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

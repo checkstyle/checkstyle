@@ -53,7 +53,7 @@ public class XpathRegressionIllegalSymbolTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("symbolCodes", "0x2705");
 
         final String[] expectedViolation = {
-            "4:18: " + getCheckMessage(IllegalSymbolCheck.class, IllegalSymbolCheck.MSG_KEY, "✅"),
+            "5:18: " + getCheckMessage(IllegalSymbolCheck.class, IllegalSymbolCheck.MSG_KEY, "✅"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -75,7 +75,7 @@ public class XpathRegressionIllegalSymbolTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("symbolCodes", "0x0080-0x10FFFF");
 
         final String[] expectedViolation = {
-            "4:18: " + getCheckMessage(IllegalSymbolCheck.class, IllegalSymbolCheck.MSG_KEY, "é"),
+            "5:18: " + getCheckMessage(IllegalSymbolCheck.class, IllegalSymbolCheck.MSG_KEY, "é"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -98,7 +98,7 @@ public class XpathRegressionIllegalSymbolTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("tokens", "STRING_LITERAL");
 
         final String[] expectedViolation = {
-            "4:20: " + getCheckMessage(IllegalSymbolCheck.class, IllegalSymbolCheck.MSG_KEY, "✅"),
+            "5:20: " + getCheckMessage(IllegalSymbolCheck.class, IllegalSymbolCheck.MSG_KEY, "✅"),
         };
 
         final List<String> expectedXpathQueries = List.of(
@@ -113,4 +113,5 @@ public class XpathRegressionIllegalSymbolTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
             expectedXpathQueries);
     }
+
 }

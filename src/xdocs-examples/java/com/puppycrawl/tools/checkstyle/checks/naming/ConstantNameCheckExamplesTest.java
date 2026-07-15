@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class ConstantNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     private static final String DEFAULT_PATTERN = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
     @Override

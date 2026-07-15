@@ -64,4 +64,5 @@ public class CatchParameterNameCheckExamplesTest extends AbstractExamplesModuleT
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

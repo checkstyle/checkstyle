@@ -85,4 +85,5 @@ public class NoEnumTrailingCommaCheck extends AbstractCheck {
             .filter(token -> token.getType() == TokenTypes.COMMA)
             .ifPresent(comma -> log(comma, MSG_KEY));
     }
+
 }

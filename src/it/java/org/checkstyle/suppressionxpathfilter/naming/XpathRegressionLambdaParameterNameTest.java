@@ -55,7 +55,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
         final String defaultPattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expectedViolation = {
-            "7:44: " + getCheckMessage(LambdaParameterNameCheck.class,
+            "8:44: " + getCheckMessage(LambdaParameterNameCheck.class,
                     AbstractNameCheck.MSG_INVALID_PATTERN, "S", defaultPattern),
         };
 
@@ -82,7 +82,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
         moduleConfig.addProperty("format", nonDefaultPattern);
 
         final String[] expectedViolation = {
-            "7:45: " + getCheckMessage(LambdaParameterNameCheck.class,
+            "8:45: " + getCheckMessage(LambdaParameterNameCheck.class,
                     AbstractNameCheck.MSG_INVALID_PATTERN, "s", nonDefaultPattern),
         };
 
@@ -131,7 +131,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
         final String defaultPattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expectedViolation = {
-            "6:40: " + getCheckMessage(LambdaParameterNameCheck.class,
+            "7:40: " + getCheckMessage(LambdaParameterNameCheck.class,
                     AbstractNameCheck.MSG_INVALID_PATTERN, "S", defaultPattern),
         };
 
@@ -145,4 +145,5 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

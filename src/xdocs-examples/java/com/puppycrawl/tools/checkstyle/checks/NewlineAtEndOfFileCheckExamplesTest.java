@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NewlineAtEndOfFileCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/newlineatendoffile";
@@ -82,4 +83,5 @@ public class NewlineAtEndOfFileCheckExamplesTest extends AbstractExamplesModuleT
 
         verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
     }
+
 }

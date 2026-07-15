@@ -1,6 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
 class InputFormattedRightCurlyOther {
+
   /**
    * Summary.
    *
@@ -76,7 +77,8 @@ class InputFormattedRightCurlyOther {
  * Test input for closing brace if that brace terminates a statement or the body of a constructor.
  */
 class FooCtorAlone2 {
-  // violation above 'Top-level class FooCtorAlone2 has to reside in its own source file.'
+
+  // violation 2 lines above 'Top-level class FooCtorAlone2 has to reside in its own source file.'
   int test;
 
   public FooCtorAlone2() {
@@ -86,7 +88,8 @@ class FooCtorAlone2 {
 
 /** Test input for closing brace if that brace terminates a statement or the body of a method. */
 class FooMethodAlone2 {
-  // violation above 'Top-level class FooMethodAlone2 has to reside in its own source file.'
+
+  // violation 2 lines above 'Top-level class FooMethodAlone2 has to reside in its own source file.'
   public void fooMethod() {
     int i = 1;
   }
@@ -96,7 +99,8 @@ class FooMethodAlone2 {
  * Test input for closing brace if that brace terminates a statement or the body of a named class.
  */
 class FooInnerAlone2 {
-  // violation above 'Top-level class FooInnerAlone2 has to reside in its own source file.'
+
+  // violation 2 lines above 'Top-level class FooInnerAlone2 has to reside in its own source file.'
   class InnerFoo {
     public void fooInnerMethod() {}
   }
@@ -104,6 +108,7 @@ class FooInnerAlone2 {
 
 // violation below 'Top-level class EnumContainerAlone2 has to reside in its own source file.'
 class EnumContainerAlone2 {
+
   private enum Suit {
     CLUBS,
     HEARTS,
@@ -114,6 +119,7 @@ class EnumContainerAlone2 {
 
 // violation below 'Top-level class WithArraysAlone2 has to reside in its own source file.'
 class WithArraysAlone2 {
+
   String[] ss = {""};
   String[] empty = {};
   String[] s1 = {
@@ -130,6 +136,7 @@ class WithArraysAlone2 {
 
 // violation below 'Top-level class Interface2 has to reside in its own source file.'
 class Interface2 {
+
   public @interface TestAnnotation {}
 
   public @interface TestAnnotation1 {

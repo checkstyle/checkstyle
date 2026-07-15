@@ -3,6 +3,7 @@ package com.google.checkstyle.test.chapter5naming.rule526parameternames;
 // non-compiled with javac: Compilable with Java25
 /** Some javadoc. */
 public class InputCatchParameterName {
+
   {
     try {
       /* foo */

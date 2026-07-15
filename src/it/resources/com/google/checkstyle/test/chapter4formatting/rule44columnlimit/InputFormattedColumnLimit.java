@@ -7,6 +7,7 @@ import com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcove
 import java.io.IOException;
 
 final class InputFormattedColumnLimit {
+
   // Long line
   // ----------------------------------------------------------------------------------------------------
   // violation above 'Line is longer than 100 characters (found 105).'
@@ -225,7 +226,7 @@ final class InputFormattedColumnLimit {
     // CHECKSTYLE.SUPPRESS: LineLength for -3 lines
 
     // ok below, as it is suppressed.
-    // violation 4 lines below '.* indentation should be the same level as line 231.'
+    // violation 4 lines below '.* indentation should be the same level as line 232.'
     int
         aaaarealllllllllllllllllyyyyyyyyyyylllllllloooooooooooooooonnnnnnnnnnnnnnnnnggggggggggvvvvvvaarriaaablleeeeeeeeeeee =
             99;

@@ -140,4 +140,5 @@ public final class XpathIteratorUtil {
         parent.addChild(result);
         return result;
     }
+
 }

@@ -6,9 +6,11 @@ package org.checkstyle.suppressionxpathfilter.naming.illegalidentifiername;
  * default
  */
 public class InputXpathIllegalIdentifierNameInnerClass {
+
     class Inner {
         void test(int var) { // warn
             // do something
         }
     }
+
 }

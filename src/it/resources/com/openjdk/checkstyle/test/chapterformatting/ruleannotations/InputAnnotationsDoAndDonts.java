@@ -1,6 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleannotations;
 
 public class InputAnnotationsDoAndDonts {
+
     class Temp {
         public void foo() {
         }
@@ -65,4 +66,5 @@ public class InputAnnotationsDoAndDonts {
         public final void foo2(String... arg) {
         }
     }
+
 }

@@ -55,7 +55,7 @@ public class XpathRegressionSimplifyBooleanReturnTest extends AbstractXpathTestS
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(CLASS, MSG_KEY),
+            "7:9: " + getCheckMessage(CLASS, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -78,7 +78,7 @@ public class XpathRegressionSimplifyBooleanReturnTest extends AbstractXpathTestS
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
-            "11:13: " + getCheckMessage(CLASS, MSG_KEY),
+            "12:13: " + getCheckMessage(CLASS, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -102,7 +102,7 @@ public class XpathRegressionSimplifyBooleanReturnTest extends AbstractXpathTestS
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
-            "12:17: " + getCheckMessage(CLASS, MSG_KEY),
+            "13:17: " + getCheckMessage(CLASS, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -116,4 +116,5 @@ public class XpathRegressionSimplifyBooleanReturnTest extends AbstractXpathTestS
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
             expectedXpathQueries);
     }
+
 }

@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck;
 
 public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupport {
+
     private final String checkName = CatchParameterNameCheck.class.getSimpleName();
 
     @Override
@@ -55,7 +56,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                 new File(getPath("InputXpathCatchParameterNameSimple.java"));
 
         final String[] expectedViolation = {
-            "6:28: " + getCheckMessage(CatchParameterNameCheck.class,
+            "7:28: " + getCheckMessage(CatchParameterNameCheck.class,
                     MSG_INVALID_PATTERN, "e1", pattern),
         };
 
@@ -80,7 +81,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                 new File(getPath("InputXpathCatchParameterNameNested.java"));
 
         final String[] expectedViolation = {
-            "9:40: " + getCheckMessage(CatchParameterNameCheck.class,
+            "10:40: " + getCheckMessage(CatchParameterNameCheck.class,
                     MSG_INVALID_PATTERN, "i", pattern),
         };
 
@@ -108,7 +109,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                 new File(getPath("InputXpathCatchParameterNameStaticInit.java"));
 
         final String[] expectedViolation = {
-            "7:32: " + getCheckMessage(CatchParameterNameCheck.class,
+            "8:32: " + getCheckMessage(CatchParameterNameCheck.class,
                     MSG_INVALID_PATTERN, "Ex", pattern),
         };
 
@@ -134,7 +135,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                 new File(getPath("InputXpathCatchParameterNameAnonymous.java"));
 
         final String[] expectedViolation = {
-            "12:40: " + getCheckMessage(CatchParameterNameCheck.class,
+            "13:40: " + getCheckMessage(CatchParameterNameCheck.class,
                     MSG_INVALID_PATTERN, "E1", pattern),
         };
 
@@ -163,7 +164,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                 new File(getPath("InputXpathCatchParameterNameLambda.java"));
 
         final String[] expectedViolation = {
-            "12:32: " + getCheckMessage(CatchParameterNameCheck.class,
+            "13:32: " + getCheckMessage(CatchParameterNameCheck.class,
                     MSG_INVALID_PATTERN, "e", pattern),
         };
 
@@ -191,7 +192,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                 new File(getPath("InputXpathCatchParameterNameEnum.java"));
 
         final String[] expectedViolation = {
-            "10:40: " + getCheckMessage(CatchParameterNameCheck.class,
+            "11:40: " + getCheckMessage(CatchParameterNameCheck.class,
                     MSG_INVALID_PATTERN, "eX", pattern),
         };
 
@@ -219,7 +220,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                 new File(getPath("InputXpathCatchParameterNameInterface.java"));
 
         final String[] expectedViolation = {
-            "7:32: " + getCheckMessage(CatchParameterNameCheck.class,
+            "8:32: " + getCheckMessage(CatchParameterNameCheck.class,
                     MSG_INVALID_PATTERN, "EX", pattern),
         };
 
@@ -233,4 +234,5 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

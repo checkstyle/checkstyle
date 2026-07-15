@@ -6,6 +6,7 @@
 package com.google.checkstyle.test.chapter6programpractice.rule62donotignoreexceptions;
 
 class InputEmptyFinallyBlock {
+
   boolean flag;
 
   void doSm() {}

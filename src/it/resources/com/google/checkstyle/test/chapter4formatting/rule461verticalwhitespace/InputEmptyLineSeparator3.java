@@ -19,6 +19,7 @@ package com.google.checkstyle.test.chapter4formatting.rule461verticalwhitespace;
 
 
 public class InputEmptyLineSeparator3 {
+
 // violation above ''CLASS_DEF' has more than 1 empty lines before.'
 
 

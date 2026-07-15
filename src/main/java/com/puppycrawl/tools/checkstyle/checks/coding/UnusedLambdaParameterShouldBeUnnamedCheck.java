@@ -278,4 +278,5 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
             return used;
         }
     }
+
 }

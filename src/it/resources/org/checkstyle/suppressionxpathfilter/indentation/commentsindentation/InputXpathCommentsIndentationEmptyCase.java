@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.indentation.commentsindentation;
 
 public class InputXpathCommentsIndentationEmptyCase {
+
     int n;
 
     public void foo() {
@@ -10,4 +11,5 @@ public class InputXpathCommentsIndentationEmptyCase {
             default:
         }
     }
+
 }

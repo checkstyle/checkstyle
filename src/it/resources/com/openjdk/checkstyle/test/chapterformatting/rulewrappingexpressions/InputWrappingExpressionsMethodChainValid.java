@@ -51,4 +51,5 @@ public class InputWrappingExpressionsMethodChainValid {
                 Rule 3: Keep it simple.
                 """.formatted("user");
     }
+
 }

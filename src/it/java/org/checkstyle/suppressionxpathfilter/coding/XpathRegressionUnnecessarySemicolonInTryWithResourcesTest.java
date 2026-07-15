@@ -53,7 +53,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
         final String[] expectedViolation = {
-            "11:76: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
+            "12:76: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
                 UnnecessarySemicolonInTryWithResourcesCheck.MSG_SEMI),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -76,7 +76,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
         moduleConfig.addProperty("allowWhenNoBraceAfterSemicolon", "false");
 
         final String[] expectedViolation = {
-            "8:44: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
+            "9:44: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
                 UnnecessarySemicolonInTryWithResourcesCheck.MSG_SEMI),
         };
 
@@ -98,7 +98,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
         final DefaultConfiguration moduleConfig =
             createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
         final String[] expectedViolation = {
-            "9:50: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
+            "10:50: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
                 UnnecessarySemicolonInTryWithResourcesCheck.MSG_SEMI),
         };
 
@@ -111,4 +111,5 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

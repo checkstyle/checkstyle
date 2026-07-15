@@ -1,6 +1,7 @@
 package com.openjdk.checkstyle.test.chapternaming.rulenaming;
 
 public class InputNamingTwo {
+
     private int hidden = 0;
 
     public InputNamingTwo() {
@@ -62,4 +63,5 @@ public class InputNamingTwo {
     {
         int hidden = 0; // violation, ''hidden' hides a field'
     }
+
 }

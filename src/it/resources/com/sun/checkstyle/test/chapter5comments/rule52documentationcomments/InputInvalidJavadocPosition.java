@@ -11,6 +11,7 @@ class InputInvalidJavadocPosition {
 /** valid */
 /* ignore */
 class InputInvalidJavadocPosition2 {
+
     /** warn */
     static { /* ignore */ }
 
@@ -42,6 +43,7 @@ class InputInvalidJavadocPosition2 {
     void method23() /** warn */ {}
     void method24() { /** warn */ }
     void method25() { /** warn */ int variable; }
+
 }
 @Deprecated
 /** warn */

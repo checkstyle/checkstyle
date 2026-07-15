@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4853methodsandconstruc
 
 /** Some javadoc. */
 public class InputFormattedMethodsAndConstructorsAnnotations {
+
   /** Some javadoc. */
   public @interface SomeAnnotation1 {}
 

@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter2filebasic.rule21filename;
 
 // violation below 'Top-level class MyAnnotation1 has to reside in its own source file.'
 @interface MyAnnotation1 {
+
   String name();
 
   int version();
@@ -26,6 +27,7 @@ enum Enum1 {
 
 // violation below 'Top-level class TestRequireThisEnum has to reside in its own source file.'
 interface TestRequireThisEnum {
+
   enum DayOfWeek {
     SUNDAY,
     MONDAY,

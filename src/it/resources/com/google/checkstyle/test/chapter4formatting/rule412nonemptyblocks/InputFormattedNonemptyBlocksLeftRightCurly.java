@@ -1,6 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
 class InputFormattedNonemptyBlocksLeftRightCurly {
+
   /**
    * Summary.
    *
@@ -118,6 +119,7 @@ class InputFormattedNonemptyBlocksLeftRightCurly {
 
 // violation below 'Top-level class EnumContainerLeft2 has to reside in its own source file.'
 class EnumContainerLeft2 {
+
   private enum Suit {
     CLUBS,
     HEARTS,
@@ -128,6 +130,7 @@ class EnumContainerLeft2 {
 
 // violation below 'Top-level class WithArraysLeft2 has to reside in its own source file.'
 class WithArraysLeft2 {
+
   String[] s1 = {""};
   String[] empty = {};
   String[] s2 = {
@@ -144,6 +147,7 @@ class WithArraysLeft2 {
 
 // violation below 'Top-level class InputRightCurlyOther22 has to reside in its own source file.'
 class InputRightCurlyOther22 {
+
   /**
    * Summary.
    *
@@ -221,6 +225,7 @@ class InputRightCurlyOther22 {
  */
 // violation below 'Top-level class FooCtor2 has to reside in its own source file.'
 class FooCtor2 {
+
   int i3;
 
   public FooCtor2() {
@@ -231,6 +236,7 @@ class FooCtor2 {
 /** Test input for closing brace if that brace terminates a statement or the body of a method. */
 // violation below 'Top-level class FooMethod2 has to reside in its own source file.'
 class FooMethod2 {
+
   public void fooMethod() {
     int i = 1;
   }
@@ -241,6 +247,7 @@ class FooMethod2 {
  */
 // violation below 'Top-level class FooInner2 has to reside in its own source file.'
 class FooInner2 {
+
   class InnerFoo {
     public void fooInnerMethod() {}
   }
@@ -248,6 +255,7 @@ class FooInner2 {
 
 // violation below 'Top-level class EnumContainer2 has to reside in its own source file.'
 class EnumContainer2 {
+
   private enum Suit {
     CLUBS,
     HEARTS,
@@ -258,6 +266,7 @@ class EnumContainer2 {
 
 // violation below 'Top-level class WithArrays2 has to reside in its own source file.'
 class WithArrays2 {
+
   String[] test = {""};
   String[] empty = {};
   String[] s1 = {

@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class VisibilityModifierCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier";
@@ -260,4 +261,5 @@ public class VisibilityModifierCheckExamplesTest extends AbstractExamplesModuleT
 
         verifyWithInlineConfigParser(getPath("Example12.java"), expected);
     }
+
 }

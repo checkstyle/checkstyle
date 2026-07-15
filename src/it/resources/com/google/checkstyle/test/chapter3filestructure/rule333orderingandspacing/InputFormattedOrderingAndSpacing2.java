@@ -15,6 +15,7 @@ import java.util.concurrent.AbstractExecutorService;
 
 /** Some javadoc. */
 public class InputFormattedOrderingAndSpacing2 {
+
   /** Some javadoc. */
   public static void main(String[] args) {
     try {

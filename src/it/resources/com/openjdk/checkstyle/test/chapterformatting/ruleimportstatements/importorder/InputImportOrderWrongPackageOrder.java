@@ -12,6 +12,7 @@ import java.util.Arrays;
  * According to OpenJDK style, java.* should come before javax.*
  */
 public final class InputImportOrderWrongPackageOrder {
+
     /** Dummy constant. */
     public static final int MAX_VALUE = Integer.MAX_VALUE;
 
@@ -29,4 +30,5 @@ public final class InputImportOrderWrongPackageOrder {
         final JButton button = new JButton("Test");
         final String[] arr = Arrays.copyOf(new String[]{"a"}, 5);
     }
+
 }

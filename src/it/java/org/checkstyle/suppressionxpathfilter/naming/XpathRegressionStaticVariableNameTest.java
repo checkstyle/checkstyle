@@ -107,7 +107,7 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
                 createModuleConfig(StaticVariableNameCheck.class);
 
         final String[] expectedViolation = {
-            "5:16: " + getCheckMessage(StaticVariableNameCheck.class,
+            "6:16: " + getCheckMessage(StaticVariableNameCheck.class,
                         AbstractNameCheck.MSG_INVALID_PATTERN, "NUM3", pattern),
         };
 
@@ -120,4 +120,5 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

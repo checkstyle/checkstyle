@@ -6,4 +6,5 @@ public class InputXpathInnerAssignment {
         int a, b;
         a = b = 5; // warn
     }
+
 }

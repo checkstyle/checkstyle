@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class AnnotationOnSameLineCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/annotation/annotationonsameline";
@@ -53,4 +54,5 @@ public class AnnotationOnSameLineCheckExamplesTest extends AbstractExamplesModul
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.sizes.parameternumber;
 
 public class InputXpathParameterNumberIgnoreAnnotatedBy {
+
     static class InnerClass {
         static {
             new Object() {
@@ -23,4 +24,5 @@ public class InputXpathParameterNumberIgnoreAnnotatedBy {
     }
 
     @interface MyAnno {}
+
 }

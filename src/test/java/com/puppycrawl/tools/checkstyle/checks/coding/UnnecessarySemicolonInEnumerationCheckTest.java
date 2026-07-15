@@ -110,4 +110,5 @@ public class UnnecessarySemicolonInEnumerationCheckTest extends AbstractModuleTe
             .that(check.getRequiredTokens())
             .isEqualTo(expected);
     }
+
 }
