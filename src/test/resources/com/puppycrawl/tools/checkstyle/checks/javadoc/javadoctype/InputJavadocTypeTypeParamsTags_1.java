@@ -24,7 +24,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
  * @version 1.0
  */
 public class InputJavadocTypeTypeParamsTags_1<A,B1,C456 extends Comparable>
-// violation above 'missing @param <C456> tag.'
+// violation above 'missing @param '<C456>' tag.'
 {
     /**
      * Some explanation.
@@ -61,7 +61,7 @@ public class InputJavadocTypeTypeParamsTags_1<A,B1,C456 extends Comparable>
      * @param <C> extra parameter
      */
 
-    public static class InnerClass_1<A,B> // violation 'missing @param <B> tag.'
+    public static class InnerClass_1<A,B> // violation 'missing @param '<B>' tag.'
     {
     }
 
