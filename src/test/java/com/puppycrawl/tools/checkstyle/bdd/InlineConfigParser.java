@@ -262,24 +262,6 @@ public final class InlineConfigParser {
      * Checks in which violation message is not yet fully specified in all input files.
      * Temporary suppression until
      * <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
-     */
-    private static final Set<String> SUPPRESSED_FILES = Set.of(
-            "whitespace/whitespacearound/Example1.java",
-            "whitespace/whitespacearound/Example10.java",
-            "whitespace/whitespacearound/Example11.java",
-            "whitespace/whitespacearound/Example4.java",
-            "whitespace/whitespacearound/Example5.java",
-            "whitespace/whitespacearound/Example6.java",
-            "whitespace/whitespacearound/Example7.java",
-            "whitespace/whitespacearound/Example8.java",
-            "whitespace/whitespacearound/Example9.java",
-            "whitespace/whitespacearound/UseCase1.java"
-    );
-
-    /**
-     * Checks in which violation message is not yet fully specified in all input files.
-     * Temporary suppression until
-     * <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
      * is fully resolved for these checks. Remove entries here as their input files
      * are updated with proper violation messages.
      */
@@ -923,7 +905,7 @@ public final class InlineConfigParser {
                     + inputFilePath, exc);
         }
         try {
-            setViolations(testInputConfigBuilder, lines, setFilteredViolations, inputFilePath);
+            setViolations(testInputConfigBuilder, lines, setFilteredViolations);
         }
         catch (CheckstyleException exc) {
             throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
@@ -1006,7 +988,7 @@ public final class InlineConfigParser {
                 new TestInputConfiguration.Builder();
         testInputConfigBuilder.setXmlConfiguration(xmlConfig);
         try {
-            setViolations(testInputConfigBuilder, lines, false, inputFilePath);
+            setViolations(testInputConfigBuilder, lines, false);
         }
         catch (CheckstyleException exc) {
             throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
@@ -1533,8 +1515,7 @@ public final class InlineConfigParser {
     }
 
     private static boolean shouldSpecifyViolationMessage(
-            TestInputConfiguration.Builder inputConfigBuilder,
-            String inputFilePath) {
+            TestInputConfiguration.Builder inputConfigBuilder) {
 
         boolean result = false;
 
@@ -1546,15 +1527,7 @@ public final class InlineConfigParser {
 
             if (!PERMANENT_SUPPRESSED_CHECKS.contains(moduleName)
                     && !SUPPRESSED_CHECKS.contains(moduleName)) {
-
-                final String normalizedPath = inputFilePath.replace('\\', '/');
-
-                final boolean isSuppressed = SUPPRESSED_FILES.stream()
-                        .anyMatch(normalizedPath::endsWith);
-
-                if (!isSuppressed) {
-                    result = true;
-                }
+                result = true;
             }
         }
 
@@ -1563,12 +1536,11 @@ public final class InlineConfigParser {
 
     private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
                                       List<String> lines,
-                                      boolean useFilteredViolations,
-                                      String inputFilePath)
+                                      boolean useFilteredViolations)
             throws CheckstyleException {
 
         final boolean specifyViolationMessage =
-                shouldSpecifyViolationMessage(inputConfigBuilder, inputFilePath);
+                shouldSpecifyViolationMessage(inputConfigBuilder);
 
         for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
             setViolations(inputConfigBuilder, lines,
