@@ -144,17 +144,17 @@
           </li>
           <li>
             unexpected output to logs from XdocsExamplesAstConsistencyTest.
-            Author: smita.prajapati082@gmail.com
+            Author: smita_1078
             <a href="https://github.com/checkstyle/checkstyle/issues/20653">#20653</a>
           </li>
           <li>
             Unexpected output in maven build from SearchIndexGenerator.
-            Author: smita.prajapati082@gmail.com
+            Author: smita_1078
             <a href="https://github.com/checkstyle/checkstyle/issues/20654">#20654</a>
           </li>
           <li>
             Use cases examples should not be named as Examples.
-            Author: smita.prajapati082@gmail.com
+            Author: smita_1078
             <a href="https://github.com/checkstyle/checkstyle/issues/19933">#19933</a>
           </li>
           <li>
@@ -164,7 +164,7 @@
           </li>
           <li>
             Validation of amount of Example that should be same by AST.
-            Author: smita.prajapati082@gmail.com
+            Author: smita_1078
             <a href="https://github.com/checkstyle/checkstyle/issues/20585">#20585</a>
           </li>
           <li>
@@ -226,7 +226,7 @@
           </li>
           <li>
             Broken links in Checkstyle searchbar.
-            Author: smita.prajapati082@gmail.com
+            Author: smita_1078
             <a href="https://github.com/checkstyle/checkstyle/issues/20601">#20601</a>
           </li>
           <li>
@@ -247,7 +247,7 @@
           </li>
           <li>
             Fix xdocs Examples AST Consistency Test (Reduce suppressions list).
-            Author: smita_1078, smita.prajapati082@gmail.com
+            Author: smita_1078
             <a href="https://github.com/checkstyle/checkstyle/issues/18435">#18435</a>
           </li>
           <li>
