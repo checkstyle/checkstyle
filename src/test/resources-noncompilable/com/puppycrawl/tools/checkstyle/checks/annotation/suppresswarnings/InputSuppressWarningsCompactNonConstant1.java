@@ -15,11 +15,11 @@ import java.lang.annotation.Documented;
 @SuppressWarnings({"unchecked", "unused"})
 public class InputSuppressWarningsCompactNonConstant1
 {
-    // violation below, 'The warning '   ' cannot be suppressed at this location'
+    // violation below 'The warning '   ' cannot be suppressed at this location'
     @SuppressWarnings({"   "})
     class Empty {
 
-        // violation below, 'The warning '' cannot be suppressed at this location'
+        // violation below 'The warning '' cannot be suppressed at this location'
         @SuppressWarnings({"unchecked", ""})
         public Empty() {
 
@@ -54,7 +54,7 @@ public class InputSuppressWarningsCompactNonConstant1
 
     @Documented
     @SuppressWarnings({})
-    // violation above, 'The warning '' cannot be suppressed at this location'
+    // violation above 'The warning '' cannot be suppressed at this location'
     @interface MoreSweetness {
 
         @SuppressWarnings({"unused", "ignore"})
@@ -63,46 +63,45 @@ public class InputSuppressWarningsCompactNonConstant1
 
     public class Junk {
 
-        // violation below, 'The warning '' cannot be suppressed at this location'
+        // violation below 'The warning '' cannot be suppressed at this location'
         @SuppressWarnings({})
         int a = 1;
 
         @SuppressWarnings({"unchecked"})
         @Deprecated
         int b = 1;
-        void doFoo(String s, @SuppressWarnings({"unchecked"})String y) {
-
-        }
+        void doFoo(String s, @SuppressWarnings({"unchecked"})String y) {}
     }
-
-    @SuppressWarnings({(false) ? "unchecked" : "", (false) ? "unchecked" : ""}) // 2 violations
+    // 2 violations 3 lines below:
+    // 'cannot be suppressed at this location'
+    // 'cannot be suppressed at this location'
+    @SuppressWarnings({(false) ? "unchecked" : "", (false) ? "unchecked" : ""})
     class Cond {
 
-        // violation below, 'The warning '' cannot be suppressed at this location'
+        // violation below 'The warning '' cannot be suppressed at this location'
         @SuppressWarnings({(false) ? "" : "unchecked"})
         public Cond() {
 
         }
 
-        // violation below, 'The warning '   ' cannot be suppressed at this location'
+        // violation below 'The warning '   ' cannot be suppressed at this location'
         @SuppressWarnings({(false) ? (true) ? "   " : "unused" : "unchecked",
             (false) ? (true) ? "   " : "unused" : "unchecked"})
-        // violation above, 'The warning '   ' cannot be suppressed at this location'
-        public void aCond1() {
+        // violation above 'The warning '   ' cannot be suppressed at this location'
+        public void aCond1() {}
 
-        }
-
-        // violation below, 'The warning '   ' cannot be suppressed at this location'
+        // violation below 'The warning '   ' cannot be suppressed at this location'
         @SuppressWarnings({(false) ? "unchecked" : (true) ? "   " : "unused"})
-        public void aCond2() {
-
-        }
-
+        public void aCond2() {}
+        
+        // 2 violations 4 lines below:
+        // 'cannot be suppressed at this location'
+        // 'cannot be suppressed at this location'
         @java.lang.SuppressWarnings({(false) ? "unchecked" :
-                ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused", // 2 violations
-                // violation below, 'The warning '' cannot be suppressed at this location'
+                ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused",
+                // violation below 'The warning '' cannot be suppressed at this location'
             (false) ? "unchecked" : ("" == "") ? (false) ? (true) ? "" :
-                    // violation below, 'The warning '   ' cannot be suppressed at this location'
+                    // violation below 'The warning '   ' cannot be suppressed at this location'
                     "foo" : "   " :
                     "unused"})
         public void seriously() {
