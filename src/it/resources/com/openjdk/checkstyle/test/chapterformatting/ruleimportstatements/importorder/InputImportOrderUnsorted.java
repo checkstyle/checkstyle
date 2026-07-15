@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleimportstatements.importorder;
 
+// violation above 'Header mismatch*'
+
 import java.util.Map;
 import java.util.Arrays;
 // violation above '.* 'java.util.Arrays' .* Should be before 'java.util.Map'.'
