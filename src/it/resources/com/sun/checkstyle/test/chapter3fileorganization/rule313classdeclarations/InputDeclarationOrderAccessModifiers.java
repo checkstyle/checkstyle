@@ -27,4 +27,5 @@ public final class InputDeclarationOrderAccessModifiers {
     public int getValue() {
         return PACKAGE_VAR + PUBLIC_VAR + PRIVATE_VAR + PROTECTED_VAR;
     }
+
 }

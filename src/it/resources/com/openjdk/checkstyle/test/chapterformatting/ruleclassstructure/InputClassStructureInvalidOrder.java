@@ -22,4 +22,5 @@ public class InputClassStructureInvalidOrder {
     void foo1() {}
 
     void bar() {}
+
 }

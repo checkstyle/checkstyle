@@ -40,4 +40,5 @@ public class SuperCloneCheckExamplesTest extends AbstractExamplesModuleTestSuppo
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

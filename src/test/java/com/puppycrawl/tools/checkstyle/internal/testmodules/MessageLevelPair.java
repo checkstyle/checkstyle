@@ -44,4 +44,5 @@ public record MessageLevelPair(String msg, int level) {
     public int getLevel() {
         return level;
     }
+
 }

@@ -187,4 +187,5 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
                 getPath("InputAnnotationOnSameLineTwo.java"),
             expected);
     }
+
 }

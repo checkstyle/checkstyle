@@ -7,4 +7,5 @@ class InputXpathParameterNameAccessModifier {
 
     public void method2(int b) { // warn
     }
+
 }

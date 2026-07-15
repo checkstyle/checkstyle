@@ -6,4 +6,5 @@ public class InputLineWrappingIndentationValid {
             int b) {
         int sum = a + b;
     }
+
 }

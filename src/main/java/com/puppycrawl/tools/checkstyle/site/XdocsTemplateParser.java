@@ -203,4 +203,5 @@ public class XdocsTemplateParser extends XdocParser {
         macroName = "";
         macroParameters.clear();
     }
+
 }

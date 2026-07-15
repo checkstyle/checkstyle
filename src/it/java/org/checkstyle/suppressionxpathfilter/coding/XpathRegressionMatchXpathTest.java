@@ -55,7 +55,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("query", "//METHOD_DEF[./IDENT[@text='test']]");
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(MatchXpathCheck.class, MatchXpathCheck.MSG_KEY),
+            "5:5: " + getCheckMessage(MatchXpathCheck.class, MatchXpathCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -82,7 +82,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
                 + "@text='RuntimeException' or ends-with(@text, 'Error')]]");
 
         final String[] expectedViolation = {
-            "4:25: " + getCheckMessage(MatchXpathCheck.class, MatchXpathCheck.MSG_KEY),
+            "5:25: " + getCheckMessage(MatchXpathCheck.class, MatchXpathCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -106,7 +106,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("tokens", "STRING_LITERAL");
 
         final String[] expectedViolation = {
-            "4:24: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "5:24: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "\"\\\"testOne\\\"\""),
         };
 
@@ -135,7 +135,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("tokens", "STRING_LITERAL");
 
         final String[] expectedViolation = {
-            "4:23: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "5:23: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "\"<testTwo\""),
         };
 
@@ -164,7 +164,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("tokens", "STRING_LITERAL");
 
         final String[] expectedViolation = {
-            "4:26: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "5:26: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "\"testFive\\n\""),
         };
 
@@ -193,7 +193,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("tokens", "STRING_LITERAL");
 
         final String[] expectedViolation = {
-            "4:26: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "5:26: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "\">testFour\""),
         };
 
@@ -222,7 +222,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("tokens", "STRING_LITERAL");
 
         final String[] expectedViolation = {
-            "4:28: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "5:28: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "\"&testThree\""),
         };
 
@@ -251,7 +251,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("tokens", "STRING_LITERAL");
 
         final String[] expectedViolation = {
-            "4:23: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "5:23: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "\"'SingleQuoteOnBothSide'\""),
         };
 
@@ -280,7 +280,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("tokens", "STRING_LITERAL");
 
         final String[] expectedViolation = {
-            "4:27: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "5:27: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "\"carriageCharAtEnd\\r\""),
         };
 
@@ -309,7 +309,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("tokens", "CHAR_LITERAL");
 
         final String[] expectedViolationForAmpersand = {
-            "4:20: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "5:20: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "'&'"),
         };
 
@@ -338,7 +338,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("tokens", "CHAR_LITERAL");
 
         final String[] expectedViolationsForQuote = {
-            "4:21: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "5:21: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "'\\\"'"),
         };
 
@@ -367,7 +367,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("tokens", "CHAR_LITERAL");
 
         final String[] expectedViolationsForLess = {
-            "4:21: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "5:21: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "'<'"),
         };
 
@@ -396,7 +396,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("tokens", "CHAR_LITERAL");
 
         final String[] expectedViolationsForApos = {
-            "4:21: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "5:21: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "'\\''"),
         };
 
@@ -425,7 +425,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("tokens", "CHAR_LITERAL");
 
         final String[] expectedViolationsForGreater = {
-            "4:24: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "5:24: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "'>'"),
         };
 
@@ -457,7 +457,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
                 "//METHOD_DEF/following::*[1]");
 
         final String[] expectedViolation = {
-            "5:1: " + getCheckMessage(MatchXpathCheck.class, MatchXpathCheck.MSG_KEY),
+            "7:1: " + getCheckMessage(MatchXpathCheck.class, MatchXpathCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -469,4 +469,5 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

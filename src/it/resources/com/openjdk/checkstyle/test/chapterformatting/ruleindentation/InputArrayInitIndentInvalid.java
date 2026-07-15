@@ -6,4 +6,5 @@ public class InputArrayInitIndentInvalid {
     1, 2, 3
     // violation above '.* incorrect indentation level 4, expected .* 8, 12.'
     };
+
 }

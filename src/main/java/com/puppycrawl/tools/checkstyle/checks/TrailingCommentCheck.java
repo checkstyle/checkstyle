@@ -226,4 +226,5 @@ public class TrailingCommentCheck extends AbstractCheck {
     private boolean isLegalCommentContent(String commentContent) {
         return legalComment != null && legalComment.matcher(commentContent).find();
     }
+
 }

@@ -10,6 +10,7 @@ import java.util.concurrent.Callable;
 
 class InputFormattedGenericWhitespace
     implements Comparable<InputFormattedGenericWhitespace>, Serializable {
+
   <T> InputFormattedGenericWhitespace(List<T> things, int i) {}
 
   public <T> InputFormattedGenericWhitespace(List<T> things) {}
@@ -51,4 +52,5 @@ class InputFormattedGenericWhitespace
   public static class IntEnumValueType2<E extends Enum<E> & IntEnum> {}
 
   public static class IntEnumValueType3<E extends Enum<E> & IntEnum> {}
+
 }

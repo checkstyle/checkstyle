@@ -153,4 +153,5 @@ class InputIndentationCorrectFieldAndParameter {
   }
 
   class FooFieldClass {}
+
 }

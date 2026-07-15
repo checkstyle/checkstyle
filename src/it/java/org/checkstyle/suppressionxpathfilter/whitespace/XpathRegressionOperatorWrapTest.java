@@ -81,7 +81,7 @@ public class XpathRegressionOperatorWrapTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("option", "eol");
 
         final String[] expectedViolation = {
-            "5:11: " + getCheckMessage(OperatorWrapCheck.class,
+            "6:11: " + getCheckMessage(OperatorWrapCheck.class,
                         OperatorWrapCheck.MSG_LINE_PREVIOUS, "="),
         };
 

@@ -32,4 +32,5 @@ public class InputFormattedClassWithChainedMethods {
   public InputFormattedClassWithChainedMethods getInstance(String... uselessParams) {
     return this;
   }
+
 }

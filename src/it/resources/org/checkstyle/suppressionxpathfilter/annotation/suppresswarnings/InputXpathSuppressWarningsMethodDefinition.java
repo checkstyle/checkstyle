@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.annotation.suppresswarnings;
 
 public class InputXpathSuppressWarningsMethodDefinition {
+
         private final String foo;
 
     public InputXpathSuppressWarningsMethodDefinition(String myFoo) {
@@ -11,4 +12,5 @@ public class InputXpathSuppressWarningsMethodDefinition {
     public String getFoo() {
         return this.foo;
     }
+
 }

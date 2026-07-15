@@ -218,4 +218,5 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
             file1, expectedFirstInput,
             file2, expectedSecondInput));
     }
+
 }

@@ -56,7 +56,7 @@ public class XpathRegressionUnusedTryResourceShouldBeUnnamedTest
                 createModuleConfig(UnusedTryResourceShouldBeUnnamedCheck.class);
 
         final String[] expectedViolation = {
-            "5:26: " + getCheckMessage(UnusedTryResourceShouldBeUnnamedCheck.class,
+            "6:26: " + getCheckMessage(UnusedTryResourceShouldBeUnnamedCheck.class,
                     UnusedTryResourceShouldBeUnnamedCheck.MSG_UNUSED_TRY_RESOURCE,
                     "a"),
         };
@@ -82,7 +82,7 @@ public class XpathRegressionUnusedTryResourceShouldBeUnnamedTest
                 createModuleConfig(UnusedTryResourceShouldBeUnnamedCheck.class);
 
         final String[] expectedViolation = {
-            "7:28: " + getCheckMessage(UnusedTryResourceShouldBeUnnamedCheck.class,
+            "8:28: " + getCheckMessage(UnusedTryResourceShouldBeUnnamedCheck.class,
                     UnusedTryResourceShouldBeUnnamedCheck.MSG_UNUSED_TRY_RESOURCE,
                     "b"),
         };
@@ -108,7 +108,7 @@ public class XpathRegressionUnusedTryResourceShouldBeUnnamedTest
                 createModuleConfig(UnusedTryResourceShouldBeUnnamedCheck.class);
 
         final String[] expectedViolation = {
-            "8:30: " + getCheckMessage(UnusedTryResourceShouldBeUnnamedCheck.class,
+            "9:30: " + getCheckMessage(UnusedTryResourceShouldBeUnnamedCheck.class,
                     UnusedTryResourceShouldBeUnnamedCheck.MSG_UNUSED_TRY_RESOURCE,
                     "a"),
         };
@@ -136,7 +136,7 @@ public class XpathRegressionUnusedTryResourceShouldBeUnnamedTest
                 createModuleConfig(UnusedTryResourceShouldBeUnnamedCheck.class);
 
         final String[] expectedViolation = {
-            "5:18: " + getCheckMessage(UnusedTryResourceShouldBeUnnamedCheck.class,
+            "6:18: " + getCheckMessage(UnusedTryResourceShouldBeUnnamedCheck.class,
                     UnusedTryResourceShouldBeUnnamedCheck.MSG_UNUSED_TRY_RESOURCE,
                     "a"),
         };
@@ -151,4 +151,5 @@ public class XpathRegressionUnusedTryResourceShouldBeUnnamedTest
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

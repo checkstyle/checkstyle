@@ -1190,4 +1190,5 @@ public final class SearchIndexGenerator {
         }
         return result;
     }
+
 }

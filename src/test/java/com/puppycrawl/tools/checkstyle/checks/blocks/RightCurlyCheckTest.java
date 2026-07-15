@@ -1123,4 +1123,5 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
                 "InputRightCurlyDefaultBlocksWithSwitchExpressionAloneOrSingleline.java";
         verifyWithInlineConfigParser(getPath(fileName), expected);
     }
+
 }

@@ -10,4 +10,5 @@ public class InputXpathSimplifyBooleanExpressionAnonymous {
              if (a == b) {};
         }
     }
+
 }

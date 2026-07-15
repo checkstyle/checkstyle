@@ -47,7 +47,7 @@ public class XpathRegressionUseEnhancedSwitchTest
 
         final DefaultConfiguration moduleConfig = createModuleConfig(UseEnhancedSwitchCheck.class);
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(UseEnhancedSwitchCheck.class, UseEnhancedSwitchCheck.MSG_KEY),
+            "7:9: " + getCheckMessage(UseEnhancedSwitchCheck.class, UseEnhancedSwitchCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = List.of(
@@ -63,7 +63,7 @@ public class XpathRegressionUseEnhancedSwitchTest
 
         final DefaultConfiguration moduleConfig = createModuleConfig(UseEnhancedSwitchCheck.class);
         final String[] expectedViolation = {
-            "5:18: " + getCheckMessage(UseEnhancedSwitchCheck.class,
+            "6:18: " + getCheckMessage(UseEnhancedSwitchCheck.class,
                 UseEnhancedSwitchCheck.MSG_KEY),
         };
 
@@ -85,7 +85,7 @@ public class XpathRegressionUseEnhancedSwitchTest
 
         final DefaultConfiguration moduleConfig = createModuleConfig(UseEnhancedSwitchCheck.class);
         final String[] expectedViolation = {
-            "6:13: " + getCheckMessage(UseEnhancedSwitchCheck.class,
+            "7:13: " + getCheckMessage(UseEnhancedSwitchCheck.class,
                 UseEnhancedSwitchCheck.MSG_KEY),
         };
 
@@ -95,4 +95,5 @@ public class XpathRegressionUseEnhancedSwitchTest
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

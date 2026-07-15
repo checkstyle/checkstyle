@@ -6,6 +6,7 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 
 /** Some javadoc. */
 public class InputWhitespaceAfterDoubleSlashesCorrect {
+
   String googleCheck = "Google"; // google
 
   /** Somejavadoc. */
@@ -24,4 +25,5 @@ public class InputWhitespaceAfterDoubleSlashesCorrect {
 
     /// // odd indentation comment
   }
+
 }

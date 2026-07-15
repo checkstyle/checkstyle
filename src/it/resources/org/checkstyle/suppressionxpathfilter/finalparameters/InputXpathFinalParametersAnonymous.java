@@ -11,4 +11,5 @@ public class InputXpathFinalParametersAnonymous {
             public void method(String[] argOne, final String[] argTwo) {} // warn
         };
     }
+
 }

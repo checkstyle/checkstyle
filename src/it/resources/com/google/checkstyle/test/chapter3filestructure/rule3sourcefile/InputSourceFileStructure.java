@@ -20,6 +20,7 @@
 package com.google.checkstyle.test.chapter3filestructure.rule3sourcefile;
 import java.util.concurrent.Callable; // violation ''import' should be separated from previous line.'
 class InputSourceFileStructure { // violation ''CLASS_DEF' should be separated from previous line.'
+
   public static final double FOO_PI = 3.1415;
   private boolean flag = true;
   static { // violation ''STATIC_INIT' should be separated from previous line.'
@@ -83,14 +84,18 @@ class InputSourceFileStructure { // violation ''CLASS_DEF' should be separated f
       return 0;
     }
   }
+
 }
 
 // violation below 'Top-level class Class1 has to reside in its own source file.'
 class Class1 {
+
   private Class1() {}
+
 }
 class Class2 {
-  // 2 violations above:
+
+  // 2 violations 2 lines above:
   //  'Top-level class Class2 has to reside in its own source file.'
   //  'CLASS_DEF' should be separated from previous line.'
   public int compareTo(InputSourceFileStructure obj) {
@@ -104,4 +109,5 @@ class Class2 {
               return 0;
             }
           };
+
 }

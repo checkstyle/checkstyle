@@ -50,7 +50,7 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig = createModuleConfig(SuperFinalizeCheck.class);
 
         final String[] expectedViolation = {
-            "4:17: " + getCheckMessage(SuperFinalizeCheck.class,
+            "5:17: " + getCheckMessage(SuperFinalizeCheck.class,
                                         AbstractSuperCheck.MSG_KEY, "finalize"),
         };
 
@@ -69,7 +69,7 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig = createModuleConfig(SuperFinalizeCheck.class);
 
         final String[] expectedViolation = {
-            "5:17: " + getCheckMessage(SuperFinalizeCheck.class,
+            "6:17: " + getCheckMessage(SuperFinalizeCheck.class,
                                         AbstractSuperCheck.MSG_KEY, "finalize"),
         };
 
@@ -88,7 +88,7 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig = createModuleConfig(SuperFinalizeCheck.class);
 
         final String[] expectedViolation = {
-            "9:28: " + getCheckMessage(SuperFinalizeCheck.class,
+            "10:28: " + getCheckMessage(SuperFinalizeCheck.class,
                                         AbstractSuperCheck.MSG_KEY, "finalize"),
         };
 
@@ -102,4 +102,5 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

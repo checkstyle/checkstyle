@@ -5,6 +5,7 @@ import java.util.List;
 
 /** Some javadoc. */
 public class InputFieldAnnotations {
+
   /** Some javadoc. */
   public @interface SomeAnnotation1 {}
 
@@ -57,4 +58,5 @@ public class InputFieldAnnotations {
 
   @SomeAnnotation3(x = 78) void test3() {}
   // violation above 'Annotation 'SomeAnnotation3' should be alone on line.'
+
 }

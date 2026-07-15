@@ -108,4 +108,5 @@ public abstract class InputIndentationCorrect {
 
     private static final String ZEROES = "" + "";
   }
+
 }

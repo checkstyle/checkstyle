@@ -110,4 +110,5 @@ public class InputDeclarationUsageDistanceAtMostThree7 {
     class DefaultValue {
         DefaultValue(double d) {}
     }
+
 }

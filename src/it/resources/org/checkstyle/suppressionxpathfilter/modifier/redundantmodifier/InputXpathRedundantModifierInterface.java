@@ -8,4 +8,5 @@ public abstract interface InputXpathRedundantModifierInterface {
     static enum E {
         A, B, C
   }
+
 }

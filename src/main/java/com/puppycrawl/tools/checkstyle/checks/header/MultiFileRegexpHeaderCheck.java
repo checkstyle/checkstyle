@@ -54,6 +54,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 @FileStatefulCheck
 public class MultiFileRegexpHeaderCheck
         extends AbstractFileSetCheck implements ExternalResourceHolder {
+
     /**
      * Constant indicating that no header line mismatch was found.
      */
@@ -386,4 +387,5 @@ public class MultiFileRegexpHeaderCheck
             return new MatchResult(false, lineNumber, messageKey, messageArg);
         }
     }
+
 }

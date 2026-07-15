@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4832nocstylearray;
 
 /** Test case for ArrayTypeStyle (Java vs C). */
 public class InputNoCstyleArrays {
+
   private int[] javastyle = new int[0];
   private int cstyle[] = new int[0]; // violation 'Array brackets at illegal position.'
 
@@ -60,4 +61,5 @@ public class InputNoCstyleArrays {
   //                    'Array brackets at illegal position.'
   //                    'Array brackets at illegal position.'
   //                    'Array brackets at illegal position.'
+
 }

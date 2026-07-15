@@ -83,7 +83,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
         moduleConfig.addProperty("scope", "private");
 
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(MissingJavadocTypeCheck.class,
+            "8:5: " + getCheckMessage(MissingJavadocTypeCheck.class,
                     MissingJavadocTypeCheck.MSG_JAVADOC_MISSING,
                     "ScopeMissingJavadocType"),
         };
@@ -115,7 +115,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
         moduleConfig.addProperty("excludeScope", "package");
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(MissingJavadocTypeCheck.class,
+            "5:5: " + getCheckMessage(MissingJavadocTypeCheck.class,
                     MissingJavadocTypeCheck.MSG_JAVADOC_MISSING,
                     "ExcludedMissingJavadocType"),
         };
@@ -146,7 +146,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
         moduleConfig.addProperty("skipAnnotations", "TestAnnotation");
 
         final String[] expectedViolation = {
-            "5:5: " + getCheckMessage(MissingJavadocTypeCheck.class,
+            "6:5: " + getCheckMessage(MissingJavadocTypeCheck.class,
                     MissingJavadocTypeCheck.MSG_JAVADOC_MISSING,
                     "AnnotationMissingJavadocType"),
         };
@@ -200,4 +200,5 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

@@ -6,6 +6,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule731selfexplanatory;
  * @mytag Hello
  */
 public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClasss {
+
   // with comments
 
   /**
@@ -164,6 +165,7 @@ public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClasss {
     abc += 1;
     this.abc = abc;
   }
+
 }
 
 // violation below 'Top-level class OverrideClasss has to reside in its own source file.'
@@ -172,6 +174,7 @@ class OverrideClasss {
   public String foo92() {
     return "Fooooo" + "ooo" + "ooooooo" + "ooooo" + "ooo";
   }
+
 }
 
 // violation below 'Top-level class MyAnnotationn has to reside in its own source file.'

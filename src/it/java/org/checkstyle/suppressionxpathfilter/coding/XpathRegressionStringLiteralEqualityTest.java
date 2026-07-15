@@ -51,7 +51,7 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expectedViolation = {
-            "6:17: " + getCheckMessage(StringLiteralEqualityCheck.class,
+            "7:17: " + getCheckMessage(StringLiteralEqualityCheck.class,
                     StringLiteralEqualityCheck.MSG_KEY, "=="),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -77,7 +77,7 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expectedViolation = {
-            "6:20: " + getCheckMessage(StringLiteralEqualityCheck.class,
+            "7:20: " + getCheckMessage(StringLiteralEqualityCheck.class,
                     StringLiteralEqualityCheck.MSG_KEY, "!="),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -103,7 +103,7 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expectedViolation = {
-            "6:29: " + getCheckMessage(StringLiteralEqualityCheck.class,
+            "7:29: " + getCheckMessage(StringLiteralEqualityCheck.class,
                     StringLiteralEqualityCheck.MSG_KEY, "=="),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -118,4 +118,5 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

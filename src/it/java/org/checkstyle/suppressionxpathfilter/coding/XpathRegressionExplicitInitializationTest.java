@@ -52,7 +52,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
                 createModuleConfig(ExplicitInitializationCheck.class);
 
         final String[] expectedViolation = {
-            "4:17: " + getCheckMessage(ExplicitInitializationCheck.class,
+            "5:17: " + getCheckMessage(ExplicitInitializationCheck.class,
                 ExplicitInitializationCheck.MSG_KEY, "a", 0),
         };
 
@@ -75,7 +75,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
                 createModuleConfig(ExplicitInitializationCheck.class);
 
         final String[] expectedViolation = {
-            "6:20: " + getCheckMessage(ExplicitInitializationCheck.class,
+            "7:20: " + getCheckMessage(ExplicitInitializationCheck.class,
                 ExplicitInitializationCheck.MSG_KEY, "bar", "null"),
         };
 
@@ -98,7 +98,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
                 createModuleConfig(ExplicitInitializationCheck.class);
 
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(ExplicitInitializationCheck.class,
+            "6:9: " + getCheckMessage(ExplicitInitializationCheck.class,
                 ExplicitInitializationCheck.MSG_KEY, "a", 0),
         };
 
@@ -111,4 +111,5 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

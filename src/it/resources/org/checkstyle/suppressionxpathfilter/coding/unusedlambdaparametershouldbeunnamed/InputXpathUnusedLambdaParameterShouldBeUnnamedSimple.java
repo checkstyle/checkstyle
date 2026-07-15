@@ -8,4 +8,5 @@ public class InputXpathUnusedLambdaParameterShouldBeUnnamedSimple {
     void test() {
         Function<Integer, Integer> f = (x) -> 1; // warn
     }
+
 }

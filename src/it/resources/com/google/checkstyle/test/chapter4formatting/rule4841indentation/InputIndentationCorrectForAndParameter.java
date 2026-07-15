@@ -123,4 +123,5 @@ class InputIndentationCorrectForAndParameter {
   }
 
   class FooForClass {}
+
 }

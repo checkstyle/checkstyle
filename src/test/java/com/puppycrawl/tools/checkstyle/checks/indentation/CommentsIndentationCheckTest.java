@@ -419,4 +419,5 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputCommentsIndentationStartOfMethodCallChainNpe.java"), expected);
     }
+
 }

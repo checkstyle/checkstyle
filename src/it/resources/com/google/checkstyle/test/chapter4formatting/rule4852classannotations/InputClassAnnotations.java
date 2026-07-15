@@ -4,6 +4,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4852classannotations;
  * Test class for checking the rule 4852.
  */
 public class InputClassAnnotations {
+
   /**
    * Custom annotation 1.
    */
@@ -48,4 +49,5 @@ public class InputClassAnnotations {
    */
   class Inner4 {}
   // violation 4 lines above 'Javadoc comment is placed in the wrong location.'
+
 }

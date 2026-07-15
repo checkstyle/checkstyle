@@ -27,6 +27,7 @@ import java.util.Map;
  * Class with result data of ClassAndPropertiesSettersJavadocScraper.
  */
 public final class JavadocScraperResultUtil {
+
     /**
      * Map of scraped properties details - name of property, property details object.
      */
@@ -137,4 +138,5 @@ public final class JavadocScraperResultUtil {
                                                  PropertyDetails details) {
         PROPERTIES_DETAILS.put(propertyName, details);
     }
+
 }

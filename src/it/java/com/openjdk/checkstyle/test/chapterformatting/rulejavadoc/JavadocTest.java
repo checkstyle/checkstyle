@@ -44,4 +44,5 @@ public class JavadocTest extends AbstractOpenJdkModuleTestSupport {
     public void testJavadocTwo() throws Exception {
         verifyWithWholeConfig(getPath("InputJavadocTwo.java"));
     }
+
 }

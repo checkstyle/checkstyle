@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.fallthrough;
 
 public class InputXpathFallThroughCharSwitch {
+
     public void test() {
         char[] v = {'a','b','c'};
         for(char c:v) {
@@ -16,4 +17,5 @@ public class InputXpathFallThroughCharSwitch {
             }
         }
     }
+
 }

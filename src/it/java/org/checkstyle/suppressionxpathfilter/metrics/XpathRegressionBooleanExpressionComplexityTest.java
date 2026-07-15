@@ -51,7 +51,7 @@ public class XpathRegressionBooleanExpressionComplexityTest
                 createModuleConfig(BooleanExpressionComplexityCheck.class);
 
         final String[] expectedViolationMessages = {
-            "10:23: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
+            "11:23: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
                     BooleanExpressionComplexityCheck.MSG_KEY, 11, 3),
         };
 
@@ -76,7 +76,7 @@ public class XpathRegressionBooleanExpressionComplexityTest
                 createModuleConfig(BooleanExpressionComplexityCheck.class);
 
         final String[] expectedViolationMessages = {
-            "9:19: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
+            "10:19: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
                     BooleanExpressionComplexityCheck.MSG_KEY, 11, 3),
         };
 
@@ -100,7 +100,7 @@ public class XpathRegressionBooleanExpressionComplexityTest
                 createModuleConfig(BooleanExpressionComplexityCheck.class);
 
         final String[] expectedViolationMessages = {
-            "9:9: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
+            "10:9: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
                     BooleanExpressionComplexityCheck.MSG_KEY, 4, 3),
         };
 
@@ -113,4 +113,5 @@ public class XpathRegressionBooleanExpressionComplexityTest
         runVerifications(moduleConfig, fileToProcess,
                 expectedViolationMessages, expectedXpathQueries);
     }
+
 }

@@ -37,4 +37,5 @@ public class InputFormattedLineBreakAfterLeftCurlyOfBlockInSwitch {
   private int handleTwoWithAnExtremelyLongMethodCallThatWouldNotFitOnTheSameLine() {
     return 0;
   }
+
 }

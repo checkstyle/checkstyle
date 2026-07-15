@@ -2,6 +2,7 @@ package com.openjdk.checkstyle.test.chapternaming.ruleclassinterfaceandenumnames
 
 /** Valid class, interface and enum names for OpenJDK style section 4.2. */
 public class InputClassInterfaceAndEnumNamesValid {
+
     class ValidClassName {
     }
 

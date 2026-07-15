@@ -51,7 +51,7 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
                 createModuleConfig(SuperCloneCheck.class);
 
         final String[] expectedViolation = {
-            "6:23: " + getCheckMessage(SuperCloneCheck.class, AbstractSuperCheck.MSG_KEY, "clone"),
+            "7:23: " + getCheckMessage(SuperCloneCheck.class, AbstractSuperCheck.MSG_KEY, "clone"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -74,7 +74,7 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
                 createModuleConfig(SuperCloneCheck.class);
 
         final String[] expectedViolation = {
-            "6:23: " + getCheckMessage(SuperCloneCheck.class, AbstractSuperCheck.MSG_KEY, "clone"),
+            "7:23: " + getCheckMessage(SuperCloneCheck.class, AbstractSuperCheck.MSG_KEY, "clone"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -97,7 +97,7 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
                 createModuleConfig(SuperCloneCheck.class);
 
         final String[] expectedViolation = {
-            "4:19: " + getCheckMessage(SuperCloneCheck.class, AbstractSuperCheck.MSG_KEY, "clone"),
+            "5:19: " + getCheckMessage(SuperCloneCheck.class, AbstractSuperCheck.MSG_KEY, "clone"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -109,4 +109,5 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

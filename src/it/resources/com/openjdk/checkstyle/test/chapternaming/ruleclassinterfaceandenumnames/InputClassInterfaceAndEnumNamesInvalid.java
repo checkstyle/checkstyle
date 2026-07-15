@@ -2,6 +2,7 @@ package com.openjdk.checkstyle.test.chapternaming.ruleclassinterfaceandenumnames
 
 /** Invalid class, interface and enum names for OpenJDK style section 4.2. */
 public class InputClassInterfaceAndEnumNamesInvalid {
+
     class invalidClassName { // violation 'Name 'invalidClassName' must match pattern'
     }
 

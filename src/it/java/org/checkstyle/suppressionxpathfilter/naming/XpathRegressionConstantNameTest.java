@@ -55,7 +55,7 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
-            "4:29: " + getCheckMessage(CLASS, MSG_INVALID_PATTERN, "number", PATTERN),
+            "5:29: " + getCheckMessage(CLASS, MSG_INVALID_PATTERN, "number", PATTERN),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -76,7 +76,7 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
-            "4:29: " + getCheckMessage(CLASS,
+            "5:29: " + getCheckMessage(CLASS,
                 MSG_INVALID_PATTERN, "badConstant", PATTERN),
         };
 
@@ -98,7 +98,7 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
-            "4:33: " + getCheckMessage(CLASS, MSG_INVALID_PATTERN, "_CONSTANT", PATTERN),
+            "5:33: " + getCheckMessage(CLASS, MSG_INVALID_PATTERN, "_CONSTANT", PATTERN),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -119,7 +119,7 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
-            "4:30: " + getCheckMessage(CLASS, MSG_INVALID_PATTERN, "BAD__NAME", PATTERN),
+            "5:30: " + getCheckMessage(CLASS, MSG_INVALID_PATTERN, "BAD__NAME", PATTERN),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -131,4 +131,5 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
             expectedXpathQueries);
     }
+
 }

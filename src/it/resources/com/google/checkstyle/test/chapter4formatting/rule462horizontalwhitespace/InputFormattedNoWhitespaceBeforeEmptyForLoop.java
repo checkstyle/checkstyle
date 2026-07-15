@@ -21,4 +21,5 @@ public class InputFormattedNoWhitespaceBeforeEmptyForLoop {
       break;
     }
   }
+
 }

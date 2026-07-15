@@ -267,4 +267,5 @@ class InputIndentationCorrectWhileDoWhileAndParameter {
   }
 
   class FooWhileClass {}
+
 }

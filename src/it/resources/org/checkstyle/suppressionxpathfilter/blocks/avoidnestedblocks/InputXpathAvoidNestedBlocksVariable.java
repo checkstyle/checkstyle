@@ -8,4 +8,5 @@ public class InputXpathAvoidNestedBlocksVariable {
             whichIsWhich = 2;
         }
     }
+
 }

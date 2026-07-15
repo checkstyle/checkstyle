@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 class InputGenericWhitespace implements Comparable<InputGenericWhitespace>, Serializable {
+
   <T> InputGenericWhitespace(List<T> things, int i) {}
 
   public <T> InputGenericWhitespace(List<T> things) {}
@@ -84,4 +85,5 @@ class InputGenericWhitespace implements Comparable<InputGenericWhitespace>, Seri
   public static class IntEnumValueType3<E extends Enum<E>  & IntEnum> {
     // violation above ''\>' is followed by whitespace.'
   }
+
 }

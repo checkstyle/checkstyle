@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.simplifybooleanreturn;
 
 public class InputXpathSimplifyBooleanReturnIfBooleanEqualsBoolean {
+
     public static boolean toTest() {
         boolean even = false;
         if (even == true) { // warn
@@ -10,4 +11,5 @@ public class InputXpathSimplifyBooleanReturnIfBooleanEqualsBoolean {
             return true;
         }
     }
+
 }

@@ -9,4 +9,5 @@ public class InputXpathUnusedLocalVariableThree {
         i++;
        }while(i<5);
     }
+
 }

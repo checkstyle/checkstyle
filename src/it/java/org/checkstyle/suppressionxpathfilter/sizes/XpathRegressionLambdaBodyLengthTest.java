@@ -51,7 +51,7 @@ public class XpathRegressionLambdaBodyLengthTest
             "InputXpathLambdaBodyLengthDefaultMax.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         final String[] expectedViolation = {
-            "7:48: " + getCheckMessage(CLASS, LambdaBodyLengthCheck.MSG_KEY, 11, 10),
+            "8:48: " + getCheckMessage(CLASS, LambdaBodyLengthCheck.MSG_KEY, 11, 10),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -70,7 +70,7 @@ public class XpathRegressionLambdaBodyLengthTest
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         moduleConfig.addProperty("max", "5");
         final String[] expectedViolation = {
-            "7:25: " + getCheckMessage(CLASS, LambdaBodyLengthCheck.MSG_KEY, 6, 5),
+            "8:25: " + getCheckMessage(CLASS, LambdaBodyLengthCheck.MSG_KEY, 6, 5),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -90,7 +90,7 @@ public class XpathRegressionLambdaBodyLengthTest
         moduleConfig.addProperty("max", "5");
 
         final String[] expectedViolation = {
-            "5:25: " + getCheckMessage(CLASS, LambdaBodyLengthCheck.MSG_KEY, 11, 5),
+            "6:25: " + getCheckMessage(CLASS, LambdaBodyLengthCheck.MSG_KEY, 11, 5),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -101,4 +101,5 @@ public class XpathRegressionLambdaBodyLengthTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

@@ -150,7 +150,7 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
                 createModuleConfig(AvoidNestedBlocksCheck.class);
 
         final String[] expectedViolation = {
-            "8:21: " + getCheckMessage(AvoidNestedBlocksCheck.class,
+            "9:21: " + getCheckMessage(AvoidNestedBlocksCheck.class,
                     AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED),
         };
 

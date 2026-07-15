@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule44columnlimit;
 
 /** Somejavadoc. */
 public class InputTextBlockColumnLimit {
+
   // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
   // violation below 'Each line of text in the text block must be indented'
   static final String SAMPLE = """
@@ -66,4 +67,5 @@ public class InputTextBlockColumnLimit {
   public static String getSampleTest() {
     return "sampleTest";
   }
+
 }

@@ -294,4 +294,5 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
                     || isNullLiteral(nullCheckNode.getFirstChild()))
                 && instanceOfIdent.getText().equals(nullCheckIdent.getText());
     }
+
 }

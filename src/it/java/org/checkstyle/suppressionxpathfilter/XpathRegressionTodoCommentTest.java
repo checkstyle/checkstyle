@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck;
 
 public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
+
     private final String checkName = TodoCommentCheck.class.getSimpleName();
 
     @Override
@@ -94,7 +95,7 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("format", "FIXME:");
 
         final String[] expectedViolation = {
-            "5:11: " + getCheckMessage(TodoCommentCheck.class, MSG_KEY, "FIXME:"),
+            "6:11: " + getCheckMessage(TodoCommentCheck.class, MSG_KEY, "FIXME:"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -107,4 +108,5 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

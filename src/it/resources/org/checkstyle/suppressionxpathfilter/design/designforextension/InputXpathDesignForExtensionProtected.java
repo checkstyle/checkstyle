@@ -12,4 +12,5 @@ public class InputXpathDesignForExtensionProtected
     public void someMethod() {
         return;
     }
+
 }

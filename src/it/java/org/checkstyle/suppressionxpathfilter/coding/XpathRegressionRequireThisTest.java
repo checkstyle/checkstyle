@@ -53,7 +53,7 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("validateOnlyOverlapping", "false");
 
         final String[] expectedViolation = {
-            "7:9: " + getCheckMessage(RequireThisCheck.class,
+            "8:9: " + getCheckMessage(RequireThisCheck.class,
                 RequireThisCheck.MSG_VARIABLE, "age", ""),
         };
 
@@ -78,7 +78,7 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("validateOnlyOverlapping", "false");
 
         final String[] expectedViolation = {
-            "9:13: " + getCheckMessage(RequireThisCheck.class,
+            "10:13: " + getCheckMessage(RequireThisCheck.class,
                 RequireThisCheck.MSG_VARIABLE, "age", ""),
         };
 
@@ -104,7 +104,7 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("validateOnlyOverlapping", "false");
 
         final String[] expectedViolation = {
-            "8:13: " + getCheckMessage(RequireThisCheck.class,
+            "9:13: " + getCheckMessage(RequireThisCheck.class,
                 RequireThisCheck.MSG_VARIABLE, "age", ""),
         };
 
@@ -119,4 +119,5 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

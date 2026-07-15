@@ -14,4 +14,5 @@ public class InputIndentationValid {
                 break;
         }
     }
+
 }

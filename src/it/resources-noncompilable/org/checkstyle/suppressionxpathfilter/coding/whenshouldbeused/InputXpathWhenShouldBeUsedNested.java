@@ -19,4 +19,5 @@ public class InputXpathWhenShouldBeUsedNested {
             default -> 3;
         };
     }
+
 }

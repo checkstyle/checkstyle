@@ -53,7 +53,7 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
                 createModuleConfig(DefaultComesLastCheck.class);
 
         final String[] expectedViolation = {
-            "8:13: " + getCheckMessage(DefaultComesLastCheck.class,
+            "9:13: " + getCheckMessage(DefaultComesLastCheck.class,
                     DefaultComesLastCheck.MSG_KEY),
         };
 
@@ -82,7 +82,7 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
         moduleConfig.addProperty("skipIfLastAndSharedWithCase", "true");
 
         final String[] expectedViolation = {
-            "15:13: " + getCheckMessage(DefaultComesLastCheck.class,
+            "16:13: " + getCheckMessage(DefaultComesLastCheck.class,
                 DefaultComesLastCheck.MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
         };
 
@@ -106,7 +106,7 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
                 createModuleConfig(DefaultComesLastCheck.class);
 
         final String[] expectedViolation = {
-            "6:13: " + getCheckMessage(DefaultComesLastCheck.class,
+            "7:13: " + getCheckMessage(DefaultComesLastCheck.class,
                     DefaultComesLastCheck.MSG_KEY),
         };
 
@@ -124,4 +124,5 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

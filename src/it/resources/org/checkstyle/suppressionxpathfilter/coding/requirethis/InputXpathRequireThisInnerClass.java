@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.requirethis;
 
 public class InputXpathRequireThisInnerClass {
+
     private static class Inner {
         private int age = 23;
 
@@ -8,4 +9,5 @@ public class InputXpathRequireThisInnerClass {
             age = 24; //warn
         }
     }
+
 }

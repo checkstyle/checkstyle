@@ -352,4 +352,5 @@ public class InputOneStatementPerLine {
       var1++; var2++; // violation 'Only one statement per line allowed.'
     }
   }
+
 }

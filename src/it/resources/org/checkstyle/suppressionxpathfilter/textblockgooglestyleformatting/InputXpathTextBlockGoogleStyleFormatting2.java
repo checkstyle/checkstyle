@@ -46,4 +46,5 @@ public class InputXpathTextBlockGoogleStyleFormatting2 {
     public static void getData(String data) {}
 
     public static void getData(String data, int length) {}
+
 }

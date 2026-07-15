@@ -67,4 +67,5 @@ public class InputFormattedCatchParametersOnNewLine {
   void test2Incorrect(boolean result) {
     int collect = result ? 0 : 1;
   }
+
 }

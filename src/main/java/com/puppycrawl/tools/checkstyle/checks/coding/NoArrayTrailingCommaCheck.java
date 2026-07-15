@@ -82,4 +82,5 @@ public class NoArrayTrailingCommaCheck extends AbstractCheck {
             log(previousSibling, MSG_KEY);
         }
     }
+
 }

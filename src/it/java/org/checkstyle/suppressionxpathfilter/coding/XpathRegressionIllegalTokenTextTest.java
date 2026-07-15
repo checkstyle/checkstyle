@@ -53,7 +53,7 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
         moduleConfig.addProperty("format", "12345");
         moduleConfig.addProperty("tokens", "NUM_INT");
         final String[] expectedViolation = {
-            "4:33: " + getCheckMessage(IllegalTokenTextCheck.class,
+            "5:33: " + getCheckMessage(IllegalTokenTextCheck.class,
                         IllegalTokenTextCheck.MSG_KEY, "12345"),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -80,7 +80,7 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
         moduleConfig.addProperty("format", "forbiddenText");
         moduleConfig.addProperty("tokens", "STRING_LITERAL");
         final String[] expectedViolation = {
-            "5:32: " + getCheckMessage(IllegalTokenTextCheck.class,
+            "6:32: " + getCheckMessage(IllegalTokenTextCheck.class,
                         IllegalTokenTextCheck.MSG_KEY, "forbiddenText"),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -109,7 +109,7 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
         moduleConfig.addProperty("format", "invalidIdentifier");
         moduleConfig.addProperty("tokens", "IDENT");
         final String[] expectedViolation = {
-            "4:10: " + getCheckMessage(IllegalTokenTextCheck.class,
+            "5:10: " + getCheckMessage(IllegalTokenTextCheck.class,
                         IllegalTokenTextCheck.MSG_KEY, "invalidIdentifier"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(

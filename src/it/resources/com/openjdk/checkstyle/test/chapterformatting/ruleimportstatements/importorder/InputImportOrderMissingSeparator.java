@@ -8,6 +8,7 @@ import javax.swing.JButton;
  * Test input to check no error will be thrown for separator.
  */
 public final class InputImportOrderMissingSeparator {
+
     /** Dummy constant. */
     public static final int VALUE = 42;
 
@@ -25,4 +26,5 @@ public final class InputImportOrderMissingSeparator {
         final Map<String, String> map = Map.of("key", "value");
         final JButton button = new JButton("Test");
     }
+
 }

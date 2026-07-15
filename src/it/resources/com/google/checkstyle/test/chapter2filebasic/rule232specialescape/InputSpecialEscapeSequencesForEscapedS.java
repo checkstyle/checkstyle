@@ -28,4 +28,5 @@ class InputSpecialEscapeSequencesForEscapedS {
     final String r3 = "\012"; // violation 'Consider using special escape sequence'
     final String r4 = "\010"; // violation 'Consider using special escape sequence'
   }
+
 }

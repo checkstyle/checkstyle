@@ -6,4 +6,5 @@ class InputSeparatorWrapArrayDeclarator {
 
   protected int[] arrayDeclarationWithBadWrapping = new int
       [] {1, 2}; // violation ''\[' should be on the previous line.'
+
 }

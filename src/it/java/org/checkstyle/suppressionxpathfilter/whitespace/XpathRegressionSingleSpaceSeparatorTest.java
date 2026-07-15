@@ -52,7 +52,7 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
                 createModuleConfig(SingleSpaceSeparatorCheck.class);
 
         final String[] expectedViolation = {
-            "4:11: " + getCheckMessage(SingleSpaceSeparatorCheck.class,
+            "5:11: " + getCheckMessage(SingleSpaceSeparatorCheck.class,
                     SingleSpaceSeparatorCheck.MSG_KEY),
         };
 
@@ -77,7 +77,7 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
         moduleConfig.addProperty("validateComments", "true");
 
         final String[] expectedViolation = {
-            "4:17: " + getCheckMessage(SingleSpaceSeparatorCheck.class,
+            "5:17: " + getCheckMessage(SingleSpaceSeparatorCheck.class,
                     SingleSpaceSeparatorCheck.MSG_KEY),
         };
 
@@ -101,7 +101,7 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
                 createModuleConfig(SingleSpaceSeparatorCheck.class);
 
         final String[] expectedViolation = {
-            "5:15: " + getCheckMessage(SingleSpaceSeparatorCheck.class,
+            "6:15: " + getCheckMessage(SingleSpaceSeparatorCheck.class,
                 SingleSpaceSeparatorCheck.MSG_KEY),
         };
 
@@ -114,4 +114,5 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

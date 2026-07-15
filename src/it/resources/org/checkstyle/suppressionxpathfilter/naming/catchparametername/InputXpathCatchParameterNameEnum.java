@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.naming.catchparametername;
 
 public enum InputXpathCatchParameterNameEnum {
+
     VALUE {
         @Override
         public void method(String op) {
@@ -15,4 +16,5 @@ public enum InputXpathCatchParameterNameEnum {
     };
 
     public abstract void method(String op);
+
 }

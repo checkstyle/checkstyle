@@ -9,4 +9,5 @@ public class InputXpathSeparatorWrapClass {
   void testMethod(int p
                 , int q) { // warn
   }
+
 }

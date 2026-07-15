@@ -4,6 +4,7 @@ package com.google.checkstyle.test.chapter3filestructure.rule3421overloadsplit;
 
 /** Some javadoc. */
 public class InputOverloadsNeverSplitRecords {
+
   /** Some javadoc. */
   public record MyRecord1(int x, int y) {
     /** Some javadoc. */
@@ -105,9 +106,10 @@ public class InputOverloadsNeverSplitRecords {
   /** Some javadoc. */
   public void fooMethod() {}
 
-  // violation 2 lines below 'All overloaded methods should be placed next to each other. .* '101'
+  // violation 2 lines below 'All overloaded methods should be placed next to each other. .* '102'
   /** Some javadoc. */
   public void overloadMethod(String s, Boolean b, int i) {
     // some foo code
   }
+
 }
