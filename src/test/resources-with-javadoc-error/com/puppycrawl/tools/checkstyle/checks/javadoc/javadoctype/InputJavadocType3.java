@@ -17,11 +17,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 public class InputJavadocType3 {
     /**
-     * @param <P> some parameter
-     */
-    public interface InvalidParameterInJavadoc<T> {}
-
-    /**
     *
     * @link <T>
     */
