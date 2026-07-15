@@ -19,4 +19,5 @@ public class InputOverrideAlwaysUsedForRecordInClass {
       return value.trim();
     }
   }
+
 }

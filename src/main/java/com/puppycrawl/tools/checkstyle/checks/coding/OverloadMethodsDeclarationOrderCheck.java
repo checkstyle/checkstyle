@@ -186,4 +186,5 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
         final DetailAST params = method.findFirstToken(TokenTypes.PARAMETERS);
         return params.getChildCount(TokenTypes.PARAMETER_DEF);
     }
+
 }

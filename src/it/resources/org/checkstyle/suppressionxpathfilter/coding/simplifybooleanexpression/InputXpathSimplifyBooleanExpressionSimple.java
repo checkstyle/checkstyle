@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.simplifybooleanexpression;
 
 public class InputXpathSimplifyBooleanExpressionSimple {
+
     private Object c,d,e;
     boolean a,b;
     public void test(){
@@ -8,4 +9,5 @@ public class InputXpathSimplifyBooleanExpressionSimple {
         if (!false) {} // warn
         e = (a && b) ? c : d;
     }
+
 }

@@ -185,4 +185,5 @@ public class UncommentedMainCheckTest
             file1, expectedFirstInput,
             file2, expectedSecondInput));
     }
+
 }

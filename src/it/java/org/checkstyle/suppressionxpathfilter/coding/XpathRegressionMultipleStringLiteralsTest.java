@@ -54,7 +54,7 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
                 createModuleConfig(MultipleStringLiteralsCheck.class);
 
         final String[] expectedViolations = {
-            "4:16: " + getCheckMessage(MultipleStringLiteralsCheck.class,
+            "5:16: " + getCheckMessage(MultipleStringLiteralsCheck.class,
                     MSG_KEY, "\"StringContents\"", 2),
         };
 
@@ -82,7 +82,7 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
         moduleConfig.addProperty("allowedDuplicates", "2");
 
         final String[] expectedViolations = {
-            "8:19: " + getCheckMessage(MultipleStringLiteralsCheck.class,
+            "9:19: " + getCheckMessage(MultipleStringLiteralsCheck.class,
                     MSG_KEY, "\", \"", 3),
         };
 
@@ -132,7 +132,7 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
         moduleConfig.addProperty("ignoreOccurrenceContext", "");
 
         final String[] expectedViolations = {
-            "5:17: " + getCheckMessage(MultipleStringLiteralsCheck.class,
+            "6:17: " + getCheckMessage(MultipleStringLiteralsCheck.class,
                     MSG_KEY, "\"unchecked\"", 3),
         };
 

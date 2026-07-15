@@ -3,6 +3,7 @@ package org.checkstyle.suppressionxpathfilter.coding.avoiddoublebraceinitializat
 import java.util.HashSet;
 
 public class InputXpathAvoidDoubleBraceInitializationMethodDef {
+
     public void test() {
         new HashSet<String>() {{ /** warn */
            add("foo");
@@ -14,4 +15,5 @@ public class InputXpathAvoidDoubleBraceInitializationMethodDef {
         ;
         {}
     }
+
 }

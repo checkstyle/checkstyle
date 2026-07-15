@@ -3,6 +3,7 @@ package org.checkstyle.suppressionxpathfilter.coding.returncount;
 import java.util.function.Function;
 
 public class InputXpathReturnCountLambda {
+
     void testLambda() {
         Function<Integer, Boolean> a = i -> { // warn
             switch(i) {
@@ -13,4 +14,5 @@ public class InputXpathReturnCountLambda {
             return false;
         };
     }
+
 }

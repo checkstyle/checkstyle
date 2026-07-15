@@ -141,4 +141,5 @@ public class InputMissingJavadocTypeIncorrect {
     // violation below 'Missing a Javadoc comment.'
     void testPackagePrivateInterfaceMethod();
   }
+
 }

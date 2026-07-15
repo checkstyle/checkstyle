@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
 /** Some javadoc. */
 public class InputClassWithChainedMethodsCorrect {
+
   /** Some javadoc. */
   public InputClassWithChainedMethodsCorrect() {
 
@@ -22,4 +23,5 @@ public class InputClassWithChainedMethodsCorrect {
   public String doNothing(String something) {
     return something;
   }
+
 }

@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 /** Some javadoc. */
 public class InputFormattedCommentsIndentationSurroundingCode {
+
   private void foo1() {
     if (true) {
       // here initialize some variables
@@ -146,5 +147,6 @@ public class InputFormattedCommentsIndentationSurroundingCode {
       // comment
     };
   }
+
 } // The Check should not throw NPE here!
 // The Check should not throw NPE here!

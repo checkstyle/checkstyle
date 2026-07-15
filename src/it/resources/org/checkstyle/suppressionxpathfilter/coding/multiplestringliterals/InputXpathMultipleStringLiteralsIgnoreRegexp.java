@@ -9,4 +9,5 @@ public class InputXpathMultipleStringLiteralsIgnoreRegexp {
       String a5 = ", " + ", " + ", ";
 
     }
+
 }

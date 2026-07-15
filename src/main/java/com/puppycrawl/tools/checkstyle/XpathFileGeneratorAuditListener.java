@@ -152,4 +152,5 @@ public final class XpathFileGeneratorAuditListener
     protected void finishLocalSetup() {
         // No code by default
     }
+
 }

@@ -36,4 +36,5 @@ public final class InputDeclarationOrderValid {
         return PUBLIC_CONST + PROTECTED_CONST + PACKAGE_CONST + PRIVATE_CONST
                 + instanceVar;
     }
+
 }

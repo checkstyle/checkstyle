@@ -38,4 +38,5 @@ public class InputFastMatcher {
     // OOOO Auto-generated method stub
     return null;
   }
+
 }

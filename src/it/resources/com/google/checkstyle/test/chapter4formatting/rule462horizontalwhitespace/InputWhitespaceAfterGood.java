@@ -77,4 +77,5 @@ public class InputWhitespaceAfterGood {
   public String check8() {
     return ("a" + "b");
   }
+
 }

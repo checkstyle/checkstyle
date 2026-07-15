@@ -413,4 +413,5 @@ public class WhitespaceAfterCheckTest
         verifyWithInlineConfigParser(
             getPath("example2/package-info.java"), expected);
     }
+
 }

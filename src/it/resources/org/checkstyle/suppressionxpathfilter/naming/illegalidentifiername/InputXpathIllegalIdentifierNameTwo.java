@@ -6,6 +6,7 @@ package org.checkstyle.suppressionxpathfilter.naming.illegalidentifiername;
  * default
  */
 public class InputXpathIllegalIdentifierNameTwo {
+
     int foo(int te$t) { // warn
         return switch (te$t) {
             case 1 -> 2;
@@ -14,4 +15,5 @@ public class InputXpathIllegalIdentifierNameTwo {
             default -> 5;
         };
     }
+
 }

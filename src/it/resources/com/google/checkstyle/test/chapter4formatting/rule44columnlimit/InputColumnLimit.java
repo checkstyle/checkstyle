@@ -7,6 +7,7 @@ import com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcove
 import java.io.IOException;
 
 final class InputColumnLimit {
+
   // Long line
   // ----------------------------------------------------------------------------------------------------
   // violation above 'Line is longer than 100 characters (found 105).'
@@ -196,4 +197,5 @@ final class InputColumnLimit {
     // violation below 'Line is longer than 100 characters (found 129).'
     int aaaarealllllllllllllllllyyyyyyyyyyylllllllloooooooooooooooonnnnnnnnnnnnnnnnnggggggggggvvvvvvaarriaaablleeeeeeeeeeee = 99;
   }
+
 }

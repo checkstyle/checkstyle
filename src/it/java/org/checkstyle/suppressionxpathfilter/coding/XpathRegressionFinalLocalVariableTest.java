@@ -50,7 +50,7 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
         final DefaultConfiguration moduleConfig = createModuleConfig(FinalLocalVariableCheck.class);
 
         final String[] expectedViolation = {
-            "5:13: " + getCheckMessage(FinalLocalVariableCheck.class,
+            "6:13: " + getCheckMessage(FinalLocalVariableCheck.class,
                     FinalLocalVariableCheck.MSG_KEY, "x"),
         };
 
@@ -72,7 +72,7 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
         final DefaultConfiguration moduleConfig = createModuleConfig(FinalLocalVariableCheck.class);
 
         final String[] expectedViolation = {
-            "6:17: " + getCheckMessage(FinalLocalVariableCheck.class,
+            "7:17: " + getCheckMessage(FinalLocalVariableCheck.class,
                     FinalLocalVariableCheck.MSG_KEY, "x"),
         };
 
@@ -94,7 +94,7 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
         final DefaultConfiguration moduleConfig = createModuleConfig(FinalLocalVariableCheck.class);
 
         final String[] expectedViolation = {
-            "8:25: " + getCheckMessage(FinalLocalVariableCheck.class,
+            "9:25: " + getCheckMessage(FinalLocalVariableCheck.class,
                     FinalLocalVariableCheck.MSG_KEY, "foo"),
         };
 
@@ -117,7 +117,7 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
         final DefaultConfiguration moduleConfig = createModuleConfig(FinalLocalVariableCheck.class);
 
         final String[] expectedViolation = {
-            "7:17: " + getCheckMessage(FinalLocalVariableCheck.class,
+            "8:17: " + getCheckMessage(FinalLocalVariableCheck.class,
                     FinalLocalVariableCheck.MSG_KEY, "shouldBeFinal"),
         };
 
@@ -141,7 +141,7 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
         moduleConfig.addProperty("tokens", "PARAMETER_DEF");
 
         final String[] expectedViolation = {
-            "4:28: " + getCheckMessage(FinalLocalVariableCheck.class,
+            "5:28: " + getCheckMessage(FinalLocalVariableCheck.class,
                     FinalLocalVariableCheck.MSG_KEY, "aArg"),
         };
 
@@ -164,7 +164,7 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
         moduleConfig.addProperty("validateEnhancedForLoopVariable", "true");
 
         final String[] expectedViolation = {
-            "8:20: " + getCheckMessage(FinalLocalVariableCheck.class,
+            "9:20: " + getCheckMessage(FinalLocalVariableCheck.class,
                     FinalLocalVariableCheck.MSG_KEY, "a"),
         };
 
@@ -187,7 +187,7 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
         moduleConfig.addProperty("tokens", "PARAMETER_DEF");
 
         final String[] expectedViolation = {
-            "4:42: " + getCheckMessage(FinalLocalVariableCheck.class,
+            "5:42: " + getCheckMessage(FinalLocalVariableCheck.class,
                     FinalLocalVariableCheck.MSG_KEY, "a"),
         };
 
@@ -210,7 +210,7 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
         final DefaultConfiguration moduleConfig = createModuleConfig(FinalLocalVariableCheck.class);
 
         final String[] expectedViolation = {
-            "6:17: " + getCheckMessage(FinalLocalVariableCheck.class,
+            "7:17: " + getCheckMessage(FinalLocalVariableCheck.class,
                     FinalLocalVariableCheck.MSG_KEY, "start"),
         };
 
@@ -232,7 +232,7 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
         final DefaultConfiguration moduleConfig = createModuleConfig(FinalLocalVariableCheck.class);
 
         final String[] expectedViolation = {
-            "11:25: " + getCheckMessage(FinalLocalVariableCheck.class,
+            "12:25: " + getCheckMessage(FinalLocalVariableCheck.class,
                     FinalLocalVariableCheck.MSG_KEY, "body"),
         };
 
@@ -246,4 +246,5 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

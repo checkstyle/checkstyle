@@ -314,4 +314,5 @@ public final class PropertyDetails {
             return new PropertyDetails(this);
         }
     }
+
 }

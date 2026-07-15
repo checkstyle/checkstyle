@@ -4,6 +4,7 @@ import java.util.function.IntUnaryOperator;
 
 /** Test Inputs from style guide. */
 public class InputHorizontalWhiteSpaceDosAndDonts {
+
     boolean isFlagSet(String txt) {
         return true;
     }
@@ -46,4 +47,5 @@ public class InputHorizontalWhiteSpaceDosAndDonts {
             int tempo = 0;
         }
     }
+
 }

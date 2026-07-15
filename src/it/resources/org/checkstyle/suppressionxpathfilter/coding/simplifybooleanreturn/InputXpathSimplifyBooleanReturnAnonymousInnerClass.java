@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.simplifybooleanreturn;
 
 public class InputXpathSimplifyBooleanReturnAnonymousInnerClass {
+
     interface Checker {
         boolean check(int value);
     }
@@ -18,4 +19,5 @@ public class InputXpathSimplifyBooleanReturnAnonymousInnerClass {
             }
         };
     }
+
 }

@@ -96,4 +96,5 @@ public record InputSelfExplanatoryMembersRecord(int scoreBoard) {
     foo1();
     foo3();
   }
+
 }

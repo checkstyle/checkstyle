@@ -178,4 +178,5 @@ public class InputTodoCommentAllVariants {
   void myFunc36(int i) {
     // TODO:correct TODO comment
   }
+
 }

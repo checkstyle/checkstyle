@@ -7,4 +7,5 @@ public class InputLineWrappingIndentationInvalid {
     // violation above '.* incorrect indentation level 8, expected .* 12.'
         int sum = a + b;
     }
+
 }

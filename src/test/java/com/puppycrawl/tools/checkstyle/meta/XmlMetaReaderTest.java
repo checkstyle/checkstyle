@@ -167,4 +167,5 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
         assertThat(prop.getDefaultValue()).isEqualTo(defaultValue);
         assertThat(prop.getDescription()).isEqualTo(description);
     }
+
 }

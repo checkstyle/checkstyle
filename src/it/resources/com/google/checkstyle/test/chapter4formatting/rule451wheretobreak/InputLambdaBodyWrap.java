@@ -87,4 +87,5 @@ public class InputLambdaBodyWrap {
           };
     // violation 4 lines above ''{' at column 15 should be on the previous line.'
   }
+
 }

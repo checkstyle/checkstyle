@@ -52,7 +52,7 @@ public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupp
                 createModuleConfig(NoWhitespaceBeforeCheck.class);
 
         final String[] expectedViolation = {
-            "4:13: " + getCheckMessage(NoWhitespaceBeforeCheck.class,
+            "5:13: " + getCheckMessage(NoWhitespaceBeforeCheck.class,
                     NoWhitespaceBeforeCheck.MSG_KEY, ";"),
         };
 
@@ -76,7 +76,7 @@ public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupp
         moduleConfig.addProperty("tokens", "DOT");
 
         final String[] expectedViolation = {
-            "4:17: " + getCheckMessage(NoWhitespaceBeforeCheck.class,
+            "5:17: " + getCheckMessage(NoWhitespaceBeforeCheck.class,
                 NoWhitespaceBeforeCheck.MSG_KEY, "."),
         };
 
@@ -102,7 +102,7 @@ public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupp
         moduleConfig.addProperty("allowLineBreaks", "false");
 
         final String[] expectedViolation = {
-            "6:13: " + getCheckMessage(NoWhitespaceBeforeCheck.class,
+            "7:13: " + getCheckMessage(NoWhitespaceBeforeCheck.class,
                 NoWhitespaceBeforeCheck.MSG_KEY, ","),
         };
 
@@ -117,4 +117,5 @@ public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupp
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
             expectedXpathQueries);
     }
+
 }

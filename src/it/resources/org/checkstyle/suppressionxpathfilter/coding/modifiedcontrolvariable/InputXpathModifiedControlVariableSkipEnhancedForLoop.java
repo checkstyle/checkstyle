@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.modifiedcontrolvariable;
 
 public class InputXpathModifiedControlVariableSkipEnhancedForLoop {
+
     public void test() {
         String[] strings = {"first", "second"};
         for(String s : strings) {
@@ -10,4 +11,5 @@ public class InputXpathModifiedControlVariableSkipEnhancedForLoop {
             i++; // warn
         }
     }
+
 }

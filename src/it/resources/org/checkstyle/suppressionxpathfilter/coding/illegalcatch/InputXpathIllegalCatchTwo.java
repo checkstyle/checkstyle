@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.illegalcatch;
 
 public class InputXpathIllegalCatchTwo {
+
     public void methodOne() {
         try {
             foo();
@@ -16,4 +17,5 @@ public class InputXpathIllegalCatchTwo {
         } catch (java.lang.RuntimeException e) { // warn
         }
     }
+
 }

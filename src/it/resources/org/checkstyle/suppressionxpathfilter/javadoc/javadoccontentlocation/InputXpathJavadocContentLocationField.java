@@ -5,4 +5,5 @@ public class InputXpathJavadocContentLocationField {
     /** Text. // warn
      */
     int field;
+
 }

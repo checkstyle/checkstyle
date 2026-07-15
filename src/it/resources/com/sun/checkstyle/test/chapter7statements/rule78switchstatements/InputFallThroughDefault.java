@@ -25,4 +25,5 @@ public final class InputFallThroughDefault {
         }
         return result;
     }
+
 }

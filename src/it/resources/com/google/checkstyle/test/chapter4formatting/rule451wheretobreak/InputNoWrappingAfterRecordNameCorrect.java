@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule451wheretobreak;
 
 /** Some javadoc. */
 public record InputNoWrappingAfterRecordNameCorrect(String name) {
+
   record Multi(String string, Record rec) {
     private boolean inRecord(Object obj) {
       int value = 0;
@@ -35,4 +36,5 @@ public record InputNoWrappingAfterRecordNameCorrect(String name) {
   class MyTestClass {
     private final Multi obj = new Multi("my string", new Multi4());
   }
+
 }

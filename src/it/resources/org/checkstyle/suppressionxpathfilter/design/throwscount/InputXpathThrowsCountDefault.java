@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.design.throwscount;
 
 public class InputXpathThrowsCountDefault {
+
     public void myFunction() throws CloneNotSupportedException,  // warn, max allowed is 4
             ArrayIndexOutOfBoundsException,
             StringIndexOutOfBoundsException,
@@ -8,4 +9,5 @@ public class InputXpathThrowsCountDefault {
             NullPointerException {
         //body
     }
+
 }

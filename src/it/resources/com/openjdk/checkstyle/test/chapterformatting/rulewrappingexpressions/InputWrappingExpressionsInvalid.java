@@ -3,6 +3,7 @@ package com.openjdk.checkstyle.test.chapterformatting.rulewrappingexpressions;
 import java.util.Arrays;
 
 public class InputWrappingExpressionsInvalid {
+
     void test() {
         int x = 1 + // violation ''\+' should be on a new line.'
                 2 - // violation ''-' should be on a new line.'
@@ -41,4 +42,5 @@ public class InputWrappingExpressionsInvalid {
             return "any";
         }
     }
+
 }

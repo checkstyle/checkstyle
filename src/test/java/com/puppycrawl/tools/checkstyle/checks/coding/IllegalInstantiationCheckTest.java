@@ -326,4 +326,5 @@ public class IllegalInstantiationCheckTest
             file1, expectedFirstInput,
             file2, expectedSecondInput));
     }
+
 }

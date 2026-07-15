@@ -69,4 +69,5 @@ public class InputFormattedNoWrappingAfterRecordName2 {
       this.from = from;
     }
   }
+
 }

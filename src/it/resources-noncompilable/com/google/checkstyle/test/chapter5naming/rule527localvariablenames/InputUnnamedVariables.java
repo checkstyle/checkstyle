@@ -37,4 +37,5 @@ public class InputUnnamedVariables {
     var na_me = "test"; // violation 'Local variable name 'na_me' must match pattern'
     var name_ = "test"; // violation 'Local variable name 'name_' must match pattern'
   }
+
 }

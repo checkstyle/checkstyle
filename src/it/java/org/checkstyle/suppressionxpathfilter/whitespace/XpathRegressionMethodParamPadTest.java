@@ -52,7 +52,7 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
                 createModuleConfig(MethodParamPadCheck.class);
 
         final String[] expectedViolation = {
-            "4:37: " + getCheckMessage(MethodParamPadCheck.class,
+            "5:37: " + getCheckMessage(MethodParamPadCheck.class,
                 MethodParamPadCheck.MSG_WS_PRECEDED, "("),
         };
 
@@ -75,7 +75,7 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
                 createModuleConfig(MethodParamPadCheck.class);
 
         final String[] expectedViolation = {
-            "5:13: " + getCheckMessage(MethodParamPadCheck.class,
+            "6:13: " + getCheckMessage(MethodParamPadCheck.class,
                 MethodParamPadCheck.MSG_LINE_PREVIOUS, "("),
         };
 
@@ -99,7 +99,7 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
         moduleConfig.addProperty("option", "space");
 
         final String[] expectedViolation = {
-            "4:25: " + getCheckMessage(MethodParamPadCheck.class,
+            "5:25: " + getCheckMessage(MethodParamPadCheck.class,
                 MethodParamPadCheck.MSG_WS_NOT_PRECEDED, "("),
         };
 
@@ -112,4 +112,5 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

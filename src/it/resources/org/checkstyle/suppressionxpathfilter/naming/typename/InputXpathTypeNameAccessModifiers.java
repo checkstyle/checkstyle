@@ -6,4 +6,5 @@ public class InputXpathTypeNameAccessModifiers {
   public class SecondName {
     protected class ThirdName {}  // warn
   }
+
 }

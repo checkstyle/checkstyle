@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
 /**Some javadoc.*/
 public class InputSingleSwitchStatementWithoutCurly {
+
   void testCorrectIndentation(int obj) {
     switch (obj) {
       // violation 2 lines below ''->' should be on the previous line.'
@@ -62,4 +63,5 @@ System.out.println("Test");        // violation '.* incorrect indentation level 
       default -> false;
     };
   }
+
 }

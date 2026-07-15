@@ -42,4 +42,5 @@ public record InvalidJavadocTag(int line, int col, String name) {
     public String getName() {
         return name;
     }
+
 }

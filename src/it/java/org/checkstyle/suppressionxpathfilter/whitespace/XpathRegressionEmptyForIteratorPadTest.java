@@ -53,7 +53,7 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
                 createModuleConfig(EmptyForIteratorPadCheck.class);
 
         final String[] expectedViolation = {
-            "5:34: " + getCheckMessage(EmptyForIteratorPadCheck.class,
+            "6:34: " + getCheckMessage(EmptyForIteratorPadCheck.class,
                     EmptyForIteratorPadCheck.MSG_WS_FOLLOWED, ";"),
         };
 
@@ -80,7 +80,7 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
         moduleConfig.addProperty("option", PadOption.SPACE.toString());
 
         final String[] expectedViolation = {
-            "5:33: " + getCheckMessage(EmptyForIteratorPadCheck.class,
+            "6:33: " + getCheckMessage(EmptyForIteratorPadCheck.class,
                     EmptyForIteratorPadCheck.MSG_WS_NOT_FOLLOWED, ";"),
         };
 
@@ -106,7 +106,7 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
                 createModuleConfig(EmptyForIteratorPadCheck.class);
 
         final String[] expectedViolation = {
-            "5:31: " + getCheckMessage(EmptyForIteratorPadCheck.class,
+            "6:31: " + getCheckMessage(EmptyForIteratorPadCheck.class,
                     EmptyForIteratorPadCheck.MSG_WS_FOLLOWED, ";"),
         };
 

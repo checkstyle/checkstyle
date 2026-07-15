@@ -89,4 +89,5 @@ public class IndentContinuationLinesAtLeast4SpacesTest extends AbstractIndentati
     public void testFastMatcher() throws Exception {
         verifyWithWholeConfig(getPath("InputFastMatcher.java"));
     }
+
 }

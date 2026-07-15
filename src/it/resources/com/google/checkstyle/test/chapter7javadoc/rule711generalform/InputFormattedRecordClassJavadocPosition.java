@@ -68,4 +68,5 @@ public record InputFormattedRecordClassJavadocPosition(String containerPath, Str
       this.to = to;
     }
   }
+
 }

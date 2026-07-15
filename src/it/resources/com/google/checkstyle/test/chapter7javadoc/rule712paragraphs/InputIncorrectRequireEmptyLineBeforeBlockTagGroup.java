@@ -25,4 +25,5 @@ class InputIncorrectRequireEmptyLineBeforeBlockTagGroup {
   private boolean paramMultiTagNeedsNewline(boolean thisParamTagNeedsNewline) {
     return false;
   }
+
 }

@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck;
 
 public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport {
+
     @Override
     protected String getCheckName() {
         return EqualsHashCodeCheck.class.getSimpleName();
@@ -48,7 +49,7 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
         final DefaultConfiguration moduleConfig = createModuleConfig(EqualsHashCodeCheck.class);
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(EqualsHashCodeCheck.class,
+            "5:5: " + getCheckMessage(EqualsHashCodeCheck.class,
                     EqualsHashCodeCheck.MSG_KEY_HASHCODE),
         };
 
@@ -75,7 +76,7 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
         final DefaultConfiguration moduleConfig = createModuleConfig(EqualsHashCodeCheck.class);
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(EqualsHashCodeCheck.class,
+            "5:5: " + getCheckMessage(EqualsHashCodeCheck.class,
                     EqualsHashCodeCheck.MSG_KEY_EQUALS),
         };
 
@@ -102,7 +103,7 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
         final DefaultConfiguration moduleConfig = createModuleConfig(EqualsHashCodeCheck.class);
 
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(EqualsHashCodeCheck.class,
+            "6:9: " + getCheckMessage(EqualsHashCodeCheck.class,
                     EqualsHashCodeCheck.MSG_KEY_HASHCODE),
         };
 
@@ -124,4 +125,5 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

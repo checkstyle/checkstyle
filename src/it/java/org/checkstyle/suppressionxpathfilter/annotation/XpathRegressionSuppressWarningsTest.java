@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck;
 
 public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSupport {
+
     private final String checkName = SuppressWarningsCheck.class.getSimpleName();
 
     @Override
@@ -123,7 +124,7 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
                 createModuleConfig(SuppressWarningsCheck.class);
 
         final String[] expectedViolations = {
-            "4:27: " + getCheckMessage(SuppressWarningsCheck.class,
+            "5:27: " + getCheckMessage(SuppressWarningsCheck.class,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED,
                     ""),
         };
@@ -220,7 +221,7 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
                 createModuleConfig(SuppressWarningsCheck.class);
 
         final String[] expectedViolations = {
-            "4:27: " + getCheckMessage(SuppressWarningsCheck.class,
+            "5:27: " + getCheckMessage(SuppressWarningsCheck.class,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED,
                     ""),
         };
@@ -255,7 +256,7 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
                 createModuleConfig(SuppressWarningsCheck.class);
 
         final String[] expectedViolations = {
-            "10:23: " + getCheckMessage(SuppressWarningsCheck.class,
+            "11:23: " + getCheckMessage(SuppressWarningsCheck.class,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED,
                     ""),
         };
@@ -321,7 +322,7 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
                 createModuleConfig(SuppressWarningsCheck.class);
 
         final String[] expectedViolations = {
-            "4:27: " + getCheckMessage(SuppressWarningsCheck.class,
+            "5:27: " + getCheckMessage(SuppressWarningsCheck.class,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED,
                     ""),
         };
@@ -346,4 +347,5 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
 
         runVerifications(configuration, fileToCheck, expectedViolations, expectedXpathQueries);
     }
+
 }

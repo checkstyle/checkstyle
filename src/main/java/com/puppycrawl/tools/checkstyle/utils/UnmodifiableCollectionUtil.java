@@ -112,4 +112,5 @@ public final class UnmodifiableCollectionUtil {
     public static <T> Set<T> singleton(T obj) {
         return Set.of(obj);
     }
+
 }

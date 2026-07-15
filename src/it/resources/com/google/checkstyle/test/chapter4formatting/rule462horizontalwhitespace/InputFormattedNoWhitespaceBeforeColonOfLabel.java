@@ -13,4 +13,5 @@ public class InputFormattedNoWhitespaceBeforeColonOfLabel {
     label2:
     while (true) {}
   }
+
 }

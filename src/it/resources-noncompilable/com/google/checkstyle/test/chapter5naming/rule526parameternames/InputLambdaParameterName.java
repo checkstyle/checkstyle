@@ -40,4 +40,5 @@ public class InputLambdaParameterName {
 
   BiFunction<String, String, String> underscoreEnd =
       (first, second_) -> first; // violation 'Lambda parameter name 'second_' must match pattern'
+
 }

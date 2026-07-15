@@ -325,4 +325,5 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
         }
         return result;
     }
+
 }

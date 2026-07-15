@@ -33,4 +33,5 @@ public class InputNoLineWrapping {
       };
 
   PackageStatementTest packageStatementTest = new PackageStatementTest();
+
 }

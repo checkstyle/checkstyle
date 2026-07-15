@@ -898,4 +898,5 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
                 .that(exc.getMessage())
                 .contains("unable to load header file nonexistent.header");
     }
+
 }

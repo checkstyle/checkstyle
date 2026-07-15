@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck;
 
 public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport {
+
     private final String checkName = TrailingCommentCheck.class.getSimpleName();
 
     @Override
@@ -45,7 +46,7 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
                 createModuleConfig(TrailingCommentCheck.class);
 
         final String[] expectedViolation = {
-            "4:12: " + getCheckMessage(TrailingCommentCheck.class,
+            "5:12: " + getCheckMessage(TrailingCommentCheck.class,
                         TrailingCommentCheck.MSG_KEY),
         };
 
@@ -69,7 +70,7 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
                 createModuleConfig(TrailingCommentCheck.class);
 
         final String[] expectedViolation = {
-            "4:40: " + getCheckMessage(TrailingCommentCheck.class,
+            "5:40: " + getCheckMessage(TrailingCommentCheck.class,
                         TrailingCommentCheck.MSG_KEY),
         };
 
@@ -92,7 +93,7 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
                 createModuleConfig(TrailingCommentCheck.class);
 
         final String[] expectedViolation = {
-            "5:20: " + getCheckMessage(TrailingCommentCheck.class,
+            "6:20: " + getCheckMessage(TrailingCommentCheck.class,
                         TrailingCommentCheck.MSG_KEY),
         };
 
@@ -106,4 +107,5 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

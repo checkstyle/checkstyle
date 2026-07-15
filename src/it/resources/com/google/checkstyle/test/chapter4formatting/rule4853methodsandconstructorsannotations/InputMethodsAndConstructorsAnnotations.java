@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4853methodsandconstruc
 
 /** Some javadoc. */
 public class InputMethodsAndConstructorsAnnotations {
+
   /** Some javadoc. */
   public @interface SomeAnnotation1 {}
 
@@ -70,4 +71,5 @@ public class InputMethodsAndConstructorsAnnotations {
 
   // violation below 'Annotation 'SuppressWarnings' should be alone on line.'
   @SuppressWarnings("blah") InputMethodsAndConstructorsAnnotations(int x, int y) {}
+
 }

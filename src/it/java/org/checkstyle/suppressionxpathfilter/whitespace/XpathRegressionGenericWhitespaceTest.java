@@ -53,7 +53,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
                 createModuleConfig(GenericWhitespaceCheck.class);
 
         final String[] expectedViolation = {
-            "6:22: " + getCheckMessage(GenericWhitespaceCheck.class,
+            "7:22: " + getCheckMessage(GenericWhitespaceCheck.class,
                     GenericWhitespaceCheck.MSG_WS_PRECEDED, ">"),
         };
 
@@ -78,7 +78,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
                 createModuleConfig(GenericWhitespaceCheck.class);
 
         final String[] expectedViolation = {
-            "6:22: " + getCheckMessage(GenericWhitespaceCheck.class,
+            "7:22: " + getCheckMessage(GenericWhitespaceCheck.class,
                     GenericWhitespaceCheck.MSG_WS_NOT_PRECEDED, "&"),
         };
 
@@ -103,7 +103,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
                 createModuleConfig(GenericWhitespaceCheck.class);
 
         final String[] expectedViolation = {
-            "6:22: " + getCheckMessage(GenericWhitespaceCheck.class,
+            "7:22: " + getCheckMessage(GenericWhitespaceCheck.class,
                     GenericWhitespaceCheck.MSG_WS_FOLLOWED, ">"),
         };
 
@@ -128,7 +128,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
                 createModuleConfig(GenericWhitespaceCheck.class);
 
         final String[] expectedViolation = {
-            "6:22: " + getCheckMessage(GenericWhitespaceCheck.class,
+            "7:22: " + getCheckMessage(GenericWhitespaceCheck.class,
                     GenericWhitespaceCheck.MSG_WS_FOLLOWED, ">"),
         };
 
@@ -153,7 +153,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
                 createModuleConfig(GenericWhitespaceCheck.class);
 
         final String[] expectedViolation = {
-            "6:37: " + getCheckMessage(GenericWhitespaceCheck.class,
+            "7:37: " + getCheckMessage(GenericWhitespaceCheck.class,
                     GenericWhitespaceCheck.MSG_WS_FOLLOWED, ">"),
         };
 
@@ -178,7 +178,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
                 createModuleConfig(GenericWhitespaceCheck.class);
 
         final String[] expectedViolation = {
-            "6:7: " + getCheckMessage(GenericWhitespaceCheck.class,
+            "7:7: " + getCheckMessage(GenericWhitespaceCheck.class,
                     GenericWhitespaceCheck.MSG_WS_ILLEGAL_FOLLOW, ">"),
         };
 
@@ -201,7 +201,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
                 createModuleConfig(GenericWhitespaceCheck.class);
 
         final String[] expectedViolation = {
-            "6:11: " + getCheckMessage(GenericWhitespaceCheck.class,
+            "7:11: " + getCheckMessage(GenericWhitespaceCheck.class,
                     GenericWhitespaceCheck.MSG_WS_NOT_PRECEDED, "<"),
         };
 
@@ -227,7 +227,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
                 createModuleConfig(GenericWhitespaceCheck.class);
 
         final String[] expectedViolation = {
-            "6:34: " + getCheckMessage(GenericWhitespaceCheck.class,
+            "7:34: " + getCheckMessage(GenericWhitespaceCheck.class,
                     GenericWhitespaceCheck.MSG_WS_PRECEDED, "<"),
         };
 
@@ -257,7 +257,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
                 createModuleConfig(GenericWhitespaceCheck.class);
 
         final String[] expectedViolation = {
-            "6:5: " + getCheckMessage(GenericWhitespaceCheck.class,
+            "7:5: " + getCheckMessage(GenericWhitespaceCheck.class,
                     GenericWhitespaceCheck.MSG_WS_FOLLOWED, "<"),
         };
 

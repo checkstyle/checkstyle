@@ -54,7 +54,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
                 createModuleConfig(VisibilityModifierCheck.class);
 
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY, "field"),
+            "7:9: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY, "field"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -76,7 +76,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
         moduleConfig.addProperty("ignoreAnnotationCanonicalNames", "Deprecated");
 
         final String[] expectedViolation = {
-            "5:12: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY,
+            "6:12: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY,
                     "annotatedString"),
         };
 
@@ -98,7 +98,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
                 createModuleConfig(VisibilityModifierCheck.class);
 
         final String[] expectedViolation = {
-            "6:23: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY, "field1"),
+            "7:23: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY, "field1"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -121,7 +121,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
                 createModuleConfig(VisibilityModifierCheck.class);
 
         final String[] expectedViolation = {
-            "7:20: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY, "field2"),
+            "8:20: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY, "field2"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -133,4 +133,5 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

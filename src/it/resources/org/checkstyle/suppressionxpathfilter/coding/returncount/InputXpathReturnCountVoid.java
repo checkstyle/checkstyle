@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.returncount;
 
 class InputXpathReturnCountVoid {
+
     public boolean equals(Object obj) {
         int i = 1;
         switch (i) {
@@ -23,4 +24,5 @@ class InputXpathReturnCountVoid {
         }
         return;
     }
+
 }

@@ -72,4 +72,5 @@ public class InputFormattedNewKeywordChildren {
             + " cannot be removed."
             + " Override method `canRemoveExpression` to customize this behavior.");
   }
+
 }

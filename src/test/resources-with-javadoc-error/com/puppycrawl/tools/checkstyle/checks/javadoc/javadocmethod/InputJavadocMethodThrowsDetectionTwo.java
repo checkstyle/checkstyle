@@ -20,4 +20,5 @@ public class InputJavadocMethodThrowsDetectionTwo {
      * @throws
      */
     public void Label() {}
+
 }

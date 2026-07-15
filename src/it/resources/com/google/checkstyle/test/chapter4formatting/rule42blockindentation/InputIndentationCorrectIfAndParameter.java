@@ -177,4 +177,5 @@ class InputIndentationCorrectIfAndParameter {
   }
 
   class FooIfClass {}
+
 }

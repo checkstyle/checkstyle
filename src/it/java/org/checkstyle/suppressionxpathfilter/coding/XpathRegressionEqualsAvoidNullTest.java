@@ -51,7 +51,7 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "6:26: " + getCheckMessage(CLAZZ,
+            "7:26: " + getCheckMessage(CLAZZ,
                     EqualsAvoidNullCheck.MSG_EQUALS_AVOID_NULL),
         };
 
@@ -74,7 +74,7 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "6:36: " + getCheckMessage(CLAZZ,
+            "7:36: " + getCheckMessage(CLAZZ,
                     EqualsAvoidNullCheck.MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
         };
 
@@ -97,7 +97,7 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "5:25: " + getCheckMessage(CLAZZ,
+            "6:25: " + getCheckMessage(CLAZZ,
                     EqualsAvoidNullCheck.MSG_EQUALS_AVOID_NULL),
         };
 
@@ -111,4 +111,5 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

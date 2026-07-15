@@ -1962,4 +1962,5 @@ public final class SiteUtil {
         /** Whether the next ATTRIBUTE_VALUE token is the value of an href attribute. */
         private boolean inHrefAttribute;
     }
+
 }

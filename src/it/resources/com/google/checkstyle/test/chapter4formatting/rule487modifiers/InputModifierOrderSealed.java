@@ -25,4 +25,5 @@ sealed public class InputModifierOrderSealed permits
 
   // violation below ''abstract' modifier out of order with the JLS suggestions'
   sealed abstract interface Five permits Three, Two {}
+
 }

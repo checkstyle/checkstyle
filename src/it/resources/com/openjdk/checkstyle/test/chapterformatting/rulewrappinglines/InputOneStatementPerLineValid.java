@@ -58,4 +58,5 @@ public final class InputOneStatementPerLineValid {
             two++;
         } while (two < 2);
     }
+
 }

@@ -6,4 +6,5 @@ public interface InputXpathJavadocContentLocationTwo {
      * Text.
      */
     void test();
+
 }

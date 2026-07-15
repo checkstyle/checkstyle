@@ -24,4 +24,5 @@ public class InputLiteralsDoAndDonts {
         double d1 = 1 / 5432D; // violation 'Numerical suffix should be in lowercase.'
         double d2 = 0x1.3P2; // violation 'Numerical infix should be in lowercase.'
     }
+
 }

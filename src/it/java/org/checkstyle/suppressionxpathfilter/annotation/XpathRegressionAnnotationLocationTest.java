@@ -150,7 +150,7 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
         moduleConfig.addProperty("tokens", "METHOD_DEF");
 
         final String[] expectedViolation = {
-            "4:6: " + getCheckMessage(AnnotationLocationCheck.class,
+            "5:6: " + getCheckMessage(AnnotationLocationCheck.class,
                     AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION_ALONE,
                     "MethodAnnotation"),
         };
@@ -187,7 +187,7 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
         moduleConfig.addProperty("tokens", "VARIABLE_DEF");
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(AnnotationLocationCheck.class,
+            "5:5: " + getCheckMessage(AnnotationLocationCheck.class,
                     AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION_ALONE,
                     "VariableAnnotation"),
         };
@@ -224,7 +224,7 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
         moduleConfig.addProperty("tokens", "CTOR_DEF");
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(AnnotationLocationCheck.class,
+            "5:5: " + getCheckMessage(AnnotationLocationCheck.class,
                     AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION_ALONE,
                     "CTORAnnotation"),
         };

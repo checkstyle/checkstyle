@@ -6,6 +6,7 @@ import java.util.Timer;
 public class InputXpathClassFanOutComplexityClass // warn
         extends ParentClass
         implements SomeInterface {
+
     @Override
     public void exampleMethod() {
         Timer timer = new Timer();
@@ -15,15 +16,18 @@ public class InputXpathClassFanOutComplexityClass // warn
         int x = 1;
         return new Date();
     }
+
 }
 
 class ParentClass {
+
     public void exampleMethod () {
         Character c = 'c';
     }
     static class InnerClass {
 
     }
+
 }
 
 interface SomeInterface {

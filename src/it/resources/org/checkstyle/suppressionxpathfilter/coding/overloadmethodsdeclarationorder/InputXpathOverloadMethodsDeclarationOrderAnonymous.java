@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.overloadmethodsdeclarationorder;
 
 public class InputXpathOverloadMethodsDeclarationOrderAnonymous {
+
     private InputXpathOverloadMethodsDeclarationOrderAnonymous anonymous
             = new MyInputXpathOverloadMethodsDeclarationOrderAnonymous();
 
@@ -31,4 +32,5 @@ public class InputXpathOverloadMethodsDeclarationOrderAnonymous {
             //do stuff
         }
     }
+
 }

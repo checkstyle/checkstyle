@@ -4,6 +4,7 @@ import java.io.PipedReader;
 import java.io.Reader;
 
 public class InputXpathUnnecessarySemicolonInTryWithResourcesDefault {
+
     void m() throws Exception {
         try(Reader good = new PipedReader()){}
         try(Reader good = new PipedReader();Reader better = new PipedReader()){}
@@ -11,4 +12,5 @@ public class InputXpathUnnecessarySemicolonInTryWithResourcesDefault {
         try(Reader bad = new PipedReader();Reader worse = new PipedReader();){} //warn
 
     }
+
 }

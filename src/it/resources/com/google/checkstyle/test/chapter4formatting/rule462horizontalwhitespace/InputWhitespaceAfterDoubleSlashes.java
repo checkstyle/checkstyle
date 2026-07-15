@@ -8,6 +8,7 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 
 /** Some javadoc. */
 public class InputWhitespaceAfterDoubleSlashes {
+
   String googleCheck = "Google"; //google
   // violation above ''//' must be followed by a whitespace.'
 
@@ -35,4 +36,5 @@ public class InputWhitespaceAfterDoubleSlashes {
 
     int pro7 = 0; //
   }
+
 }

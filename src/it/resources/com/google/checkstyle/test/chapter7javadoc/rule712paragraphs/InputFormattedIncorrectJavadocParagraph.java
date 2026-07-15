@@ -164,4 +164,5 @@ class InputFormattedIncorrectJavadocParagraph {
      */
     public void foooo() {}
   }
+
 }

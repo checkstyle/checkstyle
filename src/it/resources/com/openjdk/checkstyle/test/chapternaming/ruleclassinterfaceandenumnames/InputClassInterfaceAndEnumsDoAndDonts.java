@@ -1,6 +1,7 @@
 package com.openjdk.checkstyle.test.chapternaming.ruleclassinterfaceandenumnames;
 
 public class InputClassInterfaceAndEnumsDoAndDonts {
+
     class EmptyCell {
     }
 
@@ -27,4 +28,5 @@ public class InputClassInterfaceAndEnumsDoAndDonts {
     }
     // violation 2 lines above 'Abbreviation in name 'XMLParser'
     // must contain no more than '1' consecutive capital letters.'
+
 }

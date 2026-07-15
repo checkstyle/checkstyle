@@ -1,6 +1,7 @@
 package com.openjdk.checkstyle.test.chapterjavasourcefiles.rulespecialcharacters;
 
 public class InputSpecialCharactersInvalid {
+
     // The short forms (e.g. \t) are commonly used and easier to recognize than
     // the corresponding longer forms (\011, \u0009).
     // \', \", \\, \t, \b, \r, \f, and \n should be preferred over corresponding

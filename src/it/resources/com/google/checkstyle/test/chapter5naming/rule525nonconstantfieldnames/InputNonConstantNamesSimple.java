@@ -131,4 +131,5 @@ final class InputNonConstantNamesSimple {
           };
     }
   }
+
 }

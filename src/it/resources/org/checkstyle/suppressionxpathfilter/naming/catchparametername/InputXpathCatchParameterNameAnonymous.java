@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.naming.catchparametername;
 
 public class InputXpathCatchParameterNameAnonymous {
+
     class InnerClass {
         InnerClass() {
             new Runnable() {
@@ -15,4 +16,5 @@ public class InputXpathCatchParameterNameAnonymous {
             };
         }
     }
+
 }

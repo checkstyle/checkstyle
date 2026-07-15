@@ -55,7 +55,7 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
                 createModuleConfig(TypecastParenPadCheck.class);
 
         final String[] expectedViolation = {
-            "4:18: " + getCheckMessage(TypecastParenPadCheck.class,
+            "5:18: " + getCheckMessage(TypecastParenPadCheck.class,
                     AbstractParenPadCheck.MSG_WS_FOLLOWED, "("),
         };
 
@@ -82,7 +82,7 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
         moduleConfig.addProperty("option", PadOption.SPACE.toString());
 
         final String[] expectedViolation = {
-            "4:18: " + getCheckMessage(TypecastParenPadCheck.class,
+            "5:18: " + getCheckMessage(TypecastParenPadCheck.class,
                     AbstractParenPadCheck.MSG_WS_NOT_FOLLOWED, "("),
         };
 
@@ -108,7 +108,7 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
                 createModuleConfig(TypecastParenPadCheck.class);
 
         final String[] expectedViolation = {
-            "4:26: " + getCheckMessage(TypecastParenPadCheck.class,
+            "5:26: " + getCheckMessage(TypecastParenPadCheck.class,
                     AbstractParenPadCheck.MSG_WS_PRECEDED, ")"),
         };
 
@@ -132,7 +132,7 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
         moduleConfig.addProperty("option", PadOption.SPACE.toString());
 
         final String[] expectedViolation = {
-            "4:26: " + getCheckMessage(TypecastParenPadCheck.class,
+            "5:26: " + getCheckMessage(TypecastParenPadCheck.class,
                     AbstractParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
         };
 

@@ -184,4 +184,5 @@ public final class JavadocMetadataScraperUtil {
                 .map(Matcher::matches)
                 .orElse(Boolean.FALSE);
     }
+
 }

@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.defaultcomeslast;
 
 public interface InputXpathDefaultComesLastSwitchInInterface {
+
     default void test(int x) {
         switch (x) {
             default: // warn
@@ -9,4 +10,5 @@ public interface InputXpathDefaultComesLastSwitchInInterface {
                 break;
         }
     }
+
 }
