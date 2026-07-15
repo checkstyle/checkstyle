@@ -56,9 +56,6 @@ public class InnerTypeLastCheck extends AbstractCheck {
             TokenTypes.COMPACT_CTOR_DEF
     );
 
-    /** Meet a root class. */
-    private boolean rootClass;
-
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -79,33 +76,14 @@ public class InnerTypeLastCheck extends AbstractCheck {
     }
 
     @Override
-    public void beginTree(DetailAST rootAST) {
-        rootClass = true;
-    }
-
-    @Override
     public void visitToken(DetailAST ast) {
-        // First root class
-        if (rootClass) {
-            rootClass = false;
-        }
-        else {
-            DetailAST nextSibling = ast;
-            while (nextSibling != null) {
-                if (!ScopeUtil.isInCodeBlock(ast)
-                        && CLASS_MEMBER_TOKENS.get(nextSibling.getType())) {
-                    log(nextSibling, MSG_KEY);
-                }
-                nextSibling = nextSibling.getNextSibling();
+        DetailAST nextSibling = ast;
+        while (nextSibling != null) {
+            if (!ScopeUtil.isInCodeBlock(ast)
+                    && CLASS_MEMBER_TOKENS.get(nextSibling.getType())) {
+                log(nextSibling, MSG_KEY);
             }
+            nextSibling = nextSibling.getNextSibling();
         }
     }
-
-    @Override
-    public void leaveToken(DetailAST ast) {
-        if (TokenUtil.isRootNode(ast.getParent())) {
-            rootClass = true;
-        }
-    }
-
 }
