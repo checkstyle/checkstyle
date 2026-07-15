@@ -675,6 +675,7 @@
             </activeRecipes>
             <exclusions>
               <exclusion>**.ci-temp**</exclusion>
+              <exclusion>.ci/codenarc.groovy</exclusion>
               <exclusion>**resources-noncompilable**</exclusion>
               <exclusion>**resources-with-javadoc-error**</exclusion>
               <exclusion>**src/it/resources**</exclusion>

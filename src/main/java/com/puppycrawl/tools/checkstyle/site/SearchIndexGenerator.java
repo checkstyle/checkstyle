@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.site;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -1159,7 +1158,7 @@ public final class SearchIndexGenerator {
         }
 
         try (PrintWriter writer = new PrintWriter(Files.newBufferedWriter(
-                outputFilePath, StandardCharsets.UTF_8))) {
+                outputFilePath))) {
             writer.println("[");
 
             final int size = indexEntries.size();
