@@ -10,7 +10,7 @@ tokens = CLASS_DEF
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 import java.lang.annotation.Documented;
 
-// violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+// violation below 'The warning 'unchecked' cannot be suppressed at this location'
 @SuppressWarnings({"unchecked", "unused"})
 public class InputSuppressWarningsCompactNonConstant3
 {
@@ -65,12 +65,12 @@ public class InputSuppressWarningsCompactNonConstant3
         @SuppressWarnings({"unchecked"})
         @Deprecated
         int b = 1;
-        void doFoo(String s, @SuppressWarnings({"unchecked"})String y) {
-
-        }
+        void doFoo(String s, @SuppressWarnings({"unchecked"})String y) {}
     }
-
-    @SuppressWarnings({(false) ? "unchecked" : "", (false) ? "unchecked" : ""}) // 2 violations
+    // 2 violations 3 lines below:
+    // 'cannot be suppressed at this location'
+    // 'cannot be suppressed at this location'
+    @SuppressWarnings({(false) ? "unchecked" : "", (false) ? "unchecked" : ""})
     class Cond {
 
         @SuppressWarnings({(false) ? "" : "unchecked"})
