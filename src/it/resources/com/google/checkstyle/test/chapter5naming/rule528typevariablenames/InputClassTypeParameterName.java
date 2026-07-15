@@ -1,6 +1,8 @@
 package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 class InputClassTypeParameterName<t> { // violation 'Class type name 't' must match pattern'
   public <TT> void foo() {}
@@ -41,5 +43,21 @@ class MoreOther<T extends Cloneable> {
         new Other() {
           <T> void getMoreFoo() {}
         };
+  }
+}
+
+class Cache<FOOT, BART> {
+  // 3 violations above:
+  // 'Top-level class Cache has to reside in its own source file.'
+  // 'Class type name 'FOOT' must match pattern'
+  // 'Class type name 'BART' must match pattern'
+  Map<FOOT, BART> map = new HashMap<>();
+
+  BART get(FOOT k) {
+    return map.get(k);
+  }
+
+  void put(FOOT k, BART v) {
+    map.put(k, v);
   }
 }

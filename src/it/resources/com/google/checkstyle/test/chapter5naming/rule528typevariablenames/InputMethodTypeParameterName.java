@@ -49,3 +49,13 @@ class MoreOther3<T extends Cloneable> {
         };
   }
 }
+
+// violation below 'Top-level class MoreOther4 has to reside in its own source file.'
+class MoreOther4<T extends Cloneable> {
+
+  // violation below 'Method type name 'FOOT' must match pattern'
+  <FOOT> void getMoreFoo() {}
+
+  // violation below 'Method type name 'BART' must match pattern'
+  <BART> void getMoreBar() {}
+}

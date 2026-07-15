@@ -47,4 +47,7 @@ public record InputRecordTypeParameterNameOne<t>(Integer x, String str) {
 
     record I(int x, int y) {}
   }
+
+  // violation below 'Record type name 'FOOT' must match pattern'
+  record MoreOther2<FOOT extends Cloneable>(char c, String string) {}
 }
