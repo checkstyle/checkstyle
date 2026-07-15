@@ -34,4 +34,5 @@ public class InputMethodName2 {
 
   @Test
   public void test_General_Logic() {} // violation ''test_General_Logic' must match pattern'
+
 }

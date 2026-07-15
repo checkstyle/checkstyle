@@ -26,4 +26,5 @@ public final class InputDeclarationOrderConstructor {
     public InputDeclarationOrderConstructor() {
         instanceVar = 0;
     }
+
 }

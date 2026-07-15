@@ -791,4 +791,5 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 .that(resultTrue)
                 .isTrue();
     }
+
 }

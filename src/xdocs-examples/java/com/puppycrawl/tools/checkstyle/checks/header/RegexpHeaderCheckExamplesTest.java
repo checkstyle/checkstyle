@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RegexpHeaderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/header/regexpheader";
@@ -68,4 +69,5 @@ public class RegexpHeaderCheckExamplesTest extends AbstractExamplesModuleTestSup
                                     getPath("Example4.java"),
                                      expected);
     }
+
 }

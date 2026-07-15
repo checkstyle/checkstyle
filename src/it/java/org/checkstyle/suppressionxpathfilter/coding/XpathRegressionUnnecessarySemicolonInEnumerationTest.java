@@ -54,7 +54,7 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
                 createModuleConfig(UnnecessarySemicolonInEnumerationCheck.class);
 
         final String[] expectedViolation = {
-            "11:10: " + getCheckMessage(UnnecessarySemicolonInEnumerationCheck.class,
+            "14:10: " + getCheckMessage(UnnecessarySemicolonInEnumerationCheck.class,
                 UnnecessarySemicolonInEnumerationCheck.MSG_SEMI),
         };
 
@@ -75,7 +75,7 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
                 createModuleConfig(UnnecessarySemicolonInEnumerationCheck.class);
 
         final String[] expectedViolation = {
-            "4:52: " + getCheckMessage(UnnecessarySemicolonInEnumerationCheck.class,
+            "5:52: " + getCheckMessage(UnnecessarySemicolonInEnumerationCheck.class,
                 UnnecessarySemicolonInEnumerationCheck.MSG_SEMI),
         };
 
@@ -97,7 +97,7 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
                 createModuleConfig(UnnecessarySemicolonInEnumerationCheck.class);
 
         final String[] expectedViolation = {
-            "6:17: " + getCheckMessage(UnnecessarySemicolonInEnumerationCheck.class,
+            "7:17: " + getCheckMessage(UnnecessarySemicolonInEnumerationCheck.class,
                 UnnecessarySemicolonInEnumerationCheck.MSG_SEMI),
         };
 
@@ -110,4 +110,5 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

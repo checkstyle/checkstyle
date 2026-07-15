@@ -1,6 +1,7 @@
 package com.google.checkstyle.test.chapter7javadoc.rule713atclauses;
 
 class InputNonEmptyAtclauseDescription {
+
   /**
    * Some javadoc.
    *
@@ -65,4 +66,5 @@ class InputNonEmptyAtclauseDescription {
   public int foo4(String a, int b, double c) throws Exception {
     return 1;
   }
+
 }

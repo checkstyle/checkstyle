@@ -68,4 +68,5 @@ public class InputFormattedIllegalLineBreakAroundLambda {
     TransactionIsComplete,
     CouldNotBeginTheProcess
   }
+
 }

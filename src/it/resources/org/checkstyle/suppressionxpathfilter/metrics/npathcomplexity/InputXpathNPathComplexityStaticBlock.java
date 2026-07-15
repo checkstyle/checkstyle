@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.metrics.npathcomplexity;
 
 public class InputXpathNPathComplexityStaticBlock {
+
     static { //warn
         int i = 1;
         // NP = (if-range=1) + (else-range=2) + 0 = 3
@@ -10,4 +11,5 @@ public class InputXpathNPathComplexityStaticBlock {
         } else {
         }
     }
+
 }

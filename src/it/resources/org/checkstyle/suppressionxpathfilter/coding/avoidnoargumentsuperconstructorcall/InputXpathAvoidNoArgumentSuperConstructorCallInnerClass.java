@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.avoidnoargumentsuperconstructorcall;
 
 public class InputXpathAvoidNoArgumentSuperConstructorCallInnerClass {
+
     public void test() {
         class Inner {
             Inner() {
@@ -8,4 +9,5 @@ public class InputXpathAvoidNoArgumentSuperConstructorCallInnerClass {
             }
         }
     }
+
 }

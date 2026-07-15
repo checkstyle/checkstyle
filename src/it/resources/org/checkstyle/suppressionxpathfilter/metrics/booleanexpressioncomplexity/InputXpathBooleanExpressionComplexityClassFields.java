@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.metrics.booleanexpressioncomplexity;
 
 public class InputXpathBooleanExpressionComplexityClassFields {
+
     public void methodTwo() {
         boolean a = true;
         boolean b = false;
@@ -9,4 +10,5 @@ public class InputXpathBooleanExpressionComplexityClassFields {
         boolean d = (a & b) | (b ^ a) | (a ^ b) | // warn
                 (a & b) | (b ^ a) | (a ^ b);
     }
+
 }

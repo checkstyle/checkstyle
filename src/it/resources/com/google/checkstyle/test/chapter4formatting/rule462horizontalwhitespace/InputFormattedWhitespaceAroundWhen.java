@@ -67,4 +67,5 @@ class InputFormattedWhitespaceAroundWhen {
   }
 
   record Point(int x, int y) {}
+
 }

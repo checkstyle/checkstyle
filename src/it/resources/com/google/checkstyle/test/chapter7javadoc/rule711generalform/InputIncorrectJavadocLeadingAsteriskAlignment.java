@@ -5,6 +5,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule711generalform;
  */
 // violation 2 lines above 'Leading asterisk has .* indentation .* 1, expected is 2.'
 public class InputIncorrectJavadocLeadingAsteriskAlignment {
+
   /**
     * Javadoc for instance variable.
    */
@@ -92,4 +93,5 @@ public class InputIncorrectJavadocLeadingAsteriskAlignment {
     // violation above 'Leading asterisk has .* indentation .* 7, expected is 6'
     TWO
   }
+
 }

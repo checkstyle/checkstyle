@@ -51,7 +51,7 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
                 createModuleConfig(EmptyBlockCheck.class);
         moduleConfig.addProperty("option", "TEXT");
         final String[] expectedViolation = {
-            "5:38: " + getCheckMessage(EmptyBlockCheck.class,
+            "6:38: " + getCheckMessage(EmptyBlockCheck.class,
                 EmptyBlockCheck.MSG_KEY_BLOCK_EMPTY, "for"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -71,7 +71,7 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyBlockCheck.class);
         final String[] expectedViolation = {
-            "5:38: " + getCheckMessage(EmptyBlockCheck.class,
+            "6:38: " + getCheckMessage(EmptyBlockCheck.class,
                 EmptyBlockCheck.MSG_KEY_BLOCK_NO_STATEMENT),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -91,7 +91,7 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyBlockCheck.class);
         final String[] expectedViolation = {
-            "5:13: " + getCheckMessage(EmptyBlockCheck.class,
+            "6:13: " + getCheckMessage(EmptyBlockCheck.class,
                 EmptyBlockCheck.MSG_KEY_BLOCK_NO_STATEMENT),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -103,4 +103,5 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

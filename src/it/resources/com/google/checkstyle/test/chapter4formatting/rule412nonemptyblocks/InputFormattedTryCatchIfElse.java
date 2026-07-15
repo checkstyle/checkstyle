@@ -102,4 +102,5 @@ public class InputFormattedTryCatchIfElse {
       System.out.println("Closed MyResource");
     }
   }
+
 }

@@ -17,4 +17,5 @@ public class InputXpathUnusedCatchParameterShouldBeUnnamedNested {
             e.printStackTrace();
         }
     }
+
 }

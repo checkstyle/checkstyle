@@ -34,4 +34,5 @@ public class WrappingClassDeclarationsTest extends AbstractOpenJdkModuleTestSupp
     public void testWrappingClassDeclarationsDoAndDonts() throws Exception {
         verifyWithWholeConfig(getPath("InputWrappingClassDeclarationsDoAndDonts.java"));
     }
+
 }

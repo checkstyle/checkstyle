@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.nestedfordepth;
 
 public class InputXpathNestedForDepthInnerClass {
+
     class Inner {
         public void test() {
             for (int i = 0; i < 10; i++) {
@@ -11,4 +12,5 @@ public class InputXpathNestedForDepthInnerClass {
             }
         }
     }
+
 }

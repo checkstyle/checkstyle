@@ -108,7 +108,7 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
                 createModuleConfig(InterfaceIsTypeCheck.class);
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(InterfaceIsTypeCheck.class,
+            "5:5: " + getCheckMessage(InterfaceIsTypeCheck.class,
                     InterfaceIsTypeCheck.MSG_KEY),
         };
 
@@ -128,4 +128,5 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

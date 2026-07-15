@@ -52,7 +52,7 @@ public class XpathRegressionSealedShouldHavePermitsListTest extends AbstractXpat
                 createModuleConfig(SealedShouldHavePermitsListCheck.class);
 
         final String[] expectedViolation = {
-            "5:4: " + getCheckMessage(SealedShouldHavePermitsListCheck.class,
+            "6:4: " + getCheckMessage(SealedShouldHavePermitsListCheck.class,
                 SealedShouldHavePermitsListCheck.MSG_KEY),
         };
 
@@ -128,4 +128,5 @@ public class XpathRegressionSealedShouldHavePermitsListTest extends AbstractXpat
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

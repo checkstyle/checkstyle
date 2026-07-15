@@ -52,7 +52,7 @@ public class XpathRegressionMutableExceptionTest extends AbstractXpathTestSuppor
             createModuleConfig(MutableExceptionCheck.class);
 
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(MutableExceptionCheck.class,
+            "6:9: " + getCheckMessage(MutableExceptionCheck.class,
                 MutableExceptionCheck.MSG_KEY, "code"),
         };
 
@@ -86,7 +86,7 @@ public class XpathRegressionMutableExceptionTest extends AbstractXpathTestSuppor
         moduleConfig.addProperty("format", classFormat);
 
         final String[] expectedViolation = {
-            "4:3: " + getCheckMessage(MutableExceptionCheck.class,
+            "5:3: " + getCheckMessage(MutableExceptionCheck.class,
                     MutableExceptionCheck.MSG_KEY, "code"),
         };
 
@@ -120,7 +120,7 @@ public class XpathRegressionMutableExceptionTest extends AbstractXpathTestSuppor
         moduleConfig.addProperty("extendedClassNameFormat", extendedClassNameFormat);
 
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(MutableExceptionCheck.class,
+            "7:9: " + getCheckMessage(MutableExceptionCheck.class,
                     MutableExceptionCheck.MSG_KEY, "code"),
         };
 
@@ -141,4 +141,5 @@ public class XpathRegressionMutableExceptionTest extends AbstractXpathTestSuppor
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

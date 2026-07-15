@@ -406,4 +406,5 @@ public class InterfaceMemberImpliedModifierCheckTest
                 getPath("InputInterfaceMemberImpliedModifierSealedClasses.java"),
             expected);
     }
+
 }

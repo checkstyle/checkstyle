@@ -4,4 +4,5 @@ public class InputXpathSuppressWarningsParameterDefinition {
 
     public InputXpathSuppressWarningsParameterDefinition(@SuppressWarnings("") int bar) { // warn
     }
+
 }

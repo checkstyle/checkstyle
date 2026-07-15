@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 /** Some javadoc. */
 public class InputLambdaChildCorrect {
+
   String testMethod1(List<Integer> operations) {
     return operations.stream()
         .map(
@@ -52,4 +53,5 @@ public class InputLambdaChildCorrect {
   <T> List<T> getBlockTags(Object input, Predicate<String> filter, Class<T> type) {
     return List.of();
   }
+
 }

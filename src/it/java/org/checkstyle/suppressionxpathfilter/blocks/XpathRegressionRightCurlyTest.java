@@ -53,7 +53,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
                 createModuleConfig(RightCurlyCheck.class);
 
         final String[] expectedViolation = {
-            "8:9: " + getCheckMessage(RightCurlyCheck.class,
+            "9:9: " + getCheckMessage(RightCurlyCheck.class,
                 RightCurlyCheck.MSG_KEY_LINE_SAME, "}", 9),
         };
 
@@ -77,7 +77,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("option", RightCurlyOption.ALONE.toString());
 
         final String[] expectedViolation = {
-            "9:15: " + getCheckMessage(RightCurlyCheck.class,
+            "10:15: " + getCheckMessage(RightCurlyCheck.class,
                 RightCurlyCheck.MSG_KEY_LINE_ALONE, "}", 15),
         };
 
@@ -101,7 +101,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("option", RightCurlyOption.ALONE.toString());
 
         final String[] expectedViolation = {
-            "5:72: " + getCheckMessage(RightCurlyCheck.class,
+            "6:72: " + getCheckMessage(RightCurlyCheck.class,
                 RightCurlyCheck.MSG_KEY_LINE_ALONE, "}", 72),
         };
 
@@ -125,7 +125,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("option", RightCurlyOption.SAME.toString());
 
         final String[] expectedViolation = {
-            "7:27: " + getCheckMessage(RightCurlyCheck.class,
+            "8:27: " + getCheckMessage(RightCurlyCheck.class,
                 RightCurlyCheck.MSG_KEY_LINE_BREAK_BEFORE, "}", 27),
         };
 
@@ -138,4 +138,5 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

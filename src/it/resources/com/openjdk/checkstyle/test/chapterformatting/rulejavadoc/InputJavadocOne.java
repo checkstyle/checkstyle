@@ -52,4 +52,5 @@ public class InputJavadocOne {
      * Summary sentence should end with a period
      */
     public void method6() {}
+
 }

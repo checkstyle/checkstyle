@@ -137,4 +137,5 @@ public class ChainedPropertyUtilTest extends AbstractModuleTestSupport {
 
         return properties;
     }
+
 }

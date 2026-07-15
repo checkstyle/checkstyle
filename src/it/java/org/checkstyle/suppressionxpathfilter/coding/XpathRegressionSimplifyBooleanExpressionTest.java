@@ -53,7 +53,7 @@ public class XpathRegressionSimplifyBooleanExpressionTest extends AbstractXpathT
                 createModuleConfig(SimplifyBooleanExpressionCheck.class);
 
         final String[] expectedViolations = {
-            "8:13: " + getCheckMessage(SimplifyBooleanExpressionCheck.class, MSG_KEY),
+            "9:13: " + getCheckMessage(SimplifyBooleanExpressionCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQuery = Arrays.asList(
@@ -105,7 +105,7 @@ public class XpathRegressionSimplifyBooleanExpressionTest extends AbstractXpathT
                 createModuleConfig(SimplifyBooleanExpressionCheck.class);
 
         final String[] expectedViolations = {
-            "7:20: " + getCheckMessage(SimplifyBooleanExpressionCheck.class, MSG_KEY),
+            "8:20: " + getCheckMessage(SimplifyBooleanExpressionCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQuery = Collections.singletonList(
@@ -117,4 +117,5 @@ public class XpathRegressionSimplifyBooleanExpressionTest extends AbstractXpathT
 
         runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQuery);
     }
+
 }

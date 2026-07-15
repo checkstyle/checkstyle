@@ -236,4 +236,5 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
             return null;
         }
     }
+
 }

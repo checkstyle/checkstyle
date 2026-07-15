@@ -52,7 +52,7 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
                 createModuleConfig(IllegalCatchCheck.class);
 
         final String[] expectedViolation = {
-            "6:11: " + getCheckMessage(IllegalCatchCheck.class,
+            "7:11: " + getCheckMessage(IllegalCatchCheck.class,
                 IllegalCatchCheck.MSG_KEY, "RuntimeException"),
         };
 
@@ -76,7 +76,7 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
                 createModuleConfig(IllegalCatchCheck.class);
 
         final String[] expectedViolation = {
-            "16:11: " + getCheckMessage(IllegalCatchCheck.class,
+            "17:11: " + getCheckMessage(IllegalCatchCheck.class,
                 IllegalCatchCheck.MSG_KEY, "java.lang.RuntimeException"),
         };
 
@@ -113,4 +113,5 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

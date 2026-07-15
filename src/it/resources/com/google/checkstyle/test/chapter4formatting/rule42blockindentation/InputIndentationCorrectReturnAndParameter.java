@@ -163,4 +163,5 @@ class InputIndentationCorrectReturnAndParameter {
   }
 
   class FooReturnClass {}
+
 }

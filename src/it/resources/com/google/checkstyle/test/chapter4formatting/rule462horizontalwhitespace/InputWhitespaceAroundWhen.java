@@ -132,4 +132,5 @@ class InputWhitespaceAroundWhen {
 
   record Point(int x, int y) {
   }
+
 }

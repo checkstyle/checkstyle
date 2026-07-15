@@ -5,4 +5,5 @@ class InputFormattedSeparatorWrapEllipsis {
   public void testMethodWithGoodWrapping(String... parameters) {}
 
   public void testMethodWithBadWrapping(String... parameters) {}
+
 }

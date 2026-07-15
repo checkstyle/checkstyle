@@ -12,6 +12,7 @@ import java.util.Arrays;
  * According to OpenJDK style with option=bottom, non-static should come first.
  */
 public final class InputImportOrderStaticFirst {
+
     /** Dummy constant using static import. */
     public static final double VALUE = PI;
 
@@ -29,4 +30,5 @@ public final class InputImportOrderStaticFirst {
         final double tau = 2 * PI;
         final int maximum = max(1, 2);
     }
+
 }

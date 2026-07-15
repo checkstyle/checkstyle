@@ -155,4 +155,5 @@ public class SimplifyBooleanReturnCheck
         }
         return booleanReturnStatement;
     }
+
 }

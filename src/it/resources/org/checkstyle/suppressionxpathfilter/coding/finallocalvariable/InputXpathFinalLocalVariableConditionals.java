@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.finallocalvariable;
 
 public class InputXpathFinalLocalVariableConditionals {
+
     private void checkCodeBlock() {
         try {
 
@@ -18,5 +19,6 @@ public class InputXpathFinalLocalVariableConditionals {
             throw new RuntimeException(e);
         }
     }
+
 }
 

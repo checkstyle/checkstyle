@@ -59,4 +59,5 @@ public class InputWrappingExpressionsDoAndDonts {
                 map(Person::getName).
                 forEach(System.out::println);
     }
+
 }

@@ -116,4 +116,5 @@ public class InputDeclarationUsageDistanceAtMostThree6 {
 
         public void setColor(int i) {}
     }
+
 }

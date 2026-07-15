@@ -22,4 +22,5 @@ public class InputProgrammingPracticesOverrideTwo {
             return value;
         }
     }
+
 }

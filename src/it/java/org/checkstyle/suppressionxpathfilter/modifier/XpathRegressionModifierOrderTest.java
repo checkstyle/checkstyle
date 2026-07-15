@@ -52,7 +52,7 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "4:13: " + getCheckMessage(CLAZZ,
+            "5:13: " + getCheckMessage(CLAZZ,
                     ModifierOrderCheck.MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
         };
 
@@ -77,7 +77,7 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "3:12: " + getCheckMessage(CLAZZ,
+            "4:12: " + getCheckMessage(CLAZZ,
                     ModifierOrderCheck.MSG_MODIFIER_ORDER, "private"),
         };
 

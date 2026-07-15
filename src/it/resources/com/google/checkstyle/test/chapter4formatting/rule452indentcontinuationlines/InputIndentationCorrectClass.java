@@ -30,4 +30,5 @@ public class InputIndentationCorrectClass implements Runnable, Cloneable {
   class SecondClassWithLongLongLongLongName extends InputIndentationCorrectClass {}
 
   class SecondClassReturnWithVeryVeryVeryLongName {}
+
 }

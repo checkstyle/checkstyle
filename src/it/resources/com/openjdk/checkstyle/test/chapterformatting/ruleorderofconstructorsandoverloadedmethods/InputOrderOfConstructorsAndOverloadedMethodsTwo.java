@@ -40,4 +40,5 @@ public class InputOrderOfConstructorsAndOverloadedMethodsTwo {
         public void example(String s) {}
         // violation above, 'Overloaded methods should be ordered by increasing parameter count.'
     }
+
 }

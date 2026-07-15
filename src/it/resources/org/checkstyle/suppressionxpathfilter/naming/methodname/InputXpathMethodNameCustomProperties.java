@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.naming.methodname;
 
 interface Check {
+
      int i = 10;
      default void FirstMethod() {}
      default void SecondMethod() {}
@@ -19,4 +20,5 @@ public class InputXpathMethodNameCustomProperties implements Check {
      public void SecondMethod() {
 
      }
+
 }

@@ -329,4 +329,5 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
         checker.process(filesToCheck);
         verifyXml(getPath(expectedXmlReportPath), actualXmlOutput);
     }
+
 }

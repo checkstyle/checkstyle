@@ -7,6 +7,7 @@ import java.util.List;
 
 @TestClassAnnotation2
 class InputFormattedLeftCurlyAnnotations {
+
   private static final int X = 10;
 
   @Override
@@ -28,11 +29,13 @@ class InputFormattedLeftCurlyAnnotations {
     List<String> l = new ArrayList();
     return "SomeString";
   }
+
 }
 
 // violation below '.* InputFormattedLeftCurlyAnnotations2 has to reside in its own source file.'
 @TestClassAnnotation2
 class InputFormattedLeftCurlyAnnotations2 {
+
   private static final int X = 10;
 
   @Override
@@ -54,6 +57,7 @@ class InputFormattedLeftCurlyAnnotations2 {
     List<String> l = new ArrayList();
     return "SomeString";
   }
+
 }
 
 // violation below 'Top-level class TestClassAnnotation2 has to reside in its own source file.'

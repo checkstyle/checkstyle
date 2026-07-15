@@ -119,4 +119,5 @@ public final class NestedIfDepthCheck extends AbstractCheck {
     private static boolean isElseWithCurlyBraces(DetailAST ast) {
         return ast.getChildCount() == 2 && isElse(ast.getParent());
     }
+
 }

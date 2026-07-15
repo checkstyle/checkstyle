@@ -52,7 +52,7 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
                 createModuleConfig(ClassMemberImpliedModifierCheck.class);
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(ClassMemberImpliedModifierCheck.class,
+            "5:5: " + getCheckMessage(ClassMemberImpliedModifierCheck.class,
                 ClassMemberImpliedModifierCheck.MSG_KEY, "static", 0),
         };
 
@@ -81,7 +81,7 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
                 createModuleConfig(ClassMemberImpliedModifierCheck.class);
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(ClassMemberImpliedModifierCheck.class,
+            "5:5: " + getCheckMessage(ClassMemberImpliedModifierCheck.class,
                 ClassMemberImpliedModifierCheck.MSG_KEY, "static", "null"),
         };
 
@@ -110,7 +110,7 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
                 createModuleConfig(ClassMemberImpliedModifierCheck.class);
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(ClassMemberImpliedModifierCheck.class,
+            "5:5: " + getCheckMessage(ClassMemberImpliedModifierCheck.class,
                 ClassMemberImpliedModifierCheck.MSG_KEY, "static"),
         };
 
@@ -130,4 +130,5 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

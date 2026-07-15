@@ -3,6 +3,7 @@ package org.checkstyle.suppressionxpathfilter.sizes.lambdabodylength;
 import java.util.function.Function;
 
 public class InputXpathLambdaBodyLengthDefaultMax {
+
     void test() {
         Function<String, String> trimmer = (s) -> // warn
             s.trim()
@@ -17,4 +18,5 @@ public class InputXpathLambdaBodyLengthDefaultMax {
              .trim()
              .trim();
     }
+
 }

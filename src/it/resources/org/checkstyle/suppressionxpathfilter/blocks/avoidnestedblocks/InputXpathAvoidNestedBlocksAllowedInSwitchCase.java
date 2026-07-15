@@ -23,4 +23,5 @@ public class InputXpathAvoidNestedBlocksAllowedInSwitchCase {
         }
         return x + y;
     }
+
 }

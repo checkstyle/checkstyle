@@ -103,7 +103,7 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
                 createModuleConfig(LeftCurlyCheck.class);
 
         final String[] expectedViolation = {
-            "5:19: " + getCheckMessage(LeftCurlyCheck.class,
+            "6:19: " + getCheckMessage(LeftCurlyCheck.class,
                 LeftCurlyCheck.MSG_KEY_LINE_BREAK_AFTER, "{", 19),
         };
 
@@ -116,4 +116,5 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

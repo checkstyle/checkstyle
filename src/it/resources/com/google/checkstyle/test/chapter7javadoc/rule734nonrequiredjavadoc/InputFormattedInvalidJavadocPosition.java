@@ -18,7 +18,8 @@ class InputFormattedInvalidJavadocPosition {
 /** Valid javadoc. */
 /* ignore */
 class ExtraInputInvalidJavadocPosition2 {
-  // violation above '.* ExtraInputInvalidJavadocPosition2 has to reside in its own source file.'
+
+  // violation 2 lines above '.* ExtraInputInvalidJavadocPosition2 .*'
 
   /** Odd javadoc */
   // violation above 'Javadoc comment is placed in the wrong location.'
@@ -90,7 +91,7 @@ class ExtraInputInvalidJavadocPosition2 {
       ) {} // violation '.* incorrect indentation level 6, expected level should be 2.'
 
   // 2 violations 4 lines below:
-  //  '.* indentation should be the same level as line 97.'
+  //  '.* indentation should be the same level as line 98.'
   //  'Javadoc comment is placed in the wrong location.'
   void method23()
         /** Odd javadoc */
@@ -133,4 +134,5 @@ class ExtraInputInvalidJavadocPosition2 {
   //  ''}' at column 4 should be alone on a line.'
   /** Odd javadoc */
   // violation above 'Javadoc comment is placed in the wrong location.'
+
 }

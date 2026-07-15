@@ -1,6 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
 class InputEmptyBlocksAndCatchBlocks {
+
   static {
   }
 
@@ -92,13 +93,16 @@ class InputEmptyBlocksAndCatchBlocks {
       System.out.println("Closed MyResource");
     }
   }
+
 }
 
 // violation below 'Top-level class Io has to reside in its own source file.'
 class Io {
+
   public InputEmptyBlocksAndCatchBlocks read() {
     return new InputEmptyBlocksAndCatchBlocks();
   }
+
 }
 
 // violation below 'Top-level class Empty has to reside in its own source file.'
@@ -109,6 +113,7 @@ interface EmptyImplement {}
 
 // violation below 'Top-level class WithInner has to reside in its own source file.'
 class WithInner {
+
   static {
   }
 
@@ -142,10 +147,12 @@ class WithInner {
       int[] z = {};
     }
   }
+
 }
 
 // violation below 'Top-level class WithAnon has to reside in its own source file.'
 class WithAnon {
+
   interface AnonWithEmpty {
     public void fooEmpty();
   }
@@ -184,6 +191,7 @@ class WithAnon {
           }
         };
   }
+
 }
 
 // violation below 'Top-level class NewClass has to reside in its own source file.'
@@ -408,6 +416,7 @@ class NewClass {
           }
         };
   }
+
 }
 
 // violation below 'Top-level class Example has to reside in its own source file.'
@@ -416,10 +425,12 @@ class Example {
   void doNothing() {}
 
   void doNothingElse() {}
+
 }
 
 // violation below 'Top-level class TestingEmptyBlockCatch has to reside in its own source file.'
 class TestingEmptyBlockCatch {
+
   boolean flag;
 
   void doSm() {}
@@ -505,4 +516,5 @@ class TestingEmptyBlockCatch {
           }
         }
       };
+
 }

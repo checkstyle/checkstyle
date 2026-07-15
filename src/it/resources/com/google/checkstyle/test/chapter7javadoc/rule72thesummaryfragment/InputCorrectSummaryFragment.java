@@ -110,4 +110,5 @@ class InputCorrectSummaryFragment {
           return 666;
         }
       };
+
 }

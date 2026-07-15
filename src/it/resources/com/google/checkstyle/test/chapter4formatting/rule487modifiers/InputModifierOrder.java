@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule487modifiers;
 
 // violation below ''abstract' modifier out of order with the JLS suggestions.'
 strictfp abstract class InputModifierOrder {
+
   transient private String dontSaveMe;
   // violation above ''private' modifier out of order with the JLS suggestions.'
 
@@ -82,10 +83,12 @@ strictfp abstract class InputModifierOrder {
 
   // violation below ''private' modifier out of order with the JLS suggestions.'
   final private void method() {}
+
 }
 
 // violation below 'Top-level class RedundantFinalClass has to reside in its own source file.'
 final class RedundantFinalClass {
+
   public final void finalMethod() {}
 
   public void method() {}
@@ -112,11 +115,13 @@ final class RedundantFinalClass {
 
   static synchronized private native @MyAnnotation2 void fooMethod7();
   // violation above ''private' modifier out of order with the JLS suggestions.'
+
 }
 
 // violation 2 lines below 'Top-level class .* has to reside in its own source file.'
 /** Holder for redundant modifiers of inner implementation. */
 interface InnerImplementation {
+
   InnerImplementation inner =
           new InnerImplementation() {
             /** Compiler requires 'public' modifier. */
@@ -124,10 +129,12 @@ interface InnerImplementation {
           };
 
   void method();
+
 }
 
 // violation below 'Top-level class WithInner has to reside in its own source file.'
 class WithInner {
+
   /**
    * Inner class.
    *
@@ -244,11 +251,13 @@ class WithInner {
     abstract @MyAnnotation2 public void fooMet1();
     // violation above ''@MyAnnotation2' .* does not precede non-annotation modifiers.'
   }
+
 }
 
 // violation 2 lines below 'Top-level class Annotation has to reside in its own source file.'
 /** Holder for redundant modifiers of annotation fields/variables. */
 @interface Annotation {
+
   public String s1 = "";
   final String s2 = "";
   static String s3 = "";
@@ -257,6 +266,7 @@ class WithInner {
   public String blah();
 
   abstract String blah2();
+
 }
 
 // violation below 'Top-level class MyAnnotation2 has to reside in its own source file.'
@@ -268,8 +278,10 @@ class WithInner {
 // violation 2 lines below 'Top-level class .* has to reside in its own source file.'
 /** Illegal order of modifiers for interface methods. */
 interface InputModifierOrderInterface {
+
   default strictfp void abc1() {}
 
   strictfp default void abc2() {}
   // violation above ''default' modifier out of order with the JLS suggestions.'
+
 }

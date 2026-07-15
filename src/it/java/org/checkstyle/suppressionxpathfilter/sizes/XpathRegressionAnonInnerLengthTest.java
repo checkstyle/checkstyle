@@ -52,7 +52,7 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
             createModuleConfig(AnonInnerLengthCheck.class);
 
         final String[] expectedViolation = {
-            "7:29: " + getCheckMessage(AnonInnerLengthCheck.class,
+            "8:29: " + getCheckMessage(AnonInnerLengthCheck.class,
                 AnonInnerLengthCheck.MSG_KEY, 26, 20),
         };
 
@@ -84,7 +84,7 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
         moduleConfig.addProperty("max", String.valueOf(maxLen));
 
         final String[] expectedViolation = {
-            "7:35: " + getCheckMessage(AnonInnerLengthCheck.class,
+            "8:35: " + getCheckMessage(AnonInnerLengthCheck.class,
                     AnonInnerLengthCheck.MSG_KEY, 6, maxLen),
         };
 
@@ -115,7 +115,7 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
         moduleConfig.addProperty("max", String.valueOf(maxLen));
 
         final String[] expectedViolation = {
-            "4:25: " + getCheckMessage(AnonInnerLengthCheck.class,
+            "5:25: " + getCheckMessage(AnonInnerLengthCheck.class,
                     AnonInnerLengthCheck.MSG_KEY, 9, maxLen),
         };
 
@@ -133,4 +133,5 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

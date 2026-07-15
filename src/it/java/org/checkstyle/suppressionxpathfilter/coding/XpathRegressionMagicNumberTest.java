@@ -50,7 +50,7 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
                 createModuleConfig(MagicNumberCheck.class);
 
         final String[] expectedViolation = {
-            "5:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "5"),
+            "6:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "5"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -77,7 +77,7 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
                 createModuleConfig(MagicNumberCheck.class);
 
         final String[] expectedViolation = {
-            "5:17: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "20"),
+            "6:17: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "20"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -105,7 +105,7 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
                 createModuleConfig(MagicNumberCheck.class);
 
         final String[] expectedViolation = {
-            "13:21: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "20"),
+            "14:21: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "20"),
         };
 
         final List<String> expectedXpathQueries = List.of(
@@ -119,4 +119,5 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

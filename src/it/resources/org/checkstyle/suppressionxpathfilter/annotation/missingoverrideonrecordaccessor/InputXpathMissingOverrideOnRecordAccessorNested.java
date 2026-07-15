@@ -13,4 +13,5 @@ public record InputXpathMissingOverrideOnRecordAccessorNested(String outer) {
             return value.trim();
         }
     }
+
 }

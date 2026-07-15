@@ -559,4 +559,5 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeAnnotationsInCodeBlock4.java"), expected);
     }
+
 }

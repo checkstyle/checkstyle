@@ -424,5 +424,6 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
   }
 
   // We almost reached the end of the class here.
+
 }
 // The END of the class.

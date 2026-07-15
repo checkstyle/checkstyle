@@ -80,4 +80,5 @@ public class InputFormattedWhitespaceAfterGood {
   public String check8() {
     return ("a" + "b");
   }
+
 }

@@ -52,7 +52,7 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
                 createModuleConfig(HiddenFieldCheck.class);
 
         final String[] expectedViolation = {
-            "10:34: " + getCheckMessage(HiddenFieldCheck.class,
+            "11:34: " + getCheckMessage(HiddenFieldCheck.class,
                 HiddenFieldCheck.MSG_KEY, "value"),
         };
 
@@ -76,7 +76,7 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
                 createModuleConfig(HiddenFieldCheck.class);
 
         final String[] expectedViolation = {
-            "8:45: " + getCheckMessage(HiddenFieldCheck.class,
+            "9:45: " + getCheckMessage(HiddenFieldCheck.class,
                 HiddenFieldCheck.MSG_KEY, "other"),
         };
 
@@ -100,7 +100,7 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
                 createModuleConfig(HiddenFieldCheck.class);
 
         final String[] expectedViolation = {
-            "7:13: " + getCheckMessage(HiddenFieldCheck.class,
+            "8:13: " + getCheckMessage(HiddenFieldCheck.class,
                 HiddenFieldCheck.MSG_KEY, "count"),
         };
 
@@ -114,4 +114,5 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

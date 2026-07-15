@@ -93,4 +93,5 @@ class InputIncorrectFirstSentence {
         /** An especially short bit of Javadoc. */
         void foo6() {}
       };
+
 }

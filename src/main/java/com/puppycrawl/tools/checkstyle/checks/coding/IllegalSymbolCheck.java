@@ -273,4 +273,5 @@ public class IllegalSymbolCheck extends AbstractCheck {
             return codePoint >= start && codePoint <= end;
         }
     }
+
 }

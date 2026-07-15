@@ -10,5 +10,7 @@ import static java.lang.Integer.parseInt;
  * Test input for the unused import rule.
  */
 public final class InputUnusedImports {
+
     List<Integer> list;
+
 }

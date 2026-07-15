@@ -145,4 +145,5 @@ public class InputRightCurlySwitchCasesBlocks {
         int x = 2; } // violation ''}' at column 20 should be alone on a line.'
     }
   }
+
 }

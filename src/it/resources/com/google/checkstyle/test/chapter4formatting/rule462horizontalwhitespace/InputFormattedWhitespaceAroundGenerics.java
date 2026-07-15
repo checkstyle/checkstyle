@@ -16,11 +16,14 @@ public class InputFormattedWhitespaceAroundGenerics {}
 // No whitespace after commas
 // violation below 'Top-level class BadCommas2 has to reside in its own source file.'
 class BadCommas2<A, B, C extends Map<A, String>> {
+
   private final java.util.Hashtable<Integer, Foo> test = new java.util.Hashtable<Integer, Foo>();
+
 }
 
 // violation below 'Top-level class Wildcard2 has to reside in its own source file.'
 class Wildcard2 {
+
   public static void foo(Collection<? extends Wildcard[]> collection) {
     // A statement is important in this method to flush out any
     // issues with parsing the wildcard in the signature
@@ -32,4 +35,5 @@ class Wildcard2 {
     // issues with parsing the wildcard in the signature
     collection.size();
   }
+
 }

@@ -139,4 +139,5 @@ public class PatternVariableNameCheckTest
                         "InputPatternVariableNameRecordPattern.java"),
                 expected);
     }
+
 }

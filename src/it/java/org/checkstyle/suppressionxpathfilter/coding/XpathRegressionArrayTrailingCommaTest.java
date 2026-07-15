@@ -53,7 +53,7 @@ public class XpathRegressionArrayTrailingCommaTest extends AbstractXpathTestSupp
                 createModuleConfig(ArrayTrailingCommaCheck.class);
 
         final String[] expectedViolation = {
-            "16:9: " + getCheckMessage(ArrayTrailingCommaCheck.class,
+            "17:9: " + getCheckMessage(ArrayTrailingCommaCheck.class,
                 ArrayTrailingCommaCheck.MSG_KEY),
         };
 
@@ -81,7 +81,7 @@ public class XpathRegressionArrayTrailingCommaTest extends AbstractXpathTestSupp
                 createModuleConfig(ArrayTrailingCommaCheck.class);
 
         final String[] expectedViolation = {
-            "17:9: " + getCheckMessage(ArrayTrailingCommaCheck.class,
+            "18:9: " + getCheckMessage(ArrayTrailingCommaCheck.class,
                 ArrayTrailingCommaCheck.MSG_KEY),
         };
 

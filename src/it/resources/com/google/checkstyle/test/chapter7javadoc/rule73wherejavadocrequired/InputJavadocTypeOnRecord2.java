@@ -63,4 +63,5 @@ public class InputJavadocTypeOnRecord2 {
     @Example(reason = "...")
     protected Multi10 {}
   }
+
 }

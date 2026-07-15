@@ -22,4 +22,5 @@ public class InputNoFinalizer {
 
   /** Should not be reported by NoFinalizer check. */
   public void finalize(String x) {}
+
 }

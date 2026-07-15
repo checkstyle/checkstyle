@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.defaultcomeslast;
 
 public class InputXpathDefaultComesLastEmptyCase {
+
     public void test(int i) {
         switch (i) {
             case 1:
@@ -19,4 +20,5 @@ public class InputXpathDefaultComesLastEmptyCase {
                 break;
         }
     }
+
 }

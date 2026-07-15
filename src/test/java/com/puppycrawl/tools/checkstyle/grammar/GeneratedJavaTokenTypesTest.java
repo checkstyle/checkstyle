@@ -805,4 +805,5 @@ public class GeneratedJavaTokenTypesTest {
                 && Modifier.isStatic(mods)
                 && Modifier.isFinal(mods);
     }
+
 }

@@ -23,4 +23,5 @@ public class InputIndentationCorrectNewChildren {
               return "Foo";
             }
           });
+
 }

@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.unusedtryresourceshouldbeunnamed;
 // non-compiled with javac: Compilable with Java25
 public class InputXpathUnusedTryResourceShouldBeUnnamedNested {
+
     void test() {
       try (AutoCloseable a = lock()) {
         System.out.println(a);
@@ -14,4 +15,5 @@ public class InputXpathUnusedTryResourceShouldBeUnnamedNested {
     AutoCloseable lock() {
       return null;
     }
+
 }

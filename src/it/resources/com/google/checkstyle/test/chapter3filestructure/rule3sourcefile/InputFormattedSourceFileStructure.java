@@ -23,6 +23,7 @@ package com.google.checkstyle.test.chapter3filestructure.rule3sourcefile;
 import java.util.concurrent.Callable;
 
 class InputFormattedSourceFileStructure {
+
   public static final double FOO_PI = 3.1415;
   private boolean flag = true;
 
@@ -87,15 +88,19 @@ class InputFormattedSourceFileStructure {
       return 0;
     }
   }
+
 }
 
 // violation below 'Top-level class ExtraClass1 has to reside in its own source file.'
 class ExtraClass1 {
+
   private ExtraClass1() {}
+
 }
 
 class ExtraClass2 {
-  // violation above 'Top-level class ExtraClass2 has to reside in its own source file.'
+
+  // violation 2 lines above 'Top-level class ExtraClass2 has to reside in its own source file.'
   public int compareTo(InputSourceFileStructure obj) {
     int number = 0;
     return 0;
@@ -108,4 +113,5 @@ class ExtraClass2 {
           return 0;
         }
       };
+
 }

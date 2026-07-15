@@ -2,6 +2,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.whenshouldbeused;
 
 public class InputXpathWhenShouldBeUsedSimple {
+
     void test(Object o) {
         switch (o) {
             case String s -> { // warn
@@ -12,4 +13,5 @@ public class InputXpathWhenShouldBeUsedSimple {
             default -> {}
         }
     }
- }
+
+}

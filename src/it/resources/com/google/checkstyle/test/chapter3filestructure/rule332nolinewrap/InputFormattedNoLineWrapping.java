@@ -22,4 +22,5 @@ public class InputFormattedNoLineWrapping {
       };
 
   PackageStatementTest packageStatementTest = new PackageStatementTest();
+
 }

@@ -54,7 +54,7 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
                 createModuleConfig(MethodTypeParameterNameCheck.class);
 
         final String[] expectedViolation = {
-            "4:11: " + getCheckMessage(MethodTypeParameterNameCheck.class,
+            "5:11: " + getCheckMessage(MethodTypeParameterNameCheck.class,
                     MSG_INVALID_PATTERN, "TT", "^[A-Z]$"),
         };
 
@@ -129,4 +129,5 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

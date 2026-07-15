@@ -35,6 +35,7 @@ import org.codehaus.plexus.component.annotations.Component;
  */
 @Component(role = Macro.class, hint = "parent-module")
 public class ParentModuleMacro extends AbstractMacro {
+
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
         // until https://github.com/checkstyle/checkstyle/issues/13426
@@ -97,4 +98,5 @@ public class ParentModuleMacro extends AbstractMacro {
                 .replace('\\', '/')
                 + "#" + parentModule;
     }
+
 }

@@ -116,4 +116,5 @@ class InputCorrectFirstSentence {
           return 666;
         }
       };
+
 }

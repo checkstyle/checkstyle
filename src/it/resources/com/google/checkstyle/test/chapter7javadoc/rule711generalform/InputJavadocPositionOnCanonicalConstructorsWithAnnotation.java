@@ -86,4 +86,5 @@ public class InputJavadocPositionOnCanonicalConstructorsWithAnnotation {
       this.to = to;
     }
   }
+
 }

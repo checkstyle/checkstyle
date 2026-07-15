@@ -54,7 +54,7 @@ public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
                 createModuleConfig(MemberNameCheck.class);
 
         final String[] expectedViolation = {
-            "5:17: " + getCheckMessage(MemberNameCheck.class,
+            "6:17: " + getCheckMessage(MemberNameCheck.class,
                         AbstractNameCheck.MSG_INVALID_PATTERN, "NUM2", pattern),
         };
 
@@ -106,7 +106,7 @@ public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
                 createModuleConfig(MemberNameCheck.class);
 
         final String[] expectedViolation = {
-            "5:16: " + getCheckMessage(MemberNameCheck.class,
+            "6:16: " + getCheckMessage(MemberNameCheck.class,
                         AbstractNameCheck.MSG_INVALID_PATTERN, "NUM3", pattern),
         };
 

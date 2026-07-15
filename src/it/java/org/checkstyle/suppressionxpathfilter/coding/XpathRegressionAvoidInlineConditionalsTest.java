@@ -51,7 +51,7 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
                 createModuleConfig(AvoidInlineConditionalsCheck.class);
 
         final String[] expectedViolation = {
-            "5:50: " + getCheckMessage(AvoidInlineConditionalsCheck.class,
+            "6:50: " + getCheckMessage(AvoidInlineConditionalsCheck.class,
                 AvoidInlineConditionalsCheck.MSG_KEY),
         };
 
@@ -79,7 +79,7 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
                 createModuleConfig(AvoidInlineConditionalsCheck.class);
 
         final String[] expectedViolation = {
-            "7:43: " + getCheckMessage(AvoidInlineConditionalsCheck.class,
+            "8:43: " + getCheckMessage(AvoidInlineConditionalsCheck.class,
                 AvoidInlineConditionalsCheck.MSG_KEY),
         };
 

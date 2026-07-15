@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4843defaultlabelpresen
 
 /** Some javadoc. */
 public class InputPresenceOfDefaultLabel {
+
   /** Some javadoc. */
   public void foo() {
     int i = 1;
@@ -71,4 +72,5 @@ public class InputPresenceOfDefaultLabel {
   interface Foo {
     public void foo();
   }
+
 }

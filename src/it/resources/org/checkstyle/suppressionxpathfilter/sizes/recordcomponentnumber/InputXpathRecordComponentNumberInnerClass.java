@@ -6,6 +6,7 @@ package org.checkstyle.suppressionxpathfilter.sizes.recordcomponentnumber;
  * max = 8
  */
 public class InputXpathRecordComponentNumberInnerClass {
+
     class Inner {
         public record MyRecord(int x, int y, int z, // warn
                                int a, int b, int c,
@@ -13,4 +14,5 @@ public class InputXpathRecordComponentNumberInnerClass {
                                int g, int h, int i,
                                int j) { }
     }
+
 }
