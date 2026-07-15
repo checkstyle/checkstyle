@@ -30,7 +30,10 @@ package com . puppycrawl
 class InputWhitespaceAroundKeywordsAndOperators
 {
     /** ignore assignment **/
-    private int mVar1=1; // 2 violations
+    private int mVar1=1;
+    // 2 violations above:
+    // ''=' is not followed by whitespace.'
+    // ''=' is not preceded with whitespace.'
     /** ignore assignment **/
     private int mVar2 =1; // violation ''=' is not followed by whitespace'
     /** Should be ok **/
@@ -41,8 +44,14 @@ class InputWhitespaceAroundKeywordsAndOperators
     {
         final int a = 1;
         int b= 1; // violation ''=' is not preceded with whitespace'
-        b=1; // 2 violations
-        b+=1; // 2 violations
+        b=1;
+        // 2 violations above:
+        // ''=' is not followed by whitespace.'
+        // ''=' is not preceded with whitespace.'
+        b+=1;
+        // 2 violations above:
+        // 'is not followed by whitespace.'
+        // 'is not preceded with whitespace.'
         b -=- 1 + (+ b); // violation ''-=' is not followed by whitespace'
         b = b ++ + b --; // Ignore 1
         b = ++ b - -- b; // Ignore 1
@@ -53,9 +62,15 @@ class InputWhitespaceAroundKeywordsAndOperators
     {
         synchronized(this) { // violation ''synchronized' is not followed by whitespace'
         }
-        try{ // 2 violations
+        try{
+            // 2 violations above:
+            // ''try' is not followed by whitespace.'
+            // ''{' is not preceded with whitespace.'
         }
-        catch(RuntimeException e){ // 2 violations
+        catch(RuntimeException e){
+            // 2 violations above:
+            // ''catch' is not followed by whitespace.'
+            // ''{' is not preceded with whitespace.'
         }
     }
 

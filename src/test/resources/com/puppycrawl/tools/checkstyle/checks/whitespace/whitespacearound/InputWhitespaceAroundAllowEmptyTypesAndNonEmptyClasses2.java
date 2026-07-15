@@ -38,7 +38,11 @@ public class InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses2 {
 
     class MyClass{ int a; } // violation ''{' is not preceded with whitespace'
 
-    class SomeTestClass{int a;} // 3 violations
+    class SomeTestClass{int a;}
+    // 3 violations above:
+    // ''{' is not followed by whitespace.'
+    // ''{' is not preceded with whitespace.'
+    // ''}' is not preceded with whitespace.'
 
     class TestClass { int a; }int b; // violation ''}' is not followed by whitespace'
 
@@ -49,7 +53,10 @@ public class InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses2 {
         class NoMtyCls{ void foo1() { foo2(); } } // violation ''{' is not preceded with whitespace'
 
     public void foo2() {
-        do {} while (true); // 2 violations
+        do {} while (true);
+        // 2 violations above:
+        // ''{' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
     }
 }
 
