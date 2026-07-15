@@ -1325,9 +1325,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
         checkConfig.addProperty("basicOffset", "4");
         checkConfig.addProperty("forceStrictCondition", "false");
-        checkConfig.addProperty("lineWrappingIndentation", "8");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
         checkConfig.addProperty("tabWidth", "4");
-        checkConfig.addProperty("throwsIndent", "8");
+        checkConfig.addProperty("throwsIndent", "4");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, getPath("InputIndentationNewWithTab.java"), expected);
     }
@@ -1338,9 +1338,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
         checkConfig.addProperty("basicOffset", "4");
         checkConfig.addProperty("forceStrictCondition", "true");
-        checkConfig.addProperty("lineWrappingIndentation", "8");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
         checkConfig.addProperty("tabWidth", "4");
-        checkConfig.addProperty("throwsIndent", "8");
+        checkConfig.addProperty("throwsIndent", "4");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, getPath("InputIndentationNewWithTabStrict.java"), expected);
     }
