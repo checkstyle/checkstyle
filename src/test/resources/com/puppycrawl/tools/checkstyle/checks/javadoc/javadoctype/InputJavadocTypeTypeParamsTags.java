@@ -63,14 +63,6 @@ public class InputJavadocTypeTypeParamsTags<A,B1,C456 extends Comparable>
     public static class InnerClass<A,B>
     {
     }
-
-    /**
-     * Some explanation.
-     * @param <Z The wrong type param
-     */
-    public <Z> void unclosedGenericParam()
-    {
-    }
 }
 
 /** @param x */ // violation 'Unused @param tag for 'x'.'
