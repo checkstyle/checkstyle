@@ -137,4 +137,5 @@ public class PrecedingIteratorTest {
                     .isNull();
         }
     }
+
 }

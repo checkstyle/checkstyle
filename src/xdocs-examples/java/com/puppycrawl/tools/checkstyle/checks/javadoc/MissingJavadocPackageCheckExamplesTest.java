@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MissingJavadocPackageCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage";
@@ -46,4 +47,5 @@ public class MissingJavadocPackageCheckExamplesTest extends AbstractExamplesModu
 
         verifyWithInlineConfigParser(getPath("nojavadoc/package-info.java"), expected);
     }
+
 }

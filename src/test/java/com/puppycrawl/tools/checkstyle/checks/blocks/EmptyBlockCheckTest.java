@@ -263,4 +263,5 @@ public class EmptyBlockCheckTest
                 getNonCompilablePath("InputEmptyBlockCaseAndDefaultWithTextOption.java"),
                 expected);
     }
+
 }

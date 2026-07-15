@@ -108,4 +108,5 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

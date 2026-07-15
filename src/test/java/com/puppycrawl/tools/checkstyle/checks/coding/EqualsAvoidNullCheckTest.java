@@ -285,4 +285,5 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputEqualsAvoidNullRecordPattern.java"),
                 expected);
     }
+
 }

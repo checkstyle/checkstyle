@@ -781,4 +781,5 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 getPath("InputCustomImportOrderSpecialImportsRegExp.java"),
                 expected);
     }
+
 }

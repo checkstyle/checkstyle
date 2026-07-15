@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class RedundantModifierCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/modifier/redundantmodifier";
@@ -69,4 +70,5 @@ public class RedundantModifierCheckExamplesTest extends AbstractExamplesModuleTe
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
 }

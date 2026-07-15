@@ -461,4 +461,5 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
         verifyWithInlineConfigParser(
                 getPath("InputTextBlockGoogleStyleFormatting11.java"), expected);
     }
+
 }

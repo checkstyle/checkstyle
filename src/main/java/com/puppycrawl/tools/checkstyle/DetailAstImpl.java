@@ -538,4 +538,5 @@ public final class DetailAstImpl implements DetailAST {
     public void setHiddenAfter(List<Token> hiddenAfter) {
         this.hiddenAfter = UnmodifiableCollectionUtil.unmodifiableList(hiddenAfter);
     }
+
 }

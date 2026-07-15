@@ -78,4 +78,5 @@ public class JavadocLeadingAsteriskAlignCheckTest extends AbstractModuleTestSupp
         final String filePath = getPath("InputJavadocLeadingAsteriskAlignTabs.java");
         verifyWithInlineConfigParser(filePath, expected);
     }
+
 }

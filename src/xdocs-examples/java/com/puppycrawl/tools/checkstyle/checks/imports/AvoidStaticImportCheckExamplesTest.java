@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class AvoidStaticImportCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/imports/avoidstaticimport";
@@ -50,4 +51,5 @@ public class AvoidStaticImportCheckExamplesTest extends AbstractExamplesModuleTe
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

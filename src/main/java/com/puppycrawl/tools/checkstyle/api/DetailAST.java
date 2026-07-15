@@ -155,4 +155,5 @@ public interface DetailAST {
      * @return {@code true} if this AST has any children.
      */
     boolean hasChildren();
+
 }

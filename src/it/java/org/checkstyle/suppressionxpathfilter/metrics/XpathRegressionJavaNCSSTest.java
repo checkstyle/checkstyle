@@ -125,4 +125,5 @@ public class XpathRegressionJavaNCSSTest extends AbstractXpathTestSupport {
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

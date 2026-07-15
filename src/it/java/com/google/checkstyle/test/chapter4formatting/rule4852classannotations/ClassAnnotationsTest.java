@@ -101,4 +101,5 @@ public class ClassAnnotationsTest extends AbstractGoogleModuleTestSupport {
         final String filePath = getPath("sample5/package-info.java");
         verifyWithWholeConfig(filePath);
     }
+
 }

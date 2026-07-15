@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class InterfaceTypeParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/interfacetypeparametername";
@@ -50,4 +51,5 @@ public class InterfaceTypeParameterNameCheckExamplesTest extends AbstractExample
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

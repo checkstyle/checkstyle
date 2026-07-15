@@ -132,4 +132,5 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
             getPath("InputTrailingCommentWithEmoji.java"), expected);
     }
+
 }
