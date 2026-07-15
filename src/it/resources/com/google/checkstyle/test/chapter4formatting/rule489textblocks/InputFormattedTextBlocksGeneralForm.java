@@ -77,13 +77,34 @@ public class InputFormattedTextBlocksGeneralForm {
         + getName();
   }
 
+  /** Some javadoc. */
+  public void method() {
+    getData(
+        """
+        Hello there
+        """,
+        """
+        Hii
+         there
+        """);
+
+    getData(
+        """
+        Good
+          Bad
+        """,
+        """
+         Ok
+        """);
+  }
+
   /** Somejavadoc. */
   public String getName() {
     return "name";
   }
 
   /** Somejavadoc. */
-  public static void getData(String data) {}
+  public static void getData(String... data) {}
 
   /** Somejavadoc. */
   public static void getData(String data, int length) {}
