@@ -49,6 +49,7 @@ public class InputRequiredTags {
      *
      * @param value value to validate
      * @return validated value
+     * @throws IllegalArgumentException if value is negative
      */
     public int validate(int value) throws IllegalArgumentException {
         if (value < 0) {

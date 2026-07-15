@@ -39,10 +39,11 @@
     <!-- Tag conventions -->
     <module name="AtclauseOrder"/>
 
-    <!-- Required Tags --> <!-- @return -->
+    <!-- Required Tags --> <!-- @return --> <!-- @throws -->
     <module name="JavadocMethod">
       <property name="allowedAnnotations" value=""/>
       <property name="allowInlineReturn" value="true"/>
+      <property name="validateThrows" value="true"/>
     </module>
 
     <!-- Documenting default constructors -->
