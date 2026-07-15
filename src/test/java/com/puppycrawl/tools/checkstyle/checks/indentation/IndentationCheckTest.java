@@ -1320,6 +1320,111 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNewKeywordWithTab() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, getPath("InputIndentationNewWithTab.java"), expected);
+    }
+
+    @Test
+    public void testNewBlockWithoutAssignment() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "object def", 8, "12, 16"),
+            "17:9: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "method def modifier", 8, "12, 16"),
+            "19:13: " + getCheckMessage(MSG_ERROR_MULTI, "if", 12, "16, 20"),
+            "20:17: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "if", 16, "20, 24"),
+            "21:13: " + getCheckMessage(MSG_ERROR_MULTI, "if rcurly", 12, "16, 20"),
+            "22:9: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "method def rcurly", 8, "12, 16"),
+        };
+        verifyWarns(checkConfig,
+                getPath("InputIndentationNewBlockWithoutAssignment.java"), expected);
+    }
+
+    @Test
+    public void testNewKeywordWithTabRegression() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("basicOffset", "8");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "8");
+        final String[] expected = {
+            "16:33: " + getCheckMessage(MSG_ERROR, "new", 32, 36),
+            "27:33: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "method def modifier", 32, "20, 24, 28"),
+            "29:41: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "method def", 40, "28, 32, 36"),
+            "30:33: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "method def rcurly", 32, "20, 24, 28"),
+            "31:25: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "object def rcurly", 24, "12, 16, 20"),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationNewWithTabRegression.java"), expected);
+    }
+
+    @Test
+    public void testNewKeywordWithTabSpringRegression() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("basicOffset", "8");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "8");
+        final String[] expected = {
+            "16:33: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "method def modifier", 32, "20, 24, 28"),
+            "19:33: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "method def rcurly", 32, "20, 24, 28"),
+            "20:33: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "method def modifier", 32, "20, 24, 28"),
+            "23:33: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "method def rcurly", 32, "20, 24, 28"),
+            "24:33: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "method def modifier", 32, "20, 24, 28"),
+            "27:33: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "method def rcurly", 32, "20, 24, 28"),
+            "28:33: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "method def modifier", 32, "20, 24, 28"),
+            "30:41: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "method def", 40, "28, 32, 36"),
+            "31:33: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "method def rcurly", 32, "20, 24, 28"),
+            "32:25: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "object def rcurly", 24, "12, 16, 20"),
+        };
+        verifyWarns(checkConfig,
+                getPath("InputIndentationNewWithTabSpring.java"), expected);
+    }
+
+    @Test
+    public void testNewKeywordWithTabStrict() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, getPath("InputIndentationNewWithTabStrict.java"), expected);
+    }
+
+    @Test
     public void testNewKeywordChildren() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
