@@ -734,8 +734,30 @@
                     @throws
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/javadocmethod.html#JavadocMethod">
+                    JavadocMethod</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
+                  config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Cannot cover the guideline that <code>Error</code> should not be documented,
+                    as Checkstyle does not have a Check for this yet. See
+                    <a href="https://github.com/checkstyle/checkstyle/issues/20792">#20792</a>.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/tagconventions/throwstag">
+                    samples
+                  </a>
+                </td>
               </tr>
 
               <tr>
