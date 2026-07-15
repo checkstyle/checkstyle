@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck.
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NoLineWrapExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
@@ -61,5 +62,21 @@ public class NoLineWrapExamplesTest extends AbstractExamplesModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_KEY, "CLASS_DEF"),
+            "18:3: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
+            "22:3: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
+    @Test
+    public void testExample5() throws Exception {
+        verifyWithInlineConfigParser(getPath("Example5.java"), CommonUtil.EMPTY_STRING_ARRAY);
     }
 }
