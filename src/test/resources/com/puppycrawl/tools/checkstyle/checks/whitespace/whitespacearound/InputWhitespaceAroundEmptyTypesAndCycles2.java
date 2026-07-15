@@ -36,7 +36,7 @@ class InputWhitespaceAroundEmptyTypesAndCycles2
     private static final String ALLOWS_NULL_KEYS = "";
     private static final String ALLOWS_NULL_VALUES = "";
 
-    @MapFeature.Require({ALLOWS_NULL_KEYS, ALLOWS_NULL_VALUES})
+    @MapFeature2.Require({ALLOWS_NULL_KEYS, ALLOWS_NULL_VALUES})
     private void foo()
     {
         int i = 0;
@@ -54,17 +54,29 @@ class InputWhitespaceAroundEmptyTypesAndCycles2
     }
 }
 
-interface SupplierFunction2<T> extends Function<Supplier<T>, T> {} // 2 violations
+interface SupplierFunction2<T> extends Function<Supplier<T>, T> {}
+// 2 violations above:
+// ''{' is not followed by whitespace.'
+// ''}' is not preceded with whitespace.'
 
-class EmptyFoo2 {} // 2 violations
+class EmptyFoo2 {}
+// 2 violations above:
+// ''{' is not followed by whitespace.'
+// ''}' is not preceded with whitespace.'
 
-enum EmptyFooEnum2 {} // 2 violations
+enum EmptyFooEnum2 {}
+// 2 violations above:
+// ''{' is not followed by whitespace.'
+// ''}' is not preceded with whitespace.'
 
 class WithEmptyAnonymous2
 {
     private void foo()
     {
-        MyClass c = new MyClass() {}; // 2 violations
+        MyClass2 c = new MyClass2() {};
+        // 2 violations above:
+        // ''{' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
     }
 }
 
@@ -74,7 +86,11 @@ class WithEmptyAnonymous2
     ElementType.ANNOTATION_TYPE)
 @Documented
 @Deprecated
-@interface Beta2 {} // 2 violations
+@interface Beta2 {}
+// 2 violations above:
+// ''{' is not followed by whitespace.'
+// ''}' is not preceded with whitespace.'
+
 @interface MapFeature2 {
     @interface Require {
 

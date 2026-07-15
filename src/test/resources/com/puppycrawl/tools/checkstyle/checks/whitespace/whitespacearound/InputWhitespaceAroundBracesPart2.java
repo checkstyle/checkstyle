@@ -34,14 +34,25 @@ public class InputWhitespaceAroundBracesPart2 {
     }
 
     /** Empty constructor block. **/
-    public InputWhitespaceAroundBracesPart2() {} // 2 violations
+    public InputWhitespaceAroundBracesPart2() {}
+    // 2 violations above:
+    // ''{' is not followed by whitespace.'
+    // ''}' is not preceded with whitespace.'
 
     /** Empty method block. **/
-    public void emptyImplementation() {} // 2 violations
+    public void emptyImplementation() {}
+    // 2 violations above:
+    // ''{' is not followed by whitespace.'
+    // ''}' is not preceded with whitespace.'
 
     public void foo() {
         boolean flag = true;
-        if(flag){} // 4 violations
+        if(flag){}
+        // 4 violations above:
+        // ''if' is not followed by whitespace.'
+        // ''{' is not followed by whitespace.'
+        // ''{' is not preceded with whitespace.'
+        // ''}' is not preceded with whitespace.'
     }
 
 }
