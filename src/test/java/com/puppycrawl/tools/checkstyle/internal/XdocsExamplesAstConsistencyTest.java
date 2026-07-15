@@ -247,13 +247,8 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/imports/importorder/Example6",
             "checks/imports/importorder/Example7",
             "checks/imports/importorder/Example8",
-            "checks/imports/importorder/Example9",
-            // until https://github.com/checkstyle/checkstyle/issues/20711
-            "checks/javadoc/missingjavadoctype/Example2",
-            "checks/javadoc/missingjavadoctype/Example3",
-            "checks/javadoc/missingjavadoctype/Example4",
-            "checks/javadoc/missingjavadoctype/Example5"
-        );
+            "checks/imports/importorder/Example9"
+    );
 
     /**
      * Tests that examples with the same code structure maintain consistency.

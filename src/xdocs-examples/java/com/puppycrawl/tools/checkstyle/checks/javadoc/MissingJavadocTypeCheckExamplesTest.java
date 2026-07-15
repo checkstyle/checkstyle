@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableChec
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MissingJavadocTypeCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
@@ -34,17 +33,17 @@ public class MissingJavadocTypeCheckExamplesTest extends AbstractExamplesModuleT
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "30:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "14:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "18:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "20:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "22:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "32:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 
@@ -63,7 +62,8 @@ public class MissingJavadocTypeCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "37:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "25:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "27:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "39:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 

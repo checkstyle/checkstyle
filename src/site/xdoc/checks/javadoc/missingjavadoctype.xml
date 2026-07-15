@@ -109,9 +109,9 @@
 public class Example1 {
   /** Javadoc. */
   public class A {}
-  /** Javadoc. */
+
   private class B {}
-  /** Javadoc. */
+
   protected class C {}
   /** Javadoc. */
   class D {}
@@ -123,8 +123,8 @@ public class Example1 {
   private class Config {}
   /** Javadoc. */
   private class E {}
-  /** Javadoc. */
-  public interface F {}
+
+  public interface F {} // violation, 'Missing a Javadoc comment'
   /** Javadoc. */
   public interface G {}
 }
@@ -144,15 +144,16 @@ public class Example1 {
 
         <p id="Example2-code">Example2:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example2 {        // violation, 'Missing a Javadoc comment'
+/** Documented. */
+public class Example2 {
   /** Javadoc. */
   public class A {}
 
-  private class B {}    // violation, 'Missing a Javadoc comment'
+  private class B {}   // violation, 'Missing a Javadoc comment'
 
-  protected class C {}  // violation, 'Missing a Javadoc comment'
-
-  class D {}            // violation, 'Missing a Javadoc comment'
+  protected class C {} // violation, 'Missing a Javadoc comment'
+  /** Javadoc. */
+  class D {}
   /** Javadoc. */
   @SpringBootApplication
   private class App {}
@@ -182,6 +183,7 @@ public class Example2 {        // violation, 'Missing a Javadoc comment'
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-code">Example3:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/** Documented. */
 public class Example3 {
   /** Javadoc. */
   public class A {}
@@ -226,10 +228,10 @@ public class Example3 {
 public class Example4 {
   /** Javadoc. */
   public class A {}
-  /** Javadoc. */
-  private class B {}
-  /** Javadoc. */
-  protected class C {}
+
+  private class B {}   // violation, 'Missing a Javadoc comment'
+
+  protected class C {} // violation, 'Missing a Javadoc comment'
   /** Javadoc. */
   class D {}
   /** Javadoc. */
@@ -238,8 +240,8 @@ public class Example4 {
   /** Javadoc. */
   @Configuration
   private class Config {}
-
-  private class E {}    // violation, 'Missing a Javadoc comment'
+  /** Javadoc. */
+  private class E {}
 
   public interface F {} // violation, 'Missing a Javadoc comment'
   /** Javadoc. */
@@ -260,6 +262,7 @@ public class Example4 {
 </code></pre></div>
         <p id="Example5-code">Example5:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/** Documented. */
 public class Example5 {
   /** Javadoc. */
   public class A {}
