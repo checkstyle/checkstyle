@@ -143,7 +143,6 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static final Set<String> EXAMPLE_COUNT_SUPPRESSED_MODULES = Set.of(
         // until https://github.com/checkstyle/checkstyle/issues/20625
-        "checks/javadoc/javadocvariable",
         "checks/javadoc/atclauseorder",
         "checks/annotation/annotationlocation",
         "checks/annotation/suppresswarnings",
@@ -205,7 +204,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/metrics/classdataabstractioncoupling",
             "checks/modifier/classmemberimpliedmodifier",
             "checks/naming/illegalidentifiername",
-            "checks/newlineatendoffile",
             "checks/regexp/regexpmultiline",
             "checks/regexp/regexponfilename",
             "checks/sizes/methodcount",
@@ -394,6 +392,17 @@ public class XdocsExamplesAstConsistencyTest {
      * for the count to be correct while one property is demonstrated twice and
      * another isn't demonstrated at all. This test catches that gap.
      *
+     * <p>Unlike the AST-comparison tests, this test does not parse example files
+     * as Java. It only looks for an embedded {@code /*xml ... *}{@code /}
+     * configuration block, so example files are discovered by name pattern and
+     * the actual presence of that block, regardless of file extension (or lack
+     * of one). This lets a check's examples span mixed file types (e.g.
+     * {@code Example1.java}, {@code Example2.cpp}, {@code Example3.txt}) while
+     * still being counted toward property coverage - as long as each file
+     * carries a real config block. Files without one (e.g. a stray
+     * {@code .properties} companion file) are silently excluded rather than
+     * causing a false gap or a parse failure.
+     *
      * @throws IOException if an I/O error occurs
      */
     @Test
@@ -422,7 +431,7 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static void processDirectoryForPropertyCoverage(Path dir, List<String> violations) {
         try {
-            final List<Path> examples = getExampleFiles(dir);
+            final List<Path> examples = getExamplePropertyCoverageFiles(dir);
             if (examples.size() > 1) {
                 final String violation = checkPropertyCoverage(dir, examples);
                 if (violation != null) {
@@ -458,11 +467,14 @@ public class XdocsExamplesAstConsistencyTest {
 
     /**
      * Checks a single module directory: unions the properties configured across
-     * all of its AST-matching examples and compares that against the full set of
-     * documented properties for the module, reporting any that aren't covered.
+     * all of its examples (each of which is guaranteed by
+     * {@link #getExamplePropertyCoverageFiles} to carry an embedded XML config
+     * block) and compares that against the full set of documented properties
+     * for the module, reporting any that aren't covered.
      *
      * @param dir the directory to check
-     * @param examples the list of pre-fetched example files
+     * @param examples the list of pre-fetched example files, each known to
+     *                 contain an embedded XML config block
      * @return a violation message, or null if every property is covered / not applicable
      * @throws IOException if an I/O error occurs
      */
@@ -482,15 +494,8 @@ public class XdocsExamplesAstConsistencyTest {
                 if (!documentedProperties.isEmpty()) {
                     final String xmlModuleName = stripCheckSuffix(moduleName);
 
-                    final List<Path> candidateExamples = examples.stream()
-                        .filter(example -> {
-                            return !isExampleUnparseable(
-                                relativePath, example.getFileName().toString());
-                        })
-                        .toList();
-
                     final Set<String> configuredProperties = new HashSet<>();
-                    for (Path example : candidateExamples) {
+                    for (Path example : examples) {
                         configuredProperties.addAll(
                             extractConfiguredPropertyNames(example, xmlModuleName));
                     }
@@ -1067,6 +1072,56 @@ public class XdocsExamplesAstConsistencyTest {
                     .toList();
         }
         return examples;
+    }
+
+    /**
+     * Gets all Example* files from a directory that contain an embedded
+     * {@code /*xml ... *}{@code /} configuration block, regardless of file
+     * extension (or the lack of one).
+     *
+     * <p>Used only for property-coverage checking ({@link #testEveryPropertyHasAnExample}),
+     * which inspects that embedded block via plain text/DOM extraction rather
+     * than parsing the file as Java. This lets a check's examples span mixed
+     * file types (e.g. {@code Example1.java}, {@code Example2.cpp},
+     * {@code Example3.txt}) while still contributing to property coverage.
+     * Files that match the {@code Example<N>} naming pattern but don't actually
+     * carry a config block (e.g. a stray {@code .properties} companion file)
+     * are excluded, since they have nothing to contribute and aren't reliably
+     * identifiable by extension alone.
+     *
+     * @param dir the directory to search
+     * @return list of example file paths containing an XML config block
+     * @throws IOException if an I/O error occurs
+     */
+    private static List<Path> getExamplePropertyCoverageFiles(Path dir) throws IOException {
+        final List<Path> examples;
+        try (Stream<Path> pathStream = Files.list(dir)) {
+            examples = pathStream
+                    .filter(Files::isRegularFile)
+                    .filter(path -> path.getFileName().toString().matches("Example\\d+(\\..+)?"))
+                    .filter(XdocsExamplesAstConsistencyTest::hasXmlConfigBlock)
+                    .sorted(Comparator.comparing(Path::toString))
+                    .toList();
+        }
+        return examples;
+    }
+
+    /**
+     * Checks whether a file contains an embedded {@code /*xml ... *}{@code /}
+     * configuration block.
+     *
+     * @param file the file to check
+     * @return true if an XML config block is present
+     */
+    private static boolean hasXmlConfigBlock(Path file) {
+        final boolean result;
+        try {
+            result = extractXmlConfigBlock(file) != null;
+        }
+        catch (IOException exception) {
+            throw new IllegalStateException("Failed to read file: " + file, exception);
+        }
+        return result;
     }
 
     /**
