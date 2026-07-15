@@ -25,6 +25,7 @@ env:
   CACHE_KEY: "regression-report-${{ github.sha }}-${{ github.event.comment.id }}"
   GENERATED_CONFIGS_PATH: generated_configs
   LOCAL_CONFIG_BASE_PATH: "src/main/resources"
+  OPENJDK_REPORT_HEADER: "config/openjdk-report.header"
   LOCAL_PROJECTS_FILE_PATH: "config/list-of-projects.yml"
 
 on:
@@ -771,6 +772,12 @@ jobs:
 
           CONFIG_DIR="${{ github.workspace }}/.ci-temp/config"
           EXTRA_MVN_OPTIONS="-Dcheckstyle.failsOnError=false -Dconfig.folder=${CONFIG_DIR}"
+
+          if [ -f "${{ github.workspace }}/.ci-temp/openjdk-report.header" ]; then
+            HEADER_PATH="${{ github.workspace }}/.ci-temp/openjdk-report.header"
+            EXTRA_MVN_OPTIONS="${EXTRA_MVN_OPTIONS} \
+              -Dheader-file-paths-separted-by-coma=${HEADER_PATH}"
+          fi
 
           # Run DiffTool with appropriate arguments
           if [ -f "$NEW_MODULE_CONFIG" ]; then

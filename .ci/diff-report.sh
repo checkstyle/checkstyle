@@ -157,6 +157,9 @@ process-local-repo-config-files)
   # Use PR branch config for the patch_config
   cp "$PATCH_CONFIG_LINK" .ci-temp/patch_config.xml
 
+  # Header file for openjdk25
+  cp "$OPENJDK_REPORT_HEADER" .ci-temp/openjdk-report.header
+
   # This module is added to remove parse failure messages from the report
   TW_MATCH='<module name="TreeWalker">'
   TW_MODULE1='<module name="SuppressionXpathSingleFilter">\n'
@@ -181,6 +184,9 @@ process-local-repo-config-files-for-baseline-report)
 
   # Use PR branch config
   cp "$CONFIG_LINK" .ci-temp/baseline_config.xml
+
+  # Header file for openjdk25
+  cp "$OPENJDK_REPORT_HEADER" .ci-temp/openjdk-report.header
 
   setup_config_properties .ci-temp/baseline_config.xml
 
