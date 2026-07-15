@@ -84,4 +84,15 @@ public class RegexpMultilineCheckExamplesTest extends AbstractExamplesModuleTest
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
+
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "4: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test.*string"),
+            "30: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test.*string"),
+            "39: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test.*string"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+    }
 }
