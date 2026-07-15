@@ -3,6 +3,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.illegalinstantiation;
 
 public class InputXpathIllegalInstantiationInterface {
+
     interface Inner {
         default void test() {
             Boolean x = new Boolean(true);
@@ -10,4 +11,5 @@ public class InputXpathIllegalInstantiationInterface {
             String s = new String(); // warn
         }
     }
+
 }

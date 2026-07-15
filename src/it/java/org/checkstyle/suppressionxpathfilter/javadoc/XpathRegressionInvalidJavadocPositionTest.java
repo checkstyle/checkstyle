@@ -187,4 +187,5 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

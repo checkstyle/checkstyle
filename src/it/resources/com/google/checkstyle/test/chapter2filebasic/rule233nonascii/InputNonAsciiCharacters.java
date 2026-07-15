@@ -43,4 +43,5 @@ public class InputNonAsciiCharacters {
     String allCharactersEscaped = "\u03bc\u03bc";
     // violation above 'Unicode escape(s) usage should be avoided.'
   }
+
 }

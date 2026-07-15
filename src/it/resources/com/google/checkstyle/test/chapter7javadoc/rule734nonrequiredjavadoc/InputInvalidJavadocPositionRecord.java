@@ -10,6 +10,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule734nonrequiredjavadoc;
  *
  */
 public record InputInvalidJavadocPositionRecord(String containerPath, String... options) {
+
   /** Odd javadoc */ // violation 'Javadoc comment is placed in the wrong location.'
 
   /**
@@ -58,6 +59,7 @@ public record InputInvalidJavadocPositionRecord(String containerPath, String... 
       return false;
     }
   }
+
 }
 
 // violation below 'Javadoc comment is placed in the wrong location.'
@@ -68,11 +70,13 @@ public record InputInvalidJavadocPositionRecord(String containerPath, String... 
  * @param text the text
  */
 record MyRecord(String text) {
+
   // violation above 'Top-level class MyRecord has to reside in its own source file'
 
   /** Some javadoc.*/
   MyRecord {}
   /** Invalid comment. */ // violation 'Javadoc comment is placed in the wrong location.'
+
 }
 
 /** Some javadoc. */ // violation 'Javadoc comment is placed in the wrong location.'
@@ -94,4 +98,5 @@ record Mapping(String from) { // violation 'Top-level class Mapping has to resid
     /** Some javadoc. */
     // violation above 'Javadoc comment is placed in the wrong location.'
   }
+
 }

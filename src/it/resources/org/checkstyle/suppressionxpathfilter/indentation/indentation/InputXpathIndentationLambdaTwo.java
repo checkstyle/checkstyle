@@ -1,10 +1,13 @@
 package org.checkstyle.suppressionxpathfilter.indentation.indentation;
 
 interface MyLambdaInterface {
+
     int foo(int a, int b);
+
 };
 
 public class InputXpathIndentationLambdaTwo {
+
     void test() {
         MyLambdaInterface div = (a, b)
             -> {
@@ -14,4 +17,5 @@ public class InputXpathIndentationLambdaTwo {
               return 0; // warn
         };
     }
+
 }

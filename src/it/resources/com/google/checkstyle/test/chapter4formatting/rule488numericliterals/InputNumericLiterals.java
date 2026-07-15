@@ -1,6 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule488numericliterals;
 
 class InputNumericLiterals {
+
   /** Test. * */
   private final long ignore = 666l + 666L; // violation 'Should use uppercase 'L'.'
 
@@ -100,4 +101,5 @@ class InputNumericLiterals {
             & (88l + 78 * 4); // violation 'Should use uppercase 'L'.'
     long good = (4 + 5 * 7 ^ 66L / 7 + 890) & (88L + 78 * 4);
   }
+
 }

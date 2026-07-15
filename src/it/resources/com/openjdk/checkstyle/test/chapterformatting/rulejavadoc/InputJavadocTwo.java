@@ -15,4 +15,5 @@ public class InputJavadocTwo {
 
     /** This comment is OK because it is on the single-line. */
     private int field3;
+
 }

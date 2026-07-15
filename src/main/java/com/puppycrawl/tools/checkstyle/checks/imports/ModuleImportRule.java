@@ -58,4 +58,5 @@ class ModuleImportRule extends AbstractImportRule {
         }
         return calculateResult(moduleMatch);
     }
+
 }

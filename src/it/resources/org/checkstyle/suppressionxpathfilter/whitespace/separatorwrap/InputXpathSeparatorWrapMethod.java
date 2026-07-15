@@ -3,6 +3,7 @@ package org.checkstyle.suppressionxpathfilter.whitespace.separatorwrap;
 import java.util.Arrays;
 
 public class InputXpathSeparatorWrapMethod {
+
   void method1() {
     String[] stringArray = {"foo", "bar"};
     int stringLength = stringArray
@@ -13,4 +14,5 @@ public class InputXpathSeparatorWrapMethod {
     String[] stringArray = {"foo", "bar"};
     int stringLength = stringArray.length;
   }
+
 }

@@ -84,6 +84,7 @@ public class InputFormattedSingleLineJavadocAndInvalidJavadocPosition {
   int bar6() {
     return 0;
   }
+
 }
 
 // violation below 'Javadoc comment is placed in the wrong location.'
@@ -98,6 +99,7 @@ class ExtraInputInvalidJavadocPosition {
 /** Valid javadoc. */
 /* ignore */
 class ExtraInputInvalidJavadocPosition2 {
+
   // violation above '.* ExtraInputInvalidJavadocPosition2 has to reside in its own source file.'
   // violation below 'Javadoc comment is placed in the wrong location.'
   /** Invalid javadoc. */
@@ -189,6 +191,7 @@ class ExtraInputInvalidJavadocPosition2 {
     /** Invalid javadoc. */
     int variable;
   }
+
 }
 
 // violation 2 lines below '.* has to reside in its own source file.'

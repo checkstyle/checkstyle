@@ -81,4 +81,5 @@ new IllegalArgumentException(
         + ", which creates argument of the invocation " + invocation + " cannot be removed."
         + " Override method `canRemoveExpression` to customize this behavior.");
   }
+
 }

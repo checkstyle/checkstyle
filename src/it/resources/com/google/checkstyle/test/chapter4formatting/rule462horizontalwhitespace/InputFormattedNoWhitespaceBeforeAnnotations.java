@@ -43,4 +43,5 @@ public class InputFormattedNoWhitespaceBeforeAnnotations {
   void test3(String @NonNull ... param) {}
 
   void test4(String @NonNull ... param) {}
+
 }

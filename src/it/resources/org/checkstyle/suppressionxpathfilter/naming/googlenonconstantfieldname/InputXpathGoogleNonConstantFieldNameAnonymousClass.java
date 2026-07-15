@@ -6,4 +6,5 @@ public class InputXpathGoogleNonConstantFieldNameAnonymousClass {
         int f; // warn 'Non-constant field name 'f' must start lowercase, be at least 2 chars'
         public void run() {}
     };
+
 }

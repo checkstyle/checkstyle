@@ -11,4 +11,5 @@ public class InputWildcardImportsInvalid {
     public int maxValue(int first, int second) {
         return max(first, second) + items.size();
     }
+
 }

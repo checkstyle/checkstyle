@@ -28,4 +28,5 @@ public final class InputFallThroughWithBreak {
         }
         return result;
     }
+
 }

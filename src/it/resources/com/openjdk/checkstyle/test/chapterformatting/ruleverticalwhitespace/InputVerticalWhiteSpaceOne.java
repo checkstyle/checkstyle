@@ -6,6 +6,7 @@ package com.openjdk.checkstyle.test.chapterformatting.ruleverticalwhitespace;
 // violation 2 lines above ''package' should be separated from previous line'
 import java.util.List;
 public class InputVerticalWhiteSpaceOne {
+
     // violation above ''CLASS_DEF' should be separated from previous line'
     int var1 = 10;
     List<Integer> list; // violation below ''CTOR_DEF' should be separated from previous line'

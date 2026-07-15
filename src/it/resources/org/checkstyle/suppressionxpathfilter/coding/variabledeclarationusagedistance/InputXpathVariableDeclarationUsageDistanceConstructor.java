@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.variabledeclarationusagedistance;
 
 public class InputXpathVariableDeclarationUsageDistanceConstructor {
+
     private int field;
 
     InputXpathVariableDeclarationUsageDistanceConstructor(int val) {
@@ -8,4 +9,5 @@ public class InputXpathVariableDeclarationUsageDistanceConstructor {
         this.field = val;
         temp = val;
     }
+
 }

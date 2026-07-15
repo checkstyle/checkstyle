@@ -117,4 +117,5 @@ public class XpathRegressionWhenShouldBeUsedTest
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

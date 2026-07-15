@@ -11,5 +11,6 @@ public class InputProgrammingPracticesVariable {
     class Temp {
         public static int cons = 10; // violation 'Public static variable must be final.'
     }
+
 }
 

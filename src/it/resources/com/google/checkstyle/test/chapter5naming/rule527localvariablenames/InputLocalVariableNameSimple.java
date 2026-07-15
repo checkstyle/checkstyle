@@ -1,6 +1,7 @@
 package com.google.checkstyle.test.chapter5naming.rule527localvariablenames;
 
 final class InputLocalVariableNameSimple {
+
   public static final int badConstant = 2;
 
   public static final int MAX_ROWS = 2;
@@ -37,4 +38,5 @@ final class InputLocalVariableNameSimple {
     int aaAa1a;
     int aaAaaAa2a1;
   }
+
 }

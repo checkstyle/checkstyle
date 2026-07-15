@@ -4,6 +4,7 @@ package com.google.checkstyle.test.chapter3filestructure.rule3421overloadsplit;
 
 /** Some javadoc. */
 public class InputOverloadsNeverSplitRecords {
+
   /** Some javadoc. */
   public record MyRecord1(int x, int y) {
     /** Some javadoc. */
@@ -110,4 +111,5 @@ public class InputOverloadsNeverSplitRecords {
   public void overloadMethod(String s, Boolean b, int i) {
     // some foo code
   }
+
 }

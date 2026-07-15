@@ -38,4 +38,5 @@ public class InputLambdaExpressionsBodyLength {
             int i = 9;
         };
     }
+
 }

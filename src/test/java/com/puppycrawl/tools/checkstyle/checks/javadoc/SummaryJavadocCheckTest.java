@@ -448,4 +448,5 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocFirstSentenceSpansHtmlTags.java"), expected);
     }
+
 }

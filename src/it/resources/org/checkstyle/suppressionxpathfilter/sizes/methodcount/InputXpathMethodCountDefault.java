@@ -1,6 +1,9 @@
 package org.checkstyle.suppressionxpathfilter.sizes.methodcount;
 
-class InputXpathMethodCountDefault { // warn
+class InputXpathMethodCountDefault {
+
+ // warn
     void foo() {}
     void foo1() {}
+
 }

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 class InputMethodParamPad {
+
   class Inner {
     void testGenerics1
     () { // violation ''(' should be on the previous line.'
@@ -36,19 +37,23 @@ class InputMethodParamPad {
           int init = 9;
         }
       };
+
 }
 
 // violation below 'Top-level class AsInput1 has to reside in its own source file.'
 class AsInput1 {
+
   int abc = 0;
   String string
       = "string";
   double pi =
           3.1415;
+
 }
 
 // violation below 'Top-level class Ternary2 has to reside in its own source file.'
 class Ternary2 {
+
   void foo() {
     boolean flag = true;
     int i2 = flag == true
@@ -60,10 +65,12 @@ class Ternary2 {
             ? 1
             : 2;
   }
+
 }
 
 // violation below 'Top-level class AssignClass3 has to reside in its own source file.'
 class AssignClass3 {
+
   void foo() {
     int i = 0;
     int j = 0;
@@ -200,4 +207,5 @@ class AssignClass3 {
     SECOND
         () {} // violation ''(' should be on the previous line.'
   }
+
 }

@@ -1,6 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulebraces;
 
 public class InputBracesDosAndDonts {
+
     int[][] matrix;
     void method() {
 
@@ -48,4 +49,5 @@ public class InputBracesDosAndDonts {
                 sum += val;
         }
     }
+
 }

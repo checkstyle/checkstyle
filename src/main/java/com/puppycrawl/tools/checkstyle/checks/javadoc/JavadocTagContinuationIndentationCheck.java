@@ -329,4 +329,5 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         }
         return isInline;
     }
+
 }

@@ -773,4 +773,5 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         }
 
     }
+
 }

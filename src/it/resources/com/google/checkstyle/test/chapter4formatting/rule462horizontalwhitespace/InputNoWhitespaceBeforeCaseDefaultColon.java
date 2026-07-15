@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 
 /** Some javadoc. */
 public class InputNoWhitespaceBeforeCaseDefaultColon {
+
   {
     switch (1) {
       case 1 : // violation '':' is preceded with whitespace.'
@@ -12,4 +13,5 @@ public class InputNoWhitespaceBeforeCaseDefaultColon {
         break;
     }
   }
+
 }

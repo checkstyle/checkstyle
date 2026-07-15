@@ -80,4 +80,5 @@ public class InputFormattedLambdaAndChildOnTheSameLine {
                       default -> throw new IllegalArgumentException(method.getName());
                     });
   }
+
 }

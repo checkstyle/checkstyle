@@ -130,4 +130,5 @@ public class InputTryCatchIfElse {
       System.out.println("Closed MyResource");
     }
   }
+
 }

@@ -4,8 +4,11 @@ public class InputXpathClassFanOutComplexityInterface {
 
 }
 
-interface BadInterface { // warn
+interface BadInterface {
+
+ // warn
     ExampleClass getExampleObject();
+
 }
 
 class ExampleClass {

@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ClassFanOutComplexityCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity";
@@ -77,4 +78,5 @@ public class ClassFanOutComplexityCheckExamplesTest
 
         verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
+
 }

@@ -750,4 +750,5 @@ public class InputDeclaredWhenNeeded {
 
     public static void append(String line) {}
   }
+
 }

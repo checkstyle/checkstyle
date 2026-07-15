@@ -50,4 +50,5 @@ record InputCorrectAtClauseOrderCheckOnRecordAndCompactCtor(int x, int y) {
       }
     }
   }
+
 }

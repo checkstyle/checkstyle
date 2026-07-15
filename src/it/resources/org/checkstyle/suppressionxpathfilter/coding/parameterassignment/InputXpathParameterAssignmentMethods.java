@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.parameterassignment;
 
 public class InputXpathParameterAssignmentMethods {
+
     int field;
     void Test1(int field) {
         int i = field;
@@ -13,4 +14,5 @@ public class InputXpathParameterAssignmentMethods {
     void Test2() {
         field = 0;
     }
+
 }

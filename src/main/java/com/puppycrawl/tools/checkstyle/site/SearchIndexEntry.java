@@ -99,4 +99,5 @@ public record SearchIndexEntry(String title, String url, String category,
         }
         return result;
     }
+
 }

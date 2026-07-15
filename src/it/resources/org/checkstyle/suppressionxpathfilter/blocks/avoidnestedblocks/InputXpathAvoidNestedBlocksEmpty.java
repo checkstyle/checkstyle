@@ -5,4 +5,5 @@ public class InputXpathAvoidNestedBlocksEmpty {
     void empty() {
         {} // warn
     }
+
 }

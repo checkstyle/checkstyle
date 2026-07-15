@@ -14,4 +14,5 @@ public record InputOverrideAlwaysUsedForRecordValid(String name, int age) {
   public int age() {
     return age;
   }
+
 }

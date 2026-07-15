@@ -22,4 +22,5 @@ public final class InputAnnotationOnTypes {
   /** Somejavadoc data. */
   @Deprecated record Point(int x) {}
   // violation above 'Annotation 'Deprecated' should be alone on line.'
+
 }

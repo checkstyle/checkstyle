@@ -18,4 +18,5 @@ public class InputFormattedSeparatorWrapMethodRef {
     };
     Arrays.sort(stringArray, String::compareToIgnoreCase);
   }
+
 }

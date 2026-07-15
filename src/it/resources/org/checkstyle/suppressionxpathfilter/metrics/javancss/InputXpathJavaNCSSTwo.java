@@ -52,10 +52,14 @@ public class InputXpathJavaNCSSTwo { // warn
     int a48 = 1;
     int a49 = 1;
     int a50 = 1;
+
 }
 
-class Test { // ok, class does not exceed the 50 lines limit.
+class Test {
+
+ // ok, class does not exceed the 50 lines limit.
     int a1 = 1;
     int a2 = 1;
     int a3 = 1;
+
 }

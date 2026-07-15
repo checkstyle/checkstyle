@@ -121,4 +121,5 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
             expectedXpathQueries);
     }
+
 }

@@ -6,7 +6,10 @@ public class InputXpathClassFanOutComplexityEnum {
 
 }
 
-enum MyEnum { // warn
+enum MyEnum {
+
+ // warn
     IN_PROGRESS, DONE, NEEDS_REVIEW;
     private Date startedOn;
+
 }

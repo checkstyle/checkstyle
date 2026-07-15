@@ -35,4 +35,5 @@ class InputFormattedCorrectRequireEmptyLineBeforeBlockTagGroup {
   public static boolean test() {
     return false;
   }
+
 }

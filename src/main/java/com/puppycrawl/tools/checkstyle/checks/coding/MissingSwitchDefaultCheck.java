@@ -179,4 +179,5 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
             return expr != null && expr.findFirstToken(TokenTypes.LITERAL_NULL) != null;
         }).isPresent();
     }
+
 }

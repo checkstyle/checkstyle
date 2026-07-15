@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter2filebasic.rule21filename;
 
 /** Test for illegal tokens. */
 public class InputFileName2 {
+
   /** Some javadoc. */
   public void defaultMethod() {
     int i = 0;
@@ -21,4 +22,5 @@ public class InputFileName2 {
     final String ref = "<a href=\"";
     final String refCase = "<A hReF=\"";
   }
+
 }

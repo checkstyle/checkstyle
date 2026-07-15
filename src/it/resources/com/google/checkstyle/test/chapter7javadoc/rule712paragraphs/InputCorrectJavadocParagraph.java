@@ -127,4 +127,5 @@ class InputCorrectJavadocParagraph {
      */
     public void foooo() {}
   }
+
 }

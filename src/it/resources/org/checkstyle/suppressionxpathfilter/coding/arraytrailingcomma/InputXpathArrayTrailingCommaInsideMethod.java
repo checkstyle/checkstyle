@@ -9,4 +9,5 @@ public class InputXpathArrayTrailingCommaInsideMethod {
                 3 // warn
         };
     }
+
 }

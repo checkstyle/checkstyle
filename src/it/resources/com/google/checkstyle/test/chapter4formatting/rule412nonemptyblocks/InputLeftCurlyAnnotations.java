@@ -7,7 +7,9 @@ import java.util.List;
 
 @TestClassAnnotation
 class InputLeftCurlyAnnotations
-  { // violation ''{' at column 3 should be on the previous line.'
+  {
+
+ // violation ''{' at column 3 should be on the previous line.'
     private static final int X = 10;
 
     @Override
@@ -33,11 +35,13 @@ class InputLeftCurlyAnnotations
       List<String> l = new ArrayList();
       return "SomeString";
     }
-  }
+
+}
 
 // violation below '.* InputLeftCurlyAnnotations2 has to reside in its own source file.'
 @TestClassAnnotation
 class InputLeftCurlyAnnotations2 {
+
   private static final int X = 10;
 
   @Override
@@ -60,6 +64,7 @@ class InputLeftCurlyAnnotations2 {
       List<String> l = new ArrayList();
       return "SomeString";
     }
+
 }
 
 // violation below 'Top-level class TestClassAnnotation has to reside in its own source file.'

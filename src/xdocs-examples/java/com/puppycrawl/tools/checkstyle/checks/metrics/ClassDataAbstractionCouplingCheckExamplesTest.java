@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class ClassDataAbstractionCouplingCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling";
@@ -222,4 +223,5 @@ public class ClassDataAbstractionCouplingCheckExamplesTest
 
         verifyWithInlineConfigParser(getPath("UseCase6.java"), expected);
     }
+
 }

@@ -10,6 +10,7 @@ import javax.swing.JCheckBox;
 
 /** Some javadoc. */
 public class InputWhitespaceAroundArrowCorrect {
+
   static {
     new JCheckBox()
         .addActionListener(
@@ -110,4 +111,5 @@ public class InputWhitespaceAroundArrowCorrect {
     /** Some javadoc. */
     public boolean get();
   }
+
 }

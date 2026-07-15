@@ -17,4 +17,5 @@ public class InputXpathAvoidNestedBlocksNotAllowedInSwitchCase {
         }
         return x + y;
     }
+
 }

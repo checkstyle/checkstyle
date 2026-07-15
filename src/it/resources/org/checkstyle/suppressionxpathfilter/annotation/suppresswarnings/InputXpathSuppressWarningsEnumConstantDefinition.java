@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.annotation.suppresswarnings;
 
 public enum InputXpathSuppressWarningsEnumConstantDefinition {
+
         @SuppressWarnings("") // warn
         FOO("FOO"),
     ;
@@ -8,4 +9,5 @@ public enum InputXpathSuppressWarningsEnumConstantDefinition {
     InputXpathSuppressWarningsEnumConstantDefinition(String foo) {
 
     }
+
 }

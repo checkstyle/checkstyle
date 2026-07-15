@@ -152,4 +152,5 @@ public final class UnnecessarySemicolonAfterTypeMemberDeclarationCheck extends A
     private static boolean isSemicolon(DetailAST ast) {
         return ast != null && ast.getType() == TokenTypes.SEMI;
     }
+
 }

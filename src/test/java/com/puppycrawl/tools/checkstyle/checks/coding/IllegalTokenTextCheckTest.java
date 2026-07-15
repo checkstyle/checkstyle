@@ -196,4 +196,5 @@ public class IllegalTokenTextCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextDefaultFormat.java"), expected);
     }
+
 }

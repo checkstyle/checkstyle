@@ -593,4 +593,5 @@ public class FinalClassCheck
             return declaredAsPrivate;
         }
     }
+
 }

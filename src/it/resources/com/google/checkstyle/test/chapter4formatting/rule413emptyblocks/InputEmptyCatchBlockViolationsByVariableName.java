@@ -4,6 +4,7 @@ import java.io.IOException;
 
 /** Some javadoc. */
 public class InputEmptyCatchBlockViolationsByVariableName {
+
   private void foo() {
     try {
       throw new RuntimeException();
@@ -56,4 +57,5 @@ public class InputEmptyCatchBlockViolationsByVariableName {
 
     } // violation 2 lines above 'Empty catch block.'
   }
+
 }

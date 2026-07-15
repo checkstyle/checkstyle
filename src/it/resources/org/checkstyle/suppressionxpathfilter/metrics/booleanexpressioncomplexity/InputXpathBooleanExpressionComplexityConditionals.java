@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.metrics.booleanexpressioncomplexity;
 
 public class InputXpathBooleanExpressionComplexityConditionals {
+
     public void methodThree() {
         boolean a = true;
         boolean b = false;
@@ -12,4 +13,5 @@ public class InputXpathBooleanExpressionComplexityConditionals {
             c = b;
         }
     }
+
 }

@@ -8,7 +8,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
 
-public interface InputXpathClassDataAbstractionCouplingInterface { // warn
+public interface InputXpathClassDataAbstractionCouplingInterface {
+
+ // warn
     default Thread create() {
         return new Thread(new Runnable() {
             @Override
@@ -29,5 +31,6 @@ public interface InputXpathClassDataAbstractionCouplingInterface { // warn
 
     BigDecimal bigDecimal = new BigDecimal("0");
     File file = new File("path");
+
 }
 

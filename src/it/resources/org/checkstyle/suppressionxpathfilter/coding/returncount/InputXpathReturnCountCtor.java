@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.returncount;
 
 public class InputXpathReturnCountCtor {
+
     InputXpathReturnCountCtor() { // warn
         int i = 1;
         switch(i) {
@@ -11,4 +12,5 @@ public class InputXpathReturnCountCtor {
         }
         return;
     }
+
 }

@@ -17,6 +17,7 @@ import javax.swing.JButton;
  * Test file for static import order.
  */
 public final class InputImportOrderInsideStaticGroups {
+
     /** Dummy constant. */
     public static final double TAU = 2 * PI;
 

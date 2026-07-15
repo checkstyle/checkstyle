@@ -12,4 +12,5 @@ public class InputXpathEmptyCatchBlockThree {
             ex.printStackTrace();
         }
     }
+
 }

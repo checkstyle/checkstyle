@@ -17,6 +17,7 @@ class InputInvalidJavadocPosition {
 /** Valid javadoc. */
 /* ignore */
 class InputInvalidJavadocPosition2 {
+
   // violation above '.* InputInvalidJavadocPosition2 has to reside in its own source file.'
 
   /** Odd javadoc */ // violation 'Javadoc comment is placed in the wrong location.'
@@ -119,4 +120,5 @@ class InputInvalidJavadocPosition2 {
     {} // violation ''}' at column 6 should be alone on a line.'
   /** Odd javadoc */
   // violation above 'Javadoc comment is placed in the wrong location.'
+
 }

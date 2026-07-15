@@ -139,4 +139,5 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

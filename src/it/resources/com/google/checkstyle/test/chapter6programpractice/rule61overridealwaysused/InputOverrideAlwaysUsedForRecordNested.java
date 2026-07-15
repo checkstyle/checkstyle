@@ -19,4 +19,5 @@ public record InputOverrideAlwaysUsedForRecordNested(String outer) {
       return inner.toLowerCase(Locale.ROOT);
     }
   }
+
 }

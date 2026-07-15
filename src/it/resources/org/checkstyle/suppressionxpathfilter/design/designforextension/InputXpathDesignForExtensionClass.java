@@ -13,9 +13,11 @@ public class InputXpathDesignForExtensionClass
     public void someMethod() {
         return;
     }
+
 }
 
 class ParentClass {
+
     public void exampleMethod() {
         String str = "test";
     }
@@ -25,8 +27,11 @@ class ParentClass {
             int y = 10;
         }
     }
+
 }
 
 interface ExampleInterface {
+
     void someMethod();
+
 }

@@ -35,4 +35,5 @@ public class InputProgrammingPracticesParameterMutation {
         local -= 2;
         return local;
     }
+
 }

@@ -120,4 +120,5 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

@@ -130,4 +130,5 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

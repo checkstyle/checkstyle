@@ -36,4 +36,5 @@ public sealed class InputFormattedModifierOrderNonSealed
   non-sealed interface Ellipse extends SquircleOne {}
 
   class Oval implements Ellipse {}
+
 }

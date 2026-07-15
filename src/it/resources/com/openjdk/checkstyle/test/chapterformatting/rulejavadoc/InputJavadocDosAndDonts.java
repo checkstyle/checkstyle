@@ -32,4 +32,5 @@ public class InputJavadocDosAndDonts {
      */
     public void styleGuideDonts2() {
     }
+
 }

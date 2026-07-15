@@ -13,6 +13,7 @@ class InputNoFinalizeExtend {
       super.finalize();
     }
   }
+
 }
 
 // negates effect of superclass finalizer
@@ -22,6 +23,7 @@ class EmptyFinalizer {
   protected void finalize() throws Throwable { // violation 'Avoid using finalizer method.'
     // empty finalize ()
   }
+
 }
 
 // fails to call superclass finalize method
@@ -35,6 +37,7 @@ class WithoutTryCatchFinalizer {
   protected void finalize() throws Throwable { // violation 'Avoid using finalizer method.'
     doStuff();
   }
+
 }
 
 // public finalizer
@@ -52,6 +55,7 @@ class InputPublicFinalizer {
       super.finalize();
     }
   }
+
 }
 
 // unless (or worse) finalizer
@@ -61,6 +65,7 @@ class InputSuperFinalizer {
   protected void finalize() throws Throwable { // violation 'Avoid using finalizer method.'
     super.finalize();
   }
+
 }
 
 // public finalizer
@@ -89,10 +94,12 @@ class InputStaticFinalizer {
       }
     }
   }
+
 }
 
 // violation below 'Top-level class WithoutFinalize has to reside in its own source file.'
 class WithoutFinalize {
+
   public void doStuff() {
     // This method do some stuff
   }
@@ -104,6 +111,7 @@ class WithoutFinalize {
   public void doFinalize() {
     // This method do some stuff
   }
+
 }
 
 // violation below 'Top-level class WithoutMethods has to reside in its own source file.'
@@ -139,9 +147,12 @@ class WithAnonymousClass {
   interface Ball {
     void hit();
   }
+
 }
 
 // violation below 'Top-level class WithFinalizer has to reside in its own source file.'
 interface WithFinalizer {
+
   void finalize(); // violation 'Avoid using finalizer method.'
+
 }

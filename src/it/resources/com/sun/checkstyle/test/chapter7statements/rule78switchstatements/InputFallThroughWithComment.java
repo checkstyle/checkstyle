@@ -28,4 +28,5 @@ public final class InputFallThroughWithComment {
         }
         return result;
     }
+
 }

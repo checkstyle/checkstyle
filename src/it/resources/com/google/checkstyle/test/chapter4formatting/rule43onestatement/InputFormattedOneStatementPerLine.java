@@ -217,4 +217,5 @@ public class InputFormattedOneStatementPerLine {
       var2++;
     }
   }
+
 }

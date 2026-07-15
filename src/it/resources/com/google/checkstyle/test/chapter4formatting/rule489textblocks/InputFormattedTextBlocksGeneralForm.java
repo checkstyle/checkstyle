@@ -87,4 +87,5 @@ public class InputFormattedTextBlocksGeneralForm {
 
   /** Somejavadoc. */
   public static void getData(String data, int length) {}
+
 }

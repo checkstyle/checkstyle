@@ -29,9 +29,11 @@ public class InputXpathDesignForExtensionWithEnum
     public void someMethod() {
         return;
     }
+
 }
 
 enum Status {
+
     ACTIVE(1),
     INACTIVE(0),
     PENDING(2);
@@ -49,6 +51,7 @@ enum Status {
 }
 
 class Parent2Class {
+
     public void exampleMethod() {
         String str = "test";
     }
@@ -58,8 +61,11 @@ class Parent2Class {
             Status status = Status.ACTIVE;
         }
     }
+
 }
 
 interface Example2Interface {
+
     void someMethod();
+
 }

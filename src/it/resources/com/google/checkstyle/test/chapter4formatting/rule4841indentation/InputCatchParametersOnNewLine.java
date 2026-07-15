@@ -67,4 +67,5 @@ public class InputCatchParametersOnNewLine {
       ? 0 : // violation '.* incorrect indentation level 6, expected .* 8.'
       1; // violation '.* incorrect indentation level 6, expected .* 8.'
   }
+
 }

@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule711generalform;
 
 /** Some javadoc. */
 public class InputFormattedJavadocPositionOnCanonicalConstructorsWithAnnotation {
+
   @interface SizeType {
     int max();
   }
@@ -83,4 +84,5 @@ public class InputFormattedJavadocPositionOnCanonicalConstructorsWithAnnotation 
       this.to = to;
     }
   }
+
 }

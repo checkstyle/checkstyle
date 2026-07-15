@@ -161,4 +161,5 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
 
         verify(checkerConfig, getPath("InputLineLengthUnmappableCharacters.java"), expected);
     }
+
 }
