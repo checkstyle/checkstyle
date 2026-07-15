@@ -6,6 +6,12 @@ package com.doccomments.checkstyle.test.writingdoccomments.tagconventions.ordero
 public class InputAtclauseOrder {
 
     /**
+     * Creates a sample instance.
+     */
+    public InputAtclauseOrder() {
+    }
+
+    /**
      * Valid: tags are in default order.
      *
      * @param value value to process
@@ -18,23 +24,25 @@ public class InputAtclauseOrder {
         return value;
     }
 
+    // violation 5 lines below 'Block tags have to appear in the order'
     /**
      * Invalid: @return appears before @param.
      *
      * @return processed value
-     * @param value value to process // violation
+     * @param value value to process
      */
     public int invalidReturnBeforeParam(int value) {
         return value;
     }
 
+    // violation 7 lines below 'Block tags have to appear in the order'
     /**
      * Invalid: @since appears before @see.
      *
      * @param value value to process
      * @return processed value
      * @since 1.0
-     * @see Integer // violation
+     * @see Integer
      */
     public int invalidSinceBeforeSee(int value) {
         return value;
@@ -43,6 +51,7 @@ public class InputAtclauseOrder {
     /**
      * Valid: @throws appears before @exception.
      *
+     * @param value value to process
      * @throws IllegalArgumentException when value is negative
      * @exception IllegalStateException when state is invalid
      */
@@ -52,11 +61,12 @@ public class InputAtclauseOrder {
         }
     }
 
+    // violation 5 lines below 'Block tags have to appear in the order'
     /**
      * Invalid: @deprecated must come after @since.
      *
      * @deprecated use {@link #validMethodOrder(int)} instead
-     * @since 1.0 // violation
+     * @since 1.0
      */
     @Deprecated
     public void invalidDeprecatedBeforeSince() {
