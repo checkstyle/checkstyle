@@ -1,0 +1,34 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MethodCount">
+      <property name="maxTotal" value="2"/>
+      <property name="tokens" value="CLASS_DEF"/>
+    </module>
+  </module>
+</module>
+*/
+package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
+
+// xdoc section -- start
+class Example7 { // violation, 'Total number of methods is 6 (max allowed is 2)'
+
+  public void outerMethod1(int i) {}
+  public void outerMethod2() {}
+  public void outerMethod3(String str) {}
+
+  private void outerMethod4() {
+    Runnable r = (new Runnable() {
+      public void run() {} // NOT counted towards Example
+    });
+  }
+
+  private void outerMethod5(int i) {}
+  void outerMethod6(int i, int j) {}
+
+  public static class InnerExample{
+    public void innerMethod1() {} // NOT counted towards Example
+    public void innerMethod2() {} // NOT counted towards Example
+  }
+}
+// xdoc section -- end

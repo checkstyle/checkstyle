@@ -352,6 +352,42 @@ class Example6 { // ok, there are no protected methods in this class
   }
 }
 </code></pre></div><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check to use tokens:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodCount"&gt;
+      &lt;property name="maxTotal" value="2"/&gt;
+      &lt;property name="tokens" value="CLASS_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example7-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example7 { // violation, 'Total number of methods is 6 (max allowed is 2)'
+
+  public void outerMethod1(int i) {}
+  public void outerMethod2() {}
+  public void outerMethod3(String str) {}
+
+  private void outerMethod4() {
+    Runnable r = (new Runnable() {
+      public void run() {} // NOT counted towards Example
+    });
+  }
+
+  private void outerMethod5(int i) {}
+  void outerMethod6(int i, int j) {}
+
+  public static class InnerExample{
+    public void innerMethod1() {} // NOT counted towards Example
+    public void innerMethod2() {} // NOT counted towards Example
+  }
+}
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="MethodCount_Example_of_Usage">
