@@ -21,10 +21,10 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 public class Example4 {
   /** Javadoc. */
   public class A {}
-  /** Javadoc. */
-  private class B {}
-  /** Javadoc. */
-  protected class C {}
+
+  private class B {}   // violation, 'Missing a Javadoc comment'
+
+  protected class C {} // violation, 'Missing a Javadoc comment'
   /** Javadoc. */
   class D {}
   /** Javadoc. */
@@ -33,8 +33,8 @@ public class Example4 {
   /** Javadoc. */
   @Configuration
   private class Config {}
-
-  private class E {}    // violation, 'Missing a Javadoc comment'
+  /** Javadoc. */
+  private class E {}
 
   public interface F {} // violation, 'Missing a Javadoc comment'
   /** Javadoc. */
