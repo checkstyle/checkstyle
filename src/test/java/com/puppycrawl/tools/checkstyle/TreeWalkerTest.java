@@ -401,7 +401,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testRequiredTokenIsEmptyIntArray() throws Exception {
         final File file = new File(temporaryFolder, "file.java");
-        try (Writer writer = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
+        try (Writer writer = Files.newBufferedWriter(file.toPath())) {
             final String configComment =
                     """
                     /*
