@@ -10,7 +10,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
 // xdoc section -- start
-
+/** Documented. */
 public class Example5 {
   /** Javadoc. */
   public class A {}
