@@ -631,23 +631,26 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "29:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
             "30:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
             "31:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
-            "35:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
-            "36:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
-            "40:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
-            "41:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
-            "42:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
-            "46:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
-            "47:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
-            "51:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
-            "52:5: " + getCheckMessage(MSG_ERROR, "(", 4, 8),
-            "53:5: " + getCheckMessage(MSG_ERROR, "x", 4, 8),
-            "57:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
-            "58:5: " + getCheckMessage(MSG_ERROR, "method call lparen", 4, 6),
-            "63:5: " + getCheckMessage(MSG_ERROR, ".", 4, 10),
-            "64:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
-            "69:5: " + getCheckMessage(MSG_ERROR, "super", 4, 10),
-            "70:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
-            "76:11: " + getCheckMessage(MSG_ERROR_MULTI, "lambda arguments", 10, "12, 14"),
+            "39:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "40:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "44:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "45:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "46:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "50:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "51:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "55:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "56:5: " + getCheckMessage(MSG_ERROR, "(", 4, 8),
+            "57:5: " + getCheckMessage(MSG_ERROR, "x", 4, 8),
+            "61:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "62:5: " + getCheckMessage(MSG_ERROR, "method call lparen", 4, 6),
+            "67:5: " + getCheckMessage(MSG_ERROR, ".", 4, 10),
+            "68:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "73:5: " + getCheckMessage(MSG_ERROR, "super", 4, 10),
+            "74:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "80:11: " + getCheckMessage(MSG_ERROR_MULTI, "lambda arguments", 10, "12, 14"),
+            "84:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "85:5: " + getCheckMessage(MSG_ERROR, "method call lparen", 4, 6),
+            "86:5: " + getCheckMessage(MSG_ERROR, "x", 4, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationCtorCall.java"), expected);
     }
@@ -4472,6 +4475,28 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "9:15: " + getCheckMessage(MSG_CHILD_ERROR, "case", 14, 16),
             "13:16: " + getCheckMessage(MSG_CHILD_ERROR, "case", 15, 16),
             "15:16: " + getCheckMessage(MSG_CHILD_ERROR, "case", 15, 16),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testLambdaStatementMethodCall() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("arrayInitIndent", "4");
+
+        final String fileName = getPath("InputIndentationLambda9.java");
+        final String[] expected = {
+            "10:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "21:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "22:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "27:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "28:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "29:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
