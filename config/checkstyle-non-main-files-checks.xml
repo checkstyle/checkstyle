@@ -84,7 +84,7 @@
     <property name="maximum" value="9999"/>
     <property name="fileExtensions" value="java"/>
     <property name="message"
-             value="Three or more test cases are required for unit testing in Xpath "/>
+             value="At least three XPath regression tests are required, each covering a different AST path."/>
   </module>
 
   <!-- To restrict empty files -->
