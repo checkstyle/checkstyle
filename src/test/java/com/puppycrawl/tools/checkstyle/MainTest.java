@@ -1724,6 +1724,7 @@ public class MainTest {
     @Test
     public void testPrintFullTreeOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws IOException {
+        "a,b,c".replaceAll(",", ";");
         final String expected = Files.readString(Path.of(
             getPath("InputMainExpectedInputAstTreeStringPrinterJavadoc.txt")))
                 .replaceAll("\\\\r\\\\n", "\\\\n")
