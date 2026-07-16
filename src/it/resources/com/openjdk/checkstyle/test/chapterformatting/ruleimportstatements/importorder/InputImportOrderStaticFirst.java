@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleimportstatements.importorder;
 
+// violation first line 'Header mismatch*'
+
 import static java.lang.Math.PI;
 import static java.lang.Math.max;
 

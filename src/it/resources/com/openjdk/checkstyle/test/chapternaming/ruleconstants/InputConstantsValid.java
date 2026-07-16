@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapternaming.ruleconstants;
 
+// violation first line 'Header is missing*'
+
 public class InputConstantsValid {
     public final static int FIRST_CONSTANT = 10;
     public final static int FIRST_CONSTANT1 = 10;
