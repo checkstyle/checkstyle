@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck.MSG_MATCH;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck.MSG_MISMATCH;
 
 import java.io.File;
 import java.io.IOException;
@@ -109,6 +110,7 @@ public class RegexpOnFilenameCheckExamplesTest extends AbstractExamplesModuleTes
         expected.put(getPath("Example3.java"), messages);
         expected.put(getPath("Example4.java"), messages);
         expected.put(getPath("Example5.java"), messages);
+        expected.put(getPath("Example6.java"), messages);
 
         final Path path = Paths.get("src/xdocs-examples/resources/" + getPackageLocation() + "/");
 
@@ -147,4 +149,30 @@ public class RegexpOnFilenameCheckExamplesTest extends AbstractExamplesModuleTes
         }
     }
 
+    @Test
+    public void testExample6() throws Exception {
+        final Map<String, List<String>> expected = new HashMap<>();
+        final List<String> messages = List.of(
+                "1: " + getCheckMessage(MSG_MISMATCH,
+                        "[\\\\/]regexponfilename$", "^Test.*\\.xml$"));
+
+        expected.put(getPath("checkstyle.xml"), messages);
+        expected.put(getPath("TestExample3.md"), messages);
+        expected.put(getPath("Example1.java"), messages);
+        expected.put(getPath("Example2.java"), messages);
+        expected.put(getPath("Example3.java"), messages);
+        expected.put(getPath("Example4.java"), messages);
+        expected.put(getPath("Example5.java"), messages);
+        expected.put(getPath("Example6.java"), messages);
+
+        final Path path = Paths.get("src/xdocs-examples/resources/" + getPackageLocation() + "/");
+
+        final String configFilePath = getPath("Example6.java");
+        final TestInputConfiguration testInputConfiguration1 =
+                InlineConfigParser.parse(configFilePath);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration1.createConfiguration();
+
+        verify(createChecker(parsedConfig), getFilesInFolder(path), expected);
+    }
 }

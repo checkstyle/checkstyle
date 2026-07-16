@@ -206,7 +206,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/regexp/regexp",
             "checks/metrics/classdataabstractioncoupling",
             "checks/naming/illegalidentifiername",
-            "checks/regexp/regexponfilename",
             "filters/suppressionsinglefilter"
     );
 
