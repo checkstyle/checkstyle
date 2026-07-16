@@ -99,6 +99,13 @@ public class UnusedTryResourceShouldBeUnnamedCheck extends AbstractCheck {
      */
     private final Deque<Deque<TryResourceDetails>> tryResources = new ArrayDeque<>();
 
+    /**
+     * Creates a new {@code UnusedTryResourceShouldBeUnnamedCheck} instance.
+     */
+    public UnusedTryResourceShouldBeUnnamedCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

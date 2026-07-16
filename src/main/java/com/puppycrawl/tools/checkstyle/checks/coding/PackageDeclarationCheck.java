@@ -75,6 +75,13 @@ public final class PackageDeclarationCheck extends AbstractCheck {
     private boolean matchDirectoryStructure = true;
 
     /**
+     * Creates a new {@code PackageDeclarationCheck} instance.
+     */
+    public PackageDeclarationCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to control whether to check for directory and package name match.
      *
      * @param matchDirectoryStructure the new value.

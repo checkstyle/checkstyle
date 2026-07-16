@@ -68,6 +68,13 @@ public class XdocsTemplateParser extends XdocParser {
     /** A macro name. */
     private String macroName;
 
+    /**
+     * Creates a new {@code XdocsTemplateParser} instance.
+     */
+    public XdocsTemplateParser() {
+        // no code by default
+    }
+
     @Override
     public void parse(Reader source, Sink sink, String reference) throws ParseException {
         try (StringWriter contentWriter = new StringWriter()) {

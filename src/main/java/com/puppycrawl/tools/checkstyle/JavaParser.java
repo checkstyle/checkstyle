@@ -245,6 +245,12 @@ public final class JavaParser {
      * Custom error listener to provide detailed exception message.
      */
     private static final class CheckstyleErrorListener extends BaseErrorListener {
+        /**
+         * Creates a new {@code CheckstyleErrorListener} instance.
+         */
+        private CheckstyleErrorListener() {
+            // no code by default
+        }
 
         @Override
         public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol,

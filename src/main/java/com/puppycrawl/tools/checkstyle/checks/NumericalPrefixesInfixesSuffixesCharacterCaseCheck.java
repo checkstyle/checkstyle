@@ -63,6 +63,13 @@ public class NumericalPrefixesInfixesSuffixesCharacterCaseCheck extends Abstract
      */
     public static final String MSG_SUFFIX = "numerical.literal.suffix";
 
+    /**
+     * Creates a new {@code NumericalPrefixesInfixesSuffixesCharacterCaseCheck} instance.
+     */
+    public NumericalPrefixesInfixesSuffixesCharacterCaseCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
