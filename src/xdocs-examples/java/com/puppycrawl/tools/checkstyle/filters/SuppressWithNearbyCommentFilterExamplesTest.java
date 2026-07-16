@@ -70,6 +70,45 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
     }
 
     @Test
+    public void testExample4() throws Exception {
+        final String[] expectedWithFilter = {
+
+        };
+        final String[] expectedWithoutFilter = {
+            "15:27: 'int' is followed by whitespace.",
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example4.java"), expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expectedWithFilter = {
+            "15:27: 'int' is followed by whitespace.",
+        };
+        final String[] expectedWithoutFilter = {
+            "15:27: 'int' is followed by whitespace.",
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example5.java"), expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expectedWithFilter = {
+            "19:27: 'int' is followed by whitespace.",
+        };
+        final String[] expectedWithoutFilter = {
+            "19:27: 'int' is followed by whitespace.",
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example6.java"), expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
     public void testUseCase1() throws Exception {
         final String[] expectedWithFilter = {
             "26:20: Name 'lowerCaseConstant5' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
