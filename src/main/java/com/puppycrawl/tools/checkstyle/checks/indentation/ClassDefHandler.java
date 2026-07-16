@@ -153,38 +153,51 @@ public class ClassDefHandler extends BlockParentHandler {
         final DetailAST firstNonAnnotationMod = getFirstNonAnnotationModifier(firstModifier);
         final int firstModifierLine = firstModifier.getLineNo();
         final int firstNonAnnotationLine = firstNonAnnotationMod.getLineNo();
-        final boolean annotationWrapsBeforeClass = firstModifierLine != firstNonAnnotationLine;
 
+        checkLineModifiers(firstModifier, firstModifierLine);
+
+        if (firstModifierLine != firstNonAnnotationLine) {
+            checkNonFirstLineModifiers(firstNonAnnotationMod);
+        }
+    }
+
+    /**
+     * Checks modifiers on the first modifier line.
+     *
+     * @param firstModifier the first modifier
+     * @param firstModifierLine line number of the first modifier
+     */
+    private void checkLineModifiers(DetailAST firstModifier,
+            int firstModifierLine) {
+        final int firstLine = firstModifierLine;
         for (DetailAST modifier = firstModifier;
-             modifier != null;
+             modifier != null
+                     && modifier.getLineNo() == firstLine;
              modifier = modifier.getNextSibling()) {
-            final int columnNo = expandedTabsColumnNo(modifier);
-            if (shouldCheckModifier(modifier, firstModifierLine,
-                    firstNonAnnotationLine, annotationWrapsBeforeClass)
-                    && isOnStartOfLine(modifier)
-                    && !getIndent().isAcceptable(columnNo)) {
-                logError(modifier, MODIFIER, columnNo);
+            if (isOnStartOfLine(modifier)
+                    && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
+                logError(modifier, MODIFIER, expandedTabsColumnNo(modifier));
             }
         }
     }
 
     /**
-     * Determines whether a modifier should be checked for indentation violations.
+     * Checks modifiers on the line of the first non-annotation modifier,
+     * skipping correctly-indented annotations to avoid false positives
+     * when annotations wrap before the class keyword.
      *
-     * @param modifier the modifier to check
-     * @param firstModifierLine line number of the first modifier
-     * @param firstNonAnnotationLine line number of the first non-annotation modifier
-     * @param annotationWrapsBeforeClass whether an annotation wraps before the class
-     * @return {@code true} if the modifier should be checked
+     * @param firstNonAnnotationMod the first non-annotation modifier
      */
-    private boolean shouldCheckModifier(DetailAST modifier,
-            int firstModifierLine, int firstNonAnnotationLine,
-            boolean annotationWrapsBeforeClass) {
-        return !(annotationWrapsBeforeClass
-                && modifier.getType() == TokenTypes.ANNOTATION
-                && getIndent().isAcceptable(expandedTabsColumnNo(modifier)))
-            && (modifier.getLineNo() == firstModifierLine
-                || modifier.getLineNo() == firstNonAnnotationLine);
+    private void checkNonFirstLineModifiers(DetailAST firstNonAnnotationMod) {
+        for (DetailAST modifier = firstNonAnnotationMod;
+             modifier != null;
+             modifier = modifier.getNextSibling()) {
+            if (isOnStartOfLine(modifier)
+                    && !getIndent().isAcceptable(
+                            expandedTabsColumnNo(modifier))) {
+                logError(modifier, MODIFIER, expandedTabsColumnNo(modifier));
+            }
+        }
     }
 
     /**
