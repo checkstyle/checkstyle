@@ -143,8 +143,11 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
      * @return regular expression pattern given key name
      */
     private static Pattern getKeyPattern(String keyName) {
-        final String keyPatternString = "^" + SPACE_PATTERN.matcher(keyName)
-                .replaceAll(Matcher.quoteReplacement("\\\\ ")) + "[\\s:=].*$";
+        final String keyNameWithEscapedSpaces = SPACE_PATTERN.matcher(keyName)
+                .replaceAll(Matcher.quoteReplacement("\\ "));
+        final String keyPatternString = "^"
+                + Pattern.quote(keyNameWithEscapedSpaces)
+                + "[\\s:=].*$";
         return Pattern.compile(keyPatternString);
     }
 
