@@ -173,13 +173,11 @@ public class IndentationCheck extends AbstractCheck {
     private boolean forceStrictCondition;
 
     /**
-     * Getter to query strict indent level in line wrapping case. If value is true, line wrap indent
-     * have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent
-     * could be bigger on any value user would like.
+     * Returns whether line wrapping must use the configured indentation exactly.
      *
-     * @return forceStrictCondition value.
+     * @return true if strict line wrapping indentation is required
      */
-    public boolean isForceStrictCondition() {
+    /* package */ boolean isForceStrictCondition() {
         return forceStrictCondition;
     }
 
@@ -206,11 +204,11 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Getter to query how far new indentation level should be indented when on the next line.
+     * Returns the basic indentation offset.
      *
-     * @return the number of tabs or spaces to indent
+     * @return the basic indentation offset
      */
-    public int getBasicOffset() {
+    /* package */ int getBasicOffset() {
         return basicOffset;
     }
 
@@ -225,11 +223,11 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Getter to query how far a braces should be indented when on the next line.
+     * Returns the brace indentation adjustment.
      *
-     * @return the positive offset to adjust braces
+     * @return the brace indentation adjustment
      */
-    public int getBraceAdjustment() {
+    /* package */ int getBraceAdjustment() {
         return braceAdjustment;
     }
 
@@ -244,11 +242,11 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Getter to query how far a case label should be indented when on next line.
+     * Returns the case label indentation.
      *
-     * @return the case indentation level
+     * @return the case label indentation
      */
-    public int getCaseIndent() {
+    /* package */ int getCaseIndent() {
         return caseIndent;
     }
 
@@ -263,11 +261,11 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Getter to query how far a throws clause should be indented when on next line.
+     * Returns the throws clause indentation.
      *
-     * @return the throws indentation level
+     * @return the throws clause indentation
      */
-    public int getThrowsIndent() {
+    /* package */ int getThrowsIndent() {
         return throwsIndent;
     }
 
@@ -282,20 +280,20 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Getter to query how far an array initialization should be indented when on next line.
+     * Returns the array initialization indentation.
      *
-     * @return the initialization indentation level
+     * @return the array initialization indentation
      */
-    public int getArrayInitIndent() {
+    /* package */ int getArrayInitIndent() {
         return arrayInitIndent;
     }
 
     /**
-     * Getter to query how far continuation line should be indented when line-wrapping is present.
+     * Returns the line wrapping indentation.
      *
-     * @return the line-wrapping indentation level
+     * @return the line wrapping indentation
      */
-    public int getLineWrappingIndentation() {
+    /* package */ int getLineWrappingIndentation() {
         return lineWrappingIndentation;
     }
 
@@ -310,15 +308,13 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Log a violation message.
+     * Logs an indentation violation once per line.
      *
-     * @param  ast the ast for which error to be logged
-     * @param key the message that describes the violation
-     * @param args the details of the message
-     *
-     * @see java.text.MessageFormat
+     * @param ast the AST node that triggered the violation
+     * @param key the message key
+     * @param args message arguments
      */
-    public void indentationLog(DetailAST ast, String key, Object... args) {
+    /* package */ void indentationLog(DetailAST ast, String key, Object... args) {
         if (!incorrectIndentationLines.contains(ast.getLineNo())) {
             incorrectIndentationLines.add(ast.getLineNo());
             log(ast, key, args);
@@ -326,11 +322,11 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Get the width of a tab.
+     * Returns the tab width used for indentation calculations.
      *
-     * @return the width of a tab
+     * @return the tab width
      */
-    public int getIndentationTabWidth() {
+    /* package */ int getIndentationTabWidth() {
         return getTabWidth();
     }
 
@@ -379,20 +375,20 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Accessor for the line wrapping handler.
+     * Returns the line wrapping handler.
      *
      * @return the line wrapping handler
      */
-    public LineWrappingHandler getLineWrappingHandler() {
+    /* package */ LineWrappingHandler getLineWrappingHandler() {
         return lineWrappingHandler;
     }
 
     /**
-     * Accessor for the handler factory.
+     * Returns the handler factory.
      *
      * @return the handler factory
      */
-    public final HandlerFactory getHandlerFactory() {
+    /* package */ final HandlerFactory getHandlerFactory() {
         return handlerFactory;
     }
 
