@@ -158,7 +158,7 @@ process-local-repo-config-files)
   cp "$PATCH_CONFIG_LINK" .ci-temp/patch_config.xml
 
   # Header file for openjdk25
-  cp "$OPENJDK_REPORT_HEADER" .ci-temp/openjdk-report.header
+  cp "$HEADER_FILE_PATH" .ci-temp/openjdk-report.header
 
   # This module is added to remove parse failure messages from the report
   TW_MATCH='<module name="TreeWalker">'
@@ -186,7 +186,7 @@ process-local-repo-config-files-for-baseline-report)
   cp "$CONFIG_LINK" .ci-temp/baseline_config.xml
 
   # Header file for openjdk25
-  cp "$OPENJDK_REPORT_HEADER" .ci-temp/openjdk-report.header
+  cp "$HEADER_FILE_PATH" .ci-temp/openjdk-report.header
 
   setup_config_properties .ci-temp/baseline_config.xml
 

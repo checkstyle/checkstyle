@@ -594,6 +594,7 @@ jobs:
           PROJECT_NAME: ${{ needs.handle_local_config_for_baseline_report.outputs.project_name }}
           CONFIG_LINK: ${{ needs.handle_local_config_for_baseline_report.outputs.config_link }}
           PROJECTS_LINK: ${{ needs.handle_local_config_for_baseline_report.outputs.projects_link }}
+          HEADER_FILE_PATH: ${{ env.OPENJDK_REPORT_HEADER }}
         run: |
           ./.ci/diff-report.sh process-local-repo-config-files-for-baseline-report
 
