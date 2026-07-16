@@ -103,6 +103,13 @@ public class MultiFileRegexpHeaderCheck
     private String headerFiles;
 
     /**
+     * Creates a new {@code MultiFileRegexpHeaderCheck} instance.
+     */
+    public MultiFileRegexpHeaderCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify a comma-separated list of files containing the required headers.
      * If a file's header matches none, the violation references
      * the first file in this list. Users can order files to set

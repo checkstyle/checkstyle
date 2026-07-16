@@ -25,7 +25,10 @@
     <module name="NestedSwitchCheck"/>
     <module name="CauseParameterInException"/>
     <module name="NameConventionForJunit4TestClassesCheck"/>
-    <module name="EmptyPublicCtorInClassCheck"/>
+    <module name="EmptyPublicCtorInClassCheck">
+      <!-- javadoc tool raises warning if ctor is implicit; explicit ctor needed -->
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="TernaryPerExpressionCount"/>
     <module name="ReturnNullInsteadOfBoolean"/>
     <module name="ReturnBooleanFromTernary"/>

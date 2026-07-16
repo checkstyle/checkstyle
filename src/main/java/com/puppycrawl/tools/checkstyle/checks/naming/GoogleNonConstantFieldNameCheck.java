@@ -92,6 +92,13 @@ public class GoogleNonConstantFieldNameCheck extends AbstractCheck {
     private static final Pattern INVALID_UNDERSCORE_PATTERN =
             Pattern.compile("^_|_$|__|[a-zA-Z]_[a-zA-Z]|[a-zA-Z]_\\d|\\d_[a-zA-Z]");
 
+    /**
+     * Creates a new {@code GoogleNonConstantFieldNameCheck} instance.
+     */
+    public GoogleNonConstantFieldNameCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

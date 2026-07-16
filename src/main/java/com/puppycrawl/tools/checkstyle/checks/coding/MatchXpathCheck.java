@@ -76,6 +76,13 @@ public class MatchXpathCheck extends AbstractCheck {
     private XPathExpression xpathExpression;
 
     /**
+     * Creates a new {@code MatchXpathCheck} instance.
+     */
+    public MatchXpathCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify Xpath query.
      *
      * @param query Xpath query.

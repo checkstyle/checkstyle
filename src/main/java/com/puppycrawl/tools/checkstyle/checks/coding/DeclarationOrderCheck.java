@@ -130,6 +130,13 @@ public class DeclarationOrderCheck extends AbstractCheck {
     /** Control whether to ignore modifiers (fields, ...). */
     private boolean ignoreModifiers;
 
+    /**
+     * Creates a new {@code DeclarationOrderCheck} instance.
+     */
+    public DeclarationOrderCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -384,6 +391,12 @@ public class DeclarationOrderCheck extends AbstractCheck {
         /** The sub-state the check is in. */
         private Scope declarationAccess = Scope.PUBLIC;
 
+        /**
+         * Creates a new {@code ScopeState} instance.
+         */
+        private ScopeState() {
+            // no code by default
+        }
     }
 
 }

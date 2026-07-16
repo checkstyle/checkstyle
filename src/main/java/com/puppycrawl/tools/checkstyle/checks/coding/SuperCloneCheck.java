@@ -38,6 +38,13 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 @StatelessCheck
 public class SuperCloneCheck extends AbstractSuperCheck {
 
+    /**
+     * Creates a new {@code SuperCloneCheck} instance.
+     */
+    public SuperCloneCheck() {
+        // no code by default
+    }
+
     @Override
     protected String getMethodName() {
         return "clone";
