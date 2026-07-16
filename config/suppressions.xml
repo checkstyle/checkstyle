@@ -13,6 +13,7 @@
   <suppress id="lineLengthXml" files="releasenotes_old_1\-0_5\-9\.xml"/>
   <suppress id="lineLengthXml" files="[\\/]meta[\\/]"/>
 
+  <suppress checks="FileLength" files="typebodypadding[\\/]Example.*\\.java"/>
   <suppress checks="FileLength"
              files="TokenTypes.java|IndentationCheckTest.java|XdocsPagesTest|CheckerTest.java"
              lines="1"/>
@@ -133,6 +134,7 @@
   <suppress id="noConsecutiveLines" files="[\\/]javadocparagraph.xml"/>
   <suppress id="noConsecutiveLines" files="[\\/]parenpad.xml"/>
   <suppress id="noConsecutiveLines" files="[\\/]singlespaceseparator.xml"/>
+  <suppress id="noConsecutiveLines" files="[\\/]typebodypadding.xml"/>
 
   <!-- until #19146 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocTypeCheck.java"/>
@@ -190,5 +192,8 @@
   <suppress checks="MatchXpath"
             id="MatchXpathForbidTryCatchFail"
             files=".*[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/](?!utils|xpath|checks[\\/]coding|checks[\\/]design|checks[\\/]modifier|checks[\\/]naming|checks[\\/]annotation|checks[\\/]indentation|checks[\\/]metrics|checks[\\/]whitespace|checks[\\/]javadoc|checks[\\/]NewlineAtEndOfFileCheckTest|checks[\\/]SuppressWarningsHolderTest|checks[\\/]UncommentedMainCheckTest|CheckerTest|ConfigurationLoaderTest|DetailNodeTreeStringPrinterTest|JavadocPropertiesGeneratorTest|MainTest|PackageNamesLoaderTest|SarifLoggerTest|SuppressionsStringPrinterTest|ThreadModeSettingsTest|TreeWalkerTest).*"/>
+
+  <!-- Remove suppression once all violations are fixed, will do open an issue for it -->
+  <suppress checks="TypeBodyPadding" files=".*"/>
 
 </suppressions>
