@@ -143,6 +143,12 @@ public class LocalizedMessage {
      * the properties files as UTF-8.
      */
     public static class Utf8Control extends Control {
+        /**
+         * Creates a new {@code Utf8Control} instance.
+         */
+        public Utf8Control() {
+            // no code by default
+        }
 
         @Override
         public ResourceBundle newBundle(String baseName, Locale locale, String format,

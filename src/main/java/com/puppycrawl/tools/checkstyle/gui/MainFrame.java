@@ -220,6 +220,13 @@ public final class MainFrame extends JFrame {
         @Serial
         private static final long serialVersionUID = 1762396148873280589L;
 
+        /**
+         * Creates a new {@code FileSelectionAction} instance.
+         */
+        private FileSelectionAction() {
+            // no code by default
+        }
+
         @Override
         public void actionPerformed(ActionEvent event) {
             final JFileChooser fileChooser = new JFileChooser(model.getLastDirectory());
@@ -244,6 +251,13 @@ public final class MainFrame extends JFrame {
         @Serial
         private static final long serialVersionUID = -890320994114628011L;
 
+        /**
+         * Creates a new {@code ReloadAction} instance.
+         */
+        private ReloadAction() {
+            // no code by default
+        }
+
         @Override
         public void actionPerformed(ActionEvent event) {
             openFile(model.getCurrentFile());
@@ -259,6 +273,13 @@ public final class MainFrame extends JFrame {
         /** A unique serial version identifier. */
         @Serial
         private static final long serialVersionUID = -890320994114628011L;
+
+        /**
+         * Creates a new {@code ExpandCollapseAction} instance.
+         */
+        private ExpandCollapseAction() {
+            // no code by default
+        }
 
         @Override
         public void actionPerformed(ActionEvent event) {
@@ -276,6 +297,13 @@ public final class MainFrame extends JFrame {
         @Serial
         private static final long serialVersionUID = -890320994114628011L;
 
+        /**
+         * Creates a new {@code FindNodeByXpathAction} instance.
+         */
+        private FindNodeByXpathAction() {
+            // no code by default
+        }
+
         @Override
         public void actionPerformed(ActionEvent event) {
             treeTable.selectNodeByXpath();
@@ -287,6 +315,13 @@ public final class MainFrame extends JFrame {
      * Filter for Java files.
      */
     private static final class JavaFileFilter extends FileFilter {
+
+        /**
+         * Creates a new {@code JavaFileFilter} instance.
+         */
+        private JavaFileFilter() {
+            // no code by default
+        }
 
         @Override
         public boolean accept(File file) {

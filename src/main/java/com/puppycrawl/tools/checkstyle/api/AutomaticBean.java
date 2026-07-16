@@ -32,6 +32,13 @@ import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 public abstract class AutomaticBean extends AbstractAutomaticBean {
 
     /**
+     * Creates a new {@code AutomaticBean} instance.
+     */
+    protected AutomaticBean() {
+        // no code by default
+    }
+
+    /**
      * Enum to specify behaviour regarding ignored modules.
      */
     public enum OutputStreamOptions {
