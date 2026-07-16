@@ -208,8 +208,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/modifier/classmemberimpliedmodifier",
             "checks/naming/illegalidentifiername",
             "checks/regexp/regexponfilename",
-            "filters/suppressionsinglefilter",
-            "filters/suppresswithnearbycommentfilter"
+            "filters/suppressionsinglefilter"
     );
 
     /**
