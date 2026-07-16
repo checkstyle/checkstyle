@@ -6851,7 +6851,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/MultilineDetector.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: matcher, text</message>
-    <lineContent>/* package */ MultilineDetector(DetectorOptions options) {</lineContent>
+    <lineContent>/* package */ MultilineDetector(DetectorOptions options,</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
