@@ -121,11 +121,10 @@ jobs:
           git fetch forked
           git checkout -b ${{ steps.get_pr_details.outputs.branch }} \
                forked/${{ steps.get_pr_details.outputs.branch }}
-          git gc
 
       - name: Tar workspace artifact
         run: |
-          tar -cf "$RUNNER_TEMP/workspace.tar" .
+          tar -cf --warning=no-file-changed "$RUNNER_TEMP/workspace.tar" .
 
       - name: Upload workspace artifact
         uses: actions/upload-artifact@v7
