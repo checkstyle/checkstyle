@@ -124,7 +124,7 @@ jobs:
 
       - name: Tar workspace artifact
         run: |
-          tar -cvf "$RUNNER_TEMP/workspace.tar" .
+          tar -cf "$RUNNER_TEMP/workspace.tar" .
 
       - name: Upload workspace artifact
         uses: actions/upload-artifact@v7
@@ -224,7 +224,7 @@ jobs:
 
       - name: Extract workspace artifact
         run: |
-          tar -xvf workspace.tar
+          tar -xf workspace.tar
           rm workspace.tar
 
       - name: Set config and projects links
@@ -261,7 +261,7 @@ jobs:
 
       - name: Extract workspace artifact
         run: |
-          tar -xvf workspace.tar
+          tar -xf workspace.tar
           rm workspace.tar
 
       - name: Find input file
@@ -331,7 +331,7 @@ jobs:
 
       - name: Tar generated config and project files
         run: |
-          tar -cvf "$RUNNER_TEMP/generated-configs.tar" "${{ env.GENERATED_CONFIGS_PATH }}"
+          tar -cf "$RUNNER_TEMP/generated-configs.tar" "${{ env.GENERATED_CONFIGS_PATH }}"
 
       - name: Upload generated config and project files
         uses: actions/upload-artifact@v7
