@@ -98,6 +98,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * - mvn plexus-component-metadata:generate-metadata - Required to find custom macros and parser
  */
 public class XdocsPagesTest {
+
     private static final Path SITE_PATH = Path.of("src/site/site.xml");
     private static final Path CHECKSTYLE_JS_PATH = Path.of(
         "src/site/resources/js/checkstyle.js");
@@ -2917,4 +2918,5 @@ public class XdocsPagesTest {
     private interface PredicateProcess {
         boolean hasFit(Path path);
     }
+
 }

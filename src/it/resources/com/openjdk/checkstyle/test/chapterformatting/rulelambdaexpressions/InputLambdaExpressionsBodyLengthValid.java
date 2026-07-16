@@ -44,4 +44,5 @@ public class InputLambdaExpressionsBodyLengthValid {
             int i = 9;
         };
     }
+
 }

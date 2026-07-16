@@ -577,4 +577,5 @@ public class RightCurlyCheck extends AbstractCheck {
             return next;
         }
     }
+
 }

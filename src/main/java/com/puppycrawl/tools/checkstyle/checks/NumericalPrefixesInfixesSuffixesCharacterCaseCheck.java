@@ -94,4 +94,5 @@ public class NumericalPrefixesInfixesSuffixesCharacterCaseCheck extends Abstract
             log(ast, MSG_SUFFIX);
         }
     }
+
 }

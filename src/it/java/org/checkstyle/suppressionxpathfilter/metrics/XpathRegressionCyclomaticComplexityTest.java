@@ -54,7 +54,7 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
         moduleConfig.addProperty("max", "0");
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(CyclomaticComplexityCheck.class,
+            "5:5: " + getCheckMessage(CyclomaticComplexityCheck.class,
                     CyclomaticComplexityCheck.MSG_KEY, 2, 0),
         };
 
@@ -114,7 +114,7 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
         moduleConfig.addProperty("max", "0");
 
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(CyclomaticComplexityCheck.class,
+            "6:9: " + getCheckMessage(CyclomaticComplexityCheck.class,
                     CyclomaticComplexityCheck.MSG_KEY, 3, 0),
         };
 

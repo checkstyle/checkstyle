@@ -619,4 +619,5 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputMissingJavadocMethodNewCasesAfterAstMigration.java"), expected);
     }
+
 }

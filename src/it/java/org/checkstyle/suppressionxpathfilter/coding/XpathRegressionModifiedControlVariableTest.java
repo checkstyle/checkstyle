@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck;
 
 public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTestSupport {
+
     private static final Class<ModifiedControlVariableCheck> CLAZZ =
             ModifiedControlVariableCheck.class;
 
@@ -49,7 +50,7 @@ public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTes
                 getPath("InputXpathModifiedControlVariableWithFor.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
         final String[] expectedViolation = {
-            "6:14: " + getCheckMessage(CLAZZ,
+            "7:14: " + getCheckMessage(CLAZZ,
                     ModifiedControlVariableCheck.MSG_KEY, "i"),
         };
 
@@ -71,7 +72,7 @@ public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTes
                 getPath("InputXpathModifiedControlVariableWithForeach.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
         final String[] expectedViolation = {
-            "7:15: " + getCheckMessage(CLAZZ,
+            "8:15: " + getCheckMessage(CLAZZ,
                         ModifiedControlVariableCheck.MSG_KEY, "s"),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -93,7 +94,7 @@ public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTes
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
         moduleConfig.addProperty("skipEnhancedForLoopVariable", "true");
         final String[] expectedViolation = {
-            "10:14: " + getCheckMessage(CLAZZ,
+            "11:14: " + getCheckMessage(CLAZZ,
                         ModifiedControlVariableCheck.MSG_KEY, "i"),
         };
 
@@ -115,7 +116,7 @@ public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTes
                 getPath("InputXpathModifiedControlVariableNestedWithFor.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
         final String[] expectedViolation = {
-            "7:19: " + getCheckMessage(CLAZZ,
+            "8:19: " + getCheckMessage(CLAZZ,
                     ModifiedControlVariableCheck.MSG_KEY, "j"),
         };
 
@@ -139,7 +140,7 @@ public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTes
                 getPath("InputXpathModifiedControlVariableNestedWithForeach.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
         final String[] expectedViolation = {
-            "8:19: " + getCheckMessage(CLAZZ,
+            "9:19: " + getCheckMessage(CLAZZ,
                     ModifiedControlVariableCheck.MSG_KEY, "s"),
         };
 
@@ -164,7 +165,7 @@ public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTes
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
         moduleConfig.addProperty("skipEnhancedForLoopVariable", "true");
         final String[] expectedViolation = {
-            "10:15: " + getCheckMessage(CLAZZ,
+            "11:15: " + getCheckMessage(CLAZZ,
                     ModifiedControlVariableCheck.MSG_KEY, "i"),
         };
 

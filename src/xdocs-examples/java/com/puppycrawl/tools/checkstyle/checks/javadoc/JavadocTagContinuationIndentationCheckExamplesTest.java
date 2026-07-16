@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class JavadocTagContinuationIndentationCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctagcontinuationindentation";
@@ -69,4 +70,5 @@ public class JavadocTagContinuationIndentationCheckExamplesTest
         };
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
 }

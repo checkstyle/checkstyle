@@ -7,4 +7,5 @@ interface InputXpathUnnecessaryNullCheckWithInstanceOfInterface {
     }
 
     boolean validate(Object obj);
+
 }

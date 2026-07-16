@@ -73,4 +73,5 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
                 getPath("InputRequireEmptyLineBeforeBlockTagGroupIncorrect.java"),
                 expected);
     }
+
 }

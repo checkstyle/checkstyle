@@ -54,7 +54,7 @@ public class XpathRegressionMethodLengthTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("max", "10");
 
         final String[] expectedViolations = {
-            "4:5: " + getCheckMessage(MethodLengthCheck.class, MSG_KEY,
+            "5:5: " + getCheckMessage(MethodLengthCheck.class, MSG_KEY,
                     11, 10, "InputXpathMethodLengthSimple"),
         };
 
@@ -141,4 +141,5 @@ public class XpathRegressionMethodLengthTest extends AbstractXpathTestSupport {
 
         runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
     }
+
 }

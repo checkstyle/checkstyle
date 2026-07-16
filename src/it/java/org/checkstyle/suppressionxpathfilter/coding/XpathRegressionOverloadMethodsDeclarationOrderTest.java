@@ -80,8 +80,8 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "30:9: " + getCheckMessage(CLAZZ,
-                    OverloadMethodsDeclarationOrderCheck.MSG_KEY, "21"),
+            "31:9: " + getCheckMessage(CLAZZ,
+                    OverloadMethodsDeclarationOrderCheck.MSG_KEY, "22"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(

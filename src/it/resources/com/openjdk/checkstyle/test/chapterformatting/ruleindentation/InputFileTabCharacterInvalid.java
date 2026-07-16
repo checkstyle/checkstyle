@@ -11,4 +11,5 @@ public class InputFileTabCharacterInvalid {
     private void method() {
         value++;
     }
+
 }

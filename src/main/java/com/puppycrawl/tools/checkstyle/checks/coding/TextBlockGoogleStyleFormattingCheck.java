@@ -219,4 +219,5 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
 
         return result;
     }
+
 }

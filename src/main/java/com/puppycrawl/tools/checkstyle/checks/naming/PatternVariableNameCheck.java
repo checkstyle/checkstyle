@@ -57,4 +57,5 @@ public class PatternVariableNameCheck extends AbstractNameCheck {
     protected final boolean mustCheckName(DetailAST ast) {
         return true;
     }
+
 }

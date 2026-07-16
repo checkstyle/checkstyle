@@ -44,4 +44,5 @@ public record TagInfo(String name, String value, LineColumn position) {
     public LineColumn getPosition() {
         return position;
     }
+
 }

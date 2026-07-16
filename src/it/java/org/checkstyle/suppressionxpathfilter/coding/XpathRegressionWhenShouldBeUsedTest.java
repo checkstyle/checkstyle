@@ -51,7 +51,7 @@ public class XpathRegressionWhenShouldBeUsedTest
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(WhenShouldBeUsedCheck.class);
         final String[] expectedViolation = {
-            "7:13: " + getCheckMessage(WhenShouldBeUsedCheck.class,
+            "8:13: " + getCheckMessage(WhenShouldBeUsedCheck.class,
                     WhenShouldBeUsedCheck.MSG_KEY),
         };
 
@@ -104,7 +104,7 @@ public class XpathRegressionWhenShouldBeUsedTest
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(WhenShouldBeUsedCheck.class);
         final String[] expectedViolation = {
-            "8:13: " + getCheckMessage(WhenShouldBeUsedCheck.class,
+            "9:13: " + getCheckMessage(WhenShouldBeUsedCheck.class,
                     WhenShouldBeUsedCheck.MSG_KEY),
         };
 
@@ -117,4 +117,5 @@ public class XpathRegressionWhenShouldBeUsedTest
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

@@ -20,6 +20,7 @@ import static org.junit.Assert.assertEquals;
  * with static imports at the bottom, all sorted alphabetically.
  */
 public final class InputImportOrderValid {
+
     /** Dummy constant. */
     public static final double TAU = 2 * PI;
 
@@ -45,4 +46,5 @@ public final class InputImportOrderValid {
         final int maximum = max(1, 2);
         assertEquals(3, 1 + 2);
     }
+
 }

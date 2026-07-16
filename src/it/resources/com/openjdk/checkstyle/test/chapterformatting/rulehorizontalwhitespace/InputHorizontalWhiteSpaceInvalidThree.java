@@ -42,4 +42,5 @@ public class InputHorizontalWhiteSpaceInvalidThree {
         // '',' is not followed by whitespace.'
         // '',' is not followed by whitespace.'
     }
+
 }

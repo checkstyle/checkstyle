@@ -93,4 +93,5 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
             .contains("12:12: mismatched input '\"\"\"' expecting ';'");
 
     }
+
 }

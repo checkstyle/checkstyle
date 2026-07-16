@@ -2,6 +2,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.patternvariableassignment;
 
 public class InputXpathPatternVariableAssignmentClass {
+
     public void foo() {
         AnonymousClass annClass = new AnonymousClass() {
             @Override
@@ -12,9 +13,12 @@ public class InputXpathPatternVariableAssignmentClass {
             }
         };
     }
+
 }
 
 class AnonymousClass {
+
     public void test(Object obj) {
     }
+
 }

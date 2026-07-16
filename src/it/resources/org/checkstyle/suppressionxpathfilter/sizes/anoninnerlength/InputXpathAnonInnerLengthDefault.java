@@ -3,6 +3,7 @@ package org.checkstyle.suppressionxpathfilter.sizes.anoninnerlength;
 import java.util.Comparator;
 
 public class InputXpathAnonInnerLengthDefault {
+
     public void test() {
         Runnable runnable = new Runnable() { // warn: inner class is 26 lines (max=20)
             @Override
@@ -31,4 +32,5 @@ public class InputXpathAnonInnerLengthDefault {
             }
         };
     }
+
 }

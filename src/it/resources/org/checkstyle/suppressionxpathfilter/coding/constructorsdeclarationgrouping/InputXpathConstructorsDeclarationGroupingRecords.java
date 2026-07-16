@@ -3,6 +3,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.constructorsdeclarationgrouping;
 
 public class InputXpathConstructorsDeclarationGroupingRecords {
+
   public record MyRecord(int x, int y) {
 
     public MyRecord(int a) {
@@ -13,4 +14,5 @@ public class InputXpathConstructorsDeclarationGroupingRecords {
 
     public MyRecord {} // warn
   }
+
 }

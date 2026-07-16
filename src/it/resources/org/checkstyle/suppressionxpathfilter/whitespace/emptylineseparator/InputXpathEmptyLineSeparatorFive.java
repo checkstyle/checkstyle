@@ -19,4 +19,5 @@ public class InputXpathEmptyLineSeparatorFive {
         }
         return 0;
     }
+
 }

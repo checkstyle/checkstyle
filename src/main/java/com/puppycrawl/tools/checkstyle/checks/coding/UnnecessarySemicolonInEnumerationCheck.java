@@ -108,4 +108,5 @@ public final class UnnecessarySemicolonInEnumerationCheck extends AbstractCheck 
         final DetailAST prev = ast.getPreviousSibling();
         return prev.getType() == TokenTypes.SEMI;
     }
+
 }

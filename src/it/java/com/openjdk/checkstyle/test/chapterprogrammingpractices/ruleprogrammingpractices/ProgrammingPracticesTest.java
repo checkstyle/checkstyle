@@ -59,4 +59,5 @@ public class ProgrammingPracticesTest extends AbstractOpenJdkModuleTestSupport {
     public void testVariable() throws Exception {
         verifyWithWholeConfig(getPath("InputProgrammingPracticesVariable.java"));
     }
+
 }

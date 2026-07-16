@@ -558,4 +558,5 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
             return result;
         }
     }
+
 }

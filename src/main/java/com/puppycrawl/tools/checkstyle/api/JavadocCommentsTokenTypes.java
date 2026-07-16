@@ -2546,4 +2546,5 @@ public final class JavadocCommentsTokenTypes {
     /** Empty private constructor of the current class. */
     private JavadocCommentsTokenTypes() {
     }
+
 }

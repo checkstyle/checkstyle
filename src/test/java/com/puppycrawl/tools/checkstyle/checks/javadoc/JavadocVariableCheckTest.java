@@ -428,4 +428,5 @@ public class JavadocVariableCheckTest
             getPath("InputJavadocVariableAboveComment.java"),
             expected);
     }
+
 }

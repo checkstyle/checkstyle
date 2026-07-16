@@ -1,6 +1,7 @@
 package com.openjdk.checkstyle.test.chapternaming.ruleconstants;
 
 public class InputConstantsInvalid {
+
     public final static int FIRST_CONsTANT1 = 10; // violation 'must match pattern'
     protected final static int SECOND_COnSTANT2 = 100; // violation 'must match pattern'
     final static int third_Constant3 = 1000; // violation 'must match pattern'

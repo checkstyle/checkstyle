@@ -81,7 +81,7 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
                 createModuleConfig(JavadocVariableCheck.class);
 
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(JavadocVariableCheck.class,
+            "7:9: " + getCheckMessage(JavadocVariableCheck.class,
                 JavadocVariableCheck.MSG_JAVADOC_MISSING),
         };
 
@@ -114,7 +114,7 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
                 createModuleConfig(JavadocVariableCheck.class);
 
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(JavadocVariableCheck.class,
+            "8:5: " + getCheckMessage(JavadocVariableCheck.class,
                 JavadocVariableCheck.MSG_JAVADOC_MISSING),
         };
 
@@ -134,4 +134,5 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

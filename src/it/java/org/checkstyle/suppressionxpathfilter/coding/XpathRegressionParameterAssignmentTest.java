@@ -53,7 +53,7 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
                 createModuleConfig(ParameterAssignmentCheck.class);
 
         final String[] expectedViolations = {
-            "9:15: " + getCheckMessage(ParameterAssignmentCheck.class, MSG_KEY, "field"),
+            "10:15: " + getCheckMessage(ParameterAssignmentCheck.class, MSG_KEY, "field"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -108,7 +108,7 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
                 createModuleConfig(ParameterAssignmentCheck.class);
 
         final String[] expectedViolations = {
-            "9:15: " + getCheckMessage(ParameterAssignmentCheck.class, MSG_KEY, "field"),
+            "10:15: " + getCheckMessage(ParameterAssignmentCheck.class, MSG_KEY, "field"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(

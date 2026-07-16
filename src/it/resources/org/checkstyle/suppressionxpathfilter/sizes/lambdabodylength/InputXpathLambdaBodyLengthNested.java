@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.sizes.lambdabodylength;
 
 public class InputXpathLambdaBodyLengthNested {
+
     void test() {
         Runnable r = () -> { // warn
             int x = 0;
@@ -16,4 +17,5 @@ public class InputXpathLambdaBodyLengthNested {
     }
 
     void method3() {}
+
 }

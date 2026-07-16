@@ -44,7 +44,7 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
                 createModuleConfig(ArrayTypeStyleCheck.class);
 
         final String[] expectedViolation = {
-            "4:19: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
+            "5:19: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -67,7 +67,7 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
                 createModuleConfig(ArrayTypeStyleCheck.class);
 
         final String[] expectedViolation = {
-            "4:19: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
+            "5:19: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -89,7 +89,7 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
                 createModuleConfig(ArrayTypeStyleCheck.class);
 
         final String[] expectedViolation = {
-            "4:28: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
+            "5:28: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(

@@ -460,4 +460,5 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilCompactCtorDefComments.java"), expected);
     }
+
 }

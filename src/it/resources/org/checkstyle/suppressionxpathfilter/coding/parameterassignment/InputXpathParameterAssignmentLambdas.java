@@ -15,4 +15,5 @@ public class InputXpathParameterAssignmentLambdas {
             c++;
         };
     }
+
 }

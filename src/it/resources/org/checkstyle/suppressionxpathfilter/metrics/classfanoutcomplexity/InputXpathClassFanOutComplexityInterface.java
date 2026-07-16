@@ -5,7 +5,9 @@ public class InputXpathClassFanOutComplexityInterface {
 }
 
 interface BadInterface { // warn
+
     ExampleClass getExampleObject();
+
 }
 
 class ExampleClass {

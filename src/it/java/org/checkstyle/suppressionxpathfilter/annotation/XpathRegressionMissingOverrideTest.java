@@ -52,7 +52,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
                 createModuleConfig(MissingOverrideCheck.class);
 
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(MissingOverrideCheck.class,
+            "8:5: " + getCheckMessage(MissingOverrideCheck.class,
                 MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
@@ -83,7 +83,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
                 createModuleConfig(MissingOverrideCheck.class);
 
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(MissingOverrideCheck.class,
+            "8:5: " + getCheckMessage(MissingOverrideCheck.class,
                 MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
@@ -117,7 +117,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
                 createModuleConfig(MissingOverrideCheck.class);
 
         final String[] expectedViolation = {
-            "8:9: " + getCheckMessage(MissingOverrideCheck.class,
+            "9:9: " + getCheckMessage(MissingOverrideCheck.class,
                 MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
@@ -154,7 +154,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
                 createModuleConfig(MissingOverrideCheck.class);
 
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(MissingOverrideCheck.class,
+            "8:5: " + getCheckMessage(MissingOverrideCheck.class,
                 MissingOverrideCheck.MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
         };
 
@@ -185,7 +185,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
                 createModuleConfig(MissingOverrideCheck.class);
 
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(MissingOverrideCheck.class,
+            "8:5: " + getCheckMessage(MissingOverrideCheck.class,
                 MissingOverrideCheck.MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
         };
 
@@ -217,7 +217,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
         moduleConfig.addProperty("javaFiveCompatibility", "true");
 
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(MissingOverrideCheck.class,
+            "8:5: " + getCheckMessage(MissingOverrideCheck.class,
                     MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
@@ -249,7 +249,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
         moduleConfig.addProperty("javaFiveCompatibility", "true");
 
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(MissingOverrideCheck.class,
+            "8:5: " + getCheckMessage(MissingOverrideCheck.class,
                     MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 

@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.unusedtryresourceshouldbeunnamed;
 
 class InputXpathUnusedTryResourceShouldBeUnnamedAnon {
+
     void test() {
       Runnable runnable = new Runnable() {
         @Override
@@ -15,4 +16,5 @@ class InputXpathUnusedTryResourceShouldBeUnnamedAnon {
     AutoCloseable lock() {
       return null;
     }
+
 }

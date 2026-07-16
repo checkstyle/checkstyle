@@ -53,7 +53,7 @@ public class XpathRegressionClassTypeParameterNameTest extends AbstractXpathTest
                 createModuleConfig(ClassTypeParameterNameCheck.class);
 
         final String[] expectedViolation = {
-            "5:20: " + getCheckMessage(ClassTypeParameterNameCheck.class,
+            "6:20: " + getCheckMessage(ClassTypeParameterNameCheck.class,
                         AbstractClassNameCheck.MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "abc", pattern),
         };
 
@@ -131,4 +131,5 @@ public class XpathRegressionClassTypeParameterNameTest extends AbstractXpathTest
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

@@ -6,4 +6,5 @@ public class InputXpathMethodTypeParameterNameInner<T>{
         <fo_ extends T> void foo() { // warn
         }
     }
+
 }

@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.unnecessarynullcheckwithinstanceof;
 
 public class InputXpathUnnecessaryNullCheckWithInstanceOfAnonymous {
+
     private final Runnable runnable = new Runnable() {
         @Override
         public void run() {
@@ -10,4 +11,5 @@ public class InputXpathUnnecessaryNullCheckWithInstanceOfAnonymous {
             }
         }
     };
+
 }

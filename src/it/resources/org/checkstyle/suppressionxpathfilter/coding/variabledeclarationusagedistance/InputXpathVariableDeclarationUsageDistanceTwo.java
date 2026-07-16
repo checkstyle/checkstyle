@@ -2,6 +2,7 @@ package org.checkstyle.suppressionxpathfilter.coding.variabledeclarationusagedis
 
 
 public class InputXpathVariableDeclarationUsageDistanceTwo {
+
     public void testMethod2() {
         int count; // warn
         int a = 3;
@@ -15,4 +16,5 @@ public class InputXpathVariableDeclarationUsageDistanceTwo {
             count = b; // DECLARATION OF VARIABLE 'count' SHOULD BE HERE (distance = 2)
         }
     }
+
 }

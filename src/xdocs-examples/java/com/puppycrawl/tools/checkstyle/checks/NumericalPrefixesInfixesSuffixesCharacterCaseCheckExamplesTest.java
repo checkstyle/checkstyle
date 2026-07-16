@@ -52,4 +52,5 @@ public class NumericalPrefixesInfixesSuffixesCharacterCaseCheckExamplesTest
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.sizes.executablestatementcount;
 
 public class InputXpathExecutableStatementCountCustomMax {
+
     public InputXpathExecutableStatementCountCustomMax() // warn
     {
         int i = 1;
@@ -11,4 +12,5 @@ public class InputXpathExecutableStatementCountCustomMax {
     }
     /** Empty constructor */
     public InputXpathExecutableStatementCountCustomMax(int i) {}
+
 }

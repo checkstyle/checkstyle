@@ -79,7 +79,7 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
         moduleConfig.addProperty("max", "1");
 
         final String[] expectedViolation = {
-            "9:5: " + getCheckMessage(RecordComponentNumberCheck.class,
+            "10:5: " + getCheckMessage(RecordComponentNumberCheck.class,
                     RecordComponentNumberCheck.MSG_KEY,
                     2, 1),
         };
@@ -107,7 +107,7 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
                 createModuleConfig(RecordComponentNumberCheck.class);
 
         final String[] expectedViolation = {
-            "10:9: " + getCheckMessage(RecordComponentNumberCheck.class,
+            "11:9: " + getCheckMessage(RecordComponentNumberCheck.class,
                     RecordComponentNumberCheck.MSG_KEY,
                     13, 8),
         };
@@ -131,4 +131,5 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

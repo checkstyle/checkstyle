@@ -87,4 +87,5 @@ public class InputDeclarationUsageDistanceAtMostThree4 {
 
         public static void setInternalDebugging(String confDebug, boolean b) {}
     }
+
 }

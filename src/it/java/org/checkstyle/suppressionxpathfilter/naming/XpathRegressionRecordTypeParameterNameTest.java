@@ -111,7 +111,7 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
         final String pattern = "^[A-Z]$";
 
         final String[] expectedViolation = {
-            "6:25: " + getCheckMessage(RecordTypeParameterNameCheck.class,
+            "7:25: " + getCheckMessage(RecordTypeParameterNameCheck.class,
                     AbstractNameCheck.MSG_INVALID_PATTERN, "abc", pattern),
         };
 
@@ -131,4 +131,5 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.textblockgooglestyleformatting;
 
 public class InputXpathTextBlockGoogleStyleFormatting {
+
     public String textFun() {
         final String simpleScript =
                """
@@ -25,4 +26,5 @@ public class InputXpathTextBlockGoogleStyleFormatting {
     }
 
     public void getData(String data) {}
+
 }

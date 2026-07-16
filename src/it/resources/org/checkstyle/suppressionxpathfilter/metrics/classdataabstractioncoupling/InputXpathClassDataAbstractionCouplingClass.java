@@ -12,6 +12,7 @@ import java.math.MathContext;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class InputXpathClassDataAbstractionCouplingClass { // warn
+
     AtomicInteger atomicInteger = new AtomicInteger();
     BigInteger bigInteger = new BigInteger("0");
     BigDecimal bigDecimal = new BigDecimal("0");
@@ -20,4 +21,5 @@ public class InputXpathClassDataAbstractionCouplingClass { // warn
     CharArrayWriter charArrayWriter = new CharArrayWriter();
     StringWriter stringWriter = new StringWriter();
     File file = new File("path");
+
 }

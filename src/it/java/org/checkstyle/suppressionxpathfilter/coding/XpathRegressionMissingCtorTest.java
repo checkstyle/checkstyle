@@ -107,7 +107,7 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
                 createModuleConfig(MissingCtorCheck.class);
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(MissingCtorCheck.class,
+            "5:5: " + getCheckMessage(MissingCtorCheck.class,
                     MissingCtorCheck.MSG_KEY),
         };
 
