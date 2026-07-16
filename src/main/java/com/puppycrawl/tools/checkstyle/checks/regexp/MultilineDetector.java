@@ -29,31 +29,16 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
  */
 public class MultilineDetector {
 
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_REGEXP_EXCEEDED = "regexp.exceeded";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_REGEXP_MINIMUM = "regexp.minimum";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_EMPTY = "regexp.empty";
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_STACKOVERFLOW = "regexp.StackOverflowError";
-
     /** The detection options to use. */
     private final DetectorOptions options;
+    /** The message key for exceeded matches. */
+    private final String exceededMessage;
+    /** The message key for minimum matches not met. */
+    private final String minimumMessage;
+    /** The message key for empty format. */
+    private final String emptyMessage;
+    /** The message key for StackOverflow error. */
+    private final String stackOverflowMessage;
     /** Tracks the number of matches. */
     private int currentMatches;
     /** The matcher. */
@@ -65,9 +50,19 @@ public class MultilineDetector {
      * Creates an instance.
      *
      * @param options the options to use.
+     * @param exceededMessage the message key for exceeded matches.
+     * @param minimumMessage the message key for minimum matches not met.
+     * @param emptyMessage the message key for empty format.
+     * @param stackOverflowMessage the message key for StackOverflow error.
      */
-    /* package */ MultilineDetector(DetectorOptions options) {
+    /* package */ MultilineDetector(DetectorOptions options,
+            String exceededMessage, String minimumMessage,
+            String emptyMessage, String stackOverflowMessage) {
         this.options = options;
+        this.exceededMessage = exceededMessage;
+        this.minimumMessage = minimumMessage;
+        this.emptyMessage = emptyMessage;
+        this.stackOverflowMessage = stackOverflowMessage;
     }
 
     /**
@@ -81,7 +76,7 @@ public class MultilineDetector {
 
         final String format = options.getFormat();
         if (format == null || format.isEmpty()) {
-            options.getReporter().log(1, MSG_EMPTY);
+            options.getReporter().log(1, emptyMessage);
         }
         else {
             matcher = options.getPattern().matcher(fileText.getFullText());
@@ -101,7 +96,8 @@ public class MultilineDetector {
                     final LineColumn start = text.lineColumn(matcher.start());
                     if (options.getMessage().isEmpty()) {
                         options.getReporter().log(start.getLine(),
-                                MSG_REGEXP_EXCEEDED, matcher.pattern().toString());
+                                exceededMessage,
+                                        matcher.pattern().toString());
                     }
                     else {
                         options.getReporter()
@@ -116,7 +112,8 @@ public class MultilineDetector {
             // ok http://blog.igorminar.com/2008/05/catching-stackoverflowerror-and-bug-in.html
             // http://programmers.stackexchange.com/questions/
             //        209099/is-it-ever-okay-to-catch-stackoverflowerror-in-java
-            options.getReporter().log(1, MSG_STACKOVERFLOW, matcher.pattern().toString());
+            options.getReporter().log(1, stackOverflowMessage,
+                        matcher.pattern().toString());
         }
     }
 
@@ -124,7 +121,7 @@ public class MultilineDetector {
     private void finish() {
         if (currentMatches < options.getMinimum()) {
             if (options.getMessage().isEmpty()) {
-                options.getReporter().log(1, MSG_REGEXP_MINIMUM,
+                options.getReporter().log(1, minimumMessage,
                         options.getMinimum(), options.getFormat());
             }
             else {
