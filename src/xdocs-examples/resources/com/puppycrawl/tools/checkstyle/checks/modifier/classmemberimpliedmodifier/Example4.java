@@ -1,8 +1,9 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="ClassMemberImpliedModifier" />
+    <module name="ClassMemberImpliedModifier">
       <property name="violateImpliedStaticOnNestedRecord" value="false"/>
+    </module>
   </module>
 </module>
 */
@@ -26,12 +27,12 @@ public final class Example4 {
   }
 
   public static record GoodRecord() {}
-  // violation below, 'Implied modifier 'static' should be explicit'
+
   public record BadRecord() {}
 
   public static record OuterRecord() {
     static record InnerRecord1(){}
-    // violation below, 'Implied modifier 'static' should be explicit'
+
     record InnerRecord2(){}
   }
 }
