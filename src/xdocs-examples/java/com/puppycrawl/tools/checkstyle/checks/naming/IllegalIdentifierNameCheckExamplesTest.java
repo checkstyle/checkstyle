@@ -46,7 +46,7 @@ public class IllegalIdentifierNameCheckExamplesTest extends AbstractExamplesModu
     @Test
     public void testExample2() throws Exception {
         final String format =
-            "(?i)^(?!(when|record|yield|var|permits|sealed|open|transitive|_)$|(.*\\$)).+$";
+                "(?i)^(?!(when|record|yield|var|permits|sealed|open|transitive|_)$|(.*\\$)).+$";
 
         final String[] expected = {
             "17:11: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
@@ -61,5 +61,17 @@ public class IllegalIdentifierNameCheckExamplesTest extends AbstractExamplesModu
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String format = "^(?!var$|\\S*\\$)\\S+$";
+
+        final String[] expected = {
+            "16:11: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "20:10: " + getCheckMessage(MSG_INVALID_PATTERN, "test$stuff", format),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 }
