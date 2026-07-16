@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 public class InputDesignForExtensionOverridableMethods {
 
     public class A {
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo1' does not have javadoc that explains how to do that safely'
         public int foo1(int a, int b) {return a + b;}
 
         public void foo2() { }
@@ -36,13 +36,13 @@ public class InputDesignForExtensionOverridableMethods {
              */
         }
 
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo8' does not have javadoc that explains how to do that safely'
         public int foo8(int a, int b) {
             // single-line comment before content
             return a + b;
         }
 
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo9' does not have javadoc that explains how to do that safely'
         public int foo9(int a, int b) {
             /*
              * block comment before content
@@ -50,7 +50,7 @@ public class InputDesignForExtensionOverridableMethods {
             return a + b;
         }
 
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo10' does not have javadoc that explains how to do that safely'
         public int foo10(int a, int b) {
             /**
              * javadoc block comment before content
@@ -58,13 +58,13 @@ public class InputDesignForExtensionOverridableMethods {
             return a + b;
         }
 
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo11' does not have javadoc that explains how to do that safely'
         public int foo11(int a, int b) {
             return a + b;
             // single-line comment after content
         }
 
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo12' does not have javadoc that explains how to do that safely'
         public int foo12(int a, int b) {
             return a + b;
             /*
@@ -72,7 +72,7 @@ public class InputDesignForExtensionOverridableMethods {
              */
         }
 
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo13' does not have javadoc that explains how to do that safely'
         public int foo13(int a, int b) {
             return a + b;
             /**
@@ -80,7 +80,7 @@ public class InputDesignForExtensionOverridableMethods {
              */
         }
 
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo14' does not have javadoc that explains how to do that safely'
         protected int foo14(int a) {return a -1;}
 
         public final int foo15(int a) {return a - 2;}
@@ -103,14 +103,14 @@ public class InputDesignForExtensionOverridableMethods {
         protected final int foo21(int a) {return a - 2;}
 
         // Single line comment
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo22' does not have javadoc that explains how to do that safely'
         public void foo22() {
             return;
         }
 
         // Single line comments
         // organized in a block
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo23' does not have javadoc that explains how to do that safely'
         public void foo23() {
             return;
         }
@@ -120,13 +120,13 @@ public class InputDesignForExtensionOverridableMethods {
         public void foo24() {}
 
         /* Block comment violation */
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo25' does not have javadoc that explains how to do that safely'
         public void foo25() {
             return;
         }
 
         // Single line comment
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo26' does not have javadoc that explains how to do that safely'
         @Deprecated
         public void foo26() {
             return;
@@ -134,7 +134,7 @@ public class InputDesignForExtensionOverridableMethods {
 
         // Single line comments
         // organized in a block
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo27' does not have javadoc that explains how to do that safely'
         @Deprecated
         public void foo27() {
             return;
@@ -147,7 +147,7 @@ public class InputDesignForExtensionOverridableMethods {
         }
 
         /* Block comment violation */
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo29' does not have javadoc that explains how to do that safely'
         @Deprecated
         public void foo29() {
             return;
@@ -170,7 +170,7 @@ public class InputDesignForExtensionOverridableMethods {
         }
 
         /* */
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo31' does not have javadoc that explains how to do that safely'
         public int foo31() {
             /** */
             return 1;
@@ -182,14 +182,14 @@ public class InputDesignForExtensionOverridableMethods {
             return 1;
         }
 
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo33' does not have javadoc that explains how to do that safely'
         @Deprecated
         /** */
         public int foo33() {
             return 1;
         }
 
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo34' does not have javadoc that explains how to do that safely'
         @Deprecated
         /* */
         public int foo34() {
@@ -212,7 +212,7 @@ public class InputDesignForExtensionOverridableMethods {
         // comment
         public void foo38() { }
 
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo39' does not have javadoc that explains how to do that safely'
         @Deprecated /** */
         public void foo39() {return; }
 
@@ -220,7 +220,7 @@ public class InputDesignForExtensionOverridableMethods {
             /** */
         }
 
-        // violation below 'Class 'A' looks like designed'
+        // violation below ''foo41' does not have javadoc that explains how to do that safely'
         void foo41() {
             return;
         }
