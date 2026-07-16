@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleliterals;
 
+// violation first line 'Header mismatch*'
+
 /**
  * Test input for literals.
  */

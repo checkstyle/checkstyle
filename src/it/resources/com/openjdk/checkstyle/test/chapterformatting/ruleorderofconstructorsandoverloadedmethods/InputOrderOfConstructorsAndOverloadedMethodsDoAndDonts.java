@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleorderofconstructorsandoverloadedmethods;
 
+// violation first line 'Header mismatch*'
+
 public class InputOrderOfConstructorsAndOverloadedMethodsDoAndDonts {
 
     class Do {
@@ -26,13 +28,13 @@ public class InputOrderOfConstructorsAndOverloadedMethodsDoAndDonts {
         }
 
         // violation 2 lines below """All overloaded methods should be placed next
-        //  to each other. Previous overloaded method located at line '20'."""
+        //  to each other. Previous overloaded method located at line '22'."""
         void logValue(double d) {
             System.out.println(d);
         }
 
         // violation 2 lines below """All overloaded methods should be placed next
-        //  to each other. Previous overloaded method located at line '24'."""
+        //  to each other. Previous overloaded method located at line '26'."""
         void setValue(double d) {
             System.out.println(d);
         }

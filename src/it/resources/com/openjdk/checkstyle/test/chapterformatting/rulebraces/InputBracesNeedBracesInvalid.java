@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulebraces;
 
+// violation first line 'Header mismatch*'
+
 public class InputBracesNeedBracesInvalid {
     String obj = new String();
     String value = new String();

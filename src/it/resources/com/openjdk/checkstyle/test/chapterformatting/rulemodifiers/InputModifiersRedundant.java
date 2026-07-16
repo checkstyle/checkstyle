@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulemodifiers;
 
+// violation first line 'Header mismatch*'
+
 public class InputModifiersRedundant {
 
     void test() {

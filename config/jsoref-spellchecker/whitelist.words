@@ -1191,6 +1191,7 @@ rulebraces
 ruleclassinterfaceandenumnames
 ruleclassstructure
 ruleconstants
+rulecopyrightnotice
 ruleformatting
 rulehorizontalwhitespace
 ruleimportstatements

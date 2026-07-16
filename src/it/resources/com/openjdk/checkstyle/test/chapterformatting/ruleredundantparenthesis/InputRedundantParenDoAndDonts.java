@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleredundantparenthesis;
 
+// violation first line 'Header is missing*'
+
 public final class InputRedundantParenDoAndDonts {
 
     public String styleGuideDo(boolean flag1, boolean flag2) {

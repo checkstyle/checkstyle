@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleclassstructure;
 
+// violation first line 'Header mismatch*'
+
 public class InputClassStructureInvalidOrder {
 
     public int b;

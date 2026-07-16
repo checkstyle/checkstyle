@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulejavadoc;
 
+// violation first line 'Header mismatch*'
+
 public class InputJavadocOne {
 
     // violation below 'Summary javadoc is missing.'
