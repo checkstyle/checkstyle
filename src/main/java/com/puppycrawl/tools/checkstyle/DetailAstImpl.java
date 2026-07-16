@@ -87,6 +87,13 @@ public final class DetailAstImpl implements DetailAST {
     private BitSet branchTokenTypes;
 
     /**
+     * Creates a new {@code DetailAstImpl} instance.
+     */
+    public DetailAstImpl() {
+        // no code by default
+    }
+
+    /**
      * Initializes this DetailAstImpl.
      *
      * @param token the token to generate this DetailAstImpl from

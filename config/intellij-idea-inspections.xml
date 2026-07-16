@@ -4889,7 +4889,8 @@
                    enabled_by_default="true"/>
   <inspection_tool class="UnnecessaryConstantArrayCreationExpression" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <inspection_tool class="UnnecessaryConstructor" enabled="true" level="ERROR"
+  <!-- javadoc tool raises warning if ctor is implicit; explicit ctor needed -->
+  <inspection_tool class="UnnecessaryConstructor" enabled="false" level="ERROR"
                    enabled_by_default="true"/>
   <inspection_tool class="UnnecessaryContinue" enabled="true" level="ERROR"
                    enabled_by_default="true"/>

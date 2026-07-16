@@ -66,6 +66,13 @@ public class EmptyBlockCheck
     private BlockOption option = BlockOption.STATEMENT;
 
     /**
+     * Creates a new {@code EmptyBlockCheck} instance.
+     */
+    public EmptyBlockCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify the policy on block contents.
      *
      * @param optionStr string to decode option from

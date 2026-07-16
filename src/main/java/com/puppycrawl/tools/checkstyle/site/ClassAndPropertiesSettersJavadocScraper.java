@@ -59,6 +59,13 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
     private final Map<String, DetailNode> setterNodes = new HashMap<>();
 
     /**
+     * Creates a new {@code ClassAndPropertiesSettersJavadocScraper} instance.
+     */
+    public ClassAndPropertiesSettersJavadocScraper() {
+        // no code by default
+    }
+
+    /**
      * Initialize the scraper. Clears static context and sets the module name.
      *
      * @param newModuleName the module name.

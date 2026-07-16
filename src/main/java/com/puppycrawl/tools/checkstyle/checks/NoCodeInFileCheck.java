@@ -57,6 +57,13 @@ public class NoCodeInFileCheck extends AbstractCheck {
     /** Line number used to log violation when no AST nodes are present in file. */
     private static final int DEFAULT_LINE_NUMBER = 1;
 
+    /**
+     * Creates a new {@code NoCodeInFileCheck} instance.
+     */
+    public NoCodeInFileCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

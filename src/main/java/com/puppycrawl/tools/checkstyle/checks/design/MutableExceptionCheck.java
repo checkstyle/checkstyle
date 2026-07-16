@@ -74,6 +74,13 @@ public final class MutableExceptionCheck extends AbstractCheck {
     private Pattern format = extendedClassNameFormat;
 
     /**
+     * Creates a new {@code MutableExceptionCheck} instance.
+     */
+    public MutableExceptionCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify pattern for extended class names.
      *
      * @param extendedClassNameFormat a {@code String} value
