@@ -65,6 +65,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
      */
     private static final Pattern SPACE_PATTERN = Pattern.compile(" ");
 
+
     /**
      * Construct the check with default values.
      */
@@ -116,11 +117,13 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
      *         file, 1 is returned
      */
     private static int getLineNumber(FileText fileText, String keyName) {
+
         final Pattern keyPattern = getKeyPattern(keyName);
         int lineNumber = 1;
         final Matcher matcher = keyPattern.matcher("");
         for (int index = 0; index < fileText.size(); index++) {
             final String line = fileText.get(index);
+            matcher.reset(line);
             matcher.reset(line);
             if (matcher.matches()) {
                 break;
@@ -143,9 +146,24 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
      * @return regular expression pattern given key name
      */
     private static Pattern getKeyPattern(String keyName) {
-        final String keyPatternString = "^" + SPACE_PATTERN.matcher(keyName)
-                .replaceAll(Matcher.quoteReplacement("\\\\ ")) + "[\\s:=].*$";
-        return Pattern.compile(keyPatternString);
+        final StringBuilder pattern = new StringBuilder("^");
+
+        for (int i = 0; i < keyName.length(); i++) {
+            final char ch = keyName.charAt(i);
+
+            if (ch == ' ') {
+                pattern.append("\\\\ ");
+            }
+            else {
+                if ("\\.[]{}()*+?^$|".indexOf(ch) != -1) {
+                    pattern.append('\\');
+                }
+                pattern.append(ch);
+            }
+        }
+
+        pattern.append("[\\s:=].*$");
+        return Pattern.compile(pattern.toString());
     }
 
     /**
