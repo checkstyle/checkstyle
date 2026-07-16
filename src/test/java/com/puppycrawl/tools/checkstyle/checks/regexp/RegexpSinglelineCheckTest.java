@@ -20,8 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector.MSG_REGEXP_EXCEEDED;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector.MSG_REGEXP_MINIMUM;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck.MSG_REGEXP_EXCEEDED;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck.MSG_REGEXP_MINIMUM;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -120,7 +120,8 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
                 .build();
 
         final SinglelineDetector detector =
-                new SinglelineDetector(detectorOptions);
+                new SinglelineDetector(detectorOptions,
+                        MSG_REGEXP_EXCEEDED, MSG_REGEXP_MINIMUM);
         final File file = new File(getPath("InputRegexpSinglelineSemantic8.java"));
 
         detector.processLines(new FileText(file, StandardCharsets.UTF_8.name()));
