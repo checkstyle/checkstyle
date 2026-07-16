@@ -141,4 +141,5 @@ public class XpathRegressionMethodLengthTest extends AbstractXpathTestSupport {
 
         runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
     }
+
 }

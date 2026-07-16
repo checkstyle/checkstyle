@@ -202,4 +202,5 @@ public class JavadocVariableCheck
 
         return CheckUtil.getAccessModifierFromModifiersToken(selectedAst);
     }
+
 }

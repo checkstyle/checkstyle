@@ -201,4 +201,5 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
                                              int asteriskColNumber) {
         return expectedColNumber - asteriskColNumber == 0;
     }
+
 }

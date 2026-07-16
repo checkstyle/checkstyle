@@ -139,4 +139,5 @@ public class RecordComponentNumberCheck extends AbstractCheck {
         return Arrays.stream(accessModifiers)
                 .anyMatch(modifier -> modifier == accessModifier);
     }
+
 }

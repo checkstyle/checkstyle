@@ -151,4 +151,5 @@ public class XpathRegressionUnusedTryResourceShouldBeUnnamedTest
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

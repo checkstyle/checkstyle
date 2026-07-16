@@ -85,4 +85,5 @@ public class Java25AstRegressionTest extends AbstractTreeTestSupport {
                 getNonCompilablePath("ExpectedFlexibleConstructorBodyWithRecord.txt"),
                 getNonCompilablePath("InputFlexibleConstructorBodyWithRecord.java"));
     }
+
 }

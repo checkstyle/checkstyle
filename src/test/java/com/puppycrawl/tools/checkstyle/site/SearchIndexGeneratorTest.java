@@ -129,4 +129,5 @@ public class SearchIndexGeneratorTest {
         }
         return result;
     }
+
 }

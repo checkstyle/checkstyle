@@ -90,4 +90,5 @@ public class BlockTagsTest extends AbstractGoogleModuleTestSupport {
     public void testNonEmptyAtclauseDescriptionSpaceSequence() throws Exception {
         verifyWithWholeConfig(getPath("InputNonEmptyAtclauseDescriptionSpaceSeq.java"));
     }
+
 }

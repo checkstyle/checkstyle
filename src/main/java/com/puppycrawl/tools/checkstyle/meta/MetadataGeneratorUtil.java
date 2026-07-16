@@ -261,4 +261,5 @@ public final class MetadataGeneratorUtil {
 
         return validFiles;
     }
+
 }

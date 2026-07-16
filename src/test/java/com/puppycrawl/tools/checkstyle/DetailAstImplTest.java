@@ -840,4 +840,5 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
             .that(node.getPreviousSibling())
             .isEqualTo(prev);
     }
+
 }

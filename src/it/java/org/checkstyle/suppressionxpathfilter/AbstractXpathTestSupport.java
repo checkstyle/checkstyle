@@ -234,4 +234,5 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
         private ViolationPosition {
         }
     }
+
 }

@@ -863,4 +863,5 @@ public class MagicNumberCheckTest
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMagicNumberCompactSourceFile.java"), expected);
     }
+
 }

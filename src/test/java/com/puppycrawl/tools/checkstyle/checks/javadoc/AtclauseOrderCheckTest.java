@@ -345,4 +345,5 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
                 getPath("InputAtclauseOrder1.java"),
                 expected);
     }
+
 }

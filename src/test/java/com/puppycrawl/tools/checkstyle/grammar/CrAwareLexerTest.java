@@ -80,4 +80,5 @@ public class CrAwareLexerTest {
                 .that(lexer.getLine())
                 .isEqualTo(2);
     }
+
 }

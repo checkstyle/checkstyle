@@ -249,4 +249,5 @@ public class ExampleMacro extends AbstractMacro {
     private static boolean isXml(String snippet) {
         return XML_PATTERN.matcher(snippet.trim()).matches();
     }
+
 }

@@ -53,4 +53,5 @@ public class NullUtilTest {
                 .hasMessageThat()
                 .contains("Misuse of notNull");
     }
+
 }

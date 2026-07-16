@@ -134,4 +134,5 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

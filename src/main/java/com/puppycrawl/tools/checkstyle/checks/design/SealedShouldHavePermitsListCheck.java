@@ -84,4 +84,5 @@ public class SealedShouldHavePermitsListCheck extends AbstractCheck {
             log(ast, MSG_KEY);
         }
     }
+
 }

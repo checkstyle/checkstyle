@@ -134,4 +134,5 @@ public class NonEmptyAtclauseDescriptionCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputNonEmptyAtclauseDescriptionThree.java"), expected);
     }
+
 }

@@ -544,4 +544,5 @@ public class PropertiesMacro extends AbstractMacro {
         sink.text(sinceVersion);
         sink.tableCell_();
     }
+
 }

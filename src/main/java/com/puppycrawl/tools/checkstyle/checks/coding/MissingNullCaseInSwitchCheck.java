@@ -177,4 +177,5 @@ public class MissingNullCaseInSwitchCheck extends AbstractCheck {
         }
         return hasStringCaseLabel;
     }
+
 }

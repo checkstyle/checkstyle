@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck;
 
 public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
+
     private final String checkName = TodoCommentCheck.class.getSimpleName();
 
     @Override
@@ -107,4 +108,5 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

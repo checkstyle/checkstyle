@@ -45,4 +45,5 @@ public class XdocsTemplateSinkFactory extends AbstractTextSinkFactory {
     public Sink createSink(Writer writer, String encoding) {
         return new XdocsTemplateSink(writer, encoding);
     }
+
 }

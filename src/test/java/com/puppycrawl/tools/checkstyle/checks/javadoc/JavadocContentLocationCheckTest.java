@@ -117,4 +117,5 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocContentLocation.java"), expected);
     }
+
 }

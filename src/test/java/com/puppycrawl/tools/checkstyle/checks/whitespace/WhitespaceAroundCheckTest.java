@@ -735,4 +735,5 @@ public class WhitespaceAroundCheckTest
                 getPath(fileName),
                 expected);
     }
+
 }

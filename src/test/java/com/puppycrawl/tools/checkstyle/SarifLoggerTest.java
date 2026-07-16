@@ -588,4 +588,5 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
             printWriter.print("stackTrace\nexample");
         }
     }
+
 }

@@ -415,4 +415,5 @@ public class AllChecksCompactSourceCoverageTest {
             .filter(property -> !COMMON_PROPERTIES.contains(property))
             .collect(Collectors.toCollection(TreeSet::new));
     }
+
 }

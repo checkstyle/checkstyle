@@ -215,4 +215,5 @@ public class XpathUtilTest {
         detailAST.setText(text);
         return detailAST;
     }
+
 }

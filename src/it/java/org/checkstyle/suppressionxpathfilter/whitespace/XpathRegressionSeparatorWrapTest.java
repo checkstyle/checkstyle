@@ -119,4 +119,5 @@ public class XpathRegressionSeparatorWrapTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

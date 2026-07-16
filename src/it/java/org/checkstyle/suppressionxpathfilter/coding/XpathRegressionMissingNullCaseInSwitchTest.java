@@ -112,4 +112,5 @@ public class XpathRegressionMissingNullCaseInSwitchTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }
