@@ -171,7 +171,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRegexMetacharacters() throws Exception {
+    public void testRegexMetaCharacters() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY, "some.key[index-with-dash]", 2),
