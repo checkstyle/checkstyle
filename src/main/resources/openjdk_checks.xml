@@ -27,8 +27,6 @@
 
 
   <module name="TreeWalker">
-    <!-- Add TreeWalker checks based on OpenJDK style guide -->
-    
   </module>
 
 </module>
