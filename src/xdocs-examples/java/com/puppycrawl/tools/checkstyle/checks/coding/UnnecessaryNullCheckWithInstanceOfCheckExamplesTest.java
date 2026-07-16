@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class UnnecessaryNullCheckWithInstanceOfCheckExamplesTest
     extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code UnnecessaryNullCheckWithInstanceOfCheckExamplesTest} instance.
+     */
+    public UnnecessaryNullCheckWithInstanceOfCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/unnecessarynullcheckwithinstanceof";

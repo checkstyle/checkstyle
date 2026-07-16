@@ -27,6 +27,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class JavadocLeadingAsteriskAlignExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code JavadocLeadingAsteriskAlignExamplesTest} instance.
+     */
+    public JavadocLeadingAsteriskAlignExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocleadingasteriskalign";

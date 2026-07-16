@@ -30,6 +30,13 @@ public class CatchParameterNameCheckExamplesTest extends AbstractExamplesModuleT
     private static final String CATCH_PARAM_NAME_PATTERN_1 = "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$";
     private static final String CATCH_PARAM_NAME_PATTERN_2 = "^[a-z][a-zA-Z0-9]+$";
 
+    /**
+     * Creates a new {@code CatchParameterNameCheckExamplesTest} instance.
+     */
+    public CatchParameterNameCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/catchparametername";

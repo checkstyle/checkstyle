@@ -30,6 +30,14 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class NumericalPrefixesInfixesSuffixesCharacterCaseCheckExamplesTest
     extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new
+     * {@code NumericalPrefixesInfixesSuffixesCharacterCaseCheckExamplesTest} instance.
+     */
+    public NumericalPrefixesInfixesSuffixesCharacterCaseCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return

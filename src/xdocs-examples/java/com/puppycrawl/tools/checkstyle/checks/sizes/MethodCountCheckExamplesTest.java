@@ -26,6 +26,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MethodCountCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code MethodCountCheckExamplesTest} instance.
+     */
+    public MethodCountCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/methodcount";

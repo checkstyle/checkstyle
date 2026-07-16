@@ -53,6 +53,13 @@ public class NoFinalizerCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "avoid.finalizer.method";
 
+    /**
+     * Creates a new {@code NoFinalizerCheck} instance.
+     */
+    public NoFinalizerCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

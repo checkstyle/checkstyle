@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class WhitespaceAroundExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code WhitespaceAroundExamplesTest} instance.
+     */
+    public WhitespaceAroundExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound";

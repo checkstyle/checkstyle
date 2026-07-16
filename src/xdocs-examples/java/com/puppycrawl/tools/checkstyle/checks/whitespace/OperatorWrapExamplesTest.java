@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class OperatorWrapExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code OperatorWrapExamplesTest} instance.
+     */
+    public OperatorWrapExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/operatorwrap";

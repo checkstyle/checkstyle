@@ -26,6 +26,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class GenericWhitespaceCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code GenericWhitespaceCheckExamplesTest} instance.
+     */
+    public GenericWhitespaceCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/genericwhitespace";

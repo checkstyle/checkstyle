@@ -26,6 +26,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class ConstructorsDeclarationGroupingCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code ConstructorsDeclarationGroupingCheckExamplesTest} instance.
+     */
+    public ConstructorsDeclarationGroupingCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/constructorsdeclarationgrouping";

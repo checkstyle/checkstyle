@@ -29,6 +29,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class FileTabCharacterExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code FileTabCharacterExamplesTest} instance.
+     */
+    public FileTabCharacterExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/filetabcharacter";

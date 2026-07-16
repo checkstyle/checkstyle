@@ -29,6 +29,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code JavadocMethodCheckExamplesTest} instance.
+     */
+    public JavadocMethodCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod";

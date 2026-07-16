@@ -35,6 +35,13 @@ public class FilterSet
     private final Set<Filter> filters = new HashSet<>();
 
     /**
+     * Creates a new {@code FilterSet} instance.
+     */
+    public FilterSet() {
+        // no code by default
+    }
+
+    /**
      * Adds a Filter to the set.
      *
      * @param filter the Filter to add.

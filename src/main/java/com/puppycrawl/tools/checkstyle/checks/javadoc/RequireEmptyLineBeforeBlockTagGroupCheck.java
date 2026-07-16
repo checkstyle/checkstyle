@@ -69,6 +69,13 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
             JavadocCommentsTokenTypes.NEWLINE);
 
     /**
+     * Creates a new {@code RequireEmptyLineBeforeBlockTagGroupCheck} instance.
+     */
+    public RequireEmptyLineBeforeBlockTagGroupCheck() {
+        // no code by default
+    }
+
+    /**
      * Returns only javadoc tags so visitJavadocToken only receives javadoc tags.
      *
      * @return only javadoc tags.

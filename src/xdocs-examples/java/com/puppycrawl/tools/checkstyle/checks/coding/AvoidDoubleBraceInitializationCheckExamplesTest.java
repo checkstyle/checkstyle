@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class AvoidDoubleBraceInitializationCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code AvoidDoubleBraceInitializationCheckExamplesTest} instance.
+     */
+    public AvoidDoubleBraceInitializationCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/avoiddoublebraceinitialization";

@@ -29,6 +29,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class VariableDeclarationUsageDistanceCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code VariableDeclarationUsageDistanceCheckExamplesTest} instance.
+     */
+    public VariableDeclarationUsageDistanceCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance";

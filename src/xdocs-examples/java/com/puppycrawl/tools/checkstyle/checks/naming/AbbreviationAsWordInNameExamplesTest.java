@@ -30,6 +30,13 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
 
     private static final int DEFAULT_EXPECTED_CAPITAL_COUNT = 4;
 
+    /**
+     * Creates a new {@code AbbreviationAsWordInNameExamplesTest} instance.
+     */
+    public AbbreviationAsWordInNameExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname";

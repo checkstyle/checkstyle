@@ -26,6 +26,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 // -@cs[AbbreviationAsWordInName] Test should be named as its main class.
 public class NPathComplexityCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code NPathComplexityCheckExamplesTest} instance.
+     */
+    public NPathComplexityCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/npathcomplexity";

@@ -134,6 +134,13 @@ public class SuppressionFilter
     private FilterSet filters = new FilterSet();
 
     /**
+     * Creates a new {@code SuppressionFilter} instance.
+     */
+    public SuppressionFilter() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify the location of the <em>suppressions XML document</em> file.
      *
      * @param fileName name of the suppressions file.

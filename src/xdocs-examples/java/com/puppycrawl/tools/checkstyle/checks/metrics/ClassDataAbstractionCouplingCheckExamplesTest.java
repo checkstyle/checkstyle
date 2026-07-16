@@ -30,6 +30,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class ClassDataAbstractionCouplingCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code ClassDataAbstractionCouplingCheckExamplesTest} instance.
+     */
+    public ClassDataAbstractionCouplingCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling";

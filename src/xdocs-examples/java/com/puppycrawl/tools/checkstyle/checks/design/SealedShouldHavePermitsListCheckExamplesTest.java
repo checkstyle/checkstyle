@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class SealedShouldHavePermitsListCheckExamplesTest extends
         AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code SealedShouldHavePermitsListCheckExamplesTest} instance.
+     */
+    public SealedShouldHavePermitsListCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/design/sealedshouldhavepermitslist";

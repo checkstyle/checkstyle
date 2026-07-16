@@ -26,6 +26,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class RequireEmptyLineBeforeBlockTagGroupCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code RequireEmptyLineBeforeBlockTagGroupCheckExamplesTest} instance.
+     */
+    public RequireEmptyLineBeforeBlockTagGroupCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/requireemptylinebeforeblocktaggroup";

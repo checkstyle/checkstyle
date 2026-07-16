@@ -28,6 +28,14 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new
+     * {@code UnnecessarySemicolonAfterTypeMemberDeclarationCheckExamplesTest} instance.
+     */
+    public UnnecessarySemicolonAfterTypeMemberDeclarationCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks"

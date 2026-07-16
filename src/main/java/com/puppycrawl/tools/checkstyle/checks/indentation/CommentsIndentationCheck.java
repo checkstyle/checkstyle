@@ -54,6 +54,13 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     public static final String MSG_KEY_BLOCK = "comments.indentation.block";
 
+    /**
+     * Creates a new {@code CommentsIndentationCheck} instance.
+     */
+    public CommentsIndentationCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

@@ -41,6 +41,13 @@ import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 
 public class RegexpOnFilenameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code RegexpOnFilenameCheckExamplesTest} instance.
+     */
+    public RegexpOnFilenameCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/regexp/regexponfilename";
