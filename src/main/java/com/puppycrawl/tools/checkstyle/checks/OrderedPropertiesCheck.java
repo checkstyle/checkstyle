@@ -212,6 +212,13 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
         private final List<Object> keyList = new ArrayList<>();
 
         /**
+         * Creates a new {@code SequencedProperties} instance.
+         */
+        private SequencedProperties() {
+            // no code by default
+        }
+
+        /**
          * Returns a copy of the keys.
          *
          * @noinspection SynchronizedMethod

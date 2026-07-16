@@ -47,6 +47,13 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
      */
     public static final String MSG_MISSING_ASTERISK = "javadoc.missing.asterisk";
 
+    /**
+     * Creates a new {@code JavadocMissingLeadingAsteriskCheck} instance.
+     */
+    public JavadocMissingLeadingAsteriskCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getRequiredJavadocTokens() {
         return new int[] {
