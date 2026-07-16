@@ -200,6 +200,109 @@ public class Example3 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure a filter so that only C++ style comments
+          (<code>//</code>) are checked for suppression, disabling C style
+          (<code>/* ... */</code>) comment matching:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWithNearbyCommentFilter"&gt;
+      &lt;property name="checkC" value="false"/&gt;
+    &lt;/module&gt;
+    &lt;module name="NoWhitespaceAfter"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example4 {
+  // filtered violation below ''int' is followed by whitespace'
+  public static final int [] array = {}; // SUPPRESS CHECKSTYLE NoWhitespaceAfter
+
+  public static final int lowerCaseConstant = 1; // CHECKSTYLE IGNORE THIS LINE
+
+  public void testMethod() {
+    try {
+    }
+
+    catch (RuntimeException ex) {
+
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure a filter so that only C style comments
+          (<code>/* ... */</code>) are checked for suppression, disabling
+          C++ style (<code>//</code>) comment matching:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWithNearbyCommentFilter"&gt;
+      &lt;property name="checkCPP" value="false"/&gt;
+    &lt;/module&gt;
+    &lt;module name="NoWhitespaceAfter"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example5 {
+  // violation below ''int' is followed by whitespace'
+  public static final int [] array = {}; // SUPPRESS CHECKSTYLE NoWhitespaceAfter
+
+  public static final int lowerCaseConstant = 1; // CHECKSTYLE IGNORE THIS LINE
+
+  public void testMethod() {
+    try {
+    }
+
+    catch (RuntimeException ex) {
+
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example6-config">
+          To configure a filter so that
+          <code>// SUPPRESS CHECKSTYLE NoWhitespaceAfter</code>
+          only suppresses audit events reported by a check with a matching module ID:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWithNearbyCommentFilter"&gt;
+      &lt;property name="commentFormat" value="SUPPRESS CHECKSTYLE (\w+) id:(\S+)"/&gt;
+      &lt;property name="checkFormat" value="$1"/&gt;
+      &lt;property name="idFormat" value="$2"/&gt;
+    &lt;/module&gt;
+    &lt;module name="NoWhitespaceAfter"&gt;
+      &lt;property name="id" value="whitespaceCheckId"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example6 {
+  // violation below ''int' is followed by whitespace'
+  public static final int [] array = {}; // SUPPRESS CHECKSTYLE NoWhitespaceAfter
+
+  public static final int lowerCaseConstant = 1; // CHECKSTYLE IGNORE THIS LINE
+
+  public void testMethod() {
+    try {
+    }
+
+    catch (RuntimeException ex) {
+
+    }
+  }
+}
+</code></pre></div>
         </subsection>
         <subsection name="Use Cases" id="SuppressWithNearbyCommentFilter_Use_Cases">
         <p id="UseCase1-config">
