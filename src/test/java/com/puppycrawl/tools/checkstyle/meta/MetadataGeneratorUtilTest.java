@@ -177,4 +177,5 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
         }
         return fileName.substring(0, fileName.length() - lengthToOmit);
     }
+
 }

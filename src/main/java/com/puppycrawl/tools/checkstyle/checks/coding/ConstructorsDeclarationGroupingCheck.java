@@ -203,4 +203,5 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
         }
         return parameterCount;
     }
+
 }

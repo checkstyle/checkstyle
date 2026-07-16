@@ -146,4 +146,5 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineSemantic10.java"), expected);
     }
+
 }

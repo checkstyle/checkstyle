@@ -458,4 +458,5 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
      */
     private record CheckIndexInfo(String href, String description) {
     }
+
 }

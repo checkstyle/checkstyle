@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  */
 public class LambdaHandler extends AbstractExpressionHandler {
+
     /**
      * Checks whether the lambda is correctly indented, this variable get its value from checking
      * the lambda handler's indentation, and it is being used in aligning the lambda's children.
@@ -277,4 +278,5 @@ public class LambdaHandler extends AbstractExpressionHandler {
         final IndentLevel baseLevel = new IndentLevel(enumConstIndent);
         return new IndentLevel(baseLevel, getIndentCheck().getLineWrappingIndentation());
     }
+
 }

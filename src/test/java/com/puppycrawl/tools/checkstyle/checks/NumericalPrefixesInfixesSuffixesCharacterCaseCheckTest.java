@@ -84,4 +84,5 @@ public class NumericalPrefixesInfixesSuffixesCharacterCaseCheckTest
                 getPath("InputNumericalPrefixesInfixesSuffixesCharacterCaseCheck.java"), expected
         );
     }
+
 }

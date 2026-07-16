@@ -72,4 +72,5 @@ public class ParserUtilTest {
                 .that(endCommentBlock.getText())
                 .isEqualTo("*/");
     }
+
 }

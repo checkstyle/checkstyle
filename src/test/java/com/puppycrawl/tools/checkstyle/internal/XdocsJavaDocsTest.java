@@ -468,4 +468,5 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             return Character.toLowerCase(str.charAt(0)) + str.substring(1);
         }
     }
+
 }

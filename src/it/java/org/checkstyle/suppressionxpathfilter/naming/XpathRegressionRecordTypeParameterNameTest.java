@@ -131,4 +131,5 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

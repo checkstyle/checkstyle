@@ -296,4 +296,5 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
             expected,
             removeSuppressed(expected, suppressed));
     }
+
 }

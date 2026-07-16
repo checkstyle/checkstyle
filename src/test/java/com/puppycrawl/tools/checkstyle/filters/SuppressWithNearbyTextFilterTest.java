@@ -619,4 +619,5 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         return getCheckMessage(RegexpSinglelineCheck.class,
                 msgRegexExceeded, REGEXP_SINGLELINE_CHECK_FORMAT);
     }
+
 }

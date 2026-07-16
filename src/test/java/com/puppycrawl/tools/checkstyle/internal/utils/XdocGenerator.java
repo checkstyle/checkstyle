@@ -43,6 +43,7 @@ import com.puppycrawl.tools.checkstyle.site.XdocsTemplateSinkFactory;
  * <a href="https://github.com/checkstyle/checkstyle/issues/13426">#13426</a> is resolved.
  */
 public final class XdocGenerator {
+
     private static final String XDOCS_TEMPLATE_HINT = "xdocs-template";
 
     private XdocGenerator() {
@@ -84,4 +85,5 @@ public final class XdocGenerator {
             );
         }
     }
+
 }

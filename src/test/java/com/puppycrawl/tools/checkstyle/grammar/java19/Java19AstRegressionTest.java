@@ -74,4 +74,5 @@ public class Java19AstRegressionTest extends AbstractTreeTestSupport {
                         "InputJava19RecordDecompositionWithConditionInLoops.java"
                 ));
     }
+
 }

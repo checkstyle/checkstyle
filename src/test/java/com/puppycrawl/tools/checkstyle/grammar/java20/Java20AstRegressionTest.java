@@ -47,4 +47,5 @@ public class Java20AstRegressionTest extends AbstractTreeTestSupport {
                 getNonCompilablePath(
                         "InputJava20RecordDecompositionEnhancedForLoopTricky.java"));
     }
+
 }

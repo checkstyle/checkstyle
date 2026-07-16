@@ -123,4 +123,5 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

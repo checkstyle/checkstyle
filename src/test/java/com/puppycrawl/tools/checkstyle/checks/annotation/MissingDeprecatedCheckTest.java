@@ -187,4 +187,5 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputMissingDeprecatedSingleComment.java"), expected);
     }
+
 }

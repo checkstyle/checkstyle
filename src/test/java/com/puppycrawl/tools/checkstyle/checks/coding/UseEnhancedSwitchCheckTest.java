@@ -94,4 +94,5 @@ public class UseEnhancedSwitchCheckTest
             getPath("InputUseEnhancedSwitchSwitchExpressionsValidFallThrough.java"),
             expected);
     }
+
 }

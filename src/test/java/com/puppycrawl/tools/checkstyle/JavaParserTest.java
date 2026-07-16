@@ -443,4 +443,5 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             }
         }
     }
+
 }

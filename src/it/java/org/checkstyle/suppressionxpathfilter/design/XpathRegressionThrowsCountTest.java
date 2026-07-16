@@ -117,4 +117,5 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

@@ -654,4 +654,5 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             .that(exc.getMessage())
             .contains("EQUALS");
     }
+
 }

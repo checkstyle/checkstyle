@@ -223,4 +223,5 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
             return exc.getLocalizedMessage();
         }
     }
+
 }

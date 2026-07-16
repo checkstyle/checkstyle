@@ -389,4 +389,5 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
         }
         return childCount;
     }
+
 }
