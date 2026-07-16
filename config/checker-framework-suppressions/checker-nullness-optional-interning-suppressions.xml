@@ -4699,13 +4699,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/AbstractExpressionHandler.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference modifiers</message>
-    <lineContent>for (DetailAST modifier = modifiers.getFirstChild();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/AbstractExpressionHandler.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: indent</message>
     <lineContent>protected AbstractExpressionHandler(IndentationCheck indentCheck, String typeName,</lineContent>
@@ -4889,6 +4882,20 @@
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference ident</message>
     <lineContent>if (ident.getLineNo() == getMainAst().getLineNo()) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/ClassDefHandler.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference modifiers</message>
+    <lineContent>final DetailAST firstModifier = modifiers.getFirstChild();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/ClassDefHandler.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference modifiers</message>
+    <lineContent>for (DetailAST modifier = modifiers.getFirstChild();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
