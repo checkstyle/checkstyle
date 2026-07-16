@@ -61,6 +61,13 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
     /** Current set of parameters. */
     private Set<String> parameterNames;
 
+    /**
+     * Creates a new {@code ParameterAssignmentCheck} instance.
+     */
+    public ParameterAssignmentCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

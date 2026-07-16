@@ -74,6 +74,13 @@ public class RedundantImportCheck
     /** Name of package in file. */
     private String pkgName;
 
+    /**
+     * Creates a new {@code RedundantImportCheck} instance.
+     */
+    public RedundantImportCheck() {
+        // no code by default
+    }
+
     @Override
     public void beginTree(DetailAST aRootAST) {
         pkgName = null;

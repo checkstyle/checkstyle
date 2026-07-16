@@ -49,6 +49,13 @@ public class SimplifyBooleanExpressionCheck
      */
     public static final String MSG_KEY = "simplify.expression";
 
+    /**
+     * Creates a new {@code SimplifyBooleanExpressionCheck} instance.
+     */
+    public SimplifyBooleanExpressionCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
