@@ -56,6 +56,13 @@ public class SeparatorWrapCheck
     private WrapOption option = WrapOption.EOL;
 
     /**
+     * Creates a new {@code SeparatorWrapCheck} instance.
+     */
+    public SeparatorWrapCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify policy on how to wrap lines.
      *
      * @param optionStr string to decode option from

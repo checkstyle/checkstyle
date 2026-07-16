@@ -142,6 +142,13 @@ public class RequireThisCheck extends AbstractCheck {
     private boolean validateOnlyOverlapping = true;
 
     /**
+     * Creates a new {@code RequireThisCheck} instance.
+     */
+    public RequireThisCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to control whether to check references to fields.
      *
      * @param checkFields should we check fields usage or not

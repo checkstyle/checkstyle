@@ -52,6 +52,13 @@ public class WhitespaceAfterCheck
      */
     public static final String MSG_WS_TYPECAST = "ws.typeCast";
 
+    /**
+     * Creates a new {@code WhitespaceAfterCheck} instance.
+     */
+    public WhitespaceAfterCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

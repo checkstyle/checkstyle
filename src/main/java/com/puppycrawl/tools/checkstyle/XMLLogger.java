@@ -347,6 +347,13 @@ public final class XMLLogger
         private final List<Throwable> exceptions = new ArrayList<>();
 
         /**
+         * Creates a new {@code FileMessages} instance.
+         */
+        private FileMessages() {
+            // no code by default
+        }
+
+        /**
          * Returns the file error events.
          *
          * @return the file error events.

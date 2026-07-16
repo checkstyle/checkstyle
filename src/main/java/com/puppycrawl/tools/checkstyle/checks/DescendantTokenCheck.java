@@ -99,6 +99,13 @@ public class DescendantTokenCheck extends AbstractCheck {
      */
     private int[] counts = CommonUtil.EMPTY_INT_ARRAY;
 
+    /**
+     * Creates a new {@code DescendantTokenCheck} instance.
+     */
+    public DescendantTokenCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getAcceptableTokens() {
         return TokenUtil.getAllTokenIds();

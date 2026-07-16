@@ -83,6 +83,13 @@ public class TypeBodyPaddingCheck extends AbstractCheck {
     private boolean skipLocal = true;
 
     /**
+     * Creates a new {@code TypeBodyPaddingCheck} instance.
+     */
+    public TypeBodyPaddingCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to require a blank line after the type body opening brace.
      *
      * @param atStartOfBody the value to set.
