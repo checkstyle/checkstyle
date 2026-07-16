@@ -205,7 +205,6 @@ public class XdocsExamplesAstConsistencyTest {
             // until https://github.com/checkstyle/checkstyle/issues/20624
             "checks/regexp/regexp",
             "checks/metrics/classdataabstractioncoupling",
-            "checks/naming/illegalidentifiername",
             "filters/suppressionsinglefilter"
     );
 
