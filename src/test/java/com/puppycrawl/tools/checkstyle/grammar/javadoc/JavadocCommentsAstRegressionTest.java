@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport;
 
 public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/grammar/javadoc/";
@@ -321,4 +322,5 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getPath("ExpectedMethodReferencesWithoutHash.txt"),
                 getPath("InputMethodReferencesWithoutHash.javadoc"));
     }
+
 }

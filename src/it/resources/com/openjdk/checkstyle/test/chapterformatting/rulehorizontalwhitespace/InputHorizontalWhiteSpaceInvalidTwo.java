@@ -58,4 +58,5 @@ public class InputHorizontalWhiteSpaceInvalidTwo {
         float f3 = (float) d;
         float f4 = ( float) d; // violation ''(' is followed by whitespace.'
     }
+
 }

@@ -5,4 +5,5 @@ public class InputThrowsIndentValid {
     void method()
             throws Exception {
     }
+
 }

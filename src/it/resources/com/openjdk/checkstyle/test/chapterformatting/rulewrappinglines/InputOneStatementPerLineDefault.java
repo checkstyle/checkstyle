@@ -36,4 +36,5 @@ public final class InputOneStatementPerLineDefault {
     public void doIllegalTwo() {
         one = 1; two = 2; // violation 'Only one statement per line allowed.'
     }
+
 }

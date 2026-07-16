@@ -52,7 +52,7 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSuppor
                 createModuleConfig(DeclarationOrderCheck.class);
 
         final String[] expectedViolation = {
-            "5:5: " + getCheckMessage(DeclarationOrderCheck.class,
+            "6:5: " + getCheckMessage(DeclarationOrderCheck.class,
                 DeclarationOrderCheck.MSG_ACCESS),
         };
 
@@ -81,7 +81,7 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSuppor
                 createModuleConfig(DeclarationOrderCheck.class);
 
         final String[] expectedViolation = {
-            "5:5: " + getCheckMessage(DeclarationOrderCheck.class,
+            "6:5: " + getCheckMessage(DeclarationOrderCheck.class,
                 DeclarationOrderCheck.MSG_STATIC),
         };
 
@@ -110,7 +110,7 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSuppor
                 createModuleConfig(DeclarationOrderCheck.class);
 
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(DeclarationOrderCheck.class,
+            "7:9: " + getCheckMessage(DeclarationOrderCheck.class,
                 DeclarationOrderCheck.MSG_ACCESS),
         };
 
@@ -132,4 +132,5 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSuppor
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

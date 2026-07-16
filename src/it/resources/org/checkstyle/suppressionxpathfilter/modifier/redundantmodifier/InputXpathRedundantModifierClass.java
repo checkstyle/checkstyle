@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.modifier.redundantmodifier;
 
 public class InputXpathRedundantModifierClass {
+
     public class Example1 {
 
   void test() {
@@ -14,4 +15,5 @@ public class InputXpathRedundantModifierClass {
     return null;
   }
 }
+
 }

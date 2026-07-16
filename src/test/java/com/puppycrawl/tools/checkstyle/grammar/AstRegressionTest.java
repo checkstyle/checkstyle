@@ -311,4 +311,5 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
             .that(actualContents)
             .isEqualTo(expectedContents);
     }
+
 }

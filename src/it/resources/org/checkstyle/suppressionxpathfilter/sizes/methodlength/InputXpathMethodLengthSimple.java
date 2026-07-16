@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.sizes.methodlength;
 
 public class InputXpathMethodLengthSimple {
+
     protected InputXpathMethodLengthSimple() { // warn
         // a line
         // a line

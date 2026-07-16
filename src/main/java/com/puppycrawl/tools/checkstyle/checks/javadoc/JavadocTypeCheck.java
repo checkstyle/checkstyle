@@ -524,4 +524,5 @@ public class JavadocTypeCheck
 
         return componentList;
     }
+
 }

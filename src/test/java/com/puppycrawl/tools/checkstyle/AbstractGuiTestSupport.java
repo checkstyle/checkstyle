@@ -93,4 +93,5 @@ public abstract class AbstractGuiTestSupport extends AbstractPathTestSupport {
             Component root, String name) {
         return findComponentByName(root, name, JComboBox.class);
     }
+
 }

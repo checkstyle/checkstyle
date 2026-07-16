@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.whitespace.nowhitespacebeforecasedefaultcolon;
 
 public class InputXpathNoWhitespaceBeforeCaseDefaultColonThree {
+
     {
         switch(1) {
             case 1
@@ -12,4 +13,5 @@ public class InputXpathNoWhitespaceBeforeCaseDefaultColonThree {
                 break;
         }
     }
+
 }

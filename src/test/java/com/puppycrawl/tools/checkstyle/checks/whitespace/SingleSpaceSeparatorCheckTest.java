@@ -195,4 +195,5 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
             getPath("InputSingleSpaceSeparatorCommentsWithEmoji.java"), expected);
     }
+
 }

@@ -28,4 +28,5 @@ public final class InputDeclarationOrderInstance {
     /** Instance variable after method. */
     private int instanceVar;
     // violation above 'Instance variable definition in wrong order.'
+
 }

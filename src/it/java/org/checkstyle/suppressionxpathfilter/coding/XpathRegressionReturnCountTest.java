@@ -51,7 +51,7 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
                 createModuleConfig(ReturnCountCheck.class);
 
         final String[] expectedViolation = {
-            "16:5: " + getCheckMessage(ReturnCountCheck.class,
+            "17:5: " + getCheckMessage(ReturnCountCheck.class,
                         ReturnCountCheck.MSG_KEY_VOID, 5, 1),
         };
 
@@ -85,7 +85,7 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("maxForVoid", "3");
 
         final String[] expectedViolation = {
-            "16:5: " + getCheckMessage(ReturnCountCheck.class,
+            "17:5: " + getCheckMessage(ReturnCountCheck.class,
                         ReturnCountCheck.MSG_KEY_VOID, 5, 3),
         };
 
@@ -117,7 +117,7 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
                 createModuleConfig(ReturnCountCheck.class);
 
         final String[] expectedViolation = {
-            "16:5: " + getCheckMessage(ReturnCountCheck.class,
+            "17:5: " + getCheckMessage(ReturnCountCheck.class,
                         ReturnCountCheck.MSG_KEY, 4, 2),
         };
 
@@ -151,7 +151,7 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("max", "3");
 
         final String[] expectedViolation = {
-            "16:5: " + getCheckMessage(ReturnCountCheck.class,
+            "17:5: " + getCheckMessage(ReturnCountCheck.class,
                         ReturnCountCheck.MSG_KEY, 4, 3),
         };
 
@@ -183,7 +183,7 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
                 createModuleConfig(ReturnCountCheck.class);
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(ReturnCountCheck.class,
+            "5:5: " + getCheckMessage(ReturnCountCheck.class,
                         ReturnCountCheck.MSG_KEY_VOID, 5, 1),
         };
 
@@ -213,7 +213,7 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
                 createModuleConfig(ReturnCountCheck.class);
 
         final String[] expectedViolation = {
-            "7:42: " + getCheckMessage(ReturnCountCheck.class,
+            "8:42: " + getCheckMessage(ReturnCountCheck.class,
                         ReturnCountCheck.MSG_KEY, 4, 2),
         };
 
@@ -226,4 +226,5 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

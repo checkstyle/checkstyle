@@ -83,4 +83,5 @@ public final class CodePointUtil {
                     .copyOfRange(codePoints, startIndex, codePoints.length),
                     suffix.codePoints().toArray());
     }
+
 }

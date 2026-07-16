@@ -44,4 +44,5 @@ public class VariablesTest extends AbstractOpenJdkModuleTestSupport {
     public void testVariablesDoAndDonts() throws Exception {
         verifyWithWholeConfig(getPath("InputVariablesDoAndDonts.java"));
     }
+
 }

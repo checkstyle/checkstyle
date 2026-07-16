@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.nestedifdepth;
 
 public class InputXpathNestedIfDepthMax {
+
     public void test() {
         int a = 1;
         int b = 2;
@@ -17,4 +18,5 @@ public class InputXpathNestedIfDepthMax {
             }
         }
     }
+
 }

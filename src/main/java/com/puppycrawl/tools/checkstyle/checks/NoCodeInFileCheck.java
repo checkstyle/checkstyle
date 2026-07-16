@@ -78,4 +78,5 @@ public class NoCodeInFileCheck extends AbstractCheck {
             log(DEFAULT_LINE_NUMBER, MSG_KEY_NO_CODE);
         }
     }
+
 }

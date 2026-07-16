@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck;
 
 public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXpathTestSupport {
+
     private final String checkName = AvoidEscapedUnicodeCharactersCheck.class.getSimpleName();
 
     @Override
@@ -47,7 +48,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
                 createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
 
         final String[] expectedViolation = {
-            "4:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "5:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -76,7 +77,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         moduleConfig.addProperty("allowEscapesForControlCharacters", "true");
 
         final String[] expectedViolation = {
-            "4:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "5:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -106,7 +107,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         moduleConfig.addProperty("allowByTailComment", "true");
 
         final String[] expectedViolation = {
-            "4:45: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "5:45: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -136,7 +137,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         moduleConfig.addProperty("allowIfAllCharactersEscaped", "true");
 
         final String[] expectedViolation = {
-            "4:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "5:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -166,7 +167,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         moduleConfig.addProperty("allowNonPrintableEscapes", "true");
 
         final String[] expectedViolation = {
-            "4:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "5:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -185,4 +186,5 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

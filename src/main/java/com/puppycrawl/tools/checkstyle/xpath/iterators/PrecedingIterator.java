@@ -27,6 +27,7 @@ import net.sf.saxon.tree.iter.AxisIterator;
  * Recursive-free implementation of the preceding axis iterator.
  */
 public class PrecedingIterator implements AxisIterator {
+
     /**
      * Ancestor axis iterator.
      */
@@ -81,4 +82,5 @@ public class PrecedingIterator implements AxisIterator {
         }
         return result;
     }
+
 }

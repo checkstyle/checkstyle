@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.annotation.missingoverride;
 
 public class InputXpathMissingOverrideAnonymous {
+
     Runnable r = new Runnable() {
         /**
          * {@inheritDoc}
@@ -9,4 +10,5 @@ public class InputXpathMissingOverrideAnonymous {
 
         }
     };
+
 }

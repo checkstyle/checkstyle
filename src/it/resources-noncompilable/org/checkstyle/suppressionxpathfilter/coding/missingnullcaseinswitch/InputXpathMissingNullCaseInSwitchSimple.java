@@ -13,4 +13,5 @@ public class InputXpathMissingNullCaseInSwitchSimple {
     }
     record ColoredPoint(int p, int x, String c) { }
     record Rectangle(ColoredPoint upperLeft, ColoredPoint lowerRight) { }
+
 }

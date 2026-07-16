@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class AvoidNoArgumentSuperConstructorCallCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/avoidnoargumentsuperconstructorcall";
@@ -40,4 +41,5 @@ public class AvoidNoArgumentSuperConstructorCallCheckExamplesTest
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

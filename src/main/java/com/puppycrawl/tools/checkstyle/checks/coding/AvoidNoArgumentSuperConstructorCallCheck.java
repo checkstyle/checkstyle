@@ -68,4 +68,5 @@ public final class AvoidNoArgumentSuperConstructorCallCheck extends AbstractChec
             log(ast, MSG_CTOR);
         }
     }
+
 }

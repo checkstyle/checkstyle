@@ -439,4 +439,5 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceMethodDef.java"), expected);
     }
+
 }

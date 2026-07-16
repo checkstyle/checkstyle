@@ -193,4 +193,5 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
 
         return count <= 1;
     }
+
 }

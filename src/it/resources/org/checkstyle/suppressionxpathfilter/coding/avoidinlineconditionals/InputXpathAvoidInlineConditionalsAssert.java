@@ -7,4 +7,5 @@ public class InputXpathAvoidInlineConditionalsAssert {
         // assert Expression1 : Expression2
         assert a.equals(null) ? true : false : "Expression2"; // warn
     }
+
 }

@@ -2,6 +2,7 @@ package com.openjdk.checkstyle.test.chapterformatting.rulehorizontalwhitespace;
 
 /** Valid input class for whitespace. */
 public class InputHorizontalWhiteSpaceValid {
+
     int y = 0;
     int a = 4;
 
@@ -55,4 +56,5 @@ public class InputHorizontalWhiteSpaceValid {
             j++;
         }
     }
+
 }

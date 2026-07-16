@@ -84,4 +84,5 @@ public class StaticVariableNameCheckExamplesTest extends AbstractExamplesModuleT
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
 }

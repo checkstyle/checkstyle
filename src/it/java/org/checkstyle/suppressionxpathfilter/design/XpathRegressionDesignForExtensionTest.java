@@ -140,4 +140,5 @@ public class XpathRegressionDesignForExtensionTest extends AbstractXpathTestSupp
 
         runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
     }
+
 }

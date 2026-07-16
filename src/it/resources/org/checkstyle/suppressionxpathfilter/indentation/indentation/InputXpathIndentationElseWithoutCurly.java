@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.indentation.indentation;
 
 public class InputXpathIndentationElseWithoutCurly {
+
     void test() {
         if (true)
             exp();
@@ -12,4 +13,5 @@ public class InputXpathIndentationElseWithoutCurly {
         exp(); // warn
     }
     void exp() {}
+
 }

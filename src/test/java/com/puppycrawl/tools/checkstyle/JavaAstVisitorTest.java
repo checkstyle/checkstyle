@@ -302,4 +302,5 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
                 .that(root)
                 .isNotNull();
     }
+
 }

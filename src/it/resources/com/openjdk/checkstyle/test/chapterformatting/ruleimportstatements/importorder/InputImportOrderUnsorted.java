@@ -12,6 +12,7 @@ import javax.swing.JButton;
  * Invalid: imports within each group are not alphabetically sorted.
  */
 public final class InputImportOrderUnsorted {
+
     /** Dummy constant. */
     public static final int VALUE = 42;
 
@@ -30,4 +31,5 @@ public final class InputImportOrderUnsorted {
         final JFrame frame = new JFrame();
         final JButton button = new JButton("Test");
     }
+
 }

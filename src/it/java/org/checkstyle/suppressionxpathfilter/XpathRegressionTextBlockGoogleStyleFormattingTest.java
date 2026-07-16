@@ -46,7 +46,7 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
             createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
-            "8:13: " + getCheckMessage(CLASS,
+            "9:13: " + getCheckMessage(CLASS,
                 TextBlockGoogleStyleFormattingCheck.MSG_VERTICALLY_UNALIGNED),
         };
 
@@ -117,4 +117,5 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

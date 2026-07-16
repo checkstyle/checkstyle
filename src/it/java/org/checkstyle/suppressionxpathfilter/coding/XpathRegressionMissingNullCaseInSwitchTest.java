@@ -72,7 +72,7 @@ public class XpathRegressionMissingNullCaseInSwitchTest
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingNullCaseInSwitchCheck.class);
         final String[] expectedViolation = {
-            "11:25: " + getCheckMessage(MissingNullCaseInSwitchCheck.class,
+            "12:25: " + getCheckMessage(MissingNullCaseInSwitchCheck.class,
                     MissingNullCaseInSwitchCheck.MSG_KEY),
         };
 
@@ -100,7 +100,7 @@ public class XpathRegressionMissingNullCaseInSwitchTest
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingNullCaseInSwitchCheck.class);
         final String[] expectedViolation = {
-            "7:9: " + getCheckMessage(MissingNullCaseInSwitchCheck.class,
+            "8:9: " + getCheckMessage(MissingNullCaseInSwitchCheck.class,
                     MissingNullCaseInSwitchCheck.MSG_KEY),
         };
 
@@ -112,4 +112,5 @@ public class XpathRegressionMissingNullCaseInSwitchTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

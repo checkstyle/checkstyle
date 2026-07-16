@@ -52,8 +52,8 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
                 createModuleConfig(CommentsIndentationCheck.class);
 
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(CommentsIndentationCheck.class,
-                "comments.indentation.single", 4, 8, 4),
+            "6:9: " + getCheckMessage(CommentsIndentationCheck.class,
+                "comments.indentation.single", 5, 8, 4),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -75,8 +75,8 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
                 createModuleConfig(CommentsIndentationCheck.class);
 
         final String[] expectedViolation = {
-            "4:11: " + getCheckMessage(CommentsIndentationCheck.class,
-                "comments.indentation.block", 7, 10, 4),
+            "5:11: " + getCheckMessage(CommentsIndentationCheck.class,
+                "comments.indentation.block", 8, 10, 4),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -99,8 +99,8 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
                 createModuleConfig(CommentsIndentationCheck.class);
 
         final String[] expectedViolation = {
-            "8:13: " + getCheckMessage(CommentsIndentationCheck.class,
-                "comments.indentation.single", 10, 12, 4),
+            "9:13: " + getCheckMessage(CommentsIndentationCheck.class,
+                "comments.indentation.single", 11, 12, 4),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -123,8 +123,8 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
                 createModuleConfig(CommentsIndentationCheck.class);
 
         final String[] expectedViolation = {
-            "10:25: " + getCheckMessage(CommentsIndentationCheck.class,
-                "comments.indentation.single", 8, 24, 8),
+            "11:25: " + getCheckMessage(CommentsIndentationCheck.class,
+                "comments.indentation.single", 9, 24, 8),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -147,8 +147,8 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
                 createModuleConfig(CommentsIndentationCheck.class);
 
         final String[] expectedViolation = {
-            "6:1: " + getCheckMessage(CommentsIndentationCheck.class,
-                "comments.indentation.single", 7, 0, 4),
+            "7:1: " + getCheckMessage(CommentsIndentationCheck.class,
+                "comments.indentation.single", 8, 0, 4),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -171,8 +171,8 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
                 createModuleConfig(CommentsIndentationCheck.class);
 
         final String[] expectedViolation = {
-            "10:20: " + getCheckMessage(CommentsIndentationCheck.class,
-                "comments.indentation.single", "9, 11", 19, "16, 12"),
+            "11:20: " + getCheckMessage(CommentsIndentationCheck.class,
+                "comments.indentation.single", "10, 12", 19, "16, 12"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -195,8 +195,8 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
                 createModuleConfig(CommentsIndentationCheck.class);
 
         final String[] expectedViolation = {
-            "9:1: " + getCheckMessage(CommentsIndentationCheck.class,
-                "comments.indentation.single", "8, 10", 0, "12, 12"),
+            "10:1: " + getCheckMessage(CommentsIndentationCheck.class,
+                "comments.indentation.single", "9, 11", 0, "12, 12"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -219,8 +219,8 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
                 createModuleConfig(CommentsIndentationCheck.class);
 
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(CommentsIndentationCheck.class,
-                "comments.indentation.single", 7, 8, 12),
+            "7:9: " + getCheckMessage(CommentsIndentationCheck.class,
+                "comments.indentation.single", 8, 8, 12),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -234,4 +234,5 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

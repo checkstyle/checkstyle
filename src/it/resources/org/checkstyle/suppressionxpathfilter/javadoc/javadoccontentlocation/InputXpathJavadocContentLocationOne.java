@@ -5,4 +5,5 @@ public interface InputXpathJavadocContentLocationOne {
     /** Text. // warn
      */
     void test();
+
 }

@@ -8,4 +8,5 @@ public class InputFileTabCharacterValid {
     private void method() {
         value++;
     }
+
 }

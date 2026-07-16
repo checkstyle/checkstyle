@@ -75,4 +75,5 @@ public class BlockCommentStyleTest extends AbstractGoogleModuleTestSupport {
     public void testBoxComments() throws Exception {
         verifyWithWholeConfig(getPath("InputBoxComments.java"));
     }
+
 }

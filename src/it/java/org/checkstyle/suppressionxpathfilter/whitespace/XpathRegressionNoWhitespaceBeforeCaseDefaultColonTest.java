@@ -55,7 +55,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
                 createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
 
         final String[] expectedViolation = {
-            "6:20: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
+            "7:20: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
                     NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
         };
 
@@ -79,7 +79,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
                 createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
 
         final String[] expectedViolation = {
-            "10:21: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
+            "11:21: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
                     NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
         };
 
@@ -104,7 +104,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
                 createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
 
         final String[] expectedViolation = {
-            "7:21: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
+            "8:21: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
                         NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
         };
 
@@ -129,7 +129,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
                 createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
 
         final String[] expectedViolation = {
-            "11:21: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
+            "12:21: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
                         NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
         };
 
@@ -143,4 +143,5 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

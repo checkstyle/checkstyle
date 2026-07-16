@@ -50,7 +50,7 @@ public class XpathRegressionEmptyStatementTest extends AbstractXpathTestSupport 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyStatementCheck.class);
         final String[] expectedViolation = {
-            "5:36: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
+            "6:36: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
@@ -69,7 +69,7 @@ public class XpathRegressionEmptyStatementTest extends AbstractXpathTestSupport 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyStatementCheck.class);
         final String[] expectedViolation = {
-            "6:19: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
+            "7:19: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
@@ -88,7 +88,7 @@ public class XpathRegressionEmptyStatementTest extends AbstractXpathTestSupport 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyStatementCheck.class);
         final String[] expectedViolation = {
-            "5:21: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
+            "6:21: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
@@ -99,4 +99,5 @@ public class XpathRegressionEmptyStatementTest extends AbstractXpathTestSupport 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

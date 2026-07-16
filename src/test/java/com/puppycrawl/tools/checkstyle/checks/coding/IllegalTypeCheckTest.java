@@ -494,4 +494,5 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
                 getPath("InputIllegalTypeInPermitsList.java"),
                 expected);
     }
+
 }

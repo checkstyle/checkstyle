@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.whitespace.whitespaceafter;
 
 public class InputXpathWhitespaceAfterIfBlock {
+
     public void test() {
         if (true) {
             System.out.println("true");
@@ -10,4 +11,5 @@ public class InputXpathWhitespaceAfterIfBlock {
             System.out.println("true");
         }
     }
+
 }

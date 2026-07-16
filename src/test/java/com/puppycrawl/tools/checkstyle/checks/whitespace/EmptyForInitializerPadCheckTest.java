@@ -141,4 +141,5 @@ public class EmptyForInitializerPadCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputEmptyForInitializerPadSetOptionTrim.java"), expected);
     }
+
 }

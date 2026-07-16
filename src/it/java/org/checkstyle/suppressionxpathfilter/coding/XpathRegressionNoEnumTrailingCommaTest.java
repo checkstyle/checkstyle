@@ -96,7 +96,7 @@ public class XpathRegressionNoEnumTrailingCommaTest extends AbstractXpathTestSup
                 createModuleConfig(NoEnumTrailingCommaCheck.class);
 
         final String[] expectedViolation = {
-            "7:16: " + getCheckMessage(NoEnumTrailingCommaCheck.class,
+            "8:16: " + getCheckMessage(NoEnumTrailingCommaCheck.class,
                     NoEnumTrailingCommaCheck.MSG_KEY),
         };
 
@@ -109,4 +109,5 @@ public class XpathRegressionNoEnumTrailingCommaTest extends AbstractXpathTestSup
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

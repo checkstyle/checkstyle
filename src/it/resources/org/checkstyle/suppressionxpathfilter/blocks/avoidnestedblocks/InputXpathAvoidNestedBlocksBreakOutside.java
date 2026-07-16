@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.blocks.avoidnestedblocks;
 
 public class InputXpathAvoidNestedBlocksBreakOutside {
+
     int s(int a) {
         int x;
         int y;
@@ -16,4 +17,5 @@ public class InputXpathAvoidNestedBlocksBreakOutside {
         }
         return x + y;
     }
+
 }

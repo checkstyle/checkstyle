@@ -6,5 +6,7 @@ package org.checkstyle.suppressionxpathfilter.sizes.recordcomponentnumber;
  * max = 1
  */
 public class InputXpathRecordComponentNumberCustomMax {
+
     public record MyRecord(int x, int y) { } // warn
+
 }

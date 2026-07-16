@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.useenhancedswitch;
 
 public class InputXpathUseEnhancedSwitchSimple {
+
     public void test() {
         int id = 0;
         switch (id) { //warn
@@ -13,4 +14,5 @@ public class InputXpathUseEnhancedSwitchSimple {
             default:
         }
     }
+
 }

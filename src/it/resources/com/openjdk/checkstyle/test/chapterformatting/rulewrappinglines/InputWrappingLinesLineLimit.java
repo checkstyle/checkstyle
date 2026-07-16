@@ -7,6 +7,7 @@ package com.openjdk.checkstyle.test.chapterformatting.rulewrappinglines;
  * ThisJavadocCommentIsAReallyLongWordThatExceedsDefaultLineLimitOfHundredCharactersSoitwillgiveserror.
  */
 public class InputWrappingLinesLineLimit {
+
     void testMethod(String str) {
         System.out.println("This is a short line.");
 
@@ -22,4 +23,5 @@ public class InputWrappingLinesLineLimit {
                     This is a very really long string that is exactly equal 100 so no violation....
                     """;
     }
+
 }

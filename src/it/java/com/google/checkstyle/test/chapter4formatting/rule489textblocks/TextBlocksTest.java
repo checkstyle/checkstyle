@@ -59,4 +59,5 @@ public class TextBlocksTest extends AbstractGoogleModuleTestSupport {
     public void testFormattedTextBlocksInAnnotation() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedTextBlocksInAnnotation.java"));
     }
+
 }

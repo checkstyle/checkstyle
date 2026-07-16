@@ -15,4 +15,5 @@ public enum InputXpathOverloadMethodsDeclarationOrderEnum {
     public void overloadMethod(String s, Boolean b, int i) { // warn
         //do stuff
     }
+
 }

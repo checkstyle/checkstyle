@@ -47,4 +47,5 @@ public class InputCorrectReturnTag {
     public int normalize(int value) {
         return Math.max(0, value);
     }
+
 }
