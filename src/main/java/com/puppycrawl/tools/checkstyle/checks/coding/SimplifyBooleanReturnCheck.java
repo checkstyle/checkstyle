@@ -62,6 +62,13 @@ public class SimplifyBooleanReturnCheck
      */
     public static final String MSG_KEY = "simplify.boolReturn";
 
+    /**
+     * Creates a new {@code SimplifyBooleanReturnCheck} instance.
+     */
+    public SimplifyBooleanReturnCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getAcceptableTokens() {
         return getRequiredTokens();

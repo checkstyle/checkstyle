@@ -67,6 +67,13 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
      */
     private boolean isCompactSourceFile;
 
+    /**
+     * Creates a new {@code OuterTypeFilenameCheck} instance.
+     */
+    public OuterTypeFilenameCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

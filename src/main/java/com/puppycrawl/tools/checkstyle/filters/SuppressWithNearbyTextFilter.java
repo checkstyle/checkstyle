@@ -101,6 +101,13 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
     private String cachedFileAbsolutePath = "";
 
     /**
+     * Creates a new {@code SuppressWithNearbyTextFilter} instance.
+     */
+    public SuppressWithNearbyTextFilter() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify nearby text pattern to trigger filter to begin suppression.
      *
      * @param pattern a {@code Pattern} value.

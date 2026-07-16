@@ -248,6 +248,13 @@ public class SuppressionXpathFilter extends AbstractAutomaticBean implements
     private boolean optional;
 
     /**
+     * Creates a new {@code SuppressionXpathFilter} instance.
+     */
+    public SuppressionXpathFilter() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify the location of the <em>suppressions XML document</em> file.
      *
      * @param fileName name of the suppressions file.
