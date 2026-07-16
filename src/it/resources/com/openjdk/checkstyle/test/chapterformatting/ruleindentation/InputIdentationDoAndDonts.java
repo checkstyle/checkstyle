@@ -46,4 +46,5 @@ public class InputIdentationDoAndDonts {
             // violation above '.* incorrect indentation level 12, expected .* 16.'
         }
     }
+
 }

@@ -30,6 +30,7 @@ import java.util.concurrent.AbstractExecutorService;
 
 /** Some javadoc. */
 public class InputOrderingAndSpacing5 {
+
   /** Some javadoc. */
   public static void main(String[] args) {
     // Use of static imports
@@ -81,4 +82,5 @@ public class InputOrderingAndSpacing5 {
       }
     };
   }
+
 }

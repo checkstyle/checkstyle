@@ -55,7 +55,7 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
         moduleConfig.addProperty("max", "0");
 
         final String[] expectedViolations = {
-            "4:5: " + getCheckMessage(ExecutableStatementCountCheck.class, MSG_KEY, 3, 0),
+            "5:5: " + getCheckMessage(ExecutableStatementCountCheck.class, MSG_KEY, 3, 0),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -89,7 +89,7 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
         moduleConfig.addProperty("tokens", "CTOR_DEF");
 
         final String[] expectedViolations = {
-            "4:5: " + getCheckMessage(ExecutableStatementCountCheck.class, MSG_KEY, 2, 0),
+            "5:5: " + getCheckMessage(ExecutableStatementCountCheck.class, MSG_KEY, 2, 0),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -125,7 +125,7 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
         moduleConfig.addProperty("tokens", "LAMBDA");
 
         final String[] expectedViolations = {
-            "7:22: " + getCheckMessage(ExecutableStatementCountCheck.class, MSG_KEY, 2, 1),
+            "8:22: " + getCheckMessage(ExecutableStatementCountCheck.class, MSG_KEY, 2, 1),
         };
 
         final List<String> expectedXpathQueries = List.of(

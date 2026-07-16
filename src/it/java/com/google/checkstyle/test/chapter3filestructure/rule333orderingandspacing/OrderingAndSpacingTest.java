@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class OrderingAndSpacingTest extends AbstractGoogleModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/google/checkstyle/test/chapter3filestructure/rule333orderingandspacing";

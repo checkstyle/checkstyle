@@ -52,7 +52,7 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
                 createModuleConfig(FallThroughCheck.class);
 
         final String[] expectedViolation = {
-            "11:13: " + getCheckMessage(FallThroughCheck.class,
+            "12:13: " + getCheckMessage(FallThroughCheck.class,
                 FallThroughCheck.MSG_FALL_THROUGH),
         };
 
@@ -80,7 +80,7 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("checkLastCaseGroup", "true");
 
         final String[] expectedViolation = {
-            "10:17: " + getCheckMessage(FallThroughCheck.class,
+            "11:17: " + getCheckMessage(FallThroughCheck.class,
                 FallThroughCheck.MSG_FALL_THROUGH_LAST),
         };
 
@@ -108,7 +108,7 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
                 createModuleConfig(FallThroughCheck.class);
 
         final String[] expectedViolation = {
-            "13:17: " + getCheckMessage(FallThroughCheck.class,
+            "14:17: " + getCheckMessage(FallThroughCheck.class,
                 FallThroughCheck.MSG_FALL_THROUGH),
         };
 

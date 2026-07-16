@@ -22,6 +22,7 @@ package com.google.checkstyle.test.chapter4formatting.rule461verticalwhitespace;
 import java.util.concurrent.Callable;
 
 class InputFormattedVerticalWhitespace {
+
   public static final double FOO_PI = 3.1415;
   private boolean flag = true;
 

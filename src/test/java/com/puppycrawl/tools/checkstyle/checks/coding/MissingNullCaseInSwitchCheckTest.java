@@ -116,4 +116,5 @@ public class MissingNullCaseInSwitchCheckTest extends
                 getPath("InputMissingNullCaseInSwitchWithPrimitives.java"),
             expected);
     }
+
 }

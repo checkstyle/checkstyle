@@ -7,4 +7,5 @@ public class InputXpathJavadocVariablePrivateClassFields {
     public void helloWorld(String name)
     {
     }
+
 }

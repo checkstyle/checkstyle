@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.metrics.javancss; // warn
 
 public class InputXpathJavaNCSSThree {
+
     int a1 = 1;
     int a2 = 1;
     int a3 = 1;
@@ -26,10 +27,12 @@ public class InputXpathJavaNCSSThree {
     int a23 = 1;
     int a24 = 1;
     int a25 = 1;
+
 }
 
 
 class Test1 {
+
     int a1 = 1;
     int a2 = 1;
     int a3 = 1;
@@ -42,9 +45,11 @@ class Test1 {
     int a10 = 1;
     int a11 = 1;
     int a12 = 1;
+
 }
 
 class Test2 {
+
     int a1 = 1;
     int a2 = 1;
     int a3 = 1;
@@ -55,4 +60,5 @@ class Test2 {
     int a8 = 1;
     int a9 = 1;
     int a10 = 1;
+
 }

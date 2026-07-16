@@ -1,6 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleorderofconstructorsandoverloadedmethods;
 
 public class InputOrderOfConstructorsAndOverloadedMethodsOne {
+
     int l;
 
     InputOrderOfConstructorsAndOverloadedMethodsOne() {}
@@ -14,7 +15,7 @@ public class InputOrderOfConstructorsAndOverloadedMethodsOne {
     int a = 0; // violation, Field declaration is in wrong order
 
     // violation 2 lines below """Constructors should be grouped together.
-    // The last grouped constructor is declared at line '11'."""
+    // The last grouped constructor is declared at line '12'."""
     InputOrderOfConstructorsAndOverloadedMethodsOne(String s, int x) {}
     // violation above 'Constructors should be ordered by increasing parameter count.'
 
@@ -27,12 +28,12 @@ public class InputOrderOfConstructorsAndOverloadedMethodsOne {
         void foo() {}
 
         // violation 2 lines below """Constructors should be grouped together.
-        // The last grouped constructor is declared at line '25'."""
+        // The last grouped constructor is declared at line '26'."""
         ExampleEnum(int x, int y) {}
         // violation above 'Constructor definition in wrong order.'
 
         // violation 2 lines below """Constructors should be grouped together.
-        // The last grouped constructor is declared at line '25'."""
+        // The last grouped constructor is declared at line '26'."""
         ExampleEnum(String s, int x) {}
         // violation above 'Constructor definition in wrong order.'
     }
@@ -46,4 +47,5 @@ public class InputOrderOfConstructorsAndOverloadedMethodsOne {
 
         InputWithOrderedCtors(String s, int x) {}
     }
+
 }

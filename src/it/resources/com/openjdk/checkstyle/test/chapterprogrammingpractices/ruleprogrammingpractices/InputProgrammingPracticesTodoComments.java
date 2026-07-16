@@ -1,6 +1,7 @@
 package com.openjdk.checkstyle.test.chapterprogrammingpractices.ruleprogrammingpractices;
 
 public class InputProgrammingPracticesTodoComments {
+
     int i;
     int x;
 
@@ -14,4 +15,5 @@ public class InputProgrammingPracticesTodoComments {
     // TODO: complete the method
     public void test1() {
     }
+
 }

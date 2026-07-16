@@ -8,6 +8,7 @@ import java.io.IOException;
 
 /** Some javadoc. */
 public class InputEmptyBlocksAndCatchBlocksNoViolations {
+
   private void foo6() {
     try {
       throw new IOException();

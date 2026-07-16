@@ -4,6 +4,7 @@ package com.openjdk.checkstyle.test.chapterformatting.rulehorizontalwhitespace;
  * Test class.
  */
 public class InputHorizontalWhiteSpaceInvalidOne {
+
     int y = 0;
     int a = 4;
 
@@ -58,4 +59,5 @@ public class InputHorizontalWhiteSpaceInvalidOne {
             // ''=' is not preceded with whitespace.'
         }
     }
+
 }

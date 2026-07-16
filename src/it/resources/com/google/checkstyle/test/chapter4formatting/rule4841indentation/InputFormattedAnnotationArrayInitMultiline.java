@@ -45,6 +45,7 @@ enum FilterClass {
 // violation below 'Top-level class ComponentShow has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface ComponentShow {
+
   String[] basePackages() default {};
 
   Filter[] excludeFilters() default {};

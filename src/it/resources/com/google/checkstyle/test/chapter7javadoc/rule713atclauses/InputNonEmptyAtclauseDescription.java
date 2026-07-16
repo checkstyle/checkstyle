@@ -1,6 +1,7 @@
 package com.google.checkstyle.test.chapter7javadoc.rule713atclauses;
 
 class InputNonEmptyAtclauseDescription {
+
   /**
    * Some javadoc.
    *

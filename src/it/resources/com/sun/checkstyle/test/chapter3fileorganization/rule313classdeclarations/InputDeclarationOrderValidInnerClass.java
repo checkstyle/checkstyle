@@ -60,4 +60,5 @@ public final class InputDeclarationOrderValidInnerClass {
             return innerVar + INNER_CONST;
         }
     }
+
 }

@@ -51,7 +51,7 @@ public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest
                 createModuleConfig(UnnecessaryNullCheckWithInstanceOfCheck.class);
 
         final String[] expected = {
-            "5:13: " + getCheckMessage(UnnecessaryNullCheckWithInstanceOfCheck.class,
+            "6:13: " + getCheckMessage(UnnecessaryNullCheckWithInstanceOfCheck.class,
                     UnnecessaryNullCheckWithInstanceOfCheck.MSG_UNNECESSARY_NULLCHECK),
         };
         final List<String> expectedXpathQueries = List.of(
@@ -73,7 +73,7 @@ public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest
                 createModuleConfig(UnnecessaryNullCheckWithInstanceOfCheck.class);
 
         final String[] expected = {
-            "8:17: " + getCheckMessage(UnnecessaryNullCheckWithInstanceOfCheck.class,
+            "9:17: " + getCheckMessage(UnnecessaryNullCheckWithInstanceOfCheck.class,
                     UnnecessaryNullCheckWithInstanceOfCheck.MSG_UNNECESSARY_NULLCHECK),
         };
         final List<String> expectedXpathQueries = List.of(
@@ -108,4 +108,5 @@ public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest
 
         runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
     }
+
 }

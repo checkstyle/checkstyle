@@ -186,4 +186,5 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
                 getPath("InputMultipleStringLiteralsTextBlocks2.java"),
             expected);
     }
+
 }

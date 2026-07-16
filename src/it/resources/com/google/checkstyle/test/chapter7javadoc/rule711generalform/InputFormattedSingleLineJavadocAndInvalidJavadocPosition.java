@@ -98,7 +98,8 @@ class ExtraInputInvalidJavadocPosition {
 /** Valid javadoc. */
 /* ignore */
 class ExtraInputInvalidJavadocPosition2 {
-  // violation above '.* ExtraInputInvalidJavadocPosition2 has to reside in its own source file.'
+
+  // violation 2 lines above '.* ExtraInputInvalidJavadocPosition2 .*'
   // violation below 'Javadoc comment is placed in the wrong location.'
   /** Invalid javadoc. */
   static {
@@ -171,7 +172,7 @@ class ExtraInputInvalidJavadocPosition2 {
   // violation 2 lines above ''method def rparen' has incorrect indentation level 6, expected .* 2.'
 
   // 2 violations 4 lines below:
-  //  '.* indentation should be the same level as line 178.'
+  //  '.* indentation should be the same level as line 180.'
   //  'Javadoc comment is placed in the wrong location.'
   void method23()
         /** Invalid javadoc. */

@@ -26,6 +26,7 @@ import java.util.concurrent.AbstractExecutorService;
 
 /** Some javadoc. */
 public class InputOrderingAndSpacing3 {
+
   /** Some javadoc. */
   public static void main(String[] args) {
     // Use of static imports
@@ -90,4 +91,5 @@ public class InputOrderingAndSpacing3 {
     ImmutableTypeToInstanceMap<Object> mapInstance = ImmutableTypeToInstanceMap.builder().build();
     SourceFileStructureTest sourceFileStructureTest = new SourceFileStructureTest();
   }
+
 }

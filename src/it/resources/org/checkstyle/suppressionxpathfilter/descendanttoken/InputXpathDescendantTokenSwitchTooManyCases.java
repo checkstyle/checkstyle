@@ -16,5 +16,6 @@ public class InputXpathDescendantTokenSwitchTooManyCases {
         };
         switchLogic.run();
     }
+
 }
 

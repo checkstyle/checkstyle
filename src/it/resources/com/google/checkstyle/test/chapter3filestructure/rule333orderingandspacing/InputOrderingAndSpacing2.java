@@ -38,6 +38,7 @@ import com.google.common.reflect.*;
 
 /** Some javadoc. */
 public class InputOrderingAndSpacing2 {
+
   /** Some javadoc. */
   public static void main(String[] args) {
     try {
@@ -88,4 +89,5 @@ public class InputOrderingAndSpacing2 {
 
     SourceFileStructureTest testing2 = new SourceFileStructureTest();
   }
+
 }

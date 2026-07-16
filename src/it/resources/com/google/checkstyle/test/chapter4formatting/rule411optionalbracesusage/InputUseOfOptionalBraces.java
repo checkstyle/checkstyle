@@ -1,6 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule411optionalbracesusage;
 
 class InputUseOfOptionalBraces {
+
   /**
    * Some javadoc..
    *

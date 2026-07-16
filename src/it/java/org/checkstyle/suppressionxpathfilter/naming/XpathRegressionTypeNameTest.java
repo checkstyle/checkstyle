@@ -54,7 +54,7 @@ public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
                 createModuleConfig(TypeNameCheck.class);
 
         final String[] expectedViolation = {
-            "5:19: " + getCheckMessage(TypeNameCheck.class,
+            "6:19: " + getCheckMessage(TypeNameCheck.class,
                         AbstractNameCheck.MSG_INVALID_PATTERN, "SecondName_", pattern),
         };
 

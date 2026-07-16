@@ -112,7 +112,7 @@ public class XpathRegressionMissingOverrideOnRecordAccessorTest
             createModuleConfig(MissingOverrideOnRecordAccessorCheck.class);
 
         final String[] expectedViolation = {
-            "9:5: " + getCheckMessage(MissingOverrideOnRecordAccessorCheck.class,
+            "11:5: " + getCheckMessage(MissingOverrideOnRecordAccessorCheck.class,
                 MissingOverrideOnRecordAccessorCheck.MSG_KEY),
         };
 
@@ -130,4 +130,5 @@ public class XpathRegressionMissingOverrideOnRecordAccessorTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

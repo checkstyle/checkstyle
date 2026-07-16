@@ -2,6 +2,7 @@ package com.sun.checkstyle.test.chapter6declarations.rule61numberperline;
 
 public class InputMultipleVariableDeclarations
 {
+
     int i, j; //warn
     int i1; int j1; //warn
 
@@ -80,11 +81,14 @@ public class InputMultipleVariableDeclarations
             }
         };
     }
+
 }
 
 class Suppress {
+
     @SuppressWarnings("unused") //warn
     long q1, q2, q3;
 
     @SuppressWarnings("unused") long q4, q5, q6;  //warn
+
 }

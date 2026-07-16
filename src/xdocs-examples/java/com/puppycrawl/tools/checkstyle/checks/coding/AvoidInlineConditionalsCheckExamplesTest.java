@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class AvoidInlineConditionalsCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/avoidinlineconditionals";
@@ -38,4 +39,5 @@ public class AvoidInlineConditionalsCheckExamplesTest extends AbstractExamplesMo
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

@@ -9,6 +9,7 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 
 /** Class for testing whitespace issues. violation missing author tag. */
 class InputFormattedWhitespaceAroundBasic {
+
   private final int var1 = 1;
   private final int var2 = 1;
 

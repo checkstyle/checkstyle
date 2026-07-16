@@ -1,6 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
 class InputFormattedLeftCurlyMethod {
+
   InputFormattedLeftCurlyMethod() {}
 
   InputFormattedLeftCurlyMethod(String one) {}

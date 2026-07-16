@@ -34,4 +34,5 @@ public class AnnotationsTest extends AbstractOpenJdkModuleTestSupport {
     public void testAnnotationsOne() throws Exception {
         verifyWithWholeConfig(getPath("InputAnnotationsDoAndDonts.java"));
     }
+
 }

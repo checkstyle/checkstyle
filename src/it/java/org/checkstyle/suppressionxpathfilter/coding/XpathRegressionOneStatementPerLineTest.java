@@ -52,7 +52,7 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
                 createModuleConfig(OneStatementPerLineCheck.class);
 
         final String[] expectedViolation = {
-            "4:17: " + getCheckMessage(OneStatementPerLineCheck.class,
+            "5:17: " + getCheckMessage(OneStatementPerLineCheck.class,
                 OneStatementPerLineCheck.MSG_KEY),
         };
 
@@ -75,7 +75,7 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
                 createModuleConfig(OneStatementPerLineCheck.class);
 
         final String[] expectedViolation = {
-            "9:39: " + getCheckMessage(OneStatementPerLineCheck.class,
+            "10:39: " + getCheckMessage(OneStatementPerLineCheck.class,
                 OneStatementPerLineCheck.MSG_KEY),
         };
 
@@ -98,7 +98,7 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
                 createModuleConfig(OneStatementPerLineCheck.class);
 
         final String[] expectedViolation = {
-            "5:29: " + getCheckMessage(OneStatementPerLineCheck.class,
+            "6:29: " + getCheckMessage(OneStatementPerLineCheck.class,
                 OneStatementPerLineCheck.MSG_KEY),
         };
 
@@ -111,4 +111,5 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

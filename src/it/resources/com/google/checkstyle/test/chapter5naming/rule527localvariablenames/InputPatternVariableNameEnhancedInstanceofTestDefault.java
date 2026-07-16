@@ -8,6 +8,7 @@ import java.util.Locale;
 
 /** Some javadoc. */
 public class InputPatternVariableNameEnhancedInstanceofTestDefault {
+
   private Object obj;
 
   static boolean doStuff(Object obj) {
@@ -97,4 +98,5 @@ public class InputPatternVariableNameEnhancedInstanceofTestDefault {
     } while (!(o1 instanceof String _A_aa_B));
     // violation above 'Pattern variable name '_A_aa_B' must match pattern'
   }
+
 }

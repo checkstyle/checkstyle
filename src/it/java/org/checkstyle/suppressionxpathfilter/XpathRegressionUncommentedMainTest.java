@@ -47,7 +47,7 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
                 createModuleConfig(UncommentedMainCheck.class);
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(UncommentedMainCheck.class,
+            "5:5: " + getCheckMessage(UncommentedMainCheck.class,
                         UncommentedMainCheck.MSG_KEY),
         };
 
@@ -76,7 +76,7 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
                 createModuleConfig(UncommentedMainCheck.class);
 
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(UncommentedMainCheck.class,
+            "6:9: " + getCheckMessage(UncommentedMainCheck.class,
                         UncommentedMainCheck.MSG_KEY),
         };
 
@@ -108,7 +108,7 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
                 createModuleConfig(UncommentedMainCheck.class);
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(UncommentedMainCheck.class,
+            "5:5: " + getCheckMessage(UncommentedMainCheck.class,
                         UncommentedMainCheck.MSG_KEY),
         };
 
@@ -127,4 +127,5 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

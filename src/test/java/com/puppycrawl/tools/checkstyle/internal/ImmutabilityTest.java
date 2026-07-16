@@ -470,4 +470,5 @@ public class ImmutabilityTest {
             }
         }
     }
+
 }

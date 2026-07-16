@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck;
 
 public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport {
+
     private static final Class<EmptyCatchBlockCheck> CLAZZ =
         EmptyCatchBlockCheck.class;
 
@@ -51,7 +52,7 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "8:38: " + getCheckMessage(CLAZZ, EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
+            "9:38: " + getCheckMessage(CLAZZ, EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -72,7 +73,7 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "8:47: " + getCheckMessage(CLAZZ, EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
+            "9:47: " + getCheckMessage(CLAZZ, EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(

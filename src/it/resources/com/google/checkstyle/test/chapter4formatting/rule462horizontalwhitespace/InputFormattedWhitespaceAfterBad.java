@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 
 /** Some javadoc. */
 public class InputFormattedWhitespaceAfterBad {
+
   /** Some javadoc. */
   public void check1(int x, int y) {
     // violation below ''for' construct must use '{}'s.'

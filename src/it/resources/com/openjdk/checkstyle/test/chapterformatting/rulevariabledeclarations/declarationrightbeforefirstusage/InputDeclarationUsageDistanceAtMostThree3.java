@@ -106,4 +106,5 @@ public class InputDeclarationUsageDistanceAtMostThree3 {
     }
 
     class Serializable {}
+
 }

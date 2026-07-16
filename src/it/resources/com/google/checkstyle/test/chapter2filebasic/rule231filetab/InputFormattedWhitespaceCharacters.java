@@ -1,6 +1,7 @@
 package com.google.checkstyle.test.chapter2filebasic.rule231filetab;
 
 final class InputFormattedWhitespaceCharacters {
+
   // Long line ----------------------------------------------------------------
   // Contains a tab ->	<- // violation 'Line contains a tab character.'
   // Contains trailing whitespace ->

@@ -10,6 +10,7 @@ import java.util.concurrent.Callable;
 
 class InputFormattedGenericWhitespace
     implements Comparable<InputFormattedGenericWhitespace>, Serializable {
+
   <T> InputFormattedGenericWhitespace(List<T> things, int i) {}
 
   public <T> InputFormattedGenericWhitespace(List<T> things) {}

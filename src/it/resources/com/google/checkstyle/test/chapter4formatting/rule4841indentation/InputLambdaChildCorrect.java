@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 /** Some javadoc. */
 public class InputLambdaChildCorrect {
+
   String testMethod1(List<Integer> operations) {
     return operations.stream()
         .map(

@@ -33,4 +33,5 @@ public class InputClassWithChainedMethods2 {
   public InputClassWithChainedMethods2 getInstance(String... uselessParams) {
     return this;
   }
+
 }

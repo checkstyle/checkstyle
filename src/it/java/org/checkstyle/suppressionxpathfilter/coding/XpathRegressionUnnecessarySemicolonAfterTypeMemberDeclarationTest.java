@@ -52,7 +52,7 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
             "InputXpathUnnecessarySemicolonAfterTypeMemberDeclarationDefault.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         final String[] expectedViolation = {
-            "4:20: " + getCheckMessage(CLASS,
+            "5:20: " + getCheckMessage(CLASS,
                 UnnecessarySemicolonAfterTypeMemberDeclarationCheck.MSG_SEMI),
         };
 
@@ -75,7 +75,7 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
         moduleConfig.addProperty("tokens", "METHOD_DEF");
 
         final String[] expectedViolation = {
-            "4:21: " + getCheckMessage(CLASS,
+            "5:21: " + getCheckMessage(CLASS,
                 UnnecessarySemicolonAfterTypeMemberDeclarationCheck.MSG_SEMI),
         };
 
@@ -95,7 +95,7 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
             "InputXpathUnnecessarySemicolonAfterTypeMemberDeclarationEnum.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         final String[] expectedViolation = {
-            "5:21: " + getCheckMessage(CLASS,
+            "6:21: " + getCheckMessage(CLASS,
                 UnnecessarySemicolonAfterTypeMemberDeclarationCheck.MSG_SEMI),
         };
 
@@ -108,4 +108,5 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

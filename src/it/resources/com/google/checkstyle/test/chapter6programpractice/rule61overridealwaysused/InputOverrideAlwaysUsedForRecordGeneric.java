@@ -12,6 +12,7 @@ public record InputOverrideAlwaysUsedForRecordGeneric<T>(T value) {
 
 // violation below, 'Top-level class Printable has to reside in its own source file.'
 interface Printable {
+
   void print();
 }
 

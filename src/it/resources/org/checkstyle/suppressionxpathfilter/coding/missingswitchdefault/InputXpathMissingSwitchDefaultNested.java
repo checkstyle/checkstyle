@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.missingswitchdefault;
 
 public class InputXpathMissingSwitchDefaultNested {
+
     public static void test2() {
         int key = 2;
         switch (key) {
@@ -15,4 +16,5 @@ public class InputXpathMissingSwitchDefaultNested {
                 }
         }
     }
+
 }

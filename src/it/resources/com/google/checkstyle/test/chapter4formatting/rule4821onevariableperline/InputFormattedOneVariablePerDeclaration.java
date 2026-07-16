@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4821onevariableperline
 
 /** Some javadoc. */
 public class InputFormattedOneVariablePerDeclaration {
+
   int mnp, efg; // violation 'Each variable declaration must be in its own statement.'
   int i1;
   int j1;

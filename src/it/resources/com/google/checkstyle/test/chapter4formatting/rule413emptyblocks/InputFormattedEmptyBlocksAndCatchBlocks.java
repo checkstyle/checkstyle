@@ -1,6 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
 class InputFormattedEmptyBlocksAndCatchBlocks {
+
   static {
   }
 
@@ -83,6 +84,7 @@ class InputFormattedEmptyBlocksAndCatchBlocks {
 
 // violation below 'Top-level class ExtraIo has to reside in its own source file.'
 class ExtraIo {
+
   public InputEmptyBlocksAndCatchBlocks read() {
     return new InputEmptyBlocksAndCatchBlocks();
   }
@@ -96,6 +98,7 @@ interface ExtraEmptyImplement {}
 
 // violation below 'Top-level class ExtraWithInner has to reside in its own source file.'
 class ExtraWithInner {
+
   static {
   }
 
@@ -131,6 +134,7 @@ class ExtraWithInner {
 
 // violation below 'Top-level class ExtraWithAnon has to reside in its own source file.'
 class ExtraWithAnon {
+
   interface AnonWithEmpty {
     public void fooEmpty();
   }
@@ -403,6 +407,7 @@ class ExtraExample {
 
 // violation below '.* ExtraTestingEmptyBlockCatch has to reside in its own source file.'
 class ExtraTestingEmptyBlockCatch {
+
   boolean flag;
 
   void doSm() {}

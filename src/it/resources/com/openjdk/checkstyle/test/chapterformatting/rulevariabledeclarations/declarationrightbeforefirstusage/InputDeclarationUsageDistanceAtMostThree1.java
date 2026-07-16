@@ -107,4 +107,5 @@ public class InputDeclarationUsageDistanceAtMostThree1 {
         }
         testMethod4(arg); // DECLARATION OF VARIABLE 'arg' SHOULD BE HERE (distance = 2)
     }
+
 }

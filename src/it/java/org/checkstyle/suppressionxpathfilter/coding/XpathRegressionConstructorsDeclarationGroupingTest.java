@@ -52,8 +52,8 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "10:5: " + getCheckMessage(CLAZZ,
-                    ConstructorsDeclarationGroupingCheck.MSG_KEY, 6),
+            "11:5: " + getCheckMessage(CLAZZ,
+                ConstructorsDeclarationGroupingCheck.MSG_KEY, 7),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -84,8 +84,8 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "12:5: " + getCheckMessage(CLAZZ,
-                    ConstructorsDeclarationGroupingCheck.MSG_KEY, 8),
+            "13:5: " + getCheckMessage(CLAZZ,
+                ConstructorsDeclarationGroupingCheck.MSG_KEY, 9),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -117,8 +117,8 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "14:5: " + getCheckMessage(CLAZZ,
-                    ConstructorsDeclarationGroupingCheck.MSG_KEY, 8),
+            "15:5: " + getCheckMessage(CLAZZ,
+                ConstructorsDeclarationGroupingCheck.MSG_KEY, 9),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -141,4 +141,5 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

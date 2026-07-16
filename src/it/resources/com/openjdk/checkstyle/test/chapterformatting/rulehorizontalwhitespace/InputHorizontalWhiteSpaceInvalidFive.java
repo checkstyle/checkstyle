@@ -1,6 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulehorizontalwhitespace;
 
 public class InputHorizontalWhiteSpaceInvalidFive {
+
     int foo()   { // violation 'Use a single space'
         return  1; // violation 'Use a single space'
     }
@@ -39,4 +40,5 @@ public class InputHorizontalWhiteSpaceInvalidFive {
             }
         }
     }
+
 }

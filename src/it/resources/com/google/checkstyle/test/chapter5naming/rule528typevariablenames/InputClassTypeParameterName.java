@@ -2,7 +2,9 @@ package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
 import java.io.Serializable;
 
-class InputClassTypeParameterName<t> { // violation 'Class type name 't' must match pattern'
+class InputClassTypeParameterName<t> {
+
+  // violation 2 lines above 'Class type name 't' must match pattern'
   public <TT> void foo() {}
 
   <T> void foo(int i) {}
@@ -10,7 +12,8 @@ class InputClassTypeParameterName<t> { // violation 'Class type name 't' must ma
 
 // violation below 'Top-level class Other has to reside in its own source file.'
 class Other<foo extends Serializable & Cloneable> {
-  // violation above 'Class type name 'foo' must match pattern'
+
+  // violation 2 lines above 'Class type name 'foo' must match pattern'
 
   foo getOne() {
     return null;

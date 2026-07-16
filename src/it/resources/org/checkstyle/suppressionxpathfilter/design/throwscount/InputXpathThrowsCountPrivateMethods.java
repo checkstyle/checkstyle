@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.design.throwscount;
 
 public class InputXpathThrowsCountPrivateMethods {
+
     interface myClass{
         //body
     }
@@ -15,4 +16,5 @@ public class InputXpathThrowsCountPrivateMethods {
             }
         };
     }
+
 }

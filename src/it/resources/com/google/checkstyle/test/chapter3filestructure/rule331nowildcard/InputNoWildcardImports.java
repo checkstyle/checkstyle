@@ -24,6 +24,7 @@ import javax.swing.JToolBar;
 import javax.swing.ScrollPaneLayout;
 
 class InputNoWildcardImports {
+
   public static void main(String[] args) {
     // Use of static imports
     try {

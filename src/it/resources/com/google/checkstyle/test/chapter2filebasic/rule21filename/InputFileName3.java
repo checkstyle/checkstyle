@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter2filebasic.rule21filename;
 
 // violation below 'The name of the outer type and the file do not match.'
 @interface MyAnnotation2 {
+
   String name();
 
   int version();
@@ -26,6 +27,7 @@ enum Enum2 {
 
 // violation below 'Top-level class TestRequireThisEnum2 has to reside in its own source file.'
 interface TestRequireThisEnum2 {
+
   enum DayOfWeek {
     SUNDAY,
     MONDAY,

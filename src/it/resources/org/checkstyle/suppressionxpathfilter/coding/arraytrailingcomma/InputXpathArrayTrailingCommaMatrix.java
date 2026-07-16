@@ -2,6 +2,7 @@ package org.checkstyle.suppressionxpathfilter.coding.arraytrailingcomma;
 
 public class InputXpathArrayTrailingCommaMatrix
 {
+
      int[][] d1 = new int[][]
     {
         {1, 2,},

@@ -100,7 +100,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
                 createModuleConfig(InvalidJavadocPositionCheck.class);
 
         final String[] expectedViolation = {
-            "6:5: " + getCheckMessage(InvalidJavadocPositionCheck.class,
+            "7:5: " + getCheckMessage(InvalidJavadocPositionCheck.class,
                 InvalidJavadocPositionCheck.MSG_KEY),
         };
 
@@ -148,7 +148,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
                 createModuleConfig(InvalidJavadocPositionCheck.class);
 
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(InvalidJavadocPositionCheck.class,
+            "6:9: " + getCheckMessage(InvalidJavadocPositionCheck.class,
                 InvalidJavadocPositionCheck.MSG_KEY),
         };
 
@@ -173,7 +173,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
                 createModuleConfig(InvalidJavadocPositionCheck.class);
 
         final String[] expectedViolation = {
-            "5:5: " + getCheckMessage(InvalidJavadocPositionCheck.class,
+            "6:5: " + getCheckMessage(InvalidJavadocPositionCheck.class,
                 InvalidJavadocPositionCheck.MSG_KEY),
         };
 
@@ -187,4 +187,5 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

@@ -33,4 +33,5 @@ public final class InputDeclarationOrderDefault {
     public int getInstanceVar() {
         return instanceVar;
     }
+
 }

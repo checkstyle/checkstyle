@@ -66,4 +66,5 @@ public class InputNoWhitespaceBeforeEllipsis {
 
   void test14(   String    [] @B ... arg) {}
   // violation above ''(' is followed by whitespace'
+
 }

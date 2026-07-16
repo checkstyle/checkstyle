@@ -603,4 +603,5 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                 getPath("InputSuppressWarningsHolder8.java"),
                 expected);
     }
+
 }

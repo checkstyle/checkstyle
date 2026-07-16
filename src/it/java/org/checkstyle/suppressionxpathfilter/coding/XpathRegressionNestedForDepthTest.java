@@ -52,7 +52,7 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
                 createModuleConfig(NestedForDepthCheck.class);
 
         final String[] expectedViolation = {
-            "7:17: " + getCheckMessage(NestedForDepthCheck.class,
+            "8:17: " + getCheckMessage(NestedForDepthCheck.class,
                 NestedForDepthCheck.MSG_KEY, 2, 1),
         };
 
@@ -77,7 +77,7 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
         moduleConfig.addProperty("max", "2");
 
         final String[] expectedViolation = {
-            "8:21: " + getCheckMessage(NestedForDepthCheck.class,
+            "9:21: " + getCheckMessage(NestedForDepthCheck.class,
                 NestedForDepthCheck.MSG_KEY, 3, 2),
         };
 
@@ -104,7 +104,7 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
                 createModuleConfig(NestedForDepthCheck.class);
 
         final String[] expectedViolation = {
-            "8:21: " + getCheckMessage(NestedForDepthCheck.class,
+            "9:21: " + getCheckMessage(NestedForDepthCheck.class,
                 NestedForDepthCheck.MSG_KEY, 2, 1),
         };
 
@@ -119,4 +119,5 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

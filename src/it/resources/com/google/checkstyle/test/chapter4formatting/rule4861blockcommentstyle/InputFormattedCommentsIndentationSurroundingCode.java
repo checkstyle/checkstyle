@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 /** Some javadoc. */
 public class InputFormattedCommentsIndentationSurroundingCode {
+
   private void foo1() {
     if (true) {
       // here initialize some variables

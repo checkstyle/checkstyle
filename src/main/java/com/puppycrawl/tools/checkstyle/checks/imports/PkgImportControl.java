@@ -29,6 +29,7 @@ import java.util.regex.Pattern;
  * be a sub-package, a class, or an allow/disallow rule.
  */
 public class PkgImportControl extends AbstractImportControl {
+
     /** The package separator: ".". */
     private static final String DOT = ".";
 
@@ -257,4 +258,5 @@ public class PkgImportControl extends AbstractImportControl {
         }
         return result;
     }
+
 }

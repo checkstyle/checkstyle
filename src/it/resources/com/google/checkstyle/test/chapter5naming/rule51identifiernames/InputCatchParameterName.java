@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter5naming.rule51identifiernames;
 
 /** Some javadoc. */
 public class InputCatchParameterName {
+
   {
     try {
       /* foo */

@@ -37,6 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * Utility class for parsing javadocs of modules.
  */
 public final class ModuleJavadocParsingUtil {
+
     /** New line escape character. */
     public static final String NEWLINE = System.lineSeparator();
     /** A newline with 4 spaces of indentation. */

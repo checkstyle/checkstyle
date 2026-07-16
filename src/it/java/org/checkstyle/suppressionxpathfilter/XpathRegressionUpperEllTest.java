@@ -46,7 +46,7 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
                 createModuleConfig(UpperEllCheck.class);
 
         final String[] expectedViolation = {
-            "4:16: " + getCheckMessage(UpperEllCheck.class,
+            "5:16: " + getCheckMessage(UpperEllCheck.class,
                     UpperEllCheck.MSG_KEY),
         };
 
@@ -73,7 +73,7 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
             createModuleConfig(UpperEllCheck.class);
 
         final String[] expectedViolation = {
-            "6:21: " + getCheckMessage(UpperEllCheck.class,
+            "7:21: " + getCheckMessage(UpperEllCheck.class,
                                        UpperEllCheck.MSG_KEY),
         };
 
@@ -101,7 +101,7 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
             createModuleConfig(UpperEllCheck.class);
 
         final String[] expectedViolation = {
-            "5:18: " + getCheckMessage(UpperEllCheck.class,
+            "6:18: " + getCheckMessage(UpperEllCheck.class,
                                        UpperEllCheck.MSG_KEY),
         };
 
@@ -119,4 +119,5 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                          expectedXpathQueries);
     }
+
 }

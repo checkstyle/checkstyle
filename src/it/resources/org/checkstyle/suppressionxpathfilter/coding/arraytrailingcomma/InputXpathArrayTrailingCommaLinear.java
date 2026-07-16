@@ -2,6 +2,7 @@ package org.checkstyle.suppressionxpathfilter.coding.arraytrailingcomma;
 
 public class InputXpathArrayTrailingCommaLinear
 {
+
     int[] a1 = new int[]
     {
         1,
@@ -15,4 +16,5 @@ public class InputXpathArrayTrailingCommaLinear
         2,
         3 // warn
     };
+
 }

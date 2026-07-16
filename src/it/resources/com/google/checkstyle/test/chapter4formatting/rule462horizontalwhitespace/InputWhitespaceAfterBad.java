@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 
 /** Some javadoc. */
 public class InputWhitespaceAfterBad {
+
   /** Some javadoc. */
   public void check1(int x,int y) { // violation '',' is not followed by whitespace.'
     for(int a = 1,b = 2;a < 5;a++,b--)
@@ -100,4 +101,5 @@ public class InputWhitespaceAfterBad {
   public String check8() {
     return("a" + "b"); // violation ''return' is not followed by whitespace.'
   }
+
 }

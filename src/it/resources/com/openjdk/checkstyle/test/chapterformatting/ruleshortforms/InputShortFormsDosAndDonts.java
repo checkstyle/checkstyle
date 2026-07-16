@@ -17,4 +17,5 @@ public class InputShortFormsDosAndDonts {
         // violation below ''{' at column 40 should have line break after.'
         for (int i = 0; i < size; i++) { sum += data[i]; }
     }
+
 }

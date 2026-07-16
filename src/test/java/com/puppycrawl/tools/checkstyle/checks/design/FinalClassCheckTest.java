@@ -347,4 +347,5 @@ public class FinalClassCheckTest
         verifyWithInlineConfigParser(getPath("InputFinalClassPrivateCtor3.java"),
                                      expected);
     }
+
 }

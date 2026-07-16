@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4852classannotations;
 
 /** Test class for checking the rule 4852. */
 public class InputFormattedClassAnnotations {
+
   /** Custom annotation 1. */
   public @interface SomeAnnotation1 {}
 

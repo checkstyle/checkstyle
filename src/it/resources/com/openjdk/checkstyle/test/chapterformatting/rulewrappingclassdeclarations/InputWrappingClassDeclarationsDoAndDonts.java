@@ -22,4 +22,5 @@ public class InputWrappingClassDeclarationsDoAndDonts {
     abstract class MyGenericClassOne<T> implements Comparable<T>,
             Predicate<T> {
     }
+
 }

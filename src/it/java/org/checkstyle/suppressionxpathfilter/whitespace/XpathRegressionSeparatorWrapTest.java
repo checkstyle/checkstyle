@@ -101,7 +101,7 @@ public class XpathRegressionSeparatorWrapTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("tokens", "DOT");
 
         final String[] expectedViolation = {
-            "9:13: " + getCheckMessage(SeparatorWrapCheck.class,
+            "10:13: " + getCheckMessage(SeparatorWrapCheck.class,
                     SeparatorWrapCheck.MSG_LINE_PREVIOUS, "."),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -119,4 +119,5 @@ public class XpathRegressionSeparatorWrapTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

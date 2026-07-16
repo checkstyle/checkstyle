@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/illegaltokentext";
@@ -79,4 +80,5 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
+
 }

@@ -6,6 +6,7 @@ import java.io.Writer;
 
 /** Some javadoc. */
 public class InputFormattedParenPad {
+
   boolean fooo = this.bar((true && false) && true);
 
   String foo() {

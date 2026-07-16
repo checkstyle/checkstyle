@@ -274,4 +274,5 @@ public class JavadocTagContinuationIndentationCheckTest
         verifyWithInlineConfigParser(
             getPath("InputJavadocTagContinuationIndentationPreTag3.java"), expected);
     }
+
 }

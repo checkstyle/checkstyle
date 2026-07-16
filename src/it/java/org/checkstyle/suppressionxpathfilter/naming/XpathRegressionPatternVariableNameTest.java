@@ -55,7 +55,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
         final String defaultPattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expectedViolation = {
-            "6:33: " + getCheckMessage(PatternVariableNameCheck.class,
+            "7:33: " + getCheckMessage(PatternVariableNameCheck.class,
                     AbstractNameCheck.MSG_INVALID_PATTERN,
                     "STRING1", defaultPattern),
         };
@@ -85,7 +85,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
         moduleConfig.addProperty("format", nonDefaultPattern);
 
         final String[] expectedViolation = {
-            "6:34: " + getCheckMessage(PatternVariableNameCheck.class,
+            "7:34: " + getCheckMessage(PatternVariableNameCheck.class,
                     AbstractNameCheck.MSG_INVALID_PATTERN, "s", nonDefaultPattern),
         };
 
@@ -114,7 +114,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
         moduleConfig.addProperty("format", nonDefaultPattern);
 
         final String[] expectedViolation = {
-            "6:34: " + getCheckMessage(PatternVariableNameCheck.class,
+            "7:34: " + getCheckMessage(PatternVariableNameCheck.class,
                 AbstractNameCheck.MSG_INVALID_PATTERN, "STR", nonDefaultPattern),
         };
 
@@ -143,7 +143,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
         moduleConfig.addProperty("format", nonDefaultPattern);
 
         final String[] expectedViolation = {
-            "6:34: " + getCheckMessage(PatternVariableNameCheck.class,
+            "7:34: " + getCheckMessage(PatternVariableNameCheck.class,
                 AbstractNameCheck.MSG_INVALID_PATTERN, "st", nonDefaultPattern),
         };
 
@@ -158,4 +158,5 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

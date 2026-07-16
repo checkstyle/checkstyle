@@ -56,7 +56,7 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
         moduleConfig.addProperty("tokens", "PARAMETER_DEF,RESOURCE");
 
         final String[] expectedViolation = {
-            "7:21: " + getCheckMessage(LocalFinalVariableNameCheck.class,
+            "8:21: " + getCheckMessage(LocalFinalVariableNameCheck.class,
                     MSG_INVALID_PATTERN, "scanner", "^[A-Z][A-Z0-9]*$"),
         };
 
@@ -80,7 +80,7 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
         moduleConfig.addProperty("format", "^[A-Z][a-z0-9]*$");
 
         final String[] expectedViolation = {
-            "5:19: " + getCheckMessage(LocalFinalVariableNameCheck.class,
+            "6:19: " + getCheckMessage(LocalFinalVariableNameCheck.class,
                     MSG_INVALID_PATTERN, "VAR1", "^[A-Z][a-z0-9]*$"),
         };
 
@@ -104,7 +104,7 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
         moduleConfig.addProperty("format", "^[A-Z][a-z0-9]*$");
 
         final String[] expectedViolation = {
-            "8:23: " + getCheckMessage(LocalFinalVariableNameCheck.class,
+            "9:23: " + getCheckMessage(LocalFinalVariableNameCheck.class,
                         MSG_INVALID_PATTERN, "VAR1", "^[A-Z][a-z0-9]*$"),
         };
 
@@ -118,4 +118,5 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

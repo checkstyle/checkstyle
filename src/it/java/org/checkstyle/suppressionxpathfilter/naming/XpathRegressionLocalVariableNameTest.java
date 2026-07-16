@@ -52,7 +52,7 @@ public class XpathRegressionLocalVariableNameTest extends AbstractXpathTestSuppo
 
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
         final String[] expectedViolations = {
-            "5:9: " + getCheckMessage(LocalVariableNameCheck.class, MSG_INVALID_PATTERN,
+            "6:9: " + getCheckMessage(LocalVariableNameCheck.class, MSG_INVALID_PATTERN,
                 "VAR", pattern),
         };
 
@@ -98,7 +98,7 @@ public class XpathRegressionLocalVariableNameTest extends AbstractXpathTestSuppo
 
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
         final String[] expectedViolations = {
-            "6:11: " + getCheckMessage(LocalVariableNameCheck.class, MSG_INVALID_PATTERN,
+            "7:11: " + getCheckMessage(LocalVariableNameCheck.class, MSG_INVALID_PATTERN,
                 "VAR", pattern),
         };
 

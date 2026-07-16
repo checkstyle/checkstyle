@@ -408,4 +408,5 @@ public class RootNodeTest extends AbstractPathTestSupport {
                 .that(rootNode.isSameNodeInfo(null))
                 .isFalse();
     }
+
 }

@@ -47,7 +47,7 @@ public class XpathRegressionNumericalPrefixesInfixesSuffixesCharacterCaseTest
             createModuleConfig(NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class);
 
         final String[] expected = {
-            "4:13: " + getCheckMessage(
+            "5:13: " + getCheckMessage(
                 NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class,
                 NumericalPrefixesInfixesSuffixesCharacterCaseCheck.MSG_PREFIX),
         };
@@ -77,7 +77,7 @@ public class XpathRegressionNumericalPrefixesInfixesSuffixesCharacterCaseTest
             createModuleConfig(NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class);
 
         final String[] expected = {
-            "4:14: " + getCheckMessage(
+            "5:14: " + getCheckMessage(
                     NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class,
                     NumericalPrefixesInfixesSuffixesCharacterCaseCheck.MSG_PREFIX),
         };
@@ -107,7 +107,7 @@ public class XpathRegressionNumericalPrefixesInfixesSuffixesCharacterCaseTest
             createModuleConfig(NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class);
 
         final String[] expected = {
-            "4:15: " + getCheckMessage(
+            "5:15: " + getCheckMessage(
                     NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class,
                     NumericalPrefixesInfixesSuffixesCharacterCaseCheck.MSG_INFIX),
         };
@@ -137,7 +137,7 @@ public class XpathRegressionNumericalPrefixesInfixesSuffixesCharacterCaseTest
             createModuleConfig(NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class);
 
         final String[] expected = {
-            "4:16: " + getCheckMessage(
+            "5:16: " + getCheckMessage(
                     NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class,
                     NumericalPrefixesInfixesSuffixesCharacterCaseCheck.MSG_SUFFIX),
         };
@@ -158,4 +158,5 @@ public class XpathRegressionNumericalPrefixesInfixesSuffixesCharacterCaseTest
 
         runVerifications(config, fileProcess, expected, expectedXpathQueries);
     }
+
 }

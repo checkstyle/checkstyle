@@ -157,4 +157,5 @@ public class RedundantImportCheckTest
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRedundantImportCustomModules.java"), expected);
     }
+
 }

@@ -42,4 +42,5 @@ public class InputWhitespaceBeforeLeftCurlyOfEmptyBlock {
     public Record2{} // violation 'WhitespaceAround: '{' is not preceded with whitespace.'
 
   }
+
 }

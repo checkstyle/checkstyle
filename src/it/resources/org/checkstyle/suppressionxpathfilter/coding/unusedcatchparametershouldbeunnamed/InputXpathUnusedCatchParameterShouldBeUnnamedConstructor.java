@@ -11,4 +11,5 @@ public class InputXpathUnusedCatchParameterShouldBeUnnamedConstructor {
             System.out.println("infinity");
         }
     }
+
 }

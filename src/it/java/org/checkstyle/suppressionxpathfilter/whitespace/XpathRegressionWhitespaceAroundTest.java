@@ -52,7 +52,7 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
                 createModuleConfig(WhitespaceAroundCheck.class);
 
         final String[] expectedViolation = {
-            "4:12: " + getCheckMessage(WhitespaceAroundCheck.class,
+            "5:12: " + getCheckMessage(WhitespaceAroundCheck.class,
                     WhitespaceAroundCheck.MSG_WS_NOT_PRECEDED, "="),
         };
 
@@ -75,7 +75,7 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
                 createModuleConfig(WhitespaceAroundCheck.class);
 
         final String[] expectedViolation = {
-            "4:13: " + getCheckMessage(WhitespaceAroundCheck.class,
+            "5:13: " + getCheckMessage(WhitespaceAroundCheck.class,
                     WhitespaceAroundCheck.MSG_WS_NOT_FOLLOWED, "="),
         };
 
@@ -98,7 +98,7 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
                 createModuleConfig(WhitespaceAroundCheck.class);
 
         final String[] expectedViolation = {
-            "7:48: " + getCheckMessage(WhitespaceAroundCheck.class,
+            "8:48: " + getCheckMessage(WhitespaceAroundCheck.class,
                     WhitespaceAroundCheck.MSG_WS_NOT_PRECEDED, "->"),
         };
 
@@ -112,4 +112,5 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

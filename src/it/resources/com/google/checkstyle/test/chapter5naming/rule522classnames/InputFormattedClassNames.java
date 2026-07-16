@@ -1,7 +1,8 @@
 package com.google.checkstyle.test.chapter5naming.rule522classnames;
 
 class inputHeaderClass2 {
-  // 2 violations above:
+
+  // 2 violations 2 lines above:
   //  'The name of the outer type and the file do not match.'
   //  'Type name 'inputHeaderClass2' must match pattern'
 
@@ -92,4 +93,5 @@ class inputHeaderClass2 {
 
   @interface Annotation$ {}
   // violation above 'Type name 'Annotation\$' must match pattern'
+
 }

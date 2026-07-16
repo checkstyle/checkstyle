@@ -27,4 +27,5 @@ public final class InputDeclarationOrderStaticMembers {
     public int getValue() {
         return instanceVar + STATIC_VAR;
     }
+
 }

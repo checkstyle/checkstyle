@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 class InputOperatorWrap {
+
   void test() {
     int x = 1 + // violation ''\+' should be on a new line.'
             2 - // violation ''-' should be on a new line.'
@@ -316,4 +317,5 @@ class InputOperatorWrap {
             & java.io.Serializable>
         void testWrapBeforeOperator() {}
   }
+
 }

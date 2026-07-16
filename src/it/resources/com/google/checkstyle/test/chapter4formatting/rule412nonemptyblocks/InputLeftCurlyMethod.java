@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
 class InputLeftCurlyMethod
   { // violation ''{' at column 3 should be on the previous line.'
+
     InputLeftCurlyMethod() {}
 
     InputLeftCurlyMethod(String one) {}
@@ -79,4 +80,5 @@ class InputLeftCurlyMethod
 
         void method6(String one, String two) {}
       }
+
   }

@@ -26,6 +26,7 @@ import javax.swing.JCheckBox;
 
 /** Some javadoc. */
 public class InputOneStatementPerLine2 {
+
   /*
    * According to java language specifications,
    * statements end with ';'. That is why ';;'
@@ -81,4 +82,5 @@ public class InputOneStatementPerLine2 {
   }
 
   private static void good() {}
+
 }

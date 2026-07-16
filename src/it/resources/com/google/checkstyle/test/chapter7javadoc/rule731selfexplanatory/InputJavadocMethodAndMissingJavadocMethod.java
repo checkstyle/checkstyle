@@ -6,6 +6,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule731selfexplanatory;
  * @mytag Hello
  */
 public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClasss {
+
   // with comments
 
   /**

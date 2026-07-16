@@ -51,7 +51,7 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
 
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(CLAZZ, MissingSwitchDefaultCheck.MSG_KEY),
+            "7:9: " + getCheckMessage(CLAZZ, MissingSwitchDefaultCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -72,7 +72,7 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "12:17: " + getCheckMessage(CLAZZ, MissingSwitchDefaultCheck.MSG_KEY),
+            "13:17: " + getCheckMessage(CLAZZ, MissingSwitchDefaultCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -98,7 +98,7 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(CLAZZ, MissingSwitchDefaultCheck.MSG_KEY),
+            "7:9: " + getCheckMessage(CLAZZ, MissingSwitchDefaultCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -109,4 +109,5 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

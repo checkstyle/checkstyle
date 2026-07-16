@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
 /**Some javadoc.*/
 public class InputSwitchOnStartOfTheLine {
+
   String testMethod1(int i) {
     String s =
         switch (i) {
@@ -42,4 +43,5 @@ public class InputSwitchOnStartOfTheLine {
         };
     return s;
   }
+
 }

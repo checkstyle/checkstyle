@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author max
  */
 class InputIncorrectAtClauseOrderCheck2 implements Serializable {
+
   /**
    * Some text.
    *

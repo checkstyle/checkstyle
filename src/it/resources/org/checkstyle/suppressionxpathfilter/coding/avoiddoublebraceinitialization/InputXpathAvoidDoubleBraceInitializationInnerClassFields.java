@@ -1,6 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.coding.avoiddoublebraceinitialization;
 
 public class InputXpathAvoidDoubleBraceInitializationInnerClassFields {
+
     public int x;
     public int y;
 
@@ -12,4 +13,5 @@ public class InputXpathAvoidDoubleBraceInitializationInnerClassFields {
             }};
         }
     }
+
 }

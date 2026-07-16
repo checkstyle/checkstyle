@@ -484,4 +484,5 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
                 expected
         );
     }
+
 }

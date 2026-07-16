@@ -39,4 +39,5 @@ public class TypeVariablesTest extends AbstractOpenJdkModuleTestSupport {
     public void testTypeVariablesValid() throws Exception {
         verifyWithWholeConfig(getPath("InputTypeVariablesOne.java"));
     }
+
 }

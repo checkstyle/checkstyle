@@ -3,6 +3,7 @@ package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 import java.io.Serializable;
 
 class InputMethodTypeParameterName<T> {
+
   public <TT> void foo() {}
 
   <e_e> void foo(int i) { // violation 'Method type name 'e_e' must match pattern'

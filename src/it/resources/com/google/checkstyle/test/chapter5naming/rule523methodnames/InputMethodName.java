@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
  * @author Travis Schneeberger
  */
 public class InputMethodName {
+
   void foo() {}
 
   void Foo() {} // violation 'Method name 'Foo' must match pattern'

@@ -173,4 +173,5 @@ class InputIncorrectJavadocParagraph {
      */
     public void foooo() {}
   }
+
 }

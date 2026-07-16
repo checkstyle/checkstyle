@@ -117,7 +117,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
         moduleConfig.addProperty("trailingArrayComma", "ignore");
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(AnnotationUseStyleCheck.class,
+            "5:5: " + getCheckMessage(AnnotationUseStyleCheck.class,
                     AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                     "COMPACT_NO_ARRAY"),
         };
@@ -297,4 +297,5 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

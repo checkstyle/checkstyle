@@ -39,4 +39,5 @@ public class NamingTest extends AbstractOpenJdkModuleTestSupport {
     public void testNamingTwo() throws Exception {
         verifyWithWholeConfig(getPath("InputNamingTwo.java"));
     }
+
 }

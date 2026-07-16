@@ -343,4 +343,5 @@ public final class JavadocPropertiesGenerator {
         @Parameters(index = "0", description = "The input file.")
         private File inputFile;
     }
+
 }
