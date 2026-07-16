@@ -91,6 +91,13 @@ public class IllegalInstantiationCheck
     /** Name of the package. */
     private String pkgName;
 
+    /**
+     * Creates a new {@code IllegalInstantiationCheck} instance.
+     */
+    public IllegalInstantiationCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

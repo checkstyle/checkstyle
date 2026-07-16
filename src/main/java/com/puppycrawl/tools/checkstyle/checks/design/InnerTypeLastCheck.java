@@ -55,6 +55,13 @@ public class InnerTypeLastCheck extends AbstractCheck {
             TokenTypes.COMPACT_CTOR_DEF
     );
 
+    /**
+     * Creates a new {@code InnerTypeLastCheck} instance.
+     */
+    public InnerTypeLastCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

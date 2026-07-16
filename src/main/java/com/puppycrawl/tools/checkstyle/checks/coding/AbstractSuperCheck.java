@@ -48,6 +48,13 @@ public abstract class AbstractSuperCheck
     private final Deque<MethodNode> methodStack = new ArrayDeque<>();
 
     /**
+     * Creates a new {@code AbstractSuperCheck} instance.
+     */
+    protected AbstractSuperCheck() {
+        // no code by default
+    }
+
+    /**
      * Returns the name of the overriding method.
      *
      * @return the name of the overriding method.

@@ -39,6 +39,13 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
     /** Suffix of module names like FooCheck. */
     private static final String SUFFIX = "Check";
 
+    /**
+     * Creates a new {@code AuditEventDefaultFormatter} instance.
+     */
+    public AuditEventDefaultFormatter() {
+        // no code by default
+    }
+
     @Override
     public String format(AuditEvent event) {
         final String fileName = event.getFileName();

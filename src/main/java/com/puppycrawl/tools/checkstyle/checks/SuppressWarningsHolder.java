@@ -92,6 +92,13 @@ public class SuppressWarningsHolder
     private static final Pattern NEWLINE = Pattern.compile("\\n");
 
     /**
+     * Creates a new {@code SuppressWarningsHolder} instance.
+     */
+    public SuppressWarningsHolder() {
+        // no code by default
+    }
+
+    /**
      * Returns the default alias for the source name of a check, which is the
      * source name in lower case with any dotted prefix or "Check"/"check"
      * suffix removed.
