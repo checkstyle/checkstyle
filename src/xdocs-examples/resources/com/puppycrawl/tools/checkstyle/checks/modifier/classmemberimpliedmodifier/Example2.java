@@ -1,8 +1,9 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="ClassMemberImpliedModifier" />
+    <module name="ClassMemberImpliedModifier">
       <property name="violateImpliedStaticOnNestedEnum" value="false"/>
+    </module>
   </module>
 </module>
 */
@@ -21,7 +22,7 @@ public final class Example2 {
     CHILD, ADULT
   }
 
-  enum Age2 {  // violation, 'Implied modifier 'static' should be explicit'
+  enum Age2 {
     CHILD, ADULT
   }
 
