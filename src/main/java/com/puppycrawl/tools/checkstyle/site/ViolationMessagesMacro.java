@@ -37,6 +37,13 @@ import org.codehaus.plexus.component.annotations.Component;
 @Component(role = Macro.class, hint = "violation-messages")
 public class ViolationMessagesMacro extends AbstractMacro {
 
+    /**
+     * Creates a new {@code ViolationMessagesMacro} instance.
+     */
+    public ViolationMessagesMacro() {
+        // no code by default
+    }
+
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
         // until https://github.com/checkstyle/checkstyle/issues/13426

@@ -99,6 +99,13 @@ public class GenericWhitespaceCheck extends AbstractCheck {
     /** Used to count the depth of a Generic expression. */
     private int depth;
 
+    /**
+     * Creates a new {@code GenericWhitespaceCheck} instance.
+     */
+    public GenericWhitespaceCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

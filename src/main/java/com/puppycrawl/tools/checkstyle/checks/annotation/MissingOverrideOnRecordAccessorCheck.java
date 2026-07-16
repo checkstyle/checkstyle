@@ -57,6 +57,13 @@ public class MissingOverrideOnRecordAccessorCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "annotation.missing.override.record.accessor";
 
+    /**
+     * Creates a new {@code MissingOverrideOnRecordAccessorCheck} instance.
+     */
+    public MissingOverrideOnRecordAccessorCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

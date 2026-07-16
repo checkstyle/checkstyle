@@ -71,6 +71,13 @@ public abstract class AbstractParenPadCheck
     private PadOption option = PadOption.NOSPACE;
 
     /**
+     * Creates a new {@code AbstractParenPadCheck} instance.
+     */
+    public AbstractParenPadCheck() {
+        // no code by default
+    }
+
+    /**
      * Specify policy on how to pad parentheses.
      *
      * @param optionStr string to decode option from
