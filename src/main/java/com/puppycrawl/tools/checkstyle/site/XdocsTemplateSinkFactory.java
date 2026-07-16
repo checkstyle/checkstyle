@@ -35,12 +35,19 @@ import org.codehaus.plexus.component.annotations.Component;
 public class XdocsTemplateSinkFactory extends AbstractTextSinkFactory {
 
     /**
+     * Creates a new {@code XdocsTemplateSinkFactory} instance.
+     */
+    public XdocsTemplateSinkFactory() {
+        // no code by default
+    }
+    /**
      * Create a Sink instance.
      *
      * @param writer writer to use.
      * @param encoding encoding of the writer.
      * @return Sink instance.
      */
+
     @Override
     protected Sink createSink(Writer writer, String encoding) {
         return new XdocsTemplateSink(writer, encoding);

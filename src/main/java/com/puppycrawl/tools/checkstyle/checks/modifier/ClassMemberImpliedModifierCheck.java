@@ -92,6 +92,12 @@ public class ClassMemberImpliedModifierCheck
     private boolean violateImpliedStaticOnNestedRecord = true;
 
     /**
+     * Creates a new {@code ClassMemberImpliedModifierCheck} instance.
+     */
+    public ClassMemberImpliedModifierCheck() {
+        // no code by default
+    }
+    /**
      * Setter to control whether to enforce that {@code static} is explicitly coded
      * on nested enums in classes and records.
      *
@@ -99,6 +105,7 @@ public class ClassMemberImpliedModifierCheck
      *        True to perform the check, false to turn the check off.
      * @since 8.16
      */
+
     public void setViolateImpliedStaticOnNestedEnum(boolean violateImplied) {
         violateImpliedStaticOnNestedEnum = violateImplied;
     }

@@ -106,6 +106,12 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
     private boolean skipEnhancedForLoopVariable;
 
     /**
+     * Creates a new {@code ModifiedControlVariableCheck} instance.
+     */
+    public ModifiedControlVariableCheck() {
+        // no code by default
+    }
+    /**
      * Setter to control whether to check
      * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
      * enhanced for-loop</a> variable.
@@ -113,6 +119,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
      * @param skipEnhancedForLoopVariable whether to skip enhanced for-loop variable
      * @since 6.8
      */
+
     public void setSkipEnhancedForLoopVariable(boolean skipEnhancedForLoopVariable) {
         this.skipEnhancedForLoopVariable = skipEnhancedForLoopVariable;
     }

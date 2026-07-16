@@ -51,6 +51,13 @@ public class IllegalTokenCheck
      */
     public static final String MSG_KEY = "illegal.token";
 
+    /**
+     * Creates a new {@code IllegalTokenCheck} instance.
+     */
+    public IllegalTokenCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

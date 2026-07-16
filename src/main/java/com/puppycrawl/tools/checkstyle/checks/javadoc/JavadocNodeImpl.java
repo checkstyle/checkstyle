@@ -73,10 +73,17 @@ public class JavadocNodeImpl implements DetailNode {
     private JavadocNodeImpl firstChild;
 
     /**
+     * Creates a new {@code JavadocNodeImpl} instance.
+     */
+    public JavadocNodeImpl() {
+        // no code by default
+    }
+    /**
      * Initializes the node from the given token.
      *
      * @param token the token to initialize from.
      */
+
     public void initialize(Token token) {
         type = token.getType();
         text = token.getText();

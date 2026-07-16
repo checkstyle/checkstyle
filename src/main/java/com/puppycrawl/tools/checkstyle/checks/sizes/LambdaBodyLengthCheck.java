@@ -54,11 +54,18 @@ public class LambdaBodyLengthCheck extends AbstractCheck {
     private int max = DEFAULT_MAX;
 
     /**
+     * Creates a new {@code LambdaBodyLengthCheck} instance.
+     */
+    public LambdaBodyLengthCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify the maximum number of lines allowed.
      *
      * @param length the maximum length of lambda body.
      * @since 8.37
      */
+
     public void setMax(int length) {
         max = length;
     }

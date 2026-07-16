@@ -67,6 +67,13 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck {
     /** The detector to use. */
     private SinglelineDetector detector;
 
+    /**
+     * Creates a new {@code RegexpSinglelineCheck} instance.
+     */
+    public RegexpSinglelineCheck() {
+        // no code by default
+    }
+
     @Override
     public void beginProcessing(String charset) {
         final DetectorOptions options = DetectorOptions.newBuilder()

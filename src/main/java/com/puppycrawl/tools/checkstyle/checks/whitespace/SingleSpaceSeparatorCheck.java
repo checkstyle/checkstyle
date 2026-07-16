@@ -72,11 +72,18 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
     private boolean validateComments;
 
     /**
+     * Creates a new {@code SingleSpaceSeparatorCheck} instance.
+     */
+    public SingleSpaceSeparatorCheck() {
+        // no code by default
+    }
+    /**
      * Setter to control whether to validate whitespaces surrounding comments.
      *
      * @param validateComments {@code true} to validate surrounding whitespaces at comments.
      * @since 6.19
      */
+
     public void setValidateComments(boolean validateComments) {
         this.validateComments = validateComments;
     }

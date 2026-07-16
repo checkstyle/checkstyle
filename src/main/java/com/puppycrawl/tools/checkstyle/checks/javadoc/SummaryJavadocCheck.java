@@ -110,11 +110,18 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private boolean shouldValidateUntaggedSummary = true;
 
     /**
+     * Creates a new {@code SummaryJavadocCheck} instance.
+     */
+    public SummaryJavadocCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify the regexp for forbidden summary fragments.
      *
      * @param pattern a pattern.
      * @since 6.0
      */
+
     public void setForbiddenSummaryFragments(Pattern pattern) {
         forbiddenSummaryFragments = pattern;
     }

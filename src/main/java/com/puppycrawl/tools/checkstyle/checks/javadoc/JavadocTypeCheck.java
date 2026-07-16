@@ -152,11 +152,18 @@ public class JavadocTypeCheck
     private Set<String> allowedAnnotations = Set.of("Generated");
 
     /**
+     * Creates a new {@code JavadocTypeCheck} instance.
+     */
+    public JavadocTypeCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify the visibility scope where Javadoc comments are checked.
      *
      * @param scope a scope.
      * @since 3.0
      */
+
     public void setScope(Scope scope) {
         this.scope = scope;
     }

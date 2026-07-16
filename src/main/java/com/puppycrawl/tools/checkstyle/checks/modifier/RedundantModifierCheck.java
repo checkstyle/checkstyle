@@ -205,6 +205,12 @@ public class RedundantModifierCheck
     private int jdkVersion = JDK_22;
 
     /**
+     * Creates a new {@code RedundantModifierCheck} instance.
+     */
+    public RedundantModifierCheck() {
+        // no code by default
+    }
+    /**
      * Setter to set the JDK version that you are using.
      * Old JDK version numbering is supported (e.g. 1.8 for Java 8)
      * as well as just the major JDK version alone (e.g. 8) is supported.
@@ -215,6 +221,7 @@ public class RedundantModifierCheck
      * @param jdkVersion the Java version
      * @since 10.18.0
      */
+
     public void setJdkVersion(String jdkVersion) {
         final String singleVersionNumber;
         if (jdkVersion.startsWith("1.")) {

@@ -67,6 +67,13 @@ public class RegexpSinglelineJavaCheck extends AbstractCheck {
     /** Control whether to ignore text in comments when searching. */
     private boolean ignoreComments;
 
+    /**
+     * Creates a new {@code RegexpSinglelineJavaCheck} instance.
+     */
+    public RegexpSinglelineJavaCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

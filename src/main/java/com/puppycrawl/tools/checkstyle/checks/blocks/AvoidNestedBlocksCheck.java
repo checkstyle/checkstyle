@@ -82,6 +82,13 @@ public class AvoidNestedBlocksCheck extends AbstractCheck {
      */
     private boolean allowInSwitchCase;
 
+    /**
+     * Creates a new {@code AvoidNestedBlocksCheck} instance.
+     */
+    public AvoidNestedBlocksCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

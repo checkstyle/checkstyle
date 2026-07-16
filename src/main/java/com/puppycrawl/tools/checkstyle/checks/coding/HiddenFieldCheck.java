@@ -120,6 +120,13 @@ public class HiddenFieldCheck
     /** Control whether to ignore parameters of abstract methods. */
     private boolean ignoreAbstractMethods;
 
+    /**
+     * Creates a new {@code HiddenFieldCheck} instance.
+     */
+    public HiddenFieldCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();

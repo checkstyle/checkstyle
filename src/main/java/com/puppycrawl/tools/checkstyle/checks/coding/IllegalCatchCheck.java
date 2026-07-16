@@ -62,12 +62,19 @@ public final class IllegalCatchCheck extends AbstractCheck {
             .collect(Collectors.toCollection(HashSet::new));
 
     /**
+     * Creates a new {@code IllegalCatchCheck} instance.
+     */
+    public IllegalCatchCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify exception class names to reject.
      *
      * @param classNames
      *            array of illegal exception classes
      * @since 3.2
      */
+
     public void setIllegalClassNames(final String... classNames) {
         illegalClassNames.clear();
         illegalClassNames.addAll(

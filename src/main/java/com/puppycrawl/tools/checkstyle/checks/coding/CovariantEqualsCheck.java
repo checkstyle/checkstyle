@@ -96,6 +96,13 @@ public class CovariantEqualsCheck extends AbstractCheck {
     /** Set of equals method definitions. */
     private final Set<DetailAST> equalsMethods = new HashSet<>();
 
+    /**
+     * Creates a new {@code CovariantEqualsCheck} instance.
+     */
+    public CovariantEqualsCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

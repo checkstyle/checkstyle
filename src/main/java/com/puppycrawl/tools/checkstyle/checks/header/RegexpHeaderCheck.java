@@ -68,11 +68,18 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
     private BitSet multiLines = new BitSet();
 
     /**
+     * Creates a new {@code RegexpHeaderCheck} instance.
+     */
+    public RegexpHeaderCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify the line numbers to repeat (zero or more times).
      *
      * @param list line numbers to repeat in header.
      * @since 3.4
      */
+
     public void setMultiLines(int... list) {
         multiLines = TokenUtil.asBitSet(list);
     }
