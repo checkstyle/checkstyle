@@ -88,4 +88,5 @@ public class RecordComponentNameCheckTest extends AbstractModuleTestSupport {
                 .that(actual)
                 .isEqualTo(expected);
     }
+
 }

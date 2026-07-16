@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.InterfaceTypeParameterNameCheck;
 
 public class XpathRegressionInterfaceTypeParameterNameTest extends AbstractXpathTestSupport {
+
     private final String checkName = InterfaceTypeParameterNameCheck.class.getSimpleName();
 
     @Override
@@ -143,4 +144,5 @@ public class XpathRegressionInterfaceTypeParameterNameTest extends AbstractXpath
 
         runVerifications(configuration, fileToCheck, expectedViolations, expectedXpathQueries);
     }
+
 }

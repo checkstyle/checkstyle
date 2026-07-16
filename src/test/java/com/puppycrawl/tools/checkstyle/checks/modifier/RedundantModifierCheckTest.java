@@ -473,4 +473,5 @@ public class RedundantModifierCheckTest
                 getNonCompilablePath("InputRedundantModifierCompactSourceFile.java"),
                 expected);
     }
+
 }

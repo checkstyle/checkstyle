@@ -44,4 +44,5 @@ public class ClassNamesTest extends AbstractGoogleModuleTestSupport {
     public void testClassNamesWithUnderscore() throws Exception {
         verifyWithWholeConfig(getPath("InputClassNamesWithUnderscore.java"));
     }
+
 }

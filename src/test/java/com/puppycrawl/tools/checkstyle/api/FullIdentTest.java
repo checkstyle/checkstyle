@@ -286,4 +286,5 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(getPath("InputFullIdentCommentInFullIdent.java"),
                 expected);
     }
+
 }

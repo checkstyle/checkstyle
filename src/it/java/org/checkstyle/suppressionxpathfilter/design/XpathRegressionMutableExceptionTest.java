@@ -141,4 +141,5 @@ public class XpathRegressionMutableExceptionTest extends AbstractXpathTestSuppor
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

@@ -207,4 +207,5 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaSemantic8.java"), expected);
     }
+
 }

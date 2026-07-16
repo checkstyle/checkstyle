@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck;
 
 public class XpathRegressionFinalClassTest extends AbstractXpathTestSupport {
+
     private final String checkName = FinalClassCheck.class.getSimpleName();
 
     @Override
@@ -126,4 +127,5 @@ public class XpathRegressionFinalClassTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

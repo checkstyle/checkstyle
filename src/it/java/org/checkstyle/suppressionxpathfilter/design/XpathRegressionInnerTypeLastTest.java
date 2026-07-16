@@ -144,4 +144,5 @@ public class XpathRegressionInnerTypeLastTest extends AbstractXpathTestSupport {
                 expectedXpathQueries);
 
     }
+
 }

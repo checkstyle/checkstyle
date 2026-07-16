@@ -117,4 +117,5 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

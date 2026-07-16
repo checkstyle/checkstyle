@@ -103,4 +103,5 @@ public class XpathRegressionGoogleNonConstantFieldNameTest extends AbstractXpath
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

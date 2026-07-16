@@ -128,4 +128,5 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

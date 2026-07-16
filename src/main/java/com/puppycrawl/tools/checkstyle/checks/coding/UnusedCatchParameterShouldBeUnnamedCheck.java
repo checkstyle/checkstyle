@@ -245,4 +245,5 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
             return parameterDefinition;
         }
     }
+
 }

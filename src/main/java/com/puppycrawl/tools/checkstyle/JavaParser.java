@@ -254,4 +254,5 @@ public final class JavaParser {
             throw new IllegalStateException(message, ex);
         }
     }
+
 }

@@ -192,4 +192,5 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
         };
         verify(checker, files, fileName2, expected);
     }
+
 }

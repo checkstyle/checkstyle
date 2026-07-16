@@ -550,4 +550,5 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         }
         return result;
     }
+
 }

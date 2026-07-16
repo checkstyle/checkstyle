@@ -116,4 +116,5 @@ public class AvoidDoubleBraceInitializationCheck extends AbstractCheck {
     private static boolean hasMember(DetailAST token) {
         return !IGNORED_TYPES.get(token.getType());
     }
+
 }

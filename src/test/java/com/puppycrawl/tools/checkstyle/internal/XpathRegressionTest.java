@@ -291,4 +291,5 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             }
         }
     }
+
 }

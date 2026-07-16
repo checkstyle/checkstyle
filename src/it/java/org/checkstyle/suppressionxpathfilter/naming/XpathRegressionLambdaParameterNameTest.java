@@ -145,4 +145,5 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

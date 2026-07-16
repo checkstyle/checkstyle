@@ -231,4 +231,5 @@ public class MatchXpathCheckTest
         assertThat(ex.getCause().getMessage())
                 .isEqualTo("Evaluation of Xpath query failed: count(*) div 0");
     }
+
 }

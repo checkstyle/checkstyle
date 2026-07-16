@@ -156,4 +156,5 @@ public class MissingOverrideOnRecordAccessorCheckTest extends AbstractModuleTest
                 getNonCompilablePath("InputMissingOverrideOnRecordAccessorCompactSourceFile.java"),
                 expected);
     }
+
 }

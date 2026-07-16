@@ -109,4 +109,5 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

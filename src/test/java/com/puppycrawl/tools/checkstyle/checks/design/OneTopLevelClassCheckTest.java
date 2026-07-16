@@ -218,4 +218,5 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassEmpty.java"), expected);
     }
+
 }

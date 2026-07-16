@@ -467,4 +467,5 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         }
         return classDot;
     }
+
 }

@@ -311,4 +311,5 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
             throw new IOException("Simulated IO failure");
         }
     }
+
 }
