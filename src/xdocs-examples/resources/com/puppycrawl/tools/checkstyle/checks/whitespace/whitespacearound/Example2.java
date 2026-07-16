@@ -2,19 +2,19 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="WhitespaceAround">
-      <property name="allowEmptySwitchBlockStatements" value="true"/>
+      <property name="tokens" value="LCURLY, RCURLY, SLIST"/>
     </module>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 // xdoc section -- start
-class Example11 {
+class Example2 {
   interface Empty {}
   // 2 violations above:
   //  ''{' is not followed by whitespace'
   //  ''}' is not preceded with whitespace'
-  public Example11(){}
+  public Example2(){}
   // 3 violations above:
   //  ''{' is not followed by whitespace'
   //  ''{' is not preceded with whitespace'
@@ -22,11 +22,11 @@ class Example11 {
   int y = 0;
   void example() {
     Runnable noop = () ->{};
-    // 4 violations above:
-    //  ''->' is not followed by whitespace'
+    // 3 violations above:
     //  ''{' is not followed by whitespace'
     //  ''{' is not preceded with whitespace'
     //  ''}' is not preceded with whitespace'
+    // ok '->', '(' and ')' not configured
     try { }
     catch (Exception e){}
     // 3 violations above:
@@ -46,9 +46,9 @@ class Example11 {
     //  ''}' is not preceded with whitespace'
     switch (y) {
       case 1: {}
-
-      // ok, allowEmptySwitchBlockStatements is true
-
+      // 2 violations above:
+      //  ''{' is not followed by whitespace'
+      //  ''}' is not preceded with whitespace'
     }
   }
   void myFunction() {}

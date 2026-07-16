@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="WhitespaceAround">
-      <property name="allowEmptyMethods" value="true"/>
+      <property name="allowEmptyConstructors" value="true"/>
     </module>
   </module>
 </module>
@@ -15,10 +15,10 @@ class Example4 {
   //  ''{' is not followed by whitespace'
   //  ''}' is not preceded with whitespace'
   public Example4(){}
-  // 3 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''{' is not preceded with whitespace'
-  //  ''}' is not preceded with whitespace'
+  // violation above ''{' is not preceded with whitespace.
+
+  // ok, allowEmptyConstructors is true
+
   int y = 0;
   void example() {
     Runnable noop = () ->{};
@@ -52,8 +52,8 @@ class Example4 {
     }
   }
   void myFunction() {}
-
-  // ok, allowEmptyMethods is true
-
+  // 2 violations above:
+  //  ''{' is not followed by whitespace'
+  //  ''}' is not preceded with whitespace'
 }
 // xdoc section -- end

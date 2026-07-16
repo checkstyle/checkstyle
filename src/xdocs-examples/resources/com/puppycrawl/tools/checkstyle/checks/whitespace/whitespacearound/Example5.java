@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="WhitespaceAround">
-      <property name="allowEmptyConstructors" value="true"/>
+      <property name="allowEmptyTypes" value="true"/>
     </module>
   </module>
 </module>
@@ -11,14 +11,14 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 // xdoc section -- start
 class Example5 {
   interface Empty {}
-  // 2 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''}' is not preceded with whitespace'
+
+  // ok, allowEmptyTypes is true
+
   public Example5(){}
-  // violation above ''{' is not preceded with whitespace.
-
-  // ok, allowEmptyConstructors is true
-
+  // 3 violations above:
+  //  ''{' is not followed by whitespace'
+  //  ''{' is not preceded with whitespace'
+  //  ''}' is not preceded with whitespace'
   int y = 0;
   void example() {
     Runnable noop = () ->{};

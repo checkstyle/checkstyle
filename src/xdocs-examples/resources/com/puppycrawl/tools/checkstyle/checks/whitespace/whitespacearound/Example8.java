@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="WhitespaceAround">
-      <property name="allowEmptyLambdas" value="true"/>
+      <property name="allowEmptyCatches" value="true"/>
     </module>
   </module>
 </module>
@@ -22,17 +22,17 @@ class Example8 {
   int y = 0;
   void example() {
     Runnable noop = () ->{};
-    // violation above '->' is not followed by whitespace.
-
-    // ok, allowEmptyLambdas
-    // is true above
-
-    try { }
-    catch (Exception e){}
-    // 3 violations above:
+    // 4 violations above:
+    //  ''->' is not followed by whitespace'
     //  ''{' is not followed by whitespace'
     //  ''{' is not preceded with whitespace'
     //  ''}' is not preceded with whitespace'
+    try { }
+    catch (Exception e){}
+
+    // ok, allowEmptyCatches
+    // is true above
+
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
     for (int i = 0; i < 10; i++){}

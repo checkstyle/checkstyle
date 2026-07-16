@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="WhitespaceAround">
-      <property name="ignoreEnhancedForColon" value="false"/>
+      <property name="allowEmptySwitchBlockStatements" value="true"/>
     </module>
   </module>
 </module>
@@ -34,7 +34,7 @@ class Example10 {
     //  ''{' is not preceded with whitespace'
     //  ''}' is not preceded with whitespace'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
-    for (char item: vowels) { } // violation '':' is not preceded with whitespace'
+    for (char item: vowels) { }
     for (int i = 0; i < 10; i++){}
     // 3 violations above:
     //  ''{' is not followed by whitespace'
@@ -46,9 +46,9 @@ class Example10 {
     //  ''}' is not preceded with whitespace'
     switch (y) {
       case 1: {}
-      // 2 violations above:
-      //  ''{' is not followed by whitespace'
-      //  ''}' is not preceded with whitespace'
+
+      // ok, allowEmptySwitchBlockStatements is true
+
     }
   }
   void myFunction() {}
