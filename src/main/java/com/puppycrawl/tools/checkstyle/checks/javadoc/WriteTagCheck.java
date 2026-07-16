@@ -78,11 +78,18 @@ public class WriteTagCheck
     private SeverityLevel tagSeverity = SeverityLevel.INFO;
 
     /**
+     * Creates a new {@code WriteTagCheck} instance.
+     */
+    public WriteTagCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify the name of tag.
      *
      * @param tag tag to check
      * @since 4.2
      */
+
     public void setTag(String tag) {
         this.tag = tag;
         tagRegExp = CommonUtil.createPattern(tag + "\\s*(.*$)");

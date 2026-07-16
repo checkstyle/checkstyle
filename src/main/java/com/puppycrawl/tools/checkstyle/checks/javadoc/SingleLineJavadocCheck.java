@@ -60,6 +60,12 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
     private boolean ignoreInlineTags = true;
 
     /**
+     * Creates a new {@code SingleLineJavadocCheck} instance.
+     */
+    public SingleLineJavadocCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
      * block tags</a> which are ignored by the check.
@@ -67,6 +73,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      * @param tags to be ignored by check.
      * @since 6.8
      */
+
     public void setIgnoredTags(String... tags) {
         ignoredTags = Set.of(tags);
     }

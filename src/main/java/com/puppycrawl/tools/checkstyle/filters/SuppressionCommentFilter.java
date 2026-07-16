@@ -148,6 +148,13 @@ public class SuppressionCommentFilter
     private String idFormat;
 
     /**
+     * Creates a new {@code SuppressionCommentFilter} instance.
+     */
+    public SuppressionCommentFilter() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify comment pattern to trigger filter to begin suppression.
      *
      * @param pattern a pattern.

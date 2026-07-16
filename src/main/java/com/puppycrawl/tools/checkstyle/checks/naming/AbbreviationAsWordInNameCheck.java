@@ -107,12 +107,19 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     private boolean ignoreOverriddenMethods = true;
 
     /**
+     * Creates a new {@code AbbreviationAsWordInNameCheck} instance.
+     */
+    public AbbreviationAsWordInNameCheck() {
+        // no code by default
+    }
+    /**
      * Setter to allow to skip variables with {@code final} modifier.
      *
      * @param ignoreFinal
      *        Defines if ignore variables with 'final' modifier or not.
      * @since 5.8
      */
+
     public void setIgnoreFinal(boolean ignoreFinal) {
         this.ignoreFinal = ignoreFinal;
     }

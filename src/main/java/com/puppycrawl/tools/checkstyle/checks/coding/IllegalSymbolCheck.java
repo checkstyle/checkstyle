@@ -95,12 +95,19 @@ public class IllegalSymbolCheck extends AbstractCheck {
     private String symbolCodes = DEFAULT_ILLEGAL_CODES;
 
     /**
+     * Creates a new {@code IllegalSymbolCheck} instance.
+     */
+    public IllegalSymbolCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify the symbols to check for.
      *
      * @param symbols the symbols specification
      * @throws IllegalArgumentException if the format is invalid
      * @since 13.4.0
      */
+
     public void setSymbolCodes(String symbols) {
         symbolCodes = Objects.requireNonNullElse(symbols, "");
         parseSymbolCodes();

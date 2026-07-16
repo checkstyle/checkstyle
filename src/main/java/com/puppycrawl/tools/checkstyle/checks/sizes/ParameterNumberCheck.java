@@ -60,11 +60,18 @@ public class ParameterNumberCheck
     private Set<String> ignoreAnnotatedBy = Set.of();
 
     /**
+     * Creates a new {@code ParameterNumberCheck} instance.
+     */
+    public ParameterNumberCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify the maximum number of parameters allowed.
      *
      * @param max the max allowed parameters
      * @since 3.0
      */
+
     public void setMax(int max) {
         this.max = max;
     }

@@ -243,12 +243,19 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private int samePackageMatchingDepth;
 
     /**
+     * Creates a new {@code CustomImportOrderCheck} instance.
+     */
+    public CustomImportOrderCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify RegExp for STANDARD_JAVA_PACKAGE group imports.
      *
      * @param regexp
      *        user value.
      * @since 5.8
      */
+
     public final void setStandardPackageRegExp(Pattern regexp) {
         standardPackageRegExp = regexp;
     }

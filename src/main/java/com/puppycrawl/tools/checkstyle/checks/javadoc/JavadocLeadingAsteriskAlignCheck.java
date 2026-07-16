@@ -73,6 +73,13 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
     /** Specifies the lines of the file being processed. */
     private String[] fileLines;
 
+    /**
+     * Creates a new {@code JavadocLeadingAsteriskAlignCheck} instance.
+     */
+    public JavadocLeadingAsteriskAlignCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultJavadocTokens() {
         return new int[] {

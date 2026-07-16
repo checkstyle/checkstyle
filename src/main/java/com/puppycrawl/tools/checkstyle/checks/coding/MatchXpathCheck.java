@@ -76,12 +76,19 @@ public class MatchXpathCheck extends AbstractCheck {
     private XPathExpression xpathExpression;
 
     /**
+     * Creates a new {@code MatchXpathCheck} instance.
+     */
+    public MatchXpathCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify Xpath query.
      *
      * @param query Xpath query.
      * @throws IllegalStateException if creation of xpath expression fails
      * @since 8.39
      */
+
     public void setQuery(String query) {
         this.query = query;
         if (!query.isEmpty()) {

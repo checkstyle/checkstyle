@@ -87,6 +87,13 @@ public abstract class AbstractAutomaticBean
     private Configuration configuration;
 
     /**
+     * Creates a new {@code AbstractAutomaticBean} instance.
+     */
+    public AbstractAutomaticBean() {
+        // no code by default
+    }
+
+    /**
      * Provides a hook to finish the part of this component's setup that
      * was not handled by the bean introspection.
      *
@@ -328,6 +335,12 @@ public abstract class AbstractAutomaticBean
 
     /** A converter that converts a string to a pattern. */
     private static final class PatternConverter implements Converter {
+        /**
+         * Creates a new {@code PatternConverter} instance.
+         */
+        private PatternConverter() {
+            // no code by default
+        }
 
         @Override
         @SuppressWarnings("unchecked")
@@ -339,6 +352,12 @@ public abstract class AbstractAutomaticBean
 
     /** A converter that converts a comma-separated string into an array of patterns. */
     private static final class PatternArrayConverter implements Converter {
+        /**
+         * Creates a new {@code PatternArrayConverter} instance.
+         */
+        private PatternArrayConverter() {
+            // no code by default
+        }
 
         @Override
         @SuppressWarnings("unchecked")
@@ -358,6 +377,12 @@ public abstract class AbstractAutomaticBean
 
     /** A converter that converts strings to severity level. */
     private static final class SeverityLevelConverter implements Converter {
+        /**
+         * Creates a new {@code SeverityLevelConverter} instance.
+         */
+        private SeverityLevelConverter() {
+            // no code by default
+        }
 
         @Override
         @SuppressWarnings("unchecked")
@@ -369,6 +394,12 @@ public abstract class AbstractAutomaticBean
 
     /** A converter that converts strings to scope. */
     private static final class ScopeConverter implements Converter {
+        /**
+         * Creates a new {@code ScopeConverter} instance.
+         */
+        private ScopeConverter() {
+            // no code by default
+        }
 
         @Override
         @SuppressWarnings("unchecked")
@@ -380,6 +411,12 @@ public abstract class AbstractAutomaticBean
 
     /** A converter that converts strings to uri. */
     private static final class UriConverter implements Converter {
+        /**
+         * Creates a new {@code UriConverter} instance.
+         */
+        private UriConverter() {
+            // no code by default
+        }
 
         @Nullable
         @Override
@@ -408,6 +445,12 @@ public abstract class AbstractAutomaticBean
      * with these characters.
      */
     private static final class RelaxedStringArrayConverter implements Converter {
+        /**
+         * Creates a new {@code RelaxedStringArrayConverter} instance.
+         */
+        private RelaxedStringArrayConverter() {
+            // no code by default
+        }
 
         @Override
         @SuppressWarnings("unchecked")
@@ -436,6 +479,13 @@ public abstract class AbstractAutomaticBean
         /** Constant for optimization. */
         private static final AccessModifierOption[] EMPTY_MODIFIER_ARRAY =
                 new AccessModifierOption[0];
+
+        /**
+         * Creates a new {@code RelaxedAccessModifierArrayConverter} instance.
+         */
+        private RelaxedAccessModifierArrayConverter() {
+            // no code by default
+        }
 
         @Override
         @SuppressWarnings("unchecked")

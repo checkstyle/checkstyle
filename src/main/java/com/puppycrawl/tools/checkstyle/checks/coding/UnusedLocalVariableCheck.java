@@ -211,6 +211,12 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private int depth;
 
     /**
+     * Creates a new {@code UnusedLocalVariableCheck} instance.
+     */
+    public UnusedLocalVariableCheck() {
+        // no code by default
+    }
+    /**
      * Setter to allow variables named with a single underscore
      * (known as <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
      * unnamed variables</a> in Java 21+).
@@ -218,6 +224,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param allowUnnamedVariables true or false.
      * @since 10.18.0
      */
+
     public void setAllowUnnamedVariables(boolean allowUnnamedVariables) {
         this.allowUnnamedVariables = allowUnnamedVariables;
     }

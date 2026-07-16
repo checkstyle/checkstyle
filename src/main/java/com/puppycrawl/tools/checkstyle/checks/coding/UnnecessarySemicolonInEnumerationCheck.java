@@ -41,6 +41,13 @@ public final class UnnecessarySemicolonInEnumerationCheck extends AbstractCheck 
      */
     public static final String MSG_SEMI = "unnecessary.semicolon";
 
+    /**
+     * Creates a new {@code UnnecessarySemicolonInEnumerationCheck} instance.
+     */
+    public UnnecessarySemicolonInEnumerationCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

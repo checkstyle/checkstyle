@@ -113,6 +113,13 @@ public class JavadocContentLocationCheck extends AbstractCheck {
      */
     private JavadocContentLocationOption location = JavadocContentLocationOption.SECOND_LINE;
 
+    /**
+     * Creates a new {@code JavadocContentLocationCheck} instance.
+     */
+    public JavadocContentLocationCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getRequiredTokens() {
         return new int[] {

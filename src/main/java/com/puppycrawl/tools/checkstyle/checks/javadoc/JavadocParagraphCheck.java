@@ -115,12 +115,19 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     private boolean allowNewlineParagraph = true;
 
     /**
+     * Creates a new {@code JavadocParagraphCheck} instance.
+     */
+    public JavadocParagraphCheck() {
+        // no code by default
+    }
+    /**
      * Setter to control whether the {@literal <p>} tag should be placed
      * immediately before the first word.
      *
      * @param value value to set.
      * @since 6.9
      */
+
     public void setAllowNewlineParagraph(boolean value) {
         allowNewlineParagraph = value;
     }
