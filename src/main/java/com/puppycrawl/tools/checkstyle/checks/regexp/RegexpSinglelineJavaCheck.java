@@ -44,6 +44,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 @StatelessCheck
 public class RegexpSinglelineJavaCheck extends AbstractCheck {
 
+    /** A key is pointing to the warning message text in "messages.properties" file. */
+    public static final String MSG_REGEXP_EXCEEDED = "regexp.exceeded";
+
+    /** A key is pointing to the warning message text in "messages.properties" file. */
+    public static final String MSG_REGEXP_MINIMUM = "regexp.minimum";
+
     /** Specify the format of the regular expression to match. */
     @XdocsPropertyType(PropertyType.PATTERN)
     private String format = "$.";
@@ -93,7 +99,8 @@ public class RegexpSinglelineJavaCheck extends AbstractCheck {
             .maximum(maximum)
             .ignoreCase(ignoreCase)
             .build();
-        final SinglelineDetector detector = new SinglelineDetector(options);
+        final SinglelineDetector detector = new SinglelineDetector(options,
+                MSG_REGEXP_EXCEEDED, MSG_REGEXP_MINIMUM);
         detector.processLines(getFileContents().getText());
     }
 
