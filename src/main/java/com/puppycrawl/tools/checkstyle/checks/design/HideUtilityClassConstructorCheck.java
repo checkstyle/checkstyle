@@ -80,6 +80,13 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
     private Set<String> ignoreAnnotatedBy = Set.of();
 
     /**
+     * Creates a new {@code HideUtilityClassConstructorCheck} instance.
+     */
+    public HideUtilityClassConstructorCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to ignore classes annotated with the specified annotation(s). Annotation names
      * provided in this property must exactly match the annotation names on the classes.
      * If the target class has annotations specified with their fully qualified names

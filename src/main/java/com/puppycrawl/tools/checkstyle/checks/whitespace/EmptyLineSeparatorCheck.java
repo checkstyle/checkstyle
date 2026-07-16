@@ -109,6 +109,13 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     private boolean allowMultipleEmptyLinesInsideClassMembers = true;
 
     /**
+     * Creates a new {@code EmptyLineSeparatorCheck} instance.
+     */
+    public EmptyLineSeparatorCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to allow no empty line between fields.
      *
      * @param allow

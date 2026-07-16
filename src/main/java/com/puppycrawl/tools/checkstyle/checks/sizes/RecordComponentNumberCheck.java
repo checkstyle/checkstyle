@@ -64,6 +64,13 @@ public class RecordComponentNumberCheck extends AbstractCheck {
     };
 
     /**
+     * Creates a new {@code RecordComponentNumberCheck} instance.
+     */
+    public RecordComponentNumberCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify the maximum number of components allowed in the header
      * of a record definition.
      *

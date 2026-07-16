@@ -107,6 +107,13 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     private boolean ignoreOverriddenMethods = true;
 
     /**
+     * Creates a new {@code AbbreviationAsWordInNameCheck} instance.
+     */
+    public AbbreviationAsWordInNameCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to allow to skip variables with {@code final} modifier.
      *
      * @param ignoreFinal

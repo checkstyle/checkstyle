@@ -363,6 +363,12 @@ public final class TreeTable extends JTable {
      */
     private final class TreeTableCellEditor extends BaseCellEditor implements
             TableCellEditor {
+        /**
+         * Creates a new {@code TreeTableCellEditor} instance.
+         */
+        private TreeTableCellEditor() {
+            // no code by default
+        }
 
         @Override
         public Component getTableCellEditorComponent(JTable table,

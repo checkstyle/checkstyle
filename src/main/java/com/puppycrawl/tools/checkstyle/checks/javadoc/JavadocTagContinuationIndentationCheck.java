@@ -68,6 +68,13 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     private int offset = DEFAULT_INDENTATION;
 
     /**
+     * Creates a new {@code JavadocTagContinuationIndentationCheck} instance.
+     */
+    public JavadocTagContinuationIndentationCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify how many spaces to use for new indentation level.
      *
      * @param offset custom value.

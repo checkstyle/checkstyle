@@ -112,6 +112,13 @@ public class ArrayTrailingCommaCheck extends AbstractCheck {
     private boolean alwaysDemandTrailingComma;
 
     /**
+     * Creates a new {@code ArrayTrailingCommaCheck} instance.
+     */
+    public ArrayTrailingCommaCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to control whether to always check for a trailing comma, even when an array is inline.
      *
      * @param alwaysDemandTrailingComma whether to always check for a trailing comma.
