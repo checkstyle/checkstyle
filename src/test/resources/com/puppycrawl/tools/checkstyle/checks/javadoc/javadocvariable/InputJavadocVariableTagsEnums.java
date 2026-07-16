@@ -78,3 +78,8 @@ class WrongException extends RuntimeException
 {
 }
 
+// 2 violations 4 lines below:
+//      'Missing a Javadoc comment'
+//      'Missing a Javadoc comment'
+/** Javadoc */
+private static enum PathStatus { INVALID, CHECKED };
