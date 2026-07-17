@@ -746,6 +746,60 @@ public class GeneratedJavaTokenTypesTest {
         assertWithMessage(message)
             .that(JavaLanguageLexer.COMPACT_COMPILATION_UNIT)
             .isEqualTo(228);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.LITERAL_OPEN)
+            .isEqualTo(229);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.LITERAL_REQUIRES)
+            .isEqualTo(230);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.LITERAL_TRANSITIVE)
+            .isEqualTo(231);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.LITERAL_EXPORTS)
+            .isEqualTo(232);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.LITERAL_OPENS)
+            .isEqualTo(233);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.LITERAL_TO)
+            .isEqualTo(234);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.LITERAL_USES)
+            .isEqualTo(235);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.LITERAL_PROVIDES)
+            .isEqualTo(236);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.LITERAL_WITH)
+            .isEqualTo(237);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.MODULE_DEF)
+            .isEqualTo(238);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.DIRECTIVE_BLOCK)
+            .isEqualTo(239);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.REQUIRES)
+            .isEqualTo(240);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.EXPORTS)
+            .isEqualTo(241);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.OPENS)
+            .isEqualTo(242);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.USES)
+            .isEqualTo(243);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.PROVIDES)
+            .isEqualTo(244);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.TO)
+            .isEqualTo(245);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.WITH)
+            .isEqualTo(246);
 
         final Set<String> modeNames = Set.of(JavaLanguageLexer.modeNames);
         final Set<String> channelNames = Set.of(JavaLanguageLexer.channelNames);
@@ -763,7 +817,7 @@ public class GeneratedJavaTokenTypesTest {
                         + " 'GeneratedJavaTokenTypesTest' and verified"
                         + " that their old numbering didn't change")
             .that(tokenCount)
-            .isEqualTo(228);
+            .isEqualTo(246);
     }
 
     /**
