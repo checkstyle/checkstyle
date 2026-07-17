@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulevariabledeclarations.declarationrightbeforefirstusage;
 
+// violation first line 'Header mismatch*'
+
 /** Some javadoc. */
 public class InputDeclarationUsageDistanceAtMostThree5 {
 
@@ -66,10 +68,6 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
         for (int i = 0; i < 10; i++, filterCount++) {
             int abc = 0;
             System.identityHashCode(abc);
-            for (int j = 0; j < 10; j++) {
-                abc = filterCount;
-                System.identityHashCode(abc);
-            }
         }
     }
 

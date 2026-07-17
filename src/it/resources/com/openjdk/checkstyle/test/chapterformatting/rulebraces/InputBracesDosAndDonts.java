@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulebraces;
 
+// violation first line 'Header mismatch*'
+
 public class InputBracesDosAndDonts {
     int[][] matrix;
     void method() {
