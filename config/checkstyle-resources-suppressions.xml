@@ -94,6 +94,12 @@
   <suppress checks="PackageDeclarationCheck"
     files="rulepackagenames[\\/]InputPackageNameBad\.java"/>
 
+  <!-- modular compilation units cannot declare a package -->
+  <suppress checks="PackageDeclarationCheck"
+    files="java9[\\/]alldirectives[\\/]module-info\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="java9[\\/]keywordsasnames[\\/]module-info\.java"/>
+
   <!-- intentional problem for testing -->
   <suppress checks="RegexpSingleline"
     files="javadoctype[\\/]InputJavadocTypeWithBlockComment\.java"/>
