@@ -245,6 +245,42 @@ public class Example4 {
     );
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure a filter to suppress <code>MagicNumber</code> violations
+          whose message matches <code>100</code> using <code>SuppressionSingleFilter</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MagicNumber"/&gt;
+  &lt;/module&gt;
+  &lt;module name="SuppressionSingleFilter"&gt;
+    &lt;property name="checks" value="MagicNumber"/&gt;
+    &lt;property name="message" value="100"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example5 {
+  // violation below ''5' is a magic number'
+  private int MyVariable = 5;
+
+  public void exampleMethod(int a, int b) {
+    int value = 100; // filtered violation ''100' is a magic number'
+
+    Integer. parseInt("3");
+  }
+
+  public void printExample() {
+    int [] x;
+    System.out.println(
+            "example"
+    );
+  }
+}
 </code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="SuppressionSingleFilter_Example_of_Usage">
