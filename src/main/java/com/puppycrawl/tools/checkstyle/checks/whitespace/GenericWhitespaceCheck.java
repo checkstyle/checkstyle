@@ -229,9 +229,12 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      * @return true if generic is before record header
      */
     private static boolean isGenericBeforeRecordHeader(DetailAST ast) {
-        final DetailAST grandParent = ast.getParent().getParent();
-        return grandParent.getType() == TokenTypes.RECORD_DEF
-                || grandParent.getParent().getType() == TokenTypes.RECORD_PATTERN_DEF;
+        DetailAST typeNode = ast.getParent().getParent();
+        if (typeNode.getType() == TokenTypes.DOT) {
+            typeNode = typeNode.getParent();
+        }
+        return typeNode.getType() == TokenTypes.RECORD_DEF
+                || typeNode.getParent().getType() == TokenTypes.RECORD_PATTERN_DEF;
     }
 
     /**
