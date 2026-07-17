@@ -98,6 +98,13 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     private boolean ignoreFinal = true;
 
     /**
+     * Creates a new {@code VariableDeclarationUsageDistanceCheck} instance.
+     */
+    public VariableDeclarationUsageDistanceCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify the maximum distance between a variable's declaration and its first usage.
      * Value should be greater than 0.
      *

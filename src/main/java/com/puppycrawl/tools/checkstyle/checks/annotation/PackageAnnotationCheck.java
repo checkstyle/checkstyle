@@ -58,6 +58,13 @@ public class PackageAnnotationCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "annotation.package.location";
 
+    /**
+     * Creates a new {@code PackageAnnotationCheck} instance.
+     */
+    public PackageAnnotationCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
