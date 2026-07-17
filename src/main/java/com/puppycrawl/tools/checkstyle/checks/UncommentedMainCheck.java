@@ -162,15 +162,27 @@ public class UncommentedMainCheck
      * @param method method definition node
      */
     private void visitMethodDef(DetailAST method) {
-        if (classDepth == 1
-                // method not in inner class or in interface definition
-                && checkClassName()
-                && checkName(method)
-                && checkModifiers(method)
-                && checkType(method)
-                && checkParams(method)) {
+        if (isCompactSourceMain(method)
+                || classDepth == 1
+                    && checkClassName()
+                    && checkName(method)
+                    && checkModifiers(method)
+                    && checkType(method)
+                    && checkParams(method)) {
             log(method, MSG_KEY);
         }
+    }
+
+    /**
+     * Checks if method is a main method in a compact source file.
+     *
+     * @param method the METHOD_DEF node
+     * @return true if check passed, false otherwise
+     */
+    private static boolean isCompactSourceMain(DetailAST method) {
+        return method.getParent().getType() == TokenTypes.COMPACT_COMPILATION_UNIT
+                && checkName(method)
+                && checkType(method);
     }
 
     /**
