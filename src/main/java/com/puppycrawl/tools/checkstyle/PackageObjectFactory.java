@@ -618,6 +618,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.UnnecessaryNullCheckWithInstanceOfCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnusedTryResourceShouldBeUnnamedCheck",
                 BASE_PACKAGE + ".checks.coding.UnusedTryResourceShouldBeUnnamedCheck");
+        NAME_TO_FULL_MODULE_NAME.put("UnnecessaryTypeArgumentsWithRecordPatternCheck",
+                BASE_PACKAGE + ".checks.coding.UnnecessaryTypeArgumentsWithRecordPatternCheck");
     }
 
     /**
