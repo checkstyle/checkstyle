@@ -1483,7 +1483,10 @@ public class XdocsExamplesAstConsistencyTest {
                 && ast.getType() == TokenTypes.IDENT
                 && (parent.getType() == TokenTypes.CLASS_DEF
                     || parent.getType() == TokenTypes.INTERFACE_DEF
-                    || parent.getType() == TokenTypes.CTOR_DEF);
+                    || parent.getType() == TokenTypes.CTOR_DEF
+                    || parent.getType() == TokenTypes.ENUM_DEF
+                    || parent.getType() == TokenTypes.RECORD_DEF
+                    || parent.getType() == TokenTypes.ANNOTATION_DEF);
     }
 
     /**
