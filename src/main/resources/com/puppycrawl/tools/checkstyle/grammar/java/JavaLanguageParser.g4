@@ -80,6 +80,7 @@ options { tokenVocab=JavaLanguageLexer; }
 compilationUnit
     : packageDeclaration? importDeclaration*
       (typeDeclaration | compactMemberDeclaration)* EOF
+    | importDeclaration* moduleDeclaration EOF
     ;
 
 compactMemberDeclaration
@@ -99,6 +100,35 @@ importDeclaration
     : IMPORT LITERAL_STATIC? qualifiedName (DOT STAR)? SEMI    #importDec
     | IMPORT LITERAL_MODULE qualifiedName SEMI                 #importDec
     | SEMI                                                     #singleSemiImport
+    ;
+
+moduleDeclaration
+    : annotations[true] LITERAL_OPEN? LITERAL_MODULE qualifiedName directiveBlock
+    ;
+
+directiveBlock
+    : LCURLY moduleDirective* RCURLY
+    ;
+
+moduleDirective
+    : LITERAL_REQUIRES requiresModifier* qualifiedName SEMI    #requiresDirective
+    | LITERAL_EXPORTS qualifiedName toClause? SEMI             #exportsDirective
+    | LITERAL_OPENS qualifiedName toClause? SEMI               #opensDirective
+    | LITERAL_USES qualifiedName SEMI                          #usesDirective
+    | LITERAL_PROVIDES qualifiedName withClause SEMI           #providesDirective
+    ;
+
+requiresModifier
+    : LITERAL_TRANSITIVE
+    | LITERAL_STATIC
+    ;
+
+toClause
+    : LITERAL_TO qualifiedName (COMMA qualifiedName)*
+    ;
+
+withClause
+    : LITERAL_WITH qualifiedName (COMMA qualifiedName)*
     ;
 
 typeDeclaration
@@ -925,4 +955,13 @@ id:  LITERAL_UNDERSCORE
     | IDENT
     | LITERAL_WHEN
     | LITERAL_MODULE
+    | LITERAL_OPEN
+    | LITERAL_REQUIRES
+    | LITERAL_TRANSITIVE
+    | LITERAL_EXPORTS
+    | LITERAL_OPENS
+    | LITERAL_TO
+    | LITERAL_USES
+    | LITERAL_PROVIDES
+    | LITERAL_WITH
     ;

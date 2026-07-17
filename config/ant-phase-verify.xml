@@ -180,6 +180,8 @@
           <exclude name="**/InputTreeWalkerSkipParsingExceptionConfigSeverityDefault.java"/>
           <exclude name="**/InputTreeWalkerSkipParsingExceptionConfigSeverityIgnore.java"/>
           <exclude name="**/InputDefaultLoggerTestException.java"/>
+          <exclude name="**/invalidpackagebeforemodule/module-info.java"/>
+          <exclude name="**/invalidtypeaftermodule/module-info.java"/>
         </fileset>
       </path>
       <formatter type="plain"/>
