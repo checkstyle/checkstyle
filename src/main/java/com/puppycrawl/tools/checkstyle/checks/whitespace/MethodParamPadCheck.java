@@ -74,6 +74,13 @@ public class MethodParamPadCheck
     /** Specify policy on how to pad method parameter. */
     private PadOption option = PadOption.NOSPACE;
 
+    /**
+     * Creates a new {@code MethodParamPadCheck} instance.
+     */
+    public MethodParamPadCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();

@@ -120,6 +120,13 @@ public class CheckstyleAntTask extends Task {
     ////////////////////////////////////////////////////////////////////////////
 
     /**
+     * Creates a new {@code CheckstyleAntTask} instance.
+     */
+    public CheckstyleAntTask() {
+        // no code by default
+    }
+
+    /**
      * Tells this task to write failure message to the named property when there
      * is a violation.
      *
@@ -598,6 +605,13 @@ public class CheckstyleAntTask extends Task {
         /** My possible values. */
         private static final String[] VALUES = {E_XML, E_PLAIN, E_SARIF};
 
+        /**
+         * Creates a new {@code FormatterType} instance.
+         */
+        public FormatterType() {
+            // no code by default
+        }
+
         @Override
         public String[] getValues() {
             return VALUES.clone();
@@ -616,6 +630,13 @@ public class CheckstyleAntTask extends Task {
         private File toFile;
         /** Whether or not to write to the named file. */
         private boolean useFile = true;
+
+        /**
+         * Creates a new {@code Formatter} instance.
+         */
+        public Formatter() {
+            // no code by default
+        }
 
         /**
          * Set the type of the formatter.
@@ -745,6 +766,13 @@ public class CheckstyleAntTask extends Task {
         private String key;
         /** The property value. */
         private String value;
+
+        /**
+         * Creates a new {@code Property} instance.
+         */
+        public Property() {
+            // no code by default
+        }
 
         /**
          * Gets key.

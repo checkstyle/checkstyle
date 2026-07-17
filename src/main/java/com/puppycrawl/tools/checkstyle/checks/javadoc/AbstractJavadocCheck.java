@@ -97,6 +97,13 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     private boolean violateExecutionOnNonTightHtml;
 
     /**
+     * Creates a new {@code AbstractJavadocCheck} instance.
+     */
+    public AbstractJavadocCheck() {
+        // no code by default
+    }
+
+    /**
      * Returns the default javadoc token types a check is interested in.
      *
      * @return the default javadoc token types
@@ -409,6 +416,12 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
          */
         private DetailAST blockCommentAst;
 
+        /**
+         * Creates a new {@code FileContext} instance.
+         */
+        private FileContext() {
+            // no code by default
+        }
     }
 
 }
