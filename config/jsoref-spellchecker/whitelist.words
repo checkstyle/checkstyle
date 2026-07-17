@@ -325,6 +325,7 @@ doclet
 doclint
 doctype
 documentationcomments
+documentingexceptionswiththrowstag
 donotignoreexceptions
 Dorg
 DOTALL
@@ -397,6 +398,7 @@ etsy
 ev
 Evt
 exceptionoverrides
+exceptionstodocument
 executablestatementcount
 Exif
 explicitinitialization
