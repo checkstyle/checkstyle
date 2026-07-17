@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RegexpSinglelineJavaCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava";
@@ -99,4 +100,5 @@ public class RegexpSinglelineJavaCheckExamplesTest extends AbstractExamplesModul
 
         verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
+
 }

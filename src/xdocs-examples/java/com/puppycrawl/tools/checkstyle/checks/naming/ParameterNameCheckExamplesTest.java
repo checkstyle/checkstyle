@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class ParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/parametername";
@@ -83,4 +84,5 @@ public class ParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSu
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
+
 }

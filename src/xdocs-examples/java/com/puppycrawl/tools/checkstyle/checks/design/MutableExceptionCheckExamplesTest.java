@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class MutableExceptionCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/design/mutableexception";
@@ -60,4 +61,5 @@ public class MutableExceptionCheckExamplesTest extends AbstractExamplesModuleTes
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
 }

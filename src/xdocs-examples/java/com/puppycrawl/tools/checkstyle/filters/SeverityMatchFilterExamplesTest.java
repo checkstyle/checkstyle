@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class SeverityMatchFilterExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/severitymatchfilter";
@@ -48,4 +49,5 @@ public class SeverityMatchFilterExamplesTest extends AbstractExamplesModuleTestS
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
+
 }

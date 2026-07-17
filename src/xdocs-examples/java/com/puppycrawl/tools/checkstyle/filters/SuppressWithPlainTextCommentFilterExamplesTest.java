@@ -201,4 +201,5 @@ public class SuppressWithPlainTextCommentFilterExamplesTest
         verifyFilterWithInlineConfigParser(getPath("UseCase1.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
+
 }

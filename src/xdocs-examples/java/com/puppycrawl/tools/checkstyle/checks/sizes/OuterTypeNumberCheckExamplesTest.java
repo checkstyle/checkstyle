@@ -49,4 +49,5 @@ public class OuterTypeNumberCheckExamplesTest extends AbstractExamplesModuleTest
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

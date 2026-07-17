@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class MissingNullCaseInSwitchCheckExamplesTest extends
         AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/missingnullcaseinswitch";
@@ -40,4 +41,5 @@ public class MissingNullCaseInSwitchCheckExamplesTest extends
         };
         verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
     }
+
 }

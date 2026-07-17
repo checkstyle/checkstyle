@@ -29,6 +29,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class UnnecessaryParenthesesCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses";
@@ -64,4 +65,5 @@ public class UnnecessaryParenthesesCheckExamplesTest extends AbstractExamplesMod
         };
         verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
+
 }

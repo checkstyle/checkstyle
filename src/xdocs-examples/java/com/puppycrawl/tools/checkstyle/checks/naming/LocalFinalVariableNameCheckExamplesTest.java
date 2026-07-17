@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class LocalFinalVariableNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename";
@@ -62,4 +63,5 @@ public class LocalFinalVariableNameCheckExamplesTest extends AbstractExamplesMod
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
 }

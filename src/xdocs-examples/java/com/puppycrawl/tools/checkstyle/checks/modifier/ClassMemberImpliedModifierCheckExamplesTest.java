@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class ClassMemberImpliedModifierCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/modifier/classmemberimpliedmodifier";
@@ -78,4 +79,5 @@ public class ClassMemberImpliedModifierCheckExamplesTest extends AbstractExample
         verifyWithInlineConfigParser(
                 getPath("Example4.java"), expected);
     }
+
 }

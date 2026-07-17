@@ -146,4 +146,5 @@ public class IndentationCheckExamplesTest extends AbstractExamplesModuleTestSupp
         };
         verifyWithInlineConfigParser(getPath("Example9.java"), expected);
     }
+
 }

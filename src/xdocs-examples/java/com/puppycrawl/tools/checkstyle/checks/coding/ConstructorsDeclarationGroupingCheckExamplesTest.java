@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class ConstructorsDeclarationGroupingCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/constructorsdeclarationgrouping";
@@ -53,4 +54,5 @@ public class ConstructorsDeclarationGroupingCheckExamplesTest
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

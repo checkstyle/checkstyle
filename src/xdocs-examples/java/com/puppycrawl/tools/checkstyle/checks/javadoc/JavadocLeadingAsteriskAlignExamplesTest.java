@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class JavadocLeadingAsteriskAlignExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocleadingasteriskalign";
@@ -44,4 +45,5 @@ public class JavadocLeadingAsteriskAlignExamplesTest extends AbstractExamplesMod
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class MethodLengthCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/methodlength";
@@ -64,4 +65,5 @@ public class MethodLengthCheckExamplesTest extends AbstractExamplesModuleTestSup
         };
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
 }

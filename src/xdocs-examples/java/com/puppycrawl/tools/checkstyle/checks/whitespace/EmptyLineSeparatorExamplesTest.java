@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class EmptyLineSeparatorExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator";
@@ -115,4 +116,5 @@ public class EmptyLineSeparatorExamplesTest extends AbstractExamplesModuleTestSu
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
+
 }

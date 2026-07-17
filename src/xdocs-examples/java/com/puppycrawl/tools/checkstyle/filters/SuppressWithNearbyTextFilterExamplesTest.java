@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter";
@@ -205,4 +206,5 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
         verifyFilterWithInlineConfigParser(getPath("Example9.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
+
 }

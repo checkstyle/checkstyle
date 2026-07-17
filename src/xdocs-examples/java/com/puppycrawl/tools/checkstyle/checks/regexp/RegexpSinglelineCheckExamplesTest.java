@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class RegexpSinglelineCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline";
@@ -95,4 +96,5 @@ public class RegexpSinglelineCheckExamplesTest extends AbstractExamplesModuleTes
         verifyWithInlineConfigParserSeparateConfigAndTarget(
                 getPath("Example7.java"), getPath("Example7.sql"), expected);
     }
+
 }

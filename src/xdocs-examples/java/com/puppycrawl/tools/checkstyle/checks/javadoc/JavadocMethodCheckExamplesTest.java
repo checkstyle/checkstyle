@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod";
@@ -122,4 +123,5 @@ public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSu
         };
         verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
+
 }

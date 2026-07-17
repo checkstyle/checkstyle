@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 
 public class TranslationCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/translation";
@@ -111,4 +112,5 @@ public class TranslationCheckExamplesTest extends AbstractExamplesModuleTestSupp
                 testInputConfiguration.createConfiguration();
         verify(createChecker(parsedConfig), propertyFiles, getPath(""), expectedMessages);
     }
+
 }

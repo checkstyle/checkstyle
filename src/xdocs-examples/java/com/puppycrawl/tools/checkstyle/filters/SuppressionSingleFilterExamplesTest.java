@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck;
 
 public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter";
@@ -93,4 +94,5 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
         verifyFilterWithInlineConfigParser(getPath("Example4.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
+
 }

@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class PatternVariableNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename";
@@ -79,5 +80,6 @@ public class PatternVariableNameCheckExamplesTest extends AbstractExamplesModule
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
 }
 

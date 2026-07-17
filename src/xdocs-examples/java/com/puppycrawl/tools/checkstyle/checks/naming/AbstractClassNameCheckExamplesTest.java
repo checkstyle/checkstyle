@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class AbstractClassNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     private static final String DEFAULT_PATTERN = "^Abstract.+$";
 
     @Override
@@ -81,4 +82,5 @@ public class AbstractClassNameCheckExamplesTest extends AbstractExamplesModuleTe
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
 }

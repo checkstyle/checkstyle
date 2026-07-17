@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class RecordTypeParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/recordtypeparametername";
@@ -55,4 +56,5 @@ public class RecordTypeParameterNameCheckExamplesTest extends AbstractExamplesMo
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

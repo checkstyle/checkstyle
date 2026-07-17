@@ -55,4 +55,5 @@ public class MissingOverrideCheckExamplesTest extends AbstractExamplesModuleTest
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

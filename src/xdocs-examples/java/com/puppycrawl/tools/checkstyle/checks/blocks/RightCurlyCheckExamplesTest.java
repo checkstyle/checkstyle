@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class RightCurlyCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly";
@@ -77,4 +78,5 @@ public class RightCurlyCheckExamplesTest extends AbstractExamplesModuleTestSuppo
         };
         verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
+
 }

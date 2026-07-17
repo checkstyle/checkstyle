@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck;
 
 public class SuppressWarningsHolderExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder";
@@ -89,4 +90,5 @@ public class SuppressWarningsHolderExamplesTest extends AbstractExamplesModuleTe
 
         verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
+
 }

@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class OrderedPropertiesCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/orderedproperties";
@@ -40,4 +41,5 @@ public class OrderedPropertiesCheckExamplesTest extends AbstractExamplesModuleTe
         verifyWithInlineConfigParserSeparateConfigAndTarget(
                 getPath("Example1.java"), getPath("Example1.properties"), expected);
     }
+
 }

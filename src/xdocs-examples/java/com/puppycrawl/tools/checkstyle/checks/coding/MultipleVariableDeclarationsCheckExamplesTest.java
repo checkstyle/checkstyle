@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class MultipleVariableDeclarationsCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/multiplevariabledeclarations";
@@ -41,4 +42,5 @@ public class MultipleVariableDeclarationsCheckExamplesTest
         };
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

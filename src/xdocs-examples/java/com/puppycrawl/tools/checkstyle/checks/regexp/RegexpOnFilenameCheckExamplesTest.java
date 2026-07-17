@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 
 public class RegexpOnFilenameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/regexp/regexponfilename";
@@ -175,4 +176,5 @@ public class RegexpOnFilenameCheckExamplesTest extends AbstractExamplesModuleTes
 
         verify(createChecker(parsedConfig), getFilesInFolder(path), expected);
     }
+
 }

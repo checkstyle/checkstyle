@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 // -@cs[AbbreviationAsWordInName] Test should be named as its main class.
 public class NPathComplexityCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/npathcomplexity";
@@ -48,4 +49,5 @@ public class NPathComplexityCheckExamplesTest extends AbstractExamplesModuleTest
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

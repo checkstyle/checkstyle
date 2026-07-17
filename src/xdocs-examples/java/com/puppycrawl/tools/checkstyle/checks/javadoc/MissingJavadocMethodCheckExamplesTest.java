@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class MissingJavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod";
@@ -118,4 +119,5 @@ public class MissingJavadocMethodCheckExamplesTest extends AbstractExamplesModul
 
         verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
+
 }

@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class LineEndingCheckExampleTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/lineending";
@@ -91,4 +92,5 @@ public class LineEndingCheckExampleTest extends AbstractExamplesModuleTestSuppor
                 getPath("Example4.java"), expected
         );
     }
+
 }

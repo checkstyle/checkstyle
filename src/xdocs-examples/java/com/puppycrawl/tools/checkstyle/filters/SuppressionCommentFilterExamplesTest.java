@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter";
@@ -218,4 +219,5 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
         verifyFilterWithInlineConfigParser(getPath("Example8.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
+
 }

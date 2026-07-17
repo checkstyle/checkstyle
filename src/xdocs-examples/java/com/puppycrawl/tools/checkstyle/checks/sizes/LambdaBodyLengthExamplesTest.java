@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class LambdaBodyLengthExamplesTest extends AbstractExamplesModuleTestSupport {
+
     private static final int DEFAULT_MAX = 10;
 
     @Override
@@ -54,4 +55,5 @@ public class LambdaBodyLengthExamplesTest extends AbstractExamplesModuleTestSupp
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModuleTestSupport {
+
     private static final int DEFAULT_EXPECTED_CAPITAL_COUNT = 4;
 
     @Override
@@ -127,4 +128,5 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
 
         verifyWithInlineXmlConfig(getPath("UseCase3.java"), expected);
     }
+
 }
