@@ -144,7 +144,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     public void testFileWithThreeTopLevelAnnotation() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassAnnotation2A"),
-            "22:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassAnnotation2B"),
+            "25:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassAnnotation2B"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassAnnotation2.java"), expected);
@@ -217,6 +217,15 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassEmpty.java"), expected);
+    }
+
+    @Test
+    public void testOneTopLevelClassAnnotated() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassAnnotated2"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOneTopLevelClassAnnotated.java"), expected);
     }
 
 }

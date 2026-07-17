@@ -43,7 +43,7 @@ enum FilterType {
   ASSIGNABLE_TYPE
 }
 
-// violation below 'Top-level class ComponentScan has to reside in its own source file.'
+// violation 2 lines below 'Top-level class ComponentScan has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface ComponentScan {
   String[] basePackages() default {};

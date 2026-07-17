@@ -186,13 +186,13 @@ class InputInvalidJavadocPosition2 {
   }
 }
 
-// violation 2 lines below '.* InputInvalidJavadocPosition3 has to reside in its own source file.'
 // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
 @Deprecated
 /** Invalid javadoc. */
 class InputInvalidJavadocPosition3 {}
+// violation above '.* InputInvalidJavadocPosition3 has to reside in its own source file.'
 
-// violation 2 lines below '.* InputInvalidJavadocPosition4 has to reside in its own source file.'
+// violation 3 lines below '.* InputInvalidJavadocPosition4 has to reside in its own source file.'
 /** Valid javadoc. */
 @Deprecated
 class InputInvalidJavadocPosition4 {}

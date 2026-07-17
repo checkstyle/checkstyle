@@ -3,7 +3,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-// violation below 'Top-level class TagNameAndDescriptionNew has to reside in its own source file.'
+// violation 2 lines below 'Top-level class .* has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface TagNameAndDescriptionNew {
   String name();
@@ -13,7 +13,7 @@ import java.lang.annotation.RetentionPolicy;
   ExternalDocumentation externalDocs() default @ExternalDocumentation;
 }
 
-// violation below 'Top-level class ExternalDocumentation has to reside in its own source file.'
+// violation 2 lines below 'Top-level class .* has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface ExternalDocumentation {
   String description() default "";
@@ -21,19 +21,19 @@ import java.lang.annotation.RetentionPolicy;
   String url() default "";
 }
 
-// violation below 'Top-level class OperationFinal has to reside in its own source file.'
+// violation 2 lines below 'Top-level class OperationFinal has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface OperationFinal {
   String summary() default "";
 }
 
-// violation below 'Top-level class ApiResponses has to reside in its own source file.'
+// violation 2 lines below 'Top-level class ApiResponses has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface ApiResponses {
   ApiResponse[] value();
 }
 
-// violation below 'Top-level class ApiResponse has to reside in its own source file.'
+// violation 2 lines below 'Top-level class ApiResponse has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface ApiResponse {
   String responseCode();
@@ -43,7 +43,7 @@ import java.lang.annotation.RetentionPolicy;
   ContentSchema[] content() default {};
 }
 
-// violation below 'Top-level class ContentSchema has to reside in its own source file.'
+// violation 2 lines below 'Top-level class ContentSchema has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface ContentSchema {
   String mediaType() default "";
@@ -51,13 +51,13 @@ import java.lang.annotation.RetentionPolicy;
   SchemaStatus schema() default @SchemaStatus;
 }
 
-// violation below 'Top-level class SchemaStatus has to reside in its own source file.'
+// violation 2 lines below 'Top-level class SchemaStatus has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface SchemaStatus {
   Class<?> implementation() default Void.class;
 }
 
-// violation below 'Top-level class ResponseStatus has to reside in its own source file.'
+// violation 2 lines below 'Top-level class ResponseStatus has to reside in its own source file.'
 @Retention(RetentionPolicy.RUNTIME)
 @interface ResponseStatus {
   HttpStatus value();
