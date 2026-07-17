@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class MethodNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/methodname";
@@ -105,4 +106,5 @@ public class MethodNameCheckExamplesTest extends AbstractExamplesModuleTestSuppo
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
+
 }

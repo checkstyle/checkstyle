@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class AnonInnerLengthCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/anoninnerlength";
@@ -46,4 +47,5 @@ public class AnonInnerLengthCheckExamplesTest extends AbstractExamplesModuleTest
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }
