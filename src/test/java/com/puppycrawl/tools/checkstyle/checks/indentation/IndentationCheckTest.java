@@ -3730,8 +3730,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = {
-            "13:9: " + getCheckMessage(MSG_ERROR, "method def rparen", 8, 4),
-            "18:9: " + getCheckMessage(MSG_ERROR, "method def rparen", 8, 4),
+            "22:9: " + getCheckMessage(MSG_ERROR, "method def rparen", 8, 4),
+            "27:9: " + getCheckMessage(MSG_ERROR, "method def rparen", 8, 4),
         };
 
         verifyWarns(checkConfig,
@@ -3744,13 +3744,48 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = {
-            "11:10: " + getCheckMessage(MSG_ERROR, "2", 9, 12),
-            "17:8: " + getCheckMessage(MSG_ERROR, "int", 7, 8),
-            "18:9: " + getCheckMessage(MSG_ERROR, "method def rparen", 8, 4),
+            "20:10: " + getCheckMessage(MSG_ERROR, "2", 9, 12),
+            "26:8: " + getCheckMessage(MSG_ERROR, "int", 7, 8),
+            "27:9: " + getCheckMessage(MSG_ERROR, "method def rparen", 8, 4),
         };
 
         verifyWarns(checkConfig,
                 getPath("InputIndentationCheckMethodParenOnNewLine1.java"),
+                expected);
+    }
+
+    @Test
+    public void testIndentationMethodParenthesisOnNewLine2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWarns(checkConfig,
+                getPath("InputIndentationCheckMethodParenOnNewLine2.java"),
+                expected);
+    }
+
+    @Test
+    public void testIndentationMethodParenthesisOnNewLine3() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_ERROR, "method def lparen", 12, 4),
+        };
+
+        verifyWarns(checkConfig,
+                getPath("InputIndentationCheckMethodParenOnNewLine3.java"),
+                expected);
+    }
+
+    @Test
+    public void testIndentationMethodParenthesisOnNewLine4() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWarns(checkConfig,
+                getPath("InputIndentationCheckMethodParenOnNewLine4.java"),
                 expected);
     }
 
