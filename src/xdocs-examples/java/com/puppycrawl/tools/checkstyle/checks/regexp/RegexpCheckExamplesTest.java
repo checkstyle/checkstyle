@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/regexp/regexp";
@@ -137,4 +138,5 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
         verifyWithInlineConfigParser(getPath("UseCase7.java"), expected);
     }
+
 }

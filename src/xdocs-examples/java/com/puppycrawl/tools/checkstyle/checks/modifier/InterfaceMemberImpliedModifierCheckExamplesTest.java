@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class InterfaceMemberImpliedModifierCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier";
@@ -88,4 +89,5 @@ public class InterfaceMemberImpliedModifierCheckExamplesTest
         };
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
 }

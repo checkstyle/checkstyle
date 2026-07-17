@@ -47,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 
 public class SuppressionXpathSingleFilterExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter";
@@ -306,4 +307,5 @@ public class SuppressionXpathSingleFilterExamplesTest extends AbstractExamplesMo
                     .toArray(File[]::new);
         }
     }
+
 }

@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class OperatorWrapExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/operatorwrap";
@@ -60,4 +61,5 @@ public class OperatorWrapExamplesTest extends AbstractExamplesModuleTestSupport 
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }
