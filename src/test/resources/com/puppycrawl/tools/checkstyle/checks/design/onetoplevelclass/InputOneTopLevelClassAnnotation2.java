@@ -18,7 +18,7 @@ import java.lang.annotation.RetentionPolicy;
    String date();
 }
 
-// violation below 'Top-level class Input.* has to reside in its own source file.'
+// violation 4 lines below 'Top-level class Input.* has to reside in its own source file.'
 @CheckForNull
 @TypeQualifierDefault(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

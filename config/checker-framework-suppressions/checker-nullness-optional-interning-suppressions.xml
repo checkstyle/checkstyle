@@ -4234,27 +4234,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/OneTopLevelClassCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference currentNode.findFirstToken(TokenTypes.IDENT)</message>
-    <lineContent>.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/OneTopLevelClassCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference firstType.findFirstToken(TokenTypes.IDENT)</message>
-    <lineContent>.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/OneTopLevelClassCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference modifiers</message>
-    <lineContent>return modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/SealedShouldHavePermitsListCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference modifiers</message>
