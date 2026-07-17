@@ -119,7 +119,12 @@ tokens {
 
     LITERAL_UNDERSCORE, UNNAMED_PATTERN_DEF,
     LITERAL_MODULE, MODULE_IMPORT,
-    COMPACT_COMPILATION_UNIT
+    COMPACT_COMPILATION_UNIT,
+
+    LITERAL_OPEN, LITERAL_REQUIRES, LITERAL_TRANSITIVE, LITERAL_EXPORTS,
+    LITERAL_OPENS, LITERAL_TO, LITERAL_USES, LITERAL_PROVIDES, LITERAL_WITH,
+    MODULE_DEF, DIRECTIVE_BLOCK, REQUIRES, EXPORTS, OPENS, USES, PROVIDES,
+    TO, WITH
 }
 
 @header {
@@ -217,6 +222,15 @@ LITERAL_SEALED:          'sealed';
 LITERAL_PERMITS:         'permits';
 LITERAL_WHEN:            'when';
 LITERAL_UNDERSCORE:      '_';
+LITERAL_OPEN:            'open';
+LITERAL_REQUIRES:        'requires';
+LITERAL_TRANSITIVE:      'transitive';
+LITERAL_EXPORTS:         'exports';
+LITERAL_OPENS:           'opens';
+LITERAL_TO:              'to';
+LITERAL_USES:            'uses';
+LITERAL_PROVIDES:        'provides';
+LITERAL_WITH:            'with';
 
 // Literals
 DECIMAL_LITERAL_LONG:    ('0' | [1-9] (Digits? | '_'+ Digits)) [lL];
