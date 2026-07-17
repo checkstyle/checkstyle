@@ -117,6 +117,18 @@ public class UncommentedMainCheckTest
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MSG_KEY),
+            "14:1: " + getCheckMessage(MSG_KEY),
+            "18:1: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputUncommentedMainCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
     public void testIllegalStateException() {
         final UncommentedMainCheck check = new UncommentedMainCheck();
         final DetailAstImpl ast = new DetailAstImpl();
