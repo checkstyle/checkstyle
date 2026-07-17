@@ -28,37 +28,81 @@
       </subsection>
 
       <subsection name="Examples" id="Regexp_Examples">
-        <p id="Example0-config"> Default configuration does nothing: </p>
+        <p id="Example1-config"> Default configuration does nothing: </p>
         <macro name="example">
           <param name="path"
-            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example0.java"/>
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example1.java"/>
           <param name="type" value="config"/>
         </macro><hr class="example-separator"/>
-        <p id="Example1-config">
+        <p id="Example2-config">
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
         </p>
         <macro name="example">
           <param name="path"
-            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example1.java"/>
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example1-code"> Example1: </p>
+        <p id="Example2-code"> Example2: </p>
         <macro name="example">
           <param name="path"
-            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example1.java"/>
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example2.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example7-config">Configure to ignore comments:</p>
+        <p id="Example3-config">
+          An example of how to configure the check to make sure a duplicate
+          pattern is not used:
+        </p>
         <macro name="example">
           <param name="path"
-            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example7.java"/>
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example7-code">Example7:</p>
+        <p id="Example3-code"> Example3: </p>
         <macro name="example">
           <param name="path"
-            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example7.java"/>
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+          An example of how to configure the check to avoid using
+          System.out.println:
+        </p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code"> Example4: </p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          An example of how to configure the check to configure the error limit:
+        </p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code"> Example5: </p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example6-config">Configure to ignore comments:</p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Example6:</p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example6.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
