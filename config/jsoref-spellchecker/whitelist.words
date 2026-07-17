@@ -631,6 +631,8 @@ interfacememberimpliedmodifier
 interfacetypeparametername
 interp
 invalidjavadocposition
+invalidpackagebeforemodule
+invalidtypeaftermodule
 ioe
 ioffset
 IPonr
@@ -865,6 +867,7 @@ mockito
 Modello
 modifiedcontrolvariable
 modifierorder
+moduleinfo
 Mohnen
 mojohaus
 moks
