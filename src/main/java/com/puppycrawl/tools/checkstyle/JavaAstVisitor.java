@@ -216,6 +216,65 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     }
 
     @Override
+    public DetailAstImpl visitModuleDeclaration(
+            JavaLanguageParser.ModuleDeclarationContext ctx) {
+        final DetailAstImpl moduleDeclaration = createImaginary(TokenTypes.MODULE_DEF);
+        processChildren(moduleDeclaration, ctx.children);
+        return moduleDeclaration;
+    }
+
+    @Override
+    public DetailAstImpl visitDirectiveBlock(JavaLanguageParser.DirectiveBlockContext ctx) {
+        final DetailAstImpl directiveBlock = createImaginary(TokenTypes.DIRECTIVE_BLOCK);
+        processChildren(directiveBlock, ctx.children);
+        return directiveBlock;
+    }
+
+    @Override
+    public DetailAstImpl visitRequiresDirective(
+            JavaLanguageParser.RequiresDirectiveContext ctx) {
+        return createNodeFromFirstToken(TokenTypes.REQUIRES, ctx);
+    }
+
+    @Override
+    public DetailAstImpl visitExportsDirective(
+            JavaLanguageParser.ExportsDirectiveContext ctx) {
+        return createNodeFromFirstToken(TokenTypes.EXPORTS, ctx);
+    }
+
+    @Override
+    public DetailAstImpl visitOpensDirective(JavaLanguageParser.OpensDirectiveContext ctx) {
+        return createNodeFromFirstToken(TokenTypes.OPENS, ctx);
+    }
+
+    @Override
+    public DetailAstImpl visitUsesDirective(JavaLanguageParser.UsesDirectiveContext ctx) {
+        return createNodeFromFirstToken(TokenTypes.USES, ctx);
+    }
+
+    @Override
+    public DetailAstImpl visitProvidesDirective(
+            JavaLanguageParser.ProvidesDirectiveContext ctx) {
+        return createNodeFromFirstToken(TokenTypes.PROVIDES, ctx);
+    }
+
+    @Override
+    public DetailAstImpl visitRequiresModifier(
+            JavaLanguageParser.RequiresModifierContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
+    public DetailAstImpl visitToClause(JavaLanguageParser.ToClauseContext ctx) {
+        return createNodeFromFirstToken(TokenTypes.TO, ctx);
+    }
+
+    @Override
+    public DetailAstImpl visitWithClause(JavaLanguageParser.WithClauseContext ctx) {
+        return createNodeFromFirstToken(TokenTypes.WITH, ctx);
+    }
+
+    @Override
     public DetailAstImpl visitTypeDeclaration(JavaLanguageParser.TypeDeclarationContext ctx) {
         final DetailAstImpl typeDeclaration;
         if (ctx.type == null) {
@@ -2193,6 +2252,23 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final DetailAstImpl mods = createImaginary(TokenTypes.MODIFIERS);
         processChildren(mods, modifierList);
         return mods;
+    }
+
+    /**
+     * Creates a node rooted at the first token of the given context, i.e. the
+     * first token becomes the node (with the given token type) and all remaining
+     * children are added to it. This is used for module directives and clauses,
+     * where the leading keyword token becomes the node, e.g.
+     * {@literal 'requires' -> REQUIRES}.
+     *
+     * @param tokenType the token type of the resulting DetailAstImpl
+     * @param ctx the ParserRuleContext whose first token roots the node
+     * @return the resulting DetailAstImpl
+     */
+    private DetailAstImpl createNodeFromFirstToken(int tokenType, ParserRuleContext ctx) {
+        final DetailAstImpl node = create(tokenType, ctx.start);
+        processChildren(node, ctx.children.subList(1, ctx.children.size()));
+        return node;
     }
 
     /**
