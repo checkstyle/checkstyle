@@ -18,6 +18,7 @@ AFBR
 AFilter
 allchecks
 allclasses
+alldirectives
 allowlegacy
 allprojects
 alot
@@ -625,6 +626,8 @@ interfacememberimpliedmodifier
 interfacetypeparametername
 interp
 invalidjavadocposition
+invalidpackagebeforemodule
+invalidtypeaftermodule
 ioe
 ioffset
 IPonr
@@ -753,6 +756,7 @@ kclee
 KDoc
 keyname
 keyscan
+keywordsasnames
 konstantinos
 Kordas
 Kotlin
@@ -890,6 +894,7 @@ mycompanychecks
 mycustom
 mycustomtag
 myfile
+mymodule
 myname
 myproject
 Mysql
@@ -1294,6 +1299,7 @@ sourcesets
 spacebar
 specialescape
 spellchecker
+spi
 spliterator
 spotbugs
 spotbugsreports
