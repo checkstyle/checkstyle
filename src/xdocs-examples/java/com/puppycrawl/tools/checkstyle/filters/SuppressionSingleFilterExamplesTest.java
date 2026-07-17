@@ -95,4 +95,18 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
                 expectedWithoutFilter, expectedWithFilter);
     }
 
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expectedWithoutFilter = {
+            "16:28: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "5"),
+            "19:17: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "100"),
+        };
+        final String[] expectedWithFilter = {
+            "16:28: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "5"),
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example5.java"),
+                expectedWithoutFilter, expectedWithFilter);
+    }
+
 }
