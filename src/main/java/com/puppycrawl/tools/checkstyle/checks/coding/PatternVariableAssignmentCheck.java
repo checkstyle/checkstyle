@@ -62,6 +62,13 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
         TokenTypes.SL_ASSIGN, TokenTypes.BAND_ASSIGN, TokenTypes.BXOR_ASSIGN,
         TokenTypes.BOR_ASSIGN);
 
+    /**
+     * Creates a new {@code PatternVariableAssignmentCheck} instance.
+     */
+    public PatternVariableAssignmentCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getRequiredTokens() {
         return new int[] {TokenTypes.LITERAL_INSTANCEOF};

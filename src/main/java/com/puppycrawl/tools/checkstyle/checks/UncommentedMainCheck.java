@@ -76,6 +76,13 @@ public class UncommentedMainCheck
     private int classDepth;
 
     /**
+     * Creates a new {@code UncommentedMainCheck} instance.
+     */
+    public UncommentedMainCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify pattern for qualified names of classes which are allowed
      * to have a {@code main} method.
      *

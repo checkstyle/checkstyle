@@ -78,6 +78,13 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     /** Control whether whitespace is allowed if the token is at a linebreak. */
     private boolean allowLineBreaks = true;
 
+    /**
+     * Creates a new {@code NoWhitespaceAfterCheck} instance.
+     */
+    public NoWhitespaceAfterCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

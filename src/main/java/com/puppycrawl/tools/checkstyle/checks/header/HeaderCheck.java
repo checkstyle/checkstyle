@@ -61,6 +61,13 @@ public class HeaderCheck extends AbstractHeaderCheck {
     private BitSet ignoreLines = new BitSet();
 
     /**
+     * Creates a new {@code HeaderCheck} instance.
+     */
+    public HeaderCheck() {
+        // no code by default
+    }
+
+    /**
      * Returns true if lineNo is header lines or false.
      *
      * @param lineNo a line number

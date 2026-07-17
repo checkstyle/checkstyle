@@ -59,6 +59,13 @@ public class ExplicitInitializationCheck extends AbstractCheck {
      **/
     private boolean onlyObjectReferences;
 
+    /**
+     * Creates a new {@code ExplicitInitializationCheck} instance.
+     */
+    public ExplicitInitializationCheck() {
+        // no code by default
+    }
+
     @Override
     public final int[] getDefaultTokens() {
         return getRequiredTokens();
