@@ -64,12 +64,19 @@ public class EmptyForIteratorPadCheck
     private PadOption option = PadOption.NOSPACE;
 
     /**
+     * Creates a new {@code EmptyForIteratorPadCheck} instance.
+     */
+    public EmptyForIteratorPadCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify policy on how to pad an empty for iterator.
      *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      * @since 3.0
      */
+
     public void setOption(String optionStr) {
         option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
     }

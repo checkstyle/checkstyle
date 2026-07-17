@@ -72,12 +72,19 @@ public final class AbstractClassNameCheck extends AbstractCheck {
     private Pattern format = Pattern.compile("^Abstract.+$");
 
     /**
+     * Creates a new {@code AbstractClassNameCheck} instance.
+     */
+    public AbstractClassNameCheck() {
+        // no code by default
+    }
+    /**
      * Setter to control whether to ignore checking for the {@code abstract} modifier on
      * classes that match the name.
      *
      * @param value new value
      * @since 5.3
      */
+
     public void setIgnoreModifier(boolean value) {
         ignoreModifier = value;
     }

@@ -96,6 +96,13 @@ public class FinalClassCheck
     /** Full qualified name of the package. */
     private String packageName;
 
+    /**
+     * Creates a new {@code FinalClassCheck} instance.
+     */
+    public FinalClassCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

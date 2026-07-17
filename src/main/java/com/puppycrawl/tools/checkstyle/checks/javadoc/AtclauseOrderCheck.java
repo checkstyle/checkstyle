@@ -94,11 +94,18 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
     private List<String> tagOrder = Arrays.asList(DEFAULT_ORDER);
 
     /**
+     * Creates a new {@code AtclauseOrderCheck} instance.
+     */
+    public AtclauseOrderCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify block tags targeted.
      *
      * @param targets user's targets.
      * @since 6.0
      */
+
     public void setTarget(String... targets) {
         target = TokenUtil.asBitSet(targets);
     }

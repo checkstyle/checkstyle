@@ -55,11 +55,18 @@ public final class BeforeExecutionExclusionFileFilter extends AbstractAutomaticB
     private Pattern fileNamePattern;
 
     /**
+     * Creates a new {@code BeforeExecutionExclusionFileFilter} instance.
+     */
+    public BeforeExecutionExclusionFileFilter() {
+        // no code by default
+    }
+    /**
      * Setter to define regular expression to match the file name against.
      *
      * @param fileNamePattern regular expression of the excluded file.
      * @since 7.2
      */
+
     public void setFileNamePattern(Pattern fileNamePattern) {
         this.fileNamePattern = fileNamePattern;
     }

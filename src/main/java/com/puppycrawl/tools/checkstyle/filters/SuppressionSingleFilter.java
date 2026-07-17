@@ -90,12 +90,19 @@ public class SuppressionSingleFilter extends AbstractAutomaticBean implements Fi
     private String columns;
 
     /**
+     * Creates a new {@code SuppressionSingleFilter} instance.
+     */
+    public SuppressionSingleFilter() {
+        // no code by default
+    }
+    /**
      * Setter to define the RegExp for matching against the file name associated with an audit
      * event.
      *
      * @param files regular expression for filtered file names
      * @since 8.23
      */
+
     public void setFiles(Pattern files) {
         this.files = files;
     }

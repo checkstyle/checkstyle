@@ -199,11 +199,18 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
     private DetailAST currentAst;
 
     /**
+     * Creates a new {@code JavadocMethodCheck} instance.
+     */
+    public JavadocMethodCheck() {
+        // no code by default
+    }
+    /**
      * Setter to control whether to allow inline return tags.
      *
      * @param value a {@code boolean} value
      * @since 10.23.0
      */
+
     public void setAllowInlineReturn(boolean value) {
         allowInlineReturn = value;
     }

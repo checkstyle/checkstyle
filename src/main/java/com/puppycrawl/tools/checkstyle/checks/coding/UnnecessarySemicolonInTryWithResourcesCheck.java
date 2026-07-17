@@ -44,6 +44,13 @@ public final class UnnecessarySemicolonInTryWithResourcesCheck extends AbstractC
     /** Allow unnecessary semicolon if closing parenthesis is not on the same line. */
     private boolean allowWhenNoBraceAfterSemicolon = true;
 
+    /**
+     * Creates a new {@code UnnecessarySemicolonInTryWithResourcesCheck} instance.
+     */
+    public UnnecessarySemicolonInTryWithResourcesCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

@@ -606,8 +606,16 @@ public final class Main {
 
     /** Log Filter used in debug mode. */
     private static final class OnlyCheckstyleLoggersFilter implements Filter {
+
         /** Name of the package used to filter on. */
         private final String packageName = Main.class.getPackage().getName();
+
+        /**
+         * Creates a new {@code OnlyCheckstyleLoggersFilter} instance.
+         */
+        private OnlyCheckstyleLoggersFilter() {
+            // no code by default
+        }
 
         /**
          * Returns whether the specified logRecord should be logged.
@@ -815,6 +823,13 @@ public final class Main {
         @Option(names = {"-b", "--branch-matching-xpath"},
             description = "Shows Abstract Syntax Tree(AST) branches that match given XPath query.")
         private String xpath;
+
+        /**
+         * Creates a new {@code CliOptions} instance.
+         */
+        private CliOptions() {
+            // no code by default
+        }
 
         /**
          * Gets the list of exclusions provided through the command line arguments.

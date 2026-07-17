@@ -36,6 +36,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 @Component(role = Macro.class, hint = "notes")
 public class NotesMacro extends AbstractMacro {
 
+    /**
+     * Creates a new {@code NotesMacro} instance.
+     */
+    public NotesMacro() {
+        // no code by default
+    }
+
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
         final Path modulePath = Path.of((String) request.getParameter("modulePath"));

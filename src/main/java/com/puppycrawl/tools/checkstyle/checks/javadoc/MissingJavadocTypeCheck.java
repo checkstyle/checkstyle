@@ -72,11 +72,18 @@ public final class MissingJavadocTypeCheck extends AbstractJavadocCheck {
     private Set<String> skipAnnotations = Set.of("Generated");
 
     /**
+     * Creates a new {@code MissingJavadocTypeCheck} instance.
+     */
+    public MissingJavadocTypeCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify the visibility scope where Javadoc comments are checked.
      *
      * @param scope a scope.
      * @since 8.20
      */
+
     public void setScope(Scope scope) {
         this.scope = scope;
     }

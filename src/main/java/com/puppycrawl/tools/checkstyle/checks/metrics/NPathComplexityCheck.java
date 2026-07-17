@@ -169,11 +169,18 @@ public final class NPathComplexityCheck extends AbstractCheck {
     private boolean branchVisited;
 
     /**
+     * Creates a new {@code NPathComplexityCheck} instance.
+     */
+    public NPathComplexityCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify the maximum threshold allowed.
      *
      * @param max the maximum threshold
      * @since 3.4
      */
+
     public void setMax(int max) {
         this.max = max;
     }
@@ -545,6 +552,13 @@ public final class NPathComplexityCheck extends AbstractCheck {
 
         /** End column of token. */
         private int endColumnNo;
+
+        /**
+         * Creates a new {@code TokenEnd} instance.
+         */
+        private TokenEnd() {
+            // no code by default
+        }
 
         /**
          * Sets end coordinates from given token.

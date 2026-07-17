@@ -86,12 +86,19 @@ public class SuppressionXpathSingleFilter extends AbstractAutomaticBean implemen
     private String query;
 
     /**
+     * Creates a new {@code SuppressionXpathSingleFilter} instance.
+     */
+    public SuppressionXpathSingleFilter() {
+        // no code by default
+    }
+    /**
      * Setter to define a Regular Expression matched against the file name
      * associated with an audit event.
      *
      * @param files the name of the file
      * @since 8.18
      */
+
     public void setFiles(String files) {
         if (files == null) {
             this.files = null;

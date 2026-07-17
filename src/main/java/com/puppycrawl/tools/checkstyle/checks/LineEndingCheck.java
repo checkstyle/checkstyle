@@ -68,11 +68,18 @@ public class LineEndingCheck extends AbstractFileSetCheck {
     private LineEndingOption lineEnding = LineEndingOption.LF;
 
     /**
+     * Creates a new {@code LineEndingCheck} instance.
+     */
+    public LineEndingCheck() {
+        // no code by default
+    }
+    /**
      * Setter to set lineEnding.
      *
      * @param ending string of value LF or CRLF
      * @since 13.3.0
      */
+
     public void setLineEnding(String ending) {
         lineEnding = Enum.valueOf(LineEndingOption.class,
                 ending.trim().toUpperCase(Locale.ENGLISH));

@@ -112,12 +112,19 @@ public class AnnotationLocationCheck extends AbstractCheck {
     private boolean allowSamelineMultipleAnnotations;
 
     /**
+     * Creates a new {@code AnnotationLocationCheck} instance.
+     */
+    public AnnotationLocationCheck() {
+        // no code by default
+    }
+    /**
      * Setter to allow single parameterless annotation to be located on the same line as
      * target element.
      *
      * @param allow User's value of allowSamelineSingleParameterlessAnnotation.
      * @since 6.1
      */
+
     public final void setAllowSamelineSingleParameterlessAnnotation(boolean allow) {
         allowSamelineSingleParameterlessAnnotation = allow;
     }

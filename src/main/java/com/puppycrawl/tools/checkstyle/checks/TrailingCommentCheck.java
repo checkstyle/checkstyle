@@ -113,12 +113,19 @@ public class TrailingCommentCheck extends AbstractCheck {
     private Pattern format = Pattern.compile("^[\\s});]*$");
 
     /**
+     * Creates a new {@code TrailingCommentCheck} instance.
+     */
+    public TrailingCommentCheck() {
+        // no code by default
+    }
+    /**
      * Setter to define pattern for text allowed in trailing comments.
      * This pattern will not be applied to multiline comments.
      *
      * @param legalComment pattern to set.
      * @since 4.2
      */
+
     public void setLegalComment(final Pattern legalComment) {
         this.legalComment = legalComment;
     }
