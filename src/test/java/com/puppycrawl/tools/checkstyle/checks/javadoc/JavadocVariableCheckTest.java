@@ -96,6 +96,8 @@ public class JavadocVariableCheckTest
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "22:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "41:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "77:38: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "77:47: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableTagsEnums.java"), expected);
@@ -426,6 +428,19 @@ public class JavadocVariableCheckTest
         };
         verifyWithInlineConfigParser(
             getPath("InputJavadocVariableAboveComment.java"),
+            expected);
+    }
+
+    @Test
+    public void testJavadocVariableOddCases() throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "21:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "21:18: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "43:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocVariableOddCases.java"),
             expected);
     }
 

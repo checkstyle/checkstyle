@@ -202,7 +202,7 @@ public final class JavadocUtil {
     public static DetailAST getAttachedJavadocComment(final DetailAST ast) {
         DetailAST result = null;
         DetailAST child = ast.getFirstChild();
-        while (result == null && child != null && !isDeclarationBody(child)) {
+        while (result == null && child.getType() != TokenTypes.IDENT) {
             result = findJavadocComment(child);
             child = child.getNextSibling();
         }
@@ -229,17 +229,6 @@ public final class JavadocUtil {
             }
         }
         return result;
-    }
-
-    /**
-     * Checks whether the node starts a declaration body.
-     *
-     * @param ast the AST node to check
-     * @return {@code true} when the node starts a declaration body
-     */
-    private static boolean isDeclarationBody(DetailAST ast) {
-        final int tokenType = ast.getType();
-        return tokenType == TokenTypes.SLIST;
     }
 
     /**
