@@ -26,6 +26,7 @@ env:
   GENERATED_CONFIGS_PATH: generated_configs
   LOCAL_CONFIG_BASE_PATH: "src/main/resources"
   LOCAL_PROJECTS_FILE_PATH: "config/list-of-projects.yml"
+  HEADER_FILE_PATH: "config/header-for-report.header"
 
 on:
   issue_comment:
@@ -774,6 +775,13 @@ jobs:
 
           CONFIG_DIR="${{ github.workspace }}/.ci-temp/config"
           EXTRA_MVN_OPTIONS="-Dcheckstyle.failsOnError=false -Dconfig.folder=${CONFIG_DIR}"
+
+          # Used for passing system variable value for reports
+          if [ -f "${{ github.workspace }}/.ci-temp/header-for-report.header" ]; then
+            HEADER_PATH="${{ github.workspace }}/.ci-temp/header-for-report.header"
+            HEADER_SYS_PROP="-Dheader-file-paths-separated-by-coma=${HEADER_PATH}"
+            EXTRA_MVN_OPTIONS="${EXTRA_MVN_OPTIONS} ${HEADER_SYS_PROP}"
+          fi
 
           # Run DiffTool with appropriate arguments
           if [ -f "$NEW_MODULE_CONFIG" ]; then

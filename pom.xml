@@ -2030,6 +2030,7 @@
                 <exclude>openrewrite-recipes-checkstyle.properties</exclude>
                 <exclude>org.eclipse.jdt.core.prefs</exclude>
                 <exclude>search-index-schema.json</exclude>
+                <exclude>header-for-report.header</exclude>
                 <exclude>projects-to-test/**</exclude>
                 <exclude>qodana.yml</exclude>
                 <exclude>rewrite.yml</exclude>

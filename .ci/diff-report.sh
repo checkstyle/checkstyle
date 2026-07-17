@@ -156,6 +156,8 @@ process-local-repo-config-files)
   git -C .ci-temp/checkstyle show upstream/master:"$CONFIG_LINK" > .ci-temp/diff_config.xml
   # Use PR branch config for the patch_config
   cp "$PATCH_CONFIG_LINK" .ci-temp/patch_config.xml
+  # Header file
+  cp "$HEADER_FILE_PATH" .ci-temp/header-for-report.header
 
   # This module is added to remove parse failure messages from the report
   TW_MATCH='<module name="TreeWalker">'
@@ -181,6 +183,8 @@ process-local-repo-config-files-for-baseline-report)
 
   # Use PR branch config
   cp "$CONFIG_LINK" .ci-temp/baseline_config.xml
+  # Header file
+  cp "$HEADER_FILE_PATH" .ci-temp/header-for-report.header
 
   setup_config_properties .ci-temp/baseline_config.xml
 
