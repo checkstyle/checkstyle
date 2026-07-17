@@ -6764,6 +6764,398 @@ public final class TokenTypes {
      */
     public static final int MODULE_IMPORT = JavaLanguageLexer.MODULE_IMPORT;
 
+    /**
+     * An {@code open} keyword. This keyword marks a module declaration as open,
+     * making all its packages available for deep reflection. It appears as a
+     * child of {@link #MODULE_DEF}.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * open module com.example.mymodule {
+     * }
+     * </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * MODULE_DEF -> MODULE_DEF
+     *  |--ANNOTATIONS -> ANNOTATIONS
+     *  |--LITERAL_OPEN -> open
+     *  |--LITERAL_MODULE -> module
+     *  |--DOT -> .
+     *  |   |--DOT -> .
+     *  |   |   |--IDENT -> com
+     *  |   |   `--IDENT -> example
+     *  |   `--IDENT -> mymodule
+     *  `--DIRECTIVE_BLOCK -> DIRECTIVE_BLOCK
+     *      |--LCURLY -> {
+     *      `--RCURLY -> }
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se25/html/jls-7.html#jls-7.7">
+     *     Java Language Specification, &sect;7.7</a>
+     * @see #MODULE_DEF
+     *
+     * @since 13.9.0
+     */
+    public static final int LITERAL_OPEN = JavaLanguageLexer.LITERAL_OPEN;
+
+    /**
+     * A {@code transitive} keyword. This keyword is a modifier of a
+     * {@link #REQUIRES} directive and appears as a child of it.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * requires transitive java.sql;
+     * </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * REQUIRES -> requires
+     *  |--LITERAL_TRANSITIVE -> transitive
+     *  |--DOT -> .
+     *  |   |--IDENT -> java
+     *  |   `--IDENT -> sql
+     *  `--SEMI -> ;
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se25/html/jls-7.html#jls-7.7.1">
+     *     Java Language Specification, &sect;7.7.1</a>
+     * @see #REQUIRES
+     *
+     * @since 13.9.0
+     */
+    public static final int LITERAL_TRANSITIVE = JavaLanguageLexer.LITERAL_TRANSITIVE;
+
+    /**
+     * A module declaration. The declaration of a Java Platform Module System
+     * module, as found in a {@code module-info.java} file. Its children are
+     * an {@link #ANNOTATIONS} node (which may be empty), an optional
+     * {@link #LITERAL_OPEN}, a {@link #LITERAL_MODULE}, the module name, and
+     * a {@link #DIRECTIVE_BLOCK}.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * module com.example.mymodule {
+     *     requires java.base;
+     * }
+     * </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * COMPILATION_UNIT -> COMPILATION_UNIT
+     *  `--MODULE_DEF -> MODULE_DEF
+     *      |--ANNOTATIONS -> ANNOTATIONS
+     *      |--LITERAL_MODULE -> module
+     *      |--DOT -> .
+     *      |   |--DOT -> .
+     *      |   |   |--IDENT -> com
+     *      |   |   `--IDENT -> example
+     *      |   `--IDENT -> mymodule
+     *      `--DIRECTIVE_BLOCK -> DIRECTIVE_BLOCK
+     *          |--LCURLY -> {
+     *          |--REQUIRES -> requires
+     *          |   |--DOT -> .
+     *          |   |   |--IDENT -> java
+     *          |   |   `--IDENT -> base
+     *          |   `--SEMI -> ;
+     *          `--RCURLY -> }
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se25/html/jls-7.html#jls-7.7">
+     *     Java Language Specification, &sect;7.7</a>
+     * @see #DIRECTIVE_BLOCK
+     * @see #LITERAL_MODULE
+     * @see #LITERAL_OPEN
+     * @see #ANNOTATIONS
+     *
+     * @since 13.9.0
+     */
+    public static final int MODULE_DEF = JavaLanguageLexer.MODULE_DEF;
+
+    /**
+     * A directive block. The braced body of a module declaration, containing
+     * zero or more module directives. It is a child of {@link #MODULE_DEF}.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * module com.example.mymodule {
+     *     uses com.example.spi.Service;
+     * }
+     * </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * MODULE_DEF -> MODULE_DEF
+     *  |--ANNOTATIONS -> ANNOTATIONS
+     *  |--LITERAL_MODULE -> module
+     *  |--DOT -> .
+     *  |   |--DOT -> .
+     *  |   |   |--IDENT -> com
+     *  |   |   `--IDENT -> example
+     *  |   `--IDENT -> mymodule
+     *  `--DIRECTIVE_BLOCK -> DIRECTIVE_BLOCK
+     *      |--LCURLY -> {
+     *      |--USES -> uses
+     *      |   |--DOT -> .
+     *      |   |   |--DOT -> .
+     *      |   |   |   |--DOT -> .
+     *      |   |   |   |   |--IDENT -> com
+     *      |   |   |   |   `--IDENT -> example
+     *      |   |   |   `--IDENT -> spi
+     *      |   |   `--IDENT -> Service
+     *      |   `--SEMI -> ;
+     *      `--RCURLY -> }
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se25/html/jls-7.html#jls-7.7">
+     *     Java Language Specification, &sect;7.7</a>
+     * @see #MODULE_DEF
+     *
+     * @since 13.9.0
+     */
+    public static final int DIRECTIVE_BLOCK = JavaLanguageLexer.DIRECTIVE_BLOCK;
+
+    /**
+     * A requires directive. Declares a dependence of the current module on
+     * another module. Its children are optional {@link #LITERAL_TRANSITIVE}
+     * or {@link #LITERAL_STATIC} modifiers, the name of the required module,
+     * and a semicolon.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * requires transitive java.sql;
+     * </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * REQUIRES -> requires
+     *  |--LITERAL_TRANSITIVE -> transitive
+     *  |--DOT -> .
+     *  |   |--IDENT -> java
+     *  |   `--IDENT -> sql
+     *  `--SEMI -> ;
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se25/html/jls-7.html#jls-7.7.1">
+     *     Java Language Specification, &sect;7.7.1</a>
+     * @see #DIRECTIVE_BLOCK
+     * @see #LITERAL_TRANSITIVE
+     * @see #LITERAL_STATIC
+     *
+     * @since 13.9.0
+     */
+    public static final int REQUIRES = JavaLanguageLexer.REQUIRES;
+
+    /**
+     * An exports directive. Makes a package of the current module accessible
+     * to other modules. Its children are the exported package name, an
+     * optional {@link #TO} clause, and a semicolon.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * exports com.example.api to com.example.one, com.example.two;
+     * </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * EXPORTS -> exports
+     *  |--DOT -> .
+     *  |   |--DOT -> .
+     *  |   |   |--IDENT -> com
+     *  |   |   `--IDENT -> example
+     *  |   `--IDENT -> api
+     *  |--TO -> to
+     *  |   |--DOT -> .
+     *  |   |   |--DOT -> .
+     *  |   |   |   |--IDENT -> com
+     *  |   |   |   `--IDENT -> example
+     *  |   |   `--IDENT -> one
+     *  |   |--COMMA -> ,
+     *  |   `--DOT -> .
+     *  |       |--DOT -> .
+     *  |       |   |--IDENT -> com
+     *  |       |   `--IDENT -> example
+     *  |       `--IDENT -> two
+     *  `--SEMI -> ;
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se25/html/jls-7.html#jls-7.7.2">
+     *     Java Language Specification, &sect;7.7.2</a>
+     * @see #DIRECTIVE_BLOCK
+     * @see #TO
+     *
+     * @since 13.9.0
+     */
+    public static final int EXPORTS = JavaLanguageLexer.EXPORTS;
+
+    /**
+     * An opens directive. Makes a package of the current module available for
+     * deep reflection to other modules. Its children are the opened package
+     * name, an optional {@link #TO} clause, and a semicolon.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * opens com.example.model;
+     * </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * OPENS -> opens
+     *  |--DOT -> .
+     *  |   |--DOT -> .
+     *  |   |   |--IDENT -> com
+     *  |   |   `--IDENT -> example
+     *  |   `--IDENT -> model
+     *  `--SEMI -> ;
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se25/html/jls-7.html#jls-7.7.2">
+     *     Java Language Specification, &sect;7.7.2</a>
+     * @see #DIRECTIVE_BLOCK
+     * @see #TO
+     *
+     * @since 13.9.0
+     */
+    public static final int OPENS = JavaLanguageLexer.OPENS;
+
+    /**
+     * A uses directive. Declares a service whose implementations the current
+     * module discovers via {@code java.util.ServiceLoader}. Its children are
+     * the service type name and a semicolon.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * uses com.example.spi.Service;
+     * </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * USES -> uses
+     *  |--DOT -> .
+     *  |   |--DOT -> .
+     *  |   |   |--DOT -> .
+     *  |   |   |   |--IDENT -> com
+     *  |   |   |   `--IDENT -> example
+     *  |   |   `--IDENT -> spi
+     *  |   `--IDENT -> Service
+     *  `--SEMI -> ;
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se25/html/jls-7.html#jls-7.7.3">
+     *     Java Language Specification, &sect;7.7.3</a>
+     * @see #DIRECTIVE_BLOCK
+     *
+     * @since 13.9.0
+     */
+    public static final int USES = JavaLanguageLexer.USES;
+
+    /**
+     * A provides directive. Declares implementations of a service that the
+     * current module supplies. Its children are the service type name, a
+     * {@link #WITH} clause, and a semicolon.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * provides com.example.Service with com.example.Impl;
+     * </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * PROVIDES -> provides
+     *  |--DOT -> .
+     *  |   |--DOT -> .
+     *  |   |   |--IDENT -> com
+     *  |   |   `--IDENT -> example
+     *  |   `--IDENT -> Service
+     *  |--WITH -> with
+     *  |   `--DOT -> .
+     *  |       |--DOT -> .
+     *  |       |   |--IDENT -> com
+     *  |       |   `--IDENT -> example
+     *  |       `--IDENT -> Impl
+     *  `--SEMI -> ;
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se25/html/jls-7.html#jls-7.7.4">
+     *     Java Language Specification, &sect;7.7.4</a>
+     * @see #DIRECTIVE_BLOCK
+     * @see #WITH
+     *
+     * @since 13.9.0
+     */
+    public static final int PROVIDES = JavaLanguageLexer.PROVIDES;
+
+    /**
+     * A to clause. Limits an {@link #EXPORTS} or {@link #OPENS} directive to
+     * the named friend modules. Its children are the module names, separated
+     * by commas.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * opens com.example.secrets to com.example.friend;
+     * </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * OPENS -> opens
+     *  |--DOT -> .
+     *  |   |--DOT -> .
+     *  |   |   |--IDENT -> com
+     *  |   |   `--IDENT -> example
+     *  |   `--IDENT -> secrets
+     *  |--TO -> to
+     *  |   `--DOT -> .
+     *  |       |--DOT -> .
+     *  |       |   |--IDENT -> com
+     *  |       |   `--IDENT -> example
+     *  |       `--IDENT -> friend
+     *  `--SEMI -> ;
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se25/html/jls-7.html#jls-7.7.2">
+     *     Java Language Specification, &sect;7.7.2</a>
+     * @see #EXPORTS
+     * @see #OPENS
+     *
+     * @since 13.9.0
+     */
+    public static final int TO = JavaLanguageLexer.TO;
+
+    /**
+     * A with clause. Names the implementation types supplied by a
+     * {@link #PROVIDES} directive. Its children are the implementation type
+     * names, separated by commas.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * provides com.example.Service with com.example.Impl;
+     * </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * PROVIDES -> provides
+     *  |--DOT -> .
+     *  |   |--DOT -> .
+     *  |   |   |--IDENT -> com
+     *  |   |   `--IDENT -> example
+     *  |   `--IDENT -> Service
+     *  |--WITH -> with
+     *  |   `--DOT -> .
+     *  |       |--DOT -> .
+     *  |       |   |--IDENT -> com
+     *  |       |   `--IDENT -> example
+     *  |       `--IDENT -> Impl
+     *  `--SEMI -> ;
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se25/html/jls-7.html#jls-7.7.4">
+     *     Java Language Specification, &sect;7.7.4</a>
+     * @see #PROVIDES
+     *
+     * @since 13.9.0
+     */
+    public static final int WITH = JavaLanguageLexer.WITH;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
