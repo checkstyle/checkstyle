@@ -2,9 +2,9 @@
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field configuration</message>
-    <lineContent>private Configuration configuration;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: configuration</message>
+    <lineContent>protected AbstractAutomaticBean() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -211,58 +211,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field branchTokenTypes</message>
-    <lineContent>private BitSet branchTokenTypes;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field firstChild</message>
-    <lineContent>private DetailAstImpl firstChild;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field hiddenAfter</message>
-    <lineContent>private List&lt;Token&gt; hiddenAfter;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field hiddenBefore</message>
-    <lineContent>private List&lt;Token&gt; hiddenBefore;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field nextSibling</message>
-    <lineContent>private DetailAstImpl nextSibling;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field parent</message>
-    <lineContent>private DetailAstImpl parent;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field previousSibling</message>
-    <lineContent>private DetailAstImpl previousSibling;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field text</message>
-    <lineContent>private String text;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: parent, previousSibling, firstChild, nextSibling, text, hiddenBefore, hiddenAfter, branchTokenTypes</message>
+    <lineContent>public DetailAstImpl() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -335,16 +286,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field child</message>
-    <lineContent>private DetailAstImpl child;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field root</message>
-    <lineContent>private DetailAstImpl root;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: root, child</message>
+    <lineContent>private DetailAstPair() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -452,44 +396,30 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocCommentsAstVisitor.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field startToken</message>
-    <lineContent>private Token startToken;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocCommentsAstVisitor.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: firstNonTightHtmlTag</message>
     <lineContent>public JavadocCommentsAstVisitor(CommonTokenStream tokens,</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field errorMessage</message>
-    <lineContent>private ParseErrorMessage errorMessage;</lineContent>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocCommentsAstVisitor.java</fileName>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: startToken</message>
+    <lineContent>private TextAccumulator() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field firstNonTightHtmlTag</message>
-    <lineContent>private DetailNode firstNonTightHtmlTag;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: errorMessage</message>
+    <lineContent>private DescriptiveErrorListener() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field parseErrorMessage</message>
-    <lineContent>private ParseErrorMessage parseErrorMessage;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field tree</message>
-    <lineContent>private DetailNode tree;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: tree, parseErrorMessage, firstNonTightHtmlTag</message>
+    <lineContent>public ParseStatus() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -519,16 +449,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocPropertiesGenerator.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field inputFile</message>
-    <lineContent>private File inputFile;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocPropertiesGenerator.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field outputFile</message>
-    <lineContent>private File outputFile;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: outputFile, inputFile</message>
+    <lineContent>private CliOptions() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -645,44 +568,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field configurationFile</message>
-    <lineContent>private String configurationFile;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field files</message>
-    <lineContent>private List&lt;File&gt; files;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field outputPath</message>
-    <lineContent>private Path outputPath;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field propertiesFile</message>
-    <lineContent>private File propertiesFile;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field suppressionLineColumnNumber</message>
-    <lineContent>private String suppressionLineColumnNumber;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field xpath</message>
-    <lineContent>private String xpath;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: files, configurationFile, outputPath, propertiesFile, suppressionLineColumnNumber, xpath</message>
+    <lineContent>private CliOptions() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -1142,65 +1030,30 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field config</message>
-    <lineContent>private String config;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: fileName, config, failureProperty, properties</message>
+    <lineContent>public CheckstyleAntTask() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field failureProperty</message>
-    <lineContent>private String failureProperty;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: key, value</message>
+    <lineContent>public Property() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field fileName</message>
-    <lineContent>private String fileName;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field key</message>
-    <lineContent>private String key;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field properties</message>
-    <lineContent>private Path properties;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field toFile</message>
-    <lineContent>private File toFile;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field type</message>
-    <lineContent>private FormatterType type;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field value</message>
-    <lineContent>private String value;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: type, toFile</message>
+    <lineContent>public Formatter() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field fileContents</message>
-    <lineContent>private FileContents fileContents;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: fileContents</message>
+    <lineContent>private FileContext() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -1216,23 +1069,16 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field fileContents</message>
-    <lineContent>private FileContents fileContents;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: fileContents</message>
+    <lineContent>private FileContext() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field fileExtensions</message>
-    <lineContent>private String[] fileExtensions;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field messageDispatcher</message>
-    <lineContent>private MessageDispatcher messageDispatcher;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: messageDispatcher, fileExtensions</message>
+    <lineContent>protected AbstractFileSetCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -1248,9 +1094,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractViolationReporter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field id</message>
-    <lineContent>private String id;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: id</message>
+    <lineContent>protected AbstractViolationReporter() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -1404,16 +1250,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/DescendantTokenCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field maximumMessage</message>
-    <lineContent>private String maximumMessage;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/DescendantTokenCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field minimumMessage</message>
-    <lineContent>private String minimumMessage;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: minimumMessage, maximumMessage</message>
+    <lineContent>public DescendantTokenCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -1531,16 +1370,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OuterTypeFilenameCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field fileName</message>
-    <lineContent>private String fileName;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OuterTypeFilenameCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field wrongType</message>
-    <lineContent>private DetailAST wrongType;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: fileName, wrongType</message>
+    <lineContent>public OuterTypeFilenameCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -1556,9 +1388,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/TrailingCommentCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field legalComment</message>
-    <lineContent>private Pattern legalComment;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: legalComment</message>
+    <lineContent>public TrailingCommentCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -1618,16 +1450,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field currentClass</message>
-    <lineContent>private String currentClass;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field packageName</message>
-    <lineContent>private FullIdent packageName;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: currentClass, packageName</message>
+    <lineContent>public UncommentedMainCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -2107,16 +1932,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/DeclarationOrderCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field classFieldNames</message>
-    <lineContent>private Set&lt;String&gt; classFieldNames;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/DeclarationOrderCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field scopeStates</message>
-    <lineContent>private Deque&lt;ScopeState&gt; scopeStates;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: scopeStates, classFieldNames</message>
+    <lineContent>public DeclarationOrderCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -2153,9 +1971,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsAvoidNullCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field currentFrame</message>
-    <lineContent>private FieldFrame currentFrame;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: currentFrame</message>
+    <lineContent>public EqualsAvoidNullCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -2593,16 +2411,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field frame</message>
-    <lineContent>private FieldFrame frame;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field ignoreFormat</message>
-    <lineContent>private Pattern ignoreFormat;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: frame, ignoreFormat</message>
+    <lineContent>public HiddenFieldCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -2639,9 +2450,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalInstantiationCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field pkgName</message>
-    <lineContent>private String pkgName;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: pkgName</message>
+    <lineContent>public IllegalInstantiationCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -2739,9 +2550,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MatchXpathCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field xpathExpression</message>
-    <lineContent>private XPathExpression xpathExpression;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: xpathExpression</message>
+    <lineContent>public MatchXpathCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -2956,9 +2767,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ParameterAssignmentCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field parameterNames</message>
-    <lineContent>private Set&lt;String&gt; parameterNames;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: parameterNames</message>
+    <lineContent>public ParameterAssignmentCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -3385,9 +3196,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field frames</message>
-    <lineContent>private Map&lt;DetailAST, AbstractFrame&gt; frames;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: frames</message>
+    <lineContent>public RequireThisCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -3454,9 +3265,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ReturnCountCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field context</message>
-    <lineContent>private Context context;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: context</message>
+    <lineContent>public ReturnCountCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -3475,9 +3286,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessaryParenthesesCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field parentToSkip</message>
-    <lineContent>private DetailAST parentToSkip;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: parentToSkip</message>
+    <lineContent>public UnnecessaryParenthesesCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -3701,9 +3512,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field packageName</message>
-    <lineContent>private String packageName;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: packageName</message>
+    <lineContent>public UnusedLocalVariableCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -4122,30 +3933,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/FinalClassCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field anonInnerClassToOuterTypeDecl</message>
-    <lineContent>private Map&lt;DetailAST, String&gt; anonInnerClassToOuterTypeDecl;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/FinalClassCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field innerClasses</message>
-    <lineContent>private Map&lt;String, ClassDesc&gt; innerClasses;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/FinalClassCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field packageName</message>
-    <lineContent>private String packageName;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/FinalClassCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field typeDeclarations</message>
-    <lineContent>private Deque&lt;TypeDeclarationDescription&gt; typeDeclarations;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: innerClasses, anonInnerClassToOuterTypeDecl, typeDeclarations, packageName</message>
+    <lineContent>public FinalClassCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -4320,16 +4110,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/VisibilityModifierCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field ignoreAnnotationShortNames</message>
-    <lineContent>private Set&lt;String&gt; ignoreAnnotationShortNames;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/VisibilityModifierCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field immutableClassShortNames</message>
-    <lineContent>private Set&lt;String&gt; immutableClassShortNames;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: ignoreAnnotationShortNames, immutableClassShortNames</message>
+    <lineContent>public VisibilityModifierCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -4356,16 +4139,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/AbstractHeaderCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field charset</message>
-    <lineContent>private Charset charset;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/AbstractHeaderCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field headerFile</message>
-    <lineContent>private URI headerFile;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: headerFile, charset</message>
+    <lineContent>protected AbstractHeaderCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -4392,9 +4168,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/MultiFileRegexpHeaderCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field headerFiles</message>
-    <lineContent>private String headerFiles;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: headerFiles</message>
+    <lineContent>public MultiFileRegexpHeaderCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -4483,37 +4259,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/ImportControlCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field currentImportControl</message>
-    <lineContent>private AbstractImportControl currentImportControl;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/ImportControlCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field file</message>
-    <lineContent>private URI file;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/ImportControlCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field fileName</message>
-    <lineContent>private String fileName;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/ImportControlCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field packageName</message>
-    <lineContent>private String packageName;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/ImportControlCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field root</message>
-    <lineContent>private PkgImportControl root;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: file, root, packageName, fileName, currentImportControl</message>
+    <lineContent>public ImportControlCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -4579,9 +4327,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/ImportOrderCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field lastImport</message>
-    <lineContent>private String lastImport;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: lastImport</message>
+    <lineContent>public ImportOrderCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -4663,9 +4411,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/RedundantImportCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field pkgName</message>
-    <lineContent>private String pkgName;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: pkgName</message>
+    <lineContent>public RedundantImportCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -4681,9 +4429,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/UnusedImportsCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field currentFrame</message>
-    <lineContent>private Frame currentFrame;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: currentFrame</message>
+    <lineContent>public UnusedImportsCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -5984,9 +5732,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field blockCommentAst</message>
-    <lineContent>private DetailAST blockCommentAst;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: blockCommentAst</message>
+    <lineContent>private FileContext() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6042,9 +5790,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocLeadingAsteriskAlignCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field fileLines</message>
-    <lineContent>private String[] fileLines;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: fileLines</message>
+    <lineContent>public JavadocLeadingAsteriskAlignCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6088,9 +5836,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field currentAst</message>
-    <lineContent>private DetailAST currentAst;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: currentAst</message>
+    <lineContent>public JavadocMethodCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6151,37 +5899,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field firstChild</message>
-    <lineContent>private JavadocNodeImpl firstChild;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field nextSibling</message>
-    <lineContent>private JavadocNodeImpl nextSibling;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field parent</message>
-    <lineContent>private JavadocNodeImpl parent;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field previousSibling</message>
-    <lineContent>private JavadocNodeImpl previousSibling;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field text</message>
-    <lineContent>private String text;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: text, parent, nextSibling, previousSibling, firstChild</message>
+    <lineContent>public JavadocNodeImpl() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6279,23 +5999,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTypeCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field authorFormat</message>
-    <lineContent>private Pattern authorFormat;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTypeCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field excludeScope</message>
-    <lineContent>private Scope excludeScope;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTypeCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field versionFormat</message>
-    <lineContent>private Pattern versionFormat;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: excludeScope, authorFormat, versionFormat</message>
+    <lineContent>public JavadocTypeCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6307,9 +6013,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocVariableCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field ignoreNamePattern</message>
-    <lineContent>private Pattern ignoreNamePattern;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: ignoreNamePattern</message>
+    <lineContent>public JavadocVariableCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6349,23 +6055,16 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field excludeScope</message>
-    <lineContent>private Scope excludeScope;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field ignoreMethodNamesRegex</message>
-    <lineContent>private Pattern ignoreMethodNamesRegex;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: excludeScope, ignoreMethodNamesRegex</message>
+    <lineContent>public MissingJavadocMethodCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocTypeCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field excludeScope</message>
-    <lineContent>private Scope excludeScope;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: excludeScope</message>
+    <lineContent>public MissingJavadocTypeCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6391,23 +6090,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/WriteTagCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field tag</message>
-    <lineContent>private String tag;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/WriteTagCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field tagFormat</message>
-    <lineContent>private Pattern tagFormat;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/WriteTagCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field tagRegExp</message>
-    <lineContent>private Pattern tagRegExp;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: tagRegExp, tagFormat, tag</message>
+    <lineContent>public WriteTagCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6498,9 +6183,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/JavaNCSSCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field counters</message>
-    <lineContent>private Deque&lt;Counter&gt; counters;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: counters</message>
+    <lineContent>public JavaNCSSCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6512,9 +6197,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/NPathComplexityCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field currentRangeValue</message>
-    <lineContent>private BigInteger currentRangeValue;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: currentRangeValue</message>
+    <lineContent>public NPathComplexityCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6877,37 +6562,23 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field message</message>
-    <lineContent>private String message;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: message</message>
+    <lineContent>public RegexpCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpMultilineCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field detector</message>
-    <lineContent>private MultilineDetector detector;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpMultilineCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field message</message>
-    <lineContent>private String message;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: message, detector</message>
+    <lineContent>public RegexpMultilineCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpOnFilenameCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field fileNamePattern</message>
-    <lineContent>private Pattern fileNamePattern;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpOnFilenameCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field folderPattern</message>
-    <lineContent>private Pattern folderPattern;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: folderPattern, fileNamePattern</message>
+    <lineContent>public RegexpOnFilenameCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6923,16 +6594,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpSinglelineCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field detector</message>
-    <lineContent>private SinglelineDetector detector;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpSinglelineCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field message</message>
-    <lineContent>private String message;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: message, detector</message>
+    <lineContent>public RegexpSinglelineCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6948,9 +6612,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpSinglelineJavaCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field message</message>
-    <lineContent>private String message;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: message</message>
+    <lineContent>public RegexpSinglelineJavaCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -7289,9 +6953,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filefilters/BeforeExecutionExclusionFileFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field fileNamePattern</message>
-    <lineContent>private Pattern fileNamePattern;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: fileNamePattern</message>
+    <lineContent>public BeforeExecutionExclusionFileFilter() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -7414,16 +7078,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field idFormat</message>
-    <lineContent>private String idFormat;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field messageFormat</message>
-    <lineContent>private String messageFormat;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: messageFormat, idFormat</message>
+    <lineContent>public SuppressWithNearbyCommentFilter() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -7454,23 +7111,16 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field idPattern</message>
-    <lineContent>private String idPattern;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field messagePattern</message>
-    <lineContent>private String messagePattern;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: eventMessageRegexp, eventIdRegexp</message>
+    <lineContent>private Suppression(</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
-    <message>the constructor does not initialize fields: eventMessageRegexp, eventIdRegexp</message>
-    <lineContent>private Suppression(</lineContent>
+    <message>the constructor does not initialize fields: messagePattern, idPattern</message>
+    <lineContent>public SuppressWithNearbyTextFilter() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -7541,16 +7191,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field idFormat</message>
-    <lineContent>private String idFormat;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field messageFormat</message>
-    <lineContent>private String messageFormat;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: messageFormat, idFormat</message>
+    <lineContent>public SuppressWithPlainTextCommentFilter() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -7636,16 +7279,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field idFormat</message>
-    <lineContent>private String idFormat;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field messageFormat</message>
-    <lineContent>private String messageFormat;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: messageFormat, idFormat</message>
+    <lineContent>public SuppressionCommentFilter() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -7676,65 +7312,23 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field file</message>
-    <lineContent>private String file;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: file</message>
+    <lineContent>public SuppressionFilter() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionSingleFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field checks</message>
-    <lineContent>private Pattern checks;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionSingleFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field columns</message>
-    <lineContent>private String columns;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionSingleFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field files</message>
-    <lineContent>private Pattern files;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionSingleFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field filter</message>
-    <lineContent>private SuppressFilterElement filter;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionSingleFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field id</message>
-    <lineContent>private String id;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionSingleFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field lines</message>
-    <lineContent>private String lines;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionSingleFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field message</message>
-    <lineContent>private Pattern message;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: filter, files, checks, message, id, lines, columns</message>
+    <lineContent>public SuppressionSingleFilter() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field file</message>
-    <lineContent>private String file;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: file</message>
+    <lineContent>public SuppressionXpathFilter() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -7787,44 +7381,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathSingleFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field checks</message>
-    <lineContent>private Pattern checks;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathSingleFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field files</message>
-    <lineContent>private Pattern files;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathSingleFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field id</message>
-    <lineContent>private String id;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathSingleFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field message</message>
-    <lineContent>private Pattern message;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathSingleFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field query</message>
-    <lineContent>private String query;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathSingleFilter.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field xpathFilter</message>
-    <lineContent>private XpathFilterElement xpathFilter;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: xpathFilter, files, checks, message, id, query</message>
+    <lineContent>public SuppressionXpathSingleFilter() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -8591,23 +8150,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/PropertyDetails.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field buildDescription</message>
-    <lineContent>private String buildDescription;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/PropertyDetails.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field buildName</message>
-    <lineContent>private String buildName;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/PropertyDetails.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field buildType</message>
-    <lineContent>private String buildType;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: buildName, buildDescription, buildType</message>
+    <lineContent>public Builder() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -9158,16 +8703,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateParser.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field macroName</message>
-    <lineContent>private String macroName;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateParser.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field sourceContent</message>
-    <lineContent>private String sourceContent;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: sourceContent, macroName</message>
+    <lineContent>public XdocsTemplateParser() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

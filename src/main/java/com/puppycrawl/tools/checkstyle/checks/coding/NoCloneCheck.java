@@ -148,6 +148,13 @@ public class NoCloneCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "avoid.clone.method";
 
+    /**
+     * Creates a new {@code NoCloneCheck} instance.
+     */
+    public NoCloneCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

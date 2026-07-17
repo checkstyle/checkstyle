@@ -78,6 +78,13 @@ public class FallThroughCheck extends AbstractCheck {
      */
     private Pattern reliefPattern = Pattern.compile("falls?[ -]?thr(u|ough)");
 
+    /**
+     * Creates a new {@code FallThroughCheck} instance.
+     */
+    public FallThroughCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

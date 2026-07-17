@@ -41,6 +41,13 @@ public class EmptyStatementCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "empty.statement";
 
+    /**
+     * Creates a new {@code EmptyStatementCheck} instance.
+     */
+    public EmptyStatementCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

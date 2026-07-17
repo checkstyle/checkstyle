@@ -120,6 +120,13 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean ignoreEnhancedForColon = true;
 
+    /**
+     * Creates a new {@code WhitespaceAroundCheck} instance.
+     */
+    public WhitespaceAroundCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

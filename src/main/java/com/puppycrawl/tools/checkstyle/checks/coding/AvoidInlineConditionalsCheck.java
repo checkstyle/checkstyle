@@ -49,6 +49,13 @@ public class AvoidInlineConditionalsCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "inline.conditional.avoid";
 
+    /**
+     * Creates a new {@code AvoidInlineConditionalsCheck} instance.
+     */
+    public AvoidInlineConditionalsCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

@@ -141,6 +141,13 @@ public class InnerAssignmentCheck
         TokenTypes.BAND
     );
 
+    /**
+     * Creates a new {@code InnerAssignmentCheck} instance.
+     */
+    public InnerAssignmentCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
