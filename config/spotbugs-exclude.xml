@@ -356,4 +356,15 @@
     <Field name="xpath" />
     <Bug pattern="SPP_FIELD_COULD_BE_STATIC" />
   </Match>
+  <!-- This is most used class for all integrations lets keep it public to avoid breaking change -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.TreeWalker" />
+    <Method name="finishLocalSetup" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.TreeWalker" />
+    <Method name="setupChild" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
 </FindBugsFilter>
