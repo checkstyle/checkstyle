@@ -585,6 +585,32 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testEscapeControlCharacter() throws Exception {
+        // a block comment can carry a raw C0 control character (here a form feed); it is
+        // illegal in XML 1.0, so writing it verbatim into the query attribute makes the
+        // generated suppressions file non-well-formed. It is rendered as a hexadecimal
+        // #x escape instead. A tab is legal in XML 1.0 and is kept as is.
+        final char formFeed = '\f';
+        final FileText testFileText = new FileText(new File("Test.java"), Arrays.asList(
+                "class Test {",
+                "    /* a" + formFeed + "b\tc */",
+                "    int field;",
+                "}"));
+        final DetailAST detailAst =
+                JavaParser.parseFileText(testFileText, JavaParser.Options.WITH_COMMENTS);
+        final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst,
+                2, 5, testFileText, DEFAULT_TAB_WIDTH);
+        final List<String> actual = queryGenerator.generate();
+        final List<String> expected = Collections.singletonList(
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Test']]/OBJBLOCK/VARIABLE_DEF"
+                        + "[./IDENT[@text='field']]/TYPE/BLOCK_COMMENT_BEGIN"
+                        + "[./COMMENT_CONTENT[@text=' a#xc;b\tc ']]");
+        assertWithMessage("Control character must be escaped in generated query")
+            .that(actual)
+            .isEqualTo(expected);
+    }
+
+    @Test
     public void testTextBlocks() throws Exception {
         final File testFile = new File(getPath(
                 "InputXpathQueryGeneratorTextBlock.java"));
