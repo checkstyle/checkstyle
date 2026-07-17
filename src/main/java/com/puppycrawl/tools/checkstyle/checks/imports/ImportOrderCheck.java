@@ -207,12 +207,19 @@ public class ImportOrderCheck
     private Pattern[] staticGroupsReg = EMPTY_PATTERN_ARRAY;
 
     /**
+     * Creates a new {@code ImportOrderCheck} instance.
+     */
+    public ImportOrderCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify policy on the relative order between type imports and static imports.
      *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      * @since 5.0
      */
+
     public void setOption(String optionStr) {
         option = ImportOrderOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
     }

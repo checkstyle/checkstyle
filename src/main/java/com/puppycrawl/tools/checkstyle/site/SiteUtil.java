@@ -1939,6 +1939,13 @@ public final class SiteUtil {
         private boolean inHtmlElement;
         /** Whether the next ATTRIBUTE_VALUE token is the value of an href attribute. */
         private boolean inHrefAttribute;
+
+        /**
+         * Creates a new {@code DescriptionTraversalState} instance.
+         */
+        private DescriptionTraversalState() {
+            // no code by default
+        }
     }
 
 }

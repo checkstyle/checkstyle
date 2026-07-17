@@ -33,6 +33,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class TypecastParenPadCheck extends AbstractParenPadCheck {
 
+    /**
+     * Creates a new {@code TypecastParenPadCheck} instance.
+     */
+    public TypecastParenPadCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getRequiredTokens() {
         return new int[] {TokenTypes.RPAREN, TokenTypes.TYPECAST};

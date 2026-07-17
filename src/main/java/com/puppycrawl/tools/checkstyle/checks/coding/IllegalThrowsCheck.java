@@ -68,12 +68,19 @@ public final class IllegalThrowsCheck extends AbstractCheck {
     private boolean ignoreOverriddenMethods = true;
 
     /**
+     * Creates a new {@code IllegalThrowsCheck} instance.
+     */
+    public IllegalThrowsCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify throw class names to reject.
      *
      * @param classNames
      *            array of illegal exception classes
      * @since 4.0
      */
+
     public void setIllegalClassNames(final String... classNames) {
         illegalClassNames.clear();
         illegalClassNames.addAll(

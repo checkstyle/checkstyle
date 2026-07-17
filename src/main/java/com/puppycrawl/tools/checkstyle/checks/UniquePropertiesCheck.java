@@ -170,6 +170,13 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
         private final Map<String, Integer> duplicatedKeys = new HashMap<>();
 
         /**
+         * Creates a new {@code UniqueProperties} instance.
+         */
+        private UniqueProperties() {
+            // no code by default
+        }
+
+        /**
          * Puts the value into properties by the key specified.
          *
          * @noinspection UseOfPropertiesAsHashtable

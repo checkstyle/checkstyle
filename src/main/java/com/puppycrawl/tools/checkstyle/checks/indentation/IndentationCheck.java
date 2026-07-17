@@ -173,12 +173,19 @@ public class IndentationCheck extends AbstractCheck {
     private boolean forceStrictCondition;
 
     /**
+     * Creates a new {@code IndentationCheck} instance.
+     */
+    public IndentationCheck() {
+        // no code by default
+    }
+    /**
      * Getter to query strict indent level in line wrapping case. If value is true, line wrap indent
      * have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent
      * could be bigger on any value user would like.
      *
      * @return forceStrictCondition value.
      */
+
     public boolean isForceStrictCondition() {
         return forceStrictCondition;
     }

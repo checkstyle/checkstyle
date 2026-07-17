@@ -104,12 +104,19 @@ public class CyclomaticComplexityCheck
     private int max = DEFAULT_COMPLEXITY_VALUE;
 
     /**
+     * Creates a new {@code CyclomaticComplexityCheck} instance.
+     */
+    public CyclomaticComplexityCheck() {
+        // no code by default
+    }
+    /**
      * Setter to control whether to treat the whole switch block as a single decision point.
      *
      * @param switchBlockAsSingleDecisionPoint whether to treat the whole switch
      *                                          block as a single decision point.
      * @since 6.11
      */
+
     public void setSwitchBlockAsSingleDecisionPoint(boolean switchBlockAsSingleDecisionPoint) {
         this.switchBlockAsSingleDecisionPoint = switchBlockAsSingleDecisionPoint;
     }

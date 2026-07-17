@@ -72,12 +72,19 @@ public class LeftCurlyCheck
     private LeftCurlyOption option = LeftCurlyOption.EOL;
 
     /**
+     * Creates a new {@code LeftCurlyCheck} instance.
+     */
+    public LeftCurlyCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify the policy on placement of a left curly brace (<code>'{'</code>).
      *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      * @since 3.0
      */
+
     public void setOption(String optionStr) {
         option = LeftCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
     }

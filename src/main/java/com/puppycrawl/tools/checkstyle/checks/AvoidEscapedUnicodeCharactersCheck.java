@@ -193,11 +193,18 @@ public class AvoidEscapedUnicodeCharactersCheck
     private boolean allowNonPrintableEscapes;
 
     /**
+     * Creates a new {@code AvoidEscapedUnicodeCharactersCheck} instance.
+     */
+    public AvoidEscapedUnicodeCharactersCheck() {
+        // no code by default
+    }
+    /**
      * Setter to allow use escapes for non-printable, control characters.
      *
      * @param allow user's value.
      * @since 5.8
      */
+
     public final void setAllowEscapesForControlCharacters(boolean allow) {
         allowEscapesForControlCharacters = allow;
     }

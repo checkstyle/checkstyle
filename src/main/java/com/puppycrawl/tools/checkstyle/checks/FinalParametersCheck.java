@@ -82,11 +82,18 @@ public class FinalParametersCheck extends AbstractCheck {
     private boolean ignoreUnnamedParameters = true;
 
     /**
+     * Creates a new {@code FinalParametersCheck} instance.
+     */
+    public FinalParametersCheck() {
+        // no code by default
+    }
+    /**
      * Setter to ignore primitive types as parameters.
      *
      * @param ignorePrimitiveTypes true or false.
      * @since 6.2
      */
+
     public void setIgnorePrimitiveTypes(boolean ignorePrimitiveTypes) {
         this.ignorePrimitiveTypes = ignorePrimitiveTypes;
     }

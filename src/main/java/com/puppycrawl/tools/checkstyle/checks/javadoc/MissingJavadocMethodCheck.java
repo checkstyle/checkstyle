@@ -117,11 +117,18 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     private Set<String> allowedAnnotations = Set.of("Override");
 
     /**
+     * Creates a new {@code MissingJavadocMethodCheck} instance.
+     */
+    public MissingJavadocMethodCheck() {
+        // no code by default
+    }
+    /**
      * Setter to configure annotations that allow missed documentation.
      *
      * @param userAnnotations user's value.
      * @since 8.21
      */
+
     public void setAllowedAnnotations(String... userAnnotations) {
         allowedAnnotations = Set.of(userAnnotations);
     }

@@ -100,11 +100,18 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
     private boolean ignoreFileNameExtensions;
 
     /**
+     * Creates a new {@code RegexpOnFilenameCheck} instance.
+     */
+    public RegexpOnFilenameCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify the regular expression to match the folder path against.
      *
      * @param folderPattern format of folder.
      * @since 6.15
      */
+
     public void setFolderPattern(Pattern folderPattern) {
         this.folderPattern = folderPattern;
     }

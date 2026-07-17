@@ -168,12 +168,19 @@ public class RegexpCheck extends AbstractCheck {
     private Pattern format = Pattern.compile("^$", Pattern.MULTILINE);
 
     /**
+     * Creates a new {@code RegexpCheck} instance.
+     */
+    public RegexpCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify message which is used to notify about violations,
      * if empty then the default (hard-coded) message is used.
      *
      * @param message custom message which should be used in report.
      * @since 4.0
      */
+
     public void setMessage(String message) {
         this.message = message;
     }

@@ -217,12 +217,19 @@ public class VisibilityModifierCheck
     private Set<String> immutableClassCanonicalNames = DEFAULT_IMMUTABLE_TYPES;
 
     /**
+     * Creates a new {@code VisibilityModifierCheck} instance.
+     */
+    public VisibilityModifierCheck() {
+        // no code by default
+    }
+    /**
      * Setter to specify annotations canonical names which ignore variables
      * in consideration.
      *
      * @param annotationNames array of ignore annotations canonical names.
      * @since 6.5
      */
+
     public void setIgnoreAnnotationCanonicalNames(String... annotationNames) {
         ignoreAnnotationCanonicalNames = Set.of(annotationNames);
     }

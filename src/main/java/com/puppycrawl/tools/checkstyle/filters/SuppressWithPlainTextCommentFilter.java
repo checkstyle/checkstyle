@@ -116,11 +116,18 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     private String idFormat;
 
     /**
+     * Creates a new {@code SuppressWithPlainTextCommentFilter} instance.
+     */
+    public SuppressWithPlainTextCommentFilter() {
+        // no code by default
+    }
+    /**
      * Setter to specify comment pattern to trigger filter to begin suppression.
      *
      * @param pattern off comment format pattern.
      * @since 8.6
      */
+
     public final void setOffCommentFormat(Pattern pattern) {
         offCommentFormat = pattern;
     }

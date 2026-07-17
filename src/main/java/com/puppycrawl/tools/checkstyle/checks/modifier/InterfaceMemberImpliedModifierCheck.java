@@ -166,6 +166,12 @@ public class InterfaceMemberImpliedModifierCheck
     private boolean violateImpliedStaticNested = true;
 
     /**
+     * Creates a new {@code InterfaceMemberImpliedModifierCheck} instance.
+     */
+    public InterfaceMemberImpliedModifierCheck() {
+        // no code by default
+    }
+    /**
      * Setter to control whether to enforce that {@code public} is explicitly coded
      * on interface fields.
      *
@@ -173,6 +179,7 @@ public class InterfaceMemberImpliedModifierCheck
      *        True to perform the check, false to turn the check off.
      * @since 8.12
      */
+
     public void setViolateImpliedPublicField(boolean violateImpliedPublicField) {
         this.violateImpliedPublicField = violateImpliedPublicField;
     }
