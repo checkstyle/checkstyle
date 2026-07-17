@@ -113,6 +113,13 @@ public class NewlineAtEndOfFileCheck
     /** Specify the type of line separator. */
     private LineSeparatorOption lineSeparator = LineSeparatorOption.LF_CR_CRLF;
 
+    /**
+     * Creates a new {@code NewlineAtEndOfFileCheck} instance.
+     */
+    public NewlineAtEndOfFileCheck() {
+        // no code by default
+    }
+
     @Override
     protected void processFiltered(File file, FileText fileText) {
         try {
