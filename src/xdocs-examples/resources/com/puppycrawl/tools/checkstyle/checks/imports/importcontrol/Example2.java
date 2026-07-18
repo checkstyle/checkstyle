@@ -8,11 +8,11 @@
   </module>
 </module>
 */
-
-// xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol;
-
+// xdoc section -- start
 import java.awt.Image;
+import java.lang.ref.SoftReference;
+
 import java.io.File;
 import java.io.FileReader;
 import java.util.Date;
