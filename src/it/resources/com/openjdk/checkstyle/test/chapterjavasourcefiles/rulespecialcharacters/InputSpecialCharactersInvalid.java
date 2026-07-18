@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterjavasourcefiles.rulespecialcharacters;
 
+// violation first line 'Header mismatch*'
+
 public class InputSpecialCharactersInvalid {
     // The short forms (e.g. \t) are commonly used and easier to recognize than
     // the corresponding longer forms (\011, \u0009).

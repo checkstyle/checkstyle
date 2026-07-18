@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapternaming.ruleconstants;
 
+// violation first line 'Header is missing*'
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulevariabledeclarations.onevariableperline;
 
+// violation first line 'Header mismatch*'
+
 /** Some javadoc. */
 public class InputOneVariablePerDeclarationReformatted {
     int mnp, efg; // violation 'Each variable declaration must be in its own statement.'

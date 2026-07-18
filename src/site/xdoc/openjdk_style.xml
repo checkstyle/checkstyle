@@ -250,8 +250,20 @@
                     Copyright notice
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/header/multifileregexpheader.html#MultiFileRegexpHeader">
+                    MultiFileRegexpHeader</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultiFileRegexpHeader">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulecopyrightnotice">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
@@ -1668,6 +1680,21 @@
             </tbody>
           </table>
         </div>
+      </subsection>
+      <subsection name="Header" id="OpenJDK_Header">
+        <p>
+          To use custom header files set the following system property:
+        </p>
+        <p>
+          <code>header.file.paths.separated.by.coma</code>
+        </p>
+        <p>
+          If you do not yet have a specific header, or prefer not to configure one immediately,
+          you can use our standard reference file :
+          <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/ruleheader/openjdk-style.header">
+            openjdk-style.header
+          </a>
+        </p>
       </subsection>
       <subsection name="Severity Level" id="OpenJDK_Severity_Level">
         <p>
