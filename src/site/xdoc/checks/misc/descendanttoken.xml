@@ -8,6 +8,46 @@
   <body>
     <section name="DescendantToken">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+      <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+      <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"><span class="toc-chevron"></span></label>
+      <div class="toc-content">
+        <p class="toc-heading">On This Page</p>
+        <ul class="toc-list">
+          <li><a href="#DescendantToken_Description">Description</a></li>
+          <li><a href="#DescendantToken_Properties">Properties</a></li>
+          <li><a href="#DescendantToken_Examples">Examples</a>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" title="A switch statement with no default case">A switch statement with no default case</a></li>
+              <li><a href="#Example2-config" title="A switch with too many cases">A switch with too many cases</a></li>
+              <li><a href="#Example3-config" title="A switch that is nested in another switch">A switch that is nested in another switch</a></li>
+              <li><a href="#Example4-config" title="A condition in for which performs no check">A condition in for which performs no check</a></li>
+              <li><a href="#Example6-config" title="A return statement from within a catch or finally block">A return statement from within a catch or...</a></li>
+              <li><a href="#Example7-config" title="A try statement within a catch or finally block">A try statement within a catch or finally...</a></li>
+              <li><a href="#Example12-config" title="An empty statement">An empty statement</a></li>
+              <li><a href="#Example14-config" title="Comparing this with null">Comparing this with null</a></li>
+              <li><a href="#Example17-config" title="With a custom message when the minimum count of descendants is not reached">With a custom message when the minimum...</a></li>
+            </ul>
+          </li>
+          <li><a href="#DescendantToken_Use_Cases">Use Cases</a>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" title="An initializer in for performs no setup (where a while statement could be used instead)">An initializer in for performs no setup...</a></li>
+              <li><a href="#UseCase2-config" title="A method with too many local variables">A method with too many local variables</a></li>
+              <li><a href="#UseCase3-config" title="A method with too many returns">A method with too many returns</a></li>
+              <li><a href="#UseCase4-config" title="A method which throws too many exceptions">A method which throws too many exceptions</a></li>
+              <li><a href="#UseCase5-config" title="A method with too many expressions">A method with too many expressions</a></li>
+              <li><a href="#UseCase6-config" title="A class or interface with too many fields">A class or interface with too many fields</a></li>
+              <li><a href="#UseCase7-config" title="A String literal equality check">A String literal equality check</a></li>
+              <li><a href="#UseCase8-config" title="An assert statement that may have side effects">An assert statement that may have side...</a></li>
+            </ul>
+          </li>
+          <li><a href="#DescendantToken_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#DescendantToken_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#DescendantToken_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#DescendantToken_Parent_Module">Parent Module</a></li>
+        </ul>
+      </div>
+    </div>
       <subsection name="Description" id="DescendantToken_Description">
         <div>
           Checks for restricted tokens beneath other tokens.
