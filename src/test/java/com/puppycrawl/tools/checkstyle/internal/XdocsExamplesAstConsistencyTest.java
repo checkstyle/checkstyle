@@ -173,7 +173,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/regexp/regexponfilename",
             "checks/regexp/regexpsingleline",
             "checks/regexp/regexpsinglelinejava",
-            "checks/sizes/methodlength",
             "checks/translation",
             "checks/whitespace/methodparampad",
             "checks/whitespace/nowhitespaceafter",
@@ -949,9 +948,8 @@ public class XdocsExamplesAstConsistencyTest {
         int count = -1;
         try {
             final Object instance = SiteUtil.getModuleInstance(moduleName);
-            final Set<String> properties = new HashSet<>(SiteUtil.getPropertiesForDocumentation(
-                    instance.getClass(), instance));
-            properties.removeAll(IGNORED_PROPERTIES_FOR_COVERAGE);
+            final Set<String> properties = SiteUtil.getPropertiesForDocumentation(
+                instance.getClass(), instance);
             count = properties.size();
         }
         catch (MacroExecutionException exception) {
