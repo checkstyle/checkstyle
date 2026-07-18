@@ -194,6 +194,81 @@ class Example4 {
   private class FourthName_ {}   // violation 'Name 'FourthName_' must match pattern'
   enum Fifth_Name {}
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          An example of how to configure the check for names that begin with a lower case letter,
+          followed by letters, digits, and underscores. Also, suppress the check from being
+          applied to public type:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TypeName"&gt;
+      &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+      &lt;property name="applyToPackage" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 {
+  public interface firstName {}
+  public class SecondName {}    // violation 'Name 'SecondName' must match pattern'
+  protected class Third_Name {} // violation 'Name 'Third_Name' must match pattern'
+  private class FourthName_ {}  // violation 'Name 'FourthName_' must match pattern'
+  enum Fifth_Name {}
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example6-config">
+          An example of how to configure the check for names that begin with a lower case letter,
+          followed by letters, digits, and underscores. Also, suppress the check from being
+          applied to package-private type:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TypeName"&gt;
+      &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+      &lt;property name="applyToPackage" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example6 {
+  public interface firstName {}
+  public class SecondName {}     // violation 'Name 'SecondName' must match pattern'
+  protected class Third_Name {}  // violation 'Name 'Third_Name' must match pattern'
+  private class FourthName_ {}   // violation 'Name 'FourthName_' must match pattern'
+  enum Fifth_Name {}
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example7-config">
+          An example of how to configure the check for names that begin with a lower case letter,
+          followed by letters, digits, and underscores. Also, restrict the check to only apply
+          to class definitions:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TypeName"&gt;
+      &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+      &lt;property name="tokens" value="CLASS_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example7 {                 // violation 'Name 'Example7' must match pattern'
+  public interface firstName {}
+  public class SecondName {}     // violation 'Name 'SecondName' must match pattern'
+  protected class Third_Name {}  // violation 'Name 'Third_Name' must match pattern'
+  private class FourthName_ {}   // violation 'Name 'FourthName_' must match pattern'
+  enum Fifth_Name {}
+}
 </code></pre></div>
       </subsection>
 

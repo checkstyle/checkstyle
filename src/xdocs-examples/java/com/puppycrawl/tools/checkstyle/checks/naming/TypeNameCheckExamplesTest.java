@@ -78,4 +78,48 @@ public class TypeNameCheckExamplesTest extends AbstractExamplesModuleTestSupport
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "17:16: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "SecondName", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+            "18:19: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "Third_Name", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+            "19:17: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "FourthName_", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = {
+            "17:16: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "SecondName", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+            "18:19: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "Third_Name", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+            "19:17: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "FourthName_", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+    }
+
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "15:7: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "Example7", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+            "17:16: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "SecondName", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+            "18:19: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "Third_Name", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+            "19:17: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "FourthName_", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+    }
+
 }
