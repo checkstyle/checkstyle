@@ -72,6 +72,21 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodlength/Example3.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check with default settings, so that it accepts
+          methods with at most 150 lines:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodlength/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodlength/Example4.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
