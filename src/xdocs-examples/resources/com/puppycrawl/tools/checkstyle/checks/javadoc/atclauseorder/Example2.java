@@ -33,17 +33,6 @@ import java.io.Serializable;
 */
 public class Example2 {
   class Valid implements Serializable {}
-  // violation 7 lines below 'Block tags have to appear in the order'
-  // violation 7 lines below 'Block tags have to appear in the order'
-  /**
-   * Some javadoc.
-   *
-   * @version Some javadoc.
-   * @see Some javadoc.
-   * @since Some javadoc.
-   * @deprecated
-   */
-  class Invalid implements Serializable {}
   // violation 8 lines below 'Block tags have to appear in the order'
   // violation 8 lines below 'Block tags have to appear in the order'
   /**
@@ -56,5 +45,15 @@ public class Example2 {
    * @deprecated
    */
   enum Test {}
+  /**
+   * Some javadoc.
+   *
+   * @return Some javadoc.
+   * @param a Some javadoc.
+   */
+  public int foo(int a) {
+    return a;
+  }
+  // violation 5 lines above 'Block tags have to appear in the order'
 }
 // xdoc section -- end
