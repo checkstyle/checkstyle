@@ -166,7 +166,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/modifier/interfacememberimpliedmodifier",
             "checks/naming/abbreviationaswordinname",
             "checks/naming/constantname",
-            "checks/naming/localfinalvariablename",
             "checks/naming/membername",
             "checks/naming/methodname",
             "checks/naming/staticvariablename",
