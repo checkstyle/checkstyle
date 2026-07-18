@@ -108,6 +108,7 @@ public class CovariantEqualsCheck extends AbstractCheck {
             TokenTypes.LITERAL_NEW,
             TokenTypes.ENUM_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
     }
 
@@ -121,9 +122,17 @@ public class CovariantEqualsCheck extends AbstractCheck {
         equalsMethods.clear();
 
         // examine method definitions for equals methods
-        final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
-        if (objBlock != null) {
-            DetailAST child = objBlock.getFirstChild();
+        // For compact source files (JEP 512), the node itself is the container
+        // since there is no OBJBLOCK — methods are direct children.
+        final DetailAST container;
+        if (ast.getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
+            container = ast;
+        }
+        else {
+            container = ast.findFirstToken(TokenTypes.OBJBLOCK);
+        }
+        if (container != null) {
+            DetailAST child = container.getFirstChild();
             boolean hasEqualsObject = false;
             while (child != null) {
                 if (CheckUtil.isEqualsMethod(child)) {
