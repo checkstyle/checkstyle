@@ -360,7 +360,11 @@ public abstract class AbstractExpressionHandler {
         // the correct indentation level
         if (mustMatch && !indentLevel.isAcceptable(start)
                 || !mustMatch && columnNumber == start && indentLevel.isGreaterThan(start)) {
-            logChildError(ast, start, indentLevel);
+            if (!getIndentCheck().isAllowVerticalAlignment()
+                    || !getIndentCheck().getVerticalAlignmentHandler()
+                            .isVerticallyAligned(ast)) {
+                logChildError(ast, start, indentLevel);
+            }
         }
     }
 
