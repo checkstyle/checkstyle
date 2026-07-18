@@ -15,7 +15,7 @@ tokens = (default)VARIABLE_DEF
 
 
 */
-
+// non-compiled with javac: Compilable with Java21 individually
 // non-compiled with eclipse: The value for annotation attribute must be a constant expression
 package com.puppycrawl.tools.checkstyle.checks.suppresswarningsholder;
 

@@ -1,6 +1,6 @@
 // non-compiled with eclipse: OutOfMemoryError thrown in thread "Compiler Processing Task"
+// non-compiled with javac: Compilable with Java21 individually
 package com.puppycrawl.tools.checkstyle.javaparser;
-
 import java.util.concurrent.Callable;
 
 /**

@@ -6,7 +6,7 @@ violateImpliedStaticOnNestedRecord = (default)true
 
 
 */
-
+// non-compiled with javac: Compilable with Java21 individually
 // non-compiled with eclipse: syntax error but works fine in jdk
 package com.puppycrawl.tools.checkstyle.checks.modifier.classmemberimpliedmodifier;
 
