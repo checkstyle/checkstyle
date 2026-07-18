@@ -169,4 +169,5 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
         verifyWithInlineConfigParser(getPath("UseCase7.java"), expected);
     }
+
 }

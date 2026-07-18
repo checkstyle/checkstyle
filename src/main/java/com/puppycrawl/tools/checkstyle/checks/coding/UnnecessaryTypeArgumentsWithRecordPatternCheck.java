@@ -94,4 +94,5 @@ public class UnnecessaryTypeArgumentsWithRecordPatternCheck extends AbstractChec
         }
         return violation;
     }
+
 }
