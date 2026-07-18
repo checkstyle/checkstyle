@@ -55,13 +55,32 @@ public class ParenPadExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "27:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
-            "28:10: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "47:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "54:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "26:12: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "27:23: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "28:9: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "28:33: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "46:15: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "49:12: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "49:16: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "53:11: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "18:25: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "23:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "24:10: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "33:14: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "43:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "45:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "50:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
