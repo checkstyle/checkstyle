@@ -8,10 +8,11 @@
 </module>
 */
 
-// xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol;
-
+// xdoc section -- start
 import java.awt.Image;     // violation, 'Disallowed import - java.awt.Image'
+import java.lang.ref.SoftReference;
+// violation above 'Disallowed import - java.lang.ref.SoftReference'
 import java.io.File;       // violation, 'Disallowed import - java.io.File'
 import java.io.FileReader;
 import java.util.Date;     // violation, 'Disallowed import - java.util.Date'
