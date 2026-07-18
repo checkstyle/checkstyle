@@ -5,7 +5,7 @@ jdkVersion = (default)22
 
 */
 // non-compiled with javac: Compilable with Java21 individually
-// non-compiled with javac: No package statement for testing purposes.
+// non-compiled with javac: missing package. Used for Testing purpose.
 public class InputUnusedLocalVariableNoPackageStatement {
     int a = 12;
 

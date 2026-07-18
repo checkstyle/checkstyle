@@ -23,12 +23,12 @@
   </module>
   <module name="RegexpSingleline">
     <property name="id" value="presenceOfCompilationComment"/>
-    <property name="format" value="^// non-compiled with javac: Compilable with Java(\d+)"/>
+    <property name="format" value="^// non-compiled with javac: (Compilable with Java(\d+)|(contains specially crafted set of imports)|(but was compiled on jdk before)|(missing package)|(package statement is different than folder)|(reference to non existen))"/>
     <property name="message"
               value="Missing compilation comment"/>
     <property name="fileExtensions" value="java"/>
     <property name="minimum" value="1"/>
-    <property name="maximum" value="1"/>
+    <property name="maximum" value="2"/>
   </module>
 
   <module name="RegexpMultiline">
