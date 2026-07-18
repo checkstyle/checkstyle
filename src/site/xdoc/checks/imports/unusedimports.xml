@@ -171,6 +171,49 @@ class Example2{
   int[] array = copyOf(arr , 1);
   Function &lt;String, Integer&gt; stringToInteger = Integer::parseInt;
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check so that it does not ignore the imports
+          referenced in Javadoc comments (default behavior):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnusedImports"&gt;
+      &lt;property name="processJavadoc" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// limitation as it match field name in code
+import java.awt.Component;
+
+// no ability to recognize what import is not used
+import static java.util.Map.copyOf;
+import static java.util.Arrays.copyOf;
+
+import java.lang.String; // violation 'Unused import - java.lang.String.'
+
+import java.util.Stack;
+import java.util.Map;   // violation 'Unused import - java.util.Map.'
+
+import java.util.List;
+import java.util.function.Function;
+
+import static java.lang.Integer.parseInt; // violation 'Unused import - java.lang.Integer.parseInt.'
+
+/**
+* {@link List}
+*/
+class Example3{
+  Stack stack = new Stack();
+  private Object Component;
+  int[] arr = {0,0};
+  int[] array = copyOf(arr , 1);
+  Function &lt;String, Integer&gt; stringToInteger = Integer::parseInt;
+}
 </code></pre></div>
       </subsection>
 
