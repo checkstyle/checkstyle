@@ -700,6 +700,237 @@ html {
     text-align: center;
 }
 
+#bodyColumn {
+  position: relative;
+  padding-right: 260px;
+  box-sizing: border-box;
+  transition: padding-right 0.25s ease;
+}
+
+#bodyColumn:has(.toc-toggle-checkbox:not(:checked)) {
+  padding-right: 50px;
+}
+
+.toc-panel {
+  --toc-accent: #b91c1c;
+
+  position: fixed;
+  top: 148px;
+  right: 24px;
+  width: 220px;
+  max-height: calc(100vh - 180px);
+  z-index: 20;
+  background: transparent;
+  animation: toc-fade-in 0.3s ease both;
+}
+
+@keyframes toc-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toc-toggle-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toc-toggle-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toc-toggle-arrow:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.toc-toggle-arrow:hover .toc-chevron {
+  border-color: var(--toc-accent);
+}
+
+.toc-chevron {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #a3a3a3;
+  border-bottom: 2px solid #a3a3a3;
+  transform: rotate(45deg);
+  transition: transform 0.25s ease, border-color 0.15s ease;
+}
+
+.toc-toggle-checkbox:not(:checked) ~ .toc-toggle-arrow .toc-chevron {
+  transform: rotate(-135deg);
+}
+
+.toc-content {
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-size: 13px;
+  line-height: 1.65;
+  opacity: 1;
+  padding-top: 26px;
+  transition: opacity 0.2s ease, max-height 0.25s ease;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.toc-content:hover {
+  scrollbar-color: #d6d6d6 transparent;
+}
+
+.toc-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.toc-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.toc-content::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 4px;
+}
+
+.toc-content:hover::-webkit-scrollbar-thumb {
+  background: #d6d6d6;
+}
+
+.toc-content::-webkit-scrollbar-thumb:hover {
+  background: #b5b5b5;
+}
+
+.toc-toggle-checkbox:not(:checked) ~ .toc-content {
+  opacity: 0;
+  max-height: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.toc-heading {
+  margin: 0 0 10px 0;
+  padding-bottom: 8px;
+  position: relative;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #a8a29e;
+}
+
+.toc-heading::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, #e5e5e5, transparent 85%);
+}
+
+.toc-list,
+.toc-sublist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.toc-list > li {
+  margin: 9px 0;
+}
+
+.toc-list > li > a,
+.toc-sublist a {
+  position: relative;
+  display: block;
+  padding-left: 10px;
+  margin-left: -10px;
+  border-left: 2px solid transparent;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  text-decoration: none;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.toc-list > li > a {
+  color: #292524;
+  font-weight: 600;
+  font-size: 13.5px;
+  line-height: 1.35;
+}
+
+.toc-list > li > a:hover {
+  color: var(--toc-accent);
+  border-left-color: var(--toc-accent);
+}
+
+.toc-list > li > a:target {
+  color: var(--toc-accent);
+  border-left-color: var(--toc-accent);
+  font-weight: 700;
+}
+
+.toc-sublist {
+  margin: 6px 0 9px 2px;
+  padding-left: 12px;
+  border-left: 2px solid #ececec;
+}
+
+.toc-sublist > li {
+  margin: 6px 0;
+}
+
+.toc-sublist a {
+  color: #78716c;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.toc-sublist a:hover {
+  color: var(--toc-accent);
+  border-left-color: var(--toc-accent);
+}
+
+.toc-sublist a:target {
+  color: var(--toc-accent);
+  border-left-color: var(--toc-accent);
+  font-weight: 600;
+}
+
+.wrapper,
+table {
+  max-width: 100%;
+}
+
+@media screen and (max-width: 1150px) {
+  #bodyColumn,
+  #bodyColumn:has(.toc-toggle-checkbox:not(:checked)) {
+    padding-right: 15px;
+  }
+
+  .toc-panel {
+    display: none;
+  }
+}
+
 #checkstyle-search-results::-webkit-scrollbar       { width: 5px; }
 #checkstyle-search-results::-webkit-scrollbar-track { background: #f8f8f8; }
 #checkstyle-search-results::-webkit-scrollbar-thumb {
