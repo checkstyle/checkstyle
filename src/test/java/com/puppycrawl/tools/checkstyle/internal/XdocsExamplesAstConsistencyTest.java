@@ -182,7 +182,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/whitespace/methodparampad",
             "checks/whitespace/nowhitespaceafter",
             "checks/whitespace/operatorwrap",
-            "checks/whitespace/parenpad",
             "checks/whitespace/separatorwrap",
             "filters/suppressioncommentfilter",
             "filters/suppressionsinglefilter",

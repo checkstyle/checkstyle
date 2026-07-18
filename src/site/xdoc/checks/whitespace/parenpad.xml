@@ -207,8 +207,7 @@ class Example1 {
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
-          To configure the check to require spaces for the parentheses of
-          constructor, method, and super constructor calls:
+          To configure the check for selected tokens:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -216,7 +215,6 @@ class Example1 {
     &lt;module name="ParenPad"&gt;
       &lt;property name="tokens"
                 value="LITERAL_FOR, LITERAL_CATCH, SUPER_CTOR_CALL"/&gt;
-      &lt;property name="option" value="space"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -232,12 +230,12 @@ class Example2 {
   public void fun() {
     try {
       throw new IOException();
-    } catch( IOException e) {} // violation 'not preceded with whitespace'
-    catch(Exception e ) {} // violation 'not followed by whitespace'
+    } catch( IOException e) {} // violation 'is followed by whitespace'
+    catch(Exception e ) {}  // violation 'is preceded with whitespace'
     for ( int i = 0; i &lt; x; i++ ) {
-
-
-
+      // 2 violations above:
+      // ''(' is followed by whitespace'
+      // '')' is preceded with whitespace'
     }
   }
 
@@ -252,9 +250,66 @@ class Example2 {
 
   class Example3 extends Example2 {
     public Example3() {
-      super(1 ); // violation 'not followed by whitespace'
+      super(1 ); // violation '')' is preceded with whitespace'
     }
     public Example3(int k) {
+      super( k );
+      // 2 violations above:
+      // ''(' is followed by whitespace'
+      // '')' is preceded with whitespace'
+      for ( int i = 0; i &lt; k; i++) { // violation ''(' is followed by whitespace'
+      }
+    }
+  }
+}
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to require spaces inside parentheses:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParenPad"&gt;
+      &lt;property name="option" value="space"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example3 {
+  int x;
+  public Example3( int n) {} // violation '')' is not preceded with whitespace'
+
+  public void fun() {
+    try {
+      throw new IOException();
+    } catch( IOException e) {} // violation 'not preceded with whitespace'
+    catch(Exception e ) {} // violation 'not followed by whitespace'
+    for ( int i = 0; i &lt; x; i++ ) {
+
+
+
+    }
+  }
+
+  public void fun2() {
+    switch( x) { // violation 'not preceded with whitespace'
+      case 2:
+        break;
+      default:
+        break;
+    }
+  }
+
+  class Example4 extends Example3 {
+    public Example4() {
+      super(1 ); // violation 'not followed by whitespace'
+    }
+    public Example4( int k) { // violation '')' is not preceded with whitespace'
       super( k );
 
 

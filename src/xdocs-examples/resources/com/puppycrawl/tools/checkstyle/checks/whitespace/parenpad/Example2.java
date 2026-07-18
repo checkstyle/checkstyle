@@ -4,7 +4,6 @@
     <module name="ParenPad">
       <property name="tokens"
                 value="LITERAL_FOR, LITERAL_CATCH, SUPER_CTOR_CALL"/>
-      <property name="option" value="space"/>
     </module>
   </module>
 </module>
@@ -24,12 +23,12 @@ class Example2 {
   public void fun() {
     try {
       throw new IOException();
-    } catch( IOException e) {} // violation 'not preceded with whitespace'
-    catch(Exception e ) {} // violation 'not followed by whitespace'
+    } catch( IOException e) {} // violation 'is followed by whitespace'
+    catch(Exception e ) {}  // violation 'is preceded with whitespace'
     for ( int i = 0; i < x; i++ ) {
-
-
-
+      // 2 violations above:
+      // ''(' is followed by whitespace'
+      // '')' is preceded with whitespace'
     }
   }
 
@@ -44,14 +43,14 @@ class Example2 {
 
   class Example3 extends Example2 {
     public Example3() {
-      super(1 ); // violation 'not followed by whitespace'
+      super(1 ); // violation '')' is preceded with whitespace'
     }
     public Example3(int k) {
       super( k );
-
-
-      // violation below 'not preceded with whitespace'
-      for ( int i = 0; i < k; i++) {
+      // 2 violations above:
+      // ''(' is followed by whitespace'
+      // '')' is preceded with whitespace'
+      for ( int i = 0; i < k; i++) { // violation ''(' is followed by whitespace'
       }
     }
   }

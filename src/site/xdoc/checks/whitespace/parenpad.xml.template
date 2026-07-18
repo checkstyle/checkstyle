@@ -45,8 +45,7 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example2-config">
-          To configure the check to require spaces for the parentheses of
-          constructor, method, and super constructor calls:
+          To configure the check for selected tokens:
         </p>
         <macro name="example">
           <param name="path"
@@ -59,6 +58,23 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to require spaces inside parentheses:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
