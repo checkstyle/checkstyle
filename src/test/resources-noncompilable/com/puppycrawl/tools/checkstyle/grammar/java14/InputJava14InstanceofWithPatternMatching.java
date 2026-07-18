@@ -1,6 +1,6 @@
 // non-compiled with eclipse: s cannot be resolved
+// non-compiled with javac: Compilable with Java21 individually
 package com.puppycrawl.tools.checkstyle.grammar.java14;
-
 import java.util.*;
 import java.util.Arrays;
 import java.util.Locale;

@@ -7,7 +7,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION
 
 
 */
-
+// non-compiled with javac: Compilable with Java21 individually
 // non-compiled with eclipse: non-compilable annotation, for testing
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 import java.lang.annotation.Documented;

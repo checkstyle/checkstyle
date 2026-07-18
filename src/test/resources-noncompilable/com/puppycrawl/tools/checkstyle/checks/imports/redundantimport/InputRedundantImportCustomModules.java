@@ -4,7 +4,7 @@ RedundantImport
 
 */
 
-// non-compiled with javac: reference to non-existent modules moduleA and moduleB
+// non-compiled with javac: reference to non existen modules moduleA and moduleB
 package com.puppycrawl.tools.checkstyle.checks.imports.redundantimport;
 
 import module moduleA;
