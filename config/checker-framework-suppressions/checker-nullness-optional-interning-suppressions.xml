@@ -6211,9 +6211,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/AnnotatedDeclarationVisibilityCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field currentPackage</message>
-    <lineContent>private String currentPackage;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: currentPackage</message>
+    <lineContent>public AnnotatedDeclarationVisibilityCheck() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
