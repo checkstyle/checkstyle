@@ -437,6 +437,7 @@ fht
 fieldannotations
 filebasic
 filechooser
+fileextensions
 filefilter
 filelength
 fileorganization
@@ -1328,6 +1329,7 @@ styleguide
 subdir
 subelements
 subext
+subfolders
 subscope
 sudo
 suitebuilder

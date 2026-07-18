@@ -148,7 +148,8 @@ public class Example1 {
   private CharArrayWriter charArrayWriter = new CharArrayWriter();
 
   private PipedReader pipedReader = new PipedReader();
-  private BufferedReader bufferedReader = new BufferedReader(pipedReader);
+  private BufferedReader bufferedReader =
+          new BufferedReader(pipedReader);
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -191,7 +192,8 @@ public class Example3 {
   private CharArrayWriter charArrayWriter = new CharArrayWriter();
 
   private PipedReader pipedReader = new PipedReader();
-  private BufferedReader bufferedReader = new BufferedReader(pipedReader);
+  private BufferedReader bufferedReader =
+          new BufferedReader(pipedReader);
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -235,7 +237,8 @@ public class Example5 {
   private CharArrayWriter charArrayWriter = new CharArrayWriter();
 
   private PipedReader pipedReader = new PipedReader();
-  private BufferedReader bufferedReader = new BufferedReader(pipedReader);
+  private BufferedReader bufferedReader =
+          new BufferedReader(pipedReader);
 }
 </code></pre></div><hr class="example-separator"/>
 
