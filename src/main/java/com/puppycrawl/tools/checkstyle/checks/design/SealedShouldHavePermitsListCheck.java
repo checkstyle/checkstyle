@@ -56,6 +56,13 @@ public class SealedShouldHavePermitsListCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "sealed.should.have.permits";
 
+    /**
+     * Creates a new {@code SealedShouldHavePermitsListCheck} instance.
+     */
+    public SealedShouldHavePermitsListCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

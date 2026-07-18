@@ -564,7 +564,6 @@
         we will not use that fanatic validation, extra code is not good
         But this Check will exist as it was created by community demand.
       -->
-      <property name="severity" value="ignore"/>
     </module>
     <module name="MissingNullCaseInSwitch"/>
     <module name="MissingSwitchDefault"/>

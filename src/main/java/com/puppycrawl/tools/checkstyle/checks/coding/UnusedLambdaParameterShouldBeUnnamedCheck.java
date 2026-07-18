@@ -85,6 +85,13 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
      */
     private final Deque<LambdaParameterDetails> lambdaParameters = new ArrayDeque<>();
 
+    /**
+     * Creates a new {@code UnusedLambdaParameterShouldBeUnnamedCheck} instance.
+     */
+    public UnusedLambdaParameterShouldBeUnnamedCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

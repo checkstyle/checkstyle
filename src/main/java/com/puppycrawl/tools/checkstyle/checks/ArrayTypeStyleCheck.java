@@ -55,6 +55,13 @@ public class ArrayTypeStyleCheck extends AbstractCheck {
     /** Control whether to enforce Java style (true) or C style (false). */
     private boolean javaStyle = true;
 
+    /**
+     * Creates a new {@code ArrayTypeStyleCheck} instance.
+     */
+    public ArrayTypeStyleCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

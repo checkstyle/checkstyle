@@ -218,6 +218,13 @@ public final class PropertyDetails {
         private String buildSinceVersion = "";
 
         /**
+         * Creates a new {@code Builder} instance.
+         */
+        public Builder() {
+            // no code by default
+        }
+
+        /**
          * Sets the property name.
          *
          * @param val the property name.
