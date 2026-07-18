@@ -8,6 +8,28 @@
   <body>
     <section name="JavadocPackage">
       <p>Since Checkstyle 5.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"></label>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#JavadocPackage_Description">Description</a></li>
+          <li><a href="#JavadocPackage_Properties">Properties</a></li>
+          <li><a href="#JavadocPackage_Examples">Examples</a>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config">Default configuration</a></li>
+              <li><a href="#Example2-config">With allowlegacy set to true</a></li>
+              <li><a href="#Example3-config">With allowlegacy set to true</a></li>
+            </ul>
+          </li>
+          <li><a href="#JavadocPackage_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#JavadocPackage_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#JavadocPackage_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#JavadocPackage_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="JavadocPackage_Description">
         <div>
           Checks that each Java package has a Javadoc file used for commenting.
