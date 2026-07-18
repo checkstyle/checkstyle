@@ -20,6 +20,16 @@
           Except for the real program entry points, all <code>main</code> methods
           should be removed or commented out of the sources.
         </p>
+
+        <p>
+          Note: Compact source files
+          (<a href="https://openjdk.org/jeps/512">JEP 512</a>)
+          are skipped by design. The whole purpose of compact source files is to serve as
+          standalone single-file programs with a <code>main</code> method as the entry point.
+          Unlike regular classes where leftover <code>main</code> methods may be
+          debugging artifacts, compact sources inherently require a <code>main</code> method
+          to function.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="UncommentedMain_Properties">

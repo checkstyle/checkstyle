@@ -43,6 +43,16 @@ import com.puppycrawl.tools.checkstyle.utils.NullUtil;
  * should be removed or commented out of the sources.
  * </p>
  *
+ * <p>
+ * Note: Compact source files
+ * (<a href="https://openjdk.org/jeps/512">JEP 512</a>)
+ * are skipped by design. The whole purpose of compact source files is to serve as
+ * standalone single-file programs with a {@code main} method as the entry point.
+ * Unlike regular classes where leftover {@code main} methods may be
+ * debugging artifacts, compact sources inherently require a {@code main} method
+ * to function.
+ * </p>
+ *
  * @since 3.2
  */
 @FileStatefulCheck
