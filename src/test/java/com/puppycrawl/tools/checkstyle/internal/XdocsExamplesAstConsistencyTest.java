@@ -170,7 +170,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/naming/membername",
             "checks/naming/methodname",
             "checks/naming/staticvariablename",
-            "checks/naming/typename",
             "checks/regexp/regexp",
             "checks/regexp/regexpmultiline",
             "checks/regexp/regexponfilename",
