@@ -74,6 +74,16 @@
           </tr>
           <tr>
             <td>
+              <a href="openjdkannotationlocation.html#OpenjdkAnnotationLocation">
+                OpenjdkAnnotationLocation
+              </a>
+            </td>
+            <td>
+              Checks location of annotation on language elements.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="packageannotation.html#PackageAnnotation">
                 PackageAnnotation
               </a>
