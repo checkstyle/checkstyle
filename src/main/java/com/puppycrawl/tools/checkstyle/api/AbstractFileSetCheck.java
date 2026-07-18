@@ -66,6 +66,13 @@ public abstract class AbstractFileSetCheck
     private int tabWidth;
 
     /**
+     * Creates a new {@code AbstractFileSetCheck} instance.
+     */
+    protected AbstractFileSetCheck() {
+        // no code by default
+    }
+
+    /**
      * Called to process a file that matches the specified file extensions.
      *
      * @param file the file to be processed
@@ -262,13 +269,18 @@ public abstract class AbstractFileSetCheck
      * The actual context holder.
      */
     private static final class FileContext {
-
         /** The sorted set for collecting violations. */
         private final SortedSet<Violation> violations = new TreeSet<>();
 
         /** The current file contents. */
         private FileContents fileContents;
 
+        /**
+         * Creates a new {@code FileContext} instance.
+         */
+        private FileContext() {
+            // no code by default
+        }
     }
 
 }

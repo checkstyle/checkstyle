@@ -262,6 +262,13 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
     private ClosingParensOption closingParens = ClosingParensOption.NEVER;
 
     /**
+     * Creates a new {@code AnnotationUseStyleCheck} instance.
+     */
+    public AnnotationUseStyleCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to define the annotation element styles.
      *
      * @param style string representation

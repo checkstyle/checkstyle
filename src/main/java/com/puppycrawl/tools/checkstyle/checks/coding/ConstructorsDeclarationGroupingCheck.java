@@ -68,6 +68,13 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
     private boolean orderByIncreasingParameterCount;
 
     /**
+     * Creates a new {@code ConstructorsDeclarationGroupingCheck} instance.
+     */
+    public ConstructorsDeclarationGroupingCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to control whether to enforce order by increasing parameter count (arity) or not.
      *
      * @param orderByIncreasingParameterCount true if order by increasing parameter

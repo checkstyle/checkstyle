@@ -117,6 +117,13 @@ public class MagicNumberCheck extends AbstractCheck {
     /** Ignore magic numbers in annotation elements defaults. */
     private boolean ignoreAnnotationElementDefaults = true;
 
+    /**
+     * Creates a new {@code MagicNumberCheck} instance.
+     */
+    public MagicNumberCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();

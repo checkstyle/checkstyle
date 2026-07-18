@@ -132,6 +132,13 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
     private Frame currentFrame;
 
     /**
+     * Creates a new {@code UnusedImportsCheck} instance.
+     */
+    public UnusedImportsCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to control whether to process Javadoc comments.
      *
      * @param value Flag for processing Javadoc comments.

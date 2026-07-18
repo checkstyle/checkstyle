@@ -95,6 +95,13 @@ public class AvoidStarImportCheck
      */
     private int currentStarImportsCount;
 
+    /**
+     * Creates a new {@code AvoidStarImportCheck} instance.
+     */
+    public AvoidStarImportCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
