@@ -11,6 +11,13 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/DescendantTokenCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="id" value="DescendantToken"/>
+        <param name="sections"
+               value="Description,Properties,Examples,UseCases,ExampleOfUsage,ViolationMessages,FullyQualifiedName,ParentModule"/>
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/DescendantTokenCheck.java"/>
+      </macro>
       <subsection name="Description" id="DescendantToken_Description">
         <macro name="description">
             <param name="modulePath"

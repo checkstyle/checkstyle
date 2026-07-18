@@ -11,6 +11,13 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocPackageCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="id" value="JavadocPackage"/>
+        <param name="sections"
+               value="Description,Properties,Examples,UseCases,ExampleOfUsage,ViolationMessages,FullyQualifiedName,ParentModule"/>
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/JavadocPackageCheck.java"/>
+      </macro>
       <subsection name="Description" id="JavadocPackage_Description">
         <macro name="description">
             <param name="modulePath"
