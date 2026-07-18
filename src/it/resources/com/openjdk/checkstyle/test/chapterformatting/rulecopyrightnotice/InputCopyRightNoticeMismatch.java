@@ -19,10 +19,10 @@
  *
  * Please contact company, Random St, 123 Floor, Country, 2456
  * or visit www.example.com if you need additional information or have any
- * question.
+ * quest.
  */
-
-// violation 3 lines above 'Header mismatch'
+// violation 2 lines above 'Header mismatch'
+// last word of header is mismatched 'quest' (in Input) vs 'questions' (in template)
 
 package com.openjdk.checkstyle.test.chapterformatting.rulecopyrightnotice;
 
