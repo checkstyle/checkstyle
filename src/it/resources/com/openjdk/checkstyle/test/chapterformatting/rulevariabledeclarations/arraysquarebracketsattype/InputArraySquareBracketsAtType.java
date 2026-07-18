@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulevariabledeclarations.arraysquarebracketsattype;
 
+// violation first line 'Header mismatch*'
+
 /** Test case for ArrayTypeStyle (Java vs C). */
 public class InputArraySquareBracketsAtType {
     private int[] javastyle = new int[0];

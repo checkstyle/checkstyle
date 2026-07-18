@@ -1,0 +1,23 @@
+^/\*$
+ \* Copyright \(c\) \d\d\d\d, \d\d\d\d, Some company and/or its affiliates. All rights reserved.
+ \* DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ \*$
+ \* This code is free software; you can redistribute it and/or modify it
+ \* under the terms of the .* General Public License version \d only, as
+ \* published by the .* Software Foundation. .* designates this
+ \* particular file as subject to the "Classpath" exception as provided
+ \* by .* in the LICENSE file that accompanied this code.
+ \*$
+ \* This code is distributed in the hope that it will be useful, but WITHOUT
+ \* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ \* FITNESS FOR A PARTICULAR PURPOSE. See the .* General Public License
+ \* version \d for more details.
+ \*$
+ \* You should have received a copy of the .* General Public License version
+ \* \d along with this work; if not, write to .* Software Foundation,
+ \* [A-Za-z0-9\s.,#\/-]+
+ \*$
+ \* Please contact [A-Za-z0-9\s.,#\/-]+
+ \* or visit www.*.com if you need additional information or have any
+ \* questions.
+ \*/
