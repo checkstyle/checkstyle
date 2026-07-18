@@ -42,6 +42,20 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/Example1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check with default properties:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           An example of how to configure the check for names of local final parameters and
           resources in try statements (without checks on variables):
