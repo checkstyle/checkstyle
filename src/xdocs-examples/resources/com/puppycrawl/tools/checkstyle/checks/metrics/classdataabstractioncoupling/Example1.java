@@ -41,6 +41,7 @@ public class Example1 {
   private CharArrayWriter charArrayWriter = new CharArrayWriter();
 
   private PipedReader pipedReader = new PipedReader();
-  private BufferedReader bufferedReader = new BufferedReader(pipedReader);
+  private BufferedReader bufferedReader =
+          new BufferedReader(pipedReader);
 }
 // xdoc section -- end
