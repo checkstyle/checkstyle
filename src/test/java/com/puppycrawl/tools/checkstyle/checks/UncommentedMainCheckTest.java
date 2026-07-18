@@ -117,6 +117,23 @@ public class UncommentedMainCheckTest
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputUncommentedMainCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileTraditional() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                    "InputUncommentedMainCompactSourceFileTraditional.java"),
+                expected);
+    }
+
+    @Test
     public void testIllegalStateException() {
         final UncommentedMainCheck check = new UncommentedMainCheck();
         final DetailAstImpl ast = new DetailAstImpl();
