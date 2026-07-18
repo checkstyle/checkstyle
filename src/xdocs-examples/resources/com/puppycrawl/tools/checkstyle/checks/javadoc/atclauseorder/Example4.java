@@ -1,15 +1,15 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="AtclauseOrder"/>
+    <module name="AtclauseOrder">
+      <property name="target" value="METHOD_DEF"/>
+    </module>
   </module>
 </module>
 */
-
 package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 
 import java.io.Serializable;
-
 // xdoc section -- start
 
 /**
@@ -27,7 +27,7 @@ import java.io.Serializable;
 * @serialField field Object Field description.
 * @serialData
 */
-public class Example1 {
+public class Example4 {
   class Valid implements Serializable {}
 
   // ok below 'Block tags have to appear in the order'
@@ -53,3 +53,4 @@ public class Example1 {
   // violation 5 lines above 'Block tags have to appear in the order'
 }
 // xdoc section -- end
+
