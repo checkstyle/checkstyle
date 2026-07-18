@@ -1452,7 +1452,8 @@ public class XdocsExamplesAstConsistencyTest {
      *         skippable comment
      */
     private static StructuralAstNode toStructuralAst(DetailAST ast) {
-        final boolean ignoreName = isClassOrConstructorName(ast)
+        final boolean ignoreName = isTypeName(ast)
+                || isConstructorName(ast)
                 || isExtendsAnExampleClass(ast);
         final StructuralAstNode node = new StructuralAstNode(
                 ast.getType(), ast.getText(), ignoreName, ast.getLineNo(), ignoreName
@@ -1470,18 +1471,33 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks if an AST node is an identifier representing class or constructor name.
+     * Checks if an AST node is an identifier representing a type name.
      *
      * @param ast the AST node to check
-     * @return true if the node is a class or constructor name identifier
+     * @return true if the node is a type name identifier
      */
-    private static boolean isClassOrConstructorName(DetailAST ast) {
+    private static boolean isTypeName(DetailAST ast) {
         final DetailAST parent = ast.getParent();
         return parent != null
                 && ast.getType() == TokenTypes.IDENT
                 && (parent.getType() == TokenTypes.CLASS_DEF
                     || parent.getType() == TokenTypes.INTERFACE_DEF
-                    || parent.getType() == TokenTypes.CTOR_DEF);
+                    || parent.getType() == TokenTypes.ENUM_DEF
+                    || parent.getType() == TokenTypes.RECORD_DEF
+                    || parent.getType() == TokenTypes.ANNOTATION_DEF);
+    }
+
+    /**
+     * Checks if an AST node is an identifier representing a constructor name.
+     *
+     * @param ast the AST node to check
+     * @return true if the node is a constructor name identifier
+     */
+    private static boolean isConstructorName(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        return parent != null
+                && ast.getType() == TokenTypes.IDENT
+                && parent.getType() == TokenTypes.CTOR_DEF;
     }
 
     /**
