@@ -37,6 +37,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -90,6 +91,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * (e.g. {@code /* ok, allowMissingReturnTag is true *}{@code /}) are forbidden;
  * use single-line {@code //} comments instead. The
  * {@link #testNoBlockCommentMarkers()} test enforces this.
+ *
+ * <p>Modules may organize their examples into subdirectories (e.g.
+ * {@code classdataabstractioncoupling/ignore/deeper}) to group related
+ * use-cases. Example discovery for a module directory walks recursively
+ * into its own subtree so such examples are still counted as belonging to
+ * that module, while those subdirectories themselves are never treated as
+ * separate modules (see {@link #isModuleDirectory(Path)}).
  *
  */
 public class XdocsExamplesAstConsistencyTest {
@@ -146,64 +154,50 @@ public class XdocsExamplesAstConsistencyTest {
      * one-example-per-property mapping.
      */
     private static final Set<String> EXAMPLE_COUNT_SUPPRESSED_MODULES = Set.of(
-        // until https://github.com/checkstyle/checkstyle/issues/20625
-        "checks/javadoc/atclauseorder",
-        "checks/annotation/annotationlocation",
-        "checks/annotation/suppresswarnings",
-        "checks/blocks/leftcurly",
-        "checks/coding/illegaltokentext",
-        "checks/coding/magicnumber",
-        "checks/descendanttoken",
-        "checks/imports/importcontrol",
-        "checks/imports/unusedimports",
-        "checks/javadoc/javadocblocktaglocation",
-        "checks/javadoc/javadocmethod",
-        "checks/javadoc/javadocparagraph",
-        "checks/javadoc/missingjavadocmethod",
-        "checks/javadoc/missingjavadoctype",
-        "checks/javadoc/nonemptyatclausedescription",
-        "checks/javadoc/summaryjavadoc",
-        "checks/javadoc/writetag",
-        "checks/metrics/classdataabstractioncoupling",
-        "checks/metrics/cyclomaticcomplexity",
-        "checks/modifier/interfacememberimpliedmodifier",
-        "checks/naming/abbreviationaswordinname",
-        "checks/naming/constantname",
-        "checks/naming/illegalidentifiername",
-        "checks/naming/localfinalvariablename",
-        "checks/naming/membername",
-        "checks/naming/methodname",
-        "checks/naming/staticvariablename",
-        "checks/naming/typename",
-        "checks/regexp/regexp",
-        "checks/regexp/regexpmultiline",
-        "checks/regexp/regexponfilename",
-        "checks/regexp/regexpsingleline",
-        "checks/regexp/regexpsinglelinejava",
-        "checks/sizes/methodcount",
-        "checks/sizes/methodlength",
-        "checks/sizes/parameternumber",
-        "checks/translation",
-        "checks/whitespace/methodparampad",
-        "checks/whitespace/nowhitespaceafter",
-        "checks/whitespace/operatorwrap",
-        "checks/whitespace/parenpad",
-        "checks/whitespace/separatorwrap",
-        "filters/suppressioncommentfilter",
-        "filters/suppressionsinglefilter",
-        "filters/suppressionxpathfilter",
-        "filters/suppressionxpathsinglefilter",
-        "filters/suppresswithnearbycommentfilter",
-        "filters/suppresswithnearbytextfilter"
-    );
-
-    /**
-     * Modules where the every-property-has-an-example validation should be skipped,
-     * pending individual fixes.
-     */
-    private static final Set<String> EXAMPLE_PROPERTY_COVERAGE_SUPPRESSED_MODULES = Set.of(
-            // until https://github.com/checkstyle/checkstyle/issues/20624
-            "checks/metrics/classdataabstractioncoupling"
+            // until https://github.com/checkstyle/checkstyle/issues/20625
+            "checks/javadoc/atclauseorder",
+            "checks/annotation/annotationlocation",
+            "checks/annotation/suppresswarnings",
+            "checks/blocks/leftcurly",
+            "checks/coding/illegaltokentext",
+            "checks/coding/magicnumber",
+            "checks/descendanttoken",
+            "checks/imports/unusedimports",
+            "checks/javadoc/javadocblocktaglocation",
+            "checks/javadoc/javadocmethod",
+            "checks/javadoc/javadocparagraph",
+            "checks/javadoc/missingjavadoctype",
+            "checks/javadoc/nonemptyatclausedescription",
+            "checks/javadoc/summaryjavadoc",
+            "checks/javadoc/writetag",
+            "checks/metrics/cyclomaticcomplexity",
+            "checks/modifier/interfacememberimpliedmodifier",
+            "checks/naming/abbreviationaswordinname",
+            "checks/naming/constantname",
+            "checks/naming/localfinalvariablename",
+            "checks/naming/membername",
+            "checks/naming/methodname",
+            "checks/naming/staticvariablename",
+            "checks/naming/typename",
+            "checks/regexp/regexp",
+            "checks/regexp/regexpmultiline",
+            "checks/regexp/regexponfilename",
+            "checks/regexp/regexpsingleline",
+            "checks/regexp/regexpsinglelinejava",
+            "checks/sizes/methodlength",
+            "checks/sizes/parameternumber",
+            "checks/translation",
+            "checks/whitespace/methodparampad",
+            "checks/whitespace/nowhitespaceafter",
+            "checks/whitespace/operatorwrap",
+            "checks/whitespace/parenpad",
+            "checks/whitespace/separatorwrap",
+            "filters/suppressioncommentfilter",
+            "filters/suppressionsinglefilter",
+            "filters/suppressionxpathfilter",
+            "filters/suppressionxpathsinglefilter",
+            "filters/suppresswithnearbycommentfilter",
+            "filters/suppresswithnearbytextfilter"
     );
 
     /**
@@ -257,6 +251,7 @@ public class XdocsExamplesAstConsistencyTest {
         try (Stream<Path> pathStream = Files.walk(XDOCS_ROOT)) {
             final List<Path> exampleDirs = pathStream
                     .filter(Files::isDirectory)
+                    .filter(XdocsExamplesAstConsistencyTest::isModuleDirectory)
                     .filter(XdocsExamplesAstConsistencyTest::containsMultipleExamples)
                     .toList();
 
@@ -368,6 +363,7 @@ public class XdocsExamplesAstConsistencyTest {
         try (Stream<Path> pathStream = Files.walk(XDOCS_ROOT)) {
             pathStream
                 .filter(Files::isDirectory)
+                .filter(XdocsExamplesAstConsistencyTest::isModuleDirectory)
                 .parallel()
                 .forEach(dir -> processDirectory(dir, violations));
         }
@@ -407,6 +403,7 @@ public class XdocsExamplesAstConsistencyTest {
         try (Stream<Path> pathStream = Files.walk(XDOCS_ROOT)) {
             pathStream
                 .filter(Files::isDirectory)
+                .filter(XdocsExamplesAstConsistencyTest::isModuleDirectory)
                 .parallel()
                 .forEach(dir -> processDirectoryForPropertyCoverage(dir, violations));
         }
@@ -416,6 +413,64 @@ public class XdocsExamplesAstConsistencyTest {
         assertWithMessage(message)
             .that(violations)
             .isEmpty();
+    }
+
+    /**
+     * Collects files from {@code dir} and its subdirectories, but never descends
+     * into a subdirectory that is itself a resolvable module directory (per
+     * {@link #isModuleDirectory}).
+     *
+     * <p>This is what keeps recursion properly scoped: a module may organize its
+     * own examples into non-module subfolders (e.g.
+     * {@code classdataabstractioncoupling/ignore/deeper}), and those should be
+     * walked into. But some modules are nested as filesystem subdirectories of
+     * another, unrelated module (e.g. {@code checks/regexp/regexpmultiline} is
+     * its own module living under the {@code checks/regexp} module's directory);
+     * such subdirectories must be treated as separate module roots, not folded
+     * into the parent's examples.
+     *
+     * @param dir the directory to search
+     * @param fileFilter predicate selecting which regular files to collect
+     * @return the collected files, in no particular order
+     * @throws IOException if an I/O error occurs
+     */
+    private static List<Path> collectFilesWithinModule(Path dir,
+                   Predicate<Path> fileFilter) throws IOException {
+        final List<Path> result = new ArrayList<>();
+
+        try (Stream<Path> pathStream = Files.list(dir)) {
+            for (Path entry : pathStream.toList()) {
+                if (Files.isDirectory(entry)) {
+                    if (!isModuleDirectory(entry)) {
+                        result.addAll(collectFilesWithinModule(entry, fileFilter));
+                    }
+                }
+                else if (fileFilter.test(entry)) {
+                    result.add(entry);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Checks whether the given directory resolves to an actual checkstyle module
+     * (i.e. its name maps to a check/filter class via {@link #toModuleClassSimpleName}).
+     *
+     * <p>Used to keep example discovery scoped correctly: a module directory's
+     * own subdirectories (e.g. {@code classdataabstractioncoupling/ignore},
+     * {@code classdataabstractioncoupling/ignore/deeper}) do not themselves
+     * resolve to a module, so they are excluded from being processed as
+     * separate, independent modules - while {@link #getExampleFiles} and
+     * {@link #getExamplePropertyCoverageFiles} still walk into them when
+     * collecting examples that belong to the enclosing module.
+     *
+     * @param dir the directory to check
+     * @return true if the directory name resolves to a known module
+     */
+    private static boolean isModuleDirectory(Path dir) {
+        return toModuleClassSimpleName(dir.getFileName().toString()) != null;
     }
 
     private static void processDirectoryForPropertyCoverage(Path dir, List<String> violations) {
@@ -494,11 +549,9 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static String checkPropertyCoverage(Path dir, List<Path> examples)
             throws IOException {
-        final String relativePath = getRelativePath(dir);
         String result = null;
 
-        if (!EXAMPLE_PROPERTY_COVERAGE_SUPPRESSED_MODULES.contains(relativePath)
-            && !isModuleWithNoProperties(examples)) {
+        if (!isModuleWithNoProperties(examples)) {
 
             final String moduleName = toModuleClassSimpleName(dir.getFileName().toString());
 
@@ -511,7 +564,7 @@ public class XdocsExamplesAstConsistencyTest {
                     final Set<String> configuredProperties = new HashSet<>();
                     for (Path example : examples) {
                         configuredProperties.addAll(
-                            extractConfiguredPropertyNames(example, xmlModuleName));
+                                extractConfiguredPropertyNames(example, xmlModuleName));
                     }
 
                     final Set<String> uncoveredProperties = new HashSet<>(documentedProperties);
@@ -519,9 +572,10 @@ public class XdocsExamplesAstConsistencyTest {
                     uncoveredProperties.removeAll(IGNORED_PROPERTIES_FOR_COVERAGE);
 
                     if (!uncoveredProperties.isEmpty()) {
+                        final String relativePath = getRelativePath(dir);
                         result = "Directory: " + relativePath
-                            + "\nDocumented properties: " + documentedProperties
-                            + "\nProperties with no covering example: " + uncoveredProperties;
+                                + "\nDocumented properties: " + documentedProperties
+                                + "\nProperties with no covering example: " + uncoveredProperties;
                     }
                 }
             }
@@ -1035,16 +1089,19 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks if a directory contains multiple example files.
+     * Checks if a directory contains multiple example files, including any
+     * contained in its own non-module subdirectories (see
+     * {@link #collectFilesWithinModule}).
      *
      * @param dir the directory to check
-     * @return true if the directory contains 2 or more Example*.java files
+     * @return true if the directory (recursively, stopping at nested module
+     *         boundaries) contains 2 or more Example*.java files
      */
     private static boolean containsMultipleExamples(Path dir) {
-        try (Stream<Path> pathStream = Files.list(dir)) {
-            return pathStream
-                    .filter(path -> path.getFileName().toString().matches("Example\\d+\\.java"))
-                    .count() > 1;
+        try {
+            return collectFilesWithinModule(dir,
+                    path -> path.getFileName().toString().matches("Example\\d+\\.java"))
+                    .size() > 1;
         }
         catch (IOException exception) {
             throw new IllegalStateException("Failed to list files in directory: " + dir,
@@ -1071,27 +1128,34 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Gets all Example*.java files from a directory.
+     * Gets all Example*.java files from a directory, including those found in
+     * its own subdirectories (e.g. modules that group related use-cases into
+     * folders such as {@code ignore} or {@code ignore/deeper}).
      *
-     * @param dir the directory to search
+     * <p>This walk is always rooted at a single module directory (callers only
+     * ever pass directories for which {@link #isModuleDirectory} is true), and
+     * via {@link #collectFilesWithinModule} it stops descending as soon as it
+     * hits a subdirectory that is itself a resolvable module directory - so it
+     * never crosses into sibling/nested module directories (e.g.
+     * {@code checks/regexp/regexpmultiline} is excluded from
+     * {@code checks/regexp}'s examples).
+     *
+     * @param dir the module directory to search
      * @return list of example file paths
      * @throws IOException if an I/O error occurs
      */
     private static List<Path> getExampleFiles(Path dir) throws IOException {
-        final List<Path> examples;
-        try (Stream<Path> pathStream = Files.list(dir)) {
-            examples = pathStream
-                    .filter(path -> path.getFileName().toString().matches("Example\\d+\\.java"))
-                    .sorted(Comparator.comparing(Path::toString))
-                    .toList();
-        }
-        return examples;
+        final List<Path> examples = collectFilesWithinModule(dir,
+                path -> path.getFileName().toString().matches("Example\\d+\\.java"));
+        return examples.stream()
+                .sorted(Comparator.comparing(Path::toString))
+                .toList();
     }
 
     /**
-     * Gets all Example* files from a directory that contain an embedded
-     * {@code /*xml ... *}{@code /} configuration block, regardless of file
-     * extension (or the lack of one).
+     * Gets all Example* files from a directory (and its own subdirectories)
+     * that contain an embedded {@code /*xml ... *}{@code /} configuration
+     * block, regardless of file extension (or the lack of one).
      *
      * <p>Used only for property-coverage checking ({@link #testEveryPropertyHasAnExample}),
      * which inspects that embedded block via plain text/DOM extraction rather
@@ -1103,21 +1167,22 @@ public class XdocsExamplesAstConsistencyTest {
      * are excluded, since they have nothing to contribute and aren't reliably
      * identifiable by extension alone.
      *
-     * @param dir the directory to search
+     * <p>As with {@link #getExampleFiles}, this walk is rooted at a single
+     * module directory and, via {@link #collectFilesWithinModule}, stops
+     * descending at any nested module directory boundary.
+     *
+     * @param dir the module directory to search
      * @return list of example file paths containing an XML config block
      * @throws IOException if an I/O error occurs
      */
     private static List<Path> getExamplePropertyCoverageFiles(Path dir) throws IOException {
-        final List<Path> examples;
-        try (Stream<Path> pathStream = Files.list(dir)) {
-            examples = pathStream
-                    .filter(Files::isRegularFile)
-                    .filter(path -> path.getFileName().toString().matches("Example\\d+(\\..+)?"))
-                    .filter(XdocsExamplesAstConsistencyTest::hasXmlConfigBlock)
-                    .sorted(Comparator.comparing(Path::toString))
-                    .toList();
-        }
-        return examples;
+        final List<Path> examples = collectFilesWithinModule(dir, path -> {
+            return path.getFileName().toString().matches("Example\\d+(\\..+)?")
+                    && hasXmlConfigBlock(path);
+        });
+        return examples.stream()
+                .sorted(Comparator.comparing(Path::toString))
+                .toList();
     }
 
     /**
