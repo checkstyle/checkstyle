@@ -5,8 +5,8 @@
   </module>
 </module>
 */
-// xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.legacy;
-// ok as package.html file is present in directory
-public class Example2 { }
+// xdoc section -- start
+
+public class Example2 { } // ok, package.html file is present in directory
 // xdoc section -- end

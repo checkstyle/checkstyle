@@ -35,13 +35,15 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "14:1: " + getCheckMessage(
+            "13:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
-            "15:1: " + getCheckMessage(
+            "14:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.lang.ref.SoftReference"),
+            "16:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.io.File"),
-            "17:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
             "18:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
+            "19:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
         };
 
@@ -62,17 +64,16 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "15:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED,
-                "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"),
+            "13:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
+            "16:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.io.File"),
+            "17:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.io.FileReader"),
             "18:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.lang.ref.ReferenceQueue"),
-            "22:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
-            "23:1: " + getCheckMessage(
+            "19:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
-            "24:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.util.Map"),
         };
 
         final String examplePath = new File("src/" + getResourceLocation()
