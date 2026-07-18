@@ -35,6 +35,13 @@ public final class BeforeExecutionFileFilterSet
     private final Set<BeforeExecutionFileFilter> beforeExecutionFileFilters = new HashSet<>();
 
     /**
+     * Creates a new {@code BeforeExecutionFileFilterSet} instance.
+     */
+    public BeforeExecutionFileFilterSet() {
+        // no code by default
+    }
+
+    /**
      * Adds a Filter to the set.
      *
      * @param filter the Filter to add.

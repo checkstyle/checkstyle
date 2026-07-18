@@ -43,6 +43,13 @@ public class NoLineWrapCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "no.line.wrap";
 
+    /**
+     * Creates a new {@code NoLineWrapCheck} instance.
+     */
+    public NoLineWrapCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

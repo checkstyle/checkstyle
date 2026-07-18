@@ -111,6 +111,13 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private boolean validateUnnamedVariables;
 
     /**
+     * Creates a new {@code FinalLocalVariableCheck} instance.
+     */
+    public FinalLocalVariableCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to control whether to check
      * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
      * enhanced for-loop</a> variable.
@@ -725,6 +732,13 @@ public class FinalLocalVariableCheck extends AbstractCheck {
 
         /** Whether there is a {@code break} in the scope. */
         private boolean containsBreak;
+
+        /**
+         * Creates a new {@code ScopeData} instance.
+         */
+        private ScopeData() {
+            // no code by default
+        }
 
         /**
          * Searches for final local variable candidate for ast in the scope.

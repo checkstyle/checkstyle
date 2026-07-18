@@ -33,6 +33,13 @@ import org.antlr.v4.runtime.Token;
  */
 public class CheckstyleParserErrorStrategy extends BailErrorStrategy {
 
+    /**
+     * Creates a new {@code CheckstyleParserErrorStrategy} instance.
+     */
+    public CheckstyleParserErrorStrategy() {
+        // no code by default
+    }
+
     @Override
     public Token recoverInline(Parser recognizer) {
         reportError(recognizer, new InputMismatchException(recognizer));
