@@ -74,6 +74,13 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      */
     public static final String MSG_TEXT_BLOCK_CONTENT = "textblock.indentation";
 
+    /**
+     * Creates a new {@code TextBlockGoogleStyleFormattingCheck} instance.
+     */
+    public TextBlockGoogleStyleFormattingCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

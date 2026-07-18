@@ -70,6 +70,13 @@ public class AvoidStaticImportCheck
      */
     private String[] excludes = CommonUtil.EMPTY_STRING_ARRAY;
 
+    /**
+     * Creates a new {@code AvoidStaticImportCheck} instance.
+     */
+    public AvoidStaticImportCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

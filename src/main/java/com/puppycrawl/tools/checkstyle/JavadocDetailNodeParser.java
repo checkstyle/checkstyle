@@ -56,6 +56,13 @@ public class JavadocDetailNodeParser {
     private static final String JAVADOC_START = "/**";
 
     /**
+     * Creates a new {@code JavadocDetailNodeParser} instance.
+     */
+    public JavadocDetailNodeParser() {
+        // no code by default
+    }
+
+    /**
      * Parses the given Javadoc comment AST into a {@link ParseStatus} object.
      *
      * <p>
@@ -154,6 +161,13 @@ public class JavadocDetailNodeParser {
         private ParseErrorMessage errorMessage;
 
         /**
+         * Creates a new {@code DescriptiveErrorListener} instance.
+         */
+        private DescriptiveErrorListener() {
+            // no code by default
+        }
+
+        /**
          * Getter for error message during parsing.
          *
          * @return Error message during parsing.
@@ -250,6 +264,13 @@ public class JavadocDetailNodeParser {
          *     Tight HTML rules</a>
          */
         private DetailNode firstNonTightHtmlTag;
+
+        /**
+         * Creates a new {@code ParseStatus} instance.
+         */
+        public ParseStatus() {
+            // no code by default
+        }
 
         /**
          * Getter for DetailNode tree.

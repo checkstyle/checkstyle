@@ -45,6 +45,13 @@ public class XpathFileGeneratorAstFilter extends AbstractAutomaticBean implement
     private int tabWidth;
 
     /**
+     * Creates a new {@code XpathFileGeneratorAstFilter} instance.
+     */
+    public XpathFileGeneratorAstFilter() {
+        // no code by default
+    }
+
+    /**
      * Sets tab width.
      *
      * @param tabWidth the distance between tab stops

@@ -59,6 +59,13 @@ public class NoArrayTrailingCommaCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "no.array.trailing.comma";
 
+    /**
+     * Creates a new {@code NoArrayTrailingCommaCheck} instance.
+     */
+    public NoArrayTrailingCommaCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
