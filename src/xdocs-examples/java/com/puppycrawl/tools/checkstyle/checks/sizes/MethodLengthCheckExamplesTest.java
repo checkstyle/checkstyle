@@ -27,6 +27,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class MethodLengthCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code MethodLengthCheckExamplesTest} instance.
+     */
+    public MethodLengthCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/methodlength";

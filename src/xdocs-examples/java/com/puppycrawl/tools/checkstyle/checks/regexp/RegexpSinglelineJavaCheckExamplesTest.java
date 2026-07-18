@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RegexpSinglelineJavaCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code RegexpSinglelineJavaCheckExamplesTest} instance.
+     */
+    public RegexpSinglelineJavaCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava";

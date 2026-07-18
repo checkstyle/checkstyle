@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class HideUtilityClassConstructorCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code HideUtilityClassConstructorCheckExamplesTest} instance.
+     */
+    public HideUtilityClassConstructorCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/design/hideutilityclassconstructor";

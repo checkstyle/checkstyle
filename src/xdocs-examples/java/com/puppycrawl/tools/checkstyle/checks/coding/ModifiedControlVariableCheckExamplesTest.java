@@ -25,6 +25,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class ModifiedControlVariableCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code ModifiedControlVariableCheckExamplesTest} instance.
+     */
+    public ModifiedControlVariableCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/modifiedcontrolvariable";

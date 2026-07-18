@@ -27,6 +27,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class EmptyCatchBlockCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code EmptyCatchBlockCheckExamplesTest} instance.
+     */
+    public EmptyCatchBlockCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock";

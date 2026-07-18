@@ -27,6 +27,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class AvoidNestedBlocksCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code AvoidNestedBlocksCheckExamplesTest} instance.
+     */
+    public AvoidNestedBlocksCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks";

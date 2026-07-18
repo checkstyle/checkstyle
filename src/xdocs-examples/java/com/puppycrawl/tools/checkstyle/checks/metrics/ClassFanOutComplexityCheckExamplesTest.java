@@ -27,6 +27,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class ClassFanOutComplexityCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code ClassFanOutComplexityCheckExamplesTest} instance.
+     */
+    public ClassFanOutComplexityCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity";

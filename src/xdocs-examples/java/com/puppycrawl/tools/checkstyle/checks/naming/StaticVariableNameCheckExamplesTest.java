@@ -30,6 +30,13 @@ public class StaticVariableNameCheckExamplesTest extends AbstractExamplesModuleT
     public static final String STATIC_VAR_NAME_PATTERN_1 = "^[a-z][a-zA-Z0-9]*$";
     public static final String STATIC_VAR_NAME_PATTERN_2 = "^[a-z](_?[a-zA-Z0-9]+)*$";
 
+    /**
+     * Creates a new {@code StaticVariableNameCheckExamplesTest} instance.
+     */
+    public StaticVariableNameCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename";

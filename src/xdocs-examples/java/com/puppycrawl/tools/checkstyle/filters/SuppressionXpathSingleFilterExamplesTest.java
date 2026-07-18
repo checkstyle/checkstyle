@@ -48,6 +48,13 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 
 public class SuppressionXpathSingleFilterExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code SuppressionXpathSingleFilterExamplesTest} instance.
+     */
+    public SuppressionXpathSingleFilterExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter";

@@ -27,6 +27,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class NoWhitespaceAfterExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code NoWhitespaceAfterExamplesTest} instance.
+     */
+    public NoWhitespaceAfterExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespaceafter";

@@ -30,6 +30,13 @@ public class AbstractClassNameCheckExamplesTest extends AbstractExamplesModuleTe
 
     private static final String DEFAULT_PATTERN = "^Abstract.+$";
 
+    /**
+     * Creates a new {@code AbstractClassNameCheckExamplesTest} instance.
+     */
+    public AbstractClassNameCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/abstractclassname";

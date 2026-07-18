@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class UnusedLambdaParameterShouldBeUnnamedCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code UnusedLambdaParameterShouldBeUnnamedCheckExamplesTest} instance.
+     */
+    public UnusedLambdaParameterShouldBeUnnamedCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/unusedlambdaparametershouldbeunnamed";

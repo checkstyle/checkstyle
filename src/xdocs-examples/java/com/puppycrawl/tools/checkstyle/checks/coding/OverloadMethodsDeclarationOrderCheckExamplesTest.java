@@ -26,6 +26,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class OverloadMethodsDeclarationOrderCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code OverloadMethodsDeclarationOrderCheckExamplesTest} instance.
+     */
+    public OverloadMethodsDeclarationOrderCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/overloadmethodsdeclarationorder";

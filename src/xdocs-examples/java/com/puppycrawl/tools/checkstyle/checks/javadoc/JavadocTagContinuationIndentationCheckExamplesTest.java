@@ -29,6 +29,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class JavadocTagContinuationIndentationCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code JavadocTagContinuationIndentationCheckExamplesTest} instance.
+     */
+    public JavadocTagContinuationIndentationCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctagcontinuationindentation";

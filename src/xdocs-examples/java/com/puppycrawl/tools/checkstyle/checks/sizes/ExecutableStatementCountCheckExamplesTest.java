@@ -25,6 +25,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class ExecutableStatementCountCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code ExecutableStatementCountCheckExamplesTest} instance.
+     */
+    public ExecutableStatementCountCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/executablestatementcount";

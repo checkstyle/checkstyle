@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class AnnotatedDeclarationVisibilityCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code AnnotatedDeclarationVisibilityCheckExamplesTest} instance.
+     */
+    public AnnotatedDeclarationVisibilityCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/modifier/"

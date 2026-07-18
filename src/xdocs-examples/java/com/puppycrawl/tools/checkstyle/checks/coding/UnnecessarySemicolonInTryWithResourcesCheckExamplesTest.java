@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class UnnecessarySemicolonInTryWithResourcesCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code UnnecessarySemicolonInTryWithResourcesCheckExamplesTest} instance.
+     */
+    public UnnecessarySemicolonInTryWithResourcesCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks"

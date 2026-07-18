@@ -69,6 +69,13 @@ public class JavadocVariableCheck
     private Pattern ignoreNamePattern;
 
     /**
+     * Creates a new {@code JavadocVariableCheck} instance.
+     */
+    public JavadocVariableCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify the set of access modifiers used to determine which fields should be
      * checked. This includes both explicitly declared modifiers and implicit ones, such as
      * package-private for fields without an explicit modifier. It also accounts for special

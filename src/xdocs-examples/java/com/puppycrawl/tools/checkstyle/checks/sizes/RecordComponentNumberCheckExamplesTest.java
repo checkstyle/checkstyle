@@ -25,6 +25,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class RecordComponentNumberCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code RecordComponentNumberCheckExamplesTest} instance.
+     */
+    public RecordComponentNumberCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/recordcomponentnumber";

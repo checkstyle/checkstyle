@@ -603,6 +603,7 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>3.12.0</version>
           <configuration>
+            <detectJavaApiLink>false</detectJavaApiLink>
             <!-- Exclude generated sources. -->
             <excludePackageNames>
               com.puppycrawl.tools.checkstyle.grammar.java:
@@ -611,6 +612,7 @@
             <source>${java.version}</source>
             <show>private</show>
             <failOnError>true</failOnError>
+            <!-- failOnWarnings re-enabled now that #17642 is resolved; doclint=-missing avoids reintroducing that issue's noise -->
             <failOnWarnings>true</failOnWarnings>
             <doclint>-missing</doclint>
             <linksource>true</linksource>

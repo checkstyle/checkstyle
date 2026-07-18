@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class WhenShouldBeUsedCheckExamplesTest
     extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code WhenShouldBeUsedCheckExamplesTest} instance.
+     */
+    public WhenShouldBeUsedCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/whenshouldbeused";

@@ -559,13 +559,11 @@
       <message key="matchxpath.match"
                value="All example test classes should extend AbstractExamplesModuleTestSupport."/>
     </module>
-    <module name="MissingCtor">
-      <!--
-        we will not use that fanatic validation, extra code is not good
-        But this Check will exist as it was created by community demand.
-      -->
-      <property name="severity" value="ignore"/>
-    </module>
+    <!--
+      Enabled to prevent implicit default constructors, which caused
+      JDK 21+ Javadoc generation warnings (see #20690).
+    -->
+    <module name="MissingCtor"/>
     <module name="MissingNullCaseInSwitch"/>
     <module name="MissingSwitchDefault"/>
     <module name="ModifiedControlVariable"/>

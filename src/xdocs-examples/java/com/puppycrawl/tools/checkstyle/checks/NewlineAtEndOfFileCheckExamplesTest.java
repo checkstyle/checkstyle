@@ -29,6 +29,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NewlineAtEndOfFileCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code NewlineAtEndOfFileCheckExamplesTest} instance.
+     */
+    public NewlineAtEndOfFileCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/newlineatendoffile";

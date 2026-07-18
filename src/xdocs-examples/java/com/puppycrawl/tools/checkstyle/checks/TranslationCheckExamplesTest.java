@@ -36,6 +36,13 @@ import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 
 public class TranslationCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code TranslationCheckExamplesTest} instance.
+     */
+    public TranslationCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/translation";

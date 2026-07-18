@@ -29,6 +29,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class EmptyLineSeparatorExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code EmptyLineSeparatorExamplesTest} instance.
+     */
+    public EmptyLineSeparatorExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator";

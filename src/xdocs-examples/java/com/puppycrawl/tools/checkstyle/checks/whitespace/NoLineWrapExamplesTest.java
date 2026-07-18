@@ -27,6 +27,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class NoLineWrapExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code NoLineWrapExamplesTest} instance.
+     */
+    public NoLineWrapExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap";

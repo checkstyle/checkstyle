@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class NoWhitespaceBeforeCaseDefaultColonExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code NoWhitespaceBeforeCaseDefaultColonExamplesTest} instance.
+     */
+    public NoWhitespaceBeforeCaseDefaultColonExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace"

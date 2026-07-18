@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class SeparatorWrapExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code SeparatorWrapExamplesTest} instance.
+     */
+    public SeparatorWrapExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap";

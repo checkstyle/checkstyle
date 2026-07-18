@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class UnnecessarySemicolonInEnumerationCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code UnnecessarySemicolonInEnumerationCheckExamplesTest} instance.
+     */
+    public UnnecessarySemicolonInEnumerationCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicoloninenumeration";

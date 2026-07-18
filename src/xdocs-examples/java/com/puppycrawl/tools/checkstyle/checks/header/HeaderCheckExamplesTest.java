@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class HeaderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code HeaderCheckExamplesTest} instance.
+     */
+    public HeaderCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/header/header";

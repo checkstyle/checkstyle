@@ -101,6 +101,13 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
             TokenTypes.ANNOTATIONS, TokenTypes.ARRAY_DECLARATOR,
             TokenTypes.TYPE_PARAMETERS, TokenTypes.DOT);
 
+    /**
+     * Creates a new {@code MissingDeprecatedCheck} instance.
+     */
+    public MissingDeprecatedCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultJavadocTokens() {
         return getRequiredJavadocTokens();

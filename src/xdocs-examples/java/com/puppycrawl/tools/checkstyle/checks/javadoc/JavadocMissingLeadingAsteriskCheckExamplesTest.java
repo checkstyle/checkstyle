@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class JavadocMissingLeadingAsteriskCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code JavadocMissingLeadingAsteriskCheckExamplesTest} instance.
+     */
+    public JavadocMissingLeadingAsteriskCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmissingleadingasterisk";

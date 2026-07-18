@@ -27,6 +27,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class ClassMemberImpliedModifierCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code ClassMemberImpliedModifierCheckExamplesTest} instance.
+     */
+    public ClassMemberImpliedModifierCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/modifier/classmemberimpliedmodifier";

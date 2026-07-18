@@ -26,6 +26,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MagicNumberCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code MagicNumberCheckExamplesTest} instance.
+     */
+    public MagicNumberCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/magicnumber";

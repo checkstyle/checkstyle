@@ -26,6 +26,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class UseEnhancedSwitchCheckExamplesTest
     extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code UseEnhancedSwitchCheckExamplesTest} instance.
+     */
+    public UseEnhancedSwitchCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/useenhancedswitch";

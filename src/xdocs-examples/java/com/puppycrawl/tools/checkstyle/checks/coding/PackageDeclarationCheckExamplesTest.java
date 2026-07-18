@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class PackageDeclarationCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code PackageDeclarationCheckExamplesTest} instance.
+     */
+    public PackageDeclarationCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/packagedeclaration";

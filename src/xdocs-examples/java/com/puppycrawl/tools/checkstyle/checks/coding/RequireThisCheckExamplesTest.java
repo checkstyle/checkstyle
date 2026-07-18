@@ -26,6 +26,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RequireThisCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code RequireThisCheckExamplesTest} instance.
+     */
+    public RequireThisCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/requirethis";

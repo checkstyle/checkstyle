@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class PackageAnnotationCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code PackageAnnotationCheckExamplesTest} instance.
+     */
+    public PackageAnnotationCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/annotation/packageannotation";

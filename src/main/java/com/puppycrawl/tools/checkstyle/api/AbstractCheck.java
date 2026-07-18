@@ -58,6 +58,13 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     private int tabWidth;
 
     /**
+     * Creates a new {@code AbstractCheck} instance.
+     */
+    protected AbstractCheck() {
+        // no code by default
+    }
+
+    /**
      * Returns the default token a check is interested in. Only used if the
      * configuration for a check does not define the tokens.
      *
@@ -331,13 +338,18 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * The actual context holder.
      */
     private static final class FileContext {
-
         /** The sorted set for collecting violations. */
         private final SortedSet<Violation> violations = new TreeSet<>();
 
         /** The current file contents. */
         private FileContents fileContents;
 
+        /**
+         * Creates a new {@code FileContext} instance.
+         */
+        private FileContext() {
+            // no code by default
+        }
     }
 
 }

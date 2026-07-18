@@ -32,6 +32,13 @@ import com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck;
 
 public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code SuppressionSingleFilterExamplesTest} instance.
+     */
+    public SuppressionSingleFilterExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter";

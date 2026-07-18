@@ -25,6 +25,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code SuppressWithNearbyCommentFilterExamplesTest} instance.
+     */
+    public SuppressWithNearbyCommentFilterExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter";

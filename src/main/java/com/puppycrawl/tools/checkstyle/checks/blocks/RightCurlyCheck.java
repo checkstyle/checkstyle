@@ -72,6 +72,13 @@ public class RightCurlyCheck extends AbstractCheck {
     private RightCurlyOption option = RightCurlyOption.SAME;
 
     /**
+     * Creates a new {@code RightCurlyCheck} instance.
+     */
+    public RightCurlyCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify the policy on placement of a right curly brace (<code>'}'</code>).
      *
      * @param optionStr string to decode option from

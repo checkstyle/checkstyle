@@ -40,6 +40,13 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 @StatelessCheck
 public class SuperFinalizeCheck extends AbstractSuperCheck {
 
+    /**
+     * Creates a new {@code SuperFinalizeCheck} instance.
+     */
+    public SuperFinalizeCheck() {
+        // no code by default
+    }
+
     @Override
     protected String getMethodName() {
         return "finalize";

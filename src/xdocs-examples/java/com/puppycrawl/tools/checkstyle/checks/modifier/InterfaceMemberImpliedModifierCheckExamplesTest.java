@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class InterfaceMemberImpliedModifierCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code InterfaceMemberImpliedModifierCheckExamplesTest} instance.
+     */
+    public InterfaceMemberImpliedModifierCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier";

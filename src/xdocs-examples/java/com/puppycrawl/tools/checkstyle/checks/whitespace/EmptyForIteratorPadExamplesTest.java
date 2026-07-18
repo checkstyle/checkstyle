@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class EmptyForIteratorPadExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code EmptyForIteratorPadExamplesTest} instance.
+     */
+    public EmptyForIteratorPadExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/emptyforiteratorpad";

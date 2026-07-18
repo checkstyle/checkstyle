@@ -42,6 +42,13 @@ public class BaseCellEditor implements CellEditor {
      */
     private final EventListenerList listenerList = new EventListenerList();
 
+    /**
+     * Creates a new {@code BaseCellEditor} instance.
+     */
+    public BaseCellEditor() {
+        // no code by default
+    }
+
     @Override
     public Object getCellEditorValue() {
         return null;

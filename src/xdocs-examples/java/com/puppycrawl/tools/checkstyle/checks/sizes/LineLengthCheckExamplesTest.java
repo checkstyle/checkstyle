@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class LineLengthCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code LineLengthCheckExamplesTest} instance.
+     */
+    public LineLengthCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/linelength";

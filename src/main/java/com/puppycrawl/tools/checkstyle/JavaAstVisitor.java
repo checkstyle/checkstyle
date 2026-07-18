@@ -2254,6 +2254,13 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         private DetailAstImpl child;
 
         /**
+         * Creates a new {@code DetailAstPair} instance.
+         */
+        private DetailAstPair() {
+            // no code by default
+        }
+
+        /**
          * Moves child reference to the last child.
          */
         private void advanceChildToEnd() {

@@ -30,6 +30,13 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class UnnecessaryParenthesesCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code UnnecessaryParenthesesCheckExamplesTest} instance.
+     */
+    public UnnecessaryParenthesesCheckExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses";

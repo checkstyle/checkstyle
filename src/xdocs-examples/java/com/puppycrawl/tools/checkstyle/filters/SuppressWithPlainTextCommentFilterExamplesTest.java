@@ -27,6 +27,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class SuppressWithPlainTextCommentFilterExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
+    /**
+     * Creates a new {@code SuppressWithPlainTextCommentFilterExamplesTest} instance.
+     */
+    public SuppressWithPlainTextCommentFilterExamplesTest() {
+        // no code by default
+    }
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter";
