@@ -36,6 +36,7 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -110,6 +111,9 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
     /** A pattern to match a file with a Windows drive letter. */
     private static final Pattern WINDOWS_DRIVE_LETTER_PATTERN =
             Pattern.compile("\\A[A-Z]:", Pattern.CASE_INSENSITIVE);
+
+    /** A pattern matching a template placeholder such as {@code ${uri}}. */
+    private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("\\$\\{\\w+}");
 
     /** Comma and line separator. */
     private static final String COMMA_LINE_SEPARATOR = ",\n";
@@ -343,23 +347,21 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
         final RuleKey ruleKey = cacheRuleMetadata(event);
         final String message = generateMessage(ruleKey, event);
         if (event.getColumn() > 0) {
-            results.add(resultLineColumn
-                .replace(SEVERITY_LEVEL_PLACEHOLDER, renderSeverityLevel(event.getSeverityLevel()))
-                .replace(URI_PLACEHOLDER, renderFileNameUri(event.getFileName()))
-                .replace(COLUMN_PLACEHOLDER, Integer.toString(event.getColumn()))
-                .replace(LINE_PLACEHOLDER, Integer.toString(event.getLine()))
-                .replace(MESSAGE_PLACEHOLDER, message)
-                .replace(RULE_ID_PLACEHOLDER, ruleKey.toRuleId())
-            );
+            results.add(fillTemplate(resultLineColumn, Map.of(
+                SEVERITY_LEVEL_PLACEHOLDER, renderSeverityLevel(event.getSeverityLevel()),
+                URI_PLACEHOLDER, renderFileNameUri(event.getFileName()),
+                COLUMN_PLACEHOLDER, Integer.toString(event.getColumn()),
+                LINE_PLACEHOLDER, Integer.toString(event.getLine()),
+                MESSAGE_PLACEHOLDER, message,
+                RULE_ID_PLACEHOLDER, ruleKey.toRuleId())));
         }
         else {
-            results.add(resultLineOnly
-                .replace(SEVERITY_LEVEL_PLACEHOLDER, renderSeverityLevel(event.getSeverityLevel()))
-                .replace(URI_PLACEHOLDER, renderFileNameUri(event.getFileName()))
-                .replace(LINE_PLACEHOLDER, Integer.toString(event.getLine()))
-                .replace(MESSAGE_PLACEHOLDER, message)
-                .replace(RULE_ID_PLACEHOLDER, ruleKey.toRuleId())
-            );
+            results.add(fillTemplate(resultLineOnly, Map.of(
+                SEVERITY_LEVEL_PLACEHOLDER, renderSeverityLevel(event.getSeverityLevel()),
+                URI_PLACEHOLDER, renderFileNameUri(event.getFileName()),
+                LINE_PLACEHOLDER, Integer.toString(event.getLine()),
+                MESSAGE_PLACEHOLDER, message,
+                RULE_ID_PLACEHOLDER, ruleKey.toRuleId())));
         }
     }
 
@@ -408,17 +410,15 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
         final String message = messageTextOnly
                 .replace(MESSAGE_TEXT_PLACEHOLDER, escape(stringWriter.toString()));
         if (event.getFileName() == null) {
-            results.add(resultErrorOnly
-                .replace(SEVERITY_LEVEL_PLACEHOLDER, renderSeverityLevel(event.getSeverityLevel()))
-                .replace(MESSAGE_PLACEHOLDER, message)
-            );
+            results.add(fillTemplate(resultErrorOnly, Map.of(
+                SEVERITY_LEVEL_PLACEHOLDER, renderSeverityLevel(event.getSeverityLevel()),
+                MESSAGE_PLACEHOLDER, message)));
         }
         else {
-            results.add(resultFileOnly
-                .replace(SEVERITY_LEVEL_PLACEHOLDER, renderSeverityLevel(event.getSeverityLevel()))
-                .replace(URI_PLACEHOLDER, renderFileNameUri(event.getFileName()))
-                .replace(MESSAGE_PLACEHOLDER, message)
-            );
+            results.add(fillTemplate(resultFileOnly, Map.of(
+                SEVERITY_LEVEL_PLACEHOLDER, renderSeverityLevel(event.getSeverityLevel()),
+                URI_PLACEHOLDER, renderFileNameUri(event.getFileName()),
+                MESSAGE_PLACEHOLDER, message)));
         }
     }
 
@@ -430,6 +430,28 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
     @Override
     public void fileFinished(AuditEvent event) {
         // No need to implement this method in this class
+    }
+
+    /**
+     * Fill a template with its values in a single pass, so a value substituted for one
+     * placeholder is never scanned again and taken for another. A file name or message that
+     * happens to carry placeholder text is therefore kept verbatim instead of pulling
+     * another value into it.
+     *
+     * @param template the template to fill
+     * @param values the value to substitute for each placeholder
+     * @return the filled template
+     */
+    private static String fillTemplate(String template, Map<String, String> values) {
+        final Matcher matcher = PLACEHOLDER_PATTERN.matcher(template);
+        final StringBuilder result = new StringBuilder(256);
+        while (matcher.find()) {
+            final String placeholder = matcher.group();
+            final String value = values.getOrDefault(placeholder, placeholder);
+            matcher.appendReplacement(result, Matcher.quoteReplacement(value));
+        }
+        matcher.appendTail(result);
+        return result.toString();
     }
 
     /**
