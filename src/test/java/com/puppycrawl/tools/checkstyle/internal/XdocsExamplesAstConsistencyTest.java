@@ -176,7 +176,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/regexp/regexponfilename",
             "checks/regexp/regexpsingleline",
             "checks/regexp/regexpsinglelinejava",
-            "checks/sizes/methodlength",
             "checks/sizes/parameternumber",
             "checks/translation",
             "checks/whitespace/methodparampad",
