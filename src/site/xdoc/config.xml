@@ -15,7 +15,33 @@
         <param name="toDepth" value="1"/>
       </macro>
     </section>
-
+    <section name="Content">
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow"
+               title="Collapse"><span class="toc-chevron"></span></label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#Overview">Overview</a></li>
+            <li><a href="#Modules">Modules</a></li>
+            <li><a href="#Properties">Properties</a></li>
+            <li><a href="#Checker">Checker</a></li>
+            <li><a href="#TreeWalker">TreeWalker</a></li>
+            <li><a href="#TreeWalker_Checks">TreeWalker Checks</a></li>
+            <li><a href="#Severity">Severity</a></li>
+            <li><a href="#tabWidth">tabWidth</a></li>
+            <li><a href="#Id">Id</a></li>
+            <li><a href="#Custom_messages">Custom messages</a></li>
+            <li><a href="#Filters">Filters</a></li>
+            <li><a href="#Before_Execution_File_Filters">Before Execution File Filters</a></li>
+            <li><a href="#Audit_Listeners">Audit Listeners</a></li>
+            <li><a href="#Packages">Packages</a></li>
+            <li><a href="#Configuration_XML_Structure">Configuration XML Structure</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
     <section name="Overview">
       <p>
         A Checkstyle configuration specifies which <em>modules</em> to
