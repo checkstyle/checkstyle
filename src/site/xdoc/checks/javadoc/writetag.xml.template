@@ -95,6 +95,24 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/writetag/Example4.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure Check to demand <code>@since</code> tag
+          to be present with digital value on method javadocs also in addition to default tokens,
+          reporting a mismatched tag format as an error severity violation.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/writetag/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">
+        Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/writetag/Example5.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 

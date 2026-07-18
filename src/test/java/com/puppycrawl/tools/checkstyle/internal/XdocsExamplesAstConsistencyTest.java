@@ -161,7 +161,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/coding/illegaltokentext",
             "checks/descendanttoken",
             "checks/javadoc/javadocblocktaglocation",
-            "checks/javadoc/writetag",
             "checks/metrics/cyclomaticcomplexity",
             "checks/modifier/interfacememberimpliedmodifier",
             "checks/naming/abbreviationaswordinname",

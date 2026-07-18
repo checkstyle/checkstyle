@@ -70,6 +70,18 @@ public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport
     }
 
     @Test
+    public void testExample5() throws Exception {
+        final String pattern = "[1-9\\.]";
+        final String[] expected = {
+            "23: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
+            "27: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
+            "32: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
+    @Test
     public void testUseCase1() throws Exception {
         final String pattern = "[1-9\\.]";
         final String[] expected = {
