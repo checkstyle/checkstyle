@@ -81,6 +81,13 @@ public class LineLengthCheck extends AbstractFileSetCheck {
     /** Specify pattern for lines to ignore. */
     private Pattern ignorePattern = Pattern.compile("^(package|import) .*");
 
+    /**
+     * Creates a new {@code LineLengthCheck} instance.
+     */
+    public LineLengthCheck() {
+        // no code by default
+    }
+
     @Override
     protected void processFiltered(File file, FileText fileText) {
         for (int i = 0; i < fileText.size(); i++) {

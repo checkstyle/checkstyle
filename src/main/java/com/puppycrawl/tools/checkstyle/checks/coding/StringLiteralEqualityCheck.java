@@ -59,6 +59,13 @@ public class StringLiteralEqualityCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "string.literal.equality";
 
+    /**
+     * Creates a new {@code StringLiteralEqualityCheck} instance.
+     */
+    public StringLiteralEqualityCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

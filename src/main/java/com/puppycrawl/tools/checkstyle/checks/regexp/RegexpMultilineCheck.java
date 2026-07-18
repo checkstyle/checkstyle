@@ -74,6 +74,13 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
     /** The detector to use. */
     private MultilineDetector detector;
 
+    /**
+     * Creates a new {@code RegexpMultilineCheck} instance.
+     */
+    public RegexpMultilineCheck() {
+        // no code by default
+    }
+
     @Override
     public void beginProcessing(String charset) {
         final DetectorOptions options = DetectorOptions.newBuilder()

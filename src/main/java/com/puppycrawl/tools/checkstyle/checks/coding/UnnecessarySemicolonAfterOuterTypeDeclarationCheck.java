@@ -50,6 +50,13 @@ public final class UnnecessarySemicolonAfterOuterTypeDeclarationCheck extends Ab
      */
     public static final String MSG_SEMI = "unnecessary.semicolon";
 
+    /**
+     * Creates a new {@code UnnecessarySemicolonAfterOuterTypeDeclarationCheck} instance.
+     */
+    public UnnecessarySemicolonAfterOuterTypeDeclarationCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
