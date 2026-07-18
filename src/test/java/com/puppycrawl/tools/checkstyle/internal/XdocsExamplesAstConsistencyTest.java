@@ -160,7 +160,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/annotation/suppresswarnings",
             "checks/blocks/leftcurly",
             "checks/coding/illegaltokentext",
-            "checks/coding/magicnumber",
             "checks/descendanttoken",
             "checks/imports/unusedimports",
             "checks/javadoc/javadocblocktaglocation",

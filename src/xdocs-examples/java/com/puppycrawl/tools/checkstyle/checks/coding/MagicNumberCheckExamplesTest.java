@@ -132,4 +132,32 @@ public class MagicNumberCheckExamplesTest extends AbstractExamplesModuleTestSupp
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "14:13: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 6),
+            "16:23: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 7),
+            "20:13: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 8),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+    }
+
+    @Test
+    public void testExample8() throws Exception {
+        final String[] expected = {
+            "16:23: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 7),
+            "20:13: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 8),
+            "43:12: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 10),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+    }
+
 }
