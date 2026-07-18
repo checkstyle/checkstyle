@@ -138,7 +138,7 @@ Notes:
 
 - Parser rules are written in lower camel case by convention.
 - It is important to consider how many subrules are needed to represent the new language feature.
-  Due to the recursive nature of parsing, Stackoverflow errors can occur if the grammar is too
+  Due to the recursive nature of parsing, StackOverflow errors can occur if the grammar is too
   complex with too many subrules.
 - It is good
   to try to strike a balance between the number of subrules, the complexity of the grammar, and the
