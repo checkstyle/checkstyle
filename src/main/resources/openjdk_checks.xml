@@ -42,6 +42,13 @@
     <property name="lineRange" value="$2"/>
   </module>
 
+  <module name="MultiFileRegexpHeader">
+    <property name="fileExtensions" value="java"/>
+    <property name="headerFiles"
+              value="${header.file.paths.separated.by.coma}"
+              default="/com/puppycrawl/tools/checkstyle/any.header"/>
+  </module>
+
   <module name="LineEnding">
     <property name="lineEnding" value="lf"/>
     <property name="fileExtensions" value="java"/>

@@ -1819,6 +1819,11 @@
             <include>com/doccomments/**/*.java</include>
             <include>org/checkstyle/**/*.java</include>
           </includes>
+          <systemPropertyVariables>
+            <header.file.paths.separated.by.coma>
+              ${project.basedir}/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulecopyrightnotice/openjdk-style.header
+            </header.file.paths.separated.by.coma>
+          </systemPropertyVariables>
         </configuration>
         <executions>
           <execution>
