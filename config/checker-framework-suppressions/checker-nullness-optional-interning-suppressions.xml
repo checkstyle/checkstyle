@@ -6391,13 +6391,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/WriteTagCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference modifiers</message>
-    <lineContent>cmt = modifiers.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/WriteTagCheck.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field tag</message>
     <lineContent>private String tag;</lineContent>
@@ -6408,13 +6401,6 @@
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field tagFormat</message>
     <lineContent>private Pattern tagFormat;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/WriteTagCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field tagRegExp</message>
-    <lineContent>private Pattern tagRegExp;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
