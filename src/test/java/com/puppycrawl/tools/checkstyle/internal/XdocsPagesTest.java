@@ -902,6 +902,9 @@ public class XdocsPagesTest {
                 validateSinceDescriptionSection(fileName, sectionName, subSection);
                 continue;
             }
+            if ("div".equals(subSection.getNodeName())) {
+                continue;
+            }
 
             final String subSectionName = XmlUtil.getNameAttributeOfNode(subSection);
 
