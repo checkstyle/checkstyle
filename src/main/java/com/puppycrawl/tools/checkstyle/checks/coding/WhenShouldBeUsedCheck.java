@@ -65,6 +65,13 @@ public class WhenShouldBeUsedCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "when.should.be.used";
 
+    /**
+     * Creates a new {@code WhenShouldBeUsedCheck} instance.
+     */
+    public WhenShouldBeUsedCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
