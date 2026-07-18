@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulehorizontalwhitespace;
 
+// violation first line 'Header mismatch'
+
 import java.util.function.IntUnaryOperator;
 
 /** Test Inputs from style guide. */

@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleindentation;
 
+// violation first line 'Header is missing'
+
 /** Invalid indentation examples for OpenJDK style section 3.7. */
 public class InputIndentationInvalid {
 

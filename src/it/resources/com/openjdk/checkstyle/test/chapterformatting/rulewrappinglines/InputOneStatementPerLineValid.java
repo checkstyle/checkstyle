@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulewrappinglines;
 
+// violation first line 'Header mismatch'
+
 /**
  * Test input for valid one statement per line.
  */

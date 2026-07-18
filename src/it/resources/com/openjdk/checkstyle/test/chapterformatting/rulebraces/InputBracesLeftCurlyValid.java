@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulebraces;
 
+// violation first line 'Header mismatch'
+
 /** Input file for Valid Left Curly: Valid. */
 public class InputBracesLeftCurlyValid {
     public void testMethod() {

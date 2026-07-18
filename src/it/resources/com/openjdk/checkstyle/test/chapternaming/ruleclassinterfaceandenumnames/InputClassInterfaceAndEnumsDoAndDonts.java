@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapternaming.ruleclassinterfaceandenumnames;
 
+// violation first line 'Header mismatch'
+
 public class InputClassInterfaceAndEnumsDoAndDonts {
     class EmptyCell {
     }
