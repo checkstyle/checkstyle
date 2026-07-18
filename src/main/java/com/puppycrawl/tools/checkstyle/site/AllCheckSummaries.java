@@ -167,6 +167,13 @@ public class AllCheckSummaries extends AbstractMacro {
     private static final Pattern CODE_SPACE_PATTERN = Pattern.compile(WHITESPACE_REGEX
             + "(" + CLOSING_ANCHOR_TAG.substring(0, 2) + "code>)");
 
+    /**
+     * Creates a new {@code AllCheckSummaries} instance.
+     */
+    public AllCheckSummaries() {
+        // no code by default
+    }
+
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
         final String packageFilter = (String) request.getParameter("package");

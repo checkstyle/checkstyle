@@ -92,6 +92,13 @@ public class AnnotatedDeclarationVisibilityCheck extends AbstractCheck {
     private String currentPackage;
 
     /**
+     * Creates a new {@code AnnotatedDeclarationVisibilityCheck} instance.
+     */
+    public AnnotatedDeclarationVisibilityCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter for annotation canonical names.
      *
      * @param values comma-separated fully qualified annotation names

@@ -34,6 +34,13 @@ public final class DefaultContext implements Context {
     /** Stores the context entries. */
     private final Map<String, Object> entries = new HashMap<>();
 
+    /**
+     * Creates a new {@code DefaultContext} instance.
+     */
+    public DefaultContext() {
+        // no code by default
+    }
+
     @Override
     public Object get(String key) {
         return entries.get(key);

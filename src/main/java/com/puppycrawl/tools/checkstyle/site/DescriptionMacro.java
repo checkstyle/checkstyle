@@ -36,6 +36,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 @Component(role = Macro.class, hint = "description")
 public class DescriptionMacro extends AbstractMacro {
 
+    /**
+     * Creates a new {@code DescriptionMacro} instance.
+     */
+    public DescriptionMacro() {
+        // no code by default
+    }
+
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
         final Path modulePath = Path.of((String) request.getParameter("modulePath"));

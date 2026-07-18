@@ -40,6 +40,13 @@ public class AnnotationOnSameLineCheck extends AbstractCheck {
     /** A key is pointing to the warning message text in "messages.properties" file. */
     public static final String MSG_KEY_ANNOTATION_ON_SAME_LINE = "annotation.same.line";
 
+    /**
+     * Creates a new {@code AnnotationOnSameLineCheck} instance.
+     */
+    public AnnotationOnSameLineCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

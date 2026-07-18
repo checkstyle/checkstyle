@@ -735,6 +735,13 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         private Token startToken;
 
         /**
+         * Creates a new {@code TextAccumulator} instance.
+         */
+        private TextAccumulator() {
+            // no code by default
+        }
+
+        /**
          * Appends a TEXT token's text to the buffer and tracks the first token.
          *
          * @param token the token to accumulate
