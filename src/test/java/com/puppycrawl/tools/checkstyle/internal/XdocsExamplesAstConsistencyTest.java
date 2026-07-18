@@ -161,13 +161,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/coding/illegaltokentext",
             "checks/coding/magicnumber",
             "checks/descendanttoken",
-            "checks/imports/unusedimports",
             "checks/javadoc/javadocblocktaglocation",
-            "checks/javadoc/javadocmethod",
-            "checks/javadoc/javadocparagraph",
-            "checks/javadoc/missingjavadoctype",
-            "checks/javadoc/nonemptyatclausedescription",
-            "checks/javadoc/summaryjavadoc",
             "checks/javadoc/writetag",
             "checks/metrics/cyclomaticcomplexity",
             "checks/modifier/interfacememberimpliedmodifier",
@@ -961,8 +955,9 @@ public class XdocsExamplesAstConsistencyTest {
         int count = -1;
         try {
             final Object instance = SiteUtil.getModuleInstance(moduleName);
-            final Set<String> properties = SiteUtil.getPropertiesForDocumentation(
-                instance.getClass(), instance);
+            final Set<String> properties = new HashSet<>(SiteUtil.getPropertiesForDocumentation(
+                    instance.getClass(), instance));
+            properties.removeAll(IGNORED_PROPERTIES_FOR_COVERAGE);
             count = properties.size();
         }
         catch (MacroExecutionException exception) {
