@@ -526,10 +526,6 @@ public final class InlineConfigParser {
             + "InputModifiedControlVariableRecordDecomposition.java",
         "checks/coding/modifiedcontrolvariable/"
             + "InputModifiedControlVariableTestVariousAssignments.java",
-        "checks/coding/returncount/InputReturnCountLambda.java",
-        "checks/coding/returncount/InputReturnCountSwitches.java",
-        "checks/coding/returncount/InputReturnCountSwitches2.java",
-        "checks/coding/returncount/InputReturnCountVoid.java",
         "checks/coding/unnecessaryparentheses/InputUnnecessaryParentheses15Extensions.java",
         "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesCheckPatterns.java",
         "checks/coding/unnecessaryparentheses/"
