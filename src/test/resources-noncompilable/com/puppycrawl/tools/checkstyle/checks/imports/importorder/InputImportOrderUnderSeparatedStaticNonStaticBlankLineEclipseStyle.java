@@ -13,7 +13,7 @@ tokens = (default)IMPORT, STATIC_IMPORT
 
 
 */
-// non-compiled with javac: special imports
+// non-compiled with javac: contains specially crafted set of imports that requires classpath
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 import java.some.common.collect1.Lists1;

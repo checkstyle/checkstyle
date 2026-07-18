@@ -4,7 +4,7 @@ matchDirectoryStructure = false
 
 
 */
-// non-compiled with javac:  package statement is different than folder
+// non-compiled with javac: package statement is different than folder
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 public class InputPackageDeclarationDiffDirectoryAtParent2 {

@@ -5,7 +5,7 @@ validateUnnamedVariables = (default)false
 tokens = (default)VARIABLE_DEF
 
 */
-
+// non-compiled with javac: Compilable with Java21 individually
 // non-compiled with eclipse: local variable may not have been initialized
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
