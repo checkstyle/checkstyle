@@ -1,7 +1,7 @@
 /*
 AnnotationUseStyle
 elementStyle = ignore
-closingParens = NEVER
+closingParens = (default)NEVER
 trailingArrayComma = ignore
 
 

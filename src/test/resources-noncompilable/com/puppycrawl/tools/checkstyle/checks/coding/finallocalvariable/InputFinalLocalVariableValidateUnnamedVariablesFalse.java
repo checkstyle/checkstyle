@@ -2,7 +2,7 @@
 FinalLocalVariable
 validateUnnamedVariables = (default)false
 validateEnhancedForLoopVariable = true
-tokens = (default)VARIABLE_DEF
+tokens = (default)IDENT,CTOR_DEF,METHOD_DEF,SLIST,OBJBLOCK,COMPACT_COMPILATION_UNIT,LITERAL_BREAK,LITERAL_FOR,VARIABLE_DEF,EXPR
 
 */
 

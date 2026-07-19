@@ -450,7 +450,7 @@ public class ParenPadCheckTest
     public void testTryWithResourcesAndSuppression() throws Exception {
         final String[] expectedFiltered = CommonUtil.EMPTY_STRING_ARRAY;
         final String[] expectedUnfiltered = {
-            "23:13: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "27:13: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
         };
         verifyFilterWithInlineConfigParser(
                 getPath("InputParenPadTryWithResourcesAndSuppression.java"),
