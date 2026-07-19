@@ -27,4 +27,4 @@ import static java.math.
   BigInteger.ZERO;
 // xdoc section -- end
 
-class Example1 { }
+class Example3 { }
