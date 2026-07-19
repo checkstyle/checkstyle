@@ -667,66 +667,6 @@ public final class InlineConfigParser {
         "checks/sizes/methodcount/InputMethodCountDefaultsInnerClass.java",
         "checks/sizes/methodcount/InputMethodCountDefaultsInnerInterface.java",
         "checks/sizes/methodcount/InputMethodCountRecords.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparator.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparator2.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparator3.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorAnnotations.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorBlockCommentSeparatedFromPackage.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorBlockCommentUnderPackage.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorClassDefinitionAndCommentNotSeparatedFromPackage.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorCompactSourceFile.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorCompactSourceFileMultipleEmptyLines.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorEnumMembers.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorFormerException.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorHeader.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorImportSeparatedFromPackage.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorImports.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorInsideClassMembers.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorInterfaceFields.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorMethodInAnonymousClass.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorModifierUnderPackage.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorMultipleEmptyLines.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorMultipleEmptyLinesInside.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorMultipleEmptyLinesInside2.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorMultipleFieldsInClass.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorMultipleImportEmptyClass.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorMultipleLines.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorMultipleLines2.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorMultipleLines3.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorNewMethodDef.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorNonPackageInfoWithJavadocBeforePackage.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorPackageImportClassInOneLine.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorPostFixCornerCases.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorPreviousLineEmptiness.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorRecordsAndCompactCtors.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorRecordsAndCompactCtorsNoEmptyLines.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorRecursive.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorSingleCommentSeparatedFromPackage.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorSingleCommentUnderPackage.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorSingleLineCommentAfterPackage.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorSingleTypeVariables.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorStaticImport.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorWithComments.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorWithComments2.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorWithEmoji.java",
-        "checks/whitespace/emptylineseparator/packageinfo/test1/package-info.java",
-        "checks/whitespace/emptylineseparator/packageinfo/test2/package-info.java",
-        "checks/whitespace/emptylineseparator/packageinfo/test3/package-info.java",
-        "checks/whitespace/emptylineseparator/packageinfo/test4/package-info.java",
-        "checks/whitespace/emptylineseparator/packageinfo/test5/package-info.java",
         "checks/whitespace/parenpad/InputParenPadCheckEmoji.java",
         "checks/whitespace/parenpad/InputParenPadCheckRecords.java",
         "checks/whitespace/parenpad/InputParenPadCheckRecordsSpace.java",
