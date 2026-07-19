@@ -655,4 +655,49 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             .contains("EQUALS");
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "19:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "msg"),
+            "21:37: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "recipient"),
+            "21:55: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "message"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocMethodCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileReturn() throws Exception {
+        final String[] expected = {
+            "19: " + getCheckMessage(MSG_RETURN_EXPECTED),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocMethodCompactSourceFileReturn.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileThrows() throws Exception {
+        final String[] expected = {
+            "19:20: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocMethodCompactSourceFileThrows.java"), expected);
+    }
+
+    @Test
+    public void testPublicScopeUnusedTag() throws Exception {
+        final String[] expected = {
+            "20:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodPublicScopeUnusedTag.java"), expected);
+    }
+
+    @Test
+    public void testPrivateScopePublicClass() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodPrivateScopePublicClass.java"), expected);
+    }
+
 }
