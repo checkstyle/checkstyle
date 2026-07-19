@@ -632,16 +632,6 @@ public final class InlineConfigParser {
         "checks/javadoc/javadocvariable/InputJavadocVariableTagsMethods3.java",
         "checks/javadoc/missingjavadocmethod/InputMissingJavadocMethodBasic.java",
         "checks/javadoc/nonemptyatclausedescription/InputNonEmptyAtclauseDescriptionOne.java",
-        "checks/metrics/booleanexpressioncomplexity/InputBooleanExpressionComplexity.java",
-        "checks/metrics/booleanexpressioncomplexity/InputBooleanExpressionComplexityLeaves.java",
-        "checks/metrics/booleanexpressioncomplexity/InputBooleanExpressionComplexityNPE.java",
-        "checks/metrics/booleanexpressioncomplexity/"
-            + "InputBooleanExpressionComplexityRecordLeaves.java",
-        "checks/metrics/booleanexpressioncomplexity/"
-            + "InputBooleanExpressionComplexityRecordsAndCompactCtors.java",
-        "checks/metrics/booleanexpressioncomplexity/InputBooleanExpressionComplexitySmall.java",
-        "checks/metrics/booleanexpressioncomplexity/"
-            + "InputBooleanExpressionComplexityWhenExpression.java",
         "checks/metrics/cyclomaticcomplexity/InputCyclomaticComplexity1.java",
         "checks/metrics/cyclomaticcomplexity/InputCyclomaticComplexity2.java",
         "checks/metrics/cyclomaticcomplexity/InputCyclomaticComplexityRecords1.java",
