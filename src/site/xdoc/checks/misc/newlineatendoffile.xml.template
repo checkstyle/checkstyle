@@ -85,19 +85,25 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example4.cpp"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-
-        <p id="Example5-code">Java file <code>Example5.java</code>:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example5.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
 
         <p id="Example6-code">Text file <code>Example6.txt</code>:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example5-config">Special message if line separator is defined:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
