@@ -1096,7 +1096,8 @@ public final class InlineConfigParser {
             int endLineNo, Map<Object, Object> actualProperties,
             Map<String, PropertyDefault> defaultProperties,
             Set<String> collectionPropertyNames) {
-        for (int lineNo = beginLineNo; lineNo < endLineNo; lineNo++) {
+        int updatedEndLineNo = endLineNo;
+        for (int lineNo = beginLineNo; lineNo < updatedEndLineNo; lineNo++) {
             final String line = lines.get(lineNo);
             final Matcher matcher = Pattern.compile("^(\\s*([^:=\\s]+)\\s*[=:]\\s*)"
                     + Pattern.quote(DEFAULT_TAG) + ".*$").matcher(line);
@@ -1124,7 +1125,7 @@ public final class InlineConfigParser {
                         }
                         lines.subList(lineNo, continuationEndLineNo).clear();
                         lines.addAll(lineNo, updatedLines);
-                        endLineNo += updatedLines.size() - propertyLineCount;
+                        updatedEndLineNo += updatedLines.size() - propertyLineCount;
                         actualProperties.put(propertyName, DEFAULT_TAG + defaultValue);
                     }
                 }
@@ -1172,7 +1173,8 @@ public final class InlineConfigParser {
     private static boolean isSameDefaultValue(String propertyName, String propertyValue,
             PropertyDefault propertyDefault) {
         boolean result = false;
-        if (propertyDefault != null) {
+        // Preserve explicit empty string properties such as RegexpCheck.message.
+        if (propertyDefault != null && !propertyValue.isEmpty()) {
             try {
                 if ("tagOrder".equals(propertyName)) {
                     result = propertyValue.equals(propertyDefault.value());
@@ -1237,12 +1239,8 @@ public final class InlineConfigParser {
                     getDefaultProperties(fullyQualifiedClassName);
             final Set<String> defaultPropertyNames = new HashSet<>(
                     documentedDefaultProperties.keySet());
-            if (properties.containsKey("tokens")) {
-                defaultPropertyNames.add("tokens");
-            }
-            if (properties.containsKey("javadocTokens")) {
-                defaultPropertyNames.add("javadocTokens");
-            }
+            addDefaultPropertyName(properties, defaultPropertyNames, "tokens");
+            addDefaultPropertyName(properties, defaultPropertyNames, "javadocTokens");
             final Map<String, PropertyDefault> defaultProperties = getActualDefaultProperties(
                     fullyQualifiedClassName, defaultPropertyNames);
             final Set<String> collectionPropertyNames =
@@ -1282,6 +1280,13 @@ public final class InlineConfigParser {
             else {
                 inputConfigBuilder.addNonDefaultProperty(key, value);
             }
+        }
+    }
+
+    private static void addDefaultPropertyName(Map<Object, Object> properties,
+            Set<String> defaultPropertyNames, String propertyName) {
+        if (properties.containsKey(propertyName)) {
+            defaultPropertyNames.add(propertyName);
         }
     }
 
