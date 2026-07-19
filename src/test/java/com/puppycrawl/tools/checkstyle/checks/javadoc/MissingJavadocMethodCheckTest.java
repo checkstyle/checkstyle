@@ -588,7 +588,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void missingJavadoc() throws Exception {
         final String[] expected = {
-            "13:5: " + getCheckMessage(MissingJavadocMethodCheck.class, MSG_JAVADOC_MISSING),
+            "15:5: " + getCheckMessage(MissingJavadocMethodCheck.class, MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputMissingJavadocMethodBasic.java"), expected);
