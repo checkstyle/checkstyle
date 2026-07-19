@@ -43,7 +43,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example2-config">
-          An example of how to suppress the check to public and protected types is:
+          An example of how to configure the check for names that begin with a lower case letter,
+          followed by letters, digits, and underscores is:
         </p>
         <macro name="example">
           <param name="path"
@@ -57,9 +58,7 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example3-config">
-          An example of how to configure the check for names that begin with a lower case letter,
-          followed by letters, digits, and underscores. Also, suppress the check from being
-          applied to private and package-private types:
+          An example of how to suppress the check to public types is:
         </p>
         <macro name="example">
           <param name="path"
@@ -70,6 +69,43 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <hr class="example-separator"/>
+        <p id="Example4-config">
+          An example of how to suppress the check to protected types is:
+        </p>
+        <macro name="example">
+          <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Code Example:</p>
+        <macro name="example">
+          <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <hr class="example-separator"/>
+        <p id="Example5-config">An example of how to suppress the check to private types is:</p>
+        <macro name="example">
+          <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Code Example:</p>
+        <macro name="example">
+          <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <hr class="example-separator"/>
+        <p id="Example6-config">
+          An example of how to suppress the check to package-private types is:
+        </p>
+        <macro name="example">
+          <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Code Example:</p>
+        <macro name="example">
+          <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename/Example6.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

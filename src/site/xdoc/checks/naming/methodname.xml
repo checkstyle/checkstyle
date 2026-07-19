@@ -95,7 +95,7 @@ class Example1 {
   public void method1() {}
   protected void Method2() {} // violation 'Name 'Method2' must match pattern'
   private void Method3() {} // violation 'Name 'Method3' must match pattern'
-  public void Method4() {} // violation 'Name 'Method4' must match pattern'
+  public void Example3() {} // violation 'Name 'Example3' must match pattern'
   void Method5() {} // violation 'Name 'Method5' must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
@@ -118,7 +118,7 @@ class Example2 {
   public void method1() {}
   protected void Method2() {} // violation 'Name 'Method2' must match pattern'
   private void Method3() {} // violation 'Name 'Method3' must match pattern'
-  public void Method4() {} // violation 'Name 'Method4' must match pattern'
+  public void Example3() {} // violation 'Name 'Example3' must match pattern'
   void Method5() {} // violation 'Name 'Method5' must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
@@ -139,19 +139,42 @@ class Example2 {
         <p id="Example3-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
-  public Example3() {}
+  public void method1() {}
+  protected void Method2() {}
+  private void Method3() {}
   public void Example3() {}
+  void Method5() {}
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
-          An example of how to suppress the check to public and protected methods:
+        <p id="Example4-config">
+          An example of how to suppress the check to public methods:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"&gt;
-       &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
        &lt;property name="applyToPublic" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+  public void method1() {}
+  protected void Method2() {} // violation 'Name 'Method2' must match pattern'
+  private void Method3() {} // violation 'Name 'Method3' must match pattern'
+  public void Example3() {} // ok because 'applyToPublic' is false
+  void Method5() {} // violation 'Name 'Method5' must match pattern'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          An example of how to suppress the check to protected methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodName"&gt;
        &lt;property name="applyToProtected" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
@@ -161,9 +184,9 @@ class Example3 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
   public void method1() {}
-  protected void Method2() {} // ok because, 'Property 'applyToProtected' is false'
+  protected void Method2() {} // ok because 'applyToProtected' is false
   private void Method3() {} // violation 'Name 'Method3' must match pattern'
-  public void Method4() {} // ok because, 'Property 'applyToPublic' is false'
+  public void Example3() {} // violation 'Name 'Example3' must match pattern'
   void Method5() {} // violation 'Name 'Method5' must match pattern'
 }
 </code></pre></div>
@@ -175,7 +198,6 @@ class Example5 {
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"&gt;
-       &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
        &lt;property name="applyToPrivate" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
@@ -186,8 +208,8 @@ class Example5 {
 class Example6 {
   public void method1() {}
   protected void Method2() {} // violation 'Name 'Method2' must match pattern'
-  private void Method3() {}
-  public void Method4() {} // violation 'Name 'Method4' must match pattern'
+  private void Method3() {} // ok because 'applyToPrivate' is false
+  public void Example3() {} // violation 'Name 'Example3' must match pattern'
   void Method5() {} // violation 'Name 'Method5' must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
@@ -198,7 +220,6 @@ class Example6 {
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"&gt;
-       &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
        &lt;property name="applyToPackage" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
@@ -210,8 +231,8 @@ class Example7 {
   public void method1() {}
   protected void Method2() {} // violation 'Name 'Method2' must match pattern'
   private void Method3() {} // violation 'Name 'Method3' must match pattern'
-  public void Method4() {} // violation 'Name 'Method4' must match pattern'
-  void Method5() {}  // ok because , 'Property 'applyToPackage' is set to false'
+  public void Example3() {} // violation 'Name 'Example3' must match pattern'
+  void Method5() {} // ok because 'applyToPackage' is false
 }
 </code></pre></div>
       </subsection>

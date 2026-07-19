@@ -9,11 +9,17 @@
 </module>
 */
 
+
+
+
 package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 
 // xdoc section -- start
 class Example3 {
-  public Example3() {}
+  public void method1() {}
+  protected void Method2() {}
+  private void Method3() {}
   public void Example3() {}
+  void Method5() {}
 }
 // xdoc section -- end
