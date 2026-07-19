@@ -10,13 +10,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationind
 
 public class InputJavadocTagContinuationIndentationCheck1 {
 
-    /****
-     * Some Javadoc.
-     *@see Something with violation
-     ****/
-    // violation above 'Line continuation .* expected level should be 4'
-    void foo1() {}
-
     // violation 6 lines below 'Line continuation .* expected level should be 4'
     // violation 8 lines below 'Line continuation .* expected level should be 4'
     // violation 8 lines below 'Line continuation .* expected level should be 4'
@@ -30,4 +23,12 @@ public class InputJavadocTagContinuationIndentationCheck1 {
      *   JavadocTagContinuationIndentation: Checks the indentation.</a>
      */
     void foo2() {}
+
+    /*****************************************************************
+     * Constructs a <code>MalformedURIException</code> with the
+     * specified detail message.
+     *
+     * @param message the detail message.
+     ******************************************************************/
+    void openJdkBoxedJavadoc() {}
 }
