@@ -76,6 +76,32 @@ public final class JavadocCommentsTokenTypes {
     public static final int LEADING_ASTERISK = JavadocCommentsLexer.LEADING_ASTERISK;
 
     /**
+     * Multiple leading asterisks used to format Javadoc lines.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /***
+     *  **** This is a Javadoc line.
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * --BLOCK_COMMENT_BEGIN -> /*
+     *    |--COMMENT_CONTENT -> **\r\n **** This is a Javadoc line.\r\n
+     *    |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
+     *    |       |--LEADING_ASTERISK -> *
+     *    |       |--NEWLINE -> \r\n
+     *    |       |--LEADING_ASTERISKS ->  ****
+     *    |       |--TEXT ->  This is a Javadoc line.
+     *    |       |--NEWLINE -> \r\n
+     *    |       `--TEXT ->
+     * `   --BLOCK_COMMENT_END -> *
+     * }</pre>
+     */
+    public static final int LEADING_ASTERISKS = JavadocCommentsLexer.LEADING_ASTERISKS;
+
+    /**
      * Newline character in a Javadoc comment.
      *
      * <p><b>Example:</b></p>
