@@ -46,6 +46,10 @@ public class InlineConfigParserTest {
         "src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/atclauseorder/"
             + "InputAtclauseOrderIncorrectCustom1.java");
 
+    private static final Path REGEXP_INPUT_FILE = Path.of(
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/"
+            + "InputRegexpSemantic11.java");
+
     @TempDir
     public Path temporaryFolder;
 
@@ -118,9 +122,10 @@ public class InlineConfigParserTest {
                 .that(Files.readString(input))
                 .contains("tokens = (default)PACKAGE_DEF, IMPORT, \\\n"
                     + "         STATIC_IMPORT, MODULE_IMPORT\n\n");
+        final String bodyLine = "package com.puppycrawl.tools. // violation "
+                + "'package statement should not be line-wrapped.'";
         assertWithMessage("updating a multiline property changed the input body line")
-                .that(Files.readAllLines(input).indexOf("package com.puppycrawl.tools. // violation "
-                    + "'package statement should not be line-wrapped.'"))
+                .that(Files.readAllLines(input).indexOf(bodyLine))
                 .isEqualTo(8);
     }
 
@@ -184,6 +189,20 @@ public class InlineConfigParserTest {
         assertWithMessage("unknown property was changed")
                 .that(Files.readString(input))
                 .contains("unknown = value");
+    }
+
+    @Test
+    public void testKeepExplicitEmptyStringProperty() throws Exception {
+        final Path input = temporaryFolder.resolve(
+            "com/puppycrawl/tools/checkstyle/checks/regexp/regexp/InputRegexpSemantic11.java");
+        Files.createDirectories(input.getParent());
+        Files.copy(REGEXP_INPUT_FILE, input);
+
+        InlineConfigParser.parse(input.toString());
+
+        assertWithMessage("explicit empty string property was marked as default")
+                .that(Files.readString(input))
+                .contains("message =\n");
     }
 
     @Test
