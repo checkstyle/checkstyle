@@ -1376,6 +1376,112 @@ public final class InlineConfigParser {
         return stringBuilder.toString();
     }
 
+
+    /**
+     * Whether the inlined config is missing {@code (default)} tags or omits default properties.
+     */
+    private static boolean hasDefaultPropertyIssues(Map<Object, Object> actualProperties,
+            Map<String, String> defaultProperties) {
+        return !getPropertiesWithMissingDefaultTag(actualProperties, defaultProperties).isEmpty()
+                || !getUnusedDefaultProperties(actualProperties, defaultProperties).isEmpty();
+    }
+
+    private static Map<String, String> getPropertiesWithMissingDefaultTag(
+            Map<Object, Object> actualProperties,
+            Map<String, String> defaultProperties) {
+        return actualProperties
+                .entrySet().stream()
+                .filter(entry -> !"id".equals(entry.getKey().toString()))
+                .filter(entry -> !"tabWidth".equals(entry.getKey().toString()))
+                .filter(entry -> !"severity".equals(entry.getKey().toString()))
+                .filter(entry -> !entry.getKey().toString().startsWith("message."))
+                .filter(entry -> !entry.getValue().toString().startsWith("(default)"))
+                .filter(entry -> {
+                    return defaultProperties
+                            .get(entry.getKey().toString())
+                            .equals(entry.getValue().toString());
+                })
+                .collect(HashMap::new,
+                        (map, entry) -> {
+                        map.put(entry.getKey().toString(), entry.getValue().toString());
+                    }, HashMap::putAll);
+    }
+
+    private static List<String> getUnusedDefaultProperties(
+            Map<Object, Object> actualProperties,
+            Map<String, String> defaultProperties) {
+        return defaultProperties.keySet().stream()
+                .filter(propertyName -> !actualProperties.containsKey(propertyName))
+                .toList();
+    }
+
+    /**
+     * Rewrites the inlined config property block so default-valued properties use the
+     * {@code (default)} tag and all default properties are listed. Ordering of existing
+     * keys is preserved; newly added defaults are appended.
+     */
+    private static void autoInsertDefaultPropertyTags(String inputFilePath, int beginLineNo,
+            Map<String, String> defaultProperties) throws IOException {
+        final Path path = Path.of(inputFilePath);
+        final List<String> fileLines = new ArrayList<>(Files.readAllLines(path));
+        int endLineNo = beginLineNo;
+        while (endLineNo < fileLines.size()) {
+            final String line = fileLines.get(endLineNo);
+            if (line.isEmpty() || "*/".equals(line.trim())) {
+                break;
+            }
+            endLineNo++;
+        }
+
+        final List<String> newPropertyLines = new ArrayList<>();
+        final Set<String> seenKeys = new HashSet<>();
+        for (int lineNo = beginLineNo; lineNo < endLineNo; lineNo++) {
+            final String line = fileLines.get(lineNo);
+            final int separator = findPropertySeparator(line);
+            if (separator >= 0) {
+                final String key = line.substring(0, separator).trim();
+                final String value = line.substring(separator + 1).trim();
+                seenKeys.add(key);
+                if (shouldAddDefaultTag(key, value, defaultProperties)) {
+                    newPropertyLines.add(key + " = (default)" + value);
+                }
+                else {
+                    newPropertyLines.add(line);
+                }
+            }
+            else {
+                newPropertyLines.add(line);
+            }
+        }
+
+        for (final Map.Entry<String, String> entry : defaultProperties.entrySet()) {
+            final String key = entry.getKey();
+            if (!seenKeys.contains(key)) {
+                newPropertyLines.add(key + " = (default)" + entry.getValue());
+            }
+        }
+
+        final List<String> updatedFileLines = new ArrayList<>();
+        updatedFileLines.addAll(fileLines.subList(0, beginLineNo));
+        updatedFileLines.addAll(newPropertyLines);
+        updatedFileLines.addAll(fileLines.subList(endLineNo, fileLines.size()));
+        Files.write(path, updatedFileLines);
+    }
+
+    private static int findPropertySeparator(String line) {
+        return line.indexOf('=');
+    }
+
+    private static boolean shouldAddDefaultTag(String key, String value,
+            Map<String, String> defaultProperties) {
+        if ("id".equals(key) || "tabWidth".equals(key) || "severity".equals(key)
+                || key.startsWith("message.") || value.startsWith("(default)")) {
+            return false;
+        }
+        final String defaultValue = defaultProperties.get(key);
+        return defaultValue != null && defaultValue.equals(value);
+    }
+
     private static void validateProperties(Map<String, String> propertiesWithMissingDefaultTag,
             List<String> unusedProperties) throws CheckstyleException {
 
@@ -1405,27 +1511,9 @@ public final class InlineConfigParser {
         Map<Object, Object> actualProperties,
         Map<String, String> defaultProperties) throws CheckstyleException {
 
-        final Map<String, String> propertiesWithMissingDefaultTag = actualProperties
-                .entrySet().stream()
-                .filter(entry -> !"id".equals(entry.getKey().toString()))
-                .filter(entry -> !"tabWidth".equals(entry.getKey().toString()))
-                .filter(entry -> !"severity".equals(entry.getKey().toString()))
-                .filter(entry -> !entry.getKey().toString().startsWith("message."))
-                .filter(entry -> !entry.getValue().toString().startsWith("(default)"))
-                .filter(entry -> {
-                    return defaultProperties
-                            .get(entry.getKey().toString())
-                            .equals(entry.getValue().toString());
-                })
-                .collect(HashMap::new,
-                        (map, entry) -> {
-                        map.put(entry.getKey().toString(), entry.getValue().toString());
-                    }, HashMap::putAll);
-        final List<String> unusedProperties = defaultProperties.keySet().stream()
-                .filter(propertyName -> !actualProperties.containsKey(propertyName))
-                .toList();
-
-        validateProperties(propertiesWithMissingDefaultTag, unusedProperties);
+        validateProperties(
+                getPropertiesWithMissingDefaultTag(actualProperties, defaultProperties),
+                getUnusedDefaultProperties(actualProperties, defaultProperties));
     }
 
     private static void setProperties(String inputFilePath, Configuration module,
@@ -1464,7 +1552,7 @@ public final class InlineConfigParser {
             throws IOException, CheckstyleException, ReflectiveOperationException {
 
         final String propertyContent = readPropertiesContent(beginLineNo, lines);
-        final Map<Object, Object> properties = loadProperties(propertyContent);
+        Map<Object, Object> properties = loadProperties(propertyContent);
         final String fullyQualifiedClassName =
                 getFullyQualifiedClassName(inputFilePath, moduleName);
 
@@ -1472,7 +1560,16 @@ public final class InlineConfigParser {
                 .anyMatch(Path.of(inputFilePath)::endsWith);
 
         if (!isSuppressedValidateDefaultFile) {
-            validateDefaultProperties(properties, getDefaultProperties(fullyQualifiedClassName));
+            final Map<String, String> defaultProperties =
+                    getDefaultProperties(fullyQualifiedClassName);
+            if (hasDefaultPropertyIssues(properties, defaultProperties)) {
+                autoInsertDefaultPropertyTags(inputFilePath, beginLineNo, defaultProperties);
+                final List<String> updatedLines = readFile(Path.of(inputFilePath));
+                final String updatedPropertyContent =
+                        readPropertiesContent(beginLineNo, updatedLines);
+                properties = loadProperties(updatedPropertyContent);
+            }
+            validateDefaultProperties(properties, defaultProperties);
         }
 
         for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
