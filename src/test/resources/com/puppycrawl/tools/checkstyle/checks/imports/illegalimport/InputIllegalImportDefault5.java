@@ -1,8 +1,8 @@
 /*
 IllegalImport
 illegalPkgs = java\\.util
-illegalClasses = (default)
-illegalModules = (default)
+illegalClasses = (default)(null)
+illegalModules = (default)(null)
 regexp = true
 
 
