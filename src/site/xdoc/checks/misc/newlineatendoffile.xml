@@ -153,16 +153,24 @@ int main() { // ⤶
 } // violation first line 'File does not end with a newline.'
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example5-code">Java file <code>Example5.java</code>:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example5 { // ⤶
-// ⤶
-} // violation first line 'File does not end with a newline.'
-</code></pre></div><hr class="example-separator"/>
-
         <p id="Example6-code">Text file <code>Example6.txt</code>:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 Sample txt file. // ok, this file is not specified in the config.
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example5-config">Special message if line separator is defined:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="NewlineAtEndOfFile"&gt;
+    &lt;property name="lineSeparator" value="crlf"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example5 { // ⤶
+// ⤶
+} // violation first line 'File does not end with a newline 'crlf'.'
 </code></pre></div>
       </subsection>
 

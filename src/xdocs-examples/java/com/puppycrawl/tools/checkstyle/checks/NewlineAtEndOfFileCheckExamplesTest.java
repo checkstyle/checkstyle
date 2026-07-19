@@ -72,7 +72,7 @@ public class NewlineAtEndOfFileCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR, "crlf"),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
@@ -83,24 +83,6 @@ public class NewlineAtEndOfFileCheckExamplesTest extends AbstractExamplesModuleT
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
-    }
-
-    @Test
-    public void testExample7() throws Exception {
-        final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR, "cr"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
-    }
-
-    @Test
-    public void testExample8() throws Exception {
-        final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR, "crlf"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
 
 }
