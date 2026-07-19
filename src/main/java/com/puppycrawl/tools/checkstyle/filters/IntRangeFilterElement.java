@@ -27,6 +27,15 @@ package com.puppycrawl.tools.checkstyle.filters;
  */
 record IntRangeFilterElement(Integer lowerBound, Integer upperBound) implements IntFilterElement {
 
+    /**
+     * Creates a new {@code IntRangeFilterElement} instance.
+     *
+     * @param lowerBound the lower bound of the range
+     * @param upperBound the upper bound of the range
+     */
+    IntRangeFilterElement {
+    }
+
     @Override
     public boolean accept(int intValue) {
         return lowerBound.compareTo(intValue) <= 0

@@ -94,4 +94,28 @@ public class JavadocTagTest {
 
     }
 
+    @Test
+    public void testInvalidJavadocTagLegacyGetters() {
+        final InvalidJavadocTag tag = new InvalidJavadocTag(1, 2, "test");
+        assertWithMessage("Invalid line number").that(tag.getLine()).isEqualTo(1);
+        assertWithMessage("Invalid column number").that(tag.getCol()).isEqualTo(2);
+        assertWithMessage("Invalid tag name").that(tag.getName()).isEqualTo("test");
+        assertWithMessage("Invalid line number").that(tag.line()).isEqualTo(1);
+        assertWithMessage("Invalid column number").that(tag.col()).isEqualTo(2);
+        assertWithMessage("Invalid tag name").that(tag.name()).isEqualTo("test");
+    }
+
+    @Test
+    public void testTagInfoLegacyGetters() {
+        final com.puppycrawl.tools.checkstyle.api.LineColumn position = new com.puppycrawl.tools.checkstyle.api.LineColumn(1, 2);
+        final com.puppycrawl.tools.checkstyle.checks.javadoc.utils.TagInfo tagInfo =
+            new com.puppycrawl.tools.checkstyle.checks.javadoc.utils.TagInfo("name", "value", position);
+        assertWithMessage("Invalid name").that(tagInfo.getName()).isEqualTo("name");
+        assertWithMessage("Invalid value").that(tagInfo.getValue()).isEqualTo("value");
+        assertWithMessage("Invalid position").that(tagInfo.getPosition()).isEqualTo(position);
+        assertWithMessage("Invalid name").that(tagInfo.name()).isEqualTo("name");
+        assertWithMessage("Invalid value").that(tagInfo.value()).isEqualTo("value");
+        assertWithMessage("Invalid position").that(tagInfo.position()).isEqualTo(position);
+    }
+
 }
