@@ -2,7 +2,7 @@
 JavadocVariable
 accessModifiers = package, private
 ignoreNamePattern = (default)null
-tokens = (default)ENUM_CONSTANT_DEF
+tokens = (default)VARIABLE_DEF,ENUM_CONSTANT_DEF
 
 */
 
