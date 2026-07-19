@@ -1,8 +1,8 @@
 /*
 JavadocVariable
 accessModifiers = (default)public,protected,package,private
-ignoreNamePattern =
-tokens = (default)ENUM_CONSTANT_DEF
+ignoreNamePattern =(default)
+tokens = (default)VARIABLE_DEF,ENUM_CONSTANT_DEF
 
 */
 

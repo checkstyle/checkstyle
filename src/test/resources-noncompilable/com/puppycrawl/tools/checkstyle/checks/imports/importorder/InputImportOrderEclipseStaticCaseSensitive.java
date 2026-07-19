@@ -9,7 +9,7 @@ caseSensitive = false
 staticGroups = (default)
 sortStaticImportsAlphabetically = (default)false
 useContainerOrderingForStatic = true
-tokens = (default)STATIC_IMPORT
+tokens = (default)IMPORT,STATIC_IMPORT
 
 
 */

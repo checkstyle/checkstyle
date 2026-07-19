@@ -1,7 +1,7 @@
 /*
 IllegalInstantiation
 classes = (default)
-tokens = (default)CLASS_DEF
+tokens = (default)IMPORT,LITERAL_NEW,PACKAGE_DEF,CLASS_DEF
 
 
 */
