@@ -780,8 +780,6 @@ public final class InlineConfigParser {
             + "InputWhitespaceAroundSwitchCasesParensWithAllowEmptySwitchBlockStatements.java",
         "checks/whitespace/whitespacearound/InputWhitespaceAroundSwitchExpressions.java",
         "checks/whitespace/whitespacearound/InputWhitespaceAroundUnnamedPattern.java",
-        "filefilters/beforeexecutionexclusionfilefilter/"
-            + "InputBeforeExecutionExclusionFileFilter.java",
         "filters/suppressionxpathsinglefilter/InputSuppressionXpathSingleFilterComplexQuery.java",
         "filters/suppressionxpathsinglefilter/"
             + "InputSuppressionXpathSingleFilterDecideByMessage.java",
