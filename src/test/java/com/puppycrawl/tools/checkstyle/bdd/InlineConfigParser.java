@@ -727,8 +727,6 @@ public final class InlineConfigParser {
         "checks/whitespace/emptylineseparator/packageinfo/test3/package-info.java",
         "checks/whitespace/emptylineseparator/packageinfo/test4/package-info.java",
         "checks/whitespace/emptylineseparator/packageinfo/test5/package-info.java",
-        "checks/whitespace/nolinewrap/InputNoLineWrapBad.java",
-        "checks/whitespace/nolinewrap/InputNoLineWrapGood.java",
         "checks/whitespace/parenpad/InputParenPadCheckEmoji.java",
         "checks/whitespace/parenpad/InputParenPadCheckRecords.java",
         "checks/whitespace/parenpad/InputParenPadCheckRecordsSpace.java",
