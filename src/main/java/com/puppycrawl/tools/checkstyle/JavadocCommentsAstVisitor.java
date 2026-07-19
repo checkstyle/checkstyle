@@ -629,6 +629,24 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     /**
+     * Checks whether a token is a formatting token with multiple leading asterisks.
+     *
+     * @param token the token to check
+     * @return true if the token contains multiple leading asterisks
+     */
+    private static boolean isMultipleLeadingAsterisks(Token token) {
+        boolean result = false;
+
+        if (token.getType() == JavadocCommentsLexer.LEADING_ASTERISK) {
+            final String tokenText = token.getText();
+            final int firstAsteriskIndex = tokenText.indexOf('*');
+            result = firstAsteriskIndex < tokenText.length() - 1;
+        }
+
+        return result;
+    }
+
+    /**
      * Adds hidden tokens to the left of the given token to the parent node.
      * Ensures text accumulation is flushed before adding hidden tokens.
      * Hidden tokens are only added once per unique token index.
@@ -675,6 +693,9 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         }
         if (tokenType == JavadocCommentsLexer.WS) {
             node.setType(JavadocCommentsTokenTypes.TEXT);
+        }
+        if (isMultipleLeadingAsterisks(token)) {
+            node.setType(JavadocCommentsTokenTypes.LEADING_ASTERISKS);
         }
 
         return node;

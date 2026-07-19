@@ -162,6 +162,10 @@
   <suppress checks="ClassFanOutComplexity"
             files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]JavadocCommentsAstVisitor.java"/>
 
+  <!-- API docs intentionally show adjacent asterisks as Javadoc content. -->
+  <suppress id="blockCommentStartWithSpace"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]api[\\/]JavadocCommentsTokenTypes.java"/>
+
   <!-- DetailAST API requires large number of methods -->
   <suppress checks="MethodCount"
             files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]DetailAstImpl.java"/>

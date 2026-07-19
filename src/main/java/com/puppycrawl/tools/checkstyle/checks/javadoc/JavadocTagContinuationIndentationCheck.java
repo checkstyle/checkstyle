@@ -192,8 +192,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
 
         // special case for the first child, because leading asterisk
         // will be previous sibling of the parent (description node) not the node itself
-        if (descriptionNode.getPreviousSibling().getType()
-                == JavadocCommentsTokenTypes.LEADING_ASTERISK) {
+        if (isLeadingAsterisk(descriptionNode.getPreviousSibling())) {
             textNodes.add(node);
         }
 
@@ -219,7 +218,18 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         return previousSibling != null
             && isTextOrAttributeValueNode(node)
             && !isBeforePreTag(node)
-            && previousSibling.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK;
+            && isLeadingAsterisk(previousSibling);
+    }
+
+    /**
+     * Checks whether the given node is a leading asterisk.
+     *
+     * @param node the AST node to check
+     * @return true if the node is a leading asterisk, false otherwise
+     */
+    private static boolean isLeadingAsterisk(DetailNode node) {
+        return node.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK
+            || node.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISKS;
     }
 
     /**
