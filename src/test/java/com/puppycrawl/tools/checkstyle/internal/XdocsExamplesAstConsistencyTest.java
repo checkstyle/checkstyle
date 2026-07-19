@@ -163,8 +163,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/javadoc/javadocblocktaglocation",
             "checks/metrics/cyclomaticcomplexity",
             "checks/modifier/interfacememberimpliedmodifier",
-            "checks/naming/methodname",
-            "checks/naming/staticvariablename",
             "checks/regexp/regexp",
             "checks/regexp/regexpmultiline",
             "checks/regexp/regexponfilename",
