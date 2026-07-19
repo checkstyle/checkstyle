@@ -297,8 +297,9 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                     cacheFile.put(fileName, timestamp);
                 }
                 fireFileStarted(fileName);
-                final SortedSet<Violation> fileMessages = processFile(file);
-                fireErrors(fileName, fileMessages);
+                final SortedSet<Violation> fileMessages = new TreeSet<>();
+                final FileText fileText = processFile(file, fileMessages);
+                fireErrors(fileName, fileMessages, fileText);
                 fireFileFinished(fileName);
             }
             // -@cs[IllegalCatch] There is no other way to deliver filename that was under
@@ -327,18 +328,20 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * Processes a file with all FileSetChecks.
      *
      * @param file a file to process.
-     * @return a sorted set of violations to be logged.
+     * @param fileMessages the set that collects violations produced for the file.
+     * @return the {@link FileText} read for the file, or {@code null} if it could not be read.
      * @throws CheckstyleException if error condition within Checkstyle occurs.
      * @noinspection ProhibitedExceptionThrown
      * @noinspectionreason ProhibitedExceptionThrown - there is no other way to obey
      *      haltOnException field
      */
-    private SortedSet<Violation> processFile(File file) throws CheckstyleException {
-        final SortedSet<Violation> fileMessages = new TreeSet<>();
+    private FileText processFile(File file, SortedSet<Violation> fileMessages)
+            throws CheckstyleException {
+        FileText fileText = null;
         try {
-            final FileText theText = new FileText(file.getAbsoluteFile(), charset);
+            fileText = new FileText(file.getAbsoluteFile(), charset);
             for (final FileSetCheck fsc : fileSetChecks) {
-                fileMessages.addAll(fsc.process(file, theText));
+                fileMessages.addAll(fsc.process(file, fileText));
             }
         }
         catch (final IOException ioe) {
@@ -365,7 +368,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                     new String[] {sw.getBuffer().toString()},
                     null, getClass(), null));
         }
-        return fileMessages;
+        return fileText;
     }
 
     /**
@@ -403,10 +406,22 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      */
     @Override
     public void fireErrors(String fileName, SortedSet<Violation> errors) {
+        fireErrors(fileName, errors, null);
+    }
+
+    /**
+     * Notify all listeners about the errors in a file, attaching the file source to each
+     * event so filters can reuse it instead of reloading the file from disk.
+     *
+     * @param fileName the audited file
+     * @param errors the audit errors from the file
+     * @param fileText the text of the audited file, or {@code null} if it is not available
+     */
+    private void fireErrors(String fileName, SortedSet<Violation> errors, FileText fileText) {
         final String stripped = relativizePathWithCatch(fileName);
         boolean hasNonFilteredViolations = false;
         for (final Violation element : errors) {
-            final AuditEvent event = new AuditEvent(this, stripped, element);
+            final AuditEvent event = new AuditEvent(this, stripped, element, fileText);
             if (filters.accept(event)) {
                 hasNonFilteredViolations = true;
                 for (final AuditListener listener : listeners) {
