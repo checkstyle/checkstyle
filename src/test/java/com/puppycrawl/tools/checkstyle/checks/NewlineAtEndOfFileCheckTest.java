@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
+import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_UNABLE_OPEN;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_WRONG_ENDING;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
@@ -100,12 +101,12 @@ public class NewlineAtEndOfFileCheckTest
     }
 
     @Test
-    public void testNoNewlineLfAtEndOfFile() throws Exception {
+    public void testCrEndingWhenLfExpected() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR, "lf"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputNewlineAtEndOfFileNoNewline.java"),
+                getPath("InputNewlineAtEndOfFileCrWhenLfExpected.java"),
             expected);
     }
 
@@ -117,6 +118,46 @@ public class NewlineAtEndOfFileCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputNewlineAtEndOfFileNoNewline2.java"),
+            expected);
+    }
+
+    @Test
+    public void testNoNewlineWithLfSeparatorLogsSpecificMessage() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR, "lf"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileNoNewline.java"),
+            expected);
+    }
+
+    @Test
+    public void testNoNewlineWithCrSeparatorLogsSpecificMessage() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR, "cr"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileNoNewlineCr.java"),
+            expected);
+    }
+
+    @Test
+    public void testNoNewlineWithCrlfSeparatorLogsSpecificMessage() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR, "crlf"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileNoNewlineCrlf.java"),
+            expected);
+    }
+
+    @Test
+    public void testNoNewlineWithLfCrCrlfSeparatorLogsGenericMessage() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileNoNewlineLfCrCrlf.java"),
             expected);
     }
 
