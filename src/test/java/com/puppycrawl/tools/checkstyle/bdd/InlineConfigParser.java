@@ -490,6 +490,18 @@ public final class InlineConfigParser {
         "checks/coding/illegaltype/InputIllegalTypeTestStaticImports.java",
         "checks/coding/illegaltype/InputIllegalTypeWhitespaceInConfig.java",
         "checks/coding/illegaltype/InputIllegalTypeWithRecordPattern.java",
+        "checks/coding/modifiedcontrolvariable/"
+            + "InputModifiedControlVariableBothForLoops.java",
+        "checks/coding/modifiedcontrolvariable/"
+            + "InputModifiedControlVariableEnhancedForLoopVariable.java",
+        "checks/coding/modifiedcontrolvariable/"
+            + "InputModifiedControlVariableEnhancedForLoopVariable2.java",
+        "checks/coding/modifiedcontrolvariable/"
+            + "InputModifiedControlVariableEnhancedForLoopVariable3.java",
+        "checks/coding/modifiedcontrolvariable/"
+            + "InputModifiedControlVariableRecordDecomposition.java",
+        "checks/coding/modifiedcontrolvariable/"
+            + "InputModifiedControlVariableTestVariousAssignments.java",
         "checks/coding/unnecessaryparentheses/InputUnnecessaryParentheses15Extensions.java",
         "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesCheckPatterns.java",
         "checks/coding/unnecessaryparentheses/"
