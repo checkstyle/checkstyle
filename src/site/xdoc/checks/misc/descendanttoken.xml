@@ -8,6 +8,46 @@
   <body>
     <section name="DescendantToken">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"></label>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#DescendantToken_Description">Description</a></li>
+          <li><a href="#DescendantToken_Properties">Properties</a></li>
+          <li><a href="#DescendantToken_Examples">Examples</a>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config">A switch statement with no default case</a></li>
+              <li><a href="#Example2-config">A switch with too many cases</a></li>
+              <li><a href="#Example3-config">A switch that is nested in another switch</a></li>
+              <li><a href="#Example4-config">A condition in for which performs no check</a></li>
+              <li><a href="#Example6-config">A return statement from within a catch or finally block</a></li>
+              <li><a href="#Example7-config">A try statement within a catch or finally block</a></li>
+              <li><a href="#Example12-config">An empty statement</a></li>
+              <li><a href="#Example14-config">Comparing this with null</a></li>
+              <li><a href="#Example17-config">With a custom message when the minimum count of descendants is not reached</a></li>
+            </ul>
+          </li>
+          <li><a href="#DescendantToken_Use_Cases">Use Cases</a>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config">An initializer in for performs no setup (where a while statement could be used instead)</a></li>
+              <li><a href="#UseCase2-config">A method with too many local variables</a></li>
+              <li><a href="#UseCase3-config">A method with too many returns</a></li>
+              <li><a href="#UseCase4-config">A method which throws too many exceptions</a></li>
+              <li><a href="#UseCase5-config">A method with too many expressions</a></li>
+              <li><a href="#UseCase6-config">A class or interface with too many fields</a></li>
+              <li><a href="#UseCase7-config">A String literal equality check</a></li>
+              <li><a href="#UseCase8-config">An assert statement that may have side effects</a></li>
+            </ul>
+          </li>
+          <li><a href="#DescendantToken_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#DescendantToken_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#DescendantToken_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#DescendantToken_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="DescendantToken_Description">
         <div>
           Checks for restricted tokens beneath other tokens.
