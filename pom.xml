@@ -613,7 +613,7 @@
             <show>private</show>
             <failOnError>true</failOnError>
             <failOnWarnings>true</failOnWarnings>
-            <doclint>-missing</doclint>
+            <doclint>all</doclint>
             <linksource>true</linksource>
             <tags>
               <tag>
