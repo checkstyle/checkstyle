@@ -412,30 +412,6 @@ public final class InlineConfigParser {
         "checks/blocks/leftcurly/InputLeftCurlyTestSwitchExpressionsNewLine.java",
         "checks/blocks/leftcurly/InputLeftCurlyWithEmoji.java",
         "checks/blocks/leftcurly/InputLeftCurlyWithEmojiNl.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariable3.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableAnonymousClass.java",
-        "checks/coding/finallocalvariable/"
-            + "InputFinalLocalVariableAssignedInsideAndOutsideSwitch.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableAssignedMultipleTimes.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableBreak.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableCheckRecords.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableCheckSwitchAssignment.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableCheckSwitchExpressionsA.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableCheckSwitchExpressionsB.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableCheckSwitchExpressionsC.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableCompactSourceFile.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableFalsePositives.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableFive.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableFour.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableLeavingSlistToken.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableMultipleAndNestedConditions.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableOne.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableSwitchStatement.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableThree.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableTwo.java",
-        "checks/coding/finallocalvariable/"
-            + "InputFinalLocalVariableValidateUnnamedVariablesFalse.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableValidateUnnamedVariablesTrue.java",
         "checks/coding/hiddenfield/InputHiddenField2Basic.java",
         "checks/coding/hiddenfield/InputHiddenField2Enum.java",
         "checks/coding/hiddenfield/InputHiddenField2Interface.java",
@@ -514,18 +490,6 @@ public final class InlineConfigParser {
         "checks/coding/illegaltype/InputIllegalTypeTestStaticImports.java",
         "checks/coding/illegaltype/InputIllegalTypeWhitespaceInConfig.java",
         "checks/coding/illegaltype/InputIllegalTypeWithRecordPattern.java",
-        "checks/coding/modifiedcontrolvariable/"
-            + "InputModifiedControlVariableBothForLoops.java",
-        "checks/coding/modifiedcontrolvariable/"
-            + "InputModifiedControlVariableEnhancedForLoopVariable.java",
-        "checks/coding/modifiedcontrolvariable/"
-            + "InputModifiedControlVariableEnhancedForLoopVariable2.java",
-        "checks/coding/modifiedcontrolvariable/"
-            + "InputModifiedControlVariableEnhancedForLoopVariable3.java",
-        "checks/coding/modifiedcontrolvariable/"
-            + "InputModifiedControlVariableRecordDecomposition.java",
-        "checks/coding/modifiedcontrolvariable/"
-            + "InputModifiedControlVariableTestVariousAssignments.java",
         "checks/coding/unnecessaryparentheses/InputUnnecessaryParentheses15Extensions.java",
         "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesCheckPatterns.java",
         "checks/coding/unnecessaryparentheses/"
