@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="MethodName">
-       <property name="applyToPackage" value="false"/>
+       <property name="applyToPublic" value="false"/>
     </module>
   </module>
 </module>
@@ -13,11 +13,11 @@
 package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 
 // xdoc section -- start
-class Example7 {
+class Example4 {
   public void method1() {}
   protected void Method2() {} // violation 'Name 'Method2' must match pattern'
   private void Method3() {} // violation 'Name 'Method3' must match pattern'
-  public void Example3() {} // violation 'Name 'Example3' must match pattern'
-  void Method5() {} // ok because 'applyToPackage' is false
+  public void Example3() {} // ok because 'applyToPublic' is false
+  void Method5() {} // violation 'Name 'Method5' must match pattern'
 }
 // xdoc section -- end
