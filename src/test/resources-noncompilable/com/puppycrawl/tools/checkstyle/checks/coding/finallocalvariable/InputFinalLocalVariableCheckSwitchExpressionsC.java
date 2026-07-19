@@ -2,8 +2,8 @@
 FinalLocalVariable
 validateEnhancedForLoopVariable = (default)false
 validateUnnamedVariables = (default)false
-tokens = (default)VARIABLE_DEF
-
+tokens = (default)IDENT,CTOR_DEF,METHOD_DEF,SLIST,OBJBLOCK,COMPACT_COMPILATION_UNIT,LITERAL_BREAK, \
+          LITERAL_FOR,VARIABLE_DEF,EXPR
 */
 // non-compiled with javac: Compilable with Java21 individually
 // non-compiled with eclipse: local variable may not have been initialized

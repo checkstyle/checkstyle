@@ -5,6 +5,8 @@ allowedAnnotations = (default)Override
 scope = (default)public
 allowMissingPropertyJavadoc = true
 tokens = (default)METHOD_DEF , CTOR_DEF , ANNOTATION_FIELD_DEF , COMPACT_CTOR_DEF
+excludeScope = (default)(null)
+ignoreMethodNamesRegex = (default)(null)
 
 */
 
