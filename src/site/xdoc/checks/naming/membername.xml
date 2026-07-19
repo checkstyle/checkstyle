@@ -147,6 +147,88 @@ class Example3 {
   int NUM3;           // violation 'Name 'NUM3' must match pattern'
   private int NUM4;
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          An example of how to suppress the check which is applied to
+          public and protected member:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MemberName"&gt;
+      &lt;property name="applyToPublic" value="false"/&gt;
+      &lt;property name="applyToProtected" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+  public int num1;
+  protected int num2;
+  int num3;
+  private int num4;
+
+  public int NUM1;
+  protected int NUM2;
+  int NUM3;           // violation 'Name 'NUM3' must match pattern'
+  private int NUM4;   // violation 'Name 'NUM4' must match pattern'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          An example of how to suppress the check which is applied to
+          package-private member:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MemberName"&gt;
+      &lt;property name="applyToPackage" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 {
+  public int num1;
+  protected int num2;
+  int num3;
+  private int num4;
+
+  public int NUM1;    // violation 'Name 'NUM1' must match pattern'
+  protected int NUM2; // violation 'Name 'NUM2' must match pattern'
+  int NUM3;
+  private int NUM4;   // violation 'Name 'NUM4' must match pattern'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example6-config">
+          An example of how to suppress the check which is applied to
+          private member:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MemberName"&gt;
+      &lt;property name="applyToPrivate" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example6 {
+  public int num1;
+  protected int num2;
+  int num3;
+  private int num4;
+
+  public int NUM1;    // violation 'Name 'NUM1' must match pattern'
+  protected int NUM2; // violation 'Name 'NUM2' must match pattern'
+  int NUM3;           // violation 'Name 'NUM3' must match pattern'
+  private int NUM4;
+}
 </code></pre></div>
       </subsection>
 
