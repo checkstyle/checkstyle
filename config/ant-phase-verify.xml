@@ -87,6 +87,13 @@
           <!-- styleguides are copied/cached from origin place we should not change them  -->
           <exclude name="src/site/resources/styleguides/**/*"/>
 
+          <!-- Maven release plugin temporary files -->
+          <exclude name="release.properties"/>
+          <exclude name="pom.xml.releaseBackup"/>
+          <exclude name="pom.xml.next"/>
+          <exclude name="pom.xml.tag"/>
+          <exclude name="pom.xml.branch"/>
+
           <!-- Eclipse project files -->
           <exclude name=".settings/**/*"/>
           <exclude name=".externalToolBuilders/**/*"/>

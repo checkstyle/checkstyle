@@ -51,6 +51,19 @@ public record SearchIndexEntry(String title, String url, String category,
     }
 
     /**
+     * Creates a new {@code SearchIndexEntry} instance.
+     *
+     * @param title the title of the entry
+     * @param url the URL of the entry
+     * @param category the category of the entry
+     * @param type the type of the entry
+     * @param description the description of the entry
+     * @param keywords the keywords of the entry
+     */
+    public SearchIndexEntry {
+    }
+
+    /**
      * Serialises this entry to a compact JSON object string.
      *
      * @return JSON object string
