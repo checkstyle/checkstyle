@@ -57,6 +57,15 @@ public record ThreadModeSettings(int checkerThreadsNumber,
     private static final long serialVersionUID = 1L;
 
     /**
+     * Creates a new {@code ThreadModeSettings} instance.
+     *
+     * @param checkerThreadsNumber the number of threads in the checker
+     * @param treeWalkerThreadsNumber the number of threads in the tree walker
+     */
+    public ThreadModeSettings {
+    }
+
+    /**
      * Resolves the module name according to the thread settings.
      *
      * @param name The original module name.
