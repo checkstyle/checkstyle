@@ -1,8 +1,8 @@
 /*
 IllegalImport
 illegalPkgs = sun.reflect
-illegalClasses = (default)
-illegalModules = (default)
+illegalClasses = (default)(null)
+illegalModules = (default)(null)
 regexp = true
 
 

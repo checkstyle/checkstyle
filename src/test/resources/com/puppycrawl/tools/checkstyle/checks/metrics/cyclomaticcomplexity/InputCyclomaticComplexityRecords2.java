@@ -2,12 +2,12 @@
 CyclomaticComplexity
 max = 0
 switchBlockAsSingleDecisionPoint = (default)false
-tokens = (default)LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_SWITCH, \
-         LITERAL_CASE, LITERAL_CATCH, QUESTION, LAND, LOR, LITERAL_WHEN
-
+tokens = (default)CTOR_DEF, METHOD_DEF, INSTANCE_INIT, STATIC_INIT, LITERAL_WHILE, LITERAL_DO, \
+           LITERAL_FOR, LITERAL_IF, \
+         LITERAL_SWITCH, LITERAL_CASE, LITERAL_CATCH, QUESTION, LAND, LOR, COMPACT_CTOR_DEF, LITER \
+          AL_WHEN
 
 */
-
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
