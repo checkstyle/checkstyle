@@ -28,6 +28,16 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
  */
 public record InvalidJavadocTag(int line, int col, String name) {
 
+    /**
+     * Creates a new {@code InvalidJavadocTag} instance.
+     *
+     * @param line the line number
+     * @param col the column number
+     * @param name the name of the invalid tag
+     */
+    public InvalidJavadocTag {
+    }
+
     /** Legacy getter for line (backward compatibility). */
     public int getLine() {
         return line;
