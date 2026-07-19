@@ -782,9 +782,6 @@ public final class InlineConfigParser {
         "checks/whitespace/whitespacearound/InputWhitespaceAroundUnnamedPattern.java",
         "filefilters/beforeexecutionexclusionfilefilter/"
             + "InputBeforeExecutionExclusionFileFilter.java",
-        "filters/suppressionxpathsinglefilter/InputSuppressionXpathSingleFilterComplexQuery.java",
-        "filters/suppressionxpathsinglefilter/"
-            + "InputSuppressionXpathSingleFilterDecideByMessage.java",
         "filters/suppresswithnearbytextfilter/"
             + "InputSuppressWithNearbyTextFilterNearbyTextPatternCompactVariableCheckPattern.java",
         "treewalker/InputTreeWalkerSuppressionCommentFilter.java",
