@@ -8,7 +8,7 @@ idFormat = (default)(null)
 
 com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck
 eachLine = true
-fileExtensions = (default)
+fileExtensions = (default)(null)
 
 
 */
