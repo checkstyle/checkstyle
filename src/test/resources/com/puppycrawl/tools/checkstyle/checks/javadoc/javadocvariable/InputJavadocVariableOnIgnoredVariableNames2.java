@@ -2,7 +2,7 @@
 JavadocVariable
 accessModifiers = (default)public,protected,package,private
 ignoreNamePattern = log|logger
-tokens = (default)ENUM_CONSTANT_DEF
+tokens = (default)VARIABLE_DEF,ENUM_CONSTANT_DEF
 
 */
 
