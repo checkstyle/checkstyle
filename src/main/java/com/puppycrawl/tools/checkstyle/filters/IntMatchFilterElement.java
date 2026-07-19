@@ -26,6 +26,14 @@ package com.puppycrawl.tools.checkstyle.filters;
  */
 record IntMatchFilterElement(int matchValue) implements IntFilterElement {
 
+    /**
+     * Creates a new {@code IntMatchFilterElement} instance.
+     *
+     * @param matchValue the value to match
+     */
+    public IntMatchFilterElement {
+    }
+
     @Override
     public boolean accept(int intValue) {
         return matchValue == intValue;
