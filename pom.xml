@@ -619,14 +619,17 @@
               <tag>
                 <name>noinspection</name>
                 <placement>X</placement>
+                <head>noinspection</head>
               </tag>
               <tag>
                 <name>noinspectionreason</name>
                 <placement>X</placement>
+                <head>noinspectionreason</head>
               </tag>
               <tag>
                 <name>propertySince</name>
                 <placement>X</placement>
+                <head>propertySince</head>
               </tag>
             </tags>
           </configuration>
