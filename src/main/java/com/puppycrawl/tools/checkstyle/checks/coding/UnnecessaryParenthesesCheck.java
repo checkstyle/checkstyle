@@ -420,7 +420,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     }
 
     /**
-     * Get the node itself ot its parent, if it's a method call.
+     * Get the node itself or its parent, if it's a method call.
      *
      * @param ast AST node
      * @return node or its parent
