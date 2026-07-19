@@ -171,10 +171,10 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
             final String eventFileTextAbsolutePath = event.getFileName();
 
             if (!cachedFileAbsolutePath.equals(eventFileTextAbsolutePath)) {
-                final FileText currentFileText = getFileText(eventFileTextAbsolutePath);
+                final FileText currentFileText = getFileText(event);
 
                 if (currentFileText != null) {
-                    cachedFileAbsolutePath = currentFileText.getFile().getAbsolutePath();
+                    cachedFileAbsolutePath = eventFileTextAbsolutePath;
                     collectSuppressions(currentFileText);
                 }
             }
@@ -189,6 +189,22 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
     @Override
     protected void finishLocalSetup() {
         // No code by default
+    }
+
+    /**
+     * Returns the {@link FileText} for the given event, reusing the file source carried by
+     * the event when available, or reading it from disk otherwise.
+     *
+     * @param event {@link AuditEvent} instance.
+     * @return {@link FileText} instance.
+     * @throws IllegalStateException if the file could not be read.
+     */
+    private static FileText getFileText(AuditEvent event) {
+        FileText result = event.getFileText();
+        if (result == null) {
+            result = getFileText(event.getFileName());
+        }
+        return result;
     }
 
     /**
