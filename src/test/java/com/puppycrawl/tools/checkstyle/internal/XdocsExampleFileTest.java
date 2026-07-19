@@ -29,6 +29,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -37,10 +38,14 @@ import java.util.stream.Stream;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.junit.jupiter.api.Test;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 
 public class XdocsExampleFileTest {
 
@@ -113,6 +118,89 @@ public class XdocsExampleFileTest {
                     + String.join("\n", failures))
                     .fail();
         }
+    }
+
+    @Test
+    public void testAllExampleFilesAreReferencedInXdocs() throws Exception {
+        final Set<String> referencedPaths = collectReferencedExamplePaths();
+        final Path xdocsExamplesBase = Path.of("src/xdocs-examples");
+        final List<Path> exampleRoots = List.of(
+            xdocsExamplesBase.resolve("resources"),
+            xdocsExamplesBase.resolve("resources-noncompilable")
+        );
+        final List<String> failures = new ArrayList<>();
+
+        for (Path root : exampleRoots) {
+            if (Files.exists(root)) {
+                try (Stream<Path> paths = Files.walk(root)) {
+                    paths
+                        .filter(path -> {
+                            final String fileName = path.getFileName().toString();
+                            return Files.isRegularFile(path)
+                                && fileName.startsWith("Example");
+                        })
+                        .forEach(exampleFile -> {
+                            final String relative = xdocsExamplesBase
+                                .relativize(exampleFile)
+                                .toString()
+                                .replace(File.separatorChar, '/');
+                            if (!referencedPaths.contains(relative)) {
+                                failures.add(relative);
+                            }
+                        });
+                }
+            }
+        }
+
+        if (!failures.isEmpty()) {
+            assertWithMessage(
+                "The following example files are not referenced in any xml.template file:\n"
+                    + String.join("\n", failures))
+                .fail();
+        }
+    }
+
+    private static Set<String> collectReferencedExamplePaths() throws Exception {
+        final Set<String> referenced = new HashSet<>();
+
+        for (Path template : XdocUtil.getXdocsTemplatesFilePaths()) {
+            final String input = Files.readString(template);
+            final Document document = XmlUtil.getRawXml(template.toString(), input, input);
+            final NodeList macros = document.getElementsByTagName("macro");
+
+            for (int idx = 0; idx < macros.getLength(); idx++) {
+                final Element macro = (Element) macros.item(idx);
+                if ("example".equals(macro.getAttribute("name"))) {
+                    final String path = getMacroParamValue(macro, "path");
+                    if (path != null && !path.isEmpty()) {
+                        referenced.add(normalizePath(path));
+                    }
+                }
+            }
+        }
+        return referenced;
+    }
+
+    private static String getMacroParamValue(Element macro, String paramName) {
+        String result = null;
+        final NodeList params = macro.getElementsByTagName("param");
+
+        for (int idx = 0; idx < params.getLength(); idx++) {
+            final Element param = (Element) params.item(idx);
+            if (paramName.equals(param.getAttribute("name"))) {
+                result = param.getAttribute("value");
+                break;
+            }
+        }
+        return result;
+    }
+
+    private static String normalizePath(String path) {
+        String result = path;
+        if (result.startsWith("/")) {
+            result = result.substring(1);
+        }
+        return result;
     }
 
     private static void scanFile(Path testFile, Path examplesResources, Path examplesNonCompilable,

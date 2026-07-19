@@ -61,7 +61,23 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example2.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check for Java 21+ (default values):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example3.java"/>
+          <param name="type" value="config"/>
         </macro>
+        <p id="Example3-code">
+          Example of line-wrapped statements for Java 21+ (bad case):
+        </p>
+        <macro name="example">
+          <param name="path"
+          value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
       </subsection>
 
       <subsection name="Use Cases" id="NoLineWrap_Use_Cases">
