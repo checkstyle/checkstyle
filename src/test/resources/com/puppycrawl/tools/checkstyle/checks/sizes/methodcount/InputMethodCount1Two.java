@@ -5,10 +5,10 @@ maxPrivate = 3
 maxPackage = 3
 maxProtected = 3
 maxPublic = 3
-tokens = (default)CLASS_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,INTERFACE_DEF,ANNOTATION_DEF,METHOD_DEF,RECORD_DEF,COMPACT_COMPILATION_UNIT
+tokens = (default)CLASS_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,INTERFACE_DEF,ANNOTATION_DEF,METHOD_DEF, \
+          RECORD_DEF,COMPACT_COMPILATION_UNIT
 
 */
-
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
 
 public class InputMethodCount1Two { // 3 violations

@@ -73,6 +73,12 @@ public final class InlineConfigParser {
     /** Marker for a property that explicitly documents its default value. */
     private static final String DEFAULT_TAG = "(default)";
 
+    /** Max length for Input file header property lines (checkstyle LineLength). */
+    private static final int MAX_HEADER_LINE_LENGTH = 100;
+
+    /** Indent for continued Input header property lines. */
+    private static final String HEADER_CONTINUATION_INDENT = "          ";
+
     /**
      * Pattern to match a continuation line of a multiline triple-quote violation message.
      * Captures everything after the leading {@code //} and optional whitespace.
@@ -1077,6 +1083,8 @@ public final class InlineConfigParser {
             }
         }
 
+        endLineNo = wrapLongHeaderPropertyLines(lines, beginLineNo, endLineNo);
+
         updateOutdatedDefaultProperties(lines, beginLineNo, endLineNo, actualProperties,
                 defaultProperties, collectionPropertyNames);
 
@@ -1086,9 +1094,11 @@ public final class InlineConfigParser {
                 .toList();
         for (final String propertyName : unusedProperties) {
             final String defaultValue = defaultProperties.get(propertyName).value();
-            lines.add(endLineNo, propertyName + " = (default)" + defaultValue);
+            final List<String> propertyLines = wrapHeaderPropertyLine(
+                    propertyName + " = (default)" + defaultValue);
+            lines.addAll(endLineNo, propertyLines);
             actualProperties.put(propertyName, "(default)" + defaultValue);
-            endLineNo++;
+            endLineNo += propertyLines.size();
         }
     }
 
@@ -1121,7 +1131,8 @@ public final class InlineConfigParser {
                                     propertyLineCount);
                         }
                         else {
-                            updatedLines = List.of(matcher.group(1) + DEFAULT_TAG + defaultValue);
+                            updatedLines = wrapHeaderPropertyLine(
+                                    matcher.group(1) + DEFAULT_TAG + defaultValue);
                         }
                         lines.subList(lineNo, continuationEndLineNo).clear();
                         lines.addAll(lineNo, updatedLines);
@@ -1131,6 +1142,119 @@ public final class InlineConfigParser {
                 }
             }
         }
+    }
+
+
+    private static int wrapLongHeaderPropertyLines(List<String> lines, int beginLineNo,
+            int endLineNo) {
+        int updatedEndLineNo = endLineNo;
+        for (int lineNo = beginLineNo; lineNo < updatedEndLineNo; lineNo++) {
+            final String line = lines.get(lineNo);
+            if (line.length() > MAX_HEADER_LINE_LENGTH) {
+                final List<String> wrapped = wrapHeaderPropertyLine(line);
+                if (wrapped.size() != 1 || !wrapped.get(0).equals(line)) {
+                    lines.remove(lineNo);
+                    lines.addAll(lineNo, wrapped);
+                    updatedEndLineNo += wrapped.size() - 1;
+                    lineNo += wrapped.size() - 1;
+                }
+            }
+        }
+        return updatedEndLineNo;
+    }
+
+    private static List<String> wrapHeaderPropertyLine(String line) {
+        if (line.length() <= MAX_HEADER_LINE_LENGTH) {
+            return List.of(line);
+        }
+        final Matcher matcher = Pattern.compile("^(\\s*[^:=\\s]+\\s*[=:]\\s*)(.*)$")
+                .matcher(line);
+        if (!matcher.matches()) {
+            return hardWrapHeaderLine("", line);
+        }
+        final String prefix = matcher.group(1);
+        final String value = matcher.group(2);
+        if (value.indexOf(',') >= 0) {
+            return wrapHeaderCommaSeparatedValue(prefix, value);
+        }
+        return hardWrapHeaderLine(prefix, value);
+    }
+
+    private static List<String> wrapHeaderCommaSeparatedValue(String prefix, String value) {
+        final String[] parts = value.split(",", -1);
+        final List<String> result = new ArrayList<>();
+        String current = prefix;
+        for (int index = 0; index < parts.length; index++) {
+            final String part = parts[index];
+            final String candidate;
+            if (index == 0) {
+                candidate = current + part;
+            }
+            else {
+                candidate = current + "," + part;
+            }
+            final boolean more = index < parts.length - 1;
+            final int limit = more
+                    ? MAX_HEADER_LINE_LENGTH - 2
+                    : MAX_HEADER_LINE_LENGTH;
+            if (index > 0 && candidate.length() > limit) {
+                result.add(current + ", \\");
+                current = HEADER_CONTINUATION_INDENT + part;
+            }
+            else if (index == 0 && candidate.length() > limit) {
+                return hardWrapHeaderLine(prefix, value);
+            }
+            else {
+                current = candidate;
+            }
+        }
+        result.add(current);
+        final List<String> fixed = new ArrayList<>(result.size());
+        for (final String entry : result) {
+            if (entry.length() <= MAX_HEADER_LINE_LENGTH) {
+                fixed.add(entry);
+            }
+            else {
+                final Matcher matcher = Pattern.compile("^(\\s*(?:[^:=\\s]+\\s*[=:]\\s*)?)(.*)$")
+                        .matcher(entry);
+                if (matcher.matches()) {
+                    fixed.addAll(hardWrapHeaderLine(matcher.group(1), matcher.group(2)));
+                }
+                else {
+                    fixed.addAll(hardWrapHeaderLine("", entry));
+                }
+            }
+        }
+        return fixed;
+    }
+
+    private static List<String> hardWrapHeaderLine(String prefix, String value) {
+        final List<String> result = new ArrayList<>();
+        String remaining = value;
+        boolean first = true;
+        while (!remaining.isEmpty()) {
+            if (first) {
+                if (prefix.length() + remaining.length() <= MAX_HEADER_LINE_LENGTH) {
+                    result.add(prefix + remaining);
+                    break;
+                }
+                final int budget = Math.max(8, MAX_HEADER_LINE_LENGTH - prefix.length() - 2);
+                result.add(prefix + remaining.substring(0, budget) + " \\");
+                remaining = remaining.substring(budget);
+                first = false;
+            }
+            else if (HEADER_CONTINUATION_INDENT.length() + remaining.length()
+                    <= MAX_HEADER_LINE_LENGTH) {
+                result.add(HEADER_CONTINUATION_INDENT + remaining);
+                break;
+            }
+            else {
+                final int budget = MAX_HEADER_LINE_LENGTH - HEADER_CONTINUATION_INDENT.length() - 2;
+                result.add(HEADER_CONTINUATION_INDENT + remaining.substring(0, budget) + " \\");
+                remaining = remaining.substring(budget);
+            }
+        }
+        return result;
     }
 
     private static List<String> formatCollectionProperty(String prefix, String defaultValue,

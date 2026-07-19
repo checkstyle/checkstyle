@@ -2,10 +2,10 @@
 FinalLocalVariable
 validateEnhancedForLoopVariable = (default)false
 validateUnnamedVariables = (default)false
-tokens = (default)IDENT,CTOR_DEF,METHOD_DEF,SLIST,OBJBLOCK,COMPACT_COMPILATION_UNIT,LITERAL_BREAK,LITERAL_FOR,VARIABLE_DEF,EXPR
+tokens = (default)IDENT,CTOR_DEF,METHOD_DEF,SLIST,OBJBLOCK,COMPACT_COMPILATION_UNIT,LITERAL_BREAK, \
+          LITERAL_FOR,VARIABLE_DEF,EXPR
 
 */
-
 // non-compiled with javac: Compilable with Java25
 
 import java.util.function.Supplier;
