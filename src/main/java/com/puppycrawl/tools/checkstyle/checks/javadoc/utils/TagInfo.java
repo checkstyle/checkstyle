@@ -30,17 +30,29 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
  */
 public record TagInfo(String name, String value, LineColumn position) {
 
-    /** Legacy getter for tag name (backward compatibility). */
+    /**
+     * Legacy getter for tag name (backward compatibility).
+     *
+     * @return the name of the tag
+     */
     public String getName() {
         return name;
     }
 
-    /** Legacy getter for tag value (backward compatibility). */
+    /**
+     * Legacy getter for tag value (backward compatibility).
+     *
+     * @return the value of the tag
+     */
     public String getValue() {
         return value;
     }
 
-    /** Legacy getter for tag position (backward compatibility). */
+    /**
+     * Legacy getter for tag position (backward compatibility).
+     *
+     * @return the position of the tag
+     */
     public LineColumn getPosition() {
         return position;
     }

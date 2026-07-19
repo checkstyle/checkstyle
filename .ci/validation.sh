@@ -1589,6 +1589,10 @@ spotless)
   ./mvnw -e --no-transfer-progress spotless:check
   ;;
 
+javadoc)
+  ./mvnw -e --no-transfer-progress javadoc:javadoc
+  ;;
+
 openrewrite-checkstyle-auto-fix)
   echo "Cloning and building OpenRewrite recipes..."
   PROJECT_ROOT="$(pwd)"
