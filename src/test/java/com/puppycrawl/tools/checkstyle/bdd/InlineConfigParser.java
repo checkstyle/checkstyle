@@ -785,8 +785,6 @@ public final class InlineConfigParser {
         "filters/suppressionxpathsinglefilter/InputSuppressionXpathSingleFilterComplexQuery.java",
         "filters/suppressionxpathsinglefilter/"
             + "InputSuppressionXpathSingleFilterDecideByMessage.java",
-        "filters/suppresswithnearbytextfilter/"
-            + "InputSuppressWithNearbyTextFilterNearbyTextPatternCompactVariableCheckPattern.java",
         "treewalker/InputTreeWalkerSuppressionCommentFilter.java",
         "treewalker/InputTreeWalkerSuppressionXpathFilterAbsolute.java"
     );
