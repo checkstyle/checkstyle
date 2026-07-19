@@ -69,6 +69,55 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
             JavadocCommentsTokenTypes.NEWLINE);
 
     /**
+     * Case when space separates the tag and multiple asterisks like in the below example.
+     * <pre>
+     *  /**
+     *   &#42;&#42; &#64;param noSpace there is no space here
+     * </pre>
+     */
+    private static final List<Integer> ONLY_TAG_VARIATION_3 = Arrays.asList(
+            JavadocCommentsTokenTypes.TEXT,
+            JavadocCommentsTokenTypes.LEADING_ASTERISKS,
+            JavadocCommentsTokenTypes.NEWLINE);
+
+    /**
+     * Case when no space separates the tag and multiple asterisks like in the below example.
+     * <pre>
+     *  /**
+     *   &#42;&#42;&#64;param noSpace there is no space here
+     * </pre>
+     */
+    private static final List<Integer> ONLY_TAG_VARIATION_4 = Arrays.asList(
+            JavadocCommentsTokenTypes.LEADING_ASTERISKS,
+            JavadocCommentsTokenTypes.NEWLINE);
+
+    /**
+     * Case when one extra asterisk is in the javadoc start like in the below example.
+     * <pre>
+     *  /&#42;&#42;&#42;
+     *   &#42; &#64;param noSpace there is no space here
+     * </pre>
+     */
+    private static final List<Integer> ONLY_TAG_VARIATION_5 = Arrays.asList(
+            JavadocCommentsTokenTypes.TEXT,
+            JavadocCommentsTokenTypes.LEADING_ASTERISK,
+            JavadocCommentsTokenTypes.NEWLINE,
+            JavadocCommentsTokenTypes.LEADING_ASTERISK);
+
+    /**
+     * Case when a boxed javadoc has only a block tag like in the below example.
+     * <pre>
+     *  /&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;
+     *   &#42;&#42;&#42; &#64;param noSpace there is no space here
+     * </pre>
+     */
+    private static final List<Integer> ONLY_TAG_VARIATION_6 = Arrays.asList(
+            JavadocCommentsTokenTypes.TEXT,
+            JavadocCommentsTokenTypes.LEADING_ASTERISKS,
+            JavadocCommentsTokenTypes.NEWLINE,
+            JavadocCommentsTokenTypes.LEADING_ASTERISKS);
+
+    /**
      * Creates a new {@code RequireEmptyLineBeforeBlockTagGroupCheck} instance.
      */
     public RequireEmptyLineBeforeBlockTagGroupCheck() {
@@ -173,7 +222,11 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
             currentNode = currentNode.getPreviousSibling();
         }
         return ONLY_TAG_VARIATION_1.equals(previousNodeTypes)
-                || ONLY_TAG_VARIATION_2.equals(previousNodeTypes);
+                || ONLY_TAG_VARIATION_2.equals(previousNodeTypes)
+                || ONLY_TAG_VARIATION_3.equals(previousNodeTypes)
+                || ONLY_TAG_VARIATION_4.equals(previousNodeTypes)
+                || ONLY_TAG_VARIATION_5.equals(previousNodeTypes)
+                || ONLY_TAG_VARIATION_6.equals(previousNodeTypes);
     }
 
     /**
@@ -191,7 +244,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
         DetailNode currentNode = tagNode.getPreviousSibling();
         while (currentNode != null
                 && (CommonUtil.isBlank(currentNode.getText())
-                || currentNode.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK)) {
+                || isLeadingAsterisk(currentNode))) {
             if (currentNode.getType() == JavadocCommentsTokenTypes.NEWLINE) {
                 count++;
             }
@@ -199,6 +252,17 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
         }
 
         return count <= 1;
+    }
+
+    /**
+     * Checks if current node is leading asterisk.
+     *
+     * @param detailNode the node to check.
+     * @return true when token is a leading asterisk.
+     */
+    private static boolean isLeadingAsterisk(DetailNode detailNode) {
+        return detailNode.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK
+                || detailNode.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISKS;
     }
 
 }
