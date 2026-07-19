@@ -526,18 +526,6 @@ public final class InlineConfigParser {
             + "InputModifiedControlVariableRecordDecomposition.java",
         "checks/coding/modifiedcontrolvariable/"
             + "InputModifiedControlVariableTestVariousAssignments.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParentheses15Extensions.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesCheckPatterns.java",
-        "checks/coding/unnecessaryparentheses/"
-            + "InputUnnecessaryParenthesesCheckSwitchExpression.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesCheckTextBlocks.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesIdentifier.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesIfStatement.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesIfStatement2.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesOperator3.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesOperatorsAndCasts.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesReturnValue.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesWhenExpressions.java",
         "checks/imports/importorder/InputImportOrder1.java",
         "checks/imports/importorder/InputImportOrder2.java",
         "checks/imports/importorder/InputImportOrder3.java",
