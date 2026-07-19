@@ -29,14 +29,11 @@ jobs:
           - javadoc
         include:
           - target: java
-            BASELINE_SECONDS: 390.70
             CONFIG_FILE: './config/benchmark-config.xml'
           - target: javadoc
-            BASELINE_SECONDS: 424.59
             CONFIG_FILE: './config/benchmark-javadoc-config.xml'
     runs-on: ubuntu-latest
     env:
-      BASELINE_SECONDS: ${{ matrix.BASELINE_SECONDS }}
       CONFIG_FILE: ${{ matrix.CONFIG_FILE }}
     steps:
       - name: Set up JDK 21
@@ -62,4 +59,4 @@ jobs:
 
       - name: Run performance test
         run: |
-          ./.ci/check-performance-regression.sh "$BASELINE_SECONDS" "$CONFIG_FILE"
+          ./.ci/check-performance-regression.sh "$CONFIG_FILE"
