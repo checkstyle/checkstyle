@@ -35,13 +35,11 @@ public class NoLineWrapExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "14:1: " + getCheckMessage(MSG_KEY, "package"),
-            "18:1: " + getCheckMessage(MSG_KEY, "import"),
-            "22:1: " + getCheckMessage(MSG_KEY, "import"),
-            "26:1: " + getCheckMessage(MSG_KEY, "import"),
+            "10:1: " + getCheckMessage(MSG_KEY, "package"),
+            "13:1: " + getCheckMessage(MSG_KEY, "import"),
+            "16:1: " + getCheckMessage(MSG_KEY, "import"),
         };
-
-        verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
@@ -51,6 +49,18 @@ public class NoLineWrapExamplesTest extends AbstractExamplesModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_KEY, "package"),
+            "18:1: " + getCheckMessage(MSG_KEY, "import"),
+            "22:1: " + getCheckMessage(MSG_KEY, "import"),
+            "26:1: " + getCheckMessage(MSG_KEY, "import"),
+        };
+
+        verifyWithInlineConfigParser(getNonCompilablePath("Example3.java"), expected);
     }
 
     @Test
