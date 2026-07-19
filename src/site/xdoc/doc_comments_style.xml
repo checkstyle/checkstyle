@@ -923,8 +923,36 @@
                     Guidelines - Which Exceptions to Document
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/javadocmethod.html#JavadocMethod">
+                    JavadocMethod</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
+                  config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Checkstyle cannot distinguish checked from unchecked exceptions due to its
+                    <a href="writingchecks.html#Limitations">limitation</a>: the complete
+                    inheritance hierarchy of a type cannot be determined. A dedicated Check could
+                    validate differences between exceptions declared in method signatures and
+                    exceptions documented in Javadoc <code>@throws</code> tags. Such differences
+                    may reveal extra unchecked exceptions declared in signatures, but this
+                    validation cannot fully decide which unchecked exceptions should be documented.
+                    Not covered until:
+                    <a href="https://github.com/checkstyle/checkstyle/issues/20844">#20844</a>.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/documentingexceptionswiththrowstag/exceptionstodocument">
+                    samples
+                  </a>
+                </td>
               </tr>
 
               <tr>
