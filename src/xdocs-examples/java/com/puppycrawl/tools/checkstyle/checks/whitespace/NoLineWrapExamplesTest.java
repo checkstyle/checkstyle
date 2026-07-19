@@ -54,6 +54,21 @@ public class NoLineWrapExamplesTest extends AbstractExamplesModuleTestSupport {
     }
 
     @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_KEY, "package"),
+            "17:1: " + getCheckMessage(MSG_KEY, "import"),
+            "20:1: " + getCheckMessage(MSG_KEY, "import"),
+            "23:1: " + getCheckMessage(MSG_KEY, "CLASS_DEF"),
+            "26:3: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
+            "28:3: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
+            "30:3: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
+    @Test
     public void testUseCase1() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_KEY, "CLASS_DEF"),

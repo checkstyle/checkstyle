@@ -26,6 +26,13 @@
               <th>since</th>
             </tr>
             <tr>
+              <td><a id="skipAnnotations"/><a href="#skipAnnotations">skipAnnotations</a></td>
+              <td>Specify whether to skip annotations to be part of target token.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>13.9.0</td>
+            </tr>
+            <tr>
               <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
@@ -102,6 +109,8 @@ class                        // violation 'should not be line-wrapped'
     Example1() {}
   public void                // violation 'should not be line-wrapped'
     doSomething() {}
+  @Deprecated
+  private void doNothing() {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -137,6 +146,8 @@ class
     Example2() {}
   public void
     doSomething() {}
+  @Deprecated
+  private void doNothing() {}
 }
 </code></pre></div>
       </subsection>
