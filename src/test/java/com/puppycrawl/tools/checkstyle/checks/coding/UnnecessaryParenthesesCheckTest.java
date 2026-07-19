@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * Test fixture for the UnnecessaryParenthesesCheck.
+ * Test fixture for the {@link UnnecessaryParenthesesCheck}.
  *
  */
 public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
@@ -275,7 +275,8 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "76:17: " + getCheckMessage(MSG_EXPR),
             "77:25: " + getCheckMessage(MSG_EXPR),
             "82:48: " + getCheckMessage(MSG_IDENT, "get"),
-            "100:34: " + getCheckMessage(MSG_IDENT, "isComment"),
+            "98:33: " + getCheckMessage(MSG_EXPR),
+            "101:34: " + getCheckMessage(MSG_IDENT, "isComment"),
 
         };
         verifyWithInlineConfigParser(
@@ -374,6 +375,34 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputUnnecessaryParenthesesConditionalExpression.java"), expected);
 
+    }
+
+    @Test
+    public void testFieldAndMethodAccess() throws Exception {
+        final String[] expected = {
+            "33:15: " + getCheckMessage(MSG_EXPR),
+            "36:15: " + getCheckMessage(MSG_EXPR),
+            "39:15: " + getCheckMessage(MSG_EXPR),
+            "42:15: " + getCheckMessage(MSG_EXPR),
+            "44:40: " + getCheckMessage(MSG_EXPR),
+            "57:13: " + getCheckMessage(MSG_EXPR),
+            "60:13: " + getCheckMessage(MSG_EXPR),
+            "64:13: " + getCheckMessage(MSG_EXPR),
+            "67:13: " + getCheckMessage(MSG_EXPR),
+            "76:14: " + getCheckMessage(MSG_EXPR),
+            "80:31: " + getCheckMessage(MSG_EXPR),
+            "84:27: " + getCheckMessage(MSG_EXPR),
+            "88:41: " + getCheckMessage(MSG_EXPR),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputUnnecessaryParenthesesFieldMethodAccess.java"), expected);
+    }
+
+    @Test
+    public void testConstructor() throws Exception {
+        final String[] expected = new String[0];
+        verifyWithInlineConfigParser(
+            getPath("InputUnnecessaryParenthesesConstructor.java"), expected);
     }
 
 }
