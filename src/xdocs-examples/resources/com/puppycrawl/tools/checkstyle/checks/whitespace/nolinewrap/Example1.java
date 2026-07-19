@@ -16,12 +16,12 @@ import com.puppycrawl.tools. // violation 'should not be line-wrapped'
 import static java.math.     // violation 'should not be line-wrapped'
   BigInteger.ZERO;
 
-class                        // violation 'should not be line-wrapped'
+class
   Example1 {
 
-  public                     // violation 'should not be line-wrapped'
+  public
     Example1() {}
-  public void                // violation 'should not be line-wrapped'
+  public void
     doSomething() {}
 }
 // xdoc section -- end
