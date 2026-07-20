@@ -141,6 +141,8 @@
     files="requireemptylinebeforeblocktaggroup[\\/]InputRequireEmptyLineBeforeBlockTagGroupCorrect\.java"/>
   <suppress id="noTrailingWhitespace"
     files="javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationDescription\.java"/>
+  <suppress id="noTrailingWhitespace"
+    files="[\\/]whitespace[\\/]arraybracketwhitespace[\\/]InputArrayBracketWhitespaceExceptions\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="FileTabCharacter"

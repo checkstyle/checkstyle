@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ArrayBracketWhitespace</title>
+  </head>
+  <body>
+    <section name="ArrayBracketWhitespace">
+      <p>Since Checkstyle 13.9.0</p>
+      <subsection name="Description" id="ArrayBracketWhitespace_Description">
+        <div>
+          Checks that the whitespace around the square bracket tokens <code>[</code> and <code>]</code>
+          are correct to the typical convention.
+          The convention is not configurable.
+        </div>
+
+        <p>
+          Left square bracket (<code>[</code>):
+        </p>
+        <ul>
+        <li>must not be preceded by whitespace when preceded by a type or identifier.</li>
+        <li>must not be followed by whitespace.</li>
+        </ul>
+
+        <p>
+          Right square bracket (<code>]</code>):
+        </p>
+        <ul>
+        <li>must not be preceded by whitespace.</li>
+        <li>must be followed by whitespace, except when it is followed by:
+          another bracket, a dot, a comma, a semicolon, postfix operators (<code>++</code>, <code>--</code>),
+          a right parenthesis, or a method reference (<code>::</code>).</li>
+        </ul>
+      </subsection>
+
+      <subsection name="Examples" id="ArrayBracketWhitespace_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ArrayBracketWhitespace"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  int[] arr1; // ok, valid syntax
+  int[][] arr2; // ok, valid syntax
+
+  void method(int[] p) {
+    int i = p[0]; // ok, valid syntax
+    int j = p [0]; // violation, '[' is preceded with whitespace
+    int k = p[ 0]; // violation, '[' is followed by whitespace
+    int x = p[0]++; // ok, ']' followed by postfix operator
+
+    int[] another = new int[5]; // ok, valid syntax
+
+    int a = p [1]; // violation, '[' preceded with whitespace
+    int b = p[ 1]; // violation, '[' followed by whitespace
+    int c = p[1 ]; // violation, ']' preceded with whitespace
+    p[0]++; // ok, valid syntax
+    p[0]+= 1; // violation, ']' not followed by whitespace
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="ArrayBracketWhitespace_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ArrayBracketWhitespace">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="ArrayBracketWhitespace_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
+              ws.followed
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notFollowed%22">
+              ws.notFollowed
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
+              ws.preceded
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="ArrayBracketWhitespace_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.whitespace.ArrayBracketWhitespaceCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="ArrayBracketWhitespace_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
