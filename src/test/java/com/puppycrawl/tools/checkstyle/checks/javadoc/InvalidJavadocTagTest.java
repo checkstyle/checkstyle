@@ -17,42 +17,26 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.checks.javadoc.utils;
+package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.puppycrawl.tools.checkstyle.api.LineColumn;
+import static com.google.common.truth.Truth.assertWithMessage;
 
-/**
- * Value object for storing data about a parsed tag.
- *
- * @param name Name of the tag ("link", "see", etc)
- * @param value Value of the tag
- * @param position Position of the tag in the given comment
- */
-public record TagInfo(String name, String value, LineColumn position) {
+import org.junit.jupiter.api.Test;
 
-    /**
-     * Creates a new {@code TagInfo} instance.
-     *
-     * @param name Name of the tag ("link", "see", etc)
-     * @param value Value of the tag
-     * @param position Position of the tag in the given comment
-     */
-    public TagInfo {
-    }
+public class InvalidJavadocTagTest {
 
-    /** Legacy getter for tag name (backward compatibility). */
-    public String getName() {
-        return name;
-    }
-
-    /** Legacy getter for tag value (backward compatibility). */
-    public String getValue() {
-        return value;
-    }
-
-    /** Legacy getter for tag position (backward compatibility). */
-    public LineColumn getPosition() {
-        return position;
+    @Test
+    public void testInvalidJavadocTag() {
+        final InvalidJavadocTag tag = new InvalidJavadocTag(1, 2, "test");
+        assertWithMessage("Invalid line number")
+                .that(tag.line())
+                .isEqualTo(1);
+        assertWithMessage("Invalid column number")
+                .that(tag.col())
+                .isEqualTo(2);
+        assertWithMessage("Invalid tag name")
+                .that(tag.name())
+                .isEqualTo("test");
     }
 
 }

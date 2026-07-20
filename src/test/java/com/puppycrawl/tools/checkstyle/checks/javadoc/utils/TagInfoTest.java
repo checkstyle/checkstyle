@@ -19,40 +19,28 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.utils;
 
+import static com.google.common.truth.Truth.assertWithMessage;
+
+import org.junit.jupiter.api.Test;
+
 import com.puppycrawl.tools.checkstyle.api.LineColumn;
 
-/**
- * Value object for storing data about a parsed tag.
- *
- * @param name Name of the tag ("link", "see", etc)
- * @param value Value of the tag
- * @param position Position of the tag in the given comment
- */
-public record TagInfo(String name, String value, LineColumn position) {
+public class TagInfoTest {
 
-    /**
-     * Creates a new {@code TagInfo} instance.
-     *
-     * @param name Name of the tag ("link", "see", etc)
-     * @param value Value of the tag
-     * @param position Position of the tag in the given comment
-     */
-    public TagInfo {
-    }
+    @Test
+    public void testTagInfo() {
+        final LineColumn position = new LineColumn(1, 2);
+        final TagInfo tagInfo = new TagInfo("name", "value", position);
 
-    /** Legacy getter for tag name (backward compatibility). */
-    public String getName() {
-        return name;
-    }
-
-    /** Legacy getter for tag value (backward compatibility). */
-    public String getValue() {
-        return value;
-    }
-
-    /** Legacy getter for tag position (backward compatibility). */
-    public LineColumn getPosition() {
-        return position;
+        assertWithMessage("Invalid name")
+                .that(tagInfo.name())
+                .isEqualTo("name");
+        assertWithMessage("Invalid value")
+                .that(tagInfo.value())
+                .isEqualTo("value");
+        assertWithMessage("Invalid position")
+                .that(tagInfo.position())
+                .isEqualTo(position);
     }
 
 }
