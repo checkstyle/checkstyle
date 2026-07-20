@@ -111,7 +111,6 @@ public class AllChecksCompactSourceCoverageTest {
         "CommentsIndentationCheck",
         "ConstantNameCheck",
         "ConstructorsDeclarationGroupingCheck",
-        "CovariantEqualsCheck",
         "CustomImportOrderCheck",
         "CyclomaticComplexityCheck",
         "DeclarationOrderCheck",
