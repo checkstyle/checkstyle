@@ -204,7 +204,16 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/imports/importorder/Example6",
             "checks/imports/importorder/Example7",
             "checks/imports/importorder/Example8",
-            "checks/imports/importorder/Example9"
+            "checks/imports/importorder/Example9",
+            "checks/whitespace/whitespacearound/Example10",
+            "checks/whitespace/whitespacearound/Example2",
+            "checks/whitespace/whitespacearound/Example3",
+            "checks/whitespace/whitespacearound/Example4",
+            "checks/whitespace/whitespacearound/Example5",
+            "checks/whitespace/whitespacearound/Example6",
+            "checks/whitespace/whitespacearound/Example7",
+            "checks/whitespace/whitespacearound/Example8",
+            "checks/whitespace/whitespacearound/Example9"
     );
 
     /**
