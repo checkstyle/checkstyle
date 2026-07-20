@@ -43,4 +43,13 @@ public class ModifierOrderCheckExamplesTest extends AbstractExamplesModuleTestSu
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {
+            "15:17: " + getCheckMessage(MSG_MODIFIER_ORDER, "static"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
 }
