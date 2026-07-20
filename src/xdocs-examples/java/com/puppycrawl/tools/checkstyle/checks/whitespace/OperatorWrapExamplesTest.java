@@ -62,4 +62,15 @@ public class OperatorWrapExamplesTest extends AbstractExamplesModuleTestSupport 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "16:24: " + getCheckMessage(MSG_LINE_NEW, "+"),
+            "19:12: " + getCheckMessage(MSG_LINE_NEW, "=="),
+            "23:16: " + getCheckMessage(MSG_LINE_NEW, "/"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
 }

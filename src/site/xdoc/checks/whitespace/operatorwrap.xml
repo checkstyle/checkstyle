@@ -289,6 +289,63 @@ class Example2 {
             &lt;&lt;= 1; // violation ''&lt;&lt;=' should be on the previous line'
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check for operators at the beginning of a line:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OperatorWrap"&gt;
+      &lt;property name="option" value="nl"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+         Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example3 {
+  void example() {
+    String s = "Hello" + // violation '+' should be on a new line
+            "World";
+
+    if (10 == // violation '==' should be on a new line
+            20) {
+    }
+
+    int c = 10 /
+            5; // violation above '/' should be on a new line
+
+    int b
+            = 10;
+    int e =
+            10;
+    b
+            += 10;
+    b +=
+            10;
+    c
+            *= 10;
+    c
+            -= 5;
+    c -=
+            5;
+    c
+            /= 2;
+    c
+            %= 1;
+    c
+            &gt;&gt;= 1;
+    c
+            &gt;&gt;&gt;= 1;
+    c
+            &amp;=1 ;
+    c
+            &lt;&lt;= 1;
+  }
+}
 </code></pre></div>
       </subsection>
 

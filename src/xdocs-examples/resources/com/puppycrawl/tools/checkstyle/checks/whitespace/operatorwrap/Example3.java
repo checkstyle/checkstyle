@@ -1,0 +1,54 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="OperatorWrap">
+      <property name="option" value="nl"/>
+    </module>
+  </module>
+</module>
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.whitespace.operatorwrap;
+
+// xdoc section -- start
+class Example3 {
+  void example() {
+    String s = "Hello" + // violation '+' should be on a new line
+            "World";
+
+    if (10 == // violation '==' should be on a new line
+            20) {
+    }
+
+    int c = 10 /
+            5; // violation above '/' should be on a new line
+
+    int b
+            = 10;
+    int e =
+            10;
+    b
+            += 10;
+    b +=
+            10;
+    c
+            *= 10;
+    c
+            -= 5;
+    c -=
+            5;
+    c
+            /= 2;
+    c
+            %= 1;
+    c
+            >>= 1;
+    c
+            >>>= 1;
+    c
+            &=1 ;
+    c
+            <<= 1;
+  }
+}
+// xdoc section -- end
