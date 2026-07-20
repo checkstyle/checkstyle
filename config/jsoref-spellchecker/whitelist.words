@@ -160,6 +160,7 @@ chapternaming
 chapterprogrammingpractices
 charset
 CHDBEFIF
+checkbox
 checkchmod
 checkerframework
 checkmodule
@@ -1270,6 +1271,7 @@ singleline
 singlelined
 singlelinejavadoc
 singlespaceseparator
+sitetoc
 sivakumar
 Slawinski
 slf
@@ -1412,6 +1414,7 @@ tokentype
 tolist
 Toolbar
 toolongpackagetotestcoveragegooglesjavastylerule
+tooltips
 TOSTRING
 Touchscreen
 tpc
