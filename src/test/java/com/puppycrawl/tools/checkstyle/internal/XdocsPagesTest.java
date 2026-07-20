@@ -244,6 +244,11 @@ public class XdocsPagesTest {
     private static final Set<String> GOOGLE_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigGoogleStyleModules());
 
+    // Requirement is not yet public.
+    private static final Set<String> IGNORED_GOOGLE_MODULES = Set.of(
+            "RegexpSingleline"
+    );
+
     private static final Set<String> OPENJDK_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigOpenJdkStyleModules());
 
@@ -1837,7 +1842,9 @@ public class XdocsPagesTest {
                 .isTrue();
         assertWithMessage("%s section '%s' should have a google section since it is in it's config",
             fileName, sectionName)
-                .that(hasGoogle || !GOOGLE_MODULES.contains(sectionName))
+                .that(hasGoogle
+                    || !GOOGLE_MODULES.contains(sectionName)
+                    || IGNORED_GOOGLE_MODULES.contains(sectionName))
                 .isTrue();
         assertWithMessage("%s section '%s' should have a sun section since it is in it's config",
             fileName, sectionName)
@@ -1920,7 +1927,11 @@ public class XdocsPagesTest {
             final NodeList sources = getTagSourcesNode(path, "tr");
 
             final Set<String> styleChecks = switch (styleName) {
-                case "google" -> new HashSet<>(GOOGLE_MODULES);
+                case "google" -> {
+                    final Set<String> checks = new HashSet<>(GOOGLE_MODULES);
+                    checks.removeAll(IGNORED_GOOGLE_MODULES);
+                    yield checks;
+                }
                 case "sun" -> {
                     final Set<String> checks = new HashSet<>(SUN_MODULES);
                     checks.removeAll(IGNORED_SUN_MODULES);

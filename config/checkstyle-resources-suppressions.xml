@@ -113,6 +113,9 @@
     files="src[\\/]it[\\/]resources[\\/].*[\\/]InputFileName3\.java"/>
 
   <!-- intentional problem for testing -->
+  <!-- intentional trailing whitespace for Google Style integration test -->
+  <suppress id="noTrailingWhitespace"
+    files="rule462horizontalwhitespace[\\/]InputWhitespaceTrailingWhitespace\.java"/>
   <suppress id="noTrailingWhitespace"
     files="[\\/]InputJavadocContentLocationTrailingSpace\.java"/>
   <suppress id="noTrailingWhitespace"
