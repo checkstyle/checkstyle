@@ -735,7 +735,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             if (reportVisitJavadocToken) {
                 // We're reusing messages from JavadocTypeCheck
                 // it is not possible to use test specific bundle of messages
-                log(ast.getLineNumber(), ast.getColumnNumber(), MSG_TAG_FORMAT, ast.getText());
+                log(ast, MSG_TAG_FORMAT, ast.getText());
             }
         }
 
@@ -768,7 +768,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             if (reportVisitJavadocToken) {
                 // We reusing messages from JavadocTypeCheck
                 // it is not possible to use test specific bundle of messages
-                log(ast.getLineNumber(), ast.getColumnNumber(), MSG_TAG_FORMAT, ast.getText());
+                log(ast, MSG_TAG_FORMAT, ast.getText());
             }
         }
 
