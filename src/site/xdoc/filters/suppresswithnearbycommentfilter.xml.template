@@ -126,6 +126,38 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example6.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure a filter so that
+          <code>// SUPPRESS CHECKSTYLE NoWhitespaceAfter</code>
+          suppresses audit events on the current line and the next 2 lines:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure a filter so that
+          <code>// SUPPRESS CHECKSTYLE NoWhitespaceAfter</code>
+          suppresses audit events whose message contains "whitespace":
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example8.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example8.java"/>
+          <param name="type" value="code"/>
         </macro>
         </subsection>
         <subsection name="Use Cases" id="SuppressWithNearbyCommentFilter_Use_Cases">

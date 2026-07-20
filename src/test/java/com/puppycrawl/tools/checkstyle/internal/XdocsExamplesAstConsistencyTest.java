@@ -172,10 +172,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/whitespace/separatorwrap",
             "filters/suppressioncommentfilter",
             "filters/suppressionsinglefilter",
-            "filters/suppressionxpathfilter",
-            "filters/suppressionxpathsinglefilter",
-            "filters/suppresswithnearbycommentfilter",
-            "filters/suppresswithnearbytextfilter"
+            "filters/suppressionxpathfilter"
     );
 
     /**

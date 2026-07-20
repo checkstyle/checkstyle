@@ -53,6 +53,29 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     }
 
     @Test
+    public void testExample2() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "21:11: '42' is a magic number.",
+            "22:11: '43' is a magic number.",
+            "24: Line is longer than 55 characters (found 74).",
+            "27: Line is longer than 55 characters (found 84).",
+            "31: Line is longer than 55 characters (found 72).",
+        };
+
+        final String[] expectedWithFilter = {
+            "21:11: '42' is a magic number.",
+            "22:11: '43' is a magic number.",
+            "24: Line is longer than 55 characters (found 74).",
+            "27: Line is longer than 55 characters (found 84).",
+            "31: Line is longer than 55 characters (found 72).",
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example2.java"),
+                expectedWithoutFilter, expectedWithFilter);
+    }
+
+    @Test
     public void testUseCase1() throws Exception {
 
         final String[] expectedWithoutFilter = {

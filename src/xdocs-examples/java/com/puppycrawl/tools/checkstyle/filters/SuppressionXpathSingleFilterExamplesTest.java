@@ -125,6 +125,22 @@ public class SuppressionXpathSingleFilterExamplesTest extends AbstractExamplesMo
     }
 
     @Test
+    public void testExample5() throws Exception {
+        final String[] expectedWithoutFilter = {
+            "17:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+                    "MyMethod", "^[a-z][a-zA-Z0-9]*$"),
+            "19:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+                    "MyMethod2", "^[a-z][a-zA-Z0-9]*$"),
+            "21:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+                    "MyMethodA", "^[a-z][a-zA-Z0-9]*$"),
+        };
+        final String[] expectedWithFilter = {};
+
+        verifyFilterWithInlineConfigParser(getPath("Example5.java"),
+                expectedWithoutFilter, expectedWithFilter);
+    }
+
+    @Test
     public void testUseCase5() throws Exception {
         final String[] expectedWithoutFilter = {
             "17:3: " + getCheckMessage(RedundantModifierCheck.class,
