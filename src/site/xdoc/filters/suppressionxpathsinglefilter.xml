@@ -215,6 +215,33 @@ public class Example4 {
   private int field = 177;
 }
 </code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To suppress MethodName check for all methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodName"/&gt;
+    &lt;module name="SuppressionXpathSingleFilter"&gt;
+      &lt;property name="checks" value="MethodName"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Code example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+
+public class Example5 {
+  // filtered violation below 'Name 'MyMethod' must match pattern'
+  public void MyMethod() {}
+  // filtered violation below 'Name 'MyMethod2' must match pattern'
+  public void MyMethod2() {}
+  // filtered violation below 'Name 'MyMethodA' must match pattern'
+  public void MyMethodA() {}
+  private int field = 177;
+}
+</code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
           To suppress checks in the Example6 file by non-query:
         </p>

@@ -97,6 +97,30 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
     }
 
     @Test
+    public void testExample7() throws Exception {
+        final String[] expectedWithFilter = {};
+
+        final String[] expectedWithoutFilter = {
+            "15:27: 'int' is followed by whitespace.",
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example7.java"), expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
+    public void testExample8() throws Exception {
+        final String[] expectedWithFilter = {};
+
+        final String[] expectedWithoutFilter = {
+            "15:27: 'int' is followed by whitespace.",
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example8.java"), expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
     public void testExample6() throws Exception {
         final String[] expectedWithFilter = {
             "19:27: 'int' is followed by whitespace.",
