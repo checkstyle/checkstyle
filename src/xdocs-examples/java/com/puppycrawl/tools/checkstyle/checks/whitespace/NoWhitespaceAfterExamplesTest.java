@@ -53,4 +53,13 @@ public class NoWhitespaceAfterExamplesTest extends AbstractExamplesModuleTestSup
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "23:12: " + getCheckMessage(MSG_KEY, "."),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
 }

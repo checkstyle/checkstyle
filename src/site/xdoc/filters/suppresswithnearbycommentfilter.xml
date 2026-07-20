@@ -302,6 +302,72 @@ public class Example6 {
     }
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure a filter so that
+          <code>// SUPPRESS CHECKSTYLE NoWhitespaceAfter</code>
+          suppresses audit events on the current line and the next 2 lines:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWithNearbyCommentFilter"&gt;
+      &lt;property name="influenceFormat" value="2"/&gt;
+    &lt;/module&gt;
+    &lt;module name="NoWhitespaceAfter"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example7 {
+  // filtered violation below ''int' is followed by whitespace'
+  public static final int [] array = {}; // SUPPRESS CHECKSTYLE NoWhitespaceAfter
+
+  public static final int lowerCaseConstant = 1; // CHECKSTYLE IGNORE THIS LINE
+
+  public void testMethod() {
+    try {
+    }
+
+    catch (RuntimeException ex) {
+
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure a filter so that
+          <code>// SUPPRESS CHECKSTYLE NoWhitespaceAfter</code>
+          suppresses audit events whose message contains &quot;whitespace&quot;:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWithNearbyCommentFilter"&gt;
+      &lt;property name="messageFormat" value="whitespace"/&gt;
+    &lt;/module&gt;
+    &lt;module name="NoWhitespaceAfter"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example8 {
+  // filtered violation below ''int' is followed by whitespace'
+  public static final int [] array = {}; // SUPPRESS CHECKSTYLE NoWhitespaceAfter
+
+  public static final int lowerCaseConstant = 1; // CHECKSTYLE IGNORE THIS LINE
+
+  public void testMethod() {
+    try {
+    }
+
+    catch (RuntimeException ex) {
+
+    }
+  }
+}
 </code></pre></div>
         </subsection>
         <subsection name="Use Cases" id="SuppressWithNearbyCommentFilter_Use_Cases">

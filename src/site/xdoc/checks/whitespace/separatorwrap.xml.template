@@ -44,6 +44,22 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap/Example1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check for separator at the new line:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check for comma at the new line:
         </p>
