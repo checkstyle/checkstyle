@@ -1,8 +1,8 @@
 /*
 NonEmptyAtclauseDescription
 violateExecutionOnNonTightHtml = (default)false
-javadocTokens = (default)PARAM_BLOCK_TAG, THROWS_BLOCK_TAG, THROWS_BLOCK_TAG, \
-                EXCEPTION_BLOCK_TAG, DEPRECATED_BLOCK_TAG
+javadocTokens = (default)PARAM_BLOCK_TAG, RETURN_BLOCK_TAG, THROWS_BLOCK_TAG, \
+         EXCEPTION_BLOCK_TAG, DEPRECATED_BLOCK_TAG
 
 
 */

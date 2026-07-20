@@ -1,7 +1,7 @@
 /*
 RegexpSingleline
 format = System\\.(out)|(err)\\.print(ln)?\\(
-message = (default)
+message = (default)(null)
 ignoreCase = (default)false
 minimum = (default)0
 maximum = 1

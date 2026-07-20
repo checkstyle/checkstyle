@@ -1,7 +1,7 @@
 /*
 RegexpSingleline
 format = \\r
-message = (default)
+message = (default)(null)
 ignoreCase = (default)false
 minimum = 500
 maximum = (default)0

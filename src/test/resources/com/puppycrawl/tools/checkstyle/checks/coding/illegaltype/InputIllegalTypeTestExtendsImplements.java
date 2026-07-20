@@ -6,9 +6,9 @@ legalAbstractClassNames = (default)
 ignoredMethodNames = (default)getEnvironment, getInitialContext
 illegalAbstractClassNameFormat = (default)^(.*[.])?Abstract.*$
 memberModifiers = LITERAL_PUBLIC
-tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, INTERFACE_DEF, METHOD_CALL, METHOD_DEF, \
-         METHOD_REF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, RECORD_DEF, \
-         RECORD_COMPONENT_DEF
+tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, IMPORT, INTERFACE_DEF, METHOD_CALL, \
+         METHOD_DEF, METHOD_REF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, \
+         RECORD_DEF, RECORD_COMPONENT_DEF, RECORD_PATTERN_DEF
 
 
 */
