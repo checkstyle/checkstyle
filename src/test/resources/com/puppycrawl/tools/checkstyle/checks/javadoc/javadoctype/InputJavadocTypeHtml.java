@@ -1,26 +1,22 @@
 /*
 JavadocType
 scope = (default)private
-excludeScope = public
-authorFormat = \S
+excludeScope = (default)null
+authorFormat = (default)null
 versionFormat = (default)null
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = true
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
-
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
-
-public class InputJavadocType3 {
-    /**
-    *
-    * @link <T>
-    */
-    protected class InnerPublic2<T> // violation 'missing @param '<T>' tag.'
-    {
-    }
+// violation 2 lines below 'Unclosed HTML tag found: p'
+/**
+ * <p>
+ */
+public class InputJavadocTypeHtml {
 }
