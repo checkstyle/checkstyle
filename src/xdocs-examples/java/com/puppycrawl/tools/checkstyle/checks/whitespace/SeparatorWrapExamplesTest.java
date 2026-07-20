@@ -44,12 +44,14 @@ public class SeparatorWrapExamplesTest extends AbstractExamplesModuleTestSupport
     }
 
     @Test
-    public void testUseCase1() throws Exception {
+    public void testExample2() throws Exception {
         final String[] expected = {
-            "23:36: " + getCheckMessage(MSG_LINE_NEW, "::"),
+            "13:15: " + getCheckMessage(MSG_LINE_NEW, "."),
+            "19:8: " + getCheckMessage(MSG_LINE_NEW, ","),
+            "22:17: " + getCheckMessage(MSG_LINE_NEW, ","),
         };
 
-        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
@@ -60,6 +62,15 @@ public class SeparatorWrapExamplesTest extends AbstractExamplesModuleTestSupport
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testUseCase1() throws Exception {
+        final String[] expected = {
+            "23:36: " + getCheckMessage(MSG_LINE_NEW, "::"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
 }
