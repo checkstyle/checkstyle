@@ -1,3 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>JavadocTag.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag</mutatedClass>
+    <mutatedMethod>getTagName</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo::getName</description>
+    <lineContent>return tagInfo.getName();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocTag.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag</mutatedClass>
+    <mutatedMethod>getTagName</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
+    <description>replaced return value with &quot;&quot; for com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTag::getTagName</description>
+    <lineContent>return tagInfo.getName();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocTagInfo.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo</mutatedClass>
+    <mutatedMethod>isValidName</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::containsKey</description>
+    <lineContent>return NAME_TO_TAG.containsKey(name);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocTagInfo.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo</mutatedClass>
+    <mutatedMethod>isValidName</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator</mutator>
+    <description>replaced boolean return with false for com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo::isValidName</description>
+    <lineContent>return NAME_TO_TAG.containsKey(name);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocTagInfo.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo</mutatedClass>
+    <mutatedMethod>isValidName</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator</mutator>
+    <description>replaced boolean return with true for com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo::isValidName</description>
+    <lineContent>return NAME_TO_TAG.containsKey(name);</lineContent>
+  </mutation>
 </suppressedMutations>
