@@ -30,6 +30,16 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
  */
 public record TagInfo(String name, String value, LineColumn position) {
 
+    /**
+     * Creates a new {@code TagInfo} instance.
+     *
+     * @param name Name of the tag ("link", "see", etc)
+     * @param value Value of the tag
+     * @param position Position of the tag in the given comment
+     */
+    public TagInfo {
+    }
+
     /** Legacy getter for tag name (backward compatibility). */
     public String getName() {
         return name;
