@@ -354,6 +354,79 @@ class Example3 {
   }
   private void fun1() {}
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check with a threshold of 12:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="CyclomaticComplexity"&gt;
+      &lt;property name="max" value="12"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+  int a, b, c, d, e, n;
+
+  public void testMethod1() { // 1, function declaration
+    while (a &lt; b &amp;&amp; a &gt; c) { // 2, while
+      fun1();
+    }
+    if (a == b) {
+      do { // 3, do
+        fun1();
+      } while (d==a);
+    } else if (c == d) {
+      while (c &gt; 0) { // 4, while
+        fun1();
+      }
+      do { // 5, do-while
+        fun1();
+      } while (a==d);
+    }
+  }
+  // violation below, 'Cyclomatic Complexity is 13 (max allowed is 12)'
+  public void testMethod2() {
+    if (a == b) {
+      fun1();
+    } else if (a == 0
+            &amp;&amp; b == c) {
+      if (c == -1) {
+        fun1();
+      }
+    } else if (a == c
+            || a == d) {
+      fun1();
+    } else if (d == e) {
+      try {
+        fun1();
+      } catch (Exception e) {
+      }
+    } else {
+      switch(n) {
+        case 1:
+          fun1();
+          break;
+        case 2:
+          fun1();
+          break;
+        case 3:
+          fun1();
+          break;
+        default:
+          break;
+      }
+    }
+    a = a &gt; 0 ? b : c;
+  }
+  private void fun1() {}
+}
 </code></pre></div>
       </subsection>
 
