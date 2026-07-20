@@ -73,4 +73,15 @@ public class AnnotationLocationExamplesTest extends AbstractExamplesModuleTestSu
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "28:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "30:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "32:12: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Mock"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
 }

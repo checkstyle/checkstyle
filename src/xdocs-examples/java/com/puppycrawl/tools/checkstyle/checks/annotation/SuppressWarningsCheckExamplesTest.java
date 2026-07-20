@@ -54,4 +54,18 @@ public class SuppressWarningsCheckExamplesTest extends AbstractExamplesModuleTes
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "25:21: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "28:31: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "33:21: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "36:32: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "40:19: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+
+    }
+
 }

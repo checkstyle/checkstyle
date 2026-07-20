@@ -94,6 +94,20 @@
           <param name="path"
                    value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example4.java"/>
             <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          Use the following configuration to forbid multiple annotations on the same line:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example5.java"/>
+            <param name="type" value="code"/>
         </macro>
       </subsection>
 
