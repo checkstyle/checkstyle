@@ -65,6 +65,16 @@ public class LeftCurlyCheckExamplesTest extends AbstractExamplesModuleTestSuppor
     }
 
     @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "22:13: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", "13"),
+            "25:15: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", "15"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
     public void testExample4() throws Exception {
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", "1"),
