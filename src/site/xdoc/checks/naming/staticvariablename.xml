@@ -79,13 +79,13 @@
 class Example1 {
   public static int goodStatic = 2;
   private static int badStatic = 2;
-  public static int ItStatic1 = 2; // violation, 'must match pattern'
+  public static int ItStatic1 = 2;    // violation, 'must match pattern'
   protected static int ItStatic2 = 2; // violation, 'must match pattern'
-  private static int ItStatic = 2; // violation, 'must match pattern'
-  public static int it_static = 2; // violation, 'must match pattern'
-  public static int It_Static = 2; // violation, 'must match pattern'
-  private static int It_Static1 = 2; // violation, 'must match pattern'
-  static int It_Static2 = 2; // violation, 'must match pattern'
+  private static int ItStatic = 2;    // violation, 'must match pattern'
+  public static int it_static = 2;    // violation, 'must match pattern'
+  public static int It_Static = 2;    // violation, 'must match pattern'
+  private static int It_Static1 = 2;  // violation, 'must match pattern'
+  static int It_Static2 = 2;          // violation, 'must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -106,13 +106,13 @@ class Example1 {
 class Example2 {
   public static int goodStatic = 2;
   private static int badStatic = 2;
-  public static int ItStatic1 = 2; // violation, 'must match pattern'
+  public static int ItStatic1 = 2;    // violation, 'must match pattern'
   protected static int ItStatic2 = 2; // violation, 'must match pattern'
-  private static int ItStatic = 2; // violation, 'must match pattern'
+  private static int ItStatic = 2;    // violation, 'must match pattern'
   public static int it_static = 2;
-  public static int It_Static = 2; // violation, 'must match pattern'
-  private static int It_Static1 = 2; // violation, 'must match pattern'
-  static int It_Static2 = 2; // violation, 'must match pattern'
+  public static int It_Static = 2;    // violation, 'must match pattern'
+  private static int It_Static1 = 2;  // violation, 'must match pattern'
+  static int It_Static2 = 2;          // violation, 'must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -134,11 +134,11 @@ class Example3 {
   private static int badStatic = 2;
   public static int ItStatic1 = 2;
   protected static int ItStatic2 = 2; // violation, 'must match pattern'
-  private static int ItStatic = 2; // violation, 'must match pattern'
+  private static int ItStatic = 2;    // violation, 'must match pattern'
   public static int it_static = 2;
   public static int It_Static = 2;
-  private static int It_Static1 = 2; // violation, 'must match pattern'
-  static int It_Static2 = 2; // violation, 'must match pattern'
+  private static int It_Static1 = 2;  // violation, 'must match pattern'
+  static int It_Static2 = 2;          // violation, 'must match pattern'
 }
 </code></pre></div>
         <hr class="example-separator"/>
@@ -159,13 +159,13 @@ class Example3 {
 class Example4 {
   public static int goodStatic = 2;
   private static int badStatic = 2;
-  public static int ItStatic1 = 2; // violation, 'must match pattern'
+  public static int ItStatic1 = 2;    // violation, 'must match pattern'
   protected static int ItStatic2 = 2;
-  private static int ItStatic = 2; // violation, 'must match pattern'
-  public static int it_static = 2; // violation, 'must match pattern'
-  public static int It_Static = 2; // violation, 'must match pattern'
-  private static int It_Static1 = 2; // violation, 'must match pattern'
-  static int It_Static2 = 2; // violation, 'must match pattern'
+  private static int ItStatic = 2;    // violation, 'must match pattern'
+  public static int it_static = 2;    // violation, 'must match pattern'
+  public static int It_Static = 2;    // violation, 'must match pattern'
+  private static int It_Static1 = 2;  // violation, 'must match pattern'
+  static int It_Static2 = 2;          // violation, 'must match pattern'
 }
 </code></pre></div>
         <hr class="example-separator"/>
@@ -184,13 +184,13 @@ class Example4 {
 class Example5 {
   public static int goodStatic = 2;
   private static int badStatic = 2;
-  public static int ItStatic1 = 2; // violation, 'must match pattern'
+  public static int ItStatic1 = 2;    // violation, 'must match pattern'
   protected static int ItStatic2 = 2; // violation, 'must match pattern'
   private static int ItStatic = 2;
-  public static int it_static = 2; // violation, 'must match pattern'
-  public static int It_Static = 2; // violation, 'must match pattern'
+  public static int it_static = 2;    // violation, 'must match pattern'
+  public static int It_Static = 2;    // violation, 'must match pattern'
   private static int It_Static1 = 2;
-  static int It_Static2 = 2; // violation, 'must match pattern'
+  static int It_Static2 = 2;          // violation, 'must match pattern'
 }
 </code></pre></div>
         <hr class="example-separator"/>
@@ -211,12 +211,12 @@ class Example5 {
 class Example6 {
   public static int goodStatic = 2;
   private static int badStatic = 2;
-  public static int ItStatic1 = 2; // violation, 'must match pattern'
+  public static int ItStatic1 = 2;    // violation, 'must match pattern'
   protected static int ItStatic2 = 2; // violation, 'must match pattern'
-  private static int ItStatic = 2; // violation, 'must match pattern'
-  public static int it_static = 2; // violation, 'must match pattern'
-  public static int It_Static = 2; // violation, 'must match pattern'
-  private static int It_Static1 = 2; // violation, 'must match pattern'
+  private static int ItStatic = 2;    // violation, 'must match pattern'
+  public static int it_static = 2;    // violation, 'must match pattern'
+  public static int It_Static = 2;    // violation, 'must match pattern'
+  private static int It_Static1 = 2;  // violation, 'must match pattern'
   static int It_Static2 = 2;
 }
 </code></pre></div>
