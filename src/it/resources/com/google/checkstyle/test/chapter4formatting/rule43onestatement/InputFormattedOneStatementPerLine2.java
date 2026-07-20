@@ -1,7 +1,7 @@
 // non-compiled with eclipse: extra semicolumn in imports
 // non-compiled with javac: contains specially crafted set of imports that requires classpath
 
-package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
+package com.google.checkstyle.test.chapter4formatting.rule43onestatement;
 
 /*
  * This file contains test inputs for InputFormattedOneStatementPerLine2
