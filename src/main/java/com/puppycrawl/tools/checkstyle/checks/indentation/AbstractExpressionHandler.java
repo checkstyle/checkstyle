@@ -386,10 +386,10 @@ public abstract class AbstractExpressionHandler {
      * @param ignoreFirstLine Test if first line's indentation should be checked or not.
      */
     protected void checkWrappingIndentation(DetailAST firstNode, DetailAST lastNode,
-            int wrappedIndentLevel, int startIndent, boolean ignoreFirstLine) {
+            int wrappedIndentLevel, int startIndent,
+            LineWrappingHandler.LineWrappingOptions ignoreFirstLine) {
         indentCheck.getLineWrappingHandler().checkIndentation(firstNode, lastNode,
-                wrappedIndentLevel, startIndent,
-                LineWrappingHandler.LineWrappingOptions.ofBoolean(ignoreFirstLine));
+                wrappedIndentLevel, startIndent, ignoreFirstLine);
     }
 
     /**
