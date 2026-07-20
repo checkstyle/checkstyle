@@ -2886,7 +2886,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter frame of RequireThisCheck.findFrame.</message>
-    <lineContent>frame = findFrame(frame, name, lookForMethod);</lineContent>
+    <lineContent>frame = findFrame(frame, name, lookMode);</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
       required: @Initialized @NonNull AbstractFrame
@@ -2897,7 +2897,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter frame of RequireThisCheck.findFrame.</message>
-    <lineContent>return findFrame(current.peek(), name, lookForMethod);</lineContent>
+    <lineContent>return findFrame(current.peek(), name, lookMode);</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
       required: @Initialized @NonNull AbstractFrame
