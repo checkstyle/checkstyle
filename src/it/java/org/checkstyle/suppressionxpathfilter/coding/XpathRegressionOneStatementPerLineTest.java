@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -52,14 +53,23 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
                 createModuleConfig(OneStatementPerLineCheck.class);
 
         final String[] expectedViolation = {
-            "4:17: " + getCheckMessage(OneStatementPerLineCheck.class,
+            "4:12: " + getCheckMessage(OneStatementPerLineCheck.class,
                 OneStatementPerLineCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathOneStatementPerLineClassFields']]/OBJBLOCK"
-                + "/VARIABLE_DEF[./IDENT[@text='j']]/SEMI"
+                + "/VARIABLE_DEF[./IDENT[@text='j']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathOneStatementPerLineClassFields']]/OBJBLOCK"
+                + "/VARIABLE_DEF[./IDENT[@text='j']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathOneStatementPerLineClassFields']]/OBJBLOCK"
+                + "/VARIABLE_DEF[./IDENT[@text='j']]/TYPE",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathOneStatementPerLineClassFields']]/OBJBLOCK"
+                + "/VARIABLE_DEF[./IDENT[@text='j']]/TYPE/LITERAL_INT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -75,14 +85,15 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
                 createModuleConfig(OneStatementPerLineCheck.class);
 
         final String[] expectedViolation = {
-            "9:39: " + getCheckMessage(OneStatementPerLineCheck.class,
+            "9:33: " + getCheckMessage(OneStatementPerLineCheck.class,
                 OneStatementPerLineCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathOneStatementPerLineForLoopBlock']]/OBJBLOCK"
-                + "/METHOD_DEF[./IDENT[@text='foo5']]/SLIST/LITERAL_FOR/SLIST/SEMI[2]"
+                + "/METHOD_DEF[./IDENT[@text='foo5']]/SLIST/LITERAL_FOR/SLIST"
+                + "/EXPR/POST_INC/IDENT[@text='var2']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -98,14 +109,27 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
                 createModuleConfig(OneStatementPerLineCheck.class);
 
         final String[] expectedViolation = {
-            "5:29: " + getCheckMessage(OneStatementPerLineCheck.class,
+            "5:20: " + getCheckMessage(OneStatementPerLineCheck.class,
                 OneStatementPerLineCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathOneStatementPerLineMethodBody']]"
-                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/SEMI[2]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST"
+                + "/VARIABLE_DEF[./IDENT[@text='b']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathOneStatementPerLineMethodBody']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST"
+                + "/VARIABLE_DEF[./IDENT[@text='b']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathOneStatementPerLineMethodBody']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST"
+                + "/VARIABLE_DEF[./IDENT[@text='b']]/TYPE",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathOneStatementPerLineMethodBody']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST"
+                + "/VARIABLE_DEF[./IDENT[@text='b']]/TYPE/LITERAL_INT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
