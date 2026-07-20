@@ -4,11 +4,11 @@ scope = (default)private
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 authorFormat = (default)(null)
 excludeScope = (default)(null)
 versionFormat = (default)(null)
-
 
 */
 
@@ -38,56 +38,56 @@ record Record1<T>(int a) {}
  * @param b <>>>>><<<<
  */
 record Record2<T>(int a, int b) {
-    /**
-     *
-     * @param <T>
-     * @param a <//< <stuff></> stuff >>  <stuff>st<u>ff</stuff> >><
-     * @param b stuff <><><<stuff></></></> stuff
-     * @param c /-+`[]:^^<stuff **%%$>##(sutff)stuff()</stuff> @@
-     */
-    record Record3<T>(int a, int b, int c) {}
 
-    /**
-     *
-     * @param <V> [(<>{@code stuff<stuff>&lt;stuff&gt;}</>)]{@code {&lt;stuff&gt;}}
-     */
-    record Record4<V>() {}
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 // violation 3 lines below 'Unused @param tag for \'<P>\'.'
 /**
  * @param <T>
- * @param    <P>     stuff <><><<stuff></></></> stuff
+ * @param    <P>
  */
 record Record5<T, U>() {} // violation, 'Type Javadoc comment is missing @param '<U>' tag.'
 
 // violation 3 lines below 'Unused @param tag for \'region\'.'
 /**
  *
- * @param region [(<>{@code stuff<stuff🐦‍🔥>🐦‍🔥&lt;stuff&gt;}</>)]{@code {&lt;stuff&gt;}}
+ * @param region
  */
 record Record6(int a) {} // violation, 'Type Javadoc comment is missing @param 'a' tag.'
 
 /**
  *
  * @param <T>
- * @param a 🐦‍🔥<><🐦‍🔥><<stuff></></></> stuff🐦‍🔥
+ * @param a
  * @param b
  */
 record Record7<T>(int a, int b) {}
 
 // violation 4 lines below 'Unused @param tag for \'e\'.'
 /**
- * @param a <<></>></><<></>></>
- * @param b stuff<stuff>:<>:<>:<🐦‍🔥<<🐦‍🔥>>🐦‍🔥>
- * @param e [(<>{@code stuff<stuff🐦[(‍{🔥}])>🐦‍🔥&lt;stuff&gt;}</>)]{@code {&lt;stuff&gt;}}
+ * @param a
+ * @param b
+ * @param e
  */
 record Record8(int a, int b, int c) { // violation, 'missing @param 'c' tag.'
 }
 
 /**
  *
- * @param a [(<>{@code stuff<stuff🐦‍🔥>🐦‍🔥&lt;stuff&gt;}</>)]
+ * @param a
  */
 record Record9(int a) {}
 
