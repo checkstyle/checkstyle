@@ -1425,6 +1425,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/annotation/openjdkannotationlocation.html#OpenjdkAnnotationLocation">
+                OpenjdkAnnotationLocation
+              </a>
+            </td>
+            <td>
+              Checks location of annotation on language elements.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/whitespace/operatorwrap.html#OperatorWrap">
                 OperatorWrap
               </a>
