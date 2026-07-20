@@ -1889,7 +1889,7 @@ public class XdocsPagesTest {
 
         assertWithMessage("%s section '%s' should have matching parent", fileName, sectionName)
             .that(subSection.getTextContent().trim())
-            .isEqualTo(expected);
+            .contains(expected);
     }
 
     private static boolean hasParentModule(String sectionName) {

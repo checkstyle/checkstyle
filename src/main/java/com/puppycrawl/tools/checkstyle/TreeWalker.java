@@ -35,6 +35,8 @@ import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
+import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilterSet;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
@@ -73,6 +75,10 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     /** The ast filters. */
     private final Set<TreeWalkerFilter> filters = new HashSet<>();
+
+    /** The before execution file filters. */
+    private final BeforeExecutionFileFilterSet beforeExecutionFileFilters =
+            new BeforeExecutionFileFilterSet();
 
     /** The sorted set of violations. */
     private final SortedSet<Violation> violations = new TreeSet<>();
@@ -160,6 +166,8 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
                 registerCheck(check);
             }
             case TreeWalkerFilter filter -> filters.add(filter);
+            case BeforeExecutionFileFilter filter ->
+                beforeExecutionFileFilters.addBeforeExecutionFileFilter(filter);
             case null, default -> throw new CheckstyleException(
                     "TreeWalker is not allowed as a parent of " + name
                             + " Please review 'Parent Module' section for this Check in web"
@@ -176,11 +184,26 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      */
     @Override
     protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
-        // check if already checked and passed the file
         if (!ordinaryChecks.isEmpty() || !commentChecks.isEmpty()) {
+            processFileByTreeWalker(file);
+            violations.clear();
+        }
+    }
+
+    /**
+     * Processes a file through TreeWalker checks.
+     *
+     * @param file the file to process
+     * @throws CheckstyleException if an error occurs during processing
+     * @noinspection ProhibitedExceptionThrown
+     * @noinspectionreason ProhibitedExceptionThrown - there is no other way to obey
+     *     skipFileOnJavaParseException field
+     */
+    private void processFileByTreeWalker(File file) throws CheckstyleException {
+        final String fileName = file.getAbsolutePath();
+        if (beforeExecutionFileFilters.accept(fileName)) {
             final FileContents contents = getFileContents();
             DetailAST rootAST = null;
-            // whether skip the procedure after parsing Java files.
             boolean skip = false;
             try {
                 rootAST = JavaParser.parse(contents);
@@ -191,9 +214,10 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
                     throw exc;
                 }
                 skip = true;
-                violations.add(new Violation(1, Definitions.CHECKSTYLE_BUNDLE, PARSE_EXCEPTION_MSG,
-                            new Object[] {exc.getMessage()}, javaParseExceptionSeverity, null,
-                            getClass(), null));
+                violations.add(new Violation(1, Definitions.CHECKSTYLE_BUNDLE,
+                            PARSE_EXCEPTION_MSG,
+                            new Object[] {exc.getMessage()}, javaParseExceptionSeverity,
+                            null, getClass(), null));
                 addViolations(violations);
             }
 
@@ -202,7 +226,8 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
                     walk(rootAST, contents, AstState.ORDINARY);
                 }
                 if (!commentChecks.isEmpty()) {
-                    final DetailAST astWithComments = JavaParser.appendHiddenCommentNodes(rootAST);
+                    final DetailAST astWithComments =
+                            JavaParser.appendHiddenCommentNodes(rootAST);
                     walk(astWithComments, contents, AstState.WITH_COMMENTS);
                 }
                 if (filters.isEmpty()) {
@@ -210,11 +235,10 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
                 }
                 else {
                     final SortedSet<Violation> filteredViolations =
-                            getFilteredViolations(file.getAbsolutePath(), contents, rootAST);
+                            getFilteredViolations(fileName, contents, rootAST);
                     addViolations(filteredViolations);
                 }
             }
-            violations.clear();
         }
     }
 
