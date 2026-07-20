@@ -1,6 +1,6 @@
 /*
 com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest$TokenIsNotInAcceptablesCheck
-javadocTokens: DEPRECATED_BLOCK_TAG
+javadocTokens = (default)DEPRECATED_BLOCK_TAG
 
 */
 

@@ -9,7 +9,7 @@ caseSensitive = (default)true
 staticGroups = org, java
 sortStaticImportsAlphabetically = true
 useContainerOrderingForStatic = (default)false
-tokens = (default)STATIC_IMPORT
+tokens = (default)IMPORT,STATIC_IMPORT
 
 
 */
