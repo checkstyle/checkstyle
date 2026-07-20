@@ -109,12 +109,18 @@ public class WhitespaceAfterCheck
             TokenTypes.LAMBDA,
             TokenTypes.LITERAL_WHEN,
             TokenTypes.ANNOTATIONS,
+            TokenTypes.SINGLE_LINE_COMMENT,
         };
     }
 
     @Override
     public int[] getRequiredTokens() {
         return CommonUtil.EMPTY_INT_ARRAY;
+    }
+
+    @Override
+    public boolean isCommentNodesRequired() {
+        return true;
     }
 
     @Override
@@ -125,6 +131,9 @@ public class WhitespaceAfterCheck
             if (!isFollowedByWhitespace(targetAST, line)) {
                 log(targetAST, MSG_WS_TYPECAST);
             }
+        }
+        else if (ast.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+            visitSingleLineComment(ast);
         }
         else if (ast.getType() == TokenTypes.ANNOTATIONS) {
             if (ast.getFirstChild() != null) {
@@ -145,6 +154,23 @@ public class WhitespaceAfterCheck
                 final Object[] message = {ast.getText()};
                 log(ast, MSG_WS_NOT_FOLLOWED, message);
             }
+        }
+    }
+
+    /**
+     * Handles SINGLE_LINE_COMMENT token.
+     *
+     * @param ast single line comment token
+     */
+    private void visitSingleLineComment(DetailAST ast) {
+        final DetailAST commentContent =
+                ast.findFirstToken(TokenTypes.COMMENT_CONTENT);
+        final String commentText = commentContent.getText().stripTrailing();
+
+        if (!commentText.isEmpty()
+                && !commentText.startsWith("/")
+                && !commentText.startsWith(" ")) {
+            log(ast, MSG_WS_NOT_FOLLOWED, "//");
         }
     }
 
