@@ -1034,7 +1034,9 @@ packageannotation
 packagecomment
 packagedeclaration
 packagehtml
+packagehtmltemplate
 packageinfo
+packagelevelcomments
 packagename
 packagenamesloader
 packageobjectfactory

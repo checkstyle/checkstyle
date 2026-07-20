@@ -34,6 +34,11 @@
 
   <!-- Add documentation comments checks here based on the style guide -->
 
+  <!-- Package-Level Comments -->
+  <module name="JavadocPackage">
+    <property name="allowLegacy" value="true"/>
+  </module>
+
   <module name="TreeWalker">
     <!-- Add TreeWalker checks based on documents comments style guide -->
     <!-- Tag conventions -->
