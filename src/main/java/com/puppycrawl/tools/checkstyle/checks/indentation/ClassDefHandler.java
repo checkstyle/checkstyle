@@ -91,7 +91,8 @@ public class ClassDefHandler extends BlockParentHandler {
             final DetailAST atAst = getMainAst().findFirstToken(TokenTypes.AT);
             if (isOnStartOfLine(atAst)) {
                 checkWrappingIndentation(getMainAst(), getListChild(), 0,
-                        getIndent().getFirstIndentLevel(), false);
+                        getIndent().getFirstIndentLevel(),
+                        LineWrappingHandler.LineWrappingOptions.NONE);
             }
         }
         else {
