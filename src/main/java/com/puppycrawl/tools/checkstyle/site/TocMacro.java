@@ -96,8 +96,9 @@ public class TocMacro extends AbstractMacro {
                     + "(?:\\s+when)?\\s*",
             Pattern.CASE_INSENSITIVE);
 
-    /** Strips inline HTML tags left in scraped paragraph text. */
-    private static final Pattern TAG_PATTERN = Pattern.compile("<[^>]+>");
+    /** Strips inline HTML tags left in scraped paragraph text, except <code> tags. */
+    private static final Pattern TAG_PATTERN = Pattern.compile(
+            "</?(?!code\\b)[a-zA-Z][^>]*>");
 
     /** Collapses any run of whitespace (including newlines) into a single space. */
     private static final Pattern WHITESPACE_PATTERN = Pattern.compile("\\s+");

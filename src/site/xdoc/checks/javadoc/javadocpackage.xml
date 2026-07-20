@@ -21,7 +21,7 @@
               <li><a href="#Example1-config">Default configuration</a></li>
               <li><a href="#Example2-config">With allowlegacy set to true</a></li>
               <li><a href="#Example3-config">With allowlegacy set to true</a></li>
-              <li><a href="#Example4-config">Only check .properties files for a package documentation file</a></li>
+              <li><a href="#Example4-config">Only check <code>.properties</code> files for a package documentation file</a></li>
             </ul>
           </li>
           <li><a href="#JavadocPackage_Example_of_Usage">Example of Usage</a></li>
