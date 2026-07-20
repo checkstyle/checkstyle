@@ -109,6 +109,7 @@ public class WhitespaceAfterCheck
             TokenTypes.LAMBDA,
             TokenTypes.LITERAL_WHEN,
             TokenTypes.ANNOTATIONS,
+            TokenTypes.SINGLE_LINE_COMMENT,
         };
     }
 
@@ -118,33 +119,82 @@ public class WhitespaceAfterCheck
     }
 
     @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.TYPECAST) {
-            final DetailAST targetAST = ast.findFirstToken(TokenTypes.RPAREN);
-            final int[] line = getLineCodePoints(targetAST.getLineNo() - 1);
-            if (!isFollowedByWhitespace(targetAST, line)) {
-                log(targetAST, MSG_WS_TYPECAST);
-            }
+            visitTypecast(ast);
+        }
+        else if (ast.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+            visitSingleLineComment(ast);
         }
         else if (ast.getType() == TokenTypes.ANNOTATIONS) {
-            if (ast.getFirstChild() != null) {
-                DetailAST targetAST = ast.getFirstChild().getLastChild();
-                if (targetAST.getType() == TokenTypes.DOT) {
-                    targetAST = targetAST.getLastChild();
-                }
-                final int[] line = getLineCodePoints(targetAST.getLineNo() - 1);
-                if (!isFollowedByWhitespace(targetAST, line)) {
-                    final Object[] message = {targetAST.getText()};
-                    log(targetAST, MSG_WS_NOT_FOLLOWED, message);
-                }
-            }
+            visitAnnotations(ast);
         }
         else {
-            final int[] line = getLineCodePoints(ast.getLineNo() - 1);
-            if (!isFollowedByWhitespace(ast, line)) {
-                final Object[] message = {ast.getText()};
-                log(ast, MSG_WS_NOT_FOLLOWED, message);
+            visitCommonToken(ast);
+        }
+    }
+
+    /**
+     * Handles TYPECAST token.
+     *
+     * @param ast typecast token
+     */
+    private void visitTypecast(DetailAST ast) {
+        final DetailAST targetAST = ast.findFirstToken(TokenTypes.RPAREN);
+        final int[] line = getLineCodePoints(targetAST.getLineNo() - 1);
+        if (!isFollowedByWhitespace(targetAST, line)) {
+            log(targetAST, MSG_WS_TYPECAST);
+        }
+    }
+
+    /**
+     * Handles SINGLE_LINE_COMMENT token.
+     *
+     * @param ast single line comment token
+     */
+    private void visitSingleLineComment(DetailAST ast) {
+        final int[] line = getLineCodePoints(ast.getLineNo() - 1);
+        final int commentColumnNo = ast.getColumnNo();
+
+        if (hasMissingWhitespaceAfterCommentMarker(line, commentColumnNo)) {
+            log(ast, MSG_WS_NOT_FOLLOWED, "//");
+        }
+    }
+
+    /**
+     * Handles ANNOTATIONS token.
+     *
+     * @param ast annotation container token
+     */
+    private void visitAnnotations(DetailAST ast) {
+        if (ast.getFirstChild() != null) {
+            DetailAST targetAST = ast.getFirstChild().getLastChild();
+            if (targetAST.getType() == TokenTypes.DOT) {
+                targetAST = targetAST.getLastChild();
             }
+            final int[] line = getLineCodePoints(targetAST.getLineNo() - 1);
+            if (!isFollowedByWhitespace(targetAST, line)) {
+                final Object[] message = {targetAST.getText()};
+                log(targetAST, MSG_WS_NOT_FOLLOWED, message);
+            }
+        }
+    }
+
+    /**
+     * Handles all standard tokens.
+     *
+     * @param ast target token
+     */
+    private void visitCommonToken(DetailAST ast) {
+        final int[] line = getLineCodePoints(ast.getLineNo() - 1);
+        if (!isFollowedByWhitespace(ast, line)) {
+            final Object[] message = {ast.getText()};
+            log(ast, MSG_WS_NOT_FOLLOWED, message);
         }
     }
 
@@ -168,6 +218,21 @@ public class WhitespaceAfterCheck
                 || Character.isWhitespace(codePoint);
         }
         return followedByWhitespace;
+    }
+
+    /**
+     * Checks whether visible comment text starts immediately after {@code //}.
+     *
+     * @param line Unicode code points of the source line that contains the comment
+     * @param commentColumnNo zero-based column of the {@code //} token
+     * @return true when whitespace is missing after {@code //}
+     */
+    private static boolean hasMissingWhitespaceAfterCommentMarker(int[] line,
+                                                                  int commentColumnNo) {
+        final int commentTextStart = commentColumnNo + 2;
+        return commentTextStart < line.length
+                && line[commentTextStart] != '/'
+                && !Character.isWhitespace(line[commentTextStart]);
     }
 
 }
