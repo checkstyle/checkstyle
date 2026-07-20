@@ -70,7 +70,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testItTwo() throws Exception {
         final String[] expected = {
-            "17:5: " + getCheckMessage(MSG_KEY, 20, 19, "longMethod"),
+            "17:9: " + getCheckMessage(MSG_KEY, 20, 19, "longMethod"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputMethodLengthSimpleTwo.java"), expected);
