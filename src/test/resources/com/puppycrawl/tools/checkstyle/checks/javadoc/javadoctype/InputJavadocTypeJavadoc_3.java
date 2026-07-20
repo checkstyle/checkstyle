@@ -7,8 +7,8 @@ versionFormat = ^\\p{Digit}+\\.\\p{Digit}+$
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
-
 
 */
 
