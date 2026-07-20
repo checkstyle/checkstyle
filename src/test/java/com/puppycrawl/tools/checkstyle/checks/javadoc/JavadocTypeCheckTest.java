@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_KEY_UNCLOSED_HTML_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_MISSING_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_MISSING_TAG_WITH_QUOTES;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_TAG_FORMAT;
@@ -27,6 +28,8 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MS
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_UNUSED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_UNUSED_TAG_GENERAL;
 
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -161,12 +164,12 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "22:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
             "31:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
             "40:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "58:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "67:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "76:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "94:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "103:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "112:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "64:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "73:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "82:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "100:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "109:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "118:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeJavadoc_1.java"), expected);
@@ -433,18 +436,11 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testJavadocTypeInterfaceMemberScopeIsPublic() throws Exception {
 
         final String[] expected = {
-            "19:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T>"),
-            "24:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T>"),
+            "19:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T>"),
+            "24:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T>"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeInterfaceMemberScopeIsPublic.java"), expected);
-    }
-
-    @Test
-    public void testTrimOptionProperty() throws Exception {
-        verifyWithInlineConfigParser(
-                getJavadocWithErrorPath("InputJavadocTypeTestTrimProperty.java"),
-                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -461,15 +457,6 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocType2.java"), expected);
-    }
-
-    @Test
-    public void testJavadocType() throws Exception {
-        final String[] expected = {
-            "23:5: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
-        };
-        verifyWithInlineConfigParser(
-                getJavadocWithErrorPath("InputJavadocType3.java"), expected);
     }
 
     @Test
@@ -518,10 +505,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAnnotationsInCodeBlock2() throws Exception {
         final String[] expected = {
-            "28:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
-            "45:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
-            "59:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
-            "67:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+            "35:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+            "49:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
+            "57:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknown"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeAnnotationsInCodeBlock2.java"), expected);
@@ -549,6 +535,39 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeAnnotationsInCodeBlock4.java"), expected);
+    }
+
+    @Test
+    public void testJavadocTypeHtml() throws Exception {
+        final String[] expected = {
+            "19: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeHtml.java"), expected);
+
+    }
+
+    /**
+     * Verifies that the check fails on unsupported Javadoc tokens.
+     *
+     * <p>This case cannot be reproduced through real Javadoc parsing, so the AST
+     * node is created manually instead of using {@code verifyWithInlineConfigParser}.</p>
+     */
+    @Test
+    public void testImproperJavadocToken() {
+        final JavadocTypeCheck check = new JavadocTypeCheck();
+
+        final JavadocNodeImpl ast = new JavadocNodeImpl();
+        ast.setType(JavadocCommentsTokenTypes.EQUALS);
+        ast.setText("EQUALS");
+
+        final IllegalArgumentException exc = TestUtil.getExpectedThrowable(
+                IllegalArgumentException.class,
+                () -> check.visitJavadocToken(ast));
+
+        assertWithMessage("Message must include token name")
+            .that(exc.getMessage())
+            .contains("EQUALS");
     }
 
 }

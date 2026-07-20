@@ -137,8 +137,6 @@
   <suppress id="noConsecutiveLines" files="[\\/]singlespaceseparator.xml"/>
   <suppress id="noConsecutiveLines" files="[\\/]typebodypadding.xml"/>
 
-  <!-- until #19146 -->
-  <suppress id="noUsageOfGetFileContentsMethod" files="JavadocTypeCheck.java"/>
   <!-- permanent suppression to allow regexp on content of the line -->
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpSinglelineJavaCheck.java"/>
