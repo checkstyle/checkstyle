@@ -1,8 +1,8 @@
 /*
 WriteTag
-tag = (default)null
-tagFormat = (default)null
-tagSeverity = (default)info
+tag = @since
+tagFormat = \d+
+tagSeverity = ignore
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 violateExecutionOnNonTightHtml = (default)false
 
@@ -11,9 +11,10 @@ violateExecutionOnNonTightHtml = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
-class InputWriteTagNoJavadoc
-{
-    public void method()
-    {
-    }
+// violation 4 lines below 'missing @since tag.*'
+/**
+ * @version 1
+ */
+@Deprecated
+public class InputWriteTagIssue20875 {
 }
