@@ -7,8 +7,8 @@ versionFormat = (default)null
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
-
 
 */
 
@@ -39,6 +39,12 @@ class InputJavadocTypeJavadoc_11 // violation 'missing @author tag.'
  * @version 1.0 */
 class InputJavadocTypeJavadoc_21 // violation 'tag @author must match pattern 'ABC'.'
 {
+
+    /**
+     * @author
+     * @version abc
+     */
+    class ClassC {}
 }
 
 //Testing tag on first comment line
@@ -119,5 +125,13 @@ enum InputJavadocTypeEnum_21 // violation 'tag @author must match pattern 'ABC'.
 * @version 1.1
 */
 @interface InputJavadocInterfaceType_11
+{
+}
+
+/**
+ * Testing empty author
+ * @author
+ */
+class InputJavadocTypeJavadoc_11 // violation 'tag @author must match pattern 'ABC'.'
 {
 }
