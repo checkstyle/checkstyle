@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder;
 
 /**
  * <div>
@@ -89,20 +91,36 @@ public class ModifierOrderCheck
     public static final String MSG_MODIFIER_ORDER = "mod.order";
 
     /**
-     * The order of modifiers as suggested in sections 8.1.1,
+     * Default order of modifiers as suggested in sections 8.1.1,
      * 8.3.1 and 8.4.3 of the JLS.
      */
-    private static final String[] JLS_ORDER = {
+    private static final String[] DEFAULT_ORDER = {
         "public", "protected", "private", "abstract", "default", "static",
         "sealed", "non-sealed", "final", "transient", "volatile",
         "synchronized", "native", "strictfp",
     };
 
     /**
+     * Specify the order of modifiers.
+     */
+    @PreserveOrder
+    private List<String> order = Arrays.asList(DEFAULT_ORDER);
+
+    /**
      * Creates a new {@code ModifierOrderCheck} instance.
      */
     public ModifierOrderCheck() {
         // no code by default
+    }
+
+    /**
+     * Setter to specify the order of modifiers.
+     *
+     * @param modifierOrder user's modifier order.
+     * @since 13.9.0
+     */
+    public void setOrder(String... modifierOrder) {
+        order = Arrays.asList(modifierOrder);
     }
 
     @Override
@@ -154,7 +172,7 @@ public class ModifierOrderCheck
      * @return null if the order is correct, otherwise returns the offending
      *     modifier AST.
      */
-    private static DetailAST checkOrderSuggestedByJls(List<DetailAST> modifiers) {
+    private DetailAST checkOrderSuggestedByJls(List<DetailAST> modifiers) {
         final Iterator<DetailAST> iterator = modifiers.iterator();
 
         // Speed past all initial annotations
@@ -176,13 +194,13 @@ public class ModifierOrderCheck
                     break;
                 }
 
-                while (index < JLS_ORDER.length
-                       && !JLS_ORDER[index].equals(modifier.getText())) {
+                while (index < order.size()
+                       && !order.get(index).equals(modifier.getText())) {
                     index++;
                 }
 
-                if (index == JLS_ORDER.length) {
-                    // Current modifier is out of JLS order
+                if (index == order.size()) {
+                    // Current modifier is out of order
                     offendingModifier = modifier;
                 }
                 else if (iterator.hasNext()) {
