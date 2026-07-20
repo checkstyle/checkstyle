@@ -90,7 +90,7 @@ public class CovariantEqualsCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
-                    "InputCovariantEqualsCompactSourceFile.java"),
+                    "compact/InputCovariantEqualsCompactSourceFile.java"),
                 expected);
     }
 
@@ -100,7 +100,7 @@ public class CovariantEqualsCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
-                    "InputCovariantEqualsCompactSourceFileMultiple.java"),
+                    "compact/InputCovariantEqualsCompactSourceFileMultiple.java"),
                 expected);
     }
 
@@ -110,7 +110,7 @@ public class CovariantEqualsCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
-                    "InputCovariantEqualsCompactSourceFileNoViolation.java"),
+                    "compact/InputCovariantEqualsCompactSourceFileNoViolation.java"),
                 expected);
     }
 
