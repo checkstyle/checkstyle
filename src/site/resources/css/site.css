@@ -107,7 +107,7 @@ section p {
   float: right;
 }
 
-h1:hover .anchor, h2:hover .anchor, h3:hover .anchor, p[id^="Example"]:hover .anchor {
+h1:hover .anchor, h2:hover .anchor, h3:hover .anchor, p[id^="Example"]:hover .anchor, p[id^="UseCase"]:hover .anchor {
   visibility: visible;
 }
 
