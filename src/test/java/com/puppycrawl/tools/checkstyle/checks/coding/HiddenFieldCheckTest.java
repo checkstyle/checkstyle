@@ -663,7 +663,7 @@ public class HiddenFieldCheckTest
     public void testHiddenFieldInnerRecordsImplicitlyStatic() throws Exception {
 
         final String[] expected = {
-            "35:30: " + getCheckMessage(MSG_KEY, "pointer"),
+            "36:30: " + getCheckMessage(MSG_KEY, "pointer"),
         };
 
         verifyWithInlineConfigParser(
@@ -675,7 +675,7 @@ public class HiddenFieldCheckTest
     public void testHiddenFieldRecordsImplicitlyStaticClassComparison() throws Exception {
 
         final String[] expected = {
-            "46:27: " + getCheckMessage(MSG_KEY, "x"),
+            "47:27: " + getCheckMessage(MSG_KEY, "x"),
         };
 
         verifyWithInlineConfigParser(

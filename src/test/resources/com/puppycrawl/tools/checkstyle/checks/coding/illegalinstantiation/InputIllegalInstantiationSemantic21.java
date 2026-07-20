@@ -2,7 +2,7 @@
 IllegalInstantiation
 classes = java.lang.Boolean,com.puppycrawl.tools.checkstyle.checks.coding.illegalinstantiation.\
           InputModifier,java.io.File,java.awt.Color
-tokens = (default)CLASS_DEF
+tokens = (default)IMPORT,LITERAL_NEW,PACKAGE_DEF,CLASS_DEF
 
 
 */

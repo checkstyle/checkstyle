@@ -9,7 +9,7 @@ caseSensitive = (default)true
 staticGroups = android, com, net, junit, org, java, javax
 sortStaticImportsAlphabetically = true
 useContainerOrderingForStatic = (default)false
-tokens = (default)STATIC_IMPORT
+tokens = (default)IMPORT,STATIC_IMPORT
 
 
 */

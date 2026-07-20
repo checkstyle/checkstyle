@@ -250,6 +250,16 @@ public class XdocsPagesTest {
     private static final Set<String> DOC_COMMENTS_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigDocCommentsStyleModules());
 
+    /**
+     * Example pairs that are intentionally placed in the same separated group, as they
+     * demonstrate the same configuration applied to files of different types.
+     * Each entry has the form {@code templateFileName:previousExamplePrefix:currentExamplePrefix}
+     * and marks that pair as allowed to appear without a separator between them.
+     */
+    private static final Set<String> ALLOWED_EXAMPLES_WITHOUT_SEPARATOR = Set.of(
+        "newlineatendoffile.xml.template:Example4:Example6"
+    );
+
     private static final Set<String> NON_MODULE_XDOC = Set.of(
         "config_system_properties.xml",
         "sponsoring.xml",
@@ -2759,11 +2769,14 @@ public class XdocsPagesTest {
                         final String currentExPrefix = getExamplePrefix(currentId);
                         if (lastExampleIdPrefix != null
                                 && !lastExampleIdPrefix.equals(currentExPrefix)) {
+                            final boolean isSeparated = separatorSeen
+                                    || isSeparatorSuppressed(template, lastExampleIdPrefix,
+                                            currentExPrefix);
                             assertWithMessage(
                                 "Missing <hr class=\"example-separator\"/> "
                                     + "between %s and %s in file: %s",
                                     lastExampleIdPrefix, currentExPrefix, template)
-                                    .that(separatorSeen)
+                                    .that(isSeparated)
                                     .isTrue();
                             separatorSeen = false;
                         }
@@ -2772,6 +2785,22 @@ public class XdocsPagesTest {
                 }
             }
         }
+    }
+
+    /**
+     * Checks whether the given pair of consecutive examples is explicitly allowed to be
+     * grouped together without a separator between them.
+     *
+     * @param template template file the examples belong to
+     * @param previousExamplePrefix prefix of the preceding example
+     * @param currentExamplePrefix prefix of the following example
+     * @return true if the missing separator is intentional
+     */
+    private static boolean isSeparatorSuppressed(Path template, String previousExamplePrefix,
+                                                 String currentExamplePrefix) {
+        final String key = template.getFileName() + ":" + previousExamplePrefix
+                + ":" + currentExamplePrefix;
+        return ALLOWED_EXAMPLES_WITHOUT_SEPARATOR.contains(key);
     }
 
     private static List<Path> collectAllXmlTemplatesUnderSrcSite() throws IOException {
