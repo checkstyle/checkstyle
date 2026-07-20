@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class CovariantEqualsCheckTest
     extends AbstractModuleTestSupport {
@@ -81,6 +82,36 @@ public class CovariantEqualsCheckTest
         assertWithMessage("Required tokens should not be null")
                 .that(check.getRequiredTokens())
                 .isNotNull();
+    }
+
+    @Test
+    public void testCovariantEqualsCompactSourceFile()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                    "InputCovariantEqualsCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCovariantEqualsCompactSourceFileMultiple()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                    "InputCovariantEqualsCompactSourceFileMultiple.java"),
+                expected);
+    }
+
+    @Test
+    public void testCovariantEqualsCompactSourceFileNoViolation()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                    "InputCovariantEqualsCompactSourceFileNoViolation.java"),
+                expected);
     }
 
 }
