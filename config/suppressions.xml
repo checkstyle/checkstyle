@@ -194,4 +194,19 @@
   <!-- MissingCtor only matters for production code (src/main/java) which generates Javadoc -->
   <suppress checks="MissingCtor" files=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/].*\.java"/>
 
+  <!-- JavadocStyle incorrectly parses HTML tags inside {@literal}, {@code} blocks as real HTML,
+          until #19145 -->
+  <suppress checks="JavadocStyle" files="JavadocParagraphCheck\.java"/>
+
+  <!-- Suppress PreferJavadocInlineTags for all files -->
+  <suppress checks="PreferJavadocInlineTags"/>
+
+  <!-- JavadocStyle incorrectly parses HTML tags inside {@code} blocks -->
+  <suppress checks="JavadocStyle"
+            files="PreferJavadocInlineTagsCheck\.java"/>
+
+  <!-- EscapedEntity is an error-prone warning, needs @SuppressWarnings to suppress -->
+  <suppress checks="SuppressWarnings"
+            files="PreferJavadocInlineTagsCheck\.java"/>
+
 </suppressions>
