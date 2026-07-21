@@ -155,13 +155,6 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 Stream.of("ENUM_CONSTANT_DEF", "METHOD_DEF", "CTOR_DEF",
                     "ANNOTATION_FIELD_DEF", "RECORD_DEF", "COMPACT_CTOR_DEF")
                     .collect(Collectors.toUnmodifiableSet()));
-        // state of the configuration when test was made until reason found in
-        // https://github.com/checkstyle/checkstyle/issues/3730
-        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation",
-                Stream.of("CLASS_DEF", "CTOR_DEF", "ENUM_DEF", "INTERFACE_DEF",
-                        "METHOD_DEF", "VARIABLE_DEF",
-                        "RECORD_DEF", "COMPACT_CTOR_DEF")
-                        .collect(Collectors.toUnmodifiableSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoLineWrap", Stream.of(
                 // method/constructor declaration could be long due to "parameters/exceptions", it
                 // is ok to be not strict there
@@ -196,7 +189,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         // google
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation", Stream.of(
                 // state of the configuration when test was made until reason found in
-                // https://github.com/checkstyle/checkstyle/issues/3730
+                // https://github.com/checkstyle/checkstyle/issues/20901
                 "ANNOTATION_DEF", "ANNOTATION_FIELD_DEF", "ENUM_CONSTANT_DEF", "PACKAGE_DEF")
                 .collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AbbreviationAsWordInName", Stream.of(
